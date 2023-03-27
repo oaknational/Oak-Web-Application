@@ -16,7 +16,7 @@ import Flex from "../../../../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
 import TitleCard from "../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
-import {
+import Typography, {
   Heading,
   Hr,
   LI,
@@ -103,8 +103,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     exitQuizInfo,
     unitTitle,
     unitSlug,
+    expired,
   } = curriculumData;
-
+  console.log(curriculumData);
   return (
     <AppLayout
       seoProps={getSeoProps({
@@ -150,46 +151,57 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             title={title}
           />
         </Flex>
-        <Flex $flexDirection="column">
-          <Heading tag={"h2"} $font={"heading-6"} $mb={16}>
-            Core content
-          </Heading>
-          <UL $pl={28}>
-            {coreContent.map((contentString, i) => {
-              if (!contentString) {
-                return null;
-              }
-              return (
-                <LI key={`core-content-string-${i}`} $font={"list-item-1"}>
-                  {contentString}
-                </LI>
-              );
-            })}
-          </UL>
-        </Flex>
-        <Flex $mt={12} $flexWrap={"wrap"}>
-          {hasDownloadableResources && (
-            <ButtonAsLink
-              $mr={24}
-              icon="download"
-              iconBackground="teachersHighlight"
-              label="Download all resources"
-              page={"lesson-downloads"}
-              size="small"
-              variant="minimal"
-              $iconPosition={"trailing"}
-              $mt={16}
-              data-testid={"download-all-button"}
-              query={{
-                preselected: "all",
-              }}
-              keyStageSlug={keyStageSlug}
-              slug={slug}
-              subjectSlug={subjectSlug}
-              unitSlug={unitSlug}
-            />
-          )}
-          {/*
+        {expired ? (
+          <Box $pa={16} $mb={64}>
+            <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
+              No lesson available
+            </Heading>
+            <Typography $font={"body-1"}>
+              Sorry, this lesson no longer exists.
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            <Flex $flexDirection="column">
+              <Heading tag={"h2"} $font={"heading-6"} $mb={16}>
+                Core content
+              </Heading>
+              <UL $pl={28}>
+                {coreContent.map((contentString, i) => {
+                  if (!contentString) {
+                    return null;
+                  }
+                  return (
+                    <LI key={`core-content-string-${i}`} $font={"list-item-1"}>
+                      {contentString}
+                    </LI>
+                  );
+                })}
+              </UL>
+            </Flex>
+            <Flex $mt={12} $flexWrap={"wrap"}>
+              {hasDownloadableResources && (
+                <ButtonAsLink
+                  $mr={24}
+                  icon="download"
+                  iconBackground="teachersHighlight"
+                  label="Download all resources"
+                  page={"lesson-downloads"}
+                  size="small"
+                  variant="minimal"
+                  $iconPosition={"trailing"}
+                  $mt={16}
+                  data-testid={"download-all-button"}
+                  query={{
+                    preselected: "all",
+                  }}
+                  keyStageSlug={keyStageSlug}
+                  slug={slug}
+                  subjectSlug={subjectSlug}
+                  unitSlug={unitSlug}
+                />
+              )}
+              {/*
           todo
            <Button
             $mr={24}
@@ -202,89 +214,95 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $iconPosition={"trailing"}
             $mt={16}
           /> */}
-        </Flex>
-        <Hr $color={"oakGrey3"} />
-        {presentationUrl && !hasCopyrightMaterial && (
-          <ExpandingContainer
-            downloadable={true}
-            toggleClosed={false}
-            {...curriculumData}
-            title={"Slide deck"}
-          >
-            <OverviewPresentation asset={presentationUrl} title={title} />
-          </ExpandingContainer>
-        )}
-        {videoMuxPlaybackId && (
-          <ExpandingContainer {...curriculumData} title={"Video"}>
-            <OverviewVideo
-              video={videoMuxPlaybackId}
-              signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-              title={title}
-              hasCaptions={Boolean(transcript)}
-            />
-          </ExpandingContainer>
-        )}
-        {worksheetUrl && (
-          <ExpandingContainer
-            downloadable={true}
-            {...curriculumData}
-            title={"Worksheet"}
-          >
-            <OverviewPresentation asset={worksheetUrl} title={title} />
-          </ExpandingContainer>
-        )}
-        {introQuiz.length > 0 ? (
-          <ExpandingContainer
-            downloadable={true}
-            {...curriculumData}
-            title={"Starter quiz"}
-          >
-            <QuizContainer questions={introQuiz} info={introQuizInfo} />
-          </ExpandingContainer>
-        ) : (
-          ""
-        )}
-        {exitQuiz.length > 0 && (
-          <ExpandingContainer
-            downloadable={true}
-            {...curriculumData}
-            title={"Exit quiz"}
-          >
-            <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-          </ExpandingContainer>
-        )}
+            </Flex>
+            <Hr $color={"oakGrey3"} />
+            {presentationUrl && !hasCopyrightMaterial && (
+              <ExpandingContainer
+                downloadable={true}
+                toggleClosed={false}
+                {...curriculumData}
+                title={"Slide deck"}
+              >
+                <OverviewPresentation asset={presentationUrl} title={title} />
+              </ExpandingContainer>
+            )}
+            {videoMuxPlaybackId && (
+              <ExpandingContainer {...curriculumData} title={"Video"}>
+                <OverviewVideo
+                  video={videoMuxPlaybackId}
+                  signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+                  title={title}
+                  hasCaptions={Boolean(transcript)}
+                />
+              </ExpandingContainer>
+            )}
+            {worksheetUrl && (
+              <ExpandingContainer
+                downloadable={true}
+                {...curriculumData}
+                title={"Worksheet"}
+              >
+                <OverviewPresentation asset={worksheetUrl} title={title} />
+              </ExpandingContainer>
+            )}
+            {introQuiz.length > 0 ? (
+              <ExpandingContainer
+                downloadable={true}
+                {...curriculumData}
+                title={"Starter quiz"}
+              >
+                <QuizContainer questions={introQuiz} info={introQuizInfo} />
+              </ExpandingContainer>
+            ) : (
+              ""
+            )}
+            {exitQuiz.length > 0 && (
+              <ExpandingContainer
+                downloadable={true}
+                {...curriculumData}
+                title={"Exit quiz"}
+              >
+                <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+              </ExpandingContainer>
+            )}
 
-        {transcript && (
-          <ExpandingContainer {...curriculumData} title={"Transcript"}>
-            <OverviewTranscript transcript={transcript} />
-          </ExpandingContainer>
+            {transcript && (
+              <ExpandingContainer {...curriculumData} title={"Transcript"}>
+                <OverviewTranscript transcript={transcript} />
+              </ExpandingContainer>
+            )}
+          </>
         )}
       </MaxWidth>
-      <MaxWidth $ph={[0, 16, 16]}>
-        {(equipmentRequired || supervisionLevel || contentGuidance) && (
-          <Hr $color={"oakGrey3"} />
-        )}
-        <Grid $rg={32} $cg={32} $mv={16}>
-          <LessonHelper
-            helperTitle={"Equipment required"}
-            helperIcon={"equipment-required"}
-            helperDescription={equipmentRequired}
-          />
-          <LessonHelper
-            helperTitle={"Supervision level"}
-            helperIcon={"supervision-level"}
-            helperDescription={supervisionLevel}
-          />
-          <LessonHelper
-            helperTitle={"Content guidance"}
-            helperIcon={"content-guidance"}
-            helperDescription={contentGuidance}
-          />
-        </Grid>
-      </MaxWidth>
-      <MaxWidth $ph={16}>
-        <Hr $color={"oakGrey3"} />
-      </MaxWidth>
+      {!expired && (
+        <>
+          <MaxWidth $ph={[0, 16, 16]}>
+            {(equipmentRequired || supervisionLevel || contentGuidance) && (
+              <Hr $color={"oakGrey3"} />
+            )}
+            <Grid $rg={32} $cg={32} $mv={16}>
+              <LessonHelper
+                helperTitle={"Equipment required"}
+                helperIcon={"equipment-required"}
+                helperDescription={equipmentRequired}
+              />
+              <LessonHelper
+                helperTitle={"Supervision level"}
+                helperIcon={"supervision-level"}
+                helperDescription={supervisionLevel}
+              />
+              <LessonHelper
+                helperTitle={"Content guidance"}
+                helperIcon={"content-guidance"}
+                helperDescription={contentGuidance}
+              />
+            </Grid>
+          </MaxWidth>
+          <MaxWidth $ph={16}>
+            <Hr $color={"oakGrey3"} />
+          </MaxWidth>
+        </>
+      )}
     </AppLayout>
   );
 };
