@@ -61,7 +61,13 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         </P>
       )}
       {displayEmail && (
-        <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="email">
+        <P
+          $font={"body-3"}
+          $color={"oakGrey4"}
+          $mb={4}
+          data-testid="email"
+          $wordWrap={"break-word"}
+        >
           email: {email}
         </P>
       )}
