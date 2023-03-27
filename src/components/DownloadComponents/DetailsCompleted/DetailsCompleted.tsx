@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { Heading, P } from "../../Typography";
 import Button from "../../Button";
@@ -27,6 +27,19 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
     }
   };
 
+  const [displayEmail, setDisplayEmail] = useState(false);
+  const [displaySchool, setDisplaySchool] = useState(false);
+
+  useEffect(() => {
+    if (email) {
+      setDisplayEmail(true);
+    }
+
+    if (school) {
+      setDisplaySchool(true);
+    }
+  }, [email, school]);
+
   return (
     <Box $mt={56} $mb={96}>
       <Flex $mb={12}>
@@ -42,12 +55,12 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         />
       </Flex>
       <P $mb={8}>We have your details saved already.</P>
-      {school && (
+      {displaySchool && (
         <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="school">
           school: {getSchoolName(school)}
         </P>
       )}
-      {email && (
+      {displayEmail && (
         <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="email">
           email: {email}
         </P>
@@ -60,6 +73,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         iconBackground="teachersHighlight"
         onClick={onEditClick}
         $mt={8}
+        aria-label="Edit details"
       />
     </Box>
   );
