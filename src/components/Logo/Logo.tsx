@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import LogoSvg from "../../image-data/generated/logo-with-text.svg";
+import { InlineSpriteSvg } from "../InlineSpriteSheet";
 import ScreenReaderOnly from "../ScreenReaderOnly";
 
 type LogoProps = {
@@ -18,7 +18,7 @@ const Logo: FC<LogoProps> = (props) => {
   return (
     <LogoWrapper {...props}>
       <ScreenReaderOnly>Oak National Academy</ScreenReaderOnly>
-      <LogoSvg role="presentation" />
+      <InlineSpriteSvg name="logo-with-text" />
     </LogoWrapper>
   );
 };

@@ -55,4 +55,4 @@ jest.mock("@mux/mux-player-react/lazy", () => ({
   default: () => null,
 }));
 
-jest.mock("./src/image-data/generated/logo-with-text.svg", () => "svg");
+jest.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");
