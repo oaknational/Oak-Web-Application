@@ -170,6 +170,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       getInitialResourcesToDownloadState()
     );
 
+  const hasResourcesToDownload =
+    getInitialResourcesToDownloadState().length > 0;
+
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
 
@@ -267,6 +270,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
+
+        {!hasResourcesToDownload && (
+          <Box $ph={24} $mb={64} $mt={56}>
+            <Heading
+              $mb={16}
+              $mt={24}
+              $font={["heading-6", "heading-7"]}
+              tag={"h2"}
+            >
+              No downloads available
+            </Heading>
+            <P $mb={24} $font={["body-2", "body-1"]}>
+              Sorry, there are no downloadable teaching resources available for
+              this lesson.
+            </P>
+          </Box>
+        )}
+        {hasResourcesToDownload && isLocalStorageLoading && (
+          <P $mt={24}>Loading...</P>
+        )}
         {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
 
         {!isLocalStorageLoading && localStorageDetails && (
