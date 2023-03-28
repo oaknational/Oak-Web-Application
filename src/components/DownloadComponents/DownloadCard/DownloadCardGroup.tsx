@@ -82,7 +82,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     } else {
                       onChange(
                         fieldValue.filter(
-                          (val: DownloadResourceType) => val !== download.type
+                          (val: DownloadResourceType | string) =>
+                            val !== download.type
                         )
                       );
                     }

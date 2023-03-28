@@ -26,20 +26,30 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       props.onSubmit();
     }
 
-    const emailFromForm = data?.email;
-    const schoolFromForm = data?.school;
+    const email = data?.email;
+    const schoolId = data?.school;
+    const schoolName = data?.schoolName;
     const terms = data?.terms;
 
-    if (emailFromForm) {
-      setEmailInLocalStorage(emailFromForm);
+    if (email) {
+      setEmailInLocalStorage(email);
     }
 
-    if (schoolFromForm) {
-      setSchoolInLocalStorage(schoolFromForm);
+    if (schoolId) {
+      if (schoolId === "homeschool" || schoolId === "notListed") {
+        setSchoolInLocalStorage({
+          schoolId,
+          schoolName: schoolId,
+        });
+      } else {
+        if (schoolName && schoolId) {
+          setSchoolInLocalStorage({ schoolId, schoolName });
+        }
+      }
     }
 
     if (terms) {
-      setTermsInLocalStorage(terms.toString());
+      setTermsInLocalStorage(terms);
     }
 
     await downloadLessonResources(slug, selectedResources);
