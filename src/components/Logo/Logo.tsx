@@ -4,7 +4,6 @@ import styled from "styled-components";
 import LogoSvg from "../../image-data/generated/logo-with-text.svg";
 
 type LogoProps = {
-  title: string;
   width: number;
   height: number;
 };

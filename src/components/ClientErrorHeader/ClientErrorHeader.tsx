@@ -15,7 +15,7 @@ const ClientErrorHeader: FC = () => {
   return (
     <FixedHeader $background={theme.header.background}>
       <OakLink page="home">
-        <Logo title={"Oak National Academy"} height={48} width={104} />
+        <Logo height={48} width={104} />
       </OakLink>
     </FixedHeader>
   );
