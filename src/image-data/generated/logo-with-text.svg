@@ -1,1 +1,4 @@
 Placeholder file so that linting doesn't complain.
+Changes to this file are not tracked, using:
+git update-index --skip-worktree FILENAME
+@see https://stackoverflow.com/questions/9794931/keep-file-in-a-git-repo-but-dont-track-changes

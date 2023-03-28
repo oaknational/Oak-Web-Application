@@ -24,6 +24,7 @@ async function main() {
   const svg = await (await fetch(logoWithText.image.asset.url)).text();
 
   writeFileSync(logoPath, svg);
+  console.log(`✅ Logo SVG written to ${logoPath}`);
 }
 
 main();
