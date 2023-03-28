@@ -2,6 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import LogoSvg from "../../image-data/generated/logo-with-text.svg";
+import ScreenReaderOnly from "../ScreenReaderOnly";
 
 type LogoProps = {
   width: number;
@@ -16,7 +17,8 @@ const LogoWrapper = styled.div<LogoProps>`
 const Logo: FC<LogoProps> = (props) => {
   return (
     <LogoWrapper {...props}>
-      <LogoSvg />
+      <ScreenReaderOnly>Oak National Academy</ScreenReaderOnly>
+      <LogoSvg role="presentation" />
     </LogoWrapper>
   );
 };
