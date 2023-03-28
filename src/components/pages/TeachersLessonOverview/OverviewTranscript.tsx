@@ -5,20 +5,11 @@ import { P } from "../../Typography";
 import Flex from "../../Flex";
 
 interface OverviewTranscriptProps {
-  transcript: string;
+  transcriptSentences: string[];
 }
 
-export const splitTextIntoSentences = (text: string) => {
-  const regex =
-    /(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+|["'“([]?)(?:\b(?:(?!(?:\S{1,})[.?!]+["']?\s+["']?[A-Z]).)*)(?:(?:(?:Jr|Master|Mr|Ms|Mrs|Dr|Capt|Col|Sgt|Sr|Prof|Rep|Mt|Mount|St|Etc|Eg)\.\s+(?:(?!\w{2,}[.?!]['"]?\s+["']?[A-Z]).)*)?)*(?:(?![.?!]["']?\s+["']?\w).)*(?:[.?!)\]]+["'”]?|[^\r\n]+$)/g;
-  const result = text.replace(regex, function (m) {
-    return `${m}\r`;
-  });
-  return result.split("\r");
-};
-
 export const OverviewTranscript: FC<OverviewTranscriptProps> = ({
-  transcript,
+  transcriptSentences,
 }) => {
   return (
     <Flex $width={"100%"} $justifyContent={"center"} data-testid="transcript">
@@ -37,7 +28,7 @@ export const OverviewTranscript: FC<OverviewTranscriptProps> = ({
           $pr={32}
           tabIndex={0}
         >
-          {splitTextIntoSentences(transcript).map(
+          {transcriptSentences.map(
             (transcriptSentence: string, index: number) => (
               <P $mb={[24, 16]} $font={"body-1"} key={index}>
                 {transcriptSentence}

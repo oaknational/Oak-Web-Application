@@ -30,6 +30,7 @@ query teachersLessonOverview(
     videoMuxPlaybackId: video_mux_playback_id
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
+    transcriptSentences: transcript_sentences
     hasDownloadableResources: has_downloadable_resources
     expired
   }

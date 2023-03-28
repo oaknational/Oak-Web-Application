@@ -23,7 +23,7 @@ const teachersLessonOverviewFixture = (
     hasCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
-    transcript: null,
+    transcriptSentences: null,
     hasDownloadableResources: true,
     introQuiz: [
       {
