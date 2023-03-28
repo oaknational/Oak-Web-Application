@@ -178,6 +178,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
+  const hasResourcesToDownload =
+    getInitialResourcesToDownloadState().length > 0;
 
   return (
     <AppLayout
@@ -235,7 +237,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
 
-        {getInitialResourcesToDownloadState().length > 0 ? (
+        {hasResourcesToDownload ? (
           <>
             {/* @todo replace email and school with values from local storage */}
             {shouldDisplayDetailsCompleted ? (
