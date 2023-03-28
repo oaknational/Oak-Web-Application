@@ -141,14 +141,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
-      setValue("school", value || schoolIdFromLocalStorage, {
+      setValue("school", value, {
         shouldValidate: true,
       });
       setValue("schoolName", name || schoolNameFromLocalStorage, {
         shouldValidate: true,
       });
     },
-    [setValue, schoolNameFromLocalStorage, schoolIdFromLocalStorage]
+    [setValue, schoolNameFromLocalStorage]
   );
 
   const { errors } = formState;
