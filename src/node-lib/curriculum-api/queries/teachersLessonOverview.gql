@@ -31,6 +31,7 @@ query teachersLessonOverview(
     videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
     transcript
     hasDownloadableResources: has_downloadable_resources
+    expired
   }
   exitQuizInfo: mv_quizzes(
     where: {
