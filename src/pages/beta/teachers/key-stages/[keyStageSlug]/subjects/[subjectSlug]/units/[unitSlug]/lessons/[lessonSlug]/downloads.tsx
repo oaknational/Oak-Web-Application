@@ -69,8 +69,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const {
-    // schoolIdFromLocalStorage,
-    // schoolNameFromLocalStorage,
     schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
@@ -80,6 +78,24 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolName: schoolNameFromLocalStorage,
     schoolId: schoolIdFromLocalStorage,
   } = schoolFromLocalStorage;
+
+  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
+
+  useEffect(() => {
+    if (
+      (schoolNameFromLocalStorage || schoolNameFromLocalStorage === "") &&
+      (schoolIdFromLocalStorage || schoolIdFromLocalStorage === "") &&
+      (emailFromLocalStorage || emailFromLocalStorage === "") &&
+      (termsFromLocalStorage || termsFromLocalStorage === false)
+    ) {
+      setIsLocalStorageLoading(false);
+    }
+  }, [
+    schoolNameFromLocalStorage,
+    schoolIdFromLocalStorage,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+  ]);
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
@@ -251,13 +267,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-        {localStorageDetails ? (
+        {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
+
+        {!isLocalStorageLoading && localStorageDetails && (
           <DetailsCompleted
             email={emailFromLocalStorage}
             school={schoolNameFromLocalStorage}
             onEditClick={handleEditClick}
           />
-        ) : (
+        )}
+
+        {!isLocalStorageLoading && !localStorageDetails && (
           <Box $maxWidth={[null, 420, 420]} $mb={96}>
             <SchoolPickerRadio
               errors={errors}
