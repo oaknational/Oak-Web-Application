@@ -226,8 +226,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
-        result.current.setSchoolNameInLocalStorage("Primary School");
-        result.current.setSchoolIdInLocalStorage("222-Primary School");
+        result.current.setSchoolInLocalStorage({
+          schoolName: "Primary School",
+          schoolId: "222-Primary School",
+        });
       });
 
       const { getByText } = renderWithProviders(
@@ -290,8 +292,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { result } = renderHook(() => useLocalStorageForDownloads());
 
       act(() => {
-        result.current.setSchoolIdInLocalStorage("222-Primary-School");
-        result.current.setSchoolNameInLocalStorage("Primary School");
+        result.current.setSchoolInLocalStorage({
+          schoolName: "Primary School",
+          schoolId: "222-Primary-School",
+        });
       });
 
       const { getByText, getByTestId } = renderWithProviders(
@@ -303,8 +307,8 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const user = userEvent.setup();
       await user.click(editButton);
 
-      const schoolId = result.current.schoolIdFromLocalStorage;
-      const schoolName = result.current.schoolNameFromLocalStorage;
+      const schoolId = result.current.schoolFromLocalStorage.schoolId;
+      const schoolName = result.current.schoolFromLocalStorage.schoolName;
 
       const schoolPicker = getByTestId("search-combobox-input");
       await waitFor(() => {

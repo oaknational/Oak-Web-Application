@@ -9,14 +9,12 @@ describe("useLocalStorageForDownloads", () => {
     window.localStorage.clear();
   });
 
-  test("schoolIdFromLocalStorage should default to empty string", () => {
+  test("schoolFromLocalStorage should default to object with schoolId and schoolName as empty strings", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.schoolIdFromLocalStorage).toBe("");
-  });
-
-  test("schoolNameFromLocalStorage should default to empty string", () => {
-    const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.schoolNameFromLocalStorage).toBe("");
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "",
+      schoolName: "",
+    });
   });
 
   test("emailFromLocalStorage should default to empty string", () => {
@@ -29,20 +27,32 @@ describe("useLocalStorageForDownloads", () => {
     expect(result.current.termsFromLocalStorage).toBe(false);
   });
 
-  test("calling setSchoolIdInLocalStorage should set schoolFromLocalStorage to correct value", () => {
+  test("calling setSchoolInLocalStorage with schoolId should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setSchoolIdInLocalStorage("222-Sample school");
+      result.current.setSchoolInLocalStorage({
+        schoolId: "222-Sample school",
+        schoolName: "",
+      });
     });
-    expect(result.current.schoolIdFromLocalStorage).toBe("222-Sample school");
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "222-Sample school",
+      schoolName: "",
+    });
   });
 
-  test("calling setSchoolNameInLocalStorage should set schoolNameFromLocalStorage to correct value", () => {
+  test("calling setSchoolInLocalStorage with schoolName should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setSchoolNameInLocalStorage("Sample school");
+      result.current.setSchoolInLocalStorage({
+        schoolId: "",
+        schoolName: "Sample school",
+      });
     });
-    expect(result.current.schoolNameFromLocalStorage).toBe("Sample school");
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "",
+      schoolName: "Sample school",
+    });
   });
 
   test("calling setEmailInLocalStorage should set emailFromLocalStorage to correct value", () => {

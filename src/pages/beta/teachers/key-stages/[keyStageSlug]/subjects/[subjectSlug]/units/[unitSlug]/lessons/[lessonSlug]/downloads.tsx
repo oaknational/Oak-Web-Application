@@ -69,11 +69,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     });
 
   const {
-    schoolIdFromLocalStorage,
-    schoolNameFromLocalStorage,
+    // schoolIdFromLocalStorage,
+    // schoolNameFromLocalStorage,
+    schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
   } = useLocalStorageForDownloads();
+
+  const {
+    schoolName: schoolNameFromLocalStorage,
+    schoolId: schoolIdFromLocalStorage,
+  } = schoolFromLocalStorage;
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
@@ -84,12 +90,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (termsFromLocalStorage) {
       setValue("terms", termsFromLocalStorage);
     }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
-    schoolIdFromLocalStorage,
-  ]);
+  }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
@@ -111,7 +112,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const hasDetailsFromLocaleStorage =
-    schoolIdFromLocalStorage.length || emailFromLocalStorage.length;
+    schoolIdFromLocalStorage?.length || emailFromLocalStorage.length;
 
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
@@ -165,7 +166,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources as DownloadResourceType[]);
+        onSubmit(data, slug, selectedResources);
       },
       4000,
       { leading: true }
@@ -250,7 +251,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             title={`Downloads: ${title}`}
           />
         </Flex>
-        {/* @todo replace email and school with values from local storage */}
         {localStorageDetails ? (
           <DetailsCompleted
             email={emailFromLocalStorage}

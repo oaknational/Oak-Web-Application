@@ -12,8 +12,7 @@ type UseDownloadFormProps = {
 
 const useDownloadForm = (props: UseDownloadFormProps = {}) => {
   const {
-    setSchoolIdInLocalStorage,
-    setSchoolNameInLocalStorage,
+    setSchoolInLocalStorage,
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
@@ -37,15 +36,16 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     }
 
     if (schoolId) {
-      setSchoolIdInLocalStorage(schoolId);
-
       if (schoolId === "homeschool" || schoolId === "notListed") {
-        setSchoolNameInLocalStorage(schoolId);
+        setSchoolInLocalStorage({
+          schoolId,
+          schoolName: schoolId,
+        });
+      } else {
+        if (schoolName && schoolId) {
+          setSchoolInLocalStorage({ schoolId, schoolName });
+        }
       }
-    }
-
-    if (schoolName) {
-      setSchoolNameInLocalStorage(schoolName);
     }
 
     if (terms) {
