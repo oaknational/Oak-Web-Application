@@ -105,7 +105,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     expired,
   } = curriculumData;
-  console.log(curriculumData);
   return (
     <AppLayout
       seoProps={getSeoProps({
