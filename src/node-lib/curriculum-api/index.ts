@@ -280,6 +280,7 @@ const teachersLessonOverviewData = z.object({
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
   exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  expired: z.boolean(),
 });
 
 const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
