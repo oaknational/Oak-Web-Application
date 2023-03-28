@@ -3,6 +3,7 @@ import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
+import { useRouter } from "next/router";
 
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
@@ -28,6 +29,7 @@ import getDownloadFormErrorMessage from "../../../../../../../../../../../compon
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
+import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
 import type {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
@@ -62,11 +64,31 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
+  const router = useRouter();
+
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+
+  const getInitialResourcesToDownloadState = useCallback(() => {
+    return downloads
+      .filter((download) => download.exists && !download.forbidden)
+      .map((download) => download.type);
+  }, [downloads]);
+
+  useEffect(() => {
+    const preselected = getPreselectedDownloadResourceTypes(
+      router.query.preselected
+    );
+
+    if (preselected) {
+      preselected === "all"
+        ? setValue("downloads", getInitialResourcesToDownloadState())
+        : setValue("downloads", preselected);
+    }
+  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
 
   const {
     schoolFromLocalStorage,
@@ -164,18 +186,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     shouldDisplayDetailsCompleted,
   ]);
 
-  const getInitialResourcesToDownloadState = () => {
-    const initialResourcesToDownloadState: ResourcesToDownloadArrayType = [];
-
-    downloads?.forEach((download) => {
-      if (download.exists && !download.forbidden) {
-        initialResourcesToDownloadState.push(download.type);
-      }
-    });
-
-    return initialResourcesToDownloadState;
-  };
-
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
       getInitialResourcesToDownloadState()
@@ -259,10 +269,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               },
               {
                 oakLinkProps: {
-                  page: "downloads",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                  unit: unitSlug,
+                  page: "lesson-downloads",
+                  keyStageSlug: keyStageSlug,
+                  subjectSlug: subjectSlug,
+                  unitSlug: unitSlug,
                   slug: slug,
                 },
                 label: "Downloads",
