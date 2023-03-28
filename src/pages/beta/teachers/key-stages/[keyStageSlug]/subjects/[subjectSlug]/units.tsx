@@ -64,17 +64,23 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
-  const tiersSEO = getSeoProps({
-    title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
-    description: `We have resources for tiers: ${tiers
-      .map((tier) => tier.title)
-      .join(", ")}`,
-  });
+  const tiersSEO = {
+    ...getSeoProps({
+      title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
+      description: `We have resources for tiers: ${tiers
+        .map((tier) => tier.title)
+        .join(", ")}`,
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
 
-  const unitsSEO = getSeoProps({
-    title: "Units", // @todo add real data
-    description: "Subject units",
-  });
+  const unitsSEO = {
+    ...getSeoProps({
+      title: "Units", // @todo add real data
+      description: "Subject units",
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
 
   return (
     <AppLayout seoProps={tiers.length && !tierQuery ? tiersSEO : unitsSEO}>
