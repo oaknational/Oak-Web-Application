@@ -106,16 +106,27 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     if (termsFromLocalStorage) {
       setValue("terms", termsFromLocalStorage);
     }
-  }, [setValue, emailFromLocalStorage, termsFromLocalStorage]);
+
+    if (schoolIdFromLocalStorage) {
+      setValue("school", schoolIdFromLocalStorage);
+    }
+  }, [
+    setValue,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+    schoolIdFromLocalStorage,
+  ]);
 
   const setSchool = useCallback(
     (value: string, name?: string) => {
-      setValue("school", value, { shouldValidate: true });
+      setValue("school", value || schoolIdFromLocalStorage, {
+        shouldValidate: true,
+      });
       setValue("schoolName", name || schoolNameFromLocalStorage, {
         shouldValidate: true,
       });
     },
-    [setValue, schoolNameFromLocalStorage]
+    [setValue, schoolNameFromLocalStorage, schoolIdFromLocalStorage]
   );
 
   const { errors } = formState;
