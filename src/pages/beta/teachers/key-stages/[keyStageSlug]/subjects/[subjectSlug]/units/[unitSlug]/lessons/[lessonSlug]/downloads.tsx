@@ -178,6 +178,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
+  const hasResourcesToDownload =
+    getInitialResourcesToDownloadState().length > 0;
 
   return (
     <AppLayout
@@ -238,119 +240,139 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
 
-        {/* @todo replace email and school with values from local storage */}
-        {shouldDisplayDetailsCompleted ? (
-          <DetailsCompleted
-            email={"replace with email from local storage"}
-            school={"replace with school from local storage"}
-            onEditClick={() => setEditDetailsClicked(true)}
-          />
-        ) : (
-          <Box $maxWidth={[null, 420, 420]} $mb={96}>
-            <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+        {hasResourcesToDownload ? (
+          <>
+            {/* @todo replace email and school with values from local storage */}
+            {shouldDisplayDetailsCompleted ? (
+              <DetailsCompleted
+                email={"replace with email from local storage"}
+                school={"replace with school from local storage"}
+                onEditClick={() => setEditDetailsClicked(true)}
+              />
+            ) : (
+              <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                <SchoolPickerRadio errors={errors} setSchool={setSchool} />
 
+                <Heading
+                  tag="h3"
+                  $font={"heading-7"}
+                  $mt={16}
+                  $mb={24}
+                  data-testid="email-heading"
+                >
+                  For regular updates from Oak (optional)
+                </Heading>
+                <Input
+                  id={"email"}
+                  label="Email address"
+                  placeholder="Enter email address here"
+                  {...register("email")}
+                  error={errors.email?.message}
+                />
+                <P $font="body-3" $mt={-24} $mb={40}>
+                  Join our community to get free lessons, resources and other
+                  helpful content. Unsubscribe at any time. Our{" "}
+                  <OakLink page={"privacy-policy"} $isInline>
+                    privacy policy
+                  </OakLink>
+                  .
+                </P>
+                <Controller
+                  control={control}
+                  name="terms"
+                  render={({ field: { value, onChange, name, onBlur } }) => {
+                    const onChangeHandler = (
+                      e: ChangeEvent<HTMLInputElement>
+                    ) => {
+                      return onChange(e.target.checked);
+                    };
+                    return (
+                      <TermsAndConditionsCheckbox
+                        name={name}
+                        checked={value}
+                        onChange={onChangeHandler}
+                        onBlur={onBlur}
+                        id={"terms"}
+                        errorMessage={errors?.terms?.message}
+                      />
+                    );
+                  }}
+                />
+              </Box>
+            )}
+            <Grid $mt={32}>
+              <DownloadCardGroup
+                control={control}
+                downloads={downloads}
+                hasError={errors?.downloads ? true : false}
+                errorMessage={errors?.downloads?.message}
+                onSelectAllClick={() => onSelectAllClick()}
+                onDeselectAllClick={() => onDeselectAllClick()}
+              />
+
+              <GridArea $colSpan={[12]}>
+                <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
+                <Flex
+                  $flexDirection={["column", "row"]}
+                  $justifyContent={"right"}
+                  $alignItems={"center"}
+                >
+                  {hasFormErrors && (
+                    <Box $mr={24} $textAlign={"left"}>
+                      <FieldError
+                        id="download-form-error"
+                        variant={"large"}
+                        withoutMarginBottom
+                      >
+                        {getFormErrorMessage()}
+                      </FieldError>
+                    </Box>
+                  )}
+                  <Flex $justifyContent={"right"} $alignItems={"center"}>
+                    <Box $minWidth={130} $mr={24}>
+                      <P
+                        $color={"oakGrey4"}
+                        $font={"body-2"}
+                        data-testid="selectedResourcesCount"
+                      >
+                        {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
+                      </P>
+                    </Box>
+
+                    <Button
+                      label={"Download .zip"}
+                      onClick={handleSubmit(onFormSubmit)}
+                      background={"teachersHighlight"}
+                      icon="download"
+                      $iconPosition="trailing"
+                      iconBackground="teachersYellow"
+                      disabled={isAttemptingDownload}
+                      $mt={8}
+                      $mb={16}
+                      $mr={8}
+                      $ml={8}
+                    />
+                  </Flex>
+                </Flex>
+              </GridArea>
+            </Grid>
+          </>
+        ) : (
+          <Box $ph={24} $mb={64} $mt={56}>
             <Heading
-              tag="h3"
-              $font={"heading-7"}
-              $mt={16}
-              $mb={24}
-              data-testid="email-heading"
+              $mb={16}
+              $mt={24}
+              $font={["heading-6", "heading-7"]}
+              tag={"h2"}
             >
-              For regular updates from Oak (optional)
+              No downloads available
             </Heading>
-            <Input
-              id={"email"}
-              label="Email address"
-              placeholder="Enter email address here"
-              {...register("email")}
-              error={errors.email?.message}
-            />
-            <P $font="body-3" $mt={-24} $mb={40}>
-              Join our community to get free lessons, resources and other
-              helpful content. Unsubscribe at any time. Our{" "}
-              <OakLink page={"privacy-policy"} $isInline>
-                privacy policy
-              </OakLink>
-              .
+            <P $mb={24} $font={["body-2", "body-1"]}>
+              Sorry, there are no downloadable teaching resources available for
+              this lesson.
             </P>
-            <Controller
-              control={control}
-              name="terms"
-              render={({ field: { value, onChange, name, onBlur } }) => {
-                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                  return onChange(e.target.checked);
-                };
-                return (
-                  <TermsAndConditionsCheckbox
-                    name={name}
-                    checked={value}
-                    onChange={onChangeHandler}
-                    onBlur={onBlur}
-                    id={"terms"}
-                    errorMessage={errors?.terms?.message}
-                  />
-                );
-              }}
-            />
           </Box>
         )}
-
-        <Grid $mt={32}>
-          <DownloadCardGroup
-            control={control}
-            downloads={downloads}
-            hasError={errors?.downloads ? true : false}
-            errorMessage={errors?.downloads?.message}
-            onSelectAllClick={() => onSelectAllClick()}
-            onDeselectAllClick={() => onDeselectAllClick()}
-          />
-
-          <GridArea $colSpan={[12]}>
-            <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
-            <Flex
-              $flexDirection={["column", "row"]}
-              $justifyContent={"right"}
-              $alignItems={"center"}
-            >
-              {hasFormErrors && (
-                <Box $mr={24} $textAlign={"left"}>
-                  <FieldError
-                    id="download-form-error"
-                    variant={"large"}
-                    withoutMarginBottom
-                  >
-                    {getFormErrorMessage()}
-                  </FieldError>
-                </Box>
-              )}
-              <Flex $justifyContent={"right"} $alignItems={"center"}>
-                <Box $minWidth={130} $mr={24}>
-                  <P
-                    $color={"oakGrey4"}
-                    $font={"body-2"}
-                    data-testid="selectedResourcesCount"
-                  >
-                    {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
-                  </P>
-                </Box>
-
-                <Button
-                  label={"Download .zip"}
-                  onClick={handleSubmit(onFormSubmit)}
-                  background={"teachersHighlight"}
-                  icon="download"
-                  $iconPosition="trailing"
-                  iconBackground="teachersYellow"
-                  disabled={isAttemptingDownload}
-                  $mt={8}
-                  $mb={16}
-                  $mr={8}
-                  $ml={8}
-                />
-              </Flex>
-            </Flex>
-          </GridArea>
-        </Grid>
       </MaxWidth>
     </AppLayout>
   );
