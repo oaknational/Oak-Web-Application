@@ -110,8 +110,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
-    setIsLocalStorageLoading(false);
-
     if (emailFromLocalStorage) {
       setValue("email", emailFromLocalStorage);
     }
