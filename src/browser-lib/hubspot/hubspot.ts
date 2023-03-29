@@ -50,10 +50,10 @@ const loaded = () => {
 export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
   name: "hubspot",
   init: (config) =>
-    new Promise<void>((resolve) => {
+    new Promise((resolve) => {
       startHubspot(config);
       if (loaded()) {
-        resolve();
+        resolve(null);
       } else {
         /**
          * Check if hubspot is loaded every second
@@ -61,7 +61,7 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
         const intervalId = window.setInterval(() => {
           if (loaded()) {
             window.clearInterval(intervalId);
-            resolve();
+            resolve(null);
           }
         }, 1000);
       }
@@ -77,7 +77,6 @@ export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
       reportError(error);
     }
 
-    // @todo do we need to snakecase properties like DavidWells/analytics
     _hsq.push(["identify", { id: userId, ...properties }]);
   },
   page: (properties) => {

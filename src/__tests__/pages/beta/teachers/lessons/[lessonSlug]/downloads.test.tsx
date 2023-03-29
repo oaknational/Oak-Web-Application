@@ -1,4 +1,4 @@
-import { renderHook, screen } from "@testing-library/react";
+import { renderHook, screen, act, waitFor } from "@testing-library/react";
 import { GetServerSidePropsContext, PreviewData } from "next";
 import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
@@ -9,11 +9,13 @@ import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
+import "../../../../../__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
   getServerSideProps,
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import useLocalStorageForDownloads from "../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
@@ -44,15 +46,44 @@ jest.mock(
 
 beforeEach(() => {
   renderHook(() => useForm());
+  localStorage.clear();
 });
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("Renders title from the props with added 'Downloads' text in front of it", async () => {
+  it("Renders title from the props with added 'Downloads' text in front of it", () => {
     renderWithProviders(<LessonDownloadsPage {...props} />);
-
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "Downloads: Islamic Geometry"
     );
+  });
+  it("Renders 'no downloads available' message if there is no downloads", () => {
+    renderWithProviders(
+      <LessonDownloadsPage
+        {...{
+          curriculumData: {
+            ...props.curriculumData,
+            downloads: [],
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByText("No downloads available")).toBeInTheDocument();
+  });
+
+  it("Renders 'no downloads available' message if there is no downloads", () => {
+    renderWithProviders(
+      <LessonDownloadsPage
+        {...{
+          curriculumData: {
+            ...props.curriculumData,
+            downloads: [],
+          },
+        }}
+      />
+    );
+
+    expect(screen.getByText("No downloads available")).toBeInTheDocument();
   });
 
   describe("download form", () => {
@@ -204,6 +235,120 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
 
+  describe("renders details saved in local storage", () => {
+    it("renders DetailsCompleted component with email filled from local storage if available", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setEmailInLocalStorage("test@test.com");
+      });
+
+      const { getByText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      expect(getByText("email: test@test.com")).toBeInTheDocument();
+    });
+
+    it("displays DetailsCompleted component with school name filled from local storage if available", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setSchoolInLocalStorage({
+          schoolName: "Primary School",
+          schoolId: "222-Primary School",
+        });
+      });
+
+      const { getByText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      expect(getByText("school: Primary School")).toBeInTheDocument();
+    });
+  });
+
+  describe("details on the form prefilled correctly when user clicks 'Edit' button on DetailsComplete component", () => {
+    it("marks Terms and Conditions as checked if saved in local storage", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
+      });
+
+      const { getByText, getByLabelText } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      // user click Edit button
+      const editButton = getByText("Edit");
+
+      const user = userEvent.setup();
+      await user.click(editButton);
+
+      const terms = getByLabelText("I accept terms and conditions (required)");
+
+      await waitFor(() => {
+        expect(terms).toBeChecked();
+      });
+    });
+
+    it("prefills email from saved in local storage", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setEmailInLocalStorage("test@test.com");
+      });
+
+      const { getByText, getByLabelText, getByDisplayValue } =
+        renderWithProviders(<LessonDownloadsPage {...props} />);
+
+      // user click Edit button
+      const editButton = getByText("Edit");
+      const user = userEvent.setup();
+      await user.click(editButton);
+
+      const emailAddress = result.current.emailFromLocalStorage;
+      expect(getByLabelText("Email address")).toBeInTheDocument();
+      const emailValue = getByDisplayValue(emailAddress);
+      expect(emailValue).toBeInTheDocument();
+      expect(emailAddress).toBe("test@test.com");
+    });
+
+    it("prefills school with the correct school name if school id is saved in local storage", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+
+      act(() => {
+        result.current.setSchoolInLocalStorage({
+          schoolName: "Primary School",
+          schoolId: "222-Primary-School",
+        });
+      });
+
+      const { getByText, getByTestId } = renderWithProviders(
+        <LessonDownloadsPage {...props} />
+      );
+
+      // user click Edit button
+      const editButton = getByText("Edit");
+      const user = userEvent.setup();
+      await user.click(editButton);
+
+      const schoolId = result.current.schoolFromLocalStorage.schoolId;
+      const schoolName = result.current.schoolFromLocalStorage.schoolName;
+
+      const schoolPicker = getByTestId("search-combobox-input");
+      await waitFor(() => {
+        expect(schoolPicker).toBeInTheDocument();
+        expect(schoolPicker).toHaveValue("Primary School");
+      });
+
+      expect(schoolId).toBe("222-Primary-School");
+      expect(schoolName).toBe("Primary School");
+    });
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo(<LessonDownloadsPage {...props} />);
@@ -220,6 +365,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
   });
+
   describe("getServerSideProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getServerSideProps({

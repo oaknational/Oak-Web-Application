@@ -2,10 +2,13 @@ import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
 import config from "../../config/browser";
-import { AnonymousUserId } from "../../browser-lib/analytics/useAnonymousId";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 import OakError from "../../errors/OakError";
+import {
+  MaybeDistinctId,
+  PosthogDistinctId,
+} from "../../browser-lib/posthog/posthog";
 
 import { consoleError, consoleLog } from "./logging";
 import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
@@ -66,7 +69,7 @@ const getBugsnagConfig = ({
   apiKey: string;
   appVersion: string;
   releaseStage: string;
-  userId: AnonymousUserId;
+  userId: MaybeDistinctId;
 }): BugsnagConfig => {
   return {
     apiKey,
@@ -75,7 +78,7 @@ const getBugsnagConfig = ({
     releaseStage,
     collectUserIp: false,
     user: {
-      id: userId,
+      id: userId || undefined,
     },
     // Route notifications via our domains for zero rating.
     endpoints: {
@@ -99,7 +102,7 @@ const getBugsnagConfig = ({
   };
 };
 
-export const initialiseBugsnag = (userId: AnonymousUserId) => {
+export const initialiseBugsnag = (userId: PosthogDistinctId | null) => {
   const bugsnagConfig = getBugsnagConfig({
     apiKey: config.get("bugsnagApiKey"),
     appVersion: config.get("appVersion"),
@@ -112,6 +115,8 @@ export const initialiseBugsnag = (userId: AnonymousUserId) => {
 
   // Manually start a Bugsnag session.
   Bugsnag.startSession();
+
+  return Bugsnag;
 };
 
 export type ErrorData = Record<string, unknown> & {

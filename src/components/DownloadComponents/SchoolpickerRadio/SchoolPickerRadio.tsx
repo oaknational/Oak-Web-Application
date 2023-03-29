@@ -10,7 +10,9 @@ import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
 import { Heading, P } from "../../Typography";
 
 export type SchoolPickerRadioProps = {
-  setSchool: (value: string) => void;
+  setSchool: (value: string, name?: string) => void;
+  initialValue?: string;
+  initialSchoolName?: string;
   errors?: Partial<
     FieldErrorsImpl<{
       school: string;
@@ -20,6 +22,8 @@ export type SchoolPickerRadioProps = {
 
 const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   setSchool,
+  initialValue,
+  initialSchoolName,
   errors,
 }) => {
   const [selectedRadio, setSelectedRadio] = useState("");
@@ -31,18 +35,33 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
     schools,
   } = useSchoolPicker();
 
+  // initial values
   useEffect(() => {
-    if (selectedSchool) {
-      setSelectedRadio("");
-      setSchool(selectedSchool.toString());
+    if (initialValue) {
+      if (initialValue === "homeschool" || initialValue === "notListed") {
+        setSelectedRadio(initialValue);
+        setSchool(initialValue);
+        setSchoolPickerInputValue("");
+      } else {
+        setSelectedRadio("");
+        setSchool(initialValue);
+        if (initialSchoolName) {
+          setSchoolPickerInputValue(initialSchoolName);
+        }
+      }
     }
-  }, [selectedSchool, setSchool]);
+  }, [initialValue, setSchool, setSchoolPickerInputValue, initialSchoolName]);
+
+  useEffect(() => {
+    if (selectedSchool && schoolPickerInputValue !== "") {
+      setSchool(selectedSchool.toString(), schoolPickerInputValue);
+    }
+  }, [selectedSchool, setSchool, schoolPickerInputValue, selectedRadio]);
 
   const onRadioChange = (value: string) => {
-    if (selectedSchool) {
-      setSchoolPickerInputValue("");
-    }
     setSelectedRadio(value);
+    setSelectedSchool("");
+    setSchoolPickerInputValue("");
     setSchool(value);
   };
 
@@ -50,6 +69,7 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
     if (value === "" && !selectedRadio) {
       setSchool("");
     }
+    setSelectedRadio("");
     setSchoolPickerInputValue(value);
   };
   return (

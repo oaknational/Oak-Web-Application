@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
@@ -8,7 +8,7 @@ import useAnalyticsService from "./useAnalyticsService";
 
 const service: AnalyticsService<unknown> = {
   name: "test service" as ServiceType,
-  init: jest.fn(),
+  init: jest.fn(() => Promise.resolve("test-posthog-distinct-id")),
   state: jest.fn(() => "pending"),
   track: jest.fn(),
   page: jest.fn(),
@@ -16,6 +16,8 @@ const service: AnalyticsService<unknown> = {
   optOut: jest.fn(),
   optIn: jest.fn(),
 };
+
+const setPosthogDistinctId = jest.fn();
 
 describe("useAnalyticsService", () => {
   beforeEach(() => {
@@ -47,5 +49,20 @@ describe("useAnalyticsService", () => {
       })
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
+  });
+  test("should set posthog distinct if callback passed", async () => {
+    renderHook(() =>
+      useAnalyticsService({
+        service,
+        config: { foo: "bar" },
+        consentState: "enabled",
+        setPosthogDistinctId,
+      })
+    );
+    await waitFor(() => {
+      expect(setPosthogDistinctId).toHaveBeenCalledWith(
+        "test-posthog-distinct-id"
+      );
+    });
   });
 });

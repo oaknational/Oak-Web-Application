@@ -59,6 +59,7 @@ const teachersLessonOverviewFixture = (
     exitQuiz: [],
     exitQuizInfo: { title: "this quiz", questionCount: 4 },
     introQuizInfo: { title: "this quiz", questionCount: 4 },
+    expired: false,
     ...partial,
   };
 };

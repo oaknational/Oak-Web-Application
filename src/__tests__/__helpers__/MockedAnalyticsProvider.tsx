@@ -5,6 +5,8 @@ import { analyticsContext } from "../../context/Analytics/AnalyticsProvider";
 
 import noop from "./noop";
 
+export const testPosthogDistinctId = "test-posthog-distinct-i";
+
 const MockedAnalyticsProvider: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
@@ -16,7 +18,13 @@ const MockedAnalyticsProvider: FC<{
     return acc;
   }, {} as typeof Avo);
   return (
-    <analyticsContext.Provider value={{ track: noopTrack, identify: noop }}>
+    <analyticsContext.Provider
+      value={{
+        track: noopTrack,
+        identify: noop,
+        posthogDistinctId: testPosthogDistinctId,
+      }}
+    >
       {children}
     </analyticsContext.Provider>
   );

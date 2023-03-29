@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Bugsnag from "@bugsnag/js";
 
 import { initialiseBugsnag } from "../../common-lib/error-reporter";
-import { AnonymousUserId } from "../analytics/useAnonymousId";
+import { MaybeDistinctId } from "../posthog/posthog";
 
 export const bugsnagInitialised = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -12,20 +12,30 @@ export const bugsnagInitialised = () => {
 
 type UseBugsnagProps = {
   enabled: boolean;
-  userId: AnonymousUserId;
+  userId: MaybeDistinctId;
 };
 const useBugsnag = ({ enabled, userId }: UseBugsnagProps) => {
   useEffect(() => {
-    // This should happen once per app load.
     if (enabled && !bugsnagInitialised()) {
+      /**
+       * This should happen once per app load.
+       */
       initialiseBugsnag(userId);
+    }
+    if (enabled && bugsnagInitialised() && userId) {
+      /**
+       * Sometimes userId might come through (after Posthog loads) after Bugsnag
+       * has already initialised. In this case we update the Busnag session with
+       * the id
+       */
+      Bugsnag.setUser(userId);
     }
     if (!enabled && bugsnagInitialised()) {
       /**
-       * @TODO disable bugsnag here!?
-       * If we can't disable bugsnag globally, we'll have to configure
-       * in error-reporter to stop sending reports
+       * errorReporter.ts is configured not to send errors if Bugsnag has not
+       * been consented to
        */
+      Bugsnag.pauseSession();
     }
   }, [enabled, userId]);
 };
