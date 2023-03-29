@@ -362,9 +362,9 @@ const getFirstResultOrWarnOrFail =
       // });
     }
     const [firstResult] = results;
-    // if (!firstResult) {
-    throw new OakError({ code: "curriculum-api/not-found" });
-    // }
+    if (!firstResult) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
 
     return firstResult;
   };
@@ -383,6 +383,7 @@ const getFirstResultOrNull =
 const curriculumApi = {
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
+    throw new OakError({ code: "curriculum-api/not-found" });
 
     return teachersHomePageData.parse(transformMVCase(res));
   },
