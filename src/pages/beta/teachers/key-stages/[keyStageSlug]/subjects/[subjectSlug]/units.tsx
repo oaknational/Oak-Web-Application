@@ -66,7 +66,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
 
   const tiersSEO = {
     ...getSeoProps({
-      title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
+      title: `${keyStageTitle} ${subjectTitle} tiers`,
       description: `We have resources for tiers: ${tiers
         .map((tier) => tier.title)
         .join(", ")}`,
