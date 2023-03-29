@@ -28,6 +28,12 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
               key={`CategoryFilterListItem-${category.label}`}
               isSelected={getIsSelected(category.linkProps)}
               setSelected={setSelected}
+              trackingProps={{
+                keyStageSlug: category.keyStageSlug,
+                keyStageSlugName: category.keyStageTitle,
+                subjectName: category.subjectName,
+                subjectSlug: category.subjectSlug,
+              }}
               {...category}
             />
           );

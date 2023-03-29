@@ -13,6 +13,11 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
   const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug, tiers } =
     props.curriculumData;
 
+  const tierTrackingProps = {
+    keyStageName: keyStageTitle,
+    subjectName: subjectTitle,
+  };
+
   return (
     <>
       <TitleCard
@@ -33,6 +38,7 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
         tiers={tiers}
         keyStageSlug={keyStageSlug}
         subjectSlug={subjectSlug}
+        {...tierTrackingProps}
       />
     </>
   );

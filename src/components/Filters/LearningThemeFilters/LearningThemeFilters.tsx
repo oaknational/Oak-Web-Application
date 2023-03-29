@@ -27,7 +27,14 @@ const LearningThemeFilters = ({
 
   const learningThemesMapped = learningThemes
     .map((learningTheme) => {
-      return { label: learningTheme?.label, slug: learningTheme?.slug };
+      return {
+        label: learningTheme?.label,
+        slug: learningTheme?.slug,
+        keyStageSlug: learningTheme?.keyStageSlug,
+        keyStageTitle: learningTheme?.keyStageTitle,
+        subjectName: learningTheme?.subjectTitle,
+        subjectSlug: learningTheme?.subjectSlug,
+      };
     })
     .sort(
       (
@@ -63,14 +70,28 @@ const LearningThemeFilters = ({
               search: { ...linkProps.search, ["learning-theme"]: undefined },
             },
           },
-          ...learningThemesMapped.map(({ label, slug }) => ({
-            label: label ? label : "",
-            linkProps: {
-              ...linkProps,
-              search: { ...linkProps.search, ["learning-theme"]: slug },
-            },
-          })),
+          ...learningThemesMapped.map(
+            ({
+              label,
+              slug,
+              keyStageSlug,
+              keyStageTitle,
+              subjectName,
+              subjectSlug,
+            }) => ({
+              label: label ? label : "",
+              linkProps: {
+                ...linkProps,
+                search: { ...linkProps.search, ["learning-theme"]: slug },
+              },
+              keyStageSlug: keyStageSlug ? keyStageSlug : "",
+              keyStageTitle: keyStageTitle ? keyStageTitle : "",
+              subjectName: subjectName ? subjectName : "",
+              subjectSlug: subjectSlug ? subjectSlug : "",
+            })
+          ),
         ]}
+        // trackingProps={trackingProps}
       />
     </Flex>
   );

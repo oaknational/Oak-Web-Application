@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import useUseCase from "../../hooks/useUseCase";
 import Card, { CardProps } from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -44,6 +46,10 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
     useClickableCard<HTMLButtonElement>();
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
   const lowerCaseTitle = title.toLowerCase();
+
+  const { track } = useAnalytics();
+  const useCase = useUseCase();
+
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
       <Flex
@@ -62,7 +68,14 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 data-testid={"expand-button"}
                 variant="minimal"
                 label={title}
-                onClick={() => setToggleOpen(toggleOpen === false)}
+                onClick={() => {
+                  setToggleOpen(toggleOpen === false);
+                  track.resourceContainerExpanded({
+                    useCase,
+                    pageType: ["Lesson"],
+                    containerTitle: title,
+                  });
+                }}
                 $font={"heading-5"}
               />
               <Icon

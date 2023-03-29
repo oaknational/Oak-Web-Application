@@ -19,12 +19,18 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import useAnalytics from "../../../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, {
   GridArea,
 } from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import {
+  KeyStageNameValueType,
+  ResourceTypeValueType,
+} from "../../../../../../../../../../../browser-lib/avo/Avo";
+import useUseCase from "../../../../../../../../../../../hooks/useUseCase";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -65,6 +71,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   } = curriculumData;
 
   const router = useRouter();
+  const { track } = useAnalytics();
+  const useCase = useUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -212,7 +220,31 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       { leading: true }
     );
 
-    await debouncedOnSubmit();
+    try {
+      await debouncedOnSubmit();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      const selectedResourcesForTracking = selectedResources.map((resource) =>
+        resource.replace(/-/g, " ")
+      );
+
+      track.resourcesDownloaded({
+        keyStageName: keyStageTitle as KeyStageNameValueType,
+        keyStageSlug,
+        unitName: unitTitle,
+        unitSlug,
+        unitId: 0,
+        subjectName: subjectTitle,
+        subjectSlug,
+        lessonName: title,
+        lessonSlug: slug,
+        lessonId: 0,
+        resourceType: selectedResourcesForTracking as ResourceTypeValueType[],
+        useCase,
+      });
+    }
+
     setTimeout(() => setIsAttemptingDownload(false), 4000);
     setEditDetailsClicked(false);
   };

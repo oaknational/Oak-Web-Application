@@ -1,5 +1,8 @@
 import { FC } from "react";
 
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import useUseCase from "../../hooks/useUseCase";
+import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, Span } from "../Typography";
@@ -14,6 +17,8 @@ export type TierListItemProps = {
   slug: string;
   keyStageSlug: string;
   subjectSlug: string;
+  subjectName: string;
+  keyStageName: string;
   unitCount: number | null;
   lessonCount: number | null;
 };
@@ -25,13 +30,19 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
     title,
     slug,
     subjectSlug,
+    subjectName,
     keyStageSlug,
+    keyStageName,
     background,
     lessonCount,
     unitCount,
   } = props;
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
+
+  const { track } = useAnalytics();
+  const useCase = useUseCase();
+
   return (
     <Card $overflow={"hidden"} {...containerProps} $pa={0}>
       <Flex
@@ -45,6 +56,19 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
           keyStage={keyStageSlug}
           subject={subjectSlug}
           search={{ tier: slug }}
+          onClick={() => {
+            track.tierSelected({
+              unitName: "",
+              unitSlug: "",
+              unitId: 0,
+              subjectName,
+              subjectSlug,
+              keyStageName: keyStageName as KeyStageNameValueType,
+              keyStageSlug,
+              tierName: title,
+              useCase,
+            });
+          }}
         >
           <Heading $ma={16} $font={"heading-7"} tag="h3">
             {title}

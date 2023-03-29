@@ -4,6 +4,8 @@ import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
 import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
+import useUseCase from "../../../hooks/useUseCase";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -18,11 +20,29 @@ interface CategoryFilterListItemProps<T extends CategoryLinkProps>
 const CategoryFilterListItem = <T extends CategoryLinkProps>(
   props: CategoryFilterListItemProps<T>
 ) => {
-  const { label, linkProps, isSelected, setSelected } = props;
+  const { label, linkProps, isSelected, setSelected, trackingProps } = props;
+  const { keyStageName, keyStageSlug, subjectName, subjectSlug } =
+    trackingProps;
+
   const arrowHidden = !isSelected;
+
+  const { track } = useAnalytics();
+  const useCase = useUseCase();
 
   const onClick = () => {
     setSelected(linkProps);
+
+    track.learningThemeSelected({
+      keyStageName,
+      keyStageSlug,
+      subjectName,
+      subjectSlug,
+      unitName: "",
+      unitSlug: "",
+      unitId: 0,
+      useCase,
+      learningThemeName: label,
+    });
   };
 
   const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];
