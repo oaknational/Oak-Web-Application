@@ -28,7 +28,8 @@ jest.mock("./useLocalStorageForDownloads", () => {
 const data: DownloadFormProps = {
   onSubmit: jest.fn(),
   email: "test@test.com",
-  school: "Sample school",
+  school: "222-Sample school",
+  schoolName: "Sample school",
   terms: true,
   downloads: ["intro-quiz-questions"],
 };
@@ -37,6 +38,7 @@ const resourcesToDownload: DownloadResourceType[] = ["intro-quiz-questions"];
 
 describe("useDownloadForm", () => {
   beforeEach(() => {
+    jest.clearAllMocks();
     window.localStorage.clear();
   });
 
@@ -51,14 +53,53 @@ describe("useDownloadForm", () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson", resourcesToDownload);
 
-    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith("Sample school");
+    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+      schoolId: "222-Sample school",
+      schoolName: "Sample school",
+    });
+  });
+
+  it("should correctly set school in local storage if 'homeschool' passed in props", () => {
+    const data: DownloadFormProps = {
+      onSubmit: jest.fn(),
+      email: "test@test.com",
+      school: "homeschool",
+      terms: true,
+      downloads: ["intro-quiz-questions"],
+    };
+
+    const { result } = renderHook(() => useDownloadForm());
+    result.current.onSubmit(data, "lesson", resourcesToDownload);
+
+    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+      schoolId: "homeschool",
+      schoolName: "homeschool",
+    });
+  });
+
+  it("should correctly set school in local storage if 'notListed' passed in props", () => {
+    const data: DownloadFormProps = {
+      onSubmit: jest.fn(),
+      email: "test@test.com",
+      school: "notListed",
+      terms: true,
+      downloads: ["intro-quiz-questions"],
+    };
+
+    const { result } = renderHook(() => useDownloadForm());
+    result.current.onSubmit(data, "lesson", resourcesToDownload);
+
+    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+      schoolId: "notListed",
+      schoolName: "notListed",
+    });
   });
 
   it("should set terms in local storage if passed in props", () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson", resourcesToDownload);
 
-    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith("true");
+    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {

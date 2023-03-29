@@ -29,10 +29,12 @@ import getDownloadFormErrorMessage from "../../../../../../../../../../../compon
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
+import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
 import type {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
   DownloadFormProps,
+  DownloadResourceType,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
@@ -41,7 +43,6 @@ import { lessonBreadcrumbArray } from "../[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
-import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
 import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 
 export type LessonDownloadsPageProps = {
@@ -88,59 +89,110 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         : setValue("downloads", preselected);
     }
   }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
+
   const {
     schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
   } = useLocalStorageForDownloads();
 
-  // use values from local storage if available
+  const {
+    schoolName: schoolNameFromLocalStorage,
+    schoolId: schoolIdFromLocalStorage,
+  } = schoolFromLocalStorage;
+
+  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
+
+  useEffect(() => {
+    if (
+      (schoolNameFromLocalStorage || schoolNameFromLocalStorage === "") &&
+      (schoolIdFromLocalStorage || schoolIdFromLocalStorage === "") &&
+      (emailFromLocalStorage || emailFromLocalStorage === "") &&
+      (termsFromLocalStorage || termsFromLocalStorage === false)
+    ) {
+      setIsLocalStorageLoading(false);
+    }
+  }, [
+    schoolNameFromLocalStorage,
+    schoolIdFromLocalStorage,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+  ]);
+
+  // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
     if (emailFromLocalStorage) {
       setValue("email", emailFromLocalStorage);
     }
 
-    if (schoolFromLocalStorage) {
-      setValue("school", schoolFromLocalStorage);
+    if (termsFromLocalStorage) {
+      setValue("terms", termsFromLocalStorage);
     }
 
-    if (termsFromLocalStorage) {
-      setValue("terms", JSON.parse(termsFromLocalStorage));
+    if (schoolIdFromLocalStorage) {
+      setValue("school", schoolIdFromLocalStorage);
     }
   }, [
     setValue,
     emailFromLocalStorage,
-    schoolFromLocalStorage,
     termsFromLocalStorage,
+    schoolIdFromLocalStorage,
   ]);
 
   const setSchool = useCallback(
-    (value: string) => {
-      setValue("school", value, { shouldValidate: true });
+    (value: string, name?: string) => {
+      setValue("school", value, {
+        shouldValidate: true,
+      });
+      setValue("schoolName", name || schoolNameFromLocalStorage, {
+        shouldValidate: true,
+      });
     },
-    [setValue]
+    [setValue, schoolNameFromLocalStorage]
   );
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = watch().downloads || [];
+  const selectedResources = (watch().downloads || []) as DownloadResourceType[];
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
-  {
-    /* @todo replace once local storage piece of work is done for this page */
-  }
-  const hasDetailsFromLocaleStorage = false;
+  const hasDetailsFromLocaleStorage =
+    schoolIdFromLocalStorage?.length || emailFromLocalStorage.length;
+
   const shouldDisplayDetailsCompleted =
     hasDetailsFromLocaleStorage && !editDetailsClicked;
+
+  const [localStorageDetails, setLocalStorageDetails] = useState(false);
+
+  useEffect(() => {
+    if (hasDetailsFromLocaleStorage) {
+      setLocalStorageDetails(true);
+    }
+    if (editDetailsClicked) {
+      setLocalStorageDetails(false);
+    }
+
+    if (shouldDisplayDetailsCompleted) {
+      setLocalStorageDetails(true);
+    }
+  }, [
+    hasDetailsFromLocaleStorage,
+    localStorageDetails,
+    editDetailsClicked,
+    shouldDisplayDetailsCompleted,
+  ]);
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
       getInitialResourcesToDownloadState()
     );
+
+  const hasResourcesToDownload =
+    getInitialResourcesToDownloadState().length > 0;
 
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
@@ -162,6 +214,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
     await debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
+    setEditDetailsClicked(false);
   };
 
   const getFormErrorMessage = () => {
@@ -178,8 +231,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
-  const hasResourcesToDownload =
-    getInitialResourcesToDownloadState().length > 0;
+
+  function handleEditClick() {
+    setEditDetailsClicked(true);
+    setLocalStorageDetails(false);
+  }
 
   return (
     <AppLayout
@@ -228,7 +284,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             ]}
           />
         </Box>
-
         <Flex $mb={8} $display={"inline-flex"} $mt={0}>
           <TitleCard
             page={"lesson"}
@@ -240,19 +295,47 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
 
-        {hasResourcesToDownload ? (
-          <>
-            {/* @todo replace email and school with values from local storage */}
-            {shouldDisplayDetailsCompleted ? (
-              <DetailsCompleted
-                email={"replace with email from local storage"}
-                school={"replace with school from local storage"}
-                onEditClick={() => setEditDetailsClicked(true)}
-              />
-            ) : (
-              <Box $maxWidth={[null, 420, 420]} $mb={96}>
-                <SchoolPickerRadio errors={errors} setSchool={setSchool} />
+        {!hasResourcesToDownload && (
+          <Box $ph={24} $mb={64} $mt={56}>
+            <Heading
+              $mb={16}
+              $mt={24}
+              $font={["heading-6", "heading-7"]}
+              tag={"h2"}
+            >
+              No downloads available
+            </Heading>
+            <P $mb={24} $font={["body-2", "body-1"]}>
+              Sorry, there are no downloadable teaching resources available for
+              this lesson.
+            </P>
+          </Box>
+        )}
 
+        {hasResourcesToDownload && (
+          <>
+            {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
+
+            {!isLocalStorageLoading && localStorageDetails && (
+              <DetailsCompleted
+                email={emailFromLocalStorage}
+                school={schoolNameFromLocalStorage}
+                onEditClick={handleEditClick}
+              />
+            )}
+
+            {!isLocalStorageLoading && !localStorageDetails && (
+              <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                <SchoolPickerRadio
+                  errors={errors}
+                  setSchool={setSchool}
+                  initialValue={
+                    schoolIdFromLocalStorage?.length > 0
+                      ? schoolIdFromLocalStorage
+                      : undefined
+                  }
+                  initialSchoolName={schoolNameFromLocalStorage}
+                />
                 <Heading
                   tag="h3"
                   $font={"heading-7"}
@@ -300,6 +383,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 />
               </Box>
             )}
+
             <Grid $mt={32}>
               <DownloadCardGroup
                 control={control}
@@ -338,7 +422,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                         {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
                       </P>
                     </Box>
-
                     <Button
                       label={"Download .zip"}
                       onClick={handleSubmit(onFormSubmit)}
@@ -357,21 +440,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               </GridArea>
             </Grid>
           </>
-        ) : (
-          <Box $ph={24} $mb={64} $mt={56}>
-            <Heading
-              $mb={16}
-              $mt={24}
-              $font={["heading-6", "heading-7"]}
-              tag={"h2"}
-            >
-              No downloads available
-            </Heading>
-            <P $mb={24} $font={["body-2", "body-1"]}>
-              Sorry, there are no downloadable teaching resources available for
-              this lesson.
-            </P>
-          </Box>
         )}
       </MaxWidth>
     </AppLayout>

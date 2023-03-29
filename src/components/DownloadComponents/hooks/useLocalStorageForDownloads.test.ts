@@ -9,9 +9,12 @@ describe("useLocalStorageForDownloads", () => {
     window.localStorage.clear();
   });
 
-  test("schoolFromLocalStorage should default to empty string", () => {
+  test("schoolFromLocalStorage should default to object with schoolId and schoolName as empty strings", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.schoolFromLocalStorage).toBe("");
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "",
+      schoolName: "",
+    });
   });
 
   test("emailFromLocalStorage should default to empty string", () => {
@@ -21,15 +24,35 @@ describe("useLocalStorageForDownloads", () => {
 
   test("termsFromLocalSotrage should default to false", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
-    expect(result.current.termsFromLocalStorage).toBe("false");
+    expect(result.current.termsFromLocalStorage).toBe(false);
   });
 
-  test("calling setSchoolInLocalStorage should set schoolFromLocalStorage to correct value", () => {
+  test("calling setSchoolInLocalStorage with schoolId should set schoolFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setSchoolInLocalStorage("Sample school");
+      result.current.setSchoolInLocalStorage({
+        schoolId: "222-Sample school",
+        schoolName: "",
+      });
     });
-    expect(result.current.schoolFromLocalStorage).toBe("Sample school");
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "222-Sample school",
+      schoolName: "",
+    });
+  });
+
+  test("calling setSchoolInLocalStorage with schoolName should set schoolFromLocalStorage to correct value", () => {
+    const { result } = renderHook(useLocalStorageForDownloads);
+    act(() => {
+      result.current.setSchoolInLocalStorage({
+        schoolId: "",
+        schoolName: "Sample school",
+      });
+    });
+    expect(result.current.schoolFromLocalStorage).toStrictEqual({
+      schoolId: "",
+      schoolName: "Sample school",
+    });
   });
 
   test("calling setEmailInLocalStorage should set emailFromLocalStorage to correct value", () => {
@@ -43,8 +66,8 @@ describe("useLocalStorageForDownloads", () => {
   test("calling setTermsInLocalSotrage should set termsFromLocalStorage to correct value", () => {
     const { result } = renderHook(useLocalStorageForDownloads);
     act(() => {
-      result.current.setTermsInLocalStorage("true");
+      result.current.setTermsInLocalStorage(true);
     });
-    expect(result.current.termsFromLocalStorage).toBe("true");
+    expect(result.current.termsFromLocalStorage).toBe(true);
   });
 });
