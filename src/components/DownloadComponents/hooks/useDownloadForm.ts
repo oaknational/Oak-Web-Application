@@ -17,11 +17,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
 
-  const onSubmit = async (
-    data: DownloadFormProps,
-    slug: string,
-    selectedResources: DownloadResourceType[]
-  ) => {
+  const onSubmit = async (data: DownloadFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
@@ -30,6 +26,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     const schoolId = data?.school;
     const schoolName = data?.schoolName;
     const terms = data?.terms;
+    const downloads = data?.downloads;
 
     if (email) {
       setEmailInLocalStorage(email);
@@ -52,7 +49,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       setTermsInLocalStorage(terms);
     }
 
-    await downloadLessonResources(slug, selectedResources);
+    await downloadLessonResources(slug, downloads as DownloadResourceType[]);
   };
 
   return { onSubmit };

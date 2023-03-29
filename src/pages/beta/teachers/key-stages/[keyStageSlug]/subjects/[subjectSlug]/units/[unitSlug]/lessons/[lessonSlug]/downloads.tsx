@@ -44,6 +44,7 @@ import DownloadCardGroup from "../../../../../../../../../../../components/Downl
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
+import NoResourcesToDownload from "../../../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -94,6 +95,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
+    hasDetailsFromLocaleStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -102,25 +104,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   } = schoolFromLocalStorage;
 
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-
   useEffect(() => {
-    if (
-      (schoolNameFromLocalStorage || schoolNameFromLocalStorage === "") &&
-      (schoolIdFromLocalStorage || schoolIdFromLocalStorage === "") &&
-      (emailFromLocalStorage || emailFromLocalStorage === "") &&
-      (termsFromLocalStorage || termsFromLocalStorage === false)
-    ) {
-      setIsLocalStorageLoading(false);
-    }
-  }, [
-    schoolNameFromLocalStorage,
-    schoolIdFromLocalStorage,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
-  ]);
+    setIsLocalStorageLoading(false);
+  }, [hasDetailsFromLocaleStorage]);
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
+    setIsLocalStorageLoading(false);
+
     if (emailFromLocalStorage) {
       setValue("email", emailFromLocalStorage);
     }
@@ -137,6 +128,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     emailFromLocalStorage,
     termsFromLocalStorage,
     schoolIdFromLocalStorage,
+  ]);
+
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+
+  const shouldDisplayDetailsCompleted =
+    hasDetailsFromLocaleStorage && !editDetailsClicked;
+  const [localStorageDetails, setLocalStorageDetails] = useState(false);
+
+  useEffect(() => {
+    if (hasDetailsFromLocaleStorage || shouldDisplayDetailsCompleted) {
+      setLocalStorageDetails(true);
+    }
+    if (editDetailsClicked) {
+      setLocalStorageDetails(false);
+    }
+  }, [
+    hasDetailsFromLocaleStorage,
+    localStorageDetails,
+    editDetailsClicked,
+    shouldDisplayDetailsCompleted,
   ]);
 
   const setSchool = useCallback(
@@ -158,34 +169,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const hasDetailsFromLocaleStorage =
-    schoolIdFromLocalStorage?.length || emailFromLocalStorage.length;
-
-  const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocaleStorage && !editDetailsClicked;
-
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocaleStorage) {
-      setLocalStorageDetails(true);
-    }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-
-    if (shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
-    }
-  }, [
-    hasDetailsFromLocaleStorage,
-    localStorageDetails,
-    editDetailsClicked,
-    shouldDisplayDetailsCompleted,
-  ]);
-
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
       getInitialResourcesToDownloadState()
@@ -206,7 +189,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources);
+        onSubmit(data, slug);
       },
       4000,
       { leading: true }
@@ -232,10 +215,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     onComplete: setResourcesToDownload,
   });
 
-  function handleEditClick() {
+  const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
-  }
+  };
 
   return (
     <AppLayout
@@ -292,93 +275,81 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
 
-        {!hasResourcesToDownload && (
-          <Box $ph={24} $mb={64} $mt={56}>
-            <Heading
-              $mb={16}
-              $mt={24}
-              $font={["heading-6", "heading-7"]}
-              tag={"h2"}
-            >
-              No downloads available
-            </Heading>
-            <P $mb={24} $font={["body-2", "body-1"]}>
-              Sorry, there are no downloadable teaching resources available for
-              this lesson.
-            </P>
-          </Box>
-        )}
-
-        {hasResourcesToDownload && (
+        {!hasResourcesToDownload ? (
+          <NoResourcesToDownload />
+        ) : (
           <>
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-
-            {!isLocalStorageLoading && localStorageDetails && (
-              <DetailsCompleted
-                email={emailFromLocalStorage}
-                school={schoolNameFromLocalStorage}
-                onEditClick={handleEditClick}
-              />
-            )}
-
-            {!isLocalStorageLoading && !localStorageDetails && (
-              <Box $maxWidth={[null, 420, 420]} $mb={96}>
-                <SchoolPickerRadio
-                  errors={errors}
-                  setSchool={setSchool}
-                  initialValue={
-                    schoolIdFromLocalStorage?.length > 0
-                      ? schoolIdFromLocalStorage
-                      : undefined
-                  }
-                  initialSchoolName={schoolNameFromLocalStorage}
-                />
-                <Heading
-                  tag="h3"
-                  $font={"heading-7"}
-                  $mt={16}
-                  $mb={24}
-                  data-testid="email-heading"
-                >
-                  For regular updates from Oak (optional)
-                </Heading>
-                <Input
-                  id={"email"}
-                  label="Email address"
-                  placeholder="Enter email address here"
-                  {...register("email")}
-                  error={errors.email?.message}
-                />
-                <P $font="body-3" $mt={-24} $mb={40}>
-                  Join our community to get free lessons, resources and other
-                  helpful content. Unsubscribe at any time. Our{" "}
-                  <OakLink page={"privacy-policy"} $isInline>
-                    privacy policy
-                  </OakLink>
-                  .
-                </P>
-                <Controller
-                  control={control}
-                  name="terms"
-                  render={({ field: { value, onChange, name, onBlur } }) => {
-                    const onChangeHandler = (
-                      e: ChangeEvent<HTMLInputElement>
-                    ) => {
-                      return onChange(e.target.checked);
-                    };
-                    return (
-                      <TermsAndConditionsCheckbox
-                        name={name}
-                        checked={value}
-                        onChange={onChangeHandler}
-                        onBlur={onBlur}
-                        id={"terms"}
-                        errorMessage={errors?.terms?.message}
-                      />
-                    );
-                  }}
-                />
-              </Box>
+            {!isLocalStorageLoading && (
+              <>
+                {localStorageDetails ? (
+                  <DetailsCompleted
+                    email={emailFromLocalStorage}
+                    school={schoolNameFromLocalStorage}
+                    onEditClick={handleEditDetailsCompletedClick}
+                  />
+                ) : (
+                  <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                    <SchoolPickerRadio
+                      errors={errors}
+                      setSchool={setSchool}
+                      initialValue={
+                        schoolIdFromLocalStorage?.length > 0
+                          ? schoolIdFromLocalStorage
+                          : undefined
+                      }
+                      initialSchoolName={schoolNameFromLocalStorage}
+                    />
+                    <Heading
+                      tag="h3"
+                      $font={"heading-7"}
+                      $mt={16}
+                      $mb={24}
+                      data-testid="email-heading"
+                    >
+                      For regular updates from Oak (optional)
+                    </Heading>
+                    <Input
+                      id={"email"}
+                      label="Email address"
+                      placeholder="Enter email address here"
+                      {...register("email")}
+                      error={errors.email?.message}
+                    />
+                    <P $font="body-3" $mt={-24} $mb={40}>
+                      Join our community to get free lessons, resources and
+                      other helpful content. Unsubscribe at any time. Our{" "}
+                      <OakLink page={"privacy-policy"} $isInline>
+                        privacy policy
+                      </OakLink>
+                      .
+                    </P>
+                    <Controller
+                      control={control}
+                      name="terms"
+                      render={({
+                        field: { value, onChange, name, onBlur },
+                      }) => {
+                        const onChangeHandler = (
+                          e: ChangeEvent<HTMLInputElement>
+                        ) => {
+                          return onChange(e.target.checked);
+                        };
+                        return (
+                          <TermsAndConditionsCheckbox
+                            name={name}
+                            checked={value}
+                            onChange={onChangeHandler}
+                            onBlur={onBlur}
+                            id={"terms"}
+                            errorMessage={errors?.terms?.message}
+                          />
+                        );
+                      }}
+                    />
+                  </Box>
+                )}
+              </>
             )}
 
             <Grid $mt={32}>
