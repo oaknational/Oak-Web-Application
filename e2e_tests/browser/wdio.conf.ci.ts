@@ -1,5 +1,14 @@
 import type { Options } from "@wdio/types";
 
+const bsUser = process.env.BROWSERSTACK_USERNAME;
+const bsKey = process.env.BROWSERSTACK_ACCESS_KEY;
+
+if (!bsUser || !bsKey) {
+  throw new Error(
+    `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`
+  );
+}
+
 export const config: Options.Testrunner = {
   //
   // ====================
@@ -23,8 +32,8 @@ export const config: Options.Testrunner = {
   // should work too though). These services define specific user and key (or access key)
   // values you need to put in here in order to connect to these services.
   //
-  user: process.env.BROWSERSTACK_USERNAME,
-  key: process.env.BROWSERSTACK_ACCESS_KEY,
+  user: bsUser,
+  key: bsKey,
   //
   // If you run your tests on Sauce Labs you can specify the region you want to run your tests
   // in via the `region` property. Available short handles for regions are `us` (default), `eu` and `apac`.
@@ -83,6 +92,16 @@ export const config: Options.Testrunner = {
       //
       browserName: "chrome",
       acceptInsecureCerts: true,
+      "bstack:options": {
+        projectName: "OWA E2E WDIO Tests",
+        buildName: `branch: ${process.env.BRANCH_NAME}`,
+        os: "Windows",
+        osVersion: "10",
+        resolution: "1920x1080",
+        local: false,
+        networkLogs: true,
+      },
+
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
