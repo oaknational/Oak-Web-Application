@@ -66,7 +66,7 @@ Unit tests live next to the code they are testing wherever possible. Next does n
 
 ### End-to-End Browser Tests
 
-[Playwright](https://playwright.dev/) tests live [here](e2e_tests/browser), and can be run locally against Playwright binaries, locally against Browserstack, or in CI against Browserstack.
+We use WebriverIO.
 
 See the [testing docs for further details](./docs/testing.md#e2e-browser-tests).
 
