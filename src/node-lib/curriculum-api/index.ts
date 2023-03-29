@@ -362,9 +362,9 @@ const getFirstResultOrWarnOrFail =
       // });
     }
     const [firstResult] = results;
-    if (!firstResult) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
+    // if (!firstResult) {
+    throw new OakError({ code: "curriculum-api/not-found" });
+    // }
 
     return firstResult;
   };
