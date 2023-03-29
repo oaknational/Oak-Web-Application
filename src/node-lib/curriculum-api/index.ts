@@ -224,7 +224,12 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     quizType: z.string(),
     images: z
       .union([
-        z.array(z.object({ title: z.string(), images: z.array(z.string()) })),
+        z.array(
+          z.object({
+            title: z.string().nullable(),
+            images: z.array(z.string()),
+          })
+        ),
         z.array(z.string()),
       ])
       .nullable(),
@@ -275,6 +280,7 @@ const teachersLessonOverviewData = z.object({
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
   exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  expired: z.boolean(),
 });
 
 const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({

@@ -2,14 +2,16 @@ import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import { TeachersKeyStageSubjectUnitsLessonsDownloadsData } from "../../../node-lib/curriculum-api";
+import type {
+  DownloadResourceType,
+  DownloadFormProps,
+} from "../downloads.types";
 import { GridArea } from "../../Grid";
 import Flex from "../../Flex";
 import { Heading, Hr } from "../../Typography";
 import Box from "../../Box";
 import Button from "../../Button";
 import FieldError from "../../FormFields/FieldError";
-import { DownloadResourceType } from "../downloads.types";
-import type { DownloadFormProps } from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 
 import DownloadCard from "./DownloadCard";
 
@@ -80,7 +82,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     } else {
                       onChange(
                         fieldValue.filter(
-                          (val: DownloadResourceType) => val !== download.type
+                          (val: DownloadResourceType | string) =>
+                            val !== download.type
                         )
                       );
                     }
