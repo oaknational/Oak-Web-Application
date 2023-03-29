@@ -13,12 +13,15 @@ const useLocalStorageForDownloads = () => {
 
   const [schoolFromLocalStorage, setSchoolInLocalStorage] = useLocalStorage(
     LS_KEY_SCHOOL,
-    ""
+    {
+      schoolId: "",
+      schoolName: "",
+    }
   );
 
   const [termsFromLocalStorage, setTermsInLocalStorage] = useLocalStorage(
     LS_KEY_TERMS,
-    "false"
+    false
   );
 
   return {

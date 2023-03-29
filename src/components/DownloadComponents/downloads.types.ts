@@ -34,6 +34,7 @@ export const schema = z.object({
       }),
     })
     .min(1, "Please select a school or one of the alternative options"),
+  schoolName: z.string().optional(),
   email: z
     .string()
     .email({
@@ -57,12 +58,8 @@ export const schema = z.object({
 
 export type DownloadFormValues = z.infer<typeof schema>;
 
-export type DownloadFormProps = {
+export type DownloadFormProps = DownloadFormValues & {
   onSubmit: (values: DownloadFormValues) => Promise<string | void>;
-  email: string;
-  terms: boolean;
-  school: string;
-  downloads: DownloadResourceType[];
 };
 
 export type ErrorKeysType = keyof Omit<DownloadFormProps, "onSubmit">;
