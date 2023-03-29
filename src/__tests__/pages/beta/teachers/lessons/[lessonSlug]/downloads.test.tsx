@@ -241,6 +241,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       act(() => {
         result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
       });
 
       const { getByText } = renderWithProviders(
@@ -258,6 +259,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           schoolName: "Primary School",
           schoolId: "222-Primary School",
         });
+        result.current.setTermsInLocalStorage(true);
       });
 
       const { getByText } = renderWithProviders(
@@ -299,6 +301,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       act(() => {
         result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
       });
 
       const { getByText, getByLabelText, getByDisplayValue } =
@@ -324,6 +327,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           schoolName: "Primary School",
           schoolId: "222-Primary-School",
         });
+        result.current.setTermsInLocalStorage(true);
       });
 
       const { getByText, getByTestId } = renderWithProviders(
