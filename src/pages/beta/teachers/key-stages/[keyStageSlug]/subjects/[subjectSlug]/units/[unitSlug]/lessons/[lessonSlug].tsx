@@ -94,7 +94,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
-    transcript,
+    transcriptSentences,
     hasCopyrightMaterial,
     hasDownloadableResources,
     introQuiz,
@@ -234,7 +234,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   video={videoMuxPlaybackId}
                   signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                   title={title}
-                  hasCaptions={Boolean(transcript)}
+                  hasCaptions={Boolean(transcriptSentences)}
                 />
               </ExpandingContainer>
             )}
@@ -268,9 +268,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               </ExpandingContainer>
             )}
 
-            {transcript && (
+            {transcriptSentences && (
               <ExpandingContainer {...curriculumData} title={"Transcript"}>
-                <OverviewTranscript transcript={transcript} />
+                <OverviewTranscript transcriptSentences={transcriptSentences} />
               </ExpandingContainer>
             )}
           </>
