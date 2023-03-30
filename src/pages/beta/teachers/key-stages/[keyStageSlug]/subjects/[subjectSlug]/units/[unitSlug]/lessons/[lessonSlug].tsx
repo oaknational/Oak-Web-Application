@@ -107,10 +107,13 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   } = curriculumData;
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson overview", // @todo add real data
-        description: "Overview of lesson",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson overview", // @todo add real data
+          description: "Overview of lesson",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
     >
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>

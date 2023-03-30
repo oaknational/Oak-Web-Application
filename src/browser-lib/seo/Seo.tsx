@@ -9,6 +9,13 @@ export const DEFAULT_SEO_PROPS = {
   description: config.get("seoAppDescription"),
 };
 
+export const BETA_SEO_PROPS = {
+  title: config.get("seoAppName"),
+  description: config.get("seoAppDescription"),
+  noIndex: true,
+  noFollow: true,
+};
+
 export type SeoProps = {
   title: string;
   description: string;
