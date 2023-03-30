@@ -4,6 +4,13 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import TierList from "./TierList";
 
+jest.mock("../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: jest.fn(),
+  }),
+}));
+
 describe("TierList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
