@@ -1,6 +1,8 @@
 import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
+import useAnalytics from "../../../../context/Analytics/useAnalytics";
+import useUseCase from "../../../../hooks/useUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
@@ -10,9 +12,11 @@ import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
+import type { KeyStageNameValueType } from "../../../../browser-lib/avo/Avo";
 
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
+    unitTitle: string;
     hideTopHeading?: boolean;
   };
 
@@ -69,10 +73,40 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description, expired, subjectSlug } = props;
+  const {
+    title,
+    slug,
+    description,
+    expired,
+    subjectTitle,
+    subjectSlug,
+    keyStageSlug,
+    keyStageTitle,
+    unitSlug,
+    unitTitle,
+  } = props;
+
+  const { track } = useAnalytics();
+  const useCase = useUseCase();
+
+  const trackingCallback = () => {
+    track.lessonSelected({
+      keyStageName: keyStageTitle as KeyStageNameValueType,
+      keyStageSlug,
+      subjectName: subjectTitle,
+      subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      unitId: 0,
+      lessonName: title,
+      lessonSlug: slug,
+      lessonId: 0,
+      useCase,
+    });
+  };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>();
+    useClickableCard<HTMLAnchorElement>(trackingCallback);
 
   const resources = getAvailableResourceList(props);
 

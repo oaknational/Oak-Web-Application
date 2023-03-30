@@ -6,13 +6,15 @@ import "../__tests__/__helpers__/LocalStorageMock";
 
 import useClickableCard from "./useClickableCard";
 
+const callback = jest.fn();
+
 const Clickable = ({
   onClick,
 }: {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }) => {
   const { primaryTargetProps, containerProps } =
-    useClickableCard<HTMLButtonElement>();
+    useClickableCard<HTMLButtonElement>(callback);
   const onSecondaryClick: MouseEventHandler<HTMLButtonElement> = () => {
     // noop
   };
@@ -54,5 +56,13 @@ describe("useClickableCard()", () => {
     const user = userEvent.setup();
     await user.click(secondaryButton);
     expect(onClick).not.toHaveBeenCalled();
+  });
+  test("clicking the container clicks the click target and calls tracking callback if provided", async () => {
+    const onClick = jest.fn();
+    const { getByTestId } = render(<Clickable onClick={onClick} />);
+    const container = getByTestId("container");
+    const user = userEvent.setup();
+    await user.click(container);
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });

@@ -26,6 +26,12 @@ describe("PostCategoryList", () => {
           subject: "english",
           search: { ["tier"]: "core" },
         }}
+        trackingProps={{
+          keyStageSlug: "ks3",
+          keyStageName: "Key Stage 3",
+          subjectSlug: "english",
+          subjectName: "English",
+        }}
       />
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(

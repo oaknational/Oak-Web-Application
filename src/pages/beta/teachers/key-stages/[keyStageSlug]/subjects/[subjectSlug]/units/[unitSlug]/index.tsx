@@ -101,6 +101,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
+            unitTitle={unitTitle}
           />
         </Box>
       </MaxWidth>

@@ -30,15 +30,16 @@ const getInteractiveAncestor = (
  * **Note: any secondary button or link callbacks should call
  * e.stopPropagation()**
  */
-const useClickableCard = <
-  T extends HTMLAnchorElement | HTMLButtonElement
->() => {
+const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
+  callback?: () => void
+) => {
   const ref = useRef<T | null>(null);
   const { isHovered, hoverProps } = useHover({});
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target instanceof Element) {
       const interactiveAncestor = getInteractiveAncestor(e.target);
       if (interactiveAncestor) {
+        if (callback) callback();
         return;
       }
     }

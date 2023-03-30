@@ -1,4 +1,5 @@
 import { PixelSpacing } from "../../../styles/theme";
+import type { KeyStageNameValueType } from "../../../browser-lib/avo/Avo";
 import Icon from "../../Icon";
 import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
@@ -6,24 +7,24 @@ import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useUseCase from "../../../hooks/useUseCase";
+import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
   linkProps: T;
   label: string;
 }
+
 interface CategoryFilterListItemProps<T extends CategoryLinkProps>
   extends Category<T> {
   isSelected: boolean;
   setSelected: (category: T) => void;
+  trackingProps?: LearningThemeSelectedTrackingProps;
 }
 const CategoryFilterListItem = <T extends CategoryLinkProps>(
   props: CategoryFilterListItemProps<T>
 ) => {
   const { label, linkProps, isSelected, setSelected, trackingProps } = props;
-  const { keyStageName, keyStageSlug, subjectName, subjectSlug } =
-    trackingProps;
-
   const arrowHidden = !isSelected;
 
   const { track } = useAnalytics();
@@ -32,17 +33,22 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const onClick = () => {
     setSelected(linkProps);
 
-    track.learningThemeSelected({
-      keyStageName,
-      keyStageSlug,
-      subjectName,
-      subjectSlug,
-      unitName: "",
-      unitSlug: "",
-      unitId: 0,
-      useCase,
-      learningThemeName: label,
-    });
+    if (trackingProps) {
+      const { keyStageName, keyStageSlug, subjectName, subjectSlug } =
+        trackingProps;
+
+      track.learningThemeSelected({
+        keyStageName: keyStageName as KeyStageNameValueType,
+        keyStageSlug,
+        subjectName,
+        subjectSlug,
+        unitName: "",
+        unitSlug: "",
+        unitId: 0,
+        useCase,
+        learningThemeName: label,
+      });
+    }
   };
 
   const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];

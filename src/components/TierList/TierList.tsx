@@ -5,7 +5,10 @@ import Grid, { GridArea, GridProps } from "../Grid";
 import TierListItem, { TierListItemProps } from "./TierListItem";
 
 type TierListProps = GridProps & {
-  tiers: Omit<TierListItemProps, "subjectSlug" | "keyStageSlug">[];
+  tiers: Omit<
+    TierListItemProps,
+    "subjectSlug" | "keyStageSlug" | "subjectName" | "keyStageName"
+  >[];
   subjectSlug: string;
   subjectName: string;
   keyStageSlug: string;

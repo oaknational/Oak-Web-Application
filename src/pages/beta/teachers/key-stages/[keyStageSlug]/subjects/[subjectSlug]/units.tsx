@@ -152,6 +152,12 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                           subject: subjectSlug,
                           search: { tier: tierQuery },
                         }}
+                        trackingProps={{
+                          keyStageSlug,
+                          keyStageName: keyStageTitle,
+                          subjectName: subjectTitle,
+                          subjectSlug,
+                        }}
                       />
                     </Flex>
                   )}
@@ -190,6 +196,12 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                             keyStage: keyStageSlug,
                             subject: subjectSlug,
                             search: { tier: tierQuery },
+                          }}
+                          trackingProps={{
+                            keyStageSlug,
+                            keyStageName: keyStageTitle,
+                            subjectName: subjectTitle,
+                            subjectSlug,
                           }}
                         />
                       </MobileFilters>

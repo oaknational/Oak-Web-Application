@@ -9,7 +9,9 @@ describe("TierList", () => {
     renderWithTheme(
       <TierList
         subjectSlug="maths"
+        subjectName="Maths"
         keyStageSlug="ks4"
+        keyStageName="Key stage 4"
         tiers={[
           {
             title: "Foundation",

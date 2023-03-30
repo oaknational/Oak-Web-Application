@@ -1,3 +1,5 @@
+import userEvent from "@testing-library/user-event";
+
 import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
 
 import LessonListItem from "./LessonListItem";
@@ -11,6 +13,7 @@ const props = {
   keyStageSlug: "4",
   description: "In this lesson",
   unitSlug: "foo",
+  unitTitle: "Unit title",
   videoCount: 1,
   worksheetCount: 2,
   keyStageTitle: "Key stage 3",
@@ -21,7 +24,21 @@ const props = {
   expired: false,
 };
 
+const lessonSelected = jest.fn();
+jest.mock("../../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonSelected: (...args: unknown[]) => lessonSelected(...args),
+    },
+  }),
+}));
+
 describe("Lesson List Item", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("It shows lesson title", () => {
     const { getByRole } = renderWithProviders(<LessonListItem {...props} />);
     const lessonHeading = getByRole("heading", { level: 3 });
@@ -53,5 +70,28 @@ describe("Lesson List Item", () => {
     expect(
       getByText("Unfortunately this lesson is now unavailable.")
     ).toBeInTheDocument();
+  });
+  test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+    const { getByText } = renderWithProviders(<LessonListItem {...props} />);
+
+    const lesson = getByText("Macbeth");
+
+    const user = userEvent.setup();
+    await user.click(lesson);
+
+    expect(lessonSelected).toHaveBeenCalledTimes(1);
+    expect(lessonSelected).toHaveBeenCalledWith({
+      keyStageName: "Key stage 3",
+      keyStageSlug: "4",
+      useCase: ["Teacher"],
+      subjectName: "Maths",
+      subjectSlug: "english",
+      unitName: "Unit title",
+      unitSlug: "foo",
+      unitId: 0,
+      lessonName: "Macbeth",
+      lessonSlug: "macbeth-lesson-1",
+      lessonId: 0,
+    });
   });
 });

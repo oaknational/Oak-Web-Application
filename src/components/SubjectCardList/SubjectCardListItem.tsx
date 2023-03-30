@@ -95,7 +95,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   track.subjectSelected({
                     keyStageName: keyStageTitle as KeyStageNameValueType,
                     keyStageSlug,
-                    subjectName: slug,
+                    subjectName: title,
                     subjectSlug: slug,
                     useCase,
                   });

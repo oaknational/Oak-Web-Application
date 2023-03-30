@@ -4,17 +4,26 @@ import Flex from "../../Flex";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
+export type LearningThemeSelectedTrackingProps = {
+  keyStageSlug: string;
+  keyStageName: string;
+  subjectName: string;
+  subjectSlug: string;
+};
+
 export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: TeachersKeyStageSubjectUnitsData["learningThemes"];
   linkProps: UnitIndexLinkProps;
+  trackingProps: LearningThemeSelectedTrackingProps;
 };
 const LearningThemeFilters = ({
   labelledBy,
   learningThemes,
   selectedThemeSlug,
   linkProps,
+  trackingProps,
 }: LearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
@@ -30,10 +39,6 @@ const LearningThemeFilters = ({
       return {
         label: learningTheme?.label,
         slug: learningTheme?.slug,
-        keyStageSlug: learningTheme?.keyStageSlug,
-        keyStageTitle: learningTheme?.keyStageTitle,
-        subjectName: learningTheme?.subjectTitle,
-        subjectSlug: learningTheme?.subjectSlug,
       };
     })
     .sort(
@@ -70,28 +75,15 @@ const LearningThemeFilters = ({
               search: { ...linkProps.search, ["learning-theme"]: undefined },
             },
           },
-          ...learningThemesMapped.map(
-            ({
-              label,
-              slug,
-              keyStageSlug,
-              keyStageTitle,
-              subjectName,
-              subjectSlug,
-            }) => ({
-              label: label ? label : "",
-              linkProps: {
-                ...linkProps,
-                search: { ...linkProps.search, ["learning-theme"]: slug },
-              },
-              keyStageSlug: keyStageSlug ? keyStageSlug : "",
-              keyStageTitle: keyStageTitle ? keyStageTitle : "",
-              subjectName: subjectName ? subjectName : "",
-              subjectSlug: subjectSlug ? subjectSlug : "",
-            })
-          ),
+          ...learningThemesMapped.map(({ label, slug }) => ({
+            label: label ? label : "",
+            linkProps: {
+              ...linkProps,
+              search: { ...linkProps.search, ["learning-theme"]: slug },
+            },
+          })),
         ]}
-        // trackingProps={trackingProps}
+        trackingProps={trackingProps}
       />
     </Flex>
   );
