@@ -17934,7 +17934,6 @@ export type Mv_Lessons = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  transcript?: Maybe<Scalars['String']>;
   transcript_sentences?: Maybe<Scalars['_text']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
@@ -18045,7 +18044,6 @@ export type Mv_Lessons_Bool_Exp = {
   theme_slug?: InputMaybe<String_Comparison_Exp>;
   theme_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
-  transcript?: InputMaybe<String_Comparison_Exp>;
   transcript_sentences?: InputMaybe<_Text_Comparison_Exp>;
   unit_slug?: InputMaybe<String_Comparison_Exp>;
   unit_title?: InputMaybe<String_Comparison_Exp>;
@@ -18087,7 +18085,6 @@ export type Mv_Lessons_Insert_Input = {
   theme_slug?: InputMaybe<Scalars['String']>;
   theme_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-  transcript?: InputMaybe<Scalars['String']>;
   transcript_sentences?: InputMaybe<Scalars['_text']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
@@ -18117,7 +18114,6 @@ export type Mv_Lessons_Max_Fields = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  transcript?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
   video_count?: Maybe<Scalars['Int']>;
@@ -18145,7 +18141,6 @@ export type Mv_Lessons_Max_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
-  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -18174,7 +18169,6 @@ export type Mv_Lessons_Min_Fields = {
   theme_slug?: Maybe<Scalars['String']>;
   theme_title?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  transcript?: Maybe<Scalars['String']>;
   unit_slug?: Maybe<Scalars['String']>;
   unit_title?: Maybe<Scalars['String']>;
   video_count?: Maybe<Scalars['Int']>;
@@ -18202,7 +18196,6 @@ export type Mv_Lessons_Min_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
-  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -18248,7 +18241,6 @@ export type Mv_Lessons_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
-  transcript?: InputMaybe<Order_By>;
   transcript_sentences?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
@@ -18302,8 +18294,6 @@ export enum Mv_Lessons_Select_Column {
   /** column name */
   Title = 'title',
   /** column name */
-  Transcript = 'transcript',
-  /** column name */
   TranscriptSentences = 'transcript_sentences',
   /** column name */
   UnitSlug = 'unit_slug',
@@ -18343,7 +18333,6 @@ export type Mv_Lessons_Set_Input = {
   theme_slug?: InputMaybe<Scalars['String']>;
   theme_title?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-  transcript?: InputMaybe<Scalars['String']>;
   transcript_sentences?: InputMaybe<Scalars['_text']>;
   unit_slug?: InputMaybe<Scalars['String']>;
   unit_title?: InputMaybe<Scalars['String']>;
