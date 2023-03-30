@@ -1,7 +1,11 @@
+import { imageBuilder } from "../components/CMSImage/sanityImageBuilder";
+import theme from "../styles/theme/default.theme";
+
 import uiIcons from "./generated/ui-icons.json";
 import uiGraphics from "./generated/ui-graphics.json";
 import subjectIcons from "./generated/subject-icons.json";
 import illustrations from "./generated/illustrations.json";
+import brandAssets from "./generated/brand-assets.json";
 import inlineSprite from "./generated/inline-sprite.json";
 
 export type InlineSpriteSvgName = keyof typeof inlineSprite;
@@ -37,3 +41,14 @@ export const getIllustrationAsset = (
 ): IllustrationAsset => {
   return illustrations[slug];
 };
+
+export const SOCIAL_SHARING_IMAGE_HEIGHT = 630;
+export const SOCIAL_SHARING_IMAGE_WIDTH = 1280;
+export const SOCIAL_SHARING_IMAGE_URL = imageBuilder
+  .image(brandAssets["logo-with-text"])
+  .width(SOCIAL_SHARING_IMAGE_WIDTH)
+  .height(SOCIAL_SHARING_IMAGE_HEIGHT)
+  .format("png")
+  .rect(0, 0, 1920, 880)
+  .bg(theme.colors.pupilsLimeGreen.slice(1))
+  .url();

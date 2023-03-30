@@ -71,9 +71,6 @@ function getSpriterInstance({ mode }) {
     shape: {
       id: {
         generator: (_svg, file) => {
-          console.log(file.basename);
-          console.log(file.stem);
-
           return `${file.stem}`;
         },
       },
