@@ -8,7 +8,12 @@ query teachersKeyStageSubjectUnits(
     slug
     title
   }
-  mv_subjects(where: { slug: { _eq: $subjectSlug } }) {
+  mv_subjects(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      slug: { _eq: $subjectSlug }
+    }
+  ) {
     slug
     title
   }
