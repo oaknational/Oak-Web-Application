@@ -265,10 +265,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson downloads", // @todo add real data
-        description: "Lesson downloads",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson downloads", // @todo add real data
+          description: "Lesson downloads",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Box $mv={[24, 48]}>
