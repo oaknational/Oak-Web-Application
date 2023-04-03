@@ -225,10 +225,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     } catch (error) {
       console.log(error);
     } finally {
-      const selectedResourcesForTracking = selectedResources.map((resource) =>
-        resource.replace(/-/g, " ")
-      );
-
       track.resourcesDownloaded({
         keyStageName: keyStageTitle as KeyStageNameValueType,
         keyStageSlug,
@@ -238,7 +234,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         subjectSlug,
         lessonName: title,
         lessonSlug: slug,
-        resourceType: selectedResourcesForTracking as ResourceTypeValueType[],
+        resourceType: selectedResources as ResourceTypeValueType[],
         useCase,
       });
     }
