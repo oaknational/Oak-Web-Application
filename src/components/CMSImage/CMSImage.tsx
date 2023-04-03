@@ -12,6 +12,28 @@ import {
   imageBuilder,
 } from "./sanityImageBuilder";
 
+function getAspectRatio({
+  cropRect,
+  width,
+  height,
+  originalDimensions,
+}: Pick<CMSImageProps, "cropRect" | "width" | "height"> & {
+  originalDimensions?: { aspectRatio?: number };
+}) {
+  if (cropRect) {
+    return cropRect[2] / cropRect[3];
+  }
+  if (width && height) {
+    return width / height;
+  }
+
+  if (originalDimensions?.aspectRatio) {
+    return originalDimensions.aspectRatio;
+  }
+
+  return null;
+}
+
 export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
   /**
    * Sanity image asset
@@ -65,10 +87,12 @@ const CMSImage: FC<CMSImageProps> = (props) => {
         .quality(80)
         .fit("clip");
 
-      const aspectRatio =
-        props.width && props.height
-          ? props.width / props.height
-          : originalDimensions.aspectRatio;
+      const aspectRatio = getAspectRatio({
+        width: props.width,
+        height: props.height,
+        originalDimensions,
+        cropRect,
+      });
 
       if (aspectRatio) {
         builtImage = builtImage.height(Math.floor(srcWidth / aspectRatio));
@@ -94,16 +118,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
 
       return builtImage.url();
     },
-    [
-      image,
-      noCrop,
-      originalDimensions.height,
-      originalDimensions.width,
-      originalDimensions.aspectRatio,
-      props.height,
-      props.width,
-      cropRect,
-    ]
+    [image, noCrop, originalDimensions, props.height, props.width, cropRect]
   );
 
   const loader: ImageLoader = propsLoader || defaultLoader;

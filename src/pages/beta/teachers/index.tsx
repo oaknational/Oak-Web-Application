@@ -5,7 +5,7 @@ import {
   HomePageProps,
   postToPostListItem,
 } from "../..";
-import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import AppLayout from "../../../components/AppLayout";
 import Box from "../../../components/Box";
 import Flex from "../../../components/Flex";
@@ -37,7 +37,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const blogListProps = usePostList({ items: posts, withImage: true });
 
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
       <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
         <MaxWidth>
           <Box $ph={[16, 0]}>

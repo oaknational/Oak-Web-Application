@@ -1,3 +1,62 @@
+# [1.164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.163.0...v1.164.0) (2023-04-03)
+
+
+### Bug Fixes
+
+* add a11y name for logo ([418ed66](https://github.com/oaknational/Oak-Web-Application/commit/418ed66fe19a60af95f52ff1374d04ef0eae98ff))
+* **svgo-config:** disable plugins that alter ids ([731ae9b](https://github.com/oaknational/Oak-Web-Application/commit/731ae9b7cd62ab604ae3354660c51ec93af3a22f))
+
+
+### Features
+
+* fetch site logo during build step ([cb45b64](https://github.com/oaknational/Oak-Web-Application/commit/cb45b64230118f0707d9993a38f2c206de992250))
+* generate inline svg sprite ([c8d9208](https://github.com/oaknational/Oak-Web-Application/commit/c8d9208ebbaa903b30e1584c616e3dd37306319a))
+
+# [1.163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.162.0...v1.163.0) (2023-04-03)
+
+
+### Bug Fixes
+
+* aria label for desktop ([ac9a1f3](https://github.com/oaknational/Oak-Web-Application/commit/ac9a1f38eafc173a168fca9fa730618dc2dae70d))
+* **bug-fixes:** fix bugs caused by local storage ([9f75f3f](https://github.com/oaknational/Oak-Web-Application/commit/9f75f3f5421982c5021157e85bdcae5b6f52de8e))
+* **bug-fixes:** ts fix ([2756819](https://github.com/oaknational/Oak-Web-Application/commit/2756819e64417b83905de82514b0ba9c3faa3e09))
+* **cms-image:** fix aspect-ratio when cropRect passed ([a1c7d33](https://github.com/oaknational/Oak-Web-Application/commit/a1c7d3375be0db0ca5939a330f9c85780b246657))
+* **expired-lessons-page:** merge commit ([2f78d80](https://github.com/oaknational/Oak-Web-Application/commit/2f78d803c57b8ed7269424a3d7621a5279bdd796))
+* **expired-lessons-page:** remove console log ([14fbd22](https://github.com/oaknational/Oak-Web-Application/commit/14fbd22ccac250dbb332cdbc63482b6056a38ebe))
+* **expired-lessons-page:** remove lesson data and replace with message ([8db14fc](https://github.com/oaknational/Oak-Web-Application/commit/8db14fc9266e8f0fa638255ede97cd28d6bfab70))
+* **expired-lessons-page:** test fix ([ed98d9c](https://github.com/oaknational/Oak-Web-Application/commit/ed98d9c1d155b35b60e7c62bd820b2420b04f6ea))
+* **quiz question:** add nullable type for image title ([acb128f](https://github.com/oaknational/Oak-Web-Application/commit/acb128f6a788e29b86f13c52455bdd7ffeac39ae))
+* **quiz question:** handle nulls on quiz image alt ([b25be95](https://github.com/oaknational/Oak-Web-Application/commit/b25be9527086be24febb9357e167e2ed9a516a3a))
+* **quiz question:** merge commit ([e5e909e](https://github.com/oaknational/Oak-Web-Application/commit/e5e909e17daaff6333142cc3903995240145b293))
+* **quiz question:** replace quiz image alt for empty string ([757c45e](https://github.com/oaknational/Oak-Web-Application/commit/757c45e2ba7f50c111f099819bf658cd7c1ef61f))
+* **seo:** add no-index to seo ([4eb6256](https://github.com/oaknational/Oak-Web-Application/commit/4eb6256a5e6f49b8fefda8f96a289219e9eb5f2d))
+* **seo:** merge commit ([8fefc67](https://github.com/oaknational/Oak-Web-Application/commit/8fefc677140ad4590816e32672caac4d0dbc499a))
+* **seo:** remove comment ([eeaa5bc](https://github.com/oaknational/Oak-Web-Application/commit/eeaa5bcf3fd873c8297ef2a227fdd7014f2de47a))
+* **word-wrap:** add word wrap to email on details completed ([e6828c0](https://github.com/oaknational/Oak-Web-Application/commit/e6828c076cb04ce6bdb7c82f8ba51ab69a65f237))
+
+
+### Features
+
+* 1394 Add tests ([1eb67f9](https://github.com/oaknational/Oak-Web-Application/commit/1eb67f9ca7960bceb6d8e4490cb301c988f183dc))
+* 1394 Convert passing terms to local storage to boolean ([59c62ac](https://github.com/oaknational/Oak-Web-Application/commit/59c62accdd9436c083345119d3b5f54a20534c22))
+* 1394 Display correct school name ([bfc898e](https://github.com/oaknational/Oak-Web-Application/commit/bfc898efe6bb910dde4fd0f5bc59520ed73a19d6))
+* 1394 Display UI based on loaded values from local storage ([d683c4d](https://github.com/oaknational/Oak-Web-Application/commit/d683c4da416ca3a42c9e0ccdba3ef10f3d7da55f))
+* 1394 Fix code after merge ([f596b74](https://github.com/oaknational/Oak-Web-Application/commit/f596b74a5227be5b306331d94ba546115bf06dcd))
+* 1394 Fix linting ([52416e0](https://github.com/oaknational/Oak-Web-Application/commit/52416e08a28258534ec5615d25ee235870994c05))
+* 1394 Handle homeschool and not listed when saving school name ([6ef850a](https://github.com/oaknational/Oak-Web-Application/commit/6ef850a0c0a527187407db553c77fa4d19f5ba15))
+* 1394 Make sure initial school value is set within a react hook form ([4b77d7b](https://github.com/oaknational/Oak-Web-Application/commit/4b77d7bfeb927adec73320e0b636e92ed84e8871))
+* 1394 Make sure school value is cleared correctly ([3c0bbec](https://github.com/oaknational/Oak-Web-Application/commit/3c0bbecd1391bdd13ffad25d63db32e975f06410))
+* 1394 Manually merge Joe's changes in ([4e4b87c](https://github.com/oaknational/Oak-Web-Application/commit/4e4b87c0ee8bea7d346539ce099483b3e6acbb82))
+* 1394 Save school name and school id under the same local storage key ([6787046](https://github.com/oaknational/Oak-Web-Application/commit/6787046b863c1549b77f2f51b4b9cc7bc67b8a5c))
+* 1394 Skip tests that time out ([859d2be](https://github.com/oaknational/Oak-Web-Application/commit/859d2be890875d91bbfbebd46f2a03acb63ce4e5))
+* 1394 Sync Joe's changes with current code ([161f6a5](https://github.com/oaknational/Oak-Web-Application/commit/161f6a5a6bb28132310e9176afdb87784e45ba11))
+* 1394 Wire up remmeber me functionality on downloads ([24e493a](https://github.com/oaknational/Oak-Web-Application/commit/24e493ac6c2a737746b447152c66b2d97769ccb0))
+* add hrefQuery to buttons ([a4f561a](https://github.com/oaknational/Oak-Web-Application/commit/a4f561a2efda1e44d51779d88034b765531242e9))
+* add no downloads available message ([8593811](https://github.com/oaknational/Oak-Web-Application/commit/859381131323b6e3995945830c4c63166453baf9))
+* add transcript sentences ([6035c21](https://github.com/oaknational/Oak-Web-Application/commit/6035c21d6d78af4d38f22e259319b0f7ddf42312))
+* **point-owa-prod:** point owa at prod and update test config file ([7058a52](https://github.com/oaknational/Oak-Web-Application/commit/7058a5256b06e37e8025de05e4ed7f911f772b8a))
+* preselect downloads from lesson overview page download button ([4869044](https://github.com/oaknational/Oak-Web-Application/commit/48690445c7fee1ebbb82f7cf4bec08bac888558c))
+
 # [1.162.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.161.0...v1.162.0) (2023-03-23)
 
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
 import { useSearchQuery } from "../../../context/Search/SearchContext";
 import AppLayout from "../../../components/AppLayout";
@@ -161,7 +161,7 @@ const Search = () => {
 
 const SearchPage: NextPage = () => {
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background="grey1">
+    <AppLayout seoProps={BETA_SEO_PROPS} $background="grey1">
       <Search />
     </AppLayout>
   );
