@@ -5,6 +5,15 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 import SiteHeader from ".";
 
 describe("components/SiteHeader", () => {
+  test("logo should accessibly link to the home page", () => {
+    const { getByRole } = renderWithProviders(<SiteHeader />);
+
+    const logoLink = getByRole("link", {
+      name: "Oak National Academy",
+    });
+    expect(logoLink).toBeInTheDocument();
+    expect(logoLink).toHaveAttribute("href", "/");
+  });
   test("header should be in the document", () => {
     const { getByRole } = renderWithProviders(<SiteHeader />);
 

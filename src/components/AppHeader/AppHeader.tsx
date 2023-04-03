@@ -30,7 +30,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $alignItems={"center"}
       >
         <OakLink page={"beta-teachers-home"}>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
+          <Logo height={48} width={104} />
         </OakLink>
         <IconButton
           aria-label="Menu"
