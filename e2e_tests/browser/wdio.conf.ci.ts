@@ -3,6 +3,7 @@ import type { Options } from "@wdio/types";
 const bsUser = process.env.BROWSERSTACK_USERNAME;
 const bsKey = process.env.BROWSERSTACK_ACCESS_KEY;
 
+// Throw if BrowserStack credentials are not defined.
 if (!bsUser || !bsKey) {
   throw new Error(
     `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`
