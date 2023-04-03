@@ -88,10 +88,8 @@ describe("Lesson List Item", () => {
       subjectSlug: "english",
       unitName: "Unit title",
       unitSlug: "foo",
-      unitId: 0,
       lessonName: "Macbeth",
       lessonSlug: "macbeth-lesson-1",
-      lessonId: 0,
     });
   });
 });

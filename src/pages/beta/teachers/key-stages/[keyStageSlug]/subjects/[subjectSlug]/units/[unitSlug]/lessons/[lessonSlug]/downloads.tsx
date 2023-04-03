@@ -234,12 +234,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         keyStageSlug,
         unitName: unitTitle,
         unitSlug,
-        unitId: 0,
         subjectName: subjectTitle,
         subjectSlug,
         lessonName: title,
         lessonSlug: slug,
-        lessonId: 0,
         resourceType: selectedResourcesForTracking as ResourceTypeValueType[],
         useCase,
       });

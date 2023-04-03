@@ -60,9 +60,6 @@ describe("TierListItem", () => {
 
     expect(tierSelected).toHaveBeenCalledTimes(1);
     expect(tierSelected).toHaveBeenCalledWith({
-      unitName: "",
-      unitSlug: "",
-      unitId: 0,
       subjectName: "Maths",
       subjectSlug: "maths",
       tierName: "Higher",

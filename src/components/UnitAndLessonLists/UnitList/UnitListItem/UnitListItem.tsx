@@ -51,7 +51,6 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       subjectSlug,
       unitName: title,
       unitSlug: slug,
-      unitId: 0,
       useCase,
     });
   };

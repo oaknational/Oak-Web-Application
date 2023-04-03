@@ -97,10 +97,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       subjectSlug,
       unitName: unitTitle,
       unitSlug,
-      unitId: 0,
       lessonName: title,
       lessonSlug: slug,
-      lessonId: 0,
       useCase,
     });
   };

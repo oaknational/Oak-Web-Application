@@ -58,9 +58,6 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
           search={{ tier: slug }}
           onClick={() => {
             track.tierSelected({
-              unitName: "",
-              unitSlug: "",
-              unitId: 0,
               subjectName,
               subjectSlug,
               keyStageName: keyStageName as KeyStageNameValueType,

@@ -42,9 +42,6 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         keyStageSlug,
         subjectName,
         subjectSlug,
-        unitName: "",
-        unitSlug: "",
-        unitId: 0,
         useCase,
         learningThemeName: label,
       });

@@ -35,7 +35,7 @@ describe("Unit List Item", () => {
     jest.clearAllMocks();
   });
 
-  test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+  test("It calls tracking.unitSelected with correct props when clicked", async () => {
     const { getByText } = renderWithProviders(<UnitListItem {...props} />);
 
     const unit = getByText("Circles");
@@ -52,7 +52,6 @@ describe("Unit List Item", () => {
       subjectSlug: "maths",
       unitName: "Numbers and numerals",
       unitSlug: "numbers-and-numerals",
-      unitId: 0,
     });
   });
 });
