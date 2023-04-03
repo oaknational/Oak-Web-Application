@@ -173,3 +173,8 @@ jobs:
           description: E2E Browser Eng (${{github.event.deployment_status.environment}})
           state: ${{ steps.run_wdio.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Add a link to the results into the job output.
+      - name: results link
+        if: ${{ always() }}
+        run: echo -e "\n***\nFor more information see https://observability.browserstack.com/ \n***"
