@@ -1,3 +1,17 @@
+# [1.164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.163.0...v1.164.0) (2023-04-03)
+
+
+### Bug Fixes
+
+* add a11y name for logo ([418ed66](https://github.com/oaknational/Oak-Web-Application/commit/418ed66fe19a60af95f52ff1374d04ef0eae98ff))
+* **svgo-config:** disable plugins that alter ids ([731ae9b](https://github.com/oaknational/Oak-Web-Application/commit/731ae9b7cd62ab604ae3354660c51ec93af3a22f))
+
+
+### Features
+
+* fetch site logo during build step ([cb45b64](https://github.com/oaknational/Oak-Web-Application/commit/cb45b64230118f0707d9993a38f2c206de992250))
+* generate inline svg sprite ([c8d9208](https://github.com/oaknational/Oak-Web-Application/commit/c8d9208ebbaa903b30e1584c616e3dd37306319a))
+
 # [1.163.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.162.0...v1.163.0) (2023-04-03)
 
 
