@@ -105,7 +105,7 @@ export const config: Options.Testrunner = {
         projectName,
         buildName,
         os: "Windows",
-        osVersion: "10",
+        osVersion: "11",
         resolution: "1920x1080",
         local: false,
         networkLogs: true,
