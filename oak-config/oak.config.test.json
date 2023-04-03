@@ -17,6 +17,8 @@
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "appName": "Oak Web Application",
+    "curriculumApiUrl": "https://graphql.thenational.academy/v1/graphql",
+    "curriculumApiAuthType": "oak-admin",
     "webinarSignUpUrl": "https://example.com/webinar-sign-up",
     "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"],
     "vercelApiUrl": "https://api.thenational.academy"

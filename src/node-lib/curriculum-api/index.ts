@@ -274,7 +274,7 @@ const teachersLessonOverviewData = z.object({
   hasCopyrightMaterial: z.boolean(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcript: z.string().nullable(),
+  transcriptSentences: z.array(z.string()).nullable(),
   hasDownloadableResources: z.boolean().nullable(),
   introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
   exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
