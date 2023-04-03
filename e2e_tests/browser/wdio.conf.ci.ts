@@ -15,6 +15,8 @@ const branchName = process.env.BRANCH_NAME;
 if (!branchName) {
   throw new Error(`Please define BRANCH_NAME (${branchName})`);
 }
+const projectName = "OWA E2E WDIO Tests";
+const buildName = `branch: ${branchName}`;
 
 export const config: Options.Testrunner = {
   //
@@ -100,6 +102,8 @@ export const config: Options.Testrunner = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "bstack:options": {
+        projectName,
+        buildName,
         os: "Windows",
         osVersion: "10",
         resolution: "1920x1080",
