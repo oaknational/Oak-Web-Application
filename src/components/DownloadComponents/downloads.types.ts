@@ -10,8 +10,15 @@ const DOWNLOAD_RESOURCE_TYPES = [
   "worksheet-pptx",
 ] as const;
 
+type PreselectedDownloadType =
+  | "slide deck"
+  | "exit quiz"
+  | "starter quiz"
+  | "worksheet"
+  | "all";
+
 export const preselectedDownloadTypeMap: Record<
-  string,
+  PreselectedDownloadType,
   DownloadResourceType[] | "all"
 > = {
   "slide deck": ["presentation"],
