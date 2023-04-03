@@ -100,7 +100,25 @@ module.exports = async (phase) => {
             defaultLoaders.babel,
             {
               loader: "@svgr/webpack",
-              options: { babel: false },
+              options: {
+                babel: false,
+                svgoConfig: {
+                  plugins: [
+                    {
+                      name: "cleanupIds",
+                      params: {
+                        active: false,
+                      },
+                    },
+                    {
+                      name: "prefixIds",
+                      params: {
+                        prefixIds: false,
+                      },
+                    },
+                  ],
+                },
+              },
             },
           ],
         }
