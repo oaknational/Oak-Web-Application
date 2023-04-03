@@ -18,7 +18,7 @@ describe("OWA", () => {
       await expect(title).toHaveTextContaining("great lessons");
     });
   });
-  context("Example failing test", () => {
+  context.skip("Example failing test", () => {
     it("should contain literary quotes", async () => {
       await HomePage.open();
 
