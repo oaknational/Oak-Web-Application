@@ -5,9 +5,10 @@
     "excalidraw",
     "hookform",
     "Nextjs",
-    "portabletext",
     "phonenumber",
-    "sdlc"
+    "portabletext",
+    "sdlc",
+    "Testrunner"
   ],
   "deno.enable": true,
   "deno.enablePaths": ["netlify/edge-functions"],

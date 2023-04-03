@@ -158,7 +158,7 @@ jobs:
         run: npm run wdio:ci
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          BRANCH_NAME: ${{ github.event.deployment_status.ref }}
+          BRANCH_NAME: ${{ github.event.deployment.ref }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}

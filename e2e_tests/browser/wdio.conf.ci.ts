@@ -2,12 +2,18 @@ import type { Options } from "@wdio/types";
 
 const bsUser = process.env.BROWSERSTACK_USERNAME;
 const bsKey = process.env.BROWSERSTACK_ACCESS_KEY;
-
-// Throw if BrowserStack credentials are not defined.
 if (!bsUser || !bsKey) {
   throw new Error(
     `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`
   );
+}
+const baseUrl = process.env.BASE_URL;
+if (!baseUrl) {
+  throw new Error(`Please define BASE_URL (${baseUrl})`);
+}
+const branchName = process.env.BRANCH_NAME;
+if (!branchName) {
+  throw new Error(`Please define BRANCH_NAME (${branchName})`);
 }
 
 export const config: Options.Testrunner = {
@@ -94,8 +100,6 @@ export const config: Options.Testrunner = {
       browserName: "chrome",
       acceptInsecureCerts: true,
       "bstack:options": {
-        projectName: "OWA E2E WDIO Tests",
-        buildName: `branch: ${process.env.BRANCH_NAME}`,
         os: "Windows",
         osVersion: "10",
         resolution: "1920x1080",
@@ -140,7 +144,7 @@ export const config: Options.Testrunner = {
   // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
   // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
   // gets prepended directly.
-  baseUrl: "http://localhost",
+  baseUrl: baseUrl,
   //
   // Default timeout for all waitFor* commands.
   waitforTimeout: 10000,
@@ -156,7 +160,18 @@ export const config: Options.Testrunner = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["browserstack"],
+  services: [
+    [
+      "browserstack",
+      {
+        testObservability: true,
+        testObservabilityOptions: {
+          projectName: "OWA E2E WDIO Tests",
+          buildName: `branch: ${branchName}`,
+        },
+      },
+    ],
+  ],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
