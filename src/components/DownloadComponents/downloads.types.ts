@@ -10,7 +10,7 @@ const DOWNLOAD_RESOURCE_TYPES = [
   "worksheet-pptx",
 ] as const;
 
-type PreselectedDownloadType =
+export type PreselectedDownloadType =
   | "slide deck"
   | "exit quiz"
   | "starter quiz"
