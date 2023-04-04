@@ -1,4 +1,4 @@
-import { CurriculumApi } from "../";
+import { CurriculumApi } from "..";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "../fixtures/teachersKeyStageSubjects.fixture";
 import teachersKeyStageSubjectTiersFixture from "../fixtures/teachersKeyStageSubjectTiers.fixture";

@@ -144,11 +144,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   $display={["flex", "none"]}
                   $mb={[36, 0]}
                 >
-                  <Logo
-                    title={"Oak National Academy"}
-                    height={48}
-                    width={104}
-                  />
+                  <Logo height={48} width={104} />
                 </Flex>
                 {children}
                 {/* Desktop logo */}
@@ -160,11 +156,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
                   <Flex $display={["none", "flex"]} $mb={6}>
-                    <Logo
-                      title={"Oak National Academy"}
-                      width={150}
-                      height={63}
-                    />
+                    <Logo width={150} height={63} />
                   </Flex>
                 </Flex>
               </Flex>
