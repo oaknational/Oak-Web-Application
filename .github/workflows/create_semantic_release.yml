@@ -12,7 +12,6 @@ on:
   push:
     branches:
       - main
-      - fix/1481-semantic-github-release-action
     # This stops us getting into an infinite loop when a release commit
     # is created on `main` containing the changes to CHANGE_LOG.md .
     # The loop could happen because we use credentials from the machine
@@ -46,20 +45,20 @@ jobs:
       # See config here release.config.js
       # Note, this runs on `main` and creates the release tag.
       # and updates the changelog file.
-      # - name: do release
-      #   id: semantic_release
-      #   run: npx semantic-release
-      #   env:
-      #     GH_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
-      #     # Don't run pre-commit or commit message hooks on this commit
-      #     HUSKY: 0
+      - name: do release
+        id: semantic_release
+        run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_GITHUB_TOKEN }}
+          # Don't run pre-commit or commit message hooks on this commit
+          HUSKY: 0
 
       - name: Report to Slack on failure
-        # if: ${{ steps.semantic_release.outcome == 'failure' }}
+        if: ${{ steps.semantic_release.outcome == 'failure' }}
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
-          SLACK_MESSAGE: "TESTING Semantic Release status: ${{ job.status }}"
+          SLACK_MESSAGE: "Semantic Release status: ${{ job.status }}"
           SLACK_TITLE: Semantic Release
           SLACK_USERNAME: SemanticReleaseReporter
           SLACK_WEBHOOK: ${{ secrets.OAK_GITHUB_NOTIFICATION_WEBHOOK }}
