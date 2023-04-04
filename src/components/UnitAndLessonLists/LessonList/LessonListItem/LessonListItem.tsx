@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useUseCase from "../../../../hooks/useUseCase";
+import useAvoUseCase from "../../../../hooks/useAvoUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
@@ -87,7 +87,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   } = props;
 
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   const trackingCallback = () => {
     track.lessonSelected({
@@ -99,7 +99,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       unitSlug,
       lessonName: title,
       lessonSlug: slug,
-      useCase,
+      useCase: avoUseCase,
     });
   };
 

@@ -6,7 +6,7 @@ import { LI } from "../../Typography";
 import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import useUseCase from "../../../hooks/useUseCase";
+import useAvoUseCase from "../../../hooks/useAvoUseCase";
 import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
@@ -28,7 +28,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const arrowHidden = !isSelected;
 
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   const onClick = () => {
     setSelected(linkProps);
@@ -42,7 +42,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         keyStageSlug,
         subjectName,
         subjectSlug,
-        useCase,
+        useCase: avoUseCase,
         learningThemeName: label,
       });
     }

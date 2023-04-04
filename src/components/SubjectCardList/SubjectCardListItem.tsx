@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useUseCase from "../../hooks/useUseCase";
+import useAvoUseCase from "../../hooks/useAvoUseCase";
 import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -46,7 +46,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
 
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   return (
     <Card
@@ -97,7 +97,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                     keyStageSlug,
                     subjectName: title,
                     subjectSlug: slug,
-                    useCase,
+                    useCase: avoUseCase,
                   });
                 }}
               >

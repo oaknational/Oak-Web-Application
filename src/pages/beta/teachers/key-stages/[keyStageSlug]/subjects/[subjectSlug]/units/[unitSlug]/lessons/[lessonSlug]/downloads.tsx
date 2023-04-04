@@ -30,7 +30,7 @@ import {
   KeyStageNameValueType,
   ResourceTypeValueType,
 } from "../../../../../../../../../../../browser-lib/avo/Avo";
-import useUseCase from "../../../../../../../../../../../hooks/useUseCase";
+import useAvoUseCase from "../../../../../../../../../../../hooks/useAvoUseCase";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -72,7 +72,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const router = useRouter();
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -214,31 +214,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources);
+        onSubmit(data, slug, selectedResources).then(() => {
+          track.resourcesDownloaded({
+            keyStageName: keyStageTitle as KeyStageNameValueType,
+            keyStageSlug,
+            unitName: unitTitle,
+            unitSlug,
+            subjectName: subjectTitle,
+            subjectSlug,
+            lessonName: title,
+            lessonSlug: slug,
+            resourceType: selectedResources as ResourceTypeValueType[],
+            useCase: avoUseCase,
+          });
+        });
       },
       4000,
       { leading: true }
     );
 
-    try {
-      await debouncedOnSubmit();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      track.resourcesDownloaded({
-        keyStageName: keyStageTitle as KeyStageNameValueType,
-        keyStageSlug,
-        unitName: unitTitle,
-        unitSlug,
-        subjectName: subjectTitle,
-        subjectSlug,
-        lessonName: title,
-        lessonSlug: slug,
-        resourceType: selectedResources as ResourceTypeValueType[],
-        useCase,
-      });
-    }
-
+    debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
     setEditDetailsClicked(false);
   };

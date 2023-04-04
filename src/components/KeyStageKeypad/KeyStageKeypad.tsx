@@ -6,7 +6,7 @@ import OakLink from "../OakLink";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useUseCase from "../../hooks/useUseCase";
+import useAvoUseCase from "../../hooks/useAvoUseCase";
 import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
@@ -19,7 +19,7 @@ export type KeyStageKeypadProps = {
 const KeypadLink: FC<KeypadItem> = (props) => {
   const { shortCode, slug, title } = props;
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   return (
     <GridArea $colSpan={[3]}>
@@ -37,7 +37,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
             keyStageName: title as KeyStageNameValueType,
             keyStageSlug: slug,
             navigatedFrom: "card",
-            useCase,
+            useCase: avoUseCase,
           });
         }}
       >

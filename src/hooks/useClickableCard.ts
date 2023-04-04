@@ -36,10 +36,10 @@ const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
   const ref = useRef<T | null>(null);
   const { isHovered, hoverProps } = useHover({});
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
+    if (callback) callback();
     if (e.target instanceof Element) {
       const interactiveAncestor = getInteractiveAncestor(e.target);
       if (interactiveAncestor) {
-        if (callback) callback();
         return;
       }
     }

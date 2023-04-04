@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useUseCase from "../../../../hooks/useUseCase";
+import useAvoUseCase from "../../../../hooks/useAvoUseCase";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
@@ -41,7 +41,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   } = props;
 
   const { track } = useAnalytics();
-  const useCase = useUseCase();
+  const avoUseCase = useAvoUseCase();
 
   const trackingCallback = () => {
     track.unitSelected({
@@ -51,7 +51,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       subjectSlug,
       unitName: title,
       unitSlug: slug,
-      useCase,
+      useCase: avoUseCase,
     });
   };
 
