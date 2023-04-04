@@ -14,8 +14,8 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
     props.curriculumData;
 
   const tierTrackingProps = {
-    keyStageName: keyStageTitle,
-    subjectName: subjectTitle,
+    keyStageTitle,
+    subjectTitle,
   };
 
   return (

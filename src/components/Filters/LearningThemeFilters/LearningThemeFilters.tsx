@@ -6,8 +6,8 @@ import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
 export type LearningThemeSelectedTrackingProps = {
   keyStageSlug: string;
-  keyStageName: string;
-  subjectName: string;
+  keyStageTitle: string;
+  subjectTitle: string;
   subjectSlug: string;
 };
 

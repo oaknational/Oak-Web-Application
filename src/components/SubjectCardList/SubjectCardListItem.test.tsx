@@ -28,7 +28,7 @@ describe("SubjectCardListItem", () => {
         lessonCount={130}
         activeUnitCount={14}
         keyStageSlug={"keyStage"}
-        keyStageTitle={"Key Stage 1"}
+        keyStageTitle={"Key stage 1"}
         slug={"art"}
         tierCount={null}
       />
@@ -43,7 +43,7 @@ describe("SubjectCardListItem", () => {
         lessonCount={130}
         activeUnitCount={14}
         keyStageSlug={"keyStage"}
-        keyStageTitle={"Key Stage 1"}
+        keyStageTitle={"Key stage 1"}
         slug={"art"}
         tierCount={null}
       />
@@ -61,7 +61,7 @@ describe("SubjectCardListItem", () => {
         lessonCount={130}
         activeUnitCount={14}
         keyStageSlug={"ks1"}
-        keyStageTitle={"Key Stage 1"}
+        keyStageTitle={"Key stage 1"}
         slug={"art"}
         tierCount={null}
       />
@@ -75,9 +75,9 @@ describe("SubjectCardListItem", () => {
 
     expect(subjectSelected).toHaveBeenCalledTimes(1);
     expect(subjectSelected).toHaveBeenCalledWith({
-      keyStageName: "Key Stage 1",
+      keyStageTitle: "Key stage 1",
       keyStageSlug: "ks1",
-      subjectName: "Art and Design",
+      subjectTitle: "Art and Design",
       subjectSlug: "art",
       useCase: ["Teacher"],
     });

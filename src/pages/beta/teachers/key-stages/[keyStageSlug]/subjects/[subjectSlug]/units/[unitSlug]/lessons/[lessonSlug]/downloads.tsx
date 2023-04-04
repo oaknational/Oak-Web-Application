@@ -27,7 +27,7 @@ import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
 import {
-  KeyStageNameValueType,
+  KeyStageTitleValueType,
   ResourceTypeValueType,
 } from "../../../../../../../../../../../browser-lib/avo/Avo";
 import useAvoUseCase from "../../../../../../../../../../../hooks/useAvoUseCase";
@@ -216,11 +216,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         setIsAttemptingDownload(true);
         onSubmit(data, slug, selectedResources).then(() => {
           track.resourcesDownloaded({
-            keyStageName: keyStageTitle as KeyStageNameValueType,
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
             keyStageSlug,
             unitName: unitTitle,
             unitSlug,
-            subjectName: subjectTitle,
+            subjectTitle,
             subjectSlug,
             lessonName: title,
             lessonSlug: slug,

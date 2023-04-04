@@ -6,15 +6,13 @@ import "../__tests__/__helpers__/LocalStorageMock";
 
 import useClickableCard from "./useClickableCard";
 
-const clickCallback = jest.fn();
-
 const Clickable = ({
   onClick,
 }: {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }) => {
   const { primaryTargetProps, containerProps } =
-    useClickableCard<HTMLButtonElement>({ clickCallback });
+    useClickableCard<HTMLButtonElement>();
   const onSecondaryClick: MouseEventHandler<HTMLButtonElement> = () => {
     // noop
   };

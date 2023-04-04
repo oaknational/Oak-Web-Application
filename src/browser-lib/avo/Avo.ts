@@ -964,7 +964,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "QcPQdIcfQRMOvX16uU4w",
+          "ac": "wnsKn6WGtrbjQ27BU6pU",
           "br": "cjVJMBMUT",
           "en": env,
           "ev": eventId,
@@ -991,7 +991,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "QcPQdIcfQRMOvX16uU4w",
+          "ac": "wnsKn6WGtrbjQ27BU6pU",
           "br": "cjVJMBMUT",
           "en": env,
           "ty": type,
@@ -1082,15 +1082,13 @@ export type UseCaseType = typeof UseCase;
 export type UseCaseValueType = UseCaseType[keyof UseCaseType];
 
 export const ResourceType = {
-  'PRINTABLE_QUIZ': 'printable quiz',
-  'PRINTABLE_QUIZ_ANSWERS': 'printable quiz answers',
-  'WORKSHEET': 'worksheet',
-  'PRINTABLE_WORKSHEET': 'printable worksheet',
-  'PRINTABLE_INTRO_QUIZ': 'printable intro quiz',
-  'PRINTABLE_INTRO_QUIZ_ANSWERS': 'printable intro quiz answers',
-  'PRINTABLE_EXIT_QUIZ': 'printable exit quiz',
-  'PRINTABLE_EXIT_QUIZ_ANSWERS': 'printable exit quiz answers',
   'PRESENTATION': 'presentation',
+  'INTRO_QUIZ_QUESTIONS': 'intro-quiz-questions',
+  'INTRO_QUIZ_ANSWERS': 'intro-quiz-answers',
+  'EXIT_QUIZ_QUESTIONS': 'exit-quiz-questions',
+  'EXIT_QUIZ_ANSWERS': 'exit-quiz-answers',
+  'WORKSHEET_PDF': 'worksheet-pdf',
+  'WORKSHEET_PPTX': 'worksheet-pptx',
 } as const;
 export type ResourceTypeType = typeof ResourceType;
 export type ResourceTypeValueType = ResourceTypeType[keyof ResourceTypeType];
@@ -1122,14 +1120,14 @@ export const NavigatedFrom = {
 export type NavigatedFromType = typeof NavigatedFrom;
 export type NavigatedFromValueType = NavigatedFromType[keyof NavigatedFromType];
 
-export const KeyStageName = {
+export const KeyStageTitle = {
   'KEY_STAGE_1': 'Key stage 1',
   'KEY_STAGE_2': 'Key stage 2',
   'KEY_STAGE_3': 'Key stage 3',
   'KEY_STAGE_4': 'Key stage 4',
 } as const;
-export type KeyStageNameType = typeof KeyStageName;
-export type KeyStageNameValueType = KeyStageNameType[keyof KeyStageNameType];
+export type KeyStageTitleType = typeof KeyStageTitle;
+export type KeyStageTitleValueType = KeyStageTitleType[keyof KeyStageTitleType];
 
 let PostHog: any;
 
@@ -1974,11 +1972,11 @@ export function videoFinished(properties: VideoFinishedProperties) {
 }
 
 export interface ResourcesDownloadedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   unitSlug: string;
   unitName: string;
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
   lessonName: string;
   lessonSlug: string;
@@ -1993,11 +1991,11 @@ export interface ResourcesDownloadedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/k9ZQJai7ws/trigger/sAqordxVG
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.unitSlug: Human-readable unique ID of the current unit.
- * @param properties.unitName: Name of the current unit.
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.unitName: Title of the current unit.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.lessonName: Name of the current lesson.
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
@@ -2013,14 +2011,14 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "a5f5bebdf4c6b1e412750dcd2cd7c3e7bb860ef8807fe3668a7d45cca90127ce", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "c27ede89b0ae773f193ed530e580ae98c3db721bef03bdac704b4212ed0bfa39", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Resources Downloaded", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
       "Unit Slug": properties.unitSlug,
       "Unit Name": properties.unitName,
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
       "Lesson Name": properties.lessonName,
       "Lesson Slug": properties.lessonSlug,
@@ -2030,11 +2028,11 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("k9ZQJai7ws", "Resources Downloaded", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
       {id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug},
       {id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName},
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
       {id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName},
       {id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug},
@@ -2046,11 +2044,11 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
   eventProperties["Unit Slug"] = properties.unitSlug;
   eventProperties["Unit Name"] = properties.unitName;
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Lesson Name"] = properties.lessonName;
   eventProperties["Lesson Slug"] = properties.lessonSlug;
@@ -2064,17 +2062,17 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resources Downloaded", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
         "Unit Slug": properties.unitSlug,
         "Unit Name": properties.unitName,
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
         "Lesson Name": properties.lessonName,
         "Lesson Slug": properties.lessonSlug,
         "Resource Type": properties.resourceType,
         "Use Case": properties.useCase,
-        }, "k9ZQJai7ws", "a5f5bebdf4c6b1e412750dcd2cd7c3e7bb860ef8807fe3668a7d45cca90127ce");
+        }, "k9ZQJai7ws", "c27ede89b0ae773f193ed530e580ae98c3db721bef03bdac704b4212ed0bfa39");
     }
     // destination PostHog
     PostHog.logEvent("Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -2084,7 +2082,7 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
 }
 
 export interface KeyStageSelectedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   navigatedFrom: NavigatedFromValueType;
   useCase: UseCaseValueType[];
@@ -2097,7 +2095,7 @@ export interface KeyStageSelectedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/7ONADbQPez/trigger/bkIRr49k7
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  * @param properties.useCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
@@ -2110,10 +2108,10 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "7ONADbQPez", "d87f975424e32372ecca510b3f4cff4ac07ce12143f3c22b77150b4870209aea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "7ONADbQPez", "824b49351fbaacac8c9c2c7c5922fa3b65c3c391a5d5ac9b8693ffb48fca6251", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Key Stage Selected", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
       "Navigated From": properties.navigatedFrom,
       "Use Case": properties.useCase,
@@ -2121,7 +2119,7 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("7ONADbQPez", "Key Stage Selected", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
       {id: "p48bLbzXJ-", name: "Navigated From", value: properties.navigatedFrom},
       {id: "DAS5R4dcvH", name: "Use Case", value: properties.useCase},
@@ -2131,7 +2129,7 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
   eventProperties["Navigated From"] = properties.navigatedFrom;
   eventProperties["Use Case"] = properties.useCase;
@@ -2143,11 +2141,11 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Key Stage Selected", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
         "Navigated From": properties.navigatedFrom,
         "Use Case": properties.useCase,
-        }, "7ONADbQPez", "d87f975424e32372ecca510b3f4cff4ac07ce12143f3c22b77150b4870209aea");
+        }, "7ONADbQPez", "824b49351fbaacac8c9c2c7c5922fa3b65c3c391a5d5ac9b8693ffb48fca6251");
     }
     // destination PostHog
     PostHog.logEvent("Key Stage Selected", (Object as any).assign({}, eventProperties));
@@ -2157,9 +2155,9 @@ export function keyStageSelected(properties: KeyStageSelectedProperties) {
 }
 
 export interface SubjectSelectedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
   useCase: UseCaseValueType[];
 }
@@ -2171,9 +2169,9 @@ export interface SubjectSelectedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/ufkcMq0HT4/trigger/Pl87P0XPk
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.useCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
@@ -2185,21 +2183,21 @@ export function subjectSelected(properties: SubjectSelectedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "ufkcMq0HT4", "3f78c8eecc11924b44a5a3092633410034b4b20b4f3116b209a6cae6f63b3edb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "ufkcMq0HT4", "d251d705398b88533bb177fc1f900f16a78b1569b56f7741ef71ef82e8cf0805", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Subject Selected", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
       "Use Case": properties.useCase,
       }, {});
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("ufkcMq0HT4", "Subject Selected", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
       {id: "DAS5R4dcvH", name: "Use Case", value: properties.useCase},
       ], [], []);
@@ -2208,9 +2206,9 @@ export function subjectSelected(properties: SubjectSelectedProperties) {
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Use Case"] = properties.useCase;
 
@@ -2221,12 +2219,12 @@ export function subjectSelected(properties: SubjectSelectedProperties) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Subject Selected", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
         "Use Case": properties.useCase,
-        }, "ufkcMq0HT4", "3f78c8eecc11924b44a5a3092633410034b4b20b4f3116b209a6cae6f63b3edb");
+        }, "ufkcMq0HT4", "d251d705398b88533bb177fc1f900f16a78b1569b56f7741ef71ef82e8cf0805");
     }
     // destination PostHog
     PostHog.logEvent("Subject Selected", (Object as any).assign({}, eventProperties));
@@ -2236,9 +2234,9 @@ export function subjectSelected(properties: SubjectSelectedProperties) {
 }
 
 export interface UnitSelectedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
   unitSlug: string;
   unitName: string;
@@ -2252,12 +2250,12 @@ export interface UnitSelectedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/Me4ouIgPxh/trigger/t8lbfIsGe
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.unitSlug: Human-readable unique ID of the current unit.
- * @param properties.unitName: Name of the current unit.
+ * @param properties.unitName: Title of the current unit.
  * @param properties.useCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/Me4ouIgPxh}
@@ -2268,12 +2266,12 @@ export function unitSelected(properties: UnitSelectedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "ab525d5df386d4b57566f49057229cb92c87928f464e98f05b8b24c71863e934", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Me4ouIgPxh", "301f76ace2e6732915fe7d5a9d298e121947351aa55358130ce428f7af277fea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Unit Selected", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
       "Unit Slug": properties.unitSlug,
       "Unit Name": properties.unitName,
@@ -2282,9 +2280,9 @@ export function unitSelected(properties: UnitSelectedProperties) {
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("Me4ouIgPxh", "Unit Selected", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
       {id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug},
       {id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName},
@@ -2295,9 +2293,9 @@ export function unitSelected(properties: UnitSelectedProperties) {
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Unit Slug"] = properties.unitSlug;
   eventProperties["Unit Name"] = properties.unitName;
@@ -2310,14 +2308,14 @@ export function unitSelected(properties: UnitSelectedProperties) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Selected", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
         "Unit Slug": properties.unitSlug,
         "Unit Name": properties.unitName,
         "Use Case": properties.useCase,
-        }, "Me4ouIgPxh", "ab525d5df386d4b57566f49057229cb92c87928f464e98f05b8b24c71863e934");
+        }, "Me4ouIgPxh", "301f76ace2e6732915fe7d5a9d298e121947351aa55358130ce428f7af277fea");
     }
     // destination PostHog
     PostHog.logEvent("Unit Selected", (Object as any).assign({}, eventProperties));
@@ -2327,11 +2325,11 @@ export function unitSelected(properties: UnitSelectedProperties) {
 }
 
 export interface LessonSelectedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   unitSlug: string;
   unitName: string;
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
   lessonName: string;
   lessonSlug: string;
@@ -2345,11 +2343,11 @@ export interface LessonSelectedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/iUvld79OSb/trigger/TnGi5eBdB
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.unitSlug: Human-readable unique ID of the current unit.
- * @param properties.unitName: Name of the current unit.
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.unitName: Title of the current unit.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.lessonName: Name of the current lesson.
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
@@ -2363,14 +2361,14 @@ export function lessonSelected(properties: LessonSelectedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "iUvld79OSb", "f8f20c0c16f0b1e197e0c591d326e7600fc79bd93ccc7c8d89e23cdd380380cb", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "iUvld79OSb", "8dd430da56fe83e51a3987427ed48a1d604ac3d20339912b87ab54a00e06f989", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Selected", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
       "Unit Slug": properties.unitSlug,
       "Unit Name": properties.unitName,
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
       "Lesson Name": properties.lessonName,
       "Lesson Slug": properties.lessonSlug,
@@ -2379,11 +2377,11 @@ export function lessonSelected(properties: LessonSelectedProperties) {
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("iUvld79OSb", "Lesson Selected", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
       {id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug},
       {id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName},
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
       {id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName},
       {id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug},
@@ -2394,11 +2392,11 @@ export function lessonSelected(properties: LessonSelectedProperties) {
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
   eventProperties["Unit Slug"] = properties.unitSlug;
   eventProperties["Unit Name"] = properties.unitName;
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Lesson Name"] = properties.lessonName;
   eventProperties["Lesson Slug"] = properties.lessonSlug;
@@ -2411,16 +2409,16 @@ export function lessonSelected(properties: LessonSelectedProperties) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Selected", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
         "Unit Slug": properties.unitSlug,
         "Unit Name": properties.unitName,
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
         "Lesson Name": properties.lessonName,
         "Lesson Slug": properties.lessonSlug,
         "Use Case": properties.useCase,
-        }, "iUvld79OSb", "f8f20c0c16f0b1e197e0c591d326e7600fc79bd93ccc7c8d89e23cdd380380cb");
+        }, "iUvld79OSb", "8dd430da56fe83e51a3987427ed48a1d604ac3d20339912b87ab54a00e06f989");
     }
     // destination PostHog
     PostHog.logEvent("Lesson Selected", (Object as any).assign({}, eventProperties));
@@ -2535,9 +2533,9 @@ export function helpCentreSelected() {
 }
 
 export interface LearningThemeSelectedProperties {
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
   useCase: UseCaseValueType[];
   learningThemeName: string;
@@ -2550,9 +2548,9 @@ export interface LearningThemeSelectedProperties {
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/Vg3AmapucP/trigger/ssM2tCEE3
  *
  * @param properties the properties associatied with this event
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.useCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.learningThemeName: Name of the learning theme used to group units
@@ -2566,12 +2564,12 @@ export function learningThemeSelected(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Vg3AmapucP", "effad2c424fff5857071e9cee28a3d5598bfa3b2520eb1b9b0218483eaf6c439", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "Vg3AmapucP", "8bd181b8c2ba4881c26789e5492c290d3343275813360c9cb3c7e84c40c3aa22", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Learning Theme Selected", {
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
       "Use Case": properties.useCase,
       "Learning Theme Name": properties.learningThemeName,
@@ -2579,9 +2577,9 @@ export function learningThemeSelected(
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("Vg3AmapucP", "Learning Theme Selected", messages, [
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
       {id: "DAS5R4dcvH", name: "Use Case", value: properties.useCase},
       {id: "-t7ga1V-X", name: "Learning Theme Name", value: properties.learningThemeName},
@@ -2591,9 +2589,9 @@ export function learningThemeSelected(
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Use Case"] = properties.useCase;
   eventProperties["Learning Theme Name"] = properties.learningThemeName;
@@ -2605,13 +2603,13 @@ export function learningThemeSelected(
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Learning Theme Selected", {
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
         "Use Case": properties.useCase,
         "Learning Theme Name": properties.learningThemeName,
-        }, "Vg3AmapucP", "effad2c424fff5857071e9cee28a3d5598bfa3b2520eb1b9b0218483eaf6c439");
+        }, "Vg3AmapucP", "8bd181b8c2ba4881c26789e5492c290d3343275813360c9cb3c7e84c40c3aa22");
     }
     // destination PostHog
     PostHog.logEvent("Learning Theme Selected", (Object as any).assign({}, eventProperties));
@@ -2621,9 +2619,9 @@ export function learningThemeSelected(
 }
 
 export interface TierSelectedProperties {
-  subjectName: string;
+  subjectTitle: string;
   subjectSlug: string;
-  keyStageName: KeyStageNameValueType;
+  keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   tierName: string;
   useCase: UseCaseValueType[];
@@ -2638,9 +2636,9 @@ NB. This currently only impacts KS4 Maths, but is expected to also impact KS4 Sc
  * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/cjVJMBMUT/events/6lyU_rQz42/trigger/HHKzuwVa4
  *
  * @param properties the properties associatied with this event
- * @param properties.subjectName: Name of the current subject.
+ * @param properties.subjectTitle: Title of the current subject.
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
- * @param properties.keyStageName: Name of the current key stage.
+ * @param properties.keyStageTitle: Title of the current key stage.
  * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
  * @param properties.tierName: Name of the learning tier
  * @param properties.useCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
@@ -2653,12 +2651,12 @@ export function tierSelected(properties: TierSelectedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "6lyU_rQz42", "84ff502a6b33ddd2d82dbd3082617c25d577511e2e2b1f1430affbc725b3833a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "6lyU_rQz42", "a4ab4c6ff119a4e0c48c18e6e92d52de1a642f0ef9f9acee58b916865324a6f7", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Tier Selected", {
-      "Subject Name": properties.subjectName,
+      "Subject Title": properties.subjectTitle,
       "Subject Slug": properties.subjectSlug,
-      "Key Stage Name": properties.keyStageName,
+      "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
       "Tier Name": properties.tierName,
       "Use Case": properties.useCase,
@@ -2666,9 +2664,9 @@ export function tierSelected(properties: TierSelectedProperties) {
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
       _avo_debugger_log("6lyU_rQz42", "Tier Selected", messages, [
-      {id: "-MoOjO43sV", name: "Subject Name", value: properties.subjectName},
+      {id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle},
       {id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug},
-      {id: "qeEZpYqVhK", name: "Key Stage Name", value: properties.keyStageName},
+      {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
       {id: "IFuPjLaNs", name: "Tier Name", value: properties.tierName},
       {id: "DAS5R4dcvH", name: "Use Case", value: properties.useCase},
@@ -2678,9 +2676,9 @@ export function tierSelected(properties: TierSelectedProperties) {
 
   // @ts-ignore
   let eventProperties: any = {};
-  eventProperties["Subject Name"] = properties.subjectName;
+  eventProperties["Subject Title"] = properties.subjectTitle;
   eventProperties["Subject Slug"] = properties.subjectSlug;
-  eventProperties["Key Stage Name"] = properties.keyStageName;
+  eventProperties["Key Stage Title"] = properties.keyStageTitle;
   eventProperties["Key Stage Slug"] = properties.keyStageSlug;
   eventProperties["Tier Name"] = properties.tierName;
   eventProperties["Use Case"] = properties.useCase;
@@ -2692,13 +2690,13 @@ export function tierSelected(properties: TierSelectedProperties) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
       __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Tier Selected", {
-        "Subject Name": properties.subjectName,
+        "Subject Title": properties.subjectTitle,
         "Subject Slug": properties.subjectSlug,
-        "Key Stage Name": properties.keyStageName,
+        "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
         "Tier Name": properties.tierName,
         "Use Case": properties.useCase,
-        }, "6lyU_rQz42", "84ff502a6b33ddd2d82dbd3082617c25d577511e2e2b1f1430affbc725b3833a");
+        }, "6lyU_rQz42", "a4ab4c6ff119a4e0c48c18e6e92d52de1a642f0ef9f9acee58b916865324a6f7");
     }
     // destination PostHog
     PostHog.logEvent("Tier Selected", (Object as any).assign({}, eventProperties));
@@ -2850,7 +2848,7 @@ export default {
   ResourceType,
   PageType,
   NavigatedFrom,
-  KeyStageName,
+  KeyStageTitle,
   planALessonSelected,
   newsletterSignUpCompleted,
   classroomSelected,

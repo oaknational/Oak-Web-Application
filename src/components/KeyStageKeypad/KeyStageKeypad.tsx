@@ -7,7 +7,7 @@ import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import useAvoUseCase from "../../hooks/useAvoUseCase";
-import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -34,7 +34,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
         page={"subject-index"}
         onClick={() => {
           track.keyStageSelected({
-            keyStageName: title as KeyStageNameValueType,
+            keyStageTitle: title as KeyStageTitleValueType,
             keyStageSlug: slug,
             navigatedFrom: "card",
             useCase: avoUseCase,

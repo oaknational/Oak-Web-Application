@@ -45,10 +45,10 @@ describe("Unit List Item", () => {
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
     expect(unitSelected).toHaveBeenCalledWith({
-      keyStageName: "Key stage 1",
+      keyStageTitle: "Key stage 1",
       keyStageSlug: "ks1",
       useCase: ["Teacher"],
-      subjectName: "Maths",
+      subjectTitle: "Maths",
       subjectSlug: "maths",
       unitName: "Numbers and numerals",
       unitSlug: "numbers-and-numerals",

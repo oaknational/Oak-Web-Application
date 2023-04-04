@@ -15,9 +15,9 @@ export const TierList = Template.bind({});
 
 TierList.args = {
   subjectSlug: "maths",
-  subjectName: "Maths",
+  subjectTitle: "Maths",
   keyStageSlug: "ks4",
-  keyStageName: "Key stage 4",
+  keyStageTitle: "Key stage 4",
   tiers: [
     {
       title: "Foundation",

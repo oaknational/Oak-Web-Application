@@ -9,7 +9,7 @@ import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
-import type { KeyStageNameValueType } from "../../../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
 export type UnitListItemProps = Omit<
   TeachersKeyStageSubjectUnitsData["units"][number],
@@ -45,9 +45,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
 
   const trackUnitSelected = () => {
     track.unitSelected({
-      keyStageName: keyStageTitle as KeyStageNameValueType,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
-      subjectName: subjectTitle,
+      subjectTitle,
       subjectSlug,
       unitName: title,
       unitSlug: slug,

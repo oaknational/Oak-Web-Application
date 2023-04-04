@@ -24,9 +24,9 @@ describe("TierListItem", () => {
     renderWithTheme(
       <TierListItem
         subjectSlug="maths"
-        subjectName="Maths"
+        subjectTitle="Maths"
         keyStageSlug="ks4"
-        keyStageName="Key Stage 4"
+        keyStageTitle="Key stage 4"
         title="Higher"
         slug="higher"
         unitCount={3}
@@ -42,9 +42,9 @@ describe("TierListItem", () => {
     renderWithTheme(
       <TierListItem
         subjectSlug="maths"
-        subjectName="Maths"
+        subjectTitle="Maths"
         keyStageSlug="ks4"
-        keyStageName="Key Stage 4"
+        keyStageTitle="Key Stage 4"
         title="Higher"
         slug="higher"
         unitCount={3}
@@ -60,10 +60,10 @@ describe("TierListItem", () => {
 
     expect(tierSelected).toHaveBeenCalledTimes(1);
     expect(tierSelected).toHaveBeenCalledWith({
-      subjectName: "Maths",
+      subjectTitle: "Maths",
       subjectSlug: "maths",
       tierName: "Higher",
-      keyStageName: "Key Stage 4",
+      keyStageTitle: "Key Stage 4",
       keyStageSlug: "ks4",
       useCase: ["Teacher"],
     });

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import useAvoUseCase from "../../hooks/useAvoUseCase";
-import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, Span } from "../Typography";
@@ -17,8 +17,8 @@ export type TierListItemProps = {
   slug: string;
   keyStageSlug: string;
   subjectSlug: string;
-  subjectName: string;
-  keyStageName: string;
+  subjectTitle: string;
+  keyStageTitle: string;
   unitCount: number | null;
   lessonCount: number | null;
 };
@@ -30,9 +30,9 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
     title,
     slug,
     subjectSlug,
-    subjectName,
+    subjectTitle,
     keyStageSlug,
-    keyStageName,
+    keyStageTitle,
     background,
     lessonCount,
     unitCount,
@@ -58,9 +58,9 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
           search={{ tier: slug }}
           onClick={() => {
             track.tierSelected({
-              subjectName,
+              subjectTitle,
               subjectSlug,
-              keyStageName: keyStageName as KeyStageNameValueType,
+              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
               keyStageSlug,
               tierName: title,
               useCase: avoUseCase,

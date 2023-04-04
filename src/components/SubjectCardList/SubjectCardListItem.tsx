@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import useAvoUseCase from "../../hooks/useAvoUseCase";
-import type { KeyStageNameValueType } from "../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
@@ -93,9 +93,9 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 {...linkProps}
                 onClick={() => {
                   track.subjectSelected({
-                    keyStageName: keyStageTitle as KeyStageNameValueType,
+                    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
                     keyStageSlug,
-                    subjectName: title,
+                    subjectTitle: title,
                     subjectSlug: slug,
                     useCase: avoUseCase,
                   });

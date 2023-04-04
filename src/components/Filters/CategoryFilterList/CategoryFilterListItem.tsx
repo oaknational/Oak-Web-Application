@@ -1,5 +1,4 @@
 import { PixelSpacing } from "../../../styles/theme";
-import type { KeyStageNameValueType } from "../../../browser-lib/avo/Avo";
 import Icon from "../../Icon";
 import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
@@ -8,6 +7,7 @@ import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAvoUseCase from "../../../hooks/useAvoUseCase";
 import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
+import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -34,13 +34,13 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
     setSelected(linkProps);
 
     if (trackingProps) {
-      const { keyStageName, keyStageSlug, subjectName, subjectSlug } =
+      const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
         trackingProps;
 
       track.learningThemeSelected({
-        keyStageName: keyStageName as KeyStageNameValueType,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         keyStageSlug,
-        subjectName,
+        subjectTitle,
         subjectSlug,
         useCase: avoUseCase,
         learningThemeName: label,

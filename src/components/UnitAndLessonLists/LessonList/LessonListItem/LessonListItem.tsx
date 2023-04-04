@@ -12,7 +12,7 @@ import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
-import type { KeyStageNameValueType } from "../../../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
@@ -91,9 +91,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const trackLessonSelected = () => {
     track.lessonSelected({
-      keyStageName: keyStageTitle as KeyStageNameValueType,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
-      subjectName: subjectTitle,
+      subjectTitle,
       subjectSlug,
       unitName: unitTitle,
       unitSlug,

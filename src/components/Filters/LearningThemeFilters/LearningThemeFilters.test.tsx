@@ -35,9 +35,9 @@ describe("PostCategoryList", () => {
         }}
         trackingProps={{
           keyStageSlug: "ks3",
-          keyStageName: "Key Stage 3",
+          keyStageTitle: "Key stage 3",
           subjectSlug: "english",
-          subjectName: "English",
+          subjectTitle: "English",
         }}
       />
     );

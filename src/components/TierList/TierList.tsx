@@ -7,12 +7,12 @@ import TierListItem, { TierListItemProps } from "./TierListItem";
 type TierListProps = GridProps & {
   tiers: Omit<
     TierListItemProps,
-    "subjectSlug" | "keyStageSlug" | "subjectName" | "keyStageName"
+    "subjectSlug" | "keyStageSlug" | "subjectTitle" | "keyStageTitle"
   >[];
   subjectSlug: string;
-  subjectName: string;
+  subjectTitle: string;
   keyStageSlug: string;
-  keyStageName: string;
+  keyStageTitle: string;
 };
 
 /**
@@ -25,8 +25,8 @@ const TierList: FC<TierListProps> = ({
   tiers,
   keyStageSlug,
   subjectSlug,
-  subjectName,
-  keyStageName,
+  subjectTitle,
+  keyStageTitle,
   ...gridProps
 }) => {
   return (
@@ -36,9 +36,9 @@ const TierList: FC<TierListProps> = ({
           <TierListItem
             {...tier}
             subjectSlug={subjectSlug}
-            subjectName={subjectName}
+            subjectTitle={subjectTitle}
             keyStageSlug={keyStageSlug}
-            keyStageName={keyStageName}
+            keyStageTitle={keyStageTitle}
             background={"teachersPastelYellow"}
           />
         </GridArea>

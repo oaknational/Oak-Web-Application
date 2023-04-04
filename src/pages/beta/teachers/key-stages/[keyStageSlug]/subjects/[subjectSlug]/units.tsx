@@ -3,6 +3,7 @@ import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import type { KeyStageTitleValueType } from "../../../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -160,8 +161,9 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                         }}
                         trackingProps={{
                           keyStageSlug,
-                          keyStageName: keyStageTitle,
-                          subjectName: subjectTitle,
+                          keyStageTitle:
+                            keyStageTitle as KeyStageTitleValueType,
+                          subjectTitle,
                           subjectSlug,
                         }}
                       />
@@ -205,8 +207,9 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                           }}
                           trackingProps={{
                             keyStageSlug,
-                            keyStageName: keyStageTitle,
-                            subjectName: subjectTitle,
+                            keyStageTitle:
+                              keyStageTitle as KeyStageTitleValueType,
+                            subjectTitle,
                             subjectSlug,
                           }}
                         />

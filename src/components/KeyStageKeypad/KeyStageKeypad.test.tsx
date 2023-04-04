@@ -47,7 +47,7 @@ describe("components/Key Stage keypad", () => {
 
     expect(keyStageSelected).toHaveBeenCalledTimes(1);
     expect(keyStageSelected).toHaveBeenCalledWith({
-      keyStageName: "Key Stage 1",
+      keyStageTitle: "Key Stage 1",
       keyStageSlug: "ks1",
       navigatedFrom: "card",
       useCase: ["Teacher"],
