@@ -1,1 +1,1 @@
-export { default } from "./OakLogo";
+export { default } from "./Logo";

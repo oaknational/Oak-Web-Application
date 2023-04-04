@@ -24,6 +24,7 @@ import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
 import { SearchProvider } from "../context/Search/SearchContext";
 import { ToastProvider } from "../context/Toast";
+import InlineSpriteSheet from "../components/InlineSpriteSheet";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
@@ -60,6 +61,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
             </SSRProvider>
           </ErrorBoundary>
           <SpriteSheet />
+          <InlineSpriteSheet />
         </ThemeProvider>
       </CookieConsentProvider>
     </>
