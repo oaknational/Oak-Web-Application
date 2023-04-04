@@ -31,22 +31,16 @@ const getInteractiveAncestor = (
  * e.stopPropagation()**
  */
 
-type OptionsType = {
-  clickCallback?: () => void;
-};
-
-const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
-  options?: OptionsType
-) => {
+const useClickableCard = <
+  T extends HTMLAnchorElement | HTMLButtonElement
+>() => {
   const ref = useRef<T | null>(null);
   const { isHovered, hoverProps } = useHover({});
-  const clickCallback = options?.clickCallback;
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target instanceof Element) {
       const interactiveAncestor = getInteractiveAncestor(e.target);
       if (interactiveAncestor) {
-        if (clickCallback) clickCallback();
         return;
       }
     }

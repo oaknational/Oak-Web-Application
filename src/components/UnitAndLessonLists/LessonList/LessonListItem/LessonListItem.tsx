@@ -89,7 +89,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   const { track } = useAnalytics();
   const avoUseCase = useAvoUseCase();
 
-  const trackingCallback = () => {
+  const trackLessonSelected = () => {
     track.lessonSelected({
       keyStageName: keyStageTitle as KeyStageNameValueType,
       keyStageSlug,
@@ -104,7 +104,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>({ clickCallback: trackingCallback });
+    useClickableCard<HTMLAnchorElement>();
 
   const resources = getAvailableResourceList(props);
 
@@ -129,6 +129,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           primaryTargetProps={primaryTargetProps}
           page="Lesson"
           index={null}
+          onClick={trackLessonSelected}
         />
         {expired ? (
           <Expired page={"lesson"} />

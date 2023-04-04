@@ -43,7 +43,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { track } = useAnalytics();
   const avoUseCase = useAvoUseCase();
 
-  const trackingCallback = () => {
+  const trackUnitSelected = () => {
     track.unitSelected({
       keyStageName: keyStageTitle as KeyStageNameValueType,
       keyStageSlug,
@@ -56,9 +56,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>({
-      clickCallback: trackingCallback,
-    });
+    useClickableCard<HTMLAnchorElement>();
 
   return (
     <ListItemCard
@@ -81,6 +79,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           primaryTargetProps={primaryTargetProps}
           page={"Unit"}
           index={index}
+          onClick={trackUnitSelected}
         />
         {expired ? (
           <Expired page={"unit"} />
