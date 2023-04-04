@@ -104,7 +104,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>(trackingCallback);
+    useClickableCard<HTMLAnchorElement>({ clickCallback: trackingCallback });
 
   const resources = getAvailableResourceList(props);
 

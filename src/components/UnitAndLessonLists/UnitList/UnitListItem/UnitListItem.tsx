@@ -56,7 +56,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>(trackingCallback);
+    useClickableCard<HTMLAnchorElement>({
+      clickCallback: trackingCallback,
+    });
 
   return (
     <ListItemCard
