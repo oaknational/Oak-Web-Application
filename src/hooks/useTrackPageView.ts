@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import useAnalytics from "../context/Analytics/useAnalytics";
@@ -14,14 +14,18 @@ const useTrackPageView = ({ pageTitle }: UseTrackPageViewProps) => {
   const router = useRouter();
   const avoUseCase = useAvoUseCase();
 
+  const [isTrackPageViewCalled, setIsTrackPageViewCalled] = useState(false);
+
   useEffect(() => {
-    return () =>
+    !isTrackPageViewCalled &&
       track.pageView({
         linkUrl: router.pathname,
         pageType: [pageTitle],
         useCase: avoUseCase,
       });
-  }, [avoUseCase, track, pageTitle, router.pathname]);
+
+    setIsTrackPageViewCalled(true);
+  }, [avoUseCase, track, pageTitle, router.pathname, isTrackPageViewCalled]);
 
   return;
 };
