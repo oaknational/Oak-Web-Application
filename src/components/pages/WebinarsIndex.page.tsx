@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
+import useTrackPageView from "../../hooks/useTrackPageView";
 import { PostListItemProps } from "../../components/Posts/PostList/PostListItem";
 import {
   BlogWebinarCategory,
@@ -27,6 +28,7 @@ export type WebinarListingPageProps = {
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const { categories, categorySlug, pageData, webinars } = props;
+  useTrackPageView({ pageTitle: "Webinar" });
 
   return (
     <PostListing

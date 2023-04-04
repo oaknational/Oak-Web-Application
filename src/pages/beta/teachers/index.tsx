@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
+import useTrackPageView from "../../../hooks/useTrackPageView";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
@@ -35,6 +36,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
+  useTrackPageView({ pageTitle: "Homepage" });
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>

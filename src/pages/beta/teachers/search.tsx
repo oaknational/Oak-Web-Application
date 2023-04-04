@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 
+import useTrackPageView from "../../../hooks/useTrackPageView";
 import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import useFetchSearchResults from "../../../context/Search/useFetchSearchResults";
 import { useSearchQuery } from "../../../context/Search/SearchContext";
@@ -67,6 +68,8 @@ const Search = () => {
   const { text: searchTerm } = useSearchQuery();
   const { fetchSearchResults, loading, error, results, showMessage } =
     useFetchSearchResults();
+
+  useTrackPageView({ pageTitle: "Search" });
 
   useEffect(() => {
     let isCancelled = false;
