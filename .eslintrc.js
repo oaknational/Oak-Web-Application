@@ -68,5 +68,11 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: ["scripts/build/**/*.{js,ts,tsx}"],
+      env: {
+        es6: true,
+      },
+    },
   ],
 };
