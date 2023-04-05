@@ -1,3 +1,16 @@
+# [1.167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.166.0...v1.167.0) (2023-04-05)
+
+
+### Features
+
+* 1476 Add latest avo files ([447801d](https://github.com/oaknational/Oak-Web-Application/commit/447801db5ef23cc9c834d94a5e2ef58f7ef840dc))
+* 1476 Add test ([1e7711f](https://github.com/oaknational/Oak-Web-Application/commit/1e7711f37709cd2573fd42b298d3bd94826d785c))
+* 1476 Include query parameter in page view linkUrl ([8efacd5](https://github.com/oaknational/Oak-Web-Application/commit/8efacd5a80c516153c578df445db314e4f0426e4))
+* 1476 Track page views ([b174c69](https://github.com/oaknational/Oak-Web-Application/commit/b174c696b2fe0cfa381723fd574f0229c1052253))
+* 1476 Update avoUseCase to analyticsUseCase ([e014af8](https://github.com/oaknational/Oak-Web-Application/commit/e014af8070007a8d1845a7db511c440bad210cd0))
+* 1476 Update test ([c935afa](https://github.com/oaknational/Oak-Web-Application/commit/c935afaef122393d3cad88f0987964dd66d9e22a))
+* 1476 Use if statement instead of LOGICAL AND ([f2eb838](https://github.com/oaknational/Oak-Web-Application/commit/f2eb838d418395b2b7c004f1bce563ec79bba78a))
+
 # [1.166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.165.0...v1.166.0) (2023-04-05)
 
 

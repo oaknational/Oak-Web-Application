@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import useTrackPageView from "../../hooks/useTrackPageView";
 import { TeachersKeyStageSubjectsData } from "../../node-lib/curriculum-api";
 import Flex from "../Flex";
 import MaxWidth from "../MaxWidth/MaxWidth";
@@ -17,6 +18,8 @@ const SubjectListingPage: FC<SubjectListingProps> = (props) => {
   const unavailableSubjects = subjects.filter(
     (subject) => !subject.lessonCount
   );
+
+  useTrackPageView({ pageName: "Subject Listing" });
 
   return (
     <Flex $flexDirection={"column"}>

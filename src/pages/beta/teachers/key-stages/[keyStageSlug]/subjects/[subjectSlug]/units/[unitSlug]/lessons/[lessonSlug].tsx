@@ -6,6 +6,7 @@ import {
   NextPage,
 } from "next";
 
+import useTrackPageView from "../../../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -105,6 +106,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     expired,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Lesson" });
+
   return (
     <AppLayout
       seoProps={{
