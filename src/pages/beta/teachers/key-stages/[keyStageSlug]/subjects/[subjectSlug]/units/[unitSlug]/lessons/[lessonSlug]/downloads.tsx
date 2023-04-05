@@ -71,7 +71,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
-  useTrackPageView({ pageTitle: "Lesson Download" });
+  useTrackPageView({ pageName: "Lesson Download" });
 
   const router = useRouter();
   const { track } = useAnalytics();

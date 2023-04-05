@@ -36,7 +36,7 @@ const elementsOfCurriculumDesignHeadings = [
 ];
 
 const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
-  useTrackPageView({ pageTitle: "Develop Your Curriculum" });
+  useTrackPageView({ pageName: "Develop Your Curriculum" });
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>

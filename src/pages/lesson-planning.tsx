@@ -165,7 +165,7 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 );
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  useTrackPageView({ pageTitle: "Plan a Lesson" });
+  useTrackPageView({ pageName: "Plan a Lesson" });
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>

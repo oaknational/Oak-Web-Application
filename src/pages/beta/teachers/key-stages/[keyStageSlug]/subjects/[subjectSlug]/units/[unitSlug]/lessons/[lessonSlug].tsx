@@ -107,7 +107,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     expired,
   } = curriculumData;
 
-  useTrackPageView({ pageTitle: "Lesson" });
+  useTrackPageView({ pageName: "Lesson" });
 
   return (
     <AppLayout

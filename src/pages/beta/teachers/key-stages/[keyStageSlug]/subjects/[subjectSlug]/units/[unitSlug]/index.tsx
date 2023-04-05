@@ -29,7 +29,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectTitle,
   } = curriculumData;
 
-  useTrackPageView({ pageTitle: "Lesson Listing" });
+  useTrackPageView({ pageName: "Lesson Listing" });
 
   const paginationProps = usePagination({
     totalResults: lessons.length,

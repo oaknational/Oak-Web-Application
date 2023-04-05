@@ -36,7 +36,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
-  useTrackPageView({ pageTitle: "Homepage" });
+  useTrackPageView({ pageName: "Homepage" });
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>

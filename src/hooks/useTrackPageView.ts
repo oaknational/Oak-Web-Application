@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import useAnalytics from "../context/Analytics/useAnalytics";
-import useAvoUseCase from "../hooks/useAvoUseCase";
-import type { PageTypeValueType } from "../browser-lib/avo/Avo";
+import useAnalyticsUseCase from "../hooks/useAnalyticsUseCase";
+import type { PageNameValueType } from "../browser-lib/avo/Avo";
 
 type UseTrackPageViewProps = {
-  pageTitle: PageTypeValueType;
+  pageName: PageNameValueType;
 };
 
-const useTrackPageView = ({ pageTitle }: UseTrackPageViewProps) => {
+const useTrackPageView = ({ pageName }: UseTrackPageViewProps) => {
   const { track } = useAnalytics();
   const router = useRouter();
-  const avoUseCase = useAvoUseCase();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const [isTrackPageViewCalled, setIsTrackPageViewCalled] = useState(false);
 
@@ -20,12 +20,18 @@ const useTrackPageView = ({ pageTitle }: UseTrackPageViewProps) => {
     !isTrackPageViewCalled &&
       track.pageView({
         linkUrl: router.pathname,
-        pageType: [pageTitle],
-        useCase: avoUseCase,
+        pageName: [pageName],
+        analyticsUseCase,
       });
 
     setIsTrackPageViewCalled(true);
-  }, [avoUseCase, track, pageTitle, router.pathname, isTrackPageViewCalled]);
+  }, [
+    analyticsUseCase,
+    track,
+    pageName,
+    router.pathname,
+    isTrackPageViewCalled,
+  ]);
 
   return;
 };

@@ -31,7 +31,7 @@ describe("useTrackPageView", () => {
   });
 
   it("calls tracking pageView function once with correct page title", () => {
-    renderHook(() => useTrackPageView({ pageTitle: "Blog" }));
+    renderHook(() => useTrackPageView({ pageName: "Blog" }));
 
     expect(pageView).toHaveBeenCalledTimes(1);
     expect(pageView).toHaveBeenCalledWith({

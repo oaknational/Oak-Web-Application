@@ -44,7 +44,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     tiers,
   } = curriculumData;
 
-  useTrackPageView({ pageTitle: "Unit Listing" });
+  useTrackPageView({ pageName: "Unit Listing" });
 
   const { tier } = useRouter().query;
 

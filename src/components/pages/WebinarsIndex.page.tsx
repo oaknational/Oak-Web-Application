@@ -28,7 +28,7 @@ export type WebinarListingPageProps = {
 
 const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
   const { categories, categorySlug, pageData, webinars } = props;
-  useTrackPageView({ pageTitle: "Webinar" });
+  useTrackPageView({ pageName: "Webinar" });
 
   return (
     <PostListing

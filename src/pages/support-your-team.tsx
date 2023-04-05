@@ -24,7 +24,7 @@ export type SupportPageProps = {
 };
 
 const Support: NextPage<SupportPageProps> = ({ pageData }) => {
-  useTrackPageView({ pageTitle: "Support Your Team" });
+  useTrackPageView({ pageName: "Support Your Team" });
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>

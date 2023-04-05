@@ -69,7 +69,7 @@ const Search = () => {
   const { fetchSearchResults, loading, error, results, showMessage } =
     useFetchSearchResults();
 
-  useTrackPageView({ pageTitle: "Search" });
+  useTrackPageView({ pageName: "Search" });
 
   useEffect(() => {
     let isCancelled = false;

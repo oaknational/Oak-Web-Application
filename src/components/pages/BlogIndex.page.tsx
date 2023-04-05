@@ -22,7 +22,7 @@ export type PostListingPageProps = {
 
 const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
-  useTrackPageView({ pageTitle: "Blog" });
+  useTrackPageView({ pageName: "Blog" });
 
   return (
     <PostListing

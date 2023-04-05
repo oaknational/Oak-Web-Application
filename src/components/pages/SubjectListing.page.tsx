@@ -19,7 +19,7 @@ const SubjectListingPage: FC<SubjectListingProps> = (props) => {
     (subject) => !subject.lessonCount
   );
 
-  useTrackPageView({ pageTitle: "Subject Listing" });
+  useTrackPageView({ pageName: "Subject Listing" });
 
   return (
     <Flex $flexDirection={"column"}>
