@@ -4,17 +4,26 @@ import Flex from "../../Flex";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
 
+export type LearningThemeSelectedTrackingProps = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectTitle: string;
+  subjectSlug: string;
+};
+
 export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: TeachersKeyStageSubjectUnitsData["learningThemes"];
   linkProps: UnitIndexLinkProps;
+  trackingProps: LearningThemeSelectedTrackingProps;
 };
 const LearningThemeFilters = ({
   labelledBy,
   learningThemes,
   selectedThemeSlug,
   linkProps,
+  trackingProps,
 }: LearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
@@ -27,7 +36,10 @@ const LearningThemeFilters = ({
 
   const learningThemesMapped = learningThemes
     .map((learningTheme) => {
-      return { label: learningTheme?.label, slug: learningTheme?.slug };
+      return {
+        label: learningTheme?.label,
+        slug: learningTheme?.slug,
+      };
     })
     .sort(
       (
@@ -71,6 +83,7 @@ const LearningThemeFilters = ({
             },
           })),
         ]}
+        trackingProps={trackingProps}
       />
     </Flex>
   );

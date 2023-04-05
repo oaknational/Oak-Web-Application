@@ -19,12 +19,18 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import useAnalytics from "../../../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, {
   GridArea,
 } from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import {
+  KeyStageTitleValueType,
+  ResourceTypeValueType,
+} from "../../../../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -65,6 +71,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   } = curriculumData;
 
   const router = useRouter();
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -206,13 +214,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources);
+        onSubmit(data, slug, selectedResources).then(() => {
+          track.resourcesDownloaded({
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+            keyStageSlug,
+            unitName: unitTitle,
+            unitSlug,
+            subjectTitle,
+            subjectSlug,
+            lessonName: title,
+            lessonSlug: slug,
+            resourceType: selectedResources as ResourceTypeValueType[],
+            analyticsUseCase,
+          });
+        });
       },
       4000,
       { leading: true }
     );
 
-    await debouncedOnSubmit();
+    debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
     setEditDetailsClicked(false);
   };

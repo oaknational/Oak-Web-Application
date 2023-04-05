@@ -1,12 +1,15 @@
 import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
+import useAnalytics from "../../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
+import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
 export type UnitListItemProps = Omit<
   TeachersKeyStageSubjectUnitsData["units"][number],
@@ -25,13 +28,32 @@ export type UnitListItemProps = Omit<
 const UnitListItem: FC<UnitListItemProps> = (props) => {
   const {
     title,
+    slug,
     themeTitle,
     lessonCount,
     index,
     expired,
     expiredLessonCount,
     subjectSlug,
+    subjectTitle,
+    keyStageSlug,
+    keyStageTitle,
   } = props;
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
+
+  const trackUnitSelected = () => {
+    track.unitSelected({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: title,
+      unitSlug: slug,
+      analyticsUseCase,
+    });
+  };
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -57,6 +79,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           primaryTargetProps={primaryTargetProps}
           page={"Unit"}
           index={index}
+          onClick={trackUnitSelected}
         />
         {expired ? (
           <Expired page={"unit"} />
