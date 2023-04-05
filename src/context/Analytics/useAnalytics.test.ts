@@ -1,6 +1,6 @@
-import { act, renderHook } from "@testing-library/react";
+import { act } from "@testing-library/react";
 
-import { AllTheProviders } from "../../__tests__/__helpers__/renderWithProviders";
+import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
 import useAnalytics from "./useAnalytics";
 
@@ -20,7 +20,7 @@ describe("useAnalytics", () => {
     jest.clearAllMocks();
   });
   test("track should not work if statistics consent not given", () => {
-    const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
+    const { result } = renderHookWithProviders(useAnalytics);
 
     act(() => {
       result.current.track.aboutSelected();
@@ -29,7 +29,7 @@ describe("useAnalytics", () => {
     expect(posthogCapture).not.toHaveBeenCalled();
   });
   test("posthog should not be initialised if statistics consent not given", () => {
-    const { result } = renderHook(useAnalytics, { wrapper: AllTheProviders });
+    const { result } = renderHookWithProviders(useAnalytics);
     act(() => {
       result.current.track.developYourCurriculumSelected();
     });

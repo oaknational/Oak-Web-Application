@@ -1,15 +1,29 @@
-type ConstructQueryParams = {
-  term: string;
-  keyStages: Set<string>;
-};
+import truthy from "../../utils/truthy";
+
+import { SearchQuery } from "./useSearch";
+
+type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages } = query;
+  const { term, keyStages = [] } = query;
   const keyStageFilter =
-    keyStages.size > 0
+    keyStages.length > 0
       ? {
           terms: {
-            key_stage_slug: Array.from(keyStages),
+            key_stage_slug: keyStages
+              .map((slug) => {
+                switch (slug.toLowerCase()) {
+                  case "ks1":
+                    return "1";
+                  case "ks2":
+                    return "2";
+                  case "ks3":
+                    return "3";
+                  case "ks4":
+                    return "4";
+                }
+              })
+              .filter(truthy),
           },
         }
       : {

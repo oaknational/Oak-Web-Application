@@ -5,18 +5,18 @@
  * @see https://testing-library.com/docs/react-testing-library/setup#custom-render
  */
 import { ReactElement } from "react";
-import { RenderOptions } from "@testing-library/react";
 
 import "../../browser-lib/oak-globals/oakGlobals";
 
-import renderWithProviders, { ProviderProps } from "./renderWithProviders";
+import renderWithProviders, {
+  RenderWithProviderOptions,
+} from "./renderWithProviders";
 
 const renderWithSeo = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">,
-  providerProps?: ProviderProps
+  options: RenderWithProviderOptions = {}
 ) => {
-  const renderResult = renderWithProviders(ui, options, providerProps);
+  const renderResult = renderWithProviders(ui, options);
 
   const getMetaProperty = (name: string) =>
     renderResult.container
@@ -46,6 +46,7 @@ const renderWithSeo = (
     canonical: renderResult.container
       .querySelector(`link[rel=canonical]`)
       ?.getAttribute("href"),
+    robots: getMetaName("robots"),
   };
   return { ...renderResult, seo };
 };

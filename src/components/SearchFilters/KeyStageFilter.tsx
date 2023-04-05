@@ -1,25 +1,24 @@
 import { FC } from "react";
 
-import { KeyStage } from "../../context/Search/SearchContext";
-import useKeyStageToggle from "../../context/Search/useKeyStageToggle";
+import { KeyStage } from "../../context/Search/useKeyStageFilters";
 import Box from "../Box";
 import Checkbox from "../Checkbox";
 
-type KeyStageFilterProps = {
-  ks: KeyStage;
+type KeyStageFilterProps = KeyStage & {
+  checked: boolean;
+  onChange: () => void;
 };
 const KeyStageFilter: FC<KeyStageFilterProps> = (props) => {
-  const { ks } = props;
-  const { onChange, checked } = useKeyStageToggle(ks);
+  const { slug, title, shortCode, onChange, checked } = props;
   return (
     <Box $width={"50%"}>
       <Checkbox
-        labelText={`KS${ks}`}
-        id={`custom-checkbox-${ks}`}
+        labelText={`${shortCode}`}
+        ariaLabel={`Toggle ${title} filter`}
+        id={`custom-checkbox-${slug}`}
         name={"keyStageFilters"}
         checked={checked}
         onChange={onChange}
-        ariaLabel={`Filter for KS${ks}`}
       />
     </Box>
   );

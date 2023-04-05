@@ -66,6 +66,15 @@ const transformMVCase = <K, S, T, U, L, V, W>(res: {
   };
 };
 
+const searchPageData = z.object({
+  keyStages: z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      shortCode: z.string(),
+    })
+  ),
+});
 const teachersHomePageData = z.object({
   keyStages: z.array(
     z.object({
@@ -313,6 +322,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
+export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type TeachersKeyStageSubjectsData = z.infer<
   typeof teachersKeyStageSubjectsData
@@ -381,6 +391,11 @@ const getFirstResultOrNull =
   };
 
 const curriculumApi = {
+  searchPage: async () => {
+    const res = await sdk.searchPage();
+
+    return searchPageData.parse(transformMVCase(res));
+  },
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
 

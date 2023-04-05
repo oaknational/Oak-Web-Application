@@ -25,4 +25,12 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth");
   });
+  test("should join string array with ',' delimeter", () => {
+    const result = createQueryStringFromObject({
+      text: "macbeth",
+      categories: ["english", "theatre", "history"],
+    });
+
+    expect(result).toBe("text=macbeth&categories=english%2Ctheatre%2Chistory");
+  });
 });

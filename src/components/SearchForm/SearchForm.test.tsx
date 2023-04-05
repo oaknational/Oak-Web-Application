@@ -1,26 +1,18 @@
 /**
  * @jest-environment jsdom
  */
-import React, { FC } from "react";
-import { render, screen } from "@testing-library/react";
+import React from "react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { ThemeProvider } from "styled-components";
 
-import { SearchProvider } from "../../context/Search/SearchContext";
-import theme from "../../styles/theme";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import SearchForm from "./SearchForm";
 
-const Providers: FC<{ children?: React.ReactNode }> = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <SearchProvider>{children}</SearchProvider>
-    </ThemeProvider>
-  );
-};
-
 const setTextSpy = jest.fn();
 const setPushSpy = jest.fn();
+
+const providers = { theme: {} };
 
 jest.mock("next/router", () => ({
   __esModule: true,
@@ -43,21 +35,21 @@ jest.mock("../../context/Search/SearchContext", () => ({
   }),
 }));
 
-describe("The <SearchForm> Component", () => {
+describe("<SearchForm />", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetModules();
   });
 
   it("renders", () => {
-    render(<SearchForm />, { wrapper: Providers });
+    renderWithProviders(<SearchForm />, { providers });
     const button = screen.getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
   it("updates the text of the search context", async () => {
     const text = "Macbeth";
-    render(<SearchForm />, { wrapper: Providers });
+    renderWithProviders(<SearchForm />, { providers });
     const user = userEvent.setup();
 
     const searchField = screen.getByRole("searchbox");
@@ -72,7 +64,7 @@ describe("The <SearchForm> Component", () => {
 
   it("navigates to search page", async () => {
     const text = "Macbeth";
-    render(<SearchForm />, { wrapper: Providers });
+    renderWithProviders(<SearchForm />, { providers });
     const user = userEvent.setup();
 
     const searchField = screen.getByRole("searchbox");

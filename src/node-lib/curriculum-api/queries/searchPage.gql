@@ -1,0 +1,7 @@
+query searchPage {
+  mv_key_stages(order_by: { short_code: asc }) {
+    shortCode: short_code
+    slug
+    title
+  }
+}

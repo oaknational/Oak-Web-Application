@@ -1,4 +1,4 @@
-function removeNullOrUndefinedQueryParams<T>(
+function removeNullOrUndefinedQueryParams<T extends string | string[]>(
   search: Record<string, T | null | undefined>
 ): Record<string, T> {
   const transformed = Object.entries(search).reduce((acc, [key, value]) => {
@@ -13,8 +13,17 @@ function removeNullOrUndefinedQueryParams<T>(
 }
 
 export default function createQueryStringFromObject(
-  search: Record<string, string | null | undefined>
+  search: Record<string, string | string[] | null | undefined>
 ) {
   const searchWithoutNullOrUndefined = removeNullOrUndefinedQueryParams(search);
-  return new URLSearchParams(searchWithoutNullOrUndefined).toString();
+  return new URLSearchParams(
+    Object.entries(searchWithoutNullOrUndefined).reduce((acc, [key, value]) => {
+      if (Array.isArray(value)) {
+        acc.push([key, value.toString()]);
+      } else {
+        acc.push([key, value]);
+      }
+      return acc;
+    }, [] as [string, string][])
+  ).toString();
 }

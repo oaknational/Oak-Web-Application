@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useState } from "react";
+import { createContext, FC, useState } from "react";
 import { useRouter } from "next/router";
 
 export enum KeyStages {
@@ -64,12 +64,4 @@ export const SearchProvider: FC<SearchProviderProps> = ({
       {children}
     </searchContext.Provider>
   );
-};
-
-export const useSearchQuery = () => {
-  const searchQuery = useContext(searchContext);
-  if (!searchQuery) {
-    throw new Error("useSearchQuery() called outside of search provider");
-  }
-  return searchQuery;
 };

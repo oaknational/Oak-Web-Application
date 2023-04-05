@@ -8,14 +8,12 @@ import ActiveFilters from "./ActiveFilters";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-jest.mock("../../context/Search/SearchContext", () => ({
-  __esModule: true,
-  ...jest.requireActual("../../context/Search/SearchContext"),
-  useSearchQuery: () => ({
+jest.mock("../../context/Search/useSearchQuery", () =>
+  jest.fn(() => ({
     keyStages: new Set<KeyStage>(["1", "2", "4"]),
     setKeyStages: jest.fn(),
-  }),
-}));
+  }))
+);
 
 beforeEach(() => {
   jest.clearAllMocks();
