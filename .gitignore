@@ -82,5 +82,5 @@ public/sitemap*.xml
 # Images/graphics protected by IP
 public/images/sprite/*
 !public/images/sprite/README.md
-
+public/images/favicons/*
 src/image-data/generated/*.svg

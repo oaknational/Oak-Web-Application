@@ -15,9 +15,14 @@ async function main() {
     }
   }`);
   const [{ faviconImage }] = brandAssetRes;
-  console.log(faviconImage);
 
-  const svg = (await (await fetch(faviconImage.image.asset.url)).text())
+  const THEME_COLOR = "BEF2BD";
+
+  const svg = (
+    await (
+      await fetch(`${faviconImage.image.asset.url}?bg=${THEME_COLOR}`)
+    ).text()
+  )
     .replace(`fill="#000"`, `fill="currentColor"`)
     .replace(`fill="black"`, `fill="currentColor"`);
 
@@ -34,8 +39,8 @@ async function main() {
     appShortName: "Oak",
     appDescription:
       "Our Collection Of Adaptable Lesson Planning Resources Are Made For Teachers - Browse By subject, Key Stage From Reception To Year 11 And Download For Free",
-    background: "#BEF2BD",
-    theme_color: "#a0b6f2",
+    background: `#${THEME_COLOR}`,
+    theme_color: `#${THEME_COLOR}`,
     categories: ["education"],
     lang: "en-GB",
   };
