@@ -1,4 +1,4 @@
-import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
+import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
@@ -116,7 +116,7 @@ type LessonDownloadsLinkProps = {
   unitSlug: string;
   slug: string;
   query?: {
-    preselected: ExpandingContainerTitle | "all";
+    preselected: PreselectedDownloadType | "";
   };
 };
 
@@ -225,7 +225,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       let path = `/beta/teachers/key-stages/${props.keyStageSlug}/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;
       if (props.query) {
         const queryString = createQueryStringFromObject(props.query);
-        path += `?${queryString.toLowerCase()}`;
+        path += `?${queryString}`;
       }
       return path;
     }

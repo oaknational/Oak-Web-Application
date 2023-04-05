@@ -10,6 +10,10 @@ import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
+import {
+  ContainerTitletoPreselectMap,
+  PreselectedDownloadType,
+} from "../DownloadComponents/downloads.types";
 
 export type ExpandingContainerTitle =
   | "Slide deck"
@@ -44,6 +48,14 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
     useClickableCard<HTMLButtonElement>();
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
   const lowerCaseTitle = title.toLowerCase();
+
+  const getPreselectedQueryFromTitle = (
+    title: ExpandingContainerTitle
+  ): PreselectedDownloadType | "" => {
+    return ContainerTitletoPreselectMap[title];
+  };
+  const preselected = getPreselectedQueryFromTitle(title);
+
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
       <Flex
@@ -85,7 +97,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     $iconPosition="trailing"
                     label={`Download ${lowerCaseTitle}`}
                     query={{
-                      preselected: title,
+                      preselected: preselected,
                     }}
                     {...props}
                   />
@@ -99,7 +111,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     icon="download"
                     variant="brush"
                     query={{
-                      preselected: title,
+                      preselected: preselected,
                     }}
                     {...props}
                   />
