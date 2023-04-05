@@ -20,7 +20,7 @@ jest.mock("../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-jest.mock("../hooks/useAvoUseCase", () => ({
+jest.mock("../hooks/../hooks/useAnalyticsUseCase", () => ({
   __esModule: true,
   default: () => ["Teacher"],
 }));
@@ -36,8 +36,8 @@ describe("useTrackPageView", () => {
     expect(pageView).toHaveBeenCalledTimes(1);
     expect(pageView).toHaveBeenCalledWith({
       linkUrl: "/blog",
-      pageType: ["Blog"],
-      useCase: ["Teacher"],
+      pageName: ["Blog"],
+      analyticsUseCase: ["Teacher"],
     });
   });
 });
