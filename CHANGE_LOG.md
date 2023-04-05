@@ -1,3 +1,10 @@
+## [1.164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.1...v1.164.2) (2023-04-04)
+
+
+### Bug Fixes
+
+* **semantic_release:** update the create_sematic_release yaml file ([0a7f15a](https://github.com/oaknational/Oak-Web-Application/commit/0a7f15a400323ef9d273be60e5cc03fb20f3d4b6))
+
 ## [1.164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.0...v1.164.1) (2023-04-04)
 
 # [1.164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.163.0...v1.164.0) (2023-04-03)

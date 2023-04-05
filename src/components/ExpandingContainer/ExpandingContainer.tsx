@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAvoUseCase from "../../hooks/useAvoUseCase";
+import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import Card, { CardProps } from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -48,7 +48,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const lowerCaseTitle = title.toLowerCase();
 
   const { track } = useAnalytics();
-  const avoUseCase = useAvoUseCase();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
@@ -72,8 +72,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                   setToggleOpen(toggleOpen === false);
                   toggleOpen &&
                     track.resourceContainerExpanded({
-                      useCase: avoUseCase,
-                      pageType: ["Lesson"],
+                      analyticsUseCase,
+                      pageName: ["Lesson"],
                       containerTitle: title,
                     });
                 }}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAvoUseCase from "../../hooks/useAvoUseCase";
+import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -41,7 +41,7 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
     useClickableCard<HTMLAnchorElement>();
 
   const { track } = useAnalytics();
-  const avoUseCase = useAvoUseCase();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   return (
     <Card $overflow={"hidden"} {...containerProps} $pa={0}>
@@ -63,7 +63,7 @@ const TierListItem: FC<TierListItemProps & { background: OakColorName }> = (
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
               keyStageSlug,
               tierName: title,
-              useCase: avoUseCase,
+              analyticsUseCase,
             });
           }}
         >

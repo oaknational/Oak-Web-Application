@@ -173,9 +173,9 @@ describe("comonents/ExpandingContainer", () => {
 
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
     expect(resourceContainerExpanded).toHaveBeenCalledWith({
-      pageType: ["Lesson"],
+      pageName: ["Lesson"],
       containerTitle: "Video",
-      useCase: ["Teacher"],
+      analyticsUseCase: ["Teacher"],
     });
   });
 });
