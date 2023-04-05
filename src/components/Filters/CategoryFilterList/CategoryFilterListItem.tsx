@@ -5,7 +5,7 @@ import { LI } from "../../Typography";
 import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import useAvoUseCase from "../../../hooks/useAvoUseCase";
+import useAnalyticsUseCase from "../../../hooks/useAnalyticsUseCase";
 import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
 import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
 
@@ -28,7 +28,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const arrowHidden = !isSelected;
 
   const { track } = useAnalytics();
-  const avoUseCase = useAvoUseCase();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const onClick = () => {
     setSelected(linkProps);
@@ -42,7 +42,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         keyStageSlug,
         subjectTitle,
         subjectSlug,
-        useCase: avoUseCase,
+        analyticsUseCase,
         learningThemeName: label,
       });
     }

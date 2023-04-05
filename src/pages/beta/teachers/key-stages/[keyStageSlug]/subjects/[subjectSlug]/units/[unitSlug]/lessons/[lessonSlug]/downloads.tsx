@@ -30,7 +30,7 @@ import {
   KeyStageTitleValueType,
   ResourceTypeValueType,
 } from "../../../../../../../../../../../browser-lib/avo/Avo";
-import useAvoUseCase from "../../../../../../../../../../../hooks/useAvoUseCase";
+import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -72,7 +72,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const router = useRouter();
   const { track } = useAnalytics();
-  const avoUseCase = useAvoUseCase();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -225,7 +225,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             lessonName: title,
             lessonSlug: slug,
             resourceType: selectedResources as ResourceTypeValueType[],
-            useCase: avoUseCase,
+            analyticsUseCase,
           });
         });
       },
