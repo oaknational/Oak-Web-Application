@@ -6,7 +6,7 @@ jest.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),
   useRouter: () => ({
-    pathname: "/blog",
+    asPath: "/blog",
   }),
 }));
 
@@ -30,7 +30,7 @@ describe("useTrackPageView", () => {
     jest.clearAllMocks();
   });
 
-  it("calls tracking pageView function once with correct page title", () => {
+  it("calls tracking pageView function once with correct parameters", () => {
     renderHook(() => useTrackPageView({ pageName: "Blog" }));
 
     expect(pageView).toHaveBeenCalledTimes(1);

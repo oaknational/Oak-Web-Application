@@ -19,20 +19,14 @@ const useTrackPageView = ({ pageName }: UseTrackPageViewProps) => {
   useEffect(() => {
     if (!isTrackPageViewCalled) {
       track.pageView({
-        linkUrl: router.pathname,
+        linkUrl: router.asPath,
         pageName: [pageName],
         analyticsUseCase,
       });
     }
 
     setIsTrackPageViewCalled(true);
-  }, [
-    analyticsUseCase,
-    track,
-    pageName,
-    router.pathname,
-    isTrackPageViewCalled,
-  ]);
+  }, [analyticsUseCase, track, pageName, router.asPath, isTrackPageViewCalled]);
 
   return;
 };
