@@ -1,3 +1,21 @@
+# [1.165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.2...v1.165.0) (2023-04-05)
+
+
+### Features
+
+* 1436 Add avo tracking to the teacher browsing journey ([3a4a689](https://github.com/oaknational/Oak-Web-Application/commit/3a4a6890045979165d9a678244a8664ab6033c4a))
+* 1436 Add missing avo tracking and tests ([a3ea137](https://github.com/oaknational/Oak-Web-Application/commit/a3ea137e370f0009b26ffea7ac185120653df30b))
+* 1436 Amend resource types on downloads tracking ([4c7eaeb](https://github.com/oaknational/Oak-Web-Application/commit/4c7eaeb07290d567ac4f50b11d96eab31c5c5f0c))
+* 1436 Call tracking on link rather than in useClickableCard ([82791fd](https://github.com/oaknational/Oak-Web-Application/commit/82791fd8f4e0e1d17f8b1d855df35d5498510c88))
+* 1436 Fix failing tests ([2838cf2](https://github.com/oaknational/Oak-Web-Application/commit/2838cf258518e2d477ea587a3247d9bebc7a80f3))
+* 1436 Fix linting errors ([345afd7](https://github.com/oaknational/Oak-Web-Application/commit/345afd7938c77434644d763f1ba858e37a945b26))
+* 1436 Refactor clickCallback in useClickableCard ([9a09c7e](https://github.com/oaknational/Oak-Web-Application/commit/9a09c7e7f82e79054fb90744fdc5d44d81f790cf))
+* 1436 Remove unitId and lessonId from tracing events ([b3e8e1a](https://github.com/oaknational/Oak-Web-Application/commit/b3e8e1a5e5570081a2ea835731c280ce03ceb9fd))
+* 1436 Rename avo keys ([71dd94c](https://github.com/oaknational/Oak-Web-Application/commit/71dd94ce023b61aaae12206d30aedfb487f37b0d))
+* 1436 Rename avoUseCase to analyticsUseCase ([f0077fe](https://github.com/oaknational/Oak-Web-Application/commit/f0077fe4fbe0a8398a74ff5810957a54162371af))
+* 1436 Rename useCase to avoUseCase ([3b754e3](https://github.com/oaknational/Oak-Web-Application/commit/3b754e3933b25d08c0e7d03d1f325d86a400fb41))
+* 1436 Update tests ([804fdab](https://github.com/oaknational/Oak-Web-Application/commit/804fdab98c59ed6aa2f4612bcb682bc18495fa44))
+
 ## [1.164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.1...v1.164.2) (2023-04-04)
 
 
