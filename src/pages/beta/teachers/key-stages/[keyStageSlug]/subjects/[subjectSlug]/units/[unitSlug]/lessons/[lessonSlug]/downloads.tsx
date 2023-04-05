@@ -36,7 +36,8 @@ import {
   DownloadFormProps,
   DownloadResourceType,
   preselectedDownloadType,
- schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
+  schema,
+} from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
