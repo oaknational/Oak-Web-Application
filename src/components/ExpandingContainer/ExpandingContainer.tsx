@@ -1,5 +1,7 @@
 import React, { FC, useState } from "react";
 
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import Card, { CardProps } from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -49,12 +51,16 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
   const lowerCaseTitle = title.toLowerCase();
 
+
   const getPreselectedQueryFromTitle = (
     title: ExpandingContainerTitle
   ): PreselectedDownloadType | "" => {
     return ContainerTitletoPreselectMap[title];
   };
   const preselected = getPreselectedQueryFromTitle(title);
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
@@ -74,7 +80,15 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 data-testid={"expand-button"}
                 variant="minimal"
                 label={title}
-                onClick={() => setToggleOpen(toggleOpen === false)}
+                onClick={() => {
+                  setToggleOpen(toggleOpen === false);
+                  toggleOpen &&
+                    track.resourceContainerExpanded({
+                      analyticsUseCase,
+                      pageName: ["Lesson"],
+                      containerTitle: title,
+                    });
+                }}
                 $font={"heading-5"}
               />
               <Icon

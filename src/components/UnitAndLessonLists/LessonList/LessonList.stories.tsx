@@ -61,6 +61,7 @@ const currentPageItems: LessonListProps = {
     currentPage: 1,
     totalPages: 2,
   },
+  unitTitle: "Unit title",
 };
 
 const Template: ComponentStory<typeof Component> = (args) => {
