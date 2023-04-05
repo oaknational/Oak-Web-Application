@@ -3,6 +3,7 @@ import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 import type { KeyStageTitleValueType } from "../../../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
@@ -42,6 +43,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     learningThemes,
     tiers,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Unit Listing" });
 
   const { tier } = useRouter().query;
 

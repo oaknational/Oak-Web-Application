@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { useRouter } from "next/router";
 
+import useTrackPageView from "../../../../../../../../../../../hooks/useTrackPageView";
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
@@ -70,6 +71,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitSlug,
     unitTitle,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Lesson Download" });
 
   const router = useRouter();
   const { track } = useAnalytics();
