@@ -17,12 +17,13 @@ const useTrackPageView = ({ pageName }: UseTrackPageViewProps) => {
   const [isTrackPageViewCalled, setIsTrackPageViewCalled] = useState(false);
 
   useEffect(() => {
-    !isTrackPageViewCalled &&
+    if (!isTrackPageViewCalled) {
       track.pageView({
         linkUrl: router.pathname,
         pageName: [pageName],
         analyticsUseCase,
       });
+    }
 
     setIsTrackPageViewCalled(true);
   }, [
