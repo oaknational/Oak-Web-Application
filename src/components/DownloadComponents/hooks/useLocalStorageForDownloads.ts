@@ -24,7 +24,7 @@ const useLocalStorageForDownloads = () => {
     false
   );
 
-  const hasDetailsFromLocaleStorage =
+  const hasDetailsFromLocalStorage =
     (schoolFromLocalStorage.schoolId.length || emailFromLocalStorage.length) &&
     termsFromLocalStorage;
 
@@ -35,7 +35,7 @@ const useLocalStorageForDownloads = () => {
     setEmailInLocalStorage,
     termsFromLocalStorage,
     setTermsInLocalStorage,
-    hasDetailsFromLocaleStorage,
+    hasDetailsFromLocalStorage,
   };
 };
 

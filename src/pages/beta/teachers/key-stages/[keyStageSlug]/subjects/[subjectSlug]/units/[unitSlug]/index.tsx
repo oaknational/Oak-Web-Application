@@ -38,10 +38,13 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson Listing", // @todo add real data
-        description: "Lessons in Unit",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson Listing", // @todo add real data
+          description: "Lessons in Unit",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
       $background="white"
     >
       <MaxWidth $ph={16}>
@@ -101,6 +104,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
+            unitTitle={unitTitle}
           />
         </Box>
       </MaxWidth>

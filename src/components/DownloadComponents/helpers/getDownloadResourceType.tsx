@@ -6,7 +6,13 @@ import {
 export const getPreselectedDownloadResourceTypes = (
   title: string | string[] | undefined
 ): DownloadResourceType[] | "all" | undefined => {
-  if (typeof title === "string") {
+  if (
+    title === "slide deck" ||
+    title === "exit quiz" ||
+    title === "starter quiz" ||
+    title === "worksheet" ||
+    title === "all"
+  ) {
     return preselectedDownloadTypeMap[title];
   }
 };

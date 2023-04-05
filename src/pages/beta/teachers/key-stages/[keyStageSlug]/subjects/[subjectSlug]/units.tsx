@@ -3,6 +3,7 @@ import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import type { KeyStageTitleValueType } from "../../../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -64,17 +65,23 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
-  const tiersSEO = getSeoProps({
-    title: `${keyStageTitle} ${subjectTitle} tiers`, // @todo add real data
-    description: `We have resources for tiers: ${tiers
-      .map((tier) => tier.title)
-      .join(", ")}`,
-  });
+  const tiersSEO = {
+    ...getSeoProps({
+      title: `${keyStageTitle} ${subjectTitle} tiers`,
+      description: `We have resources for tiers: ${tiers
+        .map((tier) => tier.title)
+        .join(", ")}`,
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
 
-  const unitsSEO = getSeoProps({
-    title: "Units", // @todo add real data
-    description: "Subject units",
-  });
+  const unitsSEO = {
+    ...getSeoProps({
+      title: "Units", // @todo add real data
+      description: "Subject units",
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
 
   return (
     <AppLayout seoProps={tiers.length && !tierQuery ? tiersSEO : unitsSEO}>
@@ -152,6 +159,13 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                           subject: subjectSlug,
                           search: { tier: tierQuery },
                         }}
+                        trackingProps={{
+                          keyStageSlug,
+                          keyStageTitle:
+                            keyStageTitle as KeyStageTitleValueType,
+                          subjectTitle,
+                          subjectSlug,
+                        }}
                       />
                     </Flex>
                   )}
@@ -190,6 +204,13 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                             keyStage: keyStageSlug,
                             subject: subjectSlug,
                             search: { tier: tierQuery },
+                          }}
+                          trackingProps={{
+                            keyStageSlug,
+                            keyStageTitle:
+                              keyStageTitle as KeyStageTitleValueType,
+                            subjectTitle,
+                            subjectSlug,
                           }}
                         />
                       </MobileFilters>

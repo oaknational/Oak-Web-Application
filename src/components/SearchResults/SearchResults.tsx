@@ -46,6 +46,7 @@ export const getLessonObject = (
     keyStageTitle: keyStageTitleMap[highlightedHit.key_stage_title] || "",
     subjectTitle: highlightedHit.subject_title,
     unitSlug: highlightedHit.topic_slug,
+    unitTitle: highlightedHit.topic_title,
     themeSlug: null, // null values -  add to elastic slug index in acorn
     videoCount: null,
     presentationCount: null,

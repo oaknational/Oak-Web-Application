@@ -4,25 +4,48 @@ import OakLink from "../../OakLink";
 import { LI } from "../../Typography";
 import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../hooks/useAnalyticsUseCase";
+import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
+import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
   linkProps: T;
   label: string;
 }
+
 interface CategoryFilterListItemProps<T extends CategoryLinkProps>
   extends Category<T> {
   isSelected: boolean;
   setSelected: (category: T) => void;
+  trackingProps?: LearningThemeSelectedTrackingProps;
 }
 const CategoryFilterListItem = <T extends CategoryLinkProps>(
   props: CategoryFilterListItemProps<T>
 ) => {
-  const { label, linkProps, isSelected, setSelected } = props;
+  const { label, linkProps, isSelected, setSelected, trackingProps } = props;
   const arrowHidden = !isSelected;
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const onClick = () => {
     setSelected(linkProps);
+
+    if (trackingProps) {
+      const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
+        trackingProps;
+
+      track.learningThemeSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        analyticsUseCase,
+        learningThemeName: label,
+      });
+    }
   };
 
   const ICON_SIZE: [PixelSpacing, PixelSpacing] = [20, 30];

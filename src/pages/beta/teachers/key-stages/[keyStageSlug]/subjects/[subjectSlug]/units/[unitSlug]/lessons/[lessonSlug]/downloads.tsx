@@ -19,12 +19,18 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import useAnalytics from "../../../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, {
   GridArea,
 } from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import {
+  KeyStageTitleValueType,
+  ResourceTypeValueType,
+} from "../../../../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -66,6 +72,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   } = curriculumData;
 
   const router = useRouter();
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -95,7 +103,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
-    hasDetailsFromLocaleStorage,
+    hasDetailsFromLocalStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -106,7 +114,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   useEffect(() => {
     setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocaleStorage]);
+  }, [hasDetailsFromLocalStorage]);
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
@@ -131,18 +139,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocaleStorage && !editDetailsClicked;
+    hasDetailsFromLocalStorage && !editDetailsClicked;
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
-    if (hasDetailsFromLocaleStorage || shouldDisplayDetailsCompleted) {
+    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
       setLocalStorageDetails(true);
     }
     if (editDetailsClicked) {
       setLocalStorageDetails(false);
     }
   }, [
-    hasDetailsFromLocaleStorage,
+    hasDetailsFromLocalStorage,
     localStorageDetails,
     editDetailsClicked,
     shouldDisplayDetailsCompleted,
@@ -187,13 +195,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug);
+        onSubmit(data, slug).then(() => {
+          track.resourcesDownloaded({
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+            keyStageSlug,
+            unitName: unitTitle,
+            unitSlug,
+            subjectTitle,
+            subjectSlug,
+            lessonName: title,
+            lessonSlug: slug,
+            resourceType: selectedResources as ResourceTypeValueType[],
+            analyticsUseCase,
+          });
+        });
       },
       4000,
       { leading: true }
     );
 
-    await debouncedOnSubmit();
+    debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
     setEditDetailsClicked(false);
   };
@@ -220,10 +241,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson downloads", // @todo add real data
-        description: "Lesson downloads",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson downloads", // @todo add real data
+          description: "Lesson downloads",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Box $mv={[24, 48]}>

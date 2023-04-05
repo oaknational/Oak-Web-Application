@@ -26,10 +26,13 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
   const { keyStageSlug, keyStageTitle } = curriculumData;
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Key stage", // @todo add real data
-        description: "Key stage by subject",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Key stage", // @todo add real data
+          description: "Key stage by subject",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
       $background="white"
     >
       <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
