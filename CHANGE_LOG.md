@@ -1,3 +1,12 @@
+# [1.166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.165.0...v1.166.0) (2023-04-05)
+
+
+### Features
+
+* 1394 Amend tests ([d31ff74](https://github.com/oaknational/Oak-Web-Application/commit/d31ff7422dcb539bacb36cb2e5351a43cd4570c6))
+* 1394 Set loading for DetailsCompleted component ([4571abd](https://github.com/oaknational/Oak-Web-Application/commit/4571abdac430570595dd70d7ba8cac5eeb7102c2))
+* 1394 Small refactor to extract some code from downloads ([72d79dc](https://github.com/oaknational/Oak-Web-Application/commit/72d79dc2e16c215267000022739d9f020fefa73e))
+
 # [1.165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.2...v1.165.0) (2023-04-05)
 
 
