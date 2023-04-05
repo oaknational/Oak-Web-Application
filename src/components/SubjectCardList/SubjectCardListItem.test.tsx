@@ -79,7 +79,7 @@ describe("SubjectCardListItem", () => {
       keyStageSlug: "ks1",
       subjectTitle: "Art and Design",
       subjectSlug: "art",
-      useCase: ["Teacher"],
+      analyticsUseCase: ["Teacher"],
     });
   });
 });
