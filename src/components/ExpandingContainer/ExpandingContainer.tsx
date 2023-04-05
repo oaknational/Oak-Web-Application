@@ -51,7 +51,6 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
   const lowerCaseTitle = title.toLowerCase();
 
-
   const getPreselectedQueryFromTitle = (
     title: ExpandingContainerTitle
   ): PreselectedDownloadType | "" => {

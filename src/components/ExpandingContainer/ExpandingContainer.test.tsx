@@ -6,7 +6,6 @@ import Card from "../Card";
 
 import ExpandingContainer from ".";
 
-
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(
     <ExpandingContainer
@@ -93,7 +92,6 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
-
 
 describe("comonents/ExpandingContainer", () => {
   beforeEach(() => {
