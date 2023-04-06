@@ -19,6 +19,7 @@ interface CommonProps {
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
   expired: boolean | null;
+  onClick?: () => void;
 }
 
 type ListItemHeadingProps = CommonProps &
@@ -53,6 +54,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     page,
     index,
     expired,
+    onClick,
   } = props;
 
   if (expired) {
@@ -83,6 +85,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             subject={subjectSlug}
             unit={props.unitSlug}
             page={"lesson-overview"}
+            onClick={onClick}
             {...primaryTargetProps}
           >
             <ListTitle>{title}</ListTitle>
@@ -94,6 +97,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             keyStage={keyStageSlug}
             subject={subjectSlug}
             page={"lesson-index"}
+            onClick={onClick}
             {...primaryTargetProps}
           >
             <ListTitle>

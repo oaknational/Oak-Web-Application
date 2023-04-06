@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
+import useTrackPageView from "../hooks/useTrackPageView";
 import CMSClient from "../node-lib/cms";
 import { CurriculumPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
@@ -35,6 +36,8 @@ const elementsOfCurriculumDesignHeadings = [
 ];
 
 const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
+  useTrackPageView({ pageName: "Develop Your Curriculum" });
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>

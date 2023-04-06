@@ -9,12 +9,13 @@ import { HeadingTag } from "../../Typography/Heading";
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 export type LessonListProps = {
-  lessons: LessonListItemProps[];
-  currentPageItems: LessonListItemProps[];
+  lessons: Omit<LessonListItemProps, "unitTitle">[];
+  currentPageItems: Omit<LessonListItemProps, "unitTitle">[];
   keyStageSlug: string;
   subjectSlug: string;
   paginationProps: PaginationProps;
   headingTag: HeadingTag;
+  unitTitle: string;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -26,7 +27,8 @@ const LESSONS_PER_PAGE = 5;
  * Used on lesson listing page
  */
 const LessonList: FC<LessonListProps> = (props) => {
-  const { lessons, paginationProps, headingTag, currentPageItems } = props;
+  const { lessons, paginationProps, headingTag, currentPageItems, unitTitle } =
+    props;
 
   return (
     <Flex $flexDirection="column">
@@ -41,7 +43,11 @@ const LessonList: FC<LessonListProps> = (props) => {
           <UL $reset>
             {currentPageItems.map((item) => (
               <LI key={`LessonList-LessonListItem-${item.slug}`}>
-                <LessonListItem {...item} hideTopHeading />
+                <LessonListItem
+                  {...item}
+                  unitTitle={unitTitle}
+                  hideTopHeading
+                />
               </LI>
             ))}
           </UL>

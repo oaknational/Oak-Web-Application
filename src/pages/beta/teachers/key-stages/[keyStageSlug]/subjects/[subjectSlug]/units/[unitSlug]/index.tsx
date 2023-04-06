@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 
+import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -27,6 +28,8 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectSlug,
     subjectTitle,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Lesson Listing" });
 
   const paginationProps = usePagination({
     totalResults: lessons.length,
@@ -104,6 +107,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
+            unitTitle={unitTitle}
           />
         </Box>
       </MaxWidth>

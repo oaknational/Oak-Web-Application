@@ -3,6 +3,8 @@ import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { useRouter } from "next/router";
 
+import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
+import type { KeyStageTitleValueType } from "../../../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../components/Flex";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -41,6 +43,8 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     learningThemes,
     tiers,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Unit Listing" });
 
   const { tier } = useRouter().query;
 
@@ -158,6 +162,13 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                           subject: subjectSlug,
                           search: { tier: tierQuery },
                         }}
+                        trackingProps={{
+                          keyStageSlug,
+                          keyStageTitle:
+                            keyStageTitle as KeyStageTitleValueType,
+                          subjectTitle,
+                          subjectSlug,
+                        }}
                       />
                     </Flex>
                   )}
@@ -196,6 +207,13 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
                             keyStage: keyStageSlug,
                             subject: subjectSlug,
                             search: { tier: tierQuery },
+                          }}
+                          trackingProps={{
+                            keyStageSlug,
+                            keyStageTitle:
+                              keyStageTitle as KeyStageTitleValueType,
+                            subjectTitle,
+                            subjectSlug,
                           }}
                         />
                       </MobileFilters>

@@ -1,5 +1,8 @@
 import { FC } from "react";
 
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
+import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
@@ -14,6 +17,7 @@ export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   title: string;
   slug: string;
   keyStageSlug: string;
+  keyStageTitle: string;
   activeUnitCount: number | null;
   lessonCount: number | null;
   tierCount: number | null;
@@ -26,6 +30,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   slug,
   titleTag = "h3",
   keyStageSlug,
+  keyStageTitle,
   lessonCount,
   tierCount,
   activeUnitCount,
@@ -39,6 +44,9 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const linkProps: ResolveOakHrefProps = tierCount
     ? { page: "tier-selection", keyStage: keyStageSlug, subject: slug }
     : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   return (
     <Card
@@ -80,7 +88,19 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              <OakLink {...primaryTargetProps} {...linkProps}>
+              <OakLink
+                {...primaryTargetProps}
+                {...linkProps}
+                onClick={() => {
+                  track.subjectSelected({
+                    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                    keyStageSlug,
+                    subjectTitle: title,
+                    subjectSlug: slug,
+                    analyticsUseCase,
+                  });
+                }}
+              >
                 {title}
               </OakLink>
             </Heading>
