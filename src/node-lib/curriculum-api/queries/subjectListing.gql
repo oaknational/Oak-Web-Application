@@ -1,8 +1,7 @@
-query programmes($keyStageSlug: String!, $subjectSlug: String!) {
+query subjectListing($keyStageSlug: String!) {
   mv_programmes(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
-      subject_slug: { _eq: $subjectSlug }
     }
   ) {
     keyStageSlug: key_stage_slug
