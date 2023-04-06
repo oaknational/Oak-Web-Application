@@ -1,3 +1,10 @@
+# [1.168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.167.0...v1.168.0) (2023-04-06)
+
+
+### Features
+
+* **programmes:** add programmes query ([f0999e6](https://github.com/oaknational/Oak-Web-Application/commit/f0999e679984739223034ad5b7f4758ea3fd918b))
+
 # [1.167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.166.0...v1.167.0) (2023-04-05)
 
 
