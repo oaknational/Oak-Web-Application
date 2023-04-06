@@ -1,9 +1,9 @@
 query subjectListing($keyStageSlug: String!) {
-  mv_programmes(
-    where: {
-      key_stage_slug: { _eq: $keyStageSlug }
-    }
-  ) {
+  mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
+    slug
+    title
+  }
+  mv_programmes(where: { key_stage_slug: { _eq: $keyStageSlug } }) {
     keyStageSlug: key_stage_slug
     programmeSlug: programme_slug
     subjectSlug: subject_slug

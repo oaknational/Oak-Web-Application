@@ -39880,7 +39880,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -39962,11 +39962,15 @@ export type TierListingQueryVariables = Exact<{
 }>;
 
 
-export type TierListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+export type TierListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
 
 
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String!) {
+  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
+    slug
+    title
+  }
   mv_programmes(where: {key_stage_slug: {_eq: $keyStageSlug}}) {
     keyStageSlug: key_stage_slug
     programmeSlug: programme_slug
@@ -40256,6 +40260,10 @@ export const TeachersLessonOverviewPathsDocument = gql`
     `;
 export const TierListingDocument = gql`
     query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
+  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
+    slug
+    title
+  }
   mv_programmes(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
   ) {
