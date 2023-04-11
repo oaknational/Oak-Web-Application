@@ -38,6 +38,12 @@ import Breadcrumbs, {
   Breadcrumb,
 } from "../../../../../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../../../../../components/Box";
+import useAnalytics from "../../../../../../../../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../../../../../../../../hooks/useAnalyticsUseCase";
+import type {
+  KeyStageTitleValueType,
+  DownloadResourceButtonNameValueType,
+} from "../../../../../../../../../../browser-lib/avo/Avo";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -106,6 +112,28 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     expired,
   } = curriculumData;
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
+
+  const trackDownloadResourceButtonClicked = ({
+    downloadResourceButtonName,
+  }: {
+    downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  }) => {
+    track.downloadResourceButtonClicked({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: title,
+      lessonSlug: slug,
+      downloadResourceButtonName,
+      analyticsUseCase,
+    });
+  };
 
   useTrackPageView({ pageName: "Lesson" });
 
@@ -205,6 +233,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   slug={slug}
                   subjectSlug={subjectSlug}
                   unitSlug={unitSlug}
+                  onClick={() => {
+                    trackDownloadResourceButtonClicked({
+                      downloadResourceButtonName: "all",
+                    });
+                  }}
                 />
               )}
               {/*
@@ -228,6 +261,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 toggleClosed={false}
                 {...curriculumData}
                 title={"Slide deck"}
+                trackingCallback={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "presentation",
+                  });
+                }}
               >
                 <OverviewPresentation asset={presentationUrl} title={title} />
               </ExpandingContainer>
@@ -247,6 +285,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Worksheet"}
+                trackingCallback={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "worksheet",
+                  });
+                }}
               >
                 <OverviewPresentation asset={worksheetUrl} title={title} />
               </ExpandingContainer>
@@ -256,6 +299,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Starter quiz"}
+                trackingCallback={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "starter quiz",
+                  });
+                }}
               >
                 <QuizContainer questions={introQuiz} info={introQuizInfo} />
               </ExpandingContainer>
@@ -267,6 +315,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Exit quiz"}
+                trackingCallback={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "exit quiz",
+                  });
+                }}
               >
                 <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
               </ExpandingContainer>

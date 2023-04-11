@@ -42,6 +42,7 @@ export const schema = z.object({
     })
     .min(1, "Please select a school or one of the alternative options"),
   schoolName: z.string().optional(),
+  schoolUrn: z.number().optional(),
   email: z
     .string()
     .email({

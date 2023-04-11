@@ -84,6 +84,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       mode: "onBlur",
     });
 
+  console.log(">>>>", watch());
+
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
       .filter((download) => download.exists && !download.forbidden)
@@ -199,6 +201,38 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       () => {
         setIsAttemptingDownload(true);
         onSubmit(data, slug).then(() => {
+          const getSchoolOption = () => {
+            if (data.school === "notListed") {
+              return "Not listed";
+            } else if (data.school === "homeschool") {
+              return "Homeschool";
+            } else {
+              return "Selected school";
+            }
+          };
+
+          const getSchoolName = () => {
+            const schoolOption = getSchoolOption();
+
+            if (schoolOption === "Selected school") {
+              const schoolName = data.school.split("-")[1] || "";
+              return schoolName;
+            } else {
+              return "";
+            }
+          };
+
+          const getSchoolUrn = () => {
+            const schoolOption = getSchoolOption();
+
+            if (schoolOption === "Selected school") {
+              const schoolUrn = Number(data.school.split("-")[0]) || 0;
+              return schoolUrn;
+            } else {
+              return 0;
+            }
+          };
+
           track.resourcesDownloaded({
             keyStageTitle: keyStageTitle as KeyStageTitleValueType,
             keyStageSlug,
@@ -210,6 +244,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             lessonSlug: slug,
             resourceType: selectedResources as ResourceTypeValueType[],
             analyticsUseCase,
+            schoolUrn: getSchoolUrn(),
+            schoolName: getSchoolName(),
+            schoolOption: getSchoolOption(),
+            emailSupplied: data?.email ? true : false,
           });
         });
       },

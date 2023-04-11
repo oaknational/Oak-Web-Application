@@ -7,7 +7,12 @@ import CurriculumDownloadButton from "./CurriculumDownloadButton";
 describe("CurriculumDownloadButton", () => {
   test("renders a download button link with href corresponding to passed in props", () => {
     const { getByRole } = renderWithProviders(
-      <CurriculumDownloadButton keyStage={"ks4"} subject={"english"} />
+      <CurriculumDownloadButton
+        keyStageSlug={"ks4"}
+        keyStageTitle={"Key stage 4"}
+        subjectSlug={"english"}
+        subjectTitle="English"
+      />
     );
 
     const downloadLink = getByRole("link", {
@@ -23,8 +28,10 @@ describe("CurriculumDownloadButton", () => {
   test("renders a tiered download button link from unit page with tiers", () => {
     const { getByRole } = renderWithProviders(
       <CurriculumDownloadButton
-        keyStage={"ks4"}
-        subject={"maths"}
+        keyStageSlug={"ks4"}
+        keyStageTitle={"Key stage 4"}
+        subjectSlug={"maths"}
+        subjectTitle={"Maths"}
         tier={"core"}
       />
     );
@@ -42,8 +49,10 @@ describe("CurriculumDownloadButton", () => {
   test("renders a link to a zip file when on a tiered lesson page", () => {
     renderWithProviders(
       <CurriculumDownloadButton
-        keyStage={"ks4"}
-        subject={"maths"}
+        keyStageTitle={"Key stage 4"}
+        subjectTitle={"Maths"}
+        keyStageSlug={"ks4"}
+        subjectSlug={"maths"}
         lessonPage={true}
       />
     );
