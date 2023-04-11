@@ -12,6 +12,7 @@ describe("components/ Lesson List", () => {
         keyStageSlug={"2"}
         headingTag={"h2"}
         currentPageItems={[]}
+        unitTitle={"Unit title"}
         lessons={[
           {
             slug: "",

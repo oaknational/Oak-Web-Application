@@ -1,3 +1,67 @@
+# [1.169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.168.0...v1.169.0) (2023-04-11)
+
+
+### Features
+
+* **tier-subject-listing:** add subject and tier listing querys ([af6aa69](https://github.com/oaknational/Oak-Web-Application/commit/af6aa69ac7297b06621bcd54f21e6aa1b133da65))
+* **tier-subject-listing:** add subject and tier listing querys ([a86773e](https://github.com/oaknational/Oak-Web-Application/commit/a86773e5d62f51fa856aa80c1a0f4d602b6f8e8f))
+
+# [1.168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.167.0...v1.168.0) (2023-04-06)
+
+
+### Features
+
+* **programmes:** add programmes query ([f0999e6](https://github.com/oaknational/Oak-Web-Application/commit/f0999e679984739223034ad5b7f4758ea3fd918b))
+
+# [1.167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.166.0...v1.167.0) (2023-04-05)
+
+
+### Features
+
+* 1476 Add latest avo files ([447801d](https://github.com/oaknational/Oak-Web-Application/commit/447801db5ef23cc9c834d94a5e2ef58f7ef840dc))
+* 1476 Add test ([1e7711f](https://github.com/oaknational/Oak-Web-Application/commit/1e7711f37709cd2573fd42b298d3bd94826d785c))
+* 1476 Include query parameter in page view linkUrl ([8efacd5](https://github.com/oaknational/Oak-Web-Application/commit/8efacd5a80c516153c578df445db314e4f0426e4))
+* 1476 Track page views ([b174c69](https://github.com/oaknational/Oak-Web-Application/commit/b174c696b2fe0cfa381723fd574f0229c1052253))
+* 1476 Update avoUseCase to analyticsUseCase ([e014af8](https://github.com/oaknational/Oak-Web-Application/commit/e014af8070007a8d1845a7db511c440bad210cd0))
+* 1476 Update test ([c935afa](https://github.com/oaknational/Oak-Web-Application/commit/c935afaef122393d3cad88f0987964dd66d9e22a))
+* 1476 Use if statement instead of LOGICAL AND ([f2eb838](https://github.com/oaknational/Oak-Web-Application/commit/f2eb838d418395b2b7c004f1bce563ec79bba78a))
+
+# [1.166.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.165.0...v1.166.0) (2023-04-05)
+
+
+### Features
+
+* 1394 Amend tests ([d31ff74](https://github.com/oaknational/Oak-Web-Application/commit/d31ff7422dcb539bacb36cb2e5351a43cd4570c6))
+* 1394 Set loading for DetailsCompleted component ([4571abd](https://github.com/oaknational/Oak-Web-Application/commit/4571abdac430570595dd70d7ba8cac5eeb7102c2))
+* 1394 Small refactor to extract some code from downloads ([72d79dc](https://github.com/oaknational/Oak-Web-Application/commit/72d79dc2e16c215267000022739d9f020fefa73e))
+
+# [1.165.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.2...v1.165.0) (2023-04-05)
+
+
+### Features
+
+* 1436 Add avo tracking to the teacher browsing journey ([3a4a689](https://github.com/oaknational/Oak-Web-Application/commit/3a4a6890045979165d9a678244a8664ab6033c4a))
+* 1436 Add missing avo tracking and tests ([a3ea137](https://github.com/oaknational/Oak-Web-Application/commit/a3ea137e370f0009b26ffea7ac185120653df30b))
+* 1436 Amend resource types on downloads tracking ([4c7eaeb](https://github.com/oaknational/Oak-Web-Application/commit/4c7eaeb07290d567ac4f50b11d96eab31c5c5f0c))
+* 1436 Call tracking on link rather than in useClickableCard ([82791fd](https://github.com/oaknational/Oak-Web-Application/commit/82791fd8f4e0e1d17f8b1d855df35d5498510c88))
+* 1436 Fix failing tests ([2838cf2](https://github.com/oaknational/Oak-Web-Application/commit/2838cf258518e2d477ea587a3247d9bebc7a80f3))
+* 1436 Fix linting errors ([345afd7](https://github.com/oaknational/Oak-Web-Application/commit/345afd7938c77434644d763f1ba858e37a945b26))
+* 1436 Refactor clickCallback in useClickableCard ([9a09c7e](https://github.com/oaknational/Oak-Web-Application/commit/9a09c7e7f82e79054fb90744fdc5d44d81f790cf))
+* 1436 Remove unitId and lessonId from tracing events ([b3e8e1a](https://github.com/oaknational/Oak-Web-Application/commit/b3e8e1a5e5570081a2ea835731c280ce03ceb9fd))
+* 1436 Rename avo keys ([71dd94c](https://github.com/oaknational/Oak-Web-Application/commit/71dd94ce023b61aaae12206d30aedfb487f37b0d))
+* 1436 Rename avoUseCase to analyticsUseCase ([f0077fe](https://github.com/oaknational/Oak-Web-Application/commit/f0077fe4fbe0a8398a74ff5810957a54162371af))
+* 1436 Rename useCase to avoUseCase ([3b754e3](https://github.com/oaknational/Oak-Web-Application/commit/3b754e3933b25d08c0e7d03d1f325d86a400fb41))
+* 1436 Update tests ([804fdab](https://github.com/oaknational/Oak-Web-Application/commit/804fdab98c59ed6aa2f4612bcb682bc18495fa44))
+
+## [1.164.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.1...v1.164.2) (2023-04-04)
+
+
+### Bug Fixes
+
+* **semantic_release:** update the create_sematic_release yaml file ([0a7f15a](https://github.com/oaknational/Oak-Web-Application/commit/0a7f15a400323ef9d273be60e5cc03fb20f3d4b6))
+
+## [1.164.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.164.0...v1.164.1) (2023-04-04)
+
 # [1.164.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.163.0...v1.164.0) (2023-04-03)
 
 

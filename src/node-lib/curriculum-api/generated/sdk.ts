@@ -40466,6 +40466,13 @@ export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SearchPageQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null, shortCode?: string | null }> };
 
+export type SubjectListingQueryVariables = Exact<{
+  keyStageSlug: Scalars['String'];
+}>;
+
+
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -40540,6 +40547,14 @@ export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: n
 
 export type TeachersLessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons', lessonSlug?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, unitSlug?: string | null }> };
 
+export type TierListingQueryVariables = Exact<{
+  keyStageSlug: Scalars['String'];
+  subjectSlug: Scalars['String'];
+}>;
+
+
+export type TierListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+
 
 export const SearchPageDocument = gql`
     query searchPage {
@@ -40547,6 +40562,22 @@ export const SearchPageDocument = gql`
     shortCode: short_code
     slug
     title
+  }
+}
+    `;
+export const SubjectListingDocument = gql`
+    query subjectListing($keyStageSlug: String!) {
+  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
+    slug
+    title
+  }
+  mv_programmes(where: {key_stage_slug: {_eq: $keyStageSlug}}) {
+    keyStageSlug: key_stage_slug
+    programmeSlug: programme_slug
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    unitCount: unit_count
   }
 }
     `;
@@ -40827,6 +40858,24 @@ export const TeachersLessonOverviewPathsDocument = gql`
   }
 }
     `;
+export const TierListingDocument = gql`
+    query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
+  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
+    slug
+    title
+  }
+  mv_programmes(
+    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
+  ) {
+    keyStageSlug: key_stage_slug
+    programmeSlug: programme_slug
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    unitCount: unit_count
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -40837,6 +40886,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
+    },
+    subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
@@ -40867,6 +40919,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersLessonOverviewPaths(variables?: TeachersLessonOverviewPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersLessonOverviewPathsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersLessonOverviewPathsQuery>(TeachersLessonOverviewPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersLessonOverviewPaths', 'query');
+    },
+    tierListing(variables: TierListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TierListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TierListingQuery>(TierListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tierListing', 'query');
     }
   };
 }

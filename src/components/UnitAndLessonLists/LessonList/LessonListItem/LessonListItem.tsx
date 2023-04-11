@@ -1,6 +1,8 @@
 import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
+import useAnalytics from "../../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
@@ -10,9 +12,11 @@ import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
+import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
 export type LessonListItemProps =
   TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
+    unitTitle: string;
     hideTopHeading?: boolean;
   };
 
@@ -69,7 +73,35 @@ function getAvailableResourceList({
  * Links to a lesson-index page
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
-  const { title, description, expired, subjectSlug } = props;
+  const {
+    title,
+    slug,
+    description,
+    expired,
+    subjectTitle,
+    subjectSlug,
+    keyStageSlug,
+    keyStageTitle,
+    unitSlug,
+    unitTitle,
+  } = props;
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
+
+  const trackLessonSelected = () => {
+    track.lessonSelected({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: title,
+      lessonSlug: slug,
+      analyticsUseCase,
+    });
+  };
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>();
@@ -97,6 +129,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           primaryTargetProps={primaryTargetProps}
           page="Lesson"
           index={null}
+          onClick={trackLessonSelected}
         />
         {expired ? (
           <Expired page={"lesson"} />

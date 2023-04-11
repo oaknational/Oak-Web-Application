@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
+import useTrackPageView from "../../../hooks/useTrackPageView";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
@@ -39,6 +40,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { setSearchTerm } = useSearch({
     allKeyStages: curriculumData.keyStages,
   });
+  useTrackPageView({ pageName: "Homepage" });
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>

@@ -1,6 +1,7 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 
+import useTrackPageView from "../../../hooks/useTrackPageView";
 import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import AppLayout from "../../../components/AppLayout";
 import useSearch from "../../../context/Search/useSearch";
@@ -22,6 +23,8 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     ...searchProps,
     allKeyStages,
   });
+  useTrackPageView({ pageName: "Search" });
+
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background="grey1">
       <Search
