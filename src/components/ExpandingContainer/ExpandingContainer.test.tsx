@@ -98,6 +98,34 @@ describe("comonents/ExpandingContainer", () => {
     expect(log2).toHaveBeenCalled();
   });
 
+  it("calls tackingCallback on Download Button click if provided in props", async () => {
+    const user = userEvent.setup();
+    const trackingCallback = jest.fn();
+
+    renderWithTheme(
+      <ExpandingContainer
+        external={true}
+        projectable={true}
+        downloadable={true}
+        keyStageSlug={"ks3"}
+        subjectSlug={"maths"}
+        unitSlug={"unit"}
+        slug={"slug-slug-slug"}
+        title={"Video"}
+        trackingCallback={trackingCallback}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Grid box
+        </Card>
+      </ExpandingContainer>
+    );
+
+    const downloadLinkButton = screen.getByTestId("download-button");
+
+    await user.click(downloadLinkButton);
+    expect(trackingCallback).toHaveBeenCalledTimes(1);
+  });
+
   it("adds selected+[title] to query string", async () => {
     renderWithTheme(
       <ExpandingContainer
