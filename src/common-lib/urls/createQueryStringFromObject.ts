@@ -13,8 +13,11 @@ function removeNullOrUndefinedQueryParams<T extends string | string[]>(
 }
 
 export default function createQueryStringFromObject(
-  search: Record<string, string | string[] | null | undefined>
+  search?: Record<string, string | string[] | null | undefined>
 ) {
+  if (!search) {
+    return "";
+  }
   const searchWithoutNullOrUndefined = removeNullOrUndefinedQueryParams(search);
   return new URLSearchParams(
     Object.entries(searchWithoutNullOrUndefined).reduce((acc, [key, value]) => {

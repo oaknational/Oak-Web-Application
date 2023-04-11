@@ -1,6 +1,11 @@
 import createQueryStringFromObject from "./createQueryStringFromObject";
 
 describe("createQueryStringFromObject", () => {
+  test("returns empty string if no query passed", () => {
+    const result = createQueryStringFromObject();
+
+    expect(result).toBe("");
+  });
   test("should return correct string", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",

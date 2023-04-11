@@ -1,6 +1,6 @@
 import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
 import config from "../../config/browser";
-import { createSearchQuery, SearchQuery } from "../../context/Search/useSearch";
+import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 
@@ -235,8 +235,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       if (!props.query) {
         return path;
       }
-      const searchQuery = createSearchQuery(props.query);
-      const queryString = createQueryStringFromObject(searchQuery);
+      const queryString = createQueryStringFromObject(props.query);
 
       return `${path}?${queryString}`;
     }
