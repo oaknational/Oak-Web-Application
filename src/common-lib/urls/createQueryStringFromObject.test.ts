@@ -30,6 +30,14 @@ describe("createQueryStringFromObject", () => {
 
     expect(result).toBe("text=macbeth");
   });
+  test("should strip out empty arrays", () => {
+    const result = createQueryStringFromObject({
+      text: "macbeth",
+      category: [],
+    });
+
+    expect(result).toBe("text=macbeth");
+  });
   test("should join string array with ',' delimeter", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",

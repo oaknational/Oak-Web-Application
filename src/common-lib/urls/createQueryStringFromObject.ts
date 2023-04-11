@@ -12,6 +12,11 @@ function removeNullOrUndefinedQueryParams<T extends string | string[]>(
   return transformed;
 }
 
+/**
+ * Transforms an object to a URLSearchParams string.
+ * Strips out nulls, undefineds, and empty arrays.
+ * Comma-separates arrays e.g. ["one", "two"] -> "one,two".
+ */
 export default function createQueryStringFromObject(
   search?: Record<string, string | string[] | null | undefined>
 ) {
@@ -21,10 +26,9 @@ export default function createQueryStringFromObject(
   const searchWithoutNullOrUndefined = removeNullOrUndefinedQueryParams(search);
   return new URLSearchParams(
     Object.entries(searchWithoutNullOrUndefined).reduce((acc, [key, value]) => {
-      if (Array.isArray(value)) {
-        acc.push([key, value.toString()]);
-      } else {
-        acc.push([key, value]);
+      const valueStr = Array.isArray(value) ? value.toString() : value;
+      if (valueStr) {
+        acc.push([key, valueStr]);
       }
       return acc;
     }, [] as [string, string][])
