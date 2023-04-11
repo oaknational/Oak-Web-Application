@@ -6,12 +6,6 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 import CurriculumDownloadButton from "./CurriculumDownloadButton";
 import downloadZip from "./helpers/downloadZip";
 
-// const data = { url: "downloadUrlString" };
-// const successResponse = {
-//   json: () => Promise.resolve({ data }),
-//   status: 200,
-// };
-// global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
 jest.mock("./helpers/downloadZip");
 
 const curriculumMapDownloaded = jest.fn();
@@ -48,6 +42,32 @@ describe("CurriculumDownloadButton", () => {
       "href",
       `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-english&extension=pdf`
     );
+  });
+
+  test("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
+    renderWithProviders(
+      <CurriculumDownloadButton
+        keyStageTitle={"Key stage 4"}
+        subjectTitle={"English"}
+        keyStageSlug={"ks4"}
+        subjectSlug={"english"}
+      />
+    );
+
+    const linkTitle = screen.getByText("Curriculum download (PDF)");
+
+    const user = userEvent.setup();
+    await user.click(linkTitle);
+
+    expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: ["Teacher"],
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      pageName: ["Unit Listing"],
+      subjectSlug: "english",
+      subjectTitle: "English",
+    });
   });
 
   test("renders a tiered download button link from unit page with tiers", () => {
