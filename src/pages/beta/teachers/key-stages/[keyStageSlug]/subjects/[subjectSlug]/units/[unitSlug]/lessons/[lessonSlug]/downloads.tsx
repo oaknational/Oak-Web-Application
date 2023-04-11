@@ -84,8 +84,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       mode: "onBlur",
     });
 
-  console.log(">>>>", watch());
-
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
       .filter((download) => download.exists && !download.forbidden)
