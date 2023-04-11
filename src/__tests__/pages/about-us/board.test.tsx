@@ -115,6 +115,7 @@ describe("pages/about-us/board.tsx", () => {
         ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We're doing the things that need to get done.",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "index,follow",
       });
     });
   });

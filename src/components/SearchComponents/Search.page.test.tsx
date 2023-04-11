@@ -32,7 +32,7 @@ const resultsProps: Partial<SearchProps> = {
   results: [createSearchResult()],
   status: "success",
 };
-const providers = { theme: {}, menu: {}, router: {} };
+const providers = { theme: {}, menu: {}, router: {}, analytics: {} };
 
 const validQuery: SearchQuery = {
   term: "test search term",

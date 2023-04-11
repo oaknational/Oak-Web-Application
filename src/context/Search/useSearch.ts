@@ -10,22 +10,29 @@ import { resolveOakHref } from "../../common-lib/urls";
 
 import constructElasticQuery from "./constructElasticQuery";
 import { SearchHit, searchResultsSchema } from "./helpers";
+import { KeyStage } from "./useKeyStageFilters";
 
 export type SearchQuery = {
   term: string;
-  keyStages?: string[];
+  keyStages: string[];
 };
 export type SetSearchQuery = (
-  arg: SearchQuery | ((oldQuery: SearchQuery) => SearchQuery)
+  arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>)
 ) => void;
 type UseSearchQueryReturnType = {
   query: SearchQuery;
   setQuery: SetSearchQuery;
 };
+export const createSearchQuery = (
+  partialQuery: Partial<SearchQuery>
+): SearchQuery => {
+  const { term = "", keyStages = [] } = partialQuery;
+  return { term, keyStages };
+};
 const useSearchQuery = ({
   allKeyStages,
 }: {
-  allKeyStages: { slug: string; title: string }[];
+  allKeyStages: KeyStage[];
 }): UseSearchQueryReturnType => {
   const {
     query: { term = "", keyStages = "" },
@@ -52,14 +59,15 @@ const useSearchQuery = ({
     };
   }, [termString, keyStagesArray, isKeyStage]);
 
-  const setQuery = useStableCallback(
-    (arg: SearchQuery | ((oldQuery: SearchQuery) => SearchQuery)) => {
-      const newQuery = typeof arg === "function" ? arg(query) : arg;
+  const setQuery: SetSearchQuery = useStableCallback((arg) => {
+    const newQuery = typeof arg === "function" ? arg(query) : arg;
 
-      const url = resolveOakHref({ page: "beta-search", query: newQuery });
-      push(url, undefined, { shallow: true });
-    }
-  );
+    const url = resolveOakHref({
+      page: "beta-search",
+      query: newQuery,
+    });
+    push(url, undefined, { shallow: true });
+  });
 
   return { query, setQuery };
 };
@@ -70,13 +78,13 @@ export type RequestStatus = "not-asked" | "loading" | "success" | "fail";
 export type UseSearchReturnType = {
   status: RequestStatus;
   results: SearchHit[];
-  fetchResults: ({ isCancelled }: { isCancelled: boolean }) => Promise<void>;
+  fetchResults: () => Promise<void>;
   query: SearchQuery;
   setQuery: SetSearchQuery;
   setSearchTerm: (props: { searchTerm: string }) => void;
 };
 type UseSearchProps = {
-  allKeyStages: { title: string; slug: string }[];
+  allKeyStages: KeyStage[];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const { allKeyStages } = props;
@@ -85,46 +93,40 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
-  const fetchResults = useStableCallback(
-    async (
-      { isCancelled }: { isCancelled: boolean } = { isCancelled: false }
-    ) => {
-      setStatus("loading");
-      try {
-        const options: RequestInit = {
-          method: "POST",
-          redirect: "follow",
-          headers: new Headers({
-            "Content-Type": "application/json",
-          }),
-          body: JSON.stringify(constructElasticQuery(query)),
-        };
+  const fetchResults = useStableCallback(async () => {
+    setStatus("loading");
+    try {
+      const options: RequestInit = {
+        method: "POST",
+        redirect: "follow",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(constructElasticQuery(query)),
+      };
 
-        const response = await fetch(config.get("searchApiUrl"), options);
+      const response = await fetch(config.get("searchApiUrl"), options);
 
-        handleFetchError(response);
+      handleFetchError(response);
 
-        const unparsedData = await response.json();
-        const data = searchResultsSchema.parse(unparsedData);
-        if (data) {
-          const { hits } = data;
-          const hitList = hits.hits;
-          if (!isCancelled) {
-            setResults(hitList);
-            setStatus("success");
-          }
-        }
-      } catch (error) {
-        const oakError = new OakError({
-          code: "search/unknown",
-          originalError: error,
-        });
-
-        reportError(oakError);
-        setStatus("fail");
+      const unparsedData = await response.json();
+      const data = searchResultsSchema.parse(unparsedData);
+      if (data) {
+        const { hits } = data;
+        const hitList = hits.hits;
+        setResults(hitList);
+        setStatus("success");
       }
+    } catch (error) {
+      const oakError = new OakError({
+        code: "search/unknown",
+        originalError: error,
+      });
+
+      reportError(oakError);
+      setStatus("fail");
     }
-  );
+  });
 
   /**
    * This function to set the searchTerm of the query, without setting any

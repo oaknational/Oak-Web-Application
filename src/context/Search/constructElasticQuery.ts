@@ -1,3 +1,4 @@
+import errorReporter from "../../common-lib/error-reporter";
 import truthy from "../../utils/truthy";
 
 import { SearchQuery } from "./useSearch";
@@ -21,6 +22,15 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
                     return "3";
                   case "ks4":
                     return "4";
+                  default: {
+                    const error = new Error(
+                      "Key-stage slug could not be mapped to elastic query"
+                    );
+                    errorReporter("constructElasticQuery")(error, {
+                      severity: "warning",
+                      query,
+                    });
+                  }
                 }
               })
               .filter(truthy),

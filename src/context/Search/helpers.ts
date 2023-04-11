@@ -48,6 +48,7 @@ export function getLessonObject(props: {
     keyStageTitle: keyStage?.title?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
     unitSlug: highlightedHit.topic_slug?.toString() || "",
+    unitTitle: highlightedHit.topic_title?.toString() || "",
     themeSlug: null, // null values -  add to elastic slug index in acorn
     videoCount: null,
     presentationCount: null,
@@ -122,7 +123,7 @@ const searchResultsHighlightUnitSchema = z.object({
   topic_title: z.coerce.string(),
 });
 
-const lessonSearchHitSchema = z.object({
+export const lessonSearchHitSchema = z.object({
   _id: z.string(),
   _index: z.string(),
   _score: z.number(),
@@ -130,18 +131,18 @@ const lessonSearchHitSchema = z.object({
   _source: searchResultsSourceLessonSchema,
   highlight: searchResultsHighlightLessonSchema.partial().nullish(),
 });
-const unitSearchHitSchema = z.object({
+export const unitSearchHitSchema = z.object({
   _id: z.string(),
   _index: z.string(),
   _score: z.number(),
   _source: searchResultsSourceUnitSchema,
   highlight: searchResultsHighlightUnitSchema.partial().nullish(),
 });
-const searchResultsHitSchema = z.union([
+export const searchResultsHitSchema = z.union([
   lessonSearchHitSchema,
   unitSearchHitSchema,
 ]);
-
+export const searchResultsHitsSchema = z.array(searchResultsHitSchema);
 export const searchResultsSchema = z.object({
   hits: z.object({
     hits: z.array(searchResultsHitSchema),

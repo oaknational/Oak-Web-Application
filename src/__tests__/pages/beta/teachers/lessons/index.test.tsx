@@ -77,6 +77,7 @@ describe("pages/beta/teachers/lessons", () => {
         ogDescription: "Overview of lesson",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
       });
     });
   });

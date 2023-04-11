@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { waitFor } from "@testing-library/react";
 
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
@@ -49,11 +49,6 @@ const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
-
-const searchQuery = {
-  term: "macb",
-  keyStages: new Set(),
-};
 
 const allKeyStages = searchPageFixture().keyStages;
 

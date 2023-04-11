@@ -59,6 +59,7 @@ export const mockSeo = (seo?: Partial<Seo>): Seo => {
 
 // This will be SEO results based on the app processing the result of mockSeo()
 export const mockSeoResult = {
+  canonical: undefined,
   title: "MockPageTitle | NEXT_PUBLIC_SEO_APP_NAME",
   description: "Mock page description",
   ogTitle: "MockPageTitle | NEXT_PUBLIC_SEO_APP_NAME",
@@ -66,4 +67,5 @@ export const mockSeoResult = {
   ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
   ogImage: "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
   ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+  robots: "index,follow",
 };

@@ -38,6 +38,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         ogDescription: "Key stage by subject",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
       });
     });
   });
