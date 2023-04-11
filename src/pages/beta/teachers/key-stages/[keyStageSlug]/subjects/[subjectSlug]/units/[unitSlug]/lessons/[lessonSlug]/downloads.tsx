@@ -32,6 +32,7 @@ import {
   ResourceTypeValueType,
 } from "../../../../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
+import getSchoolDetailsForTracking from "../../../../../../../../../../../components/DownloadComponents/helpers/getSchoolDetailsForTracking";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -199,37 +200,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       () => {
         setIsAttemptingDownload(true);
         onSubmit(data, slug).then(() => {
-          const getSchoolOption = () => {
-            if (data.school === "notListed") {
-              return "Not listed";
-            } else if (data.school === "homeschool") {
-              return "Homeschool";
-            } else {
-              return "Selected school";
-            }
-          };
-
-          const getSchoolName = () => {
-            const schoolOption = getSchoolOption();
-
-            if (schoolOption === "Selected school") {
-              const schoolName = data.school.split("-")[1] || "";
-              return schoolName;
-            } else {
-              return "";
-            }
-          };
-
-          const getSchoolUrn = () => {
-            const schoolOption = getSchoolOption();
-
-            if (schoolOption === "Selected school") {
-              const schoolUrn = Number(data.school.split("-")[0]) || 0;
-              return schoolUrn;
-            } else {
-              return 0;
-            }
-          };
+          const { schoolOption, schoolName, schoolUrn } =
+            getSchoolDetailsForTracking({ school: data.school });
 
           track.resourcesDownloaded({
             keyStageTitle: keyStageTitle as KeyStageTitleValueType,
@@ -242,9 +214,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             lessonSlug: slug,
             resourceType: selectedResources as ResourceTypeValueType[],
             analyticsUseCase,
-            schoolUrn: getSchoolUrn(),
-            schoolName: getSchoolName(),
-            schoolOption: getSchoolOption(),
+            schoolUrn,
+            schoolName,
+            schoolOption,
             emailSupplied: data?.email ? true : false,
           });
         });
