@@ -1,3 +1,11 @@
+# [1.169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.168.0...v1.169.0) (2023-04-11)
+
+
+### Features
+
+* **tier-subject-listing:** add subject and tier listing querys ([af6aa69](https://github.com/oaknational/Oak-Web-Application/commit/af6aa69ac7297b06621bcd54f21e6aa1b133da65))
+* **tier-subject-listing:** add subject and tier listing querys ([a86773e](https://github.com/oaknational/Oak-Web-Application/commit/a86773e5d62f51fa856aa80c1a0f4d602b6f8e8f))
+
 # [1.168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.167.0...v1.168.0) (2023-04-06)
 
 

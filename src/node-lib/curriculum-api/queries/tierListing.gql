@@ -1,4 +1,8 @@
-query programmes($keyStageSlug: String!, $subjectSlug: String!) {
+query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
+  mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
+    slug
+    title
+  }
   mv_programmes(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
