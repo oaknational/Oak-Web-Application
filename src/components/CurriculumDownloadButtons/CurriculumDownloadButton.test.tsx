@@ -1,10 +1,35 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import CurriculumDownloadButton from "./CurriculumDownloadButton";
+import downloadZip from "./helpers/downloadZip";
+
+// const data = { url: "downloadUrlString" };
+// const successResponse = {
+//   json: () => Promise.resolve({ data }),
+//   status: 200,
+// };
+// global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+jest.mock("./helpers/downloadZip");
+
+const curriculumMapDownloaded = jest.fn();
+jest.mock("../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumMapDownloaded: (...args: unknown[]) =>
+        curriculumMapDownloaded(...args),
+    },
+  }),
+}));
 
 describe("CurriculumDownloadButton", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("renders a download button link with href corresponding to passed in props", () => {
     const { getByRole } = renderWithProviders(
       <CurriculumDownloadButton
@@ -46,7 +71,7 @@ describe("CurriculumDownloadButton", () => {
     );
   });
 
-  test("renders a link to a zip file when on a tiered lesson page", () => {
+  test("renders a button to download a zip file when on a tiered lesson page", () => {
     renderWithProviders(
       <CurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
@@ -59,5 +84,34 @@ describe("CurriculumDownloadButton", () => {
 
     const buttonTitle = screen.getByText("Curriculum download (.zip)");
     expect(buttonTitle).toBeInTheDocument();
+  });
+
+  test("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
+    renderWithProviders(
+      <CurriculumDownloadButton
+        keyStageTitle={"Key stage 4"}
+        subjectTitle={"Maths"}
+        keyStageSlug={"ks4"}
+        subjectSlug={"maths"}
+        lessonPage={true}
+      />
+    );
+
+    const buttonTitle = screen.getByText("Curriculum download (.zip)");
+
+    const user = userEvent.setup();
+    await user.click(buttonTitle);
+
+    expect(downloadZip).toHaveBeenCalledTimes(1);
+    expect(downloadZip).toHaveBeenCalledWith("4", "maths");
+    expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: ["Teacher"],
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      pageName: ["Unit Listing"],
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+    });
   });
 });
