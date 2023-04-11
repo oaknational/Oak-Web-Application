@@ -203,7 +203,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           const { schoolOption, schoolName, schoolUrn } =
             getSchoolDetailsForTracking({ school: data.school });
 
-          track.resourcesDownloaded({
+          track.lessonResourcesDownloaded({
             keyStageTitle: keyStageTitle as KeyStageTitleValueType,
             keyStageSlug,
             unitName: unitTitle,

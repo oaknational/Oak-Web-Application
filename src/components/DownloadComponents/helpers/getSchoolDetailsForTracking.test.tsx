@@ -8,8 +8,8 @@ describe("getSchoolDetailsForTracking", () => {
 
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Homeschool",
-      schoolName: "",
-      schoolUrn: 0,
+      schoolName: null,
+      schoolUrn: null,
     });
   });
 
@@ -20,20 +20,20 @@ describe("getSchoolDetailsForTracking", () => {
 
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Not listed",
-      schoolName: "",
-      schoolUrn: 0,
+      schoolName: null,
+      schoolUrn: null,
     });
   });
 
   it("should return correct school details for selected school option", () => {
     const schoolDetailsForTracking = getSchoolDetailsForTracking({
-      school: "1234-London High School",
+      school: "123456-London High School",
     });
 
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Selected school",
       schoolName: "London High School",
-      schoolUrn: 1234,
+      schoolUrn: 123456,
     });
   });
 });

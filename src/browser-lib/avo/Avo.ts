@@ -964,7 +964,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fpKYdaKohh5QD2oNaSfA",
+          "ac": "JlbLY7ZLOl7DZrjumdh6",
           "br": "t2-C-8dEg",
           "en": env,
           "ev": eventId,
@@ -991,7 +991,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "fpKYdaKohh5QD2oNaSfA",
+          "ac": "JlbLY7ZLOl7DZrjumdh6",
           "br": "t2-C-8dEg",
           "en": env,
           "ty": type,
@@ -1989,7 +1989,7 @@ export function videoFinished(properties: VideoFinishedProperties) {
   }
 }
 
-export interface ResourcesDownloadedProperties {
+export interface LessonResourcesDownloadedProperties {
   keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   unitName: string;
@@ -1998,15 +1998,15 @@ export interface ResourcesDownloadedProperties {
   subjectSlug: string;
   lessonName: string;
   lessonSlug: string;
-  schoolUrn: number;
-  schoolName: string;
+  schoolUrn: number | null | undefined;
+  schoolName: string | null | undefined;
   schoolOption: SchoolOptionValueType;
   resourceType: ResourceTypeValueType[];
   analyticsUseCase: AnalyticsUseCaseValueType[];
   emailSupplied: boolean;
 }
 /**
- * Resources Downloaded: A user downloaded one or more resources for a lesson.
+ * Lesson Resources Downloaded: A user downloaded one or more resources for a lesson.
  *
  * When to trigger this event:
  * 1. The download .zip button is clicked on the lesson download page and submission passes validation checks
@@ -2030,16 +2030,16 @@ export interface ResourcesDownloadedProperties {
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/t2-C-8dEg/events/k9ZQJai7ws}
  */
-export function resourcesDownloaded(properties: ResourcesDownloadedProperties
-  ) {
+export function lessonResourcesDownloaded(
+  properties: LessonResourcesDownloadedProperties) {
   // assert properties
   if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "5e9c72d56565facb3dc07d5334a56ae0e3e20b12816e7ee49cee29c959401e3e", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "84351c039d1877736c62b6267e8a30464e1f3b9175e6ab576d8c033f893aaaea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
-    InternalAvoLogger.logEventSent("Resources Downloaded", {
+    InternalAvoLogger.logEventSent("Lesson Resources Downloaded", {
       "Key Stage Title": properties.keyStageTitle,
       "Key Stage Slug": properties.keyStageSlug,
       "Unit Name": properties.unitName,
@@ -2057,7 +2057,7 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
       }, {});
     if (__WEB_DEBUGGER__) {
       // Avo web debugger
-      _avo_debugger_log("k9ZQJai7ws", "Resources Downloaded", messages, [
+      _avo_debugger_log("k9ZQJai7ws", "Lesson Resources Downloaded", messages, [
       {id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle},
       {id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug},
       {id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName},
@@ -2086,8 +2086,12 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Lesson Name"] = properties.lessonName;
   eventProperties["Lesson Slug"] = properties.lessonSlug;
-  eventProperties["School URN"] = properties.schoolUrn;
-  eventProperties["School Name"] = properties.schoolName;
+  if (properties.schoolUrn !== undefined && properties.schoolUrn !== null) {
+    eventProperties["School URN"] = properties.schoolUrn;
+  }
+  if (properties.schoolName !== undefined && properties.schoolName !== null) {
+    eventProperties["School Name"] = properties.schoolName;
+  }
   eventProperties["School Option"] = properties.schoolOption;
   eventProperties["Resource Type"] = properties.resourceType;
   eventProperties["Analytics Use Case"] = properties.analyticsUseCase;
@@ -2099,7 +2103,7 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Resources Downloaded", {
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resources Downloaded", {
         "Key Stage Title": properties.keyStageTitle,
         "Key Stage Slug": properties.keyStageSlug,
         "Unit Name": properties.unitName,
@@ -2114,10 +2118,10 @@ export function resourcesDownloaded(properties: ResourcesDownloadedProperties
         "Resource Type": properties.resourceType,
         "Analytics Use Case": properties.analyticsUseCase,
         "Email Supplied": properties.emailSupplied,
-        }, "k9ZQJai7ws", "5e9c72d56565facb3dc07d5334a56ae0e3e20b12816e7ee49cee29c959401e3e");
+        }, "k9ZQJai7ws", "84351c039d1877736c62b6267e8a30464e1f3b9175e6ab576d8c033f893aaaea");
     }
     // destination PostHog
-    PostHog.logEvent("Resources Downloaded", (Object as any).assign({}, eventProperties));
+    PostHog.logEvent("Lesson Resources Downloaded", (Object as any).assign({}, eventProperties));
   } else {
     // do nothing
   }
@@ -3105,7 +3109,7 @@ export default {
   videoPaused,
   videoPlayed,
   videoFinished,
-  resourcesDownloaded,
+  lessonResourcesDownloaded,
   keyStageSelected,
   subjectSelected,
   unitSelected,
@@ -3121,4 +3125,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","resourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","webinarPageViewed","helpCentreSelected","curriculumMapDownloaded","downloadResourceButtonClicked","learningThemeSelected","tierSelected","pageView","resourceContainerExpanded"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","webinarPageViewed","helpCentreSelected","curriculumMapDownloaded","downloadResourceButtonClicked","learningThemeSelected","tierSelected","pageView","resourceContainerExpanded"]
