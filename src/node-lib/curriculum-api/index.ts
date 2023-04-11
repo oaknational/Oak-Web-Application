@@ -232,15 +232,15 @@ const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
     type: z.string(),
     quizType: z.string(),
     images: z
-      .union([
-        z.array(
+      .array(
+        z.union([
           z.object({
             title: z.string().nullable(),
             images: z.array(z.string()),
-          })
-        ),
-        z.array(z.string()),
-      ])
+          }),
+          z.string(),
+        ])
+      )
       .nullable(),
     feedbackCorrect: z.string().nullable(),
     feedbackIncorrect: z.string().nullable(),
