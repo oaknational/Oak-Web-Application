@@ -964,7 +964,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Ni9d8xYM3rkqhj1nPzwl",
+          "ac": "su4fOg0s8RfJ1amaFIxi",
           "br": "t2-C-8dEg",
           "en": env,
           "ev": eventId,
@@ -991,7 +991,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Ni9d8xYM3rkqhj1nPzwl",
+          "ac": "su4fOg0s8RfJ1amaFIxi",
           "br": "t2-C-8dEg",
           "en": env,
           "ty": type,
@@ -1091,22 +1091,22 @@ export type AnalyticsUseCaseValueType = AnalyticsUseCaseType[keyof AnalyticsUseC
 
 export const DownloadResourceButtonName = {
   'ALL': 'all',
-  'PRESENTATION': 'presentation',
   'WORKSHEET': 'worksheet',
   'STARTER_QUIZ': 'starter quiz',
   'EXIT_QUIZ': 'exit quiz',
+  'SLIDE_DECK': 'slide deck',
 } as const;
 export type DownloadResourceButtonNameType = typeof DownloadResourceButtonName;
 export type DownloadResourceButtonNameValueType = DownloadResourceButtonNameType[keyof DownloadResourceButtonNameType];
 
 export const ResourceType = {
-  'PRESENTATION': 'presentation',
-  'INTRO_QUIZ_QUESTIONS': 'intro-quiz-questions',
-  'INTRO_QUIZ_ANSWERS': 'intro-quiz-answers',
-  'EXIT_QUIZ_QUESTIONS': 'exit-quiz-questions',
-  'EXIT_QUIZ_ANSWERS': 'exit-quiz-answers',
-  'WORKSHEET_PDF': 'worksheet-pdf',
-  'WORKSHEET_PPTX': 'worksheet-pptx',
+  'SLIDE_DECK': 'slide deck',
+  'STARTER_QUIZ_QUESTIONS': 'starter quiz questions',
+  'STARTER_QUIZ_ANSWERS': 'starter quiz answers',
+  'EXIT_QUIZ_QUESTIONS': 'exit quiz questions',
+  'EXIT_QUIZ_ANSWERS': 'exit quiz answers',
+  'WORKSHEET_PDF': 'worksheet pdf',
+  'WORKSHEET_PPTX': 'worksheet pptx',
 } as const;
 export type ResourceTypeType = typeof ResourceType;
 export type ResourceTypeValueType = ResourceTypeType[keyof ResourceTypeType];
@@ -2037,7 +2037,7 @@ export function lessonResourcesDownloaded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "184a0dc2f63443a2ecf8425ce8d97e014ec227c88a01bafd0e2729f2cd141138", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "e43a34fc0f5b8dc358d81477fad8664897459deb65b5735f59dc5dd887e1a97d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Resources Downloaded", {
       "Key Stage Title": properties.keyStageTitle,
@@ -2114,7 +2114,7 @@ export function lessonResourcesDownloaded(
         "Resource Type": properties.resourceType,
         "Analytics Use Case": properties.analyticsUseCase,
         "Email Supplied": properties.emailSupplied,
-        }, "k9ZQJai7ws", "184a0dc2f63443a2ecf8425ce8d97e014ec227c88a01bafd0e2729f2cd141138");
+        }, "k9ZQJai7ws", "e43a34fc0f5b8dc358d81477fad8664897459deb65b5735f59dc5dd887e1a97d");
     }
     // destination PostHog
     PostHog.logEvent("Lesson Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -2704,7 +2704,7 @@ export function downloadResourceButtonClicked(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "2bebfef1938cb4a6cb5b26ff793b246e56c247abc2b8d24db3a7a2117bce0472", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "0n50tfMg2N", "6f3ebed49518712d4e95f911d90d3c62b209c9253ba314a5aec4d7d0a9fe77a0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Download Resource Button Clicked", {
       "Key Stage Title": properties.keyStageTitle,
@@ -2765,7 +2765,7 @@ export function downloadResourceButtonClicked(
         "Lesson Slug": properties.lessonSlug,
         "Download Resource Button Name": properties.downloadResourceButtonName,
         "Analytics Use Case": properties.analyticsUseCase,
-        }, "0n50tfMg2N", "2bebfef1938cb4a6cb5b26ff793b246e56c247abc2b8d24db3a7a2117bce0472");
+        }, "0n50tfMg2N", "6f3ebed49518712d4e95f911d90d3c62b209c9253ba314a5aec4d7d0a9fe77a0");
     }
     // destination PostHog
     PostHog.logEvent("Download Resource Button Clicked", (Object as any).assign({}, eventProperties));

@@ -263,7 +263,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 title={"Slide deck"}
                 trackingCallback={() => {
                   trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "presentation",
+                    downloadResourceButtonName: "slide deck",
                   });
                 }}
               >
