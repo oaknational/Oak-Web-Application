@@ -8,9 +8,11 @@ import LessonListPage, {
 } from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 
+const render = renderWithProviders();
+
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <LessonListPage
         curriculumData={teachersKeyStageSubjectUnitsLessonsFixture()}
       />
@@ -22,7 +24,7 @@ describe("Lesson listing page", () => {
   });
 
   test("it renders the correct number of lessons", () => {
-    const { getByText } = renderWithProviders(
+    const { getByText } = render(
       <LessonListPage
         curriculumData={teachersKeyStageSubjectUnitsLessonsFixture()}
       />

@@ -4,9 +4,10 @@ import teachersKeyStageSubjectUnitsFixture from "../../../node-lib/curriculum-ap
 
 import UnitList from ".";
 
+const render = renderWithProviders();
 describe("components/UnitList", () => {
   test("renders the list items", () => {
-    renderWithProviders(
+    render(
       <UnitList
         {...teachersKeyStageSubjectUnitsFixture()}
         paginationProps={mockPaginationProps}

@@ -1,3 +1,27 @@
+## [1.169.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.169.0...v1.169.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* improve query stringifier ([899c612](https://github.com/oaknational/Oak-Web-Application/commit/899c6123a515bf5ce62c6823b58a7f9f48bdbb0c))
+* search url should only include existing query params ([f07ee30](https://github.com/oaknational/Oak-Web-Application/commit/f07ee30a0e77667b49138a470a85b2d7ca3f9632))
+* **search:** fix teacher home link to search example ([a6e840b](https://github.com/oaknational/Oak-Web-Application/commit/a6e840b29c027e1c4ab406d9e2910f0915668789))
+
+# [1.169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.168.0...v1.169.0) (2023-04-11)
+
+
+### Features
+
+* **tier-subject-listing:** add subject and tier listing querys ([af6aa69](https://github.com/oaknational/Oak-Web-Application/commit/af6aa69ac7297b06621bcd54f21e6aa1b133da65))
+* **tier-subject-listing:** add subject and tier listing querys ([a86773e](https://github.com/oaknational/Oak-Web-Application/commit/a86773e5d62f51fa856aa80c1a0f4d602b6f8e8f))
+
+# [1.168.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.167.0...v1.168.0) (2023-04-06)
+
+
+### Features
+
+* **programmes:** add programmes query ([f0999e6](https://github.com/oaknational/Oak-Web-Application/commit/f0999e679984739223034ad5b7f4758ea3fd918b))
+
 # [1.167.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.166.0...v1.167.0) (2023-04-05)
 
 
