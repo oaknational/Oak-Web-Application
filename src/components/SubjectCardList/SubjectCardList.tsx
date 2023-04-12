@@ -22,7 +22,10 @@ const SubjectCardList: FC<SubjectCardListProps> = ({
             key={`subject-list-item-${programmes[0].slug}`}
             $colSpan={[6, 3, 2]}
           >
-            <SubjectCardListItem programmes={programmes} isAvailable={isAvailable} />
+            <SubjectCardListItem
+              programmes={programmes}
+              isAvailable={isAvailable}
+            />
           </GridArea>
         );
       })}

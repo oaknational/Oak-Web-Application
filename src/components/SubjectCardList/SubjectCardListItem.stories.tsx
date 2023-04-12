@@ -17,8 +17,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const SubjectCardListItem = Template.bind({});
 
 SubjectCardListItem.args = {
-  programmes: 
-    subjectPagePropsFixture().programmesBySubjectAvailable[0],
+  programmes: subjectPagePropsFixture().programmesBySubjectAvailable[0],
   isAvailable: true,
 };
 

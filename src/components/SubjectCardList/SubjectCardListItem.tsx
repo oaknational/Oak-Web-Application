@@ -35,8 +35,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const firstProgramme = programmes[0];
   const { slug, title, keyStageSlug } = firstProgramme;
   const unitCount = programmes.reduce((acc, cur) => {
-      return acc + (cur.unitCount || 0);
-    }, 0)
+    return acc + (cur.unitCount || 0);
+  }, 0);
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
