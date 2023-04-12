@@ -25,7 +25,7 @@ describe("getFormattedDetailsForTracking", () => {
       schoolOption: "Not listed",
       schoolName: "",
       schoolUrn: 0,
-      selectedResourcesForTracking: ["slide deck", "worksheet-pdf"],
+      selectedResourcesForTracking: ["slide deck", "worksheet pdf"],
     });
   });
 
@@ -39,7 +39,7 @@ describe("getFormattedDetailsForTracking", () => {
       schoolOption: "Selected school",
       schoolName: "London High School",
       schoolUrn: 123456,
-      selectedResourcesForTracking: ["slide deck", "worksheet-pdf"],
+      selectedResourcesForTracking: ["slide deck", "worksheet pdf"],
     });
   });
 

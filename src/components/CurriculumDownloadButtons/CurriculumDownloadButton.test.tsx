@@ -129,7 +129,7 @@ describe("CurriculumDownloadButton", () => {
       analyticsUseCase: ["Teacher"],
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
-      pageName: ["Unit Listing"],
+      pageName: ["Lesson Listing"],
       subjectSlug: "maths",
       subjectTitle: "Maths",
     });
