@@ -1,3 +1,9 @@
+/**
+ * This file contains imports, generates types for, and exports image data
+ * generated during the build steps. @see /scripts/build/image_data
+ * Other files which consume this image data should import from this file,
+ * rather than importing directly from ./generated
+ */
 import { imageBuilder } from "../components/CMSImage/sanityImageBuilder";
 import theme from "../styles/theme/default.theme";
 
