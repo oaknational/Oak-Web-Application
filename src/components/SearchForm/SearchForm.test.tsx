@@ -1,90 +1,100 @@
 /**
  * @jest-environment jsdom
  */
-import React, { FC } from "react";
-import { render, screen } from "@testing-library/react";
+import React from "react";
 import userEvent from "@testing-library/user-event";
-import { ThemeProvider } from "styled-components";
 
-import { SearchProvider } from "../../context/Search/SearchContext";
-import theme from "../../styles/theme";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
 import SearchForm from "./SearchForm";
 
-const Providers: FC<{ children?: React.ReactNode }> = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <SearchProvider>{children}</SearchProvider>
-    </ThemeProvider>
-  );
-};
+const handleSubmit = jest.fn();
 
-const setTextSpy = jest.fn();
-const setPushSpy = jest.fn();
+const providers = { theme: {} };
+const render = renderWithProviders(providers);
 
-jest.mock("next/router", () => ({
-  __esModule: true,
-  ...jest.requireActual("next/router"),
-  useRouter: () => ({
-    pathname: "/beta/teachers",
-    push: setPushSpy,
-    query: {},
-  }),
-}));
-
-jest.mock("../../context/Search/SearchContext", () => ({
-  __esModule: true,
-  ...jest.requireActual("../../context/Search/SearchContext"),
-  useSearchQuery: () => ({
-    text: "",
-    setText: setTextSpy,
-    keyStages: new Set(),
-    setKeyStages: jest.fn(),
-  }),
-}));
-
-describe("The <SearchForm> Component", () => {
+describe("<SearchForm />", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    jest.resetModules();
   });
 
   it("renders", () => {
-    render(<SearchForm />, { wrapper: Providers });
-    const button = screen.getByRole("button");
+    const { getByRole } = render(
+      <SearchForm searchTerm="" handleSubmit={handleSubmit} />
+    );
+    const button = getByRole("button");
     expect(button).toBeInTheDocument();
   });
 
-  it("updates the text of the search context", async () => {
-    const text = "Macbeth";
-    render(<SearchForm />, { wrapper: Providers });
+  it("typing text and clicking button submit is handled correctly", async () => {
+    const searchTerm = "Macbeth";
+    const { getByRole } = render(
+      <SearchForm searchTerm="" handleSubmit={handleSubmit} />
+    );
     const user = userEvent.setup();
 
-    const searchField = screen.getByRole("searchbox");
+    const searchField = getByRole("searchbox");
     await user.click(searchField);
-    await user.keyboard(text);
+    await user.keyboard(searchTerm);
 
-    const searchButton = screen.getByRole("button");
+    const searchButton = getByRole("button");
     await user.click(searchButton);
 
-    expect(setTextSpy).toHaveBeenCalledWith(text);
+    expect(handleSubmit).toHaveBeenCalledWith({ searchTerm });
   });
 
-  it("navigates to search page", async () => {
-    const text = "Macbeth";
-    render(<SearchForm />, { wrapper: Providers });
+  it("searchTerm prop acts as the initial value for the search input", async () => {
+    const initialText = "Mac";
+    const addedText = "be";
+    const { getByRole } = render(
+      <SearchForm searchTerm={initialText} handleSubmit={handleSubmit} />
+    );
     const user = userEvent.setup();
 
-    const searchField = screen.getByRole("searchbox");
+    const searchField = getByRole("searchbox");
     await user.click(searchField);
-    await user.keyboard(text);
+    await user.keyboard(addedText);
 
-    const searchButton = screen.getByRole("button");
+    const searchButton = getByRole("button");
     await user.click(searchButton);
 
-    expect(setPushSpy).toHaveBeenCalledWith({
-      pathname: "/beta/teachers/search",
-      query: { term: text },
+    expect(handleSubmit).toHaveBeenCalledWith({
+      searchTerm: initialText + addedText,
     });
+  });
+
+  it("{Enter} submits the form if search input has focus", async () => {
+    const { getByRole } = render(
+      <SearchForm searchTerm={""} handleSubmit={handleSubmit} />
+    );
+    const user = userEvent.setup();
+    const searchField = getByRole("searchbox");
+    await user.click(searchField);
+    await user.keyboard("{Enter}");
+
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  it("{Enter} does not submit the form if search if inputs don't have focus", async () => {
+    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    const user = userEvent.setup();
+    await user.keyboard("{Enter}");
+
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
+
+  it("search input is first tabbable element", async () => {
+    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    const user = userEvent.setup();
+    await user.keyboard("{Enter}");
+
+    expect(handleSubmit).not.toHaveBeenCalled();
+  });
+  it("submit button is second tabbable element", async () => {
+    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    const user = userEvent.setup();
+    await user.keyboard("{Enter}");
+
+    expect(handleSubmit).not.toHaveBeenCalled();
   });
 });

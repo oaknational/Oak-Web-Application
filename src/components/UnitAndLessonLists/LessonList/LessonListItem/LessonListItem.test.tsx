@@ -34,20 +34,22 @@ jest.mock("../../../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const render = renderWithProviders();
+
 describe("Lesson List Item", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("It shows lesson title", () => {
-    const { getByRole } = renderWithProviders(<LessonListItem {...props} />);
+    const { getByRole } = render(<LessonListItem {...props} />);
     const lessonHeading = getByRole("heading", { level: 3 });
 
     expect(lessonHeading).toBeInTheDocument();
   });
 
   test("It shows lesson description", () => {
-    const { getAllByText } = renderWithProviders(<LessonListItem {...props} />);
+    const { getAllByText } = render(<LessonListItem {...props} />);
 
     const description = getAllByText("In this lesson")[0];
 
@@ -55,7 +57,7 @@ describe("Lesson List Item", () => {
   });
 
   test("It is a link to the lesson overview page", () => {
-    const { getByText } = renderWithProviders(<LessonListItem {...props} />);
+    const { getByText } = render(<LessonListItem {...props} />);
 
     expect(getByText("Macbeth").closest("a")).toHaveAttribute(
       "href",
@@ -63,7 +65,7 @@ describe("Lesson List Item", () => {
     );
   });
   test("It renders expired message is expired lesson", () => {
-    const { getByText } = renderWithProviders(
+    const { getByText } = render(
       <LessonListItem {...{ ...props, expired: true }} />
     );
 
@@ -72,7 +74,7 @@ describe("Lesson List Item", () => {
     ).toBeInTheDocument();
   });
   test("It calls tracking.lessonSelected with correct props when clicked", async () => {
-    const { getByText } = renderWithProviders(<LessonListItem {...props} />);
+    const { getByText } = render(<LessonListItem {...props} />);
 
     const lesson = getByText("Macbeth");
 

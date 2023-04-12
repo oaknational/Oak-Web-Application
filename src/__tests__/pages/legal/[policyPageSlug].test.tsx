@@ -6,6 +6,7 @@ import Policies, {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { PolicyPage } from "../../../common-lib/cms-types";
+import { mockSeoResult } from "../../__helpers__/cms";
 
 const testPolicyPage: PolicyPage = {
   title: "Privacy Policy",
@@ -44,9 +45,11 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
     }));
   });
 
+  const render = renderWithProviders();
+
   describe("PolicyPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(<Policies policy={testSerializedPolicyPage} />);
+      render(<Policies policy={testSerializedPolicyPage} />);
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -56,7 +59,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
     });
 
     it("Formats the last updated at date", async () => {
-      renderWithProviders(<Policies policy={testSerializedPolicyPage} />);
+      render(<Policies policy={testSerializedPolicyPage} />);
 
       await waitFor(() => {
         const dateElem = screen.getByText(/1 December 2022/);
@@ -64,13 +67,20 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
       });
     });
 
-    describe.skip("SEO", () => {
+    describe("SEO", () => {
       it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <Policies policy={testSerializedPolicyPage} />
         );
 
-        expect(seo).toEqual({});
+        expect(seo).toEqual({
+          ...mockSeoResult,
+          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+          title: "Privacy Policy | NEXT_PUBLIC_SEO_APP_NAME",
+          ogTitle: "Privacy Policy | NEXT_PUBLIC_SEO_APP_NAME",
+        });
       });
     });
   });

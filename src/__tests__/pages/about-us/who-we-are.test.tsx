@@ -116,7 +116,9 @@ describe("pages/about/who-we-are.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(<AboutWhoWeAre pageData={testAboutWhoWeArePageData} />);
+    renderWithProviders()(
+      <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />
+    );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -127,7 +129,7 @@ describe("pages/about/who-we-are.tsx", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />
       );
 
