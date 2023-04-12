@@ -18,7 +18,7 @@ const getSchoolDetailsForTracking = ({ school }: { school: string }) => {
       const schoolName = school.split("-")[1] || "";
       return schoolName;
     } else {
-      return null;
+      return "";
     }
   };
 
@@ -27,7 +27,7 @@ const getSchoolDetailsForTracking = ({ school }: { school: string }) => {
       const schoolUrn = Number(school.split("-")[0]) || 0;
       return schoolUrn;
     } else {
-      return null;
+      return 0;
     }
   };
 

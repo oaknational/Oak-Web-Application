@@ -8,8 +8,8 @@ describe("getSchoolDetailsForTracking", () => {
 
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Homeschool",
-      schoolName: null,
-      schoolUrn: null,
+      schoolName: "",
+      schoolUrn: 0,
     });
   });
 
@@ -20,8 +20,8 @@ describe("getSchoolDetailsForTracking", () => {
 
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Not listed",
-      schoolName: null,
-      schoolUrn: null,
+      schoolName: "",
+      schoolUrn: 0,
     });
   });
 

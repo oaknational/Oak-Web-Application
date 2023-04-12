@@ -964,7 +964,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "JlbLY7ZLOl7DZrjumdh6",
+          "ac": "Ni9d8xYM3rkqhj1nPzwl",
           "br": "t2-C-8dEg",
           "en": env,
           "ev": eventId,
@@ -991,7 +991,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "JlbLY7ZLOl7DZrjumdh6",
+          "ac": "Ni9d8xYM3rkqhj1nPzwl",
           "br": "t2-C-8dEg",
           "en": env,
           "ty": type,
@@ -1998,8 +1998,8 @@ export interface LessonResourcesDownloadedProperties {
   subjectSlug: string;
   lessonName: string;
   lessonSlug: string;
-  schoolUrn: number | null | undefined;
-  schoolName: string | null | undefined;
+  schoolUrn: number;
+  schoolName: string;
   schoolOption: SchoolOptionValueType;
   resourceType: ResourceTypeValueType[];
   analyticsUseCase: AnalyticsUseCaseValueType[];
@@ -2037,7 +2037,7 @@ export function lessonResourcesDownloaded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "84351c039d1877736c62b6267e8a30464e1f3b9175e6ab576d8c033f893aaaea", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "184a0dc2f63443a2ecf8425ce8d97e014ec227c88a01bafd0e2729f2cd141138", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Resources Downloaded", {
       "Key Stage Title": properties.keyStageTitle,
@@ -2086,12 +2086,8 @@ export function lessonResourcesDownloaded(
   eventProperties["Subject Slug"] = properties.subjectSlug;
   eventProperties["Lesson Name"] = properties.lessonName;
   eventProperties["Lesson Slug"] = properties.lessonSlug;
-  if (properties.schoolUrn !== undefined && properties.schoolUrn !== null) {
-    eventProperties["School URN"] = properties.schoolUrn;
-  }
-  if (properties.schoolName !== undefined && properties.schoolName !== null) {
-    eventProperties["School Name"] = properties.schoolName;
-  }
+  eventProperties["School URN"] = properties.schoolUrn;
+  eventProperties["School Name"] = properties.schoolName;
   eventProperties["School Option"] = properties.schoolOption;
   eventProperties["Resource Type"] = properties.resourceType;
   eventProperties["Analytics Use Case"] = properties.analyticsUseCase;
@@ -2118,7 +2114,7 @@ export function lessonResourcesDownloaded(
         "Resource Type": properties.resourceType,
         "Analytics Use Case": properties.analyticsUseCase,
         "Email Supplied": properties.emailSupplied,
-        }, "k9ZQJai7ws", "84351c039d1877736c62b6267e8a30464e1f3b9175e6ab576d8c033f893aaaea");
+        }, "k9ZQJai7ws", "184a0dc2f63443a2ecf8425ce8d97e014ec227c88a01bafd0e2729f2cd141138");
     }
     // destination PostHog
     PostHog.logEvent("Lesson Resources Downloaded", (Object as any).assign({}, eventProperties));

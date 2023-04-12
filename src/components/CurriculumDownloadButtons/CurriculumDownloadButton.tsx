@@ -56,7 +56,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
       analyticsUseCase,
-      pageName: ["Unit Listing"],
+      pageName: lessonPage ? ["Lesson Listing"] : ["Unit Listing"],
     });
   };
 

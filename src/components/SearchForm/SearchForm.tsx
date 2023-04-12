@@ -103,6 +103,7 @@ const SearchForm: FC = () => {
             value={value}
             type="search"
             onChange={onTextChange}
+            onBlur={() => console.log("blur")}
             placeholder="Search"
           />
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
