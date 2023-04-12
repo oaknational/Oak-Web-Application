@@ -93,7 +93,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
                   <OakLink
                     page={"beta-search"}
-                    query={{ term: "a+midsummer+nights+dream" }}
+                    query={{ term: "a midsummer nights dream" }}
                     $font="heading-7"
                   >
                     A Midsummer Night's Dream
