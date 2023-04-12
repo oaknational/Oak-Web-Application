@@ -17,6 +17,8 @@ import { mockSeo, portableTextFromString } from "../__helpers__/cms";
 
 jest.mock("../../node-lib/cms");
 
+const render = renderWithProviders();
+
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 const pageData = {
@@ -29,7 +31,7 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("pages/index.tsx", () => {
   it("Renders correct title and summary", () => {
-    renderWithProviders(<Home pageData={pageData} posts={[]} />);
+    render(<Home pageData={pageData} posts={[]} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Oak");
@@ -39,7 +41,7 @@ describe("pages/index.tsx", () => {
   });
 
   it("Renders a link to the blog list", () => {
-    renderWithProviders(<Home pageData={pageData} posts={[]} />);
+    render(<Home pageData={pageData} posts={[]} />);
 
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
@@ -66,7 +68,7 @@ describe("pages/index.tsx", () => {
       },
     ] as SerializedPost[];
 
-    renderWithProviders(<Home pageData={pageData} posts={mockPosts} />);
+    render(<Home pageData={pageData} posts={mockPosts} />);
 
     const list = screen
       .getAllByRole("list")
@@ -88,7 +90,7 @@ describe("pages/index.tsx", () => {
 
   describe.skip("SEO", () => {
     it("renders the correct SEO details", () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />
       );
 
@@ -96,7 +98,7 @@ describe("pages/index.tsx", () => {
     });
 
     it("renders the correct SEO details from the CMS", () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />
       );
 

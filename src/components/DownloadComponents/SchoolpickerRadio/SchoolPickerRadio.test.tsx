@@ -16,23 +16,23 @@ const props = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("SchoolPickerRadio", () => {
   it("Renders a school picker", async () => {
-    renderWithProviders(<SchoolPickerRadio {...props} />);
+    render(<SchoolPickerRadio {...props} />);
 
     expect(screen.getByTestId("search-combobox-input")).toBeInTheDocument();
   });
 
   it("Renders a radio groups", async () => {
-    renderWithProviders(<SchoolPickerRadio {...props} />);
+    render(<SchoolPickerRadio {...props} />);
 
     expect(screen.getAllByRole("radio")).toHaveLength(2);
   });
 
   it("clears school picker inputValue if radio button is clicked", async () => {
-    const { getByTestId } = renderWithProviders(
-      <SchoolPickerRadio {...props} />
-    );
+    const { getByTestId } = render(<SchoolPickerRadio {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy");
@@ -55,9 +55,7 @@ describe("SchoolPickerRadio", () => {
   //    * @todo find a way to test that the radio is cleared when school is selected
   //    */
   it.skip("clears selected radio if school is selected from school picker", async () => {
-    const { getByTestId, rerender } = renderWithProviders(
-      <SchoolPickerRadio {...props} />
-    );
+    const { getByTestId, rerender } = render(<SchoolPickerRadio {...props} />);
 
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
 
@@ -84,7 +82,7 @@ describe("SchoolPickerRadio", () => {
   });
 
   it("calls onSchoolPickerInputChange ", async () => {
-    const { rerender } = renderWithProviders(<SchoolPickerRadio {...props} />);
+    const { rerender } = render(<SchoolPickerRadio {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Do");
@@ -98,7 +96,7 @@ describe("SchoolPickerRadio", () => {
     expect(input.value).toBe("Dorothy Stringer");
   });
   it("calls onSchoolChange when a school is selected ", async () => {
-    const { rerender } = renderWithProviders(<SchoolPickerRadio {...props} />);
+    const { rerender } = render(<SchoolPickerRadio {...props} />);
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {

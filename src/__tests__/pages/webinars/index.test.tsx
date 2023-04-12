@@ -64,6 +64,8 @@ const webinarsListingPage = jest.fn(() => testPageData);
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -79,7 +81,7 @@ describe("pages/webinar/index.tsx", () => {
 
   describe("WebinarListingPage", () => {
     it("Renders a link to each webinar ", () => {
-      renderWithProviders(
+      render(
         <WebinarListingPage
           webinars={[
             testSerializedWebinarPreview,
@@ -103,7 +105,7 @@ describe("pages/webinar/index.tsx", () => {
 
     describe("SEO", () => {
       it("renders the correct SEO details from the CMS", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <WebinarListingPage
             webinars={[
               testSerializedWebinarPreview,
@@ -132,7 +134,7 @@ describe("pages/webinar/index.tsx", () => {
       });
 
       it("renders the correct SEO fallbacks", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <WebinarListingPage
             webinars={[
               testSerializedWebinarPreview,

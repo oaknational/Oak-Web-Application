@@ -1,4 +1,4 @@
-import { FC, forwardRef, ChangeEvent } from "react";
+import { FC, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 
@@ -145,77 +145,75 @@ const CheckboxLabelText = styled.span`
   font-weight: 400;
 `;
 
-const Checkbox: FC<CheckboxProps> = forwardRef<HTMLInputElement, CheckboxProps>(
-  (props) => {
-    const {
-      labelText,
-      checked = false,
-      disabled = false,
-      onChange,
-      id,
-      name,
-      ariaLabel,
-      required = false,
-      error,
-      hasError = false,
-      children,
-      variant,
-      inputRef,
-      onBlur,
-      ...spacingProps
-    } = props;
+const Checkbox: FC<CheckboxProps> = (props) => {
+  const {
+    labelText,
+    checked = false,
+    disabled = false,
+    onChange,
+    id,
+    name,
+    ariaLabel,
+    required = false,
+    error,
+    hasError = false,
+    children,
+    variant,
+    inputRef,
+    onBlur,
+    ...spacingProps
+  } = props;
 
-    const errorId = `${id}-error`;
+  const errorId = `${id}-error`;
 
-    return (
-      <>
-        <CheckboxLabel
-          htmlFor={id}
+  return (
+    <>
+      <CheckboxLabel
+        htmlFor={id}
+        checked={checked}
+        disabled={disabled}
+        variant={variant}
+        hasError={hasError}
+        {...spacingProps}
+      >
+        <ScreenReaderCheckbox
+          type="checkbox"
+          id={id}
+          value={id}
+          name={name}
+          onChange={onChange}
           checked={checked}
           disabled={disabled}
+          aria-label={ariaLabel ? ariaLabel : labelText}
+          required={required}
+          aria-invalid={hasError}
+          aria-describedby={error ? errorId : undefined}
+          ref={inputRef}
+          onBlur={onBlur}
+        />
+        <VisualCheckbox
+          checked={checked}
           variant={variant}
           hasError={hasError}
-          {...spacingProps}
-        >
-          <ScreenReaderCheckbox
-            type="checkbox"
-            id={id}
-            value={id}
-            name={name}
-            onChange={(e) => onChange(e)}
-            checked={checked}
-            disabled={disabled}
-            aria-label={ariaLabel ? ariaLabel : labelText}
-            required={required}
-            aria-invalid={hasError}
-            aria-describedby={error ? errorId : undefined}
-            ref={inputRef}
-            onBlur={onBlur}
-          />
-          <VisualCheckbox
-            checked={checked}
-            variant={variant}
-            hasError={hasError}
-          />
-          {/* card checkbox */}
-          {!labelText && variant === "cardCheckbox" && children}
-          {/* basic label checkbox */}
+        />
+        {/* card checkbox */}
+        {!labelText && variant === "cardCheckbox" && children}
+        {/* basic label checkbox */}
 
-          {labelText && variant !== "cardCheckbox" && (
-            <>
-              <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
-              <FocusUnderline $color={"teachersYellow"} />
-            </>
-          )}
-        </CheckboxLabel>
-        {variant !== "terms" && (
-          <FieldError id={errorId} withoutMarginBottom>
-            {error}
-          </FieldError>
+        {labelText && variant !== "cardCheckbox" && (
+          <>
+            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+            <FocusUnderline $color={"teachersYellow"} />
+          </>
         )}
-      </>
-    );
-  }
-);
+      </CheckboxLabel>
+      {variant !== "terms" && (
+        <FieldError id={errorId} withoutMarginBottom>
+          {error}
+        </FieldError>
+      )}
+    </>
+  );
+};
 
 export default Checkbox;

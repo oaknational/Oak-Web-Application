@@ -60,6 +60,8 @@ const blogListingPage = jest.fn(() => testPageData);
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("pages/blog/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -75,7 +77,7 @@ describe("pages/blog/index.tsx", () => {
 
   describe("PostListingPage", () => {
     it("Renders a link to each blog ", () => {
-      renderWithProviders(
+      render(
         <PostListingPage
           blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
           pageData={testPageData}
@@ -97,7 +99,7 @@ describe("pages/blog/index.tsx", () => {
 
     describe("SEO", () => {
       it("renders the correct SEO details from the CMS", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={{
@@ -123,7 +125,7 @@ describe("pages/blog/index.tsx", () => {
       });
 
       it("renders the correct SEO fallbacks", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
             pageData={testPageData}

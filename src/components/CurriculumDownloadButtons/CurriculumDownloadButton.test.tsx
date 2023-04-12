@@ -19,13 +19,15 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const render = renderWithProviders();
+
 describe("CurriculumDownloadButton", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("renders a download button link with href corresponding to passed in props", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <CurriculumDownloadButton
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -45,7 +47,7 @@ describe("CurriculumDownloadButton", () => {
   });
 
   test("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
-    renderWithProviders(
+    render(
       <CurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"English"}
@@ -71,7 +73,7 @@ describe("CurriculumDownloadButton", () => {
   });
 
   test("renders a tiered download button link from unit page with tiers", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <CurriculumDownloadButton
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -92,7 +94,7 @@ describe("CurriculumDownloadButton", () => {
   });
 
   test("renders a button to download a zip file when on a tiered lesson page", () => {
-    renderWithProviders(
+    render(
       <CurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
@@ -107,7 +109,7 @@ describe("CurriculumDownloadButton", () => {
   });
 
   test("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
-    renderWithProviders(
+    render(
       <CurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
