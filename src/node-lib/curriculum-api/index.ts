@@ -46,7 +46,7 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L, V, W>(res: {
+const transformMVCase = <K, S, T, U, L, V, W, R1, R2>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
@@ -54,6 +54,8 @@ const transformMVCase = <K, S, T, U, L, V, W>(res: {
   mv_lessons?: L;
   mv_learning_themes?: V;
   mv_downloads?: W;
+  mv_programmes_unavailable?: R1;
+  mv_programmes_available?: R2;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -63,6 +65,8 @@ const transformMVCase = <K, S, T, U, L, V, W>(res: {
     lessons: res.mv_lessons,
     learningThemes: res.mv_learning_themes,
     downloads: res.mv_downloads,
+    programmesUnavailable: res.mv_programmes_unavailable,
+    programmesAvailable: res.mv_programmes_available,
   };
 };
 
@@ -313,6 +317,25 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
+const programmesData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  keyStageSlug: z.string(),
+  // keyStageTitle: z.string(), // todo
+  unitCount: z.number().nullable(),
+  // activeUnitCount: z.number().nullable(), //todo
+  // lessonCount: z.number().nullable(), //todo
+  programmeSlug: z.string(),
+  tierSlug: z.string().nullable(),
+});
+
+const subjectListingData = z.object({
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  programmesAvailable: z.array(programmesData),
+  programmesUnavailable: z.array(programmesData),
+});
+
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type TeachersKeyStageSubjectsData = z.infer<
   typeof teachersKeyStageSubjectsData
@@ -340,6 +363,8 @@ export type TeachersLessonOverviewData = z.infer<
 export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
   typeof teachersKeyStageSubjectUnitsLessonsDownloadsData
 >;
+export type ProgrammesData = z.infer<typeof programmesData>;
+export type SubjectListingData = z.infer<typeof subjectListingData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -385,6 +410,23 @@ const curriculumApi = {
     const res = await sdk.teachersHomePage();
 
     return teachersHomePageData.parse(transformMVCase(res));
+  },
+  subjectListing: async (...args: Parameters<typeof sdk.subjectListing>) => {
+    const res = await sdk.subjectListing(...args);
+    const {
+      keyStages = [],
+      programmesAvailable,
+      programmesUnavailable,
+    } = transformMVCase(res);
+
+    const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
+
+    return subjectListingData.parse({
+      keyStageSlug: keyStage.slug,
+      keyStageTitle: keyStage.title,
+      programmesAvailable,
+      programmesUnavailable,
+    });
   },
   teachersKeyStageSubjects: async (
     ...args: Parameters<typeof sdk.teachersKeyStageSubjects>

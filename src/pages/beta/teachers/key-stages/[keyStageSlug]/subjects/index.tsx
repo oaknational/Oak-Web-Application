@@ -1,5 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import { Dictionary, groupBy } from "lodash";
 
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
@@ -7,7 +8,7 @@ import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
 import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
 import { Heading } from "../../../../../../components/Typography";
 import curriculumApi, {
-  TeachersKeyStageSubjectsData,
+  ProgrammesData,
 } from "../../../../../../node-lib/curriculum-api";
 import {
   decorateWithIsr,
@@ -18,12 +19,21 @@ import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 
 export type KeyStagePageProps = {
-  curriculumData: TeachersKeyStageSubjectsData;
+  keyStageTitle: string;
+  keyStageSlug: string;
+};
+export type ProgrammesArray = [ProgrammesData, ...ProgrammesData[]];
+export type SubjectByProgramme = Dictionary<ProgrammesArray>;
+export type ProgrammeProps = {
+  programmesBySubjectAvailable: SubjectByProgramme;
+  programmesBySubjectUnavailable: SubjectByProgramme;
 };
 
-const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
-  const { curriculumData } = props;
-  const { keyStageSlug, keyStageTitle } = curriculumData;
+const KeyStageListPage: NextPage<KeyStagePageProps & ProgrammeProps> = (
+  props
+) => {
+  const { keyStageSlug, keyStageTitle } = props;
+
   return (
     <AppLayout
       seoProps={{
@@ -49,10 +59,10 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
           />
         </Box>
         <Heading tag={"h1"} $font={"heading-4"}>
-          {curriculumData.keyStageTitle}
+          {keyStageTitle}
         </Heading>
       </MaxWidth>
-      <SubjectListingPage subjects={curriculumData.subjects} />
+      <SubjectListingPage {...props} />
     </AppLayout>
   );
 };
@@ -96,13 +106,32 @@ export const getStaticProps: GetStaticProps<
     throw new Error("No keyStageSlug");
   }
 
-  const curriculumData = await curriculumApi.teachersKeyStageSubjects({
+  const curriculumData = await curriculumApi.subjectListing({
     keyStageSlug: context.params?.keyStageSlug,
   });
 
+  const {
+    programmesAvailable,
+    programmesUnavailable,
+    keyStageSlug,
+    keyStageTitle,
+  } = await curriculumData;
+
+  const programmesBySubjectAvailable = groupBy(
+    programmesAvailable,
+    (programme) => programme.slug
+  );
+  const programmesBySubjectUnavailable = groupBy(
+    programmesUnavailable,
+    (programme) => programme.slug
+  );
+
   const results = {
     props: {
-      curriculumData,
+      keyStageSlug,
+      keyStageTitle,
+      programmesBySubjectAvailable,
+      programmesBySubjectUnavailable,
     },
   };
 

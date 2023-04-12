@@ -1,22 +1,31 @@
 import { FC } from "react";
 
 import useTrackPageView from "../../hooks/useTrackPageView";
-import { TeachersKeyStageSubjectsData } from "../../node-lib/curriculum-api";
+import {
+  ProgrammeProps,
+  ProgrammesArray,
+  SubjectByProgramme,
+} from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import SubjectCardList from "../SubjectCardList/SubjectCardList";
 import { Heading } from "../Typography";
 
-type SubjectListingProps = {
-  subjects: TeachersKeyStageSubjectsData["subjects"];
+export const getProgrammesBySubjectValues = (
+  programmes: SubjectByProgramme
+): ProgrammesArray[] => {
+  return Object.values(programmes);
 };
 
-const SubjectListingPage: FC<SubjectListingProps> = (props) => {
-  const { subjects } = props;
+const SubjectListingPage: FC<ProgrammeProps> = (props) => {
+  const { programmesBySubjectAvailable, programmesBySubjectUnavailable } =
+    props;
 
-  const availableSubjects = subjects.filter((subject) => subject.lessonCount);
-  const unavailableSubjects = subjects.filter(
-    (subject) => !subject.lessonCount
+  const subjectsAvailableValues = getProgrammesBySubjectValues(
+    programmesBySubjectAvailable
+  );
+  const subjectsUnavailableValues = getProgrammesBySubjectValues(
+    programmesBySubjectUnavailable
   );
 
   useTrackPageView({ pageName: "Subject Listing" });
@@ -25,18 +34,24 @@ const SubjectListingPage: FC<SubjectListingProps> = (props) => {
     <Flex $flexDirection={"column"}>
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Flex $pv={20} $font={"body-2"}>
-          {availableSubjects.length} subjects
+          {subjectsAvailableValues.length} subjects
         </Flex>
         <Heading $font={"heading-5"} tag={"h5"} $mb={30}>
           All subjects
         </Heading>
-        <SubjectCardList subjects={availableSubjects} />
-        {unavailableSubjects.length > 0 && (
+        <SubjectCardList
+          subjects={subjectsAvailableValues}
+          isAvailable={true}
+        />
+        {subjectsUnavailableValues.length > 0 && (
           <>
             <Heading $font={"heading-7"} tag={"h6"} $mv={16}>
               Coming soon
             </Heading>
-            <SubjectCardList subjects={unavailableSubjects} />
+            <SubjectCardList
+              subjects={subjectsUnavailableValues}
+              isAvailable={false}
+            />
           </>
         )}
       </MaxWidth>
