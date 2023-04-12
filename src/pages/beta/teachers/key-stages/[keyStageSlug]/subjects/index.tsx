@@ -1,6 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { Dictionary, groupBy } from "lodash";
+import { groupBy } from "lodash";
 
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
@@ -22,14 +22,13 @@ export type KeyStagePageProps = {
   keyStageTitle: string;
   keyStageSlug: string;
 };
-export type ProgrammesArray = [ProgrammesData, ...ProgrammesData[]];
-export type SubjectByProgramme = Dictionary<ProgrammesArray>;
+export type ProgrammesBySubject = [ProgrammesData, ...ProgrammesData[]];
 export type ProgrammeProps = {
-  programmesBySubjectAvailable: SubjectByProgramme;
-  programmesBySubjectUnavailable: SubjectByProgramme;
+  programmesBySubjectAvailable: ProgrammesBySubject[];
+  programmesBySubjectUnavailable: ProgrammesBySubject[];
 };
 
-const KeyStageListPage: NextPage<KeyStagePageProps & ProgrammeProps> = (
+const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
   props
 ) => {
   const { keyStageSlug, keyStageTitle } = props;
@@ -115,15 +114,13 @@ export const getStaticProps: GetStaticProps<
     programmesUnavailable,
     keyStageSlug,
     keyStageTitle,
-  } = await curriculumData;
+  } = curriculumData;
 
-  const programmesBySubjectAvailable = groupBy(
-    programmesAvailable,
-    (programme) => programme.slug
+  const programmesBySubjectAvailable = Object.values(
+    groupBy(programmesAvailable, (programme) => programme.slug)
   );
-  const programmesBySubjectUnavailable = groupBy(
-    programmesUnavailable,
-    (programme) => programme.slug
+  const programmesBySubjectUnavailable = Object.values(
+    groupBy(programmesUnavailable, (programme) => programme.slug)
   );
 
   const results = {
@@ -139,4 +136,4 @@ export const getStaticProps: GetStaticProps<
   return resultsWithIsr;
 };
 
-export default KeyStageListPage;
+export default SubjectListing;

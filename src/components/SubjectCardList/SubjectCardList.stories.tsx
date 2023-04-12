@@ -1,7 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import subjectPagePropsFixture from "../../node-lib/curriculum-api/fixtures/subjectPageProps";
-import { getProgrammesBySubjectValues } from "../pages/SubjectListing.page";
 
 import Component from "./SubjectCardList";
 
@@ -18,17 +17,13 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const SubjectCardList = Template.bind({});
 
 SubjectCardList.args = {
-  subjects: getProgrammesBySubjectValues(
-    subjectPagePropsFixture().programmesBySubjectAvailable
-  ),
+  subjects:subjectPagePropsFixture().programmesBySubjectAvailable,
   isAvailable: true,
 };
 
 export const SubjectCardListUnavailable = Template.bind({});
 
 SubjectCardListUnavailable.args = {
-  subjects: getProgrammesBySubjectValues(
-    subjectPagePropsFixture().programmesBySubjectUnavailable
-  ),
+  subjects:subjectPagePropsFixture().programmesBySubjectUnavailable,
   isAvailable: false,
 };

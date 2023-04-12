@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import { ProgrammesArray } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
-const subjectCardListemProps: ProgrammesArray = [
+const subjectCardListemProps: ProgrammesBySubject = [
   {
     slug: "biology",
     title: "Biology",
@@ -36,7 +36,7 @@ describe("SubjectCardListItem", () => {
     renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        subject={subjectCardListemProps}
+        programmes={subjectCardListemProps}
         isAvailable={true}
       />
     );
@@ -46,7 +46,7 @@ describe("SubjectCardListItem", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        subject={subjectCardListemProps}
+        programmes={subjectCardListemProps}
         isAvailable={true}
       />
     );
@@ -59,7 +59,7 @@ describe("SubjectCardListItem", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        subject={subjectCardListemProps}
+        programmes={subjectCardListemProps}
         isAvailable={true}
       />
     );

@@ -11,12 +11,12 @@ import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
 import ProgrammeLink from "../ProgrammeLink";
-import { ProgrammesArray } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;
 } & {
-  subject: ProgrammesArray;
+  programmes: ProgrammesBySubject;
   isAvailable: boolean;
   // keyStageTitle: string; TODO
   // keyStageSlug: string;    TODO
@@ -27,13 +27,17 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   // keyStageSlug, // TODO needs adding the MV
   // keyStageTitle, // TODO needs adding to MV
   // lessonCount, // TODO
-  subject,
+  programmes,
   isAvailable,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
-  const firstProgramme = subject[0];
-  const { slug, unitCount, title, keyStageSlug } = firstProgramme;
+  const firstProgramme = programmes[0];
+  const { slug, title, keyStageSlug } = firstProgramme;
+  const unitCount = programmes.reduce((acc, cur) => {
+      return acc + (cur.unitCount || 0);
+    }, 0)
+
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
   const { track } = useAnalytics();
@@ -79,8 +83,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              {subject.length === 1 ? (
-                <ProgrammeLink programme={subject[0]} />
+              {programmes.length === 1 ? (
+                <ProgrammeLink programme={firstProgramme} />
               ) : (
                 <OakLink
                   {...primaryTargetProps}

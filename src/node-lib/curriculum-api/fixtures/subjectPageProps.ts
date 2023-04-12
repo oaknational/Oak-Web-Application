@@ -9,8 +9,8 @@ const subjectPagePropsFixture = (
   return {
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    programmesBySubjectAvailable: {
-      biology: [
+    programmesBySubjectAvailable: [
+      [
         {
           slug: "biology",
           title: "Biology",
@@ -20,7 +20,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      chemistry: [
+      [
         {
           slug: "chemistry",
           title: "Chemistry",
@@ -30,7 +30,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      citizenship: [
+      [
         {
           slug: "citizenship",
           title: "Citizenship",
@@ -40,7 +40,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      "combined-science": [
+      [
         {
           slug: "combined-science",
           title: "Combined Science",
@@ -58,7 +58,7 @@ const subjectPagePropsFixture = (
           tierSlug: "higher",
         },
       ],
-      computing: [
+      [
         {
           slug: "computing",
           title: "Computing",
@@ -68,7 +68,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      "computing-non-gcse": [
+      [
         {
           slug: "computing-non-gcse",
           title: "Computing (Non-GCSE)",
@@ -78,7 +78,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      french: [
+      [
         {
           slug: "french",
           title: "French",
@@ -88,7 +88,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      german: [
+      [
         {
           slug: "german",
           title: "German",
@@ -98,7 +98,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      latin: [
+      [
         {
           slug: "latin",
           title: "Latin",
@@ -108,7 +108,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      maths: [
+      [
         {
           slug: "maths",
           title: "Maths",
@@ -134,7 +134,7 @@ const subjectPagePropsFixture = (
           tierSlug: "higher",
         },
       ],
-      "religious-education": [
+      [
         {
           slug: "religious-education",
           title: "Religious Education",
@@ -144,7 +144,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      "rshe-pshe": [
+      [
         {
           slug: "rshe-pshe",
           title: "RSHE (PSHE)",
@@ -154,7 +154,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      spanish: [
+      [
         {
           slug: "spanish",
           title: "Spanish",
@@ -164,9 +164,9 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-    },
-    programmesBySubjectUnavailable: {
-      art: [
+    ],
+    programmesBySubjectUnavailable: [
+      [
         {
           slug: "art",
           title: "Art & Design",
@@ -176,7 +176,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      english: [
+      [
         {
           slug: "english",
           title: "English",
@@ -186,7 +186,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      geography: [
+      [
         {
           slug: "geography",
           title: "Geography",
@@ -196,7 +196,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      history: [
+      [
         {
           slug: "history",
           title: "History",
@@ -206,7 +206,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      physics: [
+      [
         {
           slug: "physics",
           title: "Physics",
@@ -216,7 +216,7 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-    },
+    ],
     ...partial,
   };
 };
