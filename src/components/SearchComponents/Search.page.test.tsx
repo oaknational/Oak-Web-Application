@@ -1,3 +1,4 @@
+import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import { SearchHit } from "../../context/Search/helpers";
@@ -32,15 +33,13 @@ const resultsProps: Partial<SearchProps> = {
   results: [createSearchResult()],
   status: "success",
 };
-const providers = { theme: {}, menu: {}, router: {}, analytics: {} };
 
 const validQuery: SearchQuery = {
   term: "test search term",
   keyStages: [],
 };
 
-const props: SearchProps & { fetchResults: jest.Mock } = {
-  fetchResults: jest.fn(),
+const props: SearchProps = {
   status: "not-asked",
   results: [],
   query: validQuery,
@@ -79,167 +78,119 @@ const props: SearchProps & { fetchResults: jest.Mock } = {
   setSearchTerm: jest.fn(),
 };
 
+const render = renderWithProviders();
+
 describe("Search.page.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("h1 is “{searchTerm}“ if term prop passed", () => {
-    const { getByRole } = renderWithProviders(
-      <Search
-        {...props}
-        query={{ ...props.query, term: "test search term" }}
-      />,
-      { providers }
+    const { getByRole } = render(
+      <Search {...props} query={{ ...props.query, term: "test search term" }} />
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
       "“test search term”"
     );
   });
   test("h1 is Search if 'term' prop not passed", () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} query={{ ...props.query, term: "" }} />,
-      {
-        providers,
-      }
+    const { getByRole } = render(
+      <Search {...props} query={{ ...props.query, term: "" }} />
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Search");
   });
   test("status: error message displayed status is fail", () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} status="fail" />,
-      { providers }
-    );
+    const { getByRole } = render(<Search {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
       "There was an error fetching search results"
     );
   });
   test("status: loading not displayed if not passed", () => {
-    const { getByRole } = renderWithProviders(<Search {...props} />, {
-      providers,
-    });
+    const { getByRole } = render(<Search {...props} />);
     expect(getByRole("status")).not.toHaveTextContent("Loading");
   });
   test("status: loading displayed if passed", () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} status="loading" />,
-      {
-        providers,
-      }
-    );
+    const { getByRole } = render(<Search {...props} status="loading" />);
     expect(getByRole("status")).toHaveTextContent("Loading");
   });
   test("status: 'no results' message displayed if no results and status==='success'", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <Search
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="success"
-      />,
-      {
-        providers,
-      }
+      />
     );
     expect(getByRole("status")).toHaveTextContent("No search results");
   });
   test("status: 'no results' message not displayed if loading", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <Search
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="loading"
-      />,
-      {
-        providers,
-      }
+      />
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
   test("status: 'no results' message not displayed if resuts not empty", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <Search
         {...props}
         query={{ ...props.query, term: "test search term" }}
         results={[createSearchResult()]}
-      />,
-      {
-        providers,
-      }
+      />
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
   test("results are displayed", () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} {...resultsProps} />,
-      {
-        providers,
-      }
-    );
+    const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(getByRole("link", { name: "lesson title" })).toBeInTheDocument();
   });
   test("results have correct href", () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} {...resultsProps} />,
-      {
-        providers,
-      }
-    );
+    const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(getByRole("link", { name: "lesson title" })).toHaveAttribute(
       "href",
       "/beta/teachers/key-stages/ks1/subjects/subject-slug/units/topic-slug/lessons/lesson-slug"
     );
   });
-  test("search input is the first tabbable element", async () => {
-    const { getByRole } = renderWithProviders(<Search {...props} />, {
-      providers,
-    });
+  test("search term is set on enter", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    setSearchTerm.mockClear();
+    getByRole("searchbox").focus();
+    await user.keyboard("macb");
+    await user.keyboard("{Enter}");
+    expect(setSearchTerm).toHaveBeenCalledTimes(1);
+  });
+  test("query is set on submit button click", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    setSearchTerm.mockClear();
+    const submit = getByRole("button", { name: "Submit" });
+    await user.click(submit);
+    expect(setSearchTerm).toHaveBeenCalledTimes(1);
+  });
+  test("tab order, 1: search input", async () => {
+    const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
     await user.tab();
     expect(searchInput).toHaveFocus();
   });
-  test.skip("search is performed on enter", async () => {
-    renderWithProviders(<Search {...props} />, {
-      providers,
-    });
-    const user = userEvent.setup();
-    props.fetchResults.mockClear();
-    await user.keyboard("{Enter}");
-    expect(props.fetchResults).toHaveBeenCalledTimes(1);
-  });
-  test("top result is the third tabbable element", async () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} {...resultsProps} />,
-      {
-        providers,
-      }
-    );
+  test("tab order, 2: submit button", async () => {
+    const { getByRole } = render(<Search {...props} {...resultsProps} />);
 
     const user = userEvent.setup();
     await user.tab();
     await user.tab();
     expect(getByRole("button", { name: "Submit" })).toHaveFocus();
   });
-  test.skip("first result is the third tabbable element", async () => {
-    const { getByRole } = renderWithProviders(
-      <Search {...props} {...resultsProps} />,
-      {
-        providers,
-      }
-    );
-
-    const user = userEvent.setup();
-    await user.tab();
-    await user.tab();
-    await user.tab();
-    expect(getByRole("link", { name: "lesson title" })).toHaveFocus();
-  });
   test("clicking result description clicks the link", async () => {
-    const { getByText, getByRole } = renderWithProviders(
-      <Search {...props} {...resultsProps} />,
-      {
-        providers,
-      }
+    const { getByText, getByRole } = render(
+      <Search {...props} {...resultsProps} />
     );
     const description = getByText("lesson description");
     const user = userEvent.setup();
@@ -257,5 +208,18 @@ describe("Search.page.tsx", () => {
 
     expect(onLinkClick).toHaveBeenCalled();
   });
-  test.todo("search is performed on submit button click");
+  test("clicking a calls filter.onChange appropriately", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const ks1OnChange = props.keyStageFilters.find((ks) => ks.slug === "ks1")
+      ?.onChange as jest.Mock;
+    ks1OnChange.mockClear();
+    await user.click(getByRole("button", { name: "Filters" }));
+    const filter = getByRole("checkbox", { name: "KS1 filter" });
+    if (!filter) {
+      throw new Error("Expected filter to exist");
+    }
+    await user.click(filter);
+    await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
+  });
 });

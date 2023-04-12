@@ -35,9 +35,11 @@ const props = {
   allKeyStages: searchPageFixture().keyStages,
 };
 
+const render = renderWithProviders();
+
 describe("<SearchResults />", () => {
   test("A lesson search result links to the lesson listing page", () => {
-    const { getByRole } = renderWithProviders(<SearchResults {...props} />);
+    const { getByRole } = render(<SearchResults {...props} />);
     expect(
       getByRole("link", { name: "To write the setting description" })
     ).toHaveAttribute(
@@ -46,7 +48,7 @@ describe("<SearchResults />", () => {
     );
   });
   test("A unit search result links to the unit listing page", () => {
-    const { getByRole } = renderWithProviders(<SearchResults {...props} />);
+    const { getByRole } = render(<SearchResults {...props} />);
     expect(
       getByRole("link", { name: "Macbeth - Narrative writing" })
     ).toHaveAttribute(
@@ -56,7 +58,7 @@ describe("<SearchResults />", () => {
   });
 
   test("it renders the search results", () => {
-    const { getAllByRole } = renderWithProviders(<SearchResults {...props} />);
+    const { getAllByRole } = render(<SearchResults {...props} />);
 
     const searchElement = getAllByRole("listitem");
 
@@ -65,9 +67,7 @@ describe("<SearchResults />", () => {
 
   test("it renders pagination if there are more results than 20 results", () => {
     const hits = getNHits(21);
-    const { getByRole } = renderWithProviders(
-      <SearchResults {...props} hits={hits} />
-    );
+    const { getByRole } = render(<SearchResults {...props} hits={hits} />);
 
     const pagination = getByRole("navigation", { hidden: true });
 
@@ -75,9 +75,7 @@ describe("<SearchResults />", () => {
   });
   test("it does not render pagination if there are 20 results", () => {
     const hits = getNHits(20);
-    const { queryByRole } = renderWithProviders(
-      <SearchResults {...props} hits={hits} />
-    );
+    const { queryByRole } = render(<SearchResults {...props} hits={hits} />);
 
     const pagination = queryByRole("navigation", { hidden: true });
 

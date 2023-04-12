@@ -20,7 +20,7 @@ describe("useAnalytics", () => {
     jest.clearAllMocks();
   });
   test("track should not work if statistics consent not given", () => {
-    const { result } = renderHookWithProviders(useAnalytics);
+    const { result } = renderHookWithProviders()(useAnalytics);
 
     act(() => {
       result.current.track.aboutSelected();
@@ -29,7 +29,7 @@ describe("useAnalytics", () => {
     expect(posthogCapture).not.toHaveBeenCalled();
   });
   test("posthog should not be initialised if statistics consent not given", () => {
-    const { result } = renderHookWithProviders(useAnalytics);
+    const { result } = renderHookWithProviders()(useAnalytics);
     act(() => {
       result.current.track.developYourCurriculumSelected();
     });

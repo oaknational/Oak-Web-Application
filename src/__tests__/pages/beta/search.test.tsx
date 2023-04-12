@@ -18,11 +18,8 @@ const keyStages = [
 
 describe("pages/beta/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
-    const { seo } = renderWithSeo(
-      <SearchPage curriculumData={{ keyStages }} />,
-      {
-        providers,
-      }
+    const { seo } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages }} />
     );
 
     expect(seo).toEqual({
@@ -39,12 +36,11 @@ describe("pages/beta/teachers/search.tsx", () => {
     });
   });
   test("renders correct key stage filters", () => {
-    const { getAllByRole } = renderWithSeo(
-      <SearchPage curriculumData={{ keyStages }} />,
-      { providers }
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages }} />
     );
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
-      "Toggle Fake-key-stage 1 filter"
+      "FKS1 filter"
     );
   });
 });

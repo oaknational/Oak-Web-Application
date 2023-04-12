@@ -9,12 +9,12 @@ type KeyStageFilterProps = KeyStage & {
   onChange: () => void;
 };
 const KeyStageFilter: FC<KeyStageFilterProps> = (props) => {
-  const { slug, title, shortCode, onChange, checked } = props;
+  const { slug, shortCode, onChange, checked } = props;
   return (
     <Box $width={"50%"}>
       <Checkbox
         labelText={`${shortCode}`}
-        ariaLabel={`Toggle ${title} filter`}
+        ariaLabel={`${shortCode} filter`}
         id={`custom-checkbox-${slug}`}
         name={"keyStageFilters"}
         checked={checked}

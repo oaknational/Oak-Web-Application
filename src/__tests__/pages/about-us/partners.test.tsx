@@ -41,7 +41,7 @@ const testPartnersPageData: AboutPartnersPage = {
 
 describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<AboutPartners pageData={testPartnersPageData} />);
+    renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us"
@@ -50,7 +50,7 @@ describe("pages/about-us/board.tsx", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <AboutPartners pageData={testPartnersPageData} />
       );
 

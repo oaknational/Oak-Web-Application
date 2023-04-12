@@ -45,7 +45,7 @@ type ProviderPropsByName = {
   menu: Record<string, never>;
 };
 
-type ProviderPartialProps = {
+export type ProviderPartialProps = {
   [K in keyof ProviderPropsByName]: Partial<ProviderPropsByName[K]>;
 };
 
@@ -99,37 +99,30 @@ const allProviders = Object.entries(providersByName).reduce(
   {} as ProviderPropsByName
 );
 
-export type RenderWithProviderOptions = Omit<RenderOptions, "wrapper"> & {
-  providers?: Partial<ProviderPartialProps>;
-};
+const renderWithProviders =
+  (providers: Partial<ProviderPartialProps> = allProviders) =>
+  (ui: ReactElement, renderOptions?: Omit<RenderOptions, "wrapper">) => {
+    const MockedProviders = getMockedProviders(providers);
+    return render(ui, { wrapper: MockedProviders, ...renderOptions });
+  };
 
-const renderWithProviders = (
-  ui: ReactElement,
-  options: RenderWithProviderOptions = {}
-) => {
-  const { providers = allProviders, ...renderOptions } = options;
-  const MockedProviders = getMockedProviders(providers);
-  return render(ui, { wrapper: MockedProviders, ...renderOptions });
-};
-
-export const renderHookWithProviders = <
-  Result,
-  Props,
-  Q extends Queries = typeof queries,
-  Container extends Element | DocumentFragment = HTMLElement,
-  BaseElement extends Element | DocumentFragment = Container
->(
-  hook: (initialProps: Props) => Result,
-  options: Omit<
-    RenderHookOptions<Props, Q, Container, BaseElement>,
-    "wrapper"
-  > & {
-    providers?: RenderWithProviderOptions["providers"];
-  } = {}
-): RenderHookResult<Result, Props> => {
-  const { providers = allProviders, ...renderHookOptions } = options;
-  const MockedProviders = getMockedProviders(providers);
-  return renderHook(hook, { wrapper: MockedProviders, ...renderHookOptions });
-};
+export const renderHookWithProviders =
+  (providers: Partial<ProviderPartialProps> = allProviders) =>
+  <
+    Result,
+    Props,
+    Q extends Queries = typeof queries,
+    Container extends Element | DocumentFragment = HTMLElement,
+    BaseElement extends Element | DocumentFragment = Container
+  >(
+    hook: (initialProps: Props) => Result,
+    renderHookOptions?: Omit<
+      RenderHookOptions<Props, Q, Container, BaseElement>,
+      "wrapper"
+    >
+  ): RenderHookResult<Result, Props> => {
+    const MockedProviders = getMockedProviders(providers);
+    return renderHook(hook, { wrapper: MockedProviders, ...renderHookOptions });
+  };
 
 export default renderWithProviders;

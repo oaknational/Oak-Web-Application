@@ -42,9 +42,11 @@ const emptyTieredCurriculumData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.tsx", () => {
   it("Renders title from props ", () => {
-    renderWithProviders(
+    render(
       <SubjectUnitsListPage
         curriculumData={curriculumData}
         learningThemeSlug={null}
@@ -60,7 +62,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
 
   describe("SEO", () => {
     it("renders the correct SEO details", () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <SubjectUnitsListPage
           curriculumData={emptyTieredCurriculumData}
           learningThemeSlug={null}
@@ -81,7 +83,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
     });
 
     it("renders the correct SEO details when passed tiered data", () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <SubjectUnitsListPage
           curriculumData={curriculumData}
           learningThemeSlug={null}
@@ -124,7 +126,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
 
   describe("conditional SubjectTierListing component rendering", () => {
     it("when tiered data array is not empty SubjectTierListing component rendered", () => {
-      renderWithProviders(
+      render(
         <SubjectUnitsListPage
           curriculumData={curriculumData}
           learningThemeSlug={null}
@@ -134,7 +136,7 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
       expect(screen.getByText("Learning tiers")).toBeInTheDocument();
     });
     it("when tiered data array is not empty SubjectTierListing component rendered", () => {
-      renderWithProviders(
+      render(
         <SubjectUnitsListPage
           curriculumData={emptyTieredCurriculumData}
           learningThemeSlug={null}

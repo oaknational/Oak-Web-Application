@@ -19,9 +19,11 @@ const props = {
   }),
 };
 
+const render = renderWithProviders();
+
 describe("pages/beta/teachers/lessons", () => {
   it("Renders title from the props", async () => {
-    renderWithProviders(<LessonOverviewPage {...props} />);
+    render(<LessonOverviewPage {...props} />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       "Islamic Geometry"
@@ -29,7 +31,7 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("renders sign language button if there is a sign language video", async () => {
-    renderWithProviders(<LessonOverviewPage {...props} />);
+    render(<LessonOverviewPage {...props} />);
 
     expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
       "Signed video"
@@ -37,7 +39,7 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
-    renderWithProviders(<LessonOverviewPage {...props} />);
+    render(<LessonOverviewPage {...props} />);
 
     expect(screen.getByTestId("download-all-button")).toHaveTextContent(
       "Download all resources"
@@ -45,7 +47,7 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("sign language button toggles on click", async () => {
-    renderWithProviders(<LessonOverviewPage {...props} />);
+    render(<LessonOverviewPage {...props} />);
 
     const signLanguageButton = screen.getByTestId("sign-language-button");
     act(() => {
@@ -57,16 +59,14 @@ describe("pages/beta/teachers/lessons", () => {
   });
 
   it("renders an iframe for a presentation and worksheet", async () => {
-    const { getAllByTestId } = renderWithProviders(
-      <LessonOverviewPage {...props} />
-    );
+    const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(<LessonOverviewPage {...props} />);
+      const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,

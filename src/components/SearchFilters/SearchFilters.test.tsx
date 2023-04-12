@@ -39,7 +39,7 @@ describe("SearchFilters", () => {
       <SearchFilters keyStageFilters={keyStageFilters} />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "Toggle Key-stage 3 filter",
+      name: "KS3 filter",
     });
     expect(ks3Filter).toBeInTheDocument();
   });
@@ -53,7 +53,7 @@ describe("SearchFilters", () => {
       />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "Toggle Key-stage 3 filter",
+      name: "KS3 filter",
     });
     expect(ks3Filter).toHaveAttribute("checked");
   });
@@ -67,7 +67,7 @@ describe("SearchFilters", () => {
       />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "Toggle Key-stage 3 filter",
+      name: "KS3 filter",
     });
     expect(ks3Filter).not.toHaveAttribute("checked");
   });
@@ -81,7 +81,7 @@ describe("SearchFilters", () => {
       />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "Toggle Key-stage 3 filter",
+      name: "KS3 filter",
     });
     ks3Filter.click();
     expect(ks3OnChange).toHaveBeenCalledWith(

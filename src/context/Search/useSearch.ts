@@ -78,7 +78,6 @@ export type RequestStatus = "not-asked" | "loading" | "success" | "fail";
 export type UseSearchReturnType = {
   status: RequestStatus;
   results: SearchHit[];
-  fetchResults: () => Promise<void>;
   query: SearchQuery;
   setQuery: SetSearchQuery;
   setSearchTerm: (props: { searchTerm: string }) => void;
@@ -148,7 +147,6 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   return {
     status,
     results,
-    fetchResults,
     query,
     setQuery,
     setSearchTerm,
