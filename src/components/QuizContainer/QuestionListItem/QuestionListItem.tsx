@@ -8,12 +8,13 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-export type QuestionListItemProps = QuizQuestionListProps["questions"][0];
+export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
 type ImageProps = { src: string; alt?: string };
 
 const QuizImage: FC<ImageProps> = ({ src, alt }) => {
   const [dims, setDims] = useState({ height: 0, width: 0 });
+
   return (
     <ImageBox
       $position={"relative"}
@@ -32,8 +33,8 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         src={src}
         alt={alt ? alt : ""}
         fill
-        onLoad={({ target }) => {
-          const { naturalWidth, naturalHeight } = target as HTMLImageElement;
+        onLoad={(event) => {
+          const { naturalWidth, naturalHeight } = event.currentTarget;
           setDims({ height: naturalHeight, width: naturalWidth });
         }}
       />

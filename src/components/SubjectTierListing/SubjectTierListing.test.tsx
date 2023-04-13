@@ -1,21 +1,23 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProvider from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import teachersKeyStageSubjectTiersFixture from "../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectTiers.fixture";
 
 import SubjectTierListing from "./SubjectTierListing";
 
 const curriculumData = teachersKeyStageSubjectTiersFixture();
 
+const render = renderWithProviders();
+
 describe("SubjectTierListing", () => {
   test("render a tier subject component with heading ", () => {
-    renderWithProvider(<SubjectTierListing curriculumData={curriculumData} />);
+    render(<SubjectTierListing curriculumData={curriculumData} />);
 
     expect(screen.getByText("Learning tiers")).toBeInTheDocument();
   });
 
   test("render a list of card items with the name of the tiers ", () => {
-    const { getAllByRole } = renderWithProvider(
+    const { getAllByRole } = render(
       <SubjectTierListing curriculumData={curriculumData} />
     );
 
@@ -29,7 +31,7 @@ describe("SubjectTierListing", () => {
   });
 
   test("each card items will link have a link to a different query ", () => {
-    const { getByRole } = renderWithProvider(
+    const { getByRole } = render(
       <SubjectTierListing curriculumData={curriculumData} />
     );
 

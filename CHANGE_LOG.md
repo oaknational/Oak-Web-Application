@@ -1,3 +1,29 @@
+# [1.170.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.169.1...v1.170.0) (2023-04-13)
+
+
+### Features
+
+* 1473 Add test ([955908c](https://github.com/oaknational/Oak-Web-Application/commit/955908c9ad4ee7e48bb610595756c298abb15e75))
+* 1473 Add tests for CurriculumDownloadButton ([356ebd6](https://github.com/oaknational/Oak-Web-Application/commit/356ebd68424073a31c404e1cbd652a5cc919629e))
+* 1473 Add tests for ExpandingContainer ([9dfc985](https://github.com/oaknational/Oak-Web-Application/commit/9dfc985c1e6de97a387d33a59e5ffb1fe43c3f68))
+* 1473 Download events tracking ([0fe52dd](https://github.com/oaknational/Oak-Web-Application/commit/0fe52dd2fd7b888c1d3a79a12c5fe35de7c07dad))
+* 1473 Refactor to get school details from a helper ([ae5f094](https://github.com/oaknational/Oak-Web-Application/commit/ae5f094defb3aa8eed1dc69ba9cf9ca48b01e4f2))
+* 1473 Remove console.log from code ([62fe29d](https://github.com/oaknational/Oak-Web-Application/commit/62fe29d595f650f7640093abc05479c366e3b4aa))
+* 1473 Rename trackingCallback to onDownloadButtonClick ([f635d8e](https://github.com/oaknational/Oak-Web-Application/commit/f635d8ef47626102af7c7a56dd94609a841f63be))
+* 1473 Update avo methods and submit school name and URN as null  if not available ([f6dcd62](https://github.com/oaknational/Oak-Web-Application/commit/f6dcd625e9a1cf0c49d7653cd06f57bd6fc12c4c))
+* 1473 Update avo methods based on PR feedback ([aefc60a](https://github.com/oaknational/Oak-Web-Application/commit/aefc60a0e82ef715fd318f9c45e29aa63ef66fb4))
+* 1473 Update naming based on new avo methods ([b6fd3ac](https://github.com/oaknational/Oak-Web-Application/commit/b6fd3ac7b30c7adde0be0758fe5ac545933710d1))
+* 1473 Update tests ([0449b4d](https://github.com/oaknational/Oak-Web-Application/commit/0449b4d5a47132942f3b81b0d80394e2935093ce))
+
+## [1.169.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.169.0...v1.169.1) (2023-04-12)
+
+
+### Bug Fixes
+
+* improve query stringifier ([899c612](https://github.com/oaknational/Oak-Web-Application/commit/899c6123a515bf5ce62c6823b58a7f9f48bdbb0c))
+* search url should only include existing query params ([f07ee30](https://github.com/oaknational/Oak-Web-Application/commit/f07ee30a0e77667b49138a470a85b2d7ca3f9632))
+* **search:** fix teacher home link to search example ([a6e840b](https://github.com/oaknational/Oak-Web-Application/commit/a6e840b29c027e1c4ab406d9e2910f0915668789))
+
 # [1.169.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.168.0...v1.169.0) (2023-04-11)
 
 

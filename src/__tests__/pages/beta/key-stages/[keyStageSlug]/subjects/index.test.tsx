@@ -14,7 +14,7 @@ const props = subjectPagePropsFixture();
 
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   it("Renders title from props ", async () => {
-    renderWithProviders(<SubjectListingPage {...props} />);
+    renderWithProviders()(<SubjectListingPage {...props} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -25,7 +25,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(<SubjectListingPage {...props} />);
+      const { seo } = renderWithSeo()(<SubjectListingPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -36,6 +36,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         ogDescription: "Key stage by subject",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
       });
     });
   });

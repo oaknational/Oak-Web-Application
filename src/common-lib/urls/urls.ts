@@ -1,5 +1,6 @@
 import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
 import config from "../../config/browser";
+import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 
@@ -144,7 +145,7 @@ export type ResolveOakHrefProps =
         | "key-stage";
       slug: string;
     }
-  | { page: "beta-search"; term?: string }
+  | { page: "beta-search"; query?: Partial<SearchQuery> }
   | PostIndexLinkProps
   | TierSelectionLinkProps
   | UnitIndexLinkProps
@@ -248,9 +249,13 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return path;
     }
     case "beta-search": {
-      return props.term
-        ? `/beta/teachers/search?term=${props.term}`
-        : "/beta/teachers/search";
+      const path = "/beta/teachers/search";
+      if (!props.query) {
+        return path;
+      }
+      const queryString = createQueryStringFromObject(props.query);
+
+      return `${path}?${queryString}`;
     }
     default:
       return OAK_PAGES[props.page];

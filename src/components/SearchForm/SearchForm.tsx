@@ -1,12 +1,15 @@
-import { FC, useState, FormEvent } from "react";
-import { useRouter } from "next/router";
+import {
+  FC,
+  useState,
+  useCallback,
+  ChangeEventHandler,
+  FormEventHandler,
+} from "react";
 import styled from "styled-components";
 
-import { useSearchQuery } from "../../context/Search/SearchContext";
 import IconButton from "../Button/IconButton";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
 import spacing, { margin, SpacingProps } from "../../styles/utils/spacing";
-import { resolveOakHref } from "../../common-lib/urls";
 import UnstyledInput from "../UnstyledInput";
 import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
@@ -69,30 +72,31 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   ${margin}
 `;
 
-const SearchForm: FC = () => {
-  const { text, setText } = useSearchQuery();
-  const [value, setValue] = useState(text);
+type SearchFormProps = {
+  searchTerm: string;
+  handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
+};
+const SearchForm: FC<SearchFormProps> = (props) => {
+  const { handleSubmit, searchTerm } = props;
+  const [value, setValue] = useState(searchTerm);
 
-  const router = useRouter();
-  const handleSubmit = (e: FormEvent<HTMLFormElement | HTMLButtonElement>) => {
-    e.preventDefault();
-    setText(value);
-    const searchPage = resolveOakHref({ page: "beta-search" });
-    router.push({
-      pathname: searchPage,
-      query: { term: value },
-    });
-  };
+  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
+    setValue(e.target.value);
+  }, []);
 
-  const onTextChange = (e: FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setValue(e.currentTarget.value);
-  };
+  const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
+    (e) => {
+      e.preventDefault();
+      handleSubmit({ searchTerm: value });
+    },
+    [value, handleSubmit]
+  );
 
   return (
     <StyledForm
+      role="search"
       $flexWrap="nowrap"
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       $ml={4}
       $alignItems={"center"}
     >
@@ -102,7 +106,7 @@ const SearchForm: FC = () => {
             id="search-form-search-input"
             value={value}
             type="search"
-            onChange={onTextChange}
+            onChange={onChange}
             placeholder="Search"
           />
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
@@ -110,7 +114,6 @@ const SearchForm: FC = () => {
         </InputFieldWrap>
       </Flex>
       <IconButton
-        onClick={handleSubmit}
         icon="go"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}

@@ -1,5 +1,3 @@
-import { screen } from "@testing-library/react";
-
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import {
   mockSeo,
@@ -59,6 +57,8 @@ const testSupportPageData: SupportPage = {
 
 const getPageData = jest.fn(() => testSupportPageData);
 
+const render = renderWithProviders();
+
 describe("pages/support-your-team.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -72,16 +72,18 @@ describe("pages/support-your-team.tsx", () => {
   });
 
   it("Renders correct title ", () => {
-    renderWithProviders(<Support pageData={testSupportPageData} />);
+    const { getByRole } = render(<Support pageData={testSupportPageData} />);
 
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+    expect(getByRole("heading", { level: 1 }).textContent).toBe(
       "Support title"
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details ", async () => {
-      const { seo } = renderWithSeo(<Support pageData={testSupportPageData} />);
+      const { seo } = renderWithSeo()(
+        <Support pageData={testSupportPageData} />
+      );
 
       expect(seo).toEqual({
         ...mockSeoResult,

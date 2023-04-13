@@ -1,42 +1,34 @@
 import { FC } from "react";
-import { useRouter } from "next/router";
 
-import { useSearchQuery, KeyStage } from "../../context/Search/SearchContext";
 import Flex from "../Flex";
 import Button from "../Button";
 import { P } from "../Typography";
+import { UseKeyStageFiltersReturnType } from "../../context/Search/useKeyStageFilters";
 
-const ActiveFilters: FC = () => {
-  const { keyStages, setKeyStages } = useSearchQuery();
-  const router = useRouter();
+type ActiveFiltersProps = {
+  keyStageFilters: UseKeyStageFiltersReturnType;
+};
+const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
+  const { keyStageFilters } = props;
 
-  const onRemoveFilterClick = (keyStage: KeyStage) => {
-    const newKeyStages = new Set(keyStages);
-    newKeyStages.delete(keyStage);
-    setKeyStages(newKeyStages);
-
-    // shallow push with new params
-    const chosenKeyStagesArray = Array.from(newKeyStages);
-    const chosenKeyStagesString = chosenKeyStagesArray.join(",");
-    router.query.keystages = chosenKeyStagesString;
-    router.push(router, undefined, { shallow: true });
-  };
+  const activeFilters = keyStageFilters.filter((keyStage) => keyStage.checked);
 
   return (
     <Flex
-      $alignItems={["flex-start", "baseline"]}
+      $alignItems={["flex-start", "center"]}
       $flexDirection={["column", "row"]}
+      $minHeight={44}
     >
       <P $mr={20} $mt={8} $mb={8} $color={["oakGrey4", "black"]}>
-        Active filters:
+        Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
       <Flex $alignItems={"center"}>
-        {Array.from(keyStages).map((keyStage: KeyStage) => (
+        {activeFilters.map(({ slug, title, shortCode, onChange }) => (
           <Button
-            label={`KS${keyStage}`}
-            aria-label={`Active filter for KS${keyStage}`}
-            key={`active-filter-ks-${keyStage}`}
-            onClick={() => onRemoveFilterClick(keyStage)}
+            label={shortCode}
+            aria-label={`Remove ${title} filter`}
+            key={`active-filter-ks-${slug}`}
+            onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"
             $iconPosition="trailing"

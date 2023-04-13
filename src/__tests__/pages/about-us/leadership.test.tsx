@@ -43,6 +43,9 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+const render = renderWithProviders();
+
 describe("pages/about/leadership.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -50,9 +53,7 @@ describe("pages/about/leadership.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(
-      <AboutUsLeadership pageData={testAboutLeadershipPageData} />
-    );
+    render(<AboutUsLeadership pageData={testAboutLeadershipPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us"
@@ -61,7 +62,7 @@ describe("pages/about/leadership.tsx", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <AboutUsLeadership pageData={testAboutLeadershipPageData} />
       );
 

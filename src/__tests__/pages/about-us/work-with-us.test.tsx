@@ -120,7 +120,7 @@ export const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
 
 describe("pages/about-us/work-with-us.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(
+    renderWithProviders()(
       <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
     );
 
@@ -133,7 +133,7 @@ describe("pages/about-us/work-with-us.tsx", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
       );
 

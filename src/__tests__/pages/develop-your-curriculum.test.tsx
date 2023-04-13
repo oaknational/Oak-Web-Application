@@ -62,6 +62,8 @@ const testCurriculumPageData: CurriculumPage = {
 
 const getPageData = jest.fn(() => testCurriculumPageData);
 
+const render = renderWithProviders();
+
 describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -75,7 +77,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   it("Renders correct title ", () => {
-    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
+    render(<Curriculum pageData={testCurriculumPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "Curriculum title"
@@ -83,7 +85,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   it("renders the blog posts", async () => {
-    renderWithProviders(<Curriculum pageData={testCurriculumPageData} />);
+    render(<Curriculum pageData={testCurriculumPageData} />);
     const { posts } = testCurriculumPageData.elements;
 
     const container = screen.getByTestId("elements-of-curriculum");
@@ -97,7 +99,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
 
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <Curriculum pageData={testCurriculumPageData} />
       );
 

@@ -47,16 +47,18 @@ const props: TeachersHomePageProps = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("pages/beta/teachers.tsx", () => {
   it("Renders correct title ", () => {
-    renderWithProviders(<Teachers {...props} />);
+    render(<Teachers {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Your foundation for great lessons");
   });
 
   it("Renders a link to the blog list", () => {
-    renderWithProviders(<Teachers {...props} />);
+    render(<Teachers {...props} />);
 
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
@@ -64,7 +66,7 @@ describe("pages/beta/teachers.tsx", () => {
   });
 
   it("Renders the provided blog posts", async () => {
-    renderWithProviders(<Teachers {...props} />);
+    render(<Teachers {...props} />);
 
     const list = screen
       .getAllByRole("list")

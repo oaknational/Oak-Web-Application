@@ -78,6 +78,8 @@ const testSerializedWebinar: SerializedWebinar = {
 const webinars = jest.fn(() => [testWebinar, testWebinar2]);
 const webinarBySlug = jest.fn(() => testWebinar);
 
+const render = renderWithProviders();
+
 describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -93,7 +95,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
   describe("WebinarDetailPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
+      render(
         <WebinarDetailPage
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
@@ -108,7 +110,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
     });
 
     it("calls tracking.webinarPageViewed once, with correct props", () => {
-      renderWithProviders(
+      render(
         <WebinarDetailPage
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
@@ -125,7 +127,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
     describe("SEO", () => {
       it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <WebinarDetailPage
             webinar={testSerializedWebinar}
             categories={[{ title: "Teaching", slug: "teaching" }]}
