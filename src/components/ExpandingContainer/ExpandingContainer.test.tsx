@@ -71,7 +71,7 @@ it("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected="
+    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -163,7 +163,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected="
+      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
