@@ -126,8 +126,10 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
               $alignSelf={"flex-start"}
             />
             <CurriculumDownloadButton
-              keyStage={keyStageSlug}
-              subject={subjectSlug}
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              subjectSlug={subjectSlug}
+              subjectTitle={subjectTitle}
               tier={tierQuery}
             />
 
