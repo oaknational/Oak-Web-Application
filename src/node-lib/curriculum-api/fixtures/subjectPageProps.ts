@@ -186,36 +186,6 @@ const subjectPagePropsFixture = (
           tierSlug: null,
         },
       ],
-      [
-        {
-          slug: "geography",
-          title: "Geography",
-          keyStageSlug: "ks4",
-          unitCount: 0,
-          programmeSlug: "geography-secondary-ks4",
-          tierSlug: null,
-        },
-      ],
-      [
-        {
-          slug: "history",
-          title: "History",
-          keyStageSlug: "ks4",
-          unitCount: 0,
-          programmeSlug: "history-secondary-ks4",
-          tierSlug: null,
-        },
-      ],
-      [
-        {
-          slug: "physics",
-          title: "Physics",
-          keyStageSlug: "ks4",
-          unitCount: 0,
-          programmeSlug: "physics-secondary-ks4",
-          tierSlug: null,
-        },
-      ],
     ],
     ...partial,
   };

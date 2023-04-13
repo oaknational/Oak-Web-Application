@@ -17,6 +17,25 @@ const subjectCardListemProps: ProgrammesBySubject = [
   },
 ];
 
+const subjectTrackingProps: ProgrammesBySubject = [
+  {
+    slug: "combined-science",
+    title: "Combined Science",
+    keyStageSlug: "ks4",
+    unitCount: 2,
+    programmeSlug: "combined-science-secondary-ks4-foundation",
+    tierSlug: "foundation",
+  },
+  {
+    slug: "combined-science",
+    title: "Combined Science",
+    keyStageSlug: "ks4",
+    unitCount: 2,
+    programmeSlug: "combined-science-secondary-ks4-higher",
+    tierSlug: "higher",
+  },
+];
+
 const subjectSelected = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -59,12 +78,12 @@ describe("SubjectCardListItem", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        programmes={subjectCardListemProps}
+        programmes={subjectTrackingProps}
         isAvailable={true}
       />
     );
     const cardClickTarget = getByRole("link", {
-      name: "Biology",
+      name: "Combined Science",
     });
 
     const user = userEvent.setup();
@@ -74,8 +93,8 @@ describe("SubjectCardListItem", () => {
     expect(subjectSelected).toHaveBeenCalledWith({
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
-      subjectSlug: "biology-secondary-ks4",
-      subjectTitle: "Biology",
+      subjectSlug: "combined-science",
+      subjectTitle: "Combined Science",
       analyticsUseCase: ["Teacher"],
     });
   });
