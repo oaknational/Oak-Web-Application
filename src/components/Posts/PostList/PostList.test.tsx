@@ -3,9 +3,11 @@ import { mockPaginationProps } from "../../Pagination/Pagination.test";
 
 import PostList from ".";
 
+const render = renderWithProviders();
+
 describe("components/PostList", () => {
   test("renders the list items", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <PostList
         paginationProps={mockPaginationProps}
         currentPageItems={[
@@ -31,7 +33,7 @@ describe("components/PostList", () => {
   });
 
   test("formats the date correctly", () => {
-    const { getByText } = renderWithProviders(
+    const { getByText } = render(
       <PostList
         paginationProps={mockPaginationProps}
         currentPageItems={[

@@ -78,6 +78,8 @@ const testPlanningPageData: PlanningPage = {
 
 const getPageData = jest.fn(() => testPlanningPageData);
 
+const render = renderWithProviders();
+
 describe("pages/lesson-planning.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -91,7 +93,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   it("Renders correct title ", async () => {
-    renderWithProviders(<PlanALesson pageData={testPlanningPageData} />);
+    render(<PlanALesson pageData={testPlanningPageData} />);
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
@@ -102,7 +104,7 @@ describe("pages/lesson-planning.tsx", () => {
 
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <PlanALesson pageData={testPlanningPageData} />
       );
 

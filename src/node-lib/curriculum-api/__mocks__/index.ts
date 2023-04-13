@@ -1,4 +1,5 @@
 import { CurriculumApi } from "..";
+import searchPageFixture from "../fixtures/searchPage.fixture";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
 import teachersKeyStageSubjectsFixture from "../fixtures/teachersKeyStageSubjects.fixture";
 import teachersKeyStageSubjectTiersFixture from "../fixtures/teachersKeyStageSubjectTiers.fixture";
@@ -12,6 +13,9 @@ import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/te
 
 const curriculumApi: CurriculumApi = {
   // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
+  searchPage: jest.fn(async () => {
+    return searchPageFixture();
+  }),
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
   }),

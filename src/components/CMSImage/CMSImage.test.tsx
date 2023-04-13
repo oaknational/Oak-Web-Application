@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
 import { mockImageAsset } from "../../__tests__/__helpers__/cms";
@@ -6,10 +5,12 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 
 import CMSImage from "./CMSImage";
 
+const render = renderWithProviders();
+
 describe("CMSImage", () => {
   it("renders an image", () => {
     const mockImage = mockImageAsset();
-    render(
+    const { getByRole } = render(
       <ThemeProvider
         theme={
           {
@@ -22,7 +23,7 @@ describe("CMSImage", () => {
       </ThemeProvider>
     );
 
-    const img = screen.getByRole("img");
+    const img = getByRole("img");
     expect(img).toBeInTheDocument();
   });
 
@@ -30,9 +31,9 @@ describe("CMSImage", () => {
     const altString = "a donkey in a field on a sunny day";
     const mockImage = { ...mockImageAsset(), altText: altString };
 
-    renderWithProviders(<CMSImage image={mockImage} />);
+    const { getByRole } = render(<CMSImage image={mockImage} />);
 
-    const img = screen.getByRole("img");
+    const img = getByRole("img");
     expect(img.getAttribute("alt")).toBe(altString);
   });
 
@@ -41,17 +42,19 @@ describe("CMSImage", () => {
     const altStringOverride = "a horse in a field on an overcast day";
     const mockImage = { ...mockImageAsset(), altText: altString };
 
-    renderWithProviders(<CMSImage image={mockImage} alt={altStringOverride} />);
+    const { getByRole } = render(
+      <CMSImage image={mockImage} alt={altStringOverride} />
+    );
 
-    const img = screen.getByRole("img");
+    const img = getByRole("img");
     expect(img.getAttribute("alt")).toBe(altStringOverride);
   });
 
   it("sets an empty alt text string if explicitly provided", async () => {
     const mockImage = mockImageAsset();
-    renderWithProviders(<CMSImage image={mockImage} alt="" />);
+    const { getByRole } = render(<CMSImage image={mockImage} alt="" />);
 
-    const img = screen.getByRole("img");
+    const img = getByRole("img");
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(img.getAttribute("alt")).toBe("");
   });
@@ -63,12 +66,12 @@ describe("CMSImage", () => {
       altText: altString,
       isPresentational: true,
     };
-    renderWithProviders(<CMSImage image={mockImage} />);
+    const { getByRole, queryByRole } = render(<CMSImage image={mockImage} />);
 
-    const img = screen.queryByRole("img");
+    const img = queryByRole("img");
     expect(img).not.toBeInTheDocument();
 
-    const hiddenImg = screen.getByRole("img", { hidden: true });
+    const hiddenImg = getByRole("img", { hidden: true });
     // note: `toHaveAttribute("alt", "")` returns false positives, explicitly check
     expect(hiddenImg.getAttribute("alt")).toBe("");
     expect(hiddenImg).toHaveAttribute("aria-hidden", "true");
@@ -76,9 +79,9 @@ describe("CMSImage", () => {
 
   it("uses the proxied CDN url", () => {
     const mockImage = mockImageAsset();
-    renderWithProviders(<CMSImage image={mockImage} />);
+    const { getByRole } = render(<CMSImage image={mockImage} />);
 
-    const img = screen.getByRole("img");
+    const img = getByRole("img");
     expect(img.getAttribute("src")).toBe(
       "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
     );
