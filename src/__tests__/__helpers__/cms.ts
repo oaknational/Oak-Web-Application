@@ -65,7 +65,9 @@ export const mockSeoResult = {
   ogTitle: "Mock Page Title | NEXT_PUBLIC_SEO_APP_NAME",
   ogDescription: "Mock page description",
   ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
-  ogImage: "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
+  ogImage:
+    "public/images/sharing/default-social-sharing-2022.png?" +
+    new Date().getFullYear(),
   ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
   robots: "index,follow",
 };
