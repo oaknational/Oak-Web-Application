@@ -4,14 +4,11 @@
  * Other files which consume this image data should import from this file,
  * rather than importing directly from ./generated
  */
-import { imageBuilder } from "../components/CMSImage/sanityImageBuilder";
-import theme from "../styles/theme/default.theme";
 
 import uiIcons from "./generated/ui-icons.json";
 import uiGraphics from "./generated/ui-graphics.json";
 import subjectIcons from "./generated/subject-icons.json";
 import illustrations from "./generated/illustrations.json";
-import brandAssets from "./generated/brand-assets.json";
 import inlineSprite from "./generated/inline-sprite.json";
 import socialSharingImage from "./generated/social-sharing-image.json";
 
