@@ -31,7 +31,7 @@ type ExpandingContainerProps = CardProps & {
   subjectSlug: string;
   unitSlug: string;
   slug: string;
-  trackingCallback?: () => void;
+  onDownloadButtonClick?: () => void;
 };
 
 const ExpandingContainer: FC<ExpandingContainerProps> = ({
@@ -41,7 +41,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   projectable,
   downloadable,
   toggleClosed = true,
-  trackingCallback,
+  onDownloadButtonClick,
   ...props
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
@@ -101,8 +101,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     $iconPosition="trailing"
                     label={`Download ${lowerCaseTitle}`}
                     onClick={() => {
-                      if (trackingCallback) {
-                        trackingCallback();
+                      if (onDownloadButtonClick) {
+                        onDownloadButtonClick();
                       }
                     }}
                     query={{

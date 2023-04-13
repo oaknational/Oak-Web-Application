@@ -261,7 +261,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 toggleClosed={false}
                 {...curriculumData}
                 title={"Slide deck"}
-                trackingCallback={() => {
+                onDownloadButtonClick={() => {
                   trackDownloadResourceButtonClicked({
                     downloadResourceButtonName: "slide deck",
                   });
@@ -285,7 +285,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Worksheet"}
-                trackingCallback={() => {
+                onDownloadButtonClick={() => {
                   trackDownloadResourceButtonClicked({
                     downloadResourceButtonName: "worksheet",
                   });
@@ -299,7 +299,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Starter quiz"}
-                trackingCallback={() => {
+                onDownloadButtonClick={() => {
                   trackDownloadResourceButtonClicked({
                     downloadResourceButtonName: "starter quiz",
                   });
@@ -315,7 +315,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Exit quiz"}
-                trackingCallback={() => {
+                onDownloadButtonClick={() => {
                   trackDownloadResourceButtonClicked({
                     downloadResourceButtonName: "exit quiz",
                   });

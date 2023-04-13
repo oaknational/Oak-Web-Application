@@ -1,7 +1,11 @@
 import CMSClient from "../../node-lib/cms";
 import { ContactPage } from "../../common-lib/cms-types";
 import ContactUs, { getStaticProps } from "../../pages/contact-us";
-import { portableTextFromString, mockSeo, mockSeoResult } from "../__helpers__/cms";
+import {
+  portableTextFromString,
+  mockSeo,
+  mockSeoResult,
+} from "../__helpers__/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
