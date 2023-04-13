@@ -32,9 +32,9 @@ async function main() {
 
   const url = asset.url;
 
-  const filePath = "public/images/sharing/default-social-sharing-2022.png";
+  const filePath = "images/sharing/default-social-sharing-2022.png";
 
-  await downloadFile({ url, destination: filePath });
+  await downloadFile({ url, destination: "public/" + filePath });
 
   const data = {
     filePath,
