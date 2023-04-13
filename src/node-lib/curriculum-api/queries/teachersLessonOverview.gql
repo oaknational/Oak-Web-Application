@@ -45,7 +45,7 @@ query teachersLessonOverview(
     title
     questionCount: question_count
   }
-  exitQuiz: mv_questions0000001(
+  exitQuiz: mv_questions_2(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
@@ -89,7 +89,7 @@ query teachersLessonOverview(
     title
     questionCount: question_count
   }
-  introQuiz: mv_questions0000001(
+  introQuiz: mv_questions_2(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
