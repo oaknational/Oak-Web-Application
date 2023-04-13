@@ -13,6 +13,7 @@ import subjectIcons from "./generated/subject-icons.json";
 import illustrations from "./generated/illustrations.json";
 import brandAssets from "./generated/brand-assets.json";
 import inlineSprite from "./generated/inline-sprite.json";
+import socialSharingImage from "./generated/social-sharing-image.json";
 
 export type InlineSpriteSvgName = keyof typeof inlineSprite;
 export type UiIconName = keyof typeof uiIcons;
@@ -48,13 +49,8 @@ export const getIllustrationAsset = (
   return illustrations[slug];
 };
 
-export const SOCIAL_SHARING_IMAGE_HEIGHT = 630;
-export const SOCIAL_SHARING_IMAGE_WIDTH = 1280;
-export const SOCIAL_SHARING_IMAGE_URL = imageBuilder
-  .image(brandAssets["logo-with-text"])
-  .width(SOCIAL_SHARING_IMAGE_WIDTH)
-  .height(SOCIAL_SHARING_IMAGE_HEIGHT)
-  .format("png")
-  .rect(0, 0, 1920, 880)
-  .bg(theme.colors.pupilsLimeGreen.slice(1))
-  .url();
+export const SOCIAL_SHARING_IMAGE_HEIGHT = socialSharingImage.height;
+export const SOCIAL_SHARING_IMAGE_WIDTH = socialSharingImage.width;
+export const SOCIAL_SHARING_IMAGE_URL = `${
+  socialSharingImage.filePath
+}?${new Date().getFullYear()}`;
