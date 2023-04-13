@@ -95,6 +95,16 @@ export type UnitIndexLinkProps = {
     ["tier"]?: string | null;
   };
 };
+
+export type ProgrammeLinkProps = {
+  page: "programme";
+  programme: string;
+};
+export type KeyStageSubjectProgrammesLinkProps = {
+  page: "key-stage-subject-programmes";
+  keyStage: string;
+  subject: string;
+};
 export type LessonIndexLinkProps = {
   page: "lesson-index";
   keyStage: string;
@@ -140,7 +150,9 @@ export type ResolveOakHrefProps =
   | UnitIndexLinkProps
   | LessonIndexLinkProps
   | LessonOverviewLinkProps
-  | LessonDownloadsLinkProps;
+  | LessonDownloadsLinkProps
+  | ProgrammeLinkProps
+  | KeyStageSubjectProgrammesLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -214,6 +226,12 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       }
 
       return `${path}?${queryString}`;
+    }
+    case "key-stage-subject-programmes": {
+      return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/programmes`;
+    }
+    case "programme": {
+      return `/beta/teachers/programmes/${props.programme}/units`;
     }
     case "lesson-index": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
