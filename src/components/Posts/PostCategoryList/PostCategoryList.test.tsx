@@ -3,6 +3,14 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 import PostCategoryList from "./PostCategoryList";
 
 const labelId = "test-label-id";
+
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: jest.fn(),
+  }),
+}));
+
 describe("PostCategoryList", () => {
   test("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(

@@ -18,8 +18,13 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
       </Heading>
       <Hr />
       <UL $reset>
-        {questions.map((question) => {
-          return <QuestionListItem {...question} />;
+        {questions.map((question, i) => {
+          return (
+            <QuestionListItem
+              key={`QuestionsList-UL-QuestionListItem-${i}`}
+              {...question}
+            />
+          );
         })}
       </UL>
     </MaxWidth>

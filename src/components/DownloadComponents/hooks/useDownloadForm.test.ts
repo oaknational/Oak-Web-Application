@@ -1,10 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import downloadLessonResources from "../helpers/downloadLessonResources";
-import type {
-  DownloadFormProps,
-  DownloadResourceType,
-} from "../../../components/DownloadComponents/downloads.types";
+import type { DownloadFormProps } from "../../../components/DownloadComponents/downloads.types";
 
 import useDownloadForm from "./useDownloadForm";
 
@@ -34,8 +31,6 @@ const data: DownloadFormProps = {
   downloads: ["intro-quiz-questions"],
 };
 
-const resourcesToDownload: DownloadResourceType[] = ["intro-quiz-questions"];
-
 describe("useDownloadForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -44,14 +39,14 @@ describe("useDownloadForm", () => {
 
   it("should set email in local storage if passed in props", () => {
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith("test@test.com");
   });
 
   it("should set school in local storage if passed in props", () => {
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
       schoolId: "222-Sample school",
@@ -69,7 +64,7 @@ describe("useDownloadForm", () => {
     };
 
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
       schoolId: "homeschool",
@@ -87,7 +82,7 @@ describe("useDownloadForm", () => {
     };
 
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
       schoolId: "notListed",
@@ -97,14 +92,14 @@ describe("useDownloadForm", () => {
 
   it("should set terms in local storage if passed in props", () => {
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
     const { result } = renderHook(() => useDownloadForm());
-    result.current.onSubmit(data, "lesson", resourcesToDownload);
+    result.current.onSubmit(data, "lesson");
 
     await expect(downloadLessonResources).toHaveBeenCalledWith("lesson", [
       "intro-quiz-questions",

@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 
+import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -28,6 +29,8 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectTitle,
   } = curriculumData;
 
+  useTrackPageView({ pageName: "Lesson Listing" });
+
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: 20,
@@ -38,10 +41,13 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson Listing", // @todo add real data
-        description: "Lessons in Unit",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson Listing", // @todo add real data
+          description: "Lessons in Unit",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
       $background="white"
     >
       <MaxWidth $ph={16}>
@@ -101,6 +107,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
+            unitTitle={unitTitle}
           />
         </Box>
       </MaxWidth>

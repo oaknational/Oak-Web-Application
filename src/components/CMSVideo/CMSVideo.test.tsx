@@ -10,10 +10,12 @@ jest.mock("../VideoPlayer", () => ({
   default: (props: never) => mockPlayer(props),
 }));
 
+const render = renderWithProviders();
+
 describe("CMSVideo", () => {
   it("passes video props to VideoPlayer", () => {
     const mockVideo = mockVideoAsset();
-    renderWithProviders(<CMSVideo video={mockVideo} location="marketing" />);
+    render(<CMSVideo video={mockVideo} location="marketing" />);
 
     expect(mockPlayer).toHaveBeenCalledWith(
       expect.objectContaining({

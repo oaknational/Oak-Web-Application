@@ -3,15 +3,18 @@ import renderWithProviders from "../../../__tests__/__helpers__/renderWithProvid
 
 import LessonList from ".";
 
+const render = renderWithProviders();
+
 describe("components/ Lesson List", () => {
   test("it renders the list items", () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <LessonList
         paginationProps={mockPaginationProps}
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h2"}
         currentPageItems={[]}
+        unitTitle={"Unit title"}
         lessons={[
           {
             slug: "",

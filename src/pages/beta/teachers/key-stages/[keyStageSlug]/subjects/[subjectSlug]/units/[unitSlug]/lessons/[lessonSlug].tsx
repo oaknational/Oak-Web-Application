@@ -6,6 +6,7 @@ import {
   NextPage,
 } from "next";
 
+import useTrackPageView from "../../../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -94,7 +95,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
-    transcript,
+    transcriptSentences,
     hasCopyrightMaterial,
     hasDownloadableResources,
     introQuiz,
@@ -105,12 +106,18 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     expired,
   } = curriculumData;
+
+  useTrackPageView({ pageName: "Lesson" });
+
   return (
     <AppLayout
-      seoProps={getSeoProps({
-        title: "Lesson overview", // @todo add real data
-        description: "Overview of lesson",
-      })}
+      seoProps={{
+        ...getSeoProps({
+          title: "Lesson overview", // @todo add real data
+          description: "Overview of lesson",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
     >
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
@@ -231,7 +238,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   video={videoMuxPlaybackId}
                   signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                   title={title}
-                  hasCaptions={Boolean(transcript)}
+                  hasCaptions={Boolean(transcriptSentences)}
                 />
               </ExpandingContainer>
             )}
@@ -265,9 +272,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               </ExpandingContainer>
             )}
 
-            {transcript && (
+            {transcriptSentences && (
               <ExpandingContainer {...curriculumData} title={"Transcript"}>
-                <OverviewTranscript transcript={transcript} />
+                <OverviewTranscript transcriptSentences={transcriptSentences} />
               </ExpandingContainer>
             )}
           </>

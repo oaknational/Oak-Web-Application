@@ -8,11 +8,11 @@ import MenuLinks from "./MenuLinks";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("MenuLinks", () => {
   test("should render a list of links", () => {
-    const { getByText } = renderWithProviders(
-      <MenuLinks menuSections={menuSections} />
-    );
+    const { getByText } = render(<MenuLinks menuSections={menuSections} />);
     Object.values(menuSections).forEach((section) =>
       section.forEach(({ linkText, page }) => {
         const href = resolveOakHref({ page });
@@ -22,7 +22,7 @@ describe("MenuLinks", () => {
   });
   test("will position the arrow at home", () => {
     mockRouter.setCurrentUrl("http://localhost:3000/");
-    const { getByRole, container } = renderWithProviders(
+    const { getByRole, container } = render(
       <MenuLinks menuSections={menuSections} />
     );
     const link = getByRole("link", { name: /Home/i });
@@ -38,7 +38,7 @@ describe("MenuLinks", () => {
   });
   test("should position the arrow based on the current path", () => {
     mockRouter.setCurrentUrl("http://localhost:3000/about-us/board");
-    const { getByRole, container } = renderWithProviders(
+    const { getByRole, container } = render(
       <MenuLinks menuSections={menuSections} />
     );
     const link = getByRole("link", { name: /About us/i });

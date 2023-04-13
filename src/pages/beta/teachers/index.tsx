@@ -1,11 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
+import useTrackPageView from "../../../hooks/useTrackPageView";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
   postToPostListItem,
 } from "../..";
-import { DEFAULT_SEO_PROPS } from "../../../browser-lib/seo/Seo";
+import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import AppLayout from "../../../components/AppLayout";
 import Box from "../../../components/Box";
 import Flex from "../../../components/Flex";
@@ -21,6 +22,7 @@ import usePostList from "../../../components/Posts/PostList/usePostList";
 import SearchForm from "../../../components/SearchForm";
 import { Heading, P, Span } from "../../../components/Typography";
 import UnderlinedHeading from "../../../components/Typography/UnderlinedHeading";
+import useSearch from "../../../context/Search/useSearch";
 import CMSClient from "../../../node-lib/cms";
 import curriculumApi, {
   TeachersHomePageData,
@@ -35,9 +37,13 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
+  const { setSearchTerm } = useSearch({
+    allKeyStages: curriculumData.keyStages,
+  });
+  useTrackPageView({ pageName: "Homepage" });
 
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"grey1"}>
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
       <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
         <MaxWidth>
           <Box $ph={[16, 0]}>
@@ -62,7 +68,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   including slides, worksheets and&nbsp;quizzes.
                 </P>
                 <Box $mt={16}>
-                  <SearchForm />
+                  <SearchForm searchTerm="" handleSubmit={setSearchTerm} />
                 </Box>
                 <P $mt={18} $font={"body-2"}>
                   Search suggestions:
@@ -70,7 +76,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                 <Span>
                   <OakLink
                     page={"beta-search"}
-                    term={"algebra"}
+                    query={{ term: "algebra" }}
                     $color={"black"}
                     $font="heading-7"
                   >
@@ -78,7 +84,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   </OakLink>
                   <OakLink
                     page={"beta-search"}
-                    term={"computing"}
+                    query={{ term: "computing" }}
                     $color={"black"}
                     $font="heading-7"
                   >
@@ -87,7 +93,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
                   <OakLink
                     page={"beta-search"}
-                    term={"a+midsummer+nights+dream"}
+                    query={{ term: "a midsummer nights dream" }}
                     $font="heading-7"
                   >
                     A Midsummer Night's Dream
