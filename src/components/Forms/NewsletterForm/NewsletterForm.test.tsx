@@ -12,12 +12,14 @@ jest.setTimeout(10000);
 
 const onSubmit = jest.fn();
 
+const render = renderWithProviders();
+
 describe("NewsletterForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
-    renderWithProviders(
+    render(
       <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
     );
 
@@ -54,7 +56,7 @@ describe("NewsletterForm", () => {
     });
   });
   test("should display error hint on blur if no name is entered", async () => {
-    const { getByPlaceholderText } = renderWithProviders(
+    const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -70,7 +72,7 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Name can't be empty");
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
-    const { getByPlaceholderText } = renderWithProviders(
+    const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -89,7 +91,7 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Name must contain fewer than 60 charaters");
   });
   test("should display error hint on blur if no email is entered", async () => {
-    const { getByPlaceholderText } = renderWithProviders(
+    const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -105,7 +107,7 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Email can't be empty");
   });
   test("should display error hint on blur email not formatted correctly", async () => {
-    const { getByPlaceholderText } = renderWithProviders(
+    const { getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -122,7 +124,7 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Email not valid");
   });
   test("should display all error hints on submit", async () => {
-    const { getByRole, getByPlaceholderText } = renderWithProviders(
+    const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -140,7 +142,7 @@ describe("NewsletterForm", () => {
     expect(computeAccessibleDescription(input)).toBe("Name can't be empty");
   });
   test("onSubmit() should not be called if form invalid", async () => {
-    const { getByRole } = renderWithProviders(
+    const { getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -153,7 +155,7 @@ describe("NewsletterForm", () => {
   test("should display correct message if OakError thrown from onSubmit()", async () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
-    const { getByRole, getByPlaceholderText } = renderWithProviders(
+    const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 
@@ -175,7 +177,7 @@ describe("NewsletterForm", () => {
   });
   test("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
-    const { getByRole, getByPlaceholderText } = renderWithProviders(
+    const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
     );
 

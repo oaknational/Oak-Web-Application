@@ -1,6 +1,11 @@
 import createQueryStringFromObject from "./createQueryStringFromObject";
 
 describe("createQueryStringFromObject", () => {
+  test("returns empty string if no query passed", () => {
+    const result = createQueryStringFromObject();
+
+    expect(result).toBe("");
+  });
   test("should return correct string", () => {
     const result = createQueryStringFromObject({
       text: "macbeth",
@@ -24,5 +29,21 @@ describe("createQueryStringFromObject", () => {
     });
 
     expect(result).toBe("text=macbeth");
+  });
+  test("should strip out empty arrays", () => {
+    const result = createQueryStringFromObject({
+      text: "macbeth",
+      category: [],
+    });
+
+    expect(result).toBe("text=macbeth");
+  });
+  test("should join string array with ',' delimeter", () => {
+    const result = createQueryStringFromObject({
+      text: "macbeth",
+      categories: ["english", "theatre", "history"],
+    });
+
+    expect(result).toBe("text=macbeth&categories=english%2Ctheatre%2Chistory");
   });
 });

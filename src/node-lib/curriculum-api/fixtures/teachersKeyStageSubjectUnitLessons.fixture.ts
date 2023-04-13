@@ -32,7 +32,7 @@ const teachersKeyStageSubjectUnitsLessonsFixture = (
         expired: true,
       },
       {
-        slug: "macbeth-lesson-1",
+        slug: "macbeth-lesson-2",
         title:
           "Creating a sculpture inspired by Chakaia Booker and Anish Kapoor",
         description:
