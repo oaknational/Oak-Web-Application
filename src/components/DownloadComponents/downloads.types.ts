@@ -33,7 +33,7 @@ export const preselectedDownloadTypeMap: Record<
   all: "all",
 };
 
-export const ContainerTitletoPreselectMap: Record<
+export const containerTitleToPreselectMap: Record<
   ExpandingContainerTitle,
   PreselectedDownloadType | ""
 > = {

@@ -13,7 +13,7 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 import {
-  ContainerTitletoPreselectMap,
+  containerTitleToPreselectMap,
   PreselectedDownloadType,
 } from "../DownloadComponents/downloads.types";
 
@@ -54,7 +54,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const getPreselectedQueryFromTitle = (
     title: ExpandingContainerTitle
   ): PreselectedDownloadType | "" => {
-    return ContainerTitletoPreselectMap[title];
+    return containerTitleToPreselectMap[title];
   };
   const preselected = getPreselectedQueryFromTitle(title);
 
