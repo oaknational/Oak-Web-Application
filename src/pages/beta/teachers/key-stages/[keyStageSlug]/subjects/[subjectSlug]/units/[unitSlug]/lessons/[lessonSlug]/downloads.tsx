@@ -27,11 +27,9 @@ import Grid, {
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
-import {
-  KeyStageTitleValueType,
-  ResourceTypeValueType,
-} from "../../../../../../../../../../../browser-lib/avo/Avo";
+import { KeyStageTitleValueType } from "../../../../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
+import getFormattedDetailsForTracking from "../../../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
@@ -207,7 +205,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       () => {
         setIsAttemptingDownload(true);
         onSubmit(data, slug).then(() => {
-          track.resourcesDownloaded({
+          const {
+            schoolOption,
+            schoolName,
+            schoolUrn,
+            selectedResourcesForTracking,
+          } = getFormattedDetailsForTracking({
+            school: data.school,
+            selectedResources,
+          });
+
+          track.lessonResourcesDownloaded({
             keyStageTitle: keyStageTitle as KeyStageTitleValueType,
             keyStageSlug,
             unitName: unitTitle,
@@ -216,8 +224,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             subjectSlug,
             lessonName: title,
             lessonSlug: slug,
-            resourceType: selectedResources as ResourceTypeValueType[],
+            resourceType: selectedResourcesForTracking,
             analyticsUseCase,
+            schoolUrn,
+            schoolName,
+            schoolOption,
+            emailSupplied: data?.email ? true : false,
           });
         });
       },

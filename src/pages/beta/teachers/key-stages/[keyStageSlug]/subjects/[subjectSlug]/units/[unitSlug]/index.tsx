@@ -96,8 +96,10 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         />
 
         <CurriculumDownloadButton
-          keyStage={keyStageSlug}
-          subject={subjectSlug}
+          keyStageSlug={keyStageSlug}
+          keyStageTitle={keyStageTitle}
+          subjectSlug={subjectSlug}
+          subjectTitle={subjectTitle}
           lessonPage={true}
         />
 
