@@ -1,0 +1,33 @@
+query unitListing($programmeSlug: String!) {
+  mv_programmes: mv_programmes_2(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    tierTitle: tier_title
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
+  }
+  mv_units: mv_units_2(
+    where: { programme_slug: { _eq: $programmeSlug } }
+    order_by: { year: asc, unit_study_order: asc }
+  ) {
+    slug
+    title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    themeSlug: theme_slug
+    themeTitle: theme_title
+    lessonCount: lesson_count
+    quizCount: quiz_count
+    unitStudyOrder: unit_study_order
+    year
+    expired
+    expiredLessonCount: expired_lesson_count
+  }
+}
