@@ -43409,7 +43409,7 @@ export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lesson
 export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersLessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons_3: Array<{ __typename?: 'mv_lessons_3', lessonSlug?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, unitSlug?: string | null }> };
+export type TeachersLessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_3', lessonSlug?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, unitSlug?: string | null }> };
 
 export type TierListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
@@ -43716,7 +43716,7 @@ export const TeachersLessonOverviewDocument = gql`
     `;
 export const TeachersLessonOverviewPathsDocument = gql`
     query teachersLessonOverviewPaths {
-  mv_lessons_3 {
+  mv_lessons: mv_lessons_3 {
     lessonSlug: slug
     keyStageSlug: key_stage_slug
     subjectSlug: subject_slug
