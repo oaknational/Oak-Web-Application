@@ -72,6 +72,25 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   };
 };
 
+const unitsData = z.array(
+  z.object({
+    slug: z.string(),
+    title: z.string(),
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    themeSlug: z.string().nullable(),
+    themeTitle: z.string().nullable(),
+    lessonCount: z.number().nullable(),
+    quizCount: z.number().nullable(),
+    unitStudyOrder: z.number(),
+    year: z.string(),
+    expired: z.boolean().nullable(),
+    expiredLessonCount: z.number().nullable(),
+  })
+);
+
 const searchPageData = z.object({
   keyStages: z.array(
     z.object({
@@ -129,6 +148,7 @@ const teachersKeyStageSubjectTiersPathsSchema = z.object({
     })
   ),
 });
+
 const teachersKeyStageSubjectUnitsData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -143,24 +163,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       lessonCount: z.number().nullable(),
     })
   ),
-  units: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      year: z.string(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-    })
-  ),
+  units: unitsData,
   learningThemes: z.array(
     z
       .object({
@@ -365,24 +368,7 @@ const unitListingData = z.object({
   tierTitle: z.string().nullable(),
   totalUnitCount: z.number().nullable(),
   activeLessonCount: z.number().nullable(),
-  units: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      year: z.string(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-    })
-  ),
+  units: unitsData,
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;

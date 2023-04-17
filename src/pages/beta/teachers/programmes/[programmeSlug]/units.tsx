@@ -30,7 +30,7 @@ export type SubjectUnitsListPageProps = {
   // learningThemeSlug: string | null;
 };
 
-const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
+const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
   curriculumData,
 }) => {
   const {
@@ -38,7 +38,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
     keyStageSlug,
     subjectTitle,
     subjectSlug,
-    // tierSlug,
+    tierSlug,
     // tierTitle,
     // totalUnitCount,
     // activeLessonCount,
@@ -82,7 +82,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
   const unitsSEO = {
     ...getSeoProps({
       title: "Units", // @todo add real data
-      description: "Subject units",
+      description: "Programme units",
     }),
     ...{ noFollow: true, noIndex: true },
   };
@@ -127,7 +127,7 @@ const SubjectUnitsListPage: NextPage<SubjectUnitsListPageProps> = ({
           keyStageTitle={keyStageTitle}
           subjectSlug={subjectSlug}
           subjectTitle={subjectTitle}
-          // tier={tierQuery}
+          tier={tierSlug}
         />
 
         <Grid>
@@ -287,4 +287,4 @@ export const getServerSideProps: GetServerSideProps<
   return results;
 };
 
-export default SubjectUnitsListPage;
+export default UnitListingPage;
