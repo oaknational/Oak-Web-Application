@@ -15,6 +15,8 @@ describe("OWA", () => {
       await HomePage.closeConfirmicOverlay();
 
       const title = await HomePage.title;
+
+      // These do need an await, despite what VSCode might tell you.
       await expect(title).toHaveTextContaining("great lessons");
     });
   });
