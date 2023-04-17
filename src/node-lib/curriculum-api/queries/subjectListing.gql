@@ -11,7 +11,7 @@ query subjectListing($keyStageSlug: String!) {
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: unit_count
+    unitCount: total_unit_count
   }
   mv_programmes_unavailable: mv_programmes_1(
     where: { key_stage_slug: { _eq: $keyStageSlug }, unit_count: { _eq: 0 } }
@@ -21,6 +21,6 @@ query subjectListing($keyStageSlug: String!) {
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: unit_count
+    unitCount: total_unit_count
   }
 }

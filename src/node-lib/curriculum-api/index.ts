@@ -333,10 +333,18 @@ const programmesData = z.object({
   title: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  unitCount: z.number().nullable(),
-  // activeUnitCount: z.number().nullable(), //todo
   activeLessonCount: z.number(),
   totalUnitCount: z.number(),
+  programmeSlug: z.string(),
+  tierSlug: z.string().nullable(),
+});
+
+const subjectListingProgrammesData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  keyStageSlug: z.string(),
+  unitCount: z.number().nullable(),
+  // activeUnitCount: z.number().nullable(), //todo
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
 });
@@ -344,8 +352,8 @@ const programmesData = z.object({
 const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(programmesData),
-  programmesUnavailable: z.array(programmesData),
+  programmesAvailable: z.array(subjectListingProgrammesData),
+  programmesUnavailable: z.array(subjectListingProgrammesData),
 });
 
 const unitListingData = z.object({
