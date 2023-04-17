@@ -23493,7 +23493,6 @@ export type Mv_Questions_Order_By = {
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
   quiz_id?: InputMaybe<Order_By>;
-  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   required?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
@@ -43687,7 +43686,6 @@ export const TeachersLessonOverviewDocument = gql`
     title
     questionCount: question_count
   }
-  introQuiz: mv_questions_2(
   introQuiz: mv_questions_2(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
     order_by: {order: asc}
