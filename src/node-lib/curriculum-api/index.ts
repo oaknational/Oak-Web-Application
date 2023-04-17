@@ -46,7 +46,7 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L, V, W, R1, R2>(res: {
+const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
@@ -56,6 +56,7 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2>(res: {
   mv_downloads?: W;
   mv_programmes_unavailable?: R1;
   mv_programmes_available?: R2;
+  mv_programmes?: P;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -67,8 +68,28 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2>(res: {
     downloads: res.mv_downloads,
     programmesUnavailable: res.mv_programmes_unavailable,
     programmesAvailable: res.mv_programmes_available,
+    programmes: res.mv_programmes,
   };
 };
+
+const unitsData = z.array(
+  z.object({
+    slug: z.string(),
+    title: z.string(),
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    themeSlug: z.string().nullable(),
+    themeTitle: z.string().nullable(),
+    lessonCount: z.number().nullable(),
+    quizCount: z.number().nullable(),
+    unitStudyOrder: z.number(),
+    year: z.string(),
+    expired: z.boolean().nullable(),
+    expiredLessonCount: z.number().nullable(),
+  })
+);
 
 const searchPageData = z.object({
   keyStages: z.array(
@@ -127,6 +148,7 @@ const teachersKeyStageSubjectTiersPathsSchema = z.object({
     })
   ),
 });
+
 const teachersKeyStageSubjectUnitsData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -141,24 +163,7 @@ const teachersKeyStageSubjectUnitsData = z.object({
       lessonCount: z.number().nullable(),
     })
   ),
-  units: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      year: z.string(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-    })
-  ),
+  units: unitsData,
   learningThemes: z.array(
     z
       .object({
@@ -330,10 +335,19 @@ const programmesData = z.object({
   slug: z.string(),
   title: z.string(),
   keyStageSlug: z.string(),
-  // keyStageTitle: z.string(), // todo
+  keyStageTitle: z.string(),
+  activeLessonCount: z.number(),
+  totalUnitCount: z.number(),
+  programmeSlug: z.string(),
+  tierSlug: z.string().nullable(),
+});
+
+const subjectListingProgrammesData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  keyStageSlug: z.string(),
   unitCount: z.number().nullable(),
   // activeUnitCount: z.number().nullable(), //todo
-  // lessonCount: z.number().nullable(), //todo
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
 });
@@ -341,8 +355,20 @@ const programmesData = z.object({
 const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(programmesData),
-  programmesUnavailable: z.array(programmesData),
+  programmesAvailable: z.array(subjectListingProgrammesData),
+  programmesUnavailable: z.array(subjectListingProgrammesData),
+});
+
+const unitListingData = z.object({
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  tierSlug: z.string().nullable(),
+  tierTitle: z.string().nullable(),
+  totalUnitCount: z.number().nullable(),
+  activeLessonCount: z.number().nullable(),
+  units: unitsData,
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
@@ -375,6 +401,7 @@ export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
 >;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
+export type UnitListingData = z.infer<typeof unitListingData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -441,6 +468,24 @@ const curriculumApi = {
       keyStageTitle: keyStage.title,
       programmesAvailable,
       programmesUnavailable,
+    });
+  },
+  unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
+    const res = await sdk.unitListing(...args);
+    const { units, programmes = [] } = transformMVCase(res);
+
+    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+
+    return unitListingData.parse({
+      keyStageSlug: programme?.keyStageSlug,
+      keyStageTitle: programme?.keyStageTitle,
+      subjectSlug: programme?.subjectSlug,
+      subjectTitle: programme?.subjectTitle,
+      tierSlug: programme?.tierSlug || null,
+      tierTitle: programme?.tierTitle || null,
+      totalUnitCount: programme?.totalUnitCount,
+      activeLessonCount: programme?.activeLessonCount,
+      units,
     });
   },
   teachersKeyStageSubjects: async (

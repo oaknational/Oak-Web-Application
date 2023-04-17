@@ -43419,6 +43419,13 @@ export type TierListingQueryVariables = Exact<{
 
 export type TierListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
 
+export type UnitListingQueryVariables = Exact<{
+  programmeSlug: Scalars['String'];
+}>;
+
+
+export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_2', keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
+
 
 export const SearchPageDocument = gql`
     query searchPage {
@@ -43756,6 +43763,39 @@ export const TierListingDocument = gql`
   }
 }
     `;
+export const UnitListingDocument = gql`
+    query unitListing($programmeSlug: String!) {
+  mv_programmes: mv_programmes_2(where: {programme_slug: {_eq: $programmeSlug}}) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    tierTitle: tier_title
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
+  }
+  mv_units: mv_units_2(
+    where: {programme_slug: {_eq: $programmeSlug}}
+    order_by: {year: asc, unit_study_order: asc}
+  ) {
+    slug
+    title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    themeSlug: theme_slug
+    themeTitle: theme_title
+    lessonCount: lesson_count
+    quizCount: quiz_count
+    unitStudyOrder: unit_study_order
+    year
+    expired
+    expiredLessonCount: expired_lesson_count
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -43802,6 +43842,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     tierListing(variables: TierListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TierListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TierListingQuery>(TierListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tierListing', 'query');
+    },
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
     }
   };
 }
