@@ -1,5 +1,5 @@
 query teachersLessonOverviewPaths {
-  mv_lessons{
+  mv_lessons: mv_lessons_3 {
     lessonSlug: slug
     keyStageSlug: key_stage_slug
     subjectSlug: subject_slug
