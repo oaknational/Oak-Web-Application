@@ -22,7 +22,9 @@ const Template: ComponentStory<typeof Component> = () => {
         tag={"h5"}
         $color={"grey8"}
       >
-        <Component page="pupils-home"> Card link</Component>
+        <Component page="home" viewType={"teachers"}>
+          Card link
+        </Component>
       </Heading>
       <P>
         Drop a CardLink component into a Card, pass in an href and the whole

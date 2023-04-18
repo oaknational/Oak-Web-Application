@@ -40,7 +40,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
         canonicalURL: pageData.seo?.canonicalURL || undefined,
       }}
       pageData={pageData}
-      page={"webinars-index"}
+      page={"webinar-index"}
       categories={categories}
       categorySlug={categorySlug}
       postsWithCategories={props}

@@ -75,7 +75,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                 </P>
                 <Span>
                   <OakLink
-                    page={"beta-search"}
+                    page={"search"}
+                    viewType="teachers"
                     query={{ term: "algebra" }}
                     $color={"black"}
                     $font="heading-7"
@@ -83,7 +84,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                     Algebra,&nbsp;
                   </OakLink>
                   <OakLink
-                    page={"beta-search"}
+                    page={"search"}
+                    viewType="teachers"
                     query={{ term: "computing" }}
                     $color={"black"}
                     $font="heading-7"
@@ -92,7 +94,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   </OakLink>
 
                   <OakLink
-                    page={"beta-search"}
+                    page={"search"}
+                    viewType="teachers"
                     query={{ term: "a midsummer nights dream" }}
                     $font="heading-7"
                   >

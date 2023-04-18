@@ -25,12 +25,15 @@ describe("urls.ts", () => {
       );
     });
     it("returns the correct path for a blog", () => {
-      const props: ResolveOakHrefProps = { page: "blog", slug: "a-blog" };
+      const props: ResolveOakHrefProps = {
+        page: "blog-single",
+        slug: "a-blog",
+      };
       expect(resolveOakHref(props)).toBe("/blog/a-blog");
     });
-    it("returns the correct path for a webinars", () => {
+    it("returns the correct path for a webinar", () => {
       const props: ResolveOakHrefProps = {
-        page: "webinars",
+        page: "webinar-single",
         slug: "a-webinar",
       };
       expect(resolveOakHref(props)).toBe("/webinars/a-webinar");
@@ -43,7 +46,7 @@ describe("urls.ts", () => {
     });
     it("returns the correct path for a blog-index page ", () => {
       const props: ResolveOakHrefProps = {
-        page: "webinars-index",
+        page: "webinar-index",
       };
       expect(resolveOakHref(props)).toBe("/webinars");
     });
@@ -56,14 +59,14 @@ describe("urls.ts", () => {
     });
     it("returns the correct path for a blog-index page with a category", () => {
       const props: ResolveOakHrefProps = {
-        page: "webinars-index",
+        page: "webinar-index",
         category: "lessons",
       };
       expect(resolveOakHref(props)).toBe("/webinars/categories/lessons");
     });
     it("returns the correct path for a blog-index page with search object", () => {
       const props: ResolveOakHrefProps = {
-        page: "webinars-index",
+        page: "webinar-index",
         search: {
           page: "blog",
         },

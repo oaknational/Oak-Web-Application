@@ -31,15 +31,15 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "landingPage":
       return resolveOakHref({ page: "landing-page", slug: entry.slug });
     case "webinar":
-      return resolveOakHref({ page: "webinars", slug: entry.slug });
+      return resolveOakHref({ page: "webinar-single", slug: entry.slug });
     case "webinarListingPage":
-      return resolveOakHref({ page: "webinars-index" });
+      return resolveOakHref({ page: "webinar-index" });
     case "newsPost":
-      return resolveOakHref({ page: "blog", slug: entry.slug });
+      return resolveOakHref({ page: "blog-single", slug: entry.slug });
     case "newsListingPage":
       return resolveOakHref({ page: "blog-index" });
     case "policyPage":
-      return resolveOakHref({ page: "policy", slug: entry.slug });
+      return resolveOakHref({ page: "legal", slug: entry.slug });
     case "attachment":
       return entry.file.asset.url;
     default: {
