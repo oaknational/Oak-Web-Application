@@ -17,14 +17,14 @@ query teachersKeyStageSubjectUnits(
     slug
     title
   }
-  mv_tiers(
+  mv_tiers_1(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
     }
   ) {
-    slug
-    title
+    slug: tier_slug
+    title: tier_title
     unitCount: unit_count
     lessonCount: lesson_count
   }

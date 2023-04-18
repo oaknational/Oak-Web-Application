@@ -9,26 +9,44 @@ import UnitListingPage, {
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
-import unitsListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 
 describe("pages/programmes/[programmeSlug]/units", () => {
   it("Renders title from props ", async () => {
     renderWithProviders()(
-      <UnitListingPage curriculumData={unitsListingFixture()} />
+      <UnitListingPage curriculumData={unitListingFixture()} />
     );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Maths"
+        "Art"
       );
     });
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details for tiered programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage curriculumData={unitsListingFixture()} />
+        <UnitListingPage curriculumData={unitListingWithTiersFixture()} />
+      );
+
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "We have resources for tiers: Foundation, Core, Higher",
+        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "We have resources for tiers: Foundation, Core, Higher",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
+      });
+    });
+
+    it("renders the correct SEO details for non tiered programme", async () => {
+      const { seo } = renderWithSeo()(
+        <UnitListingPage curriculumData={unitListingFixture()} />
       );
 
       expect(seo).toEqual({
@@ -46,10 +64,22 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   });
 
   describe("getServerSideProps", () => {
+    // it("Should fetch the correct data for tiered programme", async () => {
+    //   const propsResult = (await getServerSideProps({
+    //     params: {
+    //       programmeSlug: "maths-higher-ks4-higher",
+    //     },
+    //     query: {},
+    //   } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
+    //     props: SubjectUnitsListPageProps;
+    //   };
+
+    //   expect(propsResult.props.curriculumData).toEqual(unitListingFixture());
+    // });
     it("Should fetch the correct data", async () => {
       const propsResult = (await getServerSideProps({
         params: {
-          programmeSlug: "maths-higher-ks4",
+          programmeSlug: "art-primary-ks1",
         },
         query: {},
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
