@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
 import config from "../../config/browser";
+import { SOCIAL_SHARING_IMAGE_URL } from "../../image-data";
 
 export const DEFAULT_SEO_PROPS = {
   title: config.get("seoAppName"),
@@ -32,9 +33,7 @@ export type SeoProps = {
 const Seo: FC<SeoProps> = ({
   title,
   description,
-  imageUrl = `${config.get("seoAppUrl")}${config.get(
-    "seoAppSocialSharingImg"
-  )}?2022`,
+  imageUrl = SOCIAL_SHARING_IMAGE_URL,
   noIndex = false,
   noFollow = false,
   canonicalURL,

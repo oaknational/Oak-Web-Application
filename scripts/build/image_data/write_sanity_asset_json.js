@@ -2,7 +2,7 @@ const { writeFileSync } = require("node:fs");
 
 const { getSanityClient } = require("./get_sanity_client");
 
-function writeAssetJson({ assetTypeName, fileName, assetData }) {
+function writeAssetJson({ fileName, assetData }) {
   /**
    * These do not form a sprite sheet, instead their Sanity asset data is
    * stored in json ready to be consumed by @sanity/image-url
@@ -16,7 +16,7 @@ function writeAssetJson({ assetTypeName, fileName, assetData }) {
 
   writeFileSync(subjectIconsPath, JSON.stringify(assetsBySlug));
 
-  console.log(`✅ ${assetTypeName} data written to ${subjectIconsPath}`);
+  console.log(`✅ ${fileName} data written to ${subjectIconsPath}`);
 }
 
 async function main() {
@@ -33,7 +33,6 @@ async function main() {
   }`);
 
   writeAssetJson({
-    assetTypeName: "Subject icons",
     fileName: "subject-icons",
     assetData: subjectIconsRes,
   });
@@ -49,9 +48,29 @@ async function main() {
   }`);
 
   writeAssetJson({
-    assetTypeName: "Illustrations",
     fileName: "illustrations",
     assetData: illustrationsRes,
+  });
+
+  const brandAssetRes = await client.fetch(`*[_type == "brandAsset"] {
+    logoWithText {
+      image {
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
+  }`);
+
+  writeAssetJson({
+    fileName: "brand-assets",
+    assetData: [
+      {
+        ...brandAssetRes[0].logoWithText,
+        slug: { current: "logo-with-text" },
+      },
+    ],
   });
 }
 

@@ -166,9 +166,6 @@ async function main() {
       process.env.NEXT_PUBLIC_SEO_APP_URL || oakConfig.seo?.appUrl,
     NEXT_PUBLIC_SEO_APP_LOGO:
       process.env.NEXT_PUBLIC_SEO_APP_LOGO || oakConfig.seo?.appLogo,
-    NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG:
-      process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG ||
-      oakConfig.seo?.appSocialSharingImg,
     NEXT_PUBLIC_SEO_APP_FACEBOOK:
       process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK || oakConfig.seo?.appFacebook,
     NEXT_PUBLIC_SEO_APP_TWITTER:
