@@ -109,7 +109,7 @@
     "@next/bundle-analyzer": "^13.0.7",
     "@next/env": "^13.2.1",
     "@next/eslint-plugin-next": "^13.1.6",
-    "@percy/cli": "^1.20.0",
+    "@percy/cli": "^1.23.0",
     "@playwright/test": "1.27.1",
     "@sanity/client": "^3.4.1",
     "@semantic-release/changelog": "^6.0.1",
