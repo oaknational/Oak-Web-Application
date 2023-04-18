@@ -40,6 +40,7 @@ async function main() {
     lang: "en-GB",
     loadManifestWithCredentials: true,
     manifestMaskable: true,
+    display: "minimal-ui",
   };
 
   const response = await favicons(svgPath, configuration);
