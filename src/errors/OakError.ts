@@ -18,6 +18,7 @@ const ERROR_CODES = [
   "video/unknown",
   "video/fetch-signed-token",
   "hubspot/not-loaded",
+  "hubspot/script-failed-to-load",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
@@ -88,6 +89,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "hubspot/not-loaded": {
     message: "Hubspot not properly instantiated",
+    shouldNotify: true,
+  },
+  "hubspot/script-failed-to-load": {
+    message:
+      "Hubspot script failed to load. Likely a browser connection issue, or script src misconfigured",
     shouldNotify: true,
   },
   "hubspot/lost-information": {
