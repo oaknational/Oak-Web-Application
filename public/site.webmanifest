@@ -13,16 +13,11 @@
     {
       "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
   "theme_color": "rgb(213, 239, 212)",
   "background_color": "rgb(213, 239, 212)",
-  "display": "standalone"
+  "display": "minimal-ui"
 }
