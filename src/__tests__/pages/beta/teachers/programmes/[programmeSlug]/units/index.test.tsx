@@ -1,5 +1,4 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
-import { screen, waitFor } from "@testing-library/react";
 
 import UnitListingPage, {
   getServerSideProps,
@@ -11,18 +10,33 @@ import renderWithProviders from "../../../../../../__helpers__/renderWithProvide
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
+
+jest.mock("../../../../../../../hooks/useTrackPageView");
+
+const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
-  it("Renders title from props ", async () => {
-    renderWithProviders()(
+  it("renders title from props ", () => {
+    const { getByRole } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />
     );
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Art"
-      );
-    });
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Art");
+  });
+
+  it("renders nav for tiers for programme that included tiers", () => {
+    const { getByTestId } = render(
+      <UnitListingPage curriculumData={unitListingWithTiersFixture()} />
+    );
+
+    expect(getByTestId("tiers-nav")).toBeInTheDocument();
+  });
+
+  it("makes a correct page tracking call", () => {
+    render(<UnitListingPage curriculumData={unitListingFixture()} />);
+
+    expect(useTrackPageView).toHaveBeenCalledWith({ pageName: "Unit Listing" });
   });
 
   describe("SEO", () => {
@@ -64,18 +78,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   });
 
   describe("getServerSideProps", () => {
-    // it("Should fetch the correct data for tiered programme", async () => {
-    //   const propsResult = (await getServerSideProps({
-    //     params: {
-    //       programmeSlug: "maths-higher-ks4-higher",
-    //     },
-    //     query: {},
-    //   } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-    //     props: SubjectUnitsListPageProps;
-    //   };
-
-    //   expect(propsResult.props.curriculumData).toEqual(unitListingFixture());
-    // });
     it("Should fetch the correct data", async () => {
       const propsResult = (await getServerSideProps({
         params: {

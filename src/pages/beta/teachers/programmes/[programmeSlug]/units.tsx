@@ -217,7 +217,7 @@ const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
               </Flex>
 
               {tiers.length > 0 && (
-                <nav aria-label="tiers">
+                <nav aria-label="tiers" data-testid="tiers-nav">
                   <TabularNav
                     $mb={[10, 16]}
                     label="tiers"
