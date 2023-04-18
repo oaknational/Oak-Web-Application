@@ -4,6 +4,7 @@ const { writeFile, unlink, mkdir } = require("fs/promises");
 const favicons = require("favicons").default;
 
 const { getSanityClient } = require("./get_sanity_client");
+const { writeJson } = require("./helpers");
 
 async function main() {
   const client = getSanityClient();
@@ -16,21 +17,15 @@ async function main() {
   }`);
   const [{ faviconImage }] = brandAssetRes;
 
-  const THEME_COLOR = "BEF2BD";
+  // pupilsLimeGreen
+  const THEME_LIME_GREEN = "BEF2BD";
 
-  const svg = (
-    await (
-      await fetch(`${faviconImage.image.asset.url}?bg=${THEME_COLOR}`)
-    ).text()
-  )
-    .replace(`fill="#000"`, `fill="currentColor"`)
-    .replace(`fill="black"`, `fill="currentColor"`);
+  const svg = await (await fetch(faviconImage.image.asset.url)).text();
 
   const svgPath = `public/images/favicons/favicon.svg`;
   await writeFile(path.resolve(svgPath), svg);
 
   const dest = "./public/images/favicons"; // Output directory path.
-  const htmlBasename = "index.html"; // HTML file basename.
 
   // @see https://github.com/itgalaxy/favicons#usage
   const configuration = {
@@ -39,10 +34,12 @@ async function main() {
     appShortName: "Oak",
     appDescription:
       "Our Collection Of Adaptable Lesson Planning Resources Are Made For Teachers - Browse By subject, Key Stage From Reception To Year 11 And Download For Free",
-    background: `#${THEME_COLOR}`,
-    theme_color: `#${THEME_COLOR}`,
+    background: `#${THEME_LIME_GREEN}`,
+    theme_color: `#${THEME_LIME_GREEN}`,
     categories: ["education"],
     lang: "en-GB",
+    loadManifestWithCredentials: true,
+    manifestMaskable: true,
   };
 
   const response = await favicons(svgPath, configuration);
@@ -60,13 +57,11 @@ async function main() {
       async (file) => await writeFile(path.join(dest, file.name), file.contents)
     )
   );
-  await writeFile(path.join(dest, htmlBasename), response.html.join("\n"));
+  const innerHTML = response.html.join("");
+
+  await writeJson({ fileName: "favicons.json", data: { innerHTML } });
 
   await unlink(svgPath);
-
-  console.log(response.images); // Array of { name: string, contents: <buffer> }
-  console.log(response.files); // Array of { name: string, contents: <string> }
-  console.log(response.html); // Array of strings (html elements)
 }
 
 main();
