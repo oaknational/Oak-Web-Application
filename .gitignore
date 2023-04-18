@@ -83,4 +83,5 @@ public/sitemap*.xml
 public/images/sprite/*
 !public/images/sprite/README.md
 public/images/favicons/*
+public/images/sharing/*
 src/image-data/generated/*.svg

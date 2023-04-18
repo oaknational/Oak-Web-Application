@@ -1,3 +1,6 @@
+const fs = require("fs");
+const { Readable } = require("stream");
+const { finished } = require("stream/promises");
 const { writeFileSync, readFileSync, unlinkSync } = require("node:fs");
 const path = require("path");
 
@@ -42,16 +45,15 @@ function compileAndWriteSpriteToFile({ spriter, path }) {
  * array of slugs cannot be used cannot be used
  * @see https://github.com/microsoft/TypeScript/issues/32063
  */
-function writeJsonForTypes({ names, path }) {
-  writeFileSync(
-    path,
-    JSON.stringify(
-      names.reduce((acc, cur) => {
-        acc[cur] = {};
-        return acc;
-      }, {})
-    )
-  );
+function writeJsonForTypes({ names, fileName }) {
+  const path = writeJson({
+    fileName,
+    data: names.reduce((acc, cur) => {
+      acc[cur] = {};
+      return acc;
+    }, {}),
+  });
+  return path;
 }
 
 function getPublicSpritePath({ fileName }) {
@@ -60,6 +62,12 @@ function getPublicSpritePath({ fileName }) {
 
 function getGeneratedImageDataPath({ fileName }) {
   return `src/image-data/generated/${fileName}`;
+}
+
+function writeJson({ data, fileName }) {
+  const path = getGeneratedImageDataPath({ fileName });
+  writeFileSync(path, JSON.stringify(data));
+  return path;
 }
 
 function getSpriterInstance({ mode }) {
@@ -82,6 +90,12 @@ function getSpriterInstance({ mode }) {
   return spriter;
 }
 
+async function downloadFile({ url, destination }) {
+  const res = await fetch(url);
+  const fileStream = fs.createWriteStream(destination);
+  await finished(Readable.fromWeb(res.body).pipe(fileStream));
+}
+
 module.exports = {
   fetchSvgAndAddToSprite,
   compileAndWriteSpriteToFile,
@@ -89,4 +103,6 @@ module.exports = {
   getPublicSpritePath,
   getGeneratedImageDataPath,
   getSpriterInstance,
+  downloadFile,
+  writeJson,
 };
