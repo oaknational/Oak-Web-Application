@@ -1,3 +1,16 @@
+# [1.173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.2...v1.173.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* insert favicon links into Head ([7652704](https://github.com/oaknational/Oak-Web-Application/commit/7652704b543017f849bdba225e881ecf58b60a50))
+* **webmanifest:** set dispay: minimal-ui ([ebc2fc4](https://github.com/oaknational/Oak-Web-Application/commit/ebc2fc452b8faa88d5fb7a57d6c83d3c10b33091))
+
+
+### Features
+
+* favicon generation build script ([03e02d3](https://github.com/oaknational/Oak-Web-Application/commit/03e02d3b5956689884370fdedd76196926fe5de8))
+
 ## [1.172.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.1...v1.172.2) (2023-04-18)
 
 
