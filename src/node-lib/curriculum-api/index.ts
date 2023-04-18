@@ -91,6 +91,16 @@ const unitsData = z.array(
   })
 );
 
+const tiersData = z.array(
+  z.object({
+    tierSlug: z.string(),
+    tierTitle: z.string(),
+    tierProgrammeSlug: z.string(),
+    unitCount: z.number().nullable(),
+    lessonCount: z.number().nullable(),
+  })
+);
+
 const searchPageData = z.object({
   keyStages: z.array(
     z.object({
@@ -368,6 +378,7 @@ const unitListingData = z.object({
   tierTitle: z.string().nullable(),
   totalUnitCount: z.number().nullable(),
   activeLessonCount: z.number().nullable(),
+  tiers: tiersData,
   units: unitsData,
 });
 
@@ -472,7 +483,7 @@ const curriculumApi = {
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
-    const { units, programmes = [] } = transformMVCase(res);
+    const { units, programmes = [], tiers = [] } = transformMVCase(res);
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
 
@@ -485,6 +496,7 @@ const curriculumApi = {
       tierTitle: programme?.tierTitle || null,
       totalUnitCount: programme?.totalUnitCount,
       activeLessonCount: programme?.activeLessonCount,
+      tiers,
       units,
     });
   },

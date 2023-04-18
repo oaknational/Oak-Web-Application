@@ -4,22 +4,22 @@ const unitListingFixture = (
   partial?: Partial<UnitListingData>
 ): UnitListingData => {
   return {
-    keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
-    subjectSlug: "maths",
-    subjectTitle: "Maths",
-    tierSlug: "core",
-    tierTitle: "Core",
+    keyStageSlug: "ks1",
+    keyStageTitle: "Key stage 1",
+    subjectSlug: "art",
+    subjectTitle: "Art",
+    tierSlug: null,
+    tierTitle: null,
     totalUnitCount: 20,
     activeLessonCount: 40,
     units: [
       {
         slug: "some-unit-slug",
         title: "Unit title",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
-        subjectSlug: "maths",
-        subjectTitle: "Maths",
+        keyStageSlug: "ks1",
+        keyStageTitle: "Key stage 1",
+        subjectSlug: "art",
+        subjectTitle: "Art",
         themeSlug: "some-theme-slug",
         themeTitle: "Some theme title",
         lessonCount: 18,
@@ -30,6 +30,7 @@ const unitListingFixture = (
         expiredLessonCount: null,
       },
     ],
+    tiers: [],
     ...partial,
   };
 };

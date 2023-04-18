@@ -20,17 +20,17 @@ import Box from "../../../../../components/Box";
 // import LearningThemeFilters from "../../../../../components/Filters/LearningThemeFilters";
 // import MobileFilters from "../../../../../components/MobileFilters";
 import { Heading } from "../../../../../components/Typography";
-// import TabularNav from "../../../../../components/TabularNav";
+import TabularNav from "../../../../../components/TabularNav";
 // import SubjectTierListing from "../../../../../components/SubjectTierListing/SubjectTierListing";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 
-export type SubjectUnitsListPageProps = {
+export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   // learningThemeSlug: string | null;
 };
 
-const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
+const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
 }) => {
   const {
@@ -42,12 +42,11 @@ const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
     // tierTitle,
     // totalUnitCount,
     // activeLessonCount,
+    tiers,
     units,
   } = curriculumData;
 
   useTrackPageView({ pageName: "Unit Listing" });
-
-  // const { tier } = useRouter().query;
 
   // function isString(x: unknown): x is string {
   //   return typeof x === "string";
@@ -69,15 +68,15 @@ const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
   // const learningThemesId = useId();
   // const learningThemesFilterId = useId();
 
-  // const tiersSEO = {
-  //   ...getSeoProps({
-  //     title: `${keyStageTitle} ${subjectTitle} tiers`,
-  //     description: `We have resources for tiers: ${tiers
-  //       .map((tier) => tier.title)
-  //       .join(", ")}`,
-  //   }),
-  //   ...{ noFollow: true, noIndex: true },
-  // };
+  const tiersSEO = {
+    ...getSeoProps({
+      title: `${keyStageTitle} ${subjectTitle} tiers`,
+      description: `We have resources for tiers: ${tiers
+        .map((tier) => tier.tierTitle)
+        .join(", ")}`,
+    }),
+    ...{ noFollow: true, noIndex: true },
+  };
 
   const unitsSEO = {
     ...getSeoProps({
@@ -88,7 +87,7 @@ const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
   };
 
   return (
-    <AppLayout seoProps={unitsSEO}>
+    <AppLayout seoProps={tierSlug ? tiersSEO : unitsSEO}>
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
           {" "}
@@ -217,23 +216,28 @@ const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
                 )} */}
               </Flex>
 
-              {/* {tiers.length > 0 && (
-                <nav aria-label="tiers">
+              {tiers.length > 0 && (
+                <nav aria-label="tiers" data-testid="tiers-nav">
                   <TabularNav
                     $mb={[10, 16]}
                     label="tiers"
-                    links={tiers.map(({ title, slug, unitCount }) => ({
-                      label: `${title} (${unitCount})`,
-                      keyStage: keyStageSlug,
-                      subject: subjectSlug,
-                      search: { tier: slug },
-                      page: "unit-index",
-                      isCurrent: slug === tierQuery,
-                      currentStyles: ["color", "text-underline"],
-                    }))}
+                    links={tiers.map(
+                      ({
+                        tierTitle: title,
+                        tierSlug: slug,
+                        unitCount,
+                        tierProgrammeSlug,
+                      }) => ({
+                        label: `${title} (${unitCount})`,
+                        programme: tierProgrammeSlug,
+                        page: "programme",
+                        isCurrent: tierSlug === slug,
+                        currentStyles: ["color", "text-underline"],
+                      })
+                    )}
                   />
                 </nav>
-              )} */}
+              )}
             </Flex>
             <UnitList
               {...curriculumData}
@@ -252,18 +256,14 @@ export type URLParams = {
 };
 
 export const getServerSideProps: GetServerSideProps<
-  SubjectUnitsListPageProps,
+  UnitListingPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("No context.params");
   }
   const { programmeSlug } = context.params;
-  // QUESTION: should we fetch the data for all tiers and handle the
-  // filtering client side, so that we can use getStaticProps here?
-  // It's a bigger initial download for the user, but changing tier
-  // won't require a new network call.
-  // const { tier } = context.query;
+
   // const learningTheme = context.query["learning-theme"]
   //   ? context.query["learning-theme"]
   //   : null;
@@ -273,13 +273,11 @@ export const getServerSideProps: GetServerSideProps<
   //     : null
   //   : learningTheme;
 
-  // const tierSlug = Array.isArray(tier) ? tier[0] : tier;
-
   const curriculumData = await curriculumApi.unitListing({
     programmeSlug,
   });
 
-  const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
+  const results: GetServerSidePropsResult<UnitListingPageProps> = {
     props: {
       curriculumData,
     },
