@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, PreviewData } from "next";
 
 import UnitListingPage, {
   getServerSideProps,
-  SubjectUnitsListPageProps,
+  UnitListingPageProps,
   URLParams,
 } from "../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
@@ -83,9 +83,8 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         params: {
           programmeSlug: "art-primary-ks1",
         },
-        query: {},
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-        props: SubjectUnitsListPageProps;
+        props: UnitListingPageProps;
       };
 
       expect(propsResult.props.curriculumData).toEqual(unitListingFixture());

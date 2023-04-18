@@ -25,12 +25,12 @@ import TabularNav from "../../../../../components/TabularNav";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 
-export type SubjectUnitsListPageProps = {
+export type UnitListingPageProps = {
   curriculumData: UnitListingData;
   // learningThemeSlug: string | null;
 };
 
-const UnitListingPage: NextPage<SubjectUnitsListPageProps> = ({
+const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
 }) => {
   const {
@@ -256,7 +256,7 @@ export type URLParams = {
 };
 
 export const getServerSideProps: GetServerSideProps<
-  SubjectUnitsListPageProps,
+  UnitListingPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
@@ -277,7 +277,7 @@ export const getServerSideProps: GetServerSideProps<
     programmeSlug,
   });
 
-  const results: GetServerSidePropsResult<SubjectUnitsListPageProps> = {
+  const results: GetServerSidePropsResult<UnitListingPageProps> = {
     props: {
       curriculumData,
     },
