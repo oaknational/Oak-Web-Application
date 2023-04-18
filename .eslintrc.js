@@ -71,7 +71,7 @@ module.exports = {
     {
       files: ["scripts/build/**/*.{js,ts,tsx}"],
       env: {
-        es6: true,
+        es2020: true,
       },
     },
   ],

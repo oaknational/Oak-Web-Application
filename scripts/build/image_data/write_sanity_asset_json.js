@@ -10,7 +10,9 @@ async function writeAsset({ fileName, assetData }) {
   const assetsBySlug = [...assetData]
     .sort((a, b) => (a.slug.current > b.slug.current ? 1 : -1))
     .reduce((acc, cur) => {
-      acc[cur.slug.current] = cur.image.asset;
+      // Extracting _id, url for consistent order
+      const { _id, url } = cur.image.asset;
+      acc[cur.slug.current] = { _id, url };
       return acc;
     }, {});
 
