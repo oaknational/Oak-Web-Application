@@ -2,11 +2,9 @@ import { merge } from "lodash/fp";
 
 import { WindowOakThemes } from "../../hooks/useOakTheme";
 import isBrowser from "../../utils/isBrowser";
-import { WindowOakHubspot } from "../hubspot/startHubspot";
 
 type OakGlobals = {
   oakThemes?: WindowOakThemes;
-  hubspot?: WindowOakHubspot;
 };
 
 declare global {
