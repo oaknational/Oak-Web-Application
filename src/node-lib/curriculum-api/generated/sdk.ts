@@ -44215,7 +44215,12 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', tierTitle?: string | null, tierSlug?: string | null, tierProgrammeSlug?: string | null, lessonCount?: any | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', tierTitle?: string | null, tierSlug?: string | null, tierProgrammeSlug?: string | null, lessonCount?: any | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
+
+export type UnitListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UnitListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null }> };
 
 
 export const SearchPageDocument = gql`
@@ -44567,9 +44572,6 @@ export const UnitListingDocument = gql`
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    tierTitle: tier_title
-    totalUnitCount: total_unit_count
-    activeLessonCount: active_lesson_count
   }
   mv_tiers: mv_tiers_1(where: {current_programme_slug: {_eq: $programmeSlug}}) {
     tierTitle: tier_title
@@ -44596,6 +44598,13 @@ export const UnitListingDocument = gql`
     year
     expired
     expiredLessonCount: expired_lesson_count
+  }
+}
+    `;
+export const UnitListingPathsDocument = gql`
+    query unitListingPaths {
+  mv_programmes: mv_programmes_3 {
+    programmeSlug: programme_slug
   }
 }
     `;
@@ -44648,6 +44657,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
+    },
+    unitListingPaths(variables?: UnitListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UnitListingPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingPathsQuery>(UnitListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListingPaths', 'query');
     }
   };
 }

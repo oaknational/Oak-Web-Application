@@ -1,9 +1,7 @@
-import { GetServerSidePropsContext, PreviewData } from "next";
-
+import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
-  getServerSideProps,
-  UnitListingPageProps,
-  URLParams,
+  getStaticPaths,
+  getStaticProps,
 } from "../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
@@ -12,11 +10,16 @@ import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fix
 import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 
+jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("../../../../../../../hooks/useTrackPageView");
 
 const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("renders title from props ", () => {
     const { getByRole } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />
@@ -44,7 +47,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       const { seo } = renderWithSeo()(
         <UnitListingPage curriculumData={unitListingWithTiersFixture()} />
       );
-
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -57,12 +59,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         robots: "noindex,nofollow",
       });
     });
-
     it("renders the correct SEO details for non tiered programme", async () => {
       const { seo } = renderWithSeo()(
         <UnitListingPage curriculumData={unitListingFixture()} />
       );
-
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -77,24 +77,24 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
   });
 
-  describe("getServerSideProps", () => {
-    it("Should fetch the correct data", async () => {
-      const propsResult = (await getServerSideProps({
-        params: {
-          programmeSlug: "art-primary-ks1",
-        },
-      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-        props: UnitListingPageProps;
-      };
+  describe("getStaticPaths", () => {
+    it("Should return the paths of all programmes", async () => {
+      await getStaticPaths();
 
-      expect(propsResult.props.curriculumData).toEqual(unitListingFixture());
+      expect(curriculumApi.unitListingPaths).toHaveBeenCalledTimes(1);
     });
-    it("should throw error", async () => {
-      await expect(
-        getServerSideProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
-      ).rejects.toThrowError("No context.params");
+  });
+
+  describe("getStaticProps", () => {
+    it("Should fetch the correct data", async () => {
+      await getStaticProps({
+        params: { programmeSlug: "art-primary-ks1" },
+      });
+
+      expect(curriculumApi.unitListing).toHaveBeenCalledTimes(1);
+      expect(curriculumApi.unitListing).toHaveBeenCalledWith({
+        programmeSlug: "art-primary-ks1",
+      });
     });
   });
 });

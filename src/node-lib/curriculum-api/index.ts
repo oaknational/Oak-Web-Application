@@ -359,6 +359,14 @@ const subjectListingData = z.object({
   programmesUnavailable: z.array(programmesData),
 });
 
+const unitListingPaths = z.object({
+  programmes: z.array(
+    z.object({
+      programmeSlug: z.string(),
+    })
+  ),
+});
+
 const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
@@ -366,9 +374,6 @@ const unitListingData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
-  tierTitle: z.string().nullable(),
-  totalUnitCount: z.number().nullable(),
-  activeLessonCount: z.number().nullable(),
   tiers: tiersData,
   units: unitsData,
   learningThemes: z.array(
@@ -409,6 +414,7 @@ export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
 >;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
+export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 
 const sdk = getSdk(graphqlClient);
@@ -478,6 +484,13 @@ const curriculumApi = {
       programmesUnavailable,
     });
   },
+  unitListingPaths: async () => {
+    const res = await sdk.unitListingPaths();
+    const { programmes } = transformMVCase(res);
+    return unitListingPaths.parse({
+      programmes,
+    });
+  },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
@@ -513,9 +526,6 @@ const curriculumApi = {
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
       tierSlug: programme?.tierSlug || null,
-      tierTitle: programme?.tierTitle || null,
-      totalUnitCount: programme?.totalUnitCount,
-      activeLessonCount: programme?.activeLessonCount,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
       units,
