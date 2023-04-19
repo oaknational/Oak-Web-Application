@@ -52,7 +52,7 @@ const curriculumApi: CurriculumApi = {
   subjectListing: jest.fn(async () => {
     return subjectListingFixture();
   }),
-  lessonListing: jest.fn(async () => {
+  getLessonListing: jest.fn(async () => {
     return lessonListingFixture();
   }),
   unitListing: jest.fn(async () => {

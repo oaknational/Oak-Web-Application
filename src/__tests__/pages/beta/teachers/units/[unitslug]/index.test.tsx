@@ -2,7 +2,7 @@ import { GetServerSidePropsContext, PreviewData } from "next";
 
 import lessonListingFixture from "../../../../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
-  getServerSideProps,
+  getStaticProps,
   LessonListPageProps,
   URLParams,
 } from "../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
@@ -32,7 +32,7 @@ describe("Lesson listing page", () => {
   });
   describe("getServerSideProps", () => {
     it("Should fetch the correct data", async () => {
-      const propsResult = (await getServerSideProps({
+      const propsResult = (await getStaticProps({
         params: {
           programmeSlug: "maths-secondary-ks4-higher",
           unitSlug: "adding-surds-a57d",
@@ -46,7 +46,7 @@ describe("Lesson listing page", () => {
     });
     it("should throw error", async () => {
       await expect(
-        getServerSideProps(
+        getStaticProps(
           {} as GetServerSidePropsContext<URLParams, PreviewData>
         )
       ).rejects.toThrowError("no context.params");

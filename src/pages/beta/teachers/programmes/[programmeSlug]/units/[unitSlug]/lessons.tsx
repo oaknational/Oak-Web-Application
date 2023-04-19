@@ -1,5 +1,5 @@
 import React from "react";
-import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import curriculumApi, {
   LessonListing,
@@ -123,7 +123,7 @@ export type URLParams = {
   unitSlug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   LessonListPageProps,
   URLParams
 > = async (context) => {
@@ -134,12 +134,13 @@ export const getServerSideProps: GetServerSideProps<
   if (!programmeSlug || !unitSlug) {
     throw new Error("unexpected context.params");
   }
-  const curriculumData = await curriculumApi.lessonListing({
+
+  const curriculumData = await curriculumApi.getLessonListing({
     programmeSlug,
     unitSlug,
   });
 
-  const results: GetServerSidePropsResult<LessonListPageProps> = {
+  const results: GetStaticPropsResult<LessonListPageProps> = {
     props: {
       curriculumData,
     },

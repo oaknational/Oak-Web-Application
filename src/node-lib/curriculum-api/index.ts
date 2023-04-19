@@ -601,7 +601,7 @@ const curriculumApi = {
       subjects,
     });
   },
-  lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
+  getLessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
 
