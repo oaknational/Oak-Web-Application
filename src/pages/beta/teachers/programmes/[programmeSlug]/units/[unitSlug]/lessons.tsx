@@ -1,5 +1,10 @@
 import React from "react";
-import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
+import {
+  NextPage,
+  GetStaticProps,
+  GetStaticPropsResult,
+  GetStaticPathsResult,
+} from "next";
 
 import curriculumApi, {
   LessonListing,
@@ -14,6 +19,10 @@ import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
 import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonList from "../../../../../../../components/UnitAndLessonLists/LessonList";
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../node-lib/isr";
 
 export type LessonListPageProps = {
   curriculumData: LessonListing;
@@ -121,6 +130,21 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 export type URLParams = {
   programmeSlug: string;
   unitSlug: string;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const { units } = await curriculumApi.getLessonListingPaths();
+  const paths = units.map((params: URLParams) => ({ params: params }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<

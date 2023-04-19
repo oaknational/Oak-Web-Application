@@ -44091,6 +44091,11 @@ export type LessonListingQueryVariables = Exact<{
 
 export type LessonListingQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units_2', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_3', slug?: string | null, title?: string | null, description?: string | null, expired?: boolean | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
 
+export type GetLessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetLessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_3', programmeSlug?: string | null, unitSlug?: string | null }> };
+
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -44231,6 +44236,14 @@ export const LessonListingDocument = gql`
     hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
     expired
+  }
+}
+    `;
+export const GetLessonListingPathsDocument = gql`
+    query getLessonListingPaths {
+  mv_lessons: mv_lessons_3 {
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
   }
 }
     `;
@@ -44625,6 +44638,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
+    },
+    getLessonListingPaths(variables?: GetLessonListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetLessonListingPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetLessonListingPathsQuery>(GetLessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLessonListingPaths', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

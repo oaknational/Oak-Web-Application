@@ -228,6 +228,15 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
+const lessonListingPaths = z.object({
+  units: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+    })
+  ),
+});
+
 const lessonListing = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
@@ -421,6 +430,7 @@ export type TeachersKeyStageSubjectUnitsData = z.infer<
 export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
   typeof teachersKeyStageSubjectUnitsLessonsData
 >;
+export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
 export type LessonListing = z.infer<typeof lessonListing>;
 export type TeachersLessonOverviewPaths = z.infer<
   typeof teachersLessonOverviewPaths
@@ -601,6 +611,14 @@ const curriculumApi = {
       subjects,
     });
   },
+  getLessonListingPaths: async () => {
+    const res = await sdk.getLessonListingPaths();
+    const { units = [] } = transformMVCase(res);
+    return lessonListingPaths.parse({
+      units,
+    });
+  },
+
   getLessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
