@@ -1,8 +1,18 @@
 import React, { useId } from "react";
 import { useRouter } from "next/router";
 import { useTheme } from "styled-components";
-import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../node-lib/isr";
 import useTrackPageView from "../../../../../hooks/useTrackPageView";
 import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../components/AppLayout";
@@ -38,9 +48,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectTitle,
     subjectSlug,
     tierSlug,
-    // tierTitle,
-    // totalUnitCount,
-    // activeLessonCount,
     tiers,
     units,
     learningThemes,
@@ -139,7 +146,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $mt={[0, 24]}
               $pt={[48]}
             >
-              {learningThemes.length > 1 && (
+              {learningThemes?.length > 1 && (
                 <Flex $flexDirection={"column"}>
                   <Heading
                     id={learningThemesId}
@@ -186,7 +193,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     Units
                   </Heading>
                 </Flex>
-                {learningThemes.length > 1 && (
+                {learningThemes?.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
                     label="Learning themes"
@@ -252,7 +259,22 @@ export type URLParams = {
   programmeSlug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const { programmes } = await curriculumApi.unitListingPaths();
+  const paths = programmes.map((params) => ({ params: params }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
 > = async (context) => {
@@ -265,12 +287,20 @@ export const getServerSideProps: GetServerSideProps<
     programmeSlug,
   });
 
-  const results: GetServerSidePropsResult<UnitListingPageProps> = {
+  if (!curriculumData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const results: GetStaticPropsResult<UnitListingPageProps> = {
     props: {
       curriculumData,
     },
   };
-  return results;
+
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default UnitListingPage;

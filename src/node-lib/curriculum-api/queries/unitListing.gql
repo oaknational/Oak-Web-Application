@@ -8,9 +8,6 @@ query unitListing($programmeSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    tierTitle: tier_title
-    totalUnitCount: total_unit_count
-    activeLessonCount: active_lesson_count
   }
   mv_tiers: mv_tiers_1(
     where: { current_programme_slug: { _eq: $programmeSlug } }

@@ -4,14 +4,12 @@ const unitListingFixture = (
   partial?: Partial<UnitListingData>
 ): UnitListingData => {
   return {
+    programmeSlug: "art-primary-ks1",
     keyStageSlug: "ks1",
     keyStageTitle: "Key stage 1",
     subjectSlug: "art",
     subjectTitle: "Art",
     tierSlug: null,
-    tierTitle: null,
-    totalUnitCount: 20,
-    activeLessonCount: 40,
     units: [
       {
         slug: "some-unit-slug",
@@ -111,6 +109,7 @@ const unitListingFixture = (
       },
     ],
     tiers: [],
+    learningThemes: [],
     ...partial,
   };
 };
