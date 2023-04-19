@@ -120,7 +120,7 @@ const unitListing = jest.fn(() => ({
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
       tierTitle: unitListingFixture().tierTitle,
-      totalUnitCount: unitListingFixture().totalUnitCount,
+      unitCount: unitListingFixture().unitCount,
       activeLessonCount: unitListingFixture().activeLessonCount,
     },
   ],
