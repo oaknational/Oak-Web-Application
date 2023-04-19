@@ -44126,7 +44126,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, unitCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -44237,21 +44237,25 @@ export const SubjectListingDocument = gql`
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_neq: 0}}
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: total_unit_count
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
   mv_programmes_unavailable: mv_programmes_3(
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_eq: 0}}
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: total_unit_count
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }
     `;

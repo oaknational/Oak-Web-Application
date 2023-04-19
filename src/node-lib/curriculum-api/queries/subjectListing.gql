@@ -10,11 +10,13 @@ query subjectListing($keyStageSlug: String!) {
     }
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: total_unit_count
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
   mv_programmes_unavailable: mv_programmes_3(
     where: {
@@ -23,10 +25,12 @@ query subjectListing($keyStageSlug: String!) {
     }
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: total_unit_count
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }

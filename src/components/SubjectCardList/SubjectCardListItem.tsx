@@ -28,11 +28,14 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   const firstProgramme = programmes[0];
-  const { slug, title, keyStageSlug, keyStageTitle, activeLessonCount } =
-    firstProgramme;
-  const unitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.totalUnitCount || 0);
-  }, 0);
+  const {
+    slug,
+    title,
+    keyStageSlug,
+    keyStageTitle,
+    activeLessonCount,
+    totalUnitCount,
+  } = firstProgramme;
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
@@ -105,7 +108,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${unitCount} units`}</Typography>
+            >{`${totalUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
