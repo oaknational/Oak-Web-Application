@@ -356,7 +356,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <P $font="body-3" $mt={-24} $mb={40}>
                       Join our community to get free lessons, resources and
                       other helpful content. Unsubscribe at any time. Our{" "}
-                      <OakLink page={"privacy-policy"} $isInline>
+                      <OakLink page="legal" slug="privacy-policy" $isInline>
                         privacy policy
                       </OakLink>
                       .

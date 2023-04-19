@@ -6,7 +6,7 @@ import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
 import MobileFilters, { MobileFiltersProps } from "./MobileFilters";
 
 const testProps: MobileFiltersProps = {
-  page: "webinars-index",
+  page: "webinar-index",
   withBackButton: true,
   children: "",
   label: "Categories",

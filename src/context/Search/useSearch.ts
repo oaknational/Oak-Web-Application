@@ -63,7 +63,8 @@ const useSearchQuery = ({
     const newQuery = typeof arg === "function" ? arg(query) : arg;
 
     const url = resolveOakHref({
-      page: "beta-search",
+      page: "search",
+      viewType: "teachers",
       query: newQuery,
     });
     push(url, undefined, { shallow: true });
