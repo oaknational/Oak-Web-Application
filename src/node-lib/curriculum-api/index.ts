@@ -341,6 +341,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
+// Can I make tierTitle optional?
 const programmesData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -350,6 +351,7 @@ const programmesData = z.object({
   totalUnitCount: z.number(),
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
+  tierTitle: z.string().nullable().optional(),
 });
 
 const subjectListingData = z.object({
@@ -370,6 +372,10 @@ const unitListingData = z.object({
   activeLessonCount: z.number().nullable(),
   tiers: tiersData,
   units: unitsData,
+});
+
+const tierListingData = z.object({
+  programmes: z.array(programmesData),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
@@ -403,6 +409,8 @@ export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
+
+export type TierListingData = z.infer<typeof tierListingData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -634,6 +642,15 @@ const curriculumApi = {
     return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
       ...download,
     });
+  },
+
+  tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
+    const res = await sdk.tierListing(...args);
+    const { programmes = [] } = transformMVCase(res);
+
+    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+
+    return tierListingData.parse({ programmes: programme });
   },
 };
 
