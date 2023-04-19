@@ -4,7 +4,6 @@ import lessonListingFixture from "../../../node-lib/curriculum-api/fixtures/less
 
 import LessonList from ".";
 
-
 const render = renderWithProviders();
 
 const lessonProps = lessonListingFixture().lessons;

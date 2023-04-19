@@ -5,10 +5,7 @@ import lessonListingFixture from "../../../node-lib/curriculum-api/fixtures/less
 
 import { LessonListProps } from "./LessonList";
 
-
-
 import Component from ".";
-
 
 export default {
   title: "Lists/Lesson List",

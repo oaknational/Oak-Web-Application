@@ -1,4 +1,4 @@
-export {}
+export {};
 // import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 
 // import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
