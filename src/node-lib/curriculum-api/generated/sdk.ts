@@ -44215,7 +44215,7 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', tierTitle?: string | null, tierSlug?: string | null, tierProgrammeSlug?: string | null, lessonCount?: any | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tierTitle?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', tierTitle?: string | null, tierSlug?: string | null, tierProgrammeSlug?: string | null, lessonCount?: any | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
 
 
 export const SearchPageDocument = gql`
@@ -44561,6 +44561,7 @@ export const TierListingDocument = gql`
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
   mv_programmes: mv_programmes_3(where: {programme_slug: {_eq: $programmeSlug}}) {
+    programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug

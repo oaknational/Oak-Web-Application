@@ -360,6 +360,7 @@ const subjectListingData = z.object({
 });
 
 const unitListingData = z.object({
+  programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
@@ -370,6 +371,12 @@ const unitListingData = z.object({
   activeLessonCount: z.number().nullable(),
   tiers: tiersData,
   units: unitsData,
+  learningThemes: z.array(
+    z.object({
+      learningThemeTitle: z.string(),
+      learningThemeSlug: z.string(),
+    })
+  ),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
@@ -473,11 +480,34 @@ const curriculumApi = {
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
-    const { units, programmes = [], tiers = [] } = transformMVCase(res);
+    const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+    const learningThemes = units
+      ?.filter((unit) => unit?.themeSlug !== "no-theme")
+      .map((unitWithTheme) => ({
+        learningThemeSlug: unitWithTheme?.themeSlug || "",
+        learningThemeTitle: unitWithTheme?.themeTitle || "",
+      }))
+      .sort((a, b) => {
+        if (a.learningThemeTitle < b.learningThemeTitle) {
+          return -1;
+        }
+        if (a.learningThemeTitle > b.learningThemeTitle) {
+          return 1;
+        }
+        return 0;
+      });
+
+    const filteredDuplicatedLearningThemes = learningThemes.filter(
+      (learningTheme, index, learningThemeToCompare) =>
+        learningThemeToCompare.findIndex((lt) =>
+          ["learningThemeSlug"].every((l: string) => lt[l] === learningTheme[l])
+        ) === index
+    );
 
     return unitListingData.parse({
+      programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
       subjectSlug: programme?.subjectSlug,
@@ -486,6 +516,7 @@ const curriculumApi = {
       tierTitle: programme?.tierTitle || null,
       totalUnitCount: programme?.totalUnitCount,
       activeLessonCount: programme?.activeLessonCount,
+      learningThemes: filteredDuplicatedLearningThemes,
       tiers,
       units,
     });

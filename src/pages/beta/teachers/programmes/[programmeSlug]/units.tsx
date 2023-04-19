@@ -1,10 +1,10 @@
-import React from "react";
-// import { useTheme } from "styled-components";
+import React, { useId } from "react";
+import { useRouter } from "next/router";
+import { useTheme } from "styled-components";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-// import { useRouter } from "next/router";
 
 import useTrackPageView from "../../../../../hooks/useTrackPageView";
-// import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo";
+import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../components/AppLayout";
 import Flex from "../../../../../components/Flex";
 import MaxWidth from "../../../../../components/MaxWidth/MaxWidth";
@@ -17,23 +17,22 @@ import curriculumApi, {
 import UnitList from "../../../../../components/UnitAndLessonLists/UnitList";
 import Grid, { GridArea } from "../../../../../components/Grid";
 import Box from "../../../../../components/Box";
-// import LearningThemeFilters from "../../../../../components/Filters/LearningThemeFilters";
-// import MobileFilters from "../../../../../components/MobileFilters";
+import LearningThemeFilters from "../../../../../components/Filters/LearningThemeFilters";
+import MobileFilters from "../../../../../components/MobileFilters";
 import { Heading } from "../../../../../components/Typography";
 import TabularNav from "../../../../../components/TabularNav";
-// import SubjectTierListing from "../../../../../components/SubjectTierListing/SubjectTierListing";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
-  // learningThemeSlug: string | null;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
 }) => {
   const {
+    programmeSlug,
     keyStageTitle,
     keyStageSlug,
     subjectTitle,
@@ -44,29 +43,31 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     // activeLessonCount,
     tiers,
     units,
+    learningThemes,
   } = curriculumData;
+
+  const router = useRouter();
+  const learningThemeSlug = router.query["learning-theme"]?.toString();
 
   useTrackPageView({ pageName: "Unit Listing" });
 
-  // function isString(x: unknown): x is string {
-  //   return typeof x === "string";
-  // }
-
-  // const tierQuery = isString(tier) ? tier : null;
+  const unitsFilteredByLearningTheme = learningThemeSlug
+    ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
+    : units;
 
   const paginationProps = usePagination({
-    totalResults: curriculumData.units.length,
+    totalResults: unitsFilteredByLearningTheme.length,
     pageSize: 20,
-    items: units,
+    items: unitsFilteredByLearningTheme,
   });
 
   const { currentPageItems } = paginationProps;
-  // const theme = useTheme();
+  const theme = useTheme();
 
-  // const HEADER_HEIGHT = theme.header.height;
+  const HEADER_HEIGHT = theme.header.height;
 
-  // const learningThemesId = useId();
-  // const learningThemesFilterId = useId();
+  const learningThemesId = useId();
+  const learningThemesFilterId = useId();
 
   const tiersSEO = {
     ...getSeoProps({
@@ -130,7 +131,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         />
 
         <Grid>
-          {/* <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
+          <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
             <Box
               $display={["none", "block"]}
               $position={[null, "sticky"]}
@@ -155,10 +156,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       learningThemeSlug ? learningThemeSlug : "all"
                     }
                     linkProps={{
-                      page: "unit-index",
-                      keyStage: keyStageSlug,
-                      subject: subjectSlug,
-                      search: { tier: tierQuery },
+                      page: "programme",
+                      programme: programmeSlug,
                     }}
                     trackingProps={{
                       keyStageSlug,
@@ -170,7 +169,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 </Flex>
               )}
             </Box>
-          </GridArea> */}
+          </GridArea>
 
           <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 56]}>
             <Flex $flexDirection={["column-reverse", "column"]}>
@@ -187,7 +186,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     Units
                   </Heading>
                 </Flex>
-                {/* {learningThemes.length > 1 && (
+                {learningThemes.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
                     label="Learning themes"
@@ -200,10 +199,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         learningThemeSlug ? learningThemeSlug : "all"
                       }
                       linkProps={{
-                        page: "unit-index",
-                        keyStage: keyStageSlug,
-                        subject: subjectSlug,
-                        search: { tier: tierQuery },
+                        page: "programme",
+                        programme: programmeSlug,
                       }}
                       trackingProps={{
                         keyStageSlug,
@@ -213,7 +210,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       }}
                     />
                   </MobileFilters>
-                )} */}
+                )}
               </Flex>
 
               {tiers.length > 0 && (
@@ -263,15 +260,6 @@ export const getServerSideProps: GetServerSideProps<
     throw new Error("No context.params");
   }
   const { programmeSlug } = context.params;
-
-  // const learningTheme = context.query["learning-theme"]
-  //   ? context.query["learning-theme"]
-  //   : null;
-  // const learningThemeSlug = Array.isArray(learningTheme)
-  //   ? learningTheme[0]
-  //     ? learningTheme[0]
-  //     : null
-  //   : learningTheme;
 
   const curriculumData = await curriculumApi.unitListing({
     programmeSlug,
