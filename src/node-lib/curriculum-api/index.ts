@@ -352,21 +352,11 @@ const programmesData = z.object({
   tierSlug: z.string().nullable(),
 });
 
-const subjectListingProgrammesData = z.object({
-  slug: z.string(),
-  title: z.string(),
-  keyStageSlug: z.string(),
-  unitCount: z.number().nullable(),
-  // activeUnitCount: z.number().nullable(), //todo
-  programmeSlug: z.string(),
-  tierSlug: z.string().nullable(),
-});
-
 const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(subjectListingProgrammesData),
-  programmesUnavailable: z.array(subjectListingProgrammesData),
+  programmesAvailable: z.array(programmesData),
+  programmesUnavailable: z.array(programmesData),
 });
 
 const unitListingData = z.object({
