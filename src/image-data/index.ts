@@ -1,8 +1,18 @@
+/**
+ * This file contains imports, generates types for, and exports image data
+ * generated during the build steps. @see /scripts/build/image_data
+ * Other files which consume this image data should import from this file,
+ * rather than importing directly from ./generated
+ */
+import config from "../config/browser";
+
 import uiIcons from "./generated/ui-icons.json";
 import uiGraphics from "./generated/ui-graphics.json";
 import subjectIcons from "./generated/subject-icons.json";
 import illustrations from "./generated/illustrations.json";
 import inlineSprite from "./generated/inline-sprite.json";
+import socialSharingImage from "./generated/social-sharing-image.json";
+import faviconLinks from "./generated/favicons.json";
 
 export type InlineSpriteSvgName = keyof typeof inlineSprite;
 export type UiIconName = keyof typeof uiIcons;
@@ -37,3 +47,11 @@ export const getIllustrationAsset = (
 ): IllustrationAsset => {
   return illustrations[slug];
 };
+
+export const SOCIAL_SHARING_IMAGE_HEIGHT = socialSharingImage.height;
+export const SOCIAL_SHARING_IMAGE_WIDTH = socialSharingImage.width;
+export const SOCIAL_SHARING_IMAGE_URL = `${config.get("seoAppUrl")}/${
+  socialSharingImage.filePath
+}?${new Date().getFullYear()}`;
+
+export const FAVICON_LINKS_HEAD_INNER_HTML = faviconLinks.innerHTML;

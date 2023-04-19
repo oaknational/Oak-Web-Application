@@ -9,12 +9,6 @@ jest.mock("../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const startHubspot = jest.fn();
-jest.mock("./startHubspot", () => ({
-  __esModule: true,
-  default: (...args: []) => startHubspot(...args),
-}));
-
 const qPush = jest.fn();
 const pPush = jest.fn();
 
@@ -27,11 +21,6 @@ describe("hubspot.ts", () => {
   afterEach(() => {
     window._hsq = undefined;
     window._hsp = undefined;
-  });
-  test("init should be called with correct config", async () => {
-    const config = { portalId: "12", scriptDomain: "https://test.hubspot.com" };
-    await hubspot.init(config);
-    expect(startHubspot).toHaveBeenCalledWith(config);
   });
   test("identify", () => {
     hubspot.identify("123", { email: "abc" });

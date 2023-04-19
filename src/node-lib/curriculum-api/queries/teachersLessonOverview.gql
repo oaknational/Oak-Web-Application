@@ -4,7 +4,7 @@ query teachersLessonOverview(
   $subjectSlug: String!
   $unitSlug: String!
 ) {
-  mv_lessons(
+  mv_lessons: mv_lessons_3(
     where: {
       slug: { _eq: $lessonSlug }
       key_stage_slug: { _eq: $keyStageSlug }
