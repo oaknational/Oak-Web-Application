@@ -10,7 +10,7 @@ const unitListingFixture = (
     subjectTitle: "Art",
     tierSlug: null,
     tierTitle: null,
-    totalUnitCount: 20,
+    unitCount: 20,
     activeLessonCount: 40,
     units: [
       {

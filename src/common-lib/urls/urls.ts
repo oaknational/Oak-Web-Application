@@ -119,6 +119,12 @@ export type LessonOverviewLinkProps = {
   unit: string;
   slug: string;
 };
+export type ProgrammeLessonOverviewLinkProps = {
+  page: "programme-lesson-overview";
+  programme: string;
+  unit: string;
+  slug: string;
+};
 
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
@@ -153,7 +159,8 @@ export type ResolveOakHrefProps =
   | LessonOverviewLinkProps
   | LessonDownloadsLinkProps
   | ProgrammeLinkProps
-  | KeyStageSubjectProgrammesLinkProps;
+  | KeyStageSubjectProgrammesLinkProps
+  | ProgrammeLessonOverviewLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -239,6 +246,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
     }
     case "lesson-overview": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
+    }
+    case "programme-lesson-overview": {
+      return `/beta/teachers/programmes/${props.programme}/units/${props.unit}/lessons/${props.slug}`;
     }
     case "lesson-downloads": {
       let path = `/beta/teachers/key-stages/${props.keyStageSlug}/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;

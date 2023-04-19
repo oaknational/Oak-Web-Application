@@ -15,6 +15,7 @@ query subjectListing($keyStageSlug: String!) {
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
+    subjectActiveLessonCount: subject_active_lesson_count
     totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
   }

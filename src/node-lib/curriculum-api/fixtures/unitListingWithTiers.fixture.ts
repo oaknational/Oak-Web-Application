@@ -10,7 +10,7 @@ const unitListingWithTiers = (
     subjectTitle: "Maths",
     tierSlug: "core",
     tierTitle: "Core",
-    totalUnitCount: 20,
+    unitCount: 20,
     activeLessonCount: 40,
     units: [
       {

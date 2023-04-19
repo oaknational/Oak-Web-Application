@@ -6,7 +6,7 @@ import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
-import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
+import { LessonListing } from "../../../../node-lib/curriculum-api";
 import ListItemHeader from "../../ListItemHeader";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
@@ -14,11 +14,10 @@ import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
-export type LessonListItemProps =
-  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
-    unitTitle: string;
-    hideTopHeading?: boolean;
-  };
+export type LessonListItemProps = LessonListing["lessons"][number] & {
+  unitTitle: string;
+  hideTopHeading?: boolean;
+};
 
 function getAvailableResourceList({
   quizCount,
