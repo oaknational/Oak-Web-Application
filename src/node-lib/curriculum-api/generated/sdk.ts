@@ -44101,7 +44101,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, unitCount?: any | null, subjectActiveLessonCount?: any | null, activeLessonCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, subjectActiveLessonCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -44138,7 +44138,7 @@ export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
 }>;
 
 
-export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects_2', slug?: string | null, title?: string | null }>, mv_tiers_1: Array<{ __typename?: 'mv_tiers_1', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes_2', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
+export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects_2', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes_2', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
 
 export type TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
@@ -44253,22 +44253,26 @@ export const SubjectListingDocument = gql`
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_neq: 0}}
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
-    unitCount: total_unit_count
     subjectActiveLessonCount: subject_active_lesson_count
+    totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
   }
   mv_programmes_unavailable: mv_programmes_3(
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_eq: 0}}
   ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
     slug: subject_slug
     title: subject_title
     tierSlug: tier_slug
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }
     `;
@@ -44362,7 +44366,7 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
     slug
     title
   }
-  mv_tiers_1(
+  mv_tiers: mv_tiers_1(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
   ) {
     slug: tier_slug

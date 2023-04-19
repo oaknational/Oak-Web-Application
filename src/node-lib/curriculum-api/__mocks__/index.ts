@@ -14,7 +14,6 @@ import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 
-
 const curriculumApi: CurriculumApi = {
   // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
   searchPage: jest.fn(async () => {

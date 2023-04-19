@@ -17,26 +17,23 @@ export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
 } & {
   programmes: ProgrammesBySubject;
   isAvailable: boolean;
-  // keyStageTitle: string; TODO
-  // keyStageSlug: string;    TODO
 };
 
 const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   titleTag = "h3",
-  // keyStageSlug, // TODO needs adding the MV
-  // keyStageTitle, // TODO needs adding to MV
-  // lessonCount, // TODO
   programmes,
   isAvailable,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   const firstProgramme = programmes[0];
-  const { slug, title, keyStageSlug, programmeSlug } = firstProgramme;
-  const unitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.unitCount || 0);
+
+  const { slug, title, keyStageSlug, programmeSlug, keyStageTitle } =
+    firstProgramme;
+  const totalUnitCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.totalUnitCount || 0);
   }, 0);
-  const lessonCount = programmes.reduce((acc, cur) => {
+  const activeLessonCount = programmes.reduce((acc, cur) => {
     return acc + (cur.activeLessonCount || 0);
   }, 0);
 
@@ -103,7 +100,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   //TODO: replace 'key stage 4' with variable from above
                   onClick={() => {
                     track.subjectSelected({
-                      keyStageTitle: "Key stage 4" as KeyStageTitleValueType,
+                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
                       keyStageSlug,
                       subjectTitle: title,
                       subjectSlug: slug,
@@ -118,11 +115,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${unitCount} units`}</Typography>
+            >{`${totalUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${lessonCount} lessons`}</Typography>
+            >{`${activeLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>

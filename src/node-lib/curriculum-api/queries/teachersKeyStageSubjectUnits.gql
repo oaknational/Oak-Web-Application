@@ -17,7 +17,7 @@ query teachersKeyStageSubjectUnits(
     slug
     title
   }
-  mv_tiers_1(
+  mv_tiers: mv_tiers_1(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
