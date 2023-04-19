@@ -11,6 +11,7 @@ import teachersLessonOverviewPathsFixture from "../fixtures/teachersLessonOvervi
 import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
+import lessonListingFixture from "../fixtures/lessonListing.fixture";
 
 const curriculumApi: CurriculumApi = {
   // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
@@ -49,6 +50,9 @@ const curriculumApi: CurriculumApi = {
   }),
   subjectListing: jest.fn(async () => {
     return subjectListingFixture();
+  }),
+  lessonListing: jest.fn(async () => {
+    return lessonListingFixture();
   }),
 };
 

@@ -10,7 +10,6 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import ProgrammeLink from "../ProgrammeLink";
 import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
@@ -33,9 +32,12 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   const firstProgramme = programmes[0];
-  const { slug, title, keyStageSlug } = firstProgramme;
+  const { slug, title, keyStageSlug, programmeSlug } = firstProgramme;
   const unitCount = programmes.reduce((acc, cur) => {
     return acc + (cur.unitCount || 0);
+  }, 0);
+  const lessonCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.activeLessonCount || 0);
   }, 0);
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
@@ -84,7 +86,14 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
               {programmes.length === 1 ? (
-                <ProgrammeLink programme={firstProgramme} />
+                <OakLink
+                  {...primaryTargetProps}
+                  page="programme"
+                  programme={programmeSlug}
+                  //TODO add tracking
+                >
+                  {title}
+                </OakLink>
               ) : (
                 <OakLink
                   {...primaryTargetProps}
@@ -110,11 +119,10 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
               $font={"body-2"}
               $color={"oakGrey4"}
             >{`${unitCount} units`}</Typography>
-            {/* TODO add lessoncount to programmes MV*/}
-            {/* <Typography
+            <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${lessonCount} lessons`}</Typography> */}
+            >{`${lessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>

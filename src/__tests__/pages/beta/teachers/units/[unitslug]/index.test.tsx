@@ -1,11 +1,11 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import teachersKeyStageSubjectUnitsLessonsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitLessons.fixture";
+import lessonListingFixture from "../../../../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
   getServerSideProps,
   LessonListPageProps,
   URLParams,
-} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]";
+} from "../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
@@ -13,9 +13,7 @@ const render = renderWithProviders();
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
-      <LessonListPage
-        curriculumData={teachersKeyStageSubjectUnitsLessonsFixture()}
-      />
+      <LessonListPage curriculumData={lessonListingFixture()} />
     );
 
     const pageHeading = getByRole("heading", { level: 1 });
@@ -25,12 +23,10 @@ describe("Lesson listing page", () => {
 
   test("it renders the correct number of lessons", () => {
     const { getByText } = render(
-      <LessonListPage
-        curriculumData={teachersKeyStageSubjectUnitsLessonsFixture()}
-      />
+      <LessonListPage curriculumData={lessonListingFixture()} />
     );
 
-    const lessonCount = getByText("Lessons (2)");
+    const lessonCount = getByText("Lessons (3)");
 
     expect(lessonCount).toBeInTheDocument();
   });
@@ -38,18 +34,15 @@ describe("Lesson listing page", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getServerSideProps({
         params: {
-          subjectSlug: "maths",
-          keyStageSlug: "ks4",
-          unitSlug: "some-unit-slug",
+          programmeSlug: "maths-secondary-ks4-higher",
+          unitSlug: "adding-surds-a57d",
         },
         query: {},
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
         props: LessonListPageProps;
       };
 
-      expect(propsResult.props.curriculumData).toEqual(
-        teachersKeyStageSubjectUnitsLessonsFixture()
-      );
+      expect(propsResult.props.curriculumData).toEqual(lessonListingFixture());
     });
     it("should throw error", async () => {
       await expect(

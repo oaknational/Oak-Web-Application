@@ -44,7 +44,7 @@ describe("<SearchResults />", () => {
       getByRole("link", { name: "To write the setting description" })
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks2/subjects/english/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
+      "/beta/teachers/programmes/programmeSlug/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
     );
   });
   test("A unit search result links to the unit listing page", () => {
