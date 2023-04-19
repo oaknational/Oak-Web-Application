@@ -1,5 +1,5 @@
 query teachersKeyStageSubjectUnitsPaths {
-  mv_subjects {
+  mv_subjects: mv_subjects_2 {
     subjectSlug: slug
     keyStageSlug: key_stage_slug
   }

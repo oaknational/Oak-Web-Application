@@ -4,7 +4,10 @@ query subjectListing($keyStageSlug: String!) {
     title
   }
   mv_programmes_available: mv_programmes_3(
-    where: { key_stage_slug: { _eq: $keyStageSlug }, total_unit_count: { _neq: 0 } }
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      total_unit_count: { _neq: 0 }
+    }
   ) {
     keyStageSlug: key_stage_slug
     programmeSlug: programme_slug
@@ -14,10 +17,12 @@ query subjectListing($keyStageSlug: String!) {
     unitCount: total_unit_count
     subjectActiveLessonCount: subject_active_lesson_count
     activeLessonCount: active_lesson_count
-
   }
   mv_programmes_unavailable: mv_programmes_3(
-    where: { key_stage_slug: { _eq: $keyStageSlug }, total_unit_count: { _eq: 0 } }
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      total_unit_count: { _eq: 0 }
+    }
   ) {
     keyStageSlug: key_stage_slug
     programmeSlug: programme_slug

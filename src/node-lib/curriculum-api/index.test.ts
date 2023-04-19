@@ -7,6 +7,7 @@ import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStag
 import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fixture";
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import unitListingFixture from "./fixtures/unitListing.fixture";
 
 import curriculumApi from ".";
 
@@ -110,6 +111,22 @@ const teachersLessonOverview = jest.fn(() => ({
 const teachersLessonOverviewPaths = jest.fn(() => ({
   mv_lessons: teachersLessonOverviewPathsFixture().lessons,
 }));
+const unitListing = jest.fn(() => ({
+  mv_programmes: [
+    {
+      keyStageSlug: unitListingFixture().keyStageSlug,
+      keyStageTitle: unitListingFixture().keyStageTitle,
+      subjectSlug: unitListingFixture().subjectSlug,
+      subjectTitle: unitListingFixture().subjectTitle,
+      tierSlug: unitListingFixture().tierSlug,
+      tierTitle: unitListingFixture().tierTitle,
+      totalUnitCount: unitListingFixture().totalUnitCount,
+      activeLessonCount: unitListingFixture().activeLessonCount,
+    },
+  ],
+  mv_tiers: unitListingFixture().tiers,
+  mv_units: unitListingFixture().units,
+}));
 
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
@@ -132,6 +149,7 @@ jest.mock("./generated/sdk", () => ({
     teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
     teachersLessonOverviewPaths: (...args: []) =>
       teachersLessonOverviewPaths(...args),
+    unitListing: (...args: []) => unitListing(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -218,5 +236,13 @@ describe("curriculum-api", () => {
   test("teachersLessonOverviewPaths", async () => {
     await curriculumApi.teachersLessonOverviewPaths();
     expect(teachersLessonOverviewPaths).toHaveBeenCalled();
+  });
+  test("unitListing", async () => {
+    await curriculumApi.unitListing({
+      programmeSlug: "maths-secondary-ks4",
+    });
+    expect(unitListing).toHaveBeenCalledWith({
+      programmeSlug: "maths-secondary-ks4",
+    });
   });
 });
