@@ -46,9 +46,7 @@ describe("Lesson listing page", () => {
     });
     it("should throw error", async () => {
       await expect(
-        getStaticProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
+        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("no context.params");
     });
   });
