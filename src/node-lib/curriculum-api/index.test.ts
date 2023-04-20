@@ -8,6 +8,7 @@ import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fix
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
+import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 
 import curriculumApi from ".";
 
@@ -111,9 +112,13 @@ const teachersLessonOverview = jest.fn(() => ({
 const teachersLessonOverviewPaths = jest.fn(() => ({
   mv_lessons: teachersLessonOverviewPathsFixture().lessons,
 }));
+const unitListingPaths = jest.fn(() => ({
+  mv_programmes: unitListingPathsFixture().programmes,
+}));
 const unitListing = jest.fn(() => ({
   mv_programmes: [
     {
+      programmeSlug: unitListingFixture().programmeSlug,
       keyStageSlug: unitListingFixture().keyStageSlug,
       keyStageTitle: unitListingFixture().keyStageTitle,
       subjectSlug: unitListingFixture().subjectSlug,
@@ -146,6 +151,7 @@ jest.mock("./generated/sdk", () => ({
     teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
     teachersLessonOverviewPaths: (...args: []) =>
       teachersLessonOverviewPaths(...args),
+    unitListingPaths: (...args: []) => unitListingPaths(...args),
     unitListing: (...args: []) => unitListing(...args),
   }),
 }));
@@ -233,6 +239,10 @@ describe("curriculum-api", () => {
   test("teachersLessonOverviewPaths", async () => {
     await curriculumApi.teachersLessonOverviewPaths();
     expect(teachersLessonOverviewPaths).toHaveBeenCalled();
+  });
+  test("unitListingPaths", async () => {
+    await curriculumApi.unitListingPaths();
+    expect(unitListingPaths).toHaveBeenCalled();
   });
   test("unitListing", async () => {
     await curriculumApi.unitListing({
