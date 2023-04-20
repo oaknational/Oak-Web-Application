@@ -228,6 +228,47 @@ const teachersKeyStageSubjectUnitsLessonsData = z.object({
   ),
 });
 
+const lessonListingPaths = z.object({
+  units: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+    })
+  ),
+});
+
+const lessonListing = z.object({
+  programmeSlug: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  tierSlug: z.string().nullable(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  lessons: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      expired: z.boolean().nullable(),
+      slug: z.string(),
+      title: z.string(),
+      description: z.string(),
+      keyStageSlug: z.string(),
+      keyStageTitle: z.string(),
+      subjectSlug: z.string(),
+      subjectTitle: z.string(),
+      unitSlug: z.string(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      quizCount: z.number().nullable(),
+      videoCount: z.number().nullable(),
+      presentationCount: z.number().nullable(),
+      worksheetCount: z.number().nullable(),
+      hasCopyrightMaterial: z.boolean(),
+    })
+  ),
+});
+
 const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
   z.object({
     keyStageSlug: z.string(),
@@ -401,7 +442,8 @@ export type TeachersKeyStageSubjectUnitsData = z.infer<
 export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
   typeof teachersKeyStageSubjectUnitsLessonsData
 >;
-
+export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
+export type LessonListing = z.infer<typeof lessonListing>;
 export type TeachersLessonOverviewPaths = z.infer<
   typeof teachersLessonOverviewPaths
 >;
@@ -608,6 +650,34 @@ const curriculumApi = {
     const { subjects } = transformMVCase(res);
     return teachersKeyStageSubjectUnitsPathsSchema.parse({
       subjects,
+    });
+  },
+  getLessonListingPaths: async () => {
+    const res = await sdk.getLessonListingPaths();
+    const { units = [] } = transformMVCase(res);
+    return lessonListingPaths.parse({
+      units,
+    });
+  },
+
+  getLessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
+    const res = await sdk.lessonListing(...args);
+    const { units = [], lessons = [] } = transformMVCase(res);
+
+    const unit = getFirstResultOrWarnOrFail()({
+      results: units,
+    });
+
+    return lessonListing.parse({
+      ...unit,
+      themeSlug: "theme slug example",
+      themeTitle: "theme-slug-example",
+      tierSlug: null,
+      quizCount: null, // @todo
+      videoCount: null, // @todo
+      presentationCount: null, // @todo
+      worksheetCount: null, // @todo
+      lessons,
     });
   },
   teachersKeyStageSubjectUnitLessons: async (

@@ -10,7 +10,6 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import ProgrammeLink from "../ProgrammeLink";
 import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
@@ -28,14 +27,15 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   const firstProgramme = programmes[0];
-  const {
-    slug,
-    title,
-    keyStageSlug,
-    keyStageTitle,
-    activeLessonCount,
-    totalUnitCount,
-  } = firstProgramme;
+
+  const { slug, title, keyStageSlug, programmeSlug, keyStageTitle } =
+    firstProgramme;
+  const totalUnitCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.totalUnitCount || 0);
+  }, 0);
+  const activeLessonCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.activeLessonCount || 0);
+  }, 0);
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
@@ -83,7 +83,14 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
               {programmes.length === 1 ? (
-                <ProgrammeLink programme={firstProgramme} />
+                <OakLink
+                  {...primaryTargetProps}
+                  page="programme"
+                  programme={programmeSlug}
+                  //TODO add tracking
+                >
+                  {title}
+                </OakLink>
               ) : (
                 <OakLink
                   {...primaryTargetProps}

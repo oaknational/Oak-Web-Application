@@ -1,21 +1,31 @@
 import React from "react";
-import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
+import {
+  NextPage,
+  GetStaticProps,
+  GetStaticPropsResult,
+  GetStaticPathsResult,
+} from "next";
 
-import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
-import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
-import AppLayout from "../../../../../../../../../components/AppLayout";
-import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
 import curriculumApi, {
-  TeachersKeyStageSubjectUnitsLessonsData,
-} from "../../../../../../../../../node-lib/curriculum-api";
-import TitleCard from "../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import usePagination from "../../../../../../../../../components/Pagination/usePagination";
-import Box from "../../../../../../../../../components/Box";
-import LessonList from "../../../../../../../../../components/UnitAndLessonLists/LessonList";
-import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
-import CurriculumDownloadButton from "../../../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
+  LessonListing,
+} from "../../../../../../../node-lib/curriculum-api";
+import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
+import usePagination from "../../../../../../../components/Pagination/usePagination";
+import AppLayout from "../../../../../../../components/AppLayout";
+import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
+import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
+import Box from "../../../../../../../components/Box";
+import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
+import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
+import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import LessonList from "../../../../../../../components/UnitAndLessonLists/LessonList";
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../node-lib/isr";
+
 export type LessonListPageProps = {
-  curriculumData: TeachersKeyStageSubjectUnitsLessonsData;
+  curriculumData: LessonListing;
 };
 
 const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
@@ -118,31 +128,43 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 };
 
 export type URLParams = {
-  keyStageSlug: string;
-  subjectSlug: string;
+  programmeSlug: string;
   unitSlug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const { units } = await curriculumApi.getLessonListingPaths();
+  const paths = units.map((params: URLParams) => ({ params: params }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   LessonListPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("no context.params");
   }
-  const { keyStageSlug, subjectSlug, unitSlug } = context.params;
-  if (!keyStageSlug || !subjectSlug || !unitSlug) {
+  const { programmeSlug, unitSlug } = context.params;
+  if (!programmeSlug || !unitSlug) {
     throw new Error("unexpected context.params");
   }
-  const curriculumData = await curriculumApi.teachersKeyStageSubjectUnitLessons(
-    {
-      keyStageSlug,
-      subjectSlug,
-      unitSlug,
-    }
-  );
 
-  const results: GetServerSidePropsResult<LessonListPageProps> = {
+  const curriculumData = await curriculumApi.getLessonListing({
+    programmeSlug,
+    unitSlug,
+  });
+
+  const results: GetStaticPropsResult<LessonListPageProps> = {
     props: {
       curriculumData,
     },

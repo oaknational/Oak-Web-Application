@@ -81,10 +81,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
           // lesson
           <OakLink
             slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
+            programme={props.programmeSlug}
             unit={props.unitSlug}
-            page={"lesson-overview"}
+            page={"programme-lesson-overview"}
             onClick={onClick}
             {...primaryTargetProps}
           >

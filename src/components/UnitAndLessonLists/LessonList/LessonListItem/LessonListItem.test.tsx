@@ -5,23 +5,24 @@ import renderWithProviders from "../../../../__tests__/__helpers__/renderWithPro
 import LessonListItem from "./LessonListItem";
 
 const props = {
-  title: "Macbeth",
-  slug: "macbeth-lesson-1",
-  presentationCount: 1,
-  quizCount: 2,
-  subjectSlug: "english",
-  keyStageSlug: "4",
-  description: "In this lesson",
-  unitSlug: "foo",
-  unitTitle: "Unit title",
-  videoCount: 1,
-  worksheetCount: 2,
-  keyStageTitle: "Key stage 3",
-  subjectTitle: "Maths",
-  themeSlug: "circles",
-  themeTitle: "Circles",
-  hasCopyrightMaterial: false,
+  unitTitle: "Adding surds",
+  programmeSlug: "maths-secondary-ks4-higher",
   expired: false,
+  slug: "add-two-surds-6wwk0c",
+  title: "Add two surds",
+  description: "In this lesson",
+  keyStageSlug: "ks4",
+  keyStageTitle: "Key stage 4",
+  subjectSlug: "maths",
+  subjectTitle: "Maths",
+  unitSlug: "adding-surds-a57d",
+  themeSlug: "number-n-56",
+  themeTitle: "Number (N)",
+  quizCount: 1,
+  videoCount: 1,
+  presentationCount: 1,
+  worksheetCount: 1,
+  hasCopyrightMaterial: false,
 };
 
 const lessonSelected = jest.fn();
@@ -59,9 +60,9 @@ describe("Lesson List Item", () => {
   test("It is a link to the lesson overview page", () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
-    expect(getByText("Macbeth").closest("a")).toHaveAttribute(
+    expect(getByText("Add two surds").closest("a")).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/4/subjects/english/units/foo/lessons/macbeth-lesson-1"
+      "/beta/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c"
     );
   });
   test("It renders expired message is expired lesson", () => {
@@ -76,22 +77,22 @@ describe("Lesson List Item", () => {
   test("It calls tracking.lessonSelected with correct props when clicked", async () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
-    const lesson = getByText("Macbeth");
+    const lesson = getByText("Add two surds");
 
     const user = userEvent.setup();
     await user.click(lesson);
 
     expect(lessonSelected).toHaveBeenCalledTimes(1);
     expect(lessonSelected).toHaveBeenCalledWith({
-      keyStageTitle: "Key stage 3",
-      keyStageSlug: "4",
       analyticsUseCase: ["Teacher"],
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      lessonName: "Add two surds",
+      lessonSlug: "add-two-surds-6wwk0c",
+      subjectSlug: "maths",
+      unitName: "Adding surds",
+      unitSlug: "adding-surds-a57d",
       subjectTitle: "Maths",
-      subjectSlug: "english",
-      unitName: "Unit title",
-      unitSlug: "foo",
-      lessonName: "Macbeth",
-      lessonSlug: "macbeth-lesson-1",
     });
   });
 });
