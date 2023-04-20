@@ -138,7 +138,7 @@ type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
   programmeSlug: string;
   unitSlug: string;
-  lessonSlug: string;
+  slug: string;
   query?: {
     preselected: ExpandingContainerTitle | "all";
   };
@@ -273,7 +273,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.lessonSlug}`;
     }
     case "lesson-downloads": {
-      let path = `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.lessonSlug}/downloads`;
+      let path = `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;
       if (props.query) {
         const queryString = createQueryStringFromObject(props.query);
         path += `?${queryString.toLowerCase()}`;

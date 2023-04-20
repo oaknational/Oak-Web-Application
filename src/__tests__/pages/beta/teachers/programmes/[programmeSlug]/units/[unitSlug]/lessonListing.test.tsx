@@ -1,12 +1,12 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import lessonListingFixture from "../../../../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import lessonListingFixture from "../../../../../../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
   getStaticProps,
   LessonListPageProps,
   URLParams,
-} from "../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
-import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
+} from "../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+import renderWithProviders from "../../../../../../../__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
