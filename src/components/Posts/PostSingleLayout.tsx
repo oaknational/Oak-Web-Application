@@ -25,7 +25,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   const triggerId = useId();
   const post = "blog" in content ? content.blog : content.webinar;
   const page: PostCategoryPage =
-    "blog" in content ? "blog-index" : "webinars-index";
+    "blog" in content ? "blog-index" : "webinar-index";
 
   const HEADER_HEIGHT = theme.header.height;
 

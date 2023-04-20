@@ -14,8 +14,8 @@ describe("MenuLinks", () => {
   test("should render a list of links", () => {
     const { getByText } = render(<MenuLinks menuSections={menuSections} />);
     Object.values(menuSections).forEach((section) =>
-      section.forEach(({ linkText, page }) => {
-        const href = resolveOakHref({ page });
+      section.forEach(({ linkText, resolveOakHrefProps }) => {
+        const href = resolveOakHref(resolveOakHrefProps);
         expect(getByText(linkText).closest("a")).toHaveAttribute("href", href);
       })
     );

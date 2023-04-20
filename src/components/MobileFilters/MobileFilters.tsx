@@ -92,7 +92,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
       <Flex>
         {withBackButton &&
-          (page === "blog-index" || page === "webinars-index") && (
+          (page === "blog-index" || page === "webinar-index") && (
             <Box
               $transition="all 0.5s ease"
               $visibility={isOpen ? "hidden" : "visible"}

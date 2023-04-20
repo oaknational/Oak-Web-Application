@@ -4,7 +4,6 @@ const {
   compileAndWriteSpriteToFile,
   writeJsonForTypes,
   getPublicSpritePath,
-  getGeneratedImageDataPath,
   getSpriterInstance,
 } = require("./helpers");
 
@@ -35,10 +34,9 @@ async function main() {
    * This will enable static types for ui-icons.
    */
   const uiIconNames = getSlugs({ assets: uiIconsRes });
-  const uiIconsPath = getGeneratedImageDataPath({ fileName: "ui-icons.json" });
-  writeJsonForTypes({
+  const uiIconsPath = await writeJsonForTypes({
     names: uiIconNames,
-    path: getGeneratedImageDataPath({ fileName: "ui-icons.json" }),
+    fileName: "ui-icons.json",
   });
   console.log(`✅ UI icon names written to ${uiIconsPath}`);
 
@@ -47,12 +45,9 @@ async function main() {
    * This will enable static types for ui-graphics.
    */
   const uiGraphicNames = getSlugs({ assets: uiGraphicsRes });
-  const uiGraphicsPath = getGeneratedImageDataPath({
-    fileName: "ui-graphics.json",
-  });
-  writeJsonForTypes({
+  const uiGraphicsPath = await writeJsonForTypes({
     names: uiGraphicNames,
-    path: getGeneratedImageDataPath({ fileName: "ui-graphics.json" }),
+    fileName: "ui-graphics.json",
   });
   console.log(`✅ UI graphic names written to ${uiGraphicsPath}`);
 

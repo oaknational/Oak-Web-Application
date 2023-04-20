@@ -1,3 +1,43 @@
+# [1.173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.2...v1.173.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* insert favicon links into Head ([7652704](https://github.com/oaknational/Oak-Web-Application/commit/7652704b543017f849bdba225e881ecf58b60a50))
+* **webmanifest:** set dispay: minimal-ui ([ebc2fc4](https://github.com/oaknational/Oak-Web-Application/commit/ebc2fc452b8faa88d5fb7a57d6c83d3c10b33091))
+
+
+### Features
+
+* favicon generation build script ([03e02d3](https://github.com/oaknational/Oak-Web-Application/commit/03e02d3b5956689884370fdedd76196926fe5de8))
+
+## [1.172.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.1...v1.172.2) (2023-04-18)
+
+
+### Bug Fixes
+
+* hubspot load script ([9a2b97a](https://github.com/oaknational/Oak-Web-Application/commit/9a2b97a0f0f792710b3f0156d82e53bc60af5e03))
+
+## [1.172.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.0...v1.172.1) (2023-04-18)
+
+# [1.172.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.171.1...v1.172.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **sharing-image:** public filepath ([26131a6](https://github.com/oaknational/Oak-Web-Application/commit/26131a632b668592a77d7e3187fd2cd4b7517604))
+* **social-image:** add app url so image url is absolute ([cf3a023](https://github.com/oaknational/Oak-Web-Application/commit/cf3a0237e792dd71ebdc808786bd00571e9b1049))
+
+
+### Features
+
+* fetch social-sharing-image from sanity ([4ec6791](https://github.com/oaknational/Oak-Web-Application/commit/4ec6791107b54f24c76ebe878714dfbb36d9cc93))
+* get social-sharing-image from sanity ([c60b145](https://github.com/oaknational/Oak-Web-Application/commit/c60b145a71adc740df4527af84133a998db42436))
+
+## [1.171.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.171.0...v1.171.1) (2023-04-17)
+
+## [1.170.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.170.1...v1.170.2) (2023-04-17)
+
 ## [1.170.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.170.0...v1.170.1) (2023-04-14)
 
 # [1.170.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.169.1...v1.170.0) (2023-04-13)

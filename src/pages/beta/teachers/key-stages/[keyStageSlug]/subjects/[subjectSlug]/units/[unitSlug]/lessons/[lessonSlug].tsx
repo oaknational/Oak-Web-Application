@@ -59,7 +59,7 @@ export const lessonBreadcrumbArray = (
   unitTitle: string
 ): Breadcrumb[] => {
   return [
-    { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+    { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
       oakLinkProps: { page: "subject-index", slug: keyStageSlug },
       label: keyStageTitle,
@@ -163,6 +163,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
+                  viewType: "teachers",
                   keyStage: keyStageSlug,
                   subject: subjectSlug,
                   unit: unitSlug,

@@ -39,7 +39,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       <P $mb={24} color={"black"} id={descriptionId}>
         Join 80,000 teachers and get free resources and other helpful content by
         email. Unsubscribe at any time. Read our{" "}
-        <OakLink page="privacy-policy" $isInline>
+        <OakLink page="legal" slug="privacy-policy" $isInline>
           privacy policy
         </OakLink>
         .

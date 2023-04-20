@@ -71,7 +71,7 @@ const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
     url: `${config.get("seoAppUrl")}${resolveOakHref({
-      page: "blog",
+      page: "blog-single",
       slug: blog.slug,
     })}`,
     title: blog.seo?.title || blog.title,
@@ -89,7 +89,7 @@ const webinarToArticle = (
   return {
     type: "Article",
     url: `${config.get("seoAppUrl")}${resolveOakHref({
-      page: "webinars",
+      page: "webinar-single",
       slug: webinar.slug,
     })}`,
     title: webinar.seo?.title || webinar.title,

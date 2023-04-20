@@ -54,7 +54,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         <Heading tag={titleTag} $font={["heading-6", "heading-5"]} $mt={8}>
           <OakLink
             {...primaryTargetProps}
-            page={"webinars"}
+            page={"webinar-single"}
             slug={slug}
             $focusStyles={["underline"]}
             $isHovered={cardIsHovered && !buttonIsHovered}
