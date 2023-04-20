@@ -400,17 +400,29 @@ const subjectListingData = z.object({
   programmesUnavailable: z.array(programmesData),
 });
 
+const unitListingPaths = z.object({
+  programmes: z.array(
+    z.object({
+      programmeSlug: z.string(),
+    })
+  ),
+});
+
 const unitListingData = z.object({
+  programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
-  tierTitle: z.string().nullable(),
-  unitCount: z.number().nullable(),
-  activeLessonCount: z.number().nullable(),
   tiers: tiersData,
   units: unitsData,
+  learningThemes: z.array(
+    z.object({
+      learningThemeTitle: z.string(),
+      learningThemeSlug: z.string(),
+    })
+  ),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
@@ -444,6 +456,7 @@ export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
 >;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
+export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 
 const sdk = getSdk(graphqlClient);
@@ -513,21 +526,49 @@ const curriculumApi = {
       programmesUnavailable,
     });
   },
+  unitListingPaths: async () => {
+    const res = await sdk.unitListingPaths();
+    const { programmes } = transformMVCase(res);
+    return unitListingPaths.parse({
+      programmes,
+    });
+  },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
-    const { units, programmes = [], tiers = [] } = transformMVCase(res);
+    const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+    const learningThemes = units
+      ?.filter((unit) => unit?.themeSlug !== "no-theme")
+      .map((unitWithTheme) => ({
+        learningThemeSlug: unitWithTheme?.themeSlug || "",
+        learningThemeTitle: unitWithTheme?.themeTitle || "",
+      }))
+      .sort((a, b) => {
+        if (a.learningThemeTitle < b.learningThemeTitle) {
+          return -1;
+        }
+        if (a.learningThemeTitle > b.learningThemeTitle) {
+          return 1;
+        }
+        return 0;
+      });
+
+    const filteredDuplicatedLearningThemes = learningThemes.filter(
+      (learningTheme, index, learningThemeToCompare) =>
+        learningThemeToCompare.findIndex((lt) =>
+          ["learningThemeSlug"].every((l: string) => lt[l] === learningTheme[l])
+        ) === index
+    );
 
     return unitListingData.parse({
+      programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
       tierSlug: programme?.tierSlug || null,
-      tierTitle: programme?.tierTitle || null,
-      unitCount: programme?.unitCount,
-      activeLessonCount: programme?.activeLessonCount,
+      learningThemes: filteredDuplicatedLearningThemes,
       tiers,
       units,
     });

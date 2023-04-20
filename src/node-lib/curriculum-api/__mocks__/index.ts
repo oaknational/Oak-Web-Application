@@ -11,6 +11,7 @@ import teachersLessonOverviewPathsFixture from "../fixtures/teachersLessonOvervi
 import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
+import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixtures";
@@ -61,6 +62,9 @@ const curriculumApi: CurriculumApi = {
   }),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
+  }),
+  unitListingPaths: jest.fn(async () => {
+    return unitListingPathsFixture();
   }),
 };
 

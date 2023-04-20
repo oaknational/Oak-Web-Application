@@ -100,6 +100,9 @@ export type UnitIndexLinkProps = {
 export type ProgrammeLinkProps = {
   page: "programme";
   programme: string;
+  search?: {
+    ["learning-theme"]?: string | null;
+  };
 };
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
@@ -239,7 +242,18 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/programmes`;
     }
     case "programme": {
-      return `/beta/teachers/programmes/${props.programme}/units`;
+      const path = `/beta/teachers/programmes/${props.programme}/units`;
+      if (!props.search) {
+        return path;
+      }
+
+      const queryString = createQueryStringFromObject(props.search);
+
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
     case "lesson-index": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;

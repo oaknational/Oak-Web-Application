@@ -4,14 +4,12 @@ const unitListingWithTiers = (
   partial?: Partial<UnitListingData>
 ): UnitListingData => {
   return {
+    programmeSlug: "art-primary-ks1",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     tierSlug: "core",
-    tierTitle: "Core",
-    unitCount: 20,
-    activeLessonCount: 40,
     units: [
       {
         slug: "some-unit-slug",
@@ -133,6 +131,7 @@ const unitListingWithTiers = (
         tierProgrammeSlug: "maths-secondary-ks4-higher",
       },
     ],
+    learningThemes: [],
     ...partial,
   };
 };
