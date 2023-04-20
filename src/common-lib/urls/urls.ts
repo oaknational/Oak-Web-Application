@@ -269,8 +269,6 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         resolveHref: () => props.url,
       };
     case "internal":
-      console.log(props.pathPattern);
-
       return {
         ...props,
         matchHref: match<Omit<ResolveHrefProps, "page">>(props.pathPattern, {
