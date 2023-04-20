@@ -37,8 +37,8 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-
   return {
+    programmeSlug: "programmeSlug", //TODO
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
@@ -87,6 +87,7 @@ export function getUnitObject(props: {
 }
 
 const searchResultsSourceCommon = z.object({
+  //programme_slug:z.string(),
   id: z.number(),
   slug: z.string(),
   title: z.string(),

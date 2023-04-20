@@ -30,9 +30,9 @@ describe("useIconAnimation", () => {
     );
     await waitFor(() => {
       expect(result.current).toMatchObject({
-        rotate: "rotate(1440deg)",
-        scale: "scale(1)",
-        stage: "out",
+        rotate: "rotate(720deg)",
+        scale: "scale(0.5)",
+        stage: "in",
       });
     });
   });

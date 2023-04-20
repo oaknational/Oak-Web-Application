@@ -1,0 +1,6 @@
+query getLessonListingPaths {
+  mv_lessons: mv_lessons_3 {
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
+  }
+}

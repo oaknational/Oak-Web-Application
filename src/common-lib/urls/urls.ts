@@ -100,6 +100,9 @@ export type UnitIndexLinkProps = {
 export type ProgrammeLinkProps = {
   page: "programme";
   programme: string;
+  search?: {
+    ["learning-theme"]?: string | null;
+  };
 };
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
@@ -116,6 +119,12 @@ export type LessonOverviewLinkProps = {
   page: "lesson-overview";
   keyStage: string;
   subject: string;
+  unit: string;
+  slug: string;
+};
+export type ProgrammeLessonOverviewLinkProps = {
+  page: "programme-lesson-overview";
+  programme: string;
   unit: string;
   slug: string;
 };
@@ -153,7 +162,8 @@ export type ResolveOakHrefProps =
   | LessonOverviewLinkProps
   | LessonDownloadsLinkProps
   | ProgrammeLinkProps
-  | KeyStageSubjectProgrammesLinkProps;
+  | KeyStageSubjectProgrammesLinkProps
+  | ProgrammeLessonOverviewLinkProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -232,13 +242,27 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/programmes`;
     }
     case "programme": {
-      return `/beta/teachers/programmes/${props.programme}/units`;
+      const path = `/beta/teachers/programmes/${props.programme}/units`;
+      if (!props.search) {
+        return path;
+      }
+
+      const queryString = createQueryStringFromObject(props.search);
+
+      if (!queryString) {
+        return path;
+      }
+
+      return `${path}?${queryString}`;
     }
     case "lesson-index": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
     }
     case "lesson-overview": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
+    }
+    case "programme-lesson-overview": {
+      return `/beta/teachers/programmes/${props.programme}/units/${props.unit}/lessons/${props.slug}`;
     }
     case "lesson-downloads": {
       let path = `/beta/teachers/key-stages/${props.keyStageSlug}/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;

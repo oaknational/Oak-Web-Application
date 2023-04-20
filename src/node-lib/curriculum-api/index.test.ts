@@ -9,6 +9,7 @@ import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOvervie
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
 import tierListingFixture from "./fixtures/tierListing.fixture";
+import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 
 import curriculumApi from ".";
 
@@ -112,17 +113,18 @@ const teachersLessonOverview = jest.fn(() => ({
 const teachersLessonOverviewPaths = jest.fn(() => ({
   mv_lessons: teachersLessonOverviewPathsFixture().lessons,
 }));
+const unitListingPaths = jest.fn(() => ({
+  mv_programmes: unitListingPathsFixture().programmes,
+}));
 const unitListing = jest.fn(() => ({
   mv_programmes: [
     {
+      programmeSlug: unitListingFixture().programmeSlug,
       keyStageSlug: unitListingFixture().keyStageSlug,
       keyStageTitle: unitListingFixture().keyStageTitle,
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
-      tierTitle: unitListingFixture().tierTitle,
-      totalUnitCount: unitListingFixture().totalUnitCount,
-      activeLessonCount: unitListingFixture().activeLessonCount,
     },
   ],
   mv_tiers: unitListingFixture().tiers,
@@ -154,6 +156,7 @@ jest.mock("./generated/sdk", () => ({
     teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
     teachersLessonOverviewPaths: (...args: []) =>
       teachersLessonOverviewPaths(...args),
+    unitListingPaths: (...args: []) => unitListingPaths(...args),
     unitListing: (...args: []) => unitListing(...args),
     tierListing: (...args: []) => tierListing(...args),
   }),
@@ -243,6 +246,10 @@ describe("curriculum-api", () => {
     await curriculumApi.teachersLessonOverviewPaths();
     expect(teachersLessonOverviewPaths).toHaveBeenCalled();
   });
+  test("unitListingPaths", async () => {
+    await curriculumApi.unitListingPaths();
+    expect(unitListingPaths).toHaveBeenCalled();
+  });
   test("unitListing", async () => {
     await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4",
@@ -252,7 +259,7 @@ describe("curriculum-api", () => {
     });
   });
 
-  test.only("tierListing", async () => {
+  test("tierListing", async () => {
     await curriculumApi.tierListing({
       keyStageSlug: "ks4",
       subjectSlug: "higher",
