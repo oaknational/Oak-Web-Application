@@ -42,6 +42,32 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           },
         };
 
+  const excludeNewScienceLessonsFilter = [
+    {
+      bool: {
+        must_not: {
+          bool: {
+            must: [
+              { term: { subject_slug: "science" } },
+              { term: { key_stage_slug: "3" } },
+            ],
+          },
+        },
+      },
+    },
+    {
+      bool: {
+        must_not: [
+          {
+            terms: {
+              subject_slug: ["biology", "chemistry", "combined_science"],
+            },
+          },
+        ],
+      },
+    },
+  ];
+
   const highlight = {
     number_of_fragments: 0,
     pre_tags: ["<b>"],
@@ -99,6 +125,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
             },
           },
           { ...keyStageFilter },
+          ...excludeNewScienceLessonsFilter,
         ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
@@ -110,5 +137,4 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
 
   return result;
 };
-
 export default constructElasticQuery;
