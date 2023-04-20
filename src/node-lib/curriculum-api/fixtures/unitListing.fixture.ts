@@ -14,6 +14,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",
@@ -30,6 +31,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",
@@ -46,6 +48,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",
@@ -62,6 +65,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",
@@ -78,6 +82,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",
@@ -94,6 +99,7 @@ const unitListingFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks1",
         keyStageTitle: "Key stage 1",
         subjectSlug: "art",

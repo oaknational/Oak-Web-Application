@@ -76,6 +76,7 @@ const unitsData = z.array(
   z.object({
     slug: z.string(),
     title: z.string(),
+    programmeSlug: z.string(),
     keyStageSlug: z.string(),
     keyStageTitle: z.string(),
     subjectSlug: z.string(),
@@ -352,6 +353,44 @@ const teachersLessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
+const lessonOverviewPaths = z.object({
+  lessons: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+      lessonSlug: z.string(),
+    })
+  ),
+});
+
+const lessonOverviewData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  programmeSlug: z.string(),
+  unitTitle: z.string(),
+  unitSlug: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  coreContent: z.array(z.string().nullable()),
+  contentGuidance: z.string().nullable(),
+  equipmentRequired: z.string().nullable(),
+  presentationUrl: z.string().nullable(),
+  supervisionLevel: z.string().nullable(),
+  worksheetUrl: z.string().nullable(),
+  hasCopyrightMaterial: z.boolean(),
+  videoMuxPlaybackId: z.string().nullable(),
+  videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
+  transcriptSentences: z.array(z.string()).nullable(),
+  hasDownloadableResources: z.boolean().nullable(),
+  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  expired: z.boolean(),
+});
+
 const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   downloads: z.array(
     z.object({
@@ -444,6 +483,8 @@ export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
 >;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
 export type LessonListing = z.infer<typeof lessonListing>;
+export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
+export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type TeachersLessonOverviewPaths = z.infer<
   typeof teachersLessonOverviewPaths
 >;
@@ -571,6 +612,34 @@ const curriculumApi = {
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
       units,
+    });
+  },
+  lessonOverviewPaths: async () => {
+    const res = await sdk.lessonOverviewPaths();
+    return lessonOverviewPaths.parse(transformMVCase(res));
+  },
+  lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
+    const res = await sdk.lessonOverview(...args);
+    const { lessons = [] } = transformMVCase(res);
+    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
+
+    const lesson = getFirstResultOrWarnOrFail()({
+      results: lessons,
+    });
+
+    const exitQuizInfoSingle = getFirstResultOrNull()({
+      results: exitQuizInfo,
+    });
+
+    const introQuizInfoSingle = getFirstResultOrNull()({
+      results: introQuizInfo,
+    });
+    return lessonOverviewData.parse({
+      ...lesson,
+      introQuizInfo: introQuizInfoSingle,
+      exitQuizInfo: exitQuizInfoSingle,
+      introQuiz,
+      exitQuiz,
     });
   },
   teachersKeyStageSubjects: async (

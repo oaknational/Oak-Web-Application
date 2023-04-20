@@ -11,10 +11,12 @@ import teachersLessonOverviewPathsFixture from "../fixtures/teachersLessonOvervi
 import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
+import unitListingFixture from "../fixtures/unitListing.fixture";
 import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
-import unitListingFixture from "../fixtures/unitListing.fixture";
 import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixtures";
+import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
+import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
 
 const curriculumApi: CurriculumApi = {
   // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
@@ -65,6 +67,12 @@ const curriculumApi: CurriculumApi = {
   }),
   unitListingPaths: jest.fn(async () => {
     return unitListingPathsFixture();
+  }),
+  lessonOverview: jest.fn(async () => {
+    return lessonOverviewFixture();
+  }),
+  lessonOverviewPaths: jest.fn(async () => {
+    return lessonOverviewPathsFixture();
   }),
 };
 

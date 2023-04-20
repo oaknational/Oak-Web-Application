@@ -24,6 +24,7 @@ query unitListing($programmeSlug: String!) {
   ) {
     slug
     title
+    programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug
