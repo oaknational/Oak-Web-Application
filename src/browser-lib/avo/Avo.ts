@@ -1125,6 +1125,7 @@ export const PageName = {
   'SEARCH': 'Search',
   'LESSON_DOWNLOAD': 'Lesson Download',
   'UNIT_DOWNLOAD': 'Unit Download',
+  'PROGRAMMES_LISTING': 'Programmes Listing',
 } as const;
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];
@@ -2861,8 +2862,8 @@ export function learningThemeSelected(
 }
 
 export interface TierSelectedProperties {
-  subjectTitle: string;
-  subjectSlug: string;
+  title: string;
+  slug: string;
   keyStageTitle: KeyStageTitleValueType;
   keyStageSlug: string;
   tierName: string;

@@ -8,6 +8,7 @@ import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fix
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
+import tierListingFixture from "./fixtures/tierListing.fixture";
 import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
@@ -166,6 +167,10 @@ const lessonOverviewPaths = jest.fn(() => ({
   mv_lessons: lessonOverviewPathsFixture().lessons,
 }));
 
+const tierListing = jest.fn(() => ({
+  mv_programmes: tierListingFixture().programmes,
+}));
+
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
@@ -191,6 +196,7 @@ jest.mock("./generated/sdk", () => ({
     unitListing: (...args: []) => unitListing(...args),
     lessonOverviewPaths: (...args: []) => lessonOverviewPaths(...args),
     lessonOverview: (...args: []) => lessonOverview(...args),
+    tierListing: (...args: []) => tierListing(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -304,6 +310,17 @@ describe("curriculum-api", () => {
       lessonSlug: "Geometry fundamentals",
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
+    });
+  });
+
+  test("tierListing", async () => {
+    await curriculumApi.tierListing({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
+    });
+    expect(tierListing).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
     });
   });
 });

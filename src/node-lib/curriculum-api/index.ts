@@ -421,6 +421,7 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
+// Can I make tierTitle optional?
 const programmesData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -430,6 +431,7 @@ const programmesData = z.object({
   totalUnitCount: z.number(),
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
+  tierTitle: z.string().nullable().optional(),
 });
 
 const subjectListingData = z.object({
@@ -462,6 +464,10 @@ const unitListingData = z.object({
       learningThemeSlug: z.string(),
     })
   ),
+});
+
+const tierListingData = z.object({
+  programmes: z.array(programmesData),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
@@ -499,6 +505,8 @@ export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
+
+export type TierListingData = z.infer<typeof tierListingData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -595,10 +603,16 @@ const curriculumApi = {
         return 0;
       });
 
+    // !Refactor index signature to be more specific
+
+    type LearningTheme = {
+      [key: string]: string;
+    };
+
     const filteredDuplicatedLearningThemes = learningThemes.filter(
-      (learningTheme, index, learningThemeToCompare) =>
-        learningThemeToCompare.findIndex((lt) =>
-          ["learningThemeSlug"].every((l: string) => lt[l] === learningTheme[l])
+      (learningTheme: LearningTheme, index, learningThemeToCompare) =>
+        learningThemeToCompare.findIndex((lt: LearningTheme) =>
+          ["learningThemeSlug"].every((l) => lt[l] === learningTheme[l])
         ) === index
     );
 
@@ -814,6 +828,13 @@ const curriculumApi = {
     return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
       ...download,
     });
+  },
+
+  tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
+    const res = await sdk.tierListing(...args);
+    const { programmes = [] } = transformMVCase(res);
+
+    return tierListingData.parse({ programmes });
   },
 };
 
