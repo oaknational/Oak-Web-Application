@@ -303,6 +303,41 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
   }
 }
 
+const postMatchHref =
+  <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
+    postType: PostListingLinkProps["page"]
+  ) =>
+  (href: string) => {
+    const path = postType === "blog-index" ? "/blog" : "/webinrs";
+    if (match(`${path}`)(href)) {
+      return match<PostListingLinkProps>(path)(href);
+    }
+    if (match(`${path}/categories/:category`)(href)) {
+      return match<PostListingLinkProps>(`${path}/categories/:category`)(href);
+    }
+    return false;
+  };
+const postResolveHref =
+  <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
+    postType: PostListingLinkProps["page"]
+  ) =>
+  (props: PostListingLinkProps) => {
+    let path = postType === "blog-index" ? "/blog" : "/webinrs";
+    if (props.category) {
+      path = `${path}/categories/${props.category}`;
+    }
+    if (!props.search) {
+      return path;
+    }
+    const queryString = createQueryStringFromObject(props.search);
+
+    if (!queryString) {
+      return path;
+    }
+
+    return `${path}?${queryString}`;
+  };
+
 const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
@@ -431,61 +466,15 @@ const OAK_PAGES: {
     analyticsPageName: "Blog Listing",
     configType: "internal-custom-resolve",
     pageType: "blog-index",
-    matchHref: (href) => {
-      if (match("/blog")(href)) {
-        return match("/blog")(href);
-      }
-      if (match("/blog/categories/:category")(href)) {
-        return match("/blog/categories/:category")(href);
-      }
-      return false;
-    },
-    resolveHref: (props) => {
-      let path = "/blog";
-      if (props.category) {
-        path = `${path}/categories/${props.category}`;
-      }
-      if (!props.search) {
-        return path;
-      }
-      const queryString = createQueryStringFromObject(props.search);
-
-      if (!queryString) {
-        return path;
-      }
-
-      return `${path}?${queryString}`;
-    },
+    matchHref: postMatchHref("blog-index"),
+    resolveHref: postResolveHref("blog-index"),
   }),
   "webinar-index": createOakPageConfig({
     analyticsPageName: "Webinar Listing",
     configType: "internal-custom-resolve",
     pageType: "webinar-index",
-    matchHref: (href) => {
-      if (match("/webinars")(href)) {
-        return match("/webinars")(href);
-      }
-      if (match("/webinars/categories/:category")(href)) {
-        return match("/webinars/categories/:category")(href);
-      }
-      return false;
-    },
-    resolveHref: (props) => {
-      let path = "/webinars";
-      if (props.category) {
-        path = `${path}/categories/${props.category}`;
-      }
-      if (!props.search) {
-        return path;
-      }
-      const queryString = createQueryStringFromObject(props.search);
-
-      if (!queryString) {
-        return path;
-      }
-
-      return `${path}?${queryString}`;
-    },
+    matchHref: postMatchHref("webinar-index"),
+    resolveHref: postResolveHref("webinar-index"),
   }),
   "tier-selection": createOakPageConfig({
     pathPattern: "/beta/teachers/key-stages/:keyStage/subjects/:subject/units",
