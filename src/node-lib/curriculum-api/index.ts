@@ -562,10 +562,16 @@ const curriculumApi = {
         return 0;
       });
 
+    // !Refactor index signature to be more specific
+
+    type LearningTheme = {
+      [key: string]: string;
+    };
+
     const filteredDuplicatedLearningThemes = learningThemes.filter(
-      (learningTheme, index, learningThemeToCompare) =>
-        learningThemeToCompare.findIndex((lt) =>
-          ["learningThemeSlug"].every((l: string) => lt[l] === learningTheme[l])
+      (learningTheme: LearningTheme, index, learningThemeToCompare) =>
+        learningThemeToCompare.findIndex((lt: LearningTheme) =>
+          ["learningThemeSlug"].every((l) => lt[l] === learningTheme[l])
         ) === index
     );
 
