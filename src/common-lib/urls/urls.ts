@@ -1,5 +1,5 @@
+import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
 import config from "../../config/browser";
 import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
@@ -109,7 +109,7 @@ type LessonDownloadsLinkProps = {
   unitSlug: string;
   slug: string;
   query?: {
-    preselected: ExpandingContainerTitle | "all";
+    preselected: PreselectedDownloadType | "";
   };
 };
 type SearchLinkProps = {
@@ -380,7 +380,7 @@ const OAK_PAGES: {
       }/downloads`;
       if (props.query) {
         const queryString = createQueryStringFromObject(props.query);
-        path += `?${queryString.toLowerCase()}`;
+        path += `?${queryString}`;
       }
       return path;
     },
@@ -416,7 +416,7 @@ const OAK_PAGES: {
   "subject-index": {
     analyticsPageName: "Subject Listing",
     pageType: "subject-index",
-    resolveHref: (props) => `/key-stages/${props.slug}/subjects`,
+    resolveHref: (props) => `/beta/teachers/key-stages/${props.slug}/subjects`,
   },
 };
 
