@@ -1,7 +1,7 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
+import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import { ExpandingContainerTitle } from "../../components/ExpandingContainer/ExpandingContainer";
 import config from "../../config/browser";
 import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
@@ -115,7 +115,7 @@ type LessonDownloadsLinkProps = {
   unitSlug: string;
   slug: string;
   query?: {
-    preselected: ExpandingContainerTitle | "all";
+    preselected: PreselectedDownloadType | "";
   };
 };
 type SearchLinkProps = {

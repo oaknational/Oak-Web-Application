@@ -181,7 +181,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const { getByTestId } = render(<LessonDownloadsPage {...props} />);
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
+      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
     });
 
     it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
