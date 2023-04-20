@@ -1,18 +1,18 @@
 import { act, screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
 
-import renderWithSeo from "../../../../__helpers__/renderWithSeo";
-import { mockSeoResult } from "../../../../__helpers__/cms";
-import renderWithProviders from "../../../../__helpers__/renderWithProviders";
-import teachersLessonOverviewFixture from "../../../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
+import renderWithSeo from "../../../../../../../../__helpers__/renderWithSeo";
+import { mockSeoResult } from "../../../../../../../../__helpers__/cms";
+import renderWithProviders from "../../../../../../../../__helpers__/renderWithProviders";
+import lessonOverviewFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
   URLParams,
-} from "../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+} from "../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
 const props = {
-  curriculumData: teachersLessonOverviewFixture({
+  curriculumData: lessonOverviewFixture({
     videoMuxPlaybackId: "pid-001",
     videoWithSignLanguageMuxPlaybackId: "pid-002",
     hasDownloadableResources: true,
@@ -86,8 +86,7 @@ describe("pages/beta/teachers/lessons", () => {
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
-          keyStageSlug: "ks2",
-          subjectSlug: "english",
+          programmeSlug: "english-primary-ks2",
           unitSlug: "shakespeare",
         },
         query: {},

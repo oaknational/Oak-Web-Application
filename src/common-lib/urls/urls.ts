@@ -124,15 +124,19 @@ export type LessonOverviewLinkProps = {
 };
 export type ProgrammeLessonOverviewLinkProps = {
   page: "programme-lesson-overview";
-  programme: string;
-  unit: string;
-  slug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
+export type ProgrammeLessonIndexProps = {
+  page: "programme-lesson-index";
+  programmeSlug: string;
+  unitSlug: string;
 };
 
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
-  keyStageSlug: string;
-  subjectSlug: string;
+  programmeSlug: string;
   unitSlug: string;
   slug: string;
   query?: {
@@ -163,7 +167,8 @@ export type ResolveOakHrefProps =
   | LessonDownloadsLinkProps
   | ProgrammeLinkProps
   | KeyStageSubjectProgrammesLinkProps
-  | ProgrammeLessonOverviewLinkProps;
+  | ProgrammeLessonOverviewLinkProps
+  | ProgrammeLessonIndexProps;
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -255,6 +260,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
 
       return `${path}?${queryString}`;
     }
+    case "programme-lesson-index": {
+      return `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons`;
+    }
     case "lesson-index": {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.slug}`;
     }
@@ -262,10 +270,10 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       return `/beta/teachers/key-stages/${props.keyStage}/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`;
     }
     case "programme-lesson-overview": {
-      return `/beta/teachers/programmes/${props.programme}/units/${props.unit}/lessons/${props.slug}`;
+      return `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.lessonSlug}`;
     }
     case "lesson-downloads": {
-      let path = `/beta/teachers/key-stages/${props.keyStageSlug}/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;
+      let path = `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.slug}/downloads`;
       if (props.query) {
         const queryString = createQueryStringFromObject(props.query);
         path += `?${queryString.toLowerCase()}`;
