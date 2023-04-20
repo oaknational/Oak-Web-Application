@@ -27,8 +27,7 @@ type ExpandingContainerProps = CardProps & {
   projectable?: boolean;
   downloadable?: boolean;
   toggleClosed?: boolean;
-  keyStageSlug: string;
-  subjectSlug: string;
+  programmeSlug: string;
   unitSlug: string;
   slug: string;
   onDownloadButtonClick?: () => void;

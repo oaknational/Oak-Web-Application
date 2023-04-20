@@ -12,6 +12,7 @@ query lessonOverview(
   ) {
     slug
     title
+    programmeSlug: programme_slug
     unitSlug: unit_slug
     unitTitle: unit_title
     keyStageSlug: key_stage_slug
