@@ -102,28 +102,158 @@ describe("urls.ts", () => {
         "/beta/teachers/key-stages/ks2/subjects/maths/units?learning-theme=circls"
       );
     });
-    it.todo("Lesson listing");
-    it.todo("Lesson overview");
-    it.todo("Lesson downloads");
-    it.todo("Search");
-    it.todo("Landing page");
-    it.todo("Subject listing");
-    it.todo("About us: Board");
-    it.todo("About us: Who we are");
-    it.todo("About us: Leadership");
-    it.todo("About us: Partners");
-    it.todo("About us: Work with us");
-    it.todo("Careers");
-    it.todo("Contact us");
-    it.todo("Develop your curriculum");
-    it.todo("Help");
-    it.todo("Home");
-    it.todo("Lesson planning");
-    it.todo("Legal");
-    it.todo("Support your team");
-    it.todo("Our curriculum");
-    it.todo("Classroom");
-    it.todo("Teacher hub");
+    it("Lesson listing", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-index",
+          viewType: "teachers",
+          keyStage: "ks2",
+          subject: "maths",
+          slug: "geometry-349",
+        })
+      ).toBe("/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349");
+    });
+    it("Lesson overview", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-overview",
+          viewType: "teachers",
+          keyStage: "ks2",
+          subject: "maths",
+          unit: "geometry-349",
+          slug: "semi-circles-48",
+        })
+      ).toBe(
+        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349/lessons/semi-circles-48"
+      );
+    });
+    it("Lesson downloads", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-downloads",
+          viewType: "teachers",
+          keyStageSlug: "ks2",
+          subjectSlug: "maths",
+          unitSlug: "geometry-349",
+          slug: "semi-circles-48",
+        })
+      ).toBe(
+        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349/lessons/semi-circles-48/downloads"
+      );
+    });
+    it("Search", () => {
+      expect(
+        resolveOakHref({
+          page: "search",
+          viewType: "teachers",
+        })
+      ).toBe("/beta/teachers/search");
+    });
+    it("Search with query", () => {
+      expect(
+        resolveOakHref({
+          page: "search",
+          viewType: "teachers",
+          query: { term: "something", keyStages: ["ks4", "ks2"] },
+        })
+      ).toBe("/beta/teachers/search?term=something&keyStages=ks4%2Cks2");
+    });
+    it("Landing page", () => {
+      expect(
+        resolveOakHref({
+          page: "landing-page",
+          slug: "lp-slug-123",
+        })
+      ).toBe("/lp/lp-slug-123");
+    });
+    it("Subject listing", () => {
+      expect(
+        resolveOakHref({
+          page: "subject-index",
+          viewType: "teachers",
+          slug: "ks2",
+        })
+      ).toBe("/beta/teachers/key-stages/ks2/subjects");
+    });
+    it("About us: Board", () => {
+      expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
+    });
+    it("About us: Who we are", () => {
+      expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
+        "/about-us/who-we-are"
+      );
+    });
+    it("About us: Leadership", () => {
+      expect(resolveOakHref({ page: "about-leadership" })).toBe(
+        "/about-us/leadership"
+      );
+    });
+    it("About us: Partners", () => {
+      expect(resolveOakHref({ page: "about-partners" })).toBe(
+        "/about-us/partners"
+      );
+    });
+    it("About us: Work with us", () => {
+      expect(resolveOakHref({ page: "about-work-with-us" })).toBe(
+        "/about-us/work-with-us"
+      );
+    });
+    it("Contact us", () => {
+      expect(resolveOakHref({ page: "contact" })).toBe("/contact-us");
+    });
+    it("Develop your curriculum", () => {
+      expect(resolveOakHref({ page: "develop-your-curriculum" })).toBe(
+        "/develop-your-curriculum"
+      );
+    });
+    it("Home", () => {
+      expect(resolveOakHref({ page: "home", viewType: null })).toBe("/");
+    });
+    it("Home (teachers)", () => {
+      expect(resolveOakHref({ page: "home", viewType: "teachers" })).toBe(
+        "/beta/teachers"
+      );
+    });
+    it("Lesson planning", () => {
+      expect(resolveOakHref({ page: "lesson-planning" })).toBe(
+        "/lesson-planning"
+      );
+    });
+    it("Legal", () => {
+      expect(resolveOakHref({ page: "legal", slug: "legal-page-123" })).toBe(
+        "/legal/legal-page-123"
+      );
+    });
+    it("Support your team", () => {
+      expect(resolveOakHref({ page: "support-your-team" })).toBe(
+        "/support-your-team"
+      );
+    });
+    it("Help", () => {
+      expect(resolveOakHref({ page: "help" })).toBe(
+        "https://support.thenational.academy"
+      );
+    });
+    it("Careers", () => {
+      expect(resolveOakHref({ page: "careers" })).toBe(
+        "https://app.beapplied.com/org/1574/oak-national-academy"
+      );
+    });
+    it("Our curriculum", () => {
+      expect(resolveOakHref({ page: "oak-curriculum" })).toBe(
+        "https://teachers.thenational.academy/oaks-curricula"
+      );
+    });
+    it("Classroom", () => {
+      expect(resolveOakHref({ page: "classroom" })).toBe(
+        "https://classroom.thenational.academy"
+      );
+    });
+    it("Teacher hub", () => {
+      expect(resolveOakHref({ page: "teacher-hub" })).toBe(
+        "https://teachers.thenational.academy"
+      );
+    });
   });
 });
 describe("getPageViewProps()", () => {
@@ -174,7 +304,7 @@ describe("getPageViewProps()", () => {
       getPageViewProps("/beta/teachers/key-stages/ks2/subjects/maths/units")
     ).toEqual({
       pageName: "Unit Listing",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Unit listing with query", () => {
@@ -184,7 +314,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Unit Listing",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Lesson listing", () => {
@@ -194,7 +324,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson Listing",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Lesson overview", () => {
@@ -204,7 +334,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Lesson downloads", () => {
@@ -214,19 +344,19 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson Download",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Search", () => {
     expect(getPageViewProps("/beta/teachers/search")).toEqual({
       pageName: "Search",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Search with query", () => {
     expect(getPageViewProps("/beta/teachers/search?term=macb")).toEqual({
       pageName: "Search",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("Landing page", () => {
@@ -238,7 +368,7 @@ describe("getPageViewProps()", () => {
   it("Subject listing", () => {
     expect(getPageViewProps("/beta/teachers/key-stages/ks2/subjects")).toEqual({
       pageName: "Subject Listing",
-      analyticsUseCase: "teachers",
+      analyticsUseCase: null,
     });
   });
   it("About us: Board", () => {
