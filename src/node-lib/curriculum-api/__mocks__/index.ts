@@ -14,6 +14,7 @@ import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
+import tierListingFixture from "../fixtures/tierListing.fixture";
 import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixtures";
 
 const curriculumApi: CurriculumApi = {
@@ -62,6 +63,10 @@ const curriculumApi: CurriculumApi = {
   }),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
+  }),
+
+  tierListing: jest.fn(async () => {
+    return tierListingFixture();
   }),
   unitListingPaths: jest.fn(async () => {
     return unitListingPathsFixture();

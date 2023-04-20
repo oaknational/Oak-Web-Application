@@ -1,19 +1,18 @@
 query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
-  mv_key_stages(where: { slug: { _eq: $keyStageSlug } }) {
-    slug
-    title
-  }
-  mv_programmes(
+  mv_programmes: mv_programmes_3(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
     }
   ) {
-    keyStageSlug: key_stage_slug
     programmeSlug: programme_slug
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    slug: subject_slug
+    title: subject_title
     tierSlug: tier_slug
-    unitCount: unit_count
+    tierTitle: tier_title
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }

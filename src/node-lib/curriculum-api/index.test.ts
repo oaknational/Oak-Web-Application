@@ -8,6 +8,7 @@ import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fix
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
 import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
+import tierListingFixture from "./fixtures/tierListing.fixture";
 import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 
 import curriculumApi from ".";
@@ -130,6 +131,10 @@ const unitListing = jest.fn(() => ({
   mv_units: unitListingFixture().units,
 }));
 
+const tierListing = jest.fn(() => ({
+  mv_programmes: tierListingFixture().programmes,
+}));
+
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
@@ -153,6 +158,7 @@ jest.mock("./generated/sdk", () => ({
       teachersLessonOverviewPaths(...args),
     unitListingPaths: (...args: []) => unitListingPaths(...args),
     unitListing: (...args: []) => unitListing(...args),
+    tierListing: (...args: []) => tierListing(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -250,6 +256,17 @@ describe("curriculum-api", () => {
     });
     expect(unitListing).toHaveBeenCalledWith({
       programmeSlug: "maths-secondary-ks4",
+    });
+  });
+
+  test("tierListing", async () => {
+    await curriculumApi.tierListing({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
+    });
+    expect(tierListing).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
     });
   });
 });

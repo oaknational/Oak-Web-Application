@@ -22564,6 +22564,7 @@ export type Mv_Questions = {
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
   question_id?: Maybe<Scalars['Int']>;
+  quiz_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   required?: Maybe<Scalars['Boolean']>;
   subject_slug?: Maybe<Scalars['String']>;
@@ -23704,6 +23705,7 @@ export type Mv_Questions_Avg_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "mv_questions" */
@@ -23711,6 +23713,7 @@ export type Mv_Questions_Avg_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_questions". All fields are combined with a logical 'AND'. */
@@ -23734,6 +23737,7 @@ export type Mv_Questions_Bool_Exp = {
   order?: InputMaybe<Int_Comparison_Exp>;
   points?: InputMaybe<Int_Comparison_Exp>;
   question_id?: InputMaybe<Int_Comparison_Exp>;
+  quiz_id?: InputMaybe<Int_Comparison_Exp>;
   quiz_type?: InputMaybe<String_Comparison_Exp>;
   required?: InputMaybe<Boolean_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
@@ -23749,6 +23753,7 @@ export type Mv_Questions_Inc_Input = {
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
   question_id?: InputMaybe<Scalars['Int']>;
+  quiz_id?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "mv_questions" */
@@ -23769,6 +23774,7 @@ export type Mv_Questions_Insert_Input = {
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
   question_id?: InputMaybe<Scalars['Int']>;
+  quiz_id?: InputMaybe<Scalars['Int']>;
   quiz_type?: InputMaybe<Scalars['String']>;
   required?: InputMaybe<Scalars['Boolean']>;
   subject_slug?: InputMaybe<Scalars['String']>;
@@ -23792,6 +23798,7 @@ export type Mv_Questions_Max_Fields = {
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
   question_id?: Maybe<Scalars['Int']>;
+  quiz_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -23813,6 +23820,7 @@ export type Mv_Questions_Max_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -23835,6 +23843,7 @@ export type Mv_Questions_Min_Fields = {
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
   question_id?: Maybe<Scalars['Int']>;
+  quiz_id?: Maybe<Scalars['Int']>;
   quiz_type?: Maybe<Scalars['String']>;
   subject_slug?: Maybe<Scalars['String']>;
   subject_title?: Maybe<Scalars['String']>;
@@ -23856,6 +23865,7 @@ export type Mv_Questions_Min_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -23897,6 +23907,7 @@ export type Mv_Questions_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   required?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
@@ -23942,6 +23953,8 @@ export enum Mv_Questions_Select_Column {
   /** column name */
   QuestionId = 'question_id',
   /** column name */
+  QuizId = 'quiz_id',
+  /** column name */
   QuizType = 'quiz_type',
   /** column name */
   Required = 'required',
@@ -23977,6 +23990,7 @@ export type Mv_Questions_Set_Input = {
   order?: InputMaybe<Scalars['Int']>;
   points?: InputMaybe<Scalars['Int']>;
   question_id?: InputMaybe<Scalars['Int']>;
+  quiz_id?: InputMaybe<Scalars['Int']>;
   quiz_type?: InputMaybe<Scalars['String']>;
   required?: InputMaybe<Scalars['Boolean']>;
   subject_slug?: InputMaybe<Scalars['String']>;
@@ -23993,6 +24007,7 @@ export type Mv_Questions_Stddev_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "mv_questions" */
@@ -24000,6 +24015,7 @@ export type Mv_Questions_Stddev_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -24008,6 +24024,7 @@ export type Mv_Questions_Stddev_Pop_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_questions" */
@@ -24015,6 +24032,7 @@ export type Mv_Questions_Stddev_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -24023,6 +24041,7 @@ export type Mv_Questions_Stddev_Samp_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_questions" */
@@ -24030,6 +24049,7 @@ export type Mv_Questions_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -24038,6 +24058,7 @@ export type Mv_Questions_Sum_Fields = {
   order?: Maybe<Scalars['Int']>;
   points?: Maybe<Scalars['Int']>;
   question_id?: Maybe<Scalars['Int']>;
+  quiz_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "mv_questions" */
@@ -24045,6 +24066,7 @@ export type Mv_Questions_Sum_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
@@ -24053,6 +24075,7 @@ export type Mv_Questions_Var_Pop_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "mv_questions" */
@@ -24060,6 +24083,7 @@ export type Mv_Questions_Var_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -24068,6 +24092,7 @@ export type Mv_Questions_Var_Samp_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "mv_questions" */
@@ -24075,6 +24100,7 @@ export type Mv_Questions_Var_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -24083,6 +24109,7 @@ export type Mv_Questions_Variance_Fields = {
   order?: Maybe<Scalars['Float']>;
   points?: Maybe<Scalars['Float']>;
   question_id?: Maybe<Scalars['Float']>;
+  quiz_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "mv_questions" */
@@ -24090,6 +24117,7 @@ export type Mv_Questions_Variance_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_quizzes" */
@@ -44221,7 +44249,7 @@ export type TierListingQueryVariables = Exact<{
 }>;
 
 
-export type TierListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes: Array<{ __typename?: 'mv_programmes', keyStageSlug?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, unitCount?: any | null }> };
+export type TierListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, tierTitle?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }> };
 
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String'];
@@ -44610,19 +44638,18 @@ export const TeachersLessonOverviewPathsDocument = gql`
     `;
 export const TierListingDocument = gql`
     query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
-  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
-    slug
-    title
-  }
-  mv_programmes(
+  mv_programmes: mv_programmes_3(
     where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
   ) {
-    keyStageSlug: key_stage_slug
     programmeSlug: programme_slug
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    slug: subject_slug
+    title: subject_title
     tierSlug: tier_slug
-    unitCount: unit_count
+    tierTitle: tier_title
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }
     `;
