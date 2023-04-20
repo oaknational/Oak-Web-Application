@@ -6,6 +6,7 @@ import config from "../../config/browser";
 import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
+import OakError from "../../errors/OakError";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
@@ -302,21 +303,6 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
   }
 }
 
-export const searchPageConfig = createOakPageConfig<SearchLinkProps>({
-  configType: "internal",
-  pageType: "search",
-  analyticsPageName: "Search",
-  pathPattern: "/beta/teachers/search",
-});
-export const lessonDownloadsPageConfig =
-  createOakPageConfig<LessonDownloadsLinkProps>({
-    configType: "internal",
-    pageType: "lesson-downloads",
-    analyticsPageName: "Lesson Download",
-    pathPattern:
-      "/beta/teachers/key-stages/:keyStageSlug/subjects/:subjectSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
-  });
-
 const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
@@ -502,8 +488,7 @@ const OAK_PAGES: {
     },
   }),
   "tier-selection": createOakPageConfig({
-    pathPattern:
-      "/beta/teachers/key-stages/:keyStageSlug/subjects/:subjectSlug/units",
+    pathPattern: "/beta/teachers/key-stages/:keyStage/subjects/:subject/units",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "tier-selection",
@@ -580,12 +565,22 @@ export type ResolveOakHrefProps = Exclude<
  * resolveOakHref({ page: "blog", slug: "how-oak-helps-everyone" })
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
-  return (
-    OAK_PAGES[props.page]
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      .resolveHref(props)
-  );
+  try {
+    return (
+      OAK_PAGES[props.page]
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        .resolveHref(props)
+    );
+  } catch (error) {
+    const err = new OakError({
+      code: "urls/failed-to-resolve",
+      originalError: error,
+      meta: props,
+    });
+    reportError(err);
+    throw err;
+  }
 };
 
 type PageViewProps = {

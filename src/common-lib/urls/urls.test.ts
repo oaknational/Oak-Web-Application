@@ -89,6 +89,17 @@ describe("urls.ts", () => {
         "/beta/teachers/key-stages/ks2/subjects/maths/units"
       );
     });
+    it("Tier selection", () => {
+      const props: ResolveOakHrefProps = {
+        page: "tier-selection",
+        viewType: "teachers",
+        keyStage: "ks2",
+        subject: "maths",
+      };
+      expect(resolveOakHref(props)).toBe(
+        "/beta/teachers/key-stages/ks2/subjects/maths/units"
+      );
+    });
     it("Unit listing with query", () => {
       expect(
         resolveOakHref({
