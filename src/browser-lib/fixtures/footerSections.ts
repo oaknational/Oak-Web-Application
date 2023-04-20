@@ -17,7 +17,7 @@ const footerSections: FooterSections = {
   oak: {
     title: "Oak",
     links: [
-      { text: "Home", href: "/" },
+      { text: "Home (early access)", href: "/" },
       { text: "About us", href: "/about-us/who-we-are" },
       {
         text: "Careers",

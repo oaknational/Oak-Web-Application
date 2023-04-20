@@ -4,7 +4,7 @@ export const menuSections: MenuSections = {
   large: [
     {
       page: "home",
-      linkText: "Home",
+      linkText: "Home (early access)",
     },
     {
       page: "teachers-home",
