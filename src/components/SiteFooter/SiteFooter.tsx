@@ -14,6 +14,7 @@ import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import FooterSignpost from "../FooterSignpost/FooterSignpost";
 
 type FooterLinkProps = {
   text: string;
@@ -124,6 +125,9 @@ const SiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
+          <Flex $wordWrap={"normal"} $mb={[48, 64]} $maxWidth={740}>
+            <FooterSignpost />
+          </Flex>
           <Grid>
             <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
