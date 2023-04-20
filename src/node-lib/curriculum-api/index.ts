@@ -648,9 +648,7 @@ const curriculumApi = {
     const res = await sdk.tierListing(...args);
     const { programmes = [] } = transformMVCase(res);
 
-    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
-
-    return tierListingData.parse({ programmes: programme });
+    return tierListingData.parse({ programmes });
   },
 };
 

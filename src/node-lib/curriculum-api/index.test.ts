@@ -130,7 +130,7 @@ const unitListing = jest.fn(() => ({
 }));
 
 const tierListing = jest.fn(() => ({
-  mv_programmes: [tierListingFixture().programmes],
+  mv_programmes: tierListingFixture().programmes,
 }));
 
 jest.mock("./generated/sdk", () => ({
