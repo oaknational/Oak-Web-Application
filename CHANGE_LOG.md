@@ -1,3 +1,16 @@
+# [1.174.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.173.1...v1.174.0) (2023-04-21)
+
+
+### Bug Fixes
+
+* **urls:** add error handling to resolveOakHref ([9c2c2f4](https://github.com/oaknational/Oak-Web-Application/commit/9c2c2f44762f1c10b435014c05c1dc39158f9059))
+* **urls:** typo ([26cf72c](https://github.com/oaknational/Oak-Web-Application/commit/26cf72ce1143c1fe927f25415aeeede7bfdf2d0e))
+
+
+### Features
+
+* add matchHref and resolveHref and pathPattern to page configs ([b7ebfcd](https://github.com/oaknational/Oak-Web-Application/commit/b7ebfcdbaad8f724ebf01f544b9a1e2a9232052c))
+
 ## [1.173.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.173.0...v1.173.1) (2023-04-20)
 
 
