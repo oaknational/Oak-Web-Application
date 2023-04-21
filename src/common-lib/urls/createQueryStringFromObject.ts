@@ -1,3 +1,8 @@
+export type UrlQueryObject = Record<
+  string,
+  string | string[] | null | undefined
+>;
+
 function removeNullOrUndefinedQueryParams<T extends string | string[]>(
   search: Record<string, T | null | undefined>
 ): Record<string, T> {
@@ -17,9 +22,7 @@ function removeNullOrUndefinedQueryParams<T extends string | string[]>(
  * Strips out nulls, undefineds, and empty arrays.
  * Comma-separates arrays e.g. ["one", "two"] -> "one,two".
  */
-export default function createQueryStringFromObject(
-  search?: Record<string, string | string[] | null | undefined>
-) {
+export default function createQueryStringFromObject(search?: UrlQueryObject) {
   if (!search) {
     return "";
   }

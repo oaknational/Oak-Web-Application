@@ -46,7 +46,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
   if (props.type === "pupils-link") {
     return (
       <OakLink
-        page="pupils-home"
+        page="classroom"
         htmlAnchorProps={{
           onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
         }}
@@ -59,7 +59,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
   if (props.type === "teachers-link") {
     return (
       <OakLink
-        page="teachers-home"
+        page="teacher-hub"
         htmlAnchorProps={{
           onClick: () => track.teacherHubSelected({ navigatedFrom: "footer" }),
         }}

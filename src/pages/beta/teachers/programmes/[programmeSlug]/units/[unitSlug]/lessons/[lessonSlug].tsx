@@ -53,13 +53,13 @@ export type LessonOverviewPageProps = {
 export const lessonBreadcrumbArray = (
   keyStageTitle: string,
   keyStageSlug: string,
-  subjectSlug: string,
+  programmeSlug: string,
   subjectTitle: string,
   unitSlug: string,
   unitTitle: string
 ): Breadcrumb[] => {
   return [
-    { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+    { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
       oakLinkProps: { page: "subject-index", slug: keyStageSlug },
       label: keyStageTitle,
@@ -67,17 +67,15 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "unit-index",
-        keyStage: keyStageSlug,
-        subject: subjectSlug,
+        programme: "@todo",
       },
       label: subjectTitle,
     },
     {
       oakLinkProps: {
         page: "lesson-index",
+        programmeSlug,
         slug: unitSlug,
-        keyStage: keyStageSlug,
-        subject: subjectSlug,
       },
       label: unitTitle,
     },
@@ -156,7 +154,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                subjectSlug,
+                "@todo", // @todo place with programme slug
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -164,10 +162,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                  unit: unitSlug,
-                  slug: slug,
+                  viewType: "teachers",
+                  programmeSlug: "@todo",
+                  unitSlug,
+                  slug,
                 },
                 label: title,
                 disabled: true,

@@ -1,4 +1,4 @@
-import { ProgrammeLinkProps } from "../../../common-lib/urls";
+import { UnitListingLinkProps } from "../../../common-lib/urls";
 import Flex from "../../Flex";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
@@ -19,7 +19,7 @@ export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: LearningTheme[];
-  linkProps: ProgrammeLinkProps;
+  linkProps: UnitListingLinkProps;
   trackingProps: LearningThemeSelectedTrackingProps;
 };
 const LearningThemeFilters = ({
@@ -31,7 +31,7 @@ const LearningThemeFilters = ({
 }: LearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
-    getKey: (linkProps: ProgrammeLinkProps) => {
+    getKey: (linkProps: UnitListingLinkProps) => {
       if (linkProps.search?.["learning-theme"]) {
         return linkProps.search?.["learning-theme"];
       } else return "all";

@@ -193,7 +193,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                   >
                     <CardLink
-                      page="pupils-home"
+                      page="classroom"
                       onClick={() =>
                         track.classroomSelected({ navigatedFrom: "card" })
                       }
@@ -256,7 +256,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                     tag={"h3"}
                   >
                     <CardLink
-                      page="teachers-home"
+                      page="teacher-hub"
                       htmlAnchorProps={{
                         onClick: () =>
                           track.teacherHubSelected({ navigatedFrom: "card" }),

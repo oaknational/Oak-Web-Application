@@ -36,7 +36,7 @@ describe("PostCategoryList", () => {
     const { getByRole } = renderWithTheme(
       <PostCategoryList
         labelledBy={labelId}
-        page={"webinars-index"}
+        page={"webinar-index"}
         categories={[
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },

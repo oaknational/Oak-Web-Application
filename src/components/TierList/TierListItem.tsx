@@ -63,12 +63,12 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
       >
         <OakLink
           {...primaryTargetProps}
-          page={"programme"}
+          page={"unit-index"}
           programme={programmeSlug}
           onClick={() => {
             track.tierSelected({
-              title,
-              slug,
+              subjectTitle: title,
+              subjectSlug: slug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
               keyStageSlug,
               tierName: tierTitle,

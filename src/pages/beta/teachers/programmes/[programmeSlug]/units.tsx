@@ -98,10 +98,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     <AppLayout seoProps={tierSlug ? tiersSEO : unitsSEO}>
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
-          {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+              {
+                oakLinkProps: { page: "home", viewType: "teachers" },
+                label: "Home",
+              },
               {
                 oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
@@ -109,8 +111,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               {
                 oakLinkProps: {
                   page: "unit-index",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
+                  programme: programmeSlug,
                 },
                 label: subjectTitle,
                 disabled: true,
@@ -163,7 +164,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       learningThemeSlug ? learningThemeSlug : "all"
                     }
                     linkProps={{
-                      page: "programme",
+                      page: "unit-index",
                       programme: programmeSlug,
                     }}
                     trackingProps={{
@@ -206,7 +207,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         learningThemeSlug ? learningThemeSlug : "all"
                       }
                       linkProps={{
-                        page: "programme",
+                        page: "unit-index",
                         programme: programmeSlug,
                       }}
                       trackingProps={{
@@ -234,7 +235,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       }) => ({
                         label: `${title} (${unitCount})`,
                         programme: tierProgrammeSlug,
-                        page: "programme",
+                        page: "unit-index",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
                       })

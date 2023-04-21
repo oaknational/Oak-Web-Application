@@ -1,3 +1,62 @@
+## [1.173.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.173.0...v1.173.1) (2023-04-20)
+
+
+### Bug Fixes
+
+* **expandingContainer:** test fixes ([03655c8](https://github.com/oaknational/Oak-Web-Application/commit/03655c8f510930f33095da5614341ad261df0575))
+* **expaningcontainer:** test fixes ([5c86c34](https://github.com/oaknational/Oak-Web-Application/commit/5c86c34604ef5ceaba9b0788e57ba3a01b2f999c))
+* **expaningcontainer:** test fixes ([d083c8b](https://github.com/oaknational/Oak-Web-Application/commit/d083c8b738770a686b8d571ed5b089a1afd635bd))
+* **expaningcontainer:** test fixes ([efdfaf8](https://github.com/oaknational/Oak-Web-Application/commit/efdfaf84530dad646eece84a5a956f76880a949f))
+* **expaningcontainer:** test fixes ([31d79f0](https://github.com/oaknational/Oak-Web-Application/commit/31d79f05d173be5d0963a7f81e55e0a2fc3249c3))
+* **globals:** type fix ([e99656b](https://github.com/oaknational/Oak-Web-Application/commit/e99656b0afe3c0b161bd69ed340112bbb7f45df8))
+* **globals:** type fix ([b23bd70](https://github.com/oaknational/Oak-Web-Application/commit/b23bd70ebbbbf562eab2ec6e5ddaa45481749bf1))
+* **merge:** merge commit ([6a9a854](https://github.com/oaknational/Oak-Web-Application/commit/6a9a8545eb7e6fb5ff7ea5618bd201450bc9c74b))
+* **merge:** merge commit ([b2d30bb](https://github.com/oaknational/Oak-Web-Application/commit/b2d30bbee2f5afafbea5926cac48c6106e6a9581))
+* **urls:** lint fix and subject url fix ([96eff6c](https://github.com/oaknational/Oak-Web-Application/commit/96eff6c4a0a570640800dcf44d5b02a28e1b8ed1))
+* **urls:** lint fix and subject url fix ([9df70d1](https://github.com/oaknational/Oak-Web-Application/commit/9df70d1b0ffd29003b0ba73fe6969f46d4fb7061))
+
+# [1.173.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.2...v1.173.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* insert favicon links into Head ([7652704](https://github.com/oaknational/Oak-Web-Application/commit/7652704b543017f849bdba225e881ecf58b60a50))
+* **webmanifest:** set dispay: minimal-ui ([ebc2fc4](https://github.com/oaknational/Oak-Web-Application/commit/ebc2fc452b8faa88d5fb7a57d6c83d3c10b33091))
+
+
+### Features
+
+* favicon generation build script ([03e02d3](https://github.com/oaknational/Oak-Web-Application/commit/03e02d3b5956689884370fdedd76196926fe5de8))
+
+## [1.172.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.1...v1.172.2) (2023-04-18)
+
+
+### Bug Fixes
+
+* hubspot load script ([9a2b97a](https://github.com/oaknational/Oak-Web-Application/commit/9a2b97a0f0f792710b3f0156d82e53bc60af5e03))
+
+## [1.172.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.172.0...v1.172.1) (2023-04-18)
+
+# [1.172.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.171.1...v1.172.0) (2023-04-18)
+
+
+### Bug Fixes
+
+* **sharing-image:** public filepath ([26131a6](https://github.com/oaknational/Oak-Web-Application/commit/26131a632b668592a77d7e3187fd2cd4b7517604))
+* **social-image:** add app url so image url is absolute ([cf3a023](https://github.com/oaknational/Oak-Web-Application/commit/cf3a0237e792dd71ebdc808786bd00571e9b1049))
+
+
+### Features
+
+* fetch social-sharing-image from sanity ([4ec6791](https://github.com/oaknational/Oak-Web-Application/commit/4ec6791107b54f24c76ebe878714dfbb36d9cc93))
+* get social-sharing-image from sanity ([c60b145](https://github.com/oaknational/Oak-Web-Application/commit/c60b145a71adc740df4527af84133a998db42436))
+
+## [1.171.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.171.0...v1.171.1) (2023-04-17)
+
+## [1.170.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.170.1...v1.170.2) (2023-04-17)
+
+## [1.170.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.170.0...v1.170.1) (2023-04-14)
+
 # [1.170.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.169.1...v1.170.0) (2023-04-13)
 
 

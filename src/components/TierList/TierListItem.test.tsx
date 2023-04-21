@@ -62,8 +62,8 @@ describe("TierListItem", () => {
 
     expect(tierSelected).toHaveBeenCalledTimes(1);
     expect(tierSelected).toHaveBeenCalledWith({
-      title: "Maths",
-      slug: "maths",
+      subjectTitle: "Maths",
+      subjectSlug: "maths",
       tierName: "Higher",
       keyStageTitle: "Key Stage 4",
       keyStageSlug: "ks4",
