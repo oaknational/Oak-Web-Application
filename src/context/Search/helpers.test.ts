@@ -47,7 +47,7 @@ describe("search helpers", () => {
 
   test("getProgrammeSlug returns a correct slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
-    const lessonListObject = getUnitObject({ hit: lessonHit, allKeyStages });
+    const lessonListObject = getLessonObject({ hit: lessonHit, allKeyStages });
     expect(unitListObject.programmeSlug).toEqual("english-primary-ks2");
     expect(lessonListObject.programmeSlug).toEqual("drama-primary-ks2");
   });
