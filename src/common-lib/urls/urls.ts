@@ -308,7 +308,7 @@ const postMatchHref =
     postType: PostListingLinkProps["page"]
   ) =>
   (href: string) => {
-    const path = postType === "blog-index" ? "/blog" : "/webinrs";
+    const path = postType === "blog-index" ? "/blog" : "/webinars";
     if (match(`${path}`)(href)) {
       return match<PostListingLinkProps>(path)(href);
     }
@@ -322,7 +322,7 @@ const postResolveHref =
     postType: PostListingLinkProps["page"]
   ) =>
   (props: PostListingLinkProps) => {
-    let path = postType === "blog-index" ? "/blog" : "/webinrs";
+    let path = postType === "blog-index" ? "/blog" : "/webinars";
     if (props.category) {
       path = `${path}/categories/${props.category}`;
     }
