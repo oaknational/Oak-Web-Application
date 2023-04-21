@@ -4,7 +4,7 @@ export const menuSections: MenuSections = {
   large: [
     {
       resolveOakHrefProps: { page: "home", viewType: null },
-      linkText: "Home",
+      linkText: "Home (early access)",
     },
     {
       resolveOakHrefProps: { page: "teacher-hub" },

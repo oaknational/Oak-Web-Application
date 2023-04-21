@@ -13,6 +13,7 @@ import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
 import Box from "../Box";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import NavBarSignpost from "../NavBarSignpost/NavBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -139,6 +140,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 $ph={[16, 72]}
               >
                 {/* Mobile logo */}
+                <NavBarSignpost mb={64} display={["none", "flex"]} />
                 <Flex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
@@ -146,6 +148,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <Logo height={48} width={104} />
                 </Flex>
+                <NavBarSignpost mb={48} display={["flex", "none"]} />
                 {children}
                 {/* Desktop logo */}
                 <Flex
