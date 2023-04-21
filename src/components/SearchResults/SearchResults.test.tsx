@@ -44,7 +44,7 @@ describe("<SearchResults />", () => {
       getByRole("link", { name: "To write the setting description" })
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programmeSlug/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
+      "/beta/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
     );
   });
   // @todo when we have programme_slug in search index
@@ -63,7 +63,7 @@ describe("<SearchResults />", () => {
 
     const searchElement = getAllByRole("listitem");
 
-    expect(searchElement.length).toEqual(19);
+    expect(searchElement.length).toEqual(20);
   });
 
   test("it renders pagination if there are more results than 20 results", () => {
