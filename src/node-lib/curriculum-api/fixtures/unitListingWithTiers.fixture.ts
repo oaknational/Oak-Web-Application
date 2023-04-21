@@ -18,7 +18,6 @@ const unitListingWithTiers = (
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",
         subjectTitle: "Maths",
-        programmeSlug: "art-primary-ks1",
         themeSlug: "some-theme-slug",
         themeTitle: "Some theme title",
         lessonCount: 18,
@@ -45,7 +44,6 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
-        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -63,7 +61,6 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
-        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -81,7 +78,6 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
-        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -99,7 +95,6 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
-        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -117,7 +112,6 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
-        programmeSlug: "maths-secondary-ks4-core",
       },
     ],
     tiers: [
