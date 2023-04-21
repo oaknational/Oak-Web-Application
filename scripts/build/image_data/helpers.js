@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { Readable } = require("stream");
 const { finished } = require("stream/promises");
-const { writeFileSync, readFileSync, unlinkSync } = require("node:fs");
+const { writeFile, readFile, unlink } = require("fs/promises");
 const path = require("path");
 
 const SVGSpriter = require("svg-sprite");
@@ -11,18 +11,15 @@ async function fetchSvgAndAddToSprite({ url, name, spriter }) {
     .replace(`fill="#000"`, `fill="currentColor"`)
     .replace(`fill="black"`, `fill="currentColor"`);
   const svgPath = `public/images/sprite/${name}.svg`;
-  writeFileSync(path.resolve(svgPath), svg);
+  await writeFile(path.resolve(svgPath), svg);
+  const svgContent = await readFile(path.resolve(svgPath), "utf-8");
 
-  spriter.add(
-    path.resolve(svgPath),
-    svgPath,
-    readFileSync(path.resolve(svgPath), "utf-8")
-  );
+  spriter.add(path.resolve(svgPath), svgPath, svgContent);
 
-  unlinkSync(svgPath);
+  await unlink(svgPath);
 }
 
-function compileAndWriteSpriteToFile({ spriter, path }) {
+async function compileAndWriteSpriteToFile({ spriter, path }) {
   let sprite = "";
   spriter.compile((error, result) => {
     if (error) {
@@ -36,7 +33,7 @@ function compileAndWriteSpriteToFile({ spriter, path }) {
     }
   });
 
-  writeFileSync(path, sprite);
+  await writeFile(path, sprite);
 }
 
 /**
@@ -45,8 +42,8 @@ function compileAndWriteSpriteToFile({ spriter, path }) {
  * array of slugs cannot be used cannot be used
  * @see https://github.com/microsoft/TypeScript/issues/32063
  */
-function writeJsonForTypes({ names, fileName }) {
-  const path = writeJson({
+async function writeJsonForTypes({ names, fileName }) {
+  const path = await writeJson({
     fileName,
     data: names.reduce((acc, cur) => {
       acc[cur] = {};
@@ -64,9 +61,9 @@ function getGeneratedImageDataPath({ fileName }) {
   return `src/image-data/generated/${fileName}`;
 }
 
-function writeJson({ data, fileName }) {
+async function writeJson({ data, fileName }) {
   const path = getGeneratedImageDataPath({ fileName });
-  writeFileSync(path, JSON.stringify(data));
+  await writeFile(path, JSON.stringify(data));
   return path;
 }
 

@@ -34,7 +34,7 @@ async function main() {
    * This will enable static types for ui-icons.
    */
   const uiIconNames = getSlugs({ assets: uiIconsRes });
-  const uiIconsPath = writeJsonForTypes({
+  const uiIconsPath = await writeJsonForTypes({
     names: uiIconNames,
     fileName: "ui-icons.json",
   });
@@ -45,7 +45,7 @@ async function main() {
    * This will enable static types for ui-graphics.
    */
   const uiGraphicNames = getSlugs({ assets: uiGraphicsRes });
-  const uiGraphicsPath = writeJsonForTypes({
+  const uiGraphicsPath = await writeJsonForTypes({
     names: uiGraphicNames,
     fileName: "ui-graphics.json",
   });

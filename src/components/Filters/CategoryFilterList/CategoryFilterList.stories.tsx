@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { PostIndexLinkProps } from "../../../common-lib/urls";
+import { BlogListingLinkProps } from "../../../common-lib/urls";
 
 import useCategoryFilterList from "./useCategoryFilterList";
 
@@ -12,14 +12,14 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  const props = useCategoryFilterList<PostIndexLinkProps>({
+  const props = useCategoryFilterList<BlogListingLinkProps>({
     selectedKey: "oak-updates",
     getKey: (link) => link.category,
   });
   // Can't get storybook types to play nicely with generic component
   // eslint-disable-next-line
   // @ts-ignore
-  return <Component<PostIndexLinkProps> {...args} {...props} />;
+  return <Component<BlogListingLinkProps> {...args} {...props} />;
 };
 
 export const CategoryFilterList = Template.bind({});

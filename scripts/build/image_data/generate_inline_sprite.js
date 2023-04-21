@@ -28,7 +28,7 @@ async function main() {
    * assetsByName -> image-data/inline-sprite.json
    * This will enable static types for InlineSpriteSvg.
    */
-  const jsonPath = writeJsonForTypes({
+  const jsonPath = await writeJsonForTypes({
     names: Object.keys(assetsByName),
     fileName: "inline-sprite.json",
   });

@@ -6,6 +6,82 @@ import Card from "../Card";
 
 import ExpandingContainer from ".";
 
+it("component renders with the title", () => {
+  const { getAllByRole } = renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      title={"Video"}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  expect(getAllByRole("button")).toHaveLength(3);
+  expect(getAllByRole("link")).toHaveLength(1);
+});
+it("component renders with the title only", () => {
+  const { getAllByRole } = renderWithTheme(
+    <ExpandingContainer
+      external={false}
+      projectable={false}
+      downloadable={false}
+      title={"Video"}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  expect(getAllByRole("button")).toHaveLength(1);
+});
+it("renders top right icons", async () => {
+  const log1 = jest.spyOn(console, "log");
+  const log2 = jest.spyOn(console, "log");
+  const user = userEvent.setup();
+  renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      keyStageSlug={"ks3"}
+      subjectSlug={"maths"}
+      unitSlug={"unit"}
+      slug={"slug-slug-slug"}
+      title={"Video"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  const downloadLinkButton = screen.getByTestId("download-button");
+  expect(downloadLinkButton).toHaveAttribute(
+    "href",
+    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
+  );
+  const projectButton = screen.getByTestId("project-button");
+  await user.click(projectButton);
+  expect(log1).toHaveBeenCalled();
+
+  const externalButton = screen.getByTestId("external-button");
+  await user.click(externalButton);
+  expect(log2).toHaveBeenCalled();
+});
+
 const resourceContainerExpanded = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -87,7 +163,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
+      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);

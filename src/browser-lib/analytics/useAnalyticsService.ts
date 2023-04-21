@@ -9,6 +9,7 @@ const useAnalyticsService = <T>({
   config,
   consentState,
   setPosthogDistinctId,
+  scriptLoaded = false,
 }: {
   service: AnalyticsService<T>;
   config: T;
@@ -18,29 +19,27 @@ const useAnalyticsService = <T>({
    */
   consentState: CookieConsentState;
   setPosthogDistinctId?: (id: MaybeDistinctId) => void;
+  scriptLoaded?: boolean;
 }) => {
-  const [loaded, setLoaded] = useState(false);
-  const [hasAttemptedInit, setHasAttemptedInit] = useState(false);
+  const [loaded, setLoaded] = useState(scriptLoaded);
+  const [hasAttemptedInit, setHasAttemptedInit] = useState(scriptLoaded);
 
   useEffect(() => {
-    let isUnmounted = false;
+    setLoaded(scriptLoaded);
+  }, [scriptLoaded]);
+
+  useEffect(() => {
     const attemptInit = async () => {
       setHasAttemptedInit(true);
       const distinctId = await service.init(config);
       if (distinctId && setPosthogDistinctId) {
         setPosthogDistinctId(distinctId);
-      }
-      if (!isUnmounted) {
         setLoaded(true);
       }
     };
-    // init
     if (consentState === "enabled" && !hasAttemptedInit) {
       attemptInit();
     }
-    return () => {
-      isUnmounted = true;
-    };
   }, [consentState, hasAttemptedInit, config, service, setPosthogDistinctId]);
 
   useEffect(() => {

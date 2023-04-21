@@ -42,7 +42,7 @@ async function main() {
     width: asset.metadata.dimensions.width,
   };
 
-  writeJson({
+  await writeJson({
     fileName: "social-sharing-image.json",
     data,
   });
