@@ -1,7 +1,7 @@
 /**
  * This component inlines any SVGs which we want to be available instantly
  * (e.g. Logo)
- * @see /scripts/build/image_data/generate_brand_assets.js
+ * @see /scripts/build/image_data/generate_inlint_sprite.js
  */
 import { FC } from "react";
 

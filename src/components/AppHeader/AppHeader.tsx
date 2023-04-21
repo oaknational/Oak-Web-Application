@@ -29,7 +29,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $flexGrow={1}
         $alignItems={"center"}
       >
-        <OakLink page={"beta-teachers-home"}>
+        <OakLink page={"home"} viewType={"teachers"}>
           <Logo height={48} width={104} />
         </OakLink>
         <IconButton

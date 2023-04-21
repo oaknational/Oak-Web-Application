@@ -263,7 +263,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="search"
                   $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  page="teachers-home"
+                  page="teacher-hub"
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -334,7 +334,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              page="teachers-home"
+                              page="teacher-hub"
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -456,7 +456,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="search"
                 $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                page="teachers-home"
+                page="teacher-hub"
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

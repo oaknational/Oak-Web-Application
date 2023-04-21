@@ -3,52 +3,52 @@ import { MenuSections } from "../../components/MenuLinks/types";
 export const menuSections: MenuSections = {
   large: [
     {
-      page: "home",
+      resolveOakHrefProps: { page: "home", viewType: null },
       linkText: "Home",
     },
     {
-      page: "teachers-home",
+      resolveOakHrefProps: { page: "teacher-hub" },
       linkText: "Teacher hub",
     },
     {
-      page: "pupils-home",
+      resolveOakHrefProps: { page: "classroom" },
       linkText: "Classroom",
     },
   ],
   medium: [
     {
-      page: "lesson-planning",
+      resolveOakHrefProps: { page: "lesson-planning" },
       linkText: "Plan a lesson",
     },
     {
-      page: "develop-your-curriculum",
+      resolveOakHrefProps: { page: "develop-your-curriculum" },
       linkText: "Develop your curriculum",
     },
     {
-      page: "support-your-team",
+      resolveOakHrefProps: { page: "support-your-team" },
       linkText: "Support your team",
     },
   ],
   small: [
     {
-      page: "blog-index",
+      resolveOakHrefProps: { page: "blog-index" },
       linkText: "Blog",
     },
     {
-      page: "webinars-index",
+      resolveOakHrefProps: { page: "webinar-index" },
       linkText: "Webinars",
     },
     {
-      page: "about-who-we-are",
+      resolveOakHrefProps: { page: "about-who-we-are" },
       activeLinkHrefMatch: "/about-us",
       linkText: "About us",
     },
     {
-      page: "contact",
+      resolveOakHrefProps: { page: "contact" },
       linkText: "Contact us",
     },
     {
-      page: "help-home",
+      resolveOakHrefProps: { page: "help" },
       linkText: "Help",
     },
   ],
