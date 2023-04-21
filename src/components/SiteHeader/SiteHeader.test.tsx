@@ -55,11 +55,11 @@ describe("components/SiteHeader", () => {
     const { queryByText } = render(<SiteHeader />);
 
     const user = userEvent.setup();
-    expect(queryByText("Home")).not.toBeVisible();
+    expect(queryByText("Home (early access)")).not.toBeVisible();
 
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
-    expect(queryByText("Home")).toBeVisible();
+    expect(queryByText("Home (early access)")).toBeVisible();
   });
 });
