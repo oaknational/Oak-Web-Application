@@ -82,22 +82,21 @@ describe("urls.ts", () => {
       const props: ResolveOakHrefProps = {
         page: "unit-index",
         viewType: "teachers",
-        keyStage: "ks2",
-        subject: "maths",
+        programme: "primary-ks2-maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units"
+        "/beta/teachers/programmes/primary-ks2-maths/units"
       );
     });
-    it("Tier selection", () => {
+    it("Programme listing", () => {
       const props: ResolveOakHrefProps = {
-        page: "tier-selection",
+        page: "programme-index",
         viewType: "teachers",
         keyStage: "ks2",
         subject: "maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units"
+        "/beta/teachers/key-stages/ks2/subjects/maths/programmes"
       );
     });
     it("Unit listing with query", () => {
@@ -105,12 +104,11 @@ describe("urls.ts", () => {
         resolveOakHref({
           page: "unit-index",
           viewType: "teachers",
-          keyStage: "ks2",
-          subject: "maths",
+          programme: "primary-ks2-maths",
           search: { "learning-theme": "circls" },
         })
       ).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units?learning-theme=circls"
+        "/beta/teachers/programmes/primary-ks2-maths/units?learning-theme=circls"
       );
     });
     it("Lesson listing", () => {
@@ -118,24 +116,24 @@ describe("urls.ts", () => {
         resolveOakHref({
           page: "lesson-index",
           viewType: "teachers",
-          keyStage: "ks2",
-          subject: "maths",
+          programmeSlug: "primary-ks2-maths",
           slug: "geometry-349",
         })
-      ).toBe("/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349");
+      ).toBe(
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons"
+      );
     });
     it("Lesson overview", () => {
       expect(
         resolveOakHref({
           page: "lesson-overview",
           viewType: "teachers",
-          keyStage: "ks2",
-          subject: "maths",
-          unit: "geometry-349",
+          programmeSlug: "primary-ks2-maths",
+          unitSlug: "geometry-349",
           slug: "semi-circles-48",
         })
       ).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349/lessons/semi-circles-48"
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48"
       );
     });
     it("Lesson downloads", () => {
@@ -143,13 +141,12 @@ describe("urls.ts", () => {
         resolveOakHref({
           page: "lesson-downloads",
           viewType: "teachers",
-          keyStageSlug: "ks2",
-          subjectSlug: "maths",
+          programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           slug: "semi-circles-48",
         })
       ).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-349/lessons/semi-circles-48/downloads"
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads"
       );
     });
     it("Search", () => {
@@ -312,7 +309,7 @@ describe("getPageViewProps()", () => {
   });
   it("Unit listing", () => {
     expect(
-      getPageViewProps("/beta/teachers/key-stages/ks2/subjects/maths/units")
+      getPageViewProps("/beta/teachers/programmes/ks2-maths/units")
     ).toEqual({
       pageName: "Unit Listing",
       analyticsUseCase: null,
@@ -321,7 +318,7 @@ describe("getPageViewProps()", () => {
   it("Unit listing with query", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units?learning-theme=circls"
+        "/beta/teachers/programmes/primary-ks2-maths/units?learning-theme=circls"
       )
     ).toEqual({
       pageName: "Unit Listing",
@@ -331,7 +328,7 @@ describe("getPageViewProps()", () => {
   it("Lesson listing", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-123"
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons"
       )
     ).toEqual({
       pageName: "Lesson Listing",
@@ -341,7 +338,7 @@ describe("getPageViewProps()", () => {
   it("Lesson overview", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-123/lessons/angles-123"
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123"
       )
     ).toEqual({
       pageName: "Lesson",
@@ -351,7 +348,7 @@ describe("getPageViewProps()", () => {
   it("Lesson downloads", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/key-stages/ks2/subjects/maths/units/geometry-123/lessons/angles-123/downloads"
+        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123/downloads"
       )
     ).toEqual({
       pageName: "Lesson Download",

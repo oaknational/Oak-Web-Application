@@ -68,7 +68,7 @@ it("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
+    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?"
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -146,7 +146,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Starter quiz"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -157,7 +157,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);

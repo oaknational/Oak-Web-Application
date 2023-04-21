@@ -274,13 +274,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Box $mv={[24, 48]}>
-          {" "}
           <Breadcrumbs
             breadcrumbs={[
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                subjectSlug,
+                subjectSlug, //@todo replace with programmeslug
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -288,9 +287,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                  unit: unitSlug,
+                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  unitSlug,
                   slug: slug,
                 },
                 label: title,
@@ -298,9 +296,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
-                  keyStageSlug: keyStageSlug,
-                  subjectSlug: subjectSlug,
-                  unitSlug: unitSlug,
+                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  unitSlug,
                   slug: slug,
                 },
                 label: "Downloads",

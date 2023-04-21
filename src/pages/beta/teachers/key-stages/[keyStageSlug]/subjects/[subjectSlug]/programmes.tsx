@@ -33,7 +33,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
   };
 
   // Manually input in Avo.ts, confirm the avo process to ensure this is correct
-  useTrackPageView({ pageName: "Programmes Listing" });
+  useTrackPageView({ pageName: "Programme Listing" });
 
   const tiersSEO = {
     ...getSeoProps({
@@ -48,17 +48,19 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
     <AppLayout seoProps={tiersSEO}>
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
-          {" "}
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+              {
+                oakLinkProps: { page: "home", viewType: "teachers" },
+                label: "Home",
+              },
               {
                 oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
-                  page: "key-stage-subject-programmes",
+                  page: "programme-index",
                   subject: slug,
                   keyStage: keyStageSlug,
                 },

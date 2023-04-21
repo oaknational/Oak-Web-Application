@@ -83,7 +83,7 @@ export type ProgrammeListingLinkProps = {
   keyStage: string;
   subject: string;
 };
-export type UnitIndexLinkProps = {
+export type UnitListingLinkProps = {
   page: "unit-index";
   viewType?: ViewType;
   programme: string;
@@ -96,25 +96,18 @@ export type KeyStageSubjectProgrammesLinkProps = {
   keyStage: string;
   subject: string;
 };
-export type LessonIndexLinkProps = {
+type LessonListingLinkProps = {
   page: "lesson-index";
   viewType?: ViewType;
   programmeSlug: string;
-  unitSlug: string;
-};
-export type LessonOverviewLinkProps = {
-  page: "lesson-overview";
-  viewType?: ViewType;
-  keyStage: string;
-  subject: string;
-  unit: string;
   slug: string;
 };
-export type ProgrammeLessonOverviewLinkProps = {
-  page: "programme-lesson-overview";
+type LessonOverviewLinkProps = {
+  page: "lesson-overview";
+  viewType?: ViewType;
   programmeSlug: string;
   unitSlug: string;
-  lessonSlug: string;
+  slug: string;
 };
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
@@ -123,7 +116,7 @@ type LessonDownloadsLinkProps = {
   unitSlug: string;
   slug: string;
   query?: {
-    preselected: PreselectedDownloadType | "";
+    preselected: PreselectedDownloadType | null;
   };
 };
 type SearchLinkProps = {
@@ -170,8 +163,8 @@ type OakLinkProps =
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
   | LessonOverviewLinkProps
-  | LessonIndexLinkProps
-  | UnitIndexLinkProps
+  | LessonListingLinkProps
+  | UnitListingLinkProps
   | ProgrammeListingLinkProps
   | BlogListingLinkProps
   | BlogSingleLinkProps
@@ -225,8 +218,8 @@ type OakPages = {
   "blog-index": OakPageConfig<BlogListingLinkProps>;
   "webinar-index": OakPageConfig<WebinarListingLinkProps>;
   "programme-index": OakPageConfig<ProgrammeListingLinkProps>;
-  "unit-index": OakPageConfig<UnitIndexLinkProps>;
-  "lesson-index": OakPageConfig<LessonIndexLinkProps>;
+  "unit-index": OakPageConfig<UnitListingLinkProps>;
+  "lesson-index": OakPageConfig<LessonListingLinkProps>;
   "lesson-overview": OakPageConfig<LessonOverviewLinkProps>;
   "lesson-downloads": OakPageConfig<LessonDownloadsLinkProps>;
   search: OakPageConfig<SearchLinkProps>;
@@ -490,15 +483,14 @@ const OAK_PAGES: {
     pageType: "unit-index",
   }),
   "lesson-index": createOakPageConfig({
-    pathPattern:
-      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/beta/teachers/programmes/:programmeSlug/units/:slug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
   }),
   "lesson-overview": createOakPageConfig({
     pathPattern:
-      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:slug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",

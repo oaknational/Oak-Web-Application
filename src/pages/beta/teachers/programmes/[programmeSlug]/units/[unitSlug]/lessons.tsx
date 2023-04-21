@@ -75,8 +75,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
               {
                 oakLinkProps: {
                   page: "unit-index",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
+                  programme: subjectSlug, // @todo change to programmeSlug
                 },
                 label: subjectTitle,
               },
@@ -85,8 +84,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "lesson-index",
                   slug: unitSlug,
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
+                  programmeSlug: subjectSlug, // @todo change to programmeSlug
                 },
 
                 label: unitTitle,

@@ -12,10 +12,7 @@ import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import {
-  containerTitleToPreselectMap,
-  PreselectedDownloadType,
-} from "../DownloadComponents/downloads.types";
+import { containerTitleToPreselectMap } from "../DownloadComponents/downloads.types";
 
 export type ExpandingContainerTitle =
   | "Slide deck"
@@ -52,9 +49,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const [toggleOpen, setToggleOpen] = useState(toggleClosed);
   const lowerCaseTitle = title.toLowerCase();
 
-  const getPreselectedQueryFromTitle = (
-    title: ExpandingContainerTitle
-  ): PreselectedDownloadType | "" => {
+  const getPreselectedQueryFromTitle = (title: ExpandingContainerTitle) => {
     return containerTitleToPreselectMap[title];
   };
   const preselected = getPreselectedQueryFromTitle(title);
