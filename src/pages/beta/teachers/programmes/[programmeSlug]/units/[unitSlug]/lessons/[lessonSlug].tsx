@@ -6,47 +6,47 @@ import {
   NextPage,
 } from "next";
 
-import useTrackPageView from "../../../../../../../../../../hooks/useTrackPageView";
+import useTrackPageView from "../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../../../../../node-lib/isr";
-import AppLayout from "../../../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../../../components/Flex";
-import MaxWidth from "../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import { getSeoProps } from "../../../../../../../../../../browser-lib/seo/getSeoProps";
+} from "../../../../../../../../node-lib/isr";
+import AppLayout from "../../../../../../../../components/AppLayout";
+import Flex from "../../../../../../../../components/Flex";
+import MaxWidth from "../../../../../../../../components/MaxWidth/MaxWidth";
+import TitleCard from "../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
+import { getSeoProps } from "../../../../../../../../browser-lib/seo/getSeoProps";
 import Typography, {
   Heading,
   Hr,
   LI,
   UL,
-} from "../../../../../../../../../../components/Typography";
-import ButtonAsLink from "../../../../../../../../../../components/Button/ButtonAsLink";
-import Grid from "../../../../../../../../../../components/Grid";
+} from "../../../../../../../../components/Typography";
+import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink";
+import Grid from "../../../../../../../../components/Grid";
 import curriculumApi, {
-  TeachersLessonOverviewData,
-} from "../../../../../../../../../../node-lib/curriculum-api";
-import LessonHelper from "../../../../../../../../../../components/LessonHelper";
-import OverviewPresentation from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "../../../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
-import ExpandingContainer from "../../../../../../../../../../components/ExpandingContainer";
-import QuizContainer from "../../../../../../../../../../components/QuizContainer";
+  LessonOverviewData,
+} from "../../../../../../../../node-lib/curriculum-api";
+import LessonHelper from "../../../../../../../../components/LessonHelper";
+import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewTranscript from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
+import ExpandingContainer from "../../../../../../../../components/ExpandingContainer";
+import QuizContainer from "../../../../../../../../components/QuizContainer";
 import Breadcrumbs, {
   Breadcrumb,
-} from "../../../../../../../../../../components/Breadcrumbs";
-import Box from "../../../../../../../../../../components/Box";
-import useAnalytics from "../../../../../../../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../../../../../../../hooks/useAnalyticsUseCase";
+} from "../../../../../../../../components/Breadcrumbs";
+import Box from "../../../../../../../../components/Box";
+import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../../../../../../hooks/useAnalyticsUseCase";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
-} from "../../../../../../../../../../browser-lib/avo/Avo";
+} from "../../../../../../../../browser-lib/avo/Avo";
 
 export type LessonOverviewPageProps = {
-  curriculumData: TeachersLessonOverviewData;
+  curriculumData: LessonOverviewData;
 };
 
 // Array to be used in downloads as well to avoid duplication
@@ -89,6 +89,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   const {
     title,
     slug,
+    programmeSlug,
     keyStageTitle,
     keyStageSlug,
     coreContent,
@@ -229,9 +230,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   query={{
                     preselected: "all",
                   }}
-                  keyStageSlug={keyStageSlug}
-                  slug={slug}
-                  subjectSlug={subjectSlug}
+                  programmeSlug={programmeSlug}
+                  lessonSlug={slug}
                   unitSlug={unitSlug}
                   onClick={() => {
                     trackDownloadResourceButtonClicked({
@@ -368,9 +368,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
 export type URLParams = {
   lessonSlug: string;
-  keyStageSlug: string;
-  subjectSlug: string;
   unitSlug: string;
+  programmeSlug: string;
 };
 
 export const getStaticPaths = async () => {
@@ -378,7 +377,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { lessons } = await curriculumApi.teachersLessonOverviewPaths();
+  const { lessons } = await curriculumApi.lessonOverviewPaths();
   const paths = lessons.map((params) => ({ params: params }));
 
   const config: GetStaticPathsResult<URLParams> = {
@@ -395,12 +394,11 @@ export const getStaticProps: GetStaticProps<
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
+  const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-  const curriculumData = await curriculumApi.teachersLessonOverview({
+  const curriculumData = await curriculumApi.lessonOverview({
+    programmeSlug,
     lessonSlug,
-    keyStageSlug,
-    subjectSlug,
     unitSlug,
   });
 
@@ -415,8 +413,6 @@ export const getStaticProps: GetStaticProps<
       curriculumData,
     },
   };
-
-  console.log(results.props.curriculumData.title, "getStaticProps");
 
   const resultsWithIsr = decorateWithIsr(results);
   return resultsWithIsr;

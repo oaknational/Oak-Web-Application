@@ -44,7 +44,7 @@ import type {
 import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
-import { lessonBreadcrumbArray } from "../[lessonSlug]";
+import { lessonBreadcrumbArray } from "../../../../../../../../programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";

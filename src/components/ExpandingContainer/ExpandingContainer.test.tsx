@@ -29,8 +29,7 @@ describe("comonents/ExpandingContainer", () => {
         projectable={true}
         downloadable={true}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
       >
@@ -50,8 +49,7 @@ describe("comonents/ExpandingContainer", () => {
         projectable={false}
         downloadable={false}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
       >
@@ -72,8 +70,7 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
         title={"Video"}
@@ -87,7 +84,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
@@ -107,8 +104,7 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
         title={"Video"}
@@ -132,9 +128,8 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
+        programmeSlug="programme-slug"
         title={"Worksheet"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
       >
@@ -147,7 +142,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
     );
   });
 
@@ -158,8 +153,7 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
         title={"Video"}
@@ -184,8 +178,7 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
         slug={"slug-slug-slug"}
         title={"Video"}

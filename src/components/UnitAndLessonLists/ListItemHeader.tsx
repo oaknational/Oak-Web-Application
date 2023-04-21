@@ -45,7 +45,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   const {
     title,
     slug,
-    keyStageSlug,
     subjectSlug,
     subjectTitle,
     hideTopHeading,
@@ -55,6 +54,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     index,
     expired,
     onClick,
+    programmeSlug,
   } = props;
 
   if (expired) {
@@ -80,9 +80,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         {"unitSlug" in props ? (
           // lesson
           <OakLink
-            slug={slug}
-            programme={props.programmeSlug}
-            unit={props.unitSlug}
+            lessonSlug={slug}
+            programmeSlug={programmeSlug}
+            unitSlug={props.unitSlug}
             page={"programme-lesson-overview"}
             onClick={onClick}
             {...primaryTargetProps}
@@ -92,10 +92,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         ) : (
           // unit
           <OakLink
-            slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-            page={"lesson-index"}
+            programmeSlug={programmeSlug}
+            unitSlug={slug}
+            page={"programme-lesson-index"}
             onClick={onClick}
             {...primaryTargetProps}
           >

@@ -33,6 +33,7 @@ const teachersKeyStageSubjectUnitsFixture = (
       {
         slug: "some-unit-slug",
         title: "Unit title",
+        programmeSlug: "art-primary-ks1",
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         subjectSlug: "maths",
