@@ -65,6 +65,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const { pathname } = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const displaySignpost = pathname.startsWith("/beta");
 
   useEffect(() => {
     closeMenu();
@@ -139,6 +140,12 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 $ph={[16, 72]}
               >
                 {/* Mobile logo */}
+                {displaySignpost && (
+                  <SideBarEarlyAccessSignpost
+                    mb={64}
+                    display={["none", "flex"]}
+                  />
+                )}
                 <Flex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
@@ -146,6 +153,12 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <Logo height={48} width={104} />
                 </Flex>
+                {displaySignpost && (
+                  <SideBarEarlyAccessSignpost
+                    mb={64}
+                    display={["none", "flex"]}
+                  />
+                )}
                 {children}
                 {/* Desktop logo */}
                 <Flex
