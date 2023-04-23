@@ -13,6 +13,7 @@ import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
 import Box from "../Box";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import SideBarEarlyAccessSignpost from "../SideBarEarlyAccessSignPost/SideBarEarlyAccessSignPost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -155,8 +156,8 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 </Flex>
                 {displaySignpost && (
                   <SideBarEarlyAccessSignpost
-                    mb={64}
-                    display={["none", "flex"]}
+                    mb={48}
+                    display={["flex", "none"]}
                   />
                 )}
                 {children}
