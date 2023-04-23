@@ -9,13 +9,10 @@ type SideBarSignpostProps = {
   display: string | string[];
 };
 
-const SideBarEarlyAccessSignpost: FC<SideBarSignpostProps> = ({
-  mb,
-  display,
-}) => {
+const SideBarSignpost: FC<SideBarSignpostProps> = ({ mb, display }) => {
   return (
-    <Box $mb={mb} $display={display} $width={[300, 480]}>
-      <P $font={["body-3", "body-2"]}>
+    <Box $mb={mb} $display={display} $width={[320, 480]}>
+      <P $font={["body-2", "body-1"]}>
         You're using our new area for teachers, currently under development and
         testing.
       </P>
@@ -23,4 +20,4 @@ const SideBarEarlyAccessSignpost: FC<SideBarSignpostProps> = ({
   );
 };
 
-export default SideBarEarlyAccessSignpost;
+export default SideBarSignpost;
