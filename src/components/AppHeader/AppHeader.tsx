@@ -1,4 +1,5 @@
 import { FC, useRef } from "react";
+import { useRouter } from "next/router";
 
 import Flex from "../Flex";
 import FixedHeader from "../FixedHeader";
@@ -12,7 +13,7 @@ import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import MenuLinks from "../MenuLinks";
 import { menuSections } from "../../browser-lib/fixtures/menuSections";
-
+import { P } from "../Typography";
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -21,6 +22,16 @@ import { menuSections } from "../../browser-lib/fixtures/menuSections";
 const AppHeader: FC<HeaderProps> = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { openMenu } = useMenuContext();
+  const { pathname } = useRouter();
+  const displayMenu = pathname.startsWith("/beta");
+
+  if (displayMenu) {
+    if (!menuSections.large[0]) {
+      return null;
+    }
+    menuSections.large[0].linkText = "Home (early access)";
+    menuSections.large[0].page = "beta-teachers-home";
+  }
 
   return (
     <FixedHeader $background="pastelTurquoise">
@@ -29,9 +40,14 @@ const AppHeader: FC<HeaderProps> = () => {
         $flexGrow={1}
         $alignItems={"center"}
       >
-        <OakLink page={"beta-teachers-home"}>
-          <Logo height={48} width={104} />
-        </OakLink>
+        <Flex $justifyContent={"center"} $alignItems={"center"}>
+          <OakLink page={"beta-teachers-home"}>
+            <Logo height={48} width={104} />
+          </OakLink>
+          <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>
+            Teachers - early access
+          </P>
+        </Flex>
         <IconButton
           aria-label="Menu"
           icon={"hamburger"}
