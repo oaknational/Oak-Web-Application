@@ -13675,6 +13675,8 @@ export type Mutation_Root = {
   delete_mv_all_year_groups?: Maybe<Mv_All_Year_Groups_Mutation_Response>;
   /** delete data from the table: "mv_downloads" */
   delete_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
+  /** delete data from the table: "mv_downloads_1" */
+  delete_mv_downloads_1?: Maybe<Mv_Downloads_1_Mutation_Response>;
   /** delete data from the table: "mv_key_stages" */
   delete_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** delete data from the table: "mv_learning_themes" */
@@ -13973,6 +13975,10 @@ export type Mutation_Root = {
   insert_mv_all_year_groups_one?: Maybe<Mv_All_Year_Groups>;
   /** insert data into the table: "mv_downloads" */
   insert_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
+  /** insert data into the table: "mv_downloads_1" */
+  insert_mv_downloads_1?: Maybe<Mv_Downloads_1_Mutation_Response>;
+  /** insert a single row into the table: "mv_downloads_1" */
+  insert_mv_downloads_1_one?: Maybe<Mv_Downloads_1>;
   /** insert a single row into the table: "mv_downloads" */
   insert_mv_downloads_one?: Maybe<Mv_Downloads>;
   /** insert data into the table: "mv_key_stages" */
@@ -14323,6 +14329,8 @@ export type Mutation_Root = {
   update_mv_all_year_groups?: Maybe<Mv_All_Year_Groups_Mutation_Response>;
   /** update data of the table: "mv_downloads" */
   update_mv_downloads?: Maybe<Mv_Downloads_Mutation_Response>;
+  /** update data of the table: "mv_downloads_1" */
+  update_mv_downloads_1?: Maybe<Mv_Downloads_1_Mutation_Response>;
   /** update data of the table: "mv_key_stages" */
   update_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** update data of the table: "mv_learning_themes" */
@@ -14883,6 +14891,12 @@ export type Mutation_RootDelete_Mv_All_Year_GroupsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Mv_DownloadsArgs = {
   where: Mv_Downloads_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Mv_Downloads_1Args = {
+  where: Mv_Downloads_1_Bool_Exp;
 };
 
 
@@ -15840,6 +15854,18 @@ export type Mutation_RootInsert_Mv_All_Year_Groups_OneArgs = {
 /** mutation root */
 export type Mutation_RootInsert_Mv_DownloadsArgs = {
   objects: Array<Mv_Downloads_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Mv_Downloads_1Args = {
+  objects: Array<Mv_Downloads_1_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Mv_Downloads_1_OneArgs = {
+  object: Mv_Downloads_1_Insert_Input;
 };
 
 
@@ -17080,6 +17106,13 @@ export type Mutation_RootUpdate_Mv_DownloadsArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Mv_Downloads_1Args = {
+  _set?: InputMaybe<Mv_Downloads_1_Set_Input>;
+  where: Mv_Downloads_1_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Mv_Key_StagesArgs = {
   _set?: InputMaybe<Mv_Key_Stages_Set_Input>;
   where: Mv_Key_Stages_Bool_Exp;
@@ -17857,6 +17890,241 @@ export type Mv_Downloads = {
 /** columns and relationships of "mv_downloads" */
 export type Mv_DownloadsDownloadsArgs = {
   path?: InputMaybe<Scalars['String']>;
+};
+
+/** columns and relationships of "mv_downloads_1" */
+export type Mv_Downloads_1 = {
+  __typename?: 'mv_downloads_1';
+  downloads?: Maybe<Scalars['json']>;
+  has_downloadable_resources?: Maybe<Scalars['Boolean']>;
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  lesson_slug?: Maybe<Scalars['String']>;
+  lesson_title?: Maybe<Scalars['String']>;
+  programme_slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+
+/** columns and relationships of "mv_downloads_1" */
+export type Mv_Downloads_1DownloadsArgs = {
+  path?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregated selection of "mv_downloads_1" */
+export type Mv_Downloads_1_Aggregate = {
+  __typename?: 'mv_downloads_1_aggregate';
+  aggregate?: Maybe<Mv_Downloads_1_Aggregate_Fields>;
+  nodes: Array<Mv_Downloads_1>;
+};
+
+/** aggregate fields of "mv_downloads_1" */
+export type Mv_Downloads_1_Aggregate_Fields = {
+  __typename?: 'mv_downloads_1_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Mv_Downloads_1_Max_Fields>;
+  min?: Maybe<Mv_Downloads_1_Min_Fields>;
+};
+
+
+/** aggregate fields of "mv_downloads_1" */
+export type Mv_Downloads_1_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Mv_Downloads_1_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "mv_downloads_1" */
+export type Mv_Downloads_1_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Mv_Downloads_1_Max_Order_By>;
+  min?: InputMaybe<Mv_Downloads_1_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "mv_downloads_1" */
+export type Mv_Downloads_1_Arr_Rel_Insert_Input = {
+  data: Array<Mv_Downloads_1_Insert_Input>;
+};
+
+/** Boolean expression to filter rows from the table "mv_downloads_1". All fields are combined with a logical 'AND'. */
+export type Mv_Downloads_1_Bool_Exp = {
+  _and?: InputMaybe<Array<InputMaybe<Mv_Downloads_1_Bool_Exp>>>;
+  _not?: InputMaybe<Mv_Downloads_1_Bool_Exp>;
+  _or?: InputMaybe<Array<InputMaybe<Mv_Downloads_1_Bool_Exp>>>;
+  downloads?: InputMaybe<Json_Comparison_Exp>;
+  has_downloadable_resources?: InputMaybe<Boolean_Comparison_Exp>;
+  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
+  key_stage_title?: InputMaybe<String_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_title?: InputMaybe<String_Comparison_Exp>;
+  theme_slug?: InputMaybe<String_Comparison_Exp>;
+  theme_title?: InputMaybe<String_Comparison_Exp>;
+  unit_slug?: InputMaybe<String_Comparison_Exp>;
+  unit_title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** input type for inserting data into table "mv_downloads_1" */
+export type Mv_Downloads_1_Insert_Input = {
+  downloads?: InputMaybe<Scalars['json']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
+  key_stage_slug?: InputMaybe<Scalars['String']>;
+  key_stage_title?: InputMaybe<Scalars['String']>;
+  lesson_slug?: InputMaybe<Scalars['String']>;
+  lesson_title?: InputMaybe<Scalars['String']>;
+  programme_slug?: InputMaybe<Scalars['String']>;
+  subject_slug?: InputMaybe<Scalars['String']>;
+  subject_title?: InputMaybe<Scalars['String']>;
+  theme_slug?: InputMaybe<Scalars['String']>;
+  theme_title?: InputMaybe<Scalars['String']>;
+  unit_slug?: InputMaybe<Scalars['String']>;
+  unit_title?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Mv_Downloads_1_Max_Fields = {
+  __typename?: 'mv_downloads_1_max_fields';
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  lesson_slug?: Maybe<Scalars['String']>;
+  lesson_title?: Maybe<Scalars['String']>;
+  programme_slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "mv_downloads_1" */
+export type Mv_Downloads_1_Max_Order_By = {
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Mv_Downloads_1_Min_Fields = {
+  __typename?: 'mv_downloads_1_min_fields';
+  key_stage_slug?: Maybe<Scalars['String']>;
+  key_stage_title?: Maybe<Scalars['String']>;
+  lesson_slug?: Maybe<Scalars['String']>;
+  lesson_title?: Maybe<Scalars['String']>;
+  programme_slug?: Maybe<Scalars['String']>;
+  subject_slug?: Maybe<Scalars['String']>;
+  subject_title?: Maybe<Scalars['String']>;
+  theme_slug?: Maybe<Scalars['String']>;
+  theme_title?: Maybe<Scalars['String']>;
+  unit_slug?: Maybe<Scalars['String']>;
+  unit_title?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "mv_downloads_1" */
+export type Mv_Downloads_1_Min_Order_By = {
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "mv_downloads_1" */
+export type Mv_Downloads_1_Mutation_Response = {
+  __typename?: 'mv_downloads_1_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Mv_Downloads_1>;
+};
+
+/** input type for inserting object relation for remote table "mv_downloads_1" */
+export type Mv_Downloads_1_Obj_Rel_Insert_Input = {
+  data: Mv_Downloads_1_Insert_Input;
+};
+
+/** ordering options when selecting data from "mv_downloads_1" */
+export type Mv_Downloads_1_Order_By = {
+  downloads?: InputMaybe<Order_By>;
+  has_downloadable_resources?: InputMaybe<Order_By>;
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  theme_slug?: InputMaybe<Order_By>;
+  theme_title?: InputMaybe<Order_By>;
+  unit_slug?: InputMaybe<Order_By>;
+  unit_title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "mv_downloads_1" */
+export enum Mv_Downloads_1_Select_Column {
+  /** column name */
+  Downloads = 'downloads',
+  /** column name */
+  HasDownloadableResources = 'has_downloadable_resources',
+  /** column name */
+  KeyStageSlug = 'key_stage_slug',
+  /** column name */
+  KeyStageTitle = 'key_stage_title',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  SubjectTitle = 'subject_title',
+  /** column name */
+  ThemeSlug = 'theme_slug',
+  /** column name */
+  ThemeTitle = 'theme_title',
+  /** column name */
+  UnitSlug = 'unit_slug',
+  /** column name */
+  UnitTitle = 'unit_title'
+}
+
+/** input type for updating data in table "mv_downloads_1" */
+export type Mv_Downloads_1_Set_Input = {
+  downloads?: InputMaybe<Scalars['json']>;
+  has_downloadable_resources?: InputMaybe<Scalars['Boolean']>;
+  key_stage_slug?: InputMaybe<Scalars['String']>;
+  key_stage_title?: InputMaybe<Scalars['String']>;
+  lesson_slug?: InputMaybe<Scalars['String']>;
+  lesson_title?: InputMaybe<Scalars['String']>;
+  programme_slug?: InputMaybe<Scalars['String']>;
+  subject_slug?: InputMaybe<Scalars['String']>;
+  subject_title?: InputMaybe<Scalars['String']>;
+  theme_slug?: InputMaybe<Scalars['String']>;
+  theme_title?: InputMaybe<Scalars['String']>;
+  unit_slug?: InputMaybe<Scalars['String']>;
+  unit_title?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "mv_downloads" */
@@ -29964,6 +30232,10 @@ export type Query_Root = {
   mv_all_year_groups_aggregate: Mv_All_Year_Groups_Aggregate;
   /** fetch data from the table: "mv_downloads" */
   mv_downloads: Array<Mv_Downloads>;
+  /** fetch data from the table: "mv_downloads_1" */
+  mv_downloads_1: Array<Mv_Downloads_1>;
+  /** fetch aggregated fields from the table: "mv_downloads_1" */
+  mv_downloads_1_aggregate: Mv_Downloads_1_Aggregate;
   /** fetch aggregated fields from the table: "mv_downloads" */
   mv_downloads_aggregate: Mv_Downloads_Aggregate;
   /** fetch data from the table: "mv_key_stages" */
@@ -31146,6 +31418,26 @@ export type Query_RootMv_DownloadsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
   where?: InputMaybe<Mv_Downloads_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootMv_Downloads_1Args = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_1_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_1_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootMv_Downloads_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_1_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_1_Bool_Exp>;
 };
 
 
@@ -34817,6 +35109,10 @@ export type Subscription_Root = {
   mv_all_year_groups_aggregate: Mv_All_Year_Groups_Aggregate;
   /** fetch data from the table: "mv_downloads" */
   mv_downloads: Array<Mv_Downloads>;
+  /** fetch data from the table: "mv_downloads_1" */
+  mv_downloads_1: Array<Mv_Downloads_1>;
+  /** fetch aggregated fields from the table: "mv_downloads_1" */
+  mv_downloads_1_aggregate: Mv_Downloads_1_Aggregate;
   /** fetch aggregated fields from the table: "mv_downloads" */
   mv_downloads_aggregate: Mv_Downloads_Aggregate;
   /** fetch data from the table: "mv_key_stages" */
@@ -35999,6 +36295,26 @@ export type Subscription_RootMv_DownloadsArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Mv_Downloads_Order_By>>;
   where?: InputMaybe<Mv_Downloads_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootMv_Downloads_1Args = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_1_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_1_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootMv_Downloads_1_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Downloads_1_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Mv_Downloads_1_Order_By>>;
+  where?: InputMaybe<Mv_Downloads_1_Bool_Exp>;
 };
 
 
@@ -44812,13 +45128,11 @@ export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_
 
 export type TeachersKeyStageSubjectUnitLessonsDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
-  keyStageSlug: Scalars['String'];
-  subjectSlug: Scalars['String'];
-  unitSlug: Scalars['String'];
+  programmeSlug: Scalars['String'];
 }>;
 
 
-export type TeachersKeyStageSubjectUnitLessonsDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads', downloads?: any | null, slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+export type TeachersKeyStageSubjectUnitLessonsDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
 
 export type TeachersKeyStageSubjectUnitsPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -45193,15 +45507,16 @@ export const TeachersKeyStageSubjectUnitsDocument = gql`
 }
     `;
 export const TeachersKeyStageSubjectUnitLessonsDownloadsDocument = gql`
-    query teachersKeyStageSubjectUnitLessonsDownloads($lessonSlug: String!, $keyStageSlug: String!, $subjectSlug: String!, $unitSlug: String!) {
-  mv_downloads(
-    where: {slug: {_eq: $lessonSlug}, key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}}
+    query teachersKeyStageSubjectUnitLessonsDownloads($lessonSlug: String!, $programmeSlug: String!) {
+  mv_downloads: mv_downloads_1(
+    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
     downloads
+    programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
-    slug
-    title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
     subjectSlug: subject_slug
     subjectTitle: subject_title
     themeSlug: theme_slug

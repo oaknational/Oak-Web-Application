@@ -409,10 +409,11 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
       forbidden: z.boolean().optional(),
     })
   ),
+  programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  slug: z.string(),
-  title: z.string(),
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   themeSlug: z.string().nullable(),

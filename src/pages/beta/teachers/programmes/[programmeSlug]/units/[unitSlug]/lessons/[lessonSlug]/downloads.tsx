@@ -5,36 +5,34 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { useRouter } from "next/router";
 
-import useTrackPageView from "../../../../../../../../../../../hooks/useTrackPageView";
-import AppLayout from "../../../../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../../../../components/Flex";
-import Box from "../../../../../../../../../../../components/Box";
-import MaxWidth from "../../../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
+import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
+import AppLayout from "../../../../../../../../../components/AppLayout";
+import Flex from "../../../../../../../../../components/Flex";
+import Box from "../../../../../../../../../components/Box";
+import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
+import TitleCard from "../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import {
   Heading,
   Hr,
   P,
-} from "../../../../../../../../../../../components/Typography";
-import OakLink from "../../../../../../../../../../../components/OakLink";
-import Button from "../../../../../../../../../../../components/Button";
-import Input from "../../../../../../../../../../../components/Input";
-import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
-import useAnalytics from "../../../../../../../../../../../context/Analytics/useAnalytics";
-import Grid, {
-  GridArea,
-} from "../../../../../../../../../../../components/Grid";
+} from "../../../../../../../../../components/Typography";
+import OakLink from "../../../../../../../../../components/OakLink";
+import Button from "../../../../../../../../../components/Button";
+import Input from "../../../../../../../../../components/Input";
+import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
+import useAnalytics from "../../../../../../../../../context/Analytics/useAnalytics";
+import Grid, { GridArea } from "../../../../../../../../../components/Grid";
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
-} from "../../../../../../../../../../../node-lib/curriculum-api";
-import { KeyStageTitleValueType } from "../../../../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
-import getFormattedDetailsForTracking from "../../../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
-import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
-import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
-import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
+} from "../../../../../../../../../node-lib/curriculum-api";
+import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsUseCase from "../../../../../../../../../hooks/useAnalyticsUseCase";
+import getFormattedDetailsForTracking from "../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
+import getDownloadFormErrorMessage from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
+import useDownloadExistenceCheck from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import useLocalStorageForDownloads from "../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import useDownloadForm from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
+import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
 import {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
@@ -42,15 +40,15 @@ import {
   DownloadResourceType,
   preselectedDownloadType,
   schema,
-} from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
-import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
-import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
-import { lessonBreadcrumbArray } from "../../../../../../../../programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
-import DownloadCardGroup from "../../../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
-import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
-import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
-import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
-import NoResourcesToDownload from "../../../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
+} from "../../../../../../../../../components/DownloadComponents/downloads.types";
+import TermsAndConditionsCheckbox from "../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
+import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
+import DownloadCardGroup from "../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import FieldError from "../../../../../../../../../components/FormFields/FieldError";
+import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
+import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
+import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -60,8 +58,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
+    programmeSlug,
     keyStageTitle,
     keyStageSlug,
     subjectSlug,
@@ -222,8 +221,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             unitSlug,
             subjectTitle,
             subjectSlug,
-            lessonName: title,
-            lessonSlug: slug,
+            lessonName: lessonTitle,
+            lessonSlug,
             resourceType: selectedResourcesForTracking,
             analyticsUseCase,
             schoolUrn,
@@ -252,7 +251,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   };
 
   useDownloadExistenceCheck({
-    lessonSlug: slug,
+    lessonSlug,
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
   });
@@ -287,18 +286,18 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  programmeSlug: programmeSlug,
                   unitSlug,
-                  slug: slug,
+                  slug: lessonSlug,
                 },
-                label: title,
+                label: lessonTitle,
               },
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
-                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  programmeSlug: programmeSlug,
                   unitSlug,
-                  slug: slug,
+                  slug: lessonSlug,
                 },
                 label: "Downloads",
                 disabled: true,
@@ -313,7 +312,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             keyStageSlug={keyStageSlug}
             subject={subjectTitle}
             subjectSlug={subjectSlug}
-            title={`Downloads: ${title}`}
+            title={`Downloads: ${lessonTitle}`}
           />
         </Flex>
 
@@ -458,9 +457,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
 export type URLParams = {
   lessonSlug: string;
-  keyStageSlug: string;
-  subjectSlug: string;
-  unitSlug: string;
+  programmeSlug: string;
 };
 
 export const getServerSideProps: GetServerSideProps<
@@ -470,14 +467,12 @@ export const getServerSideProps: GetServerSideProps<
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { lessonSlug, keyStageSlug, subjectSlug, unitSlug } = context.params;
+  const { lessonSlug, programmeSlug } = context.params;
 
   const curriculumData =
     await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
       lessonSlug,
-      keyStageSlug,
-      subjectSlug,
-      unitSlug,
+      programmeSlug,
     });
 
   if (!curriculumData) {

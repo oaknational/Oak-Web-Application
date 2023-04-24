@@ -5,18 +5,19 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import waitForNextTick from "../../../../../__helpers__/waitForNextTick";
-import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
-import { mockSeoResult } from "../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
-import "../../../../../__helpers__/LocalStorageMock";
+import waitForNextTick from "../../../../../../../../../__helpers__/waitForNextTick";
+import renderWithSeo from "../../../../../../../../../__helpers__/renderWithSeo";
+import { mockSeoResult } from "../../../../../../../../../__helpers__/cms";
+import renderWithProviders from "../../../../../../../../../__helpers__/renderWithProviders";
+import "../../../../../../../../../__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
   getServerSideProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import useLocalStorageForDownloads from "../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+} from "../../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+
 const props = {
   curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
 };
@@ -30,7 +31,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  "../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -38,7 +39,7 @@ jest.mock(
 );
 
 jest.mock(
-  "../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  "../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   }
@@ -373,16 +374,16 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const propsResult = (await getServerSideProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
-          keyStageSlug: "ks2",
-          subjectSlug: "english",
-          unitSlug: "shakespeare",
+          programmeSlug: "math-higher-ks4",
         },
         query: {},
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
         props: LessonDownloadsPageProps;
       };
 
-      expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
+      expect(propsResult.props.curriculumData.lessonSlug).toEqual(
+        "macbeth-lesson-1"
+      );
     });
     it("should throw error", async () => {
       await expect(
