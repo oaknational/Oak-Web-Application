@@ -84,8 +84,8 @@ const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
 const teachersLessonOverview = jest.fn(() => ({
   mv_lessons: [
     {
-      slug: teachersLessonOverviewFixture().slug,
-      title: teachersLessonOverviewFixture().title,
+      lessonSlug: lessonOverviewFixture().lessonSlug,
+      lessonTitle: lessonOverviewFixture().lessonTitle,
       keyStageSlug: teachersLessonOverviewFixture().keyStageSlug,
       keyStageTitle: teachersLessonOverviewFixture().keyStageTitle,
       unitSlug: teachersLessonOverviewFixture().unitSlug,
@@ -135,8 +135,8 @@ const unitListing = jest.fn(() => ({
 const lessonOverview = jest.fn(() => ({
   mv_lessons: [
     {
-      slug: lessonOverviewFixture().slug,
-      title: lessonOverviewFixture().title,
+      lessonSlug: lessonOverviewFixture().lessonSlug,
+      lessonTitle: lessonOverviewFixture().lessonTitle,
       programmeSlug: lessonOverviewFixture().programmeSlug,
       keyStageSlug: lessonOverviewFixture().keyStageSlug,
       keyStageTitle: lessonOverviewFixture().keyStageTitle,

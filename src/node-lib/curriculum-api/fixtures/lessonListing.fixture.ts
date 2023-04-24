@@ -16,8 +16,8 @@ const lessonListingFixture = (
       {
         programmeSlug: "maths-secondary-ks4-higher",
         expired: false,
-        slug: "add-two-surds-6wwk0c",
-        title: "Add two surds",
+        lessonSlug: "add-two-surds-6wwk0c",
+        lessonTitle: "Add two surds",
         description:
           "In this lesson, we will  learn how to add two or more surds where no prior simplification is needed.In these cases, the surds will all have the same root.",
         keyStageSlug: "ks4",
@@ -36,8 +36,8 @@ const lessonListingFixture = (
       {
         programmeSlug: "maths-secondary-ks4-higher",
         expired: false,
-        slug: "subtract-two-surds-6njkac",
-        title: "Subtract two surds",
+        lessonSlug: "subtract-two-surds-6njkac",
+        lessonTitle: "Subtract two surds",
         description:
           "In this lesson, we will learn how to subtract one surd from another where no prior simplification is needed.In these cases, the surds will all have the same root.",
         keyStageSlug: "ks4",
@@ -56,8 +56,8 @@ const lessonListingFixture = (
       {
         programmeSlug: "maths-secondary-ks4-higher",
         expired: false,
-        slug: "subtract-two-surds-where-you-need-to-simplify-6gukce",
-        title: "Subtract two surds where you need to simplify",
+        lessonSlug: "subtract-two-surds-where-you-need-to-simplify-6gukce",
+        lessonTitle: "Subtract two surds where you need to simplify",
         description:
           "In this lesson, we will learn how to subtract two surds where you may need to simplify at least one surd prior to subtracting.",
         keyStageSlug: "ks4",

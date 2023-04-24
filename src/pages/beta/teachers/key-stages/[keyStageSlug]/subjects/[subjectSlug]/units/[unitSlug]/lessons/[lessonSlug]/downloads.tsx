@@ -298,7 +298,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   page: "lesson-downloads",
                   programmeSlug: subjectSlug, //@todo replace with programmeslug
                   unitSlug,
-                  slug: slug,
+                  lessonSlug: slug,
                 },
                 label: "Downloads",
                 disabled: true,
