@@ -16,7 +16,7 @@ export const MenuProvider: FC<{
 }> = ({ children }) => {
   const [open, setOpen] = useState(false);
   const { pathname } = useRouter();
-  const displayMenu = pathname.startsWith("/beta/teachers");
+  const displayBetaSignpost = pathname.startsWith("/beta/teachers");
 
   const openMenu = useCallback(() => {
     setOpen(true);
@@ -26,7 +26,7 @@ export const MenuProvider: FC<{
     setOpen(false);
   }, [setOpen]);
 
-  if (displayMenu) {
+  if (displayBetaSignpost) {
     if (!menuSections.large[0]) {
       return null;
     }
