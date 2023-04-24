@@ -26,6 +26,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -42,6 +43,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -58,6 +60,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -74,6 +77,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -90,6 +94,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
       {
         slug: "some-unit-slug",
@@ -106,6 +111,7 @@ const unitListingWithTiers = (
         year: "Year 7",
         expired: false,
         expiredLessonCount: null,
+        programmeSlug: "maths-secondary-ks4-core",
       },
     ],
     tiers: [

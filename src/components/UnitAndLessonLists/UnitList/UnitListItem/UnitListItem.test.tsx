@@ -17,6 +17,7 @@ const props = {
   subjectTitle: "Maths",
   keyStageSlug: "ks1",
   keyStageTitle: "Key stage 1",
+  programmeSlug: "maths-primary-ks1",
   quizCount: 3,
 };
 
