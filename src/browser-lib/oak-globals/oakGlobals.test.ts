@@ -1,3 +1,5 @@
+import { THEME_NAMES } from "../../hooks/useOakTheme";
+
 import { getOakGlobals, setOakGlobals } from "./oakGlobals";
 
 describe("oakGlobals", () => {
@@ -16,7 +18,9 @@ describe("oakGlobals", () => {
     // eslint-disable-next-line
     // @ts-ignore
     window.__oakGlobals = testValue;
-    const newValue = { hubspot: { scriptLoaded: true } };
+    const newValue = {
+      oakThemes: { setTheme: jest.fn(), availableThemes: THEME_NAMES },
+    };
 
     setOakGlobals(newValue);
 

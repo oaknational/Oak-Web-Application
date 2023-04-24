@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 
+import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
 import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
@@ -28,6 +29,8 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectTitle,
   } = curriculumData;
 
+  useTrackPageView({ pageName: "Lesson Listing" });
+
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: 20,
@@ -51,7 +54,10 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+              {
+                oakLinkProps: { page: "home", viewType: "teachers" },
+                label: "Home",
+              },
               {
                 oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
@@ -93,8 +99,10 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         />
 
         <CurriculumDownloadButton
-          keyStage={keyStageSlug}
-          subject={subjectSlug}
+          keyStageSlug={keyStageSlug}
+          keyStageTitle={keyStageTitle}
+          subjectSlug={subjectSlug}
+          subjectTitle={subjectTitle}
           lessonPage={true}
         />
 
@@ -104,6 +112,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
+            unitTitle={unitTitle}
           />
         </Box>
       </MaxWidth>

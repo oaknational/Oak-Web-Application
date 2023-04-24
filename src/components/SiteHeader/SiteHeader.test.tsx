@@ -4,15 +4,26 @@ import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders
 
 import SiteHeader from ".";
 
+const render = renderWithProviders();
+
 describe("components/SiteHeader", () => {
+  test("logo should accessibly link to the home page", () => {
+    const { getByRole } = render(<SiteHeader />);
+
+    const logoLink = getByRole("link", {
+      name: "Oak National Academy",
+    });
+    expect(logoLink).toBeInTheDocument();
+    expect(logoLink).toHaveAttribute("href", "/");
+  });
   test("header should be in the document", () => {
-    const { getByRole } = renderWithProviders(<SiteHeader />);
+    const { getByRole } = render(<SiteHeader />);
 
     expect(getByRole("banner")).toBeInTheDocument();
   });
 
   test("it should contain a link to classroom", () => {
-    const { getByTestId } = renderWithProviders(<SiteHeader />);
+    const { getByTestId } = render(<SiteHeader />);
 
     expect(getByTestId("SiteHeaderClassroomLink").closest("a")).toHaveAttribute(
       "href",
@@ -21,7 +32,7 @@ describe("components/SiteHeader", () => {
   });
 
   test("it should contain a link to teachers hub", () => {
-    const { getByText } = renderWithProviders(<SiteHeader />);
+    const { getByText } = render(<SiteHeader />);
 
     expect(getByText("Teacher Hub").closest("a")).toHaveAttribute(
       "href",
@@ -30,7 +41,7 @@ describe("components/SiteHeader", () => {
   });
 
   test("clicking on the hamburger button opens the menu", async () => {
-    const { getByLabelText, getByTestId } = renderWithProviders(<SiteHeader />);
+    const { getByLabelText, getByTestId } = render(<SiteHeader />);
 
     const user = userEvent.setup();
     const hamburgerButton = getByLabelText("Menu");
@@ -41,7 +52,7 @@ describe("components/SiteHeader", () => {
   });
 
   test("menu can be opened from keyboard", async () => {
-    const { queryByText } = renderWithProviders(<SiteHeader />);
+    const { queryByText } = render(<SiteHeader />);
 
     const user = userEvent.setup();
     expect(queryByText("Home")).not.toBeVisible();

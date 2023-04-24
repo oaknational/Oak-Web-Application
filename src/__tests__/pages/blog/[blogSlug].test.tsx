@@ -74,6 +74,8 @@ const testSerializedBlog = {
 const blogPosts = jest.fn(() => [testBlog, testBlog2]);
 const blogPostBySlug = jest.fn(() => testBlog);
 
+const render = renderWithProviders();
+
 describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -89,9 +91,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
   describe("BlogSinglePage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(
-        <BlogSinglePage blog={testSerializedBlog} categories={[]} />
-      );
+      render(<BlogSinglePage blog={testSerializedBlog} categories={[]} />);
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
@@ -102,7 +102,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <BlogSinglePage blog={testSerializedBlog} categories={[]} />
         );
 

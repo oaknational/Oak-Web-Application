@@ -25,8 +25,8 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
         $width={"100%"}
         $justifyContent={"space-between"}
       >
-        <OakLink page={"home"}>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
+        <OakLink page={"home"} viewType={null}>
+          <Logo height={48} width={104} />
         </OakLink>
         {props.headerCta?.linkType && (
           <OakLink page={null} href={getCTAHref(props.headerCta)}>

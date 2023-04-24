@@ -24,8 +24,8 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <OakLink page="home">
-        <Logo title={"Oak National Academy"} height={48} width={104} />
+      <OakLink page="home" viewType={null}>
+        <Logo height={48} width={104} />
       </OakLink>
       <Flex
         $ml={[0, 20, 48]}
@@ -42,7 +42,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         $font="heading-7"
       >
         <OakLink
-          page="pupils-home"
+          page="classroom"
           data-testid="SiteHeaderClassroomLink"
           htmlAnchorProps={{
             onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
@@ -52,7 +52,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         </OakLink>
         <Span $ml={24} $mr={32} $whiteSpace={"nowrap"}>
           <OakLink
-            page="teachers-home"
+            page="teacher-hub"
             htmlAnchorProps={{
               onClick: () =>
                 track.teacherHubSelected({ navigatedFrom: "header" }),

@@ -1,7 +1,11 @@
 import CMSClient from "../../node-lib/cms";
 import { ContactPage } from "../../common-lib/cms-types";
 import ContactUs, { getStaticProps } from "../../pages/contact-us";
-import { portableTextFromString, mockSeo } from "../__helpers__/cms";
+import {
+  portableTextFromString,
+  mockSeo,
+  mockSeoResult,
+} from "../__helpers__/cms";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
@@ -18,6 +22,8 @@ jest.mock("../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
+const render = renderWithProviders();
+
 describe("pages/contact-us.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -25,9 +31,7 @@ describe("pages/contact-us.tsx", () => {
   });
 
   it("contains an h1 ", () => {
-    const { getByRole } = renderWithProviders(
-      <ContactUs pageData={testContactPageData} />
-    );
+    const { getByRole } = render(<ContactUs pageData={testContactPageData} />);
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
       "Contact title"
@@ -35,9 +39,7 @@ describe("pages/contact-us.tsx", () => {
   });
 
   it("contains a sign up button", () => {
-    const { getByRole } = renderWithProviders(
-      <ContactUs pageData={testContactPageData} />
-    );
+    const { getByRole } = render(<ContactUs pageData={testContactPageData} />);
 
     expect(
       getByRole("button", {
@@ -46,13 +48,13 @@ describe("pages/contact-us.tsx", () => {
     ).toHaveAccessibleName("Sign up");
   });
 
-  describe.skip("SEO", () => {
+  describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <ContactUs pageData={testContactPageData} />
       );
 
-      expect(seo).toEqual({});
+      expect(seo).toEqual({ ...mockSeoResult });
     });
   });
 

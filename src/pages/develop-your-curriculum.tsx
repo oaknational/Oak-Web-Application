@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
+import useTrackPageView from "../hooks/useTrackPageView";
 import CMSClient from "../node-lib/cms";
 import { CurriculumPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
@@ -35,6 +36,8 @@ const elementsOfCurriculumDesignHeadings = [
 ];
 
 const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
+  useTrackPageView({ pageName: "Develop Your Curriculum" });
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
@@ -143,7 +146,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                       <Heading $font={"heading-7"} tag={"h3"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
-                          <CardLink page="blog" slug={element.post.slug}>
+                          <CardLink page="blog-single" slug={element.post.slug}>
                             {element.title}
                           </CardLink>
                         </Box>
@@ -194,7 +197,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
-                  page="teachers-oak-curriculum"
+                  page="oak-curriculum"
                   icon={"arrow-right"}
                   label={pageData.ourApproach.cta?.label}
                 />

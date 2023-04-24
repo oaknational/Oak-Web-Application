@@ -6,6 +6,7 @@ import {
   NextPage,
 } from "next";
 
+import useTrackPageView from "../../../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -37,6 +38,12 @@ import Breadcrumbs, {
   Breadcrumb,
 } from "../../../../../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../../../../../components/Box";
+import useAnalytics from "../../../../../../../../../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../../../../../../../../../hooks/useAnalyticsUseCase";
+import type {
+  KeyStageTitleValueType,
+  DownloadResourceButtonNameValueType,
+} from "../../../../../../../../../../browser-lib/avo/Avo";
 
 export type LessonOverviewPageProps = {
   curriculumData: TeachersLessonOverviewData;
@@ -52,7 +59,7 @@ export const lessonBreadcrumbArray = (
   unitTitle: string
 ): Breadcrumb[] => {
   return [
-    { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+    { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
       oakLinkProps: { page: "subject-index", slug: keyStageSlug },
       label: keyStageTitle,
@@ -105,6 +112,31 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     expired,
   } = curriculumData;
+
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
+
+  const trackDownloadResourceButtonClicked = ({
+    downloadResourceButtonName,
+  }: {
+    downloadResourceButtonName: DownloadResourceButtonNameValueType;
+  }) => {
+    track.downloadResourceButtonClicked({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: title,
+      lessonSlug: slug,
+      downloadResourceButtonName,
+      analyticsUseCase,
+    });
+  };
+
+  useTrackPageView({ pageName: "Lesson" });
+
   return (
     <AppLayout
       seoProps={{
@@ -131,6 +163,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
+                  viewType: "teachers",
                   keyStage: keyStageSlug,
                   subject: subjectSlug,
                   unit: unitSlug,
@@ -201,6 +234,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   slug={slug}
                   subjectSlug={subjectSlug}
                   unitSlug={unitSlug}
+                  onClick={() => {
+                    trackDownloadResourceButtonClicked({
+                      downloadResourceButtonName: "all",
+                    });
+                  }}
                 />
               )}
               {/*
@@ -224,6 +262,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 toggleClosed={false}
                 {...curriculumData}
                 title={"Slide deck"}
+                onDownloadButtonClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "slide deck",
+                  });
+                }}
               >
                 <OverviewPresentation asset={presentationUrl} title={title} />
               </ExpandingContainer>
@@ -243,6 +286,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Worksheet"}
+                onDownloadButtonClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "worksheet",
+                  });
+                }}
               >
                 <OverviewPresentation asset={worksheetUrl} title={title} />
               </ExpandingContainer>
@@ -252,6 +300,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Starter quiz"}
+                onDownloadButtonClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "starter quiz",
+                  });
+                }}
               >
                 <QuizContainer questions={introQuiz} info={introQuizInfo} />
               </ExpandingContainer>
@@ -263,6 +316,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 downloadable={true}
                 {...curriculumData}
                 title={"Exit quiz"}
+                onDownloadButtonClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "exit quiz",
+                  });
+                }}
               >
                 <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
               </ExpandingContainer>

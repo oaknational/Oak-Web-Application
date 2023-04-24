@@ -49,15 +49,17 @@ beforeEach(() => {
   localStorage.clear();
 });
 
+const render = renderWithProviders();
+
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", () => {
-    renderWithProviders(<LessonDownloadsPage {...props} />);
+    render(<LessonDownloadsPage {...props} />);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "Downloads: Islamic Geometry"
     );
   });
   it("Renders 'no downloads available' message if there is no downloads", () => {
-    renderWithProviders(
+    render(
       <LessonDownloadsPage
         {...{
           curriculumData: {
@@ -72,7 +74,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   it("Renders 'no downloads available' message if there is no downloads", () => {
-    renderWithProviders(
+    render(
       <LessonDownloadsPage
         {...{
           curriculumData: {
@@ -88,7 +90,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("download form", () => {
     it("Renders download form with correct elements", () => {
-      renderWithProviders(<LessonDownloadsPage {...props} />);
+      render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
         "Your details"
@@ -139,7 +141,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
-      const { getByPlaceholderText } = renderWithProviders(
+      const { getByPlaceholderText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -157,7 +159,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should not display error hint on blur email if empty", async () => {
-      const { getByPlaceholderText } = renderWithProviders(
+      const { getByPlaceholderText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -176,16 +178,14 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("selected resources count", () => {
     it("should display correct count of selected and all downloadable resources if no resources are selected", () => {
-      const { getByTestId } = renderWithProviders(
-        <LessonDownloadsPage {...props} />
-      );
+      const { getByTestId } = render(<LessonDownloadsPage {...props} />);
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
+      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
     });
 
     it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
-      const { getByTestId, getByLabelText } = renderWithProviders(
+      const { getByTestId, getByLabelText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -198,7 +198,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should select all resources if user clicks 'Select all'", async () => {
-      const { getByTestId, getByText } = renderWithProviders(
+      const { getByTestId, getByText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -217,7 +217,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should deselect all resources if user clicks 'Deselect all'", async () => {
-      const { getByTestId, getByText } = renderWithProviders(
+      const { getByTestId, getByText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -241,11 +241,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       act(() => {
         result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText } = renderWithProviders(
-        <LessonDownloadsPage {...props} />
-      );
+      const { getByText } = render(<LessonDownloadsPage {...props} />);
 
       expect(getByText("email: test@test.com")).toBeInTheDocument();
     });
@@ -258,11 +257,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           schoolName: "Primary School",
           schoolId: "222-Primary School",
         });
+        result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText } = renderWithProviders(
-        <LessonDownloadsPage {...props} />
-      );
+      const { getByText } = render(<LessonDownloadsPage {...props} />);
 
       expect(getByText("school: Primary School")).toBeInTheDocument();
     });
@@ -277,7 +275,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText } = renderWithProviders(
+      const { getByText, getByLabelText } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -299,10 +297,12 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       act(() => {
         result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText, getByDisplayValue } =
-        renderWithProviders(<LessonDownloadsPage {...props} />);
+      const { getByText, getByLabelText, getByDisplayValue } = render(
+        <LessonDownloadsPage {...props} />
+      );
 
       // user click Edit button
       const editButton = getByText("Edit");
@@ -324,9 +324,10 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           schoolName: "Primary School",
           schoolId: "222-Primary-School",
         });
+        result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByTestId } = renderWithProviders(
+      const { getByText, getByTestId } = render(
         <LessonDownloadsPage {...props} />
       );
 
@@ -351,7 +352,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(<LessonDownloadsPage {...props} />);
+      const { seo } = renderWithSeo()(<LessonDownloadsPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -362,6 +363,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
         ogDescription: "Lesson downloads",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
       });
     });
   });

@@ -92,9 +92,11 @@ const testAboutBoardPageData: AboutBoardPage = {
   ],
 };
 
+const render = renderWithProviders();
+
 describe("pages/about-us/board.tsx", () => {
   it("Renders correct title ", async () => {
-    renderWithProviders(<AboutBoard pageData={testAboutBoardPageData} />);
+    render(<AboutBoard pageData={testAboutBoardPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
       "About us"
@@ -103,7 +105,7 @@ describe("pages/about-us/board.tsx", () => {
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo(
+      const { seo } = renderWithSeo()(
         <AboutBoard pageData={testAboutBoardPageData} />
       );
 
@@ -115,6 +117,7 @@ describe("pages/about-us/board.tsx", () => {
         ogTitle: "About Us | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We're doing the things that need to get done.",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "index,follow",
       });
     });
   });

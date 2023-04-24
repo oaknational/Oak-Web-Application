@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { debounce } from "lodash";
 import { useRouter } from "next/router";
 
+import useTrackPageView from "../../../../../../../../../../../hooks/useTrackPageView";
 import AppLayout from "../../../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../../../components/Box";
@@ -19,24 +20,29 @@ import OakLink from "../../../../../../../../../../../components/OakLink";
 import Button from "../../../../../../../../../../../components/Button";
 import Input from "../../../../../../../../../../../components/Input";
 import { getSeoProps } from "../../../../../../../../../../../browser-lib/seo/getSeoProps";
+import useAnalytics from "../../../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, {
   GridArea,
 } from "../../../../../../../../../../../components/Grid";
 import curriculumApi, {
   type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
 } from "../../../../../../../../../../../node-lib/curriculum-api";
+import { KeyStageTitleValueType } from "../../../../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsUseCase from "../../../../../../../../../../../hooks/useAnalyticsUseCase";
+import getFormattedDetailsForTracking from "../../../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
 import getDownloadFormErrorMessage from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
 import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
-import type {
+import {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
   DownloadFormProps,
   DownloadResourceType,
+  preselectedDownloadType,
+  schema,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
-import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../[lessonSlug]";
@@ -44,6 +50,7 @@ import DownloadCardGroup from "../../../../../../../../../../../components/Downl
 import FieldError from "../../../../../../../../../../../components/FormFields/FieldError";
 import SchoolPickerRadio from "../../../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../../../components/DownloadComponents/DetailsCompleted";
+import NoResourcesToDownload from "../../../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 
 export type LessonDownloadsPageProps = {
   curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
@@ -64,7 +71,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
+  useTrackPageView({ pageName: "Lesson Download" });
+
   const router = useRouter();
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -79,9 +90,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   }, [downloads]);
 
   useEffect(() => {
-    const preselected = getPreselectedDownloadResourceTypes(
-      router.query.preselected
-    );
+    const preselectedQuery = () => {
+      const res = router.query.preselected;
+      const result = preselectedDownloadType.safeParse(res);
+      if (!result.success) {
+        return "all";
+      } else {
+        return result.data;
+      }
+    };
+    const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
 
     if (preselected) {
       preselected === "all"
@@ -94,6 +112,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolFromLocalStorage,
     emailFromLocalStorage,
     termsFromLocalStorage,
+    hasDetailsFromLocalStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -102,22 +121,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   } = schoolFromLocalStorage;
 
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-
   useEffect(() => {
-    if (
-      (schoolNameFromLocalStorage || schoolNameFromLocalStorage === "") &&
-      (schoolIdFromLocalStorage || schoolIdFromLocalStorage === "") &&
-      (emailFromLocalStorage || emailFromLocalStorage === "") &&
-      (termsFromLocalStorage || termsFromLocalStorage === false)
-    ) {
-      setIsLocalStorageLoading(false);
-    }
-  }, [
-    schoolNameFromLocalStorage,
-    schoolIdFromLocalStorage,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
-  ]);
+    setIsLocalStorageLoading(false);
+  }, [hasDetailsFromLocalStorage]);
 
   // use values from local storage if available (initial value on School Picker is set within that component)
   useEffect(() => {
@@ -139,6 +145,26 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     schoolIdFromLocalStorage,
   ]);
 
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+
+  const shouldDisplayDetailsCompleted =
+    hasDetailsFromLocalStorage && !editDetailsClicked;
+  const [localStorageDetails, setLocalStorageDetails] = useState(false);
+
+  useEffect(() => {
+    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
+      setLocalStorageDetails(true);
+    }
+    if (editDetailsClicked) {
+      setLocalStorageDetails(false);
+    }
+  }, [
+    hasDetailsFromLocalStorage,
+    localStorageDetails,
+    editDetailsClicked,
+    shouldDisplayDetailsCompleted,
+  ]);
+
   const setSchool = useCallback(
     (value: string, name?: string) => {
       setValue("school", value, {
@@ -157,34 +183,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const hasDetailsFromLocaleStorage =
-    schoolIdFromLocalStorage?.length || emailFromLocalStorage.length;
-
-  const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocaleStorage && !editDetailsClicked;
-
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocaleStorage) {
-      setLocalStorageDetails(true);
-    }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-
-    if (shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
-    }
-  }, [
-    hasDetailsFromLocaleStorage,
-    localStorageDetails,
-    editDetailsClicked,
-    shouldDisplayDetailsCompleted,
-  ]);
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
@@ -206,13 +204,40 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug, selectedResources);
+        onSubmit(data, slug).then(() => {
+          const {
+            schoolOption,
+            schoolName,
+            schoolUrn,
+            selectedResourcesForTracking,
+          } = getFormattedDetailsForTracking({
+            school: data.school,
+            selectedResources,
+          });
+
+          track.lessonResourcesDownloaded({
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+            keyStageSlug,
+            unitName: unitTitle,
+            unitSlug,
+            subjectTitle,
+            subjectSlug,
+            lessonName: title,
+            lessonSlug: slug,
+            resourceType: selectedResourcesForTracking,
+            analyticsUseCase,
+            schoolUrn,
+            schoolName,
+            schoolOption,
+            emailSupplied: data?.email ? true : false,
+          });
+        });
       },
       4000,
       { leading: true }
     );
 
-    await debouncedOnSubmit();
+    debouncedOnSubmit();
     setTimeout(() => setIsAttemptingDownload(false), 4000);
     setEditDetailsClicked(false);
   };
@@ -232,10 +257,10 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     onComplete: setResourcesToDownload,
   });
 
-  function handleEditClick() {
+  const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
-  }
+  };
 
   return (
     <AppLayout
@@ -295,93 +320,81 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
           />
         </Flex>
 
-        {!hasResourcesToDownload && (
-          <Box $ph={24} $mb={64} $mt={56}>
-            <Heading
-              $mb={16}
-              $mt={24}
-              $font={["heading-6", "heading-7"]}
-              tag={"h2"}
-            >
-              No downloads available
-            </Heading>
-            <P $mb={24} $font={["body-2", "body-1"]}>
-              Sorry, there are no downloadable teaching resources available for
-              this lesson.
-            </P>
-          </Box>
-        )}
-
-        {hasResourcesToDownload && (
+        {!hasResourcesToDownload ? (
+          <NoResourcesToDownload />
+        ) : (
           <>
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-
-            {!isLocalStorageLoading && localStorageDetails && (
-              <DetailsCompleted
-                email={emailFromLocalStorage}
-                school={schoolNameFromLocalStorage}
-                onEditClick={handleEditClick}
-              />
-            )}
-
-            {!isLocalStorageLoading && !localStorageDetails && (
-              <Box $maxWidth={[null, 420, 420]} $mb={96}>
-                <SchoolPickerRadio
-                  errors={errors}
-                  setSchool={setSchool}
-                  initialValue={
-                    schoolIdFromLocalStorage?.length > 0
-                      ? schoolIdFromLocalStorage
-                      : undefined
-                  }
-                  initialSchoolName={schoolNameFromLocalStorage}
-                />
-                <Heading
-                  tag="h3"
-                  $font={"heading-7"}
-                  $mt={16}
-                  $mb={24}
-                  data-testid="email-heading"
-                >
-                  For regular updates from Oak (optional)
-                </Heading>
-                <Input
-                  id={"email"}
-                  label="Email address"
-                  placeholder="Enter email address here"
-                  {...register("email")}
-                  error={errors.email?.message}
-                />
-                <P $font="body-3" $mt={-24} $mb={40}>
-                  Join our community to get free lessons, resources and other
-                  helpful content. Unsubscribe at any time. Our{" "}
-                  <OakLink page={"privacy-policy"} $isInline>
-                    privacy policy
-                  </OakLink>
-                  .
-                </P>
-                <Controller
-                  control={control}
-                  name="terms"
-                  render={({ field: { value, onChange, name, onBlur } }) => {
-                    const onChangeHandler = (
-                      e: ChangeEvent<HTMLInputElement>
-                    ) => {
-                      return onChange(e.target.checked);
-                    };
-                    return (
-                      <TermsAndConditionsCheckbox
-                        name={name}
-                        checked={value}
-                        onChange={onChangeHandler}
-                        onBlur={onBlur}
-                        id={"terms"}
-                        errorMessage={errors?.terms?.message}
-                      />
-                    );
-                  }}
-                />
-              </Box>
+            {!isLocalStorageLoading && (
+              <>
+                {localStorageDetails ? (
+                  <DetailsCompleted
+                    email={emailFromLocalStorage}
+                    school={schoolNameFromLocalStorage}
+                    onEditClick={handleEditDetailsCompletedClick}
+                  />
+                ) : (
+                  <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                    <SchoolPickerRadio
+                      errors={errors}
+                      setSchool={setSchool}
+                      initialValue={
+                        schoolIdFromLocalStorage?.length > 0
+                          ? schoolIdFromLocalStorage
+                          : undefined
+                      }
+                      initialSchoolName={schoolNameFromLocalStorage}
+                    />
+                    <Heading
+                      tag="h3"
+                      $font={"heading-7"}
+                      $mt={16}
+                      $mb={24}
+                      data-testid="email-heading"
+                    >
+                      For regular updates from Oak (optional)
+                    </Heading>
+                    <Input
+                      id={"email"}
+                      label="Email address"
+                      placeholder="Enter email address here"
+                      {...register("email")}
+                      error={errors.email?.message}
+                    />
+                    <P $font="body-3" $mt={-24} $mb={40}>
+                      Join our community to get free lessons, resources and
+                      other helpful content. Unsubscribe at any time. Our{" "}
+                      <OakLink page="legal" slug="privacy-policy" $isInline>
+                        privacy policy
+                      </OakLink>
+                      .
+                    </P>
+                    <Controller
+                      control={control}
+                      name="terms"
+                      render={({
+                        field: { value, onChange, name, onBlur },
+                      }) => {
+                        const onChangeHandler = (
+                          e: ChangeEvent<HTMLInputElement>
+                        ) => {
+                          return onChange(e.target.checked);
+                        };
+                        return (
+                          <TermsAndConditionsCheckbox
+                            name={name}
+                            checked={value}
+                            onChange={onChangeHandler}
+                            onBlur={onBlur}
+                            id={"terms"}
+                            errorMessage={errors?.terms?.message}
+                          />
+                        );
+                      }}
+                    />
+                  </Box>
+                )}
+              </>
             )}
 
             <Grid $mt={32}>

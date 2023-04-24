@@ -111,13 +111,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  seoAppSocialSharingImg: {
-    value: process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG,
-    envName: "NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG",
-    required: false,
-    availableInBrowser: true,
-    default: null,
-  },
   seoAppFacebook: {
     value: process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK,
     envName: "NEXT_PUBLIC_SEO_APP_FACEBOOK",

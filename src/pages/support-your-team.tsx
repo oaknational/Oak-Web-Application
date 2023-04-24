@@ -1,6 +1,7 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
+import useTrackPageView from "../hooks/useTrackPageView";
 import CMSClient from "../node-lib/cms";
 import { SupportPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
@@ -23,6 +24,8 @@ export type SupportPageProps = {
 };
 
 const Support: NextPage<SupportPageProps> = ({ pageData }) => {
+  useTrackPageView({ pageName: "Support Your Team" });
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
@@ -66,7 +69,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            page={"teachers-home"}
+            page={"teacher-hub"}
             label={"Search our lessons"}
             icon={"arrow-right"}
             $iconPosition={"trailing"}
@@ -124,7 +127,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              page={"teachers-home"}
+              page={"teacher-hub"}
               label={"Search our lessons"}
               icon={"arrow-right"}
               $iconPosition={"trailing"}

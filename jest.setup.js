@@ -54,3 +54,5 @@ jest.mock("@mux/mux-player-react/lazy", () => ({
   // noop component
   default: () => null,
 }));
+
+jest.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");

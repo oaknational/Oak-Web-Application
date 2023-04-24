@@ -5,44 +5,66 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
+import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 
 import downloadZip from "./helpers/downloadZip";
 
 type CurriculumDownloadProps = {
-  keyStage: string;
-  subject: string;
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectSlug: string;
+  subjectTitle: string;
   tier?: string | null;
   lessonPage?: boolean;
 };
 
 const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
-  keyStage,
-  subject,
+  keyStageSlug,
+  keyStageTitle,
+  subjectSlug,
+  subjectTitle,
   tier,
   lessonPage,
 }) => {
   const [downloadResourceError, setDownloadResourceError] =
     useState<boolean>(false);
 
-  const keyStageNum = keyStage.slice(-1);
-  let downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}&extension=pdf`;
+  const keyStageNum = keyStageSlug.slice(-1);
+  let downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&extension=pdf`;
   let downloadLabel = `Curriculum download (PDF)`;
 
   if (tier) {
     //change download link to access only tiered curriculum
-    downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}-${tier}&extension=pdf`;
+    downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}-${tier}&extension=pdf`;
     downloadLabel = capitalize(tier) + ` curriculum download (PDF)`;
   }
 
-  if (keyStage === "ks4" && subject === "maths" && !tier) {
-    downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subject}&tiers=core,higher,foundation`;
+  if (keyStageSlug === "ks4" && subjectSlug === "maths" && !tier) {
+    downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&tiers=core,higher,foundation`;
     downloadLabel = `Curriculum download (.zip)`;
   }
 
+  const { track } = useAnalytics();
+  const analyticsUseCase = useAnalyticsUseCase();
+
+  const trackCurriculumMapDownloaded = () => {
+    track.curriculumMapDownloaded({
+      subjectTitle,
+      subjectSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      analyticsUseCase,
+      pageName: lessonPage ? ["Lesson Listing"] : ["Unit Listing"],
+    });
+  };
+
   const handleZipDownloadClick = async () => {
     try {
-      await downloadZip(keyStageNum, subject);
+      await downloadZip(keyStageNum, subjectSlug);
       setDownloadResourceError(false);
+      trackCurriculumMapDownloaded();
     } catch (error) {
       setDownloadResourceError(true);
     }
@@ -50,7 +72,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
 
   return (
     <Flex $mb={[20, 0]}>
-      {lessonPage && keyStage === "ks4" && subject === "maths" ? (
+      {lessonPage && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
         <Flex $flexDirection={"column"}>
           <Button
             icon="download"
@@ -73,6 +95,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
           iconBackground="teachersHighlight"
           label={downloadLabel}
           href={downloadLink}
+          onClick={() => trackCurriculumMapDownloaded()}
           page={null}
           size="large"
           variant="minimal"

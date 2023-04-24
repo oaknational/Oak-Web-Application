@@ -73,9 +73,11 @@ const callout = {
   ],
 };
 
+const render = renderWithProviders();
+
 describe("components/PostPortableText", () => {
   test("text and media renders an image", () => {
-    const { getByAltText } = renderWithProviders(
+    const { getByAltText } = render(
       <PostPortableText portableText={textAndMedia} />
     );
 
@@ -84,7 +86,7 @@ describe("components/PostPortableText", () => {
     expect(imageAltText).toBeInTheDocument();
   });
   test("image with alt text has alt text", () => {
-    const { getByAltText } = renderWithProviders(
+    const { getByAltText } = render(
       <PostPortableText portableText={[textAndMedia[0]?.image]} />
     );
 
@@ -93,9 +95,7 @@ describe("components/PostPortableText", () => {
     expect(imageAltText).toBeInTheDocument();
   });
   test("quote renders a quote", () => {
-    const { getByText } = renderWithProviders(
-      <PostPortableText portableText={quote} />
-    );
+    const { getByText } = render(<PostPortableText portableText={quote} />);
 
     const quoteText = getByText(
       "“The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality.”"
@@ -104,7 +104,7 @@ describe("components/PostPortableText", () => {
     expect(quoteText).toBeInTheDocument();
   });
   test("cta renders a button with a label", () => {
-    const { getByText } = renderWithProviders(
+    const { getByText } = render(
       <PostPortableText portableText={[textAndMedia[0]?.cta]} />
     );
 
@@ -113,9 +113,7 @@ describe("components/PostPortableText", () => {
     expect(ctaLabel).toBeInTheDocument();
   });
   test("callout has styled background", () => {
-    const { getByText } = renderWithProviders(
-      <PostPortableText portableText={[callout]} />
-    );
+    const { getByText } = render(<PostPortableText portableText={[callout]} />);
 
     const calloutText = getByText("I'm a callout out!").closest("div");
 

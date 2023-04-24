@@ -29,8 +29,8 @@ const AppHeader: FC<HeaderProps> = () => {
         $flexGrow={1}
         $alignItems={"center"}
       >
-        <OakLink page={"beta-teachers-home"}>
-          <Logo title={"Oak National Academy"} height={48} width={104} />
+        <OakLink page={"home"} viewType={"teachers"}>
+          <Logo height={48} width={104} />
         </OakLink>
         <IconButton
           aria-label="Menu"

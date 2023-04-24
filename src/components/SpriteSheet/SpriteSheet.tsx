@@ -1,5 +1,7 @@
 /**
- * See scripts/build/image_data/generate_sprite.js
+ * This component fetches sprite.svg from the public folder and makes it
+ * available to the browser.
+ * @see /scripts/build/image_data/generate_sprite.js
  */
 import { FC } from "react";
 

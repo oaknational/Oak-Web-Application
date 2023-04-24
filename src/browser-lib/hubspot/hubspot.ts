@@ -10,7 +10,7 @@ import OakError from "../../errors/OakError";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
 
-import startHubspot, { HubspotConfig } from "./startHubspot";
+import { HubspotConfig } from "./HubspotScript";
 
 const reportError = errorReporter("hubspot.ts");
 const reportNotLoadedError = () => {
@@ -42,30 +42,13 @@ const getHubspot = (): Hubspot => {
   };
 };
 
-const loaded = () => {
-  const { _hsq } = getHubspot();
-  return !!(_hsq && _hsq.push !== Array.prototype.push);
-};
-
 export const hubspotWithoutQueue: AnalyticsService<HubspotConfig> = {
   name: "hubspot",
-  init: (config) =>
-    new Promise((resolve) => {
-      startHubspot(config);
-      if (loaded()) {
-        resolve(null);
-      } else {
-        /**
-         * Check if hubspot is loaded every second
-         */
-        const intervalId = window.setInterval(() => {
-          if (loaded()) {
-            window.clearInterval(intervalId);
-            resolve(null);
-          }
-        }, 1000);
-      }
-    }),
+  /**
+   * init is a noop in this case, since hubspot is loaded with the
+   * <HubspotScript /> component.
+   */
+  init: () => Promise.resolve(null),
   identify: (userId, properties) => {
     const { _hsq } = getHubspot();
     if (typeof _hsq === "undefined") {
