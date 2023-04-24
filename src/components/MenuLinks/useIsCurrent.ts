@@ -10,6 +10,14 @@ const isSubPath = ({
   if (href === "/") {
     return currentPath === "/";
   }
+
+  if (
+    `${currentPath}/`.startsWith(`/beta/teachers/`) &&
+    currentPath.length > 15
+  ) {
+    return false;
+  }
+
   return `${currentPath}/`.startsWith(`${href}/`);
 };
 
@@ -29,7 +37,7 @@ const useIsCurrent = (props: UseIsCurrentProps) => {
     currentPath,
     href,
   });
-
+  // console.log(isCurrent, "isCurrent in useIsCurrent");
   return isCurrent;
 };
 

@@ -1,5 +1,4 @@
 import { FC, useRef } from "react";
-import { useRouter } from "next/router";
 
 import Flex from "../Flex";
 import FixedHeader from "../FixedHeader";
@@ -22,16 +21,6 @@ import { P } from "../Typography";
 const AppHeader: FC<HeaderProps> = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { openMenu } = useMenuContext();
-  const { pathname } = useRouter();
-  const displayMenu = pathname.startsWith("/beta");
-
-  if (displayMenu) {
-    if (!menuSections.large[0]) {
-      return null;
-    }
-    menuSections.large[0].linkText = "Home (early access)";
-    menuSections.large[0].page = "beta-teachers-home";
-  }
 
   return (
     <FixedHeader $background="pastelTurquoise">

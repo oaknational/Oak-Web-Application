@@ -5,6 +5,7 @@ import { SSRProvider } from "@react-aria/ssr";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
+import { useRouter } from "next/router";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -24,6 +25,7 @@ import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
 import { ToastProvider } from "../context/Toast";
 import InlineSpriteSheet from "../components/InlineSpriteSheet";
+import { menuSections } from "../browser-lib/fixtures/menuSections";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;
@@ -34,6 +36,22 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
   analyticsOptions,
 }) => {
   const { theme } = useOakTheme();
+  const { pathname } = useRouter();
+  const displayMenu = pathname.startsWith("/beta/teachers");
+
+  if (displayMenu) {
+    if (!menuSections.large[0]) {
+      return null;
+    }
+    menuSections.large[0].linkText = "Home (early access)";
+    menuSections.large[0].page = "beta-teachers-home";
+  } else {
+    if (!menuSections.large[0]) {
+      return null;
+    }
+    menuSections.large[0].linkText = "Home";
+    menuSections.large[0].page = "home";
+  }
 
   return (
     <>
