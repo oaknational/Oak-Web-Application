@@ -9,7 +9,7 @@ import teachersKeyStageSubjectUnitsPathsFixture from "../fixtures/teachersKeySta
 import teachersLessonOverviewFixture from "../fixtures/teachersLessonOverview.fixture";
 import teachersLessonOverviewPathsFixture from "../fixtures/teachersLessonOverviewPaths.fixture";
 import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import lessonDownloadsFixtures from "../fixtures/lessonDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
@@ -45,8 +45,8 @@ const curriculumApi: CurriculumApi = {
   teachersKeyStageSubjectUnitLessons: jest.fn(async () => {
     return teachersKeyStageSubjectUnitsLessonsFixture();
   }),
-  teachersKeyStageSubjectUnitLessonsDownloads: jest.fn(async () => {
-    return teachersKeyStageSubjectUnitsLessonsDownloadsFixtures();
+  lessonDownloads: jest.fn(async () => {
+    return lessonDownloadsFixtures();
   }),
   teachersLessonOverviewPaths: jest.fn(async () => {
     return teachersLessonOverviewPathsFixture();
