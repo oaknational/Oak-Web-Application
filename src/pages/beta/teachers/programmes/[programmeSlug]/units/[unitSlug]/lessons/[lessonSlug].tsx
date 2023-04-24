@@ -154,7 +154,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-               programmeSlug,
+                programmeSlug,
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -165,7 +165,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   viewType: "teachers",
                   programmeSlug,
                   unitSlug,
-                  slug:lessonSlug,
+                  slug: lessonSlug,
                 },
                 label: lessonTitle,
                 disabled: true,

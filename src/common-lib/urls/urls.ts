@@ -555,9 +555,7 @@ export type ResolveOakHrefProps = Exclude<
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
-    
     return (
-
       OAK_PAGES[props.page]
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -588,7 +586,6 @@ export const getPageViewProps = (href: string): PageViewProps | null => {
     if (!matchResult) {
       return acc;
     }
-
 
     const params = matchResult.params;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
