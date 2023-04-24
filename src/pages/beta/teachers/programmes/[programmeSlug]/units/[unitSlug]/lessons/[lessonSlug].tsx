@@ -154,7 +154,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                "@todo", // @todo place with programme slug
+               programmeSlug,
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -163,9 +163,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 oakLinkProps: {
                   page: "lesson-overview",
                   viewType: "teachers",
-                  programmeSlug: "@todo",
+                  programmeSlug,
                   unitSlug,
-                  slug,
+                  slug:lessonSlug,
                 },
                 label: lessonTitle,
                 disabled: true,
