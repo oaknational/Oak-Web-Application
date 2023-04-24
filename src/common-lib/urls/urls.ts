@@ -139,6 +139,8 @@ type LessonDownloadsLinkProps = {
   programmeSlug?: string;
   unitSlug: string;
   slug: string;
+  keyStageSlug?: string;
+  subjectSlug?: string;
   query?: {
     preselected: ExpandingContainerTitle | "all";
   };
