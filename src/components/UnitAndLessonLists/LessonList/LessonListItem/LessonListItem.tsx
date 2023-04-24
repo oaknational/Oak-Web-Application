@@ -73,8 +73,8 @@ function getAvailableResourceList({
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
     description,
     expired,
     subjectTitle,
@@ -96,8 +96,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       subjectSlug,
       unitName: unitTitle,
       unitSlug,
-      lessonName: title,
-      lessonSlug: slug,
+      lessonName: lessonTitle,
+      lessonSlug,
       analyticsUseCase,
     });
   };
@@ -109,7 +109,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   return (
     <ListItemCard
-      title={title}
+      title={lessonTitle}
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
@@ -129,6 +129,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           page="Lesson"
           index={null}
           onClick={trackLessonSelected}
+          title={lessonTitle}
+          slug={lessonSlug}
         />
         {expired ? (
           <Expired page={"lesson"} />

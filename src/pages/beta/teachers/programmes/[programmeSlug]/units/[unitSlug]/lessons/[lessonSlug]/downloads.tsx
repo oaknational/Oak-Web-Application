@@ -286,7 +286,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  programmeSlug: programmeSlug,
+                  programmeSlug,
                   unitSlug,
                   slug: lessonSlug,
                 },
@@ -295,7 +295,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
-                  programmeSlug: programmeSlug,
+                  programmeSlug,
                   unitSlug,
                   slug: lessonSlug,
                 },

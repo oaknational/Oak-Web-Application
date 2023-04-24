@@ -251,8 +251,8 @@ const lessonListing = z.object({
     z.object({
       programmeSlug: z.string(),
       expired: z.boolean().nullable(),
-      slug: z.string(),
-      title: z.string(),
+      lessonSlug: z.string(),
+      lessonTitle: z.string(),
       description: z.string(),
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),
@@ -327,8 +327,8 @@ const teachersLessonOverviewPaths = z.object({
   ),
 });
 const teachersLessonOverviewData = z.object({
-  slug: z.string(),
-  title: z.string(),
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
   unitTitle: z.string(),
   unitSlug: z.string(),
   keyStageSlug: z.string(),
@@ -364,8 +364,8 @@ const lessonOverviewPaths = z.object({
 });
 
 const lessonOverviewData = z.object({
-  slug: z.string(),
-  title: z.string(),
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
   programmeSlug: z.string(),
   unitTitle: z.string(),
   unitSlug: z.string(),

@@ -85,8 +85,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
     programmeSlug,
     keyStageTitle,
     keyStageSlug,
@@ -127,8 +127,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       subjectSlug,
       unitName: unitTitle,
       unitSlug,
-      lessonName: title,
-      lessonSlug: slug,
+      lessonName: lessonTitle,
+      lessonSlug,
       downloadResourceButtonName,
       analyticsUseCase,
     });
@@ -154,7 +154,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                "@todo", // @todo place with programme slug
+                programmeSlug,
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -163,11 +163,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 oakLinkProps: {
                   page: "lesson-overview",
                   viewType: "teachers",
-                  programmeSlug: "@todo",
+                  programmeSlug,
                   unitSlug,
-                  slug,
+                  slug: lessonSlug,
                 },
-                label: title,
+                label: lessonTitle,
                 disabled: true,
               },
             ]}
@@ -181,7 +181,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             keyStageSlug={keyStageSlug}
             subject={subjectTitle}
             subjectSlug={subjectSlug}
-            title={title}
+            title={lessonTitle}
           />
         </Flex>
         {expired ? (
@@ -229,8 +229,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     preselected: "all",
                   }}
                   programmeSlug={programmeSlug}
+                  lessonSlug={lessonSlug}
                   unitSlug={unitSlug}
-                  slug={slug}
                   onClick={() => {
                     trackDownloadResourceButtonClicked({
                       downloadResourceButtonName: "all",
@@ -265,7 +265,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={presentationUrl} title={title} />
+                <OverviewPresentation
+                  asset={presentationUrl}
+                  title={lessonTitle}
+                />
               </ExpandingContainer>
             )}
             {videoMuxPlaybackId && (
@@ -273,7 +276,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewVideo
                   video={videoMuxPlaybackId}
                   signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                  title={title}
+                  title={lessonTitle}
                   hasCaptions={Boolean(transcriptSentences)}
                 />
               </ExpandingContainer>
@@ -289,7 +292,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={worksheetUrl} title={title} />
+                <OverviewPresentation
+                  asset={worksheetUrl}
+                  title={lessonTitle}
+                />
               </ExpandingContainer>
             )}
             {introQuiz.length > 0 ? (

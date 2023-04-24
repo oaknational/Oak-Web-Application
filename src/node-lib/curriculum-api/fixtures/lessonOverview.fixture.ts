@@ -4,8 +4,8 @@ const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewData>
 ): LessonOverviewData => {
   return {
-    slug: "macbeth-lesson-1",
-    title: "Islamic Geometry",
+    lessonSlug: "macbeth-lesson-1",
+    lessonTitle: "Islamic Geometry",
     programmeSlug: "maths-higher-ks4",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",

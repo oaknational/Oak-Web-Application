@@ -38,9 +38,9 @@ export function getLessonObject(props: {
     allKeyStages,
   });
   return {
-    programmeSlug: "programmeSlug", //TODO
-    title: highlightedHit.title?.toString(),
-    slug: highlightedHit.slug?.toString(),
+    programmeSlug: "programmeSlug",
+    lessonTitle: highlightedHit.title?.toString(),
+    lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
     themeTitle: highlightedHit.theme_title?.toString() || null,
     subjectSlug: highlightedHit.subject_slug?.toString(),
@@ -72,6 +72,7 @@ export function getUnitObject(props: {
   });
 
   return {
+    programmeSlug: "ProgrammeSlug", // TODO
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     themeTitle: highlightedHit.theme_title?.toString() || null,
@@ -83,7 +84,6 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     expired: Boolean(highlightedHit.expired),
-    programmeSlug: "@todo", // @todo: construct programme slug
   };
 }
 
