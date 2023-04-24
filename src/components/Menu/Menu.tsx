@@ -142,7 +142,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               >
                 {/* Mobile logo */}
                 {displaySignpost && (
-                  <SideBarSignpost mb={64} display={["none", "flex"]} />
+                  <SideBarSignpost display={["none", "flex"]} />
                 )}
                 <Flex
                   $justifyContent={"left"}
@@ -152,7 +152,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   <Logo height={48} width={104} />
                 </Flex>
                 {displaySignpost && (
-                  <SideBarSignpost mb={48} display={["flex", "none"]} />
+                  <SideBarSignpost display={["flex", "none"]} />
                 )}
                 {children}
                 {/* Desktop logo */}
