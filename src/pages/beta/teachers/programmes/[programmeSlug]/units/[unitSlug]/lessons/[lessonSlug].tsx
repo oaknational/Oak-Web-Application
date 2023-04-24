@@ -87,8 +87,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
     programmeSlug,
     keyStageTitle,
     keyStageSlug,
@@ -129,8 +129,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       subjectSlug,
       unitName: unitTitle,
       unitSlug,
-      lessonName: title,
-      lessonSlug: slug,
+      lessonName: lessonTitle,
+      lessonSlug,
       downloadResourceButtonName,
       analyticsUseCase,
     });
@@ -167,9 +167,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   keyStage: keyStageSlug,
                   subject: subjectSlug,
                   unit: unitSlug,
-                  slug: slug,
+                  slug: lessonSlug,
                 },
-                label: title,
+                label: lessonTitle,
                 disabled: true,
               },
             ]}
@@ -183,7 +183,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             keyStageSlug={keyStageSlug}
             subject={subjectTitle}
             subjectSlug={subjectSlug}
-            title={title}
+            title={lessonTitle}
           />
         </Flex>
         {expired ? (
@@ -231,7 +231,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     preselected: "all",
                   }}
                   programmeSlug={programmeSlug}
-                  lessonSlug={slug}
+                  lessonSlug={lessonSlug}
                   unitSlug={unitSlug}
                   onClick={() => {
                     trackDownloadResourceButtonClicked({
@@ -267,7 +267,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={presentationUrl} title={title} />
+                <OverviewPresentation asset={presentationUrl} title={lessonTitle} />
               </ExpandingContainer>
             )}
             {videoMuxPlaybackId && (
@@ -275,7 +275,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewVideo
                   video={videoMuxPlaybackId}
                   signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                  title={title}
+                  title={lessonTitle}
                   hasCaptions={Boolean(transcriptSentences)}
                 />
               </ExpandingContainer>
@@ -291,7 +291,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={worksheetUrl} title={title} />
+                <OverviewPresentation asset={worksheetUrl} title={lessonTitle} />
               </ExpandingContainer>
             )}
             {introQuiz.length > 0 ? (
