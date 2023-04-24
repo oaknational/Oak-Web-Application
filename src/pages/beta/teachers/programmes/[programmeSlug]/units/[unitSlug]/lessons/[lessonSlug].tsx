@@ -267,7 +267,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={presentationUrl} title={lessonTitle} />
+                <OverviewPresentation
+                  asset={presentationUrl}
+                  title={lessonTitle}
+                />
               </ExpandingContainer>
             )}
             {videoMuxPlaybackId && (
@@ -291,7 +294,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   });
                 }}
               >
-                <OverviewPresentation asset={worksheetUrl} title={lessonTitle} />
+                <OverviewPresentation
+                  asset={worksheetUrl}
+                  title={lessonTitle}
+                />
               </ExpandingContainer>
             )}
             {introQuiz.length > 0 ? (

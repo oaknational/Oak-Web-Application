@@ -72,7 +72,7 @@ export function getUnitObject(props: {
   });
 
   return {
-    programmeSlug:"ProgrammeSlug", // TODO
+    programmeSlug: "ProgrammeSlug", // TODO
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     themeTitle: highlightedHit.theme_title?.toString() || null,
