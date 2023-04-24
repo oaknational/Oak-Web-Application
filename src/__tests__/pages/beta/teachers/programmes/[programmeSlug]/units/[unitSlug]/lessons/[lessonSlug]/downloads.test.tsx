@@ -16,10 +16,10 @@ import LessonDownloadsPage, {
   URLParams,
 } from "../../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
 const props = {
-  curriculumData: teachersKeyStageSubjectUnitsLessonsDownloadsFixtures(),
+  curriculumData: lessonDownloadsFixtures(),
 };
 
 const getDownloadResourcesExistenceData = {

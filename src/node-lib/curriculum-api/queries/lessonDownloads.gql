@@ -1,7 +1,4 @@
-query teachersKeyStageSubjectUnitLessonsDownloads(
-  $lessonSlug: String!
-  $programmeSlug: String!
-) {
+query lessonDownloads($lessonSlug: String!, $programmeSlug: String!) {
   mv_downloads: mv_downloads_1(
     where: {
       lesson_slug: { _eq: $lessonSlug }

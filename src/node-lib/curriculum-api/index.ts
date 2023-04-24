@@ -391,7 +391,7 @@ const lessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
-const teachersKeyStageSubjectUnitsLessonsDownloadsData = z.object({
+const lessonDownloadsData = z.object({
   downloads: z.array(
     z.object({
       exists: z.boolean(),
@@ -499,9 +499,7 @@ export type TeachersLessonOverviewData = z.infer<
   typeof teachersLessonOverviewData
 >;
 
-export type TeachersKeyStageSubjectUnitsLessonsDownloadsData = z.infer<
-  typeof teachersKeyStageSubjectUnitsLessonsDownloadsData
->;
+export type lessonDownloadsData = z.infer<typeof lessonDownloadsData>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingPaths = z.infer<typeof unitListingPaths>;
@@ -816,17 +814,15 @@ const curriculumApi = {
       exitQuiz,
     });
   },
-  teachersKeyStageSubjectUnitLessonsDownloads: async (
-    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessonsDownloads>
-  ) => {
-    const res = await sdk.teachersKeyStageSubjectUnitLessonsDownloads(...args);
+  lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
+    const res = await sdk.lessonDownloads(...args);
     const { downloads = [] } = transformMVCase(res);
 
     const download = getFirstResultOrWarnOrFail()({
       results: downloads,
     });
 
-    return teachersKeyStageSubjectUnitsLessonsDownloadsData.parse({
+    return lessonDownloadsData.parse({
       ...download,
     });
   },

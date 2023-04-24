@@ -1,8 +1,8 @@
-import { TeachersKeyStageSubjectUnitsLessonsDownloadsData } from "..";
+import { lessonDownloadsData } from "..";
 
-const teachersKeyStageSubjectUnitsLessonsDownloadsFixtures = (
-  partial?: Partial<TeachersKeyStageSubjectUnitsLessonsDownloadsData>
-): TeachersKeyStageSubjectUnitsLessonsDownloadsData => {
+const lessonDownloadsFixtures = (
+  partial?: Partial<lessonDownloadsData>
+): lessonDownloadsData => {
   return {
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
@@ -33,4 +33,4 @@ const teachersKeyStageSubjectUnitsLessonsDownloadsFixtures = (
   };
 };
 
-export default teachersKeyStageSubjectUnitsLessonsDownloadsFixtures;
+export default lessonDownloadsFixtures;

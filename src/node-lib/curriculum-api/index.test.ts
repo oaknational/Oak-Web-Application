@@ -6,7 +6,7 @@ import teachersKeyStageSubjectUnitsLessonsFixture from "./fixtures/teachersKeySt
 import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
 import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fixture";
 import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import lessonDownloadsFixtures from "./fixtures/lessonDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
 import tierListingFixture from "./fixtures/tierListing.fixture";
 import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
@@ -66,7 +66,7 @@ const teachersKeyStageSubjectUnits = jest.fn(() => ({
   mv_learning_themes: teachersKeyStageSubjectUnitsFixture().learningThemes,
 }));
 const teachersKeyStageSubjectUnitLessonsDownloads = jest.fn(() => ({
-  mv_downloads: [teachersKeyStageSubjectUnitsLessonsDownloadsFixtures()],
+  mv_downloads: [lessonDownloadsFixtures()],
 }));
 const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
   mv_units: [

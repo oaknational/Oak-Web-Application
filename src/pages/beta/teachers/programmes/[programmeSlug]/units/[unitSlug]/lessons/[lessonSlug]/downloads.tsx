@@ -23,7 +23,7 @@ import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoPr
 import useAnalytics from "../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, { GridArea } from "../../../../../../../../../components/Grid";
 import curriculumApi, {
-  type TeachersKeyStageSubjectUnitsLessonsDownloadsData,
+  type lessonDownloadsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsUseCase from "../../../../../../../../../hooks/useAnalyticsUseCase";
@@ -51,7 +51,7 @@ import DetailsCompleted from "../../../../../../../../../components/DownloadComp
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: TeachersKeyStageSubjectUnitsLessonsDownloadsData;
+  curriculumData: lessonDownloadsData;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
@@ -278,7 +278,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                subjectSlug, //@todo replace with programmeslug
+                programmeSlug,
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -297,7 +297,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   page: "lesson-downloads",
                   programmeSlug,
                   unitSlug,
-                  slug: lessonSlug,
+                  lessonSlug,
                 },
                 label: "Downloads",
                 disabled: true,
@@ -469,11 +469,10 @@ export const getServerSideProps: GetServerSideProps<
   }
   const { lessonSlug, programmeSlug } = context.params;
 
-  const curriculumData =
-    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
-      lessonSlug,
-      programmeSlug,
-    });
+  const curriculumData = await curriculumApi.lessonDownloads({
+    lessonSlug,
+    programmeSlug,
+  });
 
   if (!curriculumData) {
     return {
