@@ -203,7 +203,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     const debouncedOnSubmit = debounce(
       () => {
         setIsAttemptingDownload(true);
-        onSubmit(data, slug).then(() => {
+        onSubmit(data, lessonSlug).then(() => {
           const {
             schoolOption,
             schoolName,
