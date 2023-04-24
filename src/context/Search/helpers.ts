@@ -84,7 +84,6 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     expired: Boolean(highlightedHit.expired),
-    programmeSlug: "@todo", // @todo: construct programme slug
   };
 }
 

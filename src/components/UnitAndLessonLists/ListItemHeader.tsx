@@ -109,7 +109,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         )}
       </Flex>
 
-    <ListItemIconMobile
+      <ListItemIconMobile
         background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
         subjectSlug={subjectSlug}
       />
