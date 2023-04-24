@@ -114,7 +114,7 @@ type LessonDownloadsLinkProps = {
   viewType?: ViewType;
   programmeSlug: string;
   unitSlug: string;
-  slug: string;
+  lessonSlug: string;
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -586,6 +586,22 @@ export const getPageViewProps = (href: string): PageViewProps | null => {
     if (!matchResult) {
       return acc;
     }
+
+    case "lesson-downloads": {
+      let path = `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons/${props.lessonSlug}/downloads`;
+      if (props.query) {
+        const queryString = createQueryStringFromObject(props.query);
+        path += `?${queryString.toLowerCase()}`;
+      }
+      return path;
+    }
+    case "beta-search": {
+      const path = "/beta/teachers/search";
+      if (!props.query) {
+        return path;
+      }
+      const queryString = createQueryStringFromObject(props.query);
+
     const params = matchResult.params;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

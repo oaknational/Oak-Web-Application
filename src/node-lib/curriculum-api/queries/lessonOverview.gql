@@ -3,15 +3,15 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  mv_lessons: mv_lessons_3(
+  mv_lessons: mv_lessons_4(
     where: {
-      slug: { _eq: $lessonSlug }
+      lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
     }
   ) {
-    slug
-    title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
     programmeSlug: programme_slug
     unitSlug: unit_slug
     unitTitle: unit_title
@@ -42,8 +42,9 @@ query lessonOverview(
     title
     questionCount: question_count
   }
-  exitQuiz: mv_questions_2(
+  exitQuiz: mv_questions_3(
     where: {
+      programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
       quiz_type: { _eq: "exit" }
       lesson_slug: { _eq: $lessonSlug }
@@ -82,8 +83,9 @@ query lessonOverview(
     title
     questionCount: question_count
   }
-  introQuiz: mv_questions_2(
+  introQuiz: mv_questions_3(
     where: {
+      programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
       quiz_type: { _eq: "intro" }
       lesson_slug: { _eq: $lessonSlug }

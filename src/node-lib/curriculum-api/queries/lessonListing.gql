@@ -1,14 +1,8 @@
-query lessonListing(
-  $programmeSlug: String!
-  $unitSlug: String!
-) {
-  mv_units:mv_units_2(
-    where: {
-      slug: { _eq: $unitSlug }
-      programme_slug: {_eq: $programmeSlug}
-    }
+query lessonListing($programmeSlug: String!, $unitSlug: String!) {
+  mv_units: mv_units_2(
+    where: { slug: { _eq: $unitSlug }, programme_slug: { _eq: $programmeSlug } }
   ) {
-    programmeSlug:programme_slug
+    programmeSlug: programme_slug
     unitSlug: slug
     unitTitle: title
     keyStageSlug: key_stage_slug
@@ -16,15 +10,15 @@ query lessonListing(
     subjectSlug: subject_slug
     subjectTitle: subject_title
   }
-  mv_lessons: mv_lessons_3(
+  mv_lessons: mv_lessons_4(
     order_by: { position_in_unit: asc }
     where: {
-      programme_slug: {_eq: $programmeSlug}
+      programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
     }
   ) {
-    slug
-    title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
     programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
