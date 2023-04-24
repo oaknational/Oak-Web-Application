@@ -6,7 +6,7 @@ import {
   PostListingPageProps,
 } from "../../../components/pages/BlogIndex.page";
 import PostListingPage from "../../../pages/blog";
-import { mockImageAsset } from "../../__helpers__/cms";
+import { mockImageAsset, mockSeoResult } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -135,6 +135,7 @@ describe("pages/blog/index.tsx", () => {
         );
 
         expect(seo).toMatchObject({
+          ...mockSeoResult,
           title: "Latest Blogs & Insights | NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle: "Latest Blogs & Insights | NEXT_PUBLIC_SEO_APP_NAME",
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -142,8 +143,6 @@ describe("pages/blog/index.tsx", () => {
             "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
           ogDescription:
             "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         });

@@ -81,6 +81,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               size="large"
               label={"Home"}
               page={"home"}
+              viewType={null}
             />
           </ButtonGroup>
         </Flex>

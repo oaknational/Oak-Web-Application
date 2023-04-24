@@ -84,10 +84,10 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         {"unitSlug" in props ? (
           // lesson
           <OakLink
-            lessonSlug={slug}
+            slug={slug}
             programmeSlug={programmeSlug}
             unitSlug={props.unitSlug}
-            page={"programme-lesson-overview"}
+            page={"lesson-overview"}
             onClick={onClick}
             {...primaryTargetProps}
           >
@@ -97,8 +97,8 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
           // unit
           <OakLink
             programmeSlug={programmeSlug}
-            unitSlug={slug}
-            page={"programme-lesson-index"}
+            slug={slug}
+            page={"lesson-index"}
             onClick={onClick}
             {...primaryTargetProps}
           >
@@ -109,7 +109,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         )}
       </Flex>
 
-      <ListItemIconMobile
+    <ListItemIconMobile
         background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
         subjectSlug={subjectSlug}
       />

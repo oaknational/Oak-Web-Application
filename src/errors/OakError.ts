@@ -18,6 +18,7 @@ const ERROR_CODES = [
   "video/unknown",
   "video/fetch-signed-token",
   "hubspot/not-loaded",
+  "hubspot/script-failed-to-load",
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
@@ -26,6 +27,7 @@ const ERROR_CODES = [
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
   "school-picker/fetch-suggestions",
+  "urls/failed-to-resolve",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -90,6 +92,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Hubspot not properly instantiated",
     shouldNotify: true,
   },
+  "hubspot/script-failed-to-load": {
+    message:
+      "Hubspot script failed to load. Likely a browser connection issue, or script src misconfigured",
+    shouldNotify: true,
+  },
   "hubspot/lost-information": {
     message: "Information is being lost when sending to hubspot",
     shouldNotify: true,
@@ -139,6 +146,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "school-picker/fetch-suggestions": {
     message: "Error fetching suggested schools list",
+    shouldNotify: true,
+  },
+  "urls/failed-to-resolve": {
+    message:
+      "Failed to resolve URL. Likely caused by a mismatch between the TS types and the pathPattern",
     shouldNotify: true,
   },
 };

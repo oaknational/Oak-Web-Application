@@ -62,7 +62,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                   </Heading>
                   <Flex $flexDirection={"row"}>
                     <Typography $mr={16} $font="heading-7">
-                      <OakLink page={"webinars-index"}>All webinars</OakLink>
+                      <OakLink page={"webinar-index"}>All webinars</OakLink>
                     </Typography>
                     <Typography $font="heading-7">
                       <OakLink page={"blog-index"}>All blogs</OakLink>

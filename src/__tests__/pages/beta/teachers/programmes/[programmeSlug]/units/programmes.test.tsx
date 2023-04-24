@@ -57,7 +57,7 @@ describe("programmes listing page", () => {
       render(<ProgrammesListingPage {...tierListingFixture()} />);
 
       expect(useTrackPageView).toHaveBeenCalledWith({
-        pageName: "Programmes Listing",
+        pageName: "Programme Listing",
       });
     });
   });

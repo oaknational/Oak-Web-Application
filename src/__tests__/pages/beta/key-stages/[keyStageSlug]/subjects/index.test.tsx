@@ -10,6 +10,7 @@ import renderWithProviders from "../../../../../__helpers__/renderWithProviders"
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 import subjectPagePropsFixture from "../../../../../../node-lib/curriculum-api/fixtures/subjectPageProps";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const props = subjectPagePropsFixture();
 
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {

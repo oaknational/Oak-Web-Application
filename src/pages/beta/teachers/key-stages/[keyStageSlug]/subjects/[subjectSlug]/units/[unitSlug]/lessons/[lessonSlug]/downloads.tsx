@@ -35,13 +35,14 @@ import useDownloadExistenceCheck from "../../../../../../../../../../../componen
 import useLocalStorageForDownloads from "../../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "../../../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
 import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
-import type {
+import {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
   DownloadFormProps,
   DownloadResourceType,
+  preselectedDownloadType,
+  schema,
 } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
-import { schema } from "../../../../../../../../../../../components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "../../../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "../../../../../../../../../../../components/Breadcrumbs";
 import { lessonBreadcrumbArray } from "../../../../../../../../programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
@@ -89,9 +90,16 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   }, [downloads]);
 
   useEffect(() => {
-    const preselected = getPreselectedDownloadResourceTypes(
-      router.query.preselected
-    );
+    const preselectedQuery = () => {
+      const res = router.query.preselected;
+      const result = preselectedDownloadType.safeParse(res);
+      if (!result.success) {
+        return "all";
+      } else {
+        return result.data;
+      }
+    };
+    const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
 
     if (preselected) {
       preselected === "all"
@@ -266,13 +274,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     >
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
         <Box $mv={[24, 48]}>
-          {" "}
           <Breadcrumbs
             breadcrumbs={[
               ...lessonBreadcrumbArray(
                 keyStageTitle,
                 keyStageSlug,
-                subjectSlug,
+                subjectSlug, //@todo replace with programmeslug
                 subjectTitle,
                 unitSlug,
                 unitTitle
@@ -280,9 +287,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  keyStage: keyStageSlug,
-                  subject: subjectSlug,
-                  unit: unitSlug,
+                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  unitSlug,
                   slug: slug,
                 },
                 label: title,
@@ -290,9 +296,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
-                  keyStageSlug: keyStageSlug,
-                  subjectSlug: subjectSlug,
-                  unitSlug: unitSlug,
+                  programmeSlug: subjectSlug,//@todo replace with programmeslug
+                  unitSlug,
                   slug: slug,
                 },
                 label: "Downloads",
@@ -356,7 +361,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <P $font="body-3" $mt={-24} $mb={40}>
                       Join our community to get free lessons, resources and
                       other helpful content. Unsubscribe at any time. Our{" "}
-                      <OakLink page={"privacy-policy"} $isInline>
+                      <OakLink page="legal" slug="privacy-policy" $isInline>
                         privacy policy
                       </OakLink>
                       .
