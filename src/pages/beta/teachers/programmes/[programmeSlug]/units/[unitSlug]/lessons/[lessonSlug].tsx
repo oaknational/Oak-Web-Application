@@ -231,7 +231,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     preselected: "all",
                   }}
                   programmeSlug={programmeSlug}
-                  lessonSlug={slug}
+                  slug={slug}
                   unitSlug={unitSlug}
                   onClick={() => {
                     trackDownloadResourceButtonClicked({

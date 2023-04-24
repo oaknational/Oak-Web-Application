@@ -136,7 +136,7 @@ export type ProgrammeLessonIndexProps = {
 
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
-  programmeSlug: string;
+  programmeSlug?: string;
   unitSlug: string;
   slug: string;
   query?: {
@@ -259,6 +259,9 @@ export const resolveOakHref = (props: ResolveOakHrefProps) => {
       }
 
       return `${path}?${queryString}`;
+    }
+    case "beta-teachers-home": {
+      return "/beta/teachers";
     }
     case "programme-lesson-index": {
       return `/beta/teachers/programmes/${props.programmeSlug}/units/${props.unitSlug}/lessons`;
