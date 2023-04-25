@@ -45708,11 +45708,6 @@ export type Years_Variance_Order_By = {
   phase_id?: InputMaybe<Order_By>;
 };
 
-export type GetLessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetLessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_4', programmeSlug?: string | null, unitSlug?: string | null }> };
-
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
   programmeSlug: Scalars['String'];
@@ -45728,6 +45723,11 @@ export type LessonListingQueryVariables = Exact<{
 
 
 export type LessonListingQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units_2', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_4', description?: string | null, expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
+
+export type LessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_4', programmeSlug?: string | null, unitSlug?: string | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String'];
@@ -45760,65 +45760,6 @@ export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null, shortCode?: string | null }> };
 
-export type TeachersKeyStageSubjectTiersQueryVariables = Exact<{
-  keyStageSlug: Scalars['String'];
-  subjectSlug: Scalars['String'];
-}>;
-
-
-export type TeachersKeyStageSubjectTiersQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects_2', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }> };
-
-export type TeachersKeyStageSubjectTiersPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TeachersKeyStageSubjectTiersPathsQuery = { __typename?: 'query_root', mv_tiers: Array<{ __typename?: 'mv_tiers_1', subjectSlug?: string | null, keyStageSlug?: string | null }> };
-
-export type TeachersKeyStageSubjectUnitLessonsQueryVariables = Exact<{
-  keyStageSlug: Scalars['String'];
-  subjectSlug: Scalars['String'];
-  unitSlug: Scalars['String'];
-}>;
-
-
-export type TeachersKeyStageSubjectUnitLessonsQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units_2', unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_3', slug?: string | null, title?: string | null, description?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
-
-export type TeachersKeyStageSubjectUnitsQueryVariables = Exact<{
-  keyStageSlug: Scalars['String'];
-  subjectSlug: Scalars['String'];
-  tierSlug?: InputMaybe<Scalars['String']>;
-  learningThemeSlug?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type TeachersKeyStageSubjectUnitsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects_2', slug?: string | null, title?: string | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_1', slug?: string | null, title?: string | null, unitCount?: any | null, lessonCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_2', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }>, mv_learning_themes: Array<{ __typename?: 'mv_learning_themes_2', slug?: string | null, label?: string | null, tierSlug?: string | null, tierName?: string | null, subjectTitle?: string | null, subjectSlug?: string | null, keyStageTitle?: string | null, keyStageSlug?: string | null }> };
-
-export type TeachersKeyStageSubjectUnitsPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TeachersKeyStageSubjectUnitsPathsQuery = { __typename?: 'query_root', mv_subjects: Array<{ __typename?: 'mv_subjects_2', subjectSlug?: string | null, keyStageSlug?: string | null }> };
-
-export type TeachersKeyStageSubjectsQueryVariables = Exact<{
-  keyStageSlug: Scalars['String'];
-}>;
-
-
-export type TeachersKeyStageSubjectsQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_subjects: Array<{ __typename?: 'mv_subjects_2', slug?: string | null, title?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonCount?: any | null, unitCount?: any | null, tierCount?: any | null, activeUnitCount?: any | null }> };
-
-export type TeachersLessonOverviewQueryVariables = Exact<{
-  lessonSlug: Scalars['String'];
-  keyStageSlug: Scalars['String'];
-  subjectSlug: Scalars['String'];
-  unitSlug: Scalars['String'];
-}>;
-
-
-export type TeachersLessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_3', slug?: string | null, title?: string | null, expired?: boolean | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: any | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions_2', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions_2', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
-
-export type TeachersLessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TeachersLessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_3', lessonSlug?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, unitSlug?: string | null }> };
-
 export type TierListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String'];
   subjectSlug: Scalars['String'];
@@ -45840,14 +45781,6 @@ export type UnitListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
 export type UnitListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null }> };
 
 
-export const GetLessonListingPathsDocument = gql`
-    query getLessonListingPaths {
-  mv_lessons: mv_lessons_4 {
-    programmeSlug: programme_slug
-    unitSlug: unit_slug
-  }
-}
-    `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!) {
   mv_downloads: mv_downloads_1(
@@ -45906,6 +45839,14 @@ export const LessonListingDocument = gql`
     hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
     expired
+  }
+}
+    `;
+export const LessonListingPathsDocument = gql`
+    query lessonListingPaths {
+  mv_lessons: mv_lessons_4 {
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
   }
 }
     `;
@@ -46062,259 +46003,6 @@ export const TeachersHomePageDocument = gql`
   }
 }
     `;
-export const TeachersKeyStageSubjectTiersDocument = gql`
-    query teachersKeyStageSubjectTiers($keyStageSlug: String!, $subjectSlug: String!) {
-  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
-    slug
-    title
-  }
-  mv_subjects: mv_subjects_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, slug: {_eq: $subjectSlug}}
-  ) {
-    slug
-    title
-  }
-  mv_tiers: mv_tiers_1(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
-  ) {
-    slug: tier_slug
-    title: tier_title
-    unitCount: unit_count
-    lessonCount: lesson_count
-  }
-}
-    `;
-export const TeachersKeyStageSubjectTiersPathsDocument = gql`
-    query teachersKeyStageSubjectTiersPaths {
-  mv_tiers: mv_tiers_1 {
-    subjectSlug: subject_slug
-    keyStageSlug: key_stage_slug
-  }
-}
-    `;
-export const TeachersKeyStageSubjectUnitLessonsDocument = gql`
-    query teachersKeyStageSubjectUnitLessons($keyStageSlug: String!, $subjectSlug: String!, $unitSlug: String!) {
-  mv_units: mv_units_2(
-    where: {slug: {_eq: $unitSlug}, subject_slug: {_eq: $subjectSlug}, key_stage_slug: {_eq: $keyStageSlug}}
-  ) {
-    unitSlug: slug
-    unitTitle: title
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-  }
-  mv_lessons: mv_lessons_3(
-    order_by: {position_in_unit: asc}
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}}
-  ) {
-    slug
-    title
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    unitSlug: unit_slug
-    themeTitle: theme_title
-    themeSlug: theme_slug
-    description
-    contentGuidance: content_guidance
-    equipmentRequired: equipment_required
-    supervisionLevel: supervision_level
-    videoCount: video_count
-    presentationCount: presentation_count
-    worksheetCount: worksheet_count
-    hasCopyrightMaterial: has_copyright_material
-    hasDownloadableResources: has_downloadable_resources
-    quizCount: quiz_count
-    expired
-  }
-}
-    `;
-export const TeachersKeyStageSubjectUnitsDocument = gql`
-    query teachersKeyStageSubjectUnits($keyStageSlug: String!, $subjectSlug: String!, $tierSlug: String, $learningThemeSlug: String) {
-  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
-    slug
-    title
-  }
-  mv_subjects: mv_subjects_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, slug: {_eq: $subjectSlug}}
-  ) {
-    slug
-    title
-  }
-  mv_tiers: mv_tiers_1(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}}
-  ) {
-    slug: tier_slug
-    title: tier_title
-    unitCount: unit_count
-    lessonCount: lesson_count
-  }
-  mv_units: mv_units_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, tier_slug: {_eq: $tierSlug}, theme_slug: {_eq: $learningThemeSlug}}
-    order_by: {year: asc, unit_study_order: asc}
-  ) {
-    slug
-    title
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    themeSlug: theme_slug
-    themeTitle: theme_title
-    lessonCount: lesson_count
-    quizCount: quiz_count
-    unitStudyOrder: unit_study_order
-    year
-    expired
-    expiredLessonCount: expired_lesson_count
-  }
-  mv_learning_themes: mv_learning_themes_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, tier_slug: {_eq: $tierSlug}}
-  ) {
-    label: title
-    tierSlug: tier_slug
-    tierName: tier_name
-    subjectTitle: subject_title
-    subjectSlug: subject_slug
-    slug
-    keyStageTitle: key_stage_title
-    keyStageSlug: key_stage_slug
-  }
-}
-    `;
-export const TeachersKeyStageSubjectUnitsPathsDocument = gql`
-    query teachersKeyStageSubjectUnitsPaths {
-  mv_subjects: mv_subjects_2 {
-    subjectSlug: slug
-    keyStageSlug: key_stage_slug
-  }
-}
-    `;
-export const TeachersKeyStageSubjectsDocument = gql`
-    query teachersKeyStageSubjects($keyStageSlug: String!) {
-  mv_key_stages(where: {slug: {_eq: $keyStageSlug}}) {
-    slug
-    title
-  }
-  mv_subjects: mv_subjects_2(
-    order_by: {slug: asc}
-    where: {key_stage_slug: {_eq: $keyStageSlug}}
-  ) {
-    slug
-    title
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    lessonCount: lesson_count
-    unitCount: unit_count
-    tierCount: tier_count
-    activeUnitCount: active_unit_count
-  }
-}
-    `;
-export const TeachersLessonOverviewDocument = gql`
-    query teachersLessonOverview($lessonSlug: String!, $keyStageSlug: String!, $subjectSlug: String!, $unitSlug: String!) {
-  mv_lessons: mv_lessons_3(
-    where: {slug: {_eq: $lessonSlug}, key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}}
-  ) {
-    slug
-    title
-    unitSlug: unit_slug
-    unitTitle: unit_title
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    contentGuidance: content_guidance
-    equipmentRequired: equipment_required
-    presentationUrl: presentation_url
-    supervisionLevel: supervision_level
-    worksheetUrl: worksheet_url
-    hasCopyrightMaterial: has_copyright_material
-    coreContent: core_content
-    videoMuxPlaybackId: video_mux_playback_id
-    videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
-    transcriptSentences: transcript_sentences
-    hasDownloadableResources: has_downloadable_resources
-    expired
-  }
-  exitQuizInfo: mv_quizzes(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    title
-    questionCount: question_count
-  }
-  exitQuiz: mv_questions_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
-    order_by: {order: asc}
-  ) {
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    lessonSlug: lesson_slug
-    lessonTitle: lesson_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    unitSlug: unit_slug
-    unitTitle: unit_title
-    active
-    answer
-    choices: choices_combined
-    feedbackCorrect: feedback_correct
-    feedbackIncorrect: feedback_incorrect
-    images
-    points
-    quizType: quiz_type
-    required
-    title
-    type
-    order
-    displayNumber: display_number
-  }
-  introQuizInfo: mv_quizzes(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
-  ) {
-    title
-    questionCount: question_count
-  }
-  introQuiz: mv_questions_2(
-    where: {key_stage_slug: {_eq: $keyStageSlug}, subject_slug: {_eq: $subjectSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
-    order_by: {order: asc}
-  ) {
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    lessonSlug: lesson_slug
-    lessonTitle: lesson_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    unitSlug: unit_slug
-    unitTitle: unit_title
-    active
-    answer
-    choices: choices_combined
-    feedbackCorrect: feedback_correct
-    feedbackIncorrect: feedback_incorrect
-    images
-    points
-    quizType: quiz_type
-    required
-    title
-    type
-    order
-    displayNumber: display_number
-  }
-}
-    `;
-export const TeachersLessonOverviewPathsDocument = gql`
-    query teachersLessonOverviewPaths {
-  mv_lessons: mv_lessons_3 {
-    lessonSlug: slug
-    keyStageSlug: key_stage_slug
-    subjectSlug: subject_slug
-    unitSlug: unit_slug
-  }
-}
-    `;
 export const TierListingDocument = gql`
     query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
   mv_programmes: mv_programmes_3(
@@ -46386,14 +46074,14 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getLessonListingPaths(variables?: GetLessonListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetLessonListingPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetLessonListingPathsQuery>(GetLessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLessonListingPaths', 'query');
-    },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
+    },
+    lessonListingPaths(variables?: LessonListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonListingPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingPathsQuery>(LessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListingPaths', 'query');
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
@@ -46409,30 +46097,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
-    },
-    teachersKeyStageSubjectTiers(variables: TeachersKeyStageSubjectTiersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectTiersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectTiersQuery>(TeachersKeyStageSubjectTiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectTiers', 'query');
-    },
-    teachersKeyStageSubjectTiersPaths(variables?: TeachersKeyStageSubjectTiersPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectTiersPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectTiersPathsQuery>(TeachersKeyStageSubjectTiersPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectTiersPaths', 'query');
-    },
-    teachersKeyStageSubjectUnitLessons(variables: TeachersKeyStageSubjectUnitLessonsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitLessonsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitLessonsQuery>(TeachersKeyStageSubjectUnitLessonsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnitLessons', 'query');
-    },
-    teachersKeyStageSubjectUnits(variables: TeachersKeyStageSubjectUnitsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsQuery>(TeachersKeyStageSubjectUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnits', 'query');
-    },
-    teachersKeyStageSubjectUnitsPaths(variables?: TeachersKeyStageSubjectUnitsPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectUnitsPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectUnitsPathsQuery>(TeachersKeyStageSubjectUnitsPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjectUnitsPaths', 'query');
-    },
-    teachersKeyStageSubjects(variables: TeachersKeyStageSubjectsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersKeyStageSubjectsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersKeyStageSubjectsQuery>(TeachersKeyStageSubjectsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersKeyStageSubjects', 'query');
-    },
-    teachersLessonOverview(variables: TeachersLessonOverviewQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersLessonOverviewQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersLessonOverviewQuery>(TeachersLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersLessonOverview', 'query');
-    },
-    teachersLessonOverviewPaths(variables?: TeachersLessonOverviewPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TeachersLessonOverviewPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TeachersLessonOverviewPathsQuery>(TeachersLessonOverviewPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersLessonOverviewPaths', 'query');
     },
     tierListing(variables: TierListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TierListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TierListingQuery>(TierListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tierListing', 'query');

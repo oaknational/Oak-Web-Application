@@ -1,4 +1,4 @@
-query getLessonListingPaths {
+query lessonListingPaths {
   mv_lessons: mv_lessons_4 {
     programmeSlug: programme_slug
     unitSlug: unit_slug

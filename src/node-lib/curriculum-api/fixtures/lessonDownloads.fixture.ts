@@ -1,8 +1,8 @@
-import { lessonDownloadsData } from "..";
+import { LessonDownloadsData } from "..";
 
 const lessonDownloadsFixtures = (
-  partial?: Partial<lessonDownloadsData>
-): lessonDownloadsData => {
+  partial?: Partial<LessonDownloadsData>
+): LessonDownloadsData => {
   return {
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",

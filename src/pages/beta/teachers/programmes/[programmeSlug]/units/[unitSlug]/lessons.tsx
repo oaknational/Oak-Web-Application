@@ -37,6 +37,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     lessons,
     subjectSlug,
     subjectTitle,
+    programmeSlug,
   } = curriculumData;
 
   useTrackPageView({ pageName: "Lesson Listing" });
@@ -75,7 +76,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
               {
                 oakLinkProps: {
                   page: "unit-index",
-                  programme: subjectSlug, // @todo change to programmeSlug
+                  programme: programmeSlug,
                 },
                 label: subjectTitle,
               },
@@ -84,7 +85,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "lesson-index",
                   slug: unitSlug,
-                  programmeSlug: subjectSlug, // @todo change to programmeSlug
+                  programmeSlug: programmeSlug,
                 },
 
                 label: unitTitle,
@@ -138,7 +139,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { units } = await curriculumApi.getLessonListingPaths();
+  const { units } = await curriculumApi.lessonListingPaths();
   const paths = units.map((params: URLParams) => ({ params: params }));
 
   const config: GetStaticPathsResult<URLParams> = {
@@ -160,7 +161,7 @@ export const getStaticProps: GetStaticProps<
     throw new Error("unexpected context.params");
   }
 
-  const curriculumData = await curriculumApi.getLessonListing({
+  const curriculumData = await curriculumApi.lessonListing({
     programmeSlug,
     unitSlug,
   });

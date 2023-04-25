@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
-import { lessonDownloadsData } from "../../../node-lib/curriculum-api";
+import { LessonDownloadsData } from "../../../node-lib/curriculum-api";
 import type {
   DownloadResourceType,
   DownloadFormProps,
@@ -16,7 +16,7 @@ import FieldError from "../../FormFields/FieldError";
 import DownloadCard from "./DownloadCard";
 
 type DownloadCardGroupProps = {
-  downloads?: lessonDownloadsData["downloads"];
+  downloads?: LessonDownloadsData["downloads"];
   control: Control<DownloadFormProps>;
   hasError?: boolean;
   errorMessage?: string;
