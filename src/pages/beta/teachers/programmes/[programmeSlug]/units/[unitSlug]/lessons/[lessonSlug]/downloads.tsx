@@ -23,7 +23,7 @@ import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoPr
 import useAnalytics from "../../../../../../../../../context/Analytics/useAnalytics";
 import Grid, { GridArea } from "../../../../../../../../../components/Grid";
 import curriculumApi, {
-  type lessonDownloadsData,
+  type LessonDownloadsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsUseCase from "../../../../../../../../../hooks/useAnalyticsUseCase";
@@ -51,7 +51,7 @@ import DetailsCompleted from "../../../../../../../../../components/DownloadComp
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 
 export type LessonDownloadsPageProps = {
-  curriculumData: lessonDownloadsData;
+  curriculumData: LessonDownloadsData;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
