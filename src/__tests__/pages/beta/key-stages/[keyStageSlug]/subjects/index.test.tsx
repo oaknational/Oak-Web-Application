@@ -10,6 +10,8 @@ import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 const props = {
   curriculumData: teachersKeyStageSubjectsFixture(),
 };

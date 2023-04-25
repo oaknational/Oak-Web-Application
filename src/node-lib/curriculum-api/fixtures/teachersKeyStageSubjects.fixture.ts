@@ -9,7 +9,6 @@ const teachersKeyStageSubjectsFixture = (
     subjects: [
       {
         slug: "latin",
-
         title: "Latin",
         keyStageSlug: "ks4",
         keyStageTitle: "Key Stage 4",
@@ -146,7 +145,6 @@ const teachersKeyStageSubjectsFixture = (
         lessonCount: 111,
         unitCount: 25,
         activeUnitCount: 18,
-
         tierCount: null,
       },
       {

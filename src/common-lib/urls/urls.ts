@@ -1,11 +1,16 @@
+import { match, compile, MatchFunction } from "path-to-regexp";
+
 import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import config from "../../config/browser";
 import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
+import OakError from "../../errors/OakError";
 
-import createQueryStringFromObject from "./createQueryStringFromObject";
+import createQueryStringFromObject, {
+  UrlQueryObject,
+} from "./createQueryStringFromObject";
 
 const reportError = errorReporter("urls.ts");
 
@@ -22,6 +27,8 @@ export type OakHref = ReturnType<OakPages[OakPageType]["resolveHref"]>;
 
 export type MaybeOakHref = OakHref | OrString;
 export type MaybeOakPageType = OakPageType | OrString;
+
+export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
 // /teachers/ or /pupils/
 type ViewType = "teachers";
@@ -130,6 +137,7 @@ type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
 type AboutUsLeadershipLinkProps = { page: "about-leadership" };
 type AboutUsPartnersLinkProps = { page: "about-partners" };
 type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
+
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type DevelopYourCurriculumLinkProps = { page: "develop-your-curriculum" };
@@ -150,6 +158,36 @@ type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
+type OakLinkProps =
+  | SubjectListingLinkProps
+  | LandingPageLinkProps
+  | LessonDownloadsLinkProps
+  | LessonOverviewLinkProps
+  | LessonIndexLinkProps
+  | UnitIndexLinkProps
+  | TierSelectionLinkProps
+  | BlogListingLinkProps
+  | BlogSingleLinkProps
+  | WebinarListingLinkProps
+  | WebinarSingleLinkProps
+  | HelpLinkProps
+  | LegalLinkProps
+  | SearchLinkProps
+  | AboutUsBoardLinkProps
+  | AboutUsWhoWeAreLinkProps
+  | AboutUsLeadershipLinkProps
+  | AboutUsPartnersLinkProps
+  | AboutUsWorkWithUsLinkProps
+  | CareersLinkProps
+  | ContactUsLinkProps
+  | DevelopYourCurriculumLinkProps
+  | HomeLinkProps
+  | LessonPlanningLinkProps
+  | SupportYourTeamLinkProps
+  | OurTeachersLinkProps
+  | OakCurriculumLinkProps
+  | ClassroomLinkProps
+  | TeacherHubLinkProps;
 
 type ExternalPageName =
   | "[external] Careers"
@@ -158,11 +196,7 @@ type ExternalPageName =
   | "[external] Our teachers"
   | "[external] Teacher hub"
   | "[external] Our curriculum";
-type OakPageConfig<ResolveHrefProps extends { page: string }> = {
-  analyticsPageName: PageNameValueType | ExternalPageName;
-  pageType: ResolveHrefProps["page"];
-  resolveHref: (props: ResolveHrefProps) => string;
-};
+
 type OakPages = {
   classroom: OakPageConfig<ClassroomLinkProps>;
   "teacher-hub": OakPageConfig<TeacherHubLinkProps>;
@@ -195,229 +229,316 @@ type OakPages = {
   "blog-single": OakPageConfig<BlogSingleLinkProps>;
 };
 
+type OakPageConfig<
+  ResolveHrefProps extends {
+    page: string;
+    query?: UrlQueryObject;
+  }
+> = {
+  analyticsPageName: AnalyticsPageName;
+  pageType: ResolveHrefProps["page"];
+  resolveHref: (props: ResolveHrefProps) => string;
+  matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
+};
+export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
+  props:
+    | {
+        configType: "internal";
+        pathPattern: string;
+        analyticsPageName: AnalyticsPageName;
+        pageType: ResolveHrefProps["page"];
+      }
+    | {
+        configType: "internal-custom-resolve";
+        resolveHref: (props: ResolveHrefProps) => string;
+        matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
+        analyticsPageName: AnalyticsPageName;
+        pageType: ResolveHrefProps["page"];
+      }
+    | {
+        configType: "external";
+        url: string;
+        analyticsPageName: AnalyticsPageName;
+        pageType: ResolveHrefProps["page"];
+      }
+): OakPageConfig<ResolveHrefProps> {
+  switch (props.configType) {
+    case "external":
+      return {
+        ...props,
+        matchHref: () => false,
+        resolveHref: () => props.url,
+      };
+    case "internal":
+      return {
+        ...props,
+        matchHref: match<Omit<ResolveHrefProps, "page">>(props.pathPattern, {
+          decode: decodeURIComponent,
+        }),
+        resolveHref: (resolveHrefProps: ResolveHrefProps) => {
+          const path = compile<Omit<ResolveHrefProps, "page">>(
+            props.pathPattern,
+            { encode: encodeURIComponent }
+          )(resolveHrefProps);
+          /**
+           * @todo consolidate these -> query
+           */
+          if ("search" in resolveHrefProps) {
+            return `${path}?${createQueryStringFromObject(
+              resolveHrefProps.search
+            )}`;
+          }
+          if ("query" in resolveHrefProps) {
+            return `${path}?${createQueryStringFromObject(
+              resolveHrefProps.query
+            )}`;
+          }
+          return path;
+        },
+      };
+    case "internal-custom-resolve":
+      return {
+        ...props,
+      };
+  }
+}
+
+const postMatchHref =
+  <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
+    postType: PostListingLinkProps["page"]
+  ) =>
+  (href: string) => {
+    const path = postType === "blog-index" ? "/blog" : "/webinars";
+    if (match(`${path}`)(href)) {
+      return match<PostListingLinkProps>(path)(href);
+    }
+    if (match(`${path}/categories/:category`)(href)) {
+      return match<PostListingLinkProps>(`${path}/categories/:category`)(href);
+    }
+    return false;
+  };
+const postResolveHref =
+  <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
+    postType: PostListingLinkProps["page"]
+  ) =>
+  (props: PostListingLinkProps) => {
+    let path = postType === "blog-index" ? "/blog" : "/webinars";
+    if (props.category) {
+      path = `${path}/categories/${props.category}`;
+    }
+    if (!props.search) {
+      return path;
+    }
+    const queryString = createQueryStringFromObject(props.search);
+
+    if (!queryString) {
+      return path;
+    }
+
+    return `${path}?${queryString}`;
+  };
+
 const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
-  "about-board": {
+  "about-board": createOakPageConfig({
+    pathPattern: "/about-us/board",
     analyticsPageName: "About Us: Board",
+    configType: "internal",
     pageType: "about-board",
-    resolveHref: () => "/about-us/board",
-  },
-  "about-who-we-are": {
+  }),
+  "about-who-we-are": createOakPageConfig({
+    pathPattern: "/about-us/who-we-are",
     analyticsPageName: "About Us: Who We Are",
+    configType: "internal",
     pageType: "about-who-we-are",
-    resolveHref: () => "/about-us/who-we-are",
-  },
-  "about-leadership": {
+  }),
+  "about-leadership": createOakPageConfig({
+    pathPattern: "/about-us/leadership",
     analyticsPageName: "About Us: Leadership",
+    configType: "internal",
     pageType: "about-leadership",
-    resolveHref: () => "/about-us/leadership",
-  },
-  "about-partners": {
+  }),
+  "about-partners": createOakPageConfig({
+    pathPattern: "/about-us/partners",
     analyticsPageName: "About Us: Partners",
+    configType: "internal",
     pageType: "about-partners",
-    resolveHref: () => "/about-us/partners",
-  },
-  "about-work-with-us": {
+  }),
+  "about-work-with-us": createOakPageConfig({
+    pathPattern: "/about-us/work-with-us",
     analyticsPageName: "About Us: Work With Us",
+    configType: "internal",
     pageType: "about-work-with-us",
-    resolveHref: () => "/about-us/work-with-us",
-  },
-  careers: {
+  }),
+  careers: createOakPageConfig({
+    url: "https://app.beapplied.com/org/1574/oak-national-academy",
     analyticsPageName: "[external] Careers",
+    configType: "external",
     pageType: "careers",
-    resolveHref: () =>
-      "https://app.beapplied.com/org/1574/oak-national-academy",
-  },
-  contact: {
+  }),
+  contact: createOakPageConfig({
+    pathPattern: "/contact-us",
     analyticsPageName: "Contact Us",
+    configType: "internal",
     pageType: "contact",
-    resolveHref: () => "/contact-us",
-  },
-  "develop-your-curriculum": {
+  }),
+  "develop-your-curriculum": createOakPageConfig({
+    pathPattern: "/develop-your-curriculum",
     analyticsPageName: "Develop Your Curriculum",
+    configType: "internal",
     pageType: "develop-your-curriculum",
-    resolveHref: () => "/develop-your-curriculum",
-  },
-  help: {
+  }),
+  help: createOakPageConfig({
+    url: "https://support.thenational.academy",
     analyticsPageName: "[external] Help",
+    configType: "external",
     pageType: "help",
-    resolveHref: () => "https://support.thenational.academy",
-  },
-  home: {
+  }),
+  home: createOakPageConfig({
     analyticsPageName: "Homepage",
+    configType: "internal-custom-resolve",
     pageType: "home",
+    matchHref: (href: string) => {
+      switch (href) {
+        case "/":
+          return {
+            path: "/",
+            index: 0,
+            params: { viewType: null },
+          };
+        case "/beta/teachers":
+          return {
+            path: "/beta/teachers",
+            index: 0,
+            params: { viewType: "teachers" },
+          };
+        default:
+          return false;
+      }
+    },
     resolveHref: (props) =>
       props.viewType === null ? "/" : `/beta/${props.viewType || "teachers"}`,
-  },
-  "lesson-planning": {
+  }),
+  "lesson-planning": createOakPageConfig({
+    pathPattern: "/lesson-planning",
     analyticsPageName: "Plan a Lesson",
+    configType: "internal",
     pageType: "lesson-planning",
-    resolveHref: () => "/lesson-planning",
-  },
-  legal: {
+  }),
+  legal: createOakPageConfig({
+    pathPattern: "/legal/:slug",
     analyticsPageName: "Legal",
+    configType: "internal",
     pageType: "legal",
-    resolveHref: (props) => `/legal/${props.slug}`,
-  },
-  classroom: {
+  }),
+  classroom: createOakPageConfig({
+    url: "https://classroom.thenational.academy",
     analyticsPageName: "[external] Classroom",
+    configType: "external",
     pageType: "classroom",
-    resolveHref: () => "https://classroom.thenational.academy",
-  },
-  "support-your-team": {
+  }),
+  "support-your-team": createOakPageConfig({
+    pathPattern: "/support-your-team",
     analyticsPageName: "Support Your Team",
+    configType: "internal",
     pageType: "support-your-team",
-    resolveHref: () => "/support-your-team",
-  },
-  "our-teachers": {
+  }),
+  "our-teachers": createOakPageConfig({
+    url: "https://classroom.thenational.academy/teachers",
     analyticsPageName: "[external] Our teachers",
+    configType: "external",
     pageType: "our-teachers",
-    resolveHref: () => "https://classroom.thenational.academy/teachers",
-  },
-  "teacher-hub": {
+  }),
+  "teacher-hub": createOakPageConfig({
+    url: "https://teachers.thenational.academy",
     analyticsPageName: "[external] Teacher hub",
+    configType: "external",
     pageType: "teacher-hub",
-    resolveHref: () => "https://teachers.thenational.academy",
-  },
-  "oak-curriculum": {
+  }),
+  "oak-curriculum": createOakPageConfig({
+    url: "https://teachers.thenational.academy/oaks-curricula",
     analyticsPageName: "[external] Our curriculum",
+    configType: "external",
     pageType: "oak-curriculum",
-    resolveHref: () => "https://teachers.thenational.academy/oaks-curricula",
-  },
-  "blog-index": {
+  }),
+  "blog-index": createOakPageConfig({
     analyticsPageName: "Blog Listing",
+    configType: "internal-custom-resolve",
     pageType: "blog-index",
-    resolveHref: (props) => {
-      let path = "/blog";
-      if (props.category) {
-        path = `${path}/categories/${props.category}`;
-      }
-      if (!props.search) {
-        return path;
-      }
-      const queryString = createQueryStringFromObject(props.search);
-
-      if (!queryString) {
-        return path;
-      }
-
-      return `${path}?${queryString}`;
-    },
-  },
-  "webinar-index": {
+    matchHref: postMatchHref("blog-index"),
+    resolveHref: postResolveHref("blog-index"),
+  }),
+  "webinar-index": createOakPageConfig({
     analyticsPageName: "Webinar Listing",
+    configType: "internal-custom-resolve",
     pageType: "webinar-index",
-    resolveHref: (props) => {
-      let path = "/webinars";
-      if (props.category) {
-        path = `${path}/categories/${props.category}`;
-      }
-      if (!props.search) {
-        return path;
-      }
-      const queryString = createQueryStringFromObject(props.search);
-
-      if (!queryString) {
-        return path;
-      }
-
-      return `${path}?${queryString}`;
-    },
-  },
-  "tier-selection": {
+    matchHref: postMatchHref("webinar-index"),
+    resolveHref: postResolveHref("webinar-index"),
+  }),
+  "tier-selection": createOakPageConfig({
+    pathPattern: "/beta/teachers/key-stages/:keyStage/subjects/:subject/units",
     analyticsPageName: "Programme Listing",
+    configType: "internal",
     pageType: "tier-selection",
-    resolveHref: (props) =>
-      `/beta/${props.viewType || "teachers"}/key-stages/${
-        props.keyStage
-      }/subjects/${props.subject}/units`,
-  },
-  "unit-index": {
+  }),
+  "unit-index": createOakPageConfig({
+    pathPattern: "/beta/teachers/key-stages/:keyStage/subjects/:subject/units",
     analyticsPageName: "Unit Listing",
+    configType: "internal",
     pageType: "unit-index",
-    resolveHref: (props) => {
-      const path = `/beta/${props.viewType || "teachers"}/key-stages/${
-        props.keyStage
-      }/subjects/${props.subject}/units`;
-      if (!props.search) {
-        return path;
-      }
-
-      const queryString = createQueryStringFromObject(props.search);
-
-      if (!queryString) {
-        return path;
-      }
-
-      return `${path}?${queryString}`;
-    },
-  },
-  "lesson-index": {
+  }),
+  "lesson-index": createOakPageConfig({
+    pathPattern:
+      "/beta/teachers/key-stages/:keyStage/subjects/:subject/units/:slug",
     analyticsPageName: "Lesson Listing",
+    configType: "internal",
     pageType: "lesson-index",
-    resolveHref: (props) =>
-      `/beta/${props.viewType || "teachers"}/key-stages/${
-        props.keyStage
-      }/subjects/${props.subject}/units/${props.slug}`,
-  },
-  "lesson-overview": {
+  }),
+  "lesson-overview": createOakPageConfig({
+    pathPattern:
+      "/beta/teachers/key-stages/:keyStage/subjects/:subject/units/:unit/lessons/:slug",
     analyticsPageName: "Lesson",
+    configType: "internal",
     pageType: "lesson-overview",
-    resolveHref: (props) =>
-      `/beta/${props.viewType || "teachers"}/key-stages/${
-        props.keyStage
-      }/subjects/${props.subject}/units/${props.unit}/lessons/${props.slug}`,
-  },
-  "lesson-downloads": {
+  }),
+  "lesson-downloads": createOakPageConfig({
+    pathPattern:
+      "/beta/teachers/key-stages/:keyStageSlug/subjects/:subjectSlug/units/:unitSlug/lessons/:slug/downloads",
     analyticsPageName: "Lesson Download",
+    configType: "internal",
     pageType: "lesson-downloads",
-    resolveHref: (props) => {
-      let path = `/beta/${props.viewType || "teachers"}/key-stages/${
-        props.keyStageSlug
-      }/subjects/${props.subjectSlug}/units/${props.unitSlug}/lessons/${
-        props.slug
-      }/downloads`;
-      if (props.query) {
-        const queryString = createQueryStringFromObject(props.query);
-        path += `?${queryString}`;
-      }
-      return path;
-    },
-  },
-  search: {
+  }),
+  search: createOakPageConfig({
+    pathPattern: "/beta/teachers/search",
     analyticsPageName: "Search",
+    configType: "internal",
     pageType: "search",
-    resolveHref: (props) => {
-      const path = `/beta/${props.viewType || "teachers"}/search`;
-      if (!props.query) {
-        return path;
-      }
-      const queryString = createQueryStringFromObject(props.query);
-
-      return `${path}?${queryString}`;
-    },
-  },
-  "blog-single": {
+  }),
+  "blog-single": createOakPageConfig({
+    pathPattern: "/blog/:slug",
     analyticsPageName: "Blog",
+    configType: "internal",
     pageType: "blog-single",
-    resolveHref: (props) => `/blog/${props.slug}`,
-  },
-  "webinar-single": {
+  }),
+  "webinar-single": createOakPageConfig({
+    pathPattern: "/webinars/:slug",
     analyticsPageName: "Webinar",
+    configType: "internal",
     pageType: "webinar-single",
-    resolveHref: (props) => `/webinars/${props.slug}`,
-  },
-  "landing-page": {
+  }),
+  "landing-page": createOakPageConfig({
+    pathPattern: "/lp/:slug",
     analyticsPageName: "Landing Page",
+    configType: "internal",
     pageType: "landing-page",
-    resolveHref: (props) => `/lp/${props.slug}`,
-  },
-  "subject-index": {
+  }),
+  "subject-index": createOakPageConfig({
+    pathPattern: "/beta/teachers/key-stages/:slug/subjects",
     analyticsPageName: "Subject Listing",
+    configType: "internal",
     pageType: "subject-index",
-    resolveHref: (props) => `/beta/teachers/key-stages/${props.slug}/subjects`,
-  },
+  }),
 };
 
 export type ResolveOakHrefProps = Exclude<
@@ -433,10 +554,46 @@ export type ResolveOakHrefProps = Exclude<
  * resolveOakHref({ page: "blog", slug: "how-oak-helps-everyone" })
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
-  return (
-    OAK_PAGES[props.page]
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      .resolveHref(props)
-  );
+  try {
+    return (
+      OAK_PAGES[props.page]
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        .resolveHref(props)
+    );
+  } catch (error) {
+    const err = new OakError({
+      code: "urls/failed-to-resolve",
+      originalError: error,
+      meta: props,
+    });
+    reportError(err);
+    throw err;
+  }
+};
+
+type PageViewProps = {
+  pageName: AnalyticsPageName;
+  analyticsUseCase: "teachers" | "pupils" | null;
+};
+export const getPageViewProps = (href: string): PageViewProps | null => {
+  return Object.values(OAK_PAGES).reduce((acc, config) => {
+    const [path] = href.split("?");
+    if (!path) {
+      return acc;
+    }
+    const matchResult = config.matchHref(path);
+    if (!matchResult) {
+      return acc;
+    }
+    const params = matchResult.params;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const viewType = "viewType" in params ? params.viewType : null;
+
+    return {
+      pageName: config.analyticsPageName,
+      analyticsUseCase: viewType,
+    };
+  }, null as PageViewProps | null);
 };

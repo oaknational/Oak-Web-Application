@@ -36,7 +36,9 @@ export type EventFn = (
   eventName: EventName,
   properties: EventProperties
 ) => void;
-export type PageProperties = { path: string };
+export type PageProperties = {
+  path: string;
+};
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
@@ -158,10 +160,16 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const page = useStableCallback(
     (opts: { services: AnalyticsServiceWithConfig[] }) => {
       const { services } = opts;
-      const props = { path: getPathAndQuery() };
+      const path = getPathAndQuery();
+
       services.forEach((service) => {
-        service.page(props);
+        service.page({ path });
       });
+      // const pageViewProps = getPageViewProps(path);
+      // track.pageView({
+      //   linkUrl: router.asPath,
+      //   ...pageViewProps,
+      // });
     }
   );
 
