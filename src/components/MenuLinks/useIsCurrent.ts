@@ -11,10 +11,7 @@ const isSubPath = ({
     return currentPath === "/";
   }
 
-  if (
-    `${currentPath}/`.startsWith(`/beta/teachers/`) &&
-    currentPath.length > 15
-  ) {
+  if (currentPath.startsWith(`/beta/teachers/`)) {
     return false;
   }
 
