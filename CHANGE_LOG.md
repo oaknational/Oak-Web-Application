@@ -1,3 +1,10 @@
+# [1.175.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.174.0...v1.175.0) (2023-04-25)
+
+
+### Features
+
+* exclude new science from elastic search hits ([aac0f07](https://github.com/oaknational/Oak-Web-Application/commit/aac0f07ab154dd97656159122fff55a72c4cd12a))
+
 # [1.174.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.173.1...v1.174.0) (2023-04-21)
 
 
