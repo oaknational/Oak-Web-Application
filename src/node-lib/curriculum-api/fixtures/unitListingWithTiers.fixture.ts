@@ -7,6 +7,7 @@ const unitListingWithTiers = (
 ): UnitListingData => {
   return {
     ...unitListingFixture(),
+    tierSlug: "higher",
     tiers: [
       {
         tierTitle: "Foundation",

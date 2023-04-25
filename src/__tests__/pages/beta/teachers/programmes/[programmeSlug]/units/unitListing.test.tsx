@@ -25,7 +25,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage curriculumData={unitListingFixture()} />
     );
 
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Art");
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
   });
 
   it("renders nav for tiers for programme that included tiers", () => {
@@ -50,9 +50,9 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key stage 4 Computing tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "We have resources for tiers: Foundation, Core, Higher",
-        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key stage 4 Computing tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We have resources for tiers: Foundation, Core, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
