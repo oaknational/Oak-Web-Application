@@ -86,9 +86,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                   {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
-              <Box $ph={[16, 0]}>
-                <HomeNotification />
-              </Box>
+              {props.pageData.notification.enabled && (
+                <Box $ph={[16, 0]}>
+                  <HomeNotification
+                    notification={props.pageData.notification}
+                  />
+                </Box>
+              )}
             </Flex>
             <Grid $cg={[8, 16]}>
               <GridArea $colSpan={[6, 6]}>
