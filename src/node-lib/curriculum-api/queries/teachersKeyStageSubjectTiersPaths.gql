@@ -1,6 +1,0 @@
-query teachersKeyStageSubjectTiersPaths {
-  mv_tiers: mv_tiers_1 {
-    subjectSlug: subject_slug
-    keyStageSlug: key_stage_slug
-  }
-}

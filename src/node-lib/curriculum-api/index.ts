@@ -120,114 +120,6 @@ const teachersHomePageData = z.object({
     })
   ),
 });
-const teachersKeyStageSubjectsData = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjects: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      unitCount: z.number().nullable(),
-      activeUnitCount: z.number().nullable(),
-      lessonCount: z.number().nullable(),
-      tierCount: z.number().nullable(),
-    })
-  ),
-});
-
-const teachersKeyStageSubjectTiersData = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tiers: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      unitCount: z.number().nullable(),
-      lessonCount: z.number().nullable(),
-    })
-  ),
-});
-const teachersKeyStageSubjectTiersPathsSchema = z.object({
-  tiers: z.array(
-    z.object({
-      subjectSlug: z.string(),
-      keyStageSlug: z.string(),
-    })
-  ),
-});
-
-const teachersKeyStageSubjectUnitsData = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  tiers: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      unitCount: z.number().nullable(),
-      lessonCount: z.number().nullable(),
-    })
-  ),
-  units: unitsData,
-  learningThemes: z.array(
-    z
-      .object({
-        label: z.string(),
-        tierSlug: z.string().nullable(),
-        tierName: z.string().nullable(),
-        subjectTitle: z.string(),
-        subjectSlug: z.string(),
-        slug: z.string(),
-        keyStageTitle: z.string(),
-        keyStageSlug: z.string(),
-      })
-      .nullable()
-      .optional()
-  ),
-});
-const teachersKeyStageSubjectUnitsPathsSchema = z.object({
-  subjects: z.array(
-    z.object({
-      subjectSlug: z.string(),
-      keyStageSlug: z.string(),
-    })
-  ),
-});
-const teachersKeyStageSubjectUnitsLessonsData = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-  lessons: z.array(
-    z.object({
-      expired: z.boolean().nullable(),
-      slug: z.string(),
-      title: z.string(),
-      description: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      unitSlug: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable(),
-      videoCount: z.number().nullable(),
-      presentationCount: z.number().nullable(),
-      worksheetCount: z.number().nullable(),
-      hasCopyrightMaterial: z.boolean(),
-    })
-  ),
-});
 
 const lessonListingPaths = z.object({
   units: z.array(
@@ -270,7 +162,7 @@ const lessonListing = z.object({
   ),
 });
 
-const teachersKeyStageSubjectUnitsLessonsQuizData = z.array(
+const lessonOverviewQuizData = z.array(
   z.object({
     keyStageSlug: z.string(),
     keyStageTitle: z.string(),
@@ -316,43 +208,6 @@ const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z
   })
   .nullable();
 
-const teachersLessonOverviewPaths = z.object({
-  lessons: z.array(
-    z.object({
-      keyStageSlug: z.string(),
-      subjectSlug: z.string(),
-      unitSlug: z.string(),
-      lessonSlug: z.string(),
-    })
-  ),
-});
-const teachersLessonOverviewData = z.object({
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  unitTitle: z.string(),
-  unitSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  coreContent: z.array(z.string().nullable()),
-  contentGuidance: z.string().nullable(),
-  equipmentRequired: z.string().nullable(),
-  presentationUrl: z.string().nullable(),
-  supervisionLevel: z.string().nullable(),
-  worksheetUrl: z.string().nullable(),
-  hasCopyrightMaterial: z.boolean(),
-  videoMuxPlaybackId: z.string().nullable(),
-  videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.array(z.string()).nullable(),
-  hasDownloadableResources: z.boolean().nullable(),
-  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
-  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
-  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
-  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
-  expired: z.boolean(),
-});
-
 const lessonOverviewPaths = z.object({
   lessons: z.array(
     z.object({
@@ -384,8 +239,8 @@ const lessonOverviewData = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.array(z.string()).nullable(),
   hasDownloadableResources: z.boolean().nullable(),
-  introQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
-  exitQuiz: teachersKeyStageSubjectUnitsLessonsQuizData,
+  introQuiz: lessonOverviewQuizData,
+  exitQuiz: lessonOverviewQuizData,
   introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
   exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
   expired: z.boolean(),
@@ -473,32 +328,10 @@ const tierListingData = z.object({
 
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
-export type TeachersKeyStageSubjectsData = z.infer<
-  typeof teachersKeyStageSubjectsData
->;
-
-export type TeachersKeyStageSubjectTiersData = z.infer<
-  typeof teachersKeyStageSubjectTiersData
->;
-
-export type TeachersKeyStageSubjectUnitsData = z.infer<
-  typeof teachersKeyStageSubjectUnitsData
->;
-
-export type TeachersKeyStageSubjectUnitsLessonsData = z.infer<
-  typeof teachersKeyStageSubjectUnitsLessonsData
->;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
 export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
-export type TeachersLessonOverviewPaths = z.infer<
-  typeof teachersLessonOverviewPaths
->;
-export type TeachersLessonOverviewData = z.infer<
-  typeof teachersLessonOverviewData
->;
-
 export type lessonDownloadsData = z.infer<typeof lessonDownloadsData>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
@@ -655,85 +488,6 @@ const curriculumApi = {
       exitQuiz,
     });
   },
-  teachersKeyStageSubjects: async (
-    ...args: Parameters<typeof sdk.teachersKeyStageSubjects>
-  ) => {
-    const res = await sdk.teachersKeyStageSubjects(...args);
-    const { keyStages = [], subjects } = transformMVCase(res);
-
-    const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
-    //{
-    // query: "teachersKeyStageSubjects",
-    // args,
-    // }
-
-    return teachersKeyStageSubjectsData.parse({
-      keyStageSlug: keyStage.slug,
-      keyStageTitle: keyStage.title,
-      subjects,
-    });
-  },
-  teachersKeyStageSubjectTiers: async (
-    ...args: Parameters<typeof sdk.teachersKeyStageSubjectTiers>
-  ) => {
-    const res = await sdk.teachersKeyStageSubjectTiers(...args);
-    const { tiers, subjects = [], keyStages = [] } = transformMVCase(res);
-
-    const getFirstResult = getFirstResultOrWarnOrFail();
-    const keyStage = getFirstResult({ results: keyStages });
-    const subject = getFirstResult({ results: subjects });
-
-    return teachersKeyStageSubjectTiersData.parse({
-      keyStageSlug: keyStage.slug,
-      keyStageTitle: keyStage.title,
-      subjectSlug: subject.slug,
-      subjectTitle: subject.title,
-      tiers,
-    });
-  },
-  teachersKeyStageSubjectTiersPaths: async () => {
-    const res = await sdk.teachersKeyStageSubjectTiersPaths();
-    const { tiers } = transformMVCase(res);
-
-    return teachersKeyStageSubjectTiersPathsSchema.parse({
-      tiers,
-    });
-  },
-  teachersKeyStageSubjectUnits: async (
-    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnits>
-  ) => {
-    const res = await sdk.teachersKeyStageSubjectUnits(...args);
-    const {
-      keyStages = [],
-      subjects = [],
-      tiers = [],
-      units,
-      learningThemes,
-    } = transformMVCase(res);
-    const getFirstResult = getFirstResultOrWarnOrFail();
-
-    const keyStage = getFirstResult({ results: keyStages });
-    const subject = getFirstResult({ results: subjects });
-    const tier = args[0].tierSlug ? getFirstResult({ results: tiers }) : null;
-
-    return teachersKeyStageSubjectUnitsData.parse({
-      keyStageSlug: keyStage.slug,
-      keyStageTitle: keyStage.title,
-      subjectSlug: subject.slug,
-      subjectTitle: subject.title,
-      tierSlug: tier?.slug || null,
-      tiers,
-      units,
-      learningThemes,
-    });
-  },
-  teachersKeyStageSubjectUnitsPaths: async () => {
-    const res = await sdk.teachersKeyStageSubjectUnitsPaths();
-    const { subjects } = transformMVCase(res);
-    return teachersKeyStageSubjectUnitsPathsSchema.parse({
-      subjects,
-    });
-  },
   getLessonListingPaths: async () => {
     const res = await sdk.getLessonListingPaths();
     const { units = [] } = transformMVCase(res);
@@ -760,58 +514,6 @@ const curriculumApi = {
       presentationCount: null, // @todo
       worksheetCount: null, // @todo
       lessons,
-    });
-  },
-  teachersKeyStageSubjectUnitLessons: async (
-    ...args: Parameters<typeof sdk.teachersKeyStageSubjectUnitLessons>
-  ) => {
-    const res = await sdk.teachersKeyStageSubjectUnitLessons(...args);
-    const { units = [], lessons = [] } = transformMVCase(res);
-
-    const unit = getFirstResultOrWarnOrFail()({
-      results: units,
-    });
-
-    return teachersKeyStageSubjectUnitsLessonsData.parse({
-      ...unit,
-      themeSlug: "theme slug example",
-      themeTitle: "theme-slug-example",
-      tierSlug: null,
-      quizCount: null, // @todo
-      videoCount: null, // @todo
-      presentationCount: null, // @todo
-      worksheetCount: null, // @todo
-      lessons,
-    });
-  },
-  teachersLessonOverviewPaths: async () => {
-    const res = await sdk.teachersLessonOverviewPaths();
-    return teachersLessonOverviewPaths.parse(transformMVCase(res));
-  },
-  teachersLessonOverview: async (
-    ...args: Parameters<typeof sdk.teachersLessonOverview>
-  ) => {
-    const res = await sdk.teachersLessonOverview(...args);
-    const { lessons = [] } = transformMVCase(res);
-    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
-
-    const lesson = getFirstResultOrWarnOrFail()({
-      results: lessons,
-    });
-
-    const exitQuizInfoSingle = getFirstResultOrNull()({
-      results: exitQuizInfo,
-    });
-
-    const introQuizInfoSingle = getFirstResultOrNull()({
-      results: introQuizInfo,
-    });
-    return teachersLessonOverviewData.parse({
-      ...lesson,
-      introQuizInfo: introQuizInfoSingle,
-      exitQuizInfo: exitQuizInfoSingle,
-      introQuiz,
-      exitQuiz,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {

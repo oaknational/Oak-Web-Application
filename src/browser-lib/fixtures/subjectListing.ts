@@ -1,5 +1,5 @@
-import { TeachersKeyStageSubjectsData } from "../../node-lib/curriculum-api";
-import teachersKeyStageSubjectsFixture from "../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjects.fixture";
+import { SubjectListingData } from "../../node-lib/curriculum-api";
+import subjectListingFixture from "../../node-lib/curriculum-api/fixtures/subjectListing.fixture";
 
-export const subjects: TeachersKeyStageSubjectsData["subjects"] =
-  teachersKeyStageSubjectsFixture().subjects;
+export const subjects: SubjectListingData["programmesAvailable"] =
+  subjectListingFixture().programmesAvailable;

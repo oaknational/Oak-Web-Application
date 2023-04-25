@@ -7,12 +7,12 @@ import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
-import { TeachersKeyStageSubjectUnitsData } from "../../../../node-lib/curriculum-api";
+import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
 export type UnitListItemProps = Omit<
-  TeachersKeyStageSubjectUnitsData["units"][number],
+  UnitListingData["units"][number],
   "year" | "unitStudyOrder"
 > & {
   hideTopHeading?: boolean;
