@@ -15,7 +15,7 @@ it("component renders with the title", () => {
       title={"Video"}
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -35,7 +35,7 @@ it("component renders with the title only", () => {
       title={"Video"}
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -56,7 +56,7 @@ it("renders top right icons", async () => {
       downloadable={true}
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -104,7 +104,7 @@ describe("comonents/ExpandingContainer", () => {
         title={"Video"}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -124,7 +124,7 @@ describe("comonents/ExpandingContainer", () => {
         title={"Video"}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -145,7 +145,7 @@ describe("comonents/ExpandingContainer", () => {
         downloadable={true}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Starter quiz"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -179,7 +179,7 @@ describe("comonents/ExpandingContainer", () => {
         downloadable={true}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
@@ -204,7 +204,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         title={"Worksheet"}
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -228,7 +228,7 @@ describe("comonents/ExpandingContainer", () => {
         downloadable={true}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -253,7 +253,7 @@ describe("comonents/ExpandingContainer", () => {
         downloadable={true}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>

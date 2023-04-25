@@ -30,7 +30,7 @@ type ExpandingContainerProps = CardProps & {
   toggleClosed?: boolean;
   programmeSlug: string;
   unitSlug: string;
-  slug: string;
+  lessonSlug: string;
   onDownloadButtonClick?: () => void;
 };
 

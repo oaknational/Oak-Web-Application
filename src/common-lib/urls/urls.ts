@@ -114,7 +114,7 @@ type LessonDownloadsLinkProps = {
   viewType?: ViewType;
   programmeSlug: string;
   unitSlug: string;
-  slug: string;
+  lessonSlug: string;
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -497,7 +497,7 @@ const OAK_PAGES: {
   }),
   "lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:slug/downloads",
+      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
@@ -586,6 +586,7 @@ export const getPageViewProps = (href: string): PageViewProps | null => {
     if (!matchResult) {
       return acc;
     }
+
     const params = matchResult.params;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

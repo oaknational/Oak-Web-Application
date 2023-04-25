@@ -94,7 +94,9 @@ describe("pages/beta/teachers/lessons", () => {
         props: LessonOverviewPageProps;
       };
 
-      expect(propsResult.props.curriculumData.slug).toEqual("macbeth-lesson-1");
+      expect(propsResult.props.curriculumData.lessonSlug).toEqual(
+        "macbeth-lesson-1"
+      );
     });
     it("should throw error", async () => {
       await expect(

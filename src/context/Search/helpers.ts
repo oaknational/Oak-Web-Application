@@ -72,6 +72,8 @@ export function getLessonObject(props: {
     programmeSlug: getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
+    lessonTitle: highlightedHit.title?.toString(),
+    lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
     themeTitle: highlightedHit.theme_title?.toString() || null,
     subjectSlug: highlightedHit.subject_slug?.toString(),

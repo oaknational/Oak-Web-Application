@@ -23,7 +23,11 @@ interface CommonProps {
 }
 
 type ListItemHeadingProps = CommonProps &
-  (LessonListItemProps | UnitListItemProps) & { index: number | null };
+  (LessonListItemProps | UnitListItemProps) & {
+    index: number | null;
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+  };
 
 const ListTitle: FC<{ children?: React.ReactNode; expired?: boolean }> = ({
   children,
@@ -105,7 +109,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         )}
       </Flex>
 
-    <ListItemIconMobile
+      <ListItemIconMobile
         background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
         subjectSlug={subjectSlug}
       />

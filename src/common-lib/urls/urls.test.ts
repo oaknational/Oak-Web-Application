@@ -143,7 +143,7 @@ describe("urls.ts", () => {
           viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
-          slug: "semi-circles-48",
+          lessonSlug: "semi-circles-48",
         })
       ).toBe(
         "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads"
