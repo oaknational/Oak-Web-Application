@@ -7,8 +7,8 @@ const tierListingFixture = (
     programmes: [
       {
         programmeSlug: "maths-secondary-ks4-core",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
+        keyStageSlug: "ks3",
+        keyStageTitle: "Key stage 3",
         slug: "maths",
         title: "Maths",
         tierSlug: "core",
@@ -18,8 +18,8 @@ const tierListingFixture = (
       },
       {
         programmeSlug: "maths-secondary-ks4-foundation",
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
+        keyStageSlug: "ks1",
+        keyStageTitle: "Key stage 1",
         slug: "maths",
         title: "Maths",
         tierSlug: "foundation",

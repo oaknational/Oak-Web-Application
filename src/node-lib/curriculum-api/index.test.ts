@@ -5,6 +5,8 @@ import tierListingFixture from "./fixtures/tierListing.fixture";
 import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
+import lessonListingFixture from "./fixtures/lessonListing.fixture";
+import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
 
 import curriculumApi from ".";
 
@@ -35,6 +37,24 @@ const unitListing = jest.fn(() => ({
   ],
   mv_tiers: unitListingFixture().tiers,
   mv_units: unitListingFixture().units,
+}));
+const lessonListingPaths = jest.fn(() => ({
+  mv_lessons: lessonListingPathsFixture().units,
+}));
+const lessonListing = jest.fn(() => ({
+  mv_units: [
+    {
+      programmeSlug: lessonListingFixture().programmeSlug,
+      keyStageSlug: lessonListingFixture().keyStageSlug,
+      keyStageTitle: lessonListingFixture().keyStageTitle,
+      subjectSlug: lessonListingFixture().subjectSlug,
+      subjectTitle: lessonListingFixture().subjectTitle,
+      tierSlug: lessonListingFixture().tierSlug,
+      unitSlug: lessonListingFixture().unitSlug,
+      unitTitle: lessonListingFixture().unitTitle,
+    },
+  ],
+  mv_lessons: lessonListingFixture().lessons,
 }));
 const lessonOverview = jest.fn(() => ({
   mv_lessons: [
@@ -84,6 +104,8 @@ jest.mock("./generated/sdk", () => ({
     unitListing: (...args: []) => unitListing(...args),
     lessonOverviewPaths: (...args: []) => lessonOverviewPaths(...args),
     lessonOverview: (...args: []) => lessonOverview(...args),
+    lessonListingPaths: (...args: []) => lessonListingPaths(...args),
+    lessonListing: (...args: []) => lessonListing(...args),
     tierListing: (...args: []) => tierListing(...args),
   }),
 }));
@@ -114,6 +136,20 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
   });
+  test("lessonListingPaths", async () => {
+    await curriculumApi.lessonListingPaths();
+    expect(lessonListingPaths).toHaveBeenCalled();
+  });
+  test("lessonListing", async () => {
+    await curriculumApi.lessonListing({
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+    expect(lessonListing).toHaveBeenCalledWith({
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+  });
   test("lessonOverviewPaths", async () => {
     await curriculumApi.lessonOverviewPaths();
     expect(lessonOverviewPaths).toHaveBeenCalled();
@@ -130,7 +166,6 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
   });
-
   test("tierListing", async () => {
     await curriculumApi.tierListing({
       keyStageSlug: "ks4",

@@ -37,6 +37,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     lessons,
     subjectSlug,
     subjectTitle,
+    programmeSlug,
   } = curriculumData;
 
   useTrackPageView({ pageName: "Lesson Listing" });
@@ -75,7 +76,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
               {
                 oakLinkProps: {
                   page: "unit-index",
-                  programme: subjectSlug, // @todo change to programmeSlug
+                  programme: programmeSlug,
                 },
                 label: subjectTitle,
               },
@@ -84,7 +85,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "lesson-index",
                   slug: unitSlug,
-                  programmeSlug: subjectSlug, // @todo change to programmeSlug
+                  programmeSlug: programmeSlug,
                 },
 
                 label: unitTitle,

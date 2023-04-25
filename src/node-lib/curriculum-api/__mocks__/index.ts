@@ -7,7 +7,7 @@ import unitListingFixture from "../fixtures/unitListing.fixture";
 import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
 import tierListingFixture from "../fixtures/tierListing.fixture";
-import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixtures";
+import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixture";
 import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
 
