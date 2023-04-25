@@ -51,7 +51,7 @@ const getProgrammeSlug = (
       elasticKeyStageSlug: hit._source.key_stage_slug,
       allKeyStages,
     })?.slug,
-    hit._source.tier,
+    hit._source.tier?.toLowerCase(),
   ]
     .filter(truthy)
     .join("-");
