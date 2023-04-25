@@ -151,7 +151,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(getByRole("link", { name: "lesson title" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programmeSlug/units/topic-slug/lessons/lesson-slug"
+      "/beta/teachers/programmes/subject-slug-ks1/units/topic-slug/lessons/lesson-slug"
     );
   });
   test("search term is set on enter", async () => {

@@ -118,6 +118,8 @@ describe("useSearch()", () => {
           topic_slug: "dipping-into-shakespeare-da5e",
           topic_title: "Dipping into Shakespeare",
           type: "lesson",
+          tier: null,
+          phase: "primary",
         },
         highlight: {
           lesson_description:
@@ -132,7 +134,7 @@ describe("useSearch()", () => {
       useSearch({ allKeyStages })
     );
     await waitFor(() => {
-      expect(result.current.results.length).toBe(19);
+      expect(result.current.results.length).toBe(20);
     });
   });
   test("status should be 'fail' if fetch fails", async () => {
