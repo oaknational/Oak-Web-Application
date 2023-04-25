@@ -70,8 +70,6 @@ export function getLessonObject(props: {
   });
   return {
     programmeSlug: getProgrammeSlug(hit, allKeyStages),
-    title: highlightedHit.title?.toString(),
-    slug: highlightedHit.slug?.toString(),
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
