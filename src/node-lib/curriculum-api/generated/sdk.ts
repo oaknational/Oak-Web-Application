@@ -45708,11 +45708,6 @@ export type Years_Variance_Order_By = {
   phase_id?: InputMaybe<Order_By>;
 };
 
-export type GetLessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetLessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_4', programmeSlug?: string | null, unitSlug?: string | null }> };
-
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String'];
   programmeSlug: Scalars['String'];
@@ -45728,6 +45723,11 @@ export type LessonListingQueryVariables = Exact<{
 
 
 export type LessonListingQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units_2', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_4', description?: string | null, expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
+
+export type LessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_4', programmeSlug?: string | null, unitSlug?: string | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String'];
@@ -45781,14 +45781,6 @@ export type UnitListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
 export type UnitListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_3', programmeSlug?: string | null }> };
 
 
-export const GetLessonListingPathsDocument = gql`
-    query getLessonListingPaths {
-  mv_lessons: mv_lessons_4 {
-    programmeSlug: programme_slug
-    unitSlug: unit_slug
-  }
-}
-    `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!) {
   mv_downloads: mv_downloads_1(
@@ -45847,6 +45839,14 @@ export const LessonListingDocument = gql`
     hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
     expired
+  }
+}
+    `;
+export const LessonListingPathsDocument = gql`
+    query lessonListingPaths {
+  mv_lessons: mv_lessons_4 {
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
   }
 }
     `;
@@ -46074,14 +46074,14 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getLessonListingPaths(variables?: GetLessonListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetLessonListingPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetLessonListingPathsQuery>(GetLessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLessonListingPaths', 'query');
-    },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
+    },
+    lessonListingPaths(variables?: LessonListingPathsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonListingPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingPathsQuery>(LessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListingPaths', 'query');
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');

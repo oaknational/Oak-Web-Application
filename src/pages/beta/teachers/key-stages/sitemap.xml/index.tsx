@@ -137,7 +137,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const lessonSlugs: LessonSlug[] = [];
   for await (const unitSlugItem of unitSlugs) {
     const { programmeSlug, unitSlug } = unitSlugItem;
-    const lessonResults = await curriculumApi.getLessonListing({
+    const lessonResults = await curriculumApi.lessonListing({
       programmeSlug,
       unitSlug,
     });

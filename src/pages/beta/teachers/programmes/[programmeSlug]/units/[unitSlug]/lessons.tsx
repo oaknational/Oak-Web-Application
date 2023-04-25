@@ -138,7 +138,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { units } = await curriculumApi.getLessonListingPaths();
+  const { units } = await curriculumApi.lessonListingPaths();
   const paths = units.map((params: URLParams) => ({ params: params }));
 
   const config: GetStaticPathsResult<URLParams> = {
@@ -160,7 +160,7 @@ export const getStaticProps: GetStaticProps<
     throw new Error("unexpected context.params");
   }
 
-  const curriculumData = await curriculumApi.getLessonListing({
+  const curriculumData = await curriculumApi.lessonListing({
     programmeSlug,
     unitSlug,
   });

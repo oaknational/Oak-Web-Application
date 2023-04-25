@@ -201,7 +201,7 @@ const lessonOverviewQuizData = z.array(
   })
 );
 
-const teachersKeyStageSubjectUnitsLessonsQuizInfoData = z
+const lessonQuizInfoData = z
   .object({
     title: z.string(),
     questionCount: z.number(),
@@ -241,8 +241,8 @@ const lessonOverviewData = z.object({
   hasDownloadableResources: z.boolean().nullable(),
   introQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
-  introQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
-  exitQuizInfo: teachersKeyStageSubjectUnitsLessonsQuizInfoData,
+  introQuizInfo: lessonQuizInfoData,
+  exitQuizInfo: lessonQuizInfoData,
   expired: z.boolean(),
 });
 
@@ -488,15 +488,15 @@ const curriculumApi = {
       exitQuiz,
     });
   },
-  getLessonListingPaths: async () => {
-    const res = await sdk.getLessonListingPaths();
+  lessonListingPaths: async () => {
+    const res = await sdk.lessonListingPaths();
     const { units = [] } = transformMVCase(res);
     return lessonListingPaths.parse({
       units,
     });
   },
 
-  getLessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
+  lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
 
