@@ -27,7 +27,8 @@ import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink
 import Grid from "../../../../../../../../components/Grid";
 import curriculumApi, {
   LessonOverviewData,
- TierListingData } from "../../../../../../../../node-lib/curriculum-api";
+  TierListingData,
+} from "../../../../../../../../node-lib/curriculum-api";
 import LessonHelper from "../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";

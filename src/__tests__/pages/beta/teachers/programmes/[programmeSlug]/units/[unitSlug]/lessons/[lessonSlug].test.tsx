@@ -5,6 +5,7 @@ import renderWithSeo from "../../../../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../../../__helpers__/renderWithProviders";
 import lessonOverviewFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import tierListingFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
@@ -17,6 +18,7 @@ const props = {
     videoWithSignLanguageMuxPlaybackId: "pid-002",
     hasDownloadableResources: true,
   }),
+  tierData: tierListingFixture(),
 };
 
 const render = renderWithProviders();
@@ -62,6 +64,41 @@ describe("pages/beta/teachers/lessons", () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
+  });
+  it("breadcrumb url for subjects with more than one programme go to programme index page ", async () => {
+    const { getByText } = render(<LessonOverviewPage {...props} />);
+    const subjectBreadcrumb = getByText("Maths");
+    expect(subjectBreadcrumb).toHaveAttribute(
+      "href",
+      "/beta/teachers/key-stages/ks4/subjects/maths/programmes"
+    );
+  });
+  it("breadcrumb url for subjects with one programme go to unit index page ", async () => {
+    const { getByText } = render(
+      <LessonOverviewPage
+        curriculumData={props.curriculumData}
+        tierData={{
+          programmes: [
+            {
+              slug: "computing",
+              title: "Computing",
+              keyStageSlug: "ks4",
+              keyStageTitle: "Key stage 4",
+              activeLessonCount: 112,
+              totalUnitCount: 15,
+              programmeSlug: "computing-secondary-ks4",
+              tierSlug: null,
+              tierTitle: null,
+            },
+          ],
+        }}
+      />
+    );
+    const subjectBreadcrumb = getByText("Maths");
+    expect(subjectBreadcrumb).toHaveAttribute(
+      "href",
+      "/beta/teachers/programmes/maths-higher-ks4/units"
+    );
   });
 
   describe("SEO", () => {
