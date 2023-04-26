@@ -60,7 +60,7 @@ export const lessonBreadcrumbArray = (
   subjectSlug: string,
   unitSlug: string,
   unitTitle: string,
-  programmeCount: number
+  programmeCount = 1
 ): Breadcrumb[] => {
   const subjectBreadcrumb: Breadcrumb =
     programmeCount > 1

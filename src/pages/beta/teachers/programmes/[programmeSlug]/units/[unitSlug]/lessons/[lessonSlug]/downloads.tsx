@@ -280,6 +280,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 keyStageSlug,
                 programmeSlug,
                 subjectTitle,
+                subjectSlug,
                 unitSlug,
                 unitTitle
               ),
