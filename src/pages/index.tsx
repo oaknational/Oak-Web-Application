@@ -86,7 +86,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
-              {props.pageData.notification.enabled && (
+              {props.pageData.notification?.enabled && (
                 <Box $ph={[16, 0]}>
                   <HomeNotification
                     notification={props.pageData.notification}
