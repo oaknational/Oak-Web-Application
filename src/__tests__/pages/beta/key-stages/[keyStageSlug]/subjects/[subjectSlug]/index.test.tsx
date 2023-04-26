@@ -72,9 +72,11 @@ describe("pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/units.
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Maths Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Subject units",
-        ogTitle: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle:
+          "Free KS4 Maths Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Subject units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",

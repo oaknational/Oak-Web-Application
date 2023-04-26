@@ -28,7 +28,7 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Key stage", // @todo add real data
+          title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
           description: "Key stage by subject",
         }),
         ...{ noFollow: true, noIndex: true },
