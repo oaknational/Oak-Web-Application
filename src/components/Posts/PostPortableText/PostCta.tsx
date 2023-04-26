@@ -12,6 +12,7 @@ const PostCta = (props: PortableTextComponentProps<CTA>) => {
 
   return (
     <ButtonAsLink
+      $mt={20}
       page={null}
       label={cta.label}
       href={getLinkHref(cta)}
