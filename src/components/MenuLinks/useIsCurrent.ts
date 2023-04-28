@@ -10,6 +10,11 @@ const isSubPath = ({
   if (href === "/") {
     return currentPath === "/";
   }
+
+  if (currentPath.startsWith(`/beta/teachers/`)) {
+    return false;
+  }
+
   return `${currentPath}/`.startsWith(`${href}/`);
 };
 

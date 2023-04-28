@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 import Flex from "../Flex";
 import Typography, { Heading, LI, P } from "../Typography";
@@ -14,6 +15,7 @@ import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import FooterSignpost from "../FooterSignpost/FooterSignpost";
 
 type FooterLinkProps = {
   text: string;
@@ -106,6 +108,9 @@ export type FooterSections = Record<
 
 const SiteFooter: FC = () => {
   const sections = footerSections;
+  const { pathname } = useRouter();
+  const displaySignpost = pathname.startsWith("/beta");
+
   return (
     <Box
       as="footer"
@@ -124,6 +129,15 @@ const SiteFooter: FC = () => {
           $ma={"auto"}
           $width={"100%"}
         >
+          {displaySignpost && (
+            <Flex
+              $wordWrap={"initial"}
+              $mb={[16, 64]}
+              $maxWidth={[360, 720, 740]}
+            >
+              <FooterSignpost />
+            </Flex>
+          )}
           <Grid>
             <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
