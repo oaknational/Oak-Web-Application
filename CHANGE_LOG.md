@@ -1,3 +1,11 @@
+# [1.176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.2...v1.176.0) (2023-04-28)
+
+
+### Features
+
+* fetch homepage notification data from CMS ([fabacd4](https://github.com/oaknational/Oak-Web-Application/commit/fabacd4c3a2fc78346afd163ff493e759f45344f))
+* wire up HomeNotification to CMS ([70edf5c](https://github.com/oaknational/Oak-Web-Application/commit/70edf5c6ce9b51cfb2b4788d460730673831cafe))
+
 ## [1.175.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.1...v1.175.2) (2023-04-25)
 
 ## [1.175.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.0...v1.175.1) (2023-04-25)
