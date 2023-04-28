@@ -65,42 +65,6 @@ describe("pages/beta/teachers/lessons", () => {
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
-  it("breadcrumb url for subjects with more than one programme go to programme index page ", async () => {
-    const { getByText } = render(<LessonOverviewPage {...props} />);
-    const subjectBreadcrumb = getByText("Maths");
-    expect(subjectBreadcrumb).toHaveAttribute(
-      "href",
-      "/beta/teachers/key-stages/ks4/subjects/maths/programmes"
-    );
-  });
-  it("breadcrumb url for subjects with one programme go to unit index page ", async () => {
-    const { getByText } = render(
-      <LessonOverviewPage
-        curriculumData={props.curriculumData}
-        tierData={{
-          programmes: [
-            {
-              slug: "computing",
-              title: "Computing",
-              keyStageSlug: "ks4",
-              keyStageTitle: "Key stage 4",
-              activeLessonCount: 112,
-              totalUnitCount: 15,
-              programmeSlug: "computing-secondary-ks4",
-              tierSlug: null,
-              tierTitle: null,
-            },
-          ],
-        }}
-      />
-    );
-    const subjectBreadcrumb = getByText("Maths");
-    expect(subjectBreadcrumb).toHaveAttribute(
-      "href",
-      "/beta/teachers/programmes/maths-higher-ks4/units"
-    );
-  });
-
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);

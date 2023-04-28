@@ -27,7 +27,6 @@ import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink
 import Grid from "../../../../../../../../components/Grid";
 import curriculumApi, {
   LessonOverviewData,
-  TierListingData,
 } from "../../../../../../../../node-lib/curriculum-api";
 import LessonHelper from "../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
@@ -48,7 +47,6 @@ import type {
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
-  tierData: TierListingData;
 };
 
 // Array to be used in downloads as well to avoid duplication
@@ -57,36 +55,22 @@ export const lessonBreadcrumbArray = (
   keyStageSlug: string,
   programmeSlug: string,
   subjectTitle: string,
-  subjectSlug: string,
   unitSlug: string,
-  unitTitle: string,
-  programmeCount = 1
+  unitTitle: string
 ): Breadcrumb[] => {
-  const subjectBreadcrumb: Breadcrumb =
-    programmeCount > 1
-      ? {
-          oakLinkProps: {
-            page: "programme-index",
-            keyStage: keyStageSlug,
-            subject: subjectSlug,
-          },
-          label: subjectTitle,
-        }
-      : {
-          oakLinkProps: {
-            page: "unit-index",
-            programme: programmeSlug,
-          },
-          label: subjectTitle,
-        };
-
   return [
     { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
       oakLinkProps: { page: "subject-index", slug: keyStageSlug },
       label: keyStageTitle,
     },
-    subjectBreadcrumb,
+    {
+      oakLinkProps: {
+        page: "unit-index",
+        programme: programmeSlug,
+      },
+      label: subjectTitle,
+    },
     {
       oakLinkProps: {
         page: "lesson-index",
@@ -99,7 +83,6 @@ export const lessonBreadcrumbArray = (
 };
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
-  tierData,
 }) => {
   const {
     lessonTitle,
@@ -152,7 +135,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   };
 
   useTrackPageView({ pageName: "Lesson" });
-  const programmeCount = tierData.programmes.length;
 
   return (
     <AppLayout
@@ -174,10 +156,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 keyStageSlug,
                 programmeSlug,
                 subjectTitle,
-                subjectSlug,
                 unitSlug,
-                unitTitle,
-                programmeCount
+                unitTitle
               ),
               {
                 oakLinkProps: {
@@ -426,12 +406,7 @@ export const getStaticProps: GetStaticProps<
     unitSlug,
   });
 
-  const tierData = await curriculumApi.tierListing({
-    keyStageSlug: curriculumData.keyStageSlug,
-    subjectSlug: curriculumData.subjectSlug,
-  });
-
-  if (!curriculumData && !tierData) {
+  if (!curriculumData) {
     return {
       notFound: true,
     };
@@ -440,7 +415,6 @@ export const getStaticProps: GetStaticProps<
   const results: GetStaticPropsResult<LessonOverviewPageProps> = {
     props: {
       curriculumData,
-      tierData,
     },
   };
 
