@@ -5,7 +5,6 @@ import renderWithSeo from "../../../../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../../../__helpers__/renderWithProviders";
 import lessonOverviewFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import tierListingFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
@@ -18,7 +17,6 @@ const props = {
     videoWithSignLanguageMuxPlaybackId: "pid-002",
     hasDownloadableResources: true,
   }),
-  tierData: tierListingFixture(),
 };
 
 const render = renderWithProviders();
