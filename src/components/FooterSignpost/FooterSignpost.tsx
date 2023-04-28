@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import Link from "next/link";
 
 import Box from "../Box/Box";
 import { Heading, P } from "../Typography";
+import OakLink from "../OakLink";
 
 const FooterSignpost: FC = () => {
   return (
@@ -15,9 +15,9 @@ const FooterSignpost: FC = () => {
         testing. To contact us with questions or feedback use our feedback tool
         at the bottom right corner of the screen (look for the question mark) or
         email{" "}
-        <Link href={"mailto:help@thenational.academy"}>
+        <OakLink $isInline page={null} href={"mailto:help@thenational.academy"}>
           help@thenational.academy
-        </Link>
+        </OakLink>
       </P>
     </Box>
   );
