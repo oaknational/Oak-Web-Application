@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
@@ -9,14 +8,12 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import Card from "../components/Card";
-import { Heading, P, Span } from "../components/Typography";
+import { Heading } from "../components/Typography";
 import CardLink from "../components/Card/CardLink";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import Box from "../components/Box";
 import Layout from "../components/Layout";
-import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
 import Flex from "../components/Flex";
-import Icon from "../components/Icon";
 import Svg from "../components/Svg";
 import useAnalytics from "../context/Analytics/useAnalytics";
 import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
@@ -33,59 +30,7 @@ import usePostList from "../components/Posts/PostList/usePostList";
 import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 import Illustration from "../components/Illustration";
 import { getSizes } from "../components/CMSImage/getSizes";
-
-const Notification: FC = () => {
-  const { track } = useAnalytics();
-  const href = "/blog/help-shape-oak";
-  const heading = "Help shape Oak";
-  return (
-    <Card
-      $background="white"
-      $flexGrow={0}
-      $transform={[undefined, "rotate(2deg)"]}
-      $pa={16}
-      $pr={[0, 48]}
-      $dropShadow="notificationCard"
-    >
-      <BoxBorders gapPosition="rightTop" />
-      <Box
-        $position="absolute"
-        $top={0}
-        $left={0}
-        $transform="translate(-40%,-40%)"
-      >
-        <Icon
-          name="bell"
-          $background="pupilsHighlight"
-          variant="brush"
-          size={30}
-        />
-      </Box>
-      <Span $font={["body-4", "body-3"]} $color="oakGrey4">
-        Blog
-      </Span>
-      <Heading $font={["heading-7", "heading-6"]} tag="h2" $mt={4}>
-        <CardLink
-          page={null}
-          href={href}
-          $hoverStyles={["underline-link-text"]}
-          htmlAnchorProps={{
-            onClick: () =>
-              track.notificationSelected({
-                linkUrl: href,
-                notificationHeadline: heading,
-              }),
-          }}
-        >
-          {heading}
-        </CardLink>
-      </Heading>
-      <P $font={["body-4", "body-2"]} $mt={4}>
-        Find out more
-      </P>
-    </Card>
-  );
-};
+import HomeNotification from "../components/pages/Home/HomeNotification";
 
 export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
@@ -141,9 +86,13 @@ const Home: NextPage<HomePageProps> = (props) => {
                   {toPlainText(props.pageData.summaryPortableText)}
                 </Heading>
               </Flex>
-              <Box $ph={[16, 0]}>
-                <Notification />
-              </Box>
+              {props.pageData.notification?.enabled && (
+                <Box $ph={[16, 0]}>
+                  <HomeNotification
+                    notification={props.pageData.notification}
+                  />
+                </Box>
+              )}
             </Flex>
             <Grid $cg={[8, 16]}>
               <GridArea $colSpan={[6, 6]}>

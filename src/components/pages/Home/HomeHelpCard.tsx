@@ -6,7 +6,7 @@ import type { Card as CardShape } from "../../../common-lib/cms-types";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Typography from "../../Typography";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 
 type HomeSidebarTextCard = CardShape;
@@ -29,7 +29,7 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
           $mt={"auto"}
           $fullWidth
           page={null}
-          href={getCTAHref(props.cta)}
+          href={getLinkHref(props.cta)}
           label={props.cta.label}
           // @TODO: This link is dynamic, not always a support link
           // so we may not always want to open it in a new tab

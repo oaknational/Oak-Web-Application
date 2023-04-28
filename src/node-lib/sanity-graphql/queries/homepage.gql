@@ -7,6 +7,15 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
     id: _id
     heading
     summaryPortableText: summaryRaw
+    notification {
+      enabled
+      label
+      heading
+      subheading
+      link {
+        ...Link
+      }
+    }
     sidebarCard1 {
       ...Card
     }

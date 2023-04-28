@@ -1,4 +1,4 @@
-import { CTA, CTAInternalLinkEntry } from "../../common-lib/cms-types";
+import { CTA, CTAInternalLinkEntry, Link } from "../../common-lib/cms-types";
 import { resolveOakHref } from "../../common-lib/urls";
 import { assertUnreachable } from "../assertUnreachable";
 
@@ -61,11 +61,11 @@ export const anchorMap = {
 
 export type anchorKeys = keyof typeof anchorMap;
 
-export const getCTAHref = (cta: CTA): string => {
-  if (cta.linkType === "internal") {
-    return resolveInternalHref(cta.internal);
-  } else if (cta.linkType === "external") {
-    return cta.external;
+export const getLinkHref = (ctaOrLink: CTA | Link): string => {
+  if (ctaOrLink.linkType === "internal") {
+    return resolveInternalHref(ctaOrLink.internal);
+  } else if (ctaOrLink.linkType === "external") {
+    return ctaOrLink.external;
   }
-  return `#${anchorMap[cta.anchor]}`;
+  return `#${anchorMap[ctaOrLink.anchor]}`;
 };

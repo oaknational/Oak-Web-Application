@@ -1,7 +1,6 @@
-# See also Link fragment
+# See also CTA fragment
 
-fragment CTA on Cta {
-  label
+fragment Link on Link {
   linkType
   external
   anchor

@@ -15,7 +15,7 @@ import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import OutlineHeading from "../../components/OutlineHeading";
 import Grid, { GridArea } from "../../components/Grid";
 import AboutContactCard from "../../components/AboutContactCard";
-import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../utils/portableText/resolveInternalHref";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
@@ -58,7 +58,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
               $iconPosition={"trailing"}
               label={cta.label}
               page={null}
-              href={getCTAHref(cta)}
+              href={getLinkHref(cta)}
             />
           </Flex>
         )}
@@ -104,7 +104,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   $iconPosition="trailing"
                   label={pageData.intro.cta.label}
                   page={null}
-                  href={getCTAHref(pageData.intro.cta)}
+                  href={getLinkHref(pageData.intro.cta)}
                 />
               )}
             </Flex>
