@@ -35,18 +35,26 @@ Other documentation can be found in standalone READMEs:
 
 ## Getting started
 
-First, run:
+First, run the following to create a local environment file:
 
 ```bash
 cp .env.test .env.development.local
 ```
 
-and fill in the values by asking another member of the team.
+and fill in any values, if required, by asking another member of the team.
+
+Next, run:
+
+```bash
+touch .env
+``` 
+
+to create an environment file containing secret manager services and the Oak config location. These variables can be found on 1Password under 'Developers'.
 
 Then, run the development server:
 
 ```bash
-npm run dev
+npm run dev 
 ```
 
 ## Automatic Checks
