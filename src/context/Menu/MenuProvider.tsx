@@ -1,7 +1,4 @@
 import { createContext, FC, useCallback, useState } from "react";
-import { useRouter } from "next/router";
-
-import { menuSections } from "../../browser-lib/fixtures/menuSections";
 
 type MenuContext = {
   open: boolean;
@@ -15,8 +12,6 @@ export const MenuProvider: FC<{
   children?: React.ReactNode;
 }> = ({ children }) => {
   const [open, setOpen] = useState(false);
-  const { pathname } = useRouter();
-  const displayBetaSignpost = pathname.startsWith("/beta/teachers");
 
   const openMenu = useCallback(() => {
     setOpen(true);
@@ -25,26 +20,6 @@ export const MenuProvider: FC<{
   const closeMenu = useCallback(() => {
     setOpen(false);
   }, [setOpen]);
-
-  if (displayBetaSignpost) {
-    if (!menuSections.large[0]) {
-      return null;
-    }
-    menuSections.large[0].linkText = "Home (early access)";
-    menuSections.large[0].resolveOakHrefProps.page = "home";
-    if ("viewType" in menuSections.large[0].resolveOakHrefProps) {
-      menuSections.large[0].resolveOakHrefProps.viewType = "teachers";
-    }
-  } else {
-    if (!menuSections.large[0]) {
-      return null;
-    }
-    menuSections.large[0].linkText = "Home";
-    menuSections.large[0].resolveOakHrefProps.page = "home";
-    if ("viewType" in menuSections.large[0].resolveOakHrefProps) {
-      menuSections.large[0].resolveOakHrefProps.viewType = null;
-    }
-  }
 
   const menuValue: MenuContext = {
     open,

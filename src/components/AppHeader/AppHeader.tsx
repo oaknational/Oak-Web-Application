@@ -11,7 +11,7 @@ import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import MenuLinks from "../MenuLinks";
-import { menuSections } from "../../browser-lib/fixtures/menuSections";
+import { betaMenuSections } from "../../browser-lib/fixtures/betaMenuSections";
 import { P } from "../Typography";
 /**
  * Header for logging in and using search -
@@ -46,7 +46,7 @@ const AppHeader: FC<HeaderProps> = () => {
           onClick={openMenu}
         />
         <Menu menuButtonRef={menuButtonRef}>
-          <MenuLinks menuSections={menuSections} />
+          <MenuLinks menuSections={betaMenuSections} />
         </Menu>
       </Flex>
       <Box
