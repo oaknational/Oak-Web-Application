@@ -63,7 +63,6 @@ describe("pages/beta/teachers/lessons", () => {
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
-
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);

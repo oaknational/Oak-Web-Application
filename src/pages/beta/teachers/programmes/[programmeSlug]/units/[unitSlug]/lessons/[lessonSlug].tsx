@@ -67,7 +67,7 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "unit-index",
-        programme: "@todo",
+        programme: programmeSlug,
       },
       label: subjectTitle,
     },
