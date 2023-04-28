@@ -32,15 +32,15 @@ describe("components/AppHeader", () => {
     expect(getByTestId("menu")).toBeVisible();
   });
 
-  test("menu can be opened from keyboard", async () => {
+  test.only("menu can be opened from keyboard", async () => {
     const { queryByText } = render(<AppHeader />);
 
     const user = userEvent.setup();
-    expect(queryByText("Home - (early access)")).not.toBeVisible();
+    expect(queryByText("Home (early access)")).not.toBeVisible();
 
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
-    expect(queryByText("Home - (early access)")).toBeVisible();
+    expect(queryByText("Home (early access)")).toBeVisible();
   });
 });
