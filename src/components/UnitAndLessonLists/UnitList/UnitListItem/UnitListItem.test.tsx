@@ -18,6 +18,7 @@ const props = {
   keyStageSlug: "ks1",
   keyStageTitle: "Key stage 1",
   quizCount: 3,
+  programmeSlug: "maths--primary-ks1",
 };
 
 const unitSelected = jest.fn();

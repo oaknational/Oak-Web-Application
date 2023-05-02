@@ -1,0 +1,7 @@
+query lessonOverviewPaths {
+  mv_lessons: mv_lessons_4 {
+    lessonSlug: lesson_slug
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
+  }
+}

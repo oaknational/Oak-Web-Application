@@ -80,11 +80,11 @@ const relativeUrls = [
   "/beta",
   "/beta/teachers",
   "/beta/teachers/key-stages/ks1/subjects",
-  "/beta/teachers/key-stages/ks4/subjects/maths",
-  "/beta/teachers/key-stages/ks4/subjects/maths/units?tier=foundation",
-  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66",
-  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t",
-  "/beta/teachers/key-stages/ks4/subjects/maths/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads",
+  "/beta/teachers/key-stages/ks4/subjects/maths/programmes",
+  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units",
+  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons",
+  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t",
+  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads?preselected=slide+deck",
 ];
 
 // Add the base URL to the relative URLs.

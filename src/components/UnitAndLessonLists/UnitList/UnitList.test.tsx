@@ -1,6 +1,6 @@
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 import { mockPaginationProps } from "../../Pagination/Pagination.test";
-import teachersKeyStageSubjectUnitsFixture from "../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnits.fixture";
+import unitListingFixture from "../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 
 import UnitList from ".";
 
@@ -9,7 +9,7 @@ describe("components/UnitList", () => {
   test("renders the list items", () => {
     render(
       <UnitList
-        {...teachersKeyStageSubjectUnitsFixture()}
+        {...unitListingFixture()}
         paginationProps={mockPaginationProps}
         currentPageItems={[]}
       />

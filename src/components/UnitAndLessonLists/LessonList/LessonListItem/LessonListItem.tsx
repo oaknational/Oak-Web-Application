@@ -6,7 +6,7 @@ import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
-import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
+import { LessonListing } from "../../../../node-lib/curriculum-api";
 import ListItemHeader from "../../ListItemHeader";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
@@ -14,11 +14,10 @@ import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 
-export type LessonListItemProps =
-  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
-    unitTitle: string;
-    hideTopHeading?: boolean;
-  };
+export type LessonListItemProps = LessonListing["lessons"][number] & {
+  unitTitle: string;
+  hideTopHeading?: boolean;
+};
 
 function getAvailableResourceList({
   quizCount,
@@ -74,8 +73,8 @@ function getAvailableResourceList({
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
     description,
     expired,
     subjectTitle,
@@ -97,8 +96,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       subjectSlug,
       unitName: unitTitle,
       unitSlug,
-      lessonName: title,
-      lessonSlug: slug,
+      lessonName: lessonTitle,
+      lessonSlug,
       analyticsUseCase,
     });
   };
@@ -110,7 +109,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   return (
     <ListItemCard
-      title={title}
+      title={lessonTitle}
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
@@ -130,6 +129,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           page="Lesson"
           index={null}
           onClick={trackLessonSelected}
+          title={lessonTitle}
+          slug={lessonSlug}
         />
         {expired ? (
           <Expired page={"lesson"} />

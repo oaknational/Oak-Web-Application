@@ -1,3 +1,68 @@
+# [1.177.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.176.0...v1.177.0) (2023-05-02)
+
+
+### Bug Fixes
+
+* add missing programme slug to unit listing ([b7b7084](https://github.com/oaknational/Oak-Web-Application/commit/b7b7084f85b2a80f9d11c8405ae63c6c7e2db677))
+* **fixtures:** remove duplication on fixtures ([7137176](https://github.com/oaknational/Oak-Web-Application/commit/713717695f26ad7b73990be8b1bb17c22d2348ca))
+* **lesson-listing:** merge feat/programmes into feat/lessonListing ([b582d37](https://github.com/oaknational/Oak-Web-Application/commit/b582d373dd272d15d6b2381ba40c7cd9af2541d6))
+* **lessonlisting:** add static paths to lesson listing ([1889c74](https://github.com/oaknational/Oak-Web-Application/commit/1889c74b8632192f5a5fa560396b5b2bfff2ca1d))
+* **lessonSlug:** type fixes ([21f3459](https://github.com/oaknational/Oak-Web-Application/commit/21f34593beaf69657cfcac706fd5897b45b02bec))
+* **lessonSlug:** type fixes ([9f5cf94](https://github.com/oaknational/Oak-Web-Application/commit/9f5cf94671586a508ed74068f04742043bd497e6))
+* percy errors on link add inline styles ([9b5729a](https://github.com/oaknational/Oak-Web-Application/commit/9b5729ae1d5d6996fb2ad85261f0efd7fb901367))
+* **programme-urls:** conflicts ([9ab84a6](https://github.com/oaknational/Oak-Web-Application/commit/9ab84a6a39b503f44bf9c23c7a69164d9e4290b0))
+* **questions:** add programme slug to lesson questions ([459cb63](https://github.com/oaknational/Oak-Web-Application/commit/459cb63750fc8ced432b61565c4e1fdcbe981256))
+* subject breadcrumb url ([3596039](https://github.com/oaknational/Oak-Web-Application/commit/3596039561fdfda7f1681f2ebc1a9da617f4128e))
+* **subjects:** remove incorrect tracking from programmes link ([fcbced3](https://github.com/oaknational/Oak-Web-Application/commit/fcbced36475182eb433b04b2ad9f008c955c7b8f))
+* tier in programme slug lower case ([e69e9ff](https://github.com/oaknational/Oak-Web-Application/commit/e69e9ff8e942e0a30647b0738f024d1580ae595b))
+* type errors ([40c9af5](https://github.com/oaknational/Oak-Web-Application/commit/40c9af59648b51e29bbe2724f422f0ba36527714))
+* type errors downloads ([edfb4ff](https://github.com/oaknational/Oak-Web-Application/commit/edfb4ff00faf2ebb66156a6c1070c1b25e27633b))
+* **unit count:** change name from totalUnit count on owa to just unit count ([bd00dfd](https://github.com/oaknational/Oak-Web-Application/commit/bd00dfd96f64d2f85a6ebb72fc7450cdd12793b0))
+* **url:** add lesson to slug name when applicable ([ec576d3](https://github.com/oaknational/Oak-Web-Application/commit/ec576d31915f877cb9f8946fbaa6c05b131c8d9f))
+* **urls:** fix conflict error on urls ([f0da05b](https://github.com/oaknational/Oak-Web-Application/commit/f0da05bae7fe379e1b3a41bd99a809ccf7637fea))
+* **urls:** fix conflict error on urls ([5dd8b91](https://github.com/oaknational/Oak-Web-Application/commit/5dd8b91f77367da863f4886fd2c946bf45fb5f9e))
+
+
+### Features
+
+* 1446 cleanup fixtures and add tests ([c7c2768](https://github.com/oaknational/Oak-Web-Application/commit/c7c2768c8def0ab514c8a2cf5df4570204443e56))
+* 1446 fix duplication warnings ([62867f4](https://github.com/oaknational/Oak-Web-Application/commit/62867f48d478432ba2f4e4e359f4d3e929ff5eff))
+* 1446 fix tests ([960d532](https://github.com/oaknational/Oak-Web-Application/commit/960d532f310a854348921002019c87edb99a1569))
+* 1446 remove unused curriculumApi queries and related files ([651cb38](https://github.com/oaknational/Oak-Web-Application/commit/651cb381b8350268f00d237904e717ce1022fe50))
+* 1446 rename lessonListing call to make it consistent with other calls ([ec02674](https://github.com/oaknational/Oak-Web-Application/commit/ec026746cb03cc349ec9fc8af59722c0f5e6492f))
+* 1446 renaming to make things consistent ([aa65e41](https://github.com/oaknational/Oak-Web-Application/commit/aa65e41751d87d0fc1e64841b074adb8d24d97a2))
+* 1466 Add tests for new Unit Listing page ([f09a78b](https://github.com/oaknational/Oak-Web-Application/commit/f09a78ba1b28181113f96d51fdf62cbef40a4bc3))
+* 1466 Add unit listing gql call ([53d2ad1](https://github.com/oaknational/Oak-Web-Application/commit/53d2ad143bc0f6df50d25a194524b21d7aaece97))
+* 1466 Create unitListing call and create new unit page to utilise it ([8064244](https://github.com/oaknational/Oak-Web-Application/commit/80642449ebce9053fc744b7dd6e0118fe5d0738b))
+* 1466 Update subjectListing call ([7b2d3b7](https://github.com/oaknational/Oak-Web-Application/commit/7b2d3b7f90a24f4ce6dd80dde07f7126cb200751))
+* 1512 Fix curriculum api test ([668bfff](https://github.com/oaknational/Oak-Web-Application/commit/668bfffe3bab884ab95af8232bd5be80c12c3923))
+* 1512 Move downloads page under new url ([891d478](https://github.com/oaknational/Oak-Web-Application/commit/891d4785c8ac12fb4df85e905af5e0ad9e186153))
+* 1512 Rename lessonDownload query ([b015f13](https://github.com/oaknational/Oak-Web-Application/commit/b015f130564c97e6d587ffb24f5fe75cf99d5fc7))
+* 1512 Replace slug with lessonSlug in downloads ([a59d52c](https://github.com/oaknational/Oak-Web-Application/commit/a59d52ce228009cb7e485963622305cbcdb1efe4))
+* 1514 Branch cleanup ([fe9a2f8](https://github.com/oaknational/Oak-Web-Application/commit/fe9a2f8f658e5b0283c273ccc0dfe2a174c88066))
+* 1514 Get tiers for new units page by programme_slug ([128f5f9](https://github.com/oaknational/Oak-Web-Application/commit/128f5f9ce806ff89fda0b52e97cd6e18f3f119e5))
+* 1514 Rename type ([2e36ed3](https://github.com/oaknational/Oak-Web-Application/commit/2e36ed3b68ce5ef50c3d3107768196cdb5972dea))
+* 1514 Update subjectListing related data ([6405904](https://github.com/oaknational/Oak-Web-Application/commit/64059041d146414e9bd93e0b9f77fc1e37c8ba41))
+* 1514 Update unit listing page tests ([bdddbe2](https://github.com/oaknational/Oak-Web-Application/commit/bdddbe29dd865af7eac49b4b46adeadb1c1dffb6))
+* 1515 Add tests ([6e64b74](https://github.com/oaknational/Oak-Web-Application/commit/6e64b747591d8fe62603cabe02915fadcb51ed6e))
+* 1515 Filter learning themes on frontend ([331c90b](https://github.com/oaknational/Oak-Web-Application/commit/331c90b6dc1f6dc391b2d207f41da5518f8bc855))
+* 1515 Render units page using getStaticProps ([01de65a](https://github.com/oaknational/Oak-Web-Application/commit/01de65acb86c9c5d38fbf0067b4c502c4daa9fc5))
+* 1524 Create new lesson overview call ([5649988](https://github.com/oaknational/Oak-Web-Application/commit/564998887b82f9fd256d248ae476471e239b294b))
+* 1524 Recreate lesson overview page under new url and update links ([76061c1](https://github.com/oaknational/Oak-Web-Application/commit/76061c13395d9388626dda53b84f88465d25e9bb))
+* 1524 Update tests ([8a427c7](https://github.com/oaknational/Oak-Web-Application/commit/8a427c727a29ccbcafb7a26d53f39843792ec6c7))
+* add programme slug to search hit objects ([8a6810a](https://github.com/oaknational/Oak-Web-Application/commit/8a6810a3fd7cd244f281f46032207ed11704d024))
+* **lesson listing:** add lesson listing page using mv_programmes ([4af2ded](https://github.com/oaknational/Oak-Web-Application/commit/4af2dedfa77137f5d88aacb434197803cf2caca3))
+* **lesson listing:** add lesson listing page using mv_programmes ([4b4e8aa](https://github.com/oaknational/Oak-Web-Application/commit/4b4e8aa9473eb47f5ee4c0b8104ce6c7f62cdd0b))
+* **subject-page:** fetch data for subject listing from programmes MV and link to programmes url ([022b4e3](https://github.com/oaknational/Oak-Web-Application/commit/022b4e347c4fd834b9a3efaff0d9510d1b972df8))
+
+# [1.176.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.2...v1.176.0) (2023-04-28)
+
+
+### Features
+
+* fetch homepage notification data from CMS ([fabacd4](https://github.com/oaknational/Oak-Web-Application/commit/fabacd4c3a2fc78346afd163ff493e759f45344f))
+* wire up HomeNotification to CMS ([70edf5c](https://github.com/oaknational/Oak-Web-Application/commit/70edf5c6ce9b51cfb2b4788d460730673831cafe))
+
 ## [1.175.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.1...v1.175.2) (2023-04-25)
 
 ## [1.175.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.175.0...v1.175.1) (2023-04-25)

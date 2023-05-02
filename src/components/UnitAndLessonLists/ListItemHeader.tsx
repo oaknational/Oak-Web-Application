@@ -23,7 +23,11 @@ interface CommonProps {
 }
 
 type ListItemHeadingProps = CommonProps &
-  (LessonListItemProps | UnitListItemProps) & { index: number | null };
+  (LessonListItemProps | UnitListItemProps) & {
+    index: number | null;
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+  };
 
 const ListTitle: FC<{ children?: React.ReactNode; expired?: boolean }> = ({
   children,
@@ -45,7 +49,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   const {
     title,
     slug,
-    keyStageSlug,
     subjectSlug,
     subjectTitle,
     hideTopHeading,
@@ -55,6 +58,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     index,
     expired,
     onClick,
+    programmeSlug,
   } = props;
 
   if (expired) {
@@ -81,9 +85,8 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
           // lesson
           <OakLink
             slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-            unit={props.unitSlug}
+            programmeSlug={programmeSlug}
+            unitSlug={props.unitSlug}
             page={"lesson-overview"}
             onClick={onClick}
             {...primaryTargetProps}
@@ -93,9 +96,8 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         ) : (
           // unit
           <OakLink
+            programmeSlug={programmeSlug}
             slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
             page={"lesson-index"}
             onClick={onClick}
             {...primaryTargetProps}

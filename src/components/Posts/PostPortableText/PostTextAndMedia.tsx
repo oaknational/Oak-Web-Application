@@ -2,7 +2,7 @@ import { PortableText, PortableTextComponentProps } from "@portabletext/react";
 
 import { PortableTextJSON, TextAndMedia } from "../../../common-lib/cms-types";
 import { OmitKeepDiscriminated } from "../../../utils/generics";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import Box from "../../Box";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import CMSImage from "../../CMSImage";
@@ -45,7 +45,7 @@ const PostTextAndMedia = (
             $mt={24}
             label={params.cta.label}
             page={null}
-            href={getCTAHref(params.cta)}
+            href={getLinkHref(params.cta)}
             background={"teachersHighlight"}
           />
         )}

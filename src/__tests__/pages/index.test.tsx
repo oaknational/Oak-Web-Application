@@ -25,7 +25,15 @@ const pageData = {
   id: "homepage",
   heading: "Oak",
   summaryPortableText: portableTextFromString("Here's the page summary"),
-} as HomePage;
+  notification: {
+    enabled: true,
+    heading: "Read this news!",
+    link: {
+      linkType: "external",
+      external: "https://example.com",
+    },
+  },
+} as unknown as HomePage;
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
@@ -38,6 +46,22 @@ describe("pages/index.tsx", () => {
 
     const firstH2 = screen.getAllByRole("heading", { level: 2 })[0];
     expect(firstH2).toHaveTextContent("Here's the page summary");
+  });
+
+  it("Renders the notification when enabled", () => {
+    render(<Home pageData={pageData} posts={[]} />);
+
+    expect(screen.queryByText("Read this news!")).toBeInTheDocument();
+  });
+
+  it("Does not render the notification when disabled", () => {
+    const disabledNotificationPageData = {
+      ...pageData,
+      notification: { ...pageData.notification, enabled: false },
+    } as HomePage
+    render(<Home pageData={disabledNotificationPageData} posts={[]} />);
+
+    expect(screen.queryByText("Read this news!")).not.toBeInTheDocument();
   });
 
   it("Renders a link to the blog list", () => {

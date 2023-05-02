@@ -23,14 +23,15 @@ describe("TierListItem", () => {
   it("renders TierListItem", () => {
     renderWithTheme(
       <TierListItem
-        subjectSlug="maths"
-        subjectTitle="Maths"
+        slug="maths"
+        title="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key stage 4"
-        title="Higher"
-        slug="higher"
-        unitCount={3}
-        lessonCount={4}
+        tierTitle="Higher"
+        tierSlug="higher"
+        totalUnitCount={3}
+        activeLessonCount={4}
+        programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
       />
     );
@@ -41,14 +42,15 @@ describe("TierListItem", () => {
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
       <TierListItem
-        subjectSlug="maths"
-        subjectTitle="Maths"
+        slug="maths"
+        title="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key Stage 4"
-        title="Higher"
-        slug="higher"
-        unitCount={3}
-        lessonCount={4}
+        tierTitle="Higher"
+        tierSlug="higher"
+        totalUnitCount={3}
+        activeLessonCount={4}
+        programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
       />
     );
