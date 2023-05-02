@@ -201,47 +201,46 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { onSubmit } = useDownloadForm();
 
   const onFormSubmit = async (data: DownloadFormProps) => {
+    const debouncedOnSubmit = debounce(
+      async () => {
+        setIsAttemptingDownload(true);
+        await onSubmit(data, lessonSlug);
+
+        const {
+          schoolOption,
+          schoolName,
+          schoolUrn,
+          selectedResourcesForTracking,
+        } = getFormattedDetailsForTracking({
+          school: data.school,
+          selectedResources,
+        });
+
+        track.lessonResourcesDownloaded({
+          keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+          keyStageSlug,
+          unitName: unitTitle,
+          unitSlug,
+          subjectTitle,
+          subjectSlug,
+          lessonName: lessonTitle,
+          lessonSlug,
+          resourceType: selectedResourcesForTracking,
+          analyticsUseCase,
+          schoolUrn,
+          schoolName,
+          schoolOption,
+          emailSupplied: data?.email ? true : false,
+        });
+
+        setIsAttemptingDownload(false);
+        setEditDetailsClicked(false);
+      },
+      4000,
+      { leading: true }
+    );
     try {
-      const debouncedOnSubmit = debounce(
-        async () => {
-          setIsAttemptingDownload(true);
-          await onSubmit(data, lessonSlug);
-
-          const {
-            schoolOption,
-            schoolName,
-            schoolUrn,
-            selectedResourcesForTracking,
-          } = getFormattedDetailsForTracking({
-            school: data.school,
-            selectedResources,
-          });
-
-          track.lessonResourcesDownloaded({
-            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-            keyStageSlug,
-            unitName: unitTitle,
-            unitSlug,
-            subjectTitle,
-            subjectSlug,
-            lessonName: lessonTitle,
-            lessonSlug,
-            resourceType: selectedResourcesForTracking,
-            analyticsUseCase,
-            schoolUrn,
-            schoolName,
-            schoolOption,
-            emailSupplied: data?.email ? true : false,
-          });
-
-          setIsAttemptingDownload(false);
-          setEditDetailsClicked(false);
-        },
-        4000,
-        { leading: true }
-      );
-
-      debouncedOnSubmit();
+      await debouncedOnSubmit();
     } catch (error) {
       const oakError = new OakError({
         code: "downloads/failed-to-fetch",
