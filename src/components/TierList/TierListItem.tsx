@@ -13,8 +13,8 @@ import useClickableCard from "../../hooks/useClickableCard";
 import Box from "../Box";
 
 export type TierListItemProps = {
-  title: string;
-  slug: string;
+  subjectTitle: string;
+  subjectSlug: string;
   tierTitle?: string | null;
   tierSlug: string | null;
   keyStageSlug: string;
@@ -30,8 +30,8 @@ type BackgroundProps = {
 
 const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
   const {
-    title,
-    slug,
+    subjectTitle,
+    subjectSlug,
     tierTitle,
     keyStageSlug,
     keyStageTitle,
@@ -67,8 +67,8 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           programme={programmeSlug}
           onClick={() => {
             track.tierSelected({
-              subjectTitle: title,
-              subjectSlug: slug,
+              subjectTitle: subjectTitle,
+              subjectSlug: subjectSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
               keyStageSlug,
               tierName: tierTitle,

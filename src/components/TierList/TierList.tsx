@@ -8,8 +8,8 @@ import TierListItem from "./TierListItem";
 type TierListProps = GridProps &
   TierListingData & {
     keyStageSlug: string;
-    slug: string;
-    title: string;
+    subjectSlug: string;
+    subjectTitle: string;
     keyStageTitle: string;
   };
 
@@ -22,8 +22,8 @@ type TierListProps = GridProps &
 const TierList: FC<TierListProps> = ({
   programmes,
   keyStageSlug,
-  slug,
-  title,
+  subjectSlug,
+  subjectTitle,
   keyStageTitle,
 
   ...gridProps
