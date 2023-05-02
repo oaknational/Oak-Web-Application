@@ -278,8 +278,8 @@ const lessonDownloadsData = z.object({
 });
 
 const programmesData = z.object({
-  slug: z.string(),
-  title: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   activeLessonCount: z.number(),
@@ -322,19 +322,7 @@ const unitListingData = z.object({
 });
 
 const tierListingData = z.object({
-  programmes: z.array(
-    z.object({
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      activeLessonCount: z.number(),
-      totalUnitCount: z.number(),
-      programmeSlug: z.string(),
-      tierSlug: z.string().nullable(),
-      tierTitle: z.string().nullable().optional(),
-    })
-  ),
+  programmes: z.array(programmesData),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
