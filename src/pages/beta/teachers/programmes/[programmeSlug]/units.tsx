@@ -88,7 +88,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const unitsSEO = {
     ...getSeoProps({
-      title: "Units", // @todo add real data
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning`,
       description: "Programme units",
     }),
     ...{ noFollow: true, noIndex: true },

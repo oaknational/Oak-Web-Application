@@ -265,7 +265,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Download: ${title} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lesson downloads",
         }),
         ...{ noFollow: true, noIndex: true },
