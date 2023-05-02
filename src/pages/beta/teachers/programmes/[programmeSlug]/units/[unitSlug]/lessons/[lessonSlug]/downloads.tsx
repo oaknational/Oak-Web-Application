@@ -2,7 +2,6 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { debounce } from "lodash";
 import { useRouter } from "next/router";
 
 import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
@@ -49,7 +48,7 @@ import FieldError from "../../../../../../../../../components/FormFields/FieldEr
 import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
-import OakError from "../../../../../../../../../errors/OakError";
+import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/debounceSubmit";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -200,55 +199,40 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const { onSubmit } = useDownloadForm();
 
-  const onFormSubmit = async (data: DownloadFormProps) => {
-    const debouncedOnSubmit = debounce(
-      async () => {
-        setIsAttemptingDownload(true);
-        await onSubmit(data, lessonSlug);
-
-        const {
-          schoolOption,
-          schoolName,
-          schoolUrn,
-          selectedResourcesForTracking,
-        } = getFormattedDetailsForTracking({
-          school: data.school,
-          selectedResources,
-        });
-
-        track.lessonResourcesDownloaded({
-          keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-          keyStageSlug,
-          unitName: unitTitle,
-          unitSlug,
-          subjectTitle,
-          subjectSlug,
-          lessonName: lessonTitle,
-          lessonSlug,
-          resourceType: selectedResourcesForTracking,
-          analyticsUseCase,
-          schoolUrn,
-          schoolName,
-          schoolOption,
-          emailSupplied: data?.email ? true : false,
-        });
-
-        setIsAttemptingDownload(false);
-        setEditDetailsClicked(false);
-      },
-      4000,
-      { leading: true }
+  const onFormSubmit = (data: DownloadFormProps): void => {
+    debouncedSubmit(
+      data,
+      lessonSlug,
+      setIsAttemptingDownload,
+      setEditDetailsClicked,
+      onSubmit
     );
-    try {
-      await debouncedOnSubmit();
-    } catch (error) {
-      const oakError = new OakError({
-        code: "downloads/failed-to-fetch",
-        originalError: error,
-      });
+    const {
+      schoolOption,
+      schoolName,
+      schoolUrn,
+      selectedResourcesForTracking,
+    } = getFormattedDetailsForTracking({
+      school: data.school,
+      selectedResources,
+    });
 
-      reportError(oakError);
-    }
+    track.lessonResourcesDownloaded({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      unitName: unitTitle,
+      unitSlug,
+      subjectTitle,
+      subjectSlug,
+      lessonName: lessonTitle,
+      lessonSlug,
+      resourceType: selectedResourcesForTracking,
+      analyticsUseCase,
+      schoolUrn,
+      schoolName,
+      schoolOption,
+      emailSupplied: data?.email ? true : false,
+    });
   };
 
   const getFormErrorMessage = () => {
