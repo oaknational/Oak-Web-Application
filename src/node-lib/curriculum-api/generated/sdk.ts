@@ -44629,7 +44629,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, subjectActiveLessonCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, slug?: string | null, title?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, subjectActiveLessonCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_3', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeLessonCount?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -44849,8 +44849,8 @@ export const SubjectListingDocument = gql`
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     programmeSlug: programme_slug
-    slug: subject_slug
-    title: subject_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
     tierSlug: tier_slug
     subjectActiveLessonCount: subject_active_lesson_count
     totalUnitCount: total_unit_count
@@ -44862,8 +44862,8 @@ export const SubjectListingDocument = gql`
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     programmeSlug: programme_slug
-    slug: subject_slug
-    title: subject_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
     tierSlug: tier_slug
     totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
