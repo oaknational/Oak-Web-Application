@@ -36,6 +36,7 @@ const props: TeachersHomePageProps = {
     heading: "",
     id: "",
     summaryPortableText: [],
+    notification: { enabled: false },
     sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },
   },

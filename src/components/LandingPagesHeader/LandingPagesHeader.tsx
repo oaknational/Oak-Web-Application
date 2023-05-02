@@ -6,7 +6,7 @@ import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";
 import { CTA } from "../../common-lib/cms-types";
-import { getCTAHref } from "../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../utils/portableText/resolveInternalHref";
 import OakLink from "../OakLink";
 
 export type LandingPagesHeaderProps = {
@@ -29,7 +29,7 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
           <Logo height={48} width={104} />
         </OakLink>
         {props.headerCta?.linkType && (
-          <OakLink page={null} href={getCTAHref(props.headerCta)}>
+          <OakLink page={null} href={getLinkHref(props.headerCta)}>
             <Flex
               $width={[200, "100%"]}
               $justifyContent={"flex-end"}
