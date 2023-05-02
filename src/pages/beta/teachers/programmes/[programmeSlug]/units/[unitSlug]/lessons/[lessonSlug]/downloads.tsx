@@ -49,6 +49,7 @@ import FieldError from "../../../../../../../../../components/FormFields/FieldEr
 import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
+import OakError from "../../../../../../../../../errors/OakError";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -200,10 +201,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { onSubmit } = useDownloadForm();
 
   const onFormSubmit = async (data: DownloadFormProps) => {
-    const debouncedOnSubmit = debounce(
-      () => {
-        setIsAttemptingDownload(true);
-        onSubmit(data, lessonSlug).then(() => {
+    try {
+      const debouncedOnSubmit = debounce(
+        async () => {
+          setIsAttemptingDownload(true);
+          await onSubmit(data, lessonSlug);
+
           const {
             schoolOption,
             schoolName,
@@ -230,15 +233,23 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             schoolOption,
             emailSupplied: data?.email ? true : false,
           });
-        });
-      },
-      4000,
-      { leading: true }
-    );
 
-    debouncedOnSubmit();
-    setTimeout(() => setIsAttemptingDownload(false), 4000);
-    setEditDetailsClicked(false);
+          setIsAttemptingDownload(false);
+          setEditDetailsClicked(false);
+        },
+        4000,
+        { leading: true }
+      );
+
+      debouncedOnSubmit();
+    } catch (error) {
+      const oakError = new OakError({
+        code: "downloads/failed-to-fetch",
+        originalError: error,
+      });
+
+      reportError(oakError);
+    }
   };
 
   const getFormErrorMessage = () => {
