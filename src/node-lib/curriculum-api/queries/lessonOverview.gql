@@ -1,0 +1,117 @@
+query lessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  mv_lessons: mv_lessons_4(
+    where: {
+      lesson_slug: { _eq: $lessonSlug }
+      programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
+    }
+  ) {
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    contentGuidance: content_guidance
+    equipmentRequired: equipment_required
+    presentationUrl: presentation_url
+    supervisionLevel: supervision_level
+    worksheetUrl: worksheet_url
+    hasCopyrightMaterial: has_copyright_material
+    coreContent: core_content
+    videoMuxPlaybackId: video_mux_playback_id
+    videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
+    transcriptSentences: transcript_sentences
+    hasDownloadableResources: has_downloadable_resources
+    expired
+  }
+  exitQuizInfo: mv_quizzes(
+    where: {
+      unit_slug: { _eq: $unitSlug }
+      type: { _eq: "exit" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+  ) {
+    title
+    questionCount: question_count
+  }
+  exitQuiz: mv_questions_3(
+    where: {
+      programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
+      quiz_type: { _eq: "exit" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+    order_by: { order: asc }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choices: choices_combined
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
+  }
+  introQuizInfo: mv_quizzes(
+    where: {
+      unit_slug: { _eq: $unitSlug }
+      type: { _eq: "intro" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+  ) {
+    title
+    questionCount: question_count
+  }
+  introQuiz: mv_questions_3(
+    where: {
+      programme_slug: { _eq: $programmeSlug }
+      unit_slug: { _eq: $unitSlug }
+      quiz_type: { _eq: "intro" }
+      lesson_slug: { _eq: $lessonSlug }
+    }
+    order_by: { order: asc }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choices: choices_combined
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
+  }
+}

@@ -1,6 +1,7 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import tierListingFixture from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 
 import TierList from "./TierList";
 
@@ -15,30 +16,11 @@ describe("TierList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
       <TierList
-        subjectSlug="maths"
-        subjectTitle="Maths"
+        slug="maths"
+        title="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key stage 4"
-        tiers={[
-          {
-            title: "Foundation",
-            slug: "foundation",
-            unitCount: 3,
-            lessonCount: 4,
-          },
-          {
-            title: "Core",
-            slug: "core",
-            unitCount: 3,
-            lessonCount: 4,
-          },
-          {
-            title: "Higher",
-            slug: "higher",
-            unitCount: 3,
-            lessonCount: 4,
-          },
-        ]}
+        programmes={tierListingFixture().programmes}
       />
     );
 

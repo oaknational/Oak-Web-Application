@@ -36,7 +36,9 @@
           "year_title": "Year 6",
           "year_slug": "year-6",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -69,7 +71,9 @@
           "year_title": "Year 6",
           "year_slug": "year-6",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -98,12 +102,14 @@
           "topic_slug": "macbeth-narrative-writing-9566",
           "subject_title": "English",
           "subject_slug": "english",
-          "key_stage_title": "Key Stage 2",
-          "key_stage_slug": "key-stage-2",
-          "year_title": "Year 5",
-          "year_slug": "year-5",
+          "key_stage_title": "Key Stage 4",
+          "key_stage_slug": "key-stage-4",
+          "year_title": "Year 11",
+          "year_slug": "year-11",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": "higher",
+          "phase": "secondary"
         },
         "highlight": {
           "topic_title": [
@@ -133,7 +139,38 @@
           "key_stage_slug": "key-stage-2",
           "year_slug": "year-5",
           "is_specialist": false,
-          "is_sensitive": false
+          "is_sensitive": false,
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "title": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "units_production",
+        "_id": "36nxTocBd235CCw75pYd",
+        "_score": 90.53305,
+        "_source": {
+          "id": 4913,
+          "type": "unit",
+          "slug": "macbeth-narrative-writing-core",
+          "title": "Macbeth - Narrative writing",
+          "subject_title": "English",
+          "number_of_lessons_calculated": 20,
+          "number_of_lessons_expired": null,
+          "expired": false,
+          "subject_slug": "english",
+          "theme_title": "Writing",
+          "key_stage_title": "Key Stage 4",
+          "key_stage_slug": "key-stage-4",
+          "year_slug": "year-10",
+          "is_specialist": false,
+          "is_sensitive": false,
+          "tier": "core",
+          "phase": "secondary"
         },
         "highlight": {
           "title": [
@@ -163,7 +200,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -200,7 +239,9 @@
           "year_title": "Year 6",
           "year_slug": "year-6",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -234,7 +275,9 @@
           "year_title": "Year 6",
           "year_slug": "year-6",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -268,7 +311,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -301,7 +346,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -335,7 +382,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -368,7 +417,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -402,7 +453,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -435,7 +488,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -469,7 +524,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "lesson_description": [
@@ -502,7 +559,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "topic_title": [
@@ -622,7 +681,9 @@
           "year_title": "Year 5",
           "year_slug": "year-5",
           "is_sensitive": false,
-          "is_specialist": false
+          "is_specialist": false,
+          "tier": null,
+          "phase": "primary"
         },
         "highlight": {
           "topic_title": [

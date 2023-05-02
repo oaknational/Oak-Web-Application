@@ -35,14 +35,14 @@ export const preselectedDownloadTypeMap: Record<
 
 export const containerTitleToPreselectMap: Record<
   ExpandingContainerTitle,
-  PreselectedDownloadType | ""
+  PreselectedDownloadType | null
 > = {
   "Slide deck": "slide deck",
   "Exit quiz": "exit quiz",
   "Starter quiz": "starter quiz",
   Worksheet: "worksheet",
-  Transcript: "",
-  Video: "",
+  Transcript: null,
+  Video: null,
 };
 
 export type DownloadResources = typeof DOWNLOAD_RESOURCE_TYPES;
