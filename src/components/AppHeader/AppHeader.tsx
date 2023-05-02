@@ -11,8 +11,8 @@ import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import MenuLinks from "../MenuLinks";
-import { menuSections } from "../../browser-lib/fixtures/menuSections";
-
+import { betaMenuSections } from "../../browser-lib/fixtures/betaMenuSections";
+import { P } from "../Typography";
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -29,9 +29,14 @@ const AppHeader: FC<HeaderProps> = () => {
         $flexGrow={1}
         $alignItems={"center"}
       >
-        <OakLink page={"home"} viewType={"teachers"}>
-          <Logo height={48} width={104} />
-        </OakLink>
+        <Flex $justifyContent={"center"} $alignItems={"center"}>
+          <OakLink page={"home"} viewType={"teachers"}>
+            <Logo height={48} width={104} />
+          </OakLink>
+          <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>
+            Teachers - early access
+          </P>
+        </Flex>
         <IconButton
           aria-label="Menu"
           icon={"hamburger"}
@@ -41,7 +46,7 @@ const AppHeader: FC<HeaderProps> = () => {
           onClick={openMenu}
         />
         <Menu menuButtonRef={menuButtonRef}>
-          <MenuLinks menuSections={menuSections} />
+          <MenuLinks menuSections={betaMenuSections} />
         </Menu>
       </Flex>
       <Box

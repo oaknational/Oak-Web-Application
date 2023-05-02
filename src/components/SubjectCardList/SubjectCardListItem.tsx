@@ -8,42 +8,36 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
-import { SvgName } from "../SpriteSheet/getSvgId";
 import Card, { CardProps } from "../Card";
-import { ResolveOakHrefProps } from "../../common-lib/urls";
 import SubjectIcon from "../SubjectIcon";
+import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
-  title: string;
-  slug: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  activeUnitCount: number | null;
-  lessonCount: number | null;
-  tierCount: number | null;
   titleTag?: HeadingTag;
-  svgName?: SvgName;
+} & {
+  programmes: ProgrammesBySubject;
+  isAvailable: boolean;
 };
 
 const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
-  title,
-  slug,
   titleTag = "h3",
-  keyStageSlug,
-  keyStageTitle,
-  lessonCount,
-  tierCount,
-  activeUnitCount,
+  programmes,
+  isAvailable,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
+  const firstProgramme = programmes[0];
 
-  const isAvailable = Boolean(lessonCount);
+  const { slug, title, keyStageSlug, programmeSlug, keyStageTitle } =
+    firstProgramme;
+  const totalUnitCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.totalUnitCount || 0);
+  }, 0);
+  const activeLessonCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.activeLessonCount || 0);
+  }, 0);
+
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
-
-  const linkProps: ResolveOakHrefProps = tierCount
-    ? { page: "tier-selection", keyStage: keyStageSlug, subject: slug }
-    : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
 
   const { track } = useAnalytics();
   const analyticsUseCase = useAnalyticsUseCase();
@@ -88,30 +82,44 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              <OakLink
-                {...primaryTargetProps}
-                {...linkProps}
-                onClick={() => {
-                  track.subjectSelected({
-                    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                    keyStageSlug,
-                    subjectTitle: title,
-                    subjectSlug: slug,
-                    analyticsUseCase,
-                  });
-                }}
-              >
-                {title}
-              </OakLink>
+              {programmes.length === 1 ? (
+                <OakLink
+                  {...primaryTargetProps}
+                  page="unit-index"
+                  programme={programmeSlug}
+                  //TODO add tracking
+                >
+                  {title}
+                </OakLink>
+              ) : (
+                <OakLink
+                  {...primaryTargetProps}
+                  page="programme-index"
+                  keyStage={keyStageSlug}
+                  subject={slug}
+                  //TODO: replace 'key stage 4' with variable from above
+                  onClick={() => {
+                    track.subjectSelected({
+                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                      keyStageSlug,
+                      subjectTitle: title,
+                      subjectSlug: slug,
+                      analyticsUseCase,
+                    });
+                  }}
+                >
+                  {title}
+                </OakLink>
+              )}
             </Heading>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeUnitCount} units`}</Typography>
+            >{`${totalUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${lessonCount} lessons`}</Typography>
+            >{`${activeLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>

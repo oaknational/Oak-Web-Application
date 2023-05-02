@@ -13,6 +13,7 @@ import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
 import Box from "../Box";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
@@ -65,6 +66,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const { pathname } = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const displaySignpost = pathname.startsWith("/beta");
 
   useEffect(() => {
     closeMenu();
@@ -139,6 +141,9 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 $ph={[16, 72]}
               >
                 {/* Mobile logo */}
+                {displaySignpost && (
+                  <SideBarSignpost display={["none", "flex"]} />
+                )}
                 <Flex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
@@ -146,6 +151,9 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <Logo height={48} width={104} />
                 </Flex>
+                {displaySignpost && (
+                  <SideBarSignpost display={["flex", "none"]} />
+                )}
                 {children}
                 {/* Desktop logo */}
                 <Flex

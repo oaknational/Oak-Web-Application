@@ -13,10 +13,9 @@ it("component renders with the title", () => {
       projectable={true}
       downloadable={true}
       title={"Video"}
-      keyStageSlug={"ks3"}
-      subjectSlug={"maths"}
+      programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -34,10 +33,9 @@ it("component renders with the title only", () => {
       projectable={false}
       downloadable={false}
       title={"Video"}
-      keyStageSlug={"ks3"}
-      subjectSlug={"maths"}
+      programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
@@ -56,10 +54,9 @@ it("renders top right icons", async () => {
       external={true}
       projectable={true}
       downloadable={true}
-      keyStageSlug={"ks3"}
-      subjectSlug={"maths"}
+      programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
-      slug={"slug-slug-slug"}
+      lessonSlug={"slug-slug-slug"}
       title={"Video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -71,7 +68,7 @@ it("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
+    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?"
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -105,10 +102,9 @@ describe("comonents/ExpandingContainer", () => {
         projectable={true}
         downloadable={true}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -126,10 +122,9 @@ describe("comonents/ExpandingContainer", () => {
         projectable={false}
         downloadable={false}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -148,11 +143,10 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
-        title={"Video"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Starter quiz"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -163,7 +157,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
@@ -183,10 +177,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
@@ -208,11 +201,10 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
+        programmeSlug="programme-slug"
         title={"Worksheet"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -223,7 +215,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
     );
   });
 
@@ -234,10 +226,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -260,10 +251,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>

@@ -1,9 +1,17 @@
+import mockRouter from "next-router-mock";
+
 import { MenuProvider } from "../../context/Menu";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import MenuBackdrop from "./MenuBackdrop";
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 describe("menu backdrop", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl("/");
+  });
+
   test("if menu is closed it is hidden", () => {
     const { getByTestId } = renderWithTheme(
       <MenuProvider>

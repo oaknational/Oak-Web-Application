@@ -3,12 +3,35 @@ query subjectListing($keyStageSlug: String!) {
     slug
     title
   }
-  mv_programmes(where: { key_stage_slug: { _eq: $keyStageSlug } }) {
+  mv_programmes_available: mv_programmes_3(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      total_unit_count: { _neq: 0 }
+    }
+  ) {
     keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
     programmeSlug: programme_slug
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
+    slug: subject_slug
+    title: subject_title
     tierSlug: tier_slug
-    unitCount: unit_count
+    subjectActiveLessonCount: subject_active_lesson_count
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
+  }
+  mv_programmes_unavailable: mv_programmes_3(
+    where: {
+      key_stage_slug: { _eq: $keyStageSlug }
+      total_unit_count: { _eq: 0 }
+    }
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    programmeSlug: programme_slug
+    slug: subject_slug
+    title: subject_title
+    tierSlug: tier_slug
+    totalUnitCount: total_unit_count
+    activeLessonCount: active_lesson_count
   }
 }

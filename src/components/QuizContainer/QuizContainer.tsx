@@ -1,13 +1,13 @@
 import { FC } from "react";
 
-import { TeachersLessonOverviewData } from "../../node-lib/curriculum-api";
+import { LessonOverviewData } from "../../node-lib/curriculum-api";
 import Flex from "../Flex";
 
 import QuestionsList from "./QuestionsList";
 
 export type QuizProps = {
-  questions: TeachersLessonOverviewData["exitQuiz"];
-  info: TeachersLessonOverviewData["exitQuizInfo"];
+  questions: LessonOverviewData["exitQuiz"];
+  info: LessonOverviewData["exitQuizInfo"];
 };
 
 const QuizContainer: FC<QuizProps> = (props) => {

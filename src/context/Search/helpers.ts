@@ -1,9 +1,14 @@
 import { z } from "zod";
 
+import errorReporter from "../../common-lib/error-reporter";
 import { LessonListItemProps } from "../../components/UnitAndLessonLists/LessonList/LessonListItem";
 import { UnitListItemProps } from "../../components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import OakError from "../../errors/OakError";
+import truthy from "../../utils/truthy";
 
 import { KeyStage } from "./useKeyStageFilters";
+
+const reportError = errorReporter("search/helpers");
 
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
@@ -20,11 +25,37 @@ export function elasticKeyStageSlugToKeyStage({
   );
 
   if (!keyStage) {
-    // todo bugsnag warn
+    const error = new OakError({
+      code: "search/unknown",
+      meta: {
+        elasticKeyStageSlug,
+        allKeyStages,
+        impact: "Key stage not found from elastic key stage slug",
+      },
+    });
+
+    reportError(error);
   }
 
   return keyStage;
 }
+
+const getProgrammeSlug = (
+  hit: LessonSearchHit | UnitSearchHit,
+  allKeyStages: KeyStage[]
+) => {
+  return [
+    hit._source.subject_slug,
+    hit._source.phase,
+    elasticKeyStageSlugToKeyStage({
+      elasticKeyStageSlug: hit._source.key_stage_slug,
+      allKeyStages,
+    })?.slug,
+    hit._source.tier?.toLowerCase(),
+  ]
+    .filter(truthy)
+    .join("-");
+};
 
 export function getLessonObject(props: {
   hit: LessonSearchHit;
@@ -37,10 +68,10 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-
   return {
-    title: highlightedHit.title?.toString(),
-    slug: highlightedHit.slug?.toString(),
+    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    lessonTitle: highlightedHit.title?.toString(),
+    lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
     themeTitle: highlightedHit.theme_title?.toString() || null,
     subjectSlug: highlightedHit.subject_slug?.toString(),
@@ -72,6 +103,7 @@ export function getUnitObject(props: {
   });
 
   return {
+    programmeSlug: getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     themeTitle: highlightedHit.theme_title?.toString() || null,
@@ -96,6 +128,8 @@ const searchResultsSourceCommon = z.object({
   key_stage_slug: z.string(),
   expired: z.boolean().nullish(),
   theme_title: z.string().nullish(),
+  tier: z.string().nullish(),
+  phase: z.string().nullish(),
 });
 
 const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({
