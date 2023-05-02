@@ -47,9 +47,9 @@ Next, run:
 
 ```bash
 touch .env
-``` 
+```
 
-to create an environment file containing secret manager services and the Oak config location. These variables can be found on 1Password under 'Developers'.
+to create an environment file containing secret manager services and the Oak config location. See [here](https://www.notion.so/oaknationalacademy/How-to-set-up-OWA-21ae880e58bb40bfaaa289030e984abd?pvs=4) for further details.
 
 Then, run the development server:
 
