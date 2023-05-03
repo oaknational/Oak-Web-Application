@@ -24,26 +24,24 @@ const downloadDebouncedSubmit = async (
     setEditDetailsClicked,
     onSubmit,
   } = downloadDebouncedSubmitProps;
-  await debounce(
-    async () => {
-      try {
+  try {
+    await debounce(
+      async () => {
         setIsAttemptingDownload(true);
         await onSubmit(data, lessonSlug);
-
         setIsAttemptingDownload(false);
         setEditDetailsClicked(false);
-      } catch (error) {
-        const oakError = new OakError({
-          code: "downloads/failed-to-fetch",
-          originalError: error,
-        });
-
-        reportError(oakError);
-      }
-    },
-    4000,
-    { leading: true }
-  )();
+      },
+      4000,
+      { leading: true }
+    )();
+  } catch (error) {
+    const oakError = new OakError({
+      code: "downloads/failed-to-fetch",
+      originalError: error,
+    });
+    reportError(oakError);
+  }
 };
 
 export default downloadDebouncedSubmit;

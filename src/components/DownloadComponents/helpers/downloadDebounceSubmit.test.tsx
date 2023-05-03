@@ -17,11 +17,14 @@ jest.mock("../../../common-lib/error-reporter/", () => ({
       reportError(...args),
 }));
 
+const setIsAttemptingDownload = jest.fn();
+const setEditDetailsClicked = jest.fn();
+
 const props = {
   data: {},
   lessonSlug: "123",
-  setIsAttemptingDownload: jest.fn(),
-  setEditDetailsClicked: jest.fn(),
+  setIsAttemptingDownload,
+  setEditDetailsClicked,
   onSubmit: onSubmit,
 };
 
@@ -30,10 +33,16 @@ describe("downloadDebounceSubmit", () => {
     jest.resetAllMocks();
     jest.clearAllMocks();
   });
-  test("should throw an error if failed to fetch token ", async () => {
+  test("should report an error if failed to fetch downloads ", async () => {
     await downloadDebounceSubmit(
       props as unknown as DownloadDebouncedSubmitProps
     );
     expect(reportError).toBeCalled();
+  });
+  test("should update state for attempting tpo download ", async () => {
+    await downloadDebounceSubmit(
+      props as unknown as DownloadDebouncedSubmitProps
+    );
+    expect(setIsAttemptingDownload).toBeCalled();
   });
 });
