@@ -25,7 +25,7 @@ const downloadDebouncedSubmit = async (
     onSubmit,
   } = downloadDebouncedSubmitProps;
   try {
-    await debounce(
+    const debouncedFunction = debounce(
       async () => {
         setIsAttemptingDownload(true);
         await onSubmit(data, lessonSlug);
@@ -34,7 +34,8 @@ const downloadDebouncedSubmit = async (
       },
       4000,
       { leading: true }
-    )();
+    );
+    await debouncedFunction();
   } catch (error) {
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
