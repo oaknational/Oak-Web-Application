@@ -28,8 +28,13 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     useClickableCard<HTMLAnchorElement>();
   const firstProgramme = programmes[0];
 
-  const { slug, title, keyStageSlug, programmeSlug, keyStageTitle } =
-    firstProgramme;
+  const {
+    subjectSlug,
+    subjectTitle,
+    keyStageSlug,
+    programmeSlug,
+    keyStageTitle,
+  } = firstProgramme;
   const totalUnitCount = programmes.reduce((acc, cur) => {
     return acc + (cur.totalUnitCount || 0);
   }, 0);
@@ -58,7 +63,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         $pv={16}
       >
         <SubjectIcon
-          subjectSlug={slug}
+          subjectSlug={subjectSlug}
           height={96}
           width={96}
           $width={96}
@@ -89,26 +94,26 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   programme={programmeSlug}
                   //TODO add tracking
                 >
-                  {title}
+                  {subjectTitle}
                 </OakLink>
               ) : (
                 <OakLink
                   {...primaryTargetProps}
                   page="programme-index"
                   keyStage={keyStageSlug}
-                  subject={slug}
+                  subject={subjectSlug}
                   //TODO: replace 'key stage 4' with variable from above
                   onClick={() => {
                     track.subjectSelected({
                       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
                       keyStageSlug,
-                      subjectTitle: title,
-                      subjectSlug: slug,
+                      subjectTitle: subjectTitle,
+                      subjectSlug: subjectSlug,
                       analyticsUseCase,
                     });
                   }}
                 >
-                  {title}
+                  {subjectTitle}
                 </OakLink>
               )}
             </Heading>
@@ -123,7 +128,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-            {title}
+            {subjectTitle}
           </Heading>
         )}
       </Flex>

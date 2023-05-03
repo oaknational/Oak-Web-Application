@@ -8,8 +8,8 @@ import SubjectCardListItem from "./SubjectCardListItem";
 
 const subjectCardListemProps: ProgrammesBySubject = [
   {
-    slug: "biology",
-    title: "Biology",
+    subjectSlug: "biology",
+    subjectTitle: "Biology",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     totalUnitCount: 1,
@@ -21,8 +21,8 @@ const subjectCardListemProps: ProgrammesBySubject = [
 
 const subjectTrackingProps: ProgrammesBySubject = [
   {
-    slug: "combined-science",
-    title: "Combined Science",
+    subjectSlug: "combined-science",
+    subjectTitle: "Combined Science",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     totalUnitCount: 2,
@@ -31,8 +31,8 @@ const subjectTrackingProps: ProgrammesBySubject = [
     tierSlug: "foundation",
   },
   {
-    slug: "combined-science",
-    title: "Combined Science",
+    subjectSlug: "combined-science",
+    subjectTitle: "Combined Science",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     totalUnitCount: 2,

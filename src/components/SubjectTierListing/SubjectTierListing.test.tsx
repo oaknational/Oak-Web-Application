@@ -10,8 +10,8 @@ const curriculumData = tierListingFixture();
 const programmeDetails = {
   keyStageTitle: "Key stage 4",
   keyStageSlug: "ks4",
-  title: "Maths",
-  slug: "maths",
+  subjectTitle: "Maths",
+  subjectSlug: "maths",
 };
 
 const render = renderWithProviders();

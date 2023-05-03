@@ -22,14 +22,14 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
 
   const keyStageSlug = programmes[0]?.keyStageSlug;
   const keyStageTitle = programmes[0]?.keyStageTitle;
-  const slug = programmes[0]?.slug;
-  const title = programmes[0]?.title;
+  const subjectSlug = programmes[0]?.subjectSlug;
+  const subjectTitle = programmes[0]?.subjectTitle;
 
   const programmeDetails = {
     keyStageSlug,
     keyStageTitle,
-    slug,
-    title,
+    subjectSlug,
+    subjectTitle,
   };
 
   // Manually input in Avo.ts, confirm the avo process to ensure this is correct
@@ -37,7 +37,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
 
   const tiersSEO = {
     ...getSeoProps({
-      title: `${keyStageTitle} ${title} tiers`,
+      title: `${keyStageTitle} ${subjectTitle} tiers`,
       description: `We have resources for tiers: ${programmes
         .map((programme) => programme.tierTitle)
         .join(", ")}`,
@@ -61,10 +61,10 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
               {
                 oakLinkProps: {
                   page: "programme-index",
-                  subject: slug,
+                  subject: subjectSlug,
                   keyStage: keyStageSlug,
                 },
-                label: title,
+                label: subjectTitle,
               },
             ]}
           />
