@@ -102,7 +102,6 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $borderRadius={8}
         $mb={6}
         $ph={10}
-        $alignItems={"center"}
       >
         {" "}
         <Icon name={"tick"} $mr={16} />
