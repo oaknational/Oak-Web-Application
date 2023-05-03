@@ -427,7 +427,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     </Box>
                     <Button
                       label={"Download .zip"}
-                      onClick={handleSubmit(onFormSubmit)}
+                      onClick={
+                        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
+                      }
                       background={"teachersHighlight"}
                       icon="download"
                       $iconPosition="trailing"
