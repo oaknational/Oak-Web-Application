@@ -12,8 +12,8 @@ const subjectPagePropsFixture = (
     programmesBySubjectAvailable: [
       [
         {
-          slug: "biology",
-          title: "Biology",
+          subjectSlug: "biology",
+          subjectTitle: "Biology",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 1,
@@ -24,8 +24,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "chemistry",
-          title: "Chemistry",
+          subjectSlug: "chemistry",
+          subjectTitle: "Chemistry",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 1,
@@ -36,8 +36,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "citizenship",
-          title: "Citizenship",
+          subjectSlug: "citizenship",
+          subjectTitle: "Citizenship",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 12,
@@ -48,8 +48,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "combined-science",
-          title: "Combined Science",
+          subjectSlug: "combined-science",
+          subjectTitle: "Combined Science",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 2,
@@ -58,8 +58,8 @@ const subjectPagePropsFixture = (
           tierSlug: "foundation",
         },
         {
-          slug: "combined-science",
-          title: "Combined Science",
+          subjectSlug: "combined-science",
+          subjectTitle: "Combined Science",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 2,
@@ -70,8 +70,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "computing",
-          title: "Computing",
+          subjectSlug: "computing",
+          subjectTitle: "Computing",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 15,
@@ -82,8 +82,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "computing-non-gcse",
-          title: "Computing (Non-GCSE)",
+          subjectSlug: "computing-non-gcse",
+          subjectTitle: "Computing (Non-GCSE)",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 4,
@@ -94,8 +94,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "french",
-          title: "French",
+          subjectSlug: "french",
+          subjectTitle: "French",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 8,
@@ -106,8 +106,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "german",
-          title: "German",
+          subjectSlug: "german",
+          subjectTitle: "German",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 8,
@@ -118,8 +118,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "latin",
-          title: "Latin",
+          subjectSlug: "latin",
+          subjectTitle: "Latin",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 4,
@@ -130,8 +130,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "maths",
-          title: "Maths",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 61,
@@ -140,8 +140,8 @@ const subjectPagePropsFixture = (
           tierSlug: "core",
         },
         {
-          slug: "maths",
-          title: "Maths",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 63,
@@ -150,8 +150,8 @@ const subjectPagePropsFixture = (
           tierSlug: "foundation",
         },
         {
-          slug: "maths",
-          title: "Maths",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 63,
@@ -162,8 +162,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "religious-education",
-          title: "Religious Education",
+          subjectSlug: "religious-education",
+          subjectTitle: "Religious Education",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 10,
@@ -174,8 +174,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "rshe-pshe",
-          title: "RSHE (PSHE)",
+          subjectSlug: "rshe-pshe",
+          subjectTitle: "RSHE (PSHE)",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 13,
@@ -186,8 +186,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "spanish",
-          title: "Spanish",
+          subjectSlug: "spanish",
+          subjectTitle: "Spanish",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 8,
@@ -200,8 +200,8 @@ const subjectPagePropsFixture = (
     programmesBySubjectUnavailable: [
       [
         {
-          slug: "art",
-          title: "Art & Design",
+          subjectSlug: "art",
+          subjectTitle: "Art & Design",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 0,
@@ -212,8 +212,8 @@ const subjectPagePropsFixture = (
       ],
       [
         {
-          slug: "english",
-          title: "English",
+          subjectSlug: "english",
+          subjectTitle: "English",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
           totalUnitCount: 0,

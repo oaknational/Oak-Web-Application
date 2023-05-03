@@ -16,8 +16,8 @@ describe("TierList", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(
       <TierList
-        slug="maths"
-        title="Maths"
+        subjectSlug="maths"
+        subjectTitle="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key stage 4"
         programmes={tierListingFixture().programmes}

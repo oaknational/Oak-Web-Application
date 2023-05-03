@@ -120,10 +120,10 @@ export const getStaticProps: GetStaticProps<
   } = curriculumData;
 
   const programmesBySubjectAvailable = Object.values(
-    groupBy(programmesAvailable, (programme) => programme.slug)
+    groupBy(programmesAvailable, (programme) => programme.subjectSlug)
   );
   const programmesBySubjectUnavailable = Object.values(
-    groupBy(programmesUnavailable, (programme) => programme.slug)
+    groupBy(programmesUnavailable, (programme) => programme.subjectSlug)
   );
 
   const results = {
