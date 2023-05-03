@@ -23,8 +23,8 @@ describe("TierListItem", () => {
   it("renders TierListItem", () => {
     renderWithTheme(
       <TierListItem
-        slug="maths"
-        title="Maths"
+        subjectSlug="maths"
+        subjectTitle="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key stage 4"
         tierTitle="Higher"
@@ -42,8 +42,8 @@ describe("TierListItem", () => {
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
       <TierListItem
-        slug="maths"
-        title="Maths"
+        subjectSlug="maths"
+        subjectTitle="Maths"
         keyStageSlug="ks4"
         keyStageTitle="Key Stage 4"
         tierTitle="Higher"
