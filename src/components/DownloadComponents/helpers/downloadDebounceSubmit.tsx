@@ -3,13 +3,24 @@ import { debounce } from "lodash";
 import OakError from "../../../errors/OakError";
 import { DownloadFormProps } from "../downloads.types";
 
-const debouncedSubmit = async (
-  data: DownloadFormProps,
-  lessonSlug: string,
-  setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>,
-  setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>,
-  onSubmit: (data: DownloadFormProps, lessonSlug: string) => Promise<void>
+export type DownloadDebouncedSubmitProps = {
+  data: DownloadFormProps;
+  lessonSlug: string;
+  setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
+  setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  onSubmit: (data: DownloadFormProps, lessonSlug: string) => Promise<void>;
+};
+
+const downloadDebouncedSubmit = async (
+  downloadDebouncedSubmitProps: DownloadDebouncedSubmitProps
 ): Promise<void> => {
+  const {
+    data,
+    lessonSlug,
+    setIsAttemptingDownload,
+    setEditDetailsClicked,
+    onSubmit,
+  } = downloadDebouncedSubmitProps;
   await debounce(
     async () => {
       try {
@@ -32,4 +43,4 @@ const debouncedSubmit = async (
   )();
 };
 
-export default debouncedSubmit;
+export default downloadDebouncedSubmit;

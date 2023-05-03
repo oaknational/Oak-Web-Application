@@ -48,7 +48,7 @@ import FieldError from "../../../../../../../../../components/FormFields/FieldEr
 import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
-import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/debounceSubmit";
+import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -199,8 +199,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const { onSubmit } = useDownloadForm();
 
-  const onFormSubmit = (data: DownloadFormProps): void => {
-    debouncedSubmit(
+  const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
+    await debouncedSubmit(
       data,
       lessonSlug,
       setIsAttemptingDownload,
@@ -427,7 +427,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     </Box>
                     <Button
                       label={"Download .zip"}
-                      onClick={void handleSubmit(onFormSubmit)} // https://github.com/orgs/react-hook-form/discussions/8622
+                      onClick={void handleSubmit(onFormSubmit)}
                       background={"teachersHighlight"}
                       icon="download"
                       $iconPosition="trailing"
