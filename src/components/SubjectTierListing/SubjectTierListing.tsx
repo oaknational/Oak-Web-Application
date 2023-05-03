@@ -8,8 +8,8 @@ import { TierListingData } from "../../node-lib/curriculum-api";
 type ProgrammeDetails = {
   keyStageTitle: string;
   keyStageSlug: string;
-  title: string;
-  slug: string;
+  subjectTitle: string;
+  subjectSlug: string;
 };
 
 type SubjectTierListingProps = {
@@ -20,10 +20,11 @@ const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
   programmeDetails,
   programmes,
 }) => {
-  const { keyStageTitle, keyStageSlug, title, slug } = programmeDetails;
+  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
+    programmeDetails;
   const tierTrackingProps = {
     keyStageTitle,
-    title,
+    subjectTitle,
   };
 
   return (
@@ -32,8 +33,8 @@ const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
         page={"subject"}
         keyStage={keyStageTitle}
         keyStageSlug={keyStageSlug}
-        title={title}
-        slug={slug}
+        title={subjectTitle}
+        slug={subjectSlug}
         $mt={48}
         $mb={64}
         $alignSelf={"flex-start"}
@@ -45,7 +46,7 @@ const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
         $mb={92}
         programmes={programmes}
         keyStageSlug={keyStageSlug}
-        slug={slug}
+        subjectSlug={subjectSlug}
         {...tierTrackingProps}
       />
     </>

@@ -58,7 +58,7 @@ describe("pages/index.tsx", () => {
     const disabledNotificationPageData = {
       ...pageData,
       notification: { ...pageData.notification, enabled: false },
-    } as HomePage
+    } as HomePage;
     render(<Home pageData={disabledNotificationPageData} posts={[]} />);
 
     expect(screen.queryByText("Read this news!")).not.toBeInTheDocument();
