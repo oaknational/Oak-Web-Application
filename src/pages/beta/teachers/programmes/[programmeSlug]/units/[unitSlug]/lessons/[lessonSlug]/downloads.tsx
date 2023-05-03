@@ -200,13 +200,13 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { onSubmit } = useDownloadForm();
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
-    await debouncedSubmit(
+    await debouncedSubmit({
       data,
       lessonSlug,
       setIsAttemptingDownload,
       setEditDetailsClicked,
-      onSubmit
-    );
+      onSubmit,
+    });
     const {
       schoolOption,
       schoolName,
@@ -427,7 +427,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     </Box>
                     <Button
                       label={"Download .zip"}
-                      onClick={void handleSubmit(onFormSubmit)}
+                      onClick={handleSubmit(onFormSubmit)}
                       background={"teachersHighlight"}
                       icon="download"
                       $iconPosition="trailing"
