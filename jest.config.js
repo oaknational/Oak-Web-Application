@@ -35,7 +35,7 @@ const customJestConfig = {
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
-    "e2e_tests/browser/engineering/*",
+    ".netlify/*",
   ],
   moduleNameMapper: {
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
