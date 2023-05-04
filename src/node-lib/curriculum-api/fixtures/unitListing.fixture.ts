@@ -9,6 +9,7 @@ const unitListingFixture = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "computing",
     subjectTitle: "Computing",
+    totalUnitCount: 5,
     tierSlug: null,
     tiers: [],
     units: [
