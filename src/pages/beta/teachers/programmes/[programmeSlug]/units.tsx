@@ -95,7 +95,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   };
 
   return (
-    <AppLayout seoProps={tierSlug ? tiersSEO : unitsSEO}>
+    <AppLayout
+      seoProps={
+        tierSlug
+          ? programmeSlug.includes(tierSlug)
+            ? unitsSEO
+            : tiersSEO
+          : unitsSEO
+      }
+    >
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
           <Breadcrumbs
