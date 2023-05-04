@@ -146,7 +146,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                       <Heading $font={"heading-7"} tag={"h3"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
-                          <CardLink page="blog" slug={element.post.slug}>
+                          <CardLink page="blog-single" slug={element.post.slug}>
                             {element.title}
                           </CardLink>
                         </Box>
@@ -197,7 +197,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
-                  page="teachers-oak-curriculum"
+                  page="oak-curriculum"
                   icon={"arrow-right"}
                   label={pageData.ourApproach.cta?.label}
                 />

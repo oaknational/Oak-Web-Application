@@ -6,15 +6,17 @@ import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
 import MobileFilters, { MobileFiltersProps } from "./MobileFilters";
 
 const testProps: MobileFiltersProps = {
-  page: "webinars-index",
+  page: "webinar-index",
   withBackButton: true,
   children: "",
   label: "Categories",
 };
 
+const render = renderWithProviders();
+
 describe("components/MobileFilters", () => {
   test("it renders all blogs button and has focus", async () => {
-    const { getByText } = renderWithProviders(<MobileFilters {...testProps} />);
+    const { getByText } = render(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 
     const allBlogs = getByText("All webinars").closest("a");
@@ -24,7 +26,7 @@ describe("components/MobileFilters", () => {
   });
 
   test("it hides all blogs button when categories is clicked", async () => {
-    const { getByText } = renderWithProviders(<MobileFilters {...testProps} />);
+    const { getByText } = render(<MobileFilters {...testProps} />);
     const user = userEvent.setup();
 
     const allBlogsContainer = getByText("All webinars").closest("div");

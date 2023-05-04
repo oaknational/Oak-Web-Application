@@ -1,8 +1,0 @@
-query teachersLessonOverviewPaths {
-  mv_lessons{
-    lessonSlug: slug
-    keyStageSlug: key_stage_slug
-    subjectSlug: subject_slug
-    unitSlug: unit_slug
-  }
-}

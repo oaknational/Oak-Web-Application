@@ -1,25 +1,14 @@
-import { preselectedDownloadTypeMap } from "../downloads.types";
-
 import { getPreselectedDownloadResourceTypes } from "./getDownloadResourceType";
 
 describe("getDownloadResourceType", () => {
-  it("should return undefined for an empty string", async () => {
-    const resourceType = getPreselectedDownloadResourceTypes("");
+  it("should return presentation for slide deck", async () => {
+    const resourceType = getPreselectedDownloadResourceTypes("slide deck");
 
-    expect(resourceType).toBe(undefined);
+    expect(resourceType).toEqual(["presentation"]);
   });
-  it("should return undefined for an title that does not match", async () => {
-    const resourceType = getPreselectedDownloadResourceTypes("not correct");
+  it("should return all for all", async () => {
+    const resourceTypes = getPreselectedDownloadResourceTypes("all");
 
-    expect(resourceType).toBe(undefined);
-  });
-  it("should return an array of download types for each title key in the preselectedDownloadTypeMap object", async () => {
-    const resourceTypes = Object.keys(preselectedDownloadTypeMap).map(
-      (title) => {
-        return getPreselectedDownloadResourceTypes(title);
-      }
-    );
-
-    expect(resourceTypes).toEqual(Object.values(preselectedDownloadTypeMap));
+    expect(resourceTypes).toEqual("all");
   });
 });

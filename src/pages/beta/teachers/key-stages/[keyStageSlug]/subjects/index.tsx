@@ -1,5 +1,6 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import { groupBy } from "lodash";
 
 import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../components/AppLayout";
@@ -7,7 +8,7 @@ import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
 import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
 import { Heading } from "../../../../../../components/Typography";
 import curriculumApi, {
-  TeachersKeyStageSubjectsData,
+  ProgrammesData,
 } from "../../../../../../node-lib/curriculum-api";
 import {
   decorateWithIsr,
@@ -18,12 +19,20 @@ import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 
 export type KeyStagePageProps = {
-  curriculumData: TeachersKeyStageSubjectsData;
+  keyStageTitle: string;
+  keyStageSlug: string;
+};
+export type ProgrammesBySubject = [ProgrammesData, ...ProgrammesData[]];
+export type ProgrammeProps = {
+  programmesBySubjectAvailable: ProgrammesBySubject[];
+  programmesBySubjectUnavailable: ProgrammesBySubject[];
 };
 
-const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
-  const { curriculumData } = props;
-  const { keyStageSlug, keyStageTitle } = curriculumData;
+const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
+  props
+) => {
+  const { keyStageSlug, keyStageTitle } = props;
+
   return (
     <AppLayout
       seoProps={{
@@ -39,7 +48,10 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
         <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
-              { oakLinkProps: { page: "beta-teachers-home" }, label: "Home" },
+              {
+                oakLinkProps: { page: "home", viewType: "teachers" },
+                label: "Home",
+              },
               {
                 oakLinkProps: { page: "subject-index", slug: keyStageSlug },
                 label: keyStageTitle,
@@ -49,10 +61,10 @@ const KeyStageListPage: NextPage<KeyStagePageProps> = (props) => {
           />
         </Box>
         <Heading tag={"h1"} $font={"heading-4"}>
-          {curriculumData.keyStageTitle}
+          {keyStageTitle}
         </Heading>
       </MaxWidth>
-      <SubjectListingPage subjects={curriculumData.subjects} />
+      <SubjectListingPage {...props} />
     </AppLayout>
   );
 };
@@ -96,13 +108,30 @@ export const getStaticProps: GetStaticProps<
     throw new Error("No keyStageSlug");
   }
 
-  const curriculumData = await curriculumApi.teachersKeyStageSubjects({
+  const curriculumData = await curriculumApi.subjectListing({
     keyStageSlug: context.params?.keyStageSlug,
   });
 
+  const {
+    programmesAvailable,
+    programmesUnavailable,
+    keyStageSlug,
+    keyStageTitle,
+  } = curriculumData;
+
+  const programmesBySubjectAvailable = Object.values(
+    groupBy(programmesAvailable, (programme) => programme.subjectSlug)
+  );
+  const programmesBySubjectUnavailable = Object.values(
+    groupBy(programmesUnavailable, (programme) => programme.subjectSlug)
+  );
+
   const results = {
     props: {
-      curriculumData,
+      keyStageSlug,
+      keyStageTitle,
+      programmesBySubjectAvailable,
+      programmesBySubjectUnavailable,
     },
   };
 
@@ -110,4 +139,4 @@ export const getStaticProps: GetStaticProps<
   return resultsWithIsr;
 };
 
-export default KeyStageListPage;
+export default SubjectListing;

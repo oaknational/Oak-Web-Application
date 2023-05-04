@@ -18,6 +18,7 @@ const props = {
   keyStageSlug: "ks1",
   keyStageTitle: "Key stage 1",
   quizCount: 3,
+  programmeSlug: "maths--primary-ks1",
 };
 
 const unitSelected = jest.fn();
@@ -30,13 +31,15 @@ jest.mock("../../../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const render = renderWithProviders();
+
 describe("Unit List Item", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
-    const { getByText } = renderWithProviders(<UnitListItem {...props} />);
+    const { getByText } = render(<UnitListItem {...props} />);
 
     const unit = getByText("4. Numbers and numerals");
 

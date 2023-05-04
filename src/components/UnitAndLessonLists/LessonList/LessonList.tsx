@@ -42,7 +42,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         <>
           <UL $reset>
             {currentPageItems.map((item) => (
-              <LI key={`LessonList-LessonListItem-${item.slug}`}>
+              <LI key={`LessonList-LessonListItem-${item.lessonSlug}`}>
                 <LessonListItem
                   {...item}
                   unitTitle={unitTitle}

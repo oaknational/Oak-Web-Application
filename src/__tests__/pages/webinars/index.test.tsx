@@ -6,7 +6,7 @@ import {
   WebinarListingPageProps,
 } from "../../../components/pages/WebinarsIndex.page";
 import WebinarListingPage from "../../../pages/webinars";
-import { mockVideoAsset } from "../../__helpers__/cms";
+import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
@@ -64,6 +64,8 @@ const webinarsListingPage = jest.fn(() => testPageData);
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
+const render = renderWithProviders();
+
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -79,7 +81,7 @@ describe("pages/webinar/index.tsx", () => {
 
   describe("WebinarListingPage", () => {
     it("Renders a link to each webinar ", () => {
-      renderWithProviders(
+      render(
         <WebinarListingPage
           webinars={[
             testSerializedWebinarPreview,
@@ -103,7 +105,7 @@ describe("pages/webinar/index.tsx", () => {
 
     describe("SEO", () => {
       it("renders the correct SEO details from the CMS", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <WebinarListingPage
             webinars={[
               testSerializedWebinarPreview,
@@ -132,7 +134,7 @@ describe("pages/webinar/index.tsx", () => {
       });
 
       it("renders the correct SEO fallbacks", () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <WebinarListingPage
             webinars={[
               testSerializedWebinarPreview,
@@ -145,6 +147,7 @@ describe("pages/webinar/index.tsx", () => {
         );
 
         expect(seo).toMatchObject({
+          ...mockSeoResult,
           canonical: "NEXT_PUBLIC_SEO_APP_URL",
           title: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle: "Webinars | NEXT_PUBLIC_SEO_APP_NAME",
@@ -152,8 +155,6 @@ describe("pages/webinar/index.tsx", () => {
             "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
           ogDescription:
             "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
-          ogImage:
-            "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         });

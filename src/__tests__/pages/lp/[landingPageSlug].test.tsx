@@ -55,6 +55,9 @@ const testLandingPage: LandingPage = {
   seo: null,
 };
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+const render = renderWithProviders();
+
 describe("pages/lp/[landingPageSlug].tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -66,7 +69,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
   describe("LandingPage", () => {
     it("Renders title from props ", async () => {
-      renderWithProviders(<LandingPageTemplate pageData={testLandingPage} />);
+      render(<LandingPageTemplate pageData={testLandingPage} />);
       await waitFor(() => {
         expect(screen.getByText("some-landing-page")).toBeInTheDocument();
       });
@@ -74,7 +77,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
-        const { seo } = renderWithSeo(
+        const { seo } = renderWithSeo()(
           <LandingPageTemplate pageData={testLandingPage} />
         );
 

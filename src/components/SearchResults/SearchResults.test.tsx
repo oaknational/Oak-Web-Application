@@ -3,160 +3,83 @@
  */
 import React from "react";
 
-import { SearchHit, UnitSearchHit } from "../../pages/beta/teachers/search";
+import { searchResultsHitsSchema } from "../../context/Search/helpers";
+import elasticResponseFixture from "../../context/Search/elasticResponse.fixture.json";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
+import truthy from "../../utils/truthy";
 
-import SearchResults, { getLessonObject, getUnitObject } from "./SearchResults";
+import SearchResults from "./SearchResults";
 
-export const searchResults: Array<SearchHit> = [
-  {
-    _source: {
-      id: 4097,
-      type: "lesson",
-      slug: "number-systems-binary-the-language-of-computers-68tkee",
-      title: "Number systems: Binary - the language of computers",
-      lesson_description:
-        "In this lesson, we will be exploring the binary code and its use in computing.",
-      topic_title: "Different number systems",
-      theme_title: "",
-      topic_slug: "different-number-systems-77bd",
-      subject_title: "Maths",
-      subject_slug: "maths",
-      key_stage_title: "Key Stage 3",
-      key_stage_slug: "key-stage-3",
-      year_title: "Year 7",
-      year_slug: "year-7",
-      is_sensitive: false,
-      is_specialist: null,
-      expired: false,
-    },
-  },
-  {
-    _source: {
-      id: 4178,
-      type: "unit",
-      slug: "computing-systems-1558",
-      title: "Computing systems",
-      subject_title: "Computing",
-      subject_slug: "computing",
-      theme_title: "computing",
-      key_stage_title: "Key Stage 3",
-      key_stage_slug: "key-stage-3",
-      year_slug: "year-8",
-      is_specialist: false,
-      is_sensitive: false,
-      expired: false,
-    },
-  },
-];
+const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
 
-export const searchResult: SearchHit = {
-  _source: {
-    id: 4097,
-    type: "lesson",
-    slug: "number-systems-binary-the-language-of-computers-68tkee",
-    title: "Number systems: Binary - the language of computers",
-    lesson_description:
-      "In this lesson, we will be exploring the binary code and its use in computing.",
-    topic_title: "Different number systems",
-    theme_title: "",
-    topic_slug: "different-number-systems-77bd",
-    subject_title: "Maths",
-    subject_slug: "maths",
-    key_stage_title: "Key Stage 3",
-    key_stage_slug: "key-stage-3",
-    year_title: "Year 7",
-    year_slug: "year-7",
-    is_sensitive: false,
-    is_specialist: null,
-    expired: false,
-  },
+const getNHits = (n: number) => {
+  const [hit] = hits;
+
+  return new Array(n)
+    .fill(1)
+    .map((_, i) =>
+      hit
+        ? {
+            ...hit,
+            // appending i to slug to avoid unique key warning
+            _source: { ...hit?._source, slug: hit?._source?.slug + i },
+          }
+        : null
+    )
+    .filter(truthy);
 };
 
-describe("The <SearchForm> Component", () => {
-  test("A unit search result links to the lesson listing page", () => {
-    const { getByText } = renderWithProviders(
-      <SearchResults hits={searchResults} />
-    );
+const props = {
+  hits,
+  allKeyStages: searchPageFixture().keyStages,
+};
 
-    expect(getByText("Computing systems").closest("a")).toHaveAttribute(
-      "href",
-      "/beta/teachers/key-stages/ks3/subjects/computing/units/computing-systems-1558"
-    );
-  });
+const render = renderWithProviders();
 
-  test("A lesson search result links to the lesson overview page", () => {
-    const { getByText } = renderWithProviders(
-      <SearchResults hits={searchResults} />
-    );
-
+describe("<SearchResults />", () => {
+  test("A lesson search result links to the lesson listing page", () => {
+    const { getByRole } = render(<SearchResults {...props} />);
     expect(
-      getByText("Number systems: Binary - the language of computers").closest(
-        "a"
-      )
+      getByRole("link", { name: "To write the setting description" })
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/different-number-systems-77bd/lessons/number-systems-binary-the-language-of-computers-68tkee"
+      "/beta/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
+    );
+  });
+  // @todo when we have programme_slug in search index
+  test.skip("A unit search result links to the unit listing page", () => {
+    const { getByRole } = render(<SearchResults {...props} />);
+    expect(
+      getByRole("link", { name: "Macbeth - Narrative writing" })
+    ).toHaveAttribute(
+      "href",
+      "/beta/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons"
     );
   });
 
   test("it renders the search results", () => {
-    const { getAllByRole } = renderWithProviders(
-      <SearchResults hits={searchResults} />
-    );
+    const { getAllByRole } = render(<SearchResults {...props} />);
 
     const searchElement = getAllByRole("listitem");
 
-    expect(searchElement.length).toEqual(2);
+    expect(searchElement.length).toEqual(20);
   });
 
-  test("getLessonObject maps to new key stage slug", () => {
-    const lessonListObject = getLessonObject(searchResult);
+  test("it renders pagination if there are more results than 20 results", () => {
+    const hits = getNHits(21);
+    const { getByRole } = render(<SearchResults {...props} hits={hits} />);
 
-    expect(lessonListObject.keyStageSlug).toEqual("ks3");
-  });
-
-  test("getUnitObject maps to new key stage slug", () => {
-    const unitListObject = getUnitObject(searchResults[1] as UnitSearchHit);
-
-    expect(unitListObject.keyStageSlug).toEqual("ks3");
-  });
-
-  test("it renders pagination if there are more results than set in RESULTS_PER_PAGE", () => {
-    const hits = [];
-    const RESULTS_PER_PAGE = 20;
-
-    const searchResult: SearchHit = {
-      _source: {
-        id: 4097,
-        type: "lesson",
-        slug: "number-systems-binary-the-language-of-computers-68tkee",
-        title: "Number systems: Binary - the language of computers",
-        lesson_description:
-          "In this lesson, we will be exploring the binary code and its use in computing.",
-        topic_title: "Different number systems",
-        theme_title: "",
-        topic_slug: "different-number-systems-77bd",
-        subject_title: "Maths",
-        subject_slug: "maths",
-        key_stage_title: "Key Stage 3",
-        key_stage_slug: "key-stage-3",
-        year_title: "Year 7",
-        year_slug: "year-7",
-        is_sensitive: false,
-        is_specialist: null,
-        expired: false,
-      },
-    };
-
-    for (let i = 0; i <= RESULTS_PER_PAGE; i++) {
-      hits.push({ _source: { ...searchResult._source, id: i } });
-    }
-
-    const { getByRole } = renderWithProviders(<SearchResults hits={hits} />);
-
-    const pagination = getByRole("navigation");
+    const pagination = getByRole("navigation", { hidden: true });
 
     expect(pagination).toBeInTheDocument();
+  });
+  test("it does not render pagination if there are 20 results", () => {
+    const hits = getNHits(20);
+    const { queryByRole } = render(<SearchResults {...props} hits={hits} />);
+
+    const pagination = queryByRole("navigation", { hidden: true });
+
+    expect(pagination).not.toBeInTheDocument();
   });
 });

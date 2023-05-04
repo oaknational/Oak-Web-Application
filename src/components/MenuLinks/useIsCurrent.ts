@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 
+import { resolveOakHref } from "../../common-lib/urls";
+
 const isSubPath = ({
   currentPath,
   href,
@@ -10,6 +12,12 @@ const isSubPath = ({
   if (href === "/") {
     return currentPath === "/";
   }
+
+  const betaHomeHref = resolveOakHref({ page: "home", viewType: "teachers" });
+  if (currentPath.startsWith(betaHomeHref + "/")) {
+    return false;
+  }
+
   return `${currentPath}/`.startsWith(`${href}/`);
 };
 

@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { TextBlock } from "../../../common-lib/cms-types";
 import { OakColorName } from "../../../styles/theme";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardImage, { CardImageProps } from "../../Card/CardComponents/CardImage";
@@ -55,7 +55,7 @@ const TextBlockCardImageCta: FC<
           <Flex>
             <ButtonAsLink
               $mt={32}
-              href={getCTAHref(cta)}
+              href={getLinkHref(cta)}
               page={null}
               label={cta.label}
               icon={"arrow-right"}

@@ -8,12 +8,13 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-export type QuestionListItemProps = QuizQuestionListProps["questions"][0];
+export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
 type ImageProps = { src: string; alt?: string };
 
 const QuizImage: FC<ImageProps> = ({ src, alt }) => {
   const [dims, setDims] = useState({ height: 0, width: 0 });
+
   return (
     <ImageBox
       $position={"relative"}
@@ -32,8 +33,8 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         src={src}
         alt={alt ? alt : ""}
         fill
-        onLoad={({ target }) => {
-          const { naturalWidth, naturalHeight } = target as HTMLImageElement;
+        onLoad={(event) => {
+          const { naturalWidth, naturalHeight } = event.currentTarget;
           setDims({ height: naturalHeight, width: naturalWidth });
         }}
       />
@@ -101,7 +102,6 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $borderRadius={8}
         $mb={6}
         $ph={10}
-        $alignItems={"center"}
       >
         {" "}
         <Icon name={"tick"} $mr={16} />
@@ -143,14 +143,17 @@ const choiceIsInAnswerArray = (
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choices, answer, type, displayNumber } = props;
   return (
-    <Flex $flexDirection={"column"} $mb={[0, 16]}>
+    <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
         {displayNumber && (
-          <Typography $font={["body-1-bold"]} $mr={12}>
+          <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
             {displayNumber}
           </Typography>
         )}
-        <Typography $font={["body-1-bold"]} data-testid={"title-div"}>
+        <Typography
+          $font={["body-2-bold", "body-1-bold"]}
+          data-testid={"title-div"}
+        >
           {title}
         </Typography>
       </Flex>

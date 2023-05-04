@@ -1,17 +1,25 @@
 import { FC } from "react";
 
-import { ALL_KEY_STAGES } from "../../context/Search/SearchContext";
 import KeyStageFilter from "../SearchFilters/KeyStageFilter";
 import Flex from "../Flex";
 import { P } from "../Typography";
+import { UseKeyStageFiltersReturnType } from "../../context/Search/useKeyStageFilters";
 
-const SearchFilters: FC = () => {
+type SearchFiltersProps = {
+  keyStageFilters: UseKeyStageFiltersReturnType;
+};
+const SearchFilters: FC<SearchFiltersProps> = (props) => {
+  const { keyStageFilters } = props;
+
   return (
     <>
       <P $mb={16}>Key stage</P>
       <Flex $flexDirection={"row"} $flexWrap={"wrap"}>
-        {ALL_KEY_STAGES.map((ks) => (
-          <KeyStageFilter key={`search-filters-keystage-${ks}`} ks={ks} />
+        {keyStageFilters.map((keyStageFilter) => (
+          <KeyStageFilter
+            key={`search-filters-keystage-${keyStageFilter.slug}`}
+            {...keyStageFilter}
+          />
         ))}
       </Flex>
     </>

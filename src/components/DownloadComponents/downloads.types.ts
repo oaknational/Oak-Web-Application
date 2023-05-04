@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { ExpandingContainerTitle } from "../ExpandingContainer/ExpandingContainer";
+
 const DOWNLOAD_RESOURCE_TYPES = [
   "presentation",
   "intro-quiz-questions",
@@ -10,12 +12,15 @@ const DOWNLOAD_RESOURCE_TYPES = [
   "worksheet-pptx",
 ] as const;
 
-export type PreselectedDownloadType =
-  | "slide deck"
-  | "exit quiz"
-  | "starter quiz"
-  | "worksheet"
-  | "all";
+export const preselectedDownloadType = z.union([
+  z.literal("slide deck"),
+  z.literal("exit quiz"),
+  z.literal("starter quiz"),
+  z.literal("worksheet"),
+  z.literal("all"),
+]);
+
+export type PreselectedDownloadType = z.infer<typeof preselectedDownloadType>;
 
 export const preselectedDownloadTypeMap: Record<
   PreselectedDownloadType,
@@ -26,6 +31,18 @@ export const preselectedDownloadTypeMap: Record<
   "exit quiz": ["exit-quiz-questions", "exit-quiz-answers"],
   worksheet: ["worksheet-pdf", "worksheet-pptx"],
   all: "all",
+};
+
+export const containerTitleToPreselectMap: Record<
+  ExpandingContainerTitle,
+  PreselectedDownloadType | null
+> = {
+  "Slide deck": "slide deck",
+  "Exit quiz": "exit quiz",
+  "Starter quiz": "starter quiz",
+  Worksheet: "worksheet",
+  Transcript: null,
+  Video: null,
 };
 
 export type DownloadResources = typeof DOWNLOAD_RESOURCE_TYPES;

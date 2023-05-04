@@ -25,7 +25,9 @@ import config from "../../config/browser";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
-import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
+import HubspotScript, {
+  HubspotConfig,
+} from "../../browser-lib/hubspot/HubspotScript";
 
 export type UserId = string;
 export type EventName = string;
@@ -34,7 +36,9 @@ export type EventFn = (
   eventName: EventName,
   properties: EventProperties
 ) => void;
-export type PageProperties = { path: string };
+export type PageProperties = {
+  path: string;
+};
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
@@ -97,6 +101,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const { children, avoOptions = {} } = props;
   const [posthogDistinctId, setPosthogDistinctId] =
     useState<PosthogDistinctId | null>(null);
+  const [hubspotScriptLoaded, setHubspotScriptLoaded] = useState(false);
 
   /**
    * Posthog
@@ -125,15 +130,20 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Hubspot
    */
+  const hubspotConfig = {
+    portalId: config.get("hubspotPortalId"),
+    scriptDomain: config.get("hubspotScriptDomain"),
+  };
   const hubspotConsent = useHasConsentedTo("hubspot");
   const hubspot = useAnalyticsService({
     service: hubspotWithQueue,
-    config: {
-      portalId: config.get("hubspotPortalId"),
-      scriptDomain: config.get("hubspotScriptDomain"),
-    },
+    config: hubspotConfig,
+    scriptLoaded: hubspotScriptLoaded,
     consentState: hubspotConsent,
   });
+  const onHubspotScriptLoaded = useCallback(() => {
+    setHubspotScriptLoaded(true);
+  }, []);
 
   /**
    * Avo
@@ -150,10 +160,16 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const page = useStableCallback(
     (opts: { services: AnalyticsServiceWithConfig[] }) => {
       const { services } = opts;
-      const props = { path: getPathAndQuery() };
+      const path = getPathAndQuery();
+
       services.forEach((service) => {
-        service.page(props);
+        service.page({ path });
       });
+      // const pageViewProps = getPageViewProps(path);
+      // track.pageView({
+      //   linkUrl: router.asPath,
+      //   ...pageViewProps,
+      // });
     }
   );
 
@@ -210,6 +226,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   return (
     <analyticsContext.Provider value={analytics}>
       {children}
+      <HubspotScript
+        shouldLoad={hubspotConsent === "enabled"}
+        onLoad={onHubspotScriptLoaded}
+        {...hubspotConfig}
+      />
     </analyticsContext.Provider>
   );
 };

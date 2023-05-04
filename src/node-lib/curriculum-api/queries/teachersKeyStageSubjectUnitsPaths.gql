@@ -1,6 +1,0 @@
-query teachersKeyStageSubjectUnitsPaths {
-  mv_subjects {
-    subjectSlug: slug
-    keyStageSlug: key_stage_slug
-  }
-}

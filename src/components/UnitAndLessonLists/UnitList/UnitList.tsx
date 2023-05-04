@@ -4,7 +4,7 @@ import Box from "../../Box";
 import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
 import { LI, UL } from "../../Typography";
-import { TeachersKeyStageSubjectUnitsData } from "../../../node-lib/curriculum-api";
+import { UnitListingData } from "../../../node-lib/curriculum-api";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -18,7 +18,7 @@ export type Tier = {
 type PageSize = { pageSize: number };
 type CurrenPageItemsProps = Omit<UnitListItemProps, "index">;
 
-export type UnitListProps = TeachersKeyStageSubjectUnitsData & {
+export type UnitListProps = UnitListingData & {
   currentPageItems: CurrenPageItemsProps[];
   paginationProps: PaginationProps & PageSize;
 };
