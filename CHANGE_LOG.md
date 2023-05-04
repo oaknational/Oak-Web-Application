@@ -1,3 +1,16 @@
+## [1.177.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.3...v1.177.4) (2023-05-03)
+
+## [1.177.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.2...v1.177.3) (2023-05-03)
+
+
+### Bug Fixes
+
+* update env file set up ([36f7d89](https://github.com/oaknational/Oak-Web-Application/commit/36f7d89e899d5965353bd25f77411b175f80833a))
+
+## [1.177.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.1...v1.177.2) (2023-05-03)
+
+## [1.177.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.0...v1.177.1) (2023-05-03)
+
 # [1.177.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.176.0...v1.177.0) (2023-05-02)
 
 

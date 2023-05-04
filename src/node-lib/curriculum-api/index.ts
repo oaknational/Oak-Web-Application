@@ -277,10 +277,9 @@ const lessonDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
-// Can I make tierTitle optional?
 const programmesData = z.object({
-  slug: z.string(),
-  title: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   activeLessonCount: z.number(),

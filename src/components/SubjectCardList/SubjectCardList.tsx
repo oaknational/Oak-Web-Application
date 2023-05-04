@@ -19,7 +19,7 @@ const SubjectCardList: FC<SubjectCardListProps> = ({
       {subjects.map((programmes) => {
         return (
           <GridArea
-            key={`subject-list-item-${programmes[0].slug}`}
+            key={`subject-list-item-${programmes[0].subjectSlug}`}
             $colSpan={[6, 3, 2]}
           >
             <SubjectCardListItem
