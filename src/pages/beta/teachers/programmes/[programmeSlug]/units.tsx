@@ -88,14 +88,22 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const unitsSEO = {
     ...getSeoProps({
-      title: "Units", // @todo add real data
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning`,
       description: "Programme units",
     }),
     ...{ noFollow: true, noIndex: true },
   };
 
   return (
-    <AppLayout seoProps={tierSlug ? tiersSEO : unitsSEO}>
+    <AppLayout
+      seoProps={
+        tierSlug
+          ? programmeSlug.includes(tierSlug)
+            ? unitsSEO
+            : tiersSEO
+          : unitsSEO
+      }
+    >
       <MaxWidth $ph={16}>
         <Box $mv={[24, 48]}>
           <Breadcrumbs
