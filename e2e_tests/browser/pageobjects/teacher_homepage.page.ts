@@ -1,9 +1,11 @@
 import Page from "./page";
 
+const PAGE_PATH = "/beta/teachers";
+
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class HomePage extends Page {
+class TeacherHomePage extends Page {
   /**
    * define selectors using getter methods
    */
@@ -12,7 +14,7 @@ class HomePage extends Page {
   }
 
   // /**
-  //  * a method to encapsulate automation code to interact with the page
+  //  * a method to encapsule automation code to interact with the page
   //  * e.g. to login using username and password
   //  */
   // public async login(username: string, password: string) {
@@ -25,8 +27,8 @@ class HomePage extends Page {
    * overwrite specific options to adapt it to page object
    */
   public open() {
-    return super.open("/");
+    return super.open(PAGE_PATH);
   }
 }
 
-export default new HomePage();
+export default new TeacherHomePage();
