@@ -455,7 +455,7 @@ const curriculumApi = {
       keyStageTitle: programme?.keyStageTitle,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
-      totalUnitCount:programme?.totalUnitCount,
+      totalUnitCount: programme?.totalUnitCount,
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
