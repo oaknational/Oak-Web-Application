@@ -2,8 +2,6 @@ import downloadDebounceSubmit, {
   DownloadDebouncedSubmitProps,
 } from "./downloadDebounceSubmit";
 
-// const onSubmit = jest.fn().mockRejectedValue(new Error("Failed to fetch"));
-
 const onSubmit = jest.fn();
 onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
 
