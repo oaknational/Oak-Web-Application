@@ -51,6 +51,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     learningThemes,
+    totalUnitCount,
   } = curriculumData;
 
   const router = useRouter();
@@ -191,7 +192,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 <Flex $position={["absolute", "relative"]}>
                   <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    Units
+                    {`Units (${totalUnitCount})`}
                   </Heading>
                 </Flex>
                 {learningThemes?.length > 1 && (
