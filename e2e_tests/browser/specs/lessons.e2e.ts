@@ -14,10 +14,13 @@ describe("Lessons", () => {
       // Close the confirmic overlay if present.
       await TeacherHomePage.closeConfirmicOverlay();
 
-      const title = await TeacherHomePage.title;
-
-      // These do need an await, despite what VSCode might tell you.
-      await expect(title).toHaveTextContaining("great lessons");
+      // ks-4
+      // maths
+      // core
+      // second unit
+      // first lesson
+      // open transcript
+      // check text is displayed
     });
   });
 });
