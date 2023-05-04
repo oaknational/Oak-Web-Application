@@ -1,4 +1,6 @@
 import TeacherHomePage from "../pageobjects/teacher_homepage.page";
+import TeacherKeyStagesSubjectsPage from "../pageobjects/teacher_key-stages_subjects.page";
+import TeacherKeyStagesSubjectsProgrammesPage from "../pageobjects/teacher_key-stages_subjects_programmes.page";
 
 // This is Mocha, not Jest
 // https://mochajs.org/#bdd
@@ -14,9 +16,15 @@ describe("Lessons", () => {
       // Close the confirmic overlay if present.
       await TeacherHomePage.closeConfirmicOverlay();
 
-      // ks-4
-      // maths
-      // core
+      // Select a key stage.
+      await TeacherHomePage.selectKeyStage("KS4");
+
+      // Select a subject.
+      await TeacherKeyStagesSubjectsPage.selectMaths();
+
+      // Select a tier.
+      await TeacherKeyStagesSubjectsProgrammesPage.selectTierFoundation();
+
       // second unit
       // first lesson
       // open transcript
