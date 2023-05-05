@@ -11,7 +11,7 @@ export type DownloadDebouncedSubmitProps = {
   lessonSlug: string;
   setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmit: (data: DownloadFormProps, lessonSlug: string) => Promise<void>;
+  onSubmit: (data: DownloadFormProps, lessonSlug: string) => Promise<string | undefined>;
 };
 
 const downloadDebouncedSubmit = async (
