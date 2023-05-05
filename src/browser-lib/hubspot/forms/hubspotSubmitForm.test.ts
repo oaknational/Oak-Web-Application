@@ -1,7 +1,10 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import hubspotSubmitForm, { HubspotFormData } from "./hubspotSubmitForm";
+import hubspotSubmitForm from "./hubspotSubmitForm";
+import getHubspotNewsletterPayload, {
+  NewsletterHubspotFormData,
+} from "./getHubspotNewsletterFormPayload";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
@@ -58,12 +61,17 @@ jest.mock("../../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const data: HubspotFormData = {
+const data: NewsletterHubspotFormData = {
   email: "email value",
   name: "full_name value",
   userRole: "Student",
   oakUserId: "oak_user_id value",
 };
+
+const payload = getHubspotNewsletterPayload({
+  hutk: "hubspotutk value 456",
+  data,
+});
 
 describe("hubspotSubmitForm", () => {
   beforeEach(() => {
@@ -73,14 +81,14 @@ describe("hubspotSubmitForm", () => {
     it("should attempt to get the hubspotutk cookie", async () => {
       await hubspotSubmitForm({
         hubspotFormId,
-        data,
+        payload,
       });
       expect(getHubspotUserToken).toHaveBeenCalled();
     });
     it("should fetch the correct url with the correct payload", async () => {
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
-        data,
+        payload,
       });
 
       expect(successMessage).toBe("Thanks that worked the first time");
@@ -91,7 +99,7 @@ describe("hubspotSubmitForm", () => {
       );
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
-        data,
+        payload,
       });
 
       expect(successMessage).toBe("Thanks that worked the first time");
@@ -107,7 +115,7 @@ describe("hubspotSubmitForm", () => {
       try {
         await hubspotSubmitForm({
           hubspotFormId,
-          data,
+          payload,
         });
       } catch (error) {
         // eslint-disable-next-line
@@ -121,7 +129,7 @@ describe("hubspotSubmitForm", () => {
     });
     it("should not report error if fallback succeeds", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -131,7 +139,7 @@ describe("hubspotSubmitForm", () => {
     it("should report error if fallback fails", async () => {
       server.use(fallbackForm400UnknownError);
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -173,7 +181,7 @@ describe("hubspotSubmitForm", () => {
     });
     it("should send error to bugsnag including response details", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -211,7 +219,7 @@ describe("hubspotSubmitForm", () => {
     it("should throw with the correct error message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -227,7 +235,7 @@ describe("hubspotSubmitForm", () => {
        * @see https://mswjs.io/docs/recipes/request-assertions
        */
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -247,7 +255,7 @@ describe("hubspotSubmitForm", () => {
        * being re-reported
        */
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -261,7 +269,7 @@ describe("hubspotSubmitForm", () => {
     test("error is thrown with correct message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -273,7 +281,7 @@ describe("hubspotSubmitForm", () => {
     });
     test("error is reported", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -292,7 +300,7 @@ describe("hubspotSubmitForm", () => {
     test("user is displayed correct message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -302,7 +310,7 @@ describe("hubspotSubmitForm", () => {
     });
     test("error is not reported", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
