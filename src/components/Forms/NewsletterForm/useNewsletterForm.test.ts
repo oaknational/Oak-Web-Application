@@ -1,6 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
-import getHubspotNewsletterPayload, { NewsletterHubspotFormData } from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+import getHubspotNewsletterPayload, {
+  NewsletterHubspotFormData,
+} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
 
 import useNewsletterForm from "./useNewsletterForm";
 
@@ -37,7 +39,10 @@ describe("useNewsletterForm", () => {
       userRole: "Teacher",
     };
     result.current.onSubmit(data);
-const newsletterPayload = getHubspotNewsletterPayload({ hutk: undefined, data:{ ...data, utm_source: "les_twitz" } });
+    const newsletterPayload = getHubspotNewsletterPayload({
+      hutk: undefined,
+      data: { ...data, utm_source: "les_twitz" },
+    });
     expect(hubspotSubmitForm).toHaveBeenCalledWith({
       payload: newsletterPayload,
       hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",

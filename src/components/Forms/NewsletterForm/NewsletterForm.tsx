@@ -11,7 +11,10 @@ import DropdownSelect from "../../DropdownSelect";
 import errorReporter from "../../../common-lib/error-reporter";
 import Form from "../Form";
 import { BoxProps } from "../../Box";
-import { USER_ROLES, UserRole } from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+import {
+  USER_ROLES,
+  UserRole,
+} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 

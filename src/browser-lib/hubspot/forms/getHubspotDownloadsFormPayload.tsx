@@ -6,7 +6,7 @@ import { HubspotPayload } from "./hubspotSubmitForm";
 export const getHubspotDownloadsFormPayload = (props: {
   data: DownloadFormProps & UtmParams;
   hutk?: string;
-} ): HubspotPayload => {
+}): HubspotPayload => {
   const { hutk, data } = props;
   const snakeCaseData = {
     email: data.email,
@@ -17,7 +17,7 @@ export const getHubspotDownloadsFormPayload = (props: {
     latest_utm_medium: data.utm_medium,
     latest_utm_source: data.utm_source,
     latest_utm_term: data.utm_term,
-    // TODO oak_user_id: data.oakUserId, 
+    // TODO oak_user_id: data.oakUserId,
   };
 
   const payload = {

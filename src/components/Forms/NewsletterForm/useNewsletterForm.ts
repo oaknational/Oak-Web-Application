@@ -1,5 +1,7 @@
 import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
-import getHubspotNewsletterPayload, { NewsletterHubspotFormData } from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+import getHubspotNewsletterPayload, {
+  NewsletterHubspotFormData,
+} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
 import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
@@ -20,7 +22,10 @@ const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
     }
 
     const hutk = getHubspotUserToken();
-    const newsletterPayload = getHubspotNewsletterPayload({ hutk, data:{ ...data, ...utmParams } });
+    const newsletterPayload = getHubspotNewsletterPayload({
+      hutk,
+      data: { ...data, ...utmParams },
+    });
 
     const hubspotFormResponse = hubspotSubmitForm({
       hubspotFormId: hubspotNewsletterFormId,
