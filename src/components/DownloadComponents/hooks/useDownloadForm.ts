@@ -1,10 +1,17 @@
+import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
 import type {
   DownloadFormProps,
   DownloadResourceType,
 } from "../../../components/DownloadComponents/downloads.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
+import useUtmParams from "../../../hooks/useUtmParams";
+import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
+import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotDownloadsFormPayload";
+import config from "../../../config/browser";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+
+const hubspotDownloadsFormId = config.get("hubspotNewsletterFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
@@ -16,11 +23,23 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
+  const utmParams = useUtmParams();
 
   const onSubmit = async (data: DownloadFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
+
+    const hutk = getHubspotUserToken();
+    const downloadsPayload = getHubspotDownloadsFormPayload({
+      hutk,
+      data: { ...data, ...utmParams },
+    });
+
+    const hubspotFormResponse = hubspotSubmitForm({
+      hubspotFormId: hubspotDownloadsFormId,
+      payload: downloadsPayload,
+    });
 
     const email = data?.email;
     const schoolId = data?.school;
@@ -50,6 +69,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     }
 
     await downloadLessonResources(slug, downloads as DownloadResourceType[]);
+    return hubspotFormResponse;
   };
 
   return { onSubmit };

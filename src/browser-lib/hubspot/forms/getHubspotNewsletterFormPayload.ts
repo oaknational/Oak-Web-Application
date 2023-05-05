@@ -1,7 +1,22 @@
-import { HubspotFormData } from "./hubspotSubmitForm";
+import { UtmParams } from "../../../hooks/useUtmParams";
 
-const getHubspotFormPayload = (props: {
-  data: HubspotFormData;
+export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
+export type UserRole = typeof USER_ROLES[number];
+export type NewsletterHubspotFormData = {
+  // when sending email to 'fallback' form
+  emailTextOnly?: string;
+  email?: string;
+  oakUserId?: string;
+  name: string;
+  /**
+   * allow "" for userRole as it's easier [than null/undefined] to use as a
+   * form value. It is stripped out in getHubspotFormPayload.
+   */
+  userRole: UserRole | "";
+} & UtmParams;
+
+const getHubspotNewsletterPayload = (props: {
+  data: NewsletterHubspotFormData;
   hutk?: string;
 }) => {
   const { hutk, data } = props;
@@ -39,4 +54,4 @@ const getHubspotFormPayload = (props: {
   return payload;
 };
 
-export default getHubspotFormPayload;
+export default getHubspotNewsletterPayload;

@@ -1,4 +1,4 @@
-import getHubspotFormPayload from "./getHubspotFormPayload";
+import getHubspotFormPayload from "./getHubspotNewsletterFormPayload";
 
 describe("getHubspotFormPayload()", () => {
   test("primary form payload is correct", () => {

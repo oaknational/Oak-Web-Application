@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 
-import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
+import getHubspotNewsletterPayload, { NewsletterHubspotFormData } from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
 
 import useNewsletterForm from "./useNewsletterForm";
 
@@ -31,18 +31,15 @@ describe("useNewsletterForm", () => {
   });
   test("should call hubspotSubmitForm() and include utm params", () => {
     const { result } = renderHook(() => useNewsletterForm());
-    const data: HubspotFormData = {
+    const data: NewsletterHubspotFormData = {
       email: "test",
       name: "sdfo9dfj",
       userRole: "Teacher",
     };
     result.current.onSubmit(data);
-
+const newsletterPayload = getHubspotNewsletterPayload({ hutk: undefined, data:{ ...data, utm_source: "les_twitz" } });
     expect(hubspotSubmitForm).toHaveBeenCalledWith({
-      data: {
-        ...data,
-        utm_source: "les_twitz",
-      },
+      payload: newsletterPayload,
       hubspotFormId: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
     });
   });

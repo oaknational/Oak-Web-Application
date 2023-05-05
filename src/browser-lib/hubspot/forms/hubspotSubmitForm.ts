@@ -7,13 +7,10 @@ import { z } from "zod";
 import errorReporter from "../../../common-lib/error-reporter";
 import config from "../../../config/browser";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
-import { UtmParams } from "../../../hooks/useUtmParams";
-
-import getHubspotFormPayload from "./getHubspotFormPayload";
-import getHubspotUserToken from "./getHubspotUserToken";
 
 const hubspotPortalId = config.get("hubspotPortalId");
 const hubspotFallbackFormId = config.get("hubspotFallbackFormId");
+const hubspotFormSubmissionUrl = config.get("hubspotFormSubmissionUrl");
 
 const reportError = errorReporter("hubspotSubmitForm", {
   hubspotPortalId,
@@ -59,24 +56,21 @@ const hubspotSuccessSchema = z.object({
   inlineMessage: z.string().optional(),
 });
 
-export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
-export type UserRole = typeof USER_ROLES[number];
+export type HubspotPayload = {
+  fields: {
+    name: string;
+    value: string | undefined;
+  }[];
+  context: {
+    pageUri: string;
+    pageName: string;
+    hutk?: string | undefined;
+  };
+};
 
-export type HubspotFormData = {
-  // when sending email to 'fallback' form
-  emailTextOnly?: string;
-  email?: string;
-  oakUserId?: string;
-  name: string;
-  /**
-   * allow "" for userRole as it's easier [than null/undefined] to use as a
-   * form value. It is stripped out in getHubspotFormPayload.
-   */
-  userRole: UserRole | "";
-} & UtmParams;
 type HubspotSubmitFormProps = {
   hubspotFormId: string;
-  data: HubspotFormData;
+  payload: HubspotPayload;
   isFallbackAttempt?: boolean;
 };
 /**
@@ -100,18 +94,14 @@ type HubspotSubmitFormProps = {
  * 7. Or it might be that they think "But that is my email address"
  */
 const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
-  const { hubspotFormId, data, isFallbackAttempt = false } = props;
+  const { hubspotFormId, payload, isFallbackAttempt = false } = props;
   const errorMeta: ErrorMeta = { props };
 
   try {
-    const hutk = getHubspotUserToken();
-
-    const payload = getHubspotFormPayload({ hutk, data });
-
     errorMeta.payload = payload;
 
     // Cloudflare worker proxy forwards hubspot-forms.thenational.academy -> api.hsforms.com
-    const url = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFormId}`;
+    const url = `${hubspotFormSubmissionUrl}/${hubspotPortalId}/${hubspotFormId}`;
 
     const res = await fetch(url, {
       method: "post",
@@ -127,6 +117,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
 
       try {
         const hubspotSuccess = hubspotSuccessSchema.parse(responseBody);
+        console.log(hubspotSuccess.inlineMessage);
         return hubspotSuccess.inlineMessage;
       } catch (error) {
         // Not an issue, form responded with 200 but optional inlineMessage was not present
@@ -150,14 +141,39 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
            * For INVALID_EMAIL errors, attempt to send data to the fallback form
            */
           try {
-            const fallbackFormData = {
-              emailTextOnly: data.email,
-              ...data,
+            const emailTextOnly = (payload: HubspotPayload) => {
+              const emailField = payload.fields.find(
+                (field) => field.name === "email"
+              );
+              if (!emailField) {
+                throw new OakError({
+                  code: "hubspot/invalid-email",
+                  meta: errorMeta,
+                });
+              }
+              const emailTextOnly = emailField.value?.split("@")[0];
+              if (!emailTextOnly) {
+                throw new OakError({
+                  code: "hubspot/invalid-email",
+                  meta: errorMeta,
+                });
+              }
+              return {
+                ...payload,
+                fields: [
+                  ...payload.fields,
+                  {
+                    name: "emailTextOnly",
+                    value: emailTextOnly,
+                  },
+                ],
+              };
             };
-            delete fallbackFormData.email;
+            const fallbackPayload = emailTextOnly(payload);
+
             await hubspotSubmitForm({
               hubspotFormId: hubspotFallbackFormId,
-              data: fallbackFormData,
+              payload: fallbackPayload,
               isFallbackAttempt: true,
             });
             /**
