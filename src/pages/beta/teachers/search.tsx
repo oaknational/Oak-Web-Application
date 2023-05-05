@@ -2,7 +2,6 @@ import React from "react";
 import { GetStaticProps, NextPage } from "next";
 
 import useTrackPageView from "../../../hooks/useTrackPageView";
-import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
 import AppLayout from "../../../components/AppLayout";
 import useSearch from "../../../context/Search/useSearch";
 import Search from "../../../components/SearchComponents/Search.page";
@@ -11,6 +10,7 @@ import curriculumApi, {
   SearchPageData,
 } from "../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../node-lib/isr";
+import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -26,7 +26,17 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
   useTrackPageView({ pageName: "Search" });
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background="grey1">
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: "Search for Free Teaching Resources",
+
+          description: "Search for Free Teaching Resources",
+        }),
+        ...{ noFollow: true, noIndex: true },
+      }}
+      $background="grey1"
+    >
       <Search
         {...searchProps}
         keyStageFilters={keyStageFilters}

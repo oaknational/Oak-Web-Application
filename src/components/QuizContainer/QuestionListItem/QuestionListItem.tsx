@@ -102,7 +102,6 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $borderRadius={8}
         $mb={6}
         $ph={10}
-        $alignItems={"center"}
       >
         {" "}
         <Icon name={"tick"} $mr={16} />
@@ -144,14 +143,17 @@ const choiceIsInAnswerArray = (
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choices, answer, type, displayNumber } = props;
   return (
-    <Flex $flexDirection={"column"} $mb={[0, 16]}>
+    <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
         {displayNumber && (
-          <Typography $font={["body-1-bold"]} $mr={12}>
+          <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
             {displayNumber}
           </Typography>
         )}
-        <Typography $font={["body-1-bold"]} data-testid={"title-div"}>
+        <Typography
+          $font={["body-2-bold", "body-1-bold"]}
+          data-testid={"title-div"}
+        >
           {title}
         </Typography>
       </Flex>

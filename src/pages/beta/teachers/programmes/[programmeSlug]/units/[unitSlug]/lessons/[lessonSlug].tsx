@@ -140,7 +140,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Lesson overview", // @todo add real data
+          title: `Lesson: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Overview of lesson",
         }),
         ...{ noFollow: true, noIndex: true },

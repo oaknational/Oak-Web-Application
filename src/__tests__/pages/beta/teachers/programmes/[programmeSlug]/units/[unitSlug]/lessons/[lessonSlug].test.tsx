@@ -70,9 +70,11 @@ describe("pages/beta/teachers/lessons", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Lesson overview | NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Overview of lesson",
-        ogTitle: "Lesson overview | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle:
+          "Lesson: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Overview of lesson",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
