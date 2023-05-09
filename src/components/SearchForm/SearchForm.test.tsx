@@ -12,6 +12,20 @@ const handleSubmit = jest.fn();
 
 const providers = { theme: {} };
 const render = renderWithProviders(providers);
+const searchJourneyInitiated = jest.fn();
+const searchAttempted = jest.fn();
+jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      searchJourneyInitiated: (...args: unknown[]) =>
+        searchJourneyInitiated(...args),
+      searchAttempted: (...args: unknown[]) => searchAttempted(...args),
+    },
+  }),
+}));
+
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("<SearchForm />", () => {
   beforeEach(() => {
@@ -130,5 +144,52 @@ describe("<SearchForm />", () => {
     await user.keyboard("{Enter}");
 
     expect(handleSubmit).not.toHaveBeenCalled();
+  });
+  it("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
+    const initialText = "M";
+    const addedText = "a";
+    const { getByRole } = render(
+      <SearchForm
+        searchTerm={initialText}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
+    );
+    const user = userEvent.setup();
+
+    const searchField = getByRole("searchbox");
+    await user.click(searchField);
+    await user.keyboard(addedText);
+
+    expect(searchJourneyInitiated).toHaveBeenCalledTimes(1);
+    expect(searchJourneyInitiated).toHaveBeenCalledWith({
+      analyticsUseCase: ["Teacher"],
+      searchSource: ["homepage search box"],
+    });
+  });
+  it("track.searchAttempted is called on submit ", async () => {
+    const initialText = "search me";
+
+    const { getByRole } = render(
+      <SearchForm
+        searchTerm={initialText}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
+    );
+    const user = userEvent.setup();
+
+    const searchField = getByRole("searchbox");
+    await user.click(searchField);
+    await user.keyboard("{Enter}");
+
+    expect(searchAttempted).toHaveBeenCalledTimes(1);
+    expect(searchAttempted).toHaveBeenCalledWith({
+      analyticsUseCase: ["Teacher"],
+      pageName: ["Search"],
+      searchFilterOptionSelected: "",
+      searchSource: ["homepage search box"],
+      searchTerm: "search me",
+    });
   });
 });

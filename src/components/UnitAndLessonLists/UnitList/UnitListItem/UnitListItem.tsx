@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useRouter } from "next-router-mock";
+import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";

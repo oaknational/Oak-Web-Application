@@ -51,15 +51,13 @@ const Search: FC<SearchProps> = (props) => {
   const shouldShowResults = status === "success" && hitCount > 0;
 
   useEffect(() => {
-    if (query.term) {
-      console.log("set search start time");
+    if (query.term && status === "loading") {
       setSearchStartTime(performance.now());
     }
-  }, [query.term, setSearchStartTime]);
+  }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
     if (searchStartTime && (status === "success" || status === "fail")) {
-      console.log("fire search completed event");
       const searchEndTime = performance.now();
 
       track.searchCompleted({

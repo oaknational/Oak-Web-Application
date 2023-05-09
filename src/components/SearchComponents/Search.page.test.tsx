@@ -39,10 +39,12 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
+const setSearchStartTime = jest.fn();
+
 const props: SearchProps = {
   status: "not-asked",
-  searchStartTime: null,
-  setSearchStartTime: jest.fn(),
+  searchStartTime: 1,
+  setSearchStartTime: setSearchStartTime,
   results: [],
   query: validQuery,
   setQuery: jest.fn(),
@@ -79,6 +81,18 @@ const props: SearchProps = {
   ],
   setSearchTerm: jest.fn(),
 };
+
+const searchCompleted = jest.fn();
+const searchAttempted = jest.fn();
+jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      searchCompleted: (...args: unknown[]) => searchCompleted(...args),
+      searchAttempted: (...args: unknown[]) => searchAttempted(...args),
+    },
+  }),
+}));
 
 const render = renderWithProviders();
 
@@ -223,5 +237,26 @@ describe("Search.page.tsx", () => {
     }
     await user.click(filter);
     await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
+  });
+  test("searchCompleted is called when a search is completed with success status", async () => {
+    render(<Search {...props} {...resultsProps} />);
+    await waitFor(() => expect(searchCompleted).toHaveBeenCalledTimes(1));
+  });
+  test("searchCompleted is called when a search is completed with fail status", async () => {
+    render(<Search {...{ ...props, status: "fail" }} {...resultsProps} />);
+    await waitFor(() => expect(searchCompleted).toHaveBeenCalledTimes(1));
+  });
+  test("searchCompleted is not called when status is not asked", async () => {
+    render(<Search {...props} />);
+    await waitFor(() => expect(searchCompleted).not.toHaveBeenCalled());
+  });
+  test("searchCompleted is not called when status is loading", async () => {
+    render(<Search {...{ ...props, status: "loading" }} />);
+    await waitFor(() => expect(searchCompleted).not.toHaveBeenCalled());
+  });
+  test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
+    render(<Search {...props} {...resultsProps} />);
+
+    expect(setSearchStartTime).toHaveBeenCalledTimes(1);
   });
 });

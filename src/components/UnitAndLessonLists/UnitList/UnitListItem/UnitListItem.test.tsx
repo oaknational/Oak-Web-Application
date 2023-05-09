@@ -19,14 +19,18 @@ const props = {
   keyStageTitle: "Key stage 1",
   quizCount: 3,
   programmeSlug: "maths--primary-ks1",
+  hitCount: 10,
+  fromSearchPage: false,
 };
 
 const unitSelected = jest.fn();
+const searchResultClicked = jest.fn();
 jest.mock("../../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       unitSelected: (...args: unknown[]) => unitSelected(...args),
+      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
     },
   }),
 }));
@@ -47,7 +51,31 @@ describe("Unit List Item", () => {
     await user.click(unit);
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
+    expect(searchResultClicked).not.toBeCalled();
     expect(unitSelected).toHaveBeenCalledWith({
+      keyStageTitle: "Key stage 1",
+      keyStageSlug: "ks1",
+      analyticsUseCase: ["Teacher"],
+      subjectTitle: "Maths",
+      subjectSlug: "maths",
+      unitName: "Numbers and numerals",
+      unitSlug: "numbers-and-numerals",
+    });
+  });
+
+  test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
+    const { getByText } = render(
+      <UnitListItem {...{ ...props, fromSearchPage: true }} />
+    );
+
+    const unit = getByText("4. Numbers and numerals");
+
+    const user = userEvent.setup();
+    await user.click(unit);
+
+    expect(searchResultClicked).toHaveBeenCalledTimes(1);
+    expect(unitSelected).not.toBeCalled();
+    expect(searchResultClicked).toHaveBeenCalledWith({
       keyStageTitle: "Key stage 1",
       keyStageSlug: "ks1",
       analyticsUseCase: ["Teacher"],

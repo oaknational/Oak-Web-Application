@@ -23,14 +23,19 @@ const props = {
   presentationCount: 1,
   worksheetCount: 1,
   hasCopyrightMaterial: false,
+  fromSearchPage: false,
+  hitCount: 10,
+  index: 3,
 };
 
 const lessonSelected = jest.fn();
+const searchResultClicked = jest.fn();
 jest.mock("../../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       lessonSelected: (...args: unknown[]) => lessonSelected(...args),
+      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
     },
   }),
 }));
@@ -93,6 +98,34 @@ describe("Lesson List Item", () => {
       unitName: "Adding surds",
       unitSlug: "adding-surds-a57d",
       subjectTitle: "Maths",
+    });
+  });
+  test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
+    const { getByText } = render(
+      <LessonListItem {...{ ...props, fromSearchPage: true }} />
+    );
+
+    const lesson = getByText("Add two surds");
+
+    const user = userEvent.setup();
+    await user.click(lesson);
+
+    expect(searchResultClicked).toHaveBeenCalledTimes(1);
+    expect(lessonSelected).not.toBeCalled();
+    expect(searchResultClicked).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      subjectTitle: "Maths",
+      subjectSlug: "maths",
+      unitName: "Adding surds",
+      unitSlug: "adding-surds-a57d",
+      analyticsUseCase: ["Teacher"],
+      searchRank: 4,
+      searchFilterOptionSelected: "",
+      searchResultCount: 10,
+      searchResultType: ["lesson"],
+      lessonName: "Add two surds",
+      lessonSlug: "add-two-surds-6wwk0c",
     });
   });
 });
