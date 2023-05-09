@@ -36,7 +36,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       data: { ...data, ...utmParams },
     });
 
-    const hubspotFormResponse = hubspotSubmitForm({
+    const hubspotFormResponse = await hubspotSubmitForm({
       hubspotFormId: hubspotDownloadsFormId,
       payload: downloadsPayload,
     });
