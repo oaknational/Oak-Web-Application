@@ -189,13 +189,15 @@ type OakLinkProps =
   | ClassroomLinkProps
   | TeacherHubLinkProps;
 
-type ExternalPageName =
-  | "[external] Careers"
-  | "[external] Help"
-  | "[external] Classroom"
-  | "[external] Our teachers"
-  | "[external] Teacher hub"
-  | "[external] Our curriculum";
+const EXTERNAL_PAGE_NAMES = [
+  "[external] Careers",
+  "[external] Help",
+  "[external] Classroom",
+  "[external] Our teachers",
+  "[external] Teacher hub",
+  "[external] Our curriculum",
+] as const;
+type ExternalPageName = typeof EXTERNAL_PAGE_NAMES[number];
 
 type OakPages = {
   classroom: OakPageConfig<ClassroomLinkProps>;
@@ -234,31 +236,40 @@ type OakPageConfig<
     page: string;
     query?: UrlQueryObject;
   }
-> = {
-  analyticsPageName: AnalyticsPageName;
-  pageType: ResolveHrefProps["page"];
-  resolveHref: (props: ResolveHrefProps) => string;
-  matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
-};
+> =
+  | {
+      analyticsPageName: PageNameValueType;
+      pageType: ResolveHrefProps["page"];
+      resolveHref: (props: ResolveHrefProps) => string;
+      matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
+      configType: "internal" | "internal-custom-resolve";
+    }
+  | {
+      analyticsPageName: ExternalPageName;
+      pageType: ResolveHrefProps["page"];
+      resolveHref: (props: ResolveHrefProps) => string;
+      matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
+      configType: "external";
+    };
 export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
   props:
     | {
         configType: "internal";
         pathPattern: string;
-        analyticsPageName: AnalyticsPageName;
+        analyticsPageName: PageNameValueType;
         pageType: ResolveHrefProps["page"];
       }
     | {
         configType: "internal-custom-resolve";
         resolveHref: (props: ResolveHrefProps) => string;
         matchHref: MatchFunction<Omit<ResolveHrefProps, "page">>;
-        analyticsPageName: AnalyticsPageName;
+        analyticsPageName: PageNameValueType;
         pageType: ResolveHrefProps["page"];
       }
     | {
         configType: "external";
         url: string;
-        analyticsPageName: AnalyticsPageName;
+        analyticsPageName: ExternalPageName;
         pageType: ResolveHrefProps["page"];
       }
 ): OakPageConfig<ResolveHrefProps> {
@@ -338,7 +349,7 @@ const postResolveHref =
     return `${path}?${queryString}`;
   };
 
-const OAK_PAGES: {
+export const OAK_PAGES: {
   [K in keyof OakPages]: OakPages[K] & { pageType: K };
 } = {
   "about-board": createOakPageConfig({
@@ -570,31 +581,4 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
     reportError(err);
     throw err;
   }
-};
-
-type PageViewProps = {
-  pageName: AnalyticsPageName;
-  analyticsUseCase: "teachers" | "pupils" | null;
-};
-export const getPageViewProps = (href: string): PageViewProps | null => {
-  return Object.values(OAK_PAGES).reduce((acc, config) => {
-    const [path] = href.split("?");
-    if (!path) {
-      return acc;
-    }
-    const matchResult = config.matchHref(path);
-    if (!matchResult) {
-      return acc;
-    }
-
-    const params = matchResult.params;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const viewType = "viewType" in params ? params.viewType : null;
-
-    return {
-      pageName: config.analyticsPageName,
-      analyticsUseCase: viewType,
-    };
-  }, null as PageViewProps | null);
 };

@@ -6,7 +6,6 @@ import {
   NextPage,
 } from "next";
 
-import useTrackPageView from "../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -39,11 +38,11 @@ import Breadcrumbs, {
 } from "../../../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../../../components/Box";
 import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../../../../../hooks/useAnalyticsUseCase";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
 } from "../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -113,7 +112,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   } = curriculumData;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -133,8 +132,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       analyticsUseCase,
     });
   };
-
-  useTrackPageView({ pageName: "Lesson" });
 
   return (
     <AppLayout

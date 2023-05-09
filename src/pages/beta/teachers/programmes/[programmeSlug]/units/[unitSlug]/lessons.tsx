@@ -9,7 +9,6 @@ import {
 import curriculumApi, {
   LessonListing,
 } from "../../../../../../../node-lib/curriculum-api";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
@@ -39,8 +38,6 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     subjectTitle,
     programmeSlug,
   } = curriculumData;
-
-  useTrackPageView({ pageName: "Lesson Listing" });
 
   const paginationProps = usePagination({
     totalResults: lessons.length,

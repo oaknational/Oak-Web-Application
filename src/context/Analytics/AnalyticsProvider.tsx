@@ -17,7 +17,6 @@ import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
 import posthogToAnalyticsService, {
   MaybeDistinctId,
-  PosthogConfig,
   PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
@@ -25,9 +24,8 @@ import config from "../../config/browser";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
-import HubspotScript, {
-  HubspotConfig,
-} from "../../browser-lib/hubspot/HubspotScript";
+import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
+import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 
 export type UserId = string;
 export type EventName = string;
@@ -77,9 +75,6 @@ export type AnalyticsService<ServiceConfig> = {
   optOut: () => void;
   optIn: () => void;
 };
-type AnalyticsServiceWithConfig =
-  | AnalyticsService<HubspotConfig>
-  | AnalyticsService<PosthogConfig>;
 
 type AvoOptions = Parameters<typeof initAvo>[0];
 
@@ -157,26 +152,23 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Page view tracking
    */
-  const page = useStableCallback(
-    (opts: { services: AnalyticsServiceWithConfig[] }) => {
-      const { services } = opts;
-      const path = getPathAndQuery();
+  const page = useStableCallback(() => {
+    const path = getPathAndQuery();
 
-      services.forEach((service) => {
-        service.page({ path });
-      });
-      // const pageViewProps = getPageViewProps(path);
-      // track.pageView({
-      //   linkUrl: router.asPath,
-      //   ...pageViewProps,
-      // });
-    }
-  );
+    // Send a simple page event to hubspot
+    hubspot.page({ path });
+
+    // We send the posthog $pageview event via Avo
+    const { analyticsUseCase, pageName } = getPageViewProps(path);
+    track.pageview({
+      linkUrl: router.asPath,
+      pageName,
+      analyticsUseCase,
+    });
+  });
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", () => {
-      page({ services: [posthog, hubspot] });
-    });
+    router.events.on("routeChangeComplete", page);
 
     return () => {
       router.events.off("routeChangeComplete", page);

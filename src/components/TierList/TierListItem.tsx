@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -11,6 +10,7 @@ import OakLink from "../OakLink";
 import Card from "../Card";
 import useClickableCard from "../../hooks/useClickableCard";
 import Box from "../Box";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type TierListItemProps = {
   subjectTitle: string;
@@ -43,7 +43,7 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   if (!tierTitle) {
     return null;
@@ -67,8 +67,8 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           programme={programmeSlug}
           onClick={() => {
             track.tierSelected({
-              subjectTitle: subjectTitle,
-              subjectSlug: subjectSlug,
+              subjectTitle,
+              subjectSlug,
               keyStageTitle: keyStageTitle as KeyStageTitleValueType,
               keyStageSlug,
               tierName: tierTitle,

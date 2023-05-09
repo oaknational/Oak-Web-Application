@@ -13,7 +13,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../node-lib/isr";
-import useTrackPageView from "../../../../../hooks/useTrackPageView";
 import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../components/AppLayout";
 import Flex from "../../../../../components/Flex";
@@ -55,8 +54,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const router = useRouter();
   const learningThemeSlug = router.query["learning-theme"]?.toString();
-
-  useTrackPageView({ pageName: "Unit Listing" });
 
   const unitsFilteredByLearningTheme = learningThemeSlug
     ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
