@@ -83,6 +83,12 @@ describe("Unit List Item", () => {
       subjectSlug: "maths",
       unitName: "Numbers and numerals",
       unitSlug: "numbers-and-numerals",
+      lessonName: undefined,
+      lessonSlug: undefined,
+      searchFilterOptionSelected: "",
+      searchRank: 4,
+      searchResultCount: 10,
+      searchResultType: ["unit"],
     });
   });
 });
