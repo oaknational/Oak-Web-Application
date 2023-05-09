@@ -1,7 +1,8 @@
 import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
-import getHubspotNewsletterPayload, {
+import {
+  getHubspotNewsletterPayload,
   NewsletterHubspotFormData,
-} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
 import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";

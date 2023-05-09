@@ -6,7 +6,7 @@ import type {
 import downloadLessonResources from "../helpers/downloadLessonResources";
 import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
-import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotDownloadsFormPayload";
+import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 import config from "../../../config/browser";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";

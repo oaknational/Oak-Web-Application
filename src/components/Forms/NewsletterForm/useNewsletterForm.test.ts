@@ -1,8 +1,9 @@
 import { renderHook } from "@testing-library/react";
 
-import getHubspotNewsletterPayload, {
+import {
+  getHubspotNewsletterPayload,
   NewsletterHubspotFormData,
-} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 import useNewsletterForm from "./useNewsletterForm";
 

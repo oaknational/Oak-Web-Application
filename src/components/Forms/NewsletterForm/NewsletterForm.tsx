@@ -14,7 +14,7 @@ import { BoxProps } from "../../Box";
 import {
   USER_ROLES,
   UserRole,
-} from "../../../browser-lib/hubspot/forms/getHubspotNewsletterFormPayload";
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 

@@ -2,9 +2,10 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import hubspotSubmitForm from "./hubspotSubmitForm";
-import getHubspotNewsletterPayload, {
+import {
+  getHubspotNewsletterPayload,
   NewsletterHubspotFormData,
-} from "./getHubspotNewsletterFormPayload";
+} from "./getHubspotFormPayloads";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
