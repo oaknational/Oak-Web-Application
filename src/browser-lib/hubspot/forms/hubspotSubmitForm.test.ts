@@ -78,20 +78,13 @@ describe("hubspotSubmitForm", () => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
-    it("should attempt to get the hubspotutk cookie", async () => {
-      await hubspotSubmitForm({
-        hubspotFormId,
-        payload,
-      });
-      expect(getHubspotUserToken).toHaveBeenCalled();
-    });
     it("should fetch the correct url with the correct payload", async () => {
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
         payload,
       });
-
-      expect(successMessage).toBe("Thanks that worked the first time");
+      
+     expect(successMessage).toBe("Thanks that worked the first time");
     });
     it("should succeed even if user doesn't have hubspot cookie", async () => {
       getHubspotUserToken.mockImplementationOnce(
@@ -149,23 +142,32 @@ describe("hubspotSubmitForm", () => {
         {
           payload: {
             context: {
-              hutk: "hubspotutk value",
+              hutk: "hubspotutk value 456",
               pageName: "",
               pageUri: "http://localhost/",
             },
             fields: [
-              { name: "email_text_only", value: "email value" },
+              { name: "email", value: "email value" },
               { name: "full_name", value: "full_name value" },
               { name: "oak_user_id", value: "oak_user_id value" },
               { name: "user_type", value: "Student" },
+              { name: "emailTextOnly", value: "email value" },
             ],
           },
           props: {
-            data: {
-              emailTextOnly: "email value",
-              name: "full_name value",
-              oakUserId: "oak_user_id value",
-              userRole: "Student",
+            payload: {
+              context: {
+                hutk: "hubspotutk value 456",
+                pageName: "",
+                pageUri: "http://localhost/",
+              },
+              fields: [
+               { name: "email", value: "email value" },
+                { name: "full_name", value: "full_name value" },
+                { name: "oak_user_id", value: "oak_user_id value" },
+                { name: "user_type", value: "Student" },
+                { name: "emailTextOnly", value: "email value" },
+              ],
             },
             hubspotFormId: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
             isFallbackAttempt: true,
@@ -190,7 +192,7 @@ describe("hubspotSubmitForm", () => {
         {
           payload: {
             context: {
-              hutk: "hubspotutk value",
+              hutk: "hubspotutk value 456",
               pageName: "",
               pageUri: "http://localhost/",
             },
@@ -202,11 +204,18 @@ describe("hubspotSubmitForm", () => {
             ],
           },
           props: {
-            data: {
-              email: "email value",
-              name: "full_name value",
-              oakUserId: "oak_user_id value",
-              userRole: "Student",
+            payload: {
+              context: {
+                hutk: "hubspotutk value 456",
+                pageName: "",
+                pageUri: "http://localhost/",
+              },
+              fields: [
+                { name: "email", value: "email value" },
+                { name: "full_name", value: "full_name value" },
+                { name: "oak_user_id", value: "oak_user_id value" },
+                { name: "user_type", value: "Student" },
+              ],
             },
             hubspotFormId: "hubspot-test-form",
           },

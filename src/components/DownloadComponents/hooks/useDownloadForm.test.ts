@@ -22,6 +22,11 @@ jest.mock("./useLocalStorageForDownloads", () => {
   }));
 });
 
+jest.mock("../../../hooks/useUtmParams", () => ({
+  __esModule: true,
+  default: () => ({ utm_source: "les_twitz" }),
+}));
+
 const data: DownloadFormProps = {
   onSubmit: jest.fn(),
   email: "test@test.com",
@@ -30,13 +35,23 @@ const data: DownloadFormProps = {
   terms: true,
   downloads: ["intro-quiz-questions"],
 };
+const getHubspotUserToken = jest.fn(() => "hubspotutk value");
+jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
+  __esModule: true,
+  default: (...args: []) => getHubspotUserToken(...args),
+}));
 
 describe("useDownloadForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     window.localStorage.clear();
   });
+  it("should attempt to get the hubspotutk cookie", async () => {
+    const { result } = renderHook(() => useDownloadForm());
+    result.current.onSubmit(data, "lesson");
 
+    expect(getHubspotUserToken).toHaveBeenCalled();
+  });
   it("should set email in local storage if passed in props", () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
