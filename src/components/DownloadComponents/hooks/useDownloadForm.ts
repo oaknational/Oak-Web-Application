@@ -11,7 +11,7 @@ import config from "../../../config/browser";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-const hubspotDownloadsFormId = config.get("hubspotNewsletterFormId");
+const hubspotDownloadsFormId = config.get("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
