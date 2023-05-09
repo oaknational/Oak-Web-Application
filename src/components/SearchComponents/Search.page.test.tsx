@@ -41,6 +41,8 @@ const validQuery: SearchQuery = {
 
 const props: SearchProps = {
   status: "not-asked",
+  searchStartTime: null,
+  setSearchStartTime: jest.fn(),
   results: [],
   query: validQuery,
   setQuery: jest.fn(),

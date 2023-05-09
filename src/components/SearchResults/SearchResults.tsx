@@ -22,8 +22,9 @@ export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
   const { hits, allKeyStages } = props;
+  const hitCount = hits.length;
   const paginationProps = usePagination({
-    totalResults: hits.length,
+    totalResults: hitCount,
     pageSize: RESULTS_PER_PAGE,
     items: hits,
   });
@@ -31,23 +32,30 @@ const SearchResults = (props: SearchResultsProps) => {
 
   return (
     <Flex $background={"white"} $flexDirection="column">
-      {hits.length ? (
+      {hitCount ? (
         <>
           <UL $reset>
-            {currentPageItems.map((hit) => {
+            {currentPageItems.map((hit, index) => {
               const { _source } = hit;
-
               return (
                 <LI key={`SearchList-SearchListItem-${_source.slug}`}>
                   {isLessonSearchHit(hit) ? (
                     <LessonListItem
-                      {...getLessonObject({ hit, allKeyStages })}
+                      {...getLessonObject({
+                        hit,
+                        allKeyStages,
+                      })}
+                      index={index}
+                      hitCount={hitCount}
+                      fromSearchPage
                     />
                   ) : (
                     <UnitListItem
                       expiredLessonCount={null}
                       {...getUnitObject({ hit, allKeyStages })}
-                      index={null}
+                      index={index}
+                      hitCount={hitCount}
+                      fromSearchPage
                     />
                   )}
                 </LI>

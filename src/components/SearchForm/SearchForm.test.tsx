@@ -20,7 +20,11 @@ describe("<SearchForm />", () => {
 
   it("renders", () => {
     const { getByRole } = render(
-      <SearchForm searchTerm="" handleSubmit={handleSubmit} />
+      <SearchForm
+        searchTerm=""
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
     );
     const button = getByRole("button");
     expect(button).toBeInTheDocument();
@@ -29,7 +33,11 @@ describe("<SearchForm />", () => {
   it("typing text and clicking button submit is handled correctly", async () => {
     const searchTerm = "Macbeth";
     const { getByRole } = render(
-      <SearchForm searchTerm="" handleSubmit={handleSubmit} />
+      <SearchForm
+        searchTerm=""
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
     );
     const user = userEvent.setup();
 
@@ -47,7 +55,11 @@ describe("<SearchForm />", () => {
     const initialText = "Mac";
     const addedText = "be";
     const { getByRole } = render(
-      <SearchForm searchTerm={initialText} handleSubmit={handleSubmit} />
+      <SearchForm
+        searchTerm={initialText}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
     );
     const user = userEvent.setup();
 
@@ -65,7 +77,11 @@ describe("<SearchForm />", () => {
 
   it("{Enter} submits the form if search input has focus", async () => {
     const { getByRole } = render(
-      <SearchForm searchTerm={""} handleSubmit={handleSubmit} />
+      <SearchForm
+        searchTerm={""}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
     );
     const user = userEvent.setup();
     const searchField = getByRole("searchbox");
@@ -76,7 +92,13 @@ describe("<SearchForm />", () => {
   });
 
   it("{Enter} does not submit the form if search if inputs don't have focus", async () => {
-    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    render(
+      <SearchForm
+        searchTerm={""}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
+    );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
 
@@ -84,14 +106,26 @@ describe("<SearchForm />", () => {
   });
 
   it("search input is first tabbable element", async () => {
-    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    render(
+      <SearchForm
+        searchTerm={""}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
+    );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
 
     expect(handleSubmit).not.toHaveBeenCalled();
   });
   it("submit button is second tabbable element", async () => {
-    render(<SearchForm searchTerm={""} handleSubmit={handleSubmit} />);
+    render(
+      <SearchForm
+        searchTerm={""}
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />
+    );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
 

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next-router-mock";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
@@ -10,13 +11,16 @@ import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
+import { getSearchFilterOptionSelected } from "../../../../context/Search/helpers";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number],
   "year" | "unitStudyOrder"
 > & {
   hideTopHeading?: boolean;
-  index: number | null;
+  hitCount: number;
+  fromSearchPage?: boolean;
+  index: number;
 };
 
 /**
@@ -38,21 +42,43 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     subjectTitle,
     keyStageSlug,
     keyStageTitle,
+    fromSearchPage,
+    hitCount,
   } = props;
-
+  const router = useRouter();
   const { track } = useAnalytics();
   const analyticsUseCase = useAnalyticsUseCase();
 
   const trackUnitSelected = () => {
-    track.unitSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: title,
-      unitSlug: slug,
-      analyticsUseCase,
-    });
+    if (fromSearchPage) {
+      track.searchResultClicked({
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        unitName: title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: slug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: index + 1,
+        searchFilterOptionSelected: getSearchFilterOptionSelected(
+          router.query.keyStages
+        ),
+        searchResultCount: hitCount,
+        searchResultType: ["unit"],
+        lessonName: undefined,
+        lessonSlug: undefined,
+      });
+    } else {
+      track.unitSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: title,
+        unitSlug: slug,
+        analyticsUseCase,
+      });
+    }
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
