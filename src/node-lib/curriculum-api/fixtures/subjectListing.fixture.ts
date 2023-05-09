@@ -16,6 +16,7 @@ const subjectListingFixture = (
         activeLessonCount: 18,
         programmeSlug: "biology-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 1,
       },
       {
         subjectSlug: "chemistry",
@@ -26,6 +27,7 @@ const subjectListingFixture = (
         activeLessonCount: 18,
         programmeSlug: "chemistry-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 1,
       },
       {
         subjectSlug: "citizenship",
@@ -36,6 +38,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "citizenship-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 12,
       },
       {
         subjectSlug: "combined-science",
@@ -46,6 +49,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "combined-science-secondary-ks4-foundation",
         tierSlug: "foundation",
+        activeUnitCount: 12,
       },
       {
         subjectSlug: "combined-science",
@@ -56,6 +60,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "combined-science-secondary-ks4-higher",
         tierSlug: "higher",
+        activeUnitCount: 12,
       },
       {
         subjectSlug: "computing",
@@ -66,6 +71,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "computing-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 15,
       },
       {
         subjectSlug: "computing-non-gcse",
@@ -76,6 +82,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "computing-non-gcse-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 12,
       },
       {
         subjectSlug: "french",
@@ -86,6 +93,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "french-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 8,
       },
       {
         subjectSlug: "german",
@@ -96,6 +104,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "german-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 8,
       },
       {
         subjectSlug: "latin",
@@ -106,6 +115,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "latin-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 4,
       },
       {
         subjectSlug: "maths",
@@ -116,6 +126,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "maths-secondary-ks4-core",
         tierSlug: "core",
+        activeUnitCount: 61,
       },
       {
         subjectSlug: "maths",
@@ -126,6 +137,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "maths-secondary-ks4-foundation",
         tierSlug: "foundation",
+        activeUnitCount: 63,
       },
       {
         subjectSlug: "maths",
@@ -136,6 +148,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "maths-secondary-ks4-higher",
         tierSlug: "higher",
+        activeUnitCount: 63,
       },
       {
         subjectSlug: "religious-education",
@@ -146,6 +159,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "religious-education-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 10,
       },
       {
         subjectSlug: "rshe-pshe",
@@ -156,6 +170,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "rshe-pshe-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 13,
       },
       {
         subjectSlug: "spanish",
@@ -166,6 +181,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "spanish-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 8,
       },
     ],
     programmesUnavailable: [
@@ -178,6 +194,7 @@ const subjectListingFixture = (
         activeLessonCount: 23,
         programmeSlug: "art-secondary-ks4",
         tierSlug: null,
+        activeUnitCount: 0,
       },
       // {
       //   subjectSlug: "english",
