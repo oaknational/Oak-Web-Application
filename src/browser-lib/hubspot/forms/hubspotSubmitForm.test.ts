@@ -83,8 +83,8 @@ describe("hubspotSubmitForm", () => {
         hubspotFormId,
         payload,
       });
-      
-     expect(successMessage).toBe("Thanks that worked the first time");
+
+      expect(successMessage).toBe("Thanks that worked the first time");
     });
     it("should succeed even if user doesn't have hubspot cookie", async () => {
       getHubspotUserToken.mockImplementationOnce(
@@ -162,7 +162,7 @@ describe("hubspotSubmitForm", () => {
                 pageUri: "http://localhost/",
               },
               fields: [
-               { name: "email", value: "email value" },
+                { name: "email", value: "email value" },
                 { name: "full_name", value: "full_name value" },
                 { name: "oak_user_id", value: "oak_user_id value" },
                 { name: "user_type", value: "Student" },
