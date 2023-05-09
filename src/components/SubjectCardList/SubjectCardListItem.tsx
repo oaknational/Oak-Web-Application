@@ -35,8 +35,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     programmeSlug,
     keyStageTitle,
   } = firstProgramme;
-  const totalUnitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.totalUnitCount || 0);
+  const activeUnitCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.activeUnitCount || 0);
   }, 0);
   const activeLessonCount = programmes.reduce((acc, cur) => {
     return acc + (cur.activeLessonCount || 0);
@@ -120,7 +120,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${totalUnitCount} units`}</Typography>
+            >{`${activeUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
