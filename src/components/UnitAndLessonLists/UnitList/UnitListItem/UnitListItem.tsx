@@ -18,7 +18,7 @@ export type UnitListItemProps = Omit<
   "year" | "unitStudyOrder"
 > & {
   hideTopHeading?: boolean;
-  hitCount: number;
+  hitCount?: number;
   fromSearchPage?: boolean;
   index: number;
 };
@@ -50,7 +50,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const analyticsUseCase = useAnalyticsUseCase();
 
   const trackUnitSelected = () => {
-    if (fromSearchPage) {
+    if (fromSearchPage && hitCount && index) {
       track.searchResultClicked({
         keyStageSlug: keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,

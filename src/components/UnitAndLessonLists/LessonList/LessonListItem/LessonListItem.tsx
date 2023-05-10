@@ -19,7 +19,7 @@ import { getSearchFilterOptionSelected } from "../../../../context/Search/helper
 export type LessonListItemProps = LessonListing["lessons"][number] & {
   unitTitle: string;
   hideTopHeading?: boolean;
-  hitCount: number;
+  hitCount?: number;
   fromSearchPage?: boolean;
   index: number;
 };
@@ -97,7 +97,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   const analyticsUseCase = useAnalyticsUseCase();
 
   const trackLessonSelected = () => {
-    if (fromSearchPage) {
+    if (fromSearchPage && index && hitCount) {
       track.searchResultClicked({
         keyStageSlug: keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
