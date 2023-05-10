@@ -6,7 +6,6 @@ import {
   NextPage,
 } from "next";
 
-import useTrackPageView from "../../../../../../../../hooks/useTrackPageView";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -39,11 +38,11 @@ import Breadcrumbs, {
 } from "../../../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../../../components/Box";
 import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../../../../../hooks/useAnalyticsUseCase";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
 } from "../../../../../../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -59,14 +58,25 @@ export const lessonBreadcrumbArray = (
   unitTitle: string
 ): Breadcrumb[] => {
   return [
-    { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
-      oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+      oakLinkProps: {
+        page: "home",
+        viewType: "teachers",
+      },
+      label: "Home",
+    },
+    {
+      oakLinkProps: {
+        page: "subject-index",
+        viewType: "teachers",
+        slug: keyStageSlug,
+      },
       label: keyStageTitle,
     },
     {
       oakLinkProps: {
         page: "unit-index",
+        viewType: "teachers",
         programme: programmeSlug,
       },
       label: subjectTitle,
@@ -74,6 +84,7 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "lesson-index",
+        viewType: "teachers",
         programmeSlug,
         slug: unitSlug,
       },
@@ -113,7 +124,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   } = curriculumData;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -133,8 +144,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       analyticsUseCase,
     });
   };
-
-  useTrackPageView({ pageName: "Lesson" });
 
   return (
     <AppLayout
@@ -220,6 +229,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   iconBackground="teachersHighlight"
                   label="Download all resources"
                   page={"lesson-downloads"}
+                  viewType="teachers"
                   size="small"
                   variant="minimal"
                   $iconPosition={"trailing"}

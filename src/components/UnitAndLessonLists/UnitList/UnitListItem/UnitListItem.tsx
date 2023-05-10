@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
@@ -10,6 +9,7 @@ import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number],
@@ -41,7 +41,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   } = props;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackUnitSelected = () => {
     track.unitSelected({

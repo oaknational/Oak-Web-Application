@@ -67,7 +67,7 @@ describe("TierListItem", () => {
       tierName: "Higher",
       keyStageTitle: "Key Stage 4",
       keyStageSlug: "ks4",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
     });
   });
 });
