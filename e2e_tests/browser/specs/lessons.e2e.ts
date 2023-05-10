@@ -41,7 +41,7 @@ describe("Lessons", () => {
       const firstTranscriptParagraph =
         await TeacherKeyStagesSubjectsProgrammesUnitsLessonsLessonPage.getTranscriptFirstParagraph();
       const text = await firstTranscriptParagraph.getText();
-      expect(text).toBeTruthy();
+      await expect(text).toBeTruthy();
     });
   });
 });

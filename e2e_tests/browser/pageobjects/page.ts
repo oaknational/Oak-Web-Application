@@ -61,7 +61,7 @@ export default class Page {
     await farRightButton.click();
 
     // Switch back to the top-level parent frame.
-    browser.switchToFrame(null);
+    await browser.switchToFrame(null);
 
     // Wait for the overlay to go away.
     try {
