@@ -1,3 +1,16 @@
+# [1.180.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.179.0...v1.180.0) (2023-05-10)
+
+
+### Bug Fixes
+
+* initial route pageview ([8504706](https://github.com/oaknational/Oak-Web-Application/commit/85047060206817a996a07fe06f7617bd403f334e))
+* make viewType non-optional page prop ([0e33940](https://github.com/oaknational/Oak-Web-Application/commit/0e3394028e9f14de31ee4a89a21796dd8cbfaf60))
+
+
+### Features
+
+* consolidate  capture event ([d1b4071](https://github.com/oaknational/Oak-Web-Application/commit/d1b4071cf499a9868f6f0756e2215a12406576fa))
+
 # [1.179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.3...v1.179.0) (2023-05-10)
 
 
