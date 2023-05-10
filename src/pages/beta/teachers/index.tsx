@@ -41,7 +41,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { setSearchTerm } = useSearch({
     allKeyStages: curriculumData.keyStages,
   });
-  useTrackPageView({ pageName: "Homepage" });
+
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
   const trackSearchAttempted = (searchTerm: string) => {
@@ -182,7 +182,3 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 };
 
 export default Teachers;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function useTrackPageView(arg0: { pageName: string }) {
-  throw new Error("Function not implemented.");
-}

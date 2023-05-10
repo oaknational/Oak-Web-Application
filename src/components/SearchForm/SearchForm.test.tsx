@@ -163,8 +163,8 @@ describe("<SearchForm />", () => {
 
     expect(searchJourneyInitiated).toHaveBeenCalledTimes(1);
     expect(searchJourneyInitiated).toHaveBeenCalledWith({
-      analyticsUseCase: ["Teacher"],
-      searchSource: ["homepage search box"],
+      analyticsUseCase: null,
+      searchSource: "homepage search box",
     });
   });
   it("track.searchAttempted is called on submit ", async () => {
@@ -185,10 +185,10 @@ describe("<SearchForm />", () => {
 
     expect(searchAttempted).toHaveBeenCalledTimes(1);
     expect(searchAttempted).toHaveBeenCalledWith({
-      analyticsUseCase: ["Teacher"],
-      pageName: "Search",
-      searchFilterOptionSelected: "",
-      searchSource: ["homepage search box"],
+      analyticsUseCase: null,
+      pageName: null,
+      searchFilterOptionSelected: [],
+      searchSource: "homepage search box",
       searchTerm: "search me",
     });
   });

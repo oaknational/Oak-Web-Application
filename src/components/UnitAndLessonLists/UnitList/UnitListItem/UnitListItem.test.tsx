@@ -89,7 +89,7 @@ describe("Unit List Item", () => {
       searchFilterOptionSelected: [],
       searchRank: 4,
       searchResultCount: 10,
-      searchResultType: ["unit"],
+      searchResultType: "unit",
     });
   });
 });

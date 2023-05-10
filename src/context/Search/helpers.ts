@@ -11,7 +11,7 @@ import { KeyStage } from "./useKeyStageFilters";
 const reportError = errorReporter("search/helpers");
 
 // Analytics
-export const getSortedSearchFilterOptions = (
+export const getSortedSearchFiltersSelected = (
   filterOptions: string | string[] | undefined
 ): [] | string[] => {
   if (typeof filterOptions === "string") {
