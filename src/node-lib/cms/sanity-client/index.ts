@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { tryGetAssetPath } from "@sanity/asset-utils";
 
 import sanityGraphqlApi from "../../sanity-graphql";
 import {
@@ -24,7 +23,7 @@ import {
   blogListingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
-import browserConfig from "../../../config/browser";
+import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
 
 import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
@@ -108,10 +107,7 @@ const getSanityClient = () => ({
         boardPageData.documents.forEach((doc) => {
           const asset = doc?.file?.asset;
           const url = asset?.url;
-          const assetPath = url ? tryGetAssetPath(url) : null;
-          const proxiedUrl = assetPath
-            ? `https://${browserConfig.get("sanityAssetCDNHost")}/${assetPath}`
-            : null;
+          const proxiedUrl = getProxiedSanityAssetUrl(url);
 
           if (doc?.file?.asset?.url) {
             doc.file.asset.url = proxiedUrl;
