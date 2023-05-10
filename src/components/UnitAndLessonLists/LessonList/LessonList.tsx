@@ -29,7 +29,6 @@ const LESSONS_PER_PAGE = 5;
 const LessonList: FC<LessonListProps> = (props) => {
   const { lessons, paginationProps, headingTag, currentPageItems, unitTitle } =
     props;
-  console.log(paginationProps);
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
