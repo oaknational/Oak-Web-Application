@@ -22,6 +22,7 @@ export type LessonListItemProps = LessonListing["lessons"][number] & {
   hitCount?: number;
   fromSearchPage?: boolean;
   index: number;
+  currentPage?: number;
 };
 
 function getAvailableResourceList({
@@ -91,13 +92,13 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     fromSearchPage,
     index,
     hitCount,
+    currentPage,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
   const analyticsUseCase = useAnalyticsUseCase();
-
   const trackLessonSelected = () => {
-    if (fromSearchPage && index && hitCount) {
+    if (fromSearchPage && hitCount && currentPage) {
       track.searchResultClicked({
         keyStageSlug: keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
@@ -108,7 +109,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         lessonName: lessonTitle,
         lessonSlug: lessonSlug,
         analyticsUseCase: analyticsUseCase,
-        searchRank: index + 1,
+        searchRank: (currentPage - 1) * 20 + index + 1,
         searchFilterOptionSelected: getSearchFilterOptionSelected(
           router.query.keyStages
         ),

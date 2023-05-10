@@ -21,6 +21,7 @@ export type UnitListItemProps = Omit<
   hitCount?: number;
   fromSearchPage?: boolean;
   index: number;
+  currentPage?: number;
 };
 
 /**
@@ -44,13 +45,14 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     keyStageTitle,
     fromSearchPage,
     hitCount,
+    currentPage,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
   const analyticsUseCase = useAnalyticsUseCase();
 
   const trackUnitSelected = () => {
-    if (fromSearchPage && hitCount && index) {
+    if (fromSearchPage && hitCount && currentPage) {
       track.searchResultClicked({
         keyStageSlug: keyStageSlug,
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
@@ -59,7 +61,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         unitName: title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
         unitSlug: slug,
         analyticsUseCase: analyticsUseCase,
-        searchRank: index + 1,
+        searchRank: (currentPage - 1) * 20 + index + 1,
         searchFilterOptionSelected: getSearchFilterOptionSelected(
           router.query.keyStages
         ),
