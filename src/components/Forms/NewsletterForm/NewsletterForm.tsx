@@ -8,13 +8,13 @@ import { P } from "../../Typography";
 import Button from "../../Button";
 import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
-import {
-  UserRole,
-  USER_ROLES,
-} from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import errorReporter from "../../../common-lib/error-reporter";
 import Form from "../Form";
 import { BoxProps } from "../../Box";
+import {
+  USER_ROLES,
+  UserRole,
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 

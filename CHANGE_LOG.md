@@ -1,3 +1,43 @@
+# [1.179.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.3...v1.179.0) (2023-05-10)
+
+
+### Bug Fixes
+
+* **config test:** add new env var to test config ([38ee7c3](https://github.com/oaknational/Oak-Web-Application/commit/38ee7c312373094c8f50eb888974aaae0ed47dbe))
+* **config test:** update test env vars ([1037043](https://github.com/oaknational/Oak-Web-Application/commit/1037043f5879618d7568f88b222ef42b435d03cc))
+* **downloads submit:** fix on submit return type to accept string undefined ([c376683](https://github.com/oaknational/Oak-Web-Application/commit/c3766832446e568556a65e022f2063a29765865c))
+* **downloads submit:** prettier fix ([6d0af46](https://github.com/oaknational/Oak-Web-Application/commit/6d0af46a8fd23b82524116509a94e4c669e84bf4))
+* **hubspot test:** fix test ([744a208](https://github.com/oaknational/Oak-Web-Application/commit/744a208fa6fb068e3315ff915fd5e03f3adb097a))
+* **main:** merge main into branch ([b21df6c](https://github.com/oaknational/Oak-Web-Application/commit/b21df6c5a56f2d217b380591255e20ec37eb0fbd))
+* **safari:** fix safari not sending bug ([c33e9f3](https://github.com/oaknational/Oak-Web-Application/commit/c33e9f3c98d54dc6e51a2bf9e1ef275087670609))
+* **safari:** fix safari not sending bug ([386418c](https://github.com/oaknational/Oak-Web-Application/commit/386418c1b6dde014c96db93e6418adfe2c47ffe3))
+* **tests:** fix test suites ([c5fe449](https://github.com/oaknational/Oak-Web-Application/commit/c5fe4498101327f4a6e23a283021ed0ff6b769d1))
+* **tests:** fix test suites style ([9a056fe](https://github.com/oaknational/Oak-Web-Application/commit/9a056fe64ce2ece05206960779805a7a137f135a))
+* **use download:** add await to hubspot form response ([2bdcc3e](https://github.com/oaknational/Oak-Web-Application/commit/2bdcc3e9278b4dc26e35b6b4c405e8b2a096ca6e))
+* **useDownloadsfrom:** add downloads config to owa ([ff4cb02](https://github.com/oaknational/Oak-Web-Application/commit/ff4cb022a829a786d0dfd56b2fdc27d08fd533db))
+
+
+### Features
+
+* **downloads:** prettier fixes ([713241b](https://github.com/oaknational/Oak-Web-Application/commit/713241bccfa97bde23801af2af0b54dfbf19f104))
+* **downloads:** send data to hubspot on downloads submit ([3dc76e1](https://github.com/oaknational/Oak-Web-Application/commit/3dc76e1091ad3f2216afc23b00f072df9f14ac25))
+
+## [1.178.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.2...v1.178.3) (2023-05-10)
+
+## [1.178.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.1...v1.178.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* **blog:** replacce sanity cdn links with proxied urls ([67aab48](https://github.com/oaknational/Oak-Web-Application/commit/67aab480eb3c6e9cd7e1342242a04a8fa6d6003b))
+
+## [1.178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.0...v1.178.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* replace sanity asset urls with first party proxy domain ([7ac0ff1](https://github.com/oaknational/Oak-Web-Application/commit/7ac0ff1f61024034b3ec13bcd631afa35bd4b46e))
+
 # [1.178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.4...v1.178.0) (2023-05-04)
 
 

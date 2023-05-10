@@ -1,7 +1,11 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import hubspotSubmitForm, { HubspotFormData } from "./hubspotSubmitForm";
+import hubspotSubmitForm from "./hubspotSubmitForm";
+import {
+  getHubspotNewsletterPayload,
+  NewsletterHubspotFormData,
+} from "./getHubspotFormPayloads";
 
 const hubspotFallbackFormId = process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID;
 const hubspotPortalId = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
@@ -58,29 +62,27 @@ jest.mock("../../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const data: HubspotFormData = {
+const data: NewsletterHubspotFormData = {
   email: "email value",
   name: "full_name value",
   userRole: "Student",
   oakUserId: "oak_user_id value",
 };
 
+const payload = getHubspotNewsletterPayload({
+  hutk: "hubspotutk value 456",
+  data,
+});
+
 describe("hubspotSubmitForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   describe("succeeds", () => {
-    it("should attempt to get the hubspotutk cookie", async () => {
-      await hubspotSubmitForm({
-        hubspotFormId,
-        data,
-      });
-      expect(getHubspotUserToken).toHaveBeenCalled();
-    });
     it("should fetch the correct url with the correct payload", async () => {
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
-        data,
+        payload,
       });
 
       expect(successMessage).toBe("Thanks that worked the first time");
@@ -91,7 +93,7 @@ describe("hubspotSubmitForm", () => {
       );
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
-        data,
+        payload,
       });
 
       expect(successMessage).toBe("Thanks that worked the first time");
@@ -107,7 +109,7 @@ describe("hubspotSubmitForm", () => {
       try {
         await hubspotSubmitForm({
           hubspotFormId,
-          data,
+          payload,
         });
       } catch (error) {
         // eslint-disable-next-line
@@ -121,7 +123,7 @@ describe("hubspotSubmitForm", () => {
     });
     it("should not report error if fallback succeeds", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -131,7 +133,7 @@ describe("hubspotSubmitForm", () => {
     it("should report error if fallback fails", async () => {
       server.use(fallbackForm400UnknownError);
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -141,23 +143,32 @@ describe("hubspotSubmitForm", () => {
         {
           payload: {
             context: {
-              hutk: "hubspotutk value",
+              hutk: "hubspotutk value 456",
               pageName: "",
               pageUri: "http://localhost/",
             },
             fields: [
-              { name: "email_text_only", value: "email value" },
+              { name: "email", value: "email value" },
               { name: "full_name", value: "full_name value" },
               { name: "oak_user_id", value: "oak_user_id value" },
               { name: "user_type", value: "Student" },
+              { name: "emailTextOnly", value: "email value" },
             ],
           },
           props: {
-            data: {
-              emailTextOnly: "email value",
-              name: "full_name value",
-              oakUserId: "oak_user_id value",
-              userRole: "Student",
+            payload: {
+              context: {
+                hutk: "hubspotutk value 456",
+                pageName: "",
+                pageUri: "http://localhost/",
+              },
+              fields: [
+                { name: "email", value: "email value" },
+                { name: "full_name", value: "full_name value" },
+                { name: "oak_user_id", value: "oak_user_id value" },
+                { name: "user_type", value: "Student" },
+                { name: "emailTextOnly", value: "email value" },
+              ],
             },
             hubspotFormId: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
             isFallbackAttempt: true,
@@ -173,7 +184,7 @@ describe("hubspotSubmitForm", () => {
     });
     it("should send error to bugsnag including response details", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -182,7 +193,7 @@ describe("hubspotSubmitForm", () => {
         {
           payload: {
             context: {
-              hutk: "hubspotutk value",
+              hutk: "hubspotutk value 456",
               pageName: "",
               pageUri: "http://localhost/",
             },
@@ -194,11 +205,18 @@ describe("hubspotSubmitForm", () => {
             ],
           },
           props: {
-            data: {
-              email: "email value",
-              name: "full_name value",
-              oakUserId: "oak_user_id value",
-              userRole: "Student",
+            payload: {
+              context: {
+                hutk: "hubspotutk value 456",
+                pageName: "",
+                pageUri: "http://localhost/",
+              },
+              fields: [
+                { name: "email", value: "email value" },
+                { name: "full_name", value: "full_name value" },
+                { name: "oak_user_id", value: "oak_user_id value" },
+                { name: "user_type", value: "Student" },
+              ],
             },
             hubspotFormId: "hubspot-test-form",
           },
@@ -211,7 +229,7 @@ describe("hubspotSubmitForm", () => {
     it("should throw with the correct error message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -227,7 +245,7 @@ describe("hubspotSubmitForm", () => {
        * @see https://mswjs.io/docs/recipes/request-assertions
        */
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -247,7 +265,7 @@ describe("hubspotSubmitForm", () => {
        * being re-reported
        */
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -261,7 +279,7 @@ describe("hubspotSubmitForm", () => {
     test("error is thrown with correct message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -273,7 +291,7 @@ describe("hubspotSubmitForm", () => {
     });
     test("error is reported", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
@@ -292,7 +310,7 @@ describe("hubspotSubmitForm", () => {
     test("user is displayed correct message", async () => {
       let errorMessage = "";
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         // eslint-disable-next-line
         // @ts-ignore
@@ -302,7 +320,7 @@ describe("hubspotSubmitForm", () => {
     });
     test("error is not reported", async () => {
       try {
-        await hubspotSubmitForm({ hubspotFormId, data });
+        await hubspotSubmitForm({ hubspotFormId, payload });
       } catch (error) {
         //
       }
