@@ -419,10 +419,9 @@ const curriculumApi = {
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
     const learningThemes = units
-      ?.filter((unit) => unit?.themeSlug !== "no-theme")
       .map((unitWithTheme) => ({
         learningThemeSlug: unitWithTheme?.themeSlug || "",
-        learningThemeTitle: unitWithTheme?.themeTitle || "",
+        learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
       }))
       .sort((a, b) => {
         if (a.learningThemeTitle < b.learningThemeTitle) {
