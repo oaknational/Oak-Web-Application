@@ -1,7 +1,6 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 
-import useTrackPageView from "../../../hooks/useTrackPageView";
 import AppLayout from "../../../components/AppLayout";
 import useSearch from "../../../context/Search/useSearch";
 import Search from "../../../components/SearchComponents/Search.page";
@@ -23,7 +22,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     ...searchProps,
     allKeyStages,
   });
-  useTrackPageView({ pageName: "Search" });
 
   return (
     <AppLayout

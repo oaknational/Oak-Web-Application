@@ -145,19 +145,19 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
     maybeError: OakError | Error | unknown,
     data?: ErrorData
   ) => {
-    consoleError(maybeError);
-    consoleLog(context, metadata, data);
-
-    if (isBrowser) {
-      const bugsnagAllowed = getHasConsentedTo("bugsnag");
-      if (!bugsnagAllowed) {
-        // Do not continue if user has not given consent to send data bugsnag
-        return;
-      }
-    }
-    // data argument can be null
-    data = data || {};
     try {
+      consoleError(maybeError);
+      consoleLog(context, metadata, data);
+
+      if (isBrowser) {
+        const bugsnagAllowed = getHasConsentedTo("bugsnag");
+        if (!bugsnagAllowed) {
+          // Do not continue if user has not given consent to send data bugsnag
+          return;
+        }
+      }
+      // data argument can be null
+      data = data || {};
       const err = errorify(maybeError);
 
       await bugsnagNotify(err, (event: Event) => {
@@ -180,7 +180,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         }
 
         metaFields.originalError = originalError;
-        // @todo ensure metaFields are serializable otherwise data is lost
+
         event.addMetadata("Meta", metaFields);
       });
     } catch (bugsnagErr) {
@@ -191,7 +191,13 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
     }
   };
 
-  return reportError;
+  return function (maybeError: OakError | Error | unknown, data?: ErrorData) {
+    // Calling .then() to prevent sonarcloud erroneous codesniff
+    reportError(maybeError, data).then(
+      () => null,
+      () => null
+    );
+  };
 };
 
 export default errorReporter;

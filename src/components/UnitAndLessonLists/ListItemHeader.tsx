@@ -88,6 +88,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             unitSlug={props.unitSlug}
             page={"lesson-overview"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >
@@ -99,6 +100,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             slug={slug}
             page={"lesson-index"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >

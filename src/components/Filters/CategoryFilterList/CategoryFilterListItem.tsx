@@ -5,9 +5,9 @@ import { LI } from "../../Typography";
 import Flex from "../../Flex";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../hooks/useAnalyticsUseCase";
 import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
 import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 
 export type CategoryLinkProps = ResolveOakHrefProps;
 export interface Category<T extends CategoryLinkProps> {
@@ -28,7 +28,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const arrowHidden = !isSelected;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onClick = () => {
     setSelected(linkProps);

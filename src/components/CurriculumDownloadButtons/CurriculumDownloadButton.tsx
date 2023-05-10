@@ -6,7 +6,7 @@ import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 
 import downloadZip from "./helpers/downloadZip";
@@ -47,7 +47,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   }
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
 
   const trackCurriculumMapDownloaded = () => {
     track.curriculumMapDownloaded({
@@ -55,8 +55,8 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
       subjectSlug,
       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,
+      pageName,
       analyticsUseCase,
-      pageName: lessonPage ? ["Lesson Listing"] : ["Unit Listing"],
     });
   };
 
