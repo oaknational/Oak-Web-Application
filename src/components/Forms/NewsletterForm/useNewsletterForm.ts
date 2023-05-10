@@ -1,5 +1,9 @@
 import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
-import { HubspotFormData } from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
+import {
+  getHubspotNewsletterPayload,
+  NewsletterHubspotFormData,
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
 import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useUtmParams from "../../../hooks/useUtmParams";
@@ -13,14 +17,20 @@ const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
   const { identify, posthogDistinctId } = useAnalytics();
   const utmParams = useUtmParams();
 
-  const onSubmit = (data: HubspotFormData) => {
+  const onSubmit = (data: NewsletterHubspotFormData) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
 
+    const hutk = getHubspotUserToken();
+    const newsletterPayload = getHubspotNewsletterPayload({
+      hutk,
+      data: { ...data, ...utmParams },
+    });
+
     const hubspotFormResponse = hubspotSubmitForm({
       hubspotFormId: hubspotNewsletterFormId,
-      data: { ...data, ...utmParams },
+      payload: newsletterPayload,
     });
 
     if (posthogDistinctId) {
@@ -28,7 +38,6 @@ const useNewsletterForm = (props: UseNewsletterFormProps = {}) => {
         "hubspot",
       ]);
     }
-
     return hubspotFormResponse;
   };
 
