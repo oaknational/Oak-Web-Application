@@ -1,17 +1,29 @@
 [[plugins]]
 package = "./netlify/plugins/github-deployments"
 
-# Force all access through the managed TLD.
+# Force all access through the managed TLD (default). HTTP
 [[redirects]]
 from = 'http://oak-web-application.netlify.app/*'
-to = 'https://owa.thenational.academy/:splat'
+to = 'https://www.thenational.academy/:splat'
+status = 302
+force = true
+# Force all access through the managed TLD (default). HTTPS
+[[redirects]]
+from = 'https://oak-web-application.netlify.app/*'
+to = 'https://www.thenational.academy/:splat'
 status = 302
 force = true
 
-# Force all access through the managed TLD.
+# Force all access through the managed TLD (main branch). HTTP
 [[redirects]]
-from = 'https://oak-web-application.netlify.app/*'
-to = 'https://owa.thenational.academy/:splat'
+from = 'http://main--oak-web-application.netlify.app/*'
+to = 'https://www.thenational.academy/:splat'
+status = 302
+force = true
+# Force all access through the managed TLD (main branch). HTTPS
+[[redirects]]
+from = 'https://main--oak-web-application.netlify.app/*'
+to = 'https://www.thenational.academy/:splat'
 status = 302
 force = true
 
