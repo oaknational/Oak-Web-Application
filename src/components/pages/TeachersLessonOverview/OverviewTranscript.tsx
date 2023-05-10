@@ -14,6 +14,7 @@ export const OverviewTranscript: FC<OverviewTranscriptProps> = ({
   return (
     <Flex $width={"100%"} $justifyContent={"center"} data-testid="transcript">
       <Box
+        role="article"
         aria-label="The video transcript"
         $width={["100%", "70%", "60%"]}
         $maxHeight={[380, 640, 640]}
