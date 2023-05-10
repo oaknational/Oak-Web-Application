@@ -54,7 +54,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Lesson Listing", // @todo add real data
+          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lessons in Unit",
         }),
         ...{ noFollow: true, noIndex: true },

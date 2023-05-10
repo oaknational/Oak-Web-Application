@@ -105,6 +105,16 @@ describe("cms/sanity-client", () => {
     });
   });
 
+  describe("aboutBoardPage", () => {
+    it("document urls are proxied", async () => {
+      const result = await getSanityClient().aboutBoardPage();
+
+      expect(result?.documents[0]?.file.asset.url).toMatch(
+        /^https:\/\/NEXT_PUBLIC_SANITY_ASSET_CDN_HOST\/files/
+      );
+    });
+  });
+
   describe("landingPageBySlug", () => {
     it("fetches the specified landing page", async () => {
       await getSanityClient().landingPageBySlug("some-landing-page");

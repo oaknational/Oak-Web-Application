@@ -66,9 +66,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Programme units",
-        ogTitle: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",

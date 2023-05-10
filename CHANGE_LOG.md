@@ -1,3 +1,33 @@
+## [1.178.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.2...v1.178.3) (2023-05-10)
+
+## [1.178.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.1...v1.178.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* **blog:** replacce sanity cdn links with proxied urls ([67aab48](https://github.com/oaknational/Oak-Web-Application/commit/67aab480eb3c6e9cd7e1342242a04a8fa6d6003b))
+
+## [1.178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.0...v1.178.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* replace sanity asset urls with first party proxy domain ([7ac0ff1](https://github.com/oaknational/Oak-Web-Application/commit/7ac0ff1f61024034b3ec13bcd631afa35bd4b46e))
+
+# [1.178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.4...v1.178.0) (2023-05-04)
+
+
+### Bug Fixes
+
+* correct title for maths tiers ([1ff7d08](https://github.com/oaknational/Oak-Web-Application/commit/1ff7d08cb63934f317412903e8aaee2eb6522974))
+* react hook form returning function provided to attribute where a void return was expected ([0eb1658](https://github.com/oaknational/Oak-Web-Application/commit/0eb1658d662b07fb013273dc35a0f1bf735e60af))
+* sonar cloud add void to handle submit ([b4bd254](https://github.com/oaknational/Oak-Web-Application/commit/b4bd2544ce03d05d0b6796ad4a85af4002c4cd88))
+
+
+### Features
+
+* add beta seo titles ([2c7c5ae](https://github.com/oaknational/Oak-Web-Application/commit/2c7c5ae37580e924bff86f37fcd06800e2ce314c))
+
 ## [1.177.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.3...v1.177.4) (2023-05-03)
 
 ## [1.177.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.2...v1.177.3) (2023-05-03)
