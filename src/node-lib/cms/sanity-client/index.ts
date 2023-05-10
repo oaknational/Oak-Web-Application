@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { tryGetAssetPath } from "@sanity/asset-utils";
 
 import sanityGraphqlApi from "../../sanity-graphql";
 import {
@@ -23,6 +24,7 @@ import {
   blogListingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
+import browserConfig from "../../../config/browser";
 
 import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
@@ -102,6 +104,20 @@ const getSanityClient = () => ({
     aboutBoardPageSchema,
     (result) => {
       const boardPageData = result?.allAboutCorePageBoard?.[0];
+      if (boardPageData?.documents) {
+        boardPageData.documents.forEach((doc) => {
+          const asset = doc?.file?.asset;
+          const url = asset?.url;
+          const assetPath = url ? tryGetAssetPath(url) : null;
+          const proxiedUrl = assetPath
+            ? `https://${browserConfig.get("sanityAssetCDNHost")}/${assetPath}`
+            : null;
+
+          if (doc?.file?.asset?.url) {
+            doc.file.asset.url = proxiedUrl;
+          }
+        });
+      }
       const parentPageData = result?.aboutCorePage?.[0];
 
       return boardPageData && parentPageData
