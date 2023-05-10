@@ -48,7 +48,7 @@ describe("getPageViewProps()", () => {
       getPageViewProps("/beta/teachers/programmes/ks2-maths/units")
     ).toEqual({
       pageName: "Unit Listing",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Unit listing with query", () => {
@@ -58,7 +58,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Unit Listing",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Lesson listing", () => {
@@ -68,7 +68,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson Listing",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Lesson overview", () => {
@@ -78,7 +78,7 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Lesson downloads", () => {
@@ -88,19 +88,19 @@ describe("getPageViewProps()", () => {
       )
     ).toEqual({
       pageName: "Lesson Download",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Search", () => {
     expect(getPageViewProps("/beta/teachers/search")).toEqual({
       pageName: "Search",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Search with query", () => {
     expect(getPageViewProps("/beta/teachers/search?term=macb")).toEqual({
       pageName: "Search",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("Landing page", () => {
@@ -112,7 +112,7 @@ describe("getPageViewProps()", () => {
   it("Subject listing", () => {
     expect(getPageViewProps("/beta/teachers/key-stages/ks2/subjects")).toEqual({
       pageName: "Subject Listing",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
     });
   });
   it("About us: Board", () => {
