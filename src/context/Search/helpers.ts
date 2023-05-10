@@ -17,7 +17,7 @@ export const getSortedSearchFiltersSelected = (
   if (typeof filterOptions === "string") {
     return [filterOptions];
   } else if (Array.isArray(filterOptions)) {
-    return filterOptions.sort();
+    return filterOptions.sort((a, b) => (a < b ? -1 : 1));
   }
   return [];
 };
