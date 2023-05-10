@@ -2,13 +2,13 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import { getSearchFilterOptionSelected } from "../../context/Search/helpers";
+import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
 import {
   KeyStage,
   UseKeyStageFiltersReturnType,
 } from "../../context/Search/useKeyStageFilters";
 import { UseSearchReturnType } from "../../context/Search/useSearch";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import Box from "../Box";
 import Card from "../Card";
 import Flex from "../Flex";
@@ -40,7 +40,7 @@ const Search: FC<SearchProps> = (props) => {
   } = props;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
 
   const hitCount = results.length;
@@ -61,12 +61,12 @@ const Search: FC<SearchProps> = (props) => {
       const searchEndTime = performance.now();
 
       track.searchCompleted({
-        searchFilterOptionSelected: getSearchFilterOptionSelected(
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query.keyStages
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
-        searchResultsStatus: [status],
+        searchResultsStatus: status,
         searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
       });
       setSearchStartTime(null);

@@ -13,8 +13,8 @@ import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
-import { getSearchFilterOptionSelected } from "../../../../context/Search/helpers";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 
 export type LessonListItemProps = LessonListing["lessons"][number] & {
   unitTitle: string;
@@ -112,11 +112,11 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         lessonSlug: lessonSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: (currentPage - 1) * 20 + index + 1,
-        searchFilterOptionSelected: getSearchFilterOptionSelected(
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query.keyStages
         ),
         searchResultCount: hitCount,
-        searchResultType: ["lesson"],
+        searchResultType: "lesson",
       });
     } else {
       track.lessonSelected({

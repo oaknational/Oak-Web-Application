@@ -23,9 +23,9 @@ import {
   StyledInputProps,
 } from "../Input/Input";
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import { getSearchFilterOptionSelected } from "../../context/Search/helpers";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
+import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
 import { SearchSourceValueType } from "../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -86,40 +86,42 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   const { handleSubmit, searchTerm, analyticsSearchSource } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
   const router = useRouter();
 
   const trackSearchAttempted = useCallback(() => {
     track.searchAttempted({
       searchTerm: value,
       analyticsUseCase: analyticsUseCase,
-      pageName: ["Search"],
-      searchFilterOptionSelected: getSearchFilterOptionSelected(
+      pageName,
+      searchFilterOptionSelected: getSortedSearchFiltersSelected(
         router.query.keyStages
       ),
-      searchSource: [analyticsSearchSource],
+      searchSource: analyticsSearchSource,
     });
   }, [
     track,
     value,
     analyticsUseCase,
+    pageName,
     router.query.keyStages,
     analyticsSearchSource,
   ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
-    track.searchJourneyInitiated({
-      searchSource: [analyticsSearchSource],
-      analyticsUseCase: analyticsUseCase,
-    });
-  }, [analyticsSearchSource, analyticsUseCase, track]);
+    value.length === 1 &&
+      track.searchJourneyInitiated({
+        searchSource: analyticsSearchSource,
+        analyticsUseCase: analyticsUseCase,
+      });
+  }, [analyticsSearchSource, analyticsUseCase, track, value.length]);
 
   const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
       setValue(e.target.value);
-      value.length === 1 ? trackSearchJourneyInitiated() : null;
+      trackSearchJourneyInitiated();
     },
-    [trackSearchJourneyInitiated, value.length]
+    [trackSearchJourneyInitiated]
   );
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(

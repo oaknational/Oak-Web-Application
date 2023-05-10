@@ -11,15 +11,15 @@ import { KeyStage } from "./useKeyStageFilters";
 const reportError = errorReporter("search/helpers");
 
 // Analytics
-export const getSearchFilterOptionSelected = (
+export const getSortedSearchFilterOptions = (
   filterOptions: string | string[] | undefined
-): string => {
+): [] | string[] => {
   if (typeof filterOptions === "string") {
-    return filterOptions.split(",").sort().join(",");
+    return [filterOptions];
   } else if (Array.isArray(filterOptions)) {
-    return filterOptions.sort().join(",");
+    return filterOptions.sort();
   }
-  return "";
+  return [];
 };
 
 export function elasticKeyStageSlugToKeyStage({

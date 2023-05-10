@@ -28,6 +28,7 @@ import curriculumApi, {
 } from "../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../node-lib/isr";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -42,13 +43,13 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   });
   useTrackPageView({ pageName: "Homepage" });
   const { track } = useAnalytics();
-
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
   const trackSearchAttempted = (searchTerm: string) => {
     track.searchAttempted({
       searchTerm: searchTerm,
-      analyticsUseCase: ["Teacher"],
-      pageName: ["Homepage"],
-      searchFilterOptionSelected: "",
+      analyticsUseCase: analyticsUseCase,
+      pageName,
+      searchFilterOptionSelected: [],
       searchSource: "homepage search suggestion",
     });
   };

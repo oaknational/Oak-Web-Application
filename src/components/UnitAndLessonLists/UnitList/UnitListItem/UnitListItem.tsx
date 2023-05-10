@@ -10,8 +10,8 @@ import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
-import { getSearchFilterOptionSelected } from "../../../../context/Search/helpers";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number],
@@ -62,11 +62,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         unitSlug: slug,
         analyticsUseCase: analyticsUseCase,
         searchRank: (currentPage - 1) * 20 + index + 1,
-        searchFilterOptionSelected: getSearchFilterOptionSelected(
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query.keyStages
         ),
         searchResultCount: hitCount,
-        searchResultType: ["unit"],
+        searchResultType: "unit",
         lessonName: undefined,
         lessonSlug: undefined,
       });
