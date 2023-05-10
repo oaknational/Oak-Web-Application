@@ -1,3 +1,19 @@
+## [1.178.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.2...v1.178.3) (2023-05-10)
+
+## [1.178.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.1...v1.178.2) (2023-05-10)
+
+
+### Bug Fixes
+
+* **blog:** replacce sanity cdn links with proxied urls ([67aab48](https://github.com/oaknational/Oak-Web-Application/commit/67aab480eb3c6e9cd7e1342242a04a8fa6d6003b))
+
+## [1.178.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.178.0...v1.178.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* replace sanity asset urls with first party proxy domain ([7ac0ff1](https://github.com/oaknational/Oak-Web-Application/commit/7ac0ff1f61024034b3ec13bcd631afa35bd4b46e))
+
 # [1.178.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.177.4...v1.178.0) (2023-05-04)
 
 

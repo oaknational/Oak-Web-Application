@@ -48,6 +48,7 @@ type PostPortableTextProps = {
 
 const PostPortableText: FC<PostPortableTextProps> = (props) => {
   const { portableText } = props;
+
   return (
     <BasePortableTextProvider>
       <PortableText
