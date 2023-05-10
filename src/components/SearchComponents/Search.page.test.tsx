@@ -16,7 +16,7 @@ const createSearchResult = (): SearchHit => {
     _source: {
       type: "lesson",
       lesson_description: "lesson description",
-      topic_title: "topic title",
+      topic_title: "topic title1 ",
       topic_slug: "topic-slug",
       id: 7,
       slug: "lesson-slug",
