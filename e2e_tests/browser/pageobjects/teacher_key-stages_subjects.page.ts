@@ -17,6 +17,7 @@ class TeacherKeyStagesSubjectsPage extends Page {
   async selectMaths() {
     const subjectMaths = await this.subjectMaths;
 
+    await subjectMaths.scrollIntoView(this.scrollOptions);
     await subjectMaths.click();
   }
 }

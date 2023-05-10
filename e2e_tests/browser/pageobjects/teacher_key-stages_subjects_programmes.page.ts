@@ -15,6 +15,7 @@ class TeacherKeyStagesSubjectsProgrammesPage extends Page {
   async selectTierFoundation() {
     const tierFoundation = await this.tierFoundation;
 
+    await tierFoundation.scrollIntoView(this.scrollOptions);
     await tierFoundation.click();
   }
 }

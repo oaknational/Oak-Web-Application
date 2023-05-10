@@ -1,6 +1,9 @@
 import TeacherHomePage from "../pageobjects/teacher_homepage.page";
 import TeacherKeyStagesSubjectsPage from "../pageobjects/teacher_key-stages_subjects.page";
 import TeacherKeyStagesSubjectsProgrammesPage from "../pageobjects/teacher_key-stages_subjects_programmes.page";
+import TeacherKeyStagesSubjectsProgrammesUnitsPage from "../pageobjects/teacher_key-stages_subjects_programmes_units.page";
+import TeacherKeyStagesSubjectsProgrammesUnitsLessonsPage from "../pageobjects/teacher_key-stages_subjects_programmes_units_lessons.page";
+import TeacherKeyStagesSubjectsProgrammesUnitsLessonsLessonPage from "../pageobjects/teacher_key-stages_subjects_programmes_units_lessons_lesson.page";
 
 // This is Mocha, not Jest
 // https://mochajs.org/#bdd
@@ -25,10 +28,20 @@ describe("Lessons", () => {
       // Select a tier.
       await TeacherKeyStagesSubjectsProgrammesPage.selectTierFoundation();
 
-      // second unit
-      // first lesson
-      // open transcript
-      // check text is displayed
+      // Select second unit.
+      await TeacherKeyStagesSubjectsProgrammesUnitsPage.selectSecondUnit();
+
+      // Select the first lesson.
+      await TeacherKeyStagesSubjectsProgrammesUnitsLessonsPage.selectFirstLesson();
+
+      // Open transcript
+      await TeacherKeyStagesSubjectsProgrammesUnitsLessonsLessonPage.toggleTranscript();
+
+      // Check the transcript is present.
+      const firstTranscriptParagraph =
+        await TeacherKeyStagesSubjectsProgrammesUnitsLessonsLessonPage.getTranscriptFirstParagraph();
+      const text = await firstTranscriptParagraph.getText();
+      expect(text).toBeTruthy();
     });
   });
 });

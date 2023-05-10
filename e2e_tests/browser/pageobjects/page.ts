@@ -1,3 +1,5 @@
+import type ScrollIntoViewOptions from "webdriverio/build/commands/element/scrollIntoView.d.ts";
+
 /**
  * main page object containing all methods, selectors and functionality
  * that is shared across all page objects
@@ -18,6 +20,15 @@ export default class Page {
   get confirmicFrameContainer() {
     return $("#mtm-frame-container");
   }
+
+  // Config for scrollIntoView behaviour.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+  // Public instance field.
+  scrollOptions: ScrollIntoViewOptions = {
+    block: "center",
+    inline: "center",
+    behavior: "smooth",
+  };
 
   // Close the Confirmic overlay if present.
   async closeConfirmicOverlay() {

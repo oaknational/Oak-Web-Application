@@ -40,7 +40,7 @@ const LessonList: FC<LessonListProps> = (props) => {
 
       {currentPageItems.length ? (
         <>
-          <UL $reset>
+          <UL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item) => (
               <LI key={`LessonList-LessonListItem-${item.lessonSlug}`}>
                 <LessonListItem
