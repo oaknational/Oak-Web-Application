@@ -79,13 +79,13 @@ export type WebinarListingLinkProps = {
 };
 export type ProgrammeListingLinkProps = {
   page: "programme-index";
-  viewType?: ViewType;
+  viewType: ViewType;
   keyStage: string;
   subject: string;
 };
 export type UnitListingLinkProps = {
   page: "unit-index";
-  viewType?: ViewType;
+  viewType: ViewType;
   programme: string;
   search?: {
     ["learning-theme"]?: string | null;
@@ -98,20 +98,20 @@ export type KeyStageSubjectProgrammesLinkProps = {
 };
 type LessonListingLinkProps = {
   page: "lesson-index";
-  viewType?: ViewType;
+  viewType: ViewType;
   programmeSlug: string;
   slug: string;
 };
 type LessonOverviewLinkProps = {
   page: "lesson-overview";
-  viewType?: ViewType;
+  viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
   slug: string;
 };
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
-  viewType?: ViewType;
+  viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
@@ -121,13 +121,13 @@ type LessonDownloadsLinkProps = {
 };
 type SearchLinkProps = {
   page: "search";
-  viewType?: ViewType;
+  viewType: ViewType;
   query?: Partial<SearchQuery>;
 };
 type LandingPageLinkProps = { page: "landing-page"; slug: string };
 type SubjectListingLinkProps = {
   page: "subject-index";
-  viewType?: ViewType;
+  viewType: ViewType;
   slug: string;
 };
 type WebinarSingleLinkProps = { page: "webinar-single"; slug: string };
@@ -488,33 +488,34 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/beta/teachers/programmes/:programme/units",
+    pathPattern: "/beta/:viewType/programmes/:programme/units",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "unit-index",
   }),
   "lesson-index": createOakPageConfig({
-    pathPattern: "/beta/teachers/programmes/:programmeSlug/units/:slug/lessons",
+    pathPattern:
+      "/beta/:viewType/programmes/:programmeSlug/units/:slug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
   }),
   "lesson-overview": createOakPageConfig({
     pathPattern:
-      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:slug",
+      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:slug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",
   }),
   "lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/beta/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
   }),
   search: createOakPageConfig({
-    pathPattern: "/beta/teachers/search",
+    pathPattern: "/beta/:viewType/search",
     analyticsPageName: "Search",
     configType: "internal",
     pageType: "search",
@@ -538,14 +539,14 @@ export const OAK_PAGES: {
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/beta/teachers/key-stages/:slug/subjects",
+    pathPattern: "/beta/:viewType/key-stages/:slug/subjects",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "subject-index",
   }),
   "programme-index": createOakPageConfig({
     pathPattern:
-      "/beta/teachers/key-stages/:keyStage/subjects/:subject/programmes",
+      "/beta/:viewType/key-stages/:keyStage/subjects/:subject/programmes",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "programme-index",

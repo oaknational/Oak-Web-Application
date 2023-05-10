@@ -32,6 +32,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
         $display={"flex"}
         slug={slug}
         page={"subject-index"}
+        viewType="teachers"
         onClick={() => {
           track.keyStageSelected({
             keyStageTitle: title as KeyStageTitleValueType,

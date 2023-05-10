@@ -91,6 +91,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="unit-index"
+                  viewType="teachers"
                   programme={programmeSlug}
                   //TODO add tracking
                 >
@@ -100,6 +101,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="programme-index"
+                  viewType="teachers"
                   keyStage={keyStageSlug}
                   subject={subjectSlug}
                   //TODO: replace 'key stage 4' with variable from above

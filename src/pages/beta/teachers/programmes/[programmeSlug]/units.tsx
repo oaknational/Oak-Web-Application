@@ -110,12 +110,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "unit-index",
+                  viewType: "teachers",
                   programme: programmeSlug,
                 },
                 label: subjectTitle,
@@ -170,6 +175,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     }
                     linkProps={{
                       page: "unit-index",
+                      viewType: "teachers",
                       programme: programmeSlug,
                     }}
                     trackingProps={{
@@ -213,6 +219,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       }
                       linkProps={{
                         page: "unit-index",
+                        viewType: "teachers",
                         programme: programmeSlug,
                       }}
                       trackingProps={{
@@ -241,6 +248,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         label: `${title} (${unitCount})`,
                         programme: tierProgrammeSlug,
                         page: "unit-index",
+                        viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
                       })

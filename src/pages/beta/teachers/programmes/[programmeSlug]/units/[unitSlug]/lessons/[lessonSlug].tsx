@@ -58,14 +58,25 @@ export const lessonBreadcrumbArray = (
   unitTitle: string
 ): Breadcrumb[] => {
   return [
-    { oakLinkProps: { page: "home", viewType: "teachers" }, label: "Home" },
     {
-      oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+      oakLinkProps: {
+        page: "home",
+        viewType: "teachers",
+      },
+      label: "Home",
+    },
+    {
+      oakLinkProps: {
+        page: "subject-index",
+        viewType: "teachers",
+        slug: keyStageSlug,
+      },
       label: keyStageTitle,
     },
     {
       oakLinkProps: {
         page: "unit-index",
+        viewType: "teachers",
         programme: programmeSlug,
       },
       label: subjectTitle,
@@ -73,6 +84,7 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "lesson-index",
+        viewType: "teachers",
         programmeSlug,
         slug: unitSlug,
       },
@@ -217,6 +229,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   iconBackground="teachersHighlight"
                   label="Download all resources"
                   page={"lesson-downloads"}
+                  viewType="teachers"
                   size="small"
                   variant="minimal"
                   $iconPosition={"trailing"}

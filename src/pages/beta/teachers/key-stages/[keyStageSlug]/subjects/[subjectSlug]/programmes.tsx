@@ -51,12 +51,17 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "programme-index",
+                  viewType: "teachers",
                   subject: subjectSlug,
                   keyStage: keyStageSlug,
                 },

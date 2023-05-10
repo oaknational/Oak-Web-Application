@@ -63,16 +63,24 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: { page: "home", viewType: "teachers" },
+                oakLinkProps: {
+                  page: "home",
+                  viewType: "teachers",
+                },
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "unit-index",
+                  viewType: "teachers",
                   programme: programmeSlug,
                 },
                 label: subjectTitle,
@@ -81,6 +89,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
               {
                 oakLinkProps: {
                   page: "lesson-index",
+                  viewType: "teachers",
                   slug: unitSlug,
                   programmeSlug: programmeSlug,
                 },
