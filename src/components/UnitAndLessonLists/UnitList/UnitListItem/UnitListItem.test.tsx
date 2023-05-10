@@ -21,6 +21,7 @@ const props = {
   programmeSlug: "maths--primary-ks1",
   hitCount: 10,
   fromSearchPage: false,
+  currentPage: 1,
 };
 
 const unitSelected = jest.fn();

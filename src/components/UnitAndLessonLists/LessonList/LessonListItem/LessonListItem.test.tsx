@@ -26,6 +26,7 @@ const props = {
   fromSearchPage: false,
   hitCount: 10,
   index: 3,
+  currentPage: 1,
 };
 
 const lessonSelected = jest.fn();
