@@ -167,13 +167,20 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     });
   });
 
+  // hacky way to ensure page-tracking is called on initial page load:
+  const [initialRouteTracked, setInitialRouteTracked] = useState(false);
+
   useEffect(() => {
+    if (!initialRouteTracked) {
+      page();
+      setInitialRouteTracked(true);
+    }
     router.events.on("routeChangeComplete", page);
 
     return () => {
       router.events.off("routeChangeComplete", page);
     };
-  }, [page, posthog, hubspot]);
+  }, [page, posthog, hubspot, initialRouteTracked, setInitialRouteTracked]);
 
   /**
    * Identify
