@@ -56,7 +56,7 @@ describe("Unit List Item", () => {
     expect(unitSelected).toHaveBeenCalledWith({
       keyStageTitle: "Key stage 1",
       keyStageSlug: "ks1",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
       subjectTitle: "Maths",
       subjectSlug: "maths",
       unitName: "Numbers and numerals",

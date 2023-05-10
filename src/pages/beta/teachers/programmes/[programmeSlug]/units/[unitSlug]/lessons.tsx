@@ -9,7 +9,6 @@ import {
 import curriculumApi, {
   LessonListing,
 } from "../../../../../../../node-lib/curriculum-api";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
@@ -40,8 +39,6 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     programmeSlug,
   } = curriculumData;
 
-  useTrackPageView({ pageName: "Lesson Listing" });
-
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: 20,
@@ -54,7 +51,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Lesson Listing", // @todo add real data
+          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lessons in Unit",
         }),
         ...{ noFollow: true, noIndex: true },
@@ -66,16 +63,24 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
           <Breadcrumbs
             breadcrumbs={[
               {
-                oakLinkProps: { page: "home", viewType: "teachers" },
+                oakLinkProps: {
+                  page: "home",
+                  viewType: "teachers",
+                },
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "unit-index",
+                  viewType: "teachers",
                   programme: programmeSlug,
                 },
                 label: subjectTitle,
@@ -84,6 +89,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
               {
                 oakLinkProps: {
                   page: "lesson-index",
+                  viewType: "teachers",
                   slug: unitSlug,
                   programmeSlug: programmeSlug,
                 },

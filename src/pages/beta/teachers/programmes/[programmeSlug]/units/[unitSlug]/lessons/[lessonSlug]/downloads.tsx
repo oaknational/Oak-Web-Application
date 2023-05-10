@@ -2,10 +2,8 @@ import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { debounce } from "lodash";
 import { useRouter } from "next/router";
 
-import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../components/Box";
@@ -26,7 +24,6 @@ import curriculumApi, {
   type LessonDownloadsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsUseCase from "../../../../../../../../../hooks/useAnalyticsUseCase";
 import getFormattedDetailsForTracking from "../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
 import getDownloadFormErrorMessage from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
@@ -49,6 +46,8 @@ import FieldError from "../../../../../../../../../components/FormFields/FieldEr
 import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
+import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
+import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -70,11 +69,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
-  useTrackPageView({ pageName: "Lesson Download" });
-
   const router = useRouter();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -199,46 +196,40 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const { onSubmit } = useDownloadForm();
 
-  const onFormSubmit = async (data: DownloadFormProps) => {
-    const debouncedOnSubmit = debounce(
-      () => {
-        setIsAttemptingDownload(true);
-        onSubmit(data, lessonSlug).then(() => {
-          const {
-            schoolOption,
-            schoolName,
-            schoolUrn,
-            selectedResourcesForTracking,
-          } = getFormattedDetailsForTracking({
-            school: data.school,
-            selectedResources,
-          });
+  const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
+    await debouncedSubmit({
+      data,
+      lessonSlug,
+      setIsAttemptingDownload,
+      setEditDetailsClicked,
+      onSubmit,
+    });
+    const {
+      schoolOption,
+      schoolName,
+      schoolUrn,
+      selectedResourcesForTracking,
+    } = getFormattedDetailsForTracking({
+      school: data.school,
+      selectedResources,
+    });
 
-          track.lessonResourcesDownloaded({
-            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-            keyStageSlug,
-            unitName: unitTitle,
-            unitSlug,
-            subjectTitle,
-            subjectSlug,
-            lessonName: lessonTitle,
-            lessonSlug,
-            resourceType: selectedResourcesForTracking,
-            analyticsUseCase,
-            schoolUrn,
-            schoolName,
-            schoolOption,
-            emailSupplied: data?.email ? true : false,
-          });
-        });
-      },
-      4000,
-      { leading: true }
-    );
-
-    debouncedOnSubmit();
-    setTimeout(() => setIsAttemptingDownload(false), 4000);
-    setEditDetailsClicked(false);
+    track.lessonResourcesDownloaded({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      unitName: unitTitle,
+      unitSlug,
+      subjectTitle,
+      subjectSlug,
+      lessonName: lessonTitle,
+      lessonSlug,
+      resourceType: selectedResourcesForTracking,
+      analyticsUseCase,
+      schoolUrn,
+      schoolName,
+      schoolOption,
+      emailSupplied: data?.email ? true : false,
+    });
   };
 
   const getFormErrorMessage = () => {
@@ -265,7 +256,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Lesson downloads", // @todo add real data
+          title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description: "Lesson downloads",
         }),
         ...{ noFollow: true, noIndex: true },
@@ -286,6 +277,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
+                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   slug: lessonSlug,
@@ -295,6 +287,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
+                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   lessonSlug,
@@ -433,7 +426,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     </Box>
                     <Button
                       label={"Download .zip"}
-                      onClick={handleSubmit(onFormSubmit)}
+                      onClick={
+                        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
+                      }
                       background={"teachersHighlight"}
                       icon="download"
                       $iconPosition="trailing"

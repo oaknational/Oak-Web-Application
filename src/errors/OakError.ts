@@ -28,6 +28,8 @@ const ERROR_CODES = [
   "curriculum-api/uniqueness-assumption-violated",
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
+  "downloads/failed-to-fetch",
+  "analytics/pageview-failed",
 ] as const;
 export type ErrorCode = typeof ERROR_CODES[number];
 
@@ -151,6 +153,15 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "urls/failed-to-resolve": {
     message:
       "Failed to resolve URL. Likely caused by a mismatch between the TS types and the pathPattern",
+    shouldNotify: true,
+  },
+  "downloads/failed-to-fetch": {
+    message: "Failed to fetch downloads",
+    shouldNotify: true,
+  },
+  "analytics/pageview-failed": {
+    message:
+      "Could not identify oak page from href. Likely a new page has been added which is not in the urls.ts file. If not fixed, we will miss page views on this page",
     shouldNotify: true,
   },
 };

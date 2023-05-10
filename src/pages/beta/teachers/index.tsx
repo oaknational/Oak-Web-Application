@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import useTrackPageView from "../../../hooks/useTrackPageView";
 import {
   getAndMergeWebinarsAndBlogs,
   HomePageProps,
@@ -50,7 +49,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       analyticsUseCase: ["Teacher"],
       pageName: ["Homepage"],
       searchFilterOptionSelected: "",
-      searchSource: ["homepage search suggestion"],
+      searchSource: "homepage search suggestion",
     });
   };
 
@@ -182,3 +181,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 };
 
 export default Teachers;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function useTrackPageView(arg0: { pageName: string }) {
+  throw new Error("Function not implemented.");
+}

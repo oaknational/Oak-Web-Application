@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
@@ -12,6 +11,7 @@ import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import { getSearchFilterOptionSelected } from "../../../../context/Search/helpers";
+import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number],
@@ -49,7 +49,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackUnitSelected = () => {
     if (fromSearchPage && hitCount && currentPage) {

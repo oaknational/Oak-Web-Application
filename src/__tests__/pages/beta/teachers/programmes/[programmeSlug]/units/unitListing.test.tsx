@@ -8,10 +8,8 @@ import renderWithProviders from "../../../../../../__helpers__/renderWithProvide
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("../../../../../../../hooks/useTrackPageView");
 
 const render = renderWithProviders();
 
@@ -34,12 +32,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
-  });
-
-  it("makes a correct page tracking call", () => {
-    render(<UnitListingPage curriculumData={unitListingFixture()} />);
-
-    expect(useTrackPageView).toHaveBeenCalledWith({ pageName: "Unit Listing" });
   });
 
   describe("SEO", () => {
@@ -66,9 +58,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Programme units",
-        ogTitle: "Units | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",

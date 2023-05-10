@@ -37,7 +37,7 @@ const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Key stage", // @todo add real data
+          title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
           description: "Key stage by subject",
         }),
         ...{ noFollow: true, noIndex: true },
@@ -53,7 +53,11 @@ const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
                 disabled: true,
               },

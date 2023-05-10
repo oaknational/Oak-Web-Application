@@ -15,6 +15,7 @@ import {
 import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
+import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -69,7 +70,7 @@ export const PTInternalLink: PortableTextMarkComponent<{
     return null;
   }
 
-  let href;
+  let href: string | undefined;
   try {
     href = resolveInternalHref(reference);
   } catch (err) {
@@ -80,6 +81,9 @@ export const PTInternalLink: PortableTextMarkComponent<{
   if (!href) {
     return null;
   }
+
+  href = getProxiedSanityAssetUrl(href);
+
   return (
     <OakLink href={href} page={null} $isInline>
       {props.children}

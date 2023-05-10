@@ -3,7 +3,6 @@ import { useRouter } from "next-router-mock";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
@@ -15,6 +14,7 @@ import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import { getSearchFilterOptionSelected } from "../../../../context/Search/helpers";
+import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 
 export type LessonListItemProps = LessonListing["lessons"][number] & {
   unitTitle: string;
@@ -96,7 +96,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
   const trackLessonSelected = () => {
     if (fromSearchPage && hitCount && currentPage) {
       track.searchResultClicked({
