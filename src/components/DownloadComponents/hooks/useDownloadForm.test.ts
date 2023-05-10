@@ -117,7 +117,7 @@ describe("useDownloadForm", () => {
     });
   });
 
-  it("should set terms in local storage if passed in props",async () => {
+  it("should set terms in local storage if passed in props", async () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
