@@ -1,4 +1,4 @@
-import { hubspotSubmitForm } from "../../../browser-lib/hubspot/forms";
+import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import type {
   DownloadFormProps,
   DownloadResourceType,
@@ -35,7 +35,6 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       hutk,
       data: { ...data, ...utmParams },
     });
-
     const hubspotFormResponse = await hubspotSubmitForm({
       hubspotFormId: hubspotDownloadsFormId,
       payload: downloadsPayload,
