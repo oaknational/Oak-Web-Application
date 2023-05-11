@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -11,6 +10,7 @@ import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
 import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;
@@ -35,8 +35,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     programmeSlug,
     keyStageTitle,
   } = firstProgramme;
-  const totalUnitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.totalUnitCount || 0);
+  const activeUnitCount = programmes.reduce((acc, cur) => {
+    return acc + (cur.activeUnitCount || 0);
   }, 0);
   const activeLessonCount = programmes.reduce((acc, cur) => {
     return acc + (cur.activeLessonCount || 0);
@@ -45,7 +45,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   return (
     <Card
@@ -91,6 +91,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="unit-index"
+                  viewType="teachers"
                   programme={programmeSlug}
                   //TODO add tracking
                 >
@@ -100,6 +101,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="programme-index"
+                  viewType="teachers"
                   keyStage={keyStageSlug}
                   subject={subjectSlug}
                   //TODO: replace 'key stage 4' with variable from above
@@ -120,7 +122,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${totalUnitCount} units`}</Typography>
+            >{`${activeUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}

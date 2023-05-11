@@ -13,14 +13,14 @@ const data = [
   {
     urn: "101105",
     la: "Westminster",
-    name: "Dorothy Gardner Nursery School",
-    postcode: "W9 3JY",
+    name: "Bricks Nursery School",
+    postcode: "AB1 2CD",
   },
   {
     urn: "101188",
     la: "Barking and Dagenham",
-    name: "Dorothy Barley Infants' School",
-    postcode: "RM8 2LL",
+    name: "Woodland Infants' School",
+    postcode: "AB1 2CD",
   },
 ];
 

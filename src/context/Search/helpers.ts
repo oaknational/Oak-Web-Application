@@ -10,6 +10,18 @@ import { KeyStage } from "./useKeyStageFilters";
 
 const reportError = errorReporter("search/helpers");
 
+// Analytics
+export const getSortedSearchFiltersSelected = (
+  filterOptions: string | string[] | undefined
+): [] | string[] => {
+  if (typeof filterOptions === "string") {
+    return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
+  } else if (Array.isArray(filterOptions)) {
+    return filterOptions.sort((a, b) => (a.slice(-1) < b.slice(-1) ? -1 : 1));
+  }
+  return [];
+};
+
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
   allKeyStages,
@@ -60,7 +72,10 @@ const getProgrammeSlug = (
 export function getLessonObject(props: {
   hit: LessonSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<LessonListItemProps, "hideTopHeading"> {
+}): Omit<
+  LessonListItemProps,
+  "hideTopHeading" | "trackSearchListItemSelected" | "index" | "hitCount"
+> {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -93,7 +108,10 @@ export function getLessonObject(props: {
 export function getUnitObject(props: {
   hit: UnitSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<UnitListItemProps, "hideTopHeading" | "index" | "expiredLessonCount"> {
+}): Omit<
+  UnitListItemProps,
+  "hideTopHeading" | "index" | "hitCount" | "expiredLessonCount"
+> {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -178,6 +196,7 @@ export const searchResultsHitSchema = z.union([
 ]);
 export const searchResultsHitsSchema = z.array(searchResultsHitSchema);
 export const searchResultsSchema = z.object({
+  took: z.number(),
   hits: z.object({
     hits: z.array(searchResultsHitSchema),
   }),
