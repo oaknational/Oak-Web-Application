@@ -33,6 +33,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
           resolve(client.get_distinct_id());
         },
         disable_session_recording: true,
+        capture_pageview: false,
       });
     }),
   identify: (userId, properties) => {
