@@ -5,13 +5,12 @@ Hash: SHA256
 
 # Please report any security vulnerabilities to us via the contact method(s) below, only after reading our security disclosure policy.
 Contact: mailto:security@thenational.academy
+Contact: https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability
 Preferred-Languages: en
 
 # Encrypt your messages to Oak National Academy using the PGP key below
 Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
-
-Alternatively please follow the GitHub private vulnerability reporting steps https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability .
 
 # This security is annually reviewed
 Expires: 2023-07-31T20:59:00.000Z
@@ -31,17 +30,17 @@ Hiring: https://jobs.thenational.academy
 # Please see https://securitytxt.org/ for details of the specification of this file
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmPihxMACgkQlx8GIFG2
-C31pAA//ds+Ytm1eqGx0a5PlrKdpajAr3HCgjYPetNfeid/fPcHuOUymUsAmS8h3
-hBzxdpRJfpH34tzJU0ZUz6jDpY2JqpIe7m+tc35q4IySmqxKwnAV/SfemNIxb2A+
-L04aekGp+GVaoBf+ZlHxlQEGgP2Z9ne7gO1Pc+HfkzU4vYeK5/9C+6pLk9bVnxau
-LMs21/DZwIVxQ/LhfTAfHZo/SgqYlp3+Z4V6uG0JS+Sb/NhoTp+fSkB+qPEx5e3c
-ei98edxzR7EG/2p9KNmOd0uhBQVhUred47cWyJz3yezpqW6BHjBNC4lmrQRmq54g
-RZ91gS2FRNUzCKFKDFbQZZb1blqkWzaaP9fKPo/90pJ4ZF7ck1JBKB3iqGZUXcCL
-3AQ5yAY+BuM00CCnIFkZO54mKvRclqk7biOkb4JUIXoYLj6+pkE1UIIoGfVXO5iV
-orSmmkxHbEt9f5V0eqnpgw4+cl4QQ04iYIFAcFY9n0QO6eWbRD2arimljZ2hW0Rh
-WL1ELeLU5Txfe13I+Py5m96JOJXYUmIdr2ZLYnqzozmvlQlV7MWEbcu3/yXws7hT
-+W1VubwhIOkKUU2m+/bBPeA4JTB7U0swzTWqTWK8pPGgIEIeq7ZZHf2UQi5gT42i
-TpF8nQv6yeULmdP0/PWk74vEEbBhaoFGkzsJLWL6YFvxEc5duUw=
-=F882
+iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmRc/TEACgkQlx8GIFG2
+C33Y2A//d7GEtmMIwuyMnexEuOuc8xm/h1euvZo6shpzkZnpI21+uECVCKKRWyg9
+CNcIo6GcrcUHcneFcUfPazs/6c+9FZEm4GIj8GhrdGwiZruLfT6+Tgd2ZTcA4ikr
+AtnG4NVHrOacs+ZlipCaT6c/uQ4Mz4CocVt++JomP8EEfpDFyraBXt9b7v3dqNOs
+NqT1Fl+qH2CGNxNFVCy3aBqHgEJ7NCyFOzBro/yDR54pe3Udr7IUE1sLreOhVVhU
+tEwlEj9OmguF8eH+qgyZXM64cNJA+h/Gj/aAkDzEV72hXNjoTKtDXBSGqP5UKUgJ
+blsEp+Z6RPeQkjEZnTHBBxcOepx7XdeGtGtiJqcuBNglmZ3hJuDAzjf696IBLryz
+6F5EBLCGGJCNK4Uonzc5jYIjcMdXzA9bHvcz+R4+VvzasAsk8SSTThThdtysQ5Do
+cUoxOEU0fSbTW1VZ73g1+otILluXBA7ghTvKJyHCUi42ZmxneNLJqLjERZ7lmJLk
+hgnhOLQ9f7WgMqD4LkxIaV1Tb8j/frxbd2JrQR8Ht3oUe5mfTWV8Oku8BsUJ5GhN
+XuV3a9148NKBHtnB9pJsgqVo8TLGa8c7fQFaXOAQ68+GCYp/Dmy17sX9lTyruZIy
+dJMGcpZ2HlP0LFQn1BBaNGDwKY44LFHnnNrTOZ12nrtLlDp3lNc=
+=v60q
 -----END PGP SIGNATURE-----
