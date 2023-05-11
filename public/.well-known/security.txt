@@ -5,13 +5,12 @@ Hash: SHA256
 
 # Please report any security vulnerabilities to us via the contact method(s) below, only after reading our security disclosure policy.
 Contact: mailto:security@thenational.academy
+Contact: https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability
 Preferred-Languages: en
 
 # Encrypt your messages to Oak National Academy using the PGP key below
 Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
-
-Alternatively please follow the GitHub private vulnerability reporting steps https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability .
 
 # This security is annually reviewed
 Expires: 2023-07-31T20:59:00.000Z
