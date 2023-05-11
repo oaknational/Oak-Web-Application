@@ -50,7 +50,10 @@ export const getDownloadsSnakeCaseData = (data: DownloadsHubspotFormData) => {
   return {
     email: data.email,
     contact_school_name: data.schoolName,
-    contact_school_urn: data.school.split("-")[0],
+    contact_school_urn:
+      data.school === "homeschool" || data.school === "notListed"
+        ? undefined
+        : data.school.split("-")[0],
     oak_user_id: data.oakUserId,
     ...getUtmSnakeCaseData(data),
   };
