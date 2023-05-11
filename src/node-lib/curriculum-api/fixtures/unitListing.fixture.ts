@@ -278,7 +278,7 @@ const unitListingFixture = (
         learningThemeSlug: "the-sonnet-through-time-24",
       },
 
-      { learningThemeTitle: "", learningThemeSlug: "no-theme" },
+      { learningThemeTitle: null, learningThemeSlug: "no-theme" },
     ],
     ...partial,
   };

@@ -315,8 +315,8 @@ const unitListingData = z.object({
   units: unitsData,
   learningThemes: z.array(
     z.object({
-      learningThemeTitle: z.string(),
-      learningThemeSlug: z.string(),
+      learningThemeTitle: z.string().nullable(),
+      learningThemeSlug: z.string().nullable(),
     })
   ),
 });
@@ -418,33 +418,26 @@ const curriculumApi = {
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
-    const learningThemes = units
-      .map((unitWithTheme) => ({
-        learningThemeSlug: unitWithTheme?.themeSlug || "",
-        learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
-      }))
-      .sort((a, b) => {
-        if (a.learningThemeTitle < b.learningThemeTitle) {
-          return -1;
-        }
-        if (a.learningThemeTitle > b.learningThemeTitle) {
-          return 1;
-        }
-        return 0;
-      });
+    const learningThemes = units.map((unitWithTheme) => ({
+      learningThemeSlug: unitWithTheme?.themeSlug,
+      learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
+    }));
 
     // !Refactor index signature to be more specific
 
-    type LearningTheme = {
-      [key: string]: string;
-    };
-
-    const filteredDuplicatedLearningThemes = learningThemes.filter(
-      (learningTheme: LearningTheme, index, learningThemeToCompare) =>
-        learningThemeToCompare.findIndex((lt: LearningTheme) =>
-          ["learningThemeSlug"].every((l) => lt[l] === learningTheme[l])
-        ) === index
-    );
+    const filteredDuplicatedLearningThemes = [
+      ...new Map(
+        learningThemes.map((theme) => [JSON.stringify(theme), theme])
+      ).values(),
+    ].sort((a, b) => {
+      if (a.learningThemeTitle < b.learningThemeTitle) {
+        return -1;
+      }
+      if (a.learningThemeTitle > b.learningThemeTitle) {
+        return 1;
+      }
+      return 0;
+    });
 
     return unitListingData.parse({
       programmeSlug: programme?.programmeSlug,
