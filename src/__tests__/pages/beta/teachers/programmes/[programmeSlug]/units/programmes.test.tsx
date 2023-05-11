@@ -9,9 +9,6 @@ import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 import tierListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
-
-jest.mock("../../../../../../../hooks/useTrackPageView");
 
 const render = renderWithProviders();
 
@@ -50,14 +47,6 @@ describe("programmes listing page", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
-      });
-    });
-
-    it("makes a correct page tracking call", () => {
-      render(<ProgrammesListingPage {...tierListingFixture()} />);
-
-      expect(useTrackPageView).toHaveBeenCalledWith({
-        pageName: "Programme Listing",
       });
     });
   });

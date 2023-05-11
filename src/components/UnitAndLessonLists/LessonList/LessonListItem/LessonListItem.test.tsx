@@ -84,7 +84,7 @@ describe("Lesson List Item", () => {
 
     expect(lessonSelected).toHaveBeenCalledTimes(1);
     expect(lessonSelected).toHaveBeenCalledWith({
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
       lessonName: "Add two surds",

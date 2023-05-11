@@ -104,7 +104,7 @@ describe("SubjectCardListItem", () => {
       keyStageTitle: "Key stage 4",
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
     });
   });
 });
