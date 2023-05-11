@@ -284,6 +284,7 @@ const programmesData = z.object({
   keyStageTitle: z.string(),
   activeLessonCount: z.number(),
   totalUnitCount: z.number(),
+  activeUnitCount: z.number(),
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable().optional(),
