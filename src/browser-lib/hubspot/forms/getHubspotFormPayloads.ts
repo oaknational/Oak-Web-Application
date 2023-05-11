@@ -44,12 +44,14 @@ export type NewsletterSnakeCaseData = typeof getSnakeCaseData extends (
 ) => infer U
   ? U
   : never;
-export type DownloadsHubspotFormData = DownloadFormProps & UtmParams;
+export type DownloadsHubspotFormData = DownloadFormProps &
+  UtmParams & { oakUserId?: string };
 export const getDownloadsSnakeCaseData = (data: DownloadsHubspotFormData) => {
   return {
     email: data.email,
     contact_school_name: data.schoolName,
     contact_school_urn: data.school.split("-")[0],
+    oak_user_id: data.oakUserId,
     ...getUtmSnakeCaseData(data),
   };
 };
