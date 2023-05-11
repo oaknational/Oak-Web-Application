@@ -198,10 +198,10 @@ var m = function () {},
       j = f && (!a || v);
     return (
       t(function () {
-        // Matthew Gregory edit - 2022 - 07 - 05 - just return children if in a test
+        // MG edit - 2022 - 07 - 05 - just return children if in a test
         // environment
         if (process.env.NODE_ENV === "test") return;
-        // Remy Sharp edit - 2022-02-09 - support disabling metomic programmatically
+        // RS edit - 2022-02-09 - support disabling metomic programmatically
         // because we need to automatically load these pages up in Puppeteer for
         // screenshots to PDF.
         // I'm using old style .includes here as I'm not sure this file gets augmented

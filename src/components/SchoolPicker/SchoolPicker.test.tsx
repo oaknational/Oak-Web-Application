@@ -10,38 +10,38 @@ export const schools = [
   {
     urn: "101105",
     la: "Westminster",
-    name: "Dorothy Gardner Nursery School",
-    postcode: "W9 3JY",
+    name: "Dorothy Bricks Nursery School",
+    postcode: "AB1 1CD",
   },
   {
     urn: "101188",
     la: "Barking and Dagenham",
-    name: "Dorothy Barley Infants' School",
-    postcode: "RM8 2LL",
+    name: "Dorothy Woodland Infants' School",
+    postcode: "AB1 2CD",
   },
   {
     urn: "108776",
     la: "Sunderland",
-    name: "Dame Dorothy Primary School",
-    postcode: "SR6 0EA",
+    name: "Dorothy Meadows Primary School",
+    postcode: "AB1 3CD",
   },
   {
     urn: "114580",
     la: "Brighton and Hove",
-    name: "Dorothy Stringer School",
-    postcode: "BN1 6PZ",
+    name: "Dorothy Fields School",
+    postcode: "AB1 4CD",
   },
   {
     urn: "138156",
     la: "Leicestershire",
-    name: "Dorothy Goodman School Hinckley",
-    postcode: "LE10 0EA",
+    name: "Dorothy Hillside School",
+    postcode: "AB1 5CD",
   },
   {
     urn: "140687",
     la: "Barking and Dagenham",
-    name: "Dorothy Barley Junior Academy",
-    postcode: "RM8 2NB",
+    name: "Dorothy New Junior Academy",
+    postcode: "AB1 6CD",
   },
 ];
 
@@ -194,7 +194,7 @@ describe("search autocomplete", () => {
     await user.keyboard("{arrowdown}");
 
     expect(
-      getByText("Dorothy Gardner Nursery School, Westminster, W9 3JY")
+      getByText("Dorothy Bricks Nursery School, Westminster, AB1 1CD")
     ).toBeInTheDocument();
   });
 
@@ -223,13 +223,13 @@ describe("search autocomplete", () => {
 
     await user.tab();
     await user.keyboard("{Backspace}");
-    await userEvent.type(input, "Dorothy");
+    await userEvent.type(input, "Meadows");
     await user.keyboard("{arrowdown}");
     await user.keyboard("{arrowdown}");
     await user.keyboard("{arrowdown}");
     await user.keyboard("{Enter}");
     expect(input).toHaveValue(
-      "Dame Dorothy Primary School, Sunderland, SR6 0EA"
+      "Dorothy Meadows Primary School, Sunderland, AB1 3CD"
     );
   });
 });
