@@ -20,6 +20,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "biology-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 1,
         },
       ],
       [
@@ -32,6 +33,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "chemistry-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 1,
         },
       ],
       [
@@ -44,6 +46,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "citizenship-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 12,
         },
       ],
       [
@@ -56,6 +59,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "combined-science-secondary-ks4-foundation",
           tierSlug: "foundation",
+          activeUnitCount: 2,
         },
         {
           subjectSlug: "combined-science",
@@ -66,6 +70,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "combined-science-secondary-ks4-higher",
           tierSlug: "higher",
+          activeUnitCount: 2,
         },
       ],
       [
@@ -78,6 +83,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "computing-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 15,
         },
       ],
       [
@@ -90,6 +96,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "computing-non-gcse-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 4,
         },
       ],
       [
@@ -102,6 +109,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "french-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 8,
         },
       ],
       [
@@ -114,6 +122,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "german-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 8,
         },
       ],
       [
@@ -126,6 +135,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "latin-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 4,
         },
       ],
       [
@@ -138,6 +148,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "maths-secondary-ks4-core",
           tierSlug: "core",
+          activeUnitCount: 61,
         },
         {
           subjectSlug: "maths",
@@ -148,6 +159,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "maths-secondary-ks4-foundation",
           tierSlug: "foundation",
+          activeUnitCount: 63,
         },
         {
           subjectSlug: "maths",
@@ -158,6 +170,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "maths-secondary-ks4-higher",
           tierSlug: "higher",
+          activeUnitCount: 63,
         },
       ],
       [
@@ -170,6 +183,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "religious-education-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 10,
         },
       ],
       [
@@ -182,6 +196,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "rshe-pshe-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 13,
         },
       ],
       [
@@ -194,6 +209,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "spanish-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 8,
         },
       ],
     ],
@@ -208,6 +224,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "art-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 0,
         },
       ],
       [
@@ -220,6 +237,7 @@ const subjectPagePropsFixture = (
           activeLessonCount: 4,
           programmeSlug: "english-secondary-ks4",
           tierSlug: null,
+          activeUnitCount: 0,
         },
       ],
     ],
