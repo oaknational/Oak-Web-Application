@@ -15,9 +15,9 @@ export const getSortedSearchFiltersSelected = (
   filterOptions: string | string[] | undefined
 ): [] | string[] => {
   if (typeof filterOptions === "string") {
-    return [filterOptions];
+    return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
   } else if (Array.isArray(filterOptions)) {
-    return filterOptions.sort((a, b) => (a < b ? -1 : 1));
+    return filterOptions.sort((a, b) => (a.slice(-1) < b.slice(-1) ? -1 : 1));
   }
   return [];
 };
