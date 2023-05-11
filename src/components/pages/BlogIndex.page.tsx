@@ -1,6 +1,5 @@
 import { NextPage } from "next";
 
-import useTrackPageView from "../../hooks/useTrackPageView";
 import {
   PostListingPage,
   BlogPostPreview,
@@ -22,7 +21,6 @@ export type PostListingPageProps = {
 
 const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
-  useTrackPageView({ pageName: "Blog" });
 
   return (
     <PostListing

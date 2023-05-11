@@ -8,10 +8,8 @@ import renderWithProviders from "../../../../../../__helpers__/renderWithProvide
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
 import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("../../../../../../../hooks/useTrackPageView");
 
 const render = renderWithProviders();
 
@@ -34,12 +32,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
-  });
-
-  it("makes a correct page tracking call", () => {
-    render(<UnitListingPage curriculumData={unitListingFixture()} />);
-
-    expect(useTrackPageView).toHaveBeenCalledWith({ pageName: "Unit Listing" });
   });
 
   describe("SEO", () => {

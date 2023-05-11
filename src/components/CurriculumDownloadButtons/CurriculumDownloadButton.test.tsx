@@ -63,10 +63,10 @@ describe("CurriculumDownloadButton", () => {
 
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
     expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
-      pageName: ["Unit Listing"],
+      pageName: null,
       subjectSlug: "english",
       subjectTitle: "English",
     });
@@ -128,10 +128,10 @@ describe("CurriculumDownloadButton", () => {
     expect(downloadZip).toHaveBeenCalledWith("4", "maths");
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
     expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
-      pageName: ["Lesson Listing"],
+      pageName: null,
       subjectSlug: "maths",
       subjectTitle: "Maths",
     });

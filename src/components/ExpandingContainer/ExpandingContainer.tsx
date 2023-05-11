@@ -1,7 +1,6 @@
 import React, { FC, useState } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import Card, { CardProps } from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
@@ -13,6 +12,7 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 import { containerTitleToPreselectMap } from "../DownloadComponents/downloads.types";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type ExpandingContainerTitle =
   | "Slide deck"
@@ -55,7 +55,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const preselected = getPreselectedQueryFromTitle(title);
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
 
   return (
     <Card $flexDirection={"column"} $ph={0} $pv={20}>
@@ -76,13 +76,14 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 variant="minimal"
                 label={title}
                 onClick={() => {
-                  setToggleOpen(toggleOpen === false);
-                  toggleOpen &&
+                  setToggleOpen(!toggleOpen);
+                  if (toggleOpen) {
                     track.resourceContainerExpanded({
                       analyticsUseCase,
-                      pageName: ["Lesson"],
+                      pageName,
                       containerTitle: title,
                     });
+                  }
                 }}
                 $font={"heading-5"}
               />
@@ -100,6 +101,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     data-testid={"download-button"}
                     variant={"minimal"}
                     page={"lesson-downloads"}
+                    viewType="teachers"
                     aria-label={`download ${lowerCaseTitle}`}
                     iconBackground="teachersHighlight"
                     icon="download"
@@ -120,6 +122,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                   <IconButtonAsLink
                     data-testid={"download-button-mobile"}
                     page={"lesson-downloads"}
+                    viewType="teachers"
                     aria-label={`download ${lowerCaseTitle}`}
                     background={"teachersHighlight"}
                     icon="download"

@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
@@ -13,6 +12,7 @@ import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 
 export type LessonListItemProps = LessonListing["lessons"][number] & {
   unitTitle: string;
@@ -86,7 +86,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   } = props;
 
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
     track.lessonSelected({

@@ -13,6 +13,8 @@ jest.mock("react", () => ({
   useId: () => "react-use-id-test-result",
 }));
 
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 jest.mock("@bugsnag/js", () => ({
   __esModule: true,
   default: {
