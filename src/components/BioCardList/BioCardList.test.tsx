@@ -13,12 +13,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
         />
@@ -39,12 +39,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
           withModals
@@ -65,12 +65,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
         />
