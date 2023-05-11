@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
@@ -13,10 +14,15 @@ import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 
 export type LessonListItemProps = LessonListing["lessons"][number] & {
   unitTitle: string;
   hideTopHeading?: boolean;
+  hitCount?: number;
+  fromSearchPage?: boolean;
+  index: number;
+  currentPage?: number;
 };
 
 function getAvailableResourceList({
@@ -83,23 +89,48 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     keyStageTitle,
     unitSlug,
     unitTitle,
+    fromSearchPage,
+    index,
+    hitCount,
+    currentPage,
   } = props;
-
+  const router = useRouter();
   const { track } = useAnalytics();
+
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
-    track.lessonSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      analyticsUseCase,
-    });
+    if (fromSearchPage && hitCount && currentPage) {
+      track.searchResultClicked({
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        unitName: unitTitle.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags
+        unitSlug: unitSlug,
+        lessonName: lessonTitle,
+        lessonSlug: lessonSlug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: (currentPage - 1) * 20 + index + 1,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages
+        ),
+        searchResultCount: hitCount,
+        searchResultType: "lesson",
+      });
+    } else {
+      track.lessonSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: unitTitle,
+        unitSlug,
+        lessonName: lessonTitle,
+        lessonSlug,
+        analyticsUseCase,
+      });
+    }
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -127,7 +158,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           {...props}
           primaryTargetProps={primaryTargetProps}
           page="Lesson"
-          index={null}
+          index={index}
           onClick={trackLessonSelected}
           title={lessonTitle}
           slug={lessonSlug}

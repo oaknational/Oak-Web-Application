@@ -6,6 +6,7 @@ import {
   FormEventHandler,
 } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import IconButton from "../Button/IconButton";
 import flex, { FlexCssProps } from "../../styles/utils/flex";
@@ -21,6 +22,10 @@ import {
   InputFocusUnderline,
   StyledInputProps,
 } from "../Input/Input";
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
+import { SearchSourceValueType } from "../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -75,21 +80,57 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 type SearchFormProps = {
   searchTerm: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
+  analyticsSearchSource: SearchSourceValueType;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm } = props;
+  const { handleSubmit, searchTerm, analyticsSearchSource } = props;
   const [value, setValue] = useState(searchTerm);
+  const { track } = useAnalytics();
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
+  const router = useRouter();
 
-  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
-    setValue(e.target.value);
-  }, []);
+  const trackSearchAttempted = useCallback(() => {
+    track.searchAttempted({
+      searchTerm: value,
+      analyticsUseCase: analyticsUseCase,
+      pageName,
+      searchFilterOptionSelected: getSortedSearchFiltersSelected(
+        router.query.keyStages
+      ),
+      searchSource: analyticsSearchSource,
+    });
+  }, [
+    track,
+    value,
+    analyticsUseCase,
+    pageName,
+    router.query.keyStages,
+    analyticsSearchSource,
+  ]);
+
+  const trackSearchJourneyInitiated = useCallback(() => {
+    value.length === 1 &&
+      track.searchJourneyInitiated({
+        searchSource: analyticsSearchSource,
+        analyticsUseCase: analyticsUseCase,
+      });
+  }, [analyticsSearchSource, analyticsUseCase, track, value.length]);
+
+  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (e) => {
+      setValue(e.target.value);
+      trackSearchJourneyInitiated();
+    },
+    [trackSearchJourneyInitiated]
+  );
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
     (e) => {
       e.preventDefault();
       handleSubmit({ searchTerm: value });
+      trackSearchAttempted();
     },
-    [value, handleSubmit]
+    [handleSubmit, trackSearchAttempted, value]
   );
 
   return (

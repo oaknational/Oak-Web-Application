@@ -82,6 +82,8 @@ export type UseSearchReturnType = {
   query: SearchQuery;
   setQuery: SetSearchQuery;
   setSearchTerm: (props: { searchTerm: string }) => void;
+  searchStartTime: null | number;
+  setSearchStartTime: (time: number | null) => void;
 };
 type UseSearchProps = {
   allKeyStages: KeyStage[];
@@ -89,12 +91,14 @@ type UseSearchProps = {
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const { allKeyStages } = props;
   const { query, setQuery } = useSearchQuery({ allKeyStages });
+  const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
   const fetchResults = useStableCallback(async () => {
     setStatus("loading");
+    setSearchStartTime(performance.now());
     try {
       const options: RequestInit = {
         method: "POST",
@@ -151,6 +155,8 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     query,
     setQuery,
     setSearchTerm,
+    searchStartTime,
+    setSearchStartTime,
   };
 };
 
