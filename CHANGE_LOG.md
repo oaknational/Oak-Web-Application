@@ -1,3 +1,18 @@
+# [1.181.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.3...v1.181.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* correct pagination index for search hit clicked ([519992d](https://github.com/oaknational/Oak-Web-Application/commit/519992d62b7182f179be094ec2deeac02adc7fc4))
+* lesson and unit type errors ([ec918ab](https://github.com/oaknational/Oak-Web-Application/commit/ec918ab7b9cfdee4774e5b98a2e6b890754c7970))
+* lesson list has filter options ([6df31d4](https://github.com/oaknational/Oak-Web-Application/commit/6df31d459a5a7c349d33339a7e27644a9a33689a))
+* search complete on page change ([c969492](https://github.com/oaknational/Oak-Web-Application/commit/c969492629d2b0bd3c3bb23c90064060f2e02a32))
+
+
+### Features
+
+* add teacher search tracking events ([4afd291](https://github.com/oaknational/Oak-Web-Application/commit/4afd291e16adcd69c26ccc0b9a0cc8873d46288b))
+
 ## [1.180.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.2...v1.180.3) (2023-05-11)
 
 ## [1.180.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.1...v1.180.2) (2023-05-11)
