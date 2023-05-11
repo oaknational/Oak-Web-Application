@@ -57,7 +57,11 @@ const Search: FC<SearchProps> = (props) => {
   }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
-    if (searchStartTime && (status === "success" || status === "fail")) {
+    if (
+      !router.query.page &&
+      searchStartTime &&
+      (status === "success" || status === "fail")
+    ) {
       const searchEndTime = performance.now();
 
       track.searchCompleted({
@@ -76,6 +80,7 @@ const Search: FC<SearchProps> = (props) => {
     hitCount,
     query.term,
     router.query.keyStages,
+    router.query.page,
     searchStartTime,
     setSearchStartTime,
     status,
