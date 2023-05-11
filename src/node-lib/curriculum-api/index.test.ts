@@ -145,7 +145,6 @@ describe("curriculum-api", () => {
         (theme) => theme.learningThemeSlug === "no-theme"
       ).length > 0;
 
-    console.log(hasThemes);
     expect(hasThemes).toBe(true);
   });
   test("lessonListingPaths", async () => {
