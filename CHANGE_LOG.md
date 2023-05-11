@@ -1,3 +1,11 @@
+## [1.181.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.1...v1.181.2) (2023-05-11)
+
+
+### Bug Fixes
+
+* add no theme into learning themes ([e6b3ff1](https://github.com/oaknational/Oak-Web-Application/commit/e6b3ff153b74987904359aa35347d641227a5e39))
+* type errors ([c02c502](https://github.com/oaknational/Oak-Web-Application/commit/c02c502d5c1bc51f57042144a9462da575037e52))
+
 ## [1.181.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.0...v1.181.1) (2023-05-11)
 
 
