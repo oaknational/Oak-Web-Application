@@ -11,8 +11,8 @@ export type LearningThemeSelectedTrackingProps = {
 };
 
 export type LearningTheme = {
-  learningThemeSlug?: string;
-  learningThemeTitle?: string;
+  learningThemeSlug?: string | null;
+  learningThemeTitle?: string | null;
 };
 
 export type LearningThemeFiltersProps = {
@@ -48,12 +48,12 @@ const LearningThemeFilters = ({
     .sort(
       (
         a: {
-          label: string | undefined;
-          slug: string | undefined;
+          label: string | undefined | null;
+          slug: string | undefined | null;
         },
         b: {
-          label: string | undefined;
-          slug: string | undefined;
+          label: string | undefined | null;
+          slug: string | undefined | null;
         }
       ) => {
         if (a?.slug === "no-theme") {
