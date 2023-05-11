@@ -1,3 +1,10 @@
+## [1.181.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.0...v1.181.1) (2023-05-11)
+
+
+### Bug Fixes
+
+* **security policy:** meet formatting standard ([be40d8d](https://github.com/oaknational/Oak-Web-Application/commit/be40d8d44110af4c398705c4a36d580d9e2feb50))
+
 # [1.181.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.3...v1.181.0) (2023-05-11)
 
 
