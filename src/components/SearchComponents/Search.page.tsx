@@ -1,10 +1,14 @@
-import { FC } from "react";
+import { useRouter } from "next/router";
+import { FC, useEffect } from "react";
 
+import useAnalytics from "../../context/Analytics/useAnalytics";
+import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
 import {
   KeyStage,
   UseKeyStageFiltersReturnType,
 } from "../../context/Search/useKeyStageFilters";
 import { UseSearchReturnType } from "../../context/Search/useSearch";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import Box from "../Box";
 import Card from "../Card";
 import Flex from "../Flex";
@@ -31,12 +35,57 @@ const Search: FC<SearchProps> = (props) => {
     results,
     allKeyStages,
     keyStageFilters,
+    searchStartTime,
+    setSearchStartTime,
   } = props;
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+  const router = useRouter();
+
+  const hitCount = results.length;
 
   const shouldShowError = status === "fail";
   const shouldShowLoading = status === "loading";
-  const shouldShowNoResultsMessage = status === "success" && !results.length;
-  const shouldShowResults = status === "success" && results.length > 0;
+  const shouldShowNoResultsMessage = status === "success" && !hitCount;
+  const shouldShowResults = status === "success" && hitCount > 0;
+
+  useEffect(() => {
+    if (query.term && status === "loading") {
+      setSearchStartTime(performance.now());
+    }
+  }, [query.term, setSearchStartTime, status]);
+
+  useEffect(() => {
+    if (
+      !router.query.page &&
+      searchStartTime &&
+      (status === "success" || status === "fail")
+    ) {
+      const searchEndTime = performance.now();
+
+      track.searchCompleted({
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages
+        ),
+        searchResultCount: hitCount,
+        analyticsUseCase: analyticsUseCase,
+        searchResultsStatus: status,
+        searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
+      });
+      setSearchStartTime(null);
+    }
+  }, [
+    analyticsUseCase,
+    hitCount,
+    query.term,
+    router.query.keyStages,
+    router.query.page,
+    searchStartTime,
+    setSearchStartTime,
+    status,
+    track,
+  ]);
 
   return (
     <Flex $background="white" $flexDirection={"column"}>
@@ -73,7 +122,10 @@ const Search: FC<SearchProps> = (props) => {
               >
                 <SearchForm
                   searchTerm={query.term}
-                  handleSubmit={setSearchTerm}
+                  handleSubmit={(value) => {
+                    setSearchTerm(value);
+                  }}
+                  analyticsSearchSource={"search page search box"}
                 />
                 <BrushBorders color={"teachersPastelYellow"} />
               </Card>

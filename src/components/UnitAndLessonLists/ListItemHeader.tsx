@@ -24,7 +24,6 @@ interface CommonProps {
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
-    index: number | null;
     title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
   };

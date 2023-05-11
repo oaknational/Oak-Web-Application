@@ -27,6 +27,8 @@ import curriculumApi, {
   TeachersHomePageData,
 } from "../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../node-lib/isr";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -39,6 +41,18 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { setSearchTerm } = useSearch({
     allKeyStages: curriculumData.keyStages,
   });
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
+  const trackSearchAttempted = (searchTerm: string) => {
+    track.searchAttempted({
+      searchTerm: searchTerm,
+      analyticsUseCase: analyticsUseCase,
+      pageName,
+      searchFilterOptionSelected: [],
+      searchSource: "homepage search suggestion",
+    });
+  };
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
@@ -66,7 +80,13 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   including slides, worksheets and&nbsp;quizzes.
                 </P>
                 <Box $mt={16}>
-                  <SearchForm searchTerm="" handleSubmit={setSearchTerm} />
+                  <SearchForm
+                    searchTerm=""
+                    handleSubmit={(value) => {
+                      setSearchTerm(value);
+                    }}
+                    analyticsSearchSource={"homepage search box"}
+                  />
                 </Box>
                 <P $mt={18} $font={"body-2"}>
                   Search suggestions:
@@ -78,6 +98,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                     query={{ term: "algebra" }}
                     $color={"black"}
                     $font="heading-7"
+                    onClick={() => trackSearchAttempted("algebra")}
                   >
                     Algebra,&nbsp;
                   </OakLink>
@@ -87,6 +108,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                     query={{ term: "computing" }}
                     $color={"black"}
                     $font="heading-7"
+                    onClick={() => trackSearchAttempted("computing")}
                   >
                     Computing,&nbsp;
                   </OakLink>
@@ -96,6 +118,9 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                     viewType="teachers"
                     query={{ term: "a midsummer nights dream" }}
                     $font="heading-7"
+                    onClick={() =>
+                      trackSearchAttempted("a midsummer nights dream")
+                    }
                   >
                     A Midsummer Night's Dream
                   </OakLink>
