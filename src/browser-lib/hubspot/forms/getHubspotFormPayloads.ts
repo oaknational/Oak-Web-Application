@@ -1,4 +1,3 @@
-import { DownloadFormProps } from "../../../components/DownloadComponents/downloads.types";
 import { UtmParams } from "../../../hooks/useUtmParams";
 
 import { HubspotPayload } from "./hubspotSubmitForm";
@@ -44,7 +43,11 @@ export type NewsletterSnakeCaseData = typeof getSnakeCaseData extends (
 ) => infer U
   ? U
   : never;
-export type DownloadsHubspotFormData = DownloadFormProps &
+export type DownloadsHubspotFormData = {
+  school: string;
+  schoolName?: string | undefined;
+  email?: string | undefined;
+} &
   UtmParams & { oakUserId?: string };
 export const getDownloadsSnakeCaseData = (data: DownloadsHubspotFormData) => {
   return {
