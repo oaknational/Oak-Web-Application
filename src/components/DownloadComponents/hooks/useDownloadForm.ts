@@ -8,6 +8,7 @@ import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
 import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 import config from "../../../config/browser";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -24,6 +25,7 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
   const utmParams = useUtmParams();
+  const { posthogDistinctId } = useAnalytics();
 
   const onSubmit = async (data: DownloadFormProps, slug: string) => {
     if (props.onSubmit) {
@@ -31,14 +33,6 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     }
 
     const hutk = getHubspotUserToken();
-    const downloadsPayload = getHubspotDownloadsFormPayload({
-      hutk,
-      data: { ...data, ...utmParams },
-    });
-    const hubspotFormResponse = await hubspotSubmitForm({
-      hubspotFormId: hubspotDownloadsFormId,
-      payload: downloadsPayload,
-    });
 
     const email = data?.email;
     const schoolId = data?.school;
@@ -62,6 +56,22 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
         }
       }
     }
+    const downloadsPayload = getHubspotDownloadsFormPayload({
+      hutk,
+      data: {
+        ...data,
+        ...utmParams,
+        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+        schoolName:
+          schoolId === "homeschool" || schoolId === "notListed"
+            ? schoolId
+            : schoolName,
+      },
+    });
+    const hubspotFormResponse = await hubspotSubmitForm({
+      hubspotFormId: hubspotDownloadsFormId,
+      payload: downloadsPayload,
+    });
 
     if (terms) {
       setTermsInLocalStorage(terms);
