@@ -404,7 +404,7 @@ const curriculumApi = {
       unavailableProgrammesWithoutAvailable = programmesUnavailable.filter(
         (unavailable) =>
           !programmesAvailable.some(
-            (available) => available.programmeSlug === unavailable.programmeSlug
+            (available) => available.subjectSlug === unavailable.subjectSlug
           )
       );
     }
