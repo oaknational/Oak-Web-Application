@@ -12,6 +12,7 @@ import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
   $isHovered: boolean;
+  fromSearchPage?: boolean;
 };
 
 interface CommonProps {
@@ -58,13 +59,14 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     expired,
     onClick,
     programmeSlug,
+    fromSearchPage,
   } = props;
 
   if (expired) {
     return (
       <Flex $mt={24} $flexDirection={"column"}>
         <ListTitle expired={expired}>
-          {index !== null ? `${index + 1}.` : ""} {title}
+          {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
         </ListTitle>
       </Flex>
     );
@@ -91,7 +93,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>{title}</ListTitle>
+            <ListTitle>
+              {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
+            </ListTitle>
           </OakLink>
         ) : (
           // unit
@@ -104,7 +108,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             {...primaryTargetProps}
           >
             <ListTitle>
-              {index !== null ? `${index + 1}.` : ""} {title}
+              {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
             </ListTitle>
           </OakLink>
         )}
