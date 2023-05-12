@@ -47,8 +47,7 @@ export type DownloadsHubspotFormData = {
   school: string;
   schoolName?: string | undefined;
   email?: string | undefined;
-} &
-  UtmParams & { oakUserId?: string };
+} & UtmParams & { oakUserId?: string };
 export const getDownloadsSnakeCaseData = (data: DownloadsHubspotFormData) => {
   return {
     email: data.email,
