@@ -243,10 +243,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       ({
                         tierTitle: title,
                         tierSlug: slug,
-                        unitCount,
                         tierProgrammeSlug,
                       }) => ({
-                        label: `${title} (${unitCount})`,
+                        label: title,
                         programme: tierProgrammeSlug,
                         page: "unit-index",
                         viewType: "teachers",
