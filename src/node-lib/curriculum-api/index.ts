@@ -398,10 +398,10 @@ const curriculumApi = {
       programmesUnavailable,
     } = transformMVCase(res);
 
-    let unavailableProgrammesWithoutAvailable;
+    let unavailableProgrammeDuplicationFilter;
 
     if (programmesAvailable && programmesUnavailable) {
-      unavailableProgrammesWithoutAvailable = programmesUnavailable.filter(
+      unavailableProgrammeDuplicationFilter = programmesUnavailable.filter(
         (unavailable) =>
           !programmesAvailable.some(
             (available) => available.subjectSlug === unavailable.subjectSlug
@@ -415,7 +415,7 @@ const curriculumApi = {
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
       programmesAvailable,
-      programmesUnavailable: unavailableProgrammesWithoutAvailable || [],
+      programmesUnavailable: unavailableProgrammeDuplicationFilter || [],
     });
   },
   unitListingPaths: async () => {
