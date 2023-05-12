@@ -62,12 +62,13 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     fromSearchPage,
   } = props;
 
+  const itemTitle =
+    (index !== null && !fromSearchPage ? `${index + 1}. ` : "") + title;
+
   if (expired) {
     return (
       <Flex $mt={24} $flexDirection={"column"}>
-        <ListTitle expired={expired}>
-          {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
-        </ListTitle>
+        <ListTitle expired={expired}>{itemTitle}</ListTitle>
       </Flex>
     );
   }
@@ -93,9 +94,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>
-              {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
-            </ListTitle>
+            <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
         ) : (
           // unit
@@ -107,9 +106,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>
-              {index !== null && !fromSearchPage ? `${index + 1}.` : ""} {title}
-            </ListTitle>
+            <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
         )}
       </Flex>
