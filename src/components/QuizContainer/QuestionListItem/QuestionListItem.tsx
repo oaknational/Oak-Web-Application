@@ -7,7 +7,8 @@ import ImageBox from "../../ImageBox/ImageBox";
 import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
-import { shortAnswerTitleFormatter } from "../../../utils/quizUtils";
+
+import { shortAnswerTitleFormatter } from "./quizUtils";
 
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
@@ -143,7 +144,6 @@ const choiceIsInAnswerArray = (
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choices, answer, type, displayNumber } = props;
-
   return (
     <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
