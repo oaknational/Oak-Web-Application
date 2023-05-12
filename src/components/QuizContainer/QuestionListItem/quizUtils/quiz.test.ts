@@ -1,4 +1,3 @@
-// import { render } from "@testing-library/react";
 // import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders.jsx";
 // import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme.jsx";
 // import Typography from "../../../Typography/Typography.jsx";
