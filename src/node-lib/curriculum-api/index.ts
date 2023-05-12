@@ -398,13 +398,24 @@ const curriculumApi = {
       programmesUnavailable,
     } = transformMVCase(res);
 
+    let unavailableProgrammesWithoutAvailable;
+
+    if (programmesAvailable && programmesUnavailable) {
+      unavailableProgrammesWithoutAvailable = programmesUnavailable.filter(
+        (unavailable) =>
+          !programmesAvailable.some(
+            (available) => available.programmeSlug === unavailable.programmeSlug
+          )
+      );
+    }
+
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
 
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
       programmesAvailable,
-      programmesUnavailable,
+      programmesUnavailable: unavailableProgrammesWithoutAvailable || [],
     });
   },
   unitListingPaths: async () => {
