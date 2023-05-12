@@ -17,7 +17,6 @@ jest.mock("./generated/sdk", () => ({
 describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
     jest.resetModules();
-    jest.restoreAllMocks();
     jest.mock("../../config/server", () => ({
       get: configGetSpy,
     }));

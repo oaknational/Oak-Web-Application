@@ -13,7 +13,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../node-lib/isr";
-import useTrackPageView from "../../../../../hooks/useTrackPageView";
 import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo";
 import AppLayout from "../../../../../components/AppLayout";
 import Flex from "../../../../../components/Flex";
@@ -56,8 +55,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const router = useRouter();
   const learningThemeSlug = router.query["learning-theme"]?.toString();
-
-  useTrackPageView({ pageName: "Unit Listing" });
 
   const unitsFilteredByLearningTheme = learningThemeSlug
     ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
@@ -114,12 +111,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "unit-index",
+                  viewType: "teachers",
                   programme: programmeSlug,
                 },
                 label: subjectTitle,
@@ -174,6 +176,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     }
                     linkProps={{
                       page: "unit-index",
+                      viewType: "teachers",
                       programme: programmeSlug,
                     }}
                     trackingProps={{
@@ -217,6 +220,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       }
                       linkProps={{
                         page: "unit-index",
+                        viewType: "teachers",
                         programme: programmeSlug,
                       }}
                       trackingProps={{
@@ -245,6 +249,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         label: `${title} (${unitCount})`,
                         programme: tierProgrammeSlug,
                         page: "unit-index",
+                        viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
                       })

@@ -10,7 +10,6 @@ import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
 import Box from "../../../../../../../components/Box";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
-import useTrackPageView from "../../../../../../../hooks/useTrackPageView";
 
 export type ProgrammeListingPageProps = TierListingData;
 
@@ -32,9 +31,6 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
     subjectTitle,
   };
 
-  // Manually input in Avo.ts, confirm the avo process to ensure this is correct
-  useTrackPageView({ pageName: "Programme Listing" });
-
   const tiersSEO = {
     ...getSeoProps({
       title: `${keyStageTitle} ${subjectTitle} tiers`,
@@ -55,12 +51,17 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
                 label: "Home",
               },
               {
-                oakLinkProps: { page: "subject-index", slug: keyStageSlug },
+                oakLinkProps: {
+                  page: "subject-index",
+                  viewType: "teachers",
+                  slug: keyStageSlug,
+                },
                 label: keyStageTitle,
               },
               {
                 oakLinkProps: {
                   page: "programme-index",
+                  viewType: "teachers",
                   subject: subjectSlug,
                   keyStage: keyStageSlug,
                 },

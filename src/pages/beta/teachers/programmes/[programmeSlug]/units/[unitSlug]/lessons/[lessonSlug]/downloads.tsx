@@ -4,7 +4,6 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
-import useTrackPageView from "../../../../../../../../../hooks/useTrackPageView";
 import AppLayout from "../../../../../../../../../components/AppLayout";
 import Flex from "../../../../../../../../../components/Flex";
 import Box from "../../../../../../../../../components/Box";
@@ -25,7 +24,6 @@ import curriculumApi, {
   type LessonDownloadsData,
 } from "../../../../../../../../../node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsUseCase from "../../../../../../../../../hooks/useAnalyticsUseCase";
 import getFormattedDetailsForTracking from "../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
 import getDownloadFormErrorMessage from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
@@ -49,6 +47,7 @@ import SchoolPickerRadio from "../../../../../../../../../components/DownloadCom
 import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
+import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -70,11 +69,9 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     unitTitle,
   } = curriculumData;
 
-  useTrackPageView({ pageName: "Lesson Download" });
-
   const router = useRouter();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -280,6 +277,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
+                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   slug: lessonSlug,
@@ -289,6 +287,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
+                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   lessonSlug,

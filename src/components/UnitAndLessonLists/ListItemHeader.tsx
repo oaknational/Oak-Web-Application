@@ -24,7 +24,6 @@ interface CommonProps {
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
-    index: number | null;
     title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
   };
@@ -88,6 +87,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             unitSlug={props.unitSlug}
             page={"lesson-overview"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >
@@ -99,6 +99,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             slug={slug}
             page={"lesson-index"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >

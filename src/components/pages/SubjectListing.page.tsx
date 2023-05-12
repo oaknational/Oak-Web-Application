@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import useTrackPageView from "../../hooks/useTrackPageView";
 import { ProgrammeProps } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
 import MaxWidth from "../MaxWidth/MaxWidth";
@@ -10,8 +9,6 @@ import { Heading } from "../Typography";
 const SubjectListingPage: FC<ProgrammeProps> = (props) => {
   const { programmesBySubjectAvailable, programmesBySubjectUnavailable } =
     props;
-
-  useTrackPageView({ pageName: "Subject Listing" });
 
   return (
     <Flex $flexDirection={"column"}>

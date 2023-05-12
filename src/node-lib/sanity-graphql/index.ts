@@ -9,6 +9,13 @@ import {
   // SdkFunctionWrapper,
 } from "./generated/sdk";
 
+export const sanityConfig = {
+  projectId: serverConfig.get("sanityProjectId"),
+  dataset: serverConfig.get("sanityDataset"),
+  datasetTag: serverConfig.get("sanityDatasetTag"),
+  useCDN: serverConfig.get("sanityUseCDN") === "true",
+};
+
 const getGraphqlEndpoint = (opts: {
   projectId: string;
   dataset: string;
@@ -20,12 +27,7 @@ const getGraphqlEndpoint = (opts: {
   return `https://${opts.projectId}.${subdomain}.sanity.io/v1/graphql/${opts.dataset}/${opts.datasetTag}`;
 };
 
-const graphqlAPIUrl = getGraphqlEndpoint({
-  projectId: serverConfig.get("sanityProjectId"),
-  dataset: serverConfig.get("sanityDataset"),
-  datasetTag: serverConfig.get("sanityDatasetTag"),
-  useCDN: serverConfig.get("sanityUseCDN") === "true",
-});
+const graphqlAPIUrl = getGraphqlEndpoint(sanityConfig);
 
 export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
   headers: {

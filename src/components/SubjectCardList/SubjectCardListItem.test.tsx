@@ -13,6 +13,7 @@ const subjectCardListemProps: ProgrammesBySubject = [
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     totalUnitCount: 1,
+    activeUnitCount: 1,
     activeLessonCount: 4,
     programmeSlug: "biology-secondary-ks4",
     tierSlug: null,
@@ -26,6 +27,7 @@ const subjectTrackingProps: ProgrammesBySubject = [
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     totalUnitCount: 2,
+    activeUnitCount: 2,
     activeLessonCount: 4,
     programmeSlug: "combined-science-secondary-ks4-foundation",
     tierSlug: "foundation",
@@ -37,6 +39,7 @@ const subjectTrackingProps: ProgrammesBySubject = [
     keyStageTitle: "Key stage 4",
     totalUnitCount: 2,
     activeLessonCount: 4,
+    activeUnitCount: 2,
     programmeSlug: "combined-science-secondary-ks4-higher",
     tierSlug: "higher",
   },
@@ -101,7 +104,7 @@ describe("SubjectCardListItem", () => {
       keyStageTitle: "Key stage 4",
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
     });
   });
 });

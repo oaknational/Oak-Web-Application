@@ -1,10 +1,18 @@
+import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import type {
   DownloadFormProps,
   DownloadResourceType,
 } from "../../../components/DownloadComponents/downloads.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
+import useUtmParams from "../../../hooks/useUtmParams";
+import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
+import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+import config from "../../../config/browser";
+import useAnalytics from "../../../context/Analytics/useAnalytics";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+
+const hubspotDownloadsFormId = config.get("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
@@ -16,11 +24,15 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
+  const utmParams = useUtmParams();
+  const { posthogDistinctId } = useAnalytics();
 
   const onSubmit = async (data: DownloadFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
+
+    const hutk = getHubspotUserToken();
 
     const email = data?.email;
     const schoolId = data?.school;
@@ -44,12 +56,29 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
         }
       }
     }
+    const downloadsPayload = getHubspotDownloadsFormPayload({
+      hutk,
+      data: {
+        ...data,
+        ...utmParams,
+        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+        schoolName:
+          schoolId === "homeschool" || schoolId === "notListed"
+            ? schoolId
+            : schoolName,
+      },
+    });
+    const hubspotFormResponse = await hubspotSubmitForm({
+      hubspotFormId: hubspotDownloadsFormId,
+      payload: downloadsPayload,
+    });
 
     if (terms) {
       setTermsInLocalStorage(terms);
     }
 
     await downloadLessonResources(slug, downloads as DownloadResourceType[]);
+    return hubspotFormResponse;
   };
 
   return { onSubmit };

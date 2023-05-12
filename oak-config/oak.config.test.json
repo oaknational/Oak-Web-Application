@@ -9,8 +9,10 @@
     "frameUrl": "gleap-frame-url"
   },
   "hubspot": {
+    "formSubmissionUrl":"https://hubspot-forms.thenational.academy/submissions/v3/integration/submit",
     "portalId": "12345",
     "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
+    "downloadsFormId": "uuid-oijfeoe-ijfere-g-ererg",
     "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
     "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"]
   },
