@@ -10,7 +10,9 @@ const UnderlineSpan = styled.span`
 `;
 
 const Underline = () => {
-  return <UnderlineSpan data-testid={"underline"} />;
+  return (
+    <UnderlineSpan data-testid={"underline"} aria-label={"space for answer"} />
+  );
 };
 
 export default Underline;
