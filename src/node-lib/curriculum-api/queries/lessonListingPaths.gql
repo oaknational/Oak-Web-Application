@@ -1,5 +1,5 @@
 query lessonListingPaths {
-  mv_lessons: mv_lessons_4 {
+  mv_lessons: mv_lessons_5 {
     programmeSlug: programme_slug
     unitSlug: unit_slug
   }
