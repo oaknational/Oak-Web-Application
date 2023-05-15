@@ -51,7 +51,7 @@ type AnswerProps = {
   answer?: string[] | undefined;
 };
 
-// commponent for handling the format of the choice when choice === answer
+// component for handling the format of the choice when choice === answer
 
 export const CorrectAnswer: FC<AnswerProps> = ({
   choice,
@@ -147,6 +147,10 @@ const choiceIsInAnswerArray = (
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choices, answer, type, displayNumber } = props;
+  let joinedAnswer = "";
+  if (type === "short-answer" && Array.isArray(answer)) {
+    joinedAnswer = answer.join(", ");
+  }
   return (
     <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
@@ -276,9 +280,13 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $width={"max-content"}
           $maxWidth={"100%"}
         >
-          {[...answer].map((ans, index) => {
-            return <CorrectAnswer choice={ans} index={index} type={type} />;
-          })}
+          {type === "short-answer" ? (
+            <CorrectAnswer choice={joinedAnswer} type={type} index={0} />
+          ) : (
+            [...answer].map((ans, index) => {
+              return <CorrectAnswer choice={ans} index={index} type={type} />;
+            })
+          )}
         </Flex>
       )}
     </Flex>
