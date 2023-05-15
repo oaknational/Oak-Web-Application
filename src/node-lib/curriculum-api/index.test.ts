@@ -33,6 +33,7 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
   mv_tiers: unitListingFixture().tiers,
@@ -135,6 +136,17 @@ describe("curriculum-api", () => {
     expect(unitListing).toHaveBeenCalledWith({
       programmeSlug: "maths-secondary-ks4",
     });
+  });
+  test("unitListing learningThemes contains 'no themes'", async () => {
+    const units = await curriculumApi.unitListing({
+      programmeSlug: "maths-secondary-ks4",
+    });
+    const hasThemes =
+      units.learningThemes?.filter(
+        (theme) => theme.learningThemeSlug === "no-theme"
+      ).length > 0;
+
+    expect(hasThemes).toBe(true);
   });
   test("lessonListingPaths", async () => {
     await curriculumApi.lessonListingPaths();

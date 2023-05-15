@@ -1,3 +1,68 @@
+# [1.182.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.3...v1.182.0) (2023-05-15)
+
+
+### Bug Fixes
+
+* **curriculumapi:** regenerate sdk file ([fb4e64b](https://github.com/oaknational/Oak-Web-Application/commit/fb4e64b7a3ad7c87746b661ace750a330021f999))
+* **merge:** merge main into branch ([b4ee76a](https://github.com/oaknational/Oak-Web-Application/commit/b4ee76ad8ea4efbe8d019afcbf76668107818cf9))
+* **units listing:** only count active units ([07b0fe4](https://github.com/oaknational/Oak-Web-Application/commit/07b0fe468589c61ea8303b096d5a47a2637bff2f))
+* **units:** remove unit count from the tier nav ([8a1be4a](https://github.com/oaknational/Oak-Web-Application/commit/8a1be4a805bd9614e85d4d2f65248bde7ac050db))
+
+
+### Features
+
+* **unit listing:** add total unit count to lesson listing fixture ([d0b31bb](https://github.com/oaknational/Oak-Web-Application/commit/d0b31bb17d514bc42dcb60041bbcf90e06b2c27a))
+* **unit listing:** add unit count next to title ([c5754c6](https://github.com/oaknational/Oak-Web-Application/commit/c5754c64f2b78257ddaba415d55e14b449d369d3))
+* **unit listing:** code prettier fix ([1d7e46d](https://github.com/oaknational/Oak-Web-Application/commit/1d7e46deaaab8b5ae2aedf9fa245df05c387d78d))
+
+## [1.181.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.2...v1.181.3) (2023-05-12)
+
+
+### Bug Fixes
+
+* **download-hubspot-form:** finish hubspot download form field handling ([670457b](https://github.com/oaknational/Oak-Web-Application/commit/670457bff61a5fdc785741c73e37473192f348ba))
+* **getPayload:** if no school of homeschool urn should be undefined ([2502baa](https://github.com/oaknational/Oak-Web-Application/commit/2502baa8916e713e8a9d559ef73ea73e513ba202))
+* **hubspotform:** increase test coverage ([998b406](https://github.com/oaknational/Oak-Web-Application/commit/998b406b6ef045521a626ced93caf0545a34b74a))
+* **hubspotform:** increase test coverage ([c8b6b6f](https://github.com/oaknational/Oak-Web-Application/commit/c8b6b6f7d9895137b73ac52f72ddfc2fe26851fe))
+* **main:** merge main in ([7f3a8d5](https://github.com/oaknational/Oak-Web-Application/commit/7f3a8d5a8f8ee1b13a23de70bec11fe73f48222b))
+* **useDownloadForm:** fix test by mocking analytics ([fe11881](https://github.com/oaknational/Oak-Web-Application/commit/fe118811755c04f602ae03a98fc6c5d5f55d6cb8))
+
+## [1.181.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.1...v1.181.2) (2023-05-11)
+
+
+### Bug Fixes
+
+* add no theme into learning themes ([e6b3ff1](https://github.com/oaknational/Oak-Web-Application/commit/e6b3ff153b74987904359aa35347d641227a5e39))
+* type errors ([c02c502](https://github.com/oaknational/Oak-Web-Application/commit/c02c502d5c1bc51f57042144a9462da575037e52))
+
+## [1.181.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.181.0...v1.181.1) (2023-05-11)
+
+
+### Bug Fixes
+
+* **security policy:** meet formatting standard ([be40d8d](https://github.com/oaknational/Oak-Web-Application/commit/be40d8d44110af4c398705c4a36d580d9e2feb50))
+
+# [1.181.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.3...v1.181.0) (2023-05-11)
+
+
+### Bug Fixes
+
+* correct pagination index for search hit clicked ([519992d](https://github.com/oaknational/Oak-Web-Application/commit/519992d62b7182f179be094ec2deeac02adc7fc4))
+* lesson and unit type errors ([ec918ab](https://github.com/oaknational/Oak-Web-Application/commit/ec918ab7b9cfdee4774e5b98a2e6b890754c7970))
+* lesson list has filter options ([6df31d4](https://github.com/oaknational/Oak-Web-Application/commit/6df31d459a5a7c349d33339a7e27644a9a33689a))
+* search complete on page change ([c969492](https://github.com/oaknational/Oak-Web-Application/commit/c969492629d2b0bd3c3bb23c90064060f2e02a32))
+
+
+### Features
+
+* add teacher search tracking events ([4afd291](https://github.com/oaknational/Oak-Web-Application/commit/4afd291e16adcd69c26ccc0b9a0cc8873d46288b))
+
+## [1.180.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.2...v1.180.3) (2023-05-11)
+
+## [1.180.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.1...v1.180.2) (2023-05-11)
+
+## [1.180.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.180.0...v1.180.1) (2023-05-11)
+
 # [1.180.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.179.0...v1.180.0) (2023-05-10)
 
 
