@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const UnderlineSpan = styled.span`
   display: inline-block;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
   padding-bottom: 2px;
   min-width: 48px;
   position: relative;

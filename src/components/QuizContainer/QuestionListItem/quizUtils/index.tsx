@@ -11,8 +11,7 @@ export const shortAnswerTitleFormatter = (
     return reactStringReplace(title, shortAnswerRegex, (match, i) => (
       <>
         {" "}
-        <Underline key={i} />
-        {match}
+        <Underline key={i} /> {match}
       </>
     ));
   } else {
