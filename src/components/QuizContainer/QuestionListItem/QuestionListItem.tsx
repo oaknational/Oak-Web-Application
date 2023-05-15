@@ -66,14 +66,17 @@ export const CorrectAnswer: FC<AnswerProps> = ({
     const typeIsMatch = choiceType === "match";
     const typeIsCheckbox = choiceType === "checkbox";
     const answerIsArray = Array.isArray(answer);
+
     if (typeIsMatch) {
       return (
         <Flex $flexWrap={"wrap"} $alignItems={"center"}>
           {" "}
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {answer ? answer[index] + "  -" : ""}
+            {choice}
           </Heading>
-          <Typography $font={["body-1"]}> {choice}</Typography>
+          <Heading $font={"body-1"} tag={"h6"} $ma={0} $mr={6}>
+            {answer ? " - " + answer[index] : ""}
+          </Heading>
         </Flex>
       );
     } else if (typeIsCheckbox) {
