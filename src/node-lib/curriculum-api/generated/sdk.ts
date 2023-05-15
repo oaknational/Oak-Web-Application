@@ -46655,7 +46655,7 @@ export const UnitListingDocument = gql`
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    totalUnitCount: total_unit_count
+    totalUnitCount: active_unit_count
   }
   mv_tiers: mv_tiers_1(where: {current_programme_slug: {_eq: $programmeSlug}}) {
     tierTitle: tier_title
