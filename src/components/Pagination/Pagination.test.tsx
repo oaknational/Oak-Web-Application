@@ -8,6 +8,7 @@ export const mockPaginationProps = {
   pageSize: 20,
   nextPageHref: "/prev",
   prevPageHref: "/next",
+  totalResults: 10,
 };
 
 describe("Pagination", () => {
