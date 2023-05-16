@@ -8,6 +8,8 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
+import { shortAnswerTitleFormatter } from "./quizUtils";
+
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
 type ImageProps = { src: string; alt?: string };
@@ -154,7 +156,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $font={["body-2-bold", "body-1-bold"]}
           data-testid={"title-div"}
         >
-          {title}
+          {type === "short-answer" ? shortAnswerTitleFormatter(title) : title}
         </Typography>
       </Flex>
 

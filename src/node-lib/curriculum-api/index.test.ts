@@ -33,6 +33,7 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
   mv_tiers: unitListingFixture().tiers,
