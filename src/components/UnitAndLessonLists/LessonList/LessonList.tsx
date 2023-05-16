@@ -3,6 +3,7 @@ import { FC } from "react";
 import Box from "../../Box";
 import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
+import { UsePaginationProps } from "../../Pagination/usePagination";
 import { Heading, LI, UL } from "../../Typography";
 import { HeadingTag } from "../../Typography/Heading";
 
@@ -13,7 +14,7 @@ export type LessonListProps = {
   currentPageItems: Omit<LessonListItemProps, "unitTitle" | "index">[];
   keyStageSlug: string;
   subjectSlug: string;
-  paginationProps: PaginationProps;
+  paginationProps: PaginationProps & UsePaginationProps;
   headingTag: HeadingTag;
   unitTitle: string;
 };
@@ -29,6 +30,7 @@ const LESSONS_PER_PAGE = 5;
 const LessonList: FC<LessonListProps> = (props) => {
   const { lessons, paginationProps, headingTag, currentPageItems, unitTitle } =
     props;
+  const { currentPage, pageSize } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
@@ -46,7 +48,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                   {...item}
                   unitTitle={unitTitle}
                   hideTopHeading
-                  index={index}
+                  index={index + pageSize * (currentPage - 1)}
                 />
               </LI>
             ))}
