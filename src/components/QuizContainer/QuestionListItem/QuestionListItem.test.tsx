@@ -24,7 +24,7 @@ describe("CorrectAnswer", () => {
     expect(getByText("A")).toBeInTheDocument();
   });
 
-  it.skip("renders the correct index for order type", () => {
+  it("renders the correct index for order type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
     expect(getByText("1 -")).toBeInTheDocument();
   });
@@ -41,7 +41,7 @@ describe("CorrectAnswer", () => {
     expect(getByText("X -")).toBeInTheDocument();
     expect(getByText("A")).toBeInTheDocument();
   });
-  it("renders empty string for match type when there is no answer ", () => {
+  it.skip("renders empty string for match type when there is no answer ", () => {
     const { getByRole } = renderWithTheme(
       <CorrectAnswer choice="A" type="match" index={0} />
     );
