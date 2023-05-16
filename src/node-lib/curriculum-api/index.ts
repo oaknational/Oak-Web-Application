@@ -314,6 +314,7 @@ const unitListingData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
+  totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
   learningThemes: z.array(
@@ -466,6 +467,7 @@ const curriculumApi = {
       keyStageTitle: programme?.keyStageTitle,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
+      totalUnitCount: programme?.totalUnitCount,
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
