@@ -290,6 +290,8 @@ const programmesData = z.object({
   tierTitle: z.string().nullable().optional(),
 });
 
+const programmesArray = z.array(programmesData);
+
 const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -369,7 +371,7 @@ const getFirstResultOrWarnOrFail =
     return firstResult;
   };
 
-const getFirstResultOrNull =
+export const getFirstResultOrNull =
   () =>
   <T>({ results }: { results: T[] }) => {
     const [firstResult] = results;
@@ -379,6 +381,18 @@ const getFirstResultOrNull =
 
     return firstResult;
   };
+
+export const filterOutDuplicateProgrammesOrNull = (
+  programmesAvailable: ProgrammesData[],
+  programmesUnavailable: ProgrammesData[]
+) => {
+  return programmesUnavailable.filter(
+    (unavailable) =>
+      !programmesAvailable.some(
+        (available) => available.subjectSlug === unavailable.subjectSlug
+      )
+  );
+};
 
 const curriculumApi = {
   searchPage: async () => {
@@ -401,11 +415,17 @@ const curriculumApi = {
 
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
 
+    const filteredUnavailableProgrammeDuplicate =
+      filterOutDuplicateProgrammesOrNull(
+        programmesArray.parse(programmesAvailable),
+        programmesArray.parse(programmesUnavailable)
+      );
+
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
       programmesAvailable,
-      programmesUnavailable,
+      programmesUnavailable: filteredUnavailableProgrammeDuplicate || [],
     });
   },
   unitListingPaths: async () => {

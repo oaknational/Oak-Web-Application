@@ -196,6 +196,17 @@ const subjectListingFixture = (
         tierSlug: null,
         activeUnitCount: 0,
       },
+      {
+        subjectSlug: "computing",
+        subjectTitle: "Computing",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        totalUnitCount: 15,
+        activeLessonCount: 23,
+        programmeSlug: "computing-secondary-ks4-primary",
+        tierSlug: null,
+        activeUnitCount: 15,
+      },
       // {
       //   subjectSlug: "english",
       //   subjectTitle: "English",
