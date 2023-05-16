@@ -66,7 +66,7 @@ describe("Lesson List Item", () => {
   test("It is a link to the lesson overview page", () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
-    expect(getByText("Add two surds").closest("a")).toHaveAttribute(
+    expect(getByText("4. Add two surds").closest("a")).toHaveAttribute(
       "href",
       "/beta/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c"
     );
@@ -83,7 +83,7 @@ describe("Lesson List Item", () => {
   test("It calls tracking.lessonSelected with correct props when clicked", async () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
-    const lesson = getByText("Add two surds");
+    const lesson = getByText("4. Add two surds");
 
     const user = userEvent.setup();
     await user.click(lesson);

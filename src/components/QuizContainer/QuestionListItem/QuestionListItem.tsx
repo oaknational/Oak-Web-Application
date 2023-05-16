@@ -72,11 +72,11 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         <Flex $flexWrap={"wrap"} $alignItems={"center"}>
           {" "}
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {choice}
+            {answer ? answer[index] + "  -" : ""}
           </Heading>
-          <Heading $font={"body-1"} tag={"h6"} $ma={0} $mr={6}>
+          <Typography $font={"body-1"} $ma={0} $mr={6} data-testid={"answer"}>
             {answer ? " - " + answer[index] : ""}
-          </Heading>
+          </Typography>
         </Flex>
       );
     } else if (typeIsCheckbox) {

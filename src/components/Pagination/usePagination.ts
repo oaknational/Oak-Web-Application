@@ -7,7 +7,7 @@ import { PaginationProps } from "./Pagination";
 
 type Items<T> = { items: T[] };
 
-type UsePaginationProps = {
+export type UsePaginationProps = {
   totalResults: number;
   pageSize: number;
 };

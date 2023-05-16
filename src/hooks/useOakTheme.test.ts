@@ -51,11 +51,7 @@ describe("useOakTheme()", () => {
 
   describe("window.oakThemes", () => {
     it("should have availableThemes property which lists themes", () => {
-      expect(oakGlobals.oakThemes?.availableThemes).toEqual([
-        "default",
-        "aus",
-        "oak",
-      ]);
+      expect(oakGlobals.oakThemes?.availableThemes).toEqual(["default", "oak"]);
     });
     it("setTheme() should console.error if theme not valid", async () => {
       act(() => {
@@ -89,10 +85,10 @@ describe("useOakTheme()", () => {
       const { result } = renderHook(() => useOakTheme());
 
       act(() => {
-        oakGlobals.oakThemes?.setTheme("aus");
+        oakGlobals.oakThemes?.setTheme("oak");
       });
 
-      expect(result.current.name).toBe("aus");
+      expect(result.current.name).toBe("oak");
     });
   });
 });
