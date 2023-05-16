@@ -108,6 +108,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           page={"Unit"}
           index={index}
           onClick={trackUnitSelected}
+          fromSearchPage={fromSearchPage}
         />
         {expired ? (
           <Expired page={"unit"} />

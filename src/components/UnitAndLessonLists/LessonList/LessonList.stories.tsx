@@ -23,6 +23,8 @@ const currentPageItems: LessonListProps = {
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
+    totalResults: 10,
+    pageSize: 5,
   },
   unitTitle: "Unit title",
 };
