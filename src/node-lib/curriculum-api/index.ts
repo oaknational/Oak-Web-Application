@@ -290,6 +290,8 @@ const programmesData = z.object({
   tierTitle: z.string().nullable().optional(),
 });
 
+const programmesArray = z.array(programmesData);
+
 const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -368,7 +370,7 @@ const getFirstResultOrWarnOrFail =
     return firstResult;
   };
 
-const getFirstResultOrNull =
+export const getFirstResultOrNull =
   () =>
   <T>({ results }: { results: T[] }) => {
     const [firstResult] = results;
@@ -378,6 +380,18 @@ const getFirstResultOrNull =
 
     return firstResult;
   };
+
+export const filterOutDuplicateProgrammesOrNull = (
+  programmesAvailable: ProgrammesData[],
+  programmesUnavailable: ProgrammesData[]
+) => {
+  return programmesUnavailable.filter(
+    (unavailable) =>
+      !programmesAvailable.some(
+        (available) => available.subjectSlug === unavailable.subjectSlug
+      )
+  );
+};
 
 const curriculumApi = {
   searchPage: async () => {
@@ -398,18 +412,13 @@ const curriculumApi = {
       programmesUnavailable,
     } = transformMVCase(res);
 
-    let filteredUnavailableProgrammeDuplicate;
-
-    if (programmesAvailable && programmesUnavailable) {
-      filteredUnavailableProgrammeDuplicate = programmesUnavailable.filter(
-        (unavailable) =>
-          !programmesAvailable.some(
-            (available) => available.subjectSlug === unavailable.subjectSlug
-          )
-      );
-    }
-
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
+
+    const filteredUnavailableProgrammeDuplicate =
+      filterOutDuplicateProgrammesOrNull(
+        programmesArray.parse(programmesAvailable),
+        programmesArray.parse(programmesUnavailable)
+      );
 
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
