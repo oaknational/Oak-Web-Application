@@ -19,8 +19,6 @@ import { getSeoProps } from "../../../../../../../../browser-lib/seo/getSeoProps
 import Typography, {
   Heading,
   Hr,
-  LI,
-  UL,
 } from "../../../../../../../../components/Typography";
 import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink";
 import Grid from "../../../../../../../../components/Grid";
@@ -43,6 +41,7 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
+import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -101,7 +100,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     programmeSlug,
     keyStageTitle,
     keyStageSlug,
-    coreContent,
+    // coreContent,
     subjectSlug,
     subjectTitle,
     equipmentRequired,
@@ -204,7 +203,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </Box>
         ) : (
           <>
-            <Flex $flexDirection="column">
+            {/* <Flex $flexDirection="column">
               <Heading tag={"h2"} $font={"heading-6"} $mb={16}>
                 Core content
               </Heading>
@@ -220,7 +219,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   );
                 })}
               </UL>
-            </Flex>
+            </Flex> */}
+
             <Flex $mt={12} $flexWrap={"wrap"}>
               {hasDownloadableResources && (
                 <ButtonAsLink
@@ -262,7 +262,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $mt={16}
           /> */}
             </Flex>
+
             <Hr $color={"oakGrey3"} />
+
+            <ExpandingContainer
+              title={"Lesson overview"}
+              downloadable={false}
+              toggleClosed={false}
+              {...curriculumData}
+            >
+              <LessonOverview />
+            </ExpandingContainer>
             {presentationUrl && !hasCopyrightMaterial && (
               <ExpandingContainer
                 downloadable={true}
