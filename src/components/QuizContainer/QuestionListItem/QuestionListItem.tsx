@@ -147,10 +147,11 @@ const choiceIsInAnswerArray = (
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { title, images, choices, answer, type, displayNumber } = props;
-  let joinedAnswer = "";
-  if (type === "short-answer" && Array.isArray(answer)) {
-    joinedAnswer = answer.join(", ");
-  }
+
+  const joinAnswer = type === "short-answer" && Array.isArray(answer);
+  const joinedAnswer = joinAnswer ? answer.join(", ") : "";
+  const joinedAnswerIndex = 0;
+
   return (
     <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
@@ -281,7 +282,11 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $maxWidth={"100%"}
         >
           {type === "short-answer" ? (
-            <CorrectAnswer choice={joinedAnswer} type={type} index={0} />
+            <CorrectAnswer
+              choice={joinedAnswer}
+              type={type}
+              index={joinedAnswerIndex}
+            />
           ) : (
             [...answer].map((ans, index) => {
               return <CorrectAnswer choice={ans} index={index} type={type} />;
