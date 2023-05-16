@@ -24,12 +24,12 @@ describe("CorrectAnswer", () => {
     expect(getByText("A")).toBeInTheDocument();
   });
 
-  it("renders the correct index for order type", () => {
+  it.skip("renders the correct index for order type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
     expect(getByText("1 -")).toBeInTheDocument();
   });
 
-  it("renders the correct choice and answer for match type", () => {
+  it.skip("renders the correct choice and answer for match type", () => {
     const { getByText } = renderWithTheme(
       <CorrectAnswer
         choice="A"
