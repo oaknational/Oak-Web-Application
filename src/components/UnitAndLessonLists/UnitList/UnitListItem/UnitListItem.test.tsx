@@ -69,7 +69,7 @@ describe("Unit List Item", () => {
       <UnitListItem {...{ ...props, fromSearchPage: true }} />
     );
 
-    const unit = getByText("4. Numbers and numerals");
+    const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
     await user.click(unit);
