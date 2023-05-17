@@ -13,7 +13,7 @@ const LessonOverview = ({ coreContent }: CoreContent) => {
   return (
     <Flex $justifyContent={"center"} $width={"100%"}>
       <Flex
-        $pa={[16, 24]}
+        $pa={[10, 24]}
         $flexDirection={"column"}
         $mt={22}
         $position={"relative"}
