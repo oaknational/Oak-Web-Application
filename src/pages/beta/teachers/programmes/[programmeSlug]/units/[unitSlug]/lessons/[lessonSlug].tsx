@@ -100,7 +100,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     programmeSlug,
     keyStageTitle,
     keyStageSlug,
-    // coreContent,
+    coreContent,
     subjectSlug,
     subjectTitle,
     equipmentRequired,
@@ -203,24 +203,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </Box>
         ) : (
           <>
-            {/* <Flex $flexDirection="column">
-              <Heading tag={"h2"} $font={"heading-6"} $mb={16}>
-                Core content
-              </Heading>
-              <UL $pl={28}>
-                {coreContent.map((contentString, i) => {
-                  if (!contentString) {
-                    return null;
-                  }
-                  return (
-                    <LI key={`core-content-string-${i}`} $font={"list-item-1"}>
-                      {contentString}
-                    </LI>
-                  );
-                })}
-              </UL>
-            </Flex> */}
-
             <Flex $mt={12} $flexWrap={"wrap"}>
               {hasDownloadableResources && (
                 <ButtonAsLink
@@ -265,14 +247,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
             <Hr $color={"oakGrey3"} />
 
-            <ExpandingContainer
-              title={"Lesson overview"}
-              downloadable={false}
-              toggleClosed={false}
-              {...curriculumData}
-            >
-              <LessonOverview />
-            </ExpandingContainer>
+            {coreContent && (
+              <ExpandingContainer
+                title={"Lesson overview"}
+                downloadable={false}
+                toggleClosed={true}
+                {...curriculumData}
+              >
+                <LessonOverview coreContent={coreContent} />
+              </ExpandingContainer>
+            )}
             {presentationUrl && !hasCopyrightMaterial && (
               <ExpandingContainer
                 downloadable={true}
