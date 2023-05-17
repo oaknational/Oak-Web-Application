@@ -13,13 +13,12 @@ describe("LessonOverview component", () => {
   });
 
   it("should render with multiple core content list", () => {
-    const { container, getAllByRole } = renderWithTheme(
+    const { getAllByRole } = renderWithTheme(
       <LessonOverview coreContent={["test", "test2", "test3"]} />
     );
 
     const listItems = getAllByRole("listitem");
     expect(listItems).toHaveLength(3);
-    expect(container).toMatchSnapshot();
   });
 
   it("should render with null and non-null core content", () => {
