@@ -1,6 +1,6 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import KeyStageFilter from "./KeyStageFilter";
+import KeyStageFilter from "./SearchFilterCheckbox";
 
 const props = {
   slug: "ks1",

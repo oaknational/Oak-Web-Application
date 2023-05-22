@@ -6,7 +6,7 @@ import { UnitListItemProps } from "../../components/UnitAndLessonLists/UnitList/
 import OakError from "../../errors/OakError";
 import truthy from "../../utils/truthy";
 
-import { KeyStage } from "./useKeyStageFilters";
+import { KeyStage } from "./useSearchFilters";
 
 const reportError = errorReporter("search/helpers");
 

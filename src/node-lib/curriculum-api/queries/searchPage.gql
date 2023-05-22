@@ -4,4 +4,10 @@ query searchPage {
     slug
     title
   }
+
+  mv_subjects(order_by: { title: asc }) {
+    slug
+    title
+    keyStageSlug: key_stage_slug
+  }
 }

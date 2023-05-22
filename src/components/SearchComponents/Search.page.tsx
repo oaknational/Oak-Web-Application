@@ -5,8 +5,8 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
 import {
   KeyStage,
-  UseKeyStageFiltersReturnType,
-} from "../../context/Search/useKeyStageFilters";
+  UseSearchFiltersReturnType,
+} from "../../context/Search/useSearchFilters";
 import { UseSearchReturnType } from "../../context/Search/useSearch";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import Box from "../Box";
@@ -24,7 +24,7 @@ import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 
 export type SearchProps = UseSearchReturnType & {
-  keyStageFilters: UseKeyStageFiltersReturnType;
+  searchFilters: UseSearchFiltersReturnType;
   allKeyStages: KeyStage[];
 };
 const Search: FC<SearchProps> = (props) => {
@@ -34,7 +34,7 @@ const Search: FC<SearchProps> = (props) => {
     status,
     results,
     allKeyStages,
-    keyStageFilters,
+    searchFilters,
     searchStartTime,
     setSearchStartTime,
   } = props;
@@ -130,11 +130,11 @@ const Search: FC<SearchProps> = (props) => {
                 <BrushBorders color={"teachersPastelYellow"} />
               </Card>
             </Flex>
-            <ActiveFilters keyStageFilters={keyStageFilters} />
+            <ActiveFilters searchFilters={searchFilters} />
           </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters keyStageFilters={keyStageFilters} />
+              <SearchFilters searchFilters={searchFilters} />
             </Flex>
             <Box $mb={32}>
               <MobileFilters
@@ -143,7 +143,7 @@ const Search: FC<SearchProps> = (props) => {
                 iconOpened="cross"
                 iconClosed="hamburger"
               >
-                <SearchFilters keyStageFilters={keyStageFilters} />
+                <SearchFilters searchFilters={searchFilters} />
               </MobileFilters>
             </Box>
           </GridArea>

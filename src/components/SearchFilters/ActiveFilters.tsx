@@ -3,15 +3,19 @@ import { FC } from "react";
 import Flex from "../Flex";
 import Button from "../Button";
 import { P } from "../Typography";
-import { UseKeyStageFiltersReturnType } from "../../context/Search/useKeyStageFilters";
+import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
 
 type ActiveFiltersProps = {
-  keyStageFilters: UseKeyStageFiltersReturnType;
+  searchFilters: UseSearchFiltersReturnType;
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
-  const { keyStageFilters } = props;
+  const { searchFilters } = props;
+  const { keyStageFilters, subjectFilters } = searchFilters;
 
-  const activeFilters = keyStageFilters.filter((keyStage) => keyStage.checked);
+  const activeFilters = [
+    ...keyStageFilters.filter((keyStage) => keyStage.checked),
+    ...subjectFilters.filter((subject) => subject.checked),
+  ];
 
   return (
     <Flex
@@ -23,11 +27,11 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
         Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
       <Flex $alignItems={"center"}>
-        {activeFilters.map(({ slug, title, shortCode, onChange }) => (
+        {activeFilters.map(({ slug, title, onChange }) => (
           <Button
-            label={shortCode}
+            label={title}
             aria-label={`Remove ${title} filter`}
-            key={`active-filter-ks-${slug}`}
+            key={`active-filter-${title}-${slug}`}
             onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"

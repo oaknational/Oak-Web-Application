@@ -40,6 +40,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { setSearchTerm } = useSearch({
     allKeyStages: curriculumData.keyStages,
+    allSubjects: curriculumData.subjects,
   });
 
   const { track } = useAnalytics();

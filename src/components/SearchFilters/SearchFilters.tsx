@@ -1,24 +1,39 @@
 import { FC } from "react";
 
-import KeyStageFilter from "../SearchFilters/KeyStageFilter";
+import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
 import Flex from "../Flex";
 import { P } from "../Typography";
-import { UseKeyStageFiltersReturnType } from "../../context/Search/useKeyStageFilters";
+
+import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
 type SearchFiltersProps = {
-  keyStageFilters: UseKeyStageFiltersReturnType;
+  searchFilters: UseSearchFiltersReturnType;
 };
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
-  const { keyStageFilters } = props;
+  const { searchFilters } = props;
+  const { keyStageFilters, subjectFilters } = searchFilters;
 
   return (
     <>
       <P $mb={16}>Key stage</P>
       <Flex $flexDirection={"row"} $flexWrap={"wrap"}>
         {keyStageFilters.map((keyStageFilter) => (
-          <KeyStageFilter
+          <SearchFilterCheckbox
+            name={"keyStageFilters"}
+            label={keyStageFilter.shortCode}
             key={`search-filters-keystage-${keyStageFilter.slug}`}
             {...keyStageFilter}
+          />
+        ))}
+      </Flex>
+      <P $mb={16}>Subjects</P>
+      <Flex $flexDirection={"row"} $flexWrap={"wrap"}>
+        {subjectFilters.map((subjectFilter) => (
+          <SearchFilterCheckbox
+            name={"keyStageFilters"}
+            label={subjectFilter.title}
+            key={`search-filters-subject-${subjectFilter.slug}`}
+            {...subjectFilter}
           />
         ))}
       </Flex>

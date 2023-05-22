@@ -2,7 +2,7 @@ import { renderHook, act } from "@testing-library/react";
 
 import useKeyStageFilters, {
   UseKeyStageFiltersProps,
-} from "./useKeyStageFilters";
+} from "./useSearchFilters";
 
 const setQuery = jest.fn();
 
