@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
@@ -10,13 +11,17 @@ import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number],
   "year" | "unitStudyOrder"
 > & {
   hideTopHeading?: boolean;
-  index: number | null;
+  hitCount?: number;
+  fromSearchPage?: boolean;
+  index: number;
+  currentPage?: number;
 };
 
 /**
@@ -38,21 +43,44 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     subjectTitle,
     keyStageSlug,
     keyStageTitle,
+    fromSearchPage,
+    hitCount,
+    currentPage,
   } = props;
-
+  const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackUnitSelected = () => {
-    track.unitSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: title,
-      unitSlug: slug,
-      analyticsUseCase,
-    });
+    if (fromSearchPage && hitCount && currentPage) {
+      track.searchResultClicked({
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        unitName: title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: slug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: (currentPage - 1) * 20 + index + 1,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages
+        ),
+        searchResultCount: hitCount,
+        searchResultType: "unit",
+        lessonName: undefined,
+        lessonSlug: undefined,
+      });
+    } else {
+      track.unitSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: title,
+        unitSlug: slug,
+        analyticsUseCase,
+      });
+    }
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
@@ -80,6 +108,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           page={"Unit"}
           index={index}
           onClick={trackUnitSelected}
+          fromSearchPage={fromSearchPage}
         />
         {expired ? (
           <Expired page={"unit"} />

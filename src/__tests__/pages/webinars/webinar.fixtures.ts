@@ -7,7 +7,7 @@ export const mockWebinar = (webinar?: Partial<SerializedWebinar>) => ({
   date: "2020-04-14T13:00:00.000Z",
   hosts: [
     {
-      name: "Alistair Crawford",
+      name: "John Doe",
       id: "258663fa-bd73-4571-acdc-33da8f7d01be",
       image: {
         asset: {
@@ -36,7 +36,7 @@ export const mockWebinar = (webinar?: Partial<SerializedWebinar>) => ({
   seo: null,
   id: "cc15a6ad-6a34-4a3f-b4cf-58721bb6b621",
   author: {
-    name: "Alistair Crawford",
+    name: "Jane Smith",
     id: "258663fa-bd73-4571-acdc-33da8f7d01be",
     image: {
       asset: {

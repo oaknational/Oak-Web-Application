@@ -3,6 +3,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import Pagination from "./Pagination";
 
 export const mockPaginationProps = {
+  totalResults: 1,
   totalPages: 25,
   currentPage: 1,
   pageSize: 20,

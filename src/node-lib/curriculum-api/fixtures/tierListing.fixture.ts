@@ -15,6 +15,7 @@ const tierListingFixture = (
         tierTitle: "Core",
         totalUnitCount: 61,
         activeLessonCount: 284,
+        activeUnitCount: 61,
       },
       {
         programmeSlug: "maths-secondary-ks4-foundation",
@@ -26,6 +27,7 @@ const tierListingFixture = (
         tierTitle: "Foundation",
         totalUnitCount: 63,
         activeLessonCount: 256,
+        activeUnitCount: 63,
       },
       {
         programmeSlug: "maths-secondary-ks4-higher",
@@ -37,6 +39,7 @@ const tierListingFixture = (
         tierTitle: "Higher",
         totalUnitCount: 63,
         activeLessonCount: 275,
+        activeUnitCount: 63,
       },
     ],
     ...partial,
