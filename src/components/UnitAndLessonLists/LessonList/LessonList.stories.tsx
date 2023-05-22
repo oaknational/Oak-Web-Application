@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import lessonListingFixture from "../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
 import { LessonListProps } from "./LessonList";
 
@@ -9,6 +10,7 @@ import Component from ".";
 
 export default {
   title: "Lists/Lesson List",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 

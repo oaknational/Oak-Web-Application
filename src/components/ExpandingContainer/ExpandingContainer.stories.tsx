@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import Card from "../Card";
 
 import Component from ".";
@@ -7,7 +8,7 @@ import Component from ".";
 export default {
   title: "Foundations/ExpandingContainer",
   component: Component,
-  decorators: [(Story) => <Story />],
+  decorators: [AnalyticsDecorator, (Story) => <Story />],
   argTypes: {
     children: {
       defaultValue: (
@@ -33,4 +34,8 @@ ExpandingContainer.args = {
   external: true,
   projectable: true,
   downloadable: true,
+  title: "Video",
+  programmeSlug: "secondary-ks3-maths",
+  unitSlug: "unit",
+  lessonSlug: "slug-slug-slug",
 };

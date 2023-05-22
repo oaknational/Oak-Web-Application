@@ -27,3 +27,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const IconButtonAsLink = Template.bind({});
+IconButtonAsLink.args = {
+  "aria-label": "Click me",
+  variant: "brush",
+  icon: "download",
+  href: "/",
+};

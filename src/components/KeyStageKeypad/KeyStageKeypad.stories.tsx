@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import keyStageKeypad from "../../browser-lib/fixtures/keyStageKeypad";
 import Flex from "../Flex";
 
@@ -7,6 +8,7 @@ import Component from "./KeyStageKeypad";
 
 export default {
   title: "Navigation",
+  decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

@@ -1,9 +1,12 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
+
 import Component from ".";
 
 export default {
   title: "Blogs & Webinars/PostCategoryList",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 

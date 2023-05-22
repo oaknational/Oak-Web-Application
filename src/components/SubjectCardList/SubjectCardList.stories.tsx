@@ -1,11 +1,13 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import subjectPagePropsFixture from "../../node-lib/curriculum-api/fixtures/subjectPageProps";
 
 import Component from "./SubjectCardList";
 
 export default {
   title: "Lists/SubjectCardList/SubjectCardList",
+  decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

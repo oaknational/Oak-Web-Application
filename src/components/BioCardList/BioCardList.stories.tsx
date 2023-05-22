@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { OverlayProvider } from "react-aria";
 
 import Component from ".";
 
@@ -8,7 +9,11 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
-  return <Component {...args} />;
+  return (
+    <OverlayProvider>
+      <Component {...args} />
+    </OverlayProvider>
+  );
 };
 
 export const BioCardList = Template.bind({});

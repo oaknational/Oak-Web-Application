@@ -24,3 +24,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
 );
 
 export const ButtonAsLink = Template.bind({});
+ButtonAsLink.args = { 
+  label: "Click me",
+  variant: "minimal",
+  href: "/",
+};

@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 import unitListingFixture from "../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 
@@ -19,6 +20,7 @@ const currentPageItems: UnitListProps = {
 
 export default {
   title: "Lists/Unit list",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 

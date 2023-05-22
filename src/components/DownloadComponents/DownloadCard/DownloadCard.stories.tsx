@@ -33,3 +33,6 @@ const Template: ComponentStory<typeof Component> = (args) => {
 };
 
 export const Checkbox = Template.bind({});
+Checkbox.args = {
+  extension: "pdf",
+};

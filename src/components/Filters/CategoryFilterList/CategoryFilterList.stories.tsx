@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { BlogListingLinkProps } from "../../../common-lib/urls";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
 import useCategoryFilterList from "./useCategoryFilterList";
 
@@ -8,6 +9,7 @@ import Component from ".";
 
 export default {
   title: "Filters/Category Filter List",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 
