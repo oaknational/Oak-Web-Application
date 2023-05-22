@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from ".";
 
@@ -18,10 +18,9 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 export const Flex: Story = {
- args: {
+  args: {
     children: "Flex box",
     pa: [20, 50, 100],
     bg: "calmAndWarm",
   },
-
 };

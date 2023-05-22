@@ -8,14 +8,14 @@ import Component from "./AppHeader";
 
 export default {
   title: "Headers & Footers/App Header",
-  decorators: [AnalyticsDecorator], 
+  decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
   <MenuProvider>
-  <Component {...args} />
+    <Component {...args} />
   </MenuProvider>
 );
 

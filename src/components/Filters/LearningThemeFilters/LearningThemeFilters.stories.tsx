@@ -18,9 +18,9 @@ export const LearningThemeFilters = Template.bind({});
 LearningThemeFilters.args = {
   selectedThemeSlug: "some-theme",
   learningThemes: [],
-  linkProps:{
+  linkProps: {
     page: "unit-index",
     viewType: "teachers",
     programme: "some-programme",
-  }
+  },
 };

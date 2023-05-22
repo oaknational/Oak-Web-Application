@@ -11,7 +11,9 @@ import truthy from "../../utils/truthy";
 
 import SearchResults from "./SearchResults";
 
-export const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
+export const hits = searchResultsHitsSchema.parse(
+  elasticResponseFixture.hits.hits
+);
 
 const getNHits = (n: number) => {
   const [hit] = hits;
