@@ -6,25 +6,25 @@ const meta: Meta<typeof Component> = {
   title: "Buttons/Button As Link",
   component: Component,
   argTypes: {
-        label: {
-          defaultValue: "Click me",
-        },
-        variant: {
-          defaultValue: "minimal",
-        },
-        href: {
-          defaultValue: "/",
-        },
-      },
+    label: {
+      defaultValue: "Click me",
+    },
+    variant: {
+      defaultValue: "minimal",
+    },
+    href: {
+      defaultValue: "/",
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const ButtonAsLink : Story = {
+export const ButtonAsLink: Story = {
   args: {
-        label: "Click me",  
-        variant: "minimal",
-        href: "/",
+    label: "Click me",
+    variant: "minimal",
+    href: "/",
   },
 };
