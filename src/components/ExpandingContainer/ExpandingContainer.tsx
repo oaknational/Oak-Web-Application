@@ -20,7 +20,8 @@ export type ExpandingContainerTitle =
   | "Starter quiz"
   | "Worksheet"
   | "Video"
-  | "Transcript";
+  | "Transcript"
+  | "Lesson overview";
 
 type ExpandingContainerProps = CardProps & {
   title: ExpandingContainerTitle;
