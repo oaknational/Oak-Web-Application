@@ -1,7 +1,4 @@
 module.exports = {
-  core: {
-    builder: "webpack5",
-  },
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",
@@ -26,10 +23,7 @@ module.exports = {
     NEXT_PUBLIC_GLEAP_API_URL: "NEXT_PUBLIC_GLEAP_API_URL",
     NEXT_PUBLIC_GLEAP_FRAME_URL: "NEXT_PUBLIC_GLEAP_FRAME_URL",
   }),
-  stories: [
-    "../src/components/Intro.stories.mdx",
-    "../src/**/*.stories.@(mdx|js|jsx|ts|tsx)",
-  ],
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -38,23 +32,45 @@ module.exports = {
     "storybook-addon-themes",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
-    "storybook-addon-next-router",
+    "@storybook/addon-mdx-gfm",
+    "storybook-addon-next",
   ],
-  framework: "@storybook/react",
+  framework: {
+    name: "@storybook/nextjs",
+    options: {},
+  },
   staticDirs: ["../public"],
   webpackFinal: async (config) => {
-    /**
-     * Without the below rule, Storybook is completely broken after
-     * adding react-portable-text.
-     * @see: https://github.com/storybookjs/storybook/issues/16690
-     * @see: https://github.com/portabletext/react-portabletext/issues/6
-     */
-    config.module.rules.push({
-      test: /\.mjs$/,
-      include: /node_modules/,
-      type: "javascript/auto",
-    });
+    config.module.rules = [
+      ...config.module.rules.map((rule) => {
+        if (/svg/.test(rule.test)) {
+          // Silence the Storybook loaders for SVG files
+          return { ...rule, exclude: /\.svg$/i };
+        }
+
+        return rule;
+      }),
+      // Add your custom SVG loader
+      {
+        test: /\.svg$/i,
+        use: ["@svgr/webpack"],
+      },
+    ];
 
     return config;
+  },
+  fallback: {
+    querystring: require.resolve("querystring-es3"),
+    path: require.resolve("path-browserify"),
+    buffer: require.resolve("buffer/"),
+    crypto: require.resolve("crypto-browserify"),
+    http: require.resolve("stream-http"),
+    stream: require.resolve("stream-browserify"),
+    url: require.resolve("url/"),
+    util: require.resolve("util/"),
+  },
+
+  docs: {
+    autodocs: true,
   },
 };

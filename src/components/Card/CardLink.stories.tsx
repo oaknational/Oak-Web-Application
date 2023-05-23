@@ -1,19 +1,21 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Heading, P } from "../Typography";
 
 import Card from "./Card";
 import Component from "./CardLink";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Cards/Card Link",
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+};
 
-const Template: ComponentStory<typeof Component> = () => {
-  return (
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const CardLink: Story = {
+  render: () => (
     <Card $background={"grey4"}>
       <Heading
         $mt={24}
@@ -32,7 +34,5 @@ const Template: ComponentStory<typeof Component> = () => {
         ensure the Heading is focusable
       </P>
     </Card>
-  );
+  ),
 };
-
-export const CardLink = Template.bind({});

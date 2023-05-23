@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from ".";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Foundations/Flex",
   component: Component,
   argTypes: {
@@ -12,10 +12,15 @@ export default {
     pa: { defaultValue: [20, 50, 100] },
     bg: { defaultValue: "calmAndWarm" },
   },
-} as ComponentMeta<typeof Component>;
+};
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof Component>;
 
-export const Flex = Template.bind({});
+export const Flex: Story = {
+  args: {
+    children: "Flex box",
+    pa: [20, 50, 100],
+    bg: "calmAndWarm",
+  },
+};

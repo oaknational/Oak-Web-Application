@@ -1,9 +1,8 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./ButtonAsLink";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Buttons/Button As Link",
   component: Component,
   argTypes: {
@@ -17,10 +16,15 @@ export default {
       defaultValue: "/",
     },
   },
-} as ComponentMeta<typeof Component>;
+};
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof Component>;
 
-export const ButtonAsLink = Template.bind({});
+export const ButtonAsLink: Story = {
+  args: {
+    label: "Click me",
+    variant: "minimal",
+    href: "/",
+  },
+};
