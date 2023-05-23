@@ -1,10 +1,10 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import Box from "../../../Box";
 
 import Component from ".";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Blogs & Webinars/Post List/UpcomingWebinarListItem",
   component: Component,
   decorators: [
@@ -14,22 +14,20 @@ export default {
       </Box>
     ),
   ],
-  argTypes: {
-    argTypes: { signUpOnClick: { action: "clicked" } },
-  },
-} as ComponentMeta<typeof Component>;
-
-const Template: ComponentStory<typeof Component> = (args) => {
-  return <Component {...args} />;
+  argTypes: { signUpOnClick: { action: "clicked" } },
 };
 
-export const UpcomingWebinarListItem = Template.bind({});
-UpcomingWebinarListItem.args = {
-  titleTag: "h3",
-  title: "Why are teachers still using Oak?",
-  summary:
-    "We know schools are facing yet another challenging term, with increasing numbers of staff and pupils isolating due to Covid, isolating due to Covid, isolating due to Covid, isolating due to Covid",
-  date: "2052-03-31T14:30:00.000Z",
-  slug: "why-oak",
-  signUpHref: "https://example.com",
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const UpcomingWebinarListItem: Story = {
+  args: {
+    titleTag: "h3",
+    title: "Why are teachers still using Oak?",
+    summary:
+      "We know schools are facing yet another challenging term, with increasing numbers of staff and pupils isolating due to Covid, isolating due to Covid, isolating due to Covid, isolating due to Covid",
+    date: "2052-03-31T14:30:00.000Z",
+    slug: "why-oak",
+    signUpHref: "https://example.com",
+  },
 };
