@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
+import React from "react";
 
 import Component from ".";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Download Components/Download Card",
   component: Component,
   argTypes: {
-    title: {
-      defaultValue: "Click me",
-    },
     id: {
       defaultValue: "1",
     },
@@ -23,16 +21,18 @@ export default {
       defaultValue: "presentation",
     },
   },
-} as ComponentMeta<typeof Component>;
-
-const Template: ComponentStory<typeof Component> = (args) => {
-  const [value, setValue] = useState(false);
-  return (
-    <Component {...args} checked={value} onChange={() => setValue(!value)} />
-  );
 };
 
-export const Checkbox = Template.bind({});
-Checkbox.args = {
-  extension: "pdf",
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const Checkbox: Story = {
+  args: {
+    extension: "pdf",
+    checked: false,
+    onChange: action("changed"),
+  },
+  render: (args) => {
+    return <Component {...args} />;
+  },
 };

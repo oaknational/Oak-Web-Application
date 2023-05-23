@@ -27,6 +27,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
     ...boxProps
   } = props;
 
+  console.log("CategoryFilterList", categories);
   return (
     <nav aria-labelledby={labelledBy}>
       <UL {...boxProps} $reset $mr={30}>
