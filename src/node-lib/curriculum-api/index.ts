@@ -403,7 +403,6 @@ const curriculumApi = {
 
     const uniqueSubjects = programmesAvailable
       ? programmesAvailable.filter((subject, index, self) => {
-          console.log("subject", subject);
           return index === self.findIndex((s) => s.slug === subject.slug);
         })
       : [];
