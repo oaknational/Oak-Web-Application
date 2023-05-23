@@ -134,7 +134,7 @@ const Search: FC<SearchProps> = (props) => {
           </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters searchFilters={searchFilters} />
+              <SearchFilters {...searchFilters} />
             </Flex>
             <Box $mb={32}>
               <MobileFilters
@@ -143,7 +143,7 @@ const Search: FC<SearchProps> = (props) => {
                 iconOpened="cross"
                 iconClosed="hamburger"
               >
-                <SearchFilters searchFilters={searchFilters} />
+                <SearchFilters {...searchFilters} />
               </MobileFilters>
             </Box>
           </GridArea>

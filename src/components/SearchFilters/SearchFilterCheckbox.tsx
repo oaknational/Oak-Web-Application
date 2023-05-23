@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+import { SizeProps } from "../../styles/utils/size";
 import Box from "../Box";
 import Checkbox from "../Checkbox";
 
@@ -8,12 +9,13 @@ type SearchFilterCheckboxProps = {
   slug: string;
   label: string;
   checked: boolean;
+  width?: SizeProps["$width"];
   onChange: () => void;
 };
 const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
-  const { slug, label, onChange, checked, name } = props;
+  const { slug, label, onChange, checked, name, width = "50%" } = props;
   return (
-    <Box $width={"50%"}>
+    <Box $width={width}>
       <Checkbox
         labelText={`${label}`}
         ariaLabel={`${label} filter`}

@@ -23,17 +23,17 @@ export type UseSearchFiltersReturnType = {
 
 const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
-  searchQuery: string[],
+  filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  title: "keyStages" | "subjects"
+  name: "keyStages" | "subjects"
 ) => {
   const { slug } = filterProps;
-  const checked = searchQuery.includes(slug);
+  const checked = filterQueryItems.includes(slug);
   const onChange = () => {
-    const partialSearchQuery = {
-      [title]: checked
-        ? searchQuery.filter((filterItem) => filterItem !== slug)
-        : [searchQuery, slug],
+    const partialSearchQuery: Partial<SearchQuery> = {
+      [name]: checked
+        ? filterQueryItems.filter((filterItem) => filterItem !== slug)
+        : [filterQueryItems, slug].flat(),
     };
 
     setQuery((oldQuery) => ({ ...oldQuery, ...partialSearchQuery }));
@@ -53,64 +53,21 @@ const useSearchFilters = (
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     const filters = getCheckboxFilters(
       keyStage,
-      query.keyStages,
+      query.keyStages || [],
       setQuery,
       "keyStages"
     );
     return filters;
-
-    // const checked = getCheckedStatus(keyStage.slug, query.keyStages);
-    //   const keyStages = checked
-    //     ? query.keyStages.filter((ks) => ks !== slug)
-    //     : [...query.keyStages, slug];
-    //   setQuery((oldQuery) => ({ ...oldQuery, keyStages }));
-    // // };
-
-    // return {
-    //   ...keyStage,
-    //   checked,
-    //   onChange,
-    // };
-
-    // const { slug } = keyStage;
-    // const checked = query.keyStages.includes(slug);
-    // const onChange = () => {
-    //   console.log("************************", query.keyStages);
-    //   const keyStages = checked
-    //     ? query.keyStages.filter((ks) => ks !== slug)
-    //     : [...query.keyStages, slug];
-    //   setQuery((oldQuery) => ({ ...oldQuery, keyStages }));
-    // };
-
-    // return {
-    //   ...keyStage,
-    //   checked,
-    //   onChange,
-    // };
   });
 
   const subjectCheckboxFilters = allSubjects.map((subject) => {
     const filters = getCheckboxFilters(
       subject,
-      query.subjects,
+      query.subjects || [],
       setQuery,
       "subjects"
     );
     return filters;
-    // const { slug } = subject;
-    // const checked = query.subjects.includes(slug);
-    // const onChange = () => {
-    //   const subjects = checked
-    //     ? query.subjects.filter((ks) => ks !== slug)
-    //     : [...query.subjects, slug];
-    //   setQuery((oldQuery) => ({ ...oldQuery, subjects }));
-    // };
-
-    // return {
-    //   ...subject,
-    //   checked,
-    //   onChange,
-    // };
   });
 
   return {

@@ -15,8 +15,8 @@ import { KeyStage } from "./useSearchFilters";
 
 export type SearchQuery = {
   term: string;
-  keyStages: string[];
-  subjects: string[];
+  keyStages?: string[];
+  subjects?: string[];
 };
 export type SetSearchQuery = (
   arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>)
@@ -31,56 +31,55 @@ export const createSearchQuery = (
   const { term = "", keyStages = [], subjects = [] } = partialQuery;
   return { term, keyStages, subjects };
 };
+
 const useSearchQuery = ({
   allKeyStages,
   allSubjects,
 }: {
-  allKeyStages: KeyStage[];
-  allSubjects: SearchPageData["subjects"];
+  allKeyStages?: KeyStage[];
+  allSubjects?: SearchPageData["subjects"];
 }): UseSearchQueryReturnType => {
   const {
     query: { term = "", keyStages = "", subjects = "" },
     push,
   } = useRouter();
 
-  const isKeyStage = useCallback(
-    (slug: string) => {
-      return allKeyStages.some((keyStage) => keyStage.slug === slug);
+  const isFilterItem = useCallback(
+    <T extends { slug: string }>(slug: string, allFilterItems: T[]) => {
+      return allFilterItems.some((item) => item.slug === slug);
     },
-    [allKeyStages]
+    []
   );
 
-  const isSubject = useCallback(
-    (slug: string) => {
-      return allSubjects.some((subject) => subject.slug === slug);
+  const getFilterForQuery = useCallback(
+    <T extends { slug: string }>(
+      queryFilterItems: string | string[],
+      allFilterItems: T[]
+    ) => {
+      const queryFilterArray = queryFilterItems.toString().split(",");
+      return queryFilterArray.filter((querySlug) =>
+        isFilterItem(querySlug, allFilterItems)
+      );
     },
-    [allSubjects]
+    [isFilterItem]
   );
-
-  // const isKeyStage = useCallback(
-  //   <T extends { slug: string }>(slug: string, items: T[]) => {
-  //     return items.some((item) => item.slug === slug);
-  //   },
-  //   []
-  // );
 
   const termString = term?.toString() || "";
-  const keyStagesArray = useMemo(
-    () => (keyStages ? keyStages.toString().split(",") : []),
-    [keyStages]
-  );
-  const subjectsArray = useMemo(
-    () => (subjects ? subjects.toString().split(",") : []),
-    [subjects]
-  );
 
   const query = useMemo(() => {
     return {
       term: termString,
-      keyStages: keyStagesArray.filter(isKeyStage),
-      subjects: subjectsArray.filter(isSubject),
+      keyStages: allKeyStages ? getFilterForQuery(keyStages, allKeyStages) : [],
+      subjects: allSubjects ? getFilterForQuery(subjects, allSubjects) : [],
     };
-  }, [termString, keyStagesArray, isKeyStage, subjectsArray, isSubject]);
+  }, [
+    termString,
+    getFilterForQuery,
+    keyStages,
+    allKeyStages,
+    subjects,
+    allSubjects,
+  ]);
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
     const newQuery = typeof arg === "function" ? arg(query) : arg;
@@ -109,8 +108,8 @@ export type UseSearchReturnType = {
   setSearchStartTime: (time: number | null) => void;
 };
 type UseSearchProps = {
-  allKeyStages: KeyStage[];
-  allSubjects: SearchPageData["subjects"];
+  allKeyStages?: KeyStage[];
+  allSubjects?: SearchPageData["subjects"];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const { allKeyStages, allSubjects } = props;

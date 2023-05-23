@@ -1,91 +1,86 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
+import { mockOnChange, searchFilters } from "./ActiveFilters.test";
 import SearchFilters from "./SearchFilters";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-const ks4OnChange = jest.fn();
-const ks3OnChange = jest.fn();
-const keyStageFilters = [
-  {
-    title: "Key-stage 4",
-    slug: "ks4",
-    shortCode: "KS4",
-    onChange: ks4OnChange,
-    checked: false,
-  },
-  {
-    title: "Key-stage 3",
-    slug: "ks3",
-    shortCode: "KS3",
-    onChange: ks3OnChange,
-    checked: false,
-  },
-];
+const props = searchFilters;
 
 describe("SearchFilters", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("renders all the key stage filters", () => {
+  test("renders all the key stage and subject filters", () => {
     const { getAllByRole } = renderWithTheme(
-      <SearchFilters keyStageFilters={keyStageFilters} />
+      <SearchFilters
+        subjectFilters={props.subjectFilters}
+        keyStageFilters={props.keyStageFilters}
+      />
     );
     const searchFilters = getAllByRole("checkbox");
-    expect(searchFilters).toHaveLength(keyStageFilters.length);
+    expect(searchFilters).toHaveLength(
+      props.keyStageFilters.length + props.subjectFilters.length
+    );
   });
   test("have correct a11y label", () => {
     const { getByRole } = renderWithTheme(
-      <SearchFilters keyStageFilters={keyStageFilters} />
+      <SearchFilters
+        subjectFilters={props.subjectFilters}
+        keyStageFilters={props.keyStageFilters}
+      />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "KS3 filter",
+      name: "KS2 filter",
     });
     expect(ks3Filter).toBeInTheDocument();
   });
   test("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
-        keyStageFilters={keyStageFilters.map((filter) => ({
+        keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: true,
         }))}
+        subjectFilters={props.subjectFilters}
       />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "KS3 filter",
+      name: "KS2 filter",
     });
     expect(ks3Filter).toHaveAttribute("checked");
   });
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
-        keyStageFilters={keyStageFilters.map((filter) => ({
+        keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,
         }))}
+        subjectFilters={props.subjectFilters}
       />
     );
     const ks3Filter = getByRole("checkbox", {
-      name: "KS3 filter",
+      name: "KS2 filter",
     });
     expect(ks3Filter).not.toHaveAttribute("checked");
   });
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
-        keyStageFilters={keyStageFilters.map((filter) => ({
+        keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,
         }))}
+        subjectFilters={props.subjectFilters}
       />
     );
-    const ks3Filter = getByRole("checkbox", {
-      name: "KS3 filter",
+    const ks2Filter = getByRole("checkbox", {
+      name: "KS2 filter",
     });
-    ks3Filter.click();
-    expect(ks3OnChange).toHaveBeenCalledWith(
-      expect.objectContaining({ target: ks3Filter })
+    ks2Filter.click();
+    expect(mockOnChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: ks2Filter })
     );
   });
 });

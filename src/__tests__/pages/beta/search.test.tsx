@@ -1,6 +1,7 @@
 import SearchPage from "../../../pages/beta/teachers/search";
 import { mockSeoResult } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+import searchPageFixture from "../../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 const providers = {
   theme: {},
@@ -9,18 +10,14 @@ const providers = {
   analytics: {},
   cookieConsent: {},
 };
-const keyStages = [
-  {
-    slug: "fks1",
-    title: "Fake-key-stage 1",
-    shortCode: "FKS1",
-  },
-];
+const keyStages = searchPageFixture().keyStages;
+
+const subjects = searchPageFixture().subjects;
 
 describe("pages/beta/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects }} />
     );
 
     expect(seo).toEqual({
@@ -37,10 +34,10 @@ describe("pages/beta/teachers/search.tsx", () => {
   });
   test("renders correct key stage filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects }} />
     );
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
-      "FKS1 filter"
+      "KS1 filter"
     );
   });
 });

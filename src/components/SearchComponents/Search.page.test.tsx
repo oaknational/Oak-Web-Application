@@ -41,22 +41,32 @@ const validQuery: SearchQuery = {
 
 const setSearchStartTime = jest.fn();
 
-const props: SearchProps = {
+export const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
   setSearchStartTime: setSearchStartTime,
   results: [],
   query: validQuery,
   setQuery: jest.fn(),
-  keyStageFilters: [
-    {
-      slug: "ks1",
-      title: "Key-stage 1",
-      shortCode: "KS1",
-      onChange: jest.fn(),
-      checked: false,
-    },
-  ],
+  searchFilters: {
+    keyStageFilters: [
+      {
+        slug: "ks1",
+        title: "Key-stage 1",
+        shortCode: "KS1",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
+    subjectFilters: [
+      {
+        slug: "computing",
+        title: "Computing",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
+  },
   allKeyStages: [
     {
       slug: "ks1",
@@ -227,8 +237,9 @@ describe("Search.page.tsx", () => {
   test("clicking a calls filter.onChange appropriately", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
-    const ks1OnChange = props.keyStageFilters.find((ks) => ks.slug === "ks1")
-      ?.onChange as jest.Mock;
+    const ks1OnChange = props.searchFilters.keyStageFilters.find(
+      (ks) => ks.slug === "ks1"
+    )?.onChange as jest.Mock;
     ks1OnChange.mockClear();
     await user.click(getByRole("button", { name: "Filters" }));
     const filter = getByRole("checkbox", { name: "KS1 filter" });
