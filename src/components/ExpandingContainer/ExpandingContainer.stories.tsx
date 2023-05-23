@@ -5,7 +5,6 @@ import Card from "../Card";
 
 import Component from ".";
 
-
 const meta: Meta<typeof Component> = {
   title: "Foundations/ExpandingContainer",
   component: Component,
