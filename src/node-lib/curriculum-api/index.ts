@@ -399,10 +399,11 @@ const curriculumApi = {
   searchPage: async () => {
     const res = await sdk.searchPage();
 
-    const { keyStages, subjects } = transformMVCase(res);
+    const { keyStages, programmesAvailable } = transformMVCase(res);
 
-    const uniqueSubjects = subjects
-      ? subjects.filter((subject, index, self) => {
+    const uniqueSubjects = programmesAvailable
+      ? programmesAvailable.filter((subject, index, self) => {
+          console.log("subject", subject);
           return index === self.findIndex((s) => s.slug === subject.slug);
         })
       : [];
