@@ -41,8 +41,6 @@ export const CategoryFilterList: Story = {
     //   getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>
     //     linkProps.category || null,
     // });
-    return (
-      <Component {...args} />
-    );
+    return <Component {...args} />;
   },
 };
