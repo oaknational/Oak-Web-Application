@@ -234,6 +234,7 @@ const lessonOverviewData = z.object({
   presentationUrl: z.string().nullable(),
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
+  isWorksheetLandscape: z.boolean(),
   hasCopyrightMaterial: z.boolean(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),

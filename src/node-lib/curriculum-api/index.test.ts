@@ -76,6 +76,7 @@ const lessonOverview = jest.fn(() => ({
       contentGuidance: lessonOverviewFixture().contentGuidance,
       presentationUrl: lessonOverviewFixture().presentationUrl,
       worksheetUrl: lessonOverviewFixture().worksheetUrl,
+      isWorksheetLandscape: lessonOverviewFixture().isWorksheetLandscape,
       hasCopyrightMaterial: lessonOverviewFixture().hasCopyrightMaterial,
       videoMuxPlaybackId: lessonOverviewFixture().videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
