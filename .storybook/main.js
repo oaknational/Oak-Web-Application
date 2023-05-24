@@ -23,7 +23,7 @@ module.exports = {
     NEXT_PUBLIC_GLEAP_API_URL: "NEXT_PUBLIC_GLEAP_API_URL",
     NEXT_PUBLIC_GLEAP_FRAME_URL: "NEXT_PUBLIC_GLEAP_FRAME_URL",
   }),
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+  stories: ["../src/components/Intro.stories.mdx","../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
