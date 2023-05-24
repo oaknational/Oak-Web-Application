@@ -123,8 +123,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     expired,
   } = curriculumData;
 
-  const isWorksheetPortrait = !isWorksheetLandscape;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -303,7 +301,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewPresentation
                   asset={worksheetUrl}
                   title={lessonTitle}
-                  isPortrait={isWorksheetPortrait}
+                  isWorksheetLandscape={isWorksheetLandscape}
                   isWorksheet={true}
                 />
               </ExpandingContainer>

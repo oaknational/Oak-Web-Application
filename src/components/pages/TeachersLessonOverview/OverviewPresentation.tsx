@@ -7,18 +7,18 @@ import OverviewAssetWrap from "./OverviewAssetWrap";
 interface OverviewPresentationProps {
   asset: string;
   title: string;
-  isPortrait?: boolean;
+  isWorksheetLandscape?: boolean;
   isWorksheet: boolean;
 }
 
 const OverviewPresentation: FC<OverviewPresentationProps> = ({
   asset,
   title,
-  isPortrait,
+  isWorksheetLandscape,
   isWorksheet,
 }) => {
   const slidesId = asset.split("/")?.[5];
-  const isWorksheetPortrait = isPortrait && isWorksheet;
+  const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
   return (
     <OverviewAssetWrap>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
