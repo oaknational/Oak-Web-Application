@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import router from "next/router";
-import { usePostHogContext } from "posthog-js/react";
+import { usePostHog } from "posthog-js/react";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -101,7 +101,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Posthog
    */
-  const { client: posthogClient } = usePostHogContext();
+  const posthogClient = usePostHog();
   if (!posthogClient) {
     throw new Error(
       "AnalyticsProvider should be contained within PostHogProvider"

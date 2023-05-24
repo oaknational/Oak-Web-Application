@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
-import { useFeatureFlags } from "posthog-js/react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import CMSClient from "../../node-lib/cms";
 import { AboutBoardPage } from "../../common-lib/cms-types";
@@ -32,11 +32,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     governancePortableText,
   } = pageData;
 
-  const featureFlags = useFeatureFlags();
-  const bioModalsEnabled = Boolean(
-    featureFlags.enabled["about-us--board--bio-modals"]
-  );
-
+  const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
