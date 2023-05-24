@@ -401,15 +401,20 @@ const curriculumApi = {
 
     const { keyStages, programmesAvailable } = transformMVCase(res);
 
-    const uniqueSubjects = programmesAvailable
-      ? programmesAvailable.filter((subject, index, self) => {
-          return index === self.findIndex((s) => s.slug === subject.slug);
-        })
-      : [];
+    const keyStageSlugs = keyStages?.map((keyStage) => keyStage.slug);
+
+    const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
+      keyStageSlugs?.includes(subject.keyStageSlug)
+    );
+    const uniqueProgrammes = filteredByActiveKeyStages?.filter(
+      (subject, index, self) => {
+        return index === self.findIndex((s) => s.slug === subject.slug);
+      }
+    );
 
     return searchPageData.parse({
       keyStages,
-      subjects: uniqueSubjects,
+      subjects: uniqueProgrammes,
     });
   },
   teachersHomePage: async () => {
