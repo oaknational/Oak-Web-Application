@@ -7,7 +7,7 @@ const useCategoryFilterList = <T extends CategoryLinkProps>(props: {
   getKey: (linkProps: T) => string | undefined | null;
 }) => {
   const { selectedKey, getKey } = props;
-
+  console.log("selectedKey", selectedKey, "getKey", getKey);
   const [visiblySelected, setVisiblySelected] = useState(selectedKey);
 
   useEffect(() => {
