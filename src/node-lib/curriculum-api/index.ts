@@ -406,11 +406,11 @@ const curriculumApi = {
     const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
       keyStageSlugs?.includes(subject.keyStageSlug)
     );
-    const uniqueProgrammes = filteredByActiveKeyStages?.filter(
-      (subject, index, self) => {
+    const uniqueProgrammes = filteredByActiveKeyStages
+      ?.filter((subject, index, self) => {
         return index === self.findIndex((s) => s.slug === subject.slug);
-      }
-    );
+      })
+      .filter((subject) => subject.slug !== "physics"); // I don't know why physics is in programmesAvailable
 
     return searchPageData.parse({
       keyStages,

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "../Flex";
 import Button from "../Button";
-import { P } from "../Typography";
+import { P, Span } from "../Typography";
 import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
 
 type ActiveFiltersProps = {
@@ -17,6 +17,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
     ...subjectFilters.filter((subject) => subject.checked),
   ];
 
+  const maxActiveFilters = 4;
+  const slicedActiveFilters = activeFilters.slice(0, maxActiveFilters);
+
   return (
     <Flex
       $alignItems={["flex-start", "center"]}
@@ -26,10 +29,10 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       <P $mr={20} $mt={8} $mb={8} $color={["oakGrey4", "black"]}>
         Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
-      <Flex $alignItems={"center"}>
-        {activeFilters.map(({ slug, title, onChange }) => (
+      <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+        {slicedActiveFilters.map(({ slug, title, shortCode, onChange }) => (
           <Button
-            label={title}
+            label={shortCode || title}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
             onClick={onChange}
@@ -39,6 +42,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
             $mr={16}
           />
         ))}
+        {activeFilters.length > maxActiveFilters && (
+          <Span $font="body-1-bold">...</Span>
+        )}
       </Flex>
     </Flex>
   );
