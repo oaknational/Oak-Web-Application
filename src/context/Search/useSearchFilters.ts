@@ -11,7 +11,7 @@ export type UseSearchFiltersProps = {
   query: SearchQuery;
 };
 
-type CheckBoxProps = {
+export type CheckBoxProps = {
   onChange: () => void;
   checked: boolean;
 };

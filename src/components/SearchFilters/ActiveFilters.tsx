@@ -3,7 +3,12 @@ import { FC } from "react";
 import Flex from "../Flex";
 import Button from "../Button";
 import { P, Span } from "../Typography";
-import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
+import {
+  CheckBoxProps,
+  KeyStage,
+  Subject,
+  UseSearchFiltersReturnType,
+} from "../../context/Search/useSearchFilters";
 
 type ActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
@@ -18,7 +23,8 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   ];
 
   const maxActiveFilters = 4;
-  const slicedActiveFilters = activeFilters.slice(0, maxActiveFilters);
+  const slicedActiveFilters: ((Subject | KeyStage) & CheckBoxProps)[] =
+    activeFilters.slice(0, maxActiveFilters);
 
   return (
     <Flex
@@ -30,9 +36,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
         Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
       <Flex $flexWrap={"wrap"} $alignItems={"center"}>
-        {slicedActiveFilters.map(({ slug, title, shortCode, onChange }) => (
+        {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button
-            label={shortCode || title}
+            label={"shortCode" in props ? props.shortCode : title}
             aria-label={`Remove ${title} filter`}
             key={`active-filter-${title}-${slug}`}
             onClick={onChange}
