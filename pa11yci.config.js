@@ -75,7 +75,6 @@ const relativeUrls = [
   "/blog/evolution-of-oak",
   "/blog/join-the-childrens-mental-health-week-assembly-2022",
   "/legal/accessibility-statement",
-  "/lp/lesson-and-resource-directory",
   // Beta pages
   "/beta/teachers",
   "/beta/teachers/key-stages/ks1/subjects",
