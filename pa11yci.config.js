@@ -77,7 +77,6 @@ const relativeUrls = [
   "/legal/accessibility-statement",
   "/lp/lesson-and-resource-directory",
   // Beta pages
-  "/beta",
   "/beta/teachers",
   "/beta/teachers/key-stages/ks1/subjects",
   "/beta/teachers/key-stages/ks4/subjects/maths/programmes",
