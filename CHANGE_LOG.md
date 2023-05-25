@@ -1,3 +1,18 @@
+# [1.185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.184.3...v1.185.0) (2023-05-25)
+
+
+### Bug Fixes
+
+* active filters are too long ([d7b093f](https://github.com/oaknational/Oak-Web-Application/commit/d7b093fcfd37089fd6ed208258481784366a1e7b))
+* internal server error on pally url ([4bbaa98](https://github.com/oaknational/Oak-Web-Application/commit/4bbaa9876619c7a6b40b31947d4c3af60b731177))
+* remove sp and eyfs ([aece7d4](https://github.com/oaknational/Oak-Web-Application/commit/aece7d4974e85b55ca30c73d8915fafcb27dcb3b))
+* type error active subjects ([5e0f9ab](https://github.com/oaknational/Oak-Web-Application/commit/5e0f9abda3acb801b65ce4e850197e9d12315b78))
+
+
+### Features
+
+* add subject search filters ([dcdc490](https://github.com/oaknational/Oak-Web-Application/commit/dcdc4902db6bfc7f9794d4046f94238cd4ec9d88))
+
 ## [1.184.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.184.2...v1.184.3) (2023-05-25)
 
 ## [1.184.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.184.1...v1.184.2) (2023-05-24)
