@@ -10,6 +10,23 @@ import { KeyStage } from "./useSearchFilters";
 
 const reportError = errorReporter("search/helpers");
 
+export const isFilterItem = <T extends { slug: string }>(
+  slug: string,
+  allFilterItems: T[]
+) => {
+  return allFilterItems.some((item) => item.slug === slug);
+};
+
+export const getFilterForQuery = <T extends { slug: string }>(
+  queryFilterItems: string | string[],
+  allFilterItems: T[]
+) => {
+  const queryFilterArray = queryFilterItems.toString().split(",");
+  return queryFilterArray.filter((querySlug) =>
+    isFilterItem(querySlug, allFilterItems)
+  );
+};
+
 // Analytics
 export const getSortedSearchFiltersSelected = (
   filterOptions: string | string[] | undefined

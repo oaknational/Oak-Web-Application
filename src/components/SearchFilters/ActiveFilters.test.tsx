@@ -15,7 +15,7 @@ export const searchFilters: UseSearchFiltersReturnType = {
       checked: false,
     },
     {
-      slug: "4",
+      slug: "ks4",
       title: "Key-stage 4",
       shortCode: "KS4",
       onChange: jest.fn(),

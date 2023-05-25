@@ -10,7 +10,12 @@ import { resolveOakHref } from "../../common-lib/urls";
 import { SearchPageData } from "../../node-lib/curriculum-api/index";
 
 import constructElasticQuery from "./constructElasticQuery";
-import { SearchHit, searchResultsSchema } from "./helpers";
+import {
+  getFilterForQuery,
+  isFilterItem,
+  SearchHit,
+  searchResultsSchema,
+} from "./helpers";
 import { KeyStage } from "./useSearchFilters";
 
 export type SearchQuery = {
@@ -44,41 +49,31 @@ const useSearchQuery = ({
     push,
   } = useRouter();
 
-  const isFilterItem = useCallback(
-    <T extends { slug: string }>(slug: string, allFilterItems: T[]) => {
-      return allFilterItems.some((item) => item.slug === slug);
-    },
-    []
-  );
+  const isFilterItemCallback = useCallback(isFilterItem, []);
 
-  const getFilterForQuery = useCallback(
-    <T extends { slug: string }>(
-      queryFilterItems: string | string[],
-      allFilterItems: T[]
-    ) => {
-      const queryFilterArray = queryFilterItems.toString().split(",");
-      return queryFilterArray.filter((querySlug) =>
-        isFilterItem(querySlug, allFilterItems)
-      );
-    },
-    [isFilterItem]
-  );
+  const getFilterForQueryCallback = useCallback(getFilterForQuery, [
+    isFilterItemCallback,
+  ]);
 
   const termString = term?.toString() || "";
 
   const query = useMemo(() => {
     return {
       term: termString,
-      keyStages: allKeyStages ? getFilterForQuery(keyStages, allKeyStages) : [],
-      subjects: allSubjects ? getFilterForQuery(subjects, allSubjects) : [],
+      keyStages: allKeyStages
+        ? getFilterForQueryCallback(keyStages, allKeyStages)
+        : [],
+      subjects: allSubjects
+        ? getFilterForQueryCallback(subjects, allSubjects)
+        : [],
     };
   }, [
     termString,
-    getFilterForQuery,
-    keyStages,
     allKeyStages,
-    subjects,
+    getFilterForQueryCallback,
+    keyStages,
     allSubjects,
+    subjects,
   ]);
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
