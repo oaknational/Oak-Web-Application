@@ -171,6 +171,8 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         $maxHeight={toggleOpen ? 0 : 9600}
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
+        $visibility={toggleOpen ? "hidden" : "visible"}
+        aria-expanded={!toggleOpen}
       >
         {children}
       </Flex>
