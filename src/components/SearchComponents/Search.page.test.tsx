@@ -234,7 +234,7 @@ describe("Search.page.tsx", () => {
 
     expect(onLinkClick).toHaveBeenCalled();
   });
-  test("clicking a calls filter.onChange appropriately", async () => {
+  test("clicking a calls filter.onChange appropriately for key stage filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const ks1OnChange = props.searchFilters.keyStageFilters.find(
@@ -248,6 +248,21 @@ describe("Search.page.tsx", () => {
     }
     await user.click(filter);
     await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
+  });
+  test("clicking a calls filter.onChange appropriately for subject filters", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const computingOnChange = props.searchFilters.subjectFilters.find(
+      (c) => c.slug === "computing"
+    )?.onChange as jest.Mock;
+    computingOnChange.mockClear();
+    await user.click(getByRole("button", { name: "Filters" }));
+    const filter = getByRole("checkbox", { name: "Computing filter" });
+    if (!filter) {
+      throw new Error("Expected filter to exist");
+    }
+    await user.click(filter);
+    await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
   });
   test("searchCompleted is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);
