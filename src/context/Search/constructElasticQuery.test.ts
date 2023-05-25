@@ -35,33 +35,6 @@ describe("Search/constructElasticQuery", () => {
             { term: { expired: false } },
             { term: { is_specialist: false } },
             { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
@@ -108,33 +81,6 @@ describe("Search/constructElasticQuery", () => {
             { term: { expired: false } },
             { term: { is_specialist: false } },
             { terms: { key_stage_slug: ["3"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
