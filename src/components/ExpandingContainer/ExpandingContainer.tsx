@@ -75,6 +75,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 {...primaryTargetProps}
                 data-testid={"expand-button"}
                 variant="minimal"
+                aria-expanded={!toggleOpen}
                 label={title}
                 onClick={() => {
                   setToggleOpen(!toggleOpen);
@@ -172,7 +173,6 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
         $visibility={toggleOpen ? "hidden" : "visible"}
-        aria-expanded={!toggleOpen}
       >
         {children}
       </Flex>
