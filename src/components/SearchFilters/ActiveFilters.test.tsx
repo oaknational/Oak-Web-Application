@@ -26,7 +26,7 @@ export const searchFilters: UseSearchFiltersReturnType = {
     {
       slug: "maths",
       title: "Maths",
-      onChange: jest.fn(),
+      onChange: mockOnChange,
       checked: false,
     },
     {
