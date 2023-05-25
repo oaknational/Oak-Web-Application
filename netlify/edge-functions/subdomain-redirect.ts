@@ -47,6 +47,8 @@ async function redirectNetlifySubdomains(
     "/.netlify",
     "/images",
     "/site.webmanifest",
+    // Avoid redirect loop when requesting pages that don't exist.
+    "404",
   ];
   const urlPath = new URL(request.url).pathname;
   const isOnAllowList = allowListPathStarts.some((allowPath) =>
