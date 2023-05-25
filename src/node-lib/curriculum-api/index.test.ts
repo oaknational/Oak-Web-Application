@@ -7,8 +7,9 @@ import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
 import lessonListingFixture from "./fixtures/lessonListing.fixture";
 import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
+import subjectListingFixture from "./fixtures/subjectListing.fixture";
 
-import curriculumApi from ".";
+import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
 /**
  * This module is mocked in jest.setup.js, so need to unmock it here in order to test it
@@ -33,6 +34,7 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
   mv_tiers: unitListingFixture().tiers,
@@ -95,6 +97,14 @@ const tierListing = jest.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
 
+const subjectListing = jest.fn(() => ({
+  mv_programmes_available: subjectListingFixture().programmesAvailable,
+  mv_programmes_unavailable: subjectListingFixture().programmesUnavailable,
+  mv_key_stages: teachersHomePageFixture().keyStages,
+}));
+
+jest.mock("");
+
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
@@ -107,6 +117,7 @@ jest.mock("./generated/sdk", () => ({
     lessonListingPaths: (...args: []) => lessonListingPaths(...args),
     lessonListing: (...args: []) => lessonListing(...args),
     tierListing: (...args: []) => tierListing(...args),
+    subjectListing: (...args: []) => subjectListing(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -135,6 +146,17 @@ describe("curriculum-api", () => {
     expect(unitListing).toHaveBeenCalledWith({
       programmeSlug: "maths-secondary-ks4",
     });
+  });
+  test("unitListing learningThemes contains 'no themes'", async () => {
+    const units = await curriculumApi.unitListing({
+      programmeSlug: "maths-secondary-ks4",
+    });
+    const hasThemes =
+      units.learningThemes?.filter(
+        (theme) => theme.learningThemeSlug === "no-theme"
+      ).length > 0;
+
+    expect(hasThemes).toBe(true);
   });
   test("lessonListingPaths", async () => {
     await curriculumApi.lessonListingPaths();
@@ -175,5 +197,42 @@ describe("curriculum-api", () => {
       keyStageSlug: "ks4",
       subjectSlug: "higher",
     });
+  });
+  test("subjectListing", async () => {
+    await curriculumApi.subjectListing({
+      keyStageSlug: "ks4",
+    });
+    expect(subjectListing).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+    });
+  });
+  test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
+    const availableProgrammes = subjectListingFixture().programmesAvailable;
+    const unavailableProgrammes = subjectListingFixture().programmesUnavailable;
+    const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
+      availableProgrammes,
+      unavailableProgrammes
+    );
+
+    let unavailableDuplicates = false;
+    let filteredUnavailableDuplicates = false;
+
+    unavailableProgrammes.forEach((unavailable) => {
+      availableProgrammes.forEach((available) => {
+        if (unavailable.subjectSlug === available.subjectSlug) {
+          unavailableDuplicates = true;
+        }
+      });
+    });
+    filteredUnavailableProgrammes.forEach((unavailable) => {
+      availableProgrammes.forEach((available) => {
+        if (unavailable.subjectSlug === available.subjectSlug) {
+          filteredUnavailableDuplicates = true;
+        }
+      });
+    });
+
+    expect(unavailableDuplicates).toBe(true);
+    expect(filteredUnavailableDuplicates).toBe(false);
   });
 });

@@ -162,6 +162,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           onClick={trackLessonSelected}
           title={lessonTitle}
           slug={lessonSlug}
+          fromSearchPage={fromSearchPage}
         />
         {expired ? (
           <Expired page={"lesson"} />

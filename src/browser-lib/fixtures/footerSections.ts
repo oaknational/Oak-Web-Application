@@ -21,12 +21,19 @@ const footerSections: FooterSections = {
       { text: "About us", href: "/about-us/who-we-are" },
       {
         text: "Careers",
-        href: "https://app.beapplied.com/org/1574/oak-national-academy",
+        href: "https://jobs.thenational.academy",
       },
       { text: "Contact us", href: "/contact-us" },
-      { text: "Help", href: "https://support.thenational.academy" },
+      {
+        text: "Help",
+        href: "https://support.thenational.academy",
+      },
       { text: "Blog", href: "/blog" },
       { text: "Webinars", href: "/webinars" },
+      {
+        text: "Status",
+        href: "https://status.thenational.academy",
+      },
     ],
   },
 

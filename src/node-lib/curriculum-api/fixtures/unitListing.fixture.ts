@@ -9,6 +9,7 @@ const unitListingFixture = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "computing",
     subjectTitle: "Computing",
+    totalUnitCount: 5,
     tierSlug: null,
     tiers: [],
     units: [
@@ -268,7 +269,18 @@ const unitListingFixture = (
         expiredLessonCount: 0,
       },
     ],
-    learningThemes: [],
+    learningThemes: [
+      {
+        learningThemeTitle: "The Canterbury Tales and paired texts",
+        learningThemeSlug: "the-canterbury-tales-and-paired-texts-39",
+      },
+      {
+        learningThemeTitle: "The sonnet through time",
+        learningThemeSlug: "the-sonnet-through-time-24",
+      },
+
+      { learningThemeTitle: null, learningThemeSlug: "no-theme" },
+    ],
     ...partial,
   };
 };

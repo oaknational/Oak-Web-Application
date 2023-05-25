@@ -22,7 +22,7 @@ export type PostCategoryListProps = BoxProps & {
 const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
     props;
-
+  console.log(selectedCategorySlug, "selectedCategorySlug");
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
     getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>

@@ -2,7 +2,6 @@ import { useEffect } from "react";
 
 import { LS_KEY_THEME } from "../config/localStorageKeys";
 import theme, { OakTheme } from "../styles/theme";
-import ausTheme from "../styles/theme/aus.theme";
 import oakBrandTheme from "../styles/theme/oakBrand.theme";
 
 import useLocalStorage, { dispatchLocalStorageEvent } from "./useLocalStorage";
@@ -12,13 +11,12 @@ export type WindowOakThemes = {
   availableThemes: ThemeNames;
 };
 
-export const THEME_NAMES = ["default", "aus", "oak"] as const;
+export const THEME_NAMES = ["default", "oak"] as const;
 type ThemeNames = typeof THEME_NAMES;
 type ThemeName = ThemeNames[number];
 
 const themes: Record<ThemeName, OakTheme> = {
   default: theme,
-  aus: ausTheme,
   oak: oakBrandTheme,
 };
 

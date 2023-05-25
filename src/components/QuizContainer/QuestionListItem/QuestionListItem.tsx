@@ -8,6 +8,8 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
+import { shortAnswerTitleFormatter } from "./quizUtils";
+
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
 type ImageProps = { src: string; alt?: string };
@@ -69,9 +71,11 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         <Flex $flexWrap={"wrap"} $alignItems={"center"}>
           {" "}
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {answer ? answer[index] + "  -" : ""}
+            {choice}
           </Heading>
-          <Typography $font={["body-1"]}> {choice}</Typography>
+          <Typography $font={"body-1"} $ma={0} $mr={6} data-testid={"answer"}>
+            {answer ? " - " + answer[index] : ""}
+          </Typography>
         </Flex>
       );
     } else if (typeIsCheckbox) {
@@ -154,7 +158,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $font={["body-2-bold", "body-1-bold"]}
           data-testid={"title-div"}
         >
-          {title}
+          {type === "short-answer" ? shortAnswerTitleFormatter(title) : title}
         </Typography>
       </Flex>
 

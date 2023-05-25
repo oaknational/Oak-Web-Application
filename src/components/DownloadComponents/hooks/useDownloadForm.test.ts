@@ -46,6 +46,15 @@ jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
   default: (...args: []) => getHubspotUserToken(...args),
 }));
 
+const testPosthogDistinctId = "test-anonymous-id";
+
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    posthogDistinctId: testPosthogDistinctId,
+  }),
+}));
+
 describe("useDownloadForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
