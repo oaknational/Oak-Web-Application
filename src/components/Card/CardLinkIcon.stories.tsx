@@ -1,22 +1,21 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./CardLinkIcon";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Cards/Card Link Icon",
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+};
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof Component>;
 
-export const CardLinkIcon = Template.bind({});
-
-CardLinkIcon.args = {
-  title: "Title",
-  href: "/",
-  background: "teachersPastelYellow",
-  titleTag: "h3",
+export const CardLinkIcon: Story = {
+  args: {
+    title: "Title",
+    href: "/",
+    background: "teachersPastelYellow",
+    titleTag: "h3",
+  },
 };
