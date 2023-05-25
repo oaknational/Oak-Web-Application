@@ -48233,7 +48233,7 @@ export type LessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchPageQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null, shortCode?: string | null }> };
+export type SearchPageQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null, shortCode?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_5', slug?: string | null, title?: string | null, keyStageSlug?: string | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
@@ -48445,6 +48445,11 @@ export const SearchPageDocument = gql`
     shortCode: short_code
     slug
     title
+  }
+  mv_programmes_available: mv_programmes_5(order_by: {subject_title: asc}) {
+    slug: subject_slug
+    title: subject_title
+    keyStageSlug: key_stage_slug
   }
 }
     `;
