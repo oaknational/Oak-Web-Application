@@ -35,6 +35,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
                 {...firstBio}
                 onClick={onCardClick}
                 modalControllerRef={modal.modalControllerRefs[firstBio.id]}
+                isOpen={modal.isOpen}
               />
             </Box>
           </GridArea>
@@ -47,7 +48,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               {...firstBio}
               onClick={onCardClick}
               modalControllerRef={modal.modalControllerRefs[firstBio.id]}
-              isOpen={isOpen}
+              isOpen={modal.isOpen}
             />
           </GridArea>
         )}
