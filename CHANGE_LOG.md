@@ -1,3 +1,11 @@
+## [1.185.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.0...v1.185.1) (2023-05-26)
+
+
+### Bug Fixes
+
+* add aria expanded and set visibility to hidden closed ([d36b775](https://github.com/oaknational/Oak-Web-Application/commit/d36b775b2b0cef6e896a37e359d3b35d4da805ca))
+* move aria expanded to button ([afca7ef](https://github.com/oaknational/Oak-Web-Application/commit/afca7ef878112dcc853196a4e423830bc523e05f))
+
 # [1.185.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.184.3...v1.185.0) (2023-05-25)
 
 
