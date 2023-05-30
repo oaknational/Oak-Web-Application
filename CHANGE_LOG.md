@@ -1,3 +1,10 @@
+## [1.185.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.2...v1.185.3) (2023-05-30)
+
+
+### Bug Fixes
+
+* add aria expanded to expanding containers ([1c1ef62](https://github.com/oaknational/Oak-Web-Application/commit/1c1ef62fc78477a035d83aba1ea6128fbef68dad))
+
 ## [1.185.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.1...v1.185.2) (2023-05-30)
 
 ## [1.185.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.0...v1.185.1) (2023-05-26)
