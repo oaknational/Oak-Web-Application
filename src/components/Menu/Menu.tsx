@@ -131,6 +131,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   size={"large"}
                   onClick={closeMenu}
                   ref={closeButtonRef}
+                  aria-expanded={open}
                 />
               </Box>
               <Flex
