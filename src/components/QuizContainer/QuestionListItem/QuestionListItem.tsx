@@ -8,7 +8,7 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-import { shortAnswerTitleFormatter , removeMarkdown } from "./quizUtils";
+import { shortAnswerTitleFormatter, removeMarkdown } from "./quizUtils";
 
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
