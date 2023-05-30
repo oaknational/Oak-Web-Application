@@ -5,11 +5,28 @@ Oak National Academy’s tech platform has been created by a team of human devel
 /* TEAM */
 
 
-  John Roberts (Director of Product and Engineering)
-  Site: https://johnroberts.me
-  LinkedIn: https://linkedin.com/in/johnrobertsuk
-  Twitter: @johnrobeds
-  From: Manchester, UK
+  Amy Matthews (Infrastructure Engineer)
+  From: Kent, UK
+
+  Andrew Woods (Software Engineering Manager)
+  Site: https://andrewwoods.super.site/
+  LinkedIn: https://www.linkedin.com/in/andykwoods/
+  From: Dublin, Ireland
+
+  Ben Protheroe (Software Engineer)
+  From London, lives in Cornwall
+
+  Dan Dupont (Product Manager)
+  LinkedIn: https://www.linkedin.com/in/dandupontlopez/
+  From: Bristol, UK
+
+  Dorothy Yau (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/dorothyyau/
+  From: London, UK
+
+  Helen Harlow (Product Designer)
+  LinkedIn: https://www.linkedin.com/in/helen-harlow/
+  From: Norwich, UK
 
   Ian Kynnersley (Head of Engineering)
   Site: https://www.iankynnersley.co.uk/
@@ -17,11 +34,6 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Twitter: https://twitter.com/kpopper
   From: London, UK
   
-  Andrew Woods (Software Engineering Manager)
-  Site: https://andrewwoods.super.site/
-  LinkedIn: https://www.linkedin.com/in/andykwoods/
-  From: Dublin, Ireland
-
   Jack Skerrett (Quality Assurance Engineer)
   LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
   From: Cornwall, UK
@@ -35,8 +47,11 @@ Oak National Academy’s tech platform has been created by a team of human devel
   LinkedIn: https://www.linkedin.com/in/joe-baker-96a109219/
   From: London, UK
 
-  Ben Protheroe (Software Engineer)
-  From London, lives in Cornwall
+  John Roberts (Director of Product and Engineering)
+  Site: https://johnroberts.me
+  LinkedIn: https://linkedin.com/in/johnrobertsuk
+  Twitter: @johnrobeds
+  From: Manchester, UK
 
   Lionel Jingles (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/lionel-jingles/
@@ -45,48 +60,33 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Matt Gregory (Software Engineer)
   Site: https://mantagen.org
 
+  Monika Koziol (Principal Product Designer)
+  Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
+  From: Poland lives in London
+  
   Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
   Twitter: @r_mcky
   From: London, UK
 
+  Sarah McKinless (Product Manager)
+  From: Coventry, lives in Northern Ireland
+
   Shaquille Hobbs-Daley (Software Engineer)
   LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
-  From: London, UK
-
-  Dorothy Yau (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/dorothyyau/
   From: London, UK
 
   Sonali Singh (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/sonalisin
   From: Manchester, lives in London
 
-  Amy Matthews (Infrastructure Engineer)
-  From: Kent, UK
-
   Thomas Birch (Data)
   Site: https://capeflair.com
   From: Guildford, UK
 
   Verity Roberts (Product Manager)
-  From: Cambridge, UK
+  From: Cambridge, UK  
 
-  Dan Dupont (Product Manager)
-  LinkedIn: https://www.linkedin.com/in/dandupontlopez/
-  From: Bristol, UK
-  
-  Sarah McKinless (Product Manager)
-  From: Coventry, lives in Northern Ireland
-
-  Monika Koziol (Principal Product Designer)
-  Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
-  From: Poland lives in London
-
-  Helen Harlow (Product Designer)
-  LinkedIn: https://www.linkedin.com/in/helen-harlow/
-  From: Norwich, UK
-  
   Will Gayne (Head of Product Strategy)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
   From: Macclesfield, UK
@@ -130,23 +130,23 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Twitter: https://twitter.com/shaunorpen
   From: UK
 
-  Weronika Szalas (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/szalasw/
-  From: Katowice, Poland
-
   Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
   Twitter: @stef
   From: London, UK
+
+  Stuart G Wilson (Product Designer)
+  Site: qegadesign.myportfolio.com
+  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
+  From: Glasgow, UK
 
   Tom Wise (UX/UI and Design)
   Site: https://putty.studio
   LinkedIn: https://www.linkedin.com/in/tom-wise1234/
   From: Brighton, UK
 
-  Stuart G Wilson (Product Designer)
-  Site: qegadesign.myportfolio.com
-  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
-  From: Glasgow, UK
+  Weronika Szalas (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/szalasw/
+  From: Katowice, Poland
 
 There are many other humans and organisations that have supported Oak National Academy. We've listed out a number of the key partner organisations at https://www.thenational.academy/about-us/partners
