@@ -37,9 +37,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
-  border-color: ${getColorByLocation(
-    ({ theme }) => theme.input.states.default.border
-  )};
+  background: ${(props) => props.theme.input.states.default};
   border-width: ${(props) => props.theme.input.borderWidth};
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
@@ -47,8 +45,6 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   width: 100%;
   padding-left: 8px;
   outline: none;
-  -webkit-text-fill-color: #000;
-  opacity: 1; /* required on iOS */
 
   @media (max-width: ${getBreakpoint("small")}px) {
     /* iOS zooms in on inputs with font sizes <16px on mobile */
