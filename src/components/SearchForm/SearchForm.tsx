@@ -47,6 +47,8 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   width: 100%;
   padding-left: 8px;
   outline: none;
+  -webkit-text-fill-color: #000;
+  opacity: 1; /* required on iOS */
 
   @media (max-width: ${getBreakpoint("small")}px) {
     /* iOS zooms in on inputs with font sizes <16px on mobile */
