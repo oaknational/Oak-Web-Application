@@ -1,8 +1,10 @@
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 import {
+  getFilterForQuery,
   getLessonObject,
   getUnitObject,
+  isFilterItem,
   lessonSearchHitSchema,
   unitSearchHitSchema,
 } from "./helpers";
@@ -61,5 +63,20 @@ describe("search helpers", () => {
     expect(lessonListObject.programmeSlug).toEqual(
       "english-secondary-ks4-higher"
     );
+  });
+  test("isFilterItem returns true if slug is a filter item", () => {
+    expect(isFilterItem("ks2", allKeyStages)).toEqual(true);
+  });
+  test("isFilterItem returns false if slug is not filter item", () => {
+    expect(isFilterItem("hello", allKeyStages)).toEqual(false);
+  });
+  test("getFilterForQuery return array from array", () => {
+    expect(getFilterForQuery(["ks3", "ks2"], allKeyStages)).toEqual([
+      "ks3",
+      "ks2",
+    ]);
+  });
+  test("getFilterForQuery return array from string", () => {
+    expect(getFilterForQuery("ks2", allKeyStages)).toEqual(["ks2"]);
   });
 });
