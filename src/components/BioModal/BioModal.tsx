@@ -85,6 +85,7 @@ const BioModal: FC<BioModalProps> = (props) => {
             background="teachersHighlight"
             size="small"
             ref={closeButtonRef}
+            aria-expanded={isOpen}
           />
         </Box>
         <MaxWidth

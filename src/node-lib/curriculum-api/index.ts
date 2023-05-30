@@ -102,23 +102,24 @@ const tiersData = z.array(
   })
 );
 
-const searchPageData = z.object({
-  keyStages: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      shortCode: z.string(),
-    })
-  ),
+const keyStageSchema = z.object({
+  slug: z.string(),
+  title: z.string(),
+  shortCode: z.string(),
 });
+
+const subjectSchema = z.object({
+  slug: z.string(),
+  title: z.string(),
+});
+
+const searchPageData = z.object({
+  keyStages: z.array(keyStageSchema),
+  subjects: z.array(subjectSchema),
+});
+
 const teachersHomePageData = z.object({
-  keyStages: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      shortCode: z.string(),
-    })
-  ),
+  keyStages: z.array(keyStageSchema),
 });
 
 const lessonListingPaths = z.object({
@@ -399,7 +400,23 @@ const curriculumApi = {
   searchPage: async () => {
     const res = await sdk.searchPage();
 
-    return searchPageData.parse(transformMVCase(res));
+    const { keyStages, programmesAvailable } = transformMVCase(res);
+
+    const keyStageSlugs = keyStages?.map((keyStage) => keyStage.slug);
+
+    const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
+      keyStageSlugs?.includes(subject.keyStageSlug)
+    );
+    const uniqueProgrammes = filteredByActiveKeyStages
+      ?.filter((subject, index, self) => {
+        return index === self.findIndex((s) => s.slug === subject.slug);
+      })
+      .filter((subject) => subject.slug !== "physics"); // I don't know why physics is in programmesAvailable
+
+    return searchPageData.parse({
+      keyStages,
+      subjects: uniqueProgrammes,
+    });
   },
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

@@ -19,7 +19,7 @@ import Breadcrumbs from "../Breadcrumbs";
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { openMenu } = useMenuContext();
+  const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
@@ -69,6 +69,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         size={"large"}
         ref={menuButtonRef}
         onClick={openMenu}
+        aria-expanded={open}
       />
       <Menu menuButtonRef={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />
