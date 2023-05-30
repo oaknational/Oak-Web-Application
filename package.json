@@ -119,7 +119,7 @@
     "@graphql-codegen/typescript-operations": "^4.0.0",
     "@next/bundle-analyzer": "^13.4.1",
     "@next/env": "^13.2.1",
-    "@next/eslint-plugin-next": "^13.1.6",
+    "@next/eslint-plugin-next": "^13.4.4",
     "@percy/cli": "^1.24.0",
     "@playwright/test": "1.27.1",
     "@sanity/client": "^3.4.1",
