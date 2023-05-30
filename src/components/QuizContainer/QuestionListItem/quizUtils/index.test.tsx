@@ -49,4 +49,32 @@ describe("shortAnswerTitleFormatter", () => {
     );
     expect(getByTestId("underline")).toBeInTheDocument();
   });
+  it("when passed a string with {{some text}} pattern returns the string with underscores component replacing the pattern", () => {
+    const testProps = {
+      active: true,
+      answer: [],
+      choices: [],
+      images: [],
+      displayNumber: "Q2.",
+      feedbackCorrect: "Well done!",
+      feedbackIncorrect: "Incorrect",
+      keyStageSlug: "ks3",
+      keyStageTitle: "Key stage 3",
+      order: 2,
+      points: 1,
+      quizType: "exit",
+      required: true,
+      subjectSlug: "maths",
+      subjectTitle: "Maths",
+      title: "Given that a = 3b, fill in the gap: a + 3b = {{hello!}}b.",
+      type: "short-answer",
+      unitSlug: "expressions-equations-and-inequalities-7d65",
+      unitTitle: "Expression, Equations and Inequalities",
+    };
+
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem {...testProps} />
+    );
+    expect(getByTestId("underline")).toBeInTheDocument();
+  });
 });
