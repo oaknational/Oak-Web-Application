@@ -142,7 +142,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       $alignItems={"center"}
     >
       <Flex $position={"relative"} $width={"100%"}>
-        <InputFieldWrap $width={"100%"}>
+        <InputFieldWrap $width={"100%"} $background={"white"}>
           <StyledInput
             id="search-form-search-input"
             value={value}

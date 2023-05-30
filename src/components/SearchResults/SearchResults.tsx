@@ -11,7 +11,7 @@ import {
   isLessonSearchHit,
   SearchHit,
 } from "../../context/Search/helpers";
-import { KeyStage } from "../../context/Search/useKeyStageFilters";
+import { KeyStage } from "../../context/Search/useSearchFilters";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
