@@ -8,7 +8,7 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-import { shortAnswerTitleFormatter } from "./quizUtils";
+import { shortAnswerTitleFormatter , removeMarkdown } from "./quizUtils";
 
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
@@ -146,7 +146,16 @@ const choiceIsInAnswerArray = (
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const { title, images, choices, answer, type, displayNumber } = props;
+  const {
+    title: markdownTitle,
+    images,
+    choices,
+    answer,
+    type,
+    displayNumber,
+  } = props;
+
+  const title = removeMarkdown(markdownTitle);
 
   const joinAnswer = type === "short-answer" && Array.isArray(answer);
   const joinedAnswer = joinAnswer ? answer.join(", ") : "";

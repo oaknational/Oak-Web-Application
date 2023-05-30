@@ -18,3 +18,7 @@ export const shortAnswerTitleFormatter = (
     return title;
   }
 };
+
+export const removeMarkdown = (title: string | null | undefined): string => {
+  return title ? title.replace(/\*{1,2}(.*?)\*{1,2}/g, "$1") : "";
+};
