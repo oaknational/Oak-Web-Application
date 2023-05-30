@@ -116,6 +116,17 @@ describe("QuestionListItem", () => {
 
     expect(questionItemTitle).toHaveTextContent("what is a question");
   });
+  it("renders title without markdown **text**", () => {
+    testProps.choices = [];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem
+        {...{ ...testProps, title: "what is **a** question" }}
+      />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
   it("renders correctly where correct answer doesnt have an image and incorrect choice does have image", () => {
     testProps.choices = [
       {
