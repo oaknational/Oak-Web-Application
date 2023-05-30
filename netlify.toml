@@ -1,5 +1,7 @@
 [[plugins]]
 package = "./netlify/plugins/github-deployments"
+[[plugins]]
+package = "@netlify/plugin-nextjs"
 
 # Force all access through the managed TLD (default). HTTP
 [[redirects]]

@@ -117,6 +117,7 @@
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-graphql-request": "^5.0.0",
     "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@netlify/plugin-nextjs": "4.37.1",
     "@next/bundle-analyzer": "^13.4.1",
     "@next/env": "^13.2.1",
     "@next/eslint-plugin-next": "^13.1.6",
