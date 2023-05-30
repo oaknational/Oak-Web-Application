@@ -243,6 +243,49 @@ describe("comonents/ExpandingContainer", () => {
       "max-height: 9600px"
     );
   });
+  it("has aria-expanded false when closed ", async () => {
+    renderWithTheme(
+      <ExpandingContainer
+        external={true}
+        projectable={true}
+        downloadable={true}
+        programmeSlug="programme-slug"
+        unitSlug={"unit"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Video"}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Grid box
+        </Card>
+      </ExpandingContainer>
+    );
+
+    const downloadButton = screen.getByTestId("expand-button");
+
+    expect(downloadButton).toHaveAttribute("aria-expanded", "false");
+  });
+  it("has aria-expanded true when open", async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <ExpandingContainer
+        external={true}
+        projectable={true}
+        downloadable={true}
+        programmeSlug="programme-slug"
+        unitSlug={"unit"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Video"}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Grid box
+        </Card>
+      </ExpandingContainer>
+    );
+
+    const downloadButton = screen.getByTestId("expand-button");
+    await user.click(downloadButton);
+    expect(downloadButton).toHaveAttribute("aria-expanded", "true");
+  });
 
   it("calls tracking.resourceContainerExpanded once, with correct props", async () => {
     const user = userEvent.setup();
