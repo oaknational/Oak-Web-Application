@@ -3,10 +3,11 @@
     "arrowdown",
     "booleancheckbox",
     "excalidraw",
+    "gcloud",
     "hookform",
     "Nextjs",
-    "portabletext",
     "phonenumber",
+    "portabletext",
     "sdlc"
   ],
   "deno.enable": true,
