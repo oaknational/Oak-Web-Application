@@ -14,7 +14,7 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: Dublin, Ireland
 
   Ben Protheroe (Software Engineer)
-  From London, lives in Cornwall
+  From: London, lives in Cornwall
 
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
