@@ -5,7 +5,9 @@ import serverConfig from "../../../config/server";
 import errorReporter from "../../../common-lib/error-reporter";
 import OakError from "../../../errors/OakError";
 
-export const slugStringSchema = z.string().regex(/^\w+(?:[-_]\w+)*$/);
+export const slugStringSchema = z
+  .string()
+  .regex(/^[a-zA-Z0-9]+(?:[-_][a-zA-Z0-9]+)*$/);
 
 const reportError = errorReporter("/api/preview/[[...path]]");
 
