@@ -5,75 +5,87 @@ Oak National Academy’s tech platform has been created by a team of human devel
 /* TEAM */
 
 
-  Ian Kynnersley (Head of Engineering)
-  Site: https://www.iankynnersley.co.uk/
-  LinkedIn: https://www.linkedin.com/in/iankynnersley/
-  Twitter: https://twitter.com/kpopper
-  From: London, UK
-  
-
-  Jack Skerrett (QA)
-  LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
-  From: Cornwall, UK
-
-
-  Jim Cresswell (Developer)
-  Site: https://jimcresswell.net/
-  LinkedIn: https://uk.linkedin.com/in/jimcresswell/
-  From: UK
-
-
-  Joe Baker (Developer)
-  LinkedIn: https://www.linkedin.com/in/joe-baker-96a109219/
-  From: London, UK
-
-
   John Roberts (Director of Product and Engineering)
   Site: https://johnroberts.me
   LinkedIn: https://linkedin.com/in/johnrobertsuk
   Twitter: @johnrobeds
   From: Manchester, UK
 
+  Ian Kynnersley (Head of Engineering)
+  Site: https://www.iankynnersley.co.uk/
+  LinkedIn: https://www.linkedin.com/in/iankynnersley/
+  Twitter: https://twitter.com/kpopper
+  From: London, UK
+  
+  Andrew Woods (Software Engineering Manager)
+  Site: https://andrewwoods.super.site/
+  LinkedIn: https://www.linkedin.com/in/andykwoods/
+  From: Dublin, Ireland
 
-  Lionel Jingles (Developer)
+  Jack Skerrett (Quality Assurance Engineer)
+  LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
+  From: Cornwall, UK
+
+  Jim Cresswell (Principal Software Engineer)
+  Site: https://jimcresswell.net/
+  LinkedIn: https://uk.linkedin.com/in/jimcresswell/
+  From: UK
+
+  Joe Baker (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/joe-baker-96a109219/
+  From: London, UK
+
+  Ben Protheroe (Software Engineer)
+  From London, lives in Cornwall
+
+  Lionel Jingles (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/lionel-jingles/
   From: San Francisco, US
 
-
-  Matt Gregory (Developer)
+  Matt Gregory (Software Engineer)
   Site: https://mantagen.org
 
-
-  Ross Mackay (Developer)
+  Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
   Twitter: @r_mcky
   From: London, UK
 
-
-  Shaquille Hobbs-Daley (Developer)
+  Shaquille Hobbs-Daley (Software Engineer)
   LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
   From: London, UK
 
+  Dorothy Yau (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/dorothyyau/
+  From: London, UK
 
-  Stuart G Wilson (Product Designer)
-  Site: qegadesign.myportfolio.com
-  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
-  From: Glasgow, UK
+  Sonali Singh (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/sonalisin
+  From: Manchester, lives in London
 
+  Amy Matthews (Infrastructure Engineer)
+  From: Kent, UK
 
   Thomas Birch (Data)
   Site: https://capeflair.com
   From: Guildford, UK
 
-
   Verity Roberts (Product Manager)
   From: Cambridge, UK
-  
 
-  Weronika Szalas (Developer)
-  LinkedIn: https://www.linkedin.com/in/szalasw/
-  From: Katowice, Poland
+  Dan Dupont (Product Manager)
+  LinkedIn: https://www.linkedin.com/in/dandupontlopez/
+  From: Bristol, UK
   
+  Sarah McKinless (Product Manager)
+  From: Coventry, lives in Northern Ireland
+
+  Monika Koziol (Principal Product Designer)
+  Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
+  From: Poland lives in London
+
+  Helen Harlow (Product Designer)
+  LinkedIn: https://www.linkedin.com/in/helen-harlow/
+  From: Norwich, UK
   
   Will Gayne (Head of Product Strategy)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
@@ -83,58 +95,58 @@ Oak National Academy’s tech platform has been created by a team of human devel
 /* THANKS */
 
 
-  Craig McCahill (Developer)
+  Craig McCahill (Software Engineer)
   From: London, UK
 
-
-  Lee Fuller (Developer)
+  Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
   LinkedIn: https://www.linkedin.com/in/lee--fuller/
   Twitter: @lee_fuller_
   From: Standish, UK
-
 
   Leo Allen (Data and Analytics)
   Site: https://linkedin.com/in/leoallen
   Twitter: @leoallen85
   From: London, UK
 
-
-  Mitch Lloyd (Developer)
+  Mitch Lloyd (Software Engineer)
   Twitter: @MitchellLloyd15
   Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
 
-
-  Rees McIvor (Developer)
+  Rees McIvor (Software Engineer)
   Site: https://www.logicrises.co.uk/
   From: Shropshire, UK
 
-
-  Remy Sharp (Developer)
+  Remy Sharp (Software Engineer)
   Site: https://remysharp.com
   Twitter: @rem
   From: Brighton, UK    
 
-
-  Shaun Orpen (Developer)
+  Shaun Orpen (Software Engineer)
   Site: https://shaunorpen.com/
   LinkedIn: https://linkedin.com/in/shaunorpen
   Twitter: https://twitter.com/shaunorpen
   From: UK
 
+  Weronika Szalas (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/szalasw/
+  From: Katowice, Poland
 
-  Stef Lewandowski (Lead Developer)
+  Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
   Twitter: @stef
   From: London, UK
-
 
   Tom Wise (UX/UI and Design)
   Site: https://putty.studio
   LinkedIn: https://www.linkedin.com/in/tom-wise1234/
   From: Brighton, UK
 
+  Stuart G Wilson (Product Designer)
+  Site: qegadesign.myportfolio.com
+  Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
+  From: Glasgow, UK
 
 There are many other humans and organisations that have supported Oak National Academy. We've listed out a number of the key partner organisations at https://www.thenational.academy/about-us/partners
