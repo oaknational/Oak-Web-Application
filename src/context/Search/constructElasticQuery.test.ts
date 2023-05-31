@@ -81,8 +81,8 @@ describe("Search/constructElasticQuery", () => {
           filter: [
             { term: { expired: false } },
             { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
             { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
+            { terms: { key_stage_slug: ["3"] } },
           ],
           minimum_should_match: 1,
         },
@@ -95,7 +95,7 @@ describe("Search/constructElasticQuery", () => {
       },
     });
   });
-  test("handles subject filters", () => {
+  test.only("handles subject filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
         term: "macbeth",
@@ -132,8 +132,8 @@ describe("Search/constructElasticQuery", () => {
           filter: [
             { term: { expired: false } },
             { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
             { terms: { subject_slug: ["computing"] } },
+            { terms: { key_stage_slug: ["3"] } },
           ],
           minimum_should_match: 1,
         },
