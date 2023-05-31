@@ -75,6 +75,29 @@ const callout = {
   ],
 };
 
+const form = {
+  title: "This is a form!",
+  formId: "c9ce863c-3772-43ab-9b2e-67d0a8f60427",
+  _type: "formWrapper",
+  _key: "12ff6959bfa1",
+  body: [
+    {
+      style: "normal",
+      _key: "2415bcf01eaa",
+      markDefs: [],
+      _type: "block",
+      children: [
+        {
+          marks: [],
+          text: "And here is the form",
+          _key: "aea98489d263",
+          _type: "span",
+        },
+      ],
+    },
+  ],
+};
+
 const withFootnotes = [
   {
     _key: "8ca83ed025d9",
@@ -171,6 +194,15 @@ describe("components/PostPortableText", () => {
 
     expect(calloutText).toHaveStyle("background-color: #f6e8a0");
   });
+  test("formWrapper renders a newsletter form", () => {
+    const { getByText } = render(<PostPortableText portableText={[form]} />);
+
+    const heading = getByText("This is a form!");
+    const submitButton = getByText("Sign up");
+
+    expect(heading).toBeInTheDocument();
+    expect(submitButton).toBeInTheDocument();
+  });
   describe("footnotes", () => {
     test("footnote links are rendered inline", () => {
       const { getAllByRole } = render(
@@ -185,7 +217,6 @@ describe("components/PostPortableText", () => {
         "#footnote-ref-FOOTNOTE_MARK_1"
       );
     });
-
     test("footnote references are rendered with backlinks", () => {
       const { getByRole } = render(
         <PostPortableText portableText={withFootnotes} />
