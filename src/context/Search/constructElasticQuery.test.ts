@@ -35,35 +35,8 @@ describe("Search/constructElasticQuery", () => {
             { term: { expired: false } },
             { term: { is_specialist: false } },
             { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            undefined,
+            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
             { terms: { type: ["lesson", "unit"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
@@ -110,37 +83,8 @@ describe("Search/constructElasticQuery", () => {
             { term: { expired: false } },
             { term: { is_specialist: false } },
             { terms: { key_stage_slug: ["3"] } },
-            undefined,
+            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
             { terms: { type: ["lesson", "unit"] } },
-
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
@@ -193,34 +137,6 @@ describe("Search/constructElasticQuery", () => {
             { terms: { key_stage_slug: ["3"] } },
             { terms: { subject_slug: ["computing"] } },
             { terms: { type: ["lesson", "unit"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
@@ -233,6 +149,7 @@ describe("Search/constructElasticQuery", () => {
       },
     });
   });
+
   test("handles type filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
@@ -273,34 +190,6 @@ describe("Search/constructElasticQuery", () => {
             { terms: { key_stage_slug: ["3"] } },
             { terms: { subject_slug: ["computing"] } },
             { terms: { type: ["lesson"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },

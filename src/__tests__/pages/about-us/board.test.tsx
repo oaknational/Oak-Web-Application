@@ -10,7 +10,7 @@ import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlags: () => ({ enabled: {} }),
+  useFeatureFlagEnabled: () => ({ enabled: {} }),
 }));
 jest.mock("../../../node-lib/cms");
 

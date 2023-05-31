@@ -3,7 +3,7 @@ query subjectListing($keyStageSlug: String!) {
     slug
     title
   }
-  mv_programmes_available: mv_programmes_5(
+  mv_programmes_available: mv_programmes_6(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       total_unit_count: { _neq: 0 }
@@ -20,7 +20,7 @@ query subjectListing($keyStageSlug: String!) {
     activeLessonCount: active_lesson_count
     activeUnitCount: active_unit_count
   }
-  mv_programmes_unavailable: mv_programmes_5(
+  mv_programmes_unavailable: mv_programmes_6(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       total_unit_count: { _eq: 0 }

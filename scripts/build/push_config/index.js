@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * This script will pull the specifed config from the cloud-storage bucket into
+ * This script will pull the specified config from the cloud-storage bucket into
  * the directory /oak-config/live/ (over-writing previous contents).
  *
  * It will then compare the 'live' file with the 'local' file.
@@ -16,7 +16,7 @@ const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
 const rl = readline.createInterface(process.stdin, process.stdout);
-const exec = util.promisify(require("child_process").exec);
+const execFile = util.promisify(require("child_process").execFile);
 
 const jsonDiff = require("json-diff");
 const yargs = require("yargs/yargs");
@@ -51,7 +51,7 @@ const compareLocalAndLive = (fileName) => {
   return diff;
 };
 const cleanUpAndExit = async (error) => {
-  await exec(`rm -r ${OAK_CONFIG_LIVE_PATH}`);
+  await execFile("rm", ["-r", `${OAK_CONFIG_LIVE_PATH}`]);
   if (error) {
     throw error;
   } else {
@@ -75,8 +75,8 @@ async function run() {
     const livePath = getLivePath(fileName);
     const gcloudPath = `${GCLOUD_BUCKET_PATH}${fileName}`;
 
-    await exec(`mkdir -p ${OAK_CONFIG_LIVE_PATH}`);
-    await exec(`gcloud storage cp ${gcloudPath} ${livePath}`);
+    await execFile("mkdir", ["-p", `${OAK_CONFIG_LIVE_PATH}`]);
+    await execFile("gcloud", ["storage", "cp", `${gcloudPath}`, `${livePath}`]);
 
     const diff = compareLocalAndLive(fileName);
     if (diff.length === 0) {
@@ -96,7 +96,12 @@ async function run() {
 
         console.log(`Pushing changes from ${localPath} to ${gcloudPath}`);
 
-        await exec(`gcloud storage cp  ${localPath} ${gcloudPath}`);
+        await execFile("gcloud", [
+          "storage",
+          "cp",
+          `${localPath}`,
+          `${gcloudPath}`,
+        ]);
 
         return cleanUpAndExit();
       }

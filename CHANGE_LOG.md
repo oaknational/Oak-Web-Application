@@ -1,3 +1,49 @@
+## [1.185.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.6...v1.185.7) (2023-05-31)
+
+
+### Bug Fixes
+
+* add removeMarkdown ([f7a3d77](https://github.com/oaknational/Oak-Web-Application/commit/f7a3d777233b7820c03629196fed1dc104756a27))
+* **elasticQuery:** fix tests ([52134ba](https://github.com/oaknational/Oak-Web-Application/commit/52134ba215567250d551e0988dead2db77633a6e))
+* **elasticTest:** remoce .only for test suite ([2875cde](https://github.com/oaknational/Oak-Web-Application/commit/2875cde674d5d25fc788b3cbf09ea4969564c80b))
+* **merge:** merge main into branch ([c9dfacb](https://github.com/oaknational/Oak-Web-Application/commit/c9dfacb21be1d82b687d3aedcc813432c61ceadd))
+* **merge:** merge main into branch ([daaca71](https://github.com/oaknational/Oak-Web-Application/commit/daaca718e67eb8d02549d8854394955f8e735f22))
+* **questionItems:** fix image not loading bug ([60bc717](https://github.com/oaknational/Oak-Web-Application/commit/60bc717965dcec052fbd042d35865693d80860b4))
+* **science_lesson:** point to questions to fix science lessons ([9dfd4f9](https://github.com/oaknational/Oak-Web-Application/commit/9dfd4f9dc5505192e5b834646aec28beef89eb47))
+* **science_questions:** fix science choice image questions ([398919e](https://github.com/oaknational/Oak-Web-Application/commit/398919e3960c34ae2ce3f91199500aeba02bed85))
+* **sdk:** re-generate sdk file ([5dc5a94](https://github.com/oaknational/Oak-Web-Application/commit/5dc5a944c68809ef461080cadef4020073dfab22))
+* search filters subjects ([72476d3](https://github.com/oaknational/Oak-Web-Application/commit/72476d32b175cc22c14582995c305609889ef420))
+* short answer curly braces questions ([19a5eed](https://github.com/oaknational/Oak-Web-Application/commit/19a5eed667062c733c46bc132bf0f6bca0e287ea))
+
+## [1.185.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.5...v1.185.6) (2023-05-31)
+
+
+### Bug Fixes
+
+* adding missing colon ([12786b2](https://github.com/oaknational/Oak-Web-Application/commit/12786b229b677336cf6e632e8308d27e01b06d07))
+* adding missing comma ([fc10adb](https://github.com/oaknational/Oak-Web-Application/commit/fc10adbd450b3255843047fd223adb98a2940468))
+* updaing Jack's title ([391f936](https://github.com/oaknational/Oak-Web-Application/commit/391f936a24216c2a127e510ad86c22dff8299d6f))
+
+## [1.185.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.4...v1.185.5) (2023-05-31)
+
+
+### Bug Fixes
+
+* **searchbar:** make searchbar white on ios ([96def81](https://github.com/oaknational/Oak-Web-Application/commit/96def81b07fd814d65c0f8a55deec333cc682387))
+* **searchbar:** make searchbar white on ios ([c255184](https://github.com/oaknational/Oak-Web-Application/commit/c2551848997bac207da0278e66ccc93973ee9363))
+* **searchbar:** make searchbar white on ios ([19e4c44](https://github.com/oaknational/Oak-Web-Application/commit/19e4c4478b4ec73e0acac2c4bb1478a919980c1a))
+
+## [1.185.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.3...v1.185.4) (2023-05-30)
+
+## [1.185.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.2...v1.185.3) (2023-05-30)
+
+
+### Bug Fixes
+
+* add aria expanded to expanding containers ([1c1ef62](https://github.com/oaknational/Oak-Web-Application/commit/1c1ef62fc78477a035d83aba1ea6128fbef68dad))
+
+## [1.185.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.1...v1.185.2) (2023-05-30)
+
 ## [1.185.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.0...v1.185.1) (2023-05-26)
 
 

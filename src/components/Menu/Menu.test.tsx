@@ -72,6 +72,44 @@ describe("Menu", () => {
 
     expect(menuValue.closeMenu).toHaveBeenCalledTimes(2);
   });
+  test("it has aria-expanded true when open", async () => {
+    const menuValue = {
+      open: true,
+      openMenu: jest.fn(),
+      closeMenu: jest.fn(),
+    };
+
+    const { getByLabelText } = renderWithTheme(
+      <menuContext.Provider value={menuValue}>
+        <Menu menuButtonRef={null} />
+      </menuContext.Provider>
+    );
+    const user = userEvent.setup();
+    const closeButton = getByLabelText("Close Menu");
+
+    await user.click(closeButton);
+
+    expect(closeButton).toHaveAttribute("aria-expanded", "true");
+  });
+  test("it has aria-expanded false when closed", async () => {
+    const menuValue = {
+      open: false,
+      openMenu: jest.fn(),
+      closeMenu: jest.fn(),
+    };
+
+    const { getByLabelText } = renderWithTheme(
+      <menuContext.Provider value={menuValue}>
+        <Menu menuButtonRef={null} />
+      </menuContext.Provider>
+    );
+    const user = userEvent.setup();
+    const closeButton = getByLabelText("Close Menu");
+
+    await user.click(closeButton);
+
+    expect(closeButton).toHaveAttribute("aria-expanded", "false");
+  });
 
   // This isn't working because the Escape event isn't triggering the
   // react-aria useKeyboard Escape key code path.
