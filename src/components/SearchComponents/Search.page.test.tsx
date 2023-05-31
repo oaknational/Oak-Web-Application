@@ -66,6 +66,9 @@ export const props: SearchProps = {
         checked: false,
       },
     ],
+    searchTypeFilters: [
+      { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
+    ],
   },
   allKeyStages: [
     {

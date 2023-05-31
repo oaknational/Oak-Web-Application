@@ -16,6 +16,10 @@ const searchPageFixture = (
       { slug: "maths", title: "Maths" },
       { slug: "science", title: "science" },
     ],
+    searchTypes: [
+      { slug: "unit", title: "Units" },
+      { slug: "lesson", title: "Lessons" },
+    ],
     ...partial,
   };
 };

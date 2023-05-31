@@ -14,18 +14,22 @@ describe("SearchFilters", () => {
   test("renders all the key stage and subject filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
+        searchTypeFilters={props.searchTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
       />
     );
     const searchFilters = getAllByRole("checkbox");
     expect(searchFilters).toHaveLength(
-      props.keyStageFilters.length + props.subjectFilters.length
+      props.keyStageFilters.length +
+        props.subjectFilters.length +
+        props.searchTypeFilters.length
     );
   });
   test("have correct a11y label", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchTypeFilters={props.searchTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
       />
@@ -42,6 +46,7 @@ describe("SearchFilters", () => {
   test("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchTypeFilters={props.searchTypeFilters}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: true,
@@ -64,6 +69,7 @@ describe("SearchFilters", () => {
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchTypeFilters={props.searchTypeFilters}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,
@@ -86,6 +92,10 @@ describe("SearchFilters", () => {
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchTypeFilters={props.searchTypeFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,

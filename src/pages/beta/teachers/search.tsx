@@ -16,16 +16,22 @@ type SearchPageProps = {
 };
 const SearchPage: NextPage<SearchPageProps> = (props) => {
   const { curriculumData } = props;
-  const { subjects: allSubjects, keyStages: allKeyStages } = curriculumData;
+  const {
+    subjects: allSubjects,
+    keyStages: allKeyStages,
+    searchTypes: allSearchTypes,
+  } = curriculumData;
 
   const searchProps = useSearch({
     allKeyStages,
     allSubjects,
+    allSearchTypes,
   });
   const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
     allSubjects,
+    allSearchTypes,
   });
 
   return (
@@ -51,7 +57,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps<SearchPageProps> = async () => {
   const curriculumData = await curriculumApi.searchPage();
-
   const results = {
     props: {
       curriculumData,

@@ -6,7 +6,7 @@ import { SearchQuery } from "./useSearch";
 type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [] } = query;
+  const { term, keyStages = [], subjects = [], searchTypes = [] } = query;
   const keyStageFilter =
     keyStages.length > 0
       ? {
@@ -46,6 +46,22 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       return {
         terms: {
           subject_slug: subjects.map((slug) => slug),
+        },
+      };
+    }
+  };
+
+  const searchTypeFilter = () => {
+    if (searchTypes.length > 0) {
+      return {
+        terms: {
+          type: searchTypes.map((type) => type),
+        },
+      };
+    } else {
+      return {
+        terms: {
+          type: ["lesson", "unit"],
         },
       };
     }
@@ -135,6 +151,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           },
           { ...keyStageFilter },
           subjectFilter(),
+          searchTypeFilter(),
           ...excludeNewScienceLessonsFilter,
         ],
         /* if this is not set in a "should" any filtered content will appear

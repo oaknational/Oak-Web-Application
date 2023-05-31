@@ -17,6 +17,10 @@ const props: UseSearchFiltersProps = {
     { slug: "maths", title: "Maths" },
     { slug: "science", title: "science" },
   ],
+  allSearchTypes: [
+    { slug: "lesson", title: "Lessons" },
+    { slug: "unit", title: "Units" },
+  ],
   setQuery,
   query: { term: "macbethy", keyStages: [], subjects: [] },
 };
