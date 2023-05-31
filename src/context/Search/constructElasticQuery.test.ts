@@ -35,34 +35,7 @@ describe("Search/constructElasticQuery", () => {
             { term: { expired: false } },
             { term: { is_specialist: false } },
             { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            undefined,
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
+            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
           ],
           minimum_should_match: 1,
         },
@@ -108,36 +81,8 @@ describe("Search/constructElasticQuery", () => {
           filter: [
             { term: { expired: false } },
             { term: { is_specialist: false } },
+            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
             { terms: { key_stage_slug: ["3"] } },
-            undefined,
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
           ],
           minimum_should_match: 1,
         },
@@ -187,36 +132,8 @@ describe("Search/constructElasticQuery", () => {
           filter: [
             { term: { expired: false } },
             { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
             { terms: { subject_slug: ["computing"] } },
-            {
-              bool: {
-                must_not: {
-                  bool: {
-                    must: [
-                      { term: { subject_slug: "science" } },
-                      { term: { key_stage_slug: "3" } },
-                    ],
-                  },
-                },
-              },
-            },
-
-            {
-              bool: {
-                must_not: [
-                  {
-                    terms: {
-                      subject_slug: [
-                        "biology",
-                        "chemistry",
-                        "combined_science",
-                      ],
-                    },
-                  },
-                ],
-              },
-            },
+            { terms: { key_stage_slug: ["3"] } },
           ],
           minimum_should_match: 1,
         },

@@ -8,7 +8,7 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
-import { shortAnswerTitleFormatter } from "./quizUtils";
+import { shortAnswerTitleFormatter, removeMarkdown } from "./quizUtils";
 
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
@@ -35,8 +35,9 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         src={src}
         alt={alt ? alt : ""}
         fill
-        onLoad={(event) => {
-          const { naturalWidth, naturalHeight } = event.currentTarget;
+        onLoadingComplete={(img) => {
+          const naturalWidth = img.naturalWidth;
+          const naturalHeight = img.naturalHeight;
           setDims({ height: naturalHeight, width: naturalWidth });
         }}
       />
@@ -66,6 +67,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
     const typeIsMatch = choiceType === "match";
     const typeIsCheckbox = choiceType === "checkbox";
     const answerIsArray = Array.isArray(answer);
+
     if (typeIsMatch) {
       return (
         <Flex $flexWrap={"wrap"} $alignItems={"center"}>
@@ -145,7 +147,21 @@ const choiceIsInAnswerArray = (
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const { title, images, choices, answer, type, displayNumber } = props;
+  const {
+    title: markdownTitle,
+    images,
+    choices,
+    answer,
+    type,
+    displayNumber,
+  } = props;
+
+  const title = removeMarkdown(markdownTitle);
+
+  const joinAnswer = type === "short-answer" && Array.isArray(answer);
+  const joinedAnswer = joinAnswer ? answer.join(", ") : "";
+  const joinedAnswerIndex = 0;
+
   return (
     <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
@@ -275,9 +291,17 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $width={"max-content"}
           $maxWidth={"100%"}
         >
-          {[...answer].map((ans, index) => {
-            return <CorrectAnswer choice={ans} index={index} type={type} />;
-          })}
+          {type === "short-answer" ? (
+            <CorrectAnswer
+              choice={joinedAnswer}
+              type={type}
+              index={joinedAnswerIndex}
+            />
+          ) : (
+            [...answer].map((ans, index) => {
+              return <CorrectAnswer choice={ans} index={index} type={type} />;
+            })
+          )}
         </Flex>
       )}
     </Flex>
