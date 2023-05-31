@@ -1,3 +1,12 @@
+## [1.185.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.5...v1.185.6) (2023-05-31)
+
+
+### Bug Fixes
+
+* adding missing colon ([12786b2](https://github.com/oaknational/Oak-Web-Application/commit/12786b229b677336cf6e632e8308d27e01b06d07))
+* adding missing comma ([fc10adb](https://github.com/oaknational/Oak-Web-Application/commit/fc10adbd450b3255843047fd223adb98a2940468))
+* updaing Jack's title ([391f936](https://github.com/oaknational/Oak-Web-Application/commit/391f936a24216c2a127e510ad86c22dff8299d6f))
+
 ## [1.185.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.4...v1.185.5) (2023-05-31)
 
 
