@@ -1,0 +1,4 @@
+project       = "oak-national-academy"
+region        = "europe-west2"
+retool_origin = "https://creator-staging.thenational.academy"
+environment   = "staging"

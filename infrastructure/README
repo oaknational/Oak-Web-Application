@@ -1,0 +1,34 @@
+# Infrastructure
+
+This folder current manages the buckets responsible for holding uploaded lesson videos.
+
+The terraform project is broken out into multiple workspaces
+
+- production
+- staging
+- demo
+
+Each workspace should have an associated `<env>.tfvars` file. The `example_vars` can serve as a template.
+i.e. `staging.tfvars`
+
+```
+project       = "oak-national-academy"
+region        = "europe-west2"
+retool_origin = "https://creator-staging.thenational.academy"
+environment   = "staging"
+
+```
+
+## Local setup
+
+The following CLIs are required:
+
+- [terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
+- [gcloud](https://cloud.google.com/sdk/docs/install)
+
+1. `terraform login` (you will need a terraform account to perform this step)
+2. follow [these instructions](https://github.com/oaknational/Cloud-Config/tree/feat/ISSUE-82-deployment-bucket/infrastructure/iam#google-cloud) on authenticating your terraform cli
+3. `terraform workspace list` - to view available workspaces
+4. `terraform workspace select <environment>` - to select your the correct environment
+5. `terraform plan -var-file=<environment>.tfvars` - to see the effects your changes will make
+6. `terraform apply -var-file=<environment>.tfvars` - to apply those changes
