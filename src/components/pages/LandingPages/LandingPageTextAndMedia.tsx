@@ -2,7 +2,7 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
 import { TextAndMedia } from "../../../common-lib/cms-types";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CMSImage from "../../CMSImage";
@@ -88,7 +88,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
               $mt={[48, 32]}
               label={props.cta.label}
               page={null}
-              href={getCTAHref(props.cta)}
+              href={getLinkHref(props.cta)}
             />
           )}
         </div>
