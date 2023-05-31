@@ -95,7 +95,7 @@ describe("Search/constructElasticQuery", () => {
       },
     });
   });
-  test.only("handles subject filters", () => {
+  test("handles subject filters", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({
         term: "macbeth",
