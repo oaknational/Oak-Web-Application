@@ -1,3 +1,12 @@
+## [1.185.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.4...v1.185.5) (2023-05-31)
+
+
+### Bug Fixes
+
+* **searchbar:** make searchbar white on ios ([96def81](https://github.com/oaknational/Oak-Web-Application/commit/96def81b07fd814d65c0f8a55deec333cc682387))
+* **searchbar:** make searchbar white on ios ([c255184](https://github.com/oaknational/Oak-Web-Application/commit/c2551848997bac207da0278e66ccc93973ee9363))
+* **searchbar:** make searchbar white on ios ([19e4c44](https://github.com/oaknational/Oak-Web-Application/commit/19e4c4478b4ec73e0acac2c4bb1478a919980c1a))
+
 ## [1.185.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.3...v1.185.4) (2023-05-30)
 
 ## [1.185.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.2...v1.185.3) (2023-05-30)
