@@ -35,8 +35,9 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         src={src}
         alt={alt ? alt : ""}
         fill
-        onLoad={(event) => {
-          const { naturalWidth, naturalHeight } = event.currentTarget;
+        onLoadingComplete={(img) => {
+          const naturalWidth = img.naturalWidth;
+          const naturalHeight = img.naturalHeight;
           setDims({ height: naturalHeight, width: naturalWidth });
         }}
       />
