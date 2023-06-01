@@ -7,6 +7,7 @@ import type {
 } from "@portabletext/types";
 
 import Box from "../../Box";
+import AnchorTarget from "../../AnchorTarget";
 
 export type Footnote = {
   index: number;
@@ -60,7 +61,10 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
   return (
     <span>
       {props.children}
-      <sup id={footnoteBackLinkAnchor(footnote.markKey)}>
+
+      <Box as="sup" $position="relative">
+        <AnchorTarget id={footnoteBackLinkAnchor(footnote.markKey)} />
+
         <a
           href={`#${footnoteCitationAnchor(footnote.markKey)}`}
           role="doc-noteref"
@@ -68,7 +72,7 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
         >
           {footnote.index}
         </a>
-      </sup>
+      </Box>
     </span>
   );
 };
