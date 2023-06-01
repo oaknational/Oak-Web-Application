@@ -22,7 +22,12 @@ const props: UseSearchFiltersProps = {
     { slug: "unit", title: "Units" },
   ],
   setQuery,
-  query: { term: "macbethy", keyStages: [], subjects: [] },
+  query: {
+    term: "macbethy",
+    keyStages: [],
+    subjects: [],
+    searchTypes: [],
+  },
 };
 
 describe("useSearchFilters()", () => {
@@ -48,6 +53,72 @@ describe("useSearchFilters()", () => {
       useSearchFiltersHook.result.current.keyStageFilters[0]?.checked;
 
     expect(checked).toBe(true);
+  });
+  test("'checked' should be false if unit and lesson filter not active", () => {
+    const useSearchFiltersHook = renderHook(() => useSearchFilters(props));
+    const lessonChecked =
+      useSearchFiltersHook.result.current.searchTypeFilters[0]?.checked;
+    const unitChecked =
+      useSearchFiltersHook.result.current.searchTypeFilters[0]?.checked;
+    expect(lessonChecked).toBe(false);
+    expect(unitChecked).toBe(false);
+  });
+  test("'checked' should be true if key stage filter active", () => {
+    const withFilterActive = {
+      ...props,
+      query: { ...props.query, searchTypes: ["unit", "lesson"] },
+    };
+    const useSearchFiltersHook = renderHook(() =>
+      useSearchFilters(withFilterActive)
+    );
+
+    const lessonChecked =
+      useSearchFiltersHook.result.current.searchTypeFilters[0]?.checked;
+    const unitChecked =
+      useSearchFiltersHook.result.current.searchTypeFilters[1]?.checked;
+
+    expect(lessonChecked).toBe(true);
+    expect(unitChecked).toBe(true);
+  });
+
+  test("onChange should remove lesson from query if active", async () => {
+    const withFilterActive = {
+      ...props,
+      query: { ...props.query, searchTypes: ["unit", "lesson"] },
+    };
+    const useSearchFiltersHook = renderHook(() =>
+      useSearchFilters(withFilterActive)
+    );
+    const lessonOnChange =
+      useSearchFiltersHook.result.current.searchTypeFilters[0]?.onChange;
+
+    act(() => {
+      lessonOnChange?.();
+    });
+
+    const passedFunction = setQuery.mock.calls[0][0];
+
+    expect(passedFunction({})).toEqual({ searchTypes: ["unit"] });
+  });
+
+  test("onChange should add lesson from query if not active", async () => {
+    const withFilterActive = {
+      ...props,
+      query: { ...props.query, searchTypes: ["unit"] },
+    };
+    const useSearchFiltersHook = renderHook(() =>
+      useSearchFilters(withFilterActive)
+    );
+    const lessonOnChange =
+      useSearchFiltersHook.result.current.searchTypeFilters[0]?.onChange;
+
+    act(() => {
+      lessonOnChange?.();
+    });
+
+    const passedFunction = setQuery.mock.calls[0][0];
+
+    expect(passedFunction({})).toEqual({ searchTypes: ["unit", "lesson"] });
   });
 
   test("onChange should remove key stage from query if active", async () => {

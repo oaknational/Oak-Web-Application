@@ -267,6 +267,21 @@ describe("Search.page.tsx", () => {
     await user.click(filter);
     await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
   });
+  test("clicking a calls filter.onChange appropriately for searchType filters", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const typeOnChange = props.searchFilters.searchTypeFilters.find(
+      (t) => t.slug === "unit"
+    )?.onChange as jest.Mock;
+    typeOnChange.mockClear();
+    await user.click(getByRole("button", { name: "Filters" }));
+    const filter = getByRole("checkbox", { name: "Units filter" });
+    if (!filter) {
+      throw new Error("Expected filter to exist");
+    }
+    await user.click(filter);
+    await waitFor(() => expect(typeOnChange).toHaveBeenCalledTimes(1));
+  });
   test("searchCompleted is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);
     await waitFor(() => expect(searchCompleted).toHaveBeenCalledTimes(1));
