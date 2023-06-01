@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styled from "styled-components";
 import { PortableTextMarkComponentProps } from "@portabletext/react";
 import type {
   PortableTextBlock,
@@ -6,7 +7,6 @@ import type {
 } from "@portabletext/types";
 
 import Box from "../../Box";
-import OakLink from "../../OakLink";
 
 export type Footnote = {
   index: number;
@@ -77,6 +77,17 @@ type PostFootnotesSectionProps = {
   footnotes: Footnote[];
 };
 
+/**
+ * Using a styled link instead of OakLink here as we don't want
+ * any of the OakLink functionality, and OakLink appears to mangle
+ * in-page anchor links by prepending the whole path to the href
+ */
+const FootnoteLink = styled.a`
+  display: inline;
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.hyperlink};
+`;
+
 export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   footnotes,
 }) => {
@@ -88,21 +99,17 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
         {footnotes.map(({ markKey, index, label, source }) => (
           <li id={footnoteCitationAnchor(markKey)} key={markKey}>
             {source ? (
-              <OakLink $isInline page={null} href={source}>
-                {label}
-              </OakLink>
+              <FootnoteLink href={source}>{label}</FootnoteLink>
             ) : (
               label
             )}{" "}
-            <OakLink
-              $isInline
-              page={null}
+            <FootnoteLink
               href={`#${footnoteBackLinkAnchor(markKey)}`}
               aria-label={`Back to reference ${index}`}
               role="doc-backlink"
             >
               ↩
-            </OakLink>
+            </FootnoteLink>
           </li>
         ))}
       </Box>

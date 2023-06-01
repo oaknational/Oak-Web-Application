@@ -202,6 +202,7 @@ describe("components/PostPortableText", () => {
       const firstFootnoteBacklink = within(
         footnotes[0] as HTMLElement
       ).getByRole("doc-backlink");
+
       expect(firstFootnoteBacklink).toHaveAttribute(
         "href",
         "#footnote-note-FOOTNOTE_MARK_1"
