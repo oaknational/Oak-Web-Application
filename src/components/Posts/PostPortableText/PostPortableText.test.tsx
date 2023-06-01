@@ -213,5 +213,14 @@ describe("components/PostPortableText", () => {
       );
       expect(footnoteWithSource).toHaveAttribute("href", "https://example.com");
     });
+
+    test("does not render the footnotes section when none exist", () => {
+      const { queryByRole } = render(
+        <PostPortableText portableText={textAndMedia} />
+      );
+
+      const footnotesSection = queryByRole("doc-endnotes");
+      expect(footnotesSection).not.toBeInTheDocument();
+    });
   });
 });

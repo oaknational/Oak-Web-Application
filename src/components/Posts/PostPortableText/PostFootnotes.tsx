@@ -95,6 +95,10 @@ const FootnoteLink = styled.a`
 export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   footnotes,
 }) => {
+  if (!footnotes?.length) {
+    return null;
+  }
+
   return (
     <Box as="footer" role="doc-endnotes" $pt={20}>
       <h3>References</h3>
