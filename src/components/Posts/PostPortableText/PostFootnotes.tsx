@@ -5,6 +5,9 @@ import type {
   PortableTextMarkDefinition,
 } from "@portabletext/types";
 
+import Box from "../../Box";
+import OakLink from "../../OakLink";
+
 export type Footnote = {
   index: number;
   markKey: string;
@@ -61,6 +64,7 @@ export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
         <a
           href={`#${footnoteCitationAnchor(footnote.markKey)}`}
           role="doc-noteref"
+          aria-label={`Go to footnote ${footnote.index}`}
         >
           {footnote.index}
         </a>
@@ -77,24 +81,31 @@ export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({
   footnotes,
 }) => {
   return (
-    <footer role="doc-endnotes">
-      <ol>
+    <Box as="footer" role="doc-endnotes" $pt={20}>
+      <h3>References</h3>
+
+      <Box as="ol" $pl={16}>
         {footnotes.map(({ markKey, index, label, source }) => (
           <li id={footnoteCitationAnchor(markKey)} key={markKey}>
-            {source ? <a href={source}>{label}</a> : label}
-
-            <a
-              // @TODO: Anchor under-scrolls due to header
-              // @TODO: Backlink isn't inheriting correct styles
+            {source ? (
+              <OakLink $isInline page={null} href={source}>
+                {label}
+              </OakLink>
+            ) : (
+              label
+            )}{" "}
+            <OakLink
+              $isInline
+              page={null}
               href={`#${footnoteBackLinkAnchor(markKey)}`}
               aria-label={`Back to reference ${index}`}
               role="doc-backlink"
             >
               ↩
-            </a>
+            </OakLink>
           </li>
         ))}
-      </ol>
-    </footer>
+      </Box>
+    </Box>
   );
 };

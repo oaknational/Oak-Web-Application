@@ -1,3 +1,5 @@
+import { within } from "@testing-library/react";
+
 import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 
 import PostPortableText from "./PostPortableText";
@@ -73,6 +75,56 @@ const callout = {
   ],
 };
 
+const withFootnotes = [
+  {
+    _key: "8ca83ed025d9",
+    _type: "block",
+    children: [
+      {
+        _key: "961f4245c5de",
+        _type: "span",
+        marks: [],
+        text: "Here's some ",
+      },
+      {
+        _key: "01b7b284ab9d",
+        _type: "span",
+        marks: ["FOOTNOTE_MARK_1"],
+        text: "text with a footnote",
+      },
+    ],
+    markDefs: [
+      {
+        _key: "FOOTNOTE_MARK_1",
+        _type: "footnote",
+        label: "The citation for the first footnote",
+      },
+    ],
+    style: "normal",
+  },
+  {
+    _key: "84afb418873c",
+    _type: "block",
+    children: [
+      {
+        _key: "d0819dac8f29",
+        _type: "span",
+        marks: ["FOOTNOTE_MARK_2"],
+        text: "and a second footnote",
+      },
+    ],
+    markDefs: [
+      {
+        _key: "FOOTNOTE_MARK_2",
+        _type: "footnote",
+        label: "And the second, with a link",
+        source: "https://example.com",
+      },
+    ],
+    style: "normal",
+  },
+];
+
 const render = renderWithProviders();
 
 describe("components/PostPortableText", () => {
@@ -118,5 +170,47 @@ describe("components/PostPortableText", () => {
     const calloutText = getByText("I'm a callout out!").closest("div");
 
     expect(calloutText).toHaveStyle("background-color: #f6e8a0");
+  });
+  describe("footnotes", () => {
+    test("footnote links are rendered inline", () => {
+      const { getAllByRole } = render(
+        <PostPortableText portableText={withFootnotes} />
+      );
+
+      const footnoteLinks = getAllByRole("doc-noteref");
+
+      expect(footnoteLinks).toHaveLength(2);
+      expect(footnoteLinks[0]).toHaveAttribute(
+        "href",
+        "#footnote-ref-FOOTNOTE_MARK_1"
+      );
+    });
+
+    test("footnote references are rendered with backlinks", () => {
+      const { getByRole } = render(
+        <PostPortableText portableText={withFootnotes} />
+      );
+
+      const footnotes = within(getByRole("doc-endnotes")).getAllByRole(
+        "listitem"
+      );
+
+      expect(footnotes[0]).toHaveTextContent(
+        "The citation for the first footnote"
+      );
+
+      const firstFootnoteBacklink = within(
+        footnotes[0] as HTMLElement
+      ).getByRole("doc-backlink");
+      expect(firstFootnoteBacklink).toHaveAttribute(
+        "href",
+        "#footnote-note-FOOTNOTE_MARK_1"
+      );
+
+      const footnoteWithSource = within(footnotes[1] as HTMLElement).getByRole(
+        "link"
+      );
+      expect(footnoteWithSource).toHaveAttribute("href", "https://example.com");
+    });
   });
 });
