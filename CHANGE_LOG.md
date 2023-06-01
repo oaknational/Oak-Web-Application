@@ -1,3 +1,10 @@
+## [1.185.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.7...v1.185.8) (2023-06-01)
+
+
+### Bug Fixes
+
+* **questions:** remove empty answer strings from question answers ([f7a7170](https://github.com/oaknational/Oak-Web-Application/commit/f7a7170a04ec388563c74f7d0aa4c92dd2b7469e))
+
 ## [1.185.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.6...v1.185.7) (2023-05-31)
 
 
