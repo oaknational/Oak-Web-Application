@@ -16,7 +16,7 @@ const searchPageFixture = (
       { slug: "maths", title: "Maths" },
       { slug: "science", title: "science" },
     ],
-    searchTypes: [
+    contentTypes: [
       { slug: "unit", title: "Units" },
       { slug: "lesson", title: "Lessons" },
     ],

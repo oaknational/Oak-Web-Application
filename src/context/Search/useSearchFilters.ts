@@ -4,7 +4,7 @@ import { SearchQuery, SetSearchQuery } from "./useSearch";
 
 export type KeyStage = SearchPageData["keyStages"][number];
 export type Subject = SearchPageData["subjects"][number];
-export type SearchType = {
+export type ContentType = {
   slug: "lesson" | "unit";
   title: "Lessons" | "Units";
 };
@@ -12,7 +12,7 @@ export type SearchType = {
 export type UseSearchFiltersProps = {
   allKeyStages: KeyStage[];
   allSubjects: SearchPageData["subjects"];
-  allSearchTypes: SearchType[];
+  allContentTypes: ContentType[];
   setQuery: SetSearchQuery;
   query: SearchQuery;
 };
@@ -25,14 +25,14 @@ export type CheckBoxProps = {
 export type UseSearchFiltersReturnType = {
   subjectFilters: (Subject & CheckBoxProps)[];
   keyStageFilters: (KeyStage & CheckBoxProps)[];
-  searchTypeFilters: (SearchType & CheckBoxProps)[];
+  contentTypeFilters: (ContentType & CheckBoxProps)[];
 };
 
 const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects" | "searchTypes"
+  name: "keyStages" | "subjects" | "contentTypes"
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
@@ -55,7 +55,7 @@ const getCheckboxFilters = <T extends { slug: string }>(
 const useSearchFilters = (
   props: UseSearchFiltersProps
 ): UseSearchFiltersReturnType => {
-  const { allKeyStages, allSubjects, allSearchTypes, query, setQuery } = props;
+  const { allKeyStages, allSubjects, allContentTypes, query, setQuery } = props;
 
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     const filters = getCheckboxFilters(
@@ -77,12 +77,12 @@ const useSearchFilters = (
     return filters;
   });
 
-  const searchTypeCheckboxFilters = allSearchTypes.map((searchType) => {
+  const ContentTypeCheckboxFilters = allContentTypes.map((ContentType) => {
     const filters = getCheckboxFilters(
-      searchType,
-      query.searchTypes || [],
+      ContentType,
+      query.contentTypes || [],
       setQuery,
-      "searchTypes"
+      "contentTypes"
     );
     return filters;
   });
@@ -90,7 +90,7 @@ const useSearchFilters = (
   return {
     subjectFilters: subjectCheckboxFilters,
     keyStageFilters: keyStageCheckboxFilters,
-    searchTypeFilters: searchTypeCheckboxFilters,
+    contentTypeFilters: ContentTypeCheckboxFilters,
   };
 };
 

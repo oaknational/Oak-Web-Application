@@ -7,7 +7,7 @@ import {
   CheckBoxProps,
   KeyStage,
   Subject,
-  SearchType,
+  ContentType,
   UseSearchFiltersReturnType,
 } from "../../context/Search/useSearchFilters";
 
@@ -16,16 +16,16 @@ type ActiveFiltersProps = {
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   const { searchFilters } = props;
-  const { keyStageFilters, subjectFilters, searchTypeFilters } = searchFilters;
+  const { keyStageFilters, subjectFilters, contentTypeFilters } = searchFilters;
 
   const activeFilters = [
     ...keyStageFilters.filter((keyStage) => keyStage.checked),
     ...subjectFilters.filter((subject) => subject.checked),
-    ...searchTypeFilters.filter((searchType) => searchType.checked),
+    ...contentTypeFilters.filter((contentType) => contentType.checked),
   ];
 
   const maxActiveFilters = 4;
-  const slicedActiveFilters: ((Subject | KeyStage | SearchType) &
+  const slicedActiveFilters: ((Subject | KeyStage | ContentType) &
     CheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (

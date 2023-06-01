@@ -7,18 +7,18 @@ import { P } from "../Typography";
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
 const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
-  const { keyStageFilters, subjectFilters, searchTypeFilters } = props;
+  const { keyStageFilters, subjectFilters, contentTypeFilters } = props;
   return (
     <>
       <P $mb={16}>Type</P>
       <Flex $mb={36} $flexWrap={"wrap"}>
-        {searchTypeFilters.map((type) => (
+        {contentTypeFilters.map((contentType) => (
           <SearchFilterCheckbox
             name={"typeFilters"}
-            label={type.title}
-            key={`search-filters-type-${type.slug}`}
+            label={contentType.title}
+            key={`search-filters-type-${contentType.slug}`}
             width={"50%"}
-            {...type}
+            {...contentType}
           />
         ))}
       </Flex>

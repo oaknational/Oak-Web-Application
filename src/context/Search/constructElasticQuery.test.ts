@@ -156,7 +156,7 @@ describe("Search/constructElasticQuery", () => {
         term: "macbeth",
         keyStages: ["ks3"],
         subjects: ["computing"],
-        searchTypes: ["lesson"],
+        contentTypes: ["lesson"],
       })
     );
     expect(elasticQuery).toEqual({

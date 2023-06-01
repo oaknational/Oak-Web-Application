@@ -19,19 +19,19 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
   const {
     subjects: allSubjects,
     keyStages: allKeyStages,
-    searchTypes: allSearchTypes,
+    contentTypes: allContentTypes,
   } = curriculumData;
 
   const searchProps = useSearch({
     allKeyStages,
     allSubjects,
-    allSearchTypes,
+    allContentTypes,
   });
   const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
     allSubjects,
-    allSearchTypes,
+    allContentTypes,
   });
 
   return (

@@ -66,7 +66,7 @@ export const props: SearchProps = {
         checked: false,
       },
     ],
-    searchTypeFilters: [
+    contentTypeFilters: [
       { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
     ],
   },
@@ -267,10 +267,10 @@ describe("Search.page.tsx", () => {
     await user.click(filter);
     await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
   });
-  test("clicking a calls filter.onChange appropriately for searchType filters", async () => {
+  test("clicking a calls filter.onChange appropriately for contentType filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
-    const typeOnChange = props.searchFilters.searchTypeFilters.find(
+    const typeOnChange = props.searchFilters.contentTypeFilters.find(
       (t) => t.slug === "unit"
     )?.onChange as jest.Mock;
     typeOnChange.mockClear();

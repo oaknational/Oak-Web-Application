@@ -16,13 +16,13 @@ import {
   SearchHit,
   searchResultsSchema,
 } from "./helpers";
-import { KeyStage, SearchType } from "./useSearchFilters";
+import { KeyStage, ContentType } from "./useSearchFilters";
 
 export type SearchQuery = {
   term: string;
   keyStages?: string[];
   subjects?: string[];
-  searchTypes?: string[];
+  contentTypes?: string[];
 };
 
 export type SetSearchQuery = (
@@ -39,22 +39,22 @@ export const createSearchQuery = (
     term = "",
     keyStages = [],
     subjects = [],
-    searchTypes = [],
+    contentTypes = [],
   } = partialQuery;
-  return { term, keyStages, subjects, searchTypes };
+  return { term, keyStages, subjects, contentTypes };
 };
 
 const useSearchQuery = ({
   allKeyStages,
   allSubjects,
-  allSearchTypes,
+  allContentTypes,
 }: {
   allKeyStages?: KeyStage[];
   allSubjects?: SearchPageData["subjects"];
-  allSearchTypes?: SearchType[];
+  allContentTypes?: ContentType[];
 }): UseSearchQueryReturnType => {
   const {
-    query: { term = "", keyStages = "", subjects = "", searchTypes = "" },
+    query: { term = "", keyStages = "", subjects = "", contentTypes = "" },
     push,
   } = useRouter();
 
@@ -75,8 +75,8 @@ const useSearchQuery = ({
       subjects: allSubjects
         ? getFilterForQueryCallback(subjects, allSubjects)
         : [],
-      searchTypes: allSearchTypes
-        ? getFilterForQueryCallback(searchTypes, allSearchTypes)
+      contentTypes: allContentTypes
+        ? getFilterForQueryCallback(contentTypes, allContentTypes)
         : [],
     };
   }, [
@@ -85,8 +85,8 @@ const useSearchQuery = ({
     getFilterForQueryCallback,
     keyStages,
     allSubjects,
-    searchTypes,
-    allSearchTypes,
+    contentTypes,
+    allContentTypes,
     subjects,
   ]);
 
@@ -119,14 +119,14 @@ export type UseSearchReturnType = {
 type UseSearchProps = {
   allKeyStages?: KeyStage[];
   allSubjects?: SearchPageData["subjects"];
-  allSearchTypes?: SearchType[];
+  allContentTypes?: ContentType[];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
-  const { allKeyStages, allSubjects, allSearchTypes } = props;
+  const { allKeyStages, allSubjects, allContentTypes } = props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
     allSubjects,
-    allSearchTypes,
+    allContentTypes,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 

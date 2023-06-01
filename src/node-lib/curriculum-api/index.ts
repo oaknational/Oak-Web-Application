@@ -113,7 +113,7 @@ const subjectSchema = z.object({
   title: z.string(),
 });
 
-const searchTypeSchema = z.object({
+const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),
   title: z.union([z.literal("Units"), z.literal("Lessons")]),
 });
@@ -121,7 +121,7 @@ const searchTypeSchema = z.object({
 const searchPageData = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
-  searchTypes: z.array(searchTypeSchema),
+  contentTypes: z.array(contentTypesSchema),
 });
 
 const teachersHomePageData = z.object({
@@ -422,7 +422,7 @@ const curriculumApi = {
     return searchPageData.parse({
       keyStages,
       subjects: uniqueProgrammes,
-      searchTypes: [
+      contentTypes: [
         { slug: "unit", title: "Units" },
         { slug: "lesson", title: "Lessons" },
       ],

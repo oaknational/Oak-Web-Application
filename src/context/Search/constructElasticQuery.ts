@@ -6,7 +6,7 @@ import { SearchQuery } from "./useSearch";
 type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [], searchTypes = [] } = query;
+  const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
   const keyStageFilter =
     keyStages.length > 0
       ? {
@@ -57,11 +57,11 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
     }
   };
 
-  const searchTypeFilter = () => {
-    if (searchTypes.length > 0) {
+  const contentTypeFilters = () => {
+    if (contentTypes.length > 0) {
       return {
         terms: {
-          type: searchTypes.map((type) => type),
+          type: contentTypes.map((contentType) => contentType),
         },
       };
     } else {
@@ -131,7 +131,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           },
           { ...keyStageFilter },
           subjectFilter(),
-          searchTypeFilter(),
+          contentTypeFilters(),
         ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
