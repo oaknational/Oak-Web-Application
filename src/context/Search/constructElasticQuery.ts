@@ -6,7 +6,7 @@ import { SearchQuery } from "./useSearch";
 type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [] } = query;
+  const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
   const keyStageFilter =
     keyStages.length > 0
       ? {
@@ -52,6 +52,22 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       return {
         terms: {
           key_stage_slug: ["1", "2", "3", "4"],
+        },
+      };
+    }
+  };
+
+  const contentTypeFilters = () => {
+    if (contentTypes.length > 0) {
+      return {
+        terms: {
+          type: contentTypes.map((contentType) => contentType),
+        },
+      };
+    } else {
+      return {
+        terms: {
+          type: ["lesson", "unit"],
         },
       };
     }
@@ -113,8 +129,9 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
               is_specialist: false,
             },
           },
-          subjectFilter(),
           { ...keyStageFilter },
+          subjectFilter(),
+          contentTypeFilters(),
         ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
