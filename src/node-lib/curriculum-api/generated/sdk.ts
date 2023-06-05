@@ -51367,9 +51367,15 @@ export type Years_Variance_Order_By = {
   phase_id?: InputMaybe<Order_By>;
 };
 
+export type LessonDownloadPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LessonDownloadPathsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', lessonSlug?: string | null, programmeSlug?: string | null, unitSlug?: string | null }> };
+
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
 }>;
 
 
@@ -51440,10 +51446,19 @@ export type UnitListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
 export type UnitListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_6', programmeSlug?: string | null }> };
 
 
+export const LessonDownloadPathsDocument = gql`
+    query lessonDownloadPaths {
+  mv_downloads: mv_downloads_1 {
+    lessonSlug: lesson_slug
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
+  }
+}
+    `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!) {
+    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   mv_downloads: mv_downloads_1(
-    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}}
+    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
   ) {
     downloads
     programmeSlug: programme_slug
@@ -51743,6 +51758,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    lessonDownloadPaths(variables?: LessonDownloadPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadPathsQuery>(LessonDownloadPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadPaths', 'query');
+    },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },

@@ -1,17 +1,19 @@
 import { renderHook, screen, act, waitFor } from "@testing-library/react";
-import { GetServerSidePropsContext, PreviewData } from "next";
+import { GetStaticPropsContext, PreviewData } from "next";
 import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
+import curriculumApi from "../../../../../../../../../../node-lib/curriculum-api/__mocks__";
 import waitForNextTick from "../../../../../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../../../../__helpers__/renderWithProviders";
 import "../../../../../../../../../__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
-  getServerSideProps,
+  getStaticPaths,
+  getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
 } from "../../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
@@ -370,16 +372,22 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
   });
-
-  describe("getServerSideProps", () => {
+  describe("getStaticPaths", () => {
+    it("should fetch the correct data", async () => {
+      await getStaticPaths();
+      expect(curriculumApi.lessonDownloadPaths).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
-      const propsResult = (await getServerSideProps({
+      const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
           programmeSlug: "math-higher-ks4",
+          unitSlug: "shakespeare",
         },
         query: {},
-      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
+      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
         props: LessonDownloadsPageProps;
       };
 
@@ -389,9 +397,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
     it("should throw error", async () => {
       await expect(
-        getServerSideProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("No context.params");
     });
   });
