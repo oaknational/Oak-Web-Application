@@ -34,14 +34,18 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     keyStageSlug,
     programmeSlug,
     keyStageTitle,
+    subjectActiveLessonCount,
+    subjectActiveUnitCount,
   } = firstProgramme;
-  const activeUnitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeUnitCount || 0);
-  }, 0);
-  const activeLessonCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeLessonCount || 0);
-  }, 0);
-
+  // const activeUnitCount = programmes.reduce((acc, cur) => {
+  //   return acc + (cur.activeUnitCount || 0);
+  // }, 0);
+  // const activeLessonCount = programmes.reduce((acc, cur) => {
+  //   return acc + (cur.activeLessonCount || 0);
+  // }, 0);
+  console.log(programmes, `${subjectSlug} programmes`);
+  console.log(subjectActiveLessonCount, "subjectActiveLessonCount");
+  console.log(subjectActiveUnitCount, "subjectActiveUnitCount");
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
   const { track } = useAnalytics();
@@ -122,11 +126,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeUnitCount} units`}</Typography>
+            >{`${subjectActiveUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeLessonCount} lessons`}</Typography>
+            >{`${subjectActiveLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
