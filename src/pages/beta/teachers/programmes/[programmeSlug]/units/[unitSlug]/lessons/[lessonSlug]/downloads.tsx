@@ -1,5 +1,10 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { NextPage, GetStaticProps, GetStaticPathsResult, GetStaticPropsResult } from "next";
+import {
+  NextPage,
+  GetStaticProps,
+  GetStaticPathsResult,
+  GetStaticPropsResult,
+} from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
@@ -48,7 +53,11 @@ import DetailsCompleted from "../../../../../../../../../components/DownloadComp
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
-import { decorateWithIsr, getFallbackBlockingConfig, shouldSkipInitialBuild } from "../../../../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../../../node-lib/isr";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -484,7 +493,7 @@ export const getStaticProps: GetStaticProps<
   const curriculumData = await curriculumApi.lessonDownloads({
     lessonSlug,
     programmeSlug,
-    unitSlug
+    unitSlug,
   });
 
   if (!curriculumData) {
