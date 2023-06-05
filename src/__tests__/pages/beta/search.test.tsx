@@ -11,13 +11,13 @@ const providers = {
   cookieConsent: {},
 };
 const keyStages = searchPageFixture().keyStages;
-
 const subjects = searchPageFixture().subjects;
+const contentTypes = searchPageFixture().contentTypes;
 
 describe("pages/beta/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages, subjects }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
 
     expect(seo).toEqual({
@@ -34,10 +34,31 @@ describe("pages/beta/teachers/search.tsx", () => {
   });
   test("renders correct key stage filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages, subjects }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
-    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAccessibleName(
       "KS1 filter"
+    );
+  });
+  test("renders correct subject filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAccessibleName(
+      "English filter"
+    );
+  });
+  test("renders correct content type filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAccessibleName(
+      "Lessons filter"
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
+      "Units filter"
     );
   });
 });
