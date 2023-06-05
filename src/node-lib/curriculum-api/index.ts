@@ -113,9 +113,15 @@ const subjectSchema = z.object({
   title: z.string(),
 });
 
+const contentTypesSchema = z.object({
+  slug: z.union([z.literal("unit"), z.literal("lesson")]),
+  title: z.union([z.literal("Units"), z.literal("Lessons")]),
+});
+
 const searchPageData = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
+  contentTypes: z.array(contentTypesSchema),
 });
 
 const teachersHomePageData = z.object({
@@ -211,6 +217,16 @@ const lessonQuizInfoData = z
 
 const lessonOverviewPaths = z.object({
   lessons: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+      lessonSlug: z.string(),
+    })
+  ),
+});
+
+const lessonDownloadPaths = z.object({
+  downloads: z.array(
     z.object({
       programmeSlug: z.string(),
       unitSlug: z.string(),
@@ -340,6 +356,7 @@ export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
+export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingPaths = z.infer<typeof unitListingPaths>;
@@ -418,6 +435,10 @@ const curriculumApi = {
     return searchPageData.parse({
       keyStages,
       subjects: uniqueProgrammes,
+      contentTypes: [
+        { slug: "unit", title: "Units" },
+        { slug: "lesson", title: "Lessons" },
+      ],
     });
   },
   teachersHomePage: async () => {
@@ -549,6 +570,10 @@ const curriculumApi = {
       worksheetCount: null, // @todo
       lessons,
     });
+  },
+  lessonDownloadPaths: async () => {
+    const res = await sdk.lessonDownloadPaths();
+    return lessonDownloadPaths.parse(transformMVCase(res));
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...args);

@@ -93,7 +93,13 @@ export const CorrectAnswer: FC<AnswerProps> = ({
       }
     } else {
       if (answerIsArray) {
-        return <Typography $font={["body-1"]}> {answer[index]}</Typography>;
+        return (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {"- "}
+            {answer[index]}
+          </Typography>
+        );
       } else {
         return <Typography $font={["body-1"]}> {choice}</Typography>;
       }
@@ -108,12 +114,13 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         $borderRadius={8}
         $mb={6}
         $ph={10}
+        $alignItems={"center"}
       >
         {" "}
         <Icon name={"tick"} $mr={16} />
         {type === "order" && (
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {index + 1} -
+            {index + 1}
           </Heading>
         )}
         {getTypeAnswers(type, answer)}

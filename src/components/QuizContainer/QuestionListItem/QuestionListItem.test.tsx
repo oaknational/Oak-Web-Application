@@ -21,12 +21,12 @@ describe("CorrectAnswer", () => {
 
   it("renders the correct choice for non-match type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
-    expect(getByText("A")).toBeInTheDocument();
+    expect(getByText("- A")).toBeInTheDocument();
   });
 
   it("renders the correct index for order type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
-    expect(getByText("1 -")).toBeInTheDocument();
+    expect(getByText("1")).toBeInTheDocument();
   });
 
   it("renders the correct choice and answer for match type", () => {

@@ -36,6 +36,15 @@ export const searchFilters: UseSearchFiltersReturnType = {
       checked: true,
     },
   ],
+  contentTypeFilters: [
+    { slug: "unit", title: "Units", onChange: mockOnChange, checked: false },
+    {
+      slug: "lesson",
+      title: "Lessons",
+      onChange: mockOnChange,
+      checked: true,
+    },
+  ],
 };
 
 describe("ActiveFilters", () => {
@@ -85,6 +94,34 @@ describe("ActiveFilters", () => {
       <ActiveFilters searchFilters={searchFilters} />
     );
     const button = queryByRole("button", { name: `Remove ${subject} filter` });
+    expect(button).not.toBeInTheDocument();
+  });
+
+  test.each(
+    searchFilters.contentTypeFilters
+      .filter((type) => type.checked)
+      .map((ContentType) => ContentType.title)
+  )("should render the checked type filters: %s", (ContentType) => {
+    const { getByRole } = renderWithTheme(
+      <ActiveFilters searchFilters={searchFilters} />
+    );
+    const button = getByRole("button", {
+      name: `Remove ${ContentType} filter`,
+    });
+    expect(button).toBeInTheDocument();
+  });
+
+  test.each(
+    searchFilters.contentTypeFilters
+      .filter((type) => !type.checked)
+      .map((ContentType) => ContentType.title)
+  )("should not render the unchecked type filters: %s", (ContentType) => {
+    const { queryByRole } = renderWithTheme(
+      <ActiveFilters searchFilters={searchFilters} />
+    );
+    const button = queryByRole("button", {
+      name: `Remove ${ContentType} filter`,
+    });
     expect(button).not.toBeInTheDocument();
   });
 });
