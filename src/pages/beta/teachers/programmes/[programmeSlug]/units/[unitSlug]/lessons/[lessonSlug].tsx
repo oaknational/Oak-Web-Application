@@ -110,6 +110,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
+    isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
     hasDownloadableResources,
@@ -272,6 +273,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewPresentation
                   asset={presentationUrl}
                   title={lessonTitle}
+                  isWorksheet={false}
                 />
               </ExpandingContainer>
             )}
@@ -299,6 +301,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewPresentation
                   asset={worksheetUrl}
                   title={lessonTitle}
+                  isWorksheetLandscape={isWorksheetLandscape}
+                  isWorksheet={true}
                 />
               </ExpandingContainer>
             )}

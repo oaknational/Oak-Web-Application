@@ -6,7 +6,7 @@ import { SearchQuery } from "./useSearch";
 type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [] } = query;
+  const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
   const keyStageFilter =
     keyStages.length > 0
       ? {
@@ -48,34 +48,30 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           subject_slug: subjects.map((slug) => slug),
         },
       };
+    } else {
+      return {
+        terms: {
+          key_stage_slug: ["1", "2", "3", "4"],
+        },
+      };
     }
   };
 
-  const excludeNewScienceLessonsFilter = [
-    {
-      bool: {
-        must_not: {
-          bool: {
-            must: [
-              { term: { subject_slug: "science" } },
-              { term: { key_stage_slug: "3" } },
-            ],
-          },
+  const contentTypeFilters = () => {
+    if (contentTypes.length > 0) {
+      return {
+        terms: {
+          type: contentTypes.map((contentType) => contentType),
         },
-      },
-    },
-    {
-      bool: {
-        must_not: [
-          {
-            terms: {
-              subject_slug: ["biology", "chemistry", "combined_science"],
-            },
-          },
-        ],
-      },
-    },
-  ];
+      };
+    } else {
+      return {
+        terms: {
+          type: ["lesson", "unit"],
+        },
+      };
+    }
+  };
 
   const highlight = {
     number_of_fragments: 0,
@@ -135,7 +131,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           },
           { ...keyStageFilter },
           subjectFilter(),
-          ...excludeNewScienceLessonsFilter,
+          contentTypeFilters(),
         ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */
@@ -144,7 +140,6 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
     },
     highlight,
   };
-
   return result;
 };
 export default constructElasticQuery;

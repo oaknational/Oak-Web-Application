@@ -11,21 +11,25 @@ describe("SearchFilters", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("renders all the key stage and subject filters", () => {
+  test("renders all the key stage, subject filters and search type filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
+        contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
       />
     );
     const searchFilters = getAllByRole("checkbox");
     expect(searchFilters).toHaveLength(
-      props.keyStageFilters.length + props.subjectFilters.length
+      props.keyStageFilters.length +
+        props.subjectFilters.length +
+        props.contentTypeFilters.length
     );
   });
   test("have correct a11y label", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
       />
@@ -42,6 +46,10 @@ describe("SearchFilters", () => {
   test("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        contentTypeFilters={props.contentTypeFilters.map((filter) => ({
+          ...filter,
+          checked: true,
+        }))}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: true,
@@ -58,12 +66,20 @@ describe("SearchFilters", () => {
     const mathsFilter = getByRole("checkbox", {
       name: "Maths filter",
     });
+    const lessonFilter = getByRole("checkbox", {
+      name: "Lessons filter",
+    });
     expect(ks2Filter).toHaveAttribute("checked");
     expect(mathsFilter).toHaveAttribute("checked");
+    expect(lessonFilter).toHaveAttribute("checked");
   });
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        contentTypeFilters={props.contentTypeFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,
@@ -80,12 +96,20 @@ describe("SearchFilters", () => {
     const mathsFilter = getByRole("checkbox", {
       name: "Maths filter",
     });
+    const unitFilter = getByRole("checkbox", {
+      name: "Units filter",
+    });
     expect(ks2Filter).not.toHaveAttribute("checked");
     expect(mathsFilter).not.toHaveAttribute("checked");
+    expect(unitFilter).not.toHaveAttribute("checked");
   });
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        contentTypeFilters={props.contentTypeFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
         keyStageFilters={props.keyStageFilters.map((filter) => ({
           ...filter,
           checked: false,
@@ -102,13 +126,20 @@ describe("SearchFilters", () => {
     const mathsFilter = getByRole("checkbox", {
       name: "Maths filter",
     });
+    const unitFilter = getByRole("checkbox", {
+      name: "Units filter",
+    });
     ks2Filter.click();
     mathsFilter.click();
+    unitFilter.click();
     expect(mockOnChange).toHaveBeenCalledWith(
       expect.objectContaining({ target: ks2Filter })
     );
     expect(mockOnChange).toHaveBeenCalledWith(
       expect.objectContaining({ target: mathsFilter })
+    );
+    expect(mockOnChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: unitFilter })
     );
   });
 });
