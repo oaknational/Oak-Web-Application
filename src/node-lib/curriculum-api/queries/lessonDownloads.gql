@@ -1,8 +1,9 @@
-query lessonDownloads($lessonSlug: String!, $programmeSlug: String!) {
+query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   mv_downloads: mv_downloads_1(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }
+      unit_slug: {_eq: $unitSlug}
     }
   ) {
     downloads
