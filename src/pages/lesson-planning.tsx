@@ -412,7 +412,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $mb={[48, 48, 0]}
               $ph={[16, 0, 0]}
             >
-              <CardTitle $font={["heading-5", "heading-4"]} tag={"h4"}>
+              <CardTitle $font={["heading-5", "heading-4"]} tag={"h2"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
               <Typography $font={["body-2", "body-1"]}>
