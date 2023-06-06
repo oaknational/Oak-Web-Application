@@ -362,7 +362,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box $minWidth={["50%"]}>
               <Box $display={["block", "block", "none"]}>
-                <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
+                <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
@@ -386,7 +386,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $minWidth={["50%"]}
             >
               <Box $display={["none", "none", "block"]}>
-                <CardTitle $font={"heading-4"} tag="h4">
+                <CardTitle $font={"heading-4"} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>

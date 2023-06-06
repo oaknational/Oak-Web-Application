@@ -50,7 +50,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                 <Card $ph={[16, 24]} $pv={[32, 24]} $background={"videoBlue"}>
                   <Heading
                     $font={["heading-6", "heading-5"]}
-                    tag={"h3"}
+                    tag={"h2"}
                     $mb={24}
                   >
                     {card.title}

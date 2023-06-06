@@ -16,7 +16,7 @@ const SubjectListingPage: FC<ProgrammeProps> = (props) => {
         <Flex $pv={20} $font={"body-2"}>
           {programmesBySubjectAvailable.length} subjects
         </Flex>
-        <Heading $font={"heading-5"} tag={"h5"} $mb={30}>
+        <Heading $font={"heading-5"} tag={"h2"} $mb={30}>
           All subjects
         </Heading>
         <SubjectCardList
