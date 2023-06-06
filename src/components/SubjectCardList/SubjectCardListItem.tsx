@@ -34,13 +34,9 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     keyStageSlug,
     programmeSlug,
     keyStageTitle,
+    nonDuplicateSubjectLessonCount,
+    nonDuplicateSubjectUnitCount,
   } = firstProgramme;
-  const activeUnitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeUnitCount || 0);
-  }, 0);
-  const activeLessonCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeLessonCount || 0);
-  }, 0);
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
@@ -120,11 +116,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeUnitCount} units`}</Typography>
+            >{`${nonDuplicateSubjectUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeLessonCount} lessons`}</Typography>
+            >{`${nonDuplicateSubjectLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
