@@ -15,8 +15,8 @@ query subjectListing($keyStageSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    subjectActiveLessonCount: subject_active_lesson_count
-    subjectActiveUnitCount: subject_active_unit_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
     totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
     activeUnitCount: active_unit_count
@@ -33,8 +33,8 @@ query subjectListing($keyStageSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    subjectActiveUnitCount: subject_active_unit_count
-    subjectActiveLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
     totalUnitCount: total_unit_count
     activeUnitCount: active_unit_count
     activeLessonCount: active_lesson_count

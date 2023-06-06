@@ -34,8 +34,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     keyStageSlug,
     programmeSlug,
     keyStageTitle,
-    subjectActiveLessonCount,
-    subjectActiveUnitCount,
+    nonDuplicateSubjectLessonCount,
+    nonDuplicateSubjectUnitCount,
   } = firstProgramme;
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
@@ -118,11 +118,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${subjectActiveUnitCount} units`}</Typography>
+            >{`${nonDuplicateSubjectUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${subjectActiveLessonCount} lessons`}</Typography>
+            >{`${nonDuplicateSubjectLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
