@@ -143,7 +143,10 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                       <Heading $font={"heading-7"} tag={"h3"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
-                          <CardLink page="blog-single" slug={element.post.slug}>
+                          <CardLink
+                            page="blog-single"
+                            blogSlug={element.post.slug}
+                          >
                             {element.title}
                           </CardLink>
                         </Box>
