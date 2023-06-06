@@ -47,7 +47,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $pt={0}
           $ph={[16, 0]}
         >
-          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h3"}>
+          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h2"}>
             {pageData.info.title}
           </Heading>
           <Flex $minWidth={"50%"} $flexDirection={["column-reverse", "row"]}>
