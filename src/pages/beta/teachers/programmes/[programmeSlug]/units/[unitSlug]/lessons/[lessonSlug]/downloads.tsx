@@ -356,6 +356,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <Input
                       id={"email"}
                       label="Email address"
+                      autoComplete="email"
                       placeholder="Enter email address here"
                       {...register("email")}
                       error={errors.email?.message}
