@@ -82,7 +82,7 @@ describe("pages/beta/teachers/lessons", () => {
       });
     });
   });
-  describe("getServerSideProps", () => {
+  describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
         params: {
