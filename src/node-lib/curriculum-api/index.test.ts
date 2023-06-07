@@ -130,10 +130,12 @@ describe("curriculum-api", () => {
     await curriculumApi.lessonDownloads({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry",
     });
     expect(lessonDownloads).toHaveBeenCalledWith({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry",
     });
   });
   test("unitListingPaths", async () => {

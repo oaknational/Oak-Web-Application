@@ -3,7 +3,7 @@ query subjectListing($keyStageSlug: String!) {
     slug
     title
   }
-  mv_programmes_available: mv_programmes_6(
+  mv_programmes_available: mv_programmes_7(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       total_unit_count: { _neq: 0 }
@@ -15,12 +15,13 @@ query subjectListing($keyStageSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    subjectActiveLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
     totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
     activeUnitCount: active_unit_count
   }
-  mv_programmes_unavailable: mv_programmes_6(
+  mv_programmes_unavailable: mv_programmes_7(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       total_unit_count: { _eq: 0 }
@@ -32,6 +33,8 @@ query subjectListing($keyStageSlug: String!) {
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
     totalUnitCount: total_unit_count
     activeUnitCount: active_unit_count
     activeLessonCount: active_lesson_count
