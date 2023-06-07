@@ -2,7 +2,7 @@
 
 // Commented out urls have pa11y errors to be fixed in this ticket - https://github.com/oaknational/Oak-Web-Application/issues/1693
 
-function getRelativeConfigURLs() {
+function getDeploymentTestUrls() {
   return [
     // Error pages
     "/404",
@@ -43,4 +43,4 @@ function getRelativeConfigURLs() {
   ];
 }
 
-module.exports = getRelativeConfigURLs;
+module.exports = getDeploymentTestUrls;
