@@ -13681,12 +13681,6 @@ export type Mutation_Root = {
   delete_mv_downloads_1?: Maybe<Mv_Downloads_1_Mutation_Response>;
   /** delete data from the table: "mv_key_stages" */
   delete_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
-  /** delete data from the table: "mv_learning_themes" */
-  delete_mv_learning_themes?: Maybe<Mv_Learning_Themes_Mutation_Response>;
-  /** delete data from the table: "mv_learning_themes0000001" */
-  delete_mv_learning_themes0000001?: Maybe<Mv_Learning_Themes0000001_Mutation_Response>;
-  /** delete data from the table: "mv_learning_themes_2" */
-  delete_mv_learning_themes_2?: Maybe<Mv_Learning_Themes_2_Mutation_Response>;
   /** delete data from the table: "mv_lessons" */
   delete_mv_lessons?: Maybe<Mv_Lessons_Mutation_Response>;
   /** delete data from the table: "mv_lessons0000001" */
@@ -13713,8 +13707,8 @@ export type Mutation_Root = {
   delete_mv_programmes_5?: Maybe<Mv_Programmes_5_Mutation_Response>;
   /** delete data from the table: "mv_programmes_6" */
   delete_mv_programmes_6?: Maybe<Mv_Programmes_6_Mutation_Response>;
-  /** delete data from the table: "mv_question_images_1" */
-  delete_mv_question_images_1?: Maybe<Mv_Question_Images_1_Mutation_Response>;
+  /** delete data from the table: "mv_programmes_7" */
+  delete_mv_programmes_7?: Maybe<Mv_Programmes_7_Mutation_Response>;
   /** delete data from the table: "mv_questions" */
   delete_mv_questions?: Maybe<Mv_Questions_Mutation_Response>;
   /** delete data from the table: "mv_questions0000001" */
@@ -14013,18 +14007,6 @@ export type Mutation_Root = {
   insert_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
   /** insert a single row into the table: "mv_key_stages" */
   insert_mv_key_stages_one?: Maybe<Mv_Key_Stages>;
-  /** insert data into the table: "mv_learning_themes" */
-  insert_mv_learning_themes?: Maybe<Mv_Learning_Themes_Mutation_Response>;
-  /** insert data into the table: "mv_learning_themes0000001" */
-  insert_mv_learning_themes0000001?: Maybe<Mv_Learning_Themes0000001_Mutation_Response>;
-  /** insert a single row into the table: "mv_learning_themes0000001" */
-  insert_mv_learning_themes0000001_one?: Maybe<Mv_Learning_Themes0000001>;
-  /** insert data into the table: "mv_learning_themes_2" */
-  insert_mv_learning_themes_2?: Maybe<Mv_Learning_Themes_2_Mutation_Response>;
-  /** insert a single row into the table: "mv_learning_themes_2" */
-  insert_mv_learning_themes_2_one?: Maybe<Mv_Learning_Themes_2>;
-  /** insert a single row into the table: "mv_learning_themes" */
-  insert_mv_learning_themes_one?: Maybe<Mv_Learning_Themes>;
   /** insert data into the table: "mv_lessons" */
   insert_mv_lessons?: Maybe<Mv_Lessons_Mutation_Response>;
   /** insert data into the table: "mv_lessons0000001" */
@@ -14075,12 +14057,12 @@ export type Mutation_Root = {
   insert_mv_programmes_6?: Maybe<Mv_Programmes_6_Mutation_Response>;
   /** insert a single row into the table: "mv_programmes_6" */
   insert_mv_programmes_6_one?: Maybe<Mv_Programmes_6>;
+  /** insert data into the table: "mv_programmes_7" */
+  insert_mv_programmes_7?: Maybe<Mv_Programmes_7_Mutation_Response>;
+  /** insert a single row into the table: "mv_programmes_7" */
+  insert_mv_programmes_7_one?: Maybe<Mv_Programmes_7>;
   /** insert a single row into the table: "mv_programmes" */
   insert_mv_programmes_one?: Maybe<Mv_Programmes>;
-  /** insert data into the table: "mv_question_images_1" */
-  insert_mv_question_images_1?: Maybe<Mv_Question_Images_1_Mutation_Response>;
-  /** insert a single row into the table: "mv_question_images_1" */
-  insert_mv_question_images_1_one?: Maybe<Mv_Question_Images_1>;
   /** insert data into the table: "mv_questions" */
   insert_mv_questions?: Maybe<Mv_Questions_Mutation_Response>;
   /** insert data into the table: "mv_questions0000001" */
@@ -14413,12 +14395,6 @@ export type Mutation_Root = {
   update_mv_downloads_1?: Maybe<Mv_Downloads_1_Mutation_Response>;
   /** update data of the table: "mv_key_stages" */
   update_mv_key_stages?: Maybe<Mv_Key_Stages_Mutation_Response>;
-  /** update data of the table: "mv_learning_themes" */
-  update_mv_learning_themes?: Maybe<Mv_Learning_Themes_Mutation_Response>;
-  /** update data of the table: "mv_learning_themes0000001" */
-  update_mv_learning_themes0000001?: Maybe<Mv_Learning_Themes0000001_Mutation_Response>;
-  /** update data of the table: "mv_learning_themes_2" */
-  update_mv_learning_themes_2?: Maybe<Mv_Learning_Themes_2_Mutation_Response>;
   /** update data of the table: "mv_lessons" */
   update_mv_lessons?: Maybe<Mv_Lessons_Mutation_Response>;
   /** update data of the table: "mv_lessons0000001" */
@@ -14445,8 +14421,8 @@ export type Mutation_Root = {
   update_mv_programmes_5?: Maybe<Mv_Programmes_5_Mutation_Response>;
   /** update data of the table: "mv_programmes_6" */
   update_mv_programmes_6?: Maybe<Mv_Programmes_6_Mutation_Response>;
-  /** update data of the table: "mv_question_images_1" */
-  update_mv_question_images_1?: Maybe<Mv_Question_Images_1_Mutation_Response>;
+  /** update data of the table: "mv_programmes_7" */
+  update_mv_programmes_7?: Maybe<Mv_Programmes_7_Mutation_Response>;
   /** update data of the table: "mv_questions" */
   update_mv_questions?: Maybe<Mv_Questions_Mutation_Response>;
   /** update data of the table: "mv_questions0000001" */
@@ -15013,24 +14989,6 @@ export type Mutation_RootDelete_Mv_Key_StagesArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Mv_Learning_ThemesArgs = {
-  where: Mv_Learning_Themes_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Mv_Learning_Themes0000001Args = {
-  where: Mv_Learning_Themes0000001_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Mv_Learning_Themes_2Args = {
-  where: Mv_Learning_Themes_2_Bool_Exp;
-};
-
-
-/** mutation root */
 export type Mutation_RootDelete_Mv_LessonsArgs = {
   where: Mv_Lessons_Bool_Exp;
 };
@@ -15109,8 +15067,8 @@ export type Mutation_RootDelete_Mv_Programmes_6Args = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Mv_Question_Images_1Args = {
-  where: Mv_Question_Images_1_Bool_Exp;
+export type Mutation_RootDelete_Mv_Programmes_7Args = {
+  where: Mv_Programmes_7_Bool_Exp;
 };
 
 
@@ -16072,42 +16030,6 @@ export type Mutation_RootInsert_Mv_Key_Stages_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Mv_Learning_ThemesArgs = {
-  objects: Array<Mv_Learning_Themes_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Learning_Themes0000001Args = {
-  objects: Array<Mv_Learning_Themes0000001_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Learning_Themes0000001_OneArgs = {
-  object: Mv_Learning_Themes0000001_Insert_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Learning_Themes_2Args = {
-  objects: Array<Mv_Learning_Themes_2_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Learning_Themes_2_OneArgs = {
-  object: Mv_Learning_Themes_2_Insert_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Learning_Themes_OneArgs = {
-  object: Mv_Learning_Themes_Insert_Input;
-};
-
-
-/** mutation root */
 export type Mutation_RootInsert_Mv_LessonsArgs = {
   objects: Array<Mv_Lessons_Insert_Input>;
 };
@@ -16258,20 +16180,20 @@ export type Mutation_RootInsert_Mv_Programmes_6_OneArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Mv_Programmes_7Args = {
+  objects: Array<Mv_Programmes_7_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Mv_Programmes_7_OneArgs = {
+  object: Mv_Programmes_7_Insert_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_Mv_Programmes_OneArgs = {
   object: Mv_Programmes_Insert_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Question_Images_1Args = {
-  objects: Array<Mv_Question_Images_1_Insert_Input>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Mv_Question_Images_1_OneArgs = {
-  object: Mv_Question_Images_1_Insert_Input;
 };
 
 
@@ -17460,30 +17382,6 @@ export type Mutation_RootUpdate_Mv_Key_StagesArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Mv_Learning_ThemesArgs = {
-  _inc?: InputMaybe<Mv_Learning_Themes_Inc_Input>;
-  _set?: InputMaybe<Mv_Learning_Themes_Set_Input>;
-  where: Mv_Learning_Themes_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Mv_Learning_Themes0000001Args = {
-  _inc?: InputMaybe<Mv_Learning_Themes0000001_Inc_Input>;
-  _set?: InputMaybe<Mv_Learning_Themes0000001_Set_Input>;
-  where: Mv_Learning_Themes0000001_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Mv_Learning_Themes_2Args = {
-  _inc?: InputMaybe<Mv_Learning_Themes_2_Inc_Input>;
-  _set?: InputMaybe<Mv_Learning_Themes_2_Set_Input>;
-  where: Mv_Learning_Themes_2_Bool_Exp;
-};
-
-
-/** mutation root */
 export type Mutation_RootUpdate_Mv_LessonsArgs = {
   _inc?: InputMaybe<Mv_Lessons_Inc_Input>;
   _set?: InputMaybe<Mv_Lessons_Set_Input>;
@@ -17588,9 +17486,10 @@ export type Mutation_RootUpdate_Mv_Programmes_6Args = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Mv_Question_Images_1Args = {
-  _set?: InputMaybe<Mv_Question_Images_1_Set_Input>;
-  where: Mv_Question_Images_1_Bool_Exp;
+export type Mutation_RootUpdate_Mv_Programmes_7Args = {
+  _inc?: InputMaybe<Mv_Programmes_7_Inc_Input>;
+  _set?: InputMaybe<Mv_Programmes_7_Set_Input>;
+  where: Mv_Programmes_7_Bool_Exp;
 };
 
 
@@ -18898,912 +18797,6 @@ export type Mv_Key_Stages_Set_Input = {
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
-/** columns and relationships of "mv_learning_themes" */
-export type Mv_Learning_Themes = {
-  __typename?: 'mv_learning_themes';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** columns and relationships of "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001 = {
-  __typename?: 'mv_learning_themes0000001';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregated selection of "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Aggregate = {
-  __typename?: 'mv_learning_themes0000001_aggregate';
-  aggregate?: Maybe<Mv_Learning_Themes0000001_Aggregate_Fields>;
-  nodes: Array<Mv_Learning_Themes0000001>;
-};
-
-/** aggregate fields of "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Aggregate_Fields = {
-  __typename?: 'mv_learning_themes0000001_aggregate_fields';
-  avg?: Maybe<Mv_Learning_Themes0000001_Avg_Fields>;
-  count?: Maybe<Scalars['Int']['output']>;
-  max?: Maybe<Mv_Learning_Themes0000001_Max_Fields>;
-  min?: Maybe<Mv_Learning_Themes0000001_Min_Fields>;
-  stddev?: Maybe<Mv_Learning_Themes0000001_Stddev_Fields>;
-  stddev_pop?: Maybe<Mv_Learning_Themes0000001_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Mv_Learning_Themes0000001_Stddev_Samp_Fields>;
-  sum?: Maybe<Mv_Learning_Themes0000001_Sum_Fields>;
-  var_pop?: Maybe<Mv_Learning_Themes0000001_Var_Pop_Fields>;
-  var_samp?: Maybe<Mv_Learning_Themes0000001_Var_Samp_Fields>;
-  variance?: Maybe<Mv_Learning_Themes0000001_Variance_Fields>;
-};
-
-
-/** aggregate fields of "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Mv_Learning_Themes0000001_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Aggregate_Order_By = {
-  avg?: InputMaybe<Mv_Learning_Themes0000001_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Mv_Learning_Themes0000001_Max_Order_By>;
-  min?: InputMaybe<Mv_Learning_Themes0000001_Min_Order_By>;
-  stddev?: InputMaybe<Mv_Learning_Themes0000001_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Mv_Learning_Themes0000001_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Mv_Learning_Themes0000001_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Mv_Learning_Themes0000001_Sum_Order_By>;
-  var_pop?: InputMaybe<Mv_Learning_Themes0000001_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Mv_Learning_Themes0000001_Var_Samp_Order_By>;
-  variance?: InputMaybe<Mv_Learning_Themes0000001_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Arr_Rel_Insert_Input = {
-  data: Array<Mv_Learning_Themes0000001_Insert_Input>;
-};
-
-/** aggregate avg on columns */
-export type Mv_Learning_Themes0000001_Avg_Fields = {
-  __typename?: 'mv_learning_themes0000001_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by avg() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "mv_learning_themes0000001". All fields are combined with a logical 'AND'. */
-export type Mv_Learning_Themes0000001_Bool_Exp = {
-  _and?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>>>;
-  _not?: InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>;
-  _or?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>>>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
-  key_stage_title?: InputMaybe<String_Comparison_Exp>;
-  slug?: InputMaybe<String_Comparison_Exp>;
-  subject_slug?: InputMaybe<String_Comparison_Exp>;
-  subject_title?: InputMaybe<String_Comparison_Exp>;
-  tier_name?: InputMaybe<String_Comparison_Exp>;
-  tier_slug?: InputMaybe<String_Comparison_Exp>;
-  title?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** input type for incrementing integer column in table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** input type for inserting data into table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Insert_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type Mv_Learning_Themes0000001_Max_Fields = {
-  __typename?: 'mv_learning_themes0000001_max_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Max_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Mv_Learning_Themes0000001_Min_Fields = {
-  __typename?: 'mv_learning_themes0000001_min_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Min_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Mutation_Response = {
-  __typename?: 'mv_learning_themes0000001_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Mv_Learning_Themes0000001>;
-};
-
-/** input type for inserting object relation for remote table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Obj_Rel_Insert_Input = {
-  data: Mv_Learning_Themes0000001_Insert_Input;
-};
-
-/** ordering options when selecting data from "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "mv_learning_themes0000001" */
-export enum Mv_Learning_Themes0000001_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  KeyStageSlug = 'key_stage_slug',
-  /** column name */
-  KeyStageTitle = 'key_stage_title',
-  /** column name */
-  Slug = 'slug',
-  /** column name */
-  SubjectSlug = 'subject_slug',
-  /** column name */
-  SubjectTitle = 'subject_title',
-  /** column name */
-  TierName = 'tier_name',
-  /** column name */
-  TierSlug = 'tier_slug',
-  /** column name */
-  Title = 'title'
-}
-
-/** input type for updating data in table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Set_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Mv_Learning_Themes0000001_Stddev_Fields = {
-  __typename?: 'mv_learning_themes0000001_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Mv_Learning_Themes0000001_Stddev_Pop_Fields = {
-  __typename?: 'mv_learning_themes0000001_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_pop() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Mv_Learning_Themes0000001_Stddev_Samp_Fields = {
-  __typename?: 'mv_learning_themes0000001_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_samp() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Mv_Learning_Themes0000001_Sum_Fields = {
-  __typename?: 'mv_learning_themes0000001_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** order by sum() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_pop on columns */
-export type Mv_Learning_Themes0000001_Var_Pop_Fields = {
-  __typename?: 'mv_learning_themes0000001_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_pop() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Mv_Learning_Themes0000001_Var_Samp_Fields = {
-  __typename?: 'mv_learning_themes0000001_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_samp() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Mv_Learning_Themes0000001_Variance_Fields = {
-  __typename?: 'mv_learning_themes0000001_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by variance() on columns of table "mv_learning_themes0000001" */
-export type Mv_Learning_Themes0000001_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** columns and relationships of "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2 = {
-  __typename?: 'mv_learning_themes_2';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** aggregated selection of "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Aggregate = {
-  __typename?: 'mv_learning_themes_2_aggregate';
-  aggregate?: Maybe<Mv_Learning_Themes_2_Aggregate_Fields>;
-  nodes: Array<Mv_Learning_Themes_2>;
-};
-
-/** aggregate fields of "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Aggregate_Fields = {
-  __typename?: 'mv_learning_themes_2_aggregate_fields';
-  avg?: Maybe<Mv_Learning_Themes_2_Avg_Fields>;
-  count?: Maybe<Scalars['Int']['output']>;
-  max?: Maybe<Mv_Learning_Themes_2_Max_Fields>;
-  min?: Maybe<Mv_Learning_Themes_2_Min_Fields>;
-  stddev?: Maybe<Mv_Learning_Themes_2_Stddev_Fields>;
-  stddev_pop?: Maybe<Mv_Learning_Themes_2_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Mv_Learning_Themes_2_Stddev_Samp_Fields>;
-  sum?: Maybe<Mv_Learning_Themes_2_Sum_Fields>;
-  var_pop?: Maybe<Mv_Learning_Themes_2_Var_Pop_Fields>;
-  var_samp?: Maybe<Mv_Learning_Themes_2_Var_Samp_Fields>;
-  variance?: Maybe<Mv_Learning_Themes_2_Variance_Fields>;
-};
-
-
-/** aggregate fields of "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Mv_Learning_Themes_2_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Aggregate_Order_By = {
-  avg?: InputMaybe<Mv_Learning_Themes_2_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Mv_Learning_Themes_2_Max_Order_By>;
-  min?: InputMaybe<Mv_Learning_Themes_2_Min_Order_By>;
-  stddev?: InputMaybe<Mv_Learning_Themes_2_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Mv_Learning_Themes_2_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Mv_Learning_Themes_2_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Mv_Learning_Themes_2_Sum_Order_By>;
-  var_pop?: InputMaybe<Mv_Learning_Themes_2_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Mv_Learning_Themes_2_Var_Samp_Order_By>;
-  variance?: InputMaybe<Mv_Learning_Themes_2_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Arr_Rel_Insert_Input = {
-  data: Array<Mv_Learning_Themes_2_Insert_Input>;
-};
-
-/** aggregate avg on columns */
-export type Mv_Learning_Themes_2_Avg_Fields = {
-  __typename?: 'mv_learning_themes_2_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by avg() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "mv_learning_themes_2". All fields are combined with a logical 'AND'. */
-export type Mv_Learning_Themes_2_Bool_Exp = {
-  _and?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes_2_Bool_Exp>>>;
-  _not?: InputMaybe<Mv_Learning_Themes_2_Bool_Exp>;
-  _or?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes_2_Bool_Exp>>>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
-  key_stage_title?: InputMaybe<String_Comparison_Exp>;
-  slug?: InputMaybe<String_Comparison_Exp>;
-  subject_slug?: InputMaybe<String_Comparison_Exp>;
-  subject_title?: InputMaybe<String_Comparison_Exp>;
-  tier_name?: InputMaybe<String_Comparison_Exp>;
-  tier_slug?: InputMaybe<String_Comparison_Exp>;
-  title?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** input type for incrementing integer column in table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** input type for inserting data into table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Insert_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type Mv_Learning_Themes_2_Max_Fields = {
-  __typename?: 'mv_learning_themes_2_max_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Max_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Mv_Learning_Themes_2_Min_Fields = {
-  __typename?: 'mv_learning_themes_2_min_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Min_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Mutation_Response = {
-  __typename?: 'mv_learning_themes_2_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Mv_Learning_Themes_2>;
-};
-
-/** input type for inserting object relation for remote table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Obj_Rel_Insert_Input = {
-  data: Mv_Learning_Themes_2_Insert_Input;
-};
-
-/** ordering options when selecting data from "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "mv_learning_themes_2" */
-export enum Mv_Learning_Themes_2_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  KeyStageSlug = 'key_stage_slug',
-  /** column name */
-  KeyStageTitle = 'key_stage_title',
-  /** column name */
-  Slug = 'slug',
-  /** column name */
-  SubjectSlug = 'subject_slug',
-  /** column name */
-  SubjectTitle = 'subject_title',
-  /** column name */
-  TierName = 'tier_name',
-  /** column name */
-  TierSlug = 'tier_slug',
-  /** column name */
-  Title = 'title'
-}
-
-/** input type for updating data in table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Set_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Mv_Learning_Themes_2_Stddev_Fields = {
-  __typename?: 'mv_learning_themes_2_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Mv_Learning_Themes_2_Stddev_Pop_Fields = {
-  __typename?: 'mv_learning_themes_2_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_pop() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Mv_Learning_Themes_2_Stddev_Samp_Fields = {
-  __typename?: 'mv_learning_themes_2_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_samp() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Mv_Learning_Themes_2_Sum_Fields = {
-  __typename?: 'mv_learning_themes_2_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** order by sum() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_pop on columns */
-export type Mv_Learning_Themes_2_Var_Pop_Fields = {
-  __typename?: 'mv_learning_themes_2_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_pop() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Mv_Learning_Themes_2_Var_Samp_Fields = {
-  __typename?: 'mv_learning_themes_2_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_samp() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Mv_Learning_Themes_2_Variance_Fields = {
-  __typename?: 'mv_learning_themes_2_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by variance() on columns of table "mv_learning_themes_2" */
-export type Mv_Learning_Themes_2_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregated selection of "mv_learning_themes" */
-export type Mv_Learning_Themes_Aggregate = {
-  __typename?: 'mv_learning_themes_aggregate';
-  aggregate?: Maybe<Mv_Learning_Themes_Aggregate_Fields>;
-  nodes: Array<Mv_Learning_Themes>;
-};
-
-/** aggregate fields of "mv_learning_themes" */
-export type Mv_Learning_Themes_Aggregate_Fields = {
-  __typename?: 'mv_learning_themes_aggregate_fields';
-  avg?: Maybe<Mv_Learning_Themes_Avg_Fields>;
-  count?: Maybe<Scalars['Int']['output']>;
-  max?: Maybe<Mv_Learning_Themes_Max_Fields>;
-  min?: Maybe<Mv_Learning_Themes_Min_Fields>;
-  stddev?: Maybe<Mv_Learning_Themes_Stddev_Fields>;
-  stddev_pop?: Maybe<Mv_Learning_Themes_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Mv_Learning_Themes_Stddev_Samp_Fields>;
-  sum?: Maybe<Mv_Learning_Themes_Sum_Fields>;
-  var_pop?: Maybe<Mv_Learning_Themes_Var_Pop_Fields>;
-  var_samp?: Maybe<Mv_Learning_Themes_Var_Samp_Fields>;
-  variance?: Maybe<Mv_Learning_Themes_Variance_Fields>;
-};
-
-
-/** aggregate fields of "mv_learning_themes" */
-export type Mv_Learning_Themes_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Mv_Learning_Themes_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Aggregate_Order_By = {
-  avg?: InputMaybe<Mv_Learning_Themes_Avg_Order_By>;
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Mv_Learning_Themes_Max_Order_By>;
-  min?: InputMaybe<Mv_Learning_Themes_Min_Order_By>;
-  stddev?: InputMaybe<Mv_Learning_Themes_Stddev_Order_By>;
-  stddev_pop?: InputMaybe<Mv_Learning_Themes_Stddev_Pop_Order_By>;
-  stddev_samp?: InputMaybe<Mv_Learning_Themes_Stddev_Samp_Order_By>;
-  sum?: InputMaybe<Mv_Learning_Themes_Sum_Order_By>;
-  var_pop?: InputMaybe<Mv_Learning_Themes_Var_Pop_Order_By>;
-  var_samp?: InputMaybe<Mv_Learning_Themes_Var_Samp_Order_By>;
-  variance?: InputMaybe<Mv_Learning_Themes_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "mv_learning_themes" */
-export type Mv_Learning_Themes_Arr_Rel_Insert_Input = {
-  data: Array<Mv_Learning_Themes_Insert_Input>;
-};
-
-/** aggregate avg on columns */
-export type Mv_Learning_Themes_Avg_Fields = {
-  __typename?: 'mv_learning_themes_avg_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by avg() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Avg_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "mv_learning_themes". All fields are combined with a logical 'AND'. */
-export type Mv_Learning_Themes_Bool_Exp = {
-  _and?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes_Bool_Exp>>>;
-  _not?: InputMaybe<Mv_Learning_Themes_Bool_Exp>;
-  _or?: InputMaybe<Array<InputMaybe<Mv_Learning_Themes_Bool_Exp>>>;
-  id?: InputMaybe<Int_Comparison_Exp>;
-  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
-  key_stage_title?: InputMaybe<String_Comparison_Exp>;
-  slug?: InputMaybe<String_Comparison_Exp>;
-  subject_slug?: InputMaybe<String_Comparison_Exp>;
-  subject_title?: InputMaybe<String_Comparison_Exp>;
-  tier_name?: InputMaybe<String_Comparison_Exp>;
-  tier_slug?: InputMaybe<String_Comparison_Exp>;
-  title?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** input type for incrementing integer column in table "mv_learning_themes" */
-export type Mv_Learning_Themes_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-};
-
-/** input type for inserting data into table "mv_learning_themes" */
-export type Mv_Learning_Themes_Insert_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type Mv_Learning_Themes_Max_Fields = {
-  __typename?: 'mv_learning_themes_max_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Max_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Mv_Learning_Themes_Min_Fields = {
-  __typename?: 'mv_learning_themes_min_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['String']['output']>;
-  slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
-  subject_title?: Maybe<Scalars['String']['output']>;
-  tier_name?: Maybe<Scalars['String']['output']>;
-  tier_slug?: Maybe<Scalars['String']['output']>;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Min_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "mv_learning_themes" */
-export type Mv_Learning_Themes_Mutation_Response = {
-  __typename?: 'mv_learning_themes_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Mv_Learning_Themes>;
-};
-
-/** input type for inserting object relation for remote table "mv_learning_themes" */
-export type Mv_Learning_Themes_Obj_Rel_Insert_Input = {
-  data: Mv_Learning_Themes_Insert_Input;
-};
-
-/** ordering options when selecting data from "mv_learning_themes" */
-export type Mv_Learning_Themes_Order_By = {
-  id?: InputMaybe<Order_By>;
-  key_stage_slug?: InputMaybe<Order_By>;
-  key_stage_title?: InputMaybe<Order_By>;
-  slug?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
-  subject_title?: InputMaybe<Order_By>;
-  tier_name?: InputMaybe<Order_By>;
-  tier_slug?: InputMaybe<Order_By>;
-  title?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "mv_learning_themes" */
-export enum Mv_Learning_Themes_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  KeyStageSlug = 'key_stage_slug',
-  /** column name */
-  KeyStageTitle = 'key_stage_title',
-  /** column name */
-  Slug = 'slug',
-  /** column name */
-  SubjectSlug = 'subject_slug',
-  /** column name */
-  SubjectTitle = 'subject_title',
-  /** column name */
-  TierName = 'tier_name',
-  /** column name */
-  TierSlug = 'tier_slug',
-  /** column name */
-  Title = 'title'
-}
-
-/** input type for updating data in table "mv_learning_themes" */
-export type Mv_Learning_Themes_Set_Input = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['String']['input']>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_title?: InputMaybe<Scalars['String']['input']>;
-  tier_name?: InputMaybe<Scalars['String']['input']>;
-  tier_slug?: InputMaybe<Scalars['String']['input']>;
-  title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate stddev on columns */
-export type Mv_Learning_Themes_Stddev_Fields = {
-  __typename?: 'mv_learning_themes_stddev_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Mv_Learning_Themes_Stddev_Pop_Fields = {
-  __typename?: 'mv_learning_themes_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_pop() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Mv_Learning_Themes_Stddev_Samp_Fields = {
-  __typename?: 'mv_learning_themes_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by stddev_samp() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Mv_Learning_Themes_Sum_Fields = {
-  __typename?: 'mv_learning_themes_sum_fields';
-  id?: Maybe<Scalars['Int']['output']>;
-};
-
-/** order by sum() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Sum_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_pop on columns */
-export type Mv_Learning_Themes_Var_Pop_Fields = {
-  __typename?: 'mv_learning_themes_var_pop_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_pop() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Mv_Learning_Themes_Var_Samp_Fields = {
-  __typename?: 'mv_learning_themes_var_samp_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by var_samp() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Mv_Learning_Themes_Variance_Fields = {
-  __typename?: 'mv_learning_themes_variance_fields';
-  id?: Maybe<Scalars['Float']['output']>;
-};
-
-/** order by variance() on columns of table "mv_learning_themes" */
-export type Mv_Learning_Themes_Variance_Order_By = {
-  id?: InputMaybe<Order_By>;
-};
-
 /** columns and relationships of "mv_lessons" */
 export type Mv_Lessons = {
   __typename?: 'mv_lessons';
@@ -19827,6 +18820,7 @@ export type Mv_Lessons = {
   theme_slug?: Maybe<Scalars['String']['output']>;
   theme_title?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  transcript?: Maybe<Scalars['String']['output']>;
   transcript_sentences?: Maybe<Scalars['_text']['output']>;
   unit_slug?: Maybe<Scalars['String']['output']>;
   unit_title?: Maybe<Scalars['String']['output']>;
@@ -23378,6 +22372,7 @@ export type Mv_Lessons_Bool_Exp = {
   theme_slug?: InputMaybe<String_Comparison_Exp>;
   theme_title?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
+  transcript?: InputMaybe<String_Comparison_Exp>;
   transcript_sentences?: InputMaybe<_Text_Comparison_Exp>;
   unit_slug?: InputMaybe<String_Comparison_Exp>;
   unit_title?: InputMaybe<String_Comparison_Exp>;
@@ -23419,6 +22414,7 @@ export type Mv_Lessons_Insert_Input = {
   theme_slug?: InputMaybe<Scalars['String']['input']>;
   theme_title?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  transcript?: InputMaybe<Scalars['String']['input']>;
   transcript_sentences?: InputMaybe<Scalars['_text']['input']>;
   unit_slug?: InputMaybe<Scalars['String']['input']>;
   unit_title?: InputMaybe<Scalars['String']['input']>;
@@ -23448,6 +22444,7 @@ export type Mv_Lessons_Max_Fields = {
   theme_slug?: Maybe<Scalars['String']['output']>;
   theme_title?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  transcript?: Maybe<Scalars['String']['output']>;
   unit_slug?: Maybe<Scalars['String']['output']>;
   unit_title?: Maybe<Scalars['String']['output']>;
   video_count?: Maybe<Scalars['Int']['output']>;
@@ -23475,6 +22472,7 @@ export type Mv_Lessons_Max_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -23503,6 +22501,7 @@ export type Mv_Lessons_Min_Fields = {
   theme_slug?: Maybe<Scalars['String']['output']>;
   theme_title?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
+  transcript?: Maybe<Scalars['String']['output']>;
   unit_slug?: Maybe<Scalars['String']['output']>;
   unit_title?: Maybe<Scalars['String']['output']>;
   video_count?: Maybe<Scalars['Int']['output']>;
@@ -23530,6 +22529,7 @@ export type Mv_Lessons_Min_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
   video_count?: InputMaybe<Order_By>;
@@ -23575,6 +22575,7 @@ export type Mv_Lessons_Order_By = {
   theme_slug?: InputMaybe<Order_By>;
   theme_title?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
+  transcript?: InputMaybe<Order_By>;
   transcript_sentences?: InputMaybe<Order_By>;
   unit_slug?: InputMaybe<Order_By>;
   unit_title?: InputMaybe<Order_By>;
@@ -23628,6 +22629,8 @@ export enum Mv_Lessons_Select_Column {
   /** column name */
   Title = 'title',
   /** column name */
+  Transcript = 'transcript',
+  /** column name */
   TranscriptSentences = 'transcript_sentences',
   /** column name */
   UnitSlug = 'unit_slug',
@@ -23667,6 +22670,7 @@ export type Mv_Lessons_Set_Input = {
   theme_slug?: InputMaybe<Scalars['String']['input']>;
   theme_title?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+  transcript?: InputMaybe<Scalars['String']['input']>;
   transcript_sentences?: InputMaybe<Scalars['_text']['input']>;
   unit_slug?: InputMaybe<Scalars['String']['input']>;
   unit_title?: InputMaybe<Scalars['String']['input']>;
@@ -24095,11 +23099,13 @@ export type Mv_Programmes_2 = {
   __typename?: 'mv_programmes_2';
   active_lesson_count?: Maybe<Scalars['numeric']['output']>;
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
   subject_title?: Maybe<Scalars['String']['output']>;
   tier_slug?: Maybe<Scalars['String']['output']>;
-  unit_count?: Maybe<Scalars['bigint']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** aggregated selection of "mv_programmes_2" */
@@ -24156,13 +23162,13 @@ export type Mv_Programmes_2_Arr_Rel_Insert_Input = {
 export type Mv_Programmes_2_Avg_Fields = {
   __typename?: 'mv_programmes_2_avg_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by avg() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Avg_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_programmes_2". All fields are combined with a logical 'AND'. */
@@ -24172,28 +23178,32 @@ export type Mv_Programmes_2_Bool_Exp = {
   _or?: InputMaybe<Array<InputMaybe<Mv_Programmes_2_Bool_Exp>>>;
   active_lesson_count?: InputMaybe<Numeric_Comparison_Exp>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
+  key_stage_title?: InputMaybe<String_Comparison_Exp>;
   programme_slug?: InputMaybe<String_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
   subject_title?: InputMaybe<String_Comparison_Exp>;
   tier_slug?: InputMaybe<String_Comparison_Exp>;
-  unit_count?: InputMaybe<Bigint_Comparison_Exp>;
+  tier_title?: InputMaybe<String_Comparison_Exp>;
+  total_unit_count?: InputMaybe<Bigint_Comparison_Exp>;
 };
 
 /** input type for incrementing integer column in table "mv_programmes_2" */
 export type Mv_Programmes_2_Inc_Input = {
   active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
-  unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
 };
 
 /** input type for inserting data into table "mv_programmes_2" */
 export type Mv_Programmes_2_Insert_Input = {
   active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
   key_stage_slug?: InputMaybe<Scalars['String']['input']>;
+  key_stage_title?: InputMaybe<Scalars['String']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
   subject_slug?: InputMaybe<Scalars['String']['input']>;
   subject_title?: InputMaybe<Scalars['String']['input']>;
   tier_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  tier_title?: InputMaybe<Scalars['String']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
 };
 
 /** aggregate max on columns */
@@ -24201,22 +23211,26 @@ export type Mv_Programmes_2_Max_Fields = {
   __typename?: 'mv_programmes_2_max_fields';
   active_lesson_count?: Maybe<Scalars['numeric']['output']>;
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
   subject_title?: Maybe<Scalars['String']['output']>;
   tier_slug?: Maybe<Scalars['String']['output']>;
-  unit_count?: Maybe<Scalars['bigint']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** order by max() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Max_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   tier_slug?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -24224,22 +23238,26 @@ export type Mv_Programmes_2_Min_Fields = {
   __typename?: 'mv_programmes_2_min_fields';
   active_lesson_count?: Maybe<Scalars['numeric']['output']>;
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
   subject_title?: Maybe<Scalars['String']['output']>;
   tier_slug?: Maybe<Scalars['String']['output']>;
-  unit_count?: Maybe<Scalars['bigint']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** order by min() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Min_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   tier_slug?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "mv_programmes_2" */
@@ -24260,11 +23278,13 @@ export type Mv_Programmes_2_Obj_Rel_Insert_Input = {
 export type Mv_Programmes_2_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
   key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   tier_slug?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** select columns of table "mv_programmes_2" */
@@ -24274,6 +23294,8 @@ export enum Mv_Programmes_2_Select_Column {
   /** column name */
   KeyStageSlug = 'key_stage_slug',
   /** column name */
+  KeyStageTitle = 'key_stage_title',
+  /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
   SubjectSlug = 'subject_slug',
@@ -24282,109 +23304,113 @@ export enum Mv_Programmes_2_Select_Column {
   /** column name */
   TierSlug = 'tier_slug',
   /** column name */
-  UnitCount = 'unit_count'
+  TierTitle = 'tier_title',
+  /** column name */
+  TotalUnitCount = 'total_unit_count'
 }
 
 /** input type for updating data in table "mv_programmes_2" */
 export type Mv_Programmes_2_Set_Input = {
   active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
   key_stage_slug?: InputMaybe<Scalars['String']['input']>;
+  key_stage_title?: InputMaybe<Scalars['String']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
   subject_slug?: InputMaybe<Scalars['String']['input']>;
   subject_title?: InputMaybe<Scalars['String']['input']>;
   tier_slug?: InputMaybe<Scalars['String']['input']>;
-  unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  tier_title?: InputMaybe<Scalars['String']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
 };
 
 /** aggregate stddev on columns */
 export type Mv_Programmes_2_Stddev_Fields = {
   __typename?: 'mv_programmes_2_stddev_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Stddev_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Mv_Programmes_2_Stddev_Pop_Fields = {
   __typename?: 'mv_programmes_2_stddev_pop_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Stddev_Pop_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Mv_Programmes_2_Stddev_Samp_Fields = {
   __typename?: 'mv_programmes_2_stddev_samp_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Stddev_Samp_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Mv_Programmes_2_Sum_Fields = {
   __typename?: 'mv_programmes_2_sum_fields';
   active_lesson_count?: Maybe<Scalars['numeric']['output']>;
-  unit_count?: Maybe<Scalars['bigint']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** order by sum() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Sum_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
 export type Mv_Programmes_2_Var_Pop_Fields = {
   __typename?: 'mv_programmes_2_var_pop_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_pop() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Var_Pop_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Mv_Programmes_2_Var_Samp_Fields = {
   __typename?: 'mv_programmes_2_var_samp_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_samp() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Var_Samp_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Mv_Programmes_2_Variance_Fields = {
   __typename?: 'mv_programmes_2_variance_fields';
   active_lesson_count?: Maybe<Scalars['Float']['output']>;
-  unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by variance() on columns of table "mv_programmes_2" */
 export type Mv_Programmes_2_Variance_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
-  unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_programmes_3" */
@@ -24602,7 +23628,7 @@ export enum Mv_Programmes_3_Select_Column {
   /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
-  SubjectActiveLessonCount = 'subject_active_lesson_count',
+  nonDuplicateSubjectLessonCount = 'subject_active_lesson_count',
   /** column name */
   SubjectSlug = 'subject_slug',
   /** column name */
@@ -24962,7 +23988,7 @@ export enum Mv_Programmes_5_Select_Column {
   /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
-  SubjectActiveLessonCount = 'subject_active_lesson_count',
+  nonDuplicateSubjectLessonCount = 'subject_active_lesson_count',
   /** column name */
   SubjectSlug = 'subject_slug',
   /** column name */
@@ -25337,7 +24363,7 @@ export enum Mv_Programmes_6_Select_Column {
   /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
-  SubjectActiveLessonCount = 'subject_active_lesson_count',
+  nonDuplicateSubjectLessonCount = 'subject_active_lesson_count',
   /** column name */
   SubjectSlug = 'subject_slug',
   /** column name */
@@ -25481,6 +24507,409 @@ export type Mv_Programmes_6_Variance_Order_By = {
   active_lesson_count?: InputMaybe<Order_By>;
   active_unit_count?: InputMaybe<Order_By>;
   subject_active_lesson_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** columns and relationships of "mv_programmes_7" */
+export type Mv_Programmes_7 = {
+  __typename?: 'mv_programmes_7';
+  active_lesson_count?: Maybe<Scalars['numeric']['output']>;
+  active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['bigint']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** aggregated selection of "mv_programmes_7" */
+export type Mv_Programmes_7_Aggregate = {
+  __typename?: 'mv_programmes_7_aggregate';
+  aggregate?: Maybe<Mv_Programmes_7_Aggregate_Fields>;
+  nodes: Array<Mv_Programmes_7>;
+};
+
+/** aggregate fields of "mv_programmes_7" */
+export type Mv_Programmes_7_Aggregate_Fields = {
+  __typename?: 'mv_programmes_7_aggregate_fields';
+  avg?: Maybe<Mv_Programmes_7_Avg_Fields>;
+  count?: Maybe<Scalars['Int']['output']>;
+  max?: Maybe<Mv_Programmes_7_Max_Fields>;
+  min?: Maybe<Mv_Programmes_7_Min_Fields>;
+  stddev?: Maybe<Mv_Programmes_7_Stddev_Fields>;
+  stddev_pop?: Maybe<Mv_Programmes_7_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Mv_Programmes_7_Stddev_Samp_Fields>;
+  sum?: Maybe<Mv_Programmes_7_Sum_Fields>;
+  var_pop?: Maybe<Mv_Programmes_7_Var_Pop_Fields>;
+  var_samp?: Maybe<Mv_Programmes_7_Var_Samp_Fields>;
+  variance?: Maybe<Mv_Programmes_7_Variance_Fields>;
+};
+
+
+/** aggregate fields of "mv_programmes_7" */
+export type Mv_Programmes_7_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Mv_Programmes_7_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** order by aggregate values of table "mv_programmes_7" */
+export type Mv_Programmes_7_Aggregate_Order_By = {
+  avg?: InputMaybe<Mv_Programmes_7_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Mv_Programmes_7_Max_Order_By>;
+  min?: InputMaybe<Mv_Programmes_7_Min_Order_By>;
+  stddev?: InputMaybe<Mv_Programmes_7_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Mv_Programmes_7_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Mv_Programmes_7_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Mv_Programmes_7_Sum_Order_By>;
+  var_pop?: InputMaybe<Mv_Programmes_7_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Mv_Programmes_7_Var_Samp_Order_By>;
+  variance?: InputMaybe<Mv_Programmes_7_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "mv_programmes_7" */
+export type Mv_Programmes_7_Arr_Rel_Insert_Input = {
+  data: Array<Mv_Programmes_7_Insert_Input>;
+};
+
+/** aggregate avg on columns */
+export type Mv_Programmes_7_Avg_Fields = {
+  __typename?: 'mv_programmes_7_avg_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by avg() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Avg_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "mv_programmes_7". All fields are combined with a logical 'AND'. */
+export type Mv_Programmes_7_Bool_Exp = {
+  _and?: InputMaybe<Array<InputMaybe<Mv_Programmes_7_Bool_Exp>>>;
+  _not?: InputMaybe<Mv_Programmes_7_Bool_Exp>;
+  _or?: InputMaybe<Array<InputMaybe<Mv_Programmes_7_Bool_Exp>>>;
+  active_lesson_count?: InputMaybe<Numeric_Comparison_Exp>;
+  active_unit_count?: InputMaybe<Bigint_Comparison_Exp>;
+  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
+  key_stage_title?: InputMaybe<String_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_active_lesson_count?: InputMaybe<Bigint_Comparison_Exp>;
+  subject_active_unit_count?: InputMaybe<Bigint_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_title?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
+  tier_title?: InputMaybe<String_Comparison_Exp>;
+  total_unit_count?: InputMaybe<Bigint_Comparison_Exp>;
+};
+
+/** input type for incrementing integer column in table "mv_programmes_7" */
+export type Mv_Programmes_7_Inc_Input = {
+  active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
+  active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_active_lesson_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+};
+
+/** input type for inserting data into table "mv_programmes_7" */
+export type Mv_Programmes_7_Insert_Input = {
+  active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
+  active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
+  key_stage_title?: InputMaybe<Scalars['String']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_active_lesson_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_title?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  tier_title?: InputMaybe<Scalars['String']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+};
+
+/** aggregate max on columns */
+export type Mv_Programmes_7_Max_Fields = {
+  __typename?: 'mv_programmes_7_max_fields';
+  active_lesson_count?: Maybe<Scalars['numeric']['output']>;
+  active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['bigint']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** order by max() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Max_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Mv_Programmes_7_Min_Fields = {
+  __typename?: 'mv_programmes_7_min_fields';
+  active_lesson_count?: Maybe<Scalars['numeric']['output']>;
+  active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['bigint']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
+  tier_title?: Maybe<Scalars['String']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** order by min() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Min_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "mv_programmes_7" */
+export type Mv_Programmes_7_Mutation_Response = {
+  __typename?: 'mv_programmes_7_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Mv_Programmes_7>;
+};
+
+/** input type for inserting object relation for remote table "mv_programmes_7" */
+export type Mv_Programmes_7_Obj_Rel_Insert_Input = {
+  data: Mv_Programmes_7_Insert_Input;
+};
+
+/** ordering options when selecting data from "mv_programmes_7" */
+export type Mv_Programmes_7_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  key_stage_slug?: InputMaybe<Order_By>;
+  key_stage_title?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  subject_slug?: InputMaybe<Order_By>;
+  subject_title?: InputMaybe<Order_By>;
+  tier_slug?: InputMaybe<Order_By>;
+  tier_title?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "mv_programmes_7" */
+export enum Mv_Programmes_7_Select_Column {
+  /** column name */
+  ActiveLessonCount = 'active_lesson_count',
+  /** column name */
+  ActiveUnitCount = 'active_unit_count',
+  /** column name */
+  KeyStageSlug = 'key_stage_slug',
+  /** column name */
+  KeyStageTitle = 'key_stage_title',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  nonDuplicateSubjectLessonCount = 'subject_active_lesson_count',
+  /** column name */
+  nonDuplicateSubjectUnitCount = 'subject_active_unit_count',
+  /** column name */
+  SubjectSlug = 'subject_slug',
+  /** column name */
+  SubjectTitle = 'subject_title',
+  /** column name */
+  TierSlug = 'tier_slug',
+  /** column name */
+  TierTitle = 'tier_title',
+  /** column name */
+  TotalUnitCount = 'total_unit_count'
+}
+
+/** input type for updating data in table "mv_programmes_7" */
+export type Mv_Programmes_7_Set_Input = {
+  active_lesson_count?: InputMaybe<Scalars['numeric']['input']>;
+  active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
+  key_stage_title?: InputMaybe<Scalars['String']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_active_lesson_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_active_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_title?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
+  tier_title?: InputMaybe<Scalars['String']['input']>;
+  total_unit_count?: InputMaybe<Scalars['bigint']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Mv_Programmes_7_Stddev_Fields = {
+  __typename?: 'mv_programmes_7_stddev_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Stddev_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Mv_Programmes_7_Stddev_Pop_Fields = {
+  __typename?: 'mv_programmes_7_stddev_pop_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_pop() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Stddev_Pop_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Mv_Programmes_7_Stddev_Samp_Fields = {
+  __typename?: 'mv_programmes_7_stddev_samp_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by stddev_samp() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Stddev_Samp_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Mv_Programmes_7_Sum_Fields = {
+  __typename?: 'mv_programmes_7_sum_fields';
+  active_lesson_count?: Maybe<Scalars['numeric']['output']>;
+  active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['bigint']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['bigint']['output']>;
+  total_unit_count?: Maybe<Scalars['bigint']['output']>;
+};
+
+/** order by sum() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Sum_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_pop on columns */
+export type Mv_Programmes_7_Var_Pop_Fields = {
+  __typename?: 'mv_programmes_7_var_pop_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_pop() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Var_Pop_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Mv_Programmes_7_Var_Samp_Fields = {
+  __typename?: 'mv_programmes_7_var_samp_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by var_samp() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Var_Samp_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
+  total_unit_count?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Mv_Programmes_7_Variance_Fields = {
+  __typename?: 'mv_programmes_7_variance_fields';
+  active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  active_unit_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_lesson_count?: Maybe<Scalars['Float']['output']>;
+  subject_active_unit_count?: Maybe<Scalars['Float']['output']>;
+  total_unit_count?: Maybe<Scalars['Float']['output']>;
+};
+
+/** order by variance() on columns of table "mv_programmes_7" */
+export type Mv_Programmes_7_Variance_Order_By = {
+  active_lesson_count?: InputMaybe<Order_By>;
+  active_unit_count?: InputMaybe<Order_By>;
+  subject_active_lesson_count?: InputMaybe<Order_By>;
+  subject_active_unit_count?: InputMaybe<Order_By>;
   total_unit_count?: InputMaybe<Order_By>;
 };
 
@@ -25742,124 +25171,6 @@ export type Mv_Programmes_Variance_Order_By = {
   unit_count?: InputMaybe<Order_By>;
 };
 
-/** columns and relationships of "mv_question_images_1" */
-export type Mv_Question_Images_1 = {
-  __typename?: 'mv_question_images_1';
-  images?: Maybe<Scalars['json']['output']>;
-  lesson_title?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** columns and relationships of "mv_question_images_1" */
-export type Mv_Question_Images_1ImagesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregated selection of "mv_question_images_1" */
-export type Mv_Question_Images_1_Aggregate = {
-  __typename?: 'mv_question_images_1_aggregate';
-  aggregate?: Maybe<Mv_Question_Images_1_Aggregate_Fields>;
-  nodes: Array<Mv_Question_Images_1>;
-};
-
-/** aggregate fields of "mv_question_images_1" */
-export type Mv_Question_Images_1_Aggregate_Fields = {
-  __typename?: 'mv_question_images_1_aggregate_fields';
-  count?: Maybe<Scalars['Int']['output']>;
-  max?: Maybe<Mv_Question_Images_1_Max_Fields>;
-  min?: Maybe<Mv_Question_Images_1_Min_Fields>;
-};
-
-
-/** aggregate fields of "mv_question_images_1" */
-export type Mv_Question_Images_1_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Mv_Question_Images_1_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** order by aggregate values of table "mv_question_images_1" */
-export type Mv_Question_Images_1_Aggregate_Order_By = {
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Mv_Question_Images_1_Max_Order_By>;
-  min?: InputMaybe<Mv_Question_Images_1_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "mv_question_images_1" */
-export type Mv_Question_Images_1_Arr_Rel_Insert_Input = {
-  data: Array<Mv_Question_Images_1_Insert_Input>;
-};
-
-/** Boolean expression to filter rows from the table "mv_question_images_1". All fields are combined with a logical 'AND'. */
-export type Mv_Question_Images_1_Bool_Exp = {
-  _and?: InputMaybe<Array<InputMaybe<Mv_Question_Images_1_Bool_Exp>>>;
-  _not?: InputMaybe<Mv_Question_Images_1_Bool_Exp>;
-  _or?: InputMaybe<Array<InputMaybe<Mv_Question_Images_1_Bool_Exp>>>;
-  images?: InputMaybe<Json_Comparison_Exp>;
-  lesson_title?: InputMaybe<String_Comparison_Exp>;
-};
-
-/** input type for inserting data into table "mv_question_images_1" */
-export type Mv_Question_Images_1_Insert_Input = {
-  images?: InputMaybe<Scalars['json']['input']>;
-  lesson_title?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** aggregate max on columns */
-export type Mv_Question_Images_1_Max_Fields = {
-  __typename?: 'mv_question_images_1_max_fields';
-  lesson_title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by max() on columns of table "mv_question_images_1" */
-export type Mv_Question_Images_1_Max_Order_By = {
-  lesson_title?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Mv_Question_Images_1_Min_Fields = {
-  __typename?: 'mv_question_images_1_min_fields';
-  lesson_title?: Maybe<Scalars['String']['output']>;
-};
-
-/** order by min() on columns of table "mv_question_images_1" */
-export type Mv_Question_Images_1_Min_Order_By = {
-  lesson_title?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "mv_question_images_1" */
-export type Mv_Question_Images_1_Mutation_Response = {
-  __typename?: 'mv_question_images_1_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int']['output'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Mv_Question_Images_1>;
-};
-
-/** input type for inserting object relation for remote table "mv_question_images_1" */
-export type Mv_Question_Images_1_Obj_Rel_Insert_Input = {
-  data: Mv_Question_Images_1_Insert_Input;
-};
-
-/** ordering options when selecting data from "mv_question_images_1" */
-export type Mv_Question_Images_1_Order_By = {
-  images?: InputMaybe<Order_By>;
-  lesson_title?: InputMaybe<Order_By>;
-};
-
-/** select columns of table "mv_question_images_1" */
-export enum Mv_Question_Images_1_Select_Column {
-  /** column name */
-  Images = 'images',
-  /** column name */
-  LessonTitle = 'lesson_title'
-}
-
-/** input type for updating data in table "mv_question_images_1" */
-export type Mv_Question_Images_1_Set_Input = {
-  images?: InputMaybe<Scalars['json']['input']>;
-  lesson_title?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** columns and relationships of "mv_questions" */
 export type Mv_Questions = {
   __typename?: 'mv_questions';
@@ -25879,6 +25190,7 @@ export type Mv_Questions = {
   order?: Maybe<Scalars['Int']['output']>;
   points?: Maybe<Scalars['Int']['output']>;
   question_id?: Maybe<Scalars['Int']['output']>;
+  quiz_id?: Maybe<Scalars['Int']['output']>;
   quiz_type?: Maybe<Scalars['String']['output']>;
   required?: Maybe<Scalars['Boolean']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
@@ -29699,6 +29011,7 @@ export type Mv_Questions_Avg_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by avg() on columns of table "mv_questions" */
@@ -29706,6 +29019,7 @@ export type Mv_Questions_Avg_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "mv_questions". All fields are combined with a logical 'AND'. */
@@ -29729,6 +29043,7 @@ export type Mv_Questions_Bool_Exp = {
   order?: InputMaybe<Int_Comparison_Exp>;
   points?: InputMaybe<Int_Comparison_Exp>;
   question_id?: InputMaybe<Int_Comparison_Exp>;
+  quiz_id?: InputMaybe<Int_Comparison_Exp>;
   quiz_type?: InputMaybe<String_Comparison_Exp>;
   required?: InputMaybe<Boolean_Comparison_Exp>;
   subject_slug?: InputMaybe<String_Comparison_Exp>;
@@ -29744,6 +29059,7 @@ export type Mv_Questions_Inc_Input = {
   order?: InputMaybe<Scalars['Int']['input']>;
   points?: InputMaybe<Scalars['Int']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
+  quiz_id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** input type for inserting data into table "mv_questions" */
@@ -29764,6 +29080,7 @@ export type Mv_Questions_Insert_Input = {
   order?: InputMaybe<Scalars['Int']['input']>;
   points?: InputMaybe<Scalars['Int']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
+  quiz_id?: InputMaybe<Scalars['Int']['input']>;
   quiz_type?: InputMaybe<Scalars['String']['input']>;
   required?: InputMaybe<Scalars['Boolean']['input']>;
   subject_slug?: InputMaybe<Scalars['String']['input']>;
@@ -29787,6 +29104,7 @@ export type Mv_Questions_Max_Fields = {
   order?: Maybe<Scalars['Int']['output']>;
   points?: Maybe<Scalars['Int']['output']>;
   question_id?: Maybe<Scalars['Int']['output']>;
+  quiz_id?: Maybe<Scalars['Int']['output']>;
   quiz_type?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
   subject_title?: Maybe<Scalars['String']['output']>;
@@ -29808,6 +29126,7 @@ export type Mv_Questions_Max_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -29830,6 +29149,7 @@ export type Mv_Questions_Min_Fields = {
   order?: Maybe<Scalars['Int']['output']>;
   points?: Maybe<Scalars['Int']['output']>;
   question_id?: Maybe<Scalars['Int']['output']>;
+  quiz_id?: Maybe<Scalars['Int']['output']>;
   quiz_type?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['String']['output']>;
   subject_title?: Maybe<Scalars['String']['output']>;
@@ -29851,6 +29171,7 @@ export type Mv_Questions_Min_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -29892,6 +29213,7 @@ export type Mv_Questions_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
   quiz_type?: InputMaybe<Order_By>;
   required?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
@@ -29937,6 +29259,8 @@ export enum Mv_Questions_Select_Column {
   /** column name */
   QuestionId = 'question_id',
   /** column name */
+  QuizId = 'quiz_id',
+  /** column name */
   QuizType = 'quiz_type',
   /** column name */
   Required = 'required',
@@ -29972,6 +29296,7 @@ export type Mv_Questions_Set_Input = {
   order?: InputMaybe<Scalars['Int']['input']>;
   points?: InputMaybe<Scalars['Int']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
+  quiz_id?: InputMaybe<Scalars['Int']['input']>;
   quiz_type?: InputMaybe<Scalars['String']['input']>;
   required?: InputMaybe<Scalars['Boolean']['input']>;
   subject_slug?: InputMaybe<Scalars['String']['input']>;
@@ -29988,6 +29313,7 @@ export type Mv_Questions_Stddev_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev() on columns of table "mv_questions" */
@@ -29995,6 +29321,7 @@ export type Mv_Questions_Stddev_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -30003,6 +29330,7 @@ export type Mv_Questions_Stddev_Pop_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "mv_questions" */
@@ -30010,6 +29338,7 @@ export type Mv_Questions_Stddev_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -30018,6 +29347,7 @@ export type Mv_Questions_Stddev_Samp_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "mv_questions" */
@@ -30025,6 +29355,7 @@ export type Mv_Questions_Stddev_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
@@ -30033,6 +29364,7 @@ export type Mv_Questions_Sum_Fields = {
   order?: Maybe<Scalars['Int']['output']>;
   points?: Maybe<Scalars['Int']['output']>;
   question_id?: Maybe<Scalars['Int']['output']>;
+  quiz_id?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "mv_questions" */
@@ -30040,6 +29372,7 @@ export type Mv_Questions_Sum_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_pop on columns */
@@ -30048,6 +29381,7 @@ export type Mv_Questions_Var_Pop_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_pop() on columns of table "mv_questions" */
@@ -30055,6 +29389,7 @@ export type Mv_Questions_Var_Pop_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
@@ -30063,6 +29398,7 @@ export type Mv_Questions_Var_Samp_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by var_samp() on columns of table "mv_questions" */
@@ -30070,6 +29406,7 @@ export type Mv_Questions_Var_Samp_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
@@ -30078,6 +29415,7 @@ export type Mv_Questions_Variance_Fields = {
   order?: Maybe<Scalars['Float']['output']>;
   points?: Maybe<Scalars['Float']['output']>;
   question_id?: Maybe<Scalars['Float']['output']>;
+  quiz_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** order by variance() on columns of table "mv_questions" */
@@ -30085,6 +29423,7 @@ export type Mv_Questions_Variance_Order_By = {
   order?: InputMaybe<Order_By>;
   points?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
+  quiz_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "mv_quizzes" */
@@ -36553,18 +35892,6 @@ export type Query_Root = {
   mv_key_stages: Array<Mv_Key_Stages>;
   /** fetch aggregated fields from the table: "mv_key_stages" */
   mv_key_stages_aggregate: Mv_Key_Stages_Aggregate;
-  /** fetch data from the table: "mv_learning_themes" */
-  mv_learning_themes: Array<Mv_Learning_Themes>;
-  /** fetch data from the table: "mv_learning_themes0000001" */
-  mv_learning_themes0000001: Array<Mv_Learning_Themes0000001>;
-  /** fetch aggregated fields from the table: "mv_learning_themes0000001" */
-  mv_learning_themes0000001_aggregate: Mv_Learning_Themes0000001_Aggregate;
-  /** fetch data from the table: "mv_learning_themes_2" */
-  mv_learning_themes_2: Array<Mv_Learning_Themes_2>;
-  /** fetch aggregated fields from the table: "mv_learning_themes_2" */
-  mv_learning_themes_2_aggregate: Mv_Learning_Themes_2_Aggregate;
-  /** fetch aggregated fields from the table: "mv_learning_themes" */
-  mv_learning_themes_aggregate: Mv_Learning_Themes_Aggregate;
   /** fetch data from the table: "mv_lessons" */
   mv_lessons: Array<Mv_Lessons>;
   /** fetch data from the table: "mv_lessons0000001" */
@@ -36615,12 +35942,12 @@ export type Query_Root = {
   mv_programmes_6: Array<Mv_Programmes_6>;
   /** fetch aggregated fields from the table: "mv_programmes_6" */
   mv_programmes_6_aggregate: Mv_Programmes_6_Aggregate;
+  /** fetch data from the table: "mv_programmes_7" */
+  mv_programmes_7: Array<Mv_Programmes_7>;
+  /** fetch aggregated fields from the table: "mv_programmes_7" */
+  mv_programmes_7_aggregate: Mv_Programmes_7_Aggregate;
   /** fetch aggregated fields from the table: "mv_programmes" */
   mv_programmes_aggregate: Mv_Programmes_Aggregate;
-  /** fetch data from the table: "mv_question_images_1" */
-  mv_question_images_1: Array<Mv_Question_Images_1>;
-  /** fetch aggregated fields from the table: "mv_question_images_1" */
-  mv_question_images_1_aggregate: Mv_Question_Images_1_Aggregate;
   /** fetch data from the table: "mv_questions" */
   mv_questions: Array<Mv_Questions>;
   /** fetch data from the table: "mv_questions0000001" */
@@ -37835,66 +37162,6 @@ export type Query_RootMv_Key_Stages_AggregateArgs = {
 
 
 /** query root */
-export type Query_RootMv_Learning_ThemesArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Learning_Themes0000001Args = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes0000001_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes0000001_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Learning_Themes0000001_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes0000001_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes0000001_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Learning_Themes_2Args = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_2_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_2_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Learning_Themes_2_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_2_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_2_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Learning_Themes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_Bool_Exp>;
-};
-
-
-/** query root */
 export type Query_RootMv_LessonsArgs = {
   distinct_on?: InputMaybe<Array<Mv_Lessons_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -38145,32 +37412,32 @@ export type Query_RootMv_Programmes_6_AggregateArgs = {
 
 
 /** query root */
+export type Query_RootMv_Programmes_7Args = {
+  distinct_on?: InputMaybe<Array<Mv_Programmes_7_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Mv_Programmes_7_Order_By>>;
+  where?: InputMaybe<Mv_Programmes_7_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootMv_Programmes_7_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Programmes_7_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Mv_Programmes_7_Order_By>>;
+  where?: InputMaybe<Mv_Programmes_7_Bool_Exp>;
+};
+
+
+/** query root */
 export type Query_RootMv_Programmes_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Mv_Programmes_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Mv_Programmes_Order_By>>;
   where?: InputMaybe<Mv_Programmes_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Question_Images_1Args = {
-  distinct_on?: InputMaybe<Array<Mv_Question_Images_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Question_Images_1_Order_By>>;
-  where?: InputMaybe<Mv_Question_Images_1_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootMv_Question_Images_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Question_Images_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Question_Images_1_Order_By>>;
-  where?: InputMaybe<Mv_Question_Images_1_Bool_Exp>;
 };
 
 
@@ -41742,18 +41009,6 @@ export type Subscription_Root = {
   mv_key_stages: Array<Mv_Key_Stages>;
   /** fetch aggregated fields from the table: "mv_key_stages" */
   mv_key_stages_aggregate: Mv_Key_Stages_Aggregate;
-  /** fetch data from the table: "mv_learning_themes" */
-  mv_learning_themes: Array<Mv_Learning_Themes>;
-  /** fetch data from the table: "mv_learning_themes0000001" */
-  mv_learning_themes0000001: Array<Mv_Learning_Themes0000001>;
-  /** fetch aggregated fields from the table: "mv_learning_themes0000001" */
-  mv_learning_themes0000001_aggregate: Mv_Learning_Themes0000001_Aggregate;
-  /** fetch data from the table: "mv_learning_themes_2" */
-  mv_learning_themes_2: Array<Mv_Learning_Themes_2>;
-  /** fetch aggregated fields from the table: "mv_learning_themes_2" */
-  mv_learning_themes_2_aggregate: Mv_Learning_Themes_2_Aggregate;
-  /** fetch aggregated fields from the table: "mv_learning_themes" */
-  mv_learning_themes_aggregate: Mv_Learning_Themes_Aggregate;
   /** fetch data from the table: "mv_lessons" */
   mv_lessons: Array<Mv_Lessons>;
   /** fetch data from the table: "mv_lessons0000001" */
@@ -41804,12 +41059,12 @@ export type Subscription_Root = {
   mv_programmes_6: Array<Mv_Programmes_6>;
   /** fetch aggregated fields from the table: "mv_programmes_6" */
   mv_programmes_6_aggregate: Mv_Programmes_6_Aggregate;
+  /** fetch data from the table: "mv_programmes_7" */
+  mv_programmes_7: Array<Mv_Programmes_7>;
+  /** fetch aggregated fields from the table: "mv_programmes_7" */
+  mv_programmes_7_aggregate: Mv_Programmes_7_Aggregate;
   /** fetch aggregated fields from the table: "mv_programmes" */
   mv_programmes_aggregate: Mv_Programmes_Aggregate;
-  /** fetch data from the table: "mv_question_images_1" */
-  mv_question_images_1: Array<Mv_Question_Images_1>;
-  /** fetch aggregated fields from the table: "mv_question_images_1" */
-  mv_question_images_1_aggregate: Mv_Question_Images_1_Aggregate;
   /** fetch data from the table: "mv_questions" */
   mv_questions: Array<Mv_Questions>;
   /** fetch data from the table: "mv_questions0000001" */
@@ -43024,66 +42279,6 @@ export type Subscription_RootMv_Key_Stages_AggregateArgs = {
 
 
 /** subscription root */
-export type Subscription_RootMv_Learning_ThemesArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Learning_Themes0000001Args = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes0000001_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes0000001_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Learning_Themes0000001_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes0000001_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes0000001_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes0000001_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Learning_Themes_2Args = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_2_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_2_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Learning_Themes_2_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_2_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_2_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_2_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Learning_Themes_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Learning_Themes_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Learning_Themes_Order_By>>;
-  where?: InputMaybe<Mv_Learning_Themes_Bool_Exp>;
-};
-
-
-/** subscription root */
 export type Subscription_RootMv_LessonsArgs = {
   distinct_on?: InputMaybe<Array<Mv_Lessons_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -43334,32 +42529,32 @@ export type Subscription_RootMv_Programmes_6_AggregateArgs = {
 
 
 /** subscription root */
+export type Subscription_RootMv_Programmes_7Args = {
+  distinct_on?: InputMaybe<Array<Mv_Programmes_7_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Mv_Programmes_7_Order_By>>;
+  where?: InputMaybe<Mv_Programmes_7_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootMv_Programmes_7_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Mv_Programmes_7_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Mv_Programmes_7_Order_By>>;
+  where?: InputMaybe<Mv_Programmes_7_Bool_Exp>;
+};
+
+
+/** subscription root */
 export type Subscription_RootMv_Programmes_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Mv_Programmes_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Mv_Programmes_Order_By>>;
   where?: InputMaybe<Mv_Programmes_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Question_Images_1Args = {
-  distinct_on?: InputMaybe<Array<Mv_Question_Images_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Question_Images_1_Order_By>>;
-  where?: InputMaybe<Mv_Question_Images_1_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootMv_Question_Images_1_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Mv_Question_Images_1_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  order_by?: InputMaybe<Array<Mv_Question_Images_1_Order_By>>;
-  where?: InputMaybe<Mv_Question_Images_1_Bool_Exp>;
 };
 
 
@@ -52041,7 +51236,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_6', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, subjectActiveLessonCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null, activeUnitCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_6', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, activeUnitCount?: any | null, activeLessonCount?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectLessonCount?: any | null, nonDuplicateSubjectUnitCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null, activeUnitCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectUnitCount?: any | null, nonDuplicateSubjectLessonCount?: any | null, totalUnitCount?: any | null, activeUnitCount?: any | null, activeLessonCount?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -52278,7 +51473,7 @@ export const SubjectListingDocument = gql`
     slug
     title
   }
-  mv_programmes_available: mv_programmes_6(
+  mv_programmes_available: mv_programmes_7(
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_neq: 0}}
   ) {
     keyStageSlug: key_stage_slug
@@ -52287,12 +51482,13 @@ export const SubjectListingDocument = gql`
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
-    subjectActiveLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
     totalUnitCount: total_unit_count
     activeLessonCount: active_lesson_count
     activeUnitCount: active_unit_count
   }
-  mv_programmes_unavailable: mv_programmes_6(
+  mv_programmes_unavailable: mv_programmes_7(
     where: {key_stage_slug: {_eq: $keyStageSlug}, total_unit_count: {_eq: 0}}
   ) {
     keyStageSlug: key_stage_slug
@@ -52301,6 +51497,8 @@ export const SubjectListingDocument = gql`
     subjectSlug: subject_slug
     subjectTitle: subject_title
     tierSlug: tier_slug
+    nonDuplicateSubjectUnitCount: subject_active_unit_count
+    nonDuplicateSubjectLessonCount: subject_active_lesson_count
     totalUnitCount: total_unit_count
     activeUnitCount: active_unit_count
     activeLessonCount: active_lesson_count
