@@ -1,0 +1,6 @@
+query programmeListingPaths{
+    mv_programmes: mv_programmes_6{
+        keyStageSlug: key_stage_slug
+        subjectSlug: subject_slug
+    }
+}

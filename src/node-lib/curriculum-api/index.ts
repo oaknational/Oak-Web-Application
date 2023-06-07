@@ -225,6 +225,16 @@ const lessonOverviewPaths = z.object({
   ),
 });
 
+const lessonDownloadPaths = z.object({
+  downloads: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+      lessonSlug: z.string(),
+    })
+  ),
+});
+
 const lessonOverviewData = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
@@ -291,6 +301,8 @@ const programmesData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   activeLessonCount: z.number(),
+  nonDuplicateSubjectLessonCount: z.number().optional(),
+  nonDuplicateSubjectUnitCount: z.number().optional(),
   totalUnitCount: z.number(),
   activeUnitCount: z.number(),
   programmeSlug: z.string(),
@@ -333,6 +345,15 @@ const unitListingData = z.object({
   ),
 });
 
+const programmeListingPaths = z.object({
+  programmes: z.array(
+    z.object({
+      subjectSlug: z.string(),
+      keyStageSlug: z.string(),
+    })
+  ),
+});
+
 const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
@@ -344,11 +365,12 @@ export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
+export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
-
+export type ProgrammeListingPaths = z.infer<typeof programmeListingPaths>;
 export type TierListingData = z.infer<typeof tierListingData>;
 
 const sdk = getSdk(graphqlClient);
@@ -558,6 +580,10 @@ const curriculumApi = {
       lessons,
     });
   },
+  lessonDownloadPaths: async () => {
+    const res = await sdk.lessonDownloadPaths();
+    return lessonDownloadPaths.parse(transformMVCase(res));
+  },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...args);
     const { downloads = [] } = transformMVCase(res);
@@ -570,7 +596,10 @@ const curriculumApi = {
       ...download,
     });
   },
-
+  programmeListingPaths: async () => {
+    const res = await sdk.programmeListingPaths();
+    return programmeListingPaths.parse(transformMVCase(res));
+  },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
     const res = await sdk.tierListing(...args);
     const { programmes = [] } = transformMVCase(res);
