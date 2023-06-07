@@ -10,7 +10,11 @@ import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
 import Box from "../../../../../../../components/Box";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
-import { decorateWithIsr, getFallbackBlockingConfig, shouldSkipInitialBuild } from "../../../../../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../node-lib/isr";
 
 export type ProgrammeListingPageProps = TierListingData;
 

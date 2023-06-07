@@ -73,9 +73,7 @@ describe("programmes listing page", () => {
     });
     it("should throw error when not provided context params", async () => {
       await expect(
-        getStaticProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
+        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("No context params");
     });
   });
