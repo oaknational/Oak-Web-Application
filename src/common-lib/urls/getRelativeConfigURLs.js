@@ -1,0 +1,45 @@
+// URLs should end with a `/` to avoid redirects from
+// e.g. `/unit` to `/unit/index.html` during tests.
+
+function getRelativeConfigURLs() {
+  return [
+    // Error pages
+    "/404",
+    // Public pages
+    "/",
+    "/lesson-planning",
+    "/develop-your-curriculum",
+    "/support-your-team",
+    "/contact-us",
+    "/about-us/who-we-are",
+    "/about-us/leadership",
+    "/about-us/board",
+    "/about-us/partners",
+    "/about-us/work-with-us",
+    "/blog",
+    "/blog/how-to-design-a-unit-of-study",
+    "/blog/evolution-of-oak",
+    "/blog/join-the-childrens-mental-health-week-assembly-2022",
+    "/webinars/effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student",
+    "/legal/accessibility-statement",
+    // landing pages
+    // "/lp/shape-your-curriculum-with-oak",
+    // "/lp/trusted-by-teachers",
+    // "/lp/how-to-use-Oak-in-3-easy-steps",
+    "/lp/help-shape-oak",
+    // "/lp/oak-calendar",
+    // Beta pages
+    "/beta/teachers",
+    "/beta/teachers/key-stages/ks1/subjects",
+    "/beta/teachers/key-stages/ks4/subjects/maths/programmes",
+    "/beta/teachers/programmes/maths-secondary-ks4-foundation/units",
+    "/beta/teachers/programmes/computing-secondary-ks4/units",
+    "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons", // unit with tiers
+    "/beta/teachers/programmes/english-primary-ks2/units/oliver-twist-narrative-writing-280c/lessons?page=2", // unit with pagination
+    "beta/teachers/programmes/design-technology-secondary-ks3/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
+    "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads?preselected=slide+deck",
+    // "/beta/teachers/search?term=computing&keyStages=ks4&subjects=computing&contentTypes=unit",
+  ];
+}
+
+module.exports = getRelativeConfigURLs;
