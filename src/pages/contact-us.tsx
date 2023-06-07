@@ -53,7 +53,7 @@ const portableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       return (
-        <BodyHeading $font={"heading-5"} tag={"h3"} $mt={32} $mb={8}>
+        <BodyHeading $font={"heading-5"} tag={"h2"} $mt={32} $mb={8}>
           {props.children}
         </BodyHeading>
       );

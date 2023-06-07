@@ -13,10 +13,10 @@ const SubjectListingPage: FC<ProgrammeProps> = (props) => {
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $pv={20} $font={"body-2"}>
+        <Flex $pt={20} $font={"body-2"}>
           {programmesBySubjectAvailable.length} subjects
         </Flex>
-        <Heading $font={"heading-5"} tag={"h5"} $mb={30}>
+        <Heading $font={"heading-5"} tag={"h2"} $mt={[32, 64]} $mb={30}>
           All subjects
         </Heading>
         <SubjectCardList
