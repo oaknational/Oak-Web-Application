@@ -4,7 +4,7 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
-const getRelativeConfigURLs = require("./src/common-lib/urls/getRelativeConfigURLs");
+const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls");
 
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const isLocalHost = new URL(baseUrl).host === "localhost:3000";
@@ -57,7 +57,7 @@ const config = {
   // },
 };
 
-const relativeUrls = getRelativeConfigURLs();
+const relativeUrls = getDeploymentTestUrls();
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {

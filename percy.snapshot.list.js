@@ -1,4 +1,4 @@
-const getRelativeConfigURLs = require("./src/common-lib/urls/getRelativeConfigURLs");
+const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls");
 /**
  * Generate a list of snapshot configs for use with `percy snapshot`
  * https://docs.percy.io/docs/percy-snapshot#configuration
@@ -13,7 +13,7 @@ console.log("Percy base url:", baseUrl);
 // Support single string relative URLs, or objects with a `url` key.
 // https://docs.percy.io/docs/percy-snapshot#configuration
 
-const snapshotRelativeUrls = getRelativeConfigURLs();
+const snapshotRelativeUrls = getDeploymentTestUrls();
 
 const urls = snapshotRelativeUrls.map((relUrl) => {
   if (typeof relUrl === "string") {
