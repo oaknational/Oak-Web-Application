@@ -11,9 +11,9 @@ import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixture";
 import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
 import lessonDownloadPathsFixture from "../fixtures/lessonDownloadPaths.fixture";
+import programmeListingPathsFixture from "../fixtures/programmeListingPaths.fixture";
 
 const curriculumApi: CurriculumApi = {
-  // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
   searchPage: jest.fn(async () => {
     return searchPageFixture();
   }),
@@ -37,6 +37,9 @@ const curriculumApi: CurriculumApi = {
   }),
   unitListing: jest.fn(async () => {
     return unitListingFixture();
+  }),
+  programmeListingPaths: jest.fn(async () => {
+    return programmeListingPathsFixture();
   }),
   tierListing: jest.fn(async () => {
     return tierListingFixture();
