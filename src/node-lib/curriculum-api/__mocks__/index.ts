@@ -14,7 +14,6 @@ import lessonDownloadPathsFixture from "../fixtures/lessonDownloadPaths.fixture"
 import programmeListingPathsFixture from "../fixtures/programmeListingPaths.fixture";
 
 const curriculumApi: CurriculumApi = {
-  // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
   searchPage: jest.fn(async () => {
     return searchPageFixture();
   }),
