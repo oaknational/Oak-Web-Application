@@ -3,7 +3,7 @@ import { assertUnreachable } from "../../utils/assertUnreachable";
 import { FieldRenderCondition, FieldValue } from "./FormDefinition";
 
 /**
- * Evaluates a field render condition against a context
+ * Evaluates a field render condition against a context.
  * @param condition
  * @param context
  * @returns
