@@ -15,6 +15,7 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: [],
         pageSize: 4,
+        paginationTitle: "",
         currentPage: 1,
         totalPages: 0,
         totalResults: 0,
@@ -32,6 +33,7 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: [pastPost],
         pageSize: 4,
+        paginationTitle: "",
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
@@ -56,6 +58,7 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: [pastPost],
         pageSize: 4,
+        paginationTitle: "",
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
@@ -81,6 +84,7 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: [pastPost],
         pageSize: 4,
+        paginationTitle: "",
         currentPage: 1,
         totalPages: 1,
         totalResults: 1,
@@ -105,6 +109,7 @@ describe("usePostList.ts", () => {
       paginationProps: {
         currentPageItems: pastPosts.slice(0, 4),
         pageSize: 4,
+        paginationTitle: " | Page 1 of 8",
         currentPage: 1,
         totalPages: 8,
         totalResults: 30,
