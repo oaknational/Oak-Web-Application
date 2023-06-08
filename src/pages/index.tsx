@@ -139,7 +139,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   <Heading
                     $ml={[0, "auto"]}
                     $font={["heading-6", "heading-4"]}
-                    tag={"h3"}
+                    tag={"h2"}
                   >
                     <CardLink
                       page="classroom"
@@ -202,7 +202,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   <Heading
                     $ml={[0, "auto"]}
                     $font={["heading-6", "heading-4"]}
-                    tag={"h3"}
+                    tag={"h2"}
                   >
                     <CardLink
                       page="teacher-hub"
