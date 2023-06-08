@@ -27,7 +27,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
         $flexDirection={["column", "row"]}
       >
         <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
-          <OakLink page={page} category={post.category.slug}>
+          <OakLink page={page} categorySlug={post.category.slug}>
             {post.category.title}
           </OakLink>
         </Heading>

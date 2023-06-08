@@ -65,7 +65,7 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           {...primaryTargetProps}
           page={"unit-index"}
           viewType="teachers"
-          programme={programmeSlug}
+          programmeSlug={programmeSlug}
           onClick={() => {
             track.tierSelected({
               subjectTitle,
