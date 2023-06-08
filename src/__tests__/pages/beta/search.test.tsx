@@ -1,6 +1,7 @@
 import SearchPage from "../../../pages/beta/teachers/search";
 import { mockSeoResult } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+import searchPageFixture from "../../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 const providers = {
   theme: {},
@@ -9,18 +10,14 @@ const providers = {
   analytics: {},
   cookieConsent: {},
 };
-const keyStages = [
-  {
-    slug: "fks1",
-    title: "Fake-key-stage 1",
-    shortCode: "FKS1",
-  },
-];
+const keyStages = searchPageFixture().keyStages;
+const subjects = searchPageFixture().subjects;
+const contentTypes = searchPageFixture().contentTypes;
 
 describe("pages/beta/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
 
     expect(seo).toEqual({
@@ -37,10 +34,31 @@ describe("pages/beta/teachers/search.tsx", () => {
   });
   test("renders correct key stage filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAccessibleName(
+      "KS1 filter"
+    );
+  });
+  test("renders correct subject filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAccessibleName(
+      "English filter"
+    );
+  });
+  test("renders correct content type filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAccessibleName(
+      "Lessons filter"
+    );
+
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
-      "FKS1 filter"
+      "Units filter"
     );
   });
 });

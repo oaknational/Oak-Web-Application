@@ -22,11 +22,11 @@ export type PostCategoryListProps = BoxProps & {
 const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
     props;
-
+  console.log(selectedCategorySlug, "selectedCategorySlug");
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
     getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>
-      linkProps.category || null,
+      linkProps.categorySlug || null,
   });
 
   return (
@@ -37,9 +37,9 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         setSelected={setSelected}
         categories={[
           { label: "All", linkProps: { page } },
-          ...categories.map((cat) => ({
-            label: cat.title,
-            linkProps: { page, category: cat.slug },
+          ...categories.map(({ title, slug }) => ({
+            label: title,
+            linkProps: { page, categorySlug: slug },
           })),
         ]}
       />

@@ -30,7 +30,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
         $alignItems={"center"}
         $height={28}
         $display={"flex"}
-        slug={slug}
+        keyStageSlug={slug}
         page={"subject-index"}
         viewType="teachers"
         onClick={() => {

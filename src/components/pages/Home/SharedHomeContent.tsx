@@ -57,7 +57,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                   $mb={48}
                   $flexDirection={["column", "row"]}
                 >
-                  <Heading $mb={[36, 0]} tag={"h3"} $font={"heading-5"}>
+                  <Heading $mb={[36, 0]} tag={"h2"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
                   <Flex $flexDirection={"row"}>

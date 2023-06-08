@@ -12,9 +12,11 @@ import { Heading, P } from "../../Typography";
 export type BioCardListItemProps = BioData & {
   onClick?: (bio: BioData) => void;
   modalControllerRef?: MutableRefObject<HTMLButtonElement | null>;
+  isOpen: boolean;
 };
 const BioCardListItem: FC<BioCardListItemProps> = (props) => {
-  const { name, role, image, socials, onClick, modalControllerRef } = props;
+  const { name, role, image, socials, onClick, modalControllerRef, isOpen } =
+    props;
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
 
@@ -70,6 +72,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             $ml="auto"
             onClick={() => onClick(props)}
             shouldHideLabel={[true, false]}
+            aria-expanded={isOpen}
           />
         )}
       </Flex>

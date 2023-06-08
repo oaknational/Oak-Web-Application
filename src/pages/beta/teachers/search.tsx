@@ -4,23 +4,34 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "../../../components/AppLayout";
 import useSearch from "../../../context/Search/useSearch";
 import Search from "../../../components/SearchComponents/Search.page";
-import useKeyStageFilters from "../../../context/Search/useKeyStageFilters";
 import curriculumApi, {
   SearchPageData,
 } from "../../../node-lib/curriculum-api";
 import { decorateWithIsr } from "../../../node-lib/isr";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
+import useSearchFilters from "../../../context/Search/useSearchFilters";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
 };
 const SearchPage: NextPage<SearchPageProps> = (props) => {
   const { curriculumData } = props;
-  const allKeyStages = curriculumData.keyStages;
-  const searchProps = useSearch({ allKeyStages });
-  const keyStageFilters = useKeyStageFilters({
+  const {
+    subjects: allSubjects,
+    keyStages: allKeyStages,
+    contentTypes: allContentTypes,
+  } = curriculumData;
+
+  const searchProps = useSearch({
+    allKeyStages,
+    allSubjects,
+    allContentTypes,
+  });
+  const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
+    allSubjects,
+    allContentTypes,
   });
 
   return (
@@ -37,7 +48,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     >
       <Search
         {...searchProps}
-        keyStageFilters={keyStageFilters}
+        searchFilters={searchFilters}
         allKeyStages={allKeyStages}
       />
     </AppLayout>
@@ -46,7 +57,6 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
 
 export const getStaticProps: GetStaticProps<SearchPageProps> = async () => {
   const curriculumData = await curriculumApi.searchPage();
-
   const results = {
     props: {
       curriculumData,

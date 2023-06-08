@@ -68,7 +68,7 @@ export const lessonBreadcrumbArray = (
       oakLinkProps: {
         page: "subject-index",
         viewType: "teachers",
-        slug: keyStageSlug,
+        keyStageSlug,
       },
       label: keyStageTitle,
     },
@@ -76,7 +76,7 @@ export const lessonBreadcrumbArray = (
       oakLinkProps: {
         page: "unit-index",
         viewType: "teachers",
-        programme: programmeSlug,
+        programmeSlug,
       },
       label: subjectTitle,
     },
@@ -85,7 +85,7 @@ export const lessonBreadcrumbArray = (
         page: "lesson-index",
         viewType: "teachers",
         programmeSlug,
-        slug: unitSlug,
+        unitSlug,
       },
       label: unitTitle,
     },
@@ -110,6 +110,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     videoWithSignLanguageMuxPlaybackId,
     presentationUrl,
     worksheetUrl,
+    isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
     hasDownloadableResources,
@@ -173,7 +174,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   viewType: "teachers",
                   programmeSlug,
                   unitSlug,
-                  slug: lessonSlug,
+                  lessonSlug,
                 },
                 label: lessonTitle,
                 disabled: true,
@@ -272,6 +273,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewPresentation
                   asset={presentationUrl}
                   title={lessonTitle}
+                  isWorksheet={false}
                 />
               </ExpandingContainer>
             )}
@@ -299,6 +301,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 <OverviewPresentation
                   asset={worksheetUrl}
                   title={lessonTitle}
+                  isWorksheetLandscape={isWorksheetLandscape}
+                  isWorksheet={true}
                 />
               </ExpandingContainer>
             )}

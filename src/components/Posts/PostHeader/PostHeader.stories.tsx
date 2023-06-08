@@ -17,6 +17,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const PostHeader = Template.bind({});
 PostHeader.args = {
+  page: "blog-index",
   post: {
     title: "A blog",
     id: "5",

@@ -40,6 +40,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   border-color: ${getColorByLocation(
     ({ theme }) => theme.input.states.default.border
   )};
+  background: ${(props) => props.theme.input.states.default.background};
   border-width: ${(props) => props.theme.input.borderWidth};
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
@@ -142,7 +143,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       $alignItems={"center"}
     >
       <Flex $position={"relative"} $width={"100%"}>
-        <InputFieldWrap $width={"100%"}>
+        <InputFieldWrap $width={"100%"} $background={"white"}>
           <StyledInput
             id="search-form-search-input"
             value={value}

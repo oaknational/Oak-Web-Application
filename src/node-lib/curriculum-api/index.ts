@@ -102,23 +102,30 @@ const tiersData = z.array(
   })
 );
 
-const searchPageData = z.object({
-  keyStages: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      shortCode: z.string(),
-    })
-  ),
+const keyStageSchema = z.object({
+  slug: z.string(),
+  title: z.string(),
+  shortCode: z.string(),
 });
+
+const subjectSchema = z.object({
+  slug: z.string(),
+  title: z.string(),
+});
+
+const contentTypesSchema = z.object({
+  slug: z.union([z.literal("unit"), z.literal("lesson")]),
+  title: z.union([z.literal("Units"), z.literal("Lessons")]),
+});
+
+const searchPageData = z.object({
+  keyStages: z.array(keyStageSchema),
+  subjects: z.array(subjectSchema),
+  contentTypes: z.array(contentTypesSchema),
+});
+
 const teachersHomePageData = z.object({
-  keyStages: z.array(
-    z.object({
-      slug: z.string(),
-      title: z.string(),
-      shortCode: z.string(),
-    })
-  ),
+  keyStages: z.array(keyStageSchema),
 });
 
 const lessonListingPaths = z.object({
@@ -218,6 +225,16 @@ const lessonOverviewPaths = z.object({
   ),
 });
 
+const lessonDownloadPaths = z.object({
+  downloads: z.array(
+    z.object({
+      programmeSlug: z.string(),
+      unitSlug: z.string(),
+      lessonSlug: z.string(),
+    })
+  ),
+});
+
 const lessonOverviewData = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
@@ -234,6 +251,7 @@ const lessonOverviewData = z.object({
   presentationUrl: z.string().nullable(),
   supervisionLevel: z.string().nullable(),
   worksheetUrl: z.string().nullable(),
+  isWorksheetLandscape: z.boolean(),
   hasCopyrightMaterial: z.boolean(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
@@ -283,6 +301,8 @@ const programmesData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   activeLessonCount: z.number(),
+  nonDuplicateSubjectLessonCount: z.number().optional(),
+  nonDuplicateSubjectUnitCount: z.number().optional(),
   totalUnitCount: z.number(),
   activeUnitCount: z.number(),
   programmeSlug: z.string(),
@@ -325,6 +345,15 @@ const unitListingData = z.object({
   ),
 });
 
+const programmeListingPaths = z.object({
+  programmes: z.array(
+    z.object({
+      subjectSlug: z.string(),
+      keyStageSlug: z.string(),
+    })
+  ),
+});
+
 const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
@@ -336,11 +365,12 @@ export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
+export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
-
+export type ProgrammeListingPaths = z.infer<typeof programmeListingPaths>;
 export type TierListingData = z.infer<typeof tierListingData>;
 
 const sdk = getSdk(graphqlClient);
@@ -398,7 +428,27 @@ const curriculumApi = {
   searchPage: async () => {
     const res = await sdk.searchPage();
 
-    return searchPageData.parse(transformMVCase(res));
+    const { keyStages, programmesAvailable } = transformMVCase(res);
+
+    const keyStageSlugs = keyStages?.map((keyStage) => keyStage.slug);
+
+    const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
+      keyStageSlugs?.includes(subject.keyStageSlug)
+    );
+    const uniqueProgrammes = filteredByActiveKeyStages
+      ?.filter((subject, index, self) => {
+        return index === self.findIndex((s) => s.slug === subject.slug);
+      })
+      .filter((subject) => subject.slug !== "physics"); // I don't know why physics is in programmesAvailable
+
+    return searchPageData.parse({
+      keyStages,
+      subjects: uniqueProgrammes,
+      contentTypes: [
+        { slug: "unit", title: "Units" },
+        { slug: "lesson", title: "Lessons" },
+      ],
+    });
   },
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
@@ -530,6 +580,10 @@ const curriculumApi = {
       lessons,
     });
   },
+  lessonDownloadPaths: async () => {
+    const res = await sdk.lessonDownloadPaths();
+    return lessonDownloadPaths.parse(transformMVCase(res));
+  },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...args);
     const { downloads = [] } = transformMVCase(res);
@@ -542,7 +596,10 @@ const curriculumApi = {
       ...download,
     });
   },
-
+  programmeListingPaths: async () => {
+    const res = await sdk.programmeListingPaths();
+    return programmeListingPaths.parse(transformMVCase(res));
+  },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
     const res = await sdk.tierListing(...args);
     const { programmes = [] } = transformMVCase(res);

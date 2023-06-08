@@ -1,17 +1,25 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+
+import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import { MenuProvider } from "../../context/Menu";
 
 import Component from "./AppHeader";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Headers & Footers/App Header",
+  decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+};
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+export default meta;
+type Story = StoryObj<typeof Component>;
 
-export const AppHeader = Template.bind({});
-AppHeader.args = {};
+export const Flex: Story = {
+  args: {},
+  render: (args) => (
+    <MenuProvider>
+      <Component {...args} />
+    </MenuProvider>
+  ),
+};

@@ -8,6 +8,8 @@ import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
 import lessonListingFixture from "./fixtures/lessonListing.fixture";
 import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
 import subjectListingFixture from "./fixtures/subjectListing.fixture";
+import programmeListingPathsFixture from "./fixtures/programmeListingPaths.fixture";
+import lessonDownloadPathsFixture from "./fixtures/lessonDownloadPaths.fixture";
 
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
@@ -76,6 +78,7 @@ const lessonOverview = jest.fn(() => ({
       contentGuidance: lessonOverviewFixture().contentGuidance,
       presentationUrl: lessonOverviewFixture().presentationUrl,
       worksheetUrl: lessonOverviewFixture().worksheetUrl,
+      isWorksheetLandscape: lessonOverviewFixture().isWorksheetLandscape,
       hasCopyrightMaterial: lessonOverviewFixture().hasCopyrightMaterial,
       videoMuxPlaybackId: lessonOverviewFixture().videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
@@ -92,11 +95,15 @@ const lessonOverview = jest.fn(() => ({
 const lessonOverviewPaths = jest.fn(() => ({
   mv_lessons: lessonOverviewPathsFixture().lessons,
 }));
-
+const programmeListingPaths = jest.fn(() => ({
+  mv_programmes: programmeListingPathsFixture().programmes,
+}));
 const tierListing = jest.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
-
+const lessonDownloadPaths = jest.fn(() => ({
+  mv_downloads: lessonDownloadPathsFixture().downloads,
+}));
 const subjectListing = jest.fn(() => ({
   mv_programmes_available: subjectListingFixture().programmesAvailable,
   mv_programmes_unavailable: subjectListingFixture().programmesUnavailable,
@@ -118,6 +125,8 @@ jest.mock("./generated/sdk", () => ({
     lessonListing: (...args: []) => lessonListing(...args),
     tierListing: (...args: []) => tierListing(...args),
     subjectListing: (...args: []) => subjectListing(...args),
+    programmeListingPaths: (...args: []) => programmeListingPaths(...args),
+    lessonDownloadPaths: (...args: []) => lessonDownloadPaths(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -125,14 +134,20 @@ describe("curriculum-api", () => {
     await curriculumApi.teachersHomePage();
     expect(teachersHomePage).toHaveBeenCalled();
   });
+  test("lessonDownloadPaths", async () => {
+    await curriculumApi.lessonDownloadPaths();
+    expect(lessonDownloadPaths).toHaveBeenCalled();
+  });
   test("lessonDownloads", async () => {
     await curriculumApi.lessonDownloads({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
     expect(lessonDownloads).toHaveBeenCalledWith({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
   });
   test("unitListingPaths", async () => {
@@ -187,6 +202,10 @@ describe("curriculum-api", () => {
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
     });
+  });
+  test("programmeListingPaths", async () => {
+    await curriculumApi.programmeListingPaths();
+    expect(programmeListingPaths).toHaveBeenCalled();
   });
   test("tierListing", async () => {
     await curriculumApi.tierListing({

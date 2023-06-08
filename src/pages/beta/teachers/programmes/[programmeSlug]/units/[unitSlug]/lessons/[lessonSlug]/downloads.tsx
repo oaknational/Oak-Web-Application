@@ -1,5 +1,10 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { NextPage, GetServerSideProps, GetServerSidePropsResult } from "next";
+import {
+  NextPage,
+  GetStaticProps,
+  GetStaticPathsResult,
+  GetStaticPropsResult,
+} from "next";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
@@ -48,6 +53,11 @@ import DetailsCompleted from "../../../../../../../../../components/DownloadComp
 import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../../../node-lib/isr";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -280,7 +290,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   viewType: "teachers",
                   programmeSlug,
                   unitSlug,
-                  slug: lessonSlug,
+                  lessonSlug,
                 },
                 label: lessonTitle,
               },
@@ -346,6 +356,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <Input
                       id={"email"}
                       label="Email address"
+                      autoComplete="email"
                       placeholder="Enter email address here"
                       {...register("email")}
                       error={errors.email?.message}
@@ -353,7 +364,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <P $font="body-3" $mt={-24} $mb={40}>
                       Join our community to get free lessons, resources and
                       other helpful content. Unsubscribe at any time. Our{" "}
-                      <OakLink page="legal" slug="privacy-policy" $isInline>
+                      <OakLink
+                        page="legal"
+                        legalSlug="privacy-policy"
+                        $isInline
+                      >
                         privacy policy
                       </OakLink>
                       .
@@ -453,20 +468,37 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 export type URLParams = {
   lessonSlug: string;
   programmeSlug: string;
+  unitSlug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const { downloads } = await curriculumApi.lessonDownloadPaths();
+  const paths = downloads.map((params) => ({ params: params }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   LessonDownloadsPageProps,
   URLParams
 > = async (context) => {
   if (!context.params) {
     throw new Error("No context.params");
   }
-  const { lessonSlug, programmeSlug } = context.params;
+  const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
   const curriculumData = await curriculumApi.lessonDownloads({
     lessonSlug,
     programmeSlug,
+    unitSlug,
   });
 
   if (!curriculumData) {
@@ -475,12 +507,13 @@ export const getServerSideProps: GetServerSideProps<
     };
   }
 
-  const results: GetServerSidePropsResult<LessonDownloadsPageProps> = {
+  const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
     props: {
       curriculumData,
     },
   };
-  return results;
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default LessonDownloadsPage;

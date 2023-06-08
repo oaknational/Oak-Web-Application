@@ -41,22 +41,35 @@ const validQuery: SearchQuery = {
 
 const setSearchStartTime = jest.fn();
 
-const props: SearchProps = {
+export const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
   setSearchStartTime: setSearchStartTime,
   results: [],
   query: validQuery,
   setQuery: jest.fn(),
-  keyStageFilters: [
-    {
-      slug: "ks1",
-      title: "Key-stage 1",
-      shortCode: "KS1",
-      onChange: jest.fn(),
-      checked: false,
-    },
-  ],
+  searchFilters: {
+    keyStageFilters: [
+      {
+        slug: "ks1",
+        title: "Key-stage 1",
+        shortCode: "KS1",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
+    subjectFilters: [
+      {
+        slug: "computing",
+        title: "Computing",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
+    contentTypeFilters: [
+      { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
+    ],
+  },
   allKeyStages: [
     {
       slug: "ks1",
@@ -224,11 +237,12 @@ describe("Search.page.tsx", () => {
 
     expect(onLinkClick).toHaveBeenCalled();
   });
-  test("clicking a calls filter.onChange appropriately", async () => {
+  test("clicking a calls filter.onChange appropriately for key stage filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
-    const ks1OnChange = props.keyStageFilters.find((ks) => ks.slug === "ks1")
-      ?.onChange as jest.Mock;
+    const ks1OnChange = props.searchFilters.keyStageFilters.find(
+      (ks) => ks.slug === "ks1"
+    )?.onChange as jest.Mock;
     ks1OnChange.mockClear();
     await user.click(getByRole("button", { name: "Filters" }));
     const filter = getByRole("checkbox", { name: "KS1 filter" });
@@ -237,6 +251,36 @@ describe("Search.page.tsx", () => {
     }
     await user.click(filter);
     await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
+  });
+  test("clicking a calls filter.onChange appropriately for subject filters", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const computingOnChange = props.searchFilters.subjectFilters.find(
+      (c) => c.slug === "computing"
+    )?.onChange as jest.Mock;
+    computingOnChange.mockClear();
+    await user.click(getByRole("button", { name: "Filters" }));
+    const filter = getByRole("checkbox", { name: "Computing filter" });
+    if (!filter) {
+      throw new Error("Expected filter to exist");
+    }
+    await user.click(filter);
+    await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
+  });
+  test("clicking a calls filter.onChange appropriately for contentType filters", async () => {
+    const { getByRole } = render(<Search {...props} />);
+    const user = userEvent.setup();
+    const typeOnChange = props.searchFilters.contentTypeFilters.find(
+      (t) => t.slug === "unit"
+    )?.onChange as jest.Mock;
+    typeOnChange.mockClear();
+    await user.click(getByRole("button", { name: "Filters" }));
+    const filter = getByRole("checkbox", { name: "Units filter" });
+    if (!filter) {
+      throw new Error("Expected filter to exist");
+    }
+    await user.click(filter);
+    await waitFor(() => expect(typeOnChange).toHaveBeenCalledTimes(1));
   });
   test("searchCompleted is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);

@@ -1,5 +1,5 @@
 import Router from "next/router";
-import { resolveHref } from "next/dist/shared/lib/router/router";
+import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC } from "react";
 
 import Flex from "../Flex";
