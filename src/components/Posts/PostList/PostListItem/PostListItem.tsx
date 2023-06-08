@@ -22,12 +22,12 @@ const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
     case "blog-post":
       return {
         page: "blog-single",
-        slug: props.slug,
+        blogSlug: props.slug,
       };
     case "webinar":
       return {
         page: "webinar-single",
-        slug: props.slug,
+        webinarSlug: props.slug,
       };
   }
 };
@@ -38,12 +38,12 @@ const getItemCategoryLinkProps = (
     case "blog-post":
       return {
         page: "blog-index",
-        category: props.category.slug,
+        categorySlug: props.category.slug,
       };
     case "webinar":
       return {
         page: "webinar-index",
-        category: props.category.slug,
+        categorySlug: props.category.slug,
       };
   }
 };

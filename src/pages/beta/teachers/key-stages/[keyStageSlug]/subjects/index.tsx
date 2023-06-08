@@ -56,7 +56,7 @@ const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
                 oakLinkProps: {
                   page: "subject-index",
                   viewType: "teachers",
-                  slug: keyStageSlug,
+                  keyStageSlug,
                 },
                 label: keyStageTitle,
                 disabled: true,

@@ -74,7 +74,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "subject-index",
                   viewType: "teachers",
-                  slug: keyStageSlug,
+                  keyStageSlug,
                 },
                 label: keyStageTitle,
               },
@@ -82,7 +82,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "unit-index",
                   viewType: "teachers",
-                  programme: programmeSlug,
+                  programmeSlug,
                 },
                 label: subjectTitle,
               },
@@ -91,7 +91,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
                 oakLinkProps: {
                   page: "lesson-index",
                   viewType: "teachers",
-                  slug: unitSlug,
+                  unitSlug,
                   programmeSlug: programmeSlug,
                 },
 
