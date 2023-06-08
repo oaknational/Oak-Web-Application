@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import { FC, MutableRefObject, Ref } from "react";
 
 import Flex from "../Flex";
 import OakLink from "../OakLink";
@@ -21,6 +21,7 @@ interface CommonProps {
   page: "Unit" | "Lesson";
   expired: boolean | null;
   onClick?: () => void;
+  firstItemRef?: Ref<HTMLAnchorElement> | undefined;
 }
 
 type ListItemHeadingProps = CommonProps &
@@ -60,6 +61,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     onClick,
     programmeSlug,
     fromSearchPage,
+    firstItemRef,
   } = props;
 
   const itemTitle =
@@ -93,6 +95,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
+            ref={firstItemRef}
           >
             <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
@@ -105,6 +108,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
+            ref={firstItemRef}
           >
             <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
