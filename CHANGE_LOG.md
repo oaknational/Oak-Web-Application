@@ -1,3 +1,12 @@
+## [1.185.19](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.18...v1.185.19) (2023-06-09)
+
+
+### Bug Fixes
+
+* **merge:** merge in main ([bdfde01](https://github.com/oaknational/Oak-Web-Application/commit/bdfde01df8ed9961c74f61c349cd11686b335ee4))
+* **pagination:** add pagination to the page titles ([dfaae6c](https://github.com/oaknational/Oak-Web-Application/commit/dfaae6c5d2c390ac64b06d7721c17ffd41cd5128))
+* **usePostList:** fix test to include paginatiom title ([e6f5a71](https://github.com/oaknational/Oak-Web-Application/commit/e6f5a71094cc94ac3781ae8002c0f364e0e166b0))
+
 ## [1.185.18](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.17...v1.185.18) (2023-06-08)
 
 ## [1.185.17](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.16...v1.185.17) (2023-06-08)
