@@ -1,5 +1,5 @@
 import React from "react";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import curriculumApi, {
   TierListingData,
@@ -10,6 +10,11 @@ import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
 import Box from "../../../../../../../components/Box";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../../../../../node-lib/isr";
 
 export type ProgrammeListingPageProps = TierListingData;
 
@@ -54,7 +59,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
                 oakLinkProps: {
                   page: "subject-index",
                   viewType: "teachers",
-                  slug: keyStageSlug,
+                  keyStageSlug,
                 },
                 label: keyStageTitle,
               },
@@ -62,8 +67,8 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
                 oakLinkProps: {
                   page: "programme-index",
                   viewType: "teachers",
-                  subject: subjectSlug,
-                  keyStage: keyStageSlug,
+                  subjectSlug,
+                  keyStageSlug,
                 },
                 label: subjectTitle,
               },
@@ -84,7 +89,22 @@ export type URLParams = {
   subjectSlug: string;
 };
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const { programmes } = await curriculumApi.programmeListingPaths();
+  const paths = programmes.map((params) => ({ params: params }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
   ProgrammeListingPageProps,
   URLParams
 > = async (context) => {
@@ -102,7 +122,8 @@ export const getServerSideProps: GetServerSideProps<
     },
   };
 
-  return results;
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
 };
 
 export default ProgrammesListingPage;

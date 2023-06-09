@@ -36774,7 +36774,7 @@ export type LessonListingQuery = { __typename?: 'query_root', mv_units: Array<{ 
 export type LessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type LessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', programmeSlug?: string | null, unitSlug?: string | null }> };
+export type LessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_units_3', programmeSlug?: string | null, unitSlug?: string | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -36789,6 +36789,11 @@ export type LessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>
 
 
 export type LessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', lessonSlug?: string | null, programmeSlug?: string | null, unitSlug?: string | null }> };
+
+export type ProgrammeListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProgrammeListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, subjectSlug?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -36900,9 +36905,9 @@ export const LessonListingDocument = gql`
     `;
 export const LessonListingPathsDocument = gql`
     query lessonListingPaths {
-  mv_lessons: mv_lessons_6 {
+  mv_lessons: mv_units_3 {
     programmeSlug: programme_slug
-    unitSlug: unit_slug
+    unitSlug: slug
   }
 }
     `;
@@ -37006,6 +37011,14 @@ export const LessonOverviewPathsDocument = gql`
     lessonSlug: lesson_slug
     programmeSlug: programme_slug
     unitSlug: unit_slug
+  }
+}
+    `;
+export const ProgrammeListingPathsDocument = gql`
+    query programmeListingPaths {
+  mv_programmes: mv_programmes_7 {
+    keyStageSlug: key_stage_slug
+    subjectSlug: subject_slug
   }
 }
     `;
@@ -37160,6 +37173,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonOverviewPaths(variables?: LessonOverviewPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewPathsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewPathsQuery>(LessonOverviewPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewPaths', 'query');
+    },
+    programmeListingPaths(variables?: ProgrammeListingPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingPathsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingPathsQuery>(ProgrammeListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListingPaths', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
