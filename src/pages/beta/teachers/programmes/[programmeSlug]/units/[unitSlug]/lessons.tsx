@@ -22,6 +22,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
+import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
 
 export type LessonListPageProps = {
   curriculumData: LessonListing;
@@ -41,17 +42,17 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 
   const paginationProps = usePagination({
     totalResults: lessons.length,
-    pageSize: 20,
+    pageSize: RESULTS_PER_PAGE,
     items: lessons,
   });
 
-  const { currentPageItems } = paginationProps;
+  const { currentPageItems, paginationTitle } = paginationProps;
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: `Unit: ${unitTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}${paginationTitle}`,
           description: "Lessons in Unit",
         }),
         ...{ noFollow: true, noIndex: true },
