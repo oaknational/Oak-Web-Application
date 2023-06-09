@@ -187,7 +187,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             <Heading
               $mb={[48, 32]}
               $font={["heading-5", "heading-4"]}
-              tag={"h3"}
+              tag={"h2"}
             >
               {pageData.ourApproach.title}
             </Heading>
