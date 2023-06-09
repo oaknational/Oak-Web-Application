@@ -10,10 +10,13 @@ import curriculumApi, {
 import { decorateWithIsr } from "../../../node-lib/isr";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import useSearchFilters from "../../../context/Search/useSearchFilters";
+import usePagination from "../../../components/Pagination/usePagination";
+import { RESULTS_PER_PAGE } from "../../../components/SearchResults/SearchResults";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
 };
+
 const SearchPage: NextPage<SearchPageProps> = (props) => {
   const { curriculumData } = props;
   const {
@@ -27,6 +30,16 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allSubjects,
     allContentTypes,
   });
+  const { results } = searchProps;
+
+  const paginationProps = usePagination({
+    totalResults: results.length,
+    pageSize: RESULTS_PER_PAGE,
+    items: results,
+  });
+
+  const { paginationTitle } = paginationProps;
+
   const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
@@ -38,7 +51,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Search for Free Teaching Resources",
+          title: `Search for Free Teaching Resources${paginationTitle}`,
 
           description: "Search for Free Teaching Resources",
         }),

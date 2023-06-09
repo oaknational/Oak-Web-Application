@@ -42,8 +42,11 @@ const usePagination = <T>(
   }, [currentPage, items, pageSize]);
 
   const firstItemRef = useRef<HTMLAnchorElement | null>(null);
+  const paginationTitle =
+    totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
 
   return {
+    paginationTitle,
     pageSize,
     currentPage,
     currentPageItems,
