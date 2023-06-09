@@ -1,4 +1,4 @@
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
 
@@ -21,11 +21,12 @@ const Pagination: FC<PaginationProps> = ({
   nextPageUrlObject = "",
   firstItemRef,
 }) => {
+  const router = useRouter();
   useEffect(() => {
-    if (Router.query.page && firstItemRef?.current) {
+    if (router.query.page && firstItemRef?.current) {
       firstItemRef.current.focus();
     }
-  }, [firstItemRef]);
+  }, [firstItemRef, router.query.page]);
 
   if (currentPage === 0 || totalPages < 2) {
     return null;
@@ -53,6 +54,7 @@ const Pagination: FC<PaginationProps> = ({
         <Span $mh={24} $font={"body-2"}>
           page {currentPage} / {totalPages}
         </Span>
+        <p />
         <IconButtonAsLink
           size="small"
           aria-label="next page"
