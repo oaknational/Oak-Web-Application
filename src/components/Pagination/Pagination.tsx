@@ -32,9 +32,6 @@ const Pagination: FC<PaginationProps> = ({
   if (currentPage === 0 || totalPages < 2) {
     return null;
   }
-  if (currentPage === 0 || totalPages < 2) {
-    return null;
-  }
 
   const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject, true);
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject, true);
