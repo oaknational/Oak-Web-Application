@@ -11,7 +11,7 @@ export type PaginationProps = {
   totalPages: number;
   prevPageUrlObject?: Parameters<typeof resolveHref>[1];
   nextPageUrlObject?: Parameters<typeof resolveHref>[1];
-  firstItemRef: RefObject<HTMLAnchorElement> | null;
+  firstItemRef?: RefObject<HTMLAnchorElement> | null;
 };
 
 const Pagination: FC<PaginationProps> = ({

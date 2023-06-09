@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Ref } from "react";
 import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
@@ -23,6 +23,7 @@ export type LessonListItemProps = LessonListing["lessons"][number] & {
   fromSearchPage?: boolean;
   index: number;
   currentPage?: number;
+  firstItemRef?: Ref<HTMLAnchorElement> | undefined;
 };
 
 function getAvailableResourceList({

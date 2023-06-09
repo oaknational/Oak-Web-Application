@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
 
 import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
@@ -57,6 +57,7 @@ export type PostListItemProps = {
   category: BlogWebinarCategory;
   date: string;
   withImage?: boolean;
+  firstItemRef?: RefObject<HTMLAnchorElement> | null;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
   | { contentType: "webinar"; thumbnailUrl?: string | null }
@@ -69,7 +70,8 @@ export type PostListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const PostListItem: FC<PostListItemProps> = (props) => {
-  const { titleTag, title, summary, category, date, withImage } = props;
+  const { titleTag, title, summary, category, date, withImage, firstItemRef } =
+    props;
 
   const {
     containerProps,
@@ -124,6 +126,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
             $focusStyles={["underline"]}
             $font="heading-7"
             $color="hyperlink"
+            ref={firstItemRef}
           >
             {category.title}
           </OakLink>
