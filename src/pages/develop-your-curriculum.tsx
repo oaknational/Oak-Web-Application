@@ -140,7 +140,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                   >
                     <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
-                      <Heading $font={"heading-7"} tag={"h3"}>
+                      <Heading $font={"heading-7"} tag={"h5"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
                           <CardLink
