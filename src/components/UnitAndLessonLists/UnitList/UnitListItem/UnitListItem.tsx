@@ -1,4 +1,4 @@
-import { FC, Ref } from "react";
+import { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
@@ -22,7 +22,7 @@ export type UnitListItemProps = Omit<
   fromSearchPage?: boolean;
   index: number;
   currentPage?: number;
-  firstItemRef?: Ref<HTMLAnchorElement> | undefined;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
 };
 
 /**
@@ -86,7 +86,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>();
+    useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   return (
     <ListItemCard

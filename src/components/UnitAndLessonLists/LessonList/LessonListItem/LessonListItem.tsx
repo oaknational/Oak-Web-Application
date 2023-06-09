@@ -1,4 +1,4 @@
-import { FC, Ref } from "react";
+import { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
@@ -23,7 +23,7 @@ export type LessonListItemProps = LessonListing["lessons"][number] & {
   fromSearchPage?: boolean;
   index: number;
   currentPage?: number;
-  firstItemRef?: Ref<HTMLAnchorElement> | undefined;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
 };
 
 function getAvailableResourceList({
@@ -94,6 +94,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     index,
     hitCount,
     currentPage,
+    firstItemRef,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -135,7 +136,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>();
+    useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   const resources = getAvailableResourceList(props);
 

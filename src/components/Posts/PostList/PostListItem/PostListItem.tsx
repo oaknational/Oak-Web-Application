@@ -77,7 +77,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     containerProps,
     primaryTargetProps,
     isHovered: cardIsHovered,
-  } = useClickableCard<HTMLAnchorElement>();
+  } = useClickableCard<HTMLAnchorElement>(firstItemRef);
   const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
     useHover({});
 
@@ -126,7 +126,6 @@ const PostListItem: FC<PostListItemProps> = (props) => {
             $focusStyles={["underline"]}
             $font="heading-7"
             $color="hyperlink"
-            ref={firstItemRef}
           >
             {category.title}
           </OakLink>
