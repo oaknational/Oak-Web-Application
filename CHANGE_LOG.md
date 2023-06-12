@@ -1,3 +1,11 @@
+## [1.186.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.0...v1.186.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **how-to:** correct the heading hierarchy on the develop curriculum page ([4280c88](https://github.com/oaknational/Oak-Web-Application/commit/4280c88e73a5528fa89f34ac95f8e5c1faf3d323))
+* **how-to:** correct the heading hierarchy on the develop curriculum page ([d141c46](https://github.com/oaknational/Oak-Web-Application/commit/d141c462ffa92c47f12f46beee1514a504774f81))
+
 # [1.186.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.20...v1.186.0) (2023-06-12)
 
 
