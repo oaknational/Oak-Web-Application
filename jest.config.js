@@ -35,7 +35,6 @@ const customJestConfig = {
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
     "src/__tests__/__helpers__/*",
     ".storybook/storybook.*.test.js$",
-    "e2e_tests/browser/engineering/*",
     ".netlify/*",
   ],
   moduleNameMapper: {
