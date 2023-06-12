@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "@wdio/globals/types", "@wdio/mocha-framework"],
+    "target": "ES2021",
+    "moduleResolution": "node"
+  }
+}

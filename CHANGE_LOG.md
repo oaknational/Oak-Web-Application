@@ -1,3 +1,21 @@
+# [1.186.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.20...v1.186.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* **a11y:** divs with aria-label must have a role ([9ca5b55](https://github.com/oaknational/Oak-Web-Application/commit/9ca5b55a36f509fba3e2de1e7c8795ea345df9b6))
+* **e2e tests:** expects are async ([c9c084c](https://github.com/oaknational/Oak-Web-Application/commit/c9c084cac9df9c5cde6f0f7e56b3e1c07222dc2d))
+* **e2e tests:** metadata naming ([fe78222](https://github.com/oaknational/Oak-Web-Application/commit/fe78222e397de8b2f9d56c03ccf7212111e379e0))
+* **e2e tests:** no floating promises ([2945043](https://github.com/oaknational/Oak-Web-Application/commit/294504300f779b34d706642e499b4e524d289ec2))
+* **storybook:** downgrade Typescript so Storybook will build ([8775d59](https://github.com/oaknational/Oak-Web-Application/commit/8775d59228a87010e05c47920c217e29e2099c7f))
+
+
+### Features
+
+* **e2e test:** first browser test ([c44cb7d](https://github.com/oaknational/Oak-Web-Application/commit/c44cb7dfec7525dccd45a7fadf6fa51d58a672f6))
+* **e2e tests:** deal with Confirmic overlay ([9100956](https://github.com/oaknational/Oak-Web-Application/commit/9100956adb43ed075a354fb0a965811d1b09b8c8))
+* **tests:** implement local WDIO test ([bf7e1d2](https://github.com/oaknational/Oak-Web-Application/commit/bf7e1d21433f53c1e07cd9e7a752858121787720))
+
 ## [1.185.20](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.19...v1.185.20) (2023-06-09)
 
 ## [1.185.19](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.18...v1.185.19) (2023-06-09)
