@@ -41,7 +41,11 @@ const usePagination = <T>(
     return items.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, items, pageSize]);
 
+  const paginationTitle =
+    totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
+
   return {
+    paginationTitle,
     pageSize,
     currentPage,
     currentPageItems,
