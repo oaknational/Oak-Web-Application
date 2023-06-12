@@ -37,7 +37,11 @@ Logic tests and snapshot tests should be in different files because their "failu
 
 ## E2E Browser Tests
 
-We use WebdriverIO.
+We use WebdriverIO. Note you will need to regularly update the dependency `chromedriver` in order for it to work locally with the evergreen browser Chrome.
+
+```bash
+npm i --save-dev chromedriver@latest
+```
 
 ### When They Run
 
