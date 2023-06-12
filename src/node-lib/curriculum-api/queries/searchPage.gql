@@ -5,7 +5,7 @@ query searchPage {
     title
   }
 
-  mv_programmes_available: mv_programmes_5(order_by: { subject_title: asc }) {
+  mv_programmes_available: mv_programmes_7(order_by: { subject_title: asc }) {
     slug: subject_slug
     title: subject_title
     keyStageSlug: key_stage_slug

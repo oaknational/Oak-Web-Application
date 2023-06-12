@@ -1,5 +1,5 @@
 query tierListing($keyStageSlug: String!, $subjectSlug: String!) {
-  mv_programmes: mv_programmes_6(
+  mv_programmes: mv_programmes_7(
     where: {
       key_stage_slug: { _eq: $keyStageSlug }
       subject_slug: { _eq: $subjectSlug }
