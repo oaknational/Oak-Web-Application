@@ -1,3 +1,14 @@
+## [1.187.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.0...v1.187.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* add scroll to top for safari ([33da9fb](https://github.com/oaknational/Oak-Web-Application/commit/33da9fb9b1773fa5f4d3c0bd3ab181d6af270265))
+* focus moves to first item in unit list on pagination click ([34cccc4](https://github.com/oaknational/Oak-Web-Application/commit/34cccc40ce2ed783c9deb2fd43155f603c2f6d84))
+* focus on first item in search lessonlist and post list ([d66bb42](https://github.com/oaknational/Oak-Web-Application/commit/d66bb42cf1015f1aeab9227361d33d0025307eaf))
+* lesson list has focus on first element on with pagination page ([36a8bf2](https://github.com/oaknational/Oak-Web-Application/commit/36a8bf213ed21f370c31fca1a48344338291e953))
+* type error from external ref ([bfe6f8b](https://github.com/oaknational/Oak-Web-Application/commit/bfe6f8becd6e89f9567876b98513092780b8090b))
+
 # [1.187.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.3...v1.187.0) (2023-06-13)
 
 
