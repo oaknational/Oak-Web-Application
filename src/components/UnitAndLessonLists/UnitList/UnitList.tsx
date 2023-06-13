@@ -36,7 +36,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     <Flex $flexDirection="column">
       {currentPageItems.length ? (
         <>
-          <UL $reset>
+          <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
                 <UnitListItem
