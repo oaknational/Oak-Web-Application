@@ -5,7 +5,7 @@ import LessonListPage, {
   getStaticProps,
   LessonListPageProps,
   URLParams,
-} from "../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+} from "../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import renderWithProviders from "../../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../../../__helpers__/cms";

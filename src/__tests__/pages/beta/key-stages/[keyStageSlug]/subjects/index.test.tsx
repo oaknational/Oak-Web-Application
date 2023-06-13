@@ -4,7 +4,7 @@ import curriculumApi from "../../../../../../node-lib/curriculum-api/__mocks__";
 import SubjectListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+} from "../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";

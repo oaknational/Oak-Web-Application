@@ -16,7 +16,7 @@ import LessonDownloadsPage, {
   getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "../../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+} from "../../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 

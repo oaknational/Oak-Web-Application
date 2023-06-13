@@ -3,7 +3,7 @@ import { screen, within, getByRole } from "@testing-library/react";
 import Teachers, {
   getStaticProps,
   TeachersHomePageProps,
-} from "../../../pages/beta/teachers";
+} from "../../../pages/beta/[viewType]";
 import { HomePageProps, SerializedPost } from "../../../pages";
 import CMSClient from "../../../node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "../../../common-lib/cms-types";

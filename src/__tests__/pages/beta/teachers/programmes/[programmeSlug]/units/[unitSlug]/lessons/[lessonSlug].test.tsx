@@ -9,7 +9,7 @@ import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
   URLParams,
-} from "../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+} from "../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
 const props = {
   curriculumData: lessonOverviewFixture({
