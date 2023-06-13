@@ -120,12 +120,17 @@ async function main() {
     // Curriculum data
     CURRICULUM_API_URL:
       process.env.CURRICULUM_API_URL || oakConfig.oak.curriculumApiUrl,
+    CURRICULUM_API_2023_URL:
+      process.env.CURRICULUM_API_2023_URL || oakConfig.oak.curriculumApi2023Url,
     CURRICULUM_API_AUTH_TYPE:
       process.env.CURRICULUM_API_AUTH_TYPE ||
       oakConfig.oak.curriculumApiAuthType,
     CURRICULUM_API_AUTH_KEY:
       process.env.CURRICULUM_API_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_AUTH_KEY,
+    CURRICULUM_API_2023_AUTH_KEY:
+      process.env.CURRICULUM_API_2023_AUTH_KEY ||
+      secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
 
