@@ -52,7 +52,6 @@ const Pagination: FC<PaginationProps> = ({
         <Span $mh={24} $font={"body-2"}>
           page {currentPage} / {totalPages}
         </Span>
-        <p />
         <IconButtonAsLink
           size="small"
           aria-label="next page"
