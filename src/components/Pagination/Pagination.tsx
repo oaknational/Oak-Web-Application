@@ -26,6 +26,7 @@ const Pagination: FC<PaginationProps> = ({
   useEffect(() => {
     if (router.query.page && firstItemRef?.current) {
       firstItemRef.current.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [firstItemRef, router.query.page]);
 
