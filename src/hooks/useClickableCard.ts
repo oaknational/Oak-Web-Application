@@ -32,7 +32,7 @@ const getInteractiveAncestor = (
  */
 
 const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
-  externalRef?: MutableRefObject<HTMLAnchorElement | null> | null | undefined
+  externalRef?: MutableRefObject<T | null> | null | undefined
 ) => {
   const internalRef = useRef<T | null>(null);
   const ref = externalRef || internalRef;
