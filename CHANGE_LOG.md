@@ -1,3 +1,10 @@
+# [1.187.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.3...v1.187.0) (2023-06-13)
+
+
+### Features
+
+* add curriculum-api 2023 config ([e710a52](https://github.com/oaknational/Oak-Web-Application/commit/e710a52a24083a742849a7ad35fa0aeaf2834d01))
+
 ## [1.186.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.2...v1.186.3) (2023-06-12)
 
 ## [1.186.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.1...v1.186.2) (2023-06-12)
