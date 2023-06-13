@@ -12,6 +12,7 @@ describe("usePostList.ts", () => {
     const { result } = renderHook(() => usePostList({ items: [] }));
     expect(result.current).toEqual({
       currentPageItems: [],
+      upcomingItem: undefined,
       paginationProps: {
         currentPageItems: [],
         pageSize: 4,
@@ -21,6 +22,9 @@ describe("usePostList.ts", () => {
         totalResults: 0,
         nextPageUrlObject: { pathname: "", query: { page: "2" } },
         prevPageUrlObject: { pathname: "" },
+        firstItemRef: {
+          current: null,
+        },
       },
     });
   });
@@ -30,6 +34,7 @@ describe("usePostList.ts", () => {
 
     expect(result.current).toEqual({
       currentPageItems: [pastPost],
+      upcomingItem: undefined,
       paginationProps: {
         currentPageItems: [pastPost],
         pageSize: 4,
@@ -39,7 +44,9 @@ describe("usePostList.ts", () => {
         totalResults: 1,
         nextPageUrlObject: { pathname: "" },
         prevPageUrlObject: { pathname: "" },
-        upcomingItem: undefined,
+        firstItemRef: {
+          current: null,
+        },
       },
     });
   });
@@ -64,6 +71,9 @@ describe("usePostList.ts", () => {
         totalResults: 1,
         nextPageUrlObject: { pathname: "" },
         prevPageUrlObject: { pathname: "" },
+        firstItemRef: {
+          current: null,
+        },
       },
     });
   });
@@ -90,6 +100,9 @@ describe("usePostList.ts", () => {
         totalResults: 1,
         nextPageUrlObject: { pathname: "" },
         prevPageUrlObject: { pathname: "" },
+        firstItemRef: {
+          current: null,
+        },
       },
     });
   });
@@ -115,6 +128,9 @@ describe("usePostList.ts", () => {
         totalResults: 30,
         nextPageUrlObject: { pathname: "", query: { page: "2" } },
         prevPageUrlObject: { pathname: "" },
+        firstItemRef: {
+          current: null,
+        },
       },
     });
   });

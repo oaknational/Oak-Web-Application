@@ -1,7 +1,7 @@
 import { encode } from "querystring";
 
 import { useRouter } from "next/router";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
 import { PaginationProps } from "./Pagination";
 
@@ -41,6 +41,7 @@ const usePagination = <T>(
     return items.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, items, pageSize]);
 
+  const firstItemRef = useRef<HTMLAnchorElement | null>(null);
   const paginationTitle =
     totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
 
@@ -51,6 +52,7 @@ const usePagination = <T>(
     currentPageItems,
     totalPages,
     totalResults,
+    firstItemRef,
     nextPageUrlObject: isLastPage
       ? { pathname: router.asPath }
       : { pathname: pathname, query: Object.fromEntries(nextPageParams) },
