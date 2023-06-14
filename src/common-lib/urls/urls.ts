@@ -31,7 +31,8 @@ export type MaybeOakPageType = OakPageType | OrString;
 export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
 // /teachers/ or /pupils/
-type ViewType = "teachers";
+export const VIEW_TYPES = ["teachers", "teachers-2023"] as const;
+export type ViewType = typeof VIEW_TYPES[number];
 
 const getCurrentHostname = () => {
   if (isBrowser) {
@@ -429,7 +430,7 @@ export const OAK_PAGES: {
       }
     },
     resolveHref: (props) =>
-      props.viewType === null ? "/" : `/beta/${props.viewType || "teachers"}`,
+      props.viewType === null ? "/" : `/beta/${props.viewType}`,
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -559,6 +560,28 @@ export type ResolveOakHrefProps = Exclude<
 >;
 
 /**
+ * This function will replace the :viewType param with "teachers-2023" if the
+ * viewType from window.location.path is "teachers".
+ */
+function replaceViewType2023(path: string): string {
+  if (typeof window === "undefined") {
+    return path;
+  }
+  const pathParts = path.split("/");
+  const currentPathParts = window.location.pathname.split("/");
+  const isIn2023Experience =
+    currentPathParts[1] === "beta" && currentPathParts[2] === "teachers-2023";
+  const [, beta, viewType] = pathParts;
+  const linkIsBetaTeachers = beta === "beta" && viewType === "teachers";
+
+  if (isIn2023Experience && linkIsBetaTeachers) {
+    return ["/beta", "teachers-2023", ...pathParts.slice(3)].join("/");
+  }
+
+  return path;
+}
+
+/**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
  * resolveOakHref({ page: "teacher-hub "})
@@ -567,12 +590,12 @@ export type ResolveOakHrefProps = Exclude<
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
-    return (
-      OAK_PAGES[props.page]
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        .resolveHref(props)
-    );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const path = OAK_PAGES[props.page].resolveHref(props);
+
+    const pathWithCorrectViewType = replaceViewType2023(path);
+    return pathWithCorrectViewType;
   } catch (error) {
     const err = new OakError({
       code: "urls/failed-to-resolve",

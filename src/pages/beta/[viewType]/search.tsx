@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import AppLayout from "../../../components/AppLayout";
 import useSearch from "../../../context/Search/useSearch";
@@ -7,11 +7,16 @@ import Search from "../../../components/SearchComponents/Search.page";
 import curriculumApi, {
   SearchPageData,
 } from "../../../node-lib/curriculum-api";
-import { decorateWithIsr } from "../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../node-lib/isr";
 import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import useSearchFilters from "../../../context/Search/useSearchFilters";
 import usePagination from "../../../components/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "../../../components/SearchResults/SearchResults";
+import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -66,6 +71,26 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
       />
     </AppLayout>
   );
+};
+
+export type URLParams = {
+  viewType: ViewType;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const paths = VIEW_TYPES.map((viewType) => ({
+    params: { viewType },
+  }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
 };
 
 export const getStaticProps: GetStaticProps<SearchPageProps> = async () => {

@@ -58,6 +58,10 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../node-lib/isr";
+import {
+  VIEW_TYPES,
+  ViewType,
+} from "../../../../../../../../../common-lib/urls";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -469,6 +473,7 @@ export type URLParams = {
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
+  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -477,7 +482,11 @@ export const getStaticPaths = async () => {
   }
 
   const { downloads } = await curriculumApi.lessonDownloadPaths();
-  const paths = downloads.map((params) => ({ params: params }));
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    downloads.map((params) => ({
+      params: { viewType, ...params },
+    }))
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
