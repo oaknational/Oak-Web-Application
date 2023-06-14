@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
@@ -22,6 +22,7 @@ export type UnitListItemProps = Omit<
   fromSearchPage?: boolean;
   index: number;
   currentPage?: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
 };
 
 /**
@@ -46,6 +47,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     fromSearchPage,
     hitCount,
     currentPage,
+    firstItemRef,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -84,7 +86,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>();
+    useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   return (
     <ListItemCard
@@ -109,6 +111,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           index={index}
           onClick={trackUnitSelected}
           fromSearchPage={fromSearchPage}
+          firstItemRef={firstItemRef}
         />
         {expired ? (
           <Expired page={"unit"} />

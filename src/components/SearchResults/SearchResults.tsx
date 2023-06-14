@@ -28,7 +28,7 @@ const SearchResults = (props: SearchResultsProps) => {
     pageSize: RESULTS_PER_PAGE,
     items: hits,
   });
-  const { currentPageItems, currentPage } = paginationProps;
+  const { currentPageItems, currentPage, firstItemRef } = paginationProps;
   return (
     <Flex $background={"white"} $flexDirection="column">
       {hitCount ? (
@@ -48,6 +48,7 @@ const SearchResults = (props: SearchResultsProps) => {
                       hitCount={hitCount}
                       fromSearchPage
                       currentPage={currentPage}
+                      firstItemRef={index === 0 ? firstItemRef : null}
                     />
                   ) : (
                     <UnitListItem
@@ -57,6 +58,7 @@ const SearchResults = (props: SearchResultsProps) => {
                       hitCount={hitCount}
                       fromSearchPage
                       currentPage={currentPage}
+                      firstItemRef={index === 0 ? firstItemRef : null}
                     />
                   )}
                 </LI>
