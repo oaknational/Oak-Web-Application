@@ -11,6 +11,11 @@ import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculu
 
 jest.mock("next/router", () => require("next-router-mock"));
 
+const utilsMock = jest.requireMock("../../../../../../../utils/resultsPerPage");
+jest.mock("../../../../../../../utils/resultsPerPage", () => ({
+  RESULTS_PER_PAGE: 20,
+}));
+
 const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
@@ -63,6 +68,29 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         description: "Programme units",
         ogTitle:
           "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "Programme units",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
+      });
+    });
+    it("renders the correct SEO details for programmes with pagination", async () => {
+      utilsMock.RESULTS_PER_PAGE = 10;
+      const { seo } = renderWithSeo()(
+        <UnitListingPage
+          curriculumData={{
+            ...unitListingFixture(),
+          }}
+        />
+      );
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "Programme units",
+        ogTitle:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Programme units",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",

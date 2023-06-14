@@ -43,7 +43,7 @@ query lessonOverview(
     title
     questionCount: question_count
   }
-  exitQuiz: mv_questions_6(
+  exitQuiz: mv_questions_7(
     where: {
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
@@ -84,7 +84,7 @@ query lessonOverview(
     title
     questionCount: question_count
   }
-  introQuiz: mv_questions_6(
+  introQuiz: mv_questions_7(
     where: {
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }

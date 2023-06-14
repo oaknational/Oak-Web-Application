@@ -49,6 +49,8 @@ const PostList: FC<PostListProps> = (props) => {
     withUpcomingItem,
   } = props;
 
+  const { firstItemRef } = paginationProps;
+
   return (
     <Flex
       $flexDirection="column"
@@ -73,7 +75,11 @@ const PostList: FC<PostListProps> = (props) => {
             {currentPageItems.map((item, i) => (
               <LI key={`PostList-PostListItem-${i}`}>
                 {i !== 0 && <Hr thickness={4} $mv={32} />}
-                <PostListItem {...item} withImage={withImage} />
+                <PostListItem
+                  {...item}
+                  withImage={withImage}
+                  firstItemRef={i === 0 ? firstItemRef : null}
+                />
               </LI>
             ))}
           </UL>

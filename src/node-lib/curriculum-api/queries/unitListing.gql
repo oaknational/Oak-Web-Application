@@ -1,5 +1,5 @@
 query unitListing($programmeSlug: String!) {
-  mv_programmes: mv_programmes_6(
+  mv_programmes: mv_programmes_7(
     where: { programme_slug: { _eq: $programmeSlug } }
   ) {
     programmeSlug: programme_slug

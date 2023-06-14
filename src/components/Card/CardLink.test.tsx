@@ -33,7 +33,7 @@ describe("CardLink", () => {
   });
   it("resolves page -> href", async () => {
     renderWithTheme(
-      <CardLink page="legal" slug="privacy-policy">
+      <CardLink page="legal" legalSlug="privacy-policy">
         Click Me
       </CardLink>
     );

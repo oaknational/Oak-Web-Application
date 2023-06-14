@@ -88,8 +88,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   {...primaryTargetProps}
                   page="unit-index"
                   viewType="teachers"
-                  programme={programmeSlug}
-                  //TODO add tracking
+                  programmeSlug={programmeSlug}
                 >
                   {subjectTitle}
                 </OakLink>
@@ -98,9 +97,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   {...primaryTargetProps}
                   page="programme-index"
                   viewType="teachers"
-                  keyStage={keyStageSlug}
-                  subject={subjectSlug}
-                  //TODO: replace 'key stage 4' with variable from above
+                  keyStageSlug={keyStageSlug}
+                  subjectSlug={subjectSlug}
                   onClick={() => {
                     track.subjectSelected({
                       keyStageTitle: keyStageTitle as KeyStageTitleValueType,

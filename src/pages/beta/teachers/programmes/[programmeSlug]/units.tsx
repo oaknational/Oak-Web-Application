@@ -32,6 +32,7 @@ import { Heading } from "../../../../../components/Typography";
 import TabularNav from "../../../../../components/TabularNav";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -62,11 +63,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
-    pageSize: 20,
+    pageSize: RESULTS_PER_PAGE,
     items: unitsFilteredByLearningTheme,
   });
 
-  const { currentPageItems } = paginationProps;
+  const { currentPageItems, paginationTitle } = paginationProps;
+
   const theme = useTheme();
 
   const HEADER_HEIGHT = theme.header.height;
@@ -76,7 +78,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const tiersSEO = {
     ...getSeoProps({
-      title: `${keyStageTitle} ${subjectTitle} tiers`,
+      title: `${keyStageTitle} ${subjectTitle} tiers${paginationTitle}`,
       description: `We have resources for tiers: ${tiers
         .map((tier) => tier.tierTitle)
         .join(", ")}`,
@@ -86,7 +88,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const unitsSEO = {
     ...getSeoProps({
-      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning`,
+      title: `Free ${keyStageSlug.toUpperCase()} ${subjectTitle} Teaching Resources for Lesson Planning${paginationTitle}`,
       description: "Programme units",
     }),
     ...{ noFollow: true, noIndex: true },
@@ -114,7 +116,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 oakLinkProps: {
                   page: "subject-index",
                   viewType: "teachers",
-                  slug: keyStageSlug,
+                  keyStageSlug,
                 },
                 label: keyStageTitle,
               },
@@ -122,7 +124,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 oakLinkProps: {
                   page: "unit-index",
                   viewType: "teachers",
-                  programme: programmeSlug,
+                  programmeSlug,
                 },
                 label: subjectTitle,
                 disabled: true,
@@ -177,7 +179,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     linkProps={{
                       page: "unit-index",
                       viewType: "teachers",
-                      programme: programmeSlug,
+                      programmeSlug,
                     }}
                     trackingProps={{
                       keyStageSlug,
@@ -221,7 +223,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       linkProps={{
                         page: "unit-index",
                         viewType: "teachers",
-                        programme: programmeSlug,
+                        programmeSlug,
                       }}
                       trackingProps={{
                         keyStageSlug,
@@ -246,7 +248,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         tierProgrammeSlug,
                       }) => ({
                         label: title,
-                        programme: tierProgrammeSlug,
+                        programmeSlug: tierProgrammeSlug,
                         page: "unit-index",
                         viewType: "teachers",
                         isCurrent: tierSlug === slug,

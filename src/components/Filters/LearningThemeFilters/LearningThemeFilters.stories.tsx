@@ -20,7 +20,7 @@ export const LearningThemeFilters: Story = {
     linkProps: {
       page: "unit-index",
       viewType: "teachers",
-      programme: "some-programme",
+      programmeSlug: "some-programme",
     },
   },
   render: (args) => {
