@@ -17,19 +17,19 @@ export const CategoryFilterList: Story = {
   args: {
     categories: [
       {
-        linkProps: { page: "blog-index", category: "" },
+        linkProps: { page: "blog-index", categorySlug: "" },
         label: "Oak updates",
       },
       {
-        linkProps: { page: "blog-index", category: "lesson-planning" },
+        linkProps: { page: "blog-index", categorySlug: "lesson-planning" },
         label: "Lesson planning",
       },
       {
-        linkProps: { page: "blog-index", category: "teaching-learning" },
+        linkProps: { page: "blog-index", categorySlug: "teaching-learning" },
         label: "Teaching and learning",
       },
       {
-        linkProps: { page: "blog-index", category: "research" },
+        linkProps: { page: "blog-index", categorySlug: "research" },
         label: "Research and insights",
       },
     ],

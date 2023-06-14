@@ -27,5 +27,5 @@
     "e2e_tests/browser/fixtures.ts",
     "src/__tests__/__helpers__/reporters/slowTestReporter.js"
   ],
-  "exclude": ["node_modules", "netlify/edge-functions"]
+  "exclude": ["node_modules", "netlify/edge-functions", "e2e_tests"]
 }

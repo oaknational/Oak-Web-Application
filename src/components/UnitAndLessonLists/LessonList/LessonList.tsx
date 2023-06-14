@@ -30,7 +30,7 @@ const LESSONS_PER_PAGE = 5;
 const LessonList: FC<LessonListProps> = (props) => {
   const { lessons, paginationProps, headingTag, currentPageItems, unitTitle } =
     props;
-  const { currentPage, pageSize } = paginationProps;
+  const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
@@ -41,7 +41,7 @@ const LessonList: FC<LessonListProps> = (props) => {
 
       {currentPageItems.length ? (
         <>
-          <UL $reset>
+          <UL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`LessonList-LessonListItem-${item.lessonSlug}`}>
                 <LessonListItem
@@ -49,6 +49,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                   unitTitle={unitTitle}
                   hideTopHeading
                   index={index + pageSize * (currentPage - 1)}
+                  firstItemRef={index === 0 ? firstItemRef : null}
                 />
               </LI>
             ))}

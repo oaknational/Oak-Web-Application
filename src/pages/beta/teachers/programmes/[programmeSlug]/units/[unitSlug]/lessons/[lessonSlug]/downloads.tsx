@@ -290,7 +290,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   viewType: "teachers",
                   programmeSlug,
                   unitSlug,
-                  slug: lessonSlug,
+                  lessonSlug,
                 },
                 label: lessonTitle,
               },
@@ -364,7 +364,11 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <P $font="body-3" $mt={-24} $mb={40}>
                       Join our community to get free lessons, resources and
                       other helpful content. Unsubscribe at any time. Our{" "}
-                      <OakLink page="legal" slug="privacy-policy" $isInline>
+                      <OakLink
+                        page="legal"
+                        legalSlug="privacy-policy"
+                        $isInline
+                      >
                         privacy policy
                       </OakLink>
                       .

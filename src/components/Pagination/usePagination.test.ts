@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { createRef } from "react";
 
 import usePagination from "./usePagination";
 
@@ -117,5 +118,17 @@ describe("usePagination()", () => {
     expect(result.current).toMatchObject({
       currentPageItems: items.slice(0, pageSize),
     });
+  });
+  test("returns firstItemRef with a valid ref", () => {
+    useRouter.mockReturnValueOnce({ pathname, query: {} });
+    const { result } = renderHook(() =>
+      usePagination({ totalResults, pageSize, items })
+    );
+
+    expect(result.current).toHaveProperty("firstItemRef");
+    expect(result.current.firstItemRef).toBeInstanceOf(Object);
+
+    const ref = createRef();
+    expect(result.current.firstItemRef).toMatchObject(ref);
   });
 });
