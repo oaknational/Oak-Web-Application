@@ -385,6 +385,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           lessonSlug: "macbeth-lesson-1",
           programmeSlug: "math-higher-ks4",
           unitSlug: "shakespeare",
+          viewType: "teachers",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {

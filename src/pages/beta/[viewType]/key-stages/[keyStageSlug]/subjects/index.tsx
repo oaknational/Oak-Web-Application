@@ -17,6 +17,7 @@ import {
 } from "../../../../../../node-lib/isr";
 import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
+import { VIEW_TYPES, ViewType } from "../../../../../../common-lib/urls";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -73,7 +74,10 @@ const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
   );
 };
 
-type URLParams = { keyStageSlug: string };
+type URLParams = {
+  keyStageSlug: string;
+  viewType: ViewType;
+};
 
 export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {
@@ -93,9 +97,11 @@ export const getStaticPaths = async () => {
    */
   const { keyStages } = await curriculumApi.teachersHomePage();
 
-  const paths = keyStages.map((keyStage) => ({
-    params: { keyStageSlug: keyStage.slug },
-  }));
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    keyStages.map((keyStage) => ({
+      params: { viewType, keyStageSlug: keyStage.slug },
+    }))
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,

@@ -55,7 +55,10 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
-        params: { keyStageSlug: "ks123" },
+        params: {
+          keyStageSlug: "ks123",
+          viewType: "teachers",
+        },
       });
 
       expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
