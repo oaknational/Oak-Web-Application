@@ -30,19 +30,20 @@ export type UnitListProps = UnitListingData & {
  */
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems } = props;
-  const { currentPage, pageSize } = paginationProps;
+  const { currentPage, pageSize, firstItemRef } = paginationProps;
 
   return (
     <Flex $flexDirection="column">
       {currentPageItems.length ? (
         <>
-          <UL $reset>
+          <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item.slug}`}>
                 <UnitListItem
                   {...item}
                   hideTopHeading
                   index={index + pageSize * (currentPage - 1)}
+                  firstItemRef={index === 0 ? firstItemRef : null}
                 />
               </LI>
             ))}
@@ -51,7 +52,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : null}
       {units.length > 5 && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination {...paginationProps} />
+          <Pagination {...paginationProps} firstItemRef={firstItemRef} />
         </Box>
       )}
     </Flex>

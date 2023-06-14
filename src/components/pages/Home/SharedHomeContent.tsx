@@ -38,6 +38,15 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
             <GridArea $colSpan={[12, 4]} $order={[0, 0]}>
               <HomeAboutCard {...pageData.sidebarCard1} />
             </GridArea>
+            <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 1]}>
+              <HomeHelpCard {...pageData.sidebarCard2} />
+            </GridArea>
+            <GridArea $colSpan={[12, 4]} $order={[4, 1]}>
+              <NewsletterFormWrap
+                {...newsletterFormProps}
+                anchorTargetId="email-sign-up"
+              />
+            </GridArea>
             <GridArea
               $mb={[64, 0]}
               $colSpan={[12, 8]}
@@ -57,7 +66,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                   $mb={48}
                   $flexDirection={["column", "row"]}
                 >
-                  <Heading $mb={[36, 0]} tag={"h3"} $font={"heading-5"}>
+                  <Heading $mb={[36, 0]} tag={"h2"} $font={"heading-5"}>
                     Stay up to date!
                   </Heading>
                   <Flex $flexDirection={"row"}>
@@ -71,15 +80,6 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
                 </Flex>
                 <PostList {...blogListProps} />
               </Box>
-            </GridArea>
-            <GridArea $mb={[64, 0]} $colSpan={[12, 4]} $order={[2, 0]}>
-              <HomeHelpCard {...pageData.sidebarCard2} />
-            </GridArea>
-            <GridArea $colSpan={[12, 4]} $order={[4, 0]}>
-              <NewsletterFormWrap
-                {...newsletterFormProps}
-                anchorTargetId="email-sign-up"
-              />
             </GridArea>
           </Grid>
         </MaxWidth>

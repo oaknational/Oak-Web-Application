@@ -2,7 +2,7 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks_
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units";
+} from "../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
@@ -10,6 +10,11 @@ import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fix
 import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 
 jest.mock("next/router", () => require("next-router-mock"));
+
+const utilsMock = jest.requireMock("../../../../../../../utils/resultsPerPage");
+jest.mock("../../../../../../../utils/resultsPerPage", () => ({
+  RESULTS_PER_PAGE: 20,
+}));
 
 const render = renderWithProviders();
 
@@ -69,6 +74,29 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         robots: "noindex,nofollow",
       });
     });
+    it("renders the correct SEO details for programmes with pagination", async () => {
+      utilsMock.RESULTS_PER_PAGE = 10;
+      const { seo } = renderWithSeo()(
+        <UnitListingPage
+          curriculumData={{
+            ...unitListingFixture(),
+          }}
+        />
+      );
+      expect(seo).toEqual({
+        ...mockSeoResult,
+        ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "Programme units",
+        ogTitle:
+          "Free KS4 Computing Teaching Resources for Lesson Planning | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "Programme units",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        robots: "noindex,nofollow",
+      });
+    });
   });
 
   describe("getStaticPaths", () => {
@@ -82,7 +110,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
-        params: { programmeSlug: "art-primary-ks1" },
+        params: {
+          programmeSlug: "art-primary-ks1",
+          viewType: "teachers",
+        },
       });
 
       expect(curriculumApi.unitListing).toHaveBeenCalledTimes(1);

@@ -9,7 +9,7 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
@@ -34,13 +34,9 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
     keyStageSlug,
     programmeSlug,
     keyStageTitle,
+    nonDuplicateSubjectLessonCount,
+    nonDuplicateSubjectUnitCount,
   } = firstProgramme;
-  const activeUnitCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeUnitCount || 0);
-  }, 0);
-  const activeLessonCount = programmes.reduce((acc, cur) => {
-    return acc + (cur.activeLessonCount || 0);
-  }, 0);
 
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
@@ -92,8 +88,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   {...primaryTargetProps}
                   page="unit-index"
                   viewType="teachers"
-                  programme={programmeSlug}
-                  //TODO add tracking
+                  programmeSlug={programmeSlug}
                 >
                   {subjectTitle}
                 </OakLink>
@@ -102,9 +97,8 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                   {...primaryTargetProps}
                   page="programme-index"
                   viewType="teachers"
-                  keyStage={keyStageSlug}
-                  subject={subjectSlug}
-                  //TODO: replace 'key stage 4' with variable from above
+                  keyStageSlug={keyStageSlug}
+                  subjectSlug={subjectSlug}
                   onClick={() => {
                     track.subjectSelected({
                       keyStageTitle: keyStageTitle as KeyStageTitleValueType,
@@ -122,11 +116,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeUnitCount} units`}</Typography>
+            >{`${nonDuplicateSubjectUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeLessonCount} lessons`}</Typography>
+            >{`${nonDuplicateSubjectLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>

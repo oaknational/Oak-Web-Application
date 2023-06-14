@@ -71,7 +71,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           >
             Fill this form to watch this webinar and get free resources and
             other helpful content by email. Unsubscribe any time.{" "}
-            <OakLink page="legal" slug="privacy-policy" $isInline>
+            <OakLink page="legal" legalSlug="privacy-policy" $isInline>
               Privacy policy
             </OakLink>
             .

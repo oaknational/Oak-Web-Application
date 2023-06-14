@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SubjectCardListItem from "./SubjectCardListItem";
@@ -15,6 +15,8 @@ const subjectCardListemProps: ProgrammesBySubject = [
     totalUnitCount: 1,
     activeUnitCount: 1,
     activeLessonCount: 4,
+    nonDuplicateSubjectLessonCount: 4,
+    nonDuplicateSubjectUnitCount: 1,
     programmeSlug: "biology-secondary-ks4",
     tierSlug: null,
   },
@@ -29,6 +31,8 @@ const subjectTrackingProps: ProgrammesBySubject = [
     totalUnitCount: 2,
     activeUnitCount: 2,
     activeLessonCount: 4,
+    nonDuplicateSubjectLessonCount: 4,
+    nonDuplicateSubjectUnitCount: 2,
     programmeSlug: "combined-science-secondary-ks4-foundation",
     tierSlug: "foundation",
   },
@@ -40,6 +44,8 @@ const subjectTrackingProps: ProgrammesBySubject = [
     totalUnitCount: 2,
     activeLessonCount: 4,
     activeUnitCount: 2,
+    nonDuplicateSubjectLessonCount: 4,
+    nonDuplicateSubjectUnitCount: 2,
     programmeSlug: "combined-science-secondary-ks4-higher",
     tierSlug: "higher",
   },

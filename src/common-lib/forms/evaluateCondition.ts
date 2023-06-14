@@ -2,6 +2,14 @@ import { assertUnreachable } from "../../utils/assertUnreachable";
 
 import { FieldRenderCondition, FieldValue } from "./FormDefinition";
 
+/**
+ * Evaluates a field render condition against a context.
+ * @param condition
+ * @param context
+ * @returns
+ *
+ * @throws {Error} if the condition operator is not supported
+ */
 const evaluateCondition = (
   condition: FieldRenderCondition,
   context: Record<string, unknown>

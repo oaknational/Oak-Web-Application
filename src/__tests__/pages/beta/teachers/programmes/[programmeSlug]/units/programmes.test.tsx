@@ -1,10 +1,12 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
+import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import ProgrammesListingPage, {
-  getServerSideProps,
+  getStaticPaths,
+  getStaticProps,
   ProgrammeListingPageProps,
   URLParams,
-} from "../../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
+} from "../../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
@@ -50,10 +52,15 @@ describe("programmes listing page", () => {
       });
     });
   });
-
-  describe("getServerSideProps", () => {
+  describe("getStaticPaths", () => {
+    it("should fetch the correct data", async () => {
+      await getStaticPaths();
+      expect(curriculumApi.programmeListingPaths).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
-      const testRes = (await getServerSideProps({
+      const testRes = (await getStaticProps({
         params: {
           keyStageSlug: "ks4",
           subjectSlug: "maths",
@@ -66,9 +73,7 @@ describe("programmes listing page", () => {
     });
     it("should throw error when not provided context params", async () => {
       await expect(
-        getServerSideProps(
-          {} as GetServerSidePropsContext<URLParams, PreviewData>
-        )
+        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("No context params");
     });
   });

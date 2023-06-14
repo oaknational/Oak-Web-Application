@@ -1,4 +1,4 @@
-import { MouseEventHandler, useRef } from "react";
+import { MouseEventHandler, MutableRefObject, useRef } from "react";
 import { useHover } from "react-aria";
 
 import errorReporter from "../common-lib/error-reporter";
@@ -31,10 +31,11 @@ const getInteractiveAncestor = (
  * e.stopPropagation()**
  */
 
-const useClickableCard = <
-  T extends HTMLAnchorElement | HTMLButtonElement
->() => {
-  const ref = useRef<T | null>(null);
+const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
+  externalRef?: MutableRefObject<T | null> | null | undefined
+) => {
+  const internalRef = useRef<T | null>(null);
+  const ref = externalRef || internalRef;
   const { isHovered, hoverProps } = useHover({});
 
   const onClick: MouseEventHandler<HTMLDivElement> = (e) => {
@@ -58,7 +59,10 @@ const useClickableCard = <
   };
 
   return {
-    primaryTargetProps: { ref, $isHovered: isHovered },
+    primaryTargetProps: {
+      ref,
+      $isHovered: isHovered,
+    },
     containerProps: { onClick, ...hoverProps },
     isHovered,
   };

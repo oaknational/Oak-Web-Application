@@ -1,7 +1,7 @@
 import {
   KeyStagePageProps,
   ProgrammeProps,
-} from "../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+} from "../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 
 const subjectPagePropsFixture = (
   partial?: Partial<ProgrammeProps & KeyStagePageProps>

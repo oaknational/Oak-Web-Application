@@ -7,6 +7,8 @@ import {
 } from "../../common-lib/cms-types";
 import { PostListItemProps } from "../Posts/PostList/PostListItem";
 import PostListing from "../Posts/PostListing";
+import { PAGE_SIZE } from "../Posts/PostList/usePostList";
+import usePagination from "../Pagination/usePagination";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;
@@ -21,11 +23,19 @@ export type PostListingPageProps = {
 
 const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
   const { blogs, categories, categorySlug, pageData } = props;
+  const paginationProps = usePagination({
+    totalResults: blogs.length,
+    pageSize: PAGE_SIZE,
+    items: blogs,
+  });
+  const { paginationTitle } = paginationProps;
 
   return (
     <PostListing
       seo={{
-        title: pageData.seo?.title || "Latest Blogs & Insights",
+        title: `${
+          pageData.seo?.title || "Latest Blogs & Insights"
+        }${paginationTitle}`,
         description:
           pageData.seo?.description ||
           "Keep up to date with our latest blog posts, filled with insights, news and updates from Oak National Academy.",
