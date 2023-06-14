@@ -1,6 +1,6 @@
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
-import React, { FC } from "react";
+import React, { FC, RefObject, useEffect } from "react";
 
 import Flex from "../Flex";
 import { Span } from "../Typography";
@@ -11,6 +11,7 @@ export type PaginationProps = {
   totalPages: number;
   prevPageUrlObject?: Parameters<typeof resolveHref>[1];
   nextPageUrlObject?: Parameters<typeof resolveHref>[1];
+  firstItemRef?: RefObject<HTMLAnchorElement> | null;
   paginationTitle?: string;
 };
 
@@ -19,7 +20,16 @@ const Pagination: FC<PaginationProps> = ({
   currentPage,
   prevPageUrlObject = "",
   nextPageUrlObject = "",
+  firstItemRef,
 }) => {
+  const router = useRouter();
+  useEffect(() => {
+    if (router.query.page && firstItemRef?.current) {
+      firstItemRef.current.focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [firstItemRef, router.query.page]);
+
   if (currentPage === 0 || totalPages < 2) {
     return null;
   }

@@ -1,5 +1,5 @@
-import { MouseEventHandler } from "react";
-import { render } from "@testing-library/react";
+import { MouseEventHandler, MutableRefObject } from "react";
+import { render, renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import "../__tests__/__helpers__/LocalStorageMock";
@@ -54,5 +54,12 @@ describe("useClickableCard()", () => {
     const user = userEvent.setup();
     await user.click(secondaryButton);
     expect(onClick).not.toHaveBeenCalled();
+  });
+  test("you can pass in an external ref", async () => {
+    const ref = { current: "my ref" as unknown as HTMLAnchorElement };
+    const { result } = renderHook(() =>
+      useClickableCard(ref as MutableRefObject<HTMLAnchorElement>)
+    );
+    expect(result.current.primaryTargetProps.ref.current).toBe("my ref");
   });
 });
