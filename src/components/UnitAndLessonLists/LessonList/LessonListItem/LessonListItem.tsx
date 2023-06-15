@@ -6,7 +6,6 @@ import useAnalytics from "../../../../context/Analytics/useAnalytics";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
-import { LessonListing } from "../../../../node-lib/curriculum-api";
 import ListItemHeader from "../../ListItemHeader";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
@@ -15,8 +14,15 @@ import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
+import { LessonListingSchema } from "../../../../node-lib/curriculum-api-2023/schema/lessonListing.schema";
 
-export type LessonListItemProps = LessonListing["lessons"][number] & {
+export type LessonListItemProps = LessonListingSchema["lessons"][number] & {
+  programmeSlug: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  keyStageSlug: string;
+  keyStageTitle: string;
+  unitSlug: string;
   unitTitle: string;
   hideTopHeading?: boolean;
   hitCount?: number;

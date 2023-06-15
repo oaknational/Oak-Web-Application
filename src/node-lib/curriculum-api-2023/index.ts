@@ -4,6 +4,9 @@ import { z } from "zod";
 import config from "../../config/server";
 
 import { getSdk } from "./generated/sdk";
+import OakError from "../../errors/OakError";
+import errorReporter from "../../common-lib/error-reporter/errorReporter";
+import lessonListingSchema from "./schema/lessonListing.schema";
 
 const curriculumApiUrl = config.get("curriculumApi2023Url");
 const curriculumApiAuthType = config.get("curriculumApiAuthType");
@@ -37,6 +40,28 @@ const curriculumApi2023 = {
     const res = await sdk.teachersHomePage();
 
     return teachersHomePageData.parse(res);
+  },
+  lessonListing: async (args: { programmeSlug: string; unitSlug: string }) => {
+    const res = await sdk.lessonListing(args);
+
+    const [unit] = res.unit;
+
+    if (!unit) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    if (res.unit.length > 1) {
+      const error = new OakError({
+        code: "curriculum-api/uniqueness-assumption-violated",
+      });
+      errorReporter("curriculum-api-2023::lessonListing")(error, {
+        severity: "warning",
+        ...args,
+        res,
+      });
+    }
+
+    return lessonListingSchema.parse(unit);
   },
 };
 
