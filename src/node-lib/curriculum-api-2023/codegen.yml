@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - ${CURRICULUM_API_2023_URL}:
+      headers:
+        x-oak-auth-type: ${CURRICULUM_API_AUTH_TYPE}
+        x-oak-auth-key: ${CURRICULUM_API_2023_AUTH_KEY}
+        # x-hasura-admin-secret: ${CURRICULUM_API_ADMIN_SECRET}
+
+documents: "src/node-lib/curriculum-api-2023/**/*.{graphql,gql}"
+generates:
+  src/node-lib/curriculum-api-2023/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"

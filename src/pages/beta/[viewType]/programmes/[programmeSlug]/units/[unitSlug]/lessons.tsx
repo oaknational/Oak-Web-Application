@@ -23,6 +23,7 @@ import {
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
 import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
+import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
 
 export type LessonListPageProps = {
   curriculumData: LessonListing;
@@ -139,6 +140,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
 export type URLParams = {
   programmeSlug: string;
   unitSlug: string;
+  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -147,7 +149,11 @@ export const getStaticPaths = async () => {
   }
 
   const { units } = await curriculumApi.lessonListingPaths();
-  const paths = units.map((params: URLParams) => ({ params: params }));
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    units.map((params) => ({
+      params: { viewType, ...params },
+    }))
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,

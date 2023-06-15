@@ -16,7 +16,7 @@ import LessonDownloadsPage, {
   getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "../../../../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+} from "../../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
@@ -385,6 +385,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
           lessonSlug: "macbeth-lesson-1",
           programmeSlug: "math-higher-ks4",
           unitSlug: "shakespeare",
+          viewType: "teachers",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {

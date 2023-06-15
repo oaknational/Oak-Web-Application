@@ -1,4 +1,9 @@
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 
 import {
   getAndMergeWebinarsAndBlogs,
@@ -26,9 +31,15 @@ import CMSClient from "../../../node-lib/cms";
 import curriculumApi, {
   TeachersHomePageData,
 } from "../../../node-lib/curriculum-api";
-import { decorateWithIsr } from "../../../node-lib/isr";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "../../../node-lib/isr";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
+import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
+import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -149,12 +160,35 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   );
 };
 
+type URLParams = {
+  viewType: ViewType;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const paths = VIEW_TYPES.map((viewType) => ({
+    params: { viewType },
+  }));
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: false,
+    paths,
+  };
+  return config;
+};
+
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context
 ) => {
   const isPreviewMode = context.preview === true;
 
-  const curriculumData = await curriculumApi.teachersHomePage();
+  const curriculumData =
+    context?.params?.viewType === "teachers-2023"
+      ? await curriculumApi2023.teachersHomePage()
+      : await curriculumApi.teachersHomePage();
 
   const teachersHomepageData = await CMSClient.homepage({
     previewMode: isPreviewMode,
