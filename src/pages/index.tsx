@@ -31,6 +31,7 @@ import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 import Illustration from "../components/Illustration";
 import { getSizes } from "../components/CMSImage/getSizes";
 import HomeNotification from "../components/pages/Home/HomeNotification";
+import errorReporter from "../common-lib/error-reporter/errorReporter";
 
 export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
@@ -279,28 +280,34 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  try {
+    const isPreviewMode = context.preview === true;
 
-  const homepageData = await CMSClient.homepage({
-    previewMode: isPreviewMode,
-  });
+    const homepageData = await CMSClient.homepage({
+      previewMode: isPreviewMode,
+    });
 
-  if (!homepageData) {
-    return {
-      notFound: true,
+    if (!homepageData) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
+
+    const results: GetStaticPropsResult<HomePageProps> = {
+      props: {
+        pageData: homepageData,
+        posts,
+      },
     };
+    const resultsWithIsr = decorateWithIsr(results);
+    return resultsWithIsr;
+  } catch (error) {
+    errorReporter("index.tsx::getStaticProps")(error);
+
+    throw error;
   }
-
-  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
-
-  const results: GetStaticPropsResult<HomePageProps> = {
-    props: {
-      pageData: homepageData,
-      posts,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
 };
 
 export default Home;

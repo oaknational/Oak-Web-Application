@@ -18,11 +18,11 @@ import Flex from "../components/Flex";
 import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
-// import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import { BasePortableTextProvider } from "../components/PortableText";
+import errorReporter from "../common-lib/error-reporter/errorReporter";
 
 export type ContactPageProps = {
   pageData: ContactPage;
@@ -115,25 +115,30 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<ContactPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  try {
+    const isPreviewMode = context.preview === true;
 
-  const pageData = await CMSClient.contactPage({
-    previewMode: isPreviewMode,
-  });
+    const pageData = await CMSClient.contactPage({
+      previewMode: isPreviewMode,
+    });
 
-  if (!pageData) {
-    return {
-      notFound: true,
+    if (!pageData) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const results: GetStaticPropsResult<ContactPageProps> = {
+      props: {
+        pageData,
+      },
     };
+    const resultsWithIsr = decorateWithIsr(results);
+    return resultsWithIsr;
+  } catch (error) {
+    errorReporter("contact-us.tsx::getStaticProps")(error);
+    throw error;
   }
-
-  const results: GetStaticPropsResult<ContactPageProps> = {
-    props: {
-      pageData,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
 };
 
 export default ContactUs;

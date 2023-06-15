@@ -23,6 +23,7 @@ import Cover from "../components/Cover";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "../components/Illustration";
 import { getSizes } from "../components/CMSImage/getSizes";
+import errorReporter from "../common-lib/error-reporter/errorReporter";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -213,25 +214,30 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  try {
+    const isPreviewMode = context.preview === true;
 
-  const curriculumPage = await CMSClient.curriculumPage({
-    previewMode: isPreviewMode,
-  });
+    const curriculumPage = await CMSClient.curriculumPage({
+      previewMode: isPreviewMode,
+    });
 
-  if (!curriculumPage) {
-    return {
-      notFound: true,
+    if (!curriculumPage) {
+      return {
+        notFound: true,
+      };
+    }
+
+    const results: GetStaticPropsResult<CurriculumPageProps> = {
+      props: {
+        pageData: curriculumPage,
+      },
     };
+    const resultsWithIsr = decorateWithIsr(results);
+    return resultsWithIsr;
+  } catch (error) {
+    errorReporter("develop-your-curriculum.tsx::getStaticProps")(error);
+    throw error;
   }
-
-  const results: GetStaticPropsResult<CurriculumPageProps> = {
-    props: {
-      pageData: curriculumPage,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
 };
 
 export default Curriculum;
