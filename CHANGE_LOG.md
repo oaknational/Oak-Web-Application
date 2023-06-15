@@ -1,3 +1,10 @@
+## [1.188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.0...v1.188.1) (2023-06-15)
+
+
+### Bug Fixes
+
+* **E2E Browser:** allow tests to run against prod ([f5a685d](https://github.com/oaknational/Oak-Web-Application/commit/f5a685db19124e5a764d78b1733f9f71406cd2e8))
+
 # [1.188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.1...v1.188.0) (2023-06-14)
 
 
