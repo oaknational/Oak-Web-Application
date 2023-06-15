@@ -33,6 +33,7 @@ import TabularNav from "../../../../../components/TabularNav";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
+import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -273,6 +274,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
 export type URLParams = {
   programmeSlug: string;
+  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -281,8 +283,12 @@ export const getStaticPaths = async () => {
   }
 
   const { programmes } = await curriculumApi.unitListingPaths();
-  const paths = programmes.map((params) => ({ params: params }));
 
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    programmes.map((programme) => ({
+      params: { viewType, programmeSlug: programme.programmeSlug },
+    }))
+  );
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
     paths,

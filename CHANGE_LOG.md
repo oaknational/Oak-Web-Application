@@ -1,3 +1,19 @@
+## [1.188.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.1...v1.188.2) (2023-06-15)
+
+## [1.188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.0...v1.188.1) (2023-06-15)
+
+
+### Bug Fixes
+
+* **E2E Browser:** allow tests to run against prod ([f5a685d](https://github.com/oaknational/Oak-Web-Application/commit/f5a685db19124e5a764d78b1733f9f71406cd2e8))
+
+# [1.188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.1...v1.188.0) (2023-06-14)
+
+
+### Features
+
+* spike curriculum api 2023 depending on url param ([acd0533](https://github.com/oaknational/Oak-Web-Application/commit/acd0533aa90befcd1cd7fdcdc9bb464640453ff7))
+
 ## [1.187.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.0...v1.187.1) (2023-06-13)
 
 

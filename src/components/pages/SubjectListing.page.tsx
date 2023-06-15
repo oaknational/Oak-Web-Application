@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ProgrammeProps } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammeProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import SubjectCardList from "../SubjectCardList/SubjectCardList";
