@@ -8,8 +8,7 @@ The terraform project is broken out into multiple workspaces
 - staging
 - demo
 
-Each workspace should have an associated `<env>.tfvars` file. The `example_vars` can serve as a template.
-i.e. `staging.tfvars`
+Each workspace will have variables configured in TF cloud
 
 ```
 project       = "oak-national-academy"
@@ -21,14 +20,4 @@ environment   = "staging"
 
 ## Local setup
 
-The following CLIs are required:
-
-- [terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
-- [gcloud](https://cloud.google.com/sdk/docs/install)
-
-1. `terraform login` (you will need a terraform account to perform this step)
-2. follow [these instructions](https://github.com/oaknational/Cloud-Config/tree/feat/ISSUE-82-deployment-bucket/infrastructure/iam#google-cloud) on authenticating your terraform cli
-3. `terraform workspace list` - to view available workspaces
-4. `terraform workspace select <environment>` - to select your the correct environment
-5. `terraform plan -var-file=<environment>.tfvars` - to see the effects your changes will make
-6. `terraform apply -var-file=<environment>.tfvars` - to apply those changes
+The current doc on terraform management can be found here https://github.com/oaknational/Data-Tools/tree/development/infrastructure#terraform-cloud
