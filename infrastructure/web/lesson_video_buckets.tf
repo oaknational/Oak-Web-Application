@@ -10,7 +10,7 @@ resource "google_storage_bucket" "lesson_videos" {
 
   cors {
     origin          = [var.retool_origin]
-    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
+    method          = ["GET", "HEAD", "PUT", "POST"]
     response_header = ["Content-Type", "x-goog-acl"]
     max_age_seconds = 3600
   }
