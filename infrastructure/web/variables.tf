@@ -4,6 +4,7 @@ variable "project" {
 }
 
 variable "region" {
+  type    = string
   default = "europe-west2"
 }
 
@@ -16,5 +17,5 @@ variable "retool_origin" {
 
 variable "environment" {
   type    = string
-  default = "staging"
+  default = "production"
 }
