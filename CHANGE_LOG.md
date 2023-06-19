@@ -1,3 +1,18 @@
+# [1.189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.2...v1.189.0) (2023-06-19)
+
+
+### Bug Fixes
+
+* don't render footnotes footer when none exist ([a692cf3](https://github.com/oaknational/Oak-Web-Application/commit/a692cf3a71e3fbeee0b48baaaddf2bfe3cf78839))
+* ensure footnote backlinks scroll to correct position ([5c6aedf](https://github.com/oaknational/Oak-Web-Application/commit/5c6aedfa47699e49968818cdc3d7ac36a187ef61))
+* prevent mangling of footnote anchor hrefs by OakLink/Next's Link ([2a82c57](https://github.com/oaknational/Oak-Web-Application/commit/2a82c5727fc2125ad9e7faad4a88890337a0e83a))
+
+
+### Features
+
+* add ability to mark up blog posts with footnotes ([8cb377f](https://github.com/oaknational/Oak-Web-Application/commit/8cb377f25651132684a71f449e27f63c5318228c))
+* tidy footnote styling, add tests ([849faa8](https://github.com/oaknational/Oak-Web-Application/commit/849faa8a35f5199236258df5eb39aef18f8dc158))
+
 ## [1.188.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.1...v1.188.2) (2023-06-15)
 
 ## [1.188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.0...v1.188.1) (2023-06-15)
