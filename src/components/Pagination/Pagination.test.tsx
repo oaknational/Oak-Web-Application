@@ -1,6 +1,12 @@
+import { waitFor } from "@testing-library/react";
+import { RefObject } from "react";
+
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Pagination from "./Pagination";
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 export const mockPaginationProps = {
   totalResults: 1,
@@ -12,6 +18,12 @@ export const mockPaginationProps = {
 };
 
 describe("Pagination", () => {
+  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("it renders", () => {
     const totalPages = 25;
     const currentPage = 1;
@@ -143,5 +155,38 @@ describe("Pagination", () => {
     );
 
     expect(queryByRole("navigation")).toBeNull();
+  });
+  test("focus is set on ref when query has page and there is a ref passed to component", async () => {
+    const useRouterMock = useRouter as jest.Mock;
+    useRouterMock.mockReturnValueOnce({
+      pathname: "/",
+      query: { page: 2 },
+      router: {
+        query: { page: 2 },
+      },
+    });
+    const totalPages = 40;
+    const currentPage = 4;
+    const nextPageUrlObject = "next-page";
+    const prevPageUrlObject = "prev-page";
+
+    const focusMock = jest.fn();
+    const firstItemRef = {
+      current: { focus: focusMock },
+    } as unknown as RefObject<HTMLAnchorElement>;
+
+    renderWithTheme(
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        prevPageUrlObject={prevPageUrlObject}
+        nextPageUrlObject={nextPageUrlObject}
+        firstItemRef={firstItemRef}
+      />
+    );
+
+    await waitFor(() => {
+      expect(focusMock).toHaveBeenCalled();
+    });
   });
 });

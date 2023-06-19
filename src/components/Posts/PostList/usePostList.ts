@@ -7,7 +7,7 @@ import usePagination from "../../Pagination/usePagination";
 import { PostListProps } from "./PostList";
 import { PostListItemProps } from "./PostListItem";
 
-const PAGE_SIZE = 4;
+export const PAGE_SIZE = 4;
 
 type PropsAddedByHook = "upcomingItem" | "currentPageItems" | "paginationProps";
 export type UsePostListProps = Omit<PostListProps, PropsAddedByHook> & {

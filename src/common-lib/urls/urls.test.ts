@@ -27,14 +27,14 @@ describe("urls.ts", () => {
     it("Blog single", () => {
       const props: ResolveOakHrefProps = {
         page: "blog-single",
-        slug: "a-blog",
+        blogSlug: "a-blog",
       };
       expect(resolveOakHref(props)).toBe("/blog/a-blog");
     });
     it("Webinar single", () => {
       const props: ResolveOakHrefProps = {
         page: "webinar-single",
-        slug: "a-webinar",
+        webinarSlug: "a-webinar",
       };
       expect(resolveOakHref(props)).toBe("/webinars/a-webinar");
     });
@@ -47,7 +47,7 @@ describe("urls.ts", () => {
     it("Blog listing with category", () => {
       const props: ResolveOakHrefProps = {
         page: "blog-index",
-        category: "lessons",
+        categorySlug: "lessons",
       };
       expect(resolveOakHref(props)).toBe("/blog/categories/lessons");
     });
@@ -60,7 +60,7 @@ describe("urls.ts", () => {
     it("Webinar listing with category", () => {
       const props: ResolveOakHrefProps = {
         page: "webinar-index",
-        category: "lessons",
+        categorySlug: "lessons",
       };
       expect(resolveOakHref(props)).toBe("/webinars/categories/lessons");
     });
@@ -77,7 +77,7 @@ describe("urls.ts", () => {
       const props: ResolveOakHrefProps = {
         page: "unit-index",
         viewType: "teachers",
-        programme: "primary-ks2-maths",
+        programmeSlug: "primary-ks2-maths",
       };
       expect(resolveOakHref(props)).toBe(
         "/beta/teachers/programmes/primary-ks2-maths/units"
@@ -87,8 +87,8 @@ describe("urls.ts", () => {
       const props: ResolveOakHrefProps = {
         page: "programme-index",
         viewType: "teachers",
-        keyStage: "ks2",
-        subject: "maths",
+        keyStageSlug: "ks2",
+        subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe(
         "/beta/teachers/key-stages/ks2/subjects/maths/programmes"
@@ -99,7 +99,7 @@ describe("urls.ts", () => {
         resolveOakHref({
           page: "unit-index",
           viewType: "teachers",
-          programme: "primary-ks2-maths",
+          programmeSlug: "primary-ks2-maths",
           search: { "learning-theme": "circls" },
         })
       ).toBe(
@@ -112,7 +112,7 @@ describe("urls.ts", () => {
           page: "lesson-index",
           viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
-          slug: "geometry-349",
+          unitSlug: "geometry-349",
         })
       ).toBe(
         "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons"
@@ -125,7 +125,7 @@ describe("urls.ts", () => {
           viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
-          slug: "semi-circles-48",
+          lessonSlug: "semi-circles-48",
         })
       ).toBe(
         "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48"
@@ -165,7 +165,7 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "landing-page",
-          slug: "lp-slug-123",
+          lpSlug: "lp-slug-123",
         })
       ).toBe("/lp/lp-slug-123");
     });
@@ -174,7 +174,7 @@ describe("urls.ts", () => {
         resolveOakHref({
           page: "subject-index",
           viewType: "teachers",
-          slug: "ks2",
+          keyStageSlug: "ks2",
         })
       ).toBe("/beta/teachers/key-stages/ks2/subjects");
     });
@@ -223,9 +223,9 @@ describe("urls.ts", () => {
       );
     });
     it("Legal", () => {
-      expect(resolveOakHref({ page: "legal", slug: "legal-page-123" })).toBe(
-        "/legal/legal-page-123"
-      );
+      expect(
+        resolveOakHref({ page: "legal", legalSlug: "legal-page-123" })
+      ).toBe("/legal/legal-page-123");
     });
     it("Support your team", () => {
       expect(resolveOakHref({ page: "support-your-team" })).toBe(

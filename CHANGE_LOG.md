@@ -1,3 +1,95 @@
+## [1.188.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.1...v1.188.2) (2023-06-15)
+
+## [1.188.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.0...v1.188.1) (2023-06-15)
+
+
+### Bug Fixes
+
+* **E2E Browser:** allow tests to run against prod ([f5a685d](https://github.com/oaknational/Oak-Web-Application/commit/f5a685db19124e5a764d78b1733f9f71406cd2e8))
+
+# [1.188.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.1...v1.188.0) (2023-06-14)
+
+
+### Features
+
+* spike curriculum api 2023 depending on url param ([acd0533](https://github.com/oaknational/Oak-Web-Application/commit/acd0533aa90befcd1cd7fdcdc9bb464640453ff7))
+
+## [1.187.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.187.0...v1.187.1) (2023-06-13)
+
+
+### Bug Fixes
+
+* add scroll to top for safari ([33da9fb](https://github.com/oaknational/Oak-Web-Application/commit/33da9fb9b1773fa5f4d3c0bd3ab181d6af270265))
+* focus moves to first item in unit list on pagination click ([34cccc4](https://github.com/oaknational/Oak-Web-Application/commit/34cccc40ce2ed783c9deb2fd43155f603c2f6d84))
+* focus on first item in search lessonlist and post list ([d66bb42](https://github.com/oaknational/Oak-Web-Application/commit/d66bb42cf1015f1aeab9227361d33d0025307eaf))
+* lesson list has focus on first element on with pagination page ([36a8bf2](https://github.com/oaknational/Oak-Web-Application/commit/36a8bf213ed21f370c31fca1a48344338291e953))
+* type error from external ref ([bfe6f8b](https://github.com/oaknational/Oak-Web-Application/commit/bfe6f8becd6e89f9567876b98513092780b8090b))
+
+# [1.187.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.3...v1.187.0) (2023-06-13)
+
+
+### Features
+
+* add curriculum-api 2023 config ([e710a52](https://github.com/oaknational/Oak-Web-Application/commit/e710a52a24083a742849a7ad35fa0aeaf2834d01))
+
+## [1.186.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.2...v1.186.3) (2023-06-12)
+
+## [1.186.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.1...v1.186.2) (2023-06-12)
+
+## [1.186.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.186.0...v1.186.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **how-to:** correct the heading hierarchy on the develop curriculum page ([4280c88](https://github.com/oaknational/Oak-Web-Application/commit/4280c88e73a5528fa89f34ac95f8e5c1faf3d323))
+* **how-to:** correct the heading hierarchy on the develop curriculum page ([d141c46](https://github.com/oaknational/Oak-Web-Application/commit/d141c462ffa92c47f12f46beee1514a504774f81))
+
+# [1.186.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.20...v1.186.0) (2023-06-12)
+
+
+### Bug Fixes
+
+* **a11y:** divs with aria-label must have a role ([9ca5b55](https://github.com/oaknational/Oak-Web-Application/commit/9ca5b55a36f509fba3e2de1e7c8795ea345df9b6))
+* **e2e tests:** expects are async ([c9c084c](https://github.com/oaknational/Oak-Web-Application/commit/c9c084cac9df9c5cde6f0f7e56b3e1c07222dc2d))
+* **e2e tests:** metadata naming ([fe78222](https://github.com/oaknational/Oak-Web-Application/commit/fe78222e397de8b2f9d56c03ccf7212111e379e0))
+* **e2e tests:** no floating promises ([2945043](https://github.com/oaknational/Oak-Web-Application/commit/294504300f779b34d706642e499b4e524d289ec2))
+* **storybook:** downgrade Typescript so Storybook will build ([8775d59](https://github.com/oaknational/Oak-Web-Application/commit/8775d59228a87010e05c47920c217e29e2099c7f))
+
+
+### Features
+
+* **e2e test:** first browser test ([c44cb7d](https://github.com/oaknational/Oak-Web-Application/commit/c44cb7dfec7525dccd45a7fadf6fa51d58a672f6))
+* **e2e tests:** deal with Confirmic overlay ([9100956](https://github.com/oaknational/Oak-Web-Application/commit/9100956adb43ed075a354fb0a965811d1b09b8c8))
+* **tests:** implement local WDIO test ([bf7e1d2](https://github.com/oaknational/Oak-Web-Application/commit/bf7e1d21433f53c1e07cd9e7a752858121787720))
+
+## [1.185.20](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.19...v1.185.20) (2023-06-09)
+
+## [1.185.19](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.18...v1.185.19) (2023-06-09)
+
+
+### Bug Fixes
+
+* **merge:** merge in main ([bdfde01](https://github.com/oaknational/Oak-Web-Application/commit/bdfde01df8ed9961c74f61c349cd11686b335ee4))
+* **pagination:** add pagination to the page titles ([dfaae6c](https://github.com/oaknational/Oak-Web-Application/commit/dfaae6c5d2c390ac64b06d7721c17ffd41cd5128))
+* **usePostList:** fix test to include paginatiom title ([e6f5a71](https://github.com/oaknational/Oak-Web-Application/commit/e6f5a71094cc94ac3781ae8002c0f364e0e166b0))
+
+## [1.185.18](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.17...v1.185.18) (2023-06-08)
+
+## [1.185.17](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.16...v1.185.17) (2023-06-08)
+
+## [1.185.16](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.15...v1.185.16) (2023-06-07)
+
+## [1.185.15](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.14...v1.185.15) (2023-06-07)
+
+
+### Bug Fixes
+
+* **curiculum-api:** add path tests ([c16de7b](https://github.com/oaknational/Oak-Web-Application/commit/c16de7b222230a3b4ae631b710abedcf853b2a49))
+* **merge:** pull main ([383fb44](https://github.com/oaknational/Oak-Web-Application/commit/383fb4407ad50029ea7d3329e426a00bae681e4a))
+* **programmes:** make programme listing page statically generating ([0cc5f38](https://github.com/oaknational/Oak-Web-Application/commit/0cc5f38c65c2731fe688b3935101a49f8433721d))
+* **programmes:** prettier fixes ([237d2c5](https://github.com/oaknational/Oak-Web-Application/commit/237d2c599792a4109af2df341c4e1d5cb52e41bd))
+* **programmes:** remove comment ([5bfb11b](https://github.com/oaknational/Oak-Web-Application/commit/5bfb11b29f28d38ebeec7d379426d32bec7fbd46))
+
 ## [1.185.14](https://github.com/oaknational/Oak-Web-Application/compare/v1.185.13...v1.185.14) (2023-06-06)
 
 

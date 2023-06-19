@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Grid, { GridArea } from "../Grid";
 
 import SubjectCardListItem from "./SubjectCardListItem";

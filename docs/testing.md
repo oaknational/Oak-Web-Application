@@ -37,12 +37,16 @@ Logic tests and snapshot tests should be in different files because their "failu
 
 ## E2E Browser Tests
 
-We use [Playwright](https://playwright.dev/) for E2E tests, however we don't currently run them in CI as we don't have complex journeys in this app. As we increase app complexity we will investigate re-adding CI E2E browser tests.
+We use WebdriverIO. Note you will need to regularly update the dependency `chromedriver` in order for it to work locally with the evergreen browser Chrome.
+
+```bash
+npm i --save-dev chromedriver@latest
+```
 
 ### When They Run
 
-- Manually against local Playwright binaries with `npm run playwright:test`. If you have no already downloaded the binaries you will need to run `npm run playwright:install` first.
-- Manually, locally, against Browserstack `npm run playwright:test:bs_local`. You will need `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` in your `.env` file. You can get those values from Browserstack by logging in.
+- Manually locally with `npm run wdio`. The dev server will need to already be running.
+- In CI against Browserstack triggered in a GitHub workflow `npm run wdio:ci`.
 
 ### Location
 

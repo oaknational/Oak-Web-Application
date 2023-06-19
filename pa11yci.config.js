@@ -4,6 +4,8 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
+const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls");
+
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const isLocalHost = new URL(baseUrl).host === "localhost:3000";
 
@@ -55,35 +57,7 @@ const config = {
   // },
 };
 
-// URLs should end with a `/` to avoid redirects from
-// e.g. `/unit` to `/unit/index.html` during tests.
-const relativeUrls = [
-  // Error pages
-  "/404",
-  // Public pages
-  "/",
-  "/lesson-planning",
-  "/develop-your-curriculum",
-  "/support-your-team",
-  "/about-us/who-we-are",
-  "/about-us/leadership",
-  "/about-us/board",
-  "/about-us/partners",
-  "/about-us/work-with-us",
-  "/blog",
-  "/blog/how-to-design-a-unit-of-study",
-  "/blog/evolution-of-oak",
-  "/blog/join-the-childrens-mental-health-week-assembly-2022",
-  "/legal/accessibility-statement",
-  // Beta pages
-  "/beta/teachers",
-  "/beta/teachers/key-stages/ks1/subjects",
-  "/beta/teachers/key-stages/ks4/subjects/maths/programmes",
-  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units",
-  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons",
-  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t",
-  "/beta/teachers/programmes/maths-secondary-ks4-foundation/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads?preselected=slide+deck",
-];
+const relativeUrls = getDeploymentTestUrls();
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {

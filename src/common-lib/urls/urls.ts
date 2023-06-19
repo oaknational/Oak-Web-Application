@@ -31,7 +31,8 @@ export type MaybeOakPageType = OakPageType | OrString;
 export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
 // /teachers/ or /pupils/
-type ViewType = "teachers";
+export const VIEW_TYPES = ["teachers", "teachers-2023"] as const;
+export type ViewType = typeof VIEW_TYPES[number];
 
 const getCurrentHostname = () => {
   if (isBrowser) {
@@ -65,14 +66,14 @@ export const isExternalHref = (href: MaybeOakHref) => {
 
 export type BlogListingLinkProps = {
   page: "blog-index";
-  category?: string | null;
+  categorySlug?: string | null;
   search?: {
     page?: string;
   };
 };
 export type WebinarListingLinkProps = {
   page: "webinar-index";
-  category?: string | null;
+  categorySlug?: string | null;
   search?: {
     page?: string;
   };
@@ -80,34 +81,34 @@ export type WebinarListingLinkProps = {
 export type ProgrammeListingLinkProps = {
   page: "programme-index";
   viewType: ViewType;
-  keyStage: string;
-  subject: string;
+  keyStageSlug: string;
+  subjectSlug: string;
 };
 export type UnitListingLinkProps = {
   page: "unit-index";
   viewType: ViewType;
-  programme: string;
+  programmeSlug: string;
   search?: {
     ["learning-theme"]?: string | null;
   };
 };
 export type KeyStageSubjectProgrammesLinkProps = {
   page: "key-stage-subject-programmes";
-  keyStage: string;
-  subject: string;
+  keyStageSlug: string;
+  subjectSlug: string;
 };
 type LessonListingLinkProps = {
   page: "lesson-index";
   viewType: ViewType;
   programmeSlug: string;
-  slug: string;
+  unitSlug: string;
 };
 type LessonOverviewLinkProps = {
   page: "lesson-overview";
   viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
-  slug: string;
+  lessonSlug: string;
 };
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
@@ -124,14 +125,14 @@ type SearchLinkProps = {
   viewType: ViewType;
   query?: Partial<SearchQuery>;
 };
-type LandingPageLinkProps = { page: "landing-page"; slug: string };
+type LandingPageLinkProps = { page: "landing-page"; lpSlug: string };
 type SubjectListingLinkProps = {
   page: "subject-index";
   viewType: ViewType;
-  slug: string;
+  keyStageSlug: string;
 };
-type WebinarSingleLinkProps = { page: "webinar-single"; slug: string };
-type BlogSingleLinkProps = { page: "blog-single"; slug: string };
+type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
+type BlogSingleLinkProps = { page: "blog-single"; blogSlug: string };
 type AboutUsBoardLinkProps = { page: "about-board" };
 type AboutUsWhoWeAreLinkProps = { page: "about-who-we-are" };
 type AboutUsLeadershipLinkProps = { page: "about-leadership" };
@@ -151,7 +152,7 @@ type LegalLinkProps = {
    * string, but the assumption is that the slugs will not be changing from
    * their current values:
    */
-  slug: "privacy-policy" | "terms-and-conditions" | OrString;
+  legalSlug: "privacy-policy" | "terms-and-conditions" | OrString;
 };
 type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
@@ -334,8 +335,8 @@ const postResolveHref =
   ) =>
   (props: PostListingLinkProps) => {
     let path = postType === "blog-index" ? "/blog" : "/webinars";
-    if (props.category) {
-      path = `${path}/categories/${props.category}`;
+    if (props.categorySlug) {
+      path = `${path}/categories/${props.categorySlug}`;
     }
     if (!props.search) {
       return path;
@@ -429,7 +430,7 @@ export const OAK_PAGES: {
       }
     },
     resolveHref: (props) =>
-      props.viewType === null ? "/" : `/beta/${props.viewType || "teachers"}`,
+      props.viewType === null ? "/" : `/beta/${props.viewType}`,
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -438,7 +439,7 @@ export const OAK_PAGES: {
     pageType: "lesson-planning",
   }),
   legal: createOakPageConfig({
-    pathPattern: "/legal/:slug",
+    pathPattern: "/legal/:legalSlug",
     analyticsPageName: "Legal",
     configType: "internal",
     pageType: "legal",
@@ -488,21 +489,21 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/programmes/:programme/units",
+    pathPattern: "/beta/:viewType/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "unit-index",
   }),
   "lesson-index": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:slug/lessons",
+      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
   }),
   "lesson-overview": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:slug",
+      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",
@@ -521,32 +522,32 @@ export const OAK_PAGES: {
     pageType: "search",
   }),
   "blog-single": createOakPageConfig({
-    pathPattern: "/blog/:slug",
+    pathPattern: "/blog/:blogSlug",
     analyticsPageName: "Blog",
     configType: "internal",
     pageType: "blog-single",
   }),
   "webinar-single": createOakPageConfig({
-    pathPattern: "/webinars/:slug",
+    pathPattern: "/webinars/:webinarSlug",
     analyticsPageName: "Webinar",
     configType: "internal",
     pageType: "webinar-single",
   }),
   "landing-page": createOakPageConfig({
-    pathPattern: "/lp/:slug",
+    pathPattern: "/lp/:lpSlug",
     analyticsPageName: "Landing Page",
     configType: "internal",
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/key-stages/:slug/subjects",
+    pathPattern: "/beta/:viewType/key-stages/:keyStageSlug/subjects",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "subject-index",
   }),
   "programme-index": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/key-stages/:keyStage/subjects/:subject/programmes",
+      "/beta/:viewType/key-stages/:keyStageSlug/subjects/:subjectSlug/programmes",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "programme-index",
@@ -559,20 +560,42 @@ export type ResolveOakHrefProps = Exclude<
 >;
 
 /**
+ * This function will replace the :viewType param with "teachers-2023" if the
+ * viewType from window.location.path is "teachers".
+ */
+function replaceViewType2023(path: string): string {
+  if (typeof window === "undefined") {
+    return path;
+  }
+  const pathParts = path.split("/");
+  const currentPathParts = window.location.pathname.split("/");
+  const isIn2023Experience =
+    currentPathParts[1] === "beta" && currentPathParts[2] === "teachers-2023";
+  const [, beta, viewType] = pathParts;
+  const linkIsBetaTeachers = beta === "beta" && viewType === "teachers";
+
+  if (isIn2023Experience && linkIsBetaTeachers) {
+    return ["/beta", "teachers-2023", ...pathParts.slice(3)].join("/");
+  }
+
+  return path;
+}
+
+/**
  * Pass readable props which are unlikely to need to change, and return an href.
  * @example
  * resolveOakHref({ page: "teacher-hub "})
  * resolveOakHref({ page: "pupils-lesson", lessonSlug: "spreadsheet-warm-up-75j64r" })
- * resolveOakHref({ page: "blog", slug: "how-oak-helps-everyone" })
+ * resolveOakHref({ page: "blog", blogSlug: "how-oak-helps-everyone" })
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
   try {
-    return (
-      OAK_PAGES[props.page]
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        .resolveHref(props)
-    );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const path = OAK_PAGES[props.page].resolveHref(props);
+
+    const pathWithCorrectViewType = replaceViewType2023(path);
+    return pathWithCorrectViewType;
   } catch (error) {
     const err = new OakError({
       code: "urls/failed-to-resolve",
