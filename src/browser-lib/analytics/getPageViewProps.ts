@@ -1,11 +1,7 @@
-import errorReporter from "../../common-lib/error-reporter";
 import { OAK_PAGES } from "../../common-lib/urls";
-import OakError from "../../errors/OakError";
 import { AnalyticsUseCaseValueType, PageNameValueType } from "../avo/Avo";
 
 import getAnalyticsUseCase from "./getAnalyticsUseCase";
-
-const reportError = errorReporter("AnalyticsProvider");
 
 type PageViewProps = {
   pageName: PageNameValueType;
@@ -56,15 +52,6 @@ export const getPageViewProps = (href: string): PageViewProps => {
       analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
     }
   );
-
-  if (!pageViewProps.pageName) {
-    reportError(new OakError({ code: "analytics/pageview-failed" }), {
-      severity: "warning",
-      meta: {
-        href,
-      },
-    });
-  }
 
   return pageViewProps;
 };

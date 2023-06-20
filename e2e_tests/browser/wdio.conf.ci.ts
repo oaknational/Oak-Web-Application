@@ -1,5 +1,6 @@
 import type { Options } from "@wdio/types";
 
+// Browserstack credentials
 const bsUser = process.env.BROWSERSTACK_USERNAME;
 const bsKey = process.env.BROWSERSTACK_ACCESS_KEY;
 if (!bsUser || !bsKey) {
@@ -7,14 +8,25 @@ if (!bsUser || !bsKey) {
     `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`
   );
 }
-const baseUrl = process.env.BASE_URL;
-if (!baseUrl) {
-  throw new Error(`Please define BASE_URL (${baseUrl})`);
+const initialBaseUrl = process.env.BASE_URL;
+if (!initialBaseUrl) {
+  throw new Error(`Please define BASE_URL (${initialBaseUrl})`);
 }
 const branchName = process.env.BRANCH_NAME;
 if (!branchName) {
   throw new Error(`Please define BRANCH_NAME (${branchName})`);
 }
+
+// Normally we would add headers to allow access to the OWA deployment, but
+// it's not currently possible to instruct Browserstack to do that, so
+// instead we test against the public deployment.
+let baseUrl: string;
+if (branchName === "main") {
+  baseUrl = initialBaseUrl.replace("owa.", "www.");
+} else {
+  baseUrl = initialBaseUrl;
+}
+
 const projectName = "OWA E2E WDIO Tests";
 const buildName = `branch: ${branchName}`;
 

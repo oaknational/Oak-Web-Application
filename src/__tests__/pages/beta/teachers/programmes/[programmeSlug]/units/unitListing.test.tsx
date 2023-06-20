@@ -2,7 +2,7 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks_
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/beta/teachers/programmes/[programmeSlug]/units";
+} from "../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
@@ -110,7 +110,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
-        params: { programmeSlug: "art-primary-ks1" },
+        params: {
+          programmeSlug: "art-primary-ks1",
+          viewType: "teachers",
+        },
       });
 
       expect(curriculumApi.unitListing).toHaveBeenCalledTimes(1);

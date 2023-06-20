@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SubjectCardListItem from "./SubjectCardListItem";

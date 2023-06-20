@@ -15,6 +15,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
+import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
 
 export type ProgrammeListingPageProps = TierListingData;
 
@@ -87,6 +88,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
 export type URLParams = {
   keyStageSlug: string;
   subjectSlug: string;
+  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -95,7 +97,11 @@ export const getStaticPaths = async () => {
   }
 
   const { programmes } = await curriculumApi.programmeListingPaths();
-  const paths = programmes.map((params) => ({ params: params }));
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    programmes.map((programme) => ({
+      params: { viewType, ...programme },
+    }))
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,

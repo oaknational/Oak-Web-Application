@@ -42,6 +42,7 @@ import type {
 } from "../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
+import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -382,6 +383,7 @@ export type URLParams = {
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
+  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -390,7 +392,11 @@ export const getStaticPaths = async () => {
   }
 
   const { lessons } = await curriculumApi.lessonOverviewPaths();
-  const paths = lessons.map((params) => ({ params: params }));
+  const paths = VIEW_TYPES.flatMap((viewType) =>
+    lessons.map((params) => ({
+      params: { viewType, ...params },
+    }))
+  );
 
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,

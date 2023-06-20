@@ -1,0 +1,7 @@
+query teachersHomePage {
+  keyStages: pf_keystages(order_by: { display_order: asc }) {
+    title: description
+    shortCode: keystage
+    slug
+  }
+}

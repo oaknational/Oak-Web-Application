@@ -9,7 +9,7 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
