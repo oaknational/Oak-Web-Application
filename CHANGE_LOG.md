@@ -1,3 +1,18 @@
+# [1.190.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.189.0...v1.190.0) (2023-06-20)
+
+
+### Bug Fixes
+
+* add missing CTA to landing page Text & Media blocks ([3a240b4](https://github.com/oaknational/Oak-Web-Application/commit/3a240b43dd62d044300e6bca4dc944182cfde31d))
+* add spacing above blog post CTAs ([b257ec5](https://github.com/oaknational/Oak-Web-Application/commit/b257ec54fe7d0a23d9c8763a43edf4201cfac457))
+* left-align quote attribution on blog posts ([bd5100e](https://github.com/oaknational/Oak-Web-Application/commit/bd5100eda245f681c4b04dfe7ef57642a7244192))
+* use renamed getLinkHref function in LandingPageTextAndMedia ([89916ed](https://github.com/oaknational/Oak-Web-Application/commit/89916edaad0ab3dc5f1dfe2a87f25265cd0c9999))
+
+
+### Features
+
+* add form block to blog posts ([740bcc3](https://github.com/oaknational/Oak-Web-Application/commit/740bcc3cb8a722d4f9162924c1b53e7d5cb84d9e))
+
 # [1.189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.2...v1.189.0) (2023-06-19)
 
 
