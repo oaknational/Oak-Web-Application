@@ -1,6 +1,5 @@
 import curriculumApi from ".";
 
-
 jest.unmock(".");
 
 const searchPage = jest.fn(() => ({
