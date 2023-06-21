@@ -4,9 +4,9 @@ import { z } from "zod";
 //import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
+import lessonListingSchema from "../curriculum-api-2023/schema/lessonListing.schema";
 
 import { getSdk } from "./generated/sdk";
-import lessonListingSchema from "../curriculum-api-2023/schema/lessonListing.schema";
 
 //const reportError = errorReporter("curriculum-api");
 

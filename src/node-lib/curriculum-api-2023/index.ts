@@ -2,10 +2,10 @@ import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
 import config from "../../config/server";
-
-import { getSdk } from "./generated/sdk";
 import OakError from "../../errors/OakError";
 import errorReporter from "../../common-lib/error-reporter/errorReporter";
+
+import { getSdk } from "./generated/sdk";
 import lessonListingSchema from "./schema/lessonListing.schema";
 
 const curriculumApiUrl = config.get("curriculumApi2023Url");
