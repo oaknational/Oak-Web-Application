@@ -445,7 +445,7 @@ export type Block = {
   style?: Maybe<Scalars['String']['output']>;
 };
 
-export type BlockOrCalloutOrCtaOrImageWithAltTextOrQuoteOrTextAndMediaOrVideo = Block | Callout | Cta | ImageWithAltText | Quote | TextAndMedia | Video;
+export type BlockOrCalloutOrCtaOrFormWrapperOrImageWithAltTextOrQuoteOrTextAndMediaOrVideo = Block | Callout | Cta | FormWrapper | ImageWithAltText | Quote | TextAndMedia | Video;
 
 export type BlockOrImage = Block | Image;
 
@@ -915,12 +915,6 @@ export type FormWrapper = {
   _key?: Maybe<Scalars['String']['output']>;
   _type?: Maybe<Scalars['String']['output']>;
   bodyRaw?: Maybe<Scalars['JSON']['output']>;
-  form?: Maybe<HubspotFormReference>;
-  /**
-   * The legacy implementation of the hubspot form is not
-   *       compatible with the sanity V3 upgrade.
-   *       Please fill out both fields until migration is complete.
-   */
   formId?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -928,7 +922,6 @@ export type FormWrapper = {
 export type FormWrapperFilter = {
   _key?: InputMaybe<StringFilter>;
   _type?: InputMaybe<StringFilter>;
-  form?: InputMaybe<HubspotFormReferenceFilter>;
   formId?: InputMaybe<StringFilter>;
   title?: InputMaybe<StringFilter>;
 };
@@ -936,7 +929,6 @@ export type FormWrapperFilter = {
 export type FormWrapperSorting = {
   _key?: InputMaybe<SortOrder>;
   _type?: InputMaybe<SortOrder>;
-  form?: InputMaybe<HubspotFormReferenceSorting>;
   formId?: InputMaybe<SortOrder>;
   title?: InputMaybe<SortOrder>;
 };

@@ -2,6 +2,8 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
 import { TextAndMedia } from "../../../common-lib/cms-types";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
+import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CMSImage from "../../CMSImage";
 import CMSVideo from "../../CMSVideo";
@@ -77,6 +79,19 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
           components={landingPortableTextComponent}
           value={props.bodyPortableText}
         />
+
+        <div>
+          {props.cta && (
+            <ButtonAsLink
+              icon="arrow-right"
+              $iconPosition={"trailing"}
+              $mt={[48, 32]}
+              label={props.cta.label}
+              page={null}
+              href={getLinkHref(props.cta)}
+            />
+          )}
+        </div>
       </Flex>
     </Card>
   );
