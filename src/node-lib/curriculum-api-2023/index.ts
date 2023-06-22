@@ -69,7 +69,6 @@ const curriculumApi2023 = {
     const teachersHomePage = getFirstResultOrNull()({
       results: res.teachersHomePage,
     });
-    console.log("teachers", teachersHomePage)
     return teachersHomePageData.parse(teachersHomePage);
   },
   searchPage: async () => {
