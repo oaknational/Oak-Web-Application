@@ -8,8 +8,6 @@ const searchPage = jest.fn(() => ({
   searchPage: searchPageFixture(),
 }));
 
-jest.mock("");
-
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
