@@ -1,3 +1,10 @@
+# [1.192.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.191.0...v1.192.0) (2023-06-22)
+
+
+### Features
+
+* add mv-lesson-overview to curriculum api ([b3d4f4f](https://github.com/oaknational/Oak-Web-Application/commit/b3d4f4faec646d9f10bbe17204937d087653c5aa))
+
 # [1.191.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.190.0...v1.191.0) (2023-06-22)
 
 
