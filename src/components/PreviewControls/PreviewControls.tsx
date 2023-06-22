@@ -13,6 +13,7 @@ import { Span } from "../Typography";
  */
 const PreviewControls: FC = () => {
   const router = useRouter();
+  const secretParam = router.query.secret;
 
   let previewURL;
   if (typeof window !== "undefined") {
@@ -51,7 +52,7 @@ const PreviewControls: FC = () => {
         $mr={24}
       />
 
-      <CopyLinkButton href={previewURL} />
+      {secretParam && <CopyLinkButton href={previewURL} />}
 
       <BrushBorders color="white" />
     </Flex>
