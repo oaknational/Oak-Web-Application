@@ -23,10 +23,10 @@ import {
 import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
-import { LessonListingSchema } from "../../../../../../../node-lib/curriculum-api-2023/schema/lessonListing.schema";
+import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 export type LessonListPageProps = {
-  curriculumData: LessonListingSchema;
+  curriculumData: LessonListingPageData;
 };
 
 /**
@@ -37,7 +37,7 @@ export type LessonListPageProps = {
  * This data gets stored in the browser and is used to render the lesson list,
  * so it's important to keep it as small as possible.
  */
-function getHydratedLessonsFromUnit(unit: LessonListingSchema) {
+function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
   return lessons.map((lesson) => ({
     ...lesson,

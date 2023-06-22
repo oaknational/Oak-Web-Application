@@ -14,9 +14,9 @@ import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
-import { LessonListingSchema } from "../../../../node-lib/curriculum-api-2023/schema/lessonListing.schema";
+import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
-export type LessonListItemProps = LessonListingSchema["lessons"][number] & {
+export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
   subjectSlug: string;
   subjectTitle: string;

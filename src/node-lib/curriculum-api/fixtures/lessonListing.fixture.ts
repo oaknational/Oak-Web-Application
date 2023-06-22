@@ -1,8 +1,8 @@
-import { LessonListingSchema } from "../../curriculum-api-2023/schema/lessonListing.schema";
+import { LessonListingPageData } from "../../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 const lessonListingFixture = (
-  partial?: Partial<LessonListingSchema>
-): LessonListingSchema => {
+  partial?: Partial<LessonListingPageData>
+): LessonListingPageData => {
   return {
     programmeSlug: "maths-secondary-ks4-higher",
     keyStageSlug: "ks4",

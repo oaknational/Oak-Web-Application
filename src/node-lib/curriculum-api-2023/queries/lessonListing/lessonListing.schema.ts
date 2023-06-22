@@ -25,6 +25,6 @@ const lessonListingSchema = z.object({
   ),
 });
 
-export type LessonListingSchema = z.infer<typeof lessonListingSchema>;
+export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
 
 export default lessonListingSchema;

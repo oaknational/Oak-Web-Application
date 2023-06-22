@@ -1,39 +1,50 @@
-import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
-import config from "../../config/server";
-import OakError from "../../errors/OakError";
-import errorReporter from "../../common-lib/error-reporter/errorReporter";
-
-import { getSdk } from "./generated/sdk";
-import lessonListingSchema from "./schema/lessonListing.schema";
-
-const curriculumApiUrl = config.get("curriculumApi2023Url");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApi2023AuthKey");
-
-/**
- * TS complaining when Headers in not typed.
- */
-type Headers = { "x-oak-auth-type": string; "x-oak-auth-key": string };
-const headers: Headers = {
-  "x-oak-auth-type": curriculumApiAuthType,
-  "x-oak-auth-key": curriculumApiAuthKey,
-};
-const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-const sdk = getSdk(graphqlClient);
+import sdk from "./sdk";
+import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
+  displayOrder: z.number().optional(),
 });
 
 const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
+const subjectSchema = z.array(
+  z.object({
+    title: z.string(),
+    slug: z.string(),
+    displayOrder: z.number(),
+  })
+);
+const contentTypesSchema = z.object({
+  slug: z.union([z.literal("unit"), z.literal("lesson")]),
+  title: z.union([z.literal("Units"), z.literal("Lessons")]),
+});
+
+const searchPageSchema = z.object({
+  keyStages: z.array(keyStageSchema),
+  subjects: subjectSchema,
+  contentTypes: z.array(contentTypesSchema),
+});
+
+export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
+
+export const getFirstResultOrNull =
+  () =>
+  <T>({ results }: { results: T[] }) => {
+    const [firstResult] = results;
+    if (!firstResult) {
+      return null;
+    }
+
+    return firstResult;
+  };
 
 const curriculumApi2023 = {
   teachersHomePage: async () => {
@@ -41,27 +52,11 @@ const curriculumApi2023 = {
 
     return teachersHomePageData.parse(res);
   },
-  lessonListing: async (args: { programmeSlug: string; unitSlug: string }) => {
-    const res = await sdk.lessonListing(args);
-
-    const [unit] = res.unit;
-
-    if (!unit) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
-    if (res.unit.length > 1) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::lessonListing")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
-
-    return lessonListingSchema.parse(unit);
+  lessonListing: lessonListingQuery(sdk),
+  searchPage: async () => {
+    const res = await sdk.searchPage();
+    const searchPage = getFirstResultOrNull()({ results: res.searchPage });
+    return searchPageSchema.parse(searchPage);
   },
 };
 

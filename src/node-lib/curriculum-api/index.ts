@@ -4,7 +4,7 @@ import { z } from "zod";
 //import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
-import lessonListingSchema from "../curriculum-api-2023/schema/lessonListing.schema";
+import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 import { getSdk } from "./generated/sdk";
 
