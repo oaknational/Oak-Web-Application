@@ -1,3 +1,20 @@
+# [1.192.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.191.0...v1.192.0) (2023-06-22)
+
+
+### Features
+
+* add mv-lesson-overview to curriculum api ([b3d4f4f](https://github.com/oaknational/Oak-Web-Application/commit/b3d4f4faec646d9f10bbe17204937d087653c5aa))
+
+# [1.191.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.190.0...v1.191.0) (2023-06-22)
+
+
+### Features
+
+* **search:** cleanup code and test suite ([01aa1a4](https://github.com/oaknational/Oak-Web-Application/commit/01aa1a4f3c66be3bd12c0e59903fedd9e089c0cb))
+* **search:** cleanup code and test suite ([9a06722](https://github.com/oaknational/Oak-Web-Application/commit/9a06722939ddd19eac4f3b94022d1064261bba27))
+* **search:** connect 2023 to hasura for search page ([0e65456](https://github.com/oaknational/Oak-Web-Application/commit/0e654562f5f115ebebc3692a0506b45d47f16de3))
+* **search:** prettier fix ([547144f](https://github.com/oaknational/Oak-Web-Application/commit/547144fdb491926e060291c1111f7986b68c308a))
+
 # [1.190.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.189.0...v1.190.0) (2023-06-20)
 
 

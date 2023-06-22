@@ -1,24 +1,7 @@
-import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
-import config from "../../config/server";
-
-import { getSdk } from "./generated/sdk";
-
-const curriculumApiUrl = config.get("curriculumApi2023Url");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApi2023AuthKey");
-
-/**
- * TS complaining when Headers in not typed.
- */
-type Headers = { "x-oak-auth-type": string; "x-oak-auth-key": string };
-const headers: Headers = {
-  "x-oak-auth-type": curriculumApiAuthType,
-  "x-oak-auth-key": curriculumApiAuthKey,
-};
-const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-const sdk = getSdk(graphqlClient);
+import sdk from "./sdk";
+import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -71,6 +54,7 @@ const curriculumApi2023 = {
     });
     return teachersHomePageData.parse(teachersHomePage);
   },
+  lessonListing: lessonListingQuery(sdk),
   searchPage: async () => {
     const res = await sdk.searchPage();
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });

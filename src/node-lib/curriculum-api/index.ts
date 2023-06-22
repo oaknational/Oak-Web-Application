@@ -4,6 +4,7 @@ import { z } from "zod";
 //import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
+import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 import { getSdk } from "./generated/sdk";
 
@@ -133,38 +134,6 @@ const lessonListingPaths = z.object({
     z.object({
       programmeSlug: z.string(),
       unitSlug: z.string(),
-    })
-  ),
-});
-
-const lessonListing = z.object({
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-  lessons: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      expired: z.boolean().nullable(),
-      lessonSlug: z.string(),
-      lessonTitle: z.string(),
-      description: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      unitSlug: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable(),
-      videoCount: z.number().nullable(),
-      presentationCount: z.number().nullable(),
-      worksheetCount: z.number().nullable(),
-      hasCopyrightMaterial: z.boolean(),
     })
   ),
 });
@@ -361,7 +330,6 @@ const tierListingData = z.object({
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
-export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
@@ -568,15 +536,8 @@ const curriculumApi = {
       results: units,
     });
 
-    return lessonListing.parse({
+    return lessonListingSchema.parse({
       ...unit,
-      themeSlug: "theme slug example",
-      themeTitle: "theme-slug-example",
-      tierSlug: null,
-      quizCount: null, // @todo
-      videoCount: null, // @todo
-      presentationCount: null, // @todo
-      worksheetCount: null, // @todo
       lessons,
     });
   },
