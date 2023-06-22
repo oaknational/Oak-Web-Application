@@ -72,7 +72,6 @@ const curriculumApi2023 = {
   searchPage: async () => {
     const res = await sdk.searchPage();
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });
-    console.log(searchPage);
     return searchPageSchema.parse(searchPage);
   },
 };
