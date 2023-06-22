@@ -1,7 +1,10 @@
 import { z } from "zod";
 
+import { subjectListingData } from "../curriculum-api";
+
 import sdk from "./sdk";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
+import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -32,6 +35,25 @@ const searchPageSchema = z.object({
   contentTypes: z.array(contentTypesSchema),
 });
 
+const subjectListingSubjectSchema = z.object({
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  unitCount: z.number(),
+  lessonCount: z.number(),
+  programmeSlug: z.string(),
+});
+
+export type SubjectListingSubjectSchema = z.infer<
+  typeof subjectListingSubjectSchema
+>;
+
+const subjectListingPageSchema = z.object({
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjects: z.array(subjectListingSubjectSchema),
+  subjectsUnavailable: z.null(),
+});
+
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 
@@ -58,6 +80,7 @@ const curriculumApi2023 = {
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });
     return searchPageSchema.parse(searchPage);
   },
+  subjectListingPage: subjectListingQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

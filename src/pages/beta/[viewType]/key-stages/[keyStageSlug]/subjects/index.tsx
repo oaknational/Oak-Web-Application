@@ -18,6 +18,7 @@ import {
 import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 import { VIEW_TYPES, ViewType } from "../../../../../../common-lib/urls";
+import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -118,10 +119,15 @@ export const getStaticProps: GetStaticProps<
     throw new Error("No keyStageSlug");
   }
 
-  const curriculumData = await curriculumApi.subjectListing({
-    keyStageSlug: context.params?.keyStageSlug,
-  });
-
+  const curriculumData =
+    context?.params?.viewType === "teachers-2023"
+      ? await curriculumApi2023.subjectListingPage({
+          keyStageSlug: context.params?.keyStageSlug,
+        })
+      : await curriculumApi.subjectListing({
+          keyStageSlug: context.params?.keyStageSlug,
+        });
+  console.log(curriculumData);
   const {
     programmesAvailable,
     programmesUnavailable,

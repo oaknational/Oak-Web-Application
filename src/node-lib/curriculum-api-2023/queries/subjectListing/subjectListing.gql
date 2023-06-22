@@ -1,0 +1,10 @@
+query subjectListing($keyStageSlug: String!) {
+  published_mv_subject_listing(
+    where: { keyStageSlug: { _eq: $keyStageSlug } }
+  ) {
+    keyStageSlug
+    keyStageTitle
+    subjects
+    subjectsUnavailable
+  }
+}

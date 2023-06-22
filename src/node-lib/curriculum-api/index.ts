@@ -264,7 +264,7 @@ const lessonDownloadsData = z.object({
   unitTitle: z.string(),
 });
 
-const programmesData = z.object({
+export const programmesData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   keyStageSlug: z.string(),
@@ -281,7 +281,7 @@ const programmesData = z.object({
 
 const programmesArray = z.array(programmesData);
 
-const subjectListingData = z.object({
+export const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   programmesAvailable: z.array(programmesData),
