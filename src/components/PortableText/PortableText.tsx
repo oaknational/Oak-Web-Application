@@ -7,11 +7,7 @@ import {
 import styled from "styled-components";
 
 import errorReporter from "../../common-lib/error-reporter";
-import {
-  anchorMap,
-  resolveInternalHref,
-  anchorKeys,
-} from "../../utils/portableText/resolveInternalHref";
+import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
@@ -110,14 +106,14 @@ export const PTExternalLink: PortableTextMarkComponent<{
 
 export const PTAnchorLink: PortableTextMarkComponent<{
   _type: "anchor";
-  anchor: anchorKeys;
+  anchor: string;
 }> = (props) => {
-  if (!props.value) {
+  if (!props.value?.anchor) {
     return null;
   }
 
   return (
-    <OakLink page={null} href={`#${anchorMap[props.value.anchor]}`} $isInline>
+    <OakLink page={null} href={`#${props.value.anchor}`} $isInline>
       {props.children}
     </OakLink>
   );
