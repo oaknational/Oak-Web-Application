@@ -1,3 +1,11 @@
+# [1.193.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.192.0...v1.193.0) (2023-06-23)
+
+
+### Features
+
+* **homepage:** connect to 2023 data ([5951297](https://github.com/oaknational/Oak-Web-Application/commit/5951297e0128663b83c5bd0f01912fbec8a248be))
+* **homepage:** remove console log ([1a44df1](https://github.com/oaknational/Oak-Web-Application/commit/1a44df1100d5a8d2f984b871a486c88cc9c45f3e))
+
 # [1.192.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.191.0...v1.192.0) (2023-06-22)
 
 
