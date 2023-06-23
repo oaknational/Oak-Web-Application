@@ -19672,7 +19672,7 @@ export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ _
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TeachersHomePageQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'pf_keystages', slug?: string | null, title?: string | null, shortCode?: string | null }> };
+export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_2', keyStages?: any | null }> };
 
 
 export const LessonListingDocument = gql`
@@ -19702,10 +19702,8 @@ export const SearchPageDocument = gql`
     `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
-  keyStages: pf_keystages(order_by: {display_order: asc}) {
-    title: description
-    shortCode: keystage
-    slug
+  teachersHomePage: published_mv_homepage_2 {
+    keyStages: key_stages
   }
 }
     `;

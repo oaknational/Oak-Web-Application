@@ -49,8 +49,10 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
-
-    return teachersHomePageData.parse(res);
+    const teachersHomePage = getFirstResultOrNull()({
+      results: res.teachersHomePage,
+    });
+    return teachersHomePageData.parse(teachersHomePage);
   },
   lessonListing: lessonListingQuery(sdk),
   searchPage: async () => {
