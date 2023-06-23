@@ -12,7 +12,6 @@ import Layout from "../../components/Layout";
 import CMSClient from "../../node-lib/cms";
 import { BlogPost } from "../../common-lib/cms-types";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../node-lib/isr";
@@ -23,6 +22,7 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { sanityClientLike } from "../../components/CMSImage";
 import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
 import PostSingleLayout from "../../components/Posts/PostSingleLayout";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -101,38 +101,43 @@ export const getStaticProps: GetStaticProps<
   BlogSinglePageProps,
   URLParams
 > = async (context) => {
-  const blogSlug = context.params?.blogSlug as string;
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "blog-single::getStaticProps",
+    context,
+    getProps: async () => {
+      const blogSlug = context.params?.blogSlug as string;
+      const isPreviewMode = context.preview === true;
 
-  const blogResult = await CMSClient.blogPostBySlug(blogSlug, {
-    previewMode: isPreviewMode,
-  });
+      const blogResult = await CMSClient.blogPostBySlug(blogSlug, {
+        previewMode: isPreviewMode,
+      });
 
-  const blogResults = await CMSClient.blogPosts();
-  const categories = uniqBy(
-    "title",
-    blogResults.map((blogResult) => blogResult.category)
-  ).sort((a, b) => (a.title < b.title ? -1 : 1));
+      const blogResults = await CMSClient.blogPosts();
+      const categories = uniqBy(
+        "title",
+        blogResults.map((blogResult) => blogResult.category)
+      ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
-  if (!blogResult) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!blogResult) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const blog = {
-    ...blogResult,
-    date: blogResult.date.toISOString(),
-  };
+      const blog = {
+        ...blogResult,
+        date: blogResult.date.toISOString(),
+      };
 
-  const results: GetStaticPropsResult<BlogSinglePageProps> = {
-    props: {
-      categories,
-      blog,
+      const results: GetStaticPropsResult<BlogSinglePageProps> = {
+        props: {
+          categories,
+          blog,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default BlogSinglePage;

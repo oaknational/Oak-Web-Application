@@ -54,7 +54,6 @@ import NoResourcesToDownload from "../../../../../../../../../components/Downloa
 import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../node-lib/isr";
@@ -62,6 +61,7 @@ import {
   VIEW_TYPES,
   ViewType,
 } from "../../../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../../../node-lib/getPageProps";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -499,30 +499,35 @@ export const getStaticProps: GetStaticProps<
   LessonDownloadsPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context.params");
-  }
-  const { lessonSlug, programmeSlug, unitSlug } = context.params;
+  return getPageProps({
+    page: "downloads::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-  const curriculumData = await curriculumApi.lessonDownloads({
-    lessonSlug,
-    programmeSlug,
-    unitSlug,
-  });
+      const curriculumData = await curriculumApi.lessonDownloads({
+        lessonSlug,
+        programmeSlug,
+        unitSlug,
+      });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default LessonDownloadsPage;

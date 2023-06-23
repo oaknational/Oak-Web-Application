@@ -32,7 +32,6 @@ import curriculumApi, {
   TeachersHomePageData,
 } from "../../../node-lib/curriculum-api";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../node-lib/isr";
@@ -40,6 +39,7 @@ import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
 import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
+import getPageProps from "../../../node-lib/getPageProps";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -183,34 +183,39 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "teachers-home-page::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const curriculumData =
-    context?.params?.viewType === "teachers-2023"
-      ? await curriculumApi2023.teachersHomePage()
-      : await curriculumApi.teachersHomePage();
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.teachersHomePage()
+          : await curriculumApi.teachersHomePage();
 
-  const teachersHomepageData = await CMSClient.homepage({
-    previewMode: isPreviewMode,
-  });
+      const teachersHomepageData = await CMSClient.homepage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!teachersHomepageData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!teachersHomepageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
+      const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
-  const results: GetStaticPropsResult<TeachersHomePageProps> = {
-    props: {
-      pageData: teachersHomepageData,
-      curriculumData,
-      posts,
+      const results: GetStaticPropsResult<TeachersHomePageProps> = {
+        props: {
+          pageData: teachersHomepageData,
+          curriculumData,
+          posts,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default Teachers;
