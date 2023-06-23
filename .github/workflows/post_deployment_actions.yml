@@ -25,7 +25,7 @@ jobs:
           node-version: 18.x
           cache: "npm"
       - run: npm ci
-      
+
       - uses: ./.github/actions/ref_from_sha
         name: Get PR Ref from SHA
         id: ref_from_sha
@@ -36,7 +36,7 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
-          find: "{cloud link}"
+          find: "{owa_deployment_url}"
           replace: ${{ github.event.deployment_status.environment_url }}
 
   # Run Pa11yCI against a deployment.
