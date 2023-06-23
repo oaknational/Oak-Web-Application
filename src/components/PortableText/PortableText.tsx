@@ -12,6 +12,8 @@ import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
+import AnchorTarget from "../AnchorTarget";
+import Box from "../Box";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -119,6 +121,23 @@ export const PTAnchorLink: PortableTextMarkComponent<{
   );
 };
 
+export const PTAnchorTarget: PortableTextMarkComponent<{
+  _type: "anchorTarget";
+  anchor: string;
+}> = (props) => {
+  if (!props.value?.anchor) {
+    return null;
+  }
+
+  return (
+    <Box as="span" $position="relative">
+      <AnchorTarget id={props.value.anchor} />
+
+      {props.children}
+    </Box>
+  );
+};
+
 const BodyP = styled(P)`
   &:first-child {
     margin-top: 0;
@@ -157,6 +176,7 @@ export const basePortableTextComponents: PortableTextComponents = {
     internalLink: PTInternalLink,
     link: PTExternalLink,
     anchorLink: PTAnchorLink,
+    anchorTarget: PTAnchorTarget,
     action: PTActionTrigger,
   },
 };
