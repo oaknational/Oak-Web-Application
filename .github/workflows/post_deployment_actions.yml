@@ -14,9 +14,17 @@ jobs:
     name: Add deploy URL to PR description
     runs-on: ubuntu-latest
     steps:
-      - uses: ivangabriele/find-and-replace-pull-request-body@v1.1.5
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/ref_from_sha
+        name: Get PR Ref from SHA
+        id: ref_from_sha
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
           find: "{cloud link}"
           replace: ${{ github.event.deployment_status.environment_url }}
 
