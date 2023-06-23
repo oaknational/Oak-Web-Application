@@ -8,6 +8,8 @@ import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsent
 
 import {
   BasePortableTextProvider,
+  PTAnchorLink,
+  PTAnchorTarget,
   PTExternalLink,
   PTInternalLink,
 } from "./PortableText";
@@ -15,7 +17,6 @@ import { PTActionTrigger } from "./PTActionTrigger";
 import portableTextFixture from "./portableTextFixture.json";
 
 const consoleWarnSpy = jest.spyOn(console, "warn");
-consoleWarnSpy.mockImplementation(noop);
 
 jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider");
 
@@ -32,6 +33,8 @@ describe("PortableText", () => {
   beforeEach(() => {
     jest.resetAllMocks();
     jest.clearAllMocks();
+
+    consoleWarnSpy.mockImplementation(noop);
   });
 
   describe("PTExternalLink", () => {
@@ -47,6 +50,7 @@ describe("PortableText", () => {
       );
 
       const link = getByRole("link");
+
       expect(link).toHaveAccessibleName("Some link");
       expect(link).toHaveAttribute("href", "https://example.com");
     });
@@ -154,6 +158,51 @@ describe("PortableText", () => {
       await waitFor(() => {
         expect(showConsentManager).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe("PTAnchorLink", () => {
+    it("renders an anchor link  ", async () => {
+      const { getByRole } = renderWithTheme(
+        <PTAnchorLink
+          children={["An anchor link"]}
+          text="An anchor link"
+          markType="anchor"
+          value={{
+            _type: "anchor",
+            anchor: "a-section-of-the-page",
+          }}
+          renderNode={() => undefined}
+        />
+      );
+
+      const link = getByRole("link");
+      expect(link).toHaveAccessibleName("An anchor link");
+      expect(link).toHaveAttribute("href", "#a-section-of-the-page");
+    });
+  });
+
+  describe("PTAnchorTarget", () => {
+    it("renders an anchor target  ", async () => {
+      const { getByText, container } = renderWithTheme(
+        <PTAnchorTarget
+          children={["An anchor target"]}
+          text="An anchor target"
+          markType="anchorTarget"
+          value={{
+            _type: "anchorTarget",
+            anchor: "a-section-of-the-page",
+          }}
+          renderNode={() => undefined}
+        />
+      );
+
+      const tag = getByText("An anchor target");
+      const anchorTarget = container.querySelector(
+        "#a-section-of-the-page"
+      ) as HTMLElement;
+
+      expect(tag).toContainElement(anchorTarget);
     });
   });
 
