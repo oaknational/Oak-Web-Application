@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const lessonDownloadsSchema = z.object({
+export const lessonDownloadsSchema = z.object({
   downloads: z.array(
     z.object({
       exists: z.boolean().nullable(),
