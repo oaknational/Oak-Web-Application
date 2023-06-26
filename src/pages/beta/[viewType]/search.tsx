@@ -17,6 +17,7 @@ import useSearchFilters from "../../../context/Search/useSearchFilters";
 import usePagination from "../../../components/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "../../../components/SearchResults/SearchResults";
 import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
+import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -93,8 +94,13 @@ export const getStaticPaths = async () => {
   return config;
 };
 
-export const getStaticProps: GetStaticProps<SearchPageProps> = async () => {
-  const curriculumData = await curriculumApi.searchPage();
+export const getStaticProps: GetStaticProps<SearchPageProps> = async (
+  context
+) => {
+  const curriculumData =
+    context?.params?.viewType === "teachers-2023"
+      ? await curriculumApi2023.searchPage()
+      : await curriculumApi.searchPage();
   const results = {
     props: {
       curriculumData,

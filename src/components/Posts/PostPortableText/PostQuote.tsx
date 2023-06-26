@@ -16,7 +16,7 @@ const PostQuote = (props: PortableTextComponentProps<Quote>) => {
         <blockquote>&ldquo;{props.value.text.trim()}&rdquo;</blockquote>
       </Box>
       <div>
-        <P $font={"body-1"} $mt={[16]} $textAlign="center">
+        <P $font={"body-1"} $mt={[16]}>
           <cite>{props.value?.attribution}</cite>
           {props.value.role && `, ${props.value.role}`}
         </P>

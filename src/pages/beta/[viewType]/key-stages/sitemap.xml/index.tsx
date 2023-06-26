@@ -143,8 +143,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
     lessonResults.lessons.forEach((lesson) => {
       const lessonSlug: LessonSlug = {
-        programmeSlug: lesson.programmeSlug,
-        unitSlug: lesson.unitSlug,
+        programmeSlug: lessonResults.programmeSlug,
+        unitSlug: lessonResults.unitSlug,
         lessonSlug: lesson.lessonSlug,
       };
       lessonSlugs.push(lessonSlug);
