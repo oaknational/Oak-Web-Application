@@ -1,3 +1,14 @@
+# [1.195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.194.0...v1.195.0) (2023-06-26)
+
+
+### Features
+
+* **downloads:** connect downloads page to 2023 hasura end point ([3feadfb](https://github.com/oaknational/Oak-Web-Application/commit/3feadfb04acada5d58c3429f09af18a2f89d06e6))
+* **downloads:** fix type error on fixture ([e8bdb09](https://github.com/oaknational/Oak-Web-Application/commit/e8bdb0921b8d0d11c65e534a74e8967090416331))
+* **downloads:** prettier fix ([c112c6d](https://github.com/oaknational/Oak-Web-Application/commit/c112c6d934e85ca3d5644092a31d012010cdac65))
+* **downloads:** prettier fix ([4b4ed80](https://github.com/oaknational/Oak-Web-Application/commit/4b4ed806fda60b051e757492bc9a8e37d3e081c6))
+* **downloads:** remove duplicate code ([72b81d2](https://github.com/oaknational/Oak-Web-Application/commit/72b81d2999f80d8b2bd085976604cfe870abd781))
+
 # [1.194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.193.0...v1.194.0) (2023-06-26)
 
 
