@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import sdk from "./sdk";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
+import lessonDownloadsQuery from "./queries/downloads/downloads.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -55,6 +56,7 @@ const curriculumApi2023 = {
     return teachersHomePageData.parse(teachersHomePage);
   },
   lessonListing: lessonListingQuery(sdk),
+  lessonDownloads: lessonDownloadsQuery(sdk),
   searchPage: async () => {
     const res = await sdk.searchPage();
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });
