@@ -234,7 +234,6 @@ const lessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
-
 const programmesData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
