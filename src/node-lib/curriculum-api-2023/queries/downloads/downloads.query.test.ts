@@ -12,7 +12,6 @@ describe("lessonDownloads()", () => {
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
-
       });
     }).rejects.toThrow(`Resource not found`);
   });

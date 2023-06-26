@@ -5,7 +5,12 @@ import { Sdk } from "../../sdk";
 import lessonDownloadsSchema from "./downloads.schema";
 
 const lessonDownloadsQuery =
-  (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string, lessonSlug: string }) => {
+  (sdk: Sdk) =>
+  async (args: {
+    programmeSlug: string;
+    unitSlug: string;
+    lessonSlug: string;
+  }) => {
     const res = await sdk.lessonDownloads(args);
 
     const [downloads] = res.downloads;
