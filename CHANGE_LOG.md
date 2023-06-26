@@ -1,3 +1,15 @@
+# [1.194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.193.0...v1.194.0) (2023-06-26)
+
+
+### Bug Fixes
+
+* only show preview share button when secret param is present ([2a190cf](https://github.com/oaknational/Oak-Web-Application/commit/2a190cf9a96fb79661f50b814dc24f58a988db55))
+
+
+### Features
+
+* allow copying the current page's preview URL from PreviewControls ([060c6f2](https://github.com/oaknational/Oak-Web-Application/commit/060c6f2f56ba53f51e24e82fb7e376fe35d5eb5f))
+
 # [1.193.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.192.0...v1.193.0) (2023-06-23)
 
 
