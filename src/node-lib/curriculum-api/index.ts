@@ -236,7 +236,7 @@ const lessonOverviewData = z.object({
 const lessonDownloadsData = z.object({
   downloads: z.array(
     z.object({
-      exists: z.boolean(),
+      exists: z.boolean().nullable(),
       type: z.enum([
         "presentation",
         "intro-quiz-questions",
@@ -248,7 +248,7 @@ const lessonDownloadsData = z.object({
       ]),
       label: z.string(),
       ext: z.string(),
-      forbidden: z.boolean().optional(),
+      forbidden: z.boolean().optional().nullable(),
     })
   ),
   programmeSlug: z.string(),
@@ -258,8 +258,6 @@ const lessonDownloadsData = z.object({
   lessonTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
   unitSlug: z.string(),
   unitTitle: z.string(),
 });

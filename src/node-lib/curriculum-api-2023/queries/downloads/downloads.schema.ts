@@ -1,0 +1,34 @@
+import { z } from "zod";
+
+const lessonDownloadsSchema = z.object({
+    downloads: z.array(
+      z.object({
+        exists: z.boolean().nullable(),
+        type: z.enum([
+          "presentation",
+          "intro-quiz-questions",
+          "intro-quiz-answers",
+          "exit-quiz-questions",
+          "exit-quiz-answers",
+          "worksheet-pdf",
+          "worksheet-pptx",
+        ]),
+        label: z.string(),
+        ext: z.string(),
+        forbidden: z.boolean().optional().nullable(),
+      })
+    ),
+    programmeSlug: z.string(),
+    keyStageSlug: z.string(),
+    keyStageTitle: z.string(),
+    lessonSlug: z.string(),
+    lessonTitle: z.string(),
+    subjectSlug: z.string(),
+    subjectTitle: z.string(),
+    unitSlug: z.string(),
+    unitTitle: z.string(),
+  });
+
+  export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
+
+export default lessonDownloadsSchema;
