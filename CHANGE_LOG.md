@@ -1,3 +1,10 @@
+## [1.196.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.196.0...v1.196.1) (2023-06-27)
+
+
+### Bug Fixes
+
+* change copy on newsletter form ([84c82e4](https://github.com/oaknational/Oak-Web-Application/commit/84c82e4a4d1fb8baee1a5374cae70b3b08582747))
+
 # [1.196.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.195.0...v1.196.0) (2023-06-27)
 
 
