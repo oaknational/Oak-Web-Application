@@ -1,24 +1,31 @@
 import { FC } from "react";
 
-import { TeachersKeyStageSubjectsData } from "../../node-lib/curriculum-api";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Grid, { GridArea } from "../Grid";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
 export type SubjectCardListProps = {
-  subjects: TeachersKeyStageSubjectsData["subjects"];
+  subjects: ProgrammesBySubject[];
+  isAvailable: boolean;
 };
 
-const SubjectCardList: FC<SubjectCardListProps> = ({ subjects }) => {
+const SubjectCardList: FC<SubjectCardListProps> = ({
+  subjects,
+  isAvailable,
+}) => {
   return (
     <Grid $rg={16} $cg={16} $gridAutoRows={"1fr"} $mb={72}>
-      {subjects.map((subject) => {
+      {subjects.map((programmes) => {
         return (
           <GridArea
-            key={`subject-list-item-${subject.slug}`}
+            key={`subject-list-item-${programmes[0].subjectSlug}`}
             $colSpan={[6, 3, 2]}
           >
-            <SubjectCardListItem {...subject} />
+            <SubjectCardListItem
+              programmes={programmes}
+              isAvailable={isAvailable}
+            />
           </GridArea>
         );
       })}

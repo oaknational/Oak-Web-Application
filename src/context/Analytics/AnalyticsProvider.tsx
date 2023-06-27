@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import router from "next/router";
-import { usePostHogContext } from "posthog-js/react";
+import { usePostHog } from "posthog-js/react";
 
 import Avo, { initAvo } from "../../browser-lib/avo/Avo";
 import getAvoEnv from "../../browser-lib/avo/getAvoEnv";
@@ -17,7 +17,6 @@ import { ServiceType } from "../../browser-lib/cookie-consent/types";
 import useAnalyticsService from "../../browser-lib/analytics/useAnalyticsService";
 import posthogToAnalyticsService, {
   MaybeDistinctId,
-  PosthogConfig,
   PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
@@ -25,7 +24,8 @@ import config from "../../config/browser";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
-import { HubspotConfig } from "../../browser-lib/hubspot/startHubspot";
+import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
+import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 
 export type UserId = string;
 export type EventName = string;
@@ -34,7 +34,9 @@ export type EventFn = (
   eventName: EventName,
   properties: EventProperties
 ) => void;
-export type PageProperties = { path: string };
+export type PageProperties = {
+  path: string;
+};
 export type PageFn = (properties: PageProperties) => void;
 export type IdentifyProperties = { email?: string };
 export type IdentifyFn = (
@@ -73,9 +75,6 @@ export type AnalyticsService<ServiceConfig> = {
   optOut: () => void;
   optIn: () => void;
 };
-type AnalyticsServiceWithConfig =
-  | AnalyticsService<HubspotConfig>
-  | AnalyticsService<PosthogConfig>;
 
 type AvoOptions = Parameters<typeof initAvo>[0];
 
@@ -97,11 +96,12 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const { children, avoOptions = {} } = props;
   const [posthogDistinctId, setPosthogDistinctId] =
     useState<PosthogDistinctId | null>(null);
+  const [hubspotScriptLoaded, setHubspotScriptLoaded] = useState(false);
 
   /**
    * Posthog
    */
-  const { client: posthogClient } = usePostHogContext();
+  const posthogClient = usePostHog();
   if (!posthogClient) {
     throw new Error(
       "AnalyticsProvider should be contained within PostHogProvider"
@@ -125,15 +125,20 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Hubspot
    */
+  const hubspotConfig = {
+    portalId: config.get("hubspotPortalId"),
+    scriptDomain: config.get("hubspotScriptDomain"),
+  };
   const hubspotConsent = useHasConsentedTo("hubspot");
   const hubspot = useAnalyticsService({
     service: hubspotWithQueue,
-    config: {
-      portalId: config.get("hubspotPortalId"),
-      scriptDomain: config.get("hubspotScriptDomain"),
-    },
+    config: hubspotConfig,
+    scriptLoaded: hubspotScriptLoaded,
     consentState: hubspotConsent,
   });
+  const onHubspotScriptLoaded = useCallback(() => {
+    setHubspotScriptLoaded(true);
+  }, []);
 
   /**
    * Avo
@@ -147,25 +152,35 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   /**
    * Page view tracking
    */
-  const page = useStableCallback(
-    (opts: { services: AnalyticsServiceWithConfig[] }) => {
-      const { services } = opts;
-      const props = { path: getPathAndQuery() };
-      services.forEach((service) => {
-        service.page(props);
-      });
-    }
-  );
+  const page = useStableCallback(() => {
+    const path = getPathAndQuery();
+
+    // Send a simple page event to hubspot
+    hubspot.page({ path });
+
+    // We send the posthog $pageview event via Avo
+    const { analyticsUseCase, pageName } = getPageViewProps(path);
+    track.pageview({
+      linkUrl: router.asPath,
+      pageName,
+      analyticsUseCase,
+    });
+  });
+
+  // hacky way to ensure page-tracking is called on initial page load:
+  const [initialRouteTracked, setInitialRouteTracked] = useState(false);
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", () => {
-      page({ services: [posthog, hubspot] });
-    });
+    if (!initialRouteTracked) {
+      page();
+      setInitialRouteTracked(true);
+    }
+    router.events.on("routeChangeComplete", page);
 
     return () => {
       router.events.off("routeChangeComplete", page);
     };
-  }, [page, posthog, hubspot]);
+  }, [page, posthog, hubspot, initialRouteTracked, setInitialRouteTracked]);
 
   /**
    * Identify
@@ -210,6 +225,11 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   return (
     <analyticsContext.Provider value={analytics}>
       {children}
+      <HubspotScript
+        shouldLoad={hubspotConsent === "enabled"}
+        onLoad={onHubspotScriptLoaded}
+        {...hubspotConfig}
+      />
     </analyticsContext.Provider>
   );
 };

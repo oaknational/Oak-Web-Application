@@ -1,24 +1,36 @@
-import { FC } from "react";
+import { FC, MutableRefObject } from "react";
+import { useRouter } from "next/router";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../../../hooks/useAnalyticsUseCase";
 import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
-import { TeachersKeyStageSubjectUnitsLessonsData } from "../../../../node-lib/curriculum-api";
 import ListItemHeader from "../../ListItemHeader";
 import { Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
+import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
+import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
-export type LessonListItemProps =
-  TeachersKeyStageSubjectUnitsLessonsData["lessons"][number] & {
-    unitTitle: string;
-    hideTopHeading?: boolean;
-  };
+export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
+  programmeSlug: string;
+  subjectSlug: string;
+  subjectTitle: string;
+  keyStageSlug: string;
+  keyStageTitle: string;
+  unitSlug: string;
+  unitTitle: string;
+  hideTopHeading?: boolean;
+  hitCount?: number;
+  fromSearchPage?: boolean;
+  index: number;
+  currentPage?: number;
+  firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+};
 
 function getAvailableResourceList({
   quizCount,
@@ -74,8 +86,8 @@ function getAvailableResourceList({
  */
 const LessonListItem: FC<LessonListItemProps> = (props) => {
   const {
-    title,
-    slug,
+    lessonTitle,
+    lessonSlug,
     description,
     expired,
     subjectTitle,
@@ -84,33 +96,59 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     keyStageTitle,
     unitSlug,
     unitTitle,
+    fromSearchPage,
+    index,
+    hitCount,
+    currentPage,
+    firstItemRef,
   } = props;
-
+  const router = useRouter();
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
-    track.lessonSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: title,
-      lessonSlug: slug,
-      analyticsUseCase,
-    });
+    if (fromSearchPage && hitCount && currentPage) {
+      track.searchResultClicked({
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        unitName: unitTitle.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags
+        unitSlug: unitSlug,
+        lessonName: lessonTitle,
+        lessonSlug: lessonSlug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: (currentPage - 1) * 20 + index + 1,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages
+        ),
+        searchResultCount: hitCount,
+        searchResultType: "lesson",
+      });
+    } else {
+      track.lessonSelected({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: unitTitle,
+        unitSlug,
+        lessonName: lessonTitle,
+        lessonSlug,
+        analyticsUseCase,
+      });
+    }
   };
 
   const { isHovered, primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>();
+    useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   const resources = getAvailableResourceList(props);
 
   return (
     <ListItemCard
-      title={title}
+      title={lessonTitle}
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       background={"pupilsPink"}
@@ -128,8 +166,11 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           {...props}
           primaryTargetProps={primaryTargetProps}
           page="Lesson"
-          index={null}
+          index={index}
           onClick={trackLessonSelected}
+          title={lessonTitle}
+          slug={lessonSlug}
+          fromSearchPage={fromSearchPage}
         />
         {expired ? (
           <Expired page={"lesson"} />

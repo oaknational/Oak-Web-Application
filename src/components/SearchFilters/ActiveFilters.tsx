@@ -2,16 +2,31 @@ import { FC } from "react";
 
 import Flex from "../Flex";
 import Button from "../Button";
-import { P } from "../Typography";
-import { UseKeyStageFiltersReturnType } from "../../context/Search/useKeyStageFilters";
+import { P, Span } from "../Typography";
+import {
+  CheckBoxProps,
+  KeyStage,
+  Subject,
+  ContentType,
+  UseSearchFiltersReturnType,
+} from "../../context/Search/useSearchFilters";
 
 type ActiveFiltersProps = {
-  keyStageFilters: UseKeyStageFiltersReturnType;
+  searchFilters: UseSearchFiltersReturnType;
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
-  const { keyStageFilters } = props;
+  const { searchFilters } = props;
+  const { keyStageFilters, subjectFilters, contentTypeFilters } = searchFilters;
 
-  const activeFilters = keyStageFilters.filter((keyStage) => keyStage.checked);
+  const activeFilters = [
+    ...keyStageFilters.filter((keyStage) => keyStage.checked),
+    ...subjectFilters.filter((subject) => subject.checked),
+    ...contentTypeFilters.filter((contentType) => contentType.checked),
+  ];
+
+  const maxActiveFilters = 4;
+  const slicedActiveFilters: ((Subject | KeyStage | ContentType) &
+    CheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (
     <Flex
@@ -22,12 +37,12 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       <P $mr={20} $mt={8} $mb={8} $color={["oakGrey4", "black"]}>
         Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
-      <Flex $alignItems={"center"}>
-        {activeFilters.map(({ slug, title, shortCode, onChange }) => (
+      <Flex $flexWrap={"wrap"} $alignItems={"center"}>
+        {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button
-            label={shortCode}
+            label={"shortCode" in props ? props.shortCode : title}
             aria-label={`Remove ${title} filter`}
-            key={`active-filter-ks-${slug}`}
+            key={`active-filter-${title}-${slug}`}
             onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"
@@ -35,6 +50,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
             $mr={16}
           />
         ))}
+        {activeFilters.length > maxActiveFilters && (
+          <Span $font="body-1-bold">...</Span>
+        )}
       </Flex>
     </Flex>
   );

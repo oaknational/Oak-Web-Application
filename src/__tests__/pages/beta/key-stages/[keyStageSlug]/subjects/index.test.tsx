@@ -1,18 +1,17 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import curriculumApi from "../../../../../../node-lib/curriculum-api/__mocks__";
-import teachersKeyStageSubjectsFixture from "../../../../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjects.fixture";
 import SubjectListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+} from "../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import { mockSeoResult } from "../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
+import subjectPagePropsFixture from "../../../../../../node-lib/curriculum-api/fixtures/subjectPageProps";
 
-const props = {
-  curriculumData: teachersKeyStageSubjectsFixture(),
-};
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+const props = subjectPagePropsFixture();
 
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   it("Renders title from props ", async () => {
@@ -20,7 +19,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key Stage 4"
+        "Key stage 4"
       );
     });
   });
@@ -32,9 +31,11 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage | NEXT_PUBLIC_SEO_APP_NAME",
+        title:
+          "Free KS4 Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Key stage by subject",
-        ogTitle: "Key stage | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle:
+          "Free KS4 Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Key stage by subject",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -54,10 +55,13 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
-        params: { keyStageSlug: "ks123" },
+        params: {
+          keyStageSlug: "ks123",
+          viewType: "teachers",
+        },
       });
 
-      expect(curriculumApi.teachersKeyStageSubjects).toHaveBeenCalledWith({
+      expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
         keyStageSlug: "ks123",
       });
     });

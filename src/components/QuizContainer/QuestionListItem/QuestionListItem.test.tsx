@@ -1,12 +1,11 @@
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import teachersLessonOverviewFixture from "../../../node-lib/curriculum-api/fixtures/teachersLessonOverview.fixture";
+import lessonOverviewFixture from "../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
 import { CorrectAnswer } from "./QuestionListItem";
 
 import QuestionListItem, { QuestionListItemProps } from ".";
 
-const testProps = teachersLessonOverviewFixture()
-  .introQuiz[0] as QuestionListItemProps;
+const testProps = lessonOverviewFixture().introQuiz[0] as QuestionListItemProps;
 
 describe("CorrectAnswer", () => {
   const mockProps = {
@@ -22,12 +21,12 @@ describe("CorrectAnswer", () => {
 
   it("renders the correct choice for non-match type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
-    expect(getByText("A")).toBeInTheDocument();
+    expect(getByText("- A")).toBeInTheDocument();
   });
 
   it("renders the correct index for order type", () => {
     const { getByText } = renderWithTheme(<CorrectAnswer {...mockProps} />);
-    expect(getByText("1 -")).toBeInTheDocument();
+    expect(getByText("1")).toBeInTheDocument();
   });
 
   it("renders the correct choice and answer for match type", () => {
@@ -39,14 +38,14 @@ describe("CorrectAnswer", () => {
         answer={["X", "Y", "Z"]}
       />
     );
-    expect(getByText("X -")).toBeInTheDocument();
+    expect(getByText("- X")).toBeInTheDocument();
     expect(getByText("A")).toBeInTheDocument();
   });
   it("renders empty string for match type when there is no answer ", () => {
-    const { getByRole } = renderWithTheme(
+    const { getByTestId } = renderWithTheme(
       <CorrectAnswer choice="A" type="match" index={0} />
     );
-    expect(getByRole("heading")).toHaveTextContent("");
+    expect(getByTestId("answer")).toHaveTextContent("");
   });
 });
 
@@ -112,6 +111,17 @@ describe("QuestionListItem", () => {
     testProps.choices = [];
     const { getByTestId } = renderWithTheme(
       <QuestionListItem {...testProps} />
+    );
+    const questionItemTitle = getByTestId("title-div");
+
+    expect(questionItemTitle).toHaveTextContent("what is a question");
+  });
+  it("renders title without markdown **text**", () => {
+    testProps.choices = [];
+    const { getByTestId } = renderWithTheme(
+      <QuestionListItem
+        {...{ ...testProps, title: "what is **a** question" }}
+      />
     );
     const questionItemTitle = getByTestId("title-div");
 

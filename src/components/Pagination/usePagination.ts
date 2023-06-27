@@ -1,13 +1,13 @@
 import { encode } from "querystring";
 
 import { useRouter } from "next/router";
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 
 import { PaginationProps } from "./Pagination";
 
 type Items<T> = { items: T[] };
 
-type UsePaginationProps = {
+export type UsePaginationProps = {
   totalResults: number;
   pageSize: number;
 };
@@ -41,12 +41,18 @@ const usePagination = <T>(
     return items.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, items, pageSize]);
 
+  const firstItemRef = useRef<HTMLAnchorElement | null>(null);
+  const paginationTitle =
+    totalPages > 1 ? ` | Page ${currentPage} of ${totalPages}` : "";
+
   return {
+    paginationTitle,
     pageSize,
     currentPage,
     currentPageItems,
     totalPages,
     totalResults,
+    firstItemRef,
     nextPageUrlObject: isLastPage
       ? { pathname: router.asPath }
       : { pathname: pathname, query: Object.fromEntries(nextPageParams) },

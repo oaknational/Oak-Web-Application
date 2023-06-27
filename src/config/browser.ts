@@ -111,13 +111,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  seoAppSocialSharingImg: {
-    value: process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG,
-    envName: "NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG",
-    required: false,
-    availableInBrowser: true,
-    default: null,
-  },
   seoAppFacebook: {
     value: process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK,
     envName: "NEXT_PUBLIC_SEO_APP_FACEBOOK",
@@ -146,6 +139,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotFormSubmissionUrl: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL,
+    envName: "NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   hubspotPortalId: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_PORTAL_ID",
@@ -156,6 +156,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   hubspotNewsletterFormId: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  hubspotDownloadsFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID",
     required: true,
     availableInBrowser: true,
     default: null,

@@ -2,6 +2,11 @@ import React from "react";
 import { DefaultSeo as NextDefaultSeo } from "next-seo";
 
 import config from "../../config/browser";
+import {
+  SOCIAL_SHARING_IMAGE_HEIGHT,
+  SOCIAL_SHARING_IMAGE_URL,
+  SOCIAL_SHARING_IMAGE_WIDTH,
+} from "../../image-data";
 
 const DefaultSeo = () => {
   return (
@@ -15,11 +20,9 @@ const DefaultSeo = () => {
         description: config.get("seoAppDescription"),
         images: [
           {
-            url: `${config.get("seoAppUrl")}${config.get(
-              "seoAppSocialSharingImg"
-            )}`,
-            width: 1280,
-            height: 630,
+            url: SOCIAL_SHARING_IMAGE_URL,
+            width: SOCIAL_SHARING_IMAGE_WIDTH,
+            height: SOCIAL_SHARING_IMAGE_HEIGHT,
             alt: config.get("seoAppName"),
           },
         ],

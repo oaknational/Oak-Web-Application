@@ -6,9 +6,12 @@ import Icon from "../../Icon";
 import Flex from "../../Flex";
 import CategoryFilterList from "../../Filters/CategoryFilterList";
 import useCategoryFilterList from "../../Filters/CategoryFilterList/useCategoryFilterList";
-import { PostIndexLinkProps } from "../../../common-lib/urls";
+import {
+  BlogListingLinkProps,
+  WebinarListingLinkProps,
+} from "../../../common-lib/urls";
 
-export type PostCategoryPage = "blog-index" | "webinars-index";
+export type PostCategoryPage = "blog-index" | "webinar-index";
 
 export type PostCategoryListProps = BoxProps & {
   labelledBy: string;
@@ -19,10 +22,11 @@ export type PostCategoryListProps = BoxProps & {
 const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   const { categories, selectedCategorySlug, labelledBy, page, ...boxProps } =
     props;
-
+  console.log(selectedCategorySlug, "selectedCategorySlug");
   const { getIsSelected, setSelected } = useCategoryFilterList({
     selectedKey: selectedCategorySlug,
-    getKey: (linkProps: PostIndexLinkProps) => linkProps.category || null,
+    getKey: (linkProps: BlogListingLinkProps | WebinarListingLinkProps) =>
+      linkProps.categorySlug || null,
   });
 
   return (
@@ -33,9 +37,9 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         setSelected={setSelected}
         categories={[
           { label: "All", linkProps: { page } },
-          ...categories.map((cat) => ({
-            label: cat.title,
-            linkProps: { page, category: cat.slug },
+          ...categories.map(({ title, slug }) => ({
+            label: title,
+            linkProps: { page, categorySlug: slug },
           })),
         ]}
       />
@@ -45,7 +49,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           $width={"auto"}
           $height="100%"
           $alignItems="center"
-          page={page === "webinars-index" ? "blog-index" : "webinars-index"}
+          page={page === "webinar-index" ? "blog-index" : "webinar-index"}
         >
           {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
           <Icon

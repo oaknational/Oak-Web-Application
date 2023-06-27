@@ -1,7 +1,7 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
 import { CTA } from "../../../common-lib/cms-types";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 
 const PostCta = (props: PortableTextComponentProps<CTA>) => {
@@ -12,9 +12,10 @@ const PostCta = (props: PortableTextComponentProps<CTA>) => {
 
   return (
     <ButtonAsLink
+      $mt={20}
       page={null}
       label={cta.label}
-      href={getCTAHref(cta)}
+      href={getLinkHref(cta)}
       background={"teachersHighlight"}
     />
   );

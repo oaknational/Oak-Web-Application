@@ -5,6 +5,7 @@ package-lock.json
 # Generated files
 src/browser-lib/avo/Avo.ts
 src/node-lib/curriculum-api/generated
+src/node-lib/curriculum-api-2023/generated
 src/node-lib/sanity-graphql/generated
 .next
 next-env.d.ts

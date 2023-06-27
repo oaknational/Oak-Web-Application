@@ -50,7 +50,7 @@ describe("components/Key Stage keypad", () => {
       keyStageTitle: "Key Stage 1",
       keyStageSlug: "ks1",
       navigatedFrom: "card",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
     });
   });
 

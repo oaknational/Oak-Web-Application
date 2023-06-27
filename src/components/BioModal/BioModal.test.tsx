@@ -120,6 +120,19 @@ describe("BioModal", () => {
     await user.click(closeButton);
     expect(closeModal).toHaveBeenCalled();
   });
+  test("opening modal sets aria-expanded to true", async () => {
+    const closeModal = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <OverlayProvider>
+        <BioModal {...defaultProps} closeModal={closeModal} />
+      </OverlayProvider>
+    );
+    const closeButton = getByRole("button", { name: "close modal" });
+
+    await user.click(closeButton);
+
+    expect(closeButton).toHaveAttribute("aria-expanded", "true");
+  });
   test("'prev' button disabled if 'prevBio' is undefined", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>

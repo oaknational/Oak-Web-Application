@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { isOakPage, resolveOakHref } from "../../common-lib/urls";
+import { resolveOakHref } from "../../common-lib/urls";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import { PixelSpacing } from "../../styles/theme";
 import { FontVariant } from "../../styles/utils/typography";
@@ -29,20 +29,22 @@ const SECTION_PADDING_TOP: Record<MenuLinkSize, PixelSpacing[]> = {
 };
 
 const MenuLink: FC<MenuLinkProps & { isFirstOfSection: boolean }> = (props) => {
-  const { page, activeLinkHrefMatch, linkText, size, isFirstOfSection } = props;
-  const href = resolveOakHref({ page });
+  const {
+    resolveOakHrefProps,
+    activeLinkHrefMatch,
+    linkText,
+    size,
+    isFirstOfSection,
+  } = props;
+  const href = resolveOakHref(resolveOakHrefProps);
   const isCurrent = useIsCurrent({ href: activeLinkHrefMatch || href });
   const { track } = useAnalytics();
 
   const onClick = () => {
-    if (!isOakPage(page)) {
-      // ensure that href is an OakHref for typesafety of below switch statement
-      return;
-    }
-    switch (page) {
-      case "teachers-home":
+    switch (resolveOakHrefProps.page) {
+      case "teacher-hub":
         return track.teacherHubSelected({ navigatedFrom: "menu" });
-      case "pupils-home":
+      case "classroom":
         return track.classroomSelected({ navigatedFrom: "menu" });
     }
   };
@@ -57,7 +59,7 @@ const MenuLink: FC<MenuLinkProps & { isFirstOfSection: boolean }> = (props) => {
       >
         {isCurrent && <MenuLinkActiveIcon href={href} size={size} />}
         <Span $font={FONT_VARIANT[size]} $opacity={isCurrent ? 0.6 : 1}>
-          <OakLink page={page} htmlAnchorProps={{ onClick }}>
+          <OakLink {...resolveOakHrefProps} htmlAnchorProps={{ onClick }}>
             {linkText}
           </OakLink>
         </Span>

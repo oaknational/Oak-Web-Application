@@ -3,7 +3,7 @@ import { screen, within, getByRole } from "@testing-library/react";
 import Teachers, {
   getStaticProps,
   TeachersHomePageProps,
-} from "../../../pages/beta/teachers";
+} from "../../../pages/beta/[viewType]";
 import { HomePageProps, SerializedPost } from "../../../pages";
 import CMSClient from "../../../node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "../../../common-lib/cms-types";
@@ -36,6 +36,7 @@ const props: TeachersHomePageProps = {
     heading: "",
     id: "",
     summaryPortableText: [],
+    notification: { enabled: false },
     sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },
   },

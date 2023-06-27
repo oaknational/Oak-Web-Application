@@ -19,12 +19,12 @@ import Breadcrumbs from "../Breadcrumbs";
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
   const theme = useTheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { openMenu } = useMenuContext();
+  const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <OakLink page="home">
+      <OakLink page="home" viewType={null}>
         <Logo height={48} width={104} />
       </OakLink>
       <Flex
@@ -42,7 +42,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         $font="heading-7"
       >
         <OakLink
-          page="pupils-home"
+          page="classroom"
           data-testid="SiteHeaderClassroomLink"
           htmlAnchorProps={{
             onClick: () => track.classroomSelected({ navigatedFrom: "header" }),
@@ -52,7 +52,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         </OakLink>
         <Span $ml={24} $mr={32} $whiteSpace={"nowrap"}>
           <OakLink
-            page="teachers-home"
+            page="teacher-hub"
             htmlAnchorProps={{
               onClick: () =>
                 track.teacherHubSelected({ navigatedFrom: "header" }),
@@ -69,6 +69,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         size={"large"}
         ref={menuButtonRef}
         onClick={openMenu}
+        aria-expanded={open}
       />
       <Menu menuButtonRef={menuButtonRef}>
         <MenuLinks menuSections={menuSections} />

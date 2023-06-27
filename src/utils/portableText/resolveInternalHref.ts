@@ -1,4 +1,4 @@
-import { CTA, CTAInternalLinkEntry } from "../../common-lib/cms-types";
+import { CTA, CTAInternalLinkEntry, Link } from "../../common-lib/cms-types";
 import { resolveOakHref } from "../../common-lib/urls";
 import { assertUnreachable } from "../assertUnreachable";
 
@@ -29,17 +29,20 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "contactCorePage":
       return resolveOakHref({ page: "contact" });
     case "landingPage":
-      return resolveOakHref({ page: "landing-page", slug: entry.slug });
+      return resolveOakHref({ page: "landing-page", lpSlug: entry.slug });
     case "webinar":
-      return resolveOakHref({ page: "webinars", slug: entry.slug });
+      return resolveOakHref({
+        page: "webinar-single",
+        webinarSlug: entry.slug,
+      });
     case "webinarListingPage":
-      return resolveOakHref({ page: "webinars-index" });
+      return resolveOakHref({ page: "webinar-index" });
     case "newsPost":
-      return resolveOakHref({ page: "blog", slug: entry.slug });
+      return resolveOakHref({ page: "blog-single", blogSlug: entry.slug });
     case "newsListingPage":
       return resolveOakHref({ page: "blog-index" });
     case "policyPage":
-      return resolveOakHref({ page: "policy", slug: entry.slug });
+      return resolveOakHref({ page: "legal", legalSlug: entry.slug });
     case "attachment":
       return entry.file.asset.url;
     default: {
@@ -61,11 +64,11 @@ export const anchorMap = {
 
 export type anchorKeys = keyof typeof anchorMap;
 
-export const getCTAHref = (cta: CTA): string => {
-  if (cta.linkType === "internal") {
-    return resolveInternalHref(cta.internal);
-  } else if (cta.linkType === "external") {
-    return cta.external;
+export const getLinkHref = (ctaOrLink: CTA | Link): string => {
+  if (ctaOrLink.linkType === "internal") {
+    return resolveInternalHref(ctaOrLink.internal);
+  } else if (ctaOrLink.linkType === "external") {
+    return ctaOrLink.external;
   }
-  return `#${anchorMap[cta.anchor]}`;
+  return `#${anchorMap[ctaOrLink.anchor]}`;
 };

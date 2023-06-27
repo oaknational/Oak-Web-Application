@@ -11,6 +11,7 @@
 playwright-report/
 test-results/
 npm_audit.json
+audit.json
 
 # Browserstack Local log
 local.log
@@ -82,5 +83,6 @@ public/sitemap*.xml
 # Images/graphics protected by IP
 public/images/sprite/*
 !public/images/sprite/README.md
-
+public/images/favicons/*
+public/images/sharing/*
 src/image-data/generated/*.svg

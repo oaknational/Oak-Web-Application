@@ -13,12 +13,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
         />
@@ -39,12 +39,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
           withModals
@@ -65,12 +65,12 @@ describe("BioCardList", () => {
             {
               id: "1",
               name: "Crayon Person",
-              role: "Underling",
+              role: "Co-director",
             },
             {
               id: "2",
               name: "Leaf Breaker",
-              role: "Underling",
+              role: "Co-director",
             },
           ]}
         />
@@ -79,5 +79,25 @@ describe("BioCardList", () => {
 
     const cardClickTarget = queryByText("See bio");
     expect(cardClickTarget).not.toBeInTheDocument();
+  });
+  test("button has aria expanded false when bio is closed", () => {
+    const { getByTitle } = renderWithTheme(
+      <OverlayProvider>
+        <BioCardList
+          bios={[
+            {
+              id: "1",
+              name: "Crayon Person",
+              role: "Co-director",
+            },
+          ]}
+          withModals={true}
+        />
+      </OverlayProvider>
+    );
+
+    const button = getByTitle("See bio for Crayon Person");
+    expect(button).toHaveAttribute("aria-expanded", "false");
+    // aria-expanded true button on BioModal
   });
 });

@@ -23,6 +23,7 @@ import {
   blogListingPageSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
+import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
 
 import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
@@ -102,6 +103,17 @@ const getSanityClient = () => ({
     aboutBoardPageSchema,
     (result) => {
       const boardPageData = result?.allAboutCorePageBoard?.[0];
+      if (boardPageData?.documents) {
+        boardPageData.documents.forEach((doc) => {
+          const asset = doc?.file?.asset;
+          const url = asset?.url;
+          const proxiedUrl = getProxiedSanityAssetUrl(url);
+
+          if (doc?.file?.asset?.url) {
+            doc.file.asset.url = proxiedUrl;
+          }
+        });
+      }
       const parentPageData = result?.aboutCorePage?.[0];
 
       return boardPageData && parentPageData

@@ -8,13 +8,13 @@ import { P } from "../../Typography";
 import Button from "../../Button";
 import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
-import {
-  UserRole,
-  USER_ROLES,
-} from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import errorReporter from "../../../common-lib/error-reporter";
 import Form from "../Form";
 import { BoxProps } from "../../Box";
+import {
+  USER_ROLES,
+  UserRole,
+} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
@@ -105,12 +105,14 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         id={`${id}-newsletter-signup-name`}
         label="Name"
         placeholder="Anna Smith"
+        autoComplete="name"
         {...register("name")}
         error={errors.name?.message}
       />
       <Input
         id={`${id}-newsletter-signup-email`}
         label="Email"
+        autoComplete="email"
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}

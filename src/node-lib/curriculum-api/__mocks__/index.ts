@@ -1,50 +1,57 @@
 import { CurriculumApi } from "..";
 import searchPageFixture from "../fixtures/searchPage.fixture";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
-import teachersKeyStageSubjectsFixture from "../fixtures/teachersKeyStageSubjects.fixture";
-import teachersKeyStageSubjectTiersFixture from "../fixtures/teachersKeyStageSubjectTiers.fixture";
-import teachersKeyStageSubjectTiersPathsFixture from "../fixtures/teachersKeyStageSubjectTiersPaths.fixture";
-import teachersKeyStageSubjectUnitsFixture from "../fixtures/teachersKeyStageSubjectUnits.fixture";
-import teachersKeyStageSubjectUnitsPathsFixture from "../fixtures/teachersKeyStageSubjectUnitsPaths.fixture";
-import teachersLessonOverviewFixture from "../fixtures/teachersLessonOverview.fixture";
-import teachersLessonOverviewPathsFixture from "../fixtures/teachersLessonOverviewPaths.fixture";
-import teachersKeyStageSubjectUnitsLessonsFixture from "../fixtures/teachersKeyStageSubjectUnitLessons.fixture";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "../fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import lessonDownloadsFixtures from "../fixtures/lessonDownloads.fixture";
+import subjectListingFixture from "../fixtures/subjectListing.fixture";
+import unitListingFixture from "../fixtures/unitListing.fixture";
+import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
+import lessonListingFixture from "../fixtures/lessonListing.fixture";
+import tierListingFixture from "../fixtures/tierListing.fixture";
+import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixture";
+import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
+import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
+import lessonDownloadPathsFixture from "../fixtures/lessonDownloadPaths.fixture";
+import programmeListingPathsFixture from "../fixtures/programmeListingPaths.fixture";
 
 const curriculumApi: CurriculumApi = {
-  // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
   searchPage: jest.fn(async () => {
     return searchPageFixture();
   }),
   teachersHomePage: jest.fn(async () => {
     return teachersHomePageFixture();
   }),
-  teachersKeyStageSubjects: jest.fn(async () => {
-    return teachersKeyStageSubjectsFixture();
+  lessonDownloads: jest.fn(async () => {
+    return lessonDownloadsFixtures();
   }),
-  teachersKeyStageSubjectTiersPaths: jest.fn(async () => {
-    return teachersKeyStageSubjectTiersPathsFixture();
+  lessonDownloadPaths: jest.fn(async () => {
+    return lessonDownloadPathsFixture();
   }),
-  teachersKeyStageSubjectTiers: jest.fn(async () => {
-    return teachersKeyStageSubjectTiersFixture();
+  subjectListing: jest.fn(async () => {
+    return subjectListingFixture();
   }),
-  teachersKeyStageSubjectUnitsPaths: jest.fn(async () => {
-    return teachersKeyStageSubjectUnitsPathsFixture();
+  lessonListingPaths: jest.fn(async () => {
+    return lessonListingPathsFixture();
   }),
-  teachersKeyStageSubjectUnits: jest.fn(async () => {
-    return teachersKeyStageSubjectUnitsFixture();
+  lessonListing: jest.fn(async () => {
+    return lessonListingFixture();
   }),
-  teachersKeyStageSubjectUnitLessons: jest.fn(async () => {
-    return teachersKeyStageSubjectUnitsLessonsFixture();
+  unitListing: jest.fn(async () => {
+    return unitListingFixture();
   }),
-  teachersKeyStageSubjectUnitLessonsDownloads: jest.fn(async () => {
-    return teachersKeyStageSubjectUnitsLessonsDownloadsFixtures();
+  programmeListingPaths: jest.fn(async () => {
+    return programmeListingPathsFixture();
   }),
-  teachersLessonOverviewPaths: jest.fn(async () => {
-    return teachersLessonOverviewPathsFixture();
+  tierListing: jest.fn(async () => {
+    return tierListingFixture();
   }),
-  teachersLessonOverview: jest.fn(async () => {
-    return teachersLessonOverviewFixture();
+  unitListingPaths: jest.fn(async () => {
+    return unitListingPathsFixture();
+  }),
+  lessonOverview: jest.fn(async () => {
+    return lessonOverviewFixture();
+  }),
+  lessonOverviewPaths: jest.fn(async () => {
+    return lessonOverviewPathsFixture();
   }),
 };
 

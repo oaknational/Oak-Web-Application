@@ -67,9 +67,9 @@ describe("SchoolPickerRadio", () => {
     expect(radio).toBeChecked();
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
-    await userEvent.type(input, "Dorothy Stringer");
+    await userEvent.type(input, "Dorothy Bricks");
 
-    expect(input).toHaveValue("Dorothy Stringer");
+    expect(input).toHaveValue("Dorothy Bricks");
 
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
@@ -88,12 +88,12 @@ describe("SchoolPickerRadio", () => {
     await userEvent.type(input, "Do");
     await userEvent.keyboard("{Backspace}");
     await userEvent.keyboard("{Backspace}");
-    await userEvent.type(input, "Dorothy Stringer");
+    await userEvent.type(input, "Dorothy Bricks");
 
     // HACK: wait for next tick
     await waitForNextTick();
     rerender(<SchoolPickerRadio {...props} />);
-    expect(input.value).toBe("Dorothy Stringer");
+    expect(input.value).toBe("Dorothy Bricks");
   });
   it("calls onSchoolChange when a school is selected ", async () => {
     const { rerender } = render(<SchoolPickerRadio {...props} />);

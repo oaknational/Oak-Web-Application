@@ -115,6 +115,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  curriculumApi2023Url: {
+    value: process.env.CURRICULUM_API_2023_URL,
+    envName: "CURRICULUM_API_2023_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   curriculumApiAuthType: {
     value: process.env.CURRICULUM_API_AUTH_TYPE,
     envName: "CURRICULUM_API_AUTH_TYPE",
@@ -125,6 +132,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   curriculumApiAuthKey: {
     value: process.env.CURRICULUM_API_AUTH_KEY,
     envName: "CURRICULUM_API_AUTH_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  curriculumApi2023AuthKey: {
+    value: process.env.CURRICULUM_API_2023_AUTH_KEY,
+    envName: "CURRICULUM_API_2023_AUTH_KEY",
     required: true,
     availableInBrowser: false,
     default: null,

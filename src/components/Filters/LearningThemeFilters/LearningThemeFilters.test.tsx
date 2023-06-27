@@ -16,22 +16,15 @@ describe("PostCategoryList", () => {
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
-            keyStageSlug: "ks3",
-            keyStageTitle: "Key Stage 3",
-            subjectSlug: "english",
-            subjectTitle: "English",
-            tierSlug: "core",
-            slug: "grammar",
-            label: "Grammar",
-            tierName: "Core",
+            learningThemeTitle: "Grammar",
+            learningThemeSlug: "grammar",
           },
         ]}
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
-          keyStage: "ks3",
-          subject: "english",
-          search: { ["tier"]: "core" },
+          viewType: "teachers",
+          programmeSlug: "maths-secondary-ks3",
         }}
         trackingProps={{
           keyStageSlug: "ks3",
@@ -43,7 +36,7 @@ describe("PostCategoryList", () => {
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/english/units?tier=core&learning-theme=grammar"
+      "/beta/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar"
     );
   });
 });

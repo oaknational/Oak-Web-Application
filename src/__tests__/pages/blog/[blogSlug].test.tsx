@@ -7,9 +7,6 @@ import BlogSinglePage, {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlags: () => ({ enabled: {} }),
-}));
 jest.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),
@@ -17,6 +14,7 @@ jest.mock("next/router", () => ({
     ...jest.requireActual("next/router").useRouter,
     asPath: "asPath test value",
     query: {},
+    pathname: "/blog/[blogSlug]",
   }),
 }));
 jest.mock("next-sanity-image", () => ({

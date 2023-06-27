@@ -7,15 +7,24 @@ import OakError from "../../errors/OakError";
 import useStableCallback from "../../hooks/useStableCallback";
 import handleFetchError from "../../utils/handleFetchError";
 import { resolveOakHref } from "../../common-lib/urls";
+import { SearchPageData } from "../../node-lib/curriculum-api/index";
 
 import constructElasticQuery from "./constructElasticQuery";
-import { SearchHit, searchResultsSchema } from "./helpers";
-import { KeyStage } from "./useKeyStageFilters";
+import {
+  getFilterForQuery,
+  isFilterItem,
+  SearchHit,
+  searchResultsSchema,
+} from "./helpers";
+import { KeyStage, ContentType } from "./useSearchFilters";
 
 export type SearchQuery = {
   term: string;
-  keyStages: string[];
+  keyStages?: string[];
+  subjects?: string[];
+  contentTypes?: string[];
 };
+
 export type SetSearchQuery = (
   arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>)
 ) => void;
@@ -26,44 +35,67 @@ type UseSearchQueryReturnType = {
 export const createSearchQuery = (
   partialQuery: Partial<SearchQuery>
 ): SearchQuery => {
-  const { term = "", keyStages = [] } = partialQuery;
-  return { term, keyStages };
+  const {
+    term = "",
+    keyStages = [],
+    subjects = [],
+    contentTypes = [],
+  } = partialQuery;
+  return { term, keyStages, subjects, contentTypes };
 };
+
 const useSearchQuery = ({
   allKeyStages,
+  allSubjects,
+  allContentTypes,
 }: {
-  allKeyStages: KeyStage[];
+  allKeyStages?: KeyStage[];
+  allSubjects?: SearchPageData["subjects"];
+  allContentTypes?: ContentType[];
 }): UseSearchQueryReturnType => {
   const {
-    query: { term = "", keyStages = "" },
+    query: { term = "", keyStages = "", subjects = "", contentTypes = "" },
     push,
   } = useRouter();
 
-  const isKeyStage = useCallback(
-    (slug: string) => {
-      return allKeyStages.some((keyStage) => keyStage.slug === slug);
-    },
-    [allKeyStages]
-  );
+  const isFilterItemCallback = useCallback(isFilterItem, []);
+
+  const getFilterForQueryCallback = useCallback(getFilterForQuery, [
+    isFilterItemCallback,
+  ]);
 
   const termString = term?.toString() || "";
-  const keyStagesArray = useMemo(
-    () => keyStages.toString().split(","),
-    [keyStages]
-  );
 
   const query = useMemo(() => {
     return {
       term: termString,
-      keyStages: keyStagesArray.filter(isKeyStage),
+      keyStages: allKeyStages
+        ? getFilterForQueryCallback(keyStages, allKeyStages)
+        : [],
+      subjects: allSubjects
+        ? getFilterForQueryCallback(subjects, allSubjects)
+        : [],
+      contentTypes: allContentTypes
+        ? getFilterForQueryCallback(contentTypes, allContentTypes)
+        : [],
     };
-  }, [termString, keyStagesArray, isKeyStage]);
+  }, [
+    termString,
+    allKeyStages,
+    getFilterForQueryCallback,
+    keyStages,
+    allSubjects,
+    contentTypes,
+    allContentTypes,
+    subjects,
+  ]);
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
     const newQuery = typeof arg === "function" ? arg(query) : arg;
 
     const url = resolveOakHref({
-      page: "beta-search",
+      page: "search",
+      viewType: "teachers",
       query: newQuery,
     });
     push(url, undefined, { shallow: true });
@@ -81,19 +113,29 @@ export type UseSearchReturnType = {
   query: SearchQuery;
   setQuery: SetSearchQuery;
   setSearchTerm: (props: { searchTerm: string }) => void;
+  searchStartTime: null | number;
+  setSearchStartTime: (time: number | null) => void;
 };
 type UseSearchProps = {
-  allKeyStages: KeyStage[];
+  allKeyStages?: KeyStage[];
+  allSubjects?: SearchPageData["subjects"];
+  allContentTypes?: ContentType[];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
-  const { allKeyStages } = props;
-  const { query, setQuery } = useSearchQuery({ allKeyStages });
+  const { allKeyStages, allSubjects, allContentTypes } = props;
+  const { query, setQuery } = useSearchQuery({
+    allKeyStages,
+    allSubjects,
+    allContentTypes,
+  });
+  const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
   const fetchResults = useStableCallback(async () => {
     setStatus("loading");
+    setSearchStartTime(performance.now());
     try {
       const options: RequestInit = {
         method: "POST",
@@ -150,6 +192,8 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     query,
     setQuery,
     setSearchTerm,
+    searchStartTime,
+    setSearchStartTime,
   };
 };
 

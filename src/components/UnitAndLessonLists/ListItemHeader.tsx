@@ -12,6 +12,7 @@ import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
   $isHovered: boolean;
+  fromSearchPage?: boolean;
 };
 
 interface CommonProps {
@@ -23,7 +24,10 @@ interface CommonProps {
 }
 
 type ListItemHeadingProps = CommonProps &
-  (LessonListItemProps | UnitListItemProps) & { index: number | null };
+  (LessonListItemProps | UnitListItemProps) & {
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+  };
 
 const ListTitle: FC<{ children?: React.ReactNode; expired?: boolean }> = ({
   children,
@@ -45,7 +49,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   const {
     title,
     slug,
-    keyStageSlug,
     subjectSlug,
     subjectTitle,
     hideTopHeading,
@@ -55,14 +58,17 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     index,
     expired,
     onClick,
+    programmeSlug,
+    fromSearchPage,
   } = props;
+
+  const itemTitle =
+    (index !== null && !fromSearchPage ? `${index + 1}. ` : "") + title;
 
   if (expired) {
     return (
       <Flex $mt={24} $flexDirection={"column"}>
-        <ListTitle expired={expired}>
-          {index !== null ? `${index + 1}.` : ""} {title}
-        </ListTitle>
+        <ListTitle expired={expired}>{itemTitle}</ListTitle>
       </Flex>
     );
   }
@@ -80,29 +86,27 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
         {"unitSlug" in props ? (
           // lesson
           <OakLink
-            slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
-            unit={props.unitSlug}
+            lessonSlug={slug}
+            programmeSlug={programmeSlug}
+            unitSlug={props.unitSlug}
             page={"lesson-overview"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>{title}</ListTitle>
+            <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
         ) : (
           // unit
           <OakLink
-            slug={slug}
-            keyStage={keyStageSlug}
-            subject={subjectSlug}
+            programmeSlug={programmeSlug}
+            unitSlug={slug}
             page={"lesson-index"}
+            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>
-              {index !== null ? `${index + 1}.` : ""} {title}
-            </ListTitle>
+            <ListTitle>{itemTitle}</ListTitle>
           </OakLink>
         )}
       </Flex>

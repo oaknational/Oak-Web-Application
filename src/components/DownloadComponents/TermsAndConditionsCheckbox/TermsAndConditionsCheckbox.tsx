@@ -49,7 +49,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
     )}
     <P $font="body-3">
       Read our{" "}
-      <OakLink page={"terms-and-conditions"} $isInline>
+      <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
         terms &amp; conditions
       </OakLink>
       .

@@ -1,9 +1,43 @@
 import { z } from "zod";
 
+import errorReporter from "../../common-lib/error-reporter";
 import { LessonListItemProps } from "../../components/UnitAndLessonLists/LessonList/LessonListItem";
 import { UnitListItemProps } from "../../components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import OakError from "../../errors/OakError";
+import truthy from "../../utils/truthy";
 
-import { KeyStage } from "./useKeyStageFilters";
+import { KeyStage } from "./useSearchFilters";
+
+const reportError = errorReporter("search/helpers");
+
+export const isFilterItem = <T extends { slug: string }>(
+  slug: string,
+  allFilterItems: T[]
+) => {
+  return allFilterItems.some((item) => item.slug === slug);
+};
+
+export const getFilterForQuery = <T extends { slug: string }>(
+  queryFilterItems: string | string[],
+  allFilterItems: T[]
+) => {
+  const queryFilterArray = queryFilterItems.toString().split(",");
+  return queryFilterArray.filter((querySlug) =>
+    isFilterItem(querySlug, allFilterItems)
+  );
+};
+
+// Analytics
+export const getSortedSearchFiltersSelected = (
+  filterOptions: string | string[] | undefined
+): [] | string[] => {
+  if (typeof filterOptions === "string") {
+    return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
+  } else if (Array.isArray(filterOptions)) {
+    return filterOptions.sort((a, b) => (a.slice(-1) < b.slice(-1) ? -1 : 1));
+  }
+  return [];
+};
 
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
@@ -20,16 +54,45 @@ export function elasticKeyStageSlugToKeyStage({
   );
 
   if (!keyStage) {
-    // todo bugsnag warn
+    const error = new OakError({
+      code: "search/unknown",
+      meta: {
+        elasticKeyStageSlug,
+        allKeyStages,
+        impact: "Key stage not found from elastic key stage slug",
+      },
+    });
+
+    reportError(error);
   }
 
   return keyStage;
 }
 
+const getProgrammeSlug = (
+  hit: LessonSearchHit | UnitSearchHit,
+  allKeyStages: KeyStage[]
+) => {
+  return [
+    hit._source.subject_slug,
+    hit._source.phase,
+    elasticKeyStageSlugToKeyStage({
+      elasticKeyStageSlug: hit._source.key_stage_slug,
+      allKeyStages,
+    })?.slug,
+    hit._source.tier?.toLowerCase(),
+  ]
+    .filter(truthy)
+    .join("-");
+};
+
 export function getLessonObject(props: {
   hit: LessonSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<LessonListItemProps, "hideTopHeading"> {
+}): Omit<
+  LessonListItemProps,
+  "hideTopHeading" | "trackSearchListItemSelected" | "index" | "hitCount"
+> {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -37,19 +100,17 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-
   return {
-    title: highlightedHit.title?.toString(),
-    slug: highlightedHit.slug?.toString(),
+    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    lessonTitle: highlightedHit.title?.toString(),
+    lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
-    themeTitle: highlightedHit.theme_title?.toString() || null,
     subjectSlug: highlightedHit.subject_slug?.toString(),
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
     unitSlug: highlightedHit.topic_slug?.toString() || "",
     unitTitle: highlightedHit.topic_title?.toString() || "",
-    themeSlug: null, // null values -  add to elastic slug index in acorn
     videoCount: null,
     presentationCount: null,
     worksheetCount: null,
@@ -62,7 +123,10 @@ export function getLessonObject(props: {
 export function getUnitObject(props: {
   hit: UnitSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<UnitListItemProps, "hideTopHeading" | "index" | "expiredLessonCount"> {
+}): Omit<
+  UnitListItemProps,
+  "hideTopHeading" | "index" | "hitCount" | "expiredLessonCount"
+> {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -72,6 +136,7 @@ export function getUnitObject(props: {
   });
 
   return {
+    programmeSlug: getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     themeTitle: highlightedHit.theme_title?.toString() || null,
@@ -96,6 +161,8 @@ const searchResultsSourceCommon = z.object({
   key_stage_slug: z.string(),
   expired: z.boolean().nullish(),
   theme_title: z.string().nullish(),
+  tier: z.string().nullish(),
+  phase: z.string().nullish(),
 });
 
 const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({
@@ -144,6 +211,7 @@ export const searchResultsHitSchema = z.union([
 ]);
 export const searchResultsHitsSchema = z.array(searchResultsHitSchema);
 export const searchResultsSchema = z.object({
+  took: z.number(),
   hits: z.object({
     hits: z.array(searchResultsHitSchema),
   }),

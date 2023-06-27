@@ -1,5 +1,7 @@
-import SearchPage from "../../../pages/beta/teachers/search";
+import SearchPage from "../../../pages/beta/[viewType]/search";
+import { mockSeoResult } from "../../__helpers__/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
+import searchPageFixture from "../../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 const providers = {
   theme: {},
@@ -8,28 +10,23 @@ const providers = {
   analytics: {},
   cookieConsent: {},
 };
-const keyStages = [
-  {
-    slug: "fks1",
-    title: "Fake-key-stage 1",
-    shortCode: "FKS1",
-  },
-];
+const keyStages = searchPageFixture().keyStages;
+const subjects = searchPageFixture().subjects;
+const contentTypes = searchPageFixture().contentTypes;
 
 describe("pages/beta/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
 
     expect(seo).toEqual({
-      title: "NEXT_PUBLIC_SEO_APP_NAME",
-      description: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
-      ogTitle: "NEXT_PUBLIC_SEO_APP_NAME",
-      ogDescription: "NEXT_PUBLIC_SEO_APP_DESCRIPTION",
+      ...mockSeoResult,
+      title: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
+      description: "Search for Free Teaching Resources",
+      ogTitle: "Search for Free Teaching Resources | NEXT_PUBLIC_SEO_APP_NAME",
+      ogDescription: "Search for Free Teaching Resources",
       ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
-      ogImage:
-        "NEXT_PUBLIC_SEO_APP_URLNEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG?2022",
       ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
       canonical: "NEXT_PUBLIC_SEO_APP_URL",
       robots: "noindex,nofollow",
@@ -37,10 +34,31 @@ describe("pages/beta/teachers/search.tsx", () => {
   });
   test("renders correct key stage filters", () => {
     const { getAllByRole } = renderWithSeo(providers)(
-      <SearchPage curriculumData={{ keyStages }} />
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
     );
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAccessibleName(
+      "KS1 filter"
+    );
+  });
+  test("renders correct subject filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAccessibleName(
+      "English filter"
+    );
+  });
+  test("renders correct content type filters", () => {
+    const { getAllByRole } = renderWithSeo(providers)(
+      <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />
+    );
+    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAccessibleName(
+      "Lessons filter"
+    );
+
     expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
-      "FKS1 filter"
+      "Units filter"
     );
   });
 });

@@ -1,52 +1,47 @@
 import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsUseCase from "../../hooks/useAnalyticsUseCase";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
 import Flex from "../Flex";
 import OakLink from "../OakLink";
-import { SvgName } from "../SpriteSheet/getSvgId";
 import Card, { CardProps } from "../Card";
-import { ResolveOakHrefProps } from "../../common-lib/urls";
 import SubjectIcon from "../SubjectIcon";
+import { ProgrammesBySubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
-  title: string;
-  slug: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  activeUnitCount: number | null;
-  lessonCount: number | null;
-  tierCount: number | null;
   titleTag?: HeadingTag;
-  svgName?: SvgName;
+} & {
+  programmes: ProgrammesBySubject;
+  isAvailable: boolean;
 };
 
 const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
-  title,
-  slug,
   titleTag = "h3",
-  keyStageSlug,
-  keyStageTitle,
-  lessonCount,
-  tierCount,
-  activeUnitCount,
+  programmes,
+  isAvailable,
 }) => {
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
+  const firstProgramme = programmes[0];
 
-  const isAvailable = Boolean(lessonCount);
+  const {
+    subjectSlug,
+    subjectTitle,
+    keyStageSlug,
+    programmeSlug,
+    keyStageTitle,
+    nonDuplicateSubjectLessonCount,
+    nonDuplicateSubjectUnitCount,
+  } = firstProgramme;
+
   const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
 
-  const linkProps: ResolveOakHrefProps = tierCount
-    ? { page: "tier-selection", keyStage: keyStageSlug, subject: slug }
-    : { page: "unit-index", keyStage: keyStageSlug, subject: slug };
-
   const { track } = useAnalytics();
-  const analyticsUseCase = useAnalyticsUseCase();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   return (
     <Card
@@ -64,7 +59,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         $pv={16}
       >
         <SubjectIcon
-          subjectSlug={slug}
+          subjectSlug={subjectSlug}
           height={96}
           width={96}
           $width={96}
@@ -88,34 +83,48 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
         {isAvailable ? (
           <>
             <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-              <OakLink
-                {...primaryTargetProps}
-                {...linkProps}
-                onClick={() => {
-                  track.subjectSelected({
-                    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                    keyStageSlug,
-                    subjectTitle: title,
-                    subjectSlug: slug,
-                    analyticsUseCase,
-                  });
-                }}
-              >
-                {title}
-              </OakLink>
+              {programmes.length === 1 ? (
+                <OakLink
+                  {...primaryTargetProps}
+                  page="unit-index"
+                  viewType="teachers"
+                  programmeSlug={programmeSlug}
+                >
+                  {subjectTitle}
+                </OakLink>
+              ) : (
+                <OakLink
+                  {...primaryTargetProps}
+                  page="programme-index"
+                  viewType="teachers"
+                  keyStageSlug={keyStageSlug}
+                  subjectSlug={subjectSlug}
+                  onClick={() => {
+                    track.subjectSelected({
+                      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                      keyStageSlug,
+                      subjectTitle: subjectTitle,
+                      subjectSlug: subjectSlug,
+                      analyticsUseCase,
+                    });
+                  }}
+                >
+                  {subjectTitle}
+                </OakLink>
+              )}
             </Heading>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${activeUnitCount} units`}</Typography>
+            >{`${nonDuplicateSubjectUnitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
               $color={"oakGrey4"}
-            >{`${lessonCount} lessons`}</Typography>
+            >{`${nonDuplicateSubjectLessonCount} lessons`}</Typography>
           </>
         ) : (
           <Heading $font={["heading-7"]} tag={titleTag} $textAlign={"center"}>
-            {title}
+            {subjectTitle}
           </Heading>
         )}
       </Flex>

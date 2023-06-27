@@ -6,6 +6,79 @@ import Card from "../Card";
 
 import ExpandingContainer from ".";
 
+it("component renders with the title", () => {
+  const { getAllByRole } = renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      title={"Video"}
+      programmeSlug={"secondary-ks3-maths"}
+      unitSlug={"unit"}
+      lessonSlug={"slug-slug-slug"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  expect(getAllByRole("button")).toHaveLength(3);
+  expect(getAllByRole("link")).toHaveLength(1);
+});
+it("component renders with the title only", () => {
+  const { getAllByRole } = renderWithTheme(
+    <ExpandingContainer
+      external={false}
+      projectable={false}
+      downloadable={false}
+      title={"Video"}
+      programmeSlug={"secondary-ks3-maths"}
+      unitSlug={"unit"}
+      lessonSlug={"slug-slug-slug"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  expect(getAllByRole("button")).toHaveLength(1);
+});
+it("renders top right icons", async () => {
+  const log1 = jest.spyOn(console, "log");
+  const log2 = jest.spyOn(console, "log");
+  const user = userEvent.setup();
+  renderWithTheme(
+    <ExpandingContainer
+      external={true}
+      projectable={true}
+      downloadable={true}
+      programmeSlug={"secondary-ks3-maths"}
+      unitSlug={"unit"}
+      lessonSlug={"slug-slug-slug"}
+      title={"Video"}
+    >
+      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        Grid box
+      </Card>
+    </ExpandingContainer>
+  );
+
+  const downloadLinkButton = screen.getByTestId("download-button");
+  expect(downloadLinkButton).toHaveAttribute(
+    "href",
+    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?"
+  );
+  const projectButton = screen.getByTestId("project-button");
+  await user.click(projectButton);
+  expect(log1).toHaveBeenCalled();
+
+  const externalButton = screen.getByTestId("external-button");
+  await user.click(externalButton);
+  expect(log2).toHaveBeenCalled();
+});
+
 const resourceContainerExpanded = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -29,10 +102,9 @@ describe("comonents/ExpandingContainer", () => {
         projectable={true}
         downloadable={true}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -50,10 +122,9 @@ describe("comonents/ExpandingContainer", () => {
         projectable={false}
         downloadable={false}
         title={"Video"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -72,11 +143,10 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
-        title={"Video"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Starter quiz"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -87,7 +157,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=video"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz"
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
@@ -107,10 +177,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
@@ -132,11 +201,10 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
+        programmeSlug="programme-slug"
         title={"Worksheet"}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
@@ -147,7 +215,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks3/subjects/maths/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
     );
   });
 
@@ -158,10 +226,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -176,6 +243,49 @@ describe("comonents/ExpandingContainer", () => {
       "max-height: 9600px"
     );
   });
+  it("has aria-expanded false when closed ", async () => {
+    renderWithTheme(
+      <ExpandingContainer
+        external={true}
+        projectable={true}
+        downloadable={true}
+        programmeSlug="programme-slug"
+        unitSlug={"unit"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Video"}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Grid box
+        </Card>
+      </ExpandingContainer>
+    );
+
+    const downloadButton = screen.getByTestId("expand-button");
+
+    expect(downloadButton).toHaveAttribute("aria-expanded", "false");
+  });
+  it("has aria-expanded true when open", async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <ExpandingContainer
+        external={true}
+        projectable={true}
+        downloadable={true}
+        programmeSlug="programme-slug"
+        unitSlug={"unit"}
+        lessonSlug={"slug-slug-slug"}
+        title={"Video"}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Grid box
+        </Card>
+      </ExpandingContainer>
+    );
+
+    const downloadButton = screen.getByTestId("expand-button");
+    await user.click(downloadButton);
+    expect(downloadButton).toHaveAttribute("aria-expanded", "true");
+  });
 
   it("calls tracking.resourceContainerExpanded once, with correct props", async () => {
     const user = userEvent.setup();
@@ -184,10 +294,9 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        keyStageSlug={"ks3"}
-        subjectSlug={"maths"}
+        programmeSlug="programme-slug"
         unitSlug={"unit"}
-        slug={"slug-slug-slug"}
+        lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -201,9 +310,9 @@ describe("comonents/ExpandingContainer", () => {
 
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
     expect(resourceContainerExpanded).toHaveBeenCalledWith({
-      pageName: ["Lesson"],
+      pageName: null,
       containerTitle: "Video",
-      analyticsUseCase: ["Teacher"],
+      analyticsUseCase: null,
     });
   });
 });

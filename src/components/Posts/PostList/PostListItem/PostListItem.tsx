@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
 
 import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
@@ -21,13 +21,13 @@ const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
   switch (props.contentType) {
     case "blog-post":
       return {
-        page: "blog",
-        slug: props.slug,
+        page: "blog-single",
+        blogSlug: props.slug,
       };
     case "webinar":
       return {
-        page: "webinars",
-        slug: props.slug,
+        page: "webinar-single",
+        webinarSlug: props.slug,
       };
   }
 };
@@ -38,12 +38,12 @@ const getItemCategoryLinkProps = (
     case "blog-post":
       return {
         page: "blog-index",
-        category: props.category.slug,
+        categorySlug: props.category.slug,
       };
     case "webinar":
       return {
-        page: "webinars-index",
-        category: props.category.slug,
+        page: "webinar-index",
+        categorySlug: props.category.slug,
       };
   }
 };
@@ -57,6 +57,7 @@ export type PostListItemProps = {
   category: BlogWebinarCategory;
   date: string;
   withImage?: boolean;
+  firstItemRef?: RefObject<HTMLAnchorElement> | null;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
   | { contentType: "webinar"; thumbnailUrl?: string | null }
@@ -69,13 +70,14 @@ export type PostListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const PostListItem: FC<PostListItemProps> = (props) => {
-  const { titleTag, title, summary, category, date, withImage } = props;
+  const { titleTag, title, summary, category, date, withImage, firstItemRef } =
+    props;
 
   const {
     containerProps,
     primaryTargetProps,
     isHovered: cardIsHovered,
-  } = useClickableCard<HTMLAnchorElement>();
+  } = useClickableCard<HTMLAnchorElement>(firstItemRef);
   const { hoverProps: categoryHoverProps, isHovered: categoryIsHovered } =
     useHover({});
 

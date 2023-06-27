@@ -88,8 +88,11 @@ async function main() {
       process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
 
     // Hubspot
+    NEXT_PUBLIC_HUBSPOT_FORM_SUBMISSION_URL:
+      oakConfig.hubspot.formSubmissionUrl,
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
     NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID: oakConfig.hubspot.newsletterFormId,
+    NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID: oakConfig.hubspot.downloadsFormId,
     NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
     NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
       process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
@@ -117,12 +120,17 @@ async function main() {
     // Curriculum data
     CURRICULUM_API_URL:
       process.env.CURRICULUM_API_URL || oakConfig.oak.curriculumApiUrl,
+    CURRICULUM_API_2023_URL:
+      process.env.CURRICULUM_API_2023_URL || oakConfig.oak.curriculumApi2023Url,
     CURRICULUM_API_AUTH_TYPE:
       process.env.CURRICULUM_API_AUTH_TYPE ||
       oakConfig.oak.curriculumApiAuthType,
     CURRICULUM_API_AUTH_KEY:
       process.env.CURRICULUM_API_AUTH_KEY ||
       secretsFromNetwork.CURRICULUM_API_AUTH_KEY,
+    CURRICULUM_API_2023_AUTH_KEY:
+      process.env.CURRICULUM_API_2023_AUTH_KEY ||
+      secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
 
@@ -166,9 +174,6 @@ async function main() {
       process.env.NEXT_PUBLIC_SEO_APP_URL || oakConfig.seo?.appUrl,
     NEXT_PUBLIC_SEO_APP_LOGO:
       process.env.NEXT_PUBLIC_SEO_APP_LOGO || oakConfig.seo?.appLogo,
-    NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG:
-      process.env.NEXT_PUBLIC_SEO_APP_SOCIAL_SHARING_IMG ||
-      oakConfig.seo?.appSocialSharingImg,
     NEXT_PUBLIC_SEO_APP_FACEBOOK:
       process.env.NEXT_PUBLIC_SEO_APP_FACEBOOK || oakConfig.seo?.appFacebook,
     NEXT_PUBLIC_SEO_APP_TWITTER:

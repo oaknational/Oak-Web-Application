@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import downloadLessonResources from "../helpers/downloadLessonResources";
 import type { DownloadFormProps } from "../../../components/DownloadComponents/downloads.types";
@@ -14,6 +14,11 @@ const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();
 const mockSetTermsInLocalStorageFn = jest.fn();
 
+jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 jest.mock("./useLocalStorageForDownloads", () => {
   return jest.fn(() => ({
     setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
@@ -21,6 +26,11 @@ jest.mock("./useLocalStorageForDownloads", () => {
     setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
   }));
 });
+
+jest.mock("../../../hooks/useUtmParams", () => ({
+  __esModule: true,
+  default: () => ({ utm_source: "les_twitz" }),
+}));
 
 const data: DownloadFormProps = {
   onSubmit: jest.fn(),
@@ -30,31 +40,55 @@ const data: DownloadFormProps = {
   terms: true,
   downloads: ["intro-quiz-questions"],
 };
+const getHubspotUserToken = jest.fn(() => "hubspotutk value");
+jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
+  __esModule: true,
+  default: (...args: []) => getHubspotUserToken(...args),
+}));
+
+const testPosthogDistinctId = "test-anonymous-id";
+
+jest.mock("../../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    posthogDistinctId: testPosthogDistinctId,
+  }),
+}));
 
 describe("useDownloadForm", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     window.localStorage.clear();
   });
-
-  it("should set email in local storage if passed in props", () => {
+  it("should attempt to get the hubspotutk cookie", async () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
 
-    expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith("test@test.com");
+    expect(getHubspotUserToken).toHaveBeenCalled();
   });
-
-  it("should set school in local storage if passed in props", () => {
+  it("should set email in local storage if passed in props", async () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
 
-    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-      schoolId: "222-Sample school",
-      schoolName: "Sample school",
+    await waitFor(() => {
+      expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith(
+        "test@test.com"
+      );
     });
   });
 
-  it("should correctly set school in local storage if 'homeschool' passed in props", () => {
+  it("should set school in local storage if passed in props", async () => {
+    const { result } = renderHook(() => useDownloadForm());
+    result.current.onSubmit(data, "lesson");
+    await waitFor(() => {
+      expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+        schoolId: "222-Sample school",
+        schoolName: "Sample school",
+      });
+    });
+  });
+
+  it("should correctly set school in local storage if 'homeschool' passed in props", async () => {
     const data: DownloadFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
@@ -65,14 +99,15 @@ describe("useDownloadForm", () => {
 
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
-
-    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-      schoolId: "homeschool",
-      schoolName: "homeschool",
+    await waitFor(() => {
+      expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+        schoolId: "homeschool",
+        schoolName: "homeschool",
+      });
     });
   });
 
-  it("should correctly set school in local storage if 'notListed' passed in props", () => {
+  it("should correctly set school in local storage if 'notListed' passed in props", async () => {
     const data: DownloadFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
@@ -83,26 +118,30 @@ describe("useDownloadForm", () => {
 
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
-
-    expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-      schoolId: "notListed",
-      schoolName: "notListed",
+    await waitFor(() => {
+      expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+        schoolId: "notListed",
+        schoolName: "notListed",
+      });
     });
   });
 
-  it("should set terms in local storage if passed in props", () => {
+  it("should set terms in local storage if passed in props", async () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
-
-    expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
+    await waitFor(() => {
+      expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
+    });
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
     const { result } = renderHook(() => useDownloadForm());
     result.current.onSubmit(data, "lesson");
 
-    await expect(downloadLessonResources).toHaveBeenCalledWith("lesson", [
-      "intro-quiz-questions",
-    ]);
+    await waitFor(() => {
+      expect(downloadLessonResources).toHaveBeenCalledWith("lesson", [
+        "intro-quiz-questions",
+      ]);
+    });
   });
 });

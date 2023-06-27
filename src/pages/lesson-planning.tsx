@@ -2,7 +2,6 @@ import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
-import useTrackPageView from "../hooks/useTrackPageView";
 import CMSClient from "../node-lib/cms";
 import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
@@ -165,8 +164,6 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 );
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  useTrackPageView({ pageName: "Plan a Lesson" });
-
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
@@ -263,7 +260,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="search"
                   $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  page="teachers-home"
+                  page="teacher-hub"
                   htmlAnchorProps={{
                     target: "_blank",
                   }}
@@ -334,7 +331,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              page="teachers-home"
+                              page="teacher-hub"
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -365,7 +362,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box $minWidth={["50%"]}>
               <Box $display={["block", "block", "none"]}>
-                <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
+                <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
@@ -389,7 +386,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $minWidth={["50%"]}
             >
               <Box $display={["none", "none", "block"]}>
-                <CardTitle $font={"heading-4"} tag="h4">
+                <CardTitle $font={"heading-4"} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
@@ -415,7 +412,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $mb={[48, 48, 0]}
               $ph={[16, 0, 0]}
             >
-              <CardTitle $font={["heading-5", "heading-4"]} tag={"h4"}>
+              <CardTitle $font={["heading-5", "heading-4"]} tag={"h2"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
               <Typography $font={["body-2", "body-1"]}>
@@ -456,7 +453,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="search"
                 $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                page="teachers-home"
+                page="teacher-hub"
                 htmlAnchorProps={{
                   target: "_blank",
                 }}

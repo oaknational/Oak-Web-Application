@@ -1,14 +1,17 @@
 import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
-import teachersKeyStageSubjectsFixture from "./fixtures/teachersKeyStageSubjects.fixture";
-import teachersKeyStageSubjectTiersFixture from "./fixtures/teachersKeyStageSubjectTiers.fixture";
-import teachersKeyStageSubjectUnitsFixture from "./fixtures/teachersKeyStageSubjectUnits.fixture";
-import teachersKeyStageSubjectUnitsLessonsFixture from "./fixtures/teachersKeyStageSubjectUnitLessons.fixture";
-import teachersKeyStageSubjectTiersPathsFixture from "./fixtures/teachersKeyStageSubjectTiersPaths.fixture";
-import teachersLessonOverviewFixture from "./fixtures/teachersLessonOverview.fixture";
-import teachersLessonOverviewPathsFixture from "./fixtures/teachersLessonOverviewPaths.fixture";
-import teachersKeyStageSubjectUnitsLessonsDownloadsFixtures from "./fixtures/teachersKeyStageSubjectUnitsLessonsDownloads.fixture";
+import lessonDownloadsFixtures from "./fixtures/lessonDownloads.fixture";
+import unitListingFixture from "./fixtures/unitListing.fixture";
+import tierListingFixture from "./fixtures/tierListing.fixture";
+import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
+import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
+import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
+import lessonListingFixture from "./fixtures/lessonListing.fixture";
+import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
+import subjectListingFixture from "./fixtures/subjectListing.fixture";
+import programmeListingPathsFixture from "./fixtures/programmeListingPaths.fixture";
+import lessonDownloadPathsFixture from "./fixtures/lessonDownloadPaths.fixture";
 
-import curriculumApi from ".";
+import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
 /**
  * This module is mocked in jest.setup.js, so need to unmock it here in order to test it
@@ -18,120 +21,112 @@ jest.unmock(".");
 const teachersHomePage = jest.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
-const teachersKeyStageSubjects = jest.fn(() => ({
-  mv_key_stages: teachersHomePageFixture().keyStages,
-  mv_subjects: teachersKeyStageSubjectsFixture().subjects,
+const lessonDownloads = jest.fn(() => ({
+  mv_downloads: [lessonDownloadsFixtures()],
 }));
-const teachersKeyStageSubjectTiers = jest.fn(() => ({
-  mv_key_stages: [
+const unitListingPaths = jest.fn(() => ({
+  mv_programmes: unitListingPathsFixture().programmes,
+}));
+const unitListing = jest.fn(() => ({
+  mv_programmes: [
     {
-      slug: teachersKeyStageSubjectTiersFixture().keyStageSlug,
-      title: teachersKeyStageSubjectTiersFixture().keyStageTitle,
+      programmeSlug: unitListingFixture().programmeSlug,
+      keyStageSlug: unitListingFixture().keyStageSlug,
+      keyStageTitle: unitListingFixture().keyStageTitle,
+      subjectSlug: unitListingFixture().subjectSlug,
+      subjectTitle: unitListingFixture().subjectTitle,
+      tierSlug: unitListingFixture().tierSlug,
+      totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
-  mv_subjects: [
-    {
-      slug: teachersKeyStageSubjectTiersFixture().subjectSlug,
-      title: teachersKeyStageSubjectTiersFixture().subjectTitle,
-    },
-  ],
-  mv_tiers: teachersKeyStageSubjectTiersFixture().tiers,
+  mv_tiers: unitListingFixture().tiers,
+  mv_units: unitListingFixture().units,
 }));
-const teachersKeyStageSubjectTiersPaths = jest.fn(() => ({
-  mv_tiers: teachersKeyStageSubjectTiersPathsFixture().tiers,
+const lessonListingPaths = jest.fn(() => ({
+  mv_lessons: lessonListingPathsFixture().units,
 }));
-const teachersKeyStageSubjectUnitsPaths = jest.fn(() => ({
-  mv_subjects: [],
-}));
-const teachersKeyStageSubjectUnits = jest.fn(() => ({
-  mv_key_stages: [
-    {
-      slug: teachersKeyStageSubjectUnitsFixture().keyStageSlug,
-      title: teachersKeyStageSubjectUnitsFixture().keyStageTitle,
-    },
-  ],
-  mv_subjects: [
-    {
-      slug: teachersKeyStageSubjectUnitsFixture().subjectSlug,
-      title: teachersKeyStageSubjectUnitsFixture().subjectTitle,
-    },
-  ],
-  mv_tiers: teachersKeyStageSubjectUnitsFixture().tiers,
-  mv_units: teachersKeyStageSubjectUnitsFixture().units,
-  mv_learning_themes: teachersKeyStageSubjectUnitsFixture().learningThemes,
-}));
-const teachersKeyStageSubjectUnitLessonsDownloads = jest.fn(() => ({
-  mv_downloads: [teachersKeyStageSubjectUnitsLessonsDownloadsFixtures()],
-}));
-const teachersKeyStageSubjectUnitLessons = jest.fn(() => ({
+const lessonListing = jest.fn(() => ({
   mv_units: [
     {
-      unitSlug: teachersKeyStageSubjectUnitsLessonsFixture().unitSlug,
-      subjectSlug: teachersKeyStageSubjectUnitsLessonsFixture().subjectSlug,
-      keyStageSlug: teachersKeyStageSubjectUnitsLessonsFixture().keyStageSlug,
-      subjectTitle: teachersKeyStageSubjectUnitsLessonsFixture().subjectTitle,
-      unitTitle: teachersKeyStageSubjectUnitsLessonsFixture().unitTitle,
-      keyStageTitle: teachersKeyStageSubjectUnitsLessonsFixture().keyStageTitle,
+      programmeSlug: lessonListingFixture().programmeSlug,
+      keyStageSlug: lessonListingFixture().keyStageSlug,
+      keyStageTitle: lessonListingFixture().keyStageTitle,
+      subjectSlug: lessonListingFixture().subjectSlug,
+      subjectTitle: lessonListingFixture().subjectTitle,
+      tierSlug: lessonListingFixture().tierSlug,
+      unitSlug: lessonListingFixture().unitSlug,
+      unitTitle: lessonListingFixture().unitTitle,
     },
   ],
-  mv_lessons: teachersKeyStageSubjectUnitsLessonsFixture().lessons,
+  mv_lessons: lessonListingFixture().lessons,
 }));
-const teachersLessonOverview = jest.fn(() => ({
+const lessonOverview = jest.fn(() => ({
   mv_lessons: [
     {
-      slug: teachersLessonOverviewFixture().slug,
-      title: teachersLessonOverviewFixture().title,
-      keyStageSlug: teachersLessonOverviewFixture().keyStageSlug,
-      keyStageTitle: teachersLessonOverviewFixture().keyStageTitle,
-      unitSlug: teachersLessonOverviewFixture().unitSlug,
-      unitTitle: teachersLessonOverviewFixture().unitTitle,
-      subjectSlug: teachersLessonOverviewFixture().subjectSlug,
-      subjectTitle: teachersLessonOverviewFixture().subjectTitle,
-      coreContent: teachersLessonOverviewFixture().coreContent,
-      equipmentRequired: teachersLessonOverviewFixture().equipmentRequired,
-      supervisionLevel: teachersLessonOverviewFixture().supervisionLevel,
-      contentGuidance: teachersLessonOverviewFixture().contentGuidance,
-      presentationUrl: teachersLessonOverviewFixture().presentationUrl,
-      worksheetUrl: teachersLessonOverviewFixture().worksheetUrl,
-      hasCopyrightMaterial:
-        teachersLessonOverviewFixture().hasCopyrightMaterial,
-      videoMuxPlaybackId: teachersLessonOverviewFixture().videoMuxPlaybackId,
+      lessonSlug: lessonOverviewFixture().lessonSlug,
+      lessonTitle: lessonOverviewFixture().lessonTitle,
+      programmeSlug: lessonOverviewFixture().programmeSlug,
+      keyStageSlug: lessonOverviewFixture().keyStageSlug,
+      keyStageTitle: lessonOverviewFixture().keyStageTitle,
+      unitSlug: lessonOverviewFixture().unitSlug,
+      unitTitle: lessonOverviewFixture().unitTitle,
+      subjectSlug: lessonOverviewFixture().subjectSlug,
+      subjectTitle: lessonOverviewFixture().subjectTitle,
+      coreContent: lessonOverviewFixture().coreContent,
+      equipmentRequired: lessonOverviewFixture().equipmentRequired,
+      supervisionLevel: lessonOverviewFixture().supervisionLevel,
+      contentGuidance: lessonOverviewFixture().contentGuidance,
+      presentationUrl: lessonOverviewFixture().presentationUrl,
+      worksheetUrl: lessonOverviewFixture().worksheetUrl,
+      isWorksheetLandscape: lessonOverviewFixture().isWorksheetLandscape,
+      hasCopyrightMaterial: lessonOverviewFixture().hasCopyrightMaterial,
+      videoMuxPlaybackId: lessonOverviewFixture().videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
-        teachersLessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
-      transcriptSentences: teachersLessonOverviewFixture().transcriptSentences,
-      expired: teachersLessonOverviewFixture().expired,
+        lessonOverviewFixture().videoWithSignLanguageMuxPlaybackId,
+      transcriptSentences: lessonOverviewFixture().transcriptSentences,
+      expired: lessonOverviewFixture().expired,
       hasDownloadableResources:
-        teachersLessonOverviewFixture().hasDownloadableResources,
+        lessonOverviewFixture().hasDownloadableResources,
     },
   ],
-  introQuiz: teachersLessonOverviewFixture().introQuiz,
-  exitQuiz: teachersLessonOverviewFixture().exitQuiz,
+  introQuiz: lessonOverviewFixture().introQuiz,
+  exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
-const teachersLessonOverviewPaths = jest.fn(() => ({
-  mv_lessons: teachersLessonOverviewPathsFixture().lessons,
+const lessonOverviewPaths = jest.fn(() => ({
+  mv_lessons: lessonOverviewPathsFixture().lessons,
 }));
+const programmeListingPaths = jest.fn(() => ({
+  mv_programmes: programmeListingPathsFixture().programmes,
+}));
+const tierListing = jest.fn(() => ({
+  mv_programmes: tierListingFixture().programmes,
+}));
+const lessonDownloadPaths = jest.fn(() => ({
+  mv_downloads: lessonDownloadPathsFixture().downloads,
+}));
+const subjectListing = jest.fn(() => ({
+  mv_programmes_available: subjectListingFixture().programmesAvailable,
+  mv_programmes_unavailable: subjectListingFixture().programmesUnavailable,
+  mv_key_stages: teachersHomePageFixture().keyStages,
+}));
+
+jest.mock("");
 
 jest.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
     teachersHomePage: (...args: []) => teachersHomePage(...args),
-    teachersKeyStageSubjects: (...args: []) =>
-      teachersKeyStageSubjects(...args),
-    teachersKeyStageSubjectTiers: (...args: []) =>
-      teachersKeyStageSubjectTiers(...args),
-    teachersKeyStageSubjectTiersPaths: (...args: []) =>
-      teachersKeyStageSubjectTiersPaths(...args),
-    teachersKeyStageSubjectUnits: (...args: []) =>
-      teachersKeyStageSubjectUnits(...args),
-    teachersKeyStageSubjectUnitsPaths: (...args: []) =>
-      teachersKeyStageSubjectUnitsPaths(...args),
-    teachersKeyStageSubjectUnitLessons: (...args: []) =>
-      teachersKeyStageSubjectUnitLessons(...args),
-    teachersKeyStageSubjectUnitLessonsDownloads: (...args: []) =>
-      teachersKeyStageSubjectUnitLessonsDownloads(...args),
-    teachersLessonOverview: (...args: []) => teachersLessonOverview(...args),
-    teachersLessonOverviewPaths: (...args: []) =>
-      teachersLessonOverviewPaths(...args),
+    lessonDownloads: (...args: []) => lessonDownloads(...args),
+    unitListingPaths: (...args: []) => unitListingPaths(...args),
+    unitListing: (...args: []) => unitListing(...args),
+    lessonOverviewPaths: (...args: []) => lessonOverviewPaths(...args),
+    lessonOverview: (...args: []) => lessonOverview(...args),
+    lessonListingPaths: (...args: []) => lessonListingPaths(...args),
+    lessonListing: (...args: []) => lessonListing(...args),
+    tierListing: (...args: []) => tierListing(...args),
+    subjectListing: (...args: []) => subjectListing(...args),
+    programmeListingPaths: (...args: []) => programmeListingPaths(...args),
+    lessonDownloadPaths: (...args: []) => lessonDownloadPaths(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -139,84 +134,124 @@ describe("curriculum-api", () => {
     await curriculumApi.teachersHomePage();
     expect(teachersHomePage).toHaveBeenCalled();
   });
-  test("teachersKeyStageSubjects", async () => {
-    await curriculumApi.teachersKeyStageSubjects({ keyStageSlug: "ks123" });
-    expect(teachersKeyStageSubjects).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-    });
+  test("lessonDownloadPaths", async () => {
+    await curriculumApi.lessonDownloadPaths();
+    expect(lessonDownloadPaths).toHaveBeenCalled();
   });
-  test("teachersKeyStageSubjectUnits", async () => {
-    await curriculumApi.teachersKeyStageSubjectUnits({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      learningThemeSlug: null,
-    });
-    expect(teachersKeyStageSubjectUnits).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      learningThemeSlug: null,
-    });
-  });
-  test("teachersKeyStageSubjectUnitsPaths", async () => {
-    await curriculumApi.teachersKeyStageSubjectUnitsPaths();
-    expect(teachersKeyStageSubjectUnitsPaths).toHaveBeenCalled();
-  });
-  test("teachersKeyStageSubjectTiers", async () => {
-    await curriculumApi.teachersKeyStageSubjectTiers({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-    });
-    expect(teachersKeyStageSubjectTiers).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-    });
-  });
-  test("teachersKeyStageSubjectTiersPaths", async () => {
-    await curriculumApi.teachersKeyStageSubjectTiersPaths();
-    expect(teachersKeyStageSubjectTiersPaths).toHaveBeenCalled();
-  });
-  test("teachersKeyStageSubjectUnitLessons", async () => {
-    await curriculumApi.teachersKeyStageSubjectUnitLessons({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
-    });
-    expect(teachersKeyStageSubjectUnitLessons).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
-    });
-  });
-  test("teachersKeyStageSubjectUnitLessonsDownloads", async () => {
-    await curriculumApi.teachersKeyStageSubjectUnitLessonsDownloads({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
+  test("lessonDownloads", async () => {
+    await curriculumApi.lessonDownloads({
+      programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
-    expect(teachersKeyStageSubjectUnitLessonsDownloads).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
+    expect(lessonDownloads).toHaveBeenCalledWith({
+      programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
   });
-  test("teachersLessonOverview", async () => {
-    await curriculumApi.teachersLessonOverview({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
-      lessonSlug: "islamic-geometry",
+  test("unitListingPaths", async () => {
+    await curriculumApi.unitListingPaths();
+    expect(unitListingPaths).toHaveBeenCalled();
+  });
+  test("unitListing", async () => {
+    await curriculumApi.unitListing({
+      programmeSlug: "maths-secondary-ks4",
     });
-    expect(teachersLessonOverview).toHaveBeenCalledWith({
-      keyStageSlug: "ks123",
-      subjectSlug: "english-9",
-      unitSlug: "macbeth-1",
-      lessonSlug: "islamic-geometry",
+    expect(unitListing).toHaveBeenCalledWith({
+      programmeSlug: "maths-secondary-ks4",
     });
   });
-  test("teachersLessonOverviewPaths", async () => {
-    await curriculumApi.teachersLessonOverviewPaths();
-    expect(teachersLessonOverviewPaths).toHaveBeenCalled();
+  test("unitListing learningThemes contains 'no themes'", async () => {
+    const units = await curriculumApi.unitListing({
+      programmeSlug: "maths-secondary-ks4",
+    });
+    const hasThemes =
+      units.learningThemes?.filter(
+        (theme) => theme.learningThemeSlug === "no-theme"
+      ).length > 0;
+
+    expect(hasThemes).toBe(true);
+  });
+  test("lessonListingPaths", async () => {
+    await curriculumApi.lessonListingPaths();
+    expect(lessonListingPaths).toHaveBeenCalled();
+  });
+  test("lessonListing", async () => {
+    await curriculumApi.lessonListing({
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+    expect(lessonListing).toHaveBeenCalledWith({
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+  });
+  test("lessonOverviewPaths", async () => {
+    await curriculumApi.lessonOverviewPaths();
+    expect(lessonOverviewPaths).toHaveBeenCalled();
+  });
+  test("lessonOverview", async () => {
+    await curriculumApi.lessonOverview({
+      lessonSlug: "Geometry fundamentals",
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+    expect(lessonOverview).toHaveBeenCalledWith({
+      lessonSlug: "Geometry fundamentals",
+      unitSlug: "geometry",
+      programmeSlug: "maths-secondary-ks4",
+    });
+  });
+  test("programmeListingPaths", async () => {
+    await curriculumApi.programmeListingPaths();
+    expect(programmeListingPaths).toHaveBeenCalled();
+  });
+  test("tierListing", async () => {
+    await curriculumApi.tierListing({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
+    });
+    expect(tierListing).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+      subjectSlug: "higher",
+    });
+  });
+  test("subjectListing", async () => {
+    await curriculumApi.subjectListing({
+      keyStageSlug: "ks4",
+    });
+    expect(subjectListing).toHaveBeenCalledWith({
+      keyStageSlug: "ks4",
+    });
+  });
+  test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
+    const availableProgrammes = subjectListingFixture().programmesAvailable;
+    const unavailableProgrammes = subjectListingFixture().programmesUnavailable;
+    const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
+      availableProgrammes,
+      unavailableProgrammes
+    );
+
+    let unavailableDuplicates = false;
+    let filteredUnavailableDuplicates = false;
+
+    unavailableProgrammes.forEach((unavailable) => {
+      availableProgrammes.forEach((available) => {
+        if (unavailable.subjectSlug === available.subjectSlug) {
+          unavailableDuplicates = true;
+        }
+      });
+    });
+    filteredUnavailableProgrammes.forEach((unavailable) => {
+      availableProgrammes.forEach((available) => {
+        if (unavailable.subjectSlug === available.subjectSlug) {
+          filteredUnavailableDuplicates = true;
+        }
+      });
+    });
+
+    expect(unavailableDuplicates).toBe(true);
+    expect(filteredUnavailableDuplicates).toBe(false);
   });
 });

@@ -11,7 +11,7 @@ import {
   isLessonSearchHit,
   SearchHit,
 } from "../../context/Search/helpers";
-import { KeyStage } from "../../context/Search/useKeyStageFilters";
+import { KeyStage } from "../../context/Search/useSearchFilters";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -22,32 +22,43 @@ export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
   const { hits, allKeyStages } = props;
+  const hitCount = hits.length;
   const paginationProps = usePagination({
-    totalResults: hits.length,
+    totalResults: hitCount,
     pageSize: RESULTS_PER_PAGE,
     items: hits,
   });
-  const { currentPageItems } = paginationProps;
-
+  const { currentPageItems, currentPage, firstItemRef } = paginationProps;
   return (
     <Flex $background={"white"} $flexDirection="column">
-      {hits.length ? (
+      {hitCount ? (
         <>
           <UL $reset>
-            {currentPageItems.map((hit) => {
+            {currentPageItems.map((hit, index) => {
               const { _source } = hit;
-
               return (
                 <LI key={`SearchList-SearchListItem-${_source.slug}`}>
                   {isLessonSearchHit(hit) ? (
                     <LessonListItem
-                      {...getLessonObject({ hit, allKeyStages })}
+                      {...getLessonObject({
+                        hit,
+                        allKeyStages,
+                      })}
+                      index={index}
+                      hitCount={hitCount}
+                      fromSearchPage
+                      currentPage={currentPage}
+                      firstItemRef={index === 0 ? firstItemRef : null}
                     />
                   ) : (
                     <UnitListItem
                       expiredLessonCount={null}
                       {...getUnitObject({ hit, allKeyStages })}
-                      index={null}
+                      index={index}
+                      hitCount={hitCount}
+                      fromSearchPage
+                      currentPage={currentPage}
+                      firstItemRef={index === 0 ? firstItemRef : null}
                     />
                   )}
                 </LI>

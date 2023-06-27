@@ -32,7 +32,11 @@ describe("CardLink", () => {
     );
   });
   it("resolves page -> href", async () => {
-    renderWithTheme(<CardLink page="privacy-policy">Click Me</CardLink>);
+    renderWithTheme(
+      <CardLink page="legal" legalSlug="privacy-policy">
+        Click Me
+      </CardLink>
+    );
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",

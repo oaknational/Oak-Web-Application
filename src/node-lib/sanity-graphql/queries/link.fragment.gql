@@ -1,0 +1,10 @@
+# See also CTA fragment
+
+fragment Link on Link {
+  linkType
+  external
+  anchor
+  internal {
+    ...InternalLinkFields
+  }
+}

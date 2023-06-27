@@ -2,7 +2,6 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import useTrackPageView from "../hooks/useTrackPageView";
 import CMSClient from "../node-lib/cms";
 import { CurriculumPage } from "../common-lib/cms-types";
 import { decorateWithIsr } from "../node-lib/isr";
@@ -36,8 +35,6 @@ const elementsOfCurriculumDesignHeadings = [
 ];
 
 const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
-  useTrackPageView({ pageName: "Develop Your Curriculum" });
-
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[64, 80]}>
@@ -50,7 +47,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           $pt={0}
           $ph={[16, 0]}
         >
-          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h3"}>
+          <Heading $mb={[48, 32]} $font={["heading-5", "heading-4"]} tag={"h2"}>
             {pageData.info.title}
           </Heading>
           <Flex $minWidth={"50%"} $flexDirection={["column-reverse", "row"]}>
@@ -143,10 +140,13 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                   >
                     <BoxBorders gapPosition="bottomRight" />
                     <Box $mv={12}>
-                      <Heading $font={"heading-7"} tag={"h3"}>
+                      <Heading $font={"heading-7"} tag={"h5"}>
                         How to
                         <Box $mt={8} $font={"heading-5"}>
-                          <CardLink page="blog" slug={element.post.slug}>
+                          <CardLink
+                            page="blog-single"
+                            blogSlug={element.post.slug}
+                          >
                             {element.title}
                           </CardLink>
                         </Box>
@@ -187,7 +187,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             <Heading
               $mb={[48, 32]}
               $font={["heading-5", "heading-4"]}
-              tag={"h3"}
+              tag={"h2"}
             >
               {pageData.ourApproach.title}
             </Heading>
@@ -197,7 +197,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
                 <ButtonAsLink
-                  page="teachers-oak-curriculum"
+                  page="oak-curriculum"
                   icon={"arrow-right"}
                   label={pageData.ourApproach.cta?.label}
                 />

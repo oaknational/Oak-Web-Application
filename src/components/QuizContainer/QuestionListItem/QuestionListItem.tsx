@@ -8,6 +8,8 @@ import OakImage from "../../OakImage";
 import Typography, { Heading } from "../../Typography";
 import { QuizQuestionListProps } from "../QuestionsList/QuestionsList";
 
+import { shortAnswerTitleFormatter, removeMarkdown } from "./quizUtils";
+
 export type QuestionListItemProps = QuizQuestionListProps["questions"][number];
 
 type ImageProps = { src: string; alt?: string };
@@ -33,8 +35,9 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
         src={src}
         alt={alt ? alt : ""}
         fill
-        onLoad={(event) => {
-          const { naturalWidth, naturalHeight } = event.currentTarget;
+        onLoadingComplete={(img) => {
+          const naturalWidth = img.naturalWidth;
+          const naturalHeight = img.naturalHeight;
           setDims({ height: naturalHeight, width: naturalWidth });
         }}
       />
@@ -64,14 +67,17 @@ export const CorrectAnswer: FC<AnswerProps> = ({
     const typeIsMatch = choiceType === "match";
     const typeIsCheckbox = choiceType === "checkbox";
     const answerIsArray = Array.isArray(answer);
+
     if (typeIsMatch) {
       return (
         <Flex $flexWrap={"wrap"} $alignItems={"center"}>
           {" "}
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {answer ? answer[index] + "  -" : ""}
+            {choice}
           </Heading>
-          <Typography $font={["body-1"]}> {choice}</Typography>
+          <Typography $font={"body-1"} $ma={0} $mr={6} data-testid={"answer"}>
+            {answer ? " - " + answer[index] : ""}
+          </Typography>
         </Flex>
       );
     } else if (typeIsCheckbox) {
@@ -87,7 +93,13 @@ export const CorrectAnswer: FC<AnswerProps> = ({
       }
     } else {
       if (answerIsArray) {
-        return <Typography $font={["body-1"]}> {answer[index]}</Typography>;
+        return (
+          <Typography $font={["body-1"]}>
+            {" "}
+            {"- "}
+            {answer[index]}
+          </Typography>
+        );
       } else {
         return <Typography $font={["body-1"]}> {choice}</Typography>;
       }
@@ -108,7 +120,7 @@ export const CorrectAnswer: FC<AnswerProps> = ({
         <Icon name={"tick"} $mr={16} />
         {type === "order" && (
           <Heading $font={"heading-7"} tag={"h6"} $ma={0} $mr={6}>
-            {index + 1} -
+            {index + 1}
           </Heading>
         )}
         {getTypeAnswers(type, answer)}
@@ -142,17 +154,34 @@ const choiceIsInAnswerArray = (
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const { title, images, choices, answer, type, displayNumber } = props;
+  const {
+    title: markdownTitle,
+    images,
+    choices,
+    answer,
+    type,
+    displayNumber,
+  } = props;
+
+  const title = removeMarkdown(markdownTitle);
+
+  const joinAnswer = type === "short-answer" && Array.isArray(answer);
+  const joinedAnswer = joinAnswer ? answer.join(", ") : "";
+  const joinedAnswerIndex = 0;
+
   return (
-    <Flex $flexDirection={"column"} $mb={[0, 16]}>
+    <Flex $flexDirection={"column"} $mb={[32, 48]}>
       <Flex $mb={16}>
         {displayNumber && (
-          <Typography $font={["body-1-bold"]} $mr={12}>
+          <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
             {displayNumber}
           </Typography>
         )}
-        <Typography $font={["body-1-bold"]} data-testid={"title-div"}>
-          {title}
+        <Typography
+          $font={["body-2-bold", "body-1-bold"]}
+          data-testid={"title-div"}
+        >
+          {type === "short-answer" ? shortAnswerTitleFormatter(title) : title}
         </Typography>
       </Flex>
 
@@ -269,9 +298,17 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           $width={"max-content"}
           $maxWidth={"100%"}
         >
-          {[...answer].map((ans, index) => {
-            return <CorrectAnswer choice={ans} index={index} type={type} />;
-          })}
+          {type === "short-answer" ? (
+            <CorrectAnswer
+              choice={joinedAnswer}
+              type={type}
+              index={joinedAnswerIndex}
+            />
+          ) : (
+            [...answer].map((ans, index) => {
+              return <CorrectAnswer choice={ans} index={index} type={type} />;
+            })
+          )}
         </Flex>
       )}
     </Flex>

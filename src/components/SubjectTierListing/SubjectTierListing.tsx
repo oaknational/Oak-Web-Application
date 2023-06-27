@@ -3,16 +3,25 @@ import React, { FC } from "react";
 import TierList from "../TierList";
 import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
-import { TeachersKeyStageSubjectTiersData } from "../../node-lib/curriculum-api";
+import { TierListingData } from "../../node-lib/curriculum-api";
 
-type SubjectTierListingProps = {
-  curriculumData: TeachersKeyStageSubjectTiersData;
+type ProgrammeDetails = {
+  keyStageTitle: string;
+  keyStageSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
 };
 
-const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
-  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug, tiers } =
-    props.curriculumData;
+type SubjectTierListingProps = {
+  programmeDetails: ProgrammeDetails;
+};
 
+const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
+  programmeDetails,
+  programmes,
+}) => {
+  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
+    programmeDetails;
   const tierTrackingProps = {
     keyStageTitle,
     subjectTitle,
@@ -35,7 +44,7 @@ const SubjectTierListing: FC<SubjectTierListingProps> = (props) => {
       </Heading>
       <TierList
         $mb={92}
-        tiers={tiers}
+        programmes={programmes}
         keyStageSlug={keyStageSlug}
         subjectSlug={subjectSlug}
         {...tierTrackingProps}

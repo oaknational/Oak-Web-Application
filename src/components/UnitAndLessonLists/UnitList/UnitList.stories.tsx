@@ -1,14 +1,16 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import teachersKeyStageSubjectUnitsFixture from "../../../node-lib/curriculum-api/fixtures/teachersKeyStageSubjectUnits.fixture";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
+import unitListingFixture from "../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingWithTiersFixture from "../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 
 import { UnitListProps } from "./UnitList";
 
 import Component from ".";
 
 const currentPageItems: UnitListProps = {
-  ...teachersKeyStageSubjectUnitsFixture(),
-  currentPageItems: teachersKeyStageSubjectUnitsFixture().units.slice(0, 5),
+  ...unitListingFixture(),
+  currentPageItems: unitListingFixture().units.slice(0, 5),
   paginationProps: {
     currentPage: 1,
     totalPages: 2,
@@ -18,6 +20,7 @@ const currentPageItems: UnitListProps = {
 
 export default {
   title: "Lists/Unit list",
+  decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
 
@@ -29,14 +32,16 @@ export const UnitList = Template.bind({});
 
 UnitList.args = currentPageItems;
 
-const tiers = [
-  { title: "Foundation", slug: "foundation", unitCount: 14, lessonCount: 16 },
-  { title: "Core", slug: "core", unitCount: 14, lessonCount: 16 },
-  { title: "Higher", slug: "higher", unitCount: 14, lessonCount: 16 },
-];
+const currentPageItemsWithTiers: UnitListProps = {
+  ...unitListingWithTiersFixture(),
+  currentPageItems: unitListingWithTiersFixture().units.slice(0, 5),
+  paginationProps: {
+    currentPage: 1,
+    totalPages: 2,
+    pageSize: 20,
+  },
+};
+
 export const UnitListTiers = Template.bind({});
 
-UnitListTiers.args = {
-  ...currentPageItems,
-  tiers: tiers,
-};
+UnitListTiers.args = currentPageItemsWithTiers;

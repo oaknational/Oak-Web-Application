@@ -5,6 +5,7 @@ Hash: SHA256
 
 # Please report any security vulnerabilities to us via the contact method(s) below, only after reading our security disclosure policy.
 Contact: mailto:security@thenational.academy
+Contact: https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability
 Preferred-Languages: en
 
 # Encrypt your messages to Oak National Academy using the PGP key below
@@ -12,7 +13,7 @@ Encryption: https://www.thenational.academy/.well-known/pgp-key.txt
 Encryption: https://keys.openpgp.org/vks/v1/by-fingerprint/E925058764BF1E055A95CFA7971F062051B60B7D
 
 # This security is annually reviewed
-Expires: 2023-07-31T20:59:00.000Z
+Expires: 2024-07-31T20:59:00.000Z
 
 # Oak National Academy Security Disclosure Policy
 Policy: https://www.thenational.academy/legal/security-disclosure-policy/
@@ -29,17 +30,17 @@ Hiring: https://jobs.thenational.academy
 # Please see https://securitytxt.org/ for details of the specification of this file
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmPihxMACgkQlx8GIFG2
-C31pAA//ds+Ytm1eqGx0a5PlrKdpajAr3HCgjYPetNfeid/fPcHuOUymUsAmS8h3
-hBzxdpRJfpH34tzJU0ZUz6jDpY2JqpIe7m+tc35q4IySmqxKwnAV/SfemNIxb2A+
-L04aekGp+GVaoBf+ZlHxlQEGgP2Z9ne7gO1Pc+HfkzU4vYeK5/9C+6pLk9bVnxau
-LMs21/DZwIVxQ/LhfTAfHZo/SgqYlp3+Z4V6uG0JS+Sb/NhoTp+fSkB+qPEx5e3c
-ei98edxzR7EG/2p9KNmOd0uhBQVhUred47cWyJz3yezpqW6BHjBNC4lmrQRmq54g
-RZ91gS2FRNUzCKFKDFbQZZb1blqkWzaaP9fKPo/90pJ4ZF7ck1JBKB3iqGZUXcCL
-3AQ5yAY+BuM00CCnIFkZO54mKvRclqk7biOkb4JUIXoYLj6+pkE1UIIoGfVXO5iV
-orSmmkxHbEt9f5V0eqnpgw4+cl4QQ04iYIFAcFY9n0QO6eWbRD2arimljZ2hW0Rh
-WL1ELeLU5Txfe13I+Py5m96JOJXYUmIdr2ZLYnqzozmvlQlV7MWEbcu3/yXws7hT
-+W1VubwhIOkKUU2m+/bBPeA4JTB7U0swzTWqTWK8pPGgIEIeq7ZZHf2UQi5gT42i
-TpF8nQv6yeULmdP0/PWk74vEEbBhaoFGkzsJLWL6YFvxEc5duUw=
-=F882
+iQIzBAEBCAAdFiEE6SUFh2S/HgValc+nlx8GIFG2C30FAmSHDA0ACgkQlx8GIFG2
+C3342w/+K5DuDMWdMGlwfsrMRXZYfrShWpxsHf8IsRC1wd7ZQBdeotXuhWpRw6Rt
+KZYZxwYOutXe2alqM3R2aFveTaIg8gV/zFtfFXQGucr/ggNJ012uIhWlzU9wmMD5
+A0GwTyqMcUXhKNhdMZ5sURuIhqpwT+NE/UJyhfi7aAUATqzws1gZ0gk1ivTzW4dv
+f6hG7ZoKb45S8koEEN5tKRTVGFvjSJcpT59XeNN3Edl0GbjJf7JdgTeDc0DJ54Fc
+be5pI2Zoux0AXWGrYgbVfwFZlUpwRm6f7C+FwzO08dnVpCBlFUqnJEI88w8oczHy
+EocWWj+NLsdbKIoORuvNBLBobL2QqjUwuWGNdMDLey3tQe2Fg2WG9YqlnLUDT9e+
+Lmp1SBjCzFR/t2GfnMpqOecENFJ8fuG64SX4stsSx0PeAcs/Nsv35YL8Xw0iAg/T
+StjzqXgwDLnZFzAtZfdrBPl1Iz04Ozr+146ep0ZZygBFvgiP9rc3yTLzWHDHZQDI
+BUZfOwXUdmzGLX0Zbh2oQ2uNTvCoD4xM3lvF45yVIvzaXP86OqWIO31+FbIhX7aZ
+sWjLghb9wpwVmDB4GVaqByPDJJuRDuyHrGtf/NZ10BcqKgwapWPYxAh6mKpVna/D
+JmCcRRK9J3/IbtPIoAvWgkgQIdQ0Q32HvEl7l62E3gGCLTmc3Bs=
+=Ac16
 -----END PGP SIGNATURE-----

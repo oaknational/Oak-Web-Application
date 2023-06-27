@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { CTA } from "../../../common-lib/cms-types";
-import { getCTAHref } from "../../../utils/portableText/resolveInternalHref";
+import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
 import Flex from "../../Flex";
 import { Heading } from "../../Typography";
@@ -45,7 +45,7 @@ export const LandingPageTitle: FC<{
           $mt={[48, 32]}
           label={cta.label}
           page={null}
-          href={getCTAHref(cta)}
+          href={getLinkHref(cta)}
         />
       )}
     </Flex>
