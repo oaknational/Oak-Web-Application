@@ -1,3 +1,4 @@
+import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
 import subjectListingSchema from "./subjectListing.schema";
@@ -6,7 +7,13 @@ const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
-    return subjectListingSchema.parse(res.published_mv_subject_listing[0]);
+    const [keyStageSubjects] = res.keyStageSubjects;
+
+    if (!keyStageSubjects) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    return subjectListingSchema.parse(keyStageSubjects);
   };
 
 export default subjectListingQuery;

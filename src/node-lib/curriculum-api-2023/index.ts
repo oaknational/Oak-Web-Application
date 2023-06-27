@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-import { subjectListingData } from "../curriculum-api";
-
 import sdk from "./sdk";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
@@ -46,13 +44,6 @@ const subjectListingSubjectSchema = z.object({
 export type SubjectListingSubjectSchema = z.infer<
   typeof subjectListingSubjectSchema
 >;
-
-const subjectListingPageSchema = z.object({
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjects: z.array(subjectListingSubjectSchema),
-  subjectsUnavailable: z.null(),
-});
 
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;

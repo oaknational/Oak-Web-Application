@@ -7,9 +7,7 @@ import AppLayout from "../../../../../../components/AppLayout";
 import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
 import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
 import { Heading } from "../../../../../../components/Typography";
-import curriculumApi, {
-  ProgrammesData,
-} from "../../../../../../node-lib/curriculum-api";
+import curriculumApi from "../../../../../../node-lib/curriculum-api";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -19,22 +17,30 @@ import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 import { VIEW_TYPES, ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
+import {
+  KeyStageSubjectData,
+  SubjectListingPageData,
+} from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
   keyStageSlug: string;
 };
-export type ProgrammesBySubject = [ProgrammesData, ...ProgrammesData[]];
+export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
 export type ProgrammeProps = {
-  programmesBySubjectAvailable: ProgrammesBySubject[];
-  programmesBySubjectUnavailable: ProgrammesBySubject[];
+  programmesBySubjectAvailable: KeyStageSubject[];
+  programmesBySubjectUnavailable: KeyStageSubject[];
 };
 
-const SubjectListing: NextPage<KeyStagePageProps & ProgrammeProps> = (
-  props
-) => {
-  const { keyStageSlug, keyStageTitle } = props;
+export type SubjectListingPageProps = {
+  subjects: KeyStageSubject[];
+  subjectsUnavailable: KeyStageSubject[];
+  keyStageSlug: string;
+  keyStageTitle: string;
+};
 
+const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
+  const { keyStageSlug, keyStageTitle } = props;
   return (
     <AppLayout
       seoProps={{
@@ -127,27 +133,37 @@ export const getStaticProps: GetStaticProps<
       : await curriculumApi.subjectListing({
           keyStageSlug: context.params?.keyStageSlug,
         });
-  console.log(curriculumData);
-  const {
-    programmesAvailable,
-    programmesUnavailable,
-    keyStageSlug,
-    keyStageTitle,
-  } = curriculumData;
 
-  const programmesBySubjectAvailable = Object.values(
-    groupBy(programmesAvailable, (programme) => programme.subjectSlug)
+  if (!curriculumData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } =
+    curriculumData;
+
+  const keyStageSubjectAvailable = Object.values(
+    groupBy(
+      subjects,
+      (subject: SubjectListingPageData["subjects"][number]) =>
+        subject.subjectSlug
+    )
   );
-  const programmesBySubjectUnavailable = Object.values(
-    groupBy(programmesUnavailable, (programme) => programme.subjectSlug)
+  const keyStageSubjectUnavailable = Object.values(
+    groupBy(
+      subjectsUnavailable,
+      (subject: SubjectListingPageData["subjects"][number]) =>
+        subject.subjectSlug
+    )
   );
 
   const results = {
     props: {
       keyStageSlug,
       keyStageTitle,
-      programmesBySubjectAvailable,
-      programmesBySubjectUnavailable,
+      subjects: keyStageSubjectAvailable || [],
+      subjectsUnavailable: keyStageSubjectUnavailable || [],
     },
   };
 

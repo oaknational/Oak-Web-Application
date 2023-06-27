@@ -12,8 +12,9 @@ const subjectListingSchema = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
   subjects: z.array(subjectSchema),
-  subjectsUnavailable: z.null(),
+  subjectsUnavailable: z.array(subjectSchema).nullable(),
 });
 
-export type SubjectSchema = z.infer<typeof subjectSchema>;
+export type KeyStageSubjectData = z.infer<typeof subjectSchema>;
+export type SubjectListingPageData = z.infer<typeof subjectListingSchema>;
 export default subjectListingSchema;

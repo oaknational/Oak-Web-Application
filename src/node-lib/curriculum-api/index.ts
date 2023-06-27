@@ -277,6 +277,8 @@ export const programmesData = z.object({
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable().optional(),
+  lessonCount: z.number().optional(),
+  unitCount: z.number().optional(),
 });
 
 const programmesArray = z.array(programmesData);
@@ -284,8 +286,8 @@ const programmesArray = z.array(programmesData);
 export const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(programmesData),
-  programmesUnavailable: z.array(programmesData),
+  subjects: z.array(programmesData),
+  subjectsUnavailable: z.array(programmesData),
 });
 
 const unitListingPaths = z.object({
@@ -439,11 +441,30 @@ const curriculumApi = {
         programmesArray.parse(programmesUnavailable)
       );
 
+    const addCurriculum2023Counts = (
+      programmes: ProgrammesData[] | undefined
+    ) => {
+      return programmes
+        ? programmes.map((programme) => {
+            return {
+              ...programme,
+              lessonCount: programme.nonDuplicateSubjectLessonCount,
+              unitCount: programme.nonDuplicateSubjectUnitCount,
+            };
+          })
+        : [];
+    };
+
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
-      programmesAvailable,
-      programmesUnavailable: filteredUnavailableProgrammeDuplicate || [],
+      subjects:
+        addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
+        [],
+      subjectsUnavailable:
+        addCurriculum2023Counts(
+          programmesArray.parse(filteredUnavailableProgrammeDuplicate)
+        ) || [],
     });
   },
   unitListingPaths: async () => {
