@@ -1,3 +1,66 @@
+# [1.195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.194.0...v1.195.0) (2023-06-26)
+
+
+### Features
+
+* **downloads:** connect downloads page to 2023 hasura end point ([3feadfb](https://github.com/oaknational/Oak-Web-Application/commit/3feadfb04acada5d58c3429f09af18a2f89d06e6))
+* **downloads:** fix type error on fixture ([e8bdb09](https://github.com/oaknational/Oak-Web-Application/commit/e8bdb0921b8d0d11c65e534a74e8967090416331))
+* **downloads:** prettier fix ([c112c6d](https://github.com/oaknational/Oak-Web-Application/commit/c112c6d934e85ca3d5644092a31d012010cdac65))
+* **downloads:** prettier fix ([4b4ed80](https://github.com/oaknational/Oak-Web-Application/commit/4b4ed806fda60b051e757492bc9a8e37d3e081c6))
+* **downloads:** remove duplicate code ([72b81d2](https://github.com/oaknational/Oak-Web-Application/commit/72b81d2999f80d8b2bd085976604cfe870abd781))
+
+# [1.194.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.193.0...v1.194.0) (2023-06-26)
+
+
+### Bug Fixes
+
+* only show preview share button when secret param is present ([2a190cf](https://github.com/oaknational/Oak-Web-Application/commit/2a190cf9a96fb79661f50b814dc24f58a988db55))
+
+
+### Features
+
+* allow copying the current page's preview URL from PreviewControls ([060c6f2](https://github.com/oaknational/Oak-Web-Application/commit/060c6f2f56ba53f51e24e82fb7e376fe35d5eb5f))
+
+# [1.193.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.192.0...v1.193.0) (2023-06-23)
+
+
+### Features
+
+* **homepage:** connect to 2023 data ([5951297](https://github.com/oaknational/Oak-Web-Application/commit/5951297e0128663b83c5bd0f01912fbec8a248be))
+* **homepage:** remove console log ([1a44df1](https://github.com/oaknational/Oak-Web-Application/commit/1a44df1100d5a8d2f984b871a486c88cc9c45f3e))
+
+# [1.192.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.191.0...v1.192.0) (2023-06-22)
+
+
+### Features
+
+* add mv-lesson-overview to curriculum api ([b3d4f4f](https://github.com/oaknational/Oak-Web-Application/commit/b3d4f4faec646d9f10bbe17204937d087653c5aa))
+
+# [1.191.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.190.0...v1.191.0) (2023-06-22)
+
+
+### Features
+
+* **search:** cleanup code and test suite ([01aa1a4](https://github.com/oaknational/Oak-Web-Application/commit/01aa1a4f3c66be3bd12c0e59903fedd9e089c0cb))
+* **search:** cleanup code and test suite ([9a06722](https://github.com/oaknational/Oak-Web-Application/commit/9a06722939ddd19eac4f3b94022d1064261bba27))
+* **search:** connect 2023 to hasura for search page ([0e65456](https://github.com/oaknational/Oak-Web-Application/commit/0e654562f5f115ebebc3692a0506b45d47f16de3))
+* **search:** prettier fix ([547144f](https://github.com/oaknational/Oak-Web-Application/commit/547144fdb491926e060291c1111f7986b68c308a))
+
+# [1.190.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.189.0...v1.190.0) (2023-06-20)
+
+
+### Bug Fixes
+
+* add missing CTA to landing page Text & Media blocks ([3a240b4](https://github.com/oaknational/Oak-Web-Application/commit/3a240b43dd62d044300e6bca4dc944182cfde31d))
+* add spacing above blog post CTAs ([b257ec5](https://github.com/oaknational/Oak-Web-Application/commit/b257ec54fe7d0a23d9c8763a43edf4201cfac457))
+* left-align quote attribution on blog posts ([bd5100e](https://github.com/oaknational/Oak-Web-Application/commit/bd5100eda245f681c4b04dfe7ef57642a7244192))
+* use renamed getLinkHref function in LandingPageTextAndMedia ([89916ed](https://github.com/oaknational/Oak-Web-Application/commit/89916edaad0ab3dc5f1dfe2a87f25265cd0c9999))
+
+
+### Features
+
+* add form block to blog posts ([740bcc3](https://github.com/oaknational/Oak-Web-Application/commit/740bcc3cb8a722d4f9162924c1b53e7d5cb84d9e))
+
 # [1.189.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.188.2...v1.189.0) (2023-06-19)
 
 

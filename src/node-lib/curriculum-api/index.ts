@@ -4,6 +4,8 @@ import { z } from "zod";
 //import errorReporter from "../../common-lib/error-reporter";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
+import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
 
 import { getSdk } from "./generated/sdk";
 
@@ -137,38 +139,6 @@ const lessonListingPaths = z.object({
   ),
 });
 
-const lessonListing = z.object({
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-  lessons: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      expired: z.boolean().nullable(),
-      lessonSlug: z.string(),
-      lessonTitle: z.string(),
-      description: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      unitSlug: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable(),
-      videoCount: z.number().nullable(),
-      presentationCount: z.number().nullable(),
-      worksheetCount: z.number().nullable(),
-      hasCopyrightMaterial: z.boolean(),
-    })
-  ),
-});
-
 const lessonOverviewQuizData = z.array(
   z.object({
     keyStageSlug: z.string(),
@@ -264,37 +234,6 @@ const lessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
-const lessonDownloadsData = z.object({
-  downloads: z.array(
-    z.object({
-      exists: z.boolean(),
-      type: z.enum([
-        "presentation",
-        "intro-quiz-questions",
-        "intro-quiz-answers",
-        "exit-quiz-questions",
-        "exit-quiz-answers",
-        "worksheet-pdf",
-        "worksheet-pptx",
-      ]),
-      label: z.string(),
-      ext: z.string(),
-      forbidden: z.boolean().optional(),
-    })
-  ),
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-});
-
 const programmesData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
@@ -361,10 +300,9 @@ const tierListingData = z.object({
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
-export type LessonListing = z.infer<typeof lessonListing>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
-export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
+export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
@@ -568,15 +506,8 @@ const curriculumApi = {
       results: units,
     });
 
-    return lessonListing.parse({
+    return lessonListingSchema.parse({
       ...unit,
-      themeSlug: "theme slug example",
-      themeTitle: "theme-slug-example",
-      tierSlug: null,
-      quizCount: null, // @todo
-      videoCount: null, // @todo
-      presentationCount: null, // @todo
-      worksheetCount: null, // @todo
       lessons,
     });
   },
@@ -592,7 +523,7 @@ const curriculumApi = {
       results: downloads,
     });
 
-    return lessonDownloadsData.parse({
+    return lessonDownloadsSchema.parse({
       ...download,
     });
   },

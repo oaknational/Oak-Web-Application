@@ -11,6 +11,7 @@ import { BasePortableTextProvider } from "../../PortableText";
 import PostBlockCallout from "./PostBlockCallout";
 import PostCallout from "./PostCallout";
 import PostCta from "./PostCta";
+import PostForm from "./PostForm";
 import PostImageWithAltText from "./PostImageWithAltText";
 import PostQuote from "./PostQuote";
 import PostSectionHeading from "./PostSectionHeading";
@@ -48,6 +49,7 @@ const postPortableTextComponents = ({
     imageWithAltText: PostImageWithAltText,
     video: PostVideo,
     textAndMedia: PostTextAndMedia,
+    formWrapper: PostForm,
     quote: PostQuote,
     callout: PostCallout,
     cta: PostCta,
