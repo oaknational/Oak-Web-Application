@@ -62,4 +62,5 @@ jest.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");
 jest.mock("./src/common-lib/error-reporter", () => ({
   __esModule: true,
   default: () => () => null,
+  initialiseBugsnag: jest.fn(),
 }));
