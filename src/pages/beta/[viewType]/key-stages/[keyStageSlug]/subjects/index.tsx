@@ -27,10 +27,6 @@ export type KeyStagePageProps = {
   keyStageSlug: string;
 };
 export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
-export type ProgrammeProps = {
-  programmesBySubjectAvailable: KeyStageSubject[];
-  programmesBySubjectUnavailable: KeyStageSubject[];
-};
 
 export type SubjectListingPageProps = {
   subjects: KeyStageSubject[];
