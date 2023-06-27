@@ -62,6 +62,7 @@ import {
   ViewType,
 } from "../../../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../../../../../node-lib/curriculum-api-2023";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -508,11 +509,18 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = await curriculumApi.lessonDownloads({
-        lessonSlug,
-        programmeSlug,
-        unitSlug,
-      });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonDownloads({
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            })
+          : await curriculumApi.lessonDownloads({
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            });
 
       if (!curriculumData) {
         return {

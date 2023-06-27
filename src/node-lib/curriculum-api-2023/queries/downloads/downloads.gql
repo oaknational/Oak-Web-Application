@@ -1,0 +1,20 @@
+query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
+  downloads: published_mv_downloads(
+    where: {
+      lesson_slug: { _eq: $lessonSlug }
+      programme_slug: { _eq: $programmeSlug }
+      unit_slug: {_eq: $unitSlug}
+    }
+  ) {
+    downloads
+    programmeSlug: programme_slug
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+  }
+}

@@ -11,8 +11,6 @@ const lessonDownloadsFixtures = (
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
-    themeSlug: "numbers",
-    themeTitle: "Numbers",
     unitSlug: "geometry",
     unitTitle: "Geometry",
     downloads: [
