@@ -3,6 +3,7 @@ import { z } from "zod";
 import sdk from "./sdk";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
+import lessonDownloadsQuery from "./queries/downloads/downloads.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -62,10 +63,13 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
-
-    return teachersHomePageData.parse(res);
+    const teachersHomePage = getFirstResultOrNull()({
+      results: res.teachersHomePage,
+    });
+    return teachersHomePageData.parse(teachersHomePage);
   },
   lessonListing: lessonListingQuery(sdk),
+  lessonDownloads: lessonDownloadsQuery(sdk),
   searchPage: async () => {
     const res = await sdk.searchPage();
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });
