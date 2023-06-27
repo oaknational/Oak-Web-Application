@@ -1,3 +1,17 @@
+# [1.196.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.195.0...v1.196.0) (2023-06-27)
+
+
+### Bug Fixes
+
+* add missing npm ci step ([ced4c29](https://github.com/oaknational/Oak-Web-Application/commit/ced4c29fc749a21bcf382aaf513aa975452be898))
+* use forked version of updater action with explicit prNumber passed ([e59f7c0](https://github.com/oaknational/Oak-Web-Application/commit/e59f7c0fe6e05ee29c581e782c4edee17d6239a5))
+
+
+### Features
+
+* automatically add the deployment URL to PR descriptions ([763372a](https://github.com/oaknational/Oak-Web-Application/commit/763372a89f2850b1f27a6ddc589e124a7e5eb3b9))
+* swap {cloud link} for {owa_deployment_url} in PR template ([0dac2d9](https://github.com/oaknational/Oak-Web-Application/commit/0dac2d99d1c2967c7f7d778d737320105c6b8a9b))
+
 # [1.195.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.194.0...v1.195.0) (2023-06-26)
 
 
