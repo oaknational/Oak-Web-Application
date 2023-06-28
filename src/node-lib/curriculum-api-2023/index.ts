@@ -34,18 +34,6 @@ const searchPageSchema = z.object({
   contentTypes: z.array(contentTypesSchema),
 });
 
-const subjectListingSubjectSchema = z.object({
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  unitCount: z.number(),
-  lessonCount: z.number(),
-  programmeSlug: z.string(),
-});
-
-export type SubjectListingSubjectSchema = z.infer<
-  typeof subjectListingSubjectSchema
->;
-
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 
