@@ -11,11 +11,11 @@ import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs
 import Box from "../../../../../../../components/Box";
 import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
 import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../node-lib/getPageProps";
 
 export type ProgrammeListingPageProps = TierListingData;
 
@@ -114,22 +114,27 @@ export const getStaticProps: GetStaticProps<
   ProgrammeListingPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context params");
-  }
-  const curriculumData = await curriculumApi.tierListing({
-    keyStageSlug: context.params?.keyStageSlug,
-    subjectSlug: context.params?.subjectSlug,
-  });
+  return getPageProps({
+    page: "teachers-programme-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context params");
+      }
+      const curriculumData = await curriculumApi.tierListing({
+        keyStageSlug: context.params?.keyStageSlug,
+        subjectSlug: context.params?.subjectSlug,
+      });
 
-  const results = {
-    props: {
-      programmes: curriculumData.programmes,
+      const results = {
+        props: {
+          programmes: curriculumData.programmes,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default ProgrammesListingPage;

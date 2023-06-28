@@ -1,9 +1,8 @@
-import { NextPage, GetStaticProps } from "next";
+import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
 import CMSClient from "../../node-lib/cms";
-import { decorateWithIsr } from "../../node-lib/isr";
 import { AboutWorkWithUsPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -18,6 +17,7 @@ import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -88,25 +88,31 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "work-with-us::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutWorkWithUsPage = await CMSClient.aboutWorkWithUsPage({
-    previewMode: isPreviewMode,
-  });
+      const aboutWorkWithUsPage = await CMSClient.aboutWorkWithUsPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!aboutWorkWithUsPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutWorkWithUsPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results = {
-    props: {
-      pageData: aboutWorkWithUsPage,
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutWorkWithUsPage,
+        },
+      };
+
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default AboutUsBoard;

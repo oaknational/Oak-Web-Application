@@ -11,13 +11,13 @@ import curriculumApi, {
   ProgrammesData,
 } from "../../../../../../node-lib/curriculum-api";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
 import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 import { VIEW_TYPES, ViewType } from "../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../node-lib/getPageProps";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -114,39 +114,44 @@ export const getStaticProps: GetStaticProps<
   KeyStagePageProps,
   URLParams
 > = async (context) => {
-  if (!context.params?.keyStageSlug) {
-    throw new Error("No keyStageSlug");
-  }
+  return getPageProps({
+    page: "teachers-subject-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params?.keyStageSlug) {
+        throw new Error("No keyStageSlug");
+      }
 
-  const curriculumData = await curriculumApi.subjectListing({
-    keyStageSlug: context.params?.keyStageSlug,
-  });
+      const curriculumData = await curriculumApi.subjectListing({
+        keyStageSlug: context.params?.keyStageSlug,
+      });
 
-  const {
-    programmesAvailable,
-    programmesUnavailable,
-    keyStageSlug,
-    keyStageTitle,
-  } = curriculumData;
+      const {
+        programmesAvailable,
+        programmesUnavailable,
+        keyStageSlug,
+        keyStageTitle,
+      } = curriculumData;
 
-  const programmesBySubjectAvailable = Object.values(
-    groupBy(programmesAvailable, (programme) => programme.subjectSlug)
-  );
-  const programmesBySubjectUnavailable = Object.values(
-    groupBy(programmesUnavailable, (programme) => programme.subjectSlug)
-  );
+      const programmesBySubjectAvailable = Object.values(
+        groupBy(programmesAvailable, (programme) => programme.subjectSlug)
+      );
+      const programmesBySubjectUnavailable = Object.values(
+        groupBy(programmesUnavailable, (programme) => programme.subjectSlug)
+      );
 
-  const results = {
-    props: {
-      keyStageSlug,
-      keyStageTitle,
-      programmesBySubjectAvailable,
-      programmesBySubjectUnavailable,
+      const results = {
+        props: {
+          keyStageSlug,
+          keyStageTitle,
+          programmesBySubjectAvailable,
+          programmesBySubjectUnavailable,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default SubjectListing;

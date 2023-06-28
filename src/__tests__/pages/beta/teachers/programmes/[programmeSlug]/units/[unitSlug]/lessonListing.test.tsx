@@ -1,9 +1,9 @@
-import { GetServerSidePropsContext, PreviewData } from "next";
+import { GetStaticPropsContext, PreviewData } from "next";
 
 import lessonListingFixture from "../../../../../../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
   getStaticProps,
-  LessonListPageProps,
+  LessonListingPageProps,
   URLParams,
 } from "../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import renderWithProviders from "../../../../../../../__helpers__/renderWithProviders";
@@ -75,23 +75,24 @@ describe("Lesson listing page", () => {
       });
     });
   });
-  describe("getServerSideProps", () => {
+  describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
         params: {
           programmeSlug: "maths-secondary-ks4-higher",
           unitSlug: "adding-surds-a57d",
+          viewType: "teachers",
         },
         query: {},
-      } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-        props: LessonListPageProps;
+      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
+        props: LessonListingPageProps;
       };
 
       expect(propsResult.props.curriculumData).toEqual(lessonListingFixture());
     });
     it("should throw error", async () => {
       await expect(
-        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>)
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("no context.params");
     });
   });
