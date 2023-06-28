@@ -139,7 +139,7 @@ const lessonListingPaths = z.object({
   ),
 });
 
-const lessonOverviewQuizData = z.array(
+export const lessonOverviewQuizData = z.array(
   z.object({
     keyStageSlug: z.string(),
     keyStageTitle: z.string(),
@@ -178,7 +178,7 @@ const lessonOverviewQuizData = z.array(
   })
 );
 
-const lessonQuizInfoData = z
+export const lessonQuizInfoData = z
   .object({
     title: z.string(),
     questionCount: z.number(),
@@ -205,7 +205,7 @@ const lessonDownloadPaths = z.object({
   ),
 });
 
-const lessonOverviewData = z.object({
+export const lessonOverviewData = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   programmeSlug: z.string(),
