@@ -88,7 +88,6 @@ const unitsData = z.array(
     lessonCount: z.number().nullable(),
     quizCount: z.number().nullable(),
     unitStudyOrder: z.number(),
-    year: z.string(),
     expired: z.boolean().nullable(),
     expiredLessonCount: z.number().nullable(),
   })
