@@ -1,3 +1,11 @@
+# [1.197.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.196.1...v1.197.0) (2023-06-28)
+
+
+### Features
+
+* getPageProps() function with error handling and isr ([5d68f2f](https://github.com/oaknational/Oak-Web-Application/commit/5d68f2f22c15ad7578264d8beafd700d862dcf27))
+* isr error handling ([9b29ca6](https://github.com/oaknational/Oak-Web-Application/commit/9b29ca6bf8f50dfd2ec133cde378a0fc739b3ea3))
+
 ## [1.196.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.196.0...v1.196.1) (2023-06-27)
 
 
