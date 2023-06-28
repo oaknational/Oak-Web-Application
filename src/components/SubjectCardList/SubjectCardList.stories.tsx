@@ -19,13 +19,13 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const SubjectCardList = Template.bind({});
 
 SubjectCardList.args = {
-  subjects: subjectPagePropsFixture().programmesBySubjectAvailable,
+  subjects: subjectPagePropsFixture().subjects,
   isAvailable: true,
 };
 
 export const SubjectCardListUnavailable = Template.bind({});
 
 SubjectCardListUnavailable.args = {
-  subjects: subjectPagePropsFixture().programmesBySubjectUnavailable,
+  subjects: subjectPagePropsFixture().subjectsUnavailable,
   isAvailable: false,
 };
