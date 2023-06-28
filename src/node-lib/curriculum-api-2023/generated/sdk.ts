@@ -20103,7 +20103,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidanceDetails?: any | null, lessonEquipmentAndResources?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: any | null, lessonKeywords?: any | null, copyrightContent?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, keyLearningPoints?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, pupilLessonOutcome?: any | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonKeywords?: any | null, presentationUrl?: string | null, transcriptSentences?: string | null, contentGuidance?: any | null, equipmentRequired?: any | null, hasCopyrightMaterial?: any | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -20144,20 +20144,20 @@ export const LessonOverviewDocument = gql`
     keyStageTitle
     subjectSlug
     subjectTitle
-    contentGuidanceDetails
-    lessonEquipmentAndResources
+    contentGuidance: contentGuidanceDetails
+    equipmentRequired: lessonEquipmentAndResources
     keyLearningPoints
-    pupilLessonOutcome
-    lessonKeywords
-    copyrightContent
     supervisionLevel
     worksheetUrl
-    presentationUrl
+    hasCopyrightMaterial: copyrightContent
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
-    transcriptSentences
+    pupilLessonOutcome
     starterQuiz
     exitQuiz
+    lessonKeywords
+    presentationUrl
+    transcriptSentences
   }
 }
     `;
