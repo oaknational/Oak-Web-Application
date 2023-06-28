@@ -31,7 +31,6 @@ describe("unitListing()", () => {
               totalUnitCount: 0,
               tiers: [],
               learningThemes: [],
-
             },
             {
               programmeSlug: "programme-slug-1",
@@ -69,7 +68,6 @@ describe("unitListing()", () => {
                 keyStageSlug: "key-stage-slug",
                 keyStageTitle: "key-stage-title",
                 units: [],
-                
               },
             ],
           })

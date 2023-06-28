@@ -310,18 +310,18 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-  // const curriculumData = await curriculumApi.unitListing({
-  //   programmeSlug,
-  // });
+      // const curriculumData = await curriculumApi.unitListing({
+      //   programmeSlug,
+      // });
 
-  const curriculumData =
-  context?.params?.viewType === "teachers-2023"
-    ? await curriculumApi2023.unitListing({
-        programmeSlug,
-      })
-    : await curriculumApi.unitListing({
-        programmeSlug,
-      });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.unitListing({
+              programmeSlug,
+            })
+          : await curriculumApi.unitListing({
+              programmeSlug,
+            });
 
       if (!curriculumData) {
         return {
