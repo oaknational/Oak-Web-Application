@@ -9,7 +9,6 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import CMSClient from "../../node-lib/cms";
 import { PolicyPage } from "../../common-lib/cms-types";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../node-lib/isr";
@@ -20,6 +19,7 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Typography, { Heading, P } from "../../components/Typography";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
+import getPageProps from "../../node-lib/getPageProps";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -138,31 +138,36 @@ export const getStaticProps: GetStaticProps<
   PolicyPageProps,
   URLParams
 > = async (context) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "legal-page::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const policyPageSlug = context?.params?.policyPageSlug as string;
-  const policyResult = await CMSClient.policyPageBySlug(policyPageSlug, {
-    previewMode: isPreviewMode,
-  });
+      const policyPageSlug = context?.params?.policyPageSlug as string;
+      const policyResult = await CMSClient.policyPageBySlug(policyPageSlug, {
+        previewMode: isPreviewMode,
+      });
 
-  if (!policyResult) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!policyResult) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const policy = {
-    ...policyResult,
-    lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
-  };
+      const policy = {
+        ...policyResult,
+        lastUpdatedAt: policyResult.lastUpdatedAt.toISOString(),
+      };
 
-  const results: GetStaticPropsResult<PolicyPageProps> = {
-    props: {
-      policy,
+      const results: GetStaticPropsResult<PolicyPageProps> = {
+        props: {
+          policy,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default Policies;

@@ -45,7 +45,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticPaths", () => {
-    it("Should return the paths of all keystages", async () => {
+    it("Should return the paths of all key stages", async () => {
       await getStaticPaths();
 
       expect(curriculumApi.teachersHomePage).toHaveBeenCalled();

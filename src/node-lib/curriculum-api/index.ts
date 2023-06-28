@@ -5,6 +5,7 @@ import { z } from "zod";
 import config from "../../config/server";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
 
 import { getSdk } from "./generated/sdk";
 
@@ -233,38 +234,7 @@ const lessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
-const lessonDownloadsData = z.object({
-  downloads: z.array(
-    z.object({
-      exists: z.boolean(),
-      type: z.enum([
-        "presentation",
-        "intro-quiz-questions",
-        "intro-quiz-answers",
-        "exit-quiz-questions",
-        "exit-quiz-answers",
-        "worksheet-pdf",
-        "worksheet-pptx",
-      ]),
-      label: z.string(),
-      ext: z.string(),
-      forbidden: z.boolean().optional(),
-    })
-  ),
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-});
-
-const programmesData = z.object({
+export const programmesData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   keyStageSlug: z.string(),
@@ -277,15 +247,17 @@ const programmesData = z.object({
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable().optional(),
+  lessonCount: z.number().optional(),
+  unitCount: z.number().optional(),
 });
 
 const programmesArray = z.array(programmesData);
 
-const subjectListingData = z.object({
+export const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(programmesData),
-  programmesUnavailable: z.array(programmesData),
+  subjects: z.array(programmesData),
+  subjectsUnavailable: z.array(programmesData),
 });
 
 const unitListingPaths = z.object({
@@ -332,7 +304,7 @@ export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
 export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
-export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
+export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
@@ -439,11 +411,30 @@ const curriculumApi = {
         programmesArray.parse(programmesUnavailable)
       );
 
+    const addCurriculum2023Counts = (
+      programmes: ProgrammesData[] | undefined
+    ) => {
+      return programmes
+        ? programmes.map((programme) => {
+            return {
+              ...programme,
+              lessonCount: programme.nonDuplicateSubjectLessonCount,
+              unitCount: programme.nonDuplicateSubjectUnitCount,
+            };
+          })
+        : [];
+    };
+
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
-      programmesAvailable,
-      programmesUnavailable: filteredUnavailableProgrammeDuplicate || [],
+      subjects:
+        addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
+        [],
+      subjectsUnavailable:
+        addCurriculum2023Counts(
+          programmesArray.parse(filteredUnavailableProgrammeDuplicate)
+        ) || [],
     });
   },
   unitListingPaths: async () => {
@@ -553,7 +544,7 @@ const curriculumApi = {
       results: downloads,
     });
 
-    return lessonDownloadsData.parse({
+    return lessonDownloadsSchema.parse({
       ...download,
     });
   },

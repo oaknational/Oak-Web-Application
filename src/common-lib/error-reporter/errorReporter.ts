@@ -191,13 +191,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
     }
   };
 
-  return function (maybeError: OakError | Error | unknown, data?: ErrorData) {
-    // Calling .then() to prevent sonarcloud erroneous codesniff
-    reportError(maybeError, data).then(
-      () => null,
-      () => null
-    );
-  };
+  return reportError;
 };
 
 export default errorReporter;

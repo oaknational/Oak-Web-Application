@@ -20,6 +20,7 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import CMSVideo from "../../components/CMSVideo";
 import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -160,25 +161,31 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "who-are-we::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
-    previewMode: isPreviewMode,
-  });
+      const aboutWhoWeArePage = await CMSClient.aboutWhoWeArePage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!aboutWhoWeArePage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutWhoWeArePage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<AboutPageProps> = {
-    props: {
-      pageData: aboutWhoWeArePage,
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutWhoWeArePage,
+        },
+      };
+      const resultsWithIsr = decorateWithIsr(results);
+      return resultsWithIsr;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default AboutWhoWeAre;

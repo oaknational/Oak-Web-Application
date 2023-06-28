@@ -20090,6 +20090,15 @@ export type Videos_Variance_Order_By = {
   video_id?: InputMaybe<Order_By>;
 };
 
+export type LessonDownloadsQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+  programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
@@ -20110,12 +20119,37 @@ export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null }> };
 
+export type SubjectListingQueryVariables = Exact<{
+  keyStageSlug: Scalars['String']['input'];
+}>;
+
+
+export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_2', keyStages?: any | null }> };
 
 
+export const LessonDownloadsDocument = gql`
+    query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
+  downloads: published_mv_downloads(
+    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
+    downloads
+    programmeSlug: programme_slug
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+  }
+}
+    `;
 export const LessonListingDocument = gql`
     query lessonListing($programmeSlug: String!, $unitSlug: String!) {
   unit: published_mv_lesson_listing_1(
@@ -20170,6 +20204,18 @@ export const SearchPageDocument = gql`
   }
 }
     `;
+export const SubjectListingDocument = gql`
+    query subjectListing($keyStageSlug: String!) {
+  keyStageSubjects: published_mv_subject_listing(
+    where: {keyStageSlug: {_eq: $keyStageSlug}}
+  ) {
+    keyStageSlug
+    keyStageTitle
+    subjects
+    subjectsUnavailable
+  }
+}
+    `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
   teachersHomePage: published_mv_homepage_2 {
@@ -20185,6 +20231,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
+    },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
@@ -20193,6 +20242,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
+    },
+    subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');

@@ -7,7 +7,6 @@ import {
 } from "next";
 
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../node-lib/isr";
@@ -44,6 +43,7 @@ import type {
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
 import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../../node-lib/getPageProps";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -410,37 +410,41 @@ export const getStaticProps: GetStaticProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context.params");
-  }
-  const { lessonSlug, unitSlug, programmeSlug } = context.params;
+  return getPageProps({
+    page: "lesson-overview::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-  const curriculumData =
-    context?.params.viewType === "teachers-2023"
-      ? await curriculumApi2023.lessonOverview({
-          lessonSlug:
-            "lesson-1-in-handwriting-1-lower-case-letters-in-families",
-        })
-      : await curriculumApi.lessonOverview({
-          programmeSlug,
-          lessonSlug,
-          unitSlug,
-        });
+      const curriculumData =
+        context?.params.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            })
+          : await curriculumApi.lessonOverview({
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonOverviewPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default LessonOverviewPage;
