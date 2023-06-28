@@ -22,18 +22,29 @@ describe("subjectListing()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonListing: jest.fn(() =>
+        subjectListing: jest.fn(() =>
           Promise.resolve({
             keyStageSubjects: [
               {
-                programmeSlug: "programme-slug",
+                keyStageSlug: "ks4",
+                // keyStageTitle: "Key stage 4", // missing from response
+                subjects: [
+                  {
+                    subjectSlug: "biology",
+                    subjectTitle: "Biology",
+                    unitCount: 1,
+                    lessonCount: 18,
+                    programmeSlug: "biology-secondary-ks4",
+                  },
+                ],
+                subjectsUnavailable: null,
               },
             ],
           })
         ),
       })({
-        keyStageSlug: "maths",
+        keyStageSlug: "slug",
       });
-    }).rejects.toThrow(`Resource not found`);
+    }).rejects.toThrow(`keyStageTitle`);
   });
 });
