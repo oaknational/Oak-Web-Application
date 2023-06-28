@@ -4,7 +4,6 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import CMSClient from "../../node-lib/cms";
 import { AboutBoardPage } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import Card from "../../components/Card";
@@ -18,6 +17,7 @@ import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import BioCardList from "../../components/BioCardList";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -136,25 +136,31 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "board::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutBoardPage = await CMSClient.aboutBoardPage({
-    previewMode: isPreviewMode,
-  });
+      const aboutBoardPage = await CMSClient.aboutBoardPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!aboutBoardPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutBoardPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<AboutPageProps> = {
-    props: {
-      pageData: aboutBoardPage,
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutBoardPage,
+        },
+      };
+
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default AboutUsBoard;

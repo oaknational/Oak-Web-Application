@@ -9,7 +9,6 @@ import {
 
 import CMSClient from "../node-lib/cms";
 import { ContactPage } from "../common-lib/cms-types";
-import { decorateWithIsr } from "../node-lib/isr";
 import { Heading, P } from "../components/Typography";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
@@ -18,11 +17,11 @@ import Flex from "../components/Flex";
 import { useNewsletterForm } from "../components/Forms/NewsletterForm";
 import SummaryCard from "../components/Card/SummaryCard";
 import Box from "../components/Box";
-// import { useCookieConsent } from "../browser-lib/cookie-consent/CookieConsentProvider";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
 import { BasePortableTextProvider } from "../components/PortableText";
+import getPageProps from "../node-lib/getPageProps";
 
 export type ContactPageProps = {
   pageData: ContactPage;
@@ -115,25 +114,31 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<ContactPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "contact-us::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const pageData = await CMSClient.contactPage({
-    previewMode: isPreviewMode,
-  });
+      const pageData = await CMSClient.contactPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!pageData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!pageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<ContactPageProps> = {
-    props: {
-      pageData,
+      const results: GetStaticPropsResult<ContactPageProps> = {
+        props: {
+          pageData,
+        },
+      };
+
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default ContactUs;

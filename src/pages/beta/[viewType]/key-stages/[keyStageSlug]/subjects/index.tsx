@@ -9,7 +9,6 @@ import SubjectListingPage from "../../../../../../components/pages/SubjectListin
 import { Heading } from "../../../../../../components/Typography";
 import curriculumApi from "../../../../../../node-lib/curriculum-api";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
@@ -21,6 +20,7 @@ import {
   KeyStageSubjectData,
   SubjectListingPageData,
 } from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import getPageProps from "../../../../../../node-lib/getPageProps";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -117,54 +117,59 @@ export const getStaticProps: GetStaticProps<
   KeyStagePageProps,
   URLParams
 > = async (context) => {
-  if (!context.params?.keyStageSlug) {
-    throw new Error("No keyStageSlug");
-  }
+  return getPageProps({
+    page: "teachers-subject-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params?.keyStageSlug) {
+        throw new Error("No keyStageSlug");
+      }
 
-  const curriculumData =
-    context?.params?.viewType === "teachers-2023"
-      ? await curriculumApi2023.subjectListingPage({
-          keyStageSlug: context.params?.keyStageSlug,
-        })
-      : await curriculumApi.subjectListing({
-          keyStageSlug: context.params?.keyStageSlug,
-        });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.subjectListingPage({
+              keyStageSlug: context.params?.keyStageSlug,
+            })
+          : await curriculumApi.subjectListing({
+              keyStageSlug: context.params?.keyStageSlug,
+            });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } =
-    curriculumData;
+      const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } =
+        curriculumData;
 
-  const keyStageSubjectAvailable = Object.values(
-    groupBy(
-      subjects,
-      (subject: SubjectListingPageData["subjects"][number]) =>
-        subject.subjectSlug
-    )
-  );
-  const keyStageSubjectUnavailable = Object.values(
-    groupBy(
-      subjectsUnavailable,
-      (subject: SubjectListingPageData["subjects"][number]) =>
-        subject.subjectSlug
-    )
-  );
+      const keyStageSubjectAvailable = Object.values(
+        groupBy(
+          subjects,
+          (subject: SubjectListingPageData["subjects"][number]) =>
+            subject.subjectSlug
+        )
+      );
+      const keyStageSubjectUnavailable = Object.values(
+        groupBy(
+          subjectsUnavailable,
+          (subject: SubjectListingPageData["subjects"][number]) =>
+            subject.subjectSlug
+        )
+      );
 
-  const results = {
-    props: {
-      keyStageSlug,
-      keyStageTitle,
-      subjects: keyStageSubjectAvailable || [],
-      subjectsUnavailable: keyStageSubjectUnavailable || [],
+      const results = {
+        props: {
+          keyStageSlug,
+          keyStageTitle,
+          subjects: keyStageSubjectAvailable,
+          subjectsUnavailable: keyStageSubjectUnavailable,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default SubjectListing;
