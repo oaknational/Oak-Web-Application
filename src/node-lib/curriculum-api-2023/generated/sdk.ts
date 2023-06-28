@@ -20160,6 +20160,13 @@ export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null }> };
 
+export type SubjectListingQueryVariables = Exact<{
+  keyStageSlug: Scalars['String']['input'];
+}>;
+
+
+export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -20216,6 +20223,18 @@ export const SearchPageDocument = gql`
   }
 }
     `;
+export const SubjectListingDocument = gql`
+    query subjectListing($keyStageSlug: String!) {
+  keyStageSubjects: published_mv_subject_listing(
+    where: {keyStageSlug: {_eq: $keyStageSlug}}
+  ) {
+    keyStageSlug
+    keyStageTitle
+    subjects
+    subjectsUnavailable
+  }
+}
+    `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
   teachersHomePage: published_mv_homepage_2 {
@@ -20257,6 +20276,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
+    },
+    subjectListing(variables: SubjectListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SubjectListingQuery>(SubjectListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectListing', 'query');
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
