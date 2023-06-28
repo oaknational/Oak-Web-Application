@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import sdk from "./sdk";
+import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 
 const keyStageSchema = z.object({
@@ -60,6 +61,7 @@ const curriculumApi2023 = {
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });
     return searchPageSchema.parse(searchPage);
   },
+  lessonOverview: lessonOverviewQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
