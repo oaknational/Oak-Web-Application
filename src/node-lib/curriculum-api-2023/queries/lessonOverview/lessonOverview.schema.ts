@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // OLD SCHEMA
 
-const lessonOverviewQuizData = z.array(
+export const lessonOverviewQuizData = z.array(
   z.object({
     keyStageSlug: z.string(),
     keyStageTitle: z.string(),
@@ -41,15 +41,14 @@ const lessonOverviewQuizData = z.array(
   })
 );
 
-const lessonQuizInfoData = z
+export const lessonQuizInfoData = z
   .object({
     title: z.string(),
     questionCount: z.number(),
   })
   .nullable();
-// OLD SCHEMA
 
-const lessonOverviewSchema = z.object({
+export const baseLessonOverviewData = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   programmeSlug: z.string(),
@@ -71,6 +70,9 @@ const lessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.array(z.string()).nullable(),
   hasDownloadableResources: z.boolean().nullable(),
+});
+
+const lessonOverviewSchema = baseLessonOverviewData.extend({
   introQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   introQuizInfo: lessonQuizInfoData,
