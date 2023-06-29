@@ -24,6 +24,7 @@ import Grid from "../../../../../../../../components/Grid";
 import curriculumApi, {
   LessonOverviewData,
 } from "../../../../../../../../node-lib/curriculum-api";
+import curriculumApi2023 from "../../../../../../../../node-lib/curriculum-api-2023";
 import LessonHelper from "../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
@@ -418,11 +419,16 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi.lessonOverview({
-        programmeSlug,
-        lessonSlug,
-        unitSlug,
-      });
+      const curriculumData =
+        context?.params.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            })
+          : await curriculumApi.lessonOverview({
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            });
 
       if (!curriculumData) {
         return {

@@ -20155,6 +20155,13 @@ export type LessonListingQueryVariables = Exact<{
 
 export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_1', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
 
+export type LessonOverviewQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, keyLearningPoints?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, pupilLessonOutcome?: any | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonKeywords?: any | null, presentationUrl?: string | null, transcriptSentences?: string | null, contentGuidance?: any | null, equipmentRequired?: any | null, hasCopyrightMaterial?: any | null }> };
+
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -20211,6 +20218,35 @@ export const LessonListingDocument = gql`
     subjectSlug
     subjectTitle
     lessons
+  }
+}
+    `;
+export const LessonOverviewDocument = gql`
+    query lessonOverview($lessonSlug: String!) {
+  lesson: published_mv_lesson_overview(where: {lessonSlug: {_eq: $lessonSlug}}) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    contentGuidance: contentGuidanceDetails
+    equipmentRequired: lessonEquipmentAndResources
+    keyLearningPoints
+    supervisionLevel
+    worksheetUrl
+    hasCopyrightMaterial: copyrightContent
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    pupilLessonOutcome
+    starterQuiz
+    exitQuiz
+    lessonKeywords
+    presentationUrl
+    transcriptSentences
   }
 }
     `;
@@ -20273,6 +20309,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
+    },
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
