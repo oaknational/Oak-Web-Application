@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import sdk from "./sdk";
+import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
@@ -64,6 +65,7 @@ const curriculumApi2023 = {
     return searchPageSchema.parse(searchPage);
   },
   subjectListingPage: subjectListingQuery(sdk),
+  lessonOverview: lessonOverviewQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
