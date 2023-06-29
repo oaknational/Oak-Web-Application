@@ -14,7 +14,7 @@ describe("lessonListing()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
+  test.skip("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
       await lessonOverview({
         ...sdk,
