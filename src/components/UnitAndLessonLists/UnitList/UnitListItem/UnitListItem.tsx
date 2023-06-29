@@ -32,7 +32,6 @@ export type UnitListItemProps = Omit<
  *
  */
 const UnitListItem: FC<UnitListItemProps> = (props) => {
-  console.log("UnitListItem props: ", props);
   const {
     title,
     slug,
