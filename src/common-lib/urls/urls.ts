@@ -590,14 +590,12 @@ function replaceViewType2023(path: string): string {
  * resolveOakHref({ page: "blog", blogSlug: "how-oak-helps-everyone" })
  */
 export const resolveOakHref = (props: ResolveOakHrefProps): string => {
-  console.log("resolveOakHref", props);
   try {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
 
     const pathWithCorrectViewType = replaceViewType2023(path);
-    console.log("pathWithCorrectViewType", pathWithCorrectViewType, path);
     return pathWithCorrectViewType;
   } catch (error) {
     const err = new OakError({
