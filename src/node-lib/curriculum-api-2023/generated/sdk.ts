@@ -15,6 +15,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  _text: { input: any; output: any; }
   bpchar: { input: any; output: any; }
   json: { input: any; output: any; }
   jsonb: { input: any; output: any; }
@@ -79,6 +80,19 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
+export type _Text_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['_text']['input']>;
+  _gt?: InputMaybe<Scalars['_text']['input']>;
+  _gte?: InputMaybe<Scalars['_text']['input']>;
+  _in?: InputMaybe<Array<Scalars['_text']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['_text']['input']>;
+  _lte?: InputMaybe<Scalars['_text']['input']>;
+  _neq?: InputMaybe<Scalars['_text']['input']>;
+  _nin?: InputMaybe<Array<Scalars['_text']['input']>>;
 };
 
 /** columns and relationships of "assets" */
@@ -11207,10 +11221,13 @@ export type Published_Mv_Unit_Listing_Page = {
   __typename?: 'published_mv_unit_listing_page';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
   key_stage_title?: Maybe<Scalars['jsonb']['output']>;
+  learning_themes?: Maybe<Scalars['jsonb']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['jsonb']['output']>;
   subject_title?: Maybe<Scalars['jsonb']['output']>;
   tier_slug?: Maybe<Scalars['jsonb']['output']>;
+  tiers?: Maybe<Scalars['_text']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
   units?: Maybe<Scalars['jsonb']['output']>;
 };
@@ -11218,6 +11235,12 @@ export type Published_Mv_Unit_Listing_Page = {
 
 /** columns and relationships of "published.mv_unit_listing_page" */
 export type Published_Mv_Unit_Listing_PageKey_Stage_TitleArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_unit_listing_page" */
+export type Published_Mv_Unit_Listing_PageLearning_ThemesArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11278,6 +11301,7 @@ export type Published_Mv_Unit_Listing_Page_Aggregate_FieldsCountArgs = {
 /** aggregate avg on columns */
 export type Published_Mv_Unit_Listing_Page_Avg_Fields = {
   __typename?: 'published_mv_unit_listing_page_avg_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -11288,10 +11312,13 @@ export type Published_Mv_Unit_Listing_Page_Bool_Exp = {
   _or?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_Bool_Exp>>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
   key_stage_title?: InputMaybe<Jsonb_Comparison_Exp>;
+  learning_themes?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_id?: InputMaybe<Int_Comparison_Exp>;
   programme_slug?: InputMaybe<String_Comparison_Exp>;
   subject_slug?: InputMaybe<Jsonb_Comparison_Exp>;
   subject_title?: InputMaybe<Jsonb_Comparison_Exp>;
   tier_slug?: InputMaybe<Jsonb_Comparison_Exp>;
+  tiers?: InputMaybe<_Text_Comparison_Exp>;
   unit_count?: InputMaybe<Numeric_Comparison_Exp>;
   units?: InputMaybe<Jsonb_Comparison_Exp>;
 };
@@ -11300,6 +11327,7 @@ export type Published_Mv_Unit_Listing_Page_Bool_Exp = {
 export type Published_Mv_Unit_Listing_Page_Max_Fields = {
   __typename?: 'published_mv_unit_listing_page_max_fields';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
 };
@@ -11308,6 +11336,7 @@ export type Published_Mv_Unit_Listing_Page_Max_Fields = {
 export type Published_Mv_Unit_Listing_Page_Min_Fields = {
   __typename?: 'published_mv_unit_listing_page_min_fields';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
 };
@@ -11316,10 +11345,13 @@ export type Published_Mv_Unit_Listing_Page_Min_Fields = {
 export type Published_Mv_Unit_Listing_Page_Order_By = {
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
+  learning_themes?: InputMaybe<Order_By>;
+  programme_id?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   tier_slug?: InputMaybe<Order_By>;
+  tiers?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
   units?: InputMaybe<Order_By>;
 };
@@ -11331,6 +11363,10 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
   /** column name */
   KeyStageTitle = 'key_stage_title',
   /** column name */
+  LearningThemes = 'learning_themes',
+  /** column name */
+  ProgrammeId = 'programme_id',
+  /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
   SubjectSlug = 'subject_slug',
@@ -11338,6 +11374,8 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
   SubjectTitle = 'subject_title',
   /** column name */
   TierSlug = 'tier_slug',
+  /** column name */
+  Tiers = 'tiers',
   /** column name */
   UnitCount = 'unit_count',
   /** column name */
@@ -11347,18 +11385,21 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
 /** aggregate stddev on columns */
 export type Published_Mv_Unit_Listing_Page_Stddev_Fields = {
   __typename?: 'published_mv_unit_listing_page_stddev_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Published_Mv_Unit_Listing_Page_Stddev_Pop_Fields = {
   __typename?: 'published_mv_unit_listing_page_stddev_pop_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Published_Mv_Unit_Listing_Page_Stddev_Samp_Fields = {
   __typename?: 'published_mv_unit_listing_page_stddev_samp_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -11374,10 +11415,13 @@ export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Input = {
 export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Value_Input = {
   key_stage_slug?: InputMaybe<Scalars['String']['input']>;
   key_stage_title?: InputMaybe<Scalars['jsonb']['input']>;
+  learning_themes?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_id?: InputMaybe<Scalars['Int']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
   subject_slug?: InputMaybe<Scalars['jsonb']['input']>;
   subject_title?: InputMaybe<Scalars['jsonb']['input']>;
   tier_slug?: InputMaybe<Scalars['jsonb']['input']>;
+  tiers?: InputMaybe<Scalars['_text']['input']>;
   unit_count?: InputMaybe<Scalars['numeric']['input']>;
   units?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -11385,24 +11429,28 @@ export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Value_Input = {
 /** aggregate sum on columns */
 export type Published_Mv_Unit_Listing_Page_Sum_Fields = {
   __typename?: 'published_mv_unit_listing_page_sum_fields';
+  programme_id?: Maybe<Scalars['Int']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
 };
 
 /** aggregate var_pop on columns */
 export type Published_Mv_Unit_Listing_Page_Var_Pop_Fields = {
   __typename?: 'published_mv_unit_listing_page_var_pop_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
 export type Published_Mv_Unit_Listing_Page_Var_Samp_Fields = {
   __typename?: 'published_mv_unit_listing_page_var_samp_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
 export type Published_Mv_Unit_Listing_Page_Variance_Fields = {
   __typename?: 'published_mv_unit_listing_page_variance_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
   unit_count?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -20131,6 +20179,13 @@ export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_2', keyStages?: any | null }> };
 
+export type UnitListingQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+}>;
+
+
+export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page', tiers?: any | null, units?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: any | null, subjectSlug?: any | null, subjectTitle?: any | null, tierSlug?: any | null, totalUnitCount?: any | null, learningThemes?: any | null }> };
+
 
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
@@ -20223,6 +20278,24 @@ export const TeachersHomePageDocument = gql`
   }
 }
     `;
+export const UnitListingDocument = gql`
+    query unitListing($programmeSlug: String!) {
+  programme: published_mv_unit_listing_page(
+    where: {programme_slug: {_eq: $programmeSlug}}
+  ) {
+    programmeSlug: programme_slug
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    totalUnitCount: unit_count
+    tiers
+    units
+    learningThemes: learning_themes
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -20248,6 +20321,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
+    },
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
     }
   };
 }

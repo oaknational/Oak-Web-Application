@@ -5,6 +5,7 @@ import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
+import unitListingQuery from "./queries/unitListing/unitListing.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -59,6 +60,7 @@ const curriculumApi2023 = {
   },
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
+  unitListing: unitListingQuery(sdk),
   searchPage: async () => {
     const res = await sdk.searchPage();
     const searchPage = getFirstResultOrNull()({ results: res.searchPage });

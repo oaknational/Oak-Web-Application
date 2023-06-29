@@ -34,6 +34,7 @@ import CurriculumDownloadButton from "../../../../../components/CurriculumDownlo
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -309,9 +310,14 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi.unitListing({
-        programmeSlug,
-      });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.unitListing({
+              programmeSlug,
+            })
+          : await curriculumApi.unitListing({
+              programmeSlug,
+            });
 
       if (!curriculumData) {
         return {
