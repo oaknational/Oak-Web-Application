@@ -6,7 +6,7 @@ import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
-import tierListingFixture from "../fixtures/tierListing.fixture";
+import { programmeListingFixture } from "../fixtures/tierListing.fixture";
 import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixture";
 import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
@@ -42,7 +42,7 @@ const curriculumApi: CurriculumApi = {
     return programmeListingPathsFixture();
   }),
   tierListing: jest.fn(async () => {
-    return tierListingFixture();
+    return programmeListingFixture();
   }),
   unitListingPaths: jest.fn(async () => {
     return unitListingPathsFixture();

@@ -1,9 +1,7 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
-import curriculumApi, {
-  TierListingData,
-} from "../../../../../../../node-lib/curriculum-api";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../components/AppLayout/AppLayout";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -16,26 +14,21 @@ import {
 } from "../../../../../../../node-lib/isr";
 import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
+import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-export type ProgrammeListingPageProps = TierListingData;
+const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
+  const {
+    programmes,
+    keyStageSlug,
+    subjectSlug,
+    keyStageTitle = "Key stage 3",
+  } = props;
+  const subjectTitle = programmes[0]?.subjectTitle ?? "";
 
-const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
-  const { programmes } = props;
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
-
-  const keyStageSlug = programmes[0]?.keyStageSlug;
-  const keyStageTitle = programmes[0]?.keyStageTitle;
-  const subjectSlug = programmes[0]?.subjectSlug;
-  const subjectTitle = programmes[0]?.subjectTitle;
-
-  const programmeDetails = {
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-  };
 
   const tiersSEO = {
     ...getSeoProps({
@@ -62,7 +55,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
                   viewType: "teachers",
                   keyStageSlug,
                 },
-                label: keyStageTitle,
+                label: keyStageTitle ?? "",
               },
               {
                 oakLinkProps: {
@@ -76,10 +69,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
             ]}
           />
         </Box>
-        <SubjectTierListing
-          programmes={programmes}
-          programmeDetails={programmeDetails}
-        />
+        <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>
   );
@@ -111,7 +101,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  ProgrammeListingPageProps,
+  ProgrammeListingPageData,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -121,14 +111,21 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("No context params");
       }
-      const curriculumData = await curriculumApi.tierListing({
-        keyStageSlug: context.params?.keyStageSlug,
-        subjectSlug: context.params?.subjectSlug,
-      });
+
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.programmeListingPage({
+              keyStageSlug: context.params?.keyStageSlug,
+              subjectSlug: context.params?.subjectSlug,
+            })
+          : await curriculumApi.tierListing({
+              keyStageSlug: context.params?.keyStageSlug,
+              subjectSlug: context.params?.subjectSlug,
+            });
 
       const results = {
         props: {
-          programmes: curriculumData.programmes,
+          ...curriculumData,
         },
       };
 

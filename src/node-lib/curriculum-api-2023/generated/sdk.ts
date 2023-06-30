@@ -15,6 +15,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  _text: { input: any; output: any; }
   bpchar: { input: any; output: any; }
   json: { input: any; output: any; }
   jsonb: { input: any; output: any; }
@@ -79,6 +80,19 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
+export type _Text_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['_text']['input']>;
+  _gt?: InputMaybe<Scalars['_text']['input']>;
+  _gte?: InputMaybe<Scalars['_text']['input']>;
+  _in?: InputMaybe<Array<Scalars['_text']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['_text']['input']>;
+  _lte?: InputMaybe<Scalars['_text']['input']>;
+  _neq?: InputMaybe<Scalars['_text']['input']>;
+  _nin?: InputMaybe<Array<Scalars['_text']['input']>>;
 };
 
 /** columns and relationships of "assets" */
@@ -2439,9 +2453,20 @@ export type Internal_Review_Lessons = {
   lesson_id: Scalars['Int']['output'];
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   moderators?: Maybe<Scalars['json']['output']>;
+  oak_approval: Scalars['jsonb']['output'];
   oak_reviews: Scalars['jsonb']['output'];
   partner_reviews: Scalars['jsonb']['output'];
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
   reviewers?: Maybe<Scalars['json']['output']>;
+  status_lesson: Scalars['String']['output'];
+  status_quiz: Scalars['String']['output'];
+  status_slidedeck: Scalars['String']['output'];
+  status_supplementary_resources: Scalars['String']['output'];
+  status_video: Scalars['String']['output'];
+  status_video_mux: Scalars['String']['output'];
+  status_video_rev: Scalars['String']['output'];
+  status_worksheet: Scalars['String']['output'];
+  status_worksheet_answers: Scalars['String']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2468,6 +2493,12 @@ export type Internal_Review_LessonsLesson_All_States_AggregateArgs = {
 
 /** columns and relationships of "internal.review_lessons" */
 export type Internal_Review_LessonsModeratorsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "internal.review_lessons" */
+export type Internal_Review_LessonsOak_ApprovalArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2563,6 +2594,7 @@ export type Internal_Review_Lessons_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Internal_Review_Lessons_Append_Input = {
+  oak_approval?: InputMaybe<Scalars['jsonb']['input']>;
   oak_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -2600,9 +2632,20 @@ export type Internal_Review_Lessons_Bool_Exp = {
   lesson_id?: InputMaybe<Int_Comparison_Exp>;
   lesson_uid?: InputMaybe<Bpchar_Comparison_Exp>;
   moderators?: InputMaybe<Json_Comparison_Exp>;
+  oak_approval?: InputMaybe<Jsonb_Comparison_Exp>;
   oak_reviews?: InputMaybe<Jsonb_Comparison_Exp>;
   partner_reviews?: InputMaybe<Jsonb_Comparison_Exp>;
+  release_uid?: InputMaybe<Bpchar_Comparison_Exp>;
   reviewers?: InputMaybe<Json_Comparison_Exp>;
+  status_lesson?: InputMaybe<String_Comparison_Exp>;
+  status_quiz?: InputMaybe<String_Comparison_Exp>;
+  status_slidedeck?: InputMaybe<String_Comparison_Exp>;
+  status_supplementary_resources?: InputMaybe<String_Comparison_Exp>;
+  status_video?: InputMaybe<String_Comparison_Exp>;
+  status_video_mux?: InputMaybe<String_Comparison_Exp>;
+  status_video_rev?: InputMaybe<String_Comparison_Exp>;
+  status_worksheet?: InputMaybe<String_Comparison_Exp>;
+  status_worksheet_answers?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -2614,18 +2657,21 @@ export enum Internal_Review_Lessons_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Internal_Review_Lessons_Delete_At_Path_Input = {
+  oak_approval?: InputMaybe<Array<Scalars['String']['input']>>;
   oak_reviews?: InputMaybe<Array<Scalars['String']['input']>>;
   partner_reviews?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Internal_Review_Lessons_Delete_Elem_Input = {
+  oak_approval?: InputMaybe<Scalars['Int']['input']>;
   oak_reviews?: InputMaybe<Scalars['Int']['input']>;
   partner_reviews?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Internal_Review_Lessons_Delete_Key_Input = {
+  oak_approval?: InputMaybe<Scalars['String']['input']>;
   oak_reviews?: InputMaybe<Scalars['String']['input']>;
   partner_reviews?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2646,9 +2692,20 @@ export type Internal_Review_Lessons_Insert_Input = {
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
   moderators?: InputMaybe<Scalars['json']['input']>;
+  oak_approval?: InputMaybe<Scalars['jsonb']['input']>;
   oak_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_lesson?: InputMaybe<Scalars['String']['input']>;
+  status_quiz?: InputMaybe<Scalars['String']['input']>;
+  status_slidedeck?: InputMaybe<Scalars['String']['input']>;
+  status_supplementary_resources?: InputMaybe<Scalars['String']['input']>;
+  status_video?: InputMaybe<Scalars['String']['input']>;
+  status_video_mux?: InputMaybe<Scalars['String']['input']>;
+  status_video_rev?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet_answers?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -2660,6 +2717,16 @@ export type Internal_Review_Lessons_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
+  status_lesson?: Maybe<Scalars['String']['output']>;
+  status_quiz?: Maybe<Scalars['String']['output']>;
+  status_slidedeck?: Maybe<Scalars['String']['output']>;
+  status_supplementary_resources?: Maybe<Scalars['String']['output']>;
+  status_video?: Maybe<Scalars['String']['output']>;
+  status_video_mux?: Maybe<Scalars['String']['output']>;
+  status_video_rev?: Maybe<Scalars['String']['output']>;
+  status_worksheet?: Maybe<Scalars['String']['output']>;
+  status_worksheet_answers?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2670,6 +2737,16 @@ export type Internal_Review_Lessons_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
+  release_uid?: InputMaybe<Order_By>;
+  status_lesson?: InputMaybe<Order_By>;
+  status_quiz?: InputMaybe<Order_By>;
+  status_slidedeck?: InputMaybe<Order_By>;
+  status_supplementary_resources?: InputMaybe<Order_By>;
+  status_video?: InputMaybe<Order_By>;
+  status_video_mux?: InputMaybe<Order_By>;
+  status_video_rev?: InputMaybe<Order_By>;
+  status_worksheet?: InputMaybe<Order_By>;
+  status_worksheet_answers?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -2681,6 +2758,16 @@ export type Internal_Review_Lessons_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
+  status_lesson?: Maybe<Scalars['String']['output']>;
+  status_quiz?: Maybe<Scalars['String']['output']>;
+  status_slidedeck?: Maybe<Scalars['String']['output']>;
+  status_supplementary_resources?: Maybe<Scalars['String']['output']>;
+  status_video?: Maybe<Scalars['String']['output']>;
+  status_video_mux?: Maybe<Scalars['String']['output']>;
+  status_video_rev?: Maybe<Scalars['String']['output']>;
+  status_worksheet?: Maybe<Scalars['String']['output']>;
+  status_worksheet_answers?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2691,6 +2778,16 @@ export type Internal_Review_Lessons_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
+  release_uid?: InputMaybe<Order_By>;
+  status_lesson?: InputMaybe<Order_By>;
+  status_quiz?: InputMaybe<Order_By>;
+  status_slidedeck?: InputMaybe<Order_By>;
+  status_supplementary_resources?: InputMaybe<Order_By>;
+  status_video?: InputMaybe<Order_By>;
+  status_video_mux?: InputMaybe<Order_By>;
+  status_video_rev?: InputMaybe<Order_By>;
+  status_worksheet?: InputMaybe<Order_By>;
+  status_worksheet_answers?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -2728,9 +2825,20 @@ export type Internal_Review_Lessons_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
   moderators?: InputMaybe<Order_By>;
+  oak_approval?: InputMaybe<Order_By>;
   oak_reviews?: InputMaybe<Order_By>;
   partner_reviews?: InputMaybe<Order_By>;
+  release_uid?: InputMaybe<Order_By>;
   reviewers?: InputMaybe<Order_By>;
+  status_lesson?: InputMaybe<Order_By>;
+  status_quiz?: InputMaybe<Order_By>;
+  status_slidedeck?: InputMaybe<Order_By>;
+  status_supplementary_resources?: InputMaybe<Order_By>;
+  status_video?: InputMaybe<Order_By>;
+  status_video_mux?: InputMaybe<Order_By>;
+  status_video_rev?: InputMaybe<Order_By>;
+  status_worksheet?: InputMaybe<Order_By>;
+  status_worksheet_answers?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -2742,6 +2850,7 @@ export type Internal_Review_Lessons_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Internal_Review_Lessons_Prepend_Input = {
+  oak_approval?: InputMaybe<Scalars['jsonb']['input']>;
   oak_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -2763,11 +2872,33 @@ export enum Internal_Review_Lessons_Select_Column {
   /** column name */
   Moderators = 'moderators',
   /** column name */
+  OakApproval = 'oak_approval',
+  /** column name */
   OakReviews = 'oak_reviews',
   /** column name */
   PartnerReviews = 'partner_reviews',
   /** column name */
+  ReleaseUid = 'release_uid',
+  /** column name */
   Reviewers = 'reviewers',
+  /** column name */
+  StatusLesson = 'status_lesson',
+  /** column name */
+  StatusQuiz = 'status_quiz',
+  /** column name */
+  StatusSlidedeck = 'status_slidedeck',
+  /** column name */
+  StatusSupplementaryResources = 'status_supplementary_resources',
+  /** column name */
+  StatusVideo = 'status_video',
+  /** column name */
+  StatusVideoMux = 'status_video_mux',
+  /** column name */
+  StatusVideoRev = 'status_video_rev',
+  /** column name */
+  StatusWorksheet = 'status_worksheet',
+  /** column name */
+  StatusWorksheetAnswers = 'status_worksheet_answers',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -2793,9 +2924,20 @@ export type Internal_Review_Lessons_Set_Input = {
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
   moderators?: InputMaybe<Scalars['json']['input']>;
+  oak_approval?: InputMaybe<Scalars['jsonb']['input']>;
   oak_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_lesson?: InputMaybe<Scalars['String']['input']>;
+  status_quiz?: InputMaybe<Scalars['String']['input']>;
+  status_slidedeck?: InputMaybe<Scalars['String']['input']>;
+  status_supplementary_resources?: InputMaybe<Scalars['String']['input']>;
+  status_video?: InputMaybe<Scalars['String']['input']>;
+  status_video_mux?: InputMaybe<Scalars['String']['input']>;
+  status_video_rev?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet_answers?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -2849,9 +2991,20 @@ export type Internal_Review_Lessons_Stream_Cursor_Value_Input = {
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_uid?: InputMaybe<Scalars['bpchar']['input']>;
   moderators?: InputMaybe<Scalars['json']['input']>;
+  oak_approval?: InputMaybe<Scalars['jsonb']['input']>;
   oak_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_lesson?: InputMaybe<Scalars['String']['input']>;
+  status_quiz?: InputMaybe<Scalars['String']['input']>;
+  status_slidedeck?: InputMaybe<Scalars['String']['input']>;
+  status_supplementary_resources?: InputMaybe<Scalars['String']['input']>;
+  status_video?: InputMaybe<Scalars['String']['input']>;
+  status_video_mux?: InputMaybe<Scalars['String']['input']>;
+  status_video_rev?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet?: InputMaybe<Scalars['String']['input']>;
+  status_worksheet_answers?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
 };
 
@@ -2883,11 +3036,33 @@ export enum Internal_Review_Lessons_Update_Column {
   /** column name */
   Moderators = 'moderators',
   /** column name */
+  OakApproval = 'oak_approval',
+  /** column name */
   OakReviews = 'oak_reviews',
   /** column name */
   PartnerReviews = 'partner_reviews',
   /** column name */
+  ReleaseUid = 'release_uid',
+  /** column name */
   Reviewers = 'reviewers',
+  /** column name */
+  StatusLesson = 'status_lesson',
+  /** column name */
+  StatusQuiz = 'status_quiz',
+  /** column name */
+  StatusSlidedeck = 'status_slidedeck',
+  /** column name */
+  StatusSupplementaryResources = 'status_supplementary_resources',
+  /** column name */
+  StatusVideo = 'status_video',
+  /** column name */
+  StatusVideoMux = 'status_video_mux',
+  /** column name */
+  StatusVideoRev = 'status_video_rev',
+  /** column name */
+  StatusWorksheet = 'status_worksheet',
+  /** column name */
+  StatusWorksheetAnswers = 'status_worksheet_answers',
   /** column name */
   UpdatedAt = 'updated_at'
 }
@@ -6100,7 +6275,12 @@ export type Mutation_RootUpdate_Unitvariants_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_VideocaptionsArgs = {
+  _append?: InputMaybe<Videocaptions_Append_Input>;
+  _delete_at_path?: InputMaybe<Videocaptions_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Videocaptions_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Videocaptions_Delete_Key_Input>;
   _inc?: InputMaybe<Videocaptions_Inc_Input>;
+  _prepend?: InputMaybe<Videocaptions_Prepend_Input>;
   _set?: InputMaybe<Videocaptions_Set_Input>;
   where: Videocaptions_Bool_Exp;
 };
@@ -6108,7 +6288,12 @@ export type Mutation_RootUpdate_VideocaptionsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Videocaptions_By_PkArgs = {
+  _append?: InputMaybe<Videocaptions_Append_Input>;
+  _delete_at_path?: InputMaybe<Videocaptions_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Videocaptions_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Videocaptions_Delete_Key_Input>;
   _inc?: InputMaybe<Videocaptions_Inc_Input>;
+  _prepend?: InputMaybe<Videocaptions_Prepend_Input>;
   _set?: InputMaybe<Videocaptions_Set_Input>;
   pk_columns: Videocaptions_Pk_Columns_Input;
 };
@@ -6122,7 +6307,12 @@ export type Mutation_RootUpdate_Videocaptions_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_VideosArgs = {
+  _append?: InputMaybe<Videos_Append_Input>;
+  _delete_at_path?: InputMaybe<Videos_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Videos_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Videos_Delete_Key_Input>;
   _inc?: InputMaybe<Videos_Inc_Input>;
+  _prepend?: InputMaybe<Videos_Prepend_Input>;
   _set?: InputMaybe<Videos_Set_Input>;
   where: Videos_Bool_Exp;
 };
@@ -6130,7 +6320,12 @@ export type Mutation_RootUpdate_VideosArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Videos_By_PkArgs = {
+  _append?: InputMaybe<Videos_Append_Input>;
+  _delete_at_path?: InputMaybe<Videos_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Videos_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Videos_Delete_Key_Input>;
   _inc?: InputMaybe<Videos_Inc_Input>;
+  _prepend?: InputMaybe<Videos_Prepend_Input>;
   _set?: InputMaybe<Videos_Set_Input>;
   pk_columns: Videos_Pk_Columns_Input;
 };
@@ -10925,9 +11120,9 @@ export type Published_Mv_Lesson_Overview_Stream_Cursor_Value_Input = {
 /** columns and relationships of "published.mv_programme_listing" */
 export type Published_Mv_Programme_Listing = {
   __typename?: 'published_mv_programme_listing';
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
   programmes?: Maybe<Scalars['jsonb']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
+  subjectSlug?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -10963,40 +11158,40 @@ export type Published_Mv_Programme_Listing_Bool_Exp = {
   _and?: InputMaybe<Array<Published_Mv_Programme_Listing_Bool_Exp>>;
   _not?: InputMaybe<Published_Mv_Programme_Listing_Bool_Exp>;
   _or?: InputMaybe<Array<Published_Mv_Programme_Listing_Bool_Exp>>;
-  key_stage_slug?: InputMaybe<String_Comparison_Exp>;
+  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
   programmes?: InputMaybe<Jsonb_Comparison_Exp>;
-  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  subjectSlug?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
 export type Published_Mv_Programme_Listing_Max_Fields = {
   __typename?: 'published_mv_programme_listing_max_fields';
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
+  subjectSlug?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type Published_Mv_Programme_Listing_Min_Fields = {
   __typename?: 'published_mv_programme_listing_min_fields';
-  key_stage_slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['String']['output']>;
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
+  subjectSlug?: Maybe<Scalars['String']['output']>;
 };
 
 /** Ordering options when selecting data from "published.mv_programme_listing". */
 export type Published_Mv_Programme_Listing_Order_By = {
-  key_stage_slug?: InputMaybe<Order_By>;
+  keyStageSlug?: InputMaybe<Order_By>;
   programmes?: InputMaybe<Order_By>;
-  subject_slug?: InputMaybe<Order_By>;
+  subjectSlug?: InputMaybe<Order_By>;
 };
 
 /** select columns of table "published.mv_programme_listing" */
 export enum Published_Mv_Programme_Listing_Select_Column {
   /** column name */
-  KeyStageSlug = 'key_stage_slug',
+  KeyStageSlug = 'keyStageSlug',
   /** column name */
   Programmes = 'programmes',
   /** column name */
-  SubjectSlug = 'subject_slug'
+  SubjectSlug = 'subjectSlug'
 }
 
 /** Streaming cursor of the table "published_mv_programme_listing" */
@@ -11009,9 +11204,9 @@ export type Published_Mv_Programme_Listing_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Published_Mv_Programme_Listing_Stream_Cursor_Value_Input = {
-  key_stage_slug?: InputMaybe<Scalars['String']['input']>;
+  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
   programmes?: InputMaybe<Scalars['jsonb']['input']>;
-  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  subjectSlug?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "published.mv_search_page" */
@@ -11207,10 +11402,12 @@ export type Published_Mv_Unit_Listing_Page = {
   __typename?: 'published_mv_unit_listing_page';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
   key_stage_title?: Maybe<Scalars['jsonb']['output']>;
+  learning_themes?: Maybe<Scalars['jsonb']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
   subject_slug?: Maybe<Scalars['jsonb']['output']>;
   subject_title?: Maybe<Scalars['jsonb']['output']>;
   tier_slug?: Maybe<Scalars['jsonb']['output']>;
+  tiers?: Maybe<Scalars['_text']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
   units?: Maybe<Scalars['jsonb']['output']>;
 };
@@ -11218,6 +11415,12 @@ export type Published_Mv_Unit_Listing_Page = {
 
 /** columns and relationships of "published.mv_unit_listing_page" */
 export type Published_Mv_Unit_Listing_PageKey_Stage_TitleArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_unit_listing_page" */
+export type Published_Mv_Unit_Listing_PageLearning_ThemesArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11288,10 +11491,12 @@ export type Published_Mv_Unit_Listing_Page_Bool_Exp = {
   _or?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_Bool_Exp>>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
   key_stage_title?: InputMaybe<Jsonb_Comparison_Exp>;
+  learning_themes?: InputMaybe<Jsonb_Comparison_Exp>;
   programme_slug?: InputMaybe<String_Comparison_Exp>;
   subject_slug?: InputMaybe<Jsonb_Comparison_Exp>;
   subject_title?: InputMaybe<Jsonb_Comparison_Exp>;
   tier_slug?: InputMaybe<Jsonb_Comparison_Exp>;
+  tiers?: InputMaybe<_Text_Comparison_Exp>;
   unit_count?: InputMaybe<Numeric_Comparison_Exp>;
   units?: InputMaybe<Jsonb_Comparison_Exp>;
 };
@@ -11316,10 +11521,12 @@ export type Published_Mv_Unit_Listing_Page_Min_Fields = {
 export type Published_Mv_Unit_Listing_Page_Order_By = {
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
+  learning_themes?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
   tier_slug?: InputMaybe<Order_By>;
+  tiers?: InputMaybe<Order_By>;
   unit_count?: InputMaybe<Order_By>;
   units?: InputMaybe<Order_By>;
 };
@@ -11331,6 +11538,8 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
   /** column name */
   KeyStageTitle = 'key_stage_title',
   /** column name */
+  LearningThemes = 'learning_themes',
+  /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
   SubjectSlug = 'subject_slug',
@@ -11338,6 +11547,8 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
   SubjectTitle = 'subject_title',
   /** column name */
   TierSlug = 'tier_slug',
+  /** column name */
+  Tiers = 'tiers',
   /** column name */
   UnitCount = 'unit_count',
   /** column name */
@@ -11374,10 +11585,12 @@ export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Input = {
 export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Value_Input = {
   key_stage_slug?: InputMaybe<Scalars['String']['input']>;
   key_stage_title?: InputMaybe<Scalars['jsonb']['input']>;
+  learning_themes?: InputMaybe<Scalars['jsonb']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
   subject_slug?: InputMaybe<Scalars['jsonb']['input']>;
   subject_title?: InputMaybe<Scalars['jsonb']['input']>;
   tier_slug?: InputMaybe<Scalars['jsonb']['input']>;
+  tiers?: InputMaybe<Scalars['_text']['input']>;
   unit_count?: InputMaybe<Scalars['numeric']['input']>;
   units?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -19038,6 +19251,7 @@ export type Videocaptions = {
   inappropriate_words?: Maybe<Scalars['json']['output']>;
   ingest_id?: Maybe<Scalars['String']['output']>;
   language_approved: Scalars['Boolean']['output'];
+  rev_asset_id: Scalars['String']['output'];
   transcript?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   /** An object relationship */
@@ -19046,6 +19260,7 @@ export type Videocaptions = {
   video_all_states: Array<Videos>;
   /** An aggregate relationship */
   video_all_states_aggregate: Videos_Aggregate;
+  videocaption_object: Scalars['jsonb']['output'];
 };
 
 
@@ -19072,6 +19287,12 @@ export type VideocaptionsVideo_All_States_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Videos_Order_By>>;
   where?: InputMaybe<Videos_Bool_Exp>;
+};
+
+
+/** columns and relationships of "videocaptions" */
+export type VideocaptionsVideocaption_ObjectArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "videocaptions" */
@@ -19146,6 +19367,11 @@ export type Videocaptions_Aggregate_Order_By = {
   variance?: InputMaybe<Videocaptions_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Videocaptions_Append_Input = {
+  videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "videocaptions" */
 export type Videocaptions_Arr_Rel_Insert_Input = {
   data: Array<Videocaptions_Insert_Input>;
@@ -19179,11 +19405,13 @@ export type Videocaptions_Bool_Exp = {
   inappropriate_words?: InputMaybe<Json_Comparison_Exp>;
   ingest_id?: InputMaybe<String_Comparison_Exp>;
   language_approved?: InputMaybe<Boolean_Comparison_Exp>;
+  rev_asset_id?: InputMaybe<String_Comparison_Exp>;
   transcript?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   video?: InputMaybe<Videos_Bool_Exp>;
   video_all_states?: InputMaybe<Videos_Bool_Exp>;
   video_all_states_aggregate?: InputMaybe<Videos_Aggregate_Bool_Exp>;
+  videocaption_object?: InputMaybe<Jsonb_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "videocaptions" */
@@ -19191,6 +19419,21 @@ export enum Videocaptions_Constraint {
   /** unique or primary key constraint on columns "caption_id", "_state" */
   VideocaptionsPkey = 'videocaptions_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Videocaptions_Delete_At_Path_Input = {
+  videocaption_object?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Videocaptions_Delete_Elem_Input = {
+  videocaption_object?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Videocaptions_Delete_Key_Input = {
+  videocaption_object?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "videocaptions" */
 export type Videocaptions_Inc_Input = {
@@ -19209,10 +19452,12 @@ export type Videocaptions_Insert_Input = {
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
+  rev_asset_id?: InputMaybe<Scalars['String']['input']>;
   transcript?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   video?: InputMaybe<Videos_Obj_Rel_Insert_Input>;
   video_all_states?: InputMaybe<Videos_Arr_Rel_Insert_Input>;
+  videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** aggregate max on columns */
@@ -19224,6 +19469,7 @@ export type Videocaptions_Max_Fields = {
   caption_uid?: Maybe<Scalars['bpchar']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   ingest_id?: Maybe<Scalars['String']['output']>;
+  rev_asset_id?: Maybe<Scalars['String']['output']>;
   transcript?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -19236,6 +19482,7 @@ export type Videocaptions_Max_Order_By = {
   caption_uid?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   ingest_id?: InputMaybe<Order_By>;
+  rev_asset_id?: InputMaybe<Order_By>;
   transcript?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -19249,6 +19496,7 @@ export type Videocaptions_Min_Fields = {
   caption_uid?: Maybe<Scalars['bpchar']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   ingest_id?: Maybe<Scalars['String']['output']>;
+  rev_asset_id?: Maybe<Scalars['String']['output']>;
   transcript?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -19261,6 +19509,7 @@ export type Videocaptions_Min_Order_By = {
   caption_uid?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   ingest_id?: InputMaybe<Order_By>;
+  rev_asset_id?: InputMaybe<Order_By>;
   transcript?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
@@ -19300,16 +19549,23 @@ export type Videocaptions_Order_By = {
   inappropriate_words?: InputMaybe<Order_By>;
   ingest_id?: InputMaybe<Order_By>;
   language_approved?: InputMaybe<Order_By>;
+  rev_asset_id?: InputMaybe<Order_By>;
   transcript?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   video?: InputMaybe<Videos_Order_By>;
   video_all_states_aggregate?: InputMaybe<Videos_Aggregate_Order_By>;
+  videocaption_object?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: videocaptions */
 export type Videocaptions_Pk_Columns_Input = {
   _state: Scalars['String']['input'];
   caption_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Videocaptions_Prepend_Input = {
+  videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "videocaptions" */
@@ -19335,9 +19591,13 @@ export enum Videocaptions_Select_Column {
   /** column name */
   LanguageApproved = 'language_approved',
   /** column name */
+  RevAssetId = 'rev_asset_id',
+  /** column name */
   Transcript = 'transcript',
   /** column name */
-  UpdatedAt = 'updated_at'
+  UpdatedAt = 'updated_at',
+  /** column name */
+  VideocaptionObject = 'videocaption_object'
 }
 
 /** select "videocaptions_aggregate_bool_exp_bool_and_arguments_columns" columns of table "videocaptions" */
@@ -19372,8 +19632,10 @@ export type Videocaptions_Set_Input = {
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
+  rev_asset_id?: InputMaybe<Scalars['String']['input']>;
   transcript?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** aggregate stddev on columns */
@@ -19429,8 +19691,10 @@ export type Videocaptions_Stream_Cursor_Value_Input = {
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
+  rev_asset_id?: InputMaybe<Scalars['String']['input']>;
   transcript?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** aggregate sum on columns */
@@ -19467,14 +19731,28 @@ export enum Videocaptions_Update_Column {
   /** column name */
   LanguageApproved = 'language_approved',
   /** column name */
+  RevAssetId = 'rev_asset_id',
+  /** column name */
   Transcript = 'transcript',
   /** column name */
-  UpdatedAt = 'updated_at'
+  UpdatedAt = 'updated_at',
+  /** column name */
+  VideocaptionObject = 'videocaption_object'
 }
 
 export type Videocaptions_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Videocaptions_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Videocaptions_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Videocaptions_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Videocaptions_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Videocaptions_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Videocaptions_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Videocaptions_Set_Input>;
   /** filter the rows which have to be updated */
@@ -19539,6 +19817,7 @@ export type Videos = {
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   url?: Maybe<Scalars['String']['output']>;
   video_id: Scalars['Int']['output'];
+  video_object: Scalars['jsonb']['output'];
   video_uid?: Maybe<Scalars['bpchar']['output']>;
 };
 
@@ -19560,6 +19839,12 @@ export type VideosCaption_All_States_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Videocaptions_Order_By>>;
   where?: InputMaybe<Videocaptions_Bool_Exp>;
+};
+
+
+/** columns and relationships of "videos" */
+export type VideosVideo_ObjectArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "videos" */
@@ -19634,6 +19919,11 @@ export type Videos_Aggregate_Order_By = {
   variance?: InputMaybe<Videos_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Videos_Append_Input = {
+  video_object?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "videos" */
 export type Videos_Arr_Rel_Insert_Input = {
   data: Array<Videos_Insert_Input>;
@@ -19678,6 +19968,7 @@ export type Videos_Bool_Exp = {
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   url?: InputMaybe<String_Comparison_Exp>;
   video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_object?: InputMaybe<Jsonb_Comparison_Exp>;
   video_uid?: InputMaybe<Bpchar_Comparison_Exp>;
 };
 
@@ -19688,6 +19979,21 @@ export enum Videos_Constraint {
   /** unique or primary key constraint on columns "video_id", "_state" */
   VideosPkey = 'videos_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Videos_Delete_At_Path_Input = {
+  video_object?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Videos_Delete_Elem_Input = {
+  video_object?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Videos_Delete_Key_Input = {
+  video_object?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "videos" */
 export type Videos_Inc_Input = {
@@ -19715,6 +20021,7 @@ export type Videos_Insert_Input = {
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_object?: InputMaybe<Scalars['jsonb']['input']>;
   video_uid?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
@@ -19839,6 +20146,7 @@ export type Videos_Order_By = {
   updated_at?: InputMaybe<Order_By>;
   url?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
+  video_object?: InputMaybe<Order_By>;
   video_uid?: InputMaybe<Order_By>;
 };
 
@@ -19846,6 +20154,11 @@ export type Videos_Order_By = {
 export type Videos_Pk_Columns_Input = {
   _state: Scalars['String']['input'];
   video_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Videos_Prepend_Input = {
+  video_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "videos" */
@@ -19882,6 +20195,8 @@ export enum Videos_Select_Column {
   Url = 'url',
   /** column name */
   VideoId = 'video_id',
+  /** column name */
+  VideoObject = 'video_object',
   /** column name */
   VideoUid = 'video_uid'
 }
@@ -19920,6 +20235,7 @@ export type Videos_Set_Input = {
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_object?: InputMaybe<Scalars['jsonb']['input']>;
   video_uid?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
@@ -19988,6 +20304,7 @@ export type Videos_Stream_Cursor_Value_Input = {
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
   video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_object?: InputMaybe<Scalars['jsonb']['input']>;
   video_uid?: InputMaybe<Scalars['bpchar']['input']>;
 };
 
@@ -20039,12 +20356,24 @@ export enum Videos_Update_Column {
   /** column name */
   VideoId = 'video_id',
   /** column name */
+  VideoObject = 'video_object',
+  /** column name */
   VideoUid = 'video_uid'
 }
 
 export type Videos_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Videos_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Videos_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Videos_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Videos_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Videos_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Videos_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Videos_Set_Input>;
   /** filter the rows which have to be updated */
@@ -20107,6 +20436,14 @@ export type LessonListingQueryVariables = Exact<{
 
 export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_1', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
 
+export type ProgrammeListingQueryVariables = Exact<{
+  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
+  subjectSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing', keyStageSlug?: string | null, subjectSlug?: string | null, programmes?: any | null }> };
+
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -20159,6 +20496,17 @@ export const LessonListingDocument = gql`
   }
 }
     `;
+export const ProgrammeListingDocument = gql`
+    query programmeListing($keyStageSlug: String, $subjectSlug: String) {
+  programmes: published_mv_programme_listing(
+    where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}}
+  ) {
+    keyStageSlug
+    subjectSlug
+    programmes
+  }
+}
+    `;
 export const SearchPageDocument = gql`
     query searchPage {
   searchPage: published_mv_search_page {
@@ -20200,6 +20548,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
+    },
+    programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

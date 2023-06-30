@@ -6,6 +6,7 @@ import config from "../../config/server";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
+import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 import { getSdk } from "./generated/sdk";
 
@@ -21,7 +22,7 @@ const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
  * cloud authentication (according to Thomas) but locally it's not working so
  * need to use admin-secret instead.
  */
-const curruclumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
+const curriculumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
 
 /**
  * TS complaining when Headers in not typed.
@@ -29,9 +30,9 @@ const curruclumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
 type Headers =
   | { "x-hasura-admin-secret": string }
   | { "x-oak-auth-type": string; "x-oak-auth-key": string };
-const headers: Headers = curruclumApiAdminSecret
+const headers: Headers = curriculumApiAdminSecret
   ? {
-      "x-hasura-admin-secret": curruclumApiAdminSecret,
+      "x-hasura-admin-secret": curriculumApiAdminSecret,
     }
   : {
       "x-oak-auth-type": curriculumApiAuthType,
@@ -556,7 +557,31 @@ const curriculumApi = {
     const res = await sdk.tierListing(...args);
     const { programmes = [] } = transformMVCase(res);
 
-    return tierListingData.parse({ programmes });
+    const tierListingToProgrammeListing2013 = tierListingData
+      .parse({ programmes })
+      .programmes.map((programme) => {
+        return {
+          programmes: {
+            subjectSlug: programme.subjectSlug,
+            keyStageSlug: programme.keyStageSlug,
+            keyStageTitle: programme.keyStageTitle,
+            programmes: programmes.map((programme) => {
+              return {
+                programmeSlug: programme.programmeSlug,
+                subjectTitle: programme.subjectTitle,
+                unitCount: programme.totalUnitCount,
+                lessonCount: programme.activeLessonCount,
+                tierSlug: programme.tierSlug,
+                tierTitle: programme.tierTitle,
+              };
+            }),
+          },
+        };
+      });
+
+    return programmeListingSchema.parse(
+      tierListingToProgrammeListing2013[0]?.programmes
+    );
   },
 };
 

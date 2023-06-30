@@ -4,6 +4,7 @@ import sdk from "./sdk";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
+import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -64,6 +65,7 @@ const curriculumApi2023 = {
     return searchPageSchema.parse(searchPage);
   },
   subjectListingPage: subjectListingQuery(sdk),
+  programmeListingPage: programmeListingQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

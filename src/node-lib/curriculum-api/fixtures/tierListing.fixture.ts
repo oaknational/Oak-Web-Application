@@ -1,4 +1,42 @@
 import { TierListingData } from "..";
+import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+
+export const programmeListingFixture = (
+  partial?: Partial<ProgrammeListingPageData>
+): ProgrammeListingPageData => {
+  return {
+    keyStageSlug: "ks3",
+    subjectSlug: "maths",
+    programmes: [
+      {
+        programmeSlug: "maths-secondary-ks4-core",
+        subjectTitle: "Maths",
+        unitCount: 61,
+        lessonCount: 284,
+        tierSlug: "core",
+        tierTitle: "Core",
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-foundation",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 256,
+        tierSlug: "foundation",
+        tierTitle: "Foundation",
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-higher",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 275,
+        tierSlug: "higher",
+        tierTitle: "Higher",
+      },
+    ],
+
+    ...partial,
+  };
+};
 
 const tierListingFixture = (
   partial?: Partial<TierListingData>
