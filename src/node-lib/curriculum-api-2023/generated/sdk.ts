@@ -20436,6 +20436,13 @@ export type LessonListingQueryVariables = Exact<{
 
 export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_1', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
 
+export type LessonOverviewQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, keyLearningPoints?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, pupilLessonOutcome?: any | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonKeywords?: any | null, presentationUrl?: string | null, transcriptSentences?: string | null, contentGuidance?: any | null, equipmentRequired?: any | null, hasCopyrightMaterial?: any | null }> };
+
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
   subjectSlug?: InputMaybe<Scalars['String']['input']>;
@@ -20460,6 +20467,13 @@ export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TeachersHomePageQuery = { __typename?: 'query_root', teachersHomePage: Array<{ __typename?: 'published_mv_homepage_2', keyStages?: any | null }> };
+
+export type UnitListingQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+}>;
+
+
+export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page', tiers?: any | null, units?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: any | null, subjectSlug?: any | null, subjectTitle?: any | null, tierSlug?: any | null, totalUnitCount?: any | null, learningThemes?: any | null }> };
 
 
 export const LessonDownloadsDocument = gql`
@@ -20493,6 +20507,35 @@ export const LessonListingDocument = gql`
     subjectSlug
     subjectTitle
     lessons
+  }
+}
+    `;
+export const LessonOverviewDocument = gql`
+    query lessonOverview($lessonSlug: String!) {
+  lesson: published_mv_lesson_overview(where: {lessonSlug: {_eq: $lessonSlug}}) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    contentGuidance: contentGuidanceDetails
+    equipmentRequired: lessonEquipmentAndResources
+    keyLearningPoints
+    supervisionLevel
+    worksheetUrl
+    hasCopyrightMaterial: copyrightContent
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    pupilLessonOutcome
+    starterQuiz
+    exitQuiz
+    lessonKeywords
+    presentationUrl
+    transcriptSentences
   }
 }
     `;
@@ -20535,6 +20578,24 @@ export const TeachersHomePageDocument = gql`
   }
 }
     `;
+export const UnitListingDocument = gql`
+    query unitListing($programmeSlug: String!) {
+  programme: published_mv_unit_listing_page(
+    where: {programme_slug: {_eq: $programmeSlug}}
+  ) {
+    programmeSlug: programme_slug
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    tierSlug: tier_slug
+    totalUnitCount: unit_count
+    tiers
+    units
+    learningThemes: learning_themes
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -20549,6 +20610,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
+    lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
+    },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query');
     },
@@ -20560,6 +20624,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query');
+    },
+    unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
     }
   };
 }

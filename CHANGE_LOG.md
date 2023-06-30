@@ -1,3 +1,16 @@
+# [1.199.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.198.1...v1.199.0) (2023-06-29)
+
+
+### Features
+
+* **unit_lisitng:** connect unit listing page to the 2023 hasura instance ([a576f64](https://github.com/oaknational/Oak-Web-Application/commit/a576f644248779fa9042c6dd01d6b2639b791c19))
+* **unit_lisitng:** prettier fix ([9eb05d8](https://github.com/oaknational/Oak-Web-Application/commit/9eb05d860061b195a8bda1fa593087b270555d3b))
+* **unit_lisitng:** remove console logs ([cef2dc3](https://github.com/oaknational/Oak-Web-Application/commit/cef2dc3053af2f04e9b5a7937e41d8ea2d8cab5a))
+* **unit_lisitng:** remove console logs ([b504ab2](https://github.com/oaknational/Oak-Web-Application/commit/b504ab26d71dc30fa1e4873fc3aa7a9f25b7688b))
+* **unit_lisitng:** unit lisitng fix ([5d4f0a3](https://github.com/oaknational/Oak-Web-Application/commit/5d4f0a3cb3d14ca69653b0fe9319ef6f606f8ce2))
+
+## [1.198.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.198.0...v1.198.1) (2023-06-29)
+
 # [1.198.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.197.0...v1.198.0) (2023-06-28)
 
 
