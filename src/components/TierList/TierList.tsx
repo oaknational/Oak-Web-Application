@@ -1,17 +1,9 @@
 import { FC } from "react";
 
-import Grid, { GridArea, GridProps } from "../Grid";
-import { TierListingData } from "../../node-lib/curriculum-api";
+import Grid, { GridArea } from "../Grid";
+import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 import TierListItem from "./TierListItem";
-
-type TierListProps = GridProps &
-  TierListingData & {
-    keyStageSlug: string;
-    subjectSlug: string;
-    subjectTitle: string;
-    keyStageTitle: string;
-  };
 
 /**
  * Clickable learning tier card list.
@@ -19,21 +11,22 @@ type TierListProps = GridProps &
  * ## Usage
  * Used on a key stage 4 learning tier page
  */
-const TierList: FC<TierListProps> = ({
+const TierList: FC<ProgrammeListingPageData> = ({
   programmes,
-  keyStageSlug,
   subjectSlug,
-  subjectTitle,
-  keyStageTitle,
-
-  ...gridProps
+  keyStageSlug,
 }) => {
   return (
-    <Grid $cg={16} {...gridProps}>
+    <Grid $cg={16} $mb={92}>
       {programmes.map((tier) => {
         return (
           <GridArea $mb={16} $colSpan={[12, 4]} key={tier.programmeSlug}>
-            <TierListItem {...tier} background={"teachersPastelYellow"} />
+            <TierListItem
+              keyStageSlug={keyStageSlug}
+              subjectSlug={subjectSlug}
+              {...tier}
+              background={"teachersPastelYellow"}
+            />
           </GridArea>
         );
       })}

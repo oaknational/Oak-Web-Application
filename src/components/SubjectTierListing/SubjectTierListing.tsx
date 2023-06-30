@@ -3,35 +3,17 @@ import React, { FC } from "react";
 import TierList from "../TierList";
 import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
-import { TierListingData } from "../../node-lib/curriculum-api";
+import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-type ProgrammeDetails = {
-  keyStageTitle: string;
-  keyStageSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-};
-
-type SubjectTierListingProps = {
-  programmeDetails: ProgrammeDetails;
-};
-
-const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
-  programmeDetails,
-  programmes,
-}) => {
-  const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
-    programmeDetails;
-  const tierTrackingProps = {
-    keyStageTitle,
-    subjectTitle,
-  };
+const SubjectTierListing: FC<ProgrammeListingPageData> = ({ ...props }) => {
+  const { programmes, keyStageSlug, subjectSlug, keyStageTitle = "" } = props;
+  const subjectTitle = programmes[0]?.subjectTitle ?? "";
 
   return (
     <>
       <TitleCard
         page={"subject"}
-        keyStage={keyStageTitle}
+        keyStage={keyStageTitle ?? ""}
         keyStageSlug={keyStageSlug}
         title={subjectTitle}
         slug={subjectSlug}
@@ -43,11 +25,9 @@ const SubjectTierListing: FC<SubjectTierListingProps & TierListingData> = ({
         Learning tiers
       </Heading>
       <TierList
-        $mb={92}
         programmes={programmes}
         keyStageSlug={keyStageSlug}
         subjectSlug={subjectSlug}
-        {...tierTrackingProps}
       />
     </>
   );

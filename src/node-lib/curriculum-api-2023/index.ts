@@ -5,6 +5,7 @@ import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
+import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
 
 const keyStageSchema = z.object({
@@ -67,6 +68,7 @@ const curriculumApi2023 = {
     return searchPageSchema.parse(searchPage);
   },
   subjectListingPage: subjectListingQuery(sdk),
+  programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
 };
 

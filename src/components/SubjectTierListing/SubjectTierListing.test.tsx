@@ -1,40 +1,23 @@
 import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import tierListingFixture from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { programmeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 
 import SubjectTierListing from "./SubjectTierListing";
 
-const curriculumData = tierListingFixture();
-
-const programmeDetails = {
-  keyStageTitle: "Key stage 4",
-  keyStageSlug: "ks4",
-  subjectTitle: "Maths",
-  subjectSlug: "maths",
-};
+const curriculumData = programmeListingFixture();
 
 const render = renderWithProviders();
 
 describe("SubjectTierListing", () => {
   test("render a tier subject component with heading ", () => {
-    render(
-      <SubjectTierListing
-        programmes={curriculumData.programmes}
-        programmeDetails={programmeDetails}
-      />
-    );
+    render(<SubjectTierListing {...curriculumData} />);
 
     expect(screen.getByText("Learning tiers")).toBeInTheDocument();
   });
 
   test("render a list of card items with the name of the tiers ", () => {
-    const { getAllByRole } = render(
-      <SubjectTierListing
-        programmes={curriculumData.programmes}
-        programmeDetails={programmeDetails}
-      />
-    );
+    const { getAllByRole } = render(<SubjectTierListing {...curriculumData} />);
 
     expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
       "Foundation"
@@ -46,12 +29,7 @@ describe("SubjectTierListing", () => {
   });
 
   test("each card items will link have a link to a different query ", () => {
-    const { getByRole } = render(
-      <SubjectTierListing
-        programmes={curriculumData.programmes}
-        programmeDetails={programmeDetails}
-      />
-    );
+    const { getByRole } = render(<SubjectTierListing {...curriculumData} />);
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
       "href",

@@ -29,8 +29,8 @@ describe("TierListItem", () => {
         keyStageTitle="Key stage 4"
         tierTitle="Higher"
         tierSlug="higher"
-        totalUnitCount={3}
-        activeLessonCount={4}
+        unitCount={3}
+        lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
       />
@@ -48,8 +48,8 @@ describe("TierListItem", () => {
         keyStageTitle="Key Stage 4"
         tierTitle="Higher"
         tierSlug="higher"
-        totalUnitCount={3}
-        activeLessonCount={4}
+        unitCount={3}
+        lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
       />

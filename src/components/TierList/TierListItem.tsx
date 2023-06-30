@@ -11,33 +11,29 @@ import Card from "../Card";
 import useClickableCard from "../../hooks/useClickableCard";
 import Box from "../Box";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-
-export type TierListItemProps = {
-  subjectTitle: string;
-  subjectSlug: string;
-  tierTitle?: string | null;
-  tierSlug: string | null;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  totalUnitCount: number | null;
-  activeLessonCount: number | null;
-  programmeSlug: string;
-};
+import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 type BackgroundProps = {
   background: OakColorName;
 };
 
-const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
+const TierListItem: FC<
+  Pick<
+    ProgrammeListingPageData,
+    "subjectSlug" | "keyStageSlug" | "keyStageTitle"
+  > &
+    ProgrammeListingPageData["programmes"][number] &
+    BackgroundProps
+> = (props) => {
   const {
-    subjectTitle,
     subjectSlug,
+    subjectTitle,
     tierTitle,
     keyStageSlug,
-    keyStageTitle,
+    keyStageTitle = "",
     background,
-    activeLessonCount,
-    totalUnitCount,
+    lessonCount,
+    unitCount,
     programmeSlug,
   } = props;
   const { containerProps, isHovered, primaryTargetProps } =
@@ -93,8 +89,8 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           $font={"body-3"}
           $color={"oakGrey4"}
         >
-          <Span $mb={4}>{`${totalUnitCount} units`}</Span>
-          <Span $font={"body-3"}>{`${activeLessonCount} lessons`}</Span>
+          <Span $mb={4}>{`${unitCount} units`}</Span>
+          <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>
       </Box>
       <BoxBorders gapPosition="rightTop" />
