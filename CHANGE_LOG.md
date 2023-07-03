@@ -1,3 +1,10 @@
+## [1.201.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.0...v1.201.1) (2023-07-03)
+
+
+### Bug Fixes
+
+* remove log statements from components ([d9e48a6](https://github.com/oaknational/Oak-Web-Application/commit/d9e48a6f705a9933e001093d3a7a037db93af679))
+
 # [1.201.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.200.0...v1.201.0) (2023-07-03)
 
 
