@@ -5,7 +5,9 @@ import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-const SubjectTierListing: FC<ProgrammeListingPageData> = ({ ...props }) => {
+const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
+  ...props
+}) => {
   const { keyStageSlug, subjectSlug, keyStageTitle, subjectTitle, programmes } =
     props;
 
@@ -15,7 +17,9 @@ const SubjectTierListing: FC<ProgrammeListingPageData> = ({ ...props }) => {
   const examBoardProgrammes = programmes.filter(
     (programme) => programme.examBoardSlug !== null
   );
-  const examBoardTiers = programmes.map((programme) => programme.tierTitle);
+  const examBoardTiers = examBoardProgrammes.map(
+    (programme) => programme.tierTitle
+  );
 
   return (
     <>
@@ -56,4 +60,4 @@ export type URLParams = {
   keyStageSlug: string;
 };
 
-export default SubjectTierListing;
+export default SubjectProgrammeListing;

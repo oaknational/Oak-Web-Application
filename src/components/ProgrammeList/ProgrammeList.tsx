@@ -19,14 +19,14 @@ const ProgrammeList: FC<ProgrammeListingPageData> = ({
 }) => {
   return (
     <Grid $cg={16} $mb={92}>
-      {programmes.map((tier) => {
+      {programmes.map((programme) => {
         return (
-          <GridArea $mb={16} $colSpan={[12, 4]} key={tier.programmeSlug}>
+          <GridArea $mb={16} $colSpan={[12, 4]} key={programme.programmeSlug}>
             <ProgrammeListItem
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}
               subjectSlug={subjectSlug}
-              {...tier}
+              {...programme}
               background={"teachersPastelYellow"}
             />
           </GridArea>
