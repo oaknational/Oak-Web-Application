@@ -6,7 +6,9 @@ export const programmeListingFixture = (
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks3",
+    keyStageTitle: "Key stage 3",
     subjectSlug: "maths",
+    subjectTitle: "Maths",
     programmes: [
       {
         programmeSlug: "maths-secondary-ks4-core",
@@ -15,6 +17,10 @@ export const programmeListingFixture = (
         lessonCount: 284,
         tierSlug: "core",
         tierTitle: "Core",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
       },
       {
         programmeSlug: "maths-secondary-ks4-foundation",
@@ -23,6 +29,10 @@ export const programmeListingFixture = (
         lessonCount: 256,
         tierSlug: "foundation",
         tierTitle: "Foundation",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
       },
       {
         programmeSlug: "maths-secondary-ks4-higher",
@@ -31,6 +41,22 @@ export const programmeListingFixture = (
         lessonCount: 275,
         tierSlug: "higher",
         tierTitle: "Higher",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-aqa",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 275,
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardDisplayOrder: "1",
+        examBoardSlug: "aqa",
+        examBoardTitle: "AQA",
       },
     ],
 

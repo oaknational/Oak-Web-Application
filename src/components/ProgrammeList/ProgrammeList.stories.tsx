@@ -15,8 +15,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const TierList = Template.bind({});
+export const ProgrammeList = Template.bind({});
 
-TierList.args = {
+ProgrammeList.args = {
   ...programmeListingFixture(),
 };

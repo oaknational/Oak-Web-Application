@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import TierListItem from "./TierListItem";
+import ProgrammeListItem from "./ProgrammeListItem";
 
 const tierSelected = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
@@ -15,14 +15,14 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-describe("TierListItem", () => {
+describe("ProgrammeListItem", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("renders TierListItem", () => {
+  it("renders ProgrammeListItem", () => {
     renderWithTheme(
-      <TierListItem
+      <ProgrammeListItem
         subjectSlug="maths"
         subjectTitle="Maths"
         keyStageSlug="ks4"
@@ -33,6 +33,10 @@ describe("TierListItem", () => {
         lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
+        tierDisplayOrder={null}
+        examBoardSlug={null}
+        examBoardTitle={null}
+        examBoardDisplayOrder={null}
       />
     );
 
@@ -41,7 +45,7 @@ describe("TierListItem", () => {
 
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
-      <TierListItem
+      <ProgrammeListItem
         subjectSlug="maths"
         subjectTitle="Maths"
         keyStageSlug="ks4"
@@ -52,6 +56,10 @@ describe("TierListItem", () => {
         lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         background="grey2"
+        tierDisplayOrder={null}
+        examBoardSlug={null}
+        examBoardTitle={null}
+        examBoardDisplayOrder={null}
       />
     );
 

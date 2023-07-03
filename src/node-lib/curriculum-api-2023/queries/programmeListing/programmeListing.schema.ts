@@ -7,12 +7,17 @@ const programmeSchema = z.object({
   lessonCount: z.number(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable(),
+  tierDisplayOrder: z.string().nullable(), // cast to number in datatools
+  examBoardSlug: z.string().nullable(),
+  examBoardTitle: z.string().nullable(),
+  examBoardDisplayOrder: z.string().nullable(), // cast to number in datatools
 });
 
 export const programmeListingSchema = z.object({
+  keyStageTitle: z.string(),
   keyStageSlug: z.string(),
-  keyStageTitle: z.string().nullish(), // this was left out of the MV and will be added on this ticket https://www.notion.so/oaknationalacademy/I-want-exam-board-and-tier-on-the-mv_programme_listing-8a5ef942178342e8b60d814608670634
   subjectSlug: z.string(),
+  subjectTitle: z.string(),
   programmes: z.array(programmeSchema),
 });
 

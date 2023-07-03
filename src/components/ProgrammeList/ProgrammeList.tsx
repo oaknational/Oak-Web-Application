@@ -3,7 +3,7 @@ import { FC } from "react";
 import Grid, { GridArea } from "../Grid";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-import TierListItem from "./TierListItem";
+import ProgrammeListItem from "./ProgrammeListItem";
 
 /**
  * Clickable learning tier card list.
@@ -11,18 +11,20 @@ import TierListItem from "./TierListItem";
  * ## Usage
  * Used on a key stage 4 learning tier page
  */
-const TierList: FC<ProgrammeListingPageData> = ({
+const ProgrammeList: FC<ProgrammeListingPageData> = ({
   programmes,
   subjectSlug,
   keyStageSlug,
+  keyStageTitle,
 }) => {
   return (
     <Grid $cg={16} $mb={92}>
       {programmes.map((tier) => {
         return (
           <GridArea $mb={16} $colSpan={[12, 4]} key={tier.programmeSlug}>
-            <TierListItem
+            <ProgrammeListItem
               keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
               subjectSlug={subjectSlug}
               {...tier}
               background={"teachersPastelYellow"}
@@ -34,4 +36,4 @@ const TierList: FC<ProgrammeListingPageData> = ({
   );
 };
 
-export default TierList;
+export default ProgrammeList;
