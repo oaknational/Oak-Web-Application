@@ -17,7 +17,7 @@ type BackgroundProps = {
   background: OakColorName;
 };
 
-const TierListItem: FC<
+const ProgrammeListItem: FC<
   Pick<
     ProgrammeListingPageData,
     "subjectSlug" | "keyStageSlug" | "keyStageTitle"
@@ -29,8 +29,9 @@ const TierListItem: FC<
     subjectSlug,
     subjectTitle,
     tierTitle,
+    examBoardTitle,
     keyStageSlug,
-    keyStageTitle = "",
+    keyStageTitle,
     background,
     lessonCount,
     unitCount,
@@ -41,16 +42,12 @@ const TierListItem: FC<
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  if (!tierTitle) {
-    return null;
-  }
-
   return (
     <Card
       $overflow={"hidden"}
       {...containerProps}
       $pa={0}
-      data-testid={"tier-list-item"}
+      data-testid={"programme-list-item"}
     >
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
@@ -63,18 +60,19 @@ const TierListItem: FC<
           viewType="teachers"
           programmeSlug={programmeSlug}
           onClick={() => {
-            track.tierSelected({
-              subjectTitle,
-              subjectSlug,
-              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              keyStageSlug,
-              tierName: tierTitle,
-              analyticsUseCase,
-            });
+            tierTitle !== null &&
+              track.tierSelected({
+                subjectTitle,
+                subjectSlug,
+                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                keyStageSlug,
+                tierName: tierTitle,
+                analyticsUseCase,
+              });
           }}
         >
           <Heading $ma={16} $font={"heading-7"} tag="h3">
-            {tierTitle}
+            {tierTitle ?? examBoardTitle}
           </Heading>
         </OakLink>
       </Flex>
@@ -98,4 +96,4 @@ const TierListItem: FC<
   );
 };
 
-export default TierListItem;
+export default ProgrammeListItem;

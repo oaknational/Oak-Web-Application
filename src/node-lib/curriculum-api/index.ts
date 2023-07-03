@@ -500,6 +500,7 @@ const curriculumApi = {
         return {
           programmes: {
             subjectSlug: programme.subjectSlug,
+            subjectTitle: programme.subjectTitle,
             keyStageSlug: programme.keyStageSlug,
             keyStageTitle: programme.keyStageTitle,
             programmes: programmes.map((programme) => {
@@ -510,6 +511,10 @@ const curriculumApi = {
                 lessonCount: programme.activeLessonCount,
                 tierSlug: programme.tierSlug,
                 tierTitle: programme.tierTitle,
+                tierDisplayOrder: null,
+                examBoardSlug: null,
+                examBoardTitle: null,
+                examBoardDisplayOrder: null,
               };
             }),
           },

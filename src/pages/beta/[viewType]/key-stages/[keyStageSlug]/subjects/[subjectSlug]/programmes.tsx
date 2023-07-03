@@ -7,7 +7,7 @@ import AppLayout from "../../../../../../../components/AppLayout/AppLayout";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
 import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
 import Box from "../../../../../../../components/Box";
-import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
+import SubjectTierListing from "../../../../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -18,13 +18,8 @@ import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023
 import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
-  const {
-    programmes,
-    keyStageSlug,
-    subjectSlug,
-    keyStageTitle = "Key stage 3",
-  } = props;
-  const subjectTitle = programmes[0]?.subjectTitle ?? "";
+  const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
+    props;
 
   if (!programmes[0]) {
     throw new Error("No programmes");
@@ -34,6 +29,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
     ...getSeoProps({
       title: `${keyStageTitle} ${subjectTitle} tiers`,
       description: `We have resources for tiers: ${programmes
+        .filter((programme) => programme.tierTitle)
         .map((programme) => programme.tierTitle)
         .join(", ")}`,
     }),
