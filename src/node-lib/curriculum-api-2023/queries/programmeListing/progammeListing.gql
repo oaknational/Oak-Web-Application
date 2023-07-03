@@ -5,8 +5,10 @@ query programmeListing($keyStageSlug: String, $subjectSlug: String) {
       subjectSlug: { _eq: $subjectSlug }
     }
   ) {
+    keyStageTitle
     keyStageSlug
     subjectSlug
+    subjectTitle
     programmes
   }
 }

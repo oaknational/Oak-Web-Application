@@ -1,3 +1,15 @@
+# [1.201.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.200.0...v1.201.0) (2023-07-03)
+
+
+### Bug Fixes
+
+* exam board tiers only come from exam board programmes ([9afeb65](https://github.com/oaknational/Oak-Web-Application/commit/9afeb659f3f98f8483c3462a1fe181246b4df27a))
+
+
+### Features
+
+* add exam boards to programme page ([8c04e14](https://github.com/oaknational/Oak-Web-Application/commit/8c04e1454d2489baa4b511ec8df220801985360f))
+
 # [1.200.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.199.0...v1.200.0) (2023-06-30)
 
 

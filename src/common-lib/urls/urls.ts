@@ -564,7 +564,6 @@ export type ResolveOakHrefProps = Exclude<
  * viewType from window.location.path is "teachers".
  */
 function replaceViewType2023(path: string): string {
-  // console.log("replaceViewType2023", path);
   if (typeof window === "undefined") {
     return path;
   }

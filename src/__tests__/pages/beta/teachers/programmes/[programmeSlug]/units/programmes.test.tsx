@@ -29,7 +29,7 @@ describe("programmes listing page", () => {
         <ProgrammesListingPage {...programmeListingFixture()} />
       );
 
-      expect(getAllByTestId("tier-list-item")).toHaveLength(3);
+      expect(getAllByTestId("programme-list-item")).toHaveLength(4);
     });
   });
 

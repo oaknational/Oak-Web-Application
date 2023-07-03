@@ -15,6 +15,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  _int4: { input: any; output: any; }
   _text: { input: any; output: any; }
   bpchar: { input: any; output: any; }
   json: { input: any; output: any; }
@@ -80,6 +81,19 @@ export type String_Comparison_Exp = {
   _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
   _similar?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Boolean expression to compare columns of type "_int4". All fields are combined with logical 'AND'. */
+export type _Int4_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['_int4']['input']>;
+  _gt?: InputMaybe<Scalars['_int4']['input']>;
+  _gte?: InputMaybe<Scalars['_int4']['input']>;
+  _in?: InputMaybe<Array<Scalars['_int4']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['_int4']['input']>;
+  _lte?: InputMaybe<Scalars['_int4']['input']>;
+  _neq?: InputMaybe<Scalars['_int4']['input']>;
+  _nin?: InputMaybe<Array<Scalars['_int4']['input']>>;
 };
 
 /** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
@@ -11121,8 +11135,10 @@ export type Published_Mv_Lesson_Overview_Stream_Cursor_Value_Input = {
 export type Published_Mv_Programme_Listing = {
   __typename?: 'published_mv_programme_listing';
   keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
   programmes?: Maybe<Scalars['jsonb']['output']>;
   subjectSlug?: Maybe<Scalars['String']['output']>;
+  subjectTitle?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -11159,29 +11175,37 @@ export type Published_Mv_Programme_Listing_Bool_Exp = {
   _not?: InputMaybe<Published_Mv_Programme_Listing_Bool_Exp>;
   _or?: InputMaybe<Array<Published_Mv_Programme_Listing_Bool_Exp>>;
   keyStageSlug?: InputMaybe<String_Comparison_Exp>;
+  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
   programmes?: InputMaybe<Jsonb_Comparison_Exp>;
   subjectSlug?: InputMaybe<String_Comparison_Exp>;
+  subjectTitle?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** aggregate max on columns */
 export type Published_Mv_Programme_Listing_Max_Fields = {
   __typename?: 'published_mv_programme_listing_max_fields';
   keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
   subjectSlug?: Maybe<Scalars['String']['output']>;
+  subjectTitle?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type Published_Mv_Programme_Listing_Min_Fields = {
   __typename?: 'published_mv_programme_listing_min_fields';
   keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
   subjectSlug?: Maybe<Scalars['String']['output']>;
+  subjectTitle?: Maybe<Scalars['String']['output']>;
 };
 
 /** Ordering options when selecting data from "published.mv_programme_listing". */
 export type Published_Mv_Programme_Listing_Order_By = {
   keyStageSlug?: InputMaybe<Order_By>;
+  keyStageTitle?: InputMaybe<Order_By>;
   programmes?: InputMaybe<Order_By>;
   subjectSlug?: InputMaybe<Order_By>;
+  subjectTitle?: InputMaybe<Order_By>;
 };
 
 /** select columns of table "published.mv_programme_listing" */
@@ -11189,9 +11213,13 @@ export enum Published_Mv_Programme_Listing_Select_Column {
   /** column name */
   KeyStageSlug = 'keyStageSlug',
   /** column name */
+  KeyStageTitle = 'keyStageTitle',
+  /** column name */
   Programmes = 'programmes',
   /** column name */
-  SubjectSlug = 'subjectSlug'
+  SubjectSlug = 'subjectSlug',
+  /** column name */
+  SubjectTitle = 'subjectTitle'
 }
 
 /** Streaming cursor of the table "published_mv_programme_listing" */
@@ -11205,8 +11233,10 @@ export type Published_Mv_Programme_Listing_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Published_Mv_Programme_Listing_Stream_Cursor_Value_Input = {
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
+  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
   programmes?: InputMaybe<Scalars['jsonb']['input']>;
   subjectSlug?: InputMaybe<Scalars['String']['input']>;
+  subjectTitle?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "published.mv_search_page" */
@@ -11401,12 +11431,13 @@ export type Published_Mv_Subject_Listing_Stream_Cursor_Value_Input = {
 export type Published_Mv_Unit_Listing_Page = {
   __typename?: 'published_mv_unit_listing_page';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
-  key_stage_title?: Maybe<Scalars['jsonb']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   learning_themes?: Maybe<Scalars['jsonb']['output']>;
+  programme_ids?: Maybe<Scalars['_int4']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
-  subject_slug?: Maybe<Scalars['jsonb']['output']>;
-  subject_title?: Maybe<Scalars['jsonb']['output']>;
-  tier_slug?: Maybe<Scalars['jsonb']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
   tiers?: Maybe<Scalars['_text']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
   units?: Maybe<Scalars['jsonb']['output']>;
@@ -11414,31 +11445,7 @@ export type Published_Mv_Unit_Listing_Page = {
 
 
 /** columns and relationships of "published.mv_unit_listing_page" */
-export type Published_Mv_Unit_Listing_PageKey_Stage_TitleArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_unit_listing_page" */
 export type Published_Mv_Unit_Listing_PageLearning_ThemesArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_unit_listing_page" */
-export type Published_Mv_Unit_Listing_PageSubject_SlugArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_unit_listing_page" */
-export type Published_Mv_Unit_Listing_PageSubject_TitleArgs = {
-  path?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** columns and relationships of "published.mv_unit_listing_page" */
-export type Published_Mv_Unit_Listing_PageTier_SlugArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11490,12 +11497,13 @@ export type Published_Mv_Unit_Listing_Page_Bool_Exp = {
   _not?: InputMaybe<Published_Mv_Unit_Listing_Page_Bool_Exp>;
   _or?: InputMaybe<Array<Published_Mv_Unit_Listing_Page_Bool_Exp>>;
   key_stage_slug?: InputMaybe<String_Comparison_Exp>;
-  key_stage_title?: InputMaybe<Jsonb_Comparison_Exp>;
+  key_stage_title?: InputMaybe<String_Comparison_Exp>;
   learning_themes?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_ids?: InputMaybe<_Int4_Comparison_Exp>;
   programme_slug?: InputMaybe<String_Comparison_Exp>;
-  subject_slug?: InputMaybe<Jsonb_Comparison_Exp>;
-  subject_title?: InputMaybe<Jsonb_Comparison_Exp>;
-  tier_slug?: InputMaybe<Jsonb_Comparison_Exp>;
+  subject_slug?: InputMaybe<String_Comparison_Exp>;
+  subject_title?: InputMaybe<String_Comparison_Exp>;
+  tier_slug?: InputMaybe<String_Comparison_Exp>;
   tiers?: InputMaybe<_Text_Comparison_Exp>;
   unit_count?: InputMaybe<Numeric_Comparison_Exp>;
   units?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -11505,7 +11513,11 @@ export type Published_Mv_Unit_Listing_Page_Bool_Exp = {
 export type Published_Mv_Unit_Listing_Page_Max_Fields = {
   __typename?: 'published_mv_unit_listing_page_max_fields';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
 };
 
@@ -11513,7 +11525,11 @@ export type Published_Mv_Unit_Listing_Page_Max_Fields = {
 export type Published_Mv_Unit_Listing_Page_Min_Fields = {
   __typename?: 'published_mv_unit_listing_page_min_fields';
   key_stage_slug?: Maybe<Scalars['String']['output']>;
+  key_stage_title?: Maybe<Scalars['String']['output']>;
   programme_slug?: Maybe<Scalars['String']['output']>;
+  subject_slug?: Maybe<Scalars['String']['output']>;
+  subject_title?: Maybe<Scalars['String']['output']>;
+  tier_slug?: Maybe<Scalars['String']['output']>;
   unit_count?: Maybe<Scalars['numeric']['output']>;
 };
 
@@ -11522,6 +11538,7 @@ export type Published_Mv_Unit_Listing_Page_Order_By = {
   key_stage_slug?: InputMaybe<Order_By>;
   key_stage_title?: InputMaybe<Order_By>;
   learning_themes?: InputMaybe<Order_By>;
+  programme_ids?: InputMaybe<Order_By>;
   programme_slug?: InputMaybe<Order_By>;
   subject_slug?: InputMaybe<Order_By>;
   subject_title?: InputMaybe<Order_By>;
@@ -11539,6 +11556,8 @@ export enum Published_Mv_Unit_Listing_Page_Select_Column {
   KeyStageTitle = 'key_stage_title',
   /** column name */
   LearningThemes = 'learning_themes',
+  /** column name */
+  ProgrammeIds = 'programme_ids',
   /** column name */
   ProgrammeSlug = 'programme_slug',
   /** column name */
@@ -11584,12 +11603,13 @@ export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Input = {
 /** Initial value of the column from where the streaming should start */
 export type Published_Mv_Unit_Listing_Page_Stream_Cursor_Value_Input = {
   key_stage_slug?: InputMaybe<Scalars['String']['input']>;
-  key_stage_title?: InputMaybe<Scalars['jsonb']['input']>;
+  key_stage_title?: InputMaybe<Scalars['String']['input']>;
   learning_themes?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_ids?: InputMaybe<Scalars['_int4']['input']>;
   programme_slug?: InputMaybe<Scalars['String']['input']>;
-  subject_slug?: InputMaybe<Scalars['jsonb']['input']>;
-  subject_title?: InputMaybe<Scalars['jsonb']['input']>;
-  tier_slug?: InputMaybe<Scalars['jsonb']['input']>;
+  subject_slug?: InputMaybe<Scalars['String']['input']>;
+  subject_title?: InputMaybe<Scalars['String']['input']>;
+  tier_slug?: InputMaybe<Scalars['String']['input']>;
   tiers?: InputMaybe<Scalars['_text']['input']>;
   unit_count?: InputMaybe<Scalars['numeric']['input']>;
   units?: InputMaybe<Scalars['jsonb']['input']>;
@@ -20449,7 +20469,7 @@ export type ProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing', keyStageSlug?: string | null, subjectSlug?: string | null, programmes?: any | null }> };
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing', keyStageTitle?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, programmes?: any | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -20473,7 +20493,7 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page', tiers?: any | null, units?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: any | null, subjectSlug?: any | null, subjectTitle?: any | null, tierSlug?: any | null, totalUnitCount?: any | null, learningThemes?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page', tiers?: any | null, units?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, totalUnitCount?: any | null, learningThemes?: any | null }> };
 
 
 export const LessonDownloadsDocument = gql`
@@ -20544,8 +20564,10 @@ export const ProgrammeListingDocument = gql`
   programmes: published_mv_programme_listing(
     where: {keyStageSlug: {_eq: $keyStageSlug}, subjectSlug: {_eq: $subjectSlug}}
   ) {
+    keyStageTitle
     keyStageSlug
     subjectSlug
+    subjectTitle
     programmes
   }
 }
