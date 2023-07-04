@@ -1,3 +1,10 @@
+## [1.201.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.1...v1.201.2) (2023-07-04)
+
+
+### Bug Fixes
+
+* **lesson-listing:** connect lesson listing to mv to expose all units ([9e77a2d](https://github.com/oaknational/Oak-Web-Application/commit/9e77a2d44f0ba9f6bb21e8dcc16b6a89f752e081))
+
 ## [1.201.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.0...v1.201.1) (2023-07-03)
 
 
