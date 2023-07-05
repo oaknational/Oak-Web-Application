@@ -7,8 +7,8 @@ const unitListingFixture = (
     programmeSlug: "computing-secondary-ks4",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    examboardSlug: null,
-    examboardTitle: null,
+    examBoardSlug: null,
+    examBoardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
     totalUnitCount: 5,
@@ -258,15 +258,15 @@ const unitListingFixture = (
     ],
     learningThemes: [
       {
-        learningThemeTitle: "The Canterbury Tales and paired texts",
-        learningThemeSlug: "the-canterbury-tales-and-paired-texts-39",
+        themeTitle: "The Canterbury Tales and paired texts",
+        themeSlug: "the-canterbury-tales-and-paired-texts-39",
       },
       {
-        learningThemeTitle: "The sonnet through time",
-        learningThemeSlug: "the-sonnet-through-time-24",
+        themeTitle: "The sonnet through time",
+        themeSlug: "the-sonnet-through-time-24",
       },
 
-      { learningThemeTitle: null, learningThemeSlug: "no-theme" },
+      { themeTitle: null, themeSlug: "no-theme" },
     ],
     ...partial,
   };

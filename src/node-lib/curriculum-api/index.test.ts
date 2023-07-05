@@ -36,8 +36,8 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
-      examboardSlug: unitListingFixture().examboardSlug,
-      examboardTitle: unitListingFixture().examboardTitle,
+      examBoardSlug: unitListingFixture().examBoardSlug,
+      examBoardTitle: unitListingFixture().examBoardTitle,
       totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
@@ -170,7 +170,7 @@ describe("curriculum-api", () => {
     });
     const hasThemes =
       units.learningThemes?.filter(
-        (theme) => theme.learningThemeSlug === "no-theme"
+        (theme) => theme.themeSlug === "no-theme"
       ).length > 0;
 
     expect(hasThemes).toBe(true);
