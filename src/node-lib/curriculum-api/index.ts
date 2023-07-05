@@ -414,7 +414,7 @@ const curriculumApi = {
       programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
-      examBoardSlug: null,
+      examboardSlug: null,
       examboardTitle: null,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,

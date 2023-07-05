@@ -36,6 +36,8 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      examboardSlug: unitListingFixture().examboardSlug,
+      examboardTitle: unitListingFixture().examboardTitle,
       totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
