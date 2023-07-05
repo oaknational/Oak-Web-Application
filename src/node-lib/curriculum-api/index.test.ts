@@ -169,9 +169,8 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
     const hasThemes =
-      units.learningThemes?.filter(
-        (theme) => theme.themeSlug === "no-theme"
-      ).length > 0;
+      units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
+        .length > 0;
 
     expect(hasThemes).toBe(true);
   });

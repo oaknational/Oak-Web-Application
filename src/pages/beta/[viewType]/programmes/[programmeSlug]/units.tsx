@@ -176,9 +176,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      themeSlug ? themeSlug : "all"
-                    }
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "unit-index",
                       viewType: "teachers",
@@ -220,9 +218,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <LearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={
-                        themeSlug ? themeSlug : "all"
-                      }
+                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
                         page: "unit-index",
                         viewType: "teachers",
