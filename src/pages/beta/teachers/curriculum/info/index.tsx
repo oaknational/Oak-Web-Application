@@ -21,11 +21,11 @@ import BrushBorders from "components/SpriteSheet/BrushSvgs/BrushBorders/BrushBor
 import CardTitle from "components/Card/CardComponents/CardTitle";
 import AvatarImage from "components/AvatarImage/AvatarImage";
 
-export type ProgrammeHomePageProps = {
+export type CurriculumInfoPageProps = {
   data: ProgrammeListingPaths;
 };
 
-const ProgrammeHomePage: NextPage<ProgrammeHomePageProps> = () => {
+const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
   // const { data } = props;
   // console.log(data);
 
@@ -104,10 +104,10 @@ const ProgrammeHomePage: NextPage<ProgrammeHomePageProps> = () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  ProgrammeHomePageProps
+  CurriculumInfoPageProps
 > = async () => {
   const data = await curriculumApi.programmeListingPaths();
-  const results: GetStaticPropsResult<ProgrammeHomePageProps> = {
+  const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
     props: {
       data: data,
     },
@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps<
   return resultsWithIsr;
 };
 
-export default ProgrammeHomePage;
+export default CurriculumInfoPage;
 
 const CurriculaSelection: FC = () => {
   const canViewCurriculum = false;
