@@ -32,6 +32,8 @@ const unitListingSchema = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
+  examboardSlug: z.string().nullable(),
+  examboardTitle: z.string().nullable(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),

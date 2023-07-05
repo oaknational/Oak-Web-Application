@@ -7,6 +7,8 @@ const unitListingFixture = (
     programmeSlug: "computing-secondary-ks4",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
+    examboardSlug: null,
+    examboardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
     totalUnitCount: 5,
