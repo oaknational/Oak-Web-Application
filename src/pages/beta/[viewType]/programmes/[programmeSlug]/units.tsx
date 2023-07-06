@@ -54,13 +54,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     units,
     learningThemes,
     totalUnitCount,
+    examBoardTitle,
   } = curriculumData;
 
   const router = useRouter();
-  const learningThemeSlug = router.query["learning-theme"]?.toString();
+  const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = learningThemeSlug
-    ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
+  const unitsFilteredByLearningTheme = themeSlug
+    ? units.filter((unit) => unit.themeSlug === themeSlug)
     : units;
 
   const paginationProps = usePagination({
@@ -139,7 +140,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
-          title={subjectTitle}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
           slug={subjectSlug}
           $mt={0}
           $mb={24}
@@ -175,9 +176,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      learningThemeSlug ? learningThemeSlug : "all"
-                    }
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "unit-index",
                       viewType: "teachers",
@@ -219,9 +218,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <LearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={
-                        learningThemeSlug ? learningThemeSlug : "all"
-                      }
+                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
                         page: "unit-index",
                         viewType: "teachers",

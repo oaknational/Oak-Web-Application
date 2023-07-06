@@ -104,8 +104,8 @@ const tiersData = z.array(
     tierSlug: z.string(),
     tierTitle: z.string(),
     tierProgrammeSlug: z.string(),
-    unitCount: z.number().nullable(),
-    lessonCount: z.number().nullable(),
+    unitCount: z.number().nullable().optional(),
+    lessonCount: z.number().nullable().optional(),
   })
 );
 
@@ -210,6 +210,8 @@ const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
+  examBoardSlug: z.string().nullable(),
+  examBoardTitle: z.string().nullable(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
@@ -218,8 +220,8 @@ const unitListingData = z.object({
   units: unitsData,
   learningThemes: z.array(
     z.object({
-      learningThemeTitle: z.string().nullable(),
-      learningThemeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      themeSlug: z.string().nullable(),
     })
   ),
 });
@@ -388,8 +390,8 @@ const curriculumApi = {
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
     const learningThemes = units.map((unitWithTheme) => ({
-      learningThemeSlug: unitWithTheme?.themeSlug,
-      learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
+      themeSlug: unitWithTheme?.themeSlug,
+      themeTitle: unitWithTheme?.themeTitle || "No theme",
     }));
 
     // !Refactor index signature to be more specific
@@ -399,10 +401,10 @@ const curriculumApi = {
         learningThemes.map((theme) => [JSON.stringify(theme), theme])
       ).values(),
     ].sort((a, b) => {
-      if (a.learningThemeTitle < b.learningThemeTitle) {
+      if (a.themeTitle < b.themeTitle) {
         return -1;
       }
-      if (a.learningThemeTitle > b.learningThemeTitle) {
+      if (a.themeTitle > b.themeTitle) {
         return 1;
       }
       return 0;
@@ -412,6 +414,8 @@ const curriculumApi = {
       programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
+      examBoardSlug: null,
+      examBoardTitle: null,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
       totalUnitCount: programme?.totalUnitCount,

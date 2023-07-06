@@ -38,6 +38,27 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
+  it("title card render correct title", () => {
+    const { getByRole } = render(
+      <UnitListingPage curriculumData={unitListingFixture()} />
+    );
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+  });
+  it("title card renderd correct title when examboard is present", () => {
+    const { getByRole } = render(
+      <UnitListingPage
+        curriculumData={{
+          ...unitListingFixture(),
+          examBoardTitle: "OCR",
+        }}
+      />
+    );
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Computing OCR"
+    );
+  });
 
   describe("SEO", () => {
     it("renders the correct SEO details for tiered programme", async () => {
