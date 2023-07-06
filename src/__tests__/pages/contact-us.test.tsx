@@ -80,5 +80,23 @@ describe("pages/contact-us.tsx", () => {
         notFound: true,
       });
     });
+
+    it("should return notFound when the page data is missing", async () => {
+      mockCMSClient.contactPage.mockResolvedValueOnce(null);
+
+      const propsResult = await getStaticProps({
+        params: {},
+      });
+
+      expect(propsResult).toMatchObject({
+        notFound: true,
+      });
+    });
+
+    it("unhandled errors are rethrown (not swallowed)", async () => {
+      // eslint-disable-next-line
+      // @ts-ignore
+      expect(getStaticProps()).rejects.toThrow("properties of undefined");
+    });
   });
 });

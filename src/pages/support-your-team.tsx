@@ -3,7 +3,6 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../node-lib/cms";
 import { SupportPage } from "../common-lib/cms-types";
-import { decorateWithIsr } from "../node-lib/isr";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/MaxWidth/MaxWidth";
 import SummaryCard from "../components/Card/SummaryCard";
@@ -17,6 +16,7 @@ import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardI
 import BubbleMessage from "../components/BubbleMessage";
 import ButtonAsLink from "../components/Button/ButtonAsLink";
 import Box from "../components/Box";
+import getPageProps from "../node-lib/getPageProps";
 
 export type SupportPageProps = {
   pageData: SupportPage;
@@ -139,25 +139,30 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<SupportPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "support-your-team::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const supportPage = await CMSClient.supportPage({
-    previewMode: isPreviewMode,
-  });
+      const supportPage = await CMSClient.supportPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!supportPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!supportPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<SupportPageProps> = {
-    props: {
-      pageData: supportPage,
+      const results: GetStaticPropsResult<SupportPageProps> = {
+        props: {
+          pageData: supportPage,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default Support;

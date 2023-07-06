@@ -36,6 +36,8 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      examBoardSlug: unitListingFixture().examBoardSlug,
+      examBoardTitle: unitListingFixture().examBoardTitle,
       totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
@@ -105,8 +107,8 @@ const lessonDownloadPaths = jest.fn(() => ({
   mv_downloads: lessonDownloadPathsFixture().downloads,
 }));
 const subjectListing = jest.fn(() => ({
-  mv_programmes_available: subjectListingFixture().programmesAvailable,
-  mv_programmes_unavailable: subjectListingFixture().programmesUnavailable,
+  mv_programmes_available: subjectListingFixture().subjects,
+  mv_programmes_unavailable: subjectListingFixture().subjectsUnavailable,
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
 
@@ -167,9 +169,8 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
     const hasThemes =
-      units.learningThemes?.filter(
-        (theme) => theme.learningThemeSlug === "no-theme"
-      ).length > 0;
+      units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
+        .length > 0;
 
     expect(hasThemes).toBe(true);
   });
@@ -226,8 +227,8 @@ describe("curriculum-api", () => {
     });
   });
   test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
-    const availableProgrammes = subjectListingFixture().programmesAvailable;
-    const unavailableProgrammes = subjectListingFixture().programmesUnavailable;
+    const availableProgrammes = subjectListingFixture().subjects;
+    const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
       availableProgrammes,
       unavailableProgrammes

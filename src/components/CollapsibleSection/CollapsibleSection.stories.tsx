@@ -21,12 +21,16 @@ const Template: ComponentStory<typeof Component> = () => {
       buttons={[
         {
           icon: "download",
-          onClick: () => console.log("downloads"),
+          onClick: () => {
+            console.log("downloads");
+          },
           ariaLabel: "Download lesson presentation",
         },
         {
           icon: "share",
-          onClick: () => console.log("share"),
+          onClick: () => {
+            console.log("share");
+          },
           ariaLabel: "Share lesson presentation",
         },
       ]}

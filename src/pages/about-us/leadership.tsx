@@ -1,7 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../../node-lib/cms";
-import { decorateWithIsr } from "../../node-lib/isr";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
@@ -11,6 +10,7 @@ import BioCardList from "../../components/BioCardList";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "../../common-lib/cms-types";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;
@@ -60,25 +60,30 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "leadership::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
-    previewMode: isPreviewMode,
-  });
+      const aboutLeadershipPage = await CMSClient.aboutLeadershipPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!aboutLeadershipPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutLeadershipPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<AboutPageProps> = {
-    props: {
-      pageData: aboutLeadershipPage,
+      const results: GetStaticPropsResult<AboutPageProps> = {
+        props: {
+          pageData: aboutLeadershipPage,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default AboutUsLeadership;

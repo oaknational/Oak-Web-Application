@@ -2,7 +2,6 @@ import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
 import CMSClient from "../../node-lib/cms";
-import { decorateWithIsr } from "../../node-lib/isr";
 import { AboutPartnersPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
@@ -19,6 +18,7 @@ import { CMSImageProps } from "../../components/CMSImage/CMSImage";
 import { SpacingProps } from "../../styles/utils/spacing";
 import Illustration from "../../components/Illustration";
 import { getSizes } from "../../components/CMSImage/getSizes";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
@@ -111,25 +111,31 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "partners::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const aboutPartnersPage = await CMSClient.aboutPartnersPage({
-    previewMode: isPreviewMode,
-  });
+      const aboutPartnersPage = await CMSClient.aboutPartnersPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!aboutPartnersPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!aboutPartnersPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results = {
-    props: {
-      pageData: aboutPartnersPage,
+      const results = {
+        props: {
+          pageData: aboutPartnersPage,
+        },
+      };
+
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default AboutUsPartners;

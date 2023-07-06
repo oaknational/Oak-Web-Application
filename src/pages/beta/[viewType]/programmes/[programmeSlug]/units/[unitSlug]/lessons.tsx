@@ -24,8 +24,9 @@ import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import getPageProps from "../../../../../../../node-lib/getPageProps";
 
-export type LessonListPageProps = {
+export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
 
@@ -45,7 +46,9 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   }));
 }
 
-const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
+const LessonListPage: NextPage<LessonListingPageProps> = ({
+  curriculumData,
+}) => {
   const {
     unitSlug,
     keyStageTitle,
@@ -181,34 +184,40 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonListPageProps,
+  LessonListingPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("no context.params");
-  }
-  const { programmeSlug, unitSlug } = context.params;
-  if (!programmeSlug || !unitSlug) {
-    throw new Error("unexpected context.params");
-  }
+  return getPageProps({
+    page: "lesson-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("no context.params");
+      }
+      const { programmeSlug, unitSlug } = context.params;
+      if (!programmeSlug || !unitSlug) {
+        throw new Error("unexpected context.params");
+      }
 
-  const curriculumData =
-    context?.params?.viewType === "teachers-2023"
-      ? await curriculumApi2023.lessonListing({
-          programmeSlug,
-          unitSlug,
-        })
-      : await curriculumApi.lessonListing({
-          programmeSlug,
-          unitSlug,
-        });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonListing({
+              programmeSlug,
+              unitSlug,
+            })
+          : await curriculumApi.lessonListing({
+              programmeSlug,
+              unitSlug,
+            });
 
-  const results: GetStaticPropsResult<LessonListPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonListingPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
     },
-  };
-  return results;
+  });
 };
 
 export default LessonListPage;
