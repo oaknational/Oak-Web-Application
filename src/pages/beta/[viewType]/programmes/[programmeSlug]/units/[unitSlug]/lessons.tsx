@@ -6,9 +6,7 @@ import {
   GetStaticPathsResult,
 } from "next";
 
-import curriculumApi, {
-  LessonListing,
-} from "../../../../../../../node-lib/curriculum-api";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
@@ -24,22 +22,44 @@ import {
 } from "../../../../../../../node-lib/isr";
 import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
+import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
+import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import getPageProps from "../../../../../../../node-lib/getPageProps";
 
-export type LessonListPageProps = {
-  curriculumData: LessonListing;
+export type LessonListingPageProps = {
+  curriculumData: LessonListingPageData;
 };
 
-const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
+/**
+ * This function takes a unit and returns an array of lessons with the unit data
+ * embedded in each lesson.
+ *
+ * We do this so that we don't have to send duplicate unit data for each lesson.
+ * This data gets stored in the browser and is used to render the lesson list,
+ * so it's important to keep it as small as possible.
+ */
+function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
+  const { lessons, ...rest } = unit;
+  return lessons.map((lesson) => ({
+    ...lesson,
+    ...rest,
+  }));
+}
+
+const LessonListPage: NextPage<LessonListingPageProps> = ({
+  curriculumData,
+}) => {
   const {
     unitSlug,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
-    lessons,
     subjectSlug,
     subjectTitle,
     programmeSlug,
   } = curriculumData;
+
+  const lessons = getHydratedLessonsFromUnit(curriculumData);
 
   const paginationProps = usePagination({
     totalResults: lessons.length,
@@ -126,6 +146,7 @@ const LessonListPage: NextPage<LessonListPageProps> = ({ curriculumData }) => {
         <Box $mt={56}>
           <LessonList
             {...curriculumData}
+            lessonCount={lessons.length}
             currentPageItems={currentPageItems}
             paginationProps={paginationProps}
             headingTag={"h2"}
@@ -163,28 +184,40 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonListPageProps,
+  LessonListingPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("no context.params");
-  }
-  const { programmeSlug, unitSlug } = context.params;
-  if (!programmeSlug || !unitSlug) {
-    throw new Error("unexpected context.params");
-  }
+  return getPageProps({
+    page: "lesson-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("no context.params");
+      }
+      const { programmeSlug, unitSlug } = context.params;
+      if (!programmeSlug || !unitSlug) {
+        throw new Error("unexpected context.params");
+      }
 
-  const curriculumData = await curriculumApi.lessonListing({
-    programmeSlug,
-    unitSlug,
-  });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonListing({
+              programmeSlug,
+              unitSlug,
+            })
+          : await curriculumApi.lessonListing({
+              programmeSlug,
+              unitSlug,
+            });
 
-  const results: GetStaticPropsResult<LessonListPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonListingPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
     },
-  };
-  return results;
+  });
 };
 
 export default LessonListPage;

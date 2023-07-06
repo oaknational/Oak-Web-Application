@@ -6,7 +6,7 @@ const subjectListingFixture = (
   return {
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    programmesAvailable: [
+    subjects: [
       {
         subjectSlug: "biology",
         subjectTitle: "Biology",
@@ -216,7 +216,7 @@ const subjectListingFixture = (
         activeUnitCount: 8,
       },
     ],
-    programmesUnavailable: [
+    subjectsUnavailable: [
       {
         subjectSlug: "art",
         subjectTitle: "Art & Design",

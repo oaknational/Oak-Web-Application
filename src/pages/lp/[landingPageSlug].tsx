@@ -12,7 +12,6 @@ import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../node-lib/isr";
@@ -21,6 +20,7 @@ import { Quote } from "../../components/pages/LandingPages/Quote";
 import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
 import { LandingPageTextBlock } from "../../components/pages/LandingPages/LandingPageTextBlock";
 import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
+import getPageProps from "../../node-lib/getPageProps";
 
 export type LandingPageProps = {
   pageData: LandingPage;
@@ -104,26 +104,34 @@ export const getStaticProps: GetStaticProps<
   LandingPageProps,
   URLParams
 > = async (context) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "landing-page::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const landingPageSlug = context?.params?.landingPageSlug as string;
-  const landingPageResult = await CMSClient.landingPageBySlug(landingPageSlug, {
-    previewMode: isPreviewMode,
-  });
+      const landingPageSlug = context?.params?.landingPageSlug as string;
+      const landingPageResult = await CMSClient.landingPageBySlug(
+        landingPageSlug,
+        {
+          previewMode: isPreviewMode,
+        }
+      );
 
-  if (!landingPageResult) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!landingPageResult) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<LandingPageProps> = {
-    props: {
-      pageData: landingPageResult,
+      const results: GetStaticPropsResult<LandingPageProps> = {
+        props: {
+          pageData: landingPageResult,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default Landing;

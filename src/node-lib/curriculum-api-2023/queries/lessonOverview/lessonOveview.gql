@@ -1,0 +1,29 @@
+query lessonOverview($lessonSlug: String!) {
+  lesson: published_mv_lesson_overview(
+    where: { lessonSlug: { _eq: $lessonSlug } }
+  ) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    contentGuidance: contentGuidanceDetails
+    equipmentRequired: lessonEquipmentAndResources
+    keyLearningPoints
+    supervisionLevel
+    worksheetUrl
+    hasCopyrightMaterial: copyrightContent
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    pupilLessonOutcome
+    starterQuiz
+    exitQuiz
+    lessonKeywords
+    presentationUrl
+    transcriptSentences
+  }
+}

@@ -1,0 +1,14 @@
+query programmeListing($keyStageSlug: String, $subjectSlug: String) {
+  programmes: published_mv_programme_listing(
+    where: {
+      keyStageSlug: { _eq: $keyStageSlug }
+      subjectSlug: { _eq: $subjectSlug }
+    }
+  ) {
+    keyStageTitle
+    keyStageSlug
+    subjectSlug
+    subjectTitle
+    programmes
+  }
+}

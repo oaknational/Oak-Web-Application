@@ -10,7 +10,7 @@ import { HeadingTag } from "../../Typography/Heading";
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 export type LessonListProps = {
-  lessons: Omit<LessonListItemProps, "unitTitle" | "index">[];
+  lessonCount: number;
   currentPageItems: Omit<LessonListItemProps, "unitTitle" | "index">[];
   keyStageSlug: string;
   subjectSlug: string;
@@ -28,14 +28,19 @@ const LESSONS_PER_PAGE = 5;
  * Used on lesson listing page
  */
 const LessonList: FC<LessonListProps> = (props) => {
-  const { lessons, paginationProps, headingTag, currentPageItems, unitTitle } =
-    props;
+  const {
+    lessonCount,
+    paginationProps,
+    headingTag,
+    currentPageItems,
+    unitTitle,
+  } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
     <Flex $flexDirection="column">
       <Flex $flexDirection={["column-reverse", "column"]}>
         <Heading $font={["heading-6", "heading-5"]} $mb={24} tag={headingTag}>
-          {`Lessons (${lessons.length})`}
+          {`Lessons (${lessonCount})`}
         </Heading>
       </Flex>
 
@@ -56,7 +61,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           </UL>
         </>
       ) : null}
-      {lessons.length > LESSONS_PER_PAGE && (
+      {lessonCount > LESSONS_PER_PAGE && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
           <Pagination {...paginationProps} />
         </Box>

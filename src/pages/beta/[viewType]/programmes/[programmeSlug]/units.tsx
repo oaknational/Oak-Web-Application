@@ -9,7 +9,6 @@ import {
 } from "next";
 
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../node-lib/isr";
@@ -34,6 +33,8 @@ import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
+import getPageProps from "../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -300,29 +301,39 @@ export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context.params");
-  }
-  const { programmeSlug } = context.params;
+  return getPageProps({
+    page: "unit-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { programmeSlug } = context.params;
 
-  const curriculumData = await curriculumApi.unitListing({
-    programmeSlug,
-  });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.unitListing({
+              programmeSlug,
+            })
+          : await curriculumApi.unitListing({
+              programmeSlug,
+            });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<UnitListingPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<UnitListingPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default UnitListingPage;

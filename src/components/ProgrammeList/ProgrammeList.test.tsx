@@ -1,9 +1,9 @@
 import { screen, waitFor } from "@testing-library/react";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import tierListingFixture from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { programmeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 
-import TierList from "./TierList";
+import ProgrammeList from "./ProgrammeList";
 
 jest.mock("../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -12,17 +12,9 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-describe("TierList", () => {
+describe("ProgrammeList", () => {
   it("Renders correct titles ", () => {
-    renderWithTheme(
-      <TierList
-        subjectSlug="maths"
-        subjectTitle="Maths"
-        keyStageSlug="ks4"
-        keyStageTitle="Key stage 4"
-        programmes={tierListingFixture().programmes}
-      />
-    );
+    renderWithTheme(<ProgrammeList {...programmeListingFixture()} />);
 
     waitFor(() => {
       expect(screen.getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(

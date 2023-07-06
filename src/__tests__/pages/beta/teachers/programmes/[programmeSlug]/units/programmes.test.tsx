@@ -4,13 +4,13 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks_
 import ProgrammesListingPage, {
   getStaticPaths,
   getStaticProps,
-  ProgrammeListingPageProps,
   URLParams,
 } from "../../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
-import tierListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { programmeListingFixture } from "../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const render = renderWithProviders();
 
@@ -18,7 +18,7 @@ describe("programmes listing page", () => {
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...tierListingFixture()} />
+        <ProgrammesListingPage {...programmeListingFixture()} />
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
@@ -26,17 +26,17 @@ describe("programmes listing page", () => {
 
     it("renders the correct number of tiers and tier cards", () => {
       const { getAllByTestId } = render(
-        <ProgrammesListingPage {...tierListingFixture()} />
+        <ProgrammesListingPage {...programmeListingFixture()} />
       );
 
-      expect(getAllByTestId("tier-list-item")).toHaveLength(3);
+      expect(getAllByTestId("programme-list-item")).toHaveLength(4);
     });
   });
 
   describe("SEO and Tracking", () => {
     it("renders the correct SEO details for programmes page", async () => {
       const { seo } = renderWithSeo()(
-        <ProgrammesListingPage {...tierListingFixture()} />
+        <ProgrammesListingPage {...programmeListingFixture()} />
       );
 
       expect(seo).toEqual({
@@ -66,10 +66,10 @@ describe("programmes listing page", () => {
           subjectSlug: "maths",
         },
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
-        props: ProgrammeListingPageProps;
+        props: ProgrammeListingPageData;
       };
 
-      expect(testRes.props).toEqual(tierListingFixture());
+      expect(testRes.props).toEqual(programmeListingFixture());
     });
     it("should throw error when not provided context params", async () => {
       await expect(

@@ -11,11 +11,18 @@ import { BasePortableTextProvider } from "../../PortableText";
 import PostBlockCallout from "./PostBlockCallout";
 import PostCallout from "./PostCallout";
 import PostCta from "./PostCta";
+import PostForm from "./PostForm";
 import PostImageWithAltText from "./PostImageWithAltText";
 import PostQuote from "./PostQuote";
 import PostSectionHeading from "./PostSectionHeading";
 import PostTextAndMedia from "./PostTextAndMedia";
 import PostVideo from "./PostVideo";
+import {
+  extractFootnotes,
+  Footnote,
+  PostFootnoteAnnotation,
+  PostFootnotesSection,
+} from "./PostFootnotes";
 
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,
@@ -27,7 +34,13 @@ const logMissingPortableTextComponents: MissingComponentHandler = (
   });
 };
 
-const postPortableTextComponents: PortableTextComponents = {
+type PostPortableTextContext = {
+  footnotes: Footnote[];
+};
+
+const postPortableTextComponents = ({
+  footnotes,
+}: PostPortableTextContext): PortableTextComponents => ({
   block: {
     sectionHeading: PostSectionHeading,
     callout: PostBlockCallout,
@@ -36,11 +49,17 @@ const postPortableTextComponents: PortableTextComponents = {
     imageWithAltText: PostImageWithAltText,
     video: PostVideo,
     textAndMedia: PostTextAndMedia,
+    formWrapper: PostForm,
     quote: PostQuote,
     callout: PostCallout,
     cta: PostCta,
   },
-};
+  marks: {
+    footnote: (props) => {
+      return <PostFootnoteAnnotation {...props} footnotes={footnotes} />;
+    },
+  },
+});
 
 type PostPortableTextProps = {
   portableText: PortableTextJSON;
@@ -49,13 +68,17 @@ type PostPortableTextProps = {
 const PostPortableText: FC<PostPortableTextProps> = (props) => {
   const { portableText } = props;
 
+  const footnotes = extractFootnotes(portableText);
+  const portableTextComponents = postPortableTextComponents({ footnotes });
+
   return (
     <BasePortableTextProvider>
       <PortableText
-        components={postPortableTextComponents}
+        components={portableTextComponents}
         value={portableText}
         onMissingComponent={logMissingPortableTextComponents}
       />
+      <PostFootnotesSection footnotes={footnotes} />
     </BasePortableTextProvider>
   );
 };

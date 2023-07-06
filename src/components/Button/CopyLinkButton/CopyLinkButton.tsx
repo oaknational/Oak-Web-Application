@@ -3,7 +3,11 @@ import { FC, useEffect, useState } from "react";
 import { useToastContext, SHOW_DURATION } from "../../../context/Toast";
 import IconButton from "../IconButton";
 
-const CopyLinkButton: FC = () => {
+type CopyLinkButtonProps = {
+  href?: string;
+};
+
+const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
   const [label, setLabel] = useState("Copy to clipboard");
   const { showToast } = useToastContext();
   const [active, setActive] = useState(false);
@@ -19,7 +23,9 @@ const CopyLinkButton: FC = () => {
 
   const copyLink = () => {
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
+      const urlToCopy = props.href || window.location.href;
+      navigator.clipboard.writeText(urlToCopy);
+
       const copyMessage = "Copied to clipboard";
       setLabel(copyMessage);
       showToast(copyMessage, "alert");
