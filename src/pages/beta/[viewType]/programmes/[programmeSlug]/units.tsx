@@ -54,6 +54,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     units,
     learningThemes,
     totalUnitCount,
+    examBoardTitle,
   } = curriculumData;
 
   const router = useRouter();
@@ -139,7 +140,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
-          title={subjectTitle}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
           slug={subjectSlug}
           $mt={0}
           $mb={24}

@@ -10,9 +10,11 @@ query unitListing($programmeSlug: String!) {
     subjectSlug
     subjectTitle
     tierSlug
-    totalUnitCount: unitCount
+    totalUnitCount:unitCount
     tiers
     units
+    examBoardTitle
+    examBoardSlug
     learningThemes
   }
 }

@@ -106,8 +106,8 @@ const tiersData = z.array(
     tierSlug: z.string(),
     tierTitle: z.string(),
     tierProgrammeSlug: z.string(),
-    unitCount: z.number().nullable(),
-    lessonCount: z.number().nullable(),
+    unitCount: z.number().nullable().optional(),
+    lessonCount: z.number().nullable().optional(),
   })
 );
 
@@ -212,6 +212,8 @@ const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
+  examBoardSlug: z.string().nullable(),
+  examBoardTitle: z.string().nullable(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
@@ -220,8 +222,8 @@ const unitListingData = z.object({
   units: unitsData,
   learningThemes: z.array(
     z.object({
-      learningThemeTitle: z.string().nullable(),
-      learningThemeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      themeSlug: z.string().nullable(),
     })
   ),
 });
@@ -422,6 +424,8 @@ const curriculumApi = {
       programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
+      examBoardSlug: null,
+      examBoardTitle: null,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
       totalUnitCount: programme?.totalUnitCount,
