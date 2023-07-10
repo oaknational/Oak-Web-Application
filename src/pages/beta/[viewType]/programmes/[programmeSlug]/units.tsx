@@ -57,10 +57,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   } = curriculumData;
 
   const router = useRouter();
-  const learningThemeSlug = router.query["learning-theme"]?.toString();
+  const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = learningThemeSlug
-    ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
+  const unitsFilteredByLearningTheme = themeSlug
+    ? units.filter((unit) => unit[0]?.themeSlug === themeSlug)
     : units;
 
   const paginationProps = usePagination({
@@ -175,9 +175,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      learningThemeSlug ? learningThemeSlug : "all"
-                    }
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "unit-index",
                       viewType: "teachers",
@@ -219,9 +217,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <LearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={
-                        learningThemeSlug ? learningThemeSlug : "all"
-                      }
+                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
                         page: "unit-index",
                         viewType: "teachers",

@@ -81,22 +81,24 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
 };
 
 const unitsData = z.array(
-  z.object({
-    slug: z.string(),
-    title: z.string(),
-    programmeSlug: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    themeSlug: z.string().nullable(),
-    themeTitle: z.string().nullable(),
-    lessonCount: z.number().nullable(),
-    quizCount: z.number().nullable(),
-    unitStudyOrder: z.number(),
-    expired: z.boolean().nullable(),
-    expiredLessonCount: z.number().nullable(),
-  })
+  z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      programmeSlug: z.string(),
+      keyStageSlug: z.string(),
+      keyStageTitle: z.string(),
+      subjectSlug: z.string(),
+      subjectTitle: z.string(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      lessonCount: z.number().nullable(),
+      quizCount: z.number().nullable(),
+      unitStudyOrder: z.number(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
+    })
+  )
 );
 
 const tiersData = z.array(
@@ -386,10 +388,18 @@ const curriculumApi = {
     const res = await sdk.unitListing(...args);
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
+    const unitsWithVariants = units.map((unit) => {
+      return [
+        {
+          ...unit,
+        },
+      ];
+    });
+
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
-    const learningThemes = units.map((unitWithTheme) => ({
-      learningThemeSlug: unitWithTheme?.themeSlug,
-      learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
+    const learningThemes = unitsWithVariants.map((unitWithTheme) => ({
+      learningThemeSlug: unitWithTheme[0]?.themeSlug,
+      learningThemeTitle: unitWithTheme[0]?.themeTitle || "No theme",
     }));
 
     // !Refactor index signature to be more specific
@@ -418,7 +428,7 @@ const curriculumApi = {
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
-      units,
+      units: unitsWithVariants,
     });
   },
   lessonOverviewPaths: async () => {

@@ -95,8 +95,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
     unitResults.units.forEach((unit) => {
       const unitSlug: UnitSlug = {
-        programmeSlug: unit.programmeSlug,
-        unitSlug: unit.slug,
+        programmeSlug: unit[0] ? unit[0].programmeSlug : programmeSlug,
+        unitSlug: unit[0] ? unit[0].slug : "",
       };
       unitSlugs.push(unitSlug);
     });

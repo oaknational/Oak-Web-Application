@@ -1,22 +1,24 @@
 import { z } from "zod";
 
 const unitSchema = z.array(
-  z.object({
-    slug: z.string(),
-    title: z.string(),
-    programmeSlug: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    lessonCount: z.number().nullable(),
-    quizCount: z.number().nullable(),
-    unitStudyOrder: z.number(),
-    expired: z.boolean().nullable(),
-    expiredLessonCount: z.number().nullable(),
-    themeSlug: z.string().nullable(),
-    themeTitle: z.string().nullable(),
-  })
+  z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      programmeSlug: z.string(),
+      keyStageSlug: z.string(),
+      keyStageTitle: z.string(),
+      subjectSlug: z.string(),
+      subjectTitle: z.string(),
+      lessonCount: z.number().nullable(),
+      quizCount: z.number().nullable(),
+      unitStudyOrder: z.number(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+    })
+  )
 );
 const tierSchema = z.array(
   z.object({
