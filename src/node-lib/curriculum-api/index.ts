@@ -400,8 +400,8 @@ const curriculumApi = {
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
     const learningThemes = unitsWithVariants.map((unitWithTheme) => ({
-      learningThemeSlug: unitWithTheme[0]?.themeSlug,
-      learningThemeTitle: unitWithTheme[0]?.themeTitle || "No theme",
+      themeSlug: unitWithTheme[0]?.themeSlug,
+      themeTitle: unitWithTheme[0]?.themeTitle || "No theme",
     }));
 
     // !Refactor index signature to be more specific
@@ -411,10 +411,10 @@ const curriculumApi = {
         learningThemes.map((theme) => [JSON.stringify(theme), theme])
       ).values(),
     ].sort((a, b) => {
-      if (a.learningThemeTitle < b.learningThemeTitle) {
+      if (a.themeTitle < b.themeTitle) {
         return -1;
       }
-      if (a.learningThemeTitle > b.learningThemeTitle) {
+      if (a.themeTitle > b.themeTitle) {
         return 1;
       }
       return 0;
