@@ -21874,7 +21874,7 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_5', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_5', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
 
 
 export const LessonDownloadsDocument = gql`
@@ -21986,16 +21986,16 @@ export const UnitListingDocument = gql`
   programme: published_mv_unit_listing_page_5(
     where: {programmeSlug: {_eq: $programmeSlug}}
   ) {
-    programmeSlug: programme_slug
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    tierSlug: tier_slug
-    totalUnitCount: unit_count
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    tierSlug
+    totalUnitCount: unitCount
     tiers
     units
-    learningThemes: learning_themes
+    learningThemes
   }
 }
     `;
