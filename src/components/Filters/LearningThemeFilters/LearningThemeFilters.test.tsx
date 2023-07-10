@@ -16,8 +16,8 @@ describe("PostCategoryList", () => {
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
-            learningThemeTitle: "Grammar",
-            learningThemeSlug: "grammar",
+            themeTitle: "Grammar",
+            themeSlug: "grammar",
           },
         ]}
         selectedThemeSlug={"all"}

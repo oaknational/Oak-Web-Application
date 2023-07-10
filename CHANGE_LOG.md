@@ -1,3 +1,19 @@
+# [1.202.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.2...v1.202.0) (2023-07-06)
+
+
+### Bug Fixes
+
+* **unit-listing:** fix test breaks ([5a1d9d8](https://github.com/oaknational/Oak-Web-Application/commit/5a1d9d8dfe58b0918796414456a75cc24152bea3))
+* **unitlisting:** increase test coverage for examboard presence ([5c03ac1](https://github.com/oaknational/Oak-Web-Application/commit/5c03ac18731281cf2338f332b405db772910e7e8))
+* **unitlisting:** repoint query for fix exam title ([164004c](https://github.com/oaknational/Oak-Web-Application/commit/164004cb668f2a18aaaf969aa81b8a3dd787d48c))
+
+
+### Features
+
+* **unit-listing:** add exam board to title if there is one ([06879cd](https://github.com/oaknational/Oak-Web-Application/commit/06879cd3e8a73cc1fad4859b512c52e5e4034bbc))
+* **unit-listing:** add examboard to the title is exists ([31d0d19](https://github.com/oaknational/Oak-Web-Application/commit/31d0d199d60851cad4be2252541f9c17638859c8))
+* **unit-listing:** prettier fix ([b27b4f8](https://github.com/oaknational/Oak-Web-Application/commit/b27b4f85cbc00dff88592610f9917e8b7e46cfac))
+
 ## [1.201.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.1...v1.201.2) (2023-07-04)
 
 
