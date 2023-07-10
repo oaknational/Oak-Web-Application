@@ -122,22 +122,19 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
-it.only("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
-  mockRouter.push({
-    pathname: "/beta/teachers/programmes/art-primary-ks1/units",
-    query: {
-      learningTheme: "computer-science-2",
+  it.only("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
+    mockRouter.push({
+      pathname: "/beta/teachers/programmes/art-primary-ks1/units",
+      query: {
+        learningTheme: "computer-science-2",
       },
-});
-  const { getByRole } = render(
-    <UnitListingPage curriculumData={unitListingFixture()} />
+    });
+    const { getByRole } = render(
+      <UnitListingPage curriculumData={unitListingFixture()} />
+    );
 
-  );
-  
- expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
-
-
-});
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+  });
   describe("getStaticPaths", () => {
     it("Should return the paths of all programmes", async () => {
       await getStaticPaths();
