@@ -18,6 +18,8 @@ import SubjectIcon from "components/SubjectIcon/SubjectIcon";
 import BrushBorders from "components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import AvatarImage from "components/AvatarImage/AvatarImage";
 import BoxBorders from "components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import OakLink from "components/OakLink/OakLink";
+import Icon from "components/Icon/Icon";
 
 export type CurriculumInfoPageProps = {
   data: ProgrammeListingPaths;
@@ -75,9 +77,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
       <Box $background={"white"}>
         <Box $background={"grey1"}>
           <Flex $width={"80%"} $ma={"auto"}>
-            <Button label="Overview" $ml={0} background={"grey1"} />
-            <Button label="Units" $ml={10} background={"white"} />
-            <Button label="Downloads" $ml={10} background={"white"} />
+            <Button label="Overview" $ml={0} $mb={1} background={"grey1"} />
+            <Button label="Units" $ml={12} $mb={1} background={"white"} />
+            <Button label="Downloads" $ml={12} $mb={1} background={"white"} />
           </Flex>
         </Box>
         <Box $width={"80%"} $ma={"auto"}>
@@ -122,14 +124,29 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
 
         <Box $maxWidth={"80%"} $ma={"auto"}>
           <h3>Video guide</h3>
+          <Flex $justifyContent={"space-around"}>
+            <Box $mh={6}>
+              <P>
+                Our new curriculum sequence has recently launched. For
+                additional support, watch this video guide by [Firstname
+                Surname] from our educational team, as they talk you through how
+                to use this new tool.
+              </P>
+              <OakLink $color={"black"} $font="heading-7" page={"help"}>
+                Read more about our new curriculum
+                <Icon name={"chevron-right"} $objectFit={"fill"} />
+              </OakLink>
+            </Box>
+            <Box $mh={6} $height={300} $width={"100%"} $background={"black"}>
+              Video here
+            </Box>
+          </Flex>
         </Box>
 
         <Card
           $background={"teachersLilac"}
           $width={"80%"}
-          $ph={50}
-          $pt={24}
-          $pb={36}
+          $mt={24}
           $ma={"auto"}
         >
           <BrushBorders color="teachersLilac" />
