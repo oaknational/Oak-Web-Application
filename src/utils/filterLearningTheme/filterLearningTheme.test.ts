@@ -11,7 +11,8 @@ describe("filterLearningTheme", () => {
   it("should return units if themeSlug has a value", () => {
     const themeSlug = "computer-science-1";
     const units = unitListingFixture().units;
-    expect(filterLearningTheme(themeSlug, units)).toEqual([[
+    expect(filterLearningTheme(themeSlug, units)).toEqual([
+      [
         {
           slug: "data-representation-618b",
           title: "Data Representation",
@@ -28,6 +29,7 @@ describe("filterLearningTheme", () => {
           expired: false,
           expiredLessonCount: 0,
         },
-      ]]);
+      ],
+    ]);
   });
 });

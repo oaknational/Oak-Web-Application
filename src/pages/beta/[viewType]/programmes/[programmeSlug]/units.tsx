@@ -61,10 +61,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-   const unitsFilteredByLearningTheme = filterLearningTheme(
-      themeSlug,
-      units
-    );
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
