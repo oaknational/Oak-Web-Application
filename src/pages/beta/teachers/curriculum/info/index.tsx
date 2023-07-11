@@ -16,8 +16,8 @@ import DropdownSelect from "components/DropdownSelect";
 import ButtonAsLink from "components/Button/ButtonAsLink";
 import SubjectIcon from "components/SubjectIcon/SubjectIcon";
 import BrushBorders from "components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import CardTitle from "components/Card/CardComponents/CardTitle";
 import AvatarImage from "components/AvatarImage/AvatarImage";
+import BoxBorders from "components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type CurriculumInfoPageProps = {
   data: ProgrammeListingPaths;
@@ -53,12 +53,7 @@ const subjects = [
   { value: "science", label: "Science" },
 ];
 
-// export { subjects, examBoards, schoolPhase, mathsCurriculaDesc };
-
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
-  // const { data } = props;
-  // console.log(data);
-
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
       <CurriculaSelection />
@@ -77,57 +72,80 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           </MaxWidth>
         </Box>
       </Flex>
-
-      <Box $background={"white"} $ma={"auto"}>
+      <Box $background={"white"}>
         <Box $background={"grey1"}>
-          <Flex>
-            <Button label="Curriculum info" $ml={6} background={"white"} />
-            <Button label="Unit sequence" $ml={16} />
+          <Flex $width={"80%"} $ma={"auto"}>
+            <Button label="Overview" $ml={0} background={"grey1"} />
+            <Button label="Units" $ml={10} background={"white"} />
+            <Button label="Downloads" $ml={10} background={"white"} />
           </Flex>
         </Box>
-        <Flex $maxWidth={"100%"} $pv={10} $ph={20} $justifyContent={"center"}>
-          <Box $ph={30} $pv={20}>
-            <P>{mathsCurriculaDesc}</P>
-          </Box>
-          <SubjectIcon subjectSlug="maths" width={100} $ph={72} $ma={"auto"} />
-        </Flex>
-      </Box>
-      <Box $background={"white"}>
-        <Flex $justifyContent={"center"}>
-          {[1, 2, 3].map((pointNum) => {
-            return (
-              <Card
-                $mh={20}
-                $mv={20}
-                $background={"teachersLilac"}
-                key={`example-curricula-points-${pointNum}`}
-              >
-                <BrushBorders color={"teachersLilac"} />
-                <CardTitle tag={"h4"}>Point {pointNum}</CardTitle>
-                <P>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et
-                  massa mi. Aliquam in hendrerit urna. Pellentesque sit amet
-                  sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                  Maecenas vitae mattis tellus.
-                </P>
-              </Card>
-            );
-          })}
-        </Flex>
-      </Box>
-      <Box $background={"white"} $ph={50} $pt={36} $pb={36} $ma={"auto"}>
-        <Flex $justifyContent={"center"}>
-          <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
-          <Box>
-            <h4>This curriculum was created by [Firstname Surname]</h4>
-            <P>
-              [Firstname Surname] is a [role] who has had the following
-              experience: Aliquam in hendrerit urna. Pellentesque sit amet
-              sapien fringilla, mattis ligula consectetur, ultrices mauris.
-              Maecenas vitae mattis tellus.
-            </P>
-          </Box>
-        </Flex>
+        <Box $width={"80%"} $ma={"auto"}>
+          <Flex
+            $width={"100%"}
+            $pv={10}
+            $ph={20}
+            $justifyContent={"space-between"}
+          >
+            <Box $pv={20}>
+              <P>{mathsCurriculaDesc}</P>
+            </Box>
+            <SubjectIcon
+              subjectSlug="maths"
+              width={100}
+              $ph={72}
+              $ma={"auto"}
+            />
+          </Flex>
+        </Box>
+
+        <Box $maxWidth={"80%"} $ma={"auto"}>
+          <h3>Subject principles</h3>
+          <Flex $justifyContent={"center"}>
+            {[1, 2, 3, 4].map((pointNum) => {
+              return (
+                <Card
+                  $mh={3}
+                  $mv={20}
+                  $background={"white"}
+                  key={`example-curricula-points-${pointNum}`}
+                >
+                  <BoxBorders />
+                  <P>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </P>
+                </Card>
+              );
+            })}
+          </Flex>
+        </Box>
+
+        <Box $maxWidth={"80%"} $ma={"auto"}>
+          <h3>Video guide</h3>
+        </Box>
+
+        <Card
+          $background={"teachersLilac"}
+          $width={"80%"}
+          $ph={50}
+          $pt={24}
+          $pb={36}
+          $ma={"auto"}
+        >
+          <BrushBorders color="teachersLilac" />
+          <Flex $justifyContent={"center"}>
+            <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
+            <Box>
+              <h4>This curriculum was created by [Firstname Surname]</h4>
+              <P>
+                [Firstname Surname] is a [role] who has had the following
+                experience: Aliquam in hendrerit urna. Pellentesque sit amet
+                sapien fringilla, mattis ligula consectetur, ultrices mauris.
+                Maecenas vitae mattis tellus.
+              </P>
+            </Box>
+          </Flex>
+        </Card>
       </Box>
     </AppLayout>
   );
@@ -204,7 +222,6 @@ const CurriculaSelection: FC = () => {
                 $mr={[0, 24]}
               />
             </GridArea>
-
             <GridArea $colSpan={[12, 2]}>
               <Button
                 label="View"
