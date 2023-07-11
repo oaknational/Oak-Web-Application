@@ -35,6 +35,7 @@ import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
+import { filterLearningTheme } from "../../../../../utils/filterLearningTheme/filterLearningTheme";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -60,9 +61,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = themeSlug
-    ? units.filter((unit) => unit[0]?.themeSlug === themeSlug)
-    : units;
+   const unitsFilteredByLearningTheme = filterLearningTheme(
+      themeSlug,
+      units
+    );
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
