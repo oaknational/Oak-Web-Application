@@ -83,21 +83,25 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           </Flex>
         </Box>
         <Box $width={"80%"} $ma={"auto"}>
-          <Flex
-            $width={"100%"}
-            $pv={10}
-            $ph={20}
-            $justifyContent={"space-between"}
-          >
-            <Box $pv={20}>
+          <Flex $width={"100%"} $mv={10} $justifyContent={"space-between"}>
+            <Box $mv={20} $mr={16}>
               <P>{mathsCurriculaDesc}</P>
             </Box>
-            <SubjectIcon
-              subjectSlug="maths"
-              width={100}
-              $ph={72}
+
+            <Card
+              $ml={40}
+              $height={"100%"}
+              $width={"100%"}
               $ma={"auto"}
-            />
+              $background={"teachersLilac"}
+            >
+              <BrushBorders color="teachersLilac" />
+              <SubjectIcon
+                subjectSlug="maths"
+                $minWidth={120}
+                $background={"teachersLilac"}
+              />
+            </Card>
           </Flex>
         </Box>
 
@@ -123,21 +127,23 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
         </Box>
 
         <Box $maxWidth={"80%"} $ma={"auto"}>
-          <h3>Video guide</h3>
+          <Heading $mv={6} tag="h3">
+            Video guide
+          </Heading>
           <Flex $justifyContent={"space-around"}>
-            <Box $mh={6}>
-              <P>
+            <Box $mh={6} $maxWidth={"40%"}>
+              <P $mv={6}>
                 Our new curriculum sequence has recently launched. For
                 additional support, watch this video guide by [Firstname
                 Surname] from our educational team, as they talk you through how
                 to use this new tool.
               </P>
-              <OakLink $color={"black"} $font="heading-7" page={"help"}>
+              <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
                 Read more about our new curriculum
-                <Icon name={"chevron-right"} $objectFit={"fill"} />
+                <Icon name={"chevron-right"} />
               </OakLink>
             </Box>
-            <Box $mh={6} $height={300} $width={"100%"} $background={"black"}>
+            <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
               Video here
             </Box>
           </Flex>
