@@ -60,7 +60,7 @@ const unitListingFixture = (
           keyStageTitle: "Key stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
-          themeSlug: "computer-science-2",
+          themeSlug: "computer-science-3",
           themeTitle: "Computer Science",
           lessonCount: 6,
           quizCount: null,
