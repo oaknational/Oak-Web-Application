@@ -88,19 +88,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     unitSlug: string;
   }
   const unitSlugs: UnitSlug[] = [];
-  for await (const singleProgrammeSlug of programmeSlugs) {
-    const { programmeSlug } = singleProgrammeSlug;
-    const unitResults = await curriculumApi.unitListing({
-      programmeSlug,
-    });
-    unitResults.units.forEach((unit) => {
-      const unitSlug: UnitSlug = {
-        programmeSlug: unit[0] ? unit[0].programmeSlug : programmeSlug,
-        unitSlug: unit[0] ? unit[0].slug : "",
-      };
-      unitSlugs.push(unitSlug);
-    });
-  }
+  // for await (const singleProgrammeSlug of programmeSlugs) {
+  //   // const { programmeSlug } = singleProgrammeSlug;
+  //   // const unitResults = await curriculumApi.unitListing({
+  //   //   programmeSlug,
+  //   // });
+  //   // unitResults.units.forEach((unit) => {
+  //   //   const unitSlug: UnitSlug = {
+  //   //     programmeSlug: unit[0] ? unit[0].programmeSlug : programmeSlug,
+  //   //     unitSlug: unit[0] ? unit[0].slug : "",
+  //   //   };
+  //   //   unitSlugs.push(unitSlug);
+  //   // });
+  // }
   const unitPaths = unitSlugs.map((unitSlug) =>
     path.join(
       sitemapBaseUrl,
