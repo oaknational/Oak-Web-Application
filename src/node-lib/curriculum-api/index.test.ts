@@ -10,6 +10,7 @@ import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
 import subjectListingFixture from "./fixtures/subjectListing.fixture";
 import programmeListingPathsFixture from "./fixtures/programmeListingPaths.fixture";
 import lessonDownloadPathsFixture from "./fixtures/lessonDownloadPaths.fixture";
+import unitsFixture from "./fixtures/units.fixture";
 
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
@@ -42,7 +43,7 @@ const unitListing = jest.fn(() => ({
     },
   ],
   mv_tiers: unitListingFixture().tiers,
-  mv_units: unitListingFixture().units,
+  mv_units: unitsFixture(),
 }));
 const lessonListingPaths = jest.fn(() => ({
   mv_lessons: lessonListingPathsFixture().units,
