@@ -3,8 +3,6 @@ import { GetServerSidePropsContext, PreviewData } from "next";
 import { getServerSideProps } from "../../../../pages/beta/[viewType]/key-stages/sitemap.xml";
 import { URLParams } from "../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 
-jest.unmock(".");
-
 describe("Sitemap", () => {
   beforeEach(() => {
     process.env.SITEMAP_BASE_URL = "http://example.com";
