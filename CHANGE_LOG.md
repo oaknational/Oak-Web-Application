@@ -1,3 +1,26 @@
+# [1.203.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.202.0...v1.203.0) (2023-07-14)
+
+
+### Features
+
+* **unit-listing:** add optionality options to the unit listing page ([35a397d](https://github.com/oaknational/Oak-Web-Application/commit/35a397db46a9807e65bdba22b665dd980f4dc316))
+* **unit-listing:** coverage fix ([7088953](https://github.com/oaknational/Oak-Web-Application/commit/708895352ffd10a5fad60574ac96650c5fa2a4d2))
+* **unit-listing:** fix learning themes ([ff8481d](https://github.com/oaknational/Oak-Web-Application/commit/ff8481ddd1e430992b9ff81a24d2dc8fc8ea5402))
+* **unit-listing:** fix test ([1ae78dc](https://github.com/oaknational/Oak-Web-Application/commit/1ae78dcf0aff896f389a170e303f14806b2d5ab0))
+* **unit-listing:** fix test coverage ([85302e5](https://github.com/oaknational/Oak-Web-Application/commit/85302e58d24df92146741ae080d5a8929a56a0cf))
+* **unit-listing:** fix test coverage ([a89ab45](https://github.com/oaknational/Oak-Web-Application/commit/a89ab45a6c0f41f8c7a36228d6f4befbf2e74906))
+* **unit-listing:** increase coverage ([dfb8e4e](https://github.com/oaknational/Oak-Web-Application/commit/dfb8e4eb61228972c2876103dd77b8d93254d36c))
+* **unit-listing:** merge main ([cd5ee9e](https://github.com/oaknational/Oak-Web-Application/commit/cd5ee9e5608cf67827fc04ba5029f29a0a6725bc))
+* **unit-listing:** move test suite ([1e2b637](https://github.com/oaknational/Oak-Web-Application/commit/1e2b637bfee013cc82343b881e2daced96930353))
+* **unit-listing:** move test suite ([78092cb](https://github.com/oaknational/Oak-Web-Application/commit/78092cb95b6368633e61aba2935490729fa4c58f))
+* **unit-listing:** prettier fix ([74885c4](https://github.com/oaknational/Oak-Web-Application/commit/74885c41f491b75ecef08792cdc75beab50a2184))
+* **unit-listing:** refactor filter by learning them to make testable ([47ea208](https://github.com/oaknational/Oak-Web-Application/commit/47ea2087b79baf9063d240d3939caf357633df8c))
+* **unit-listing:** sitemap isnt called ([a196f94](https://github.com/oaknational/Oak-Web-Application/commit/a196f941fd7cc04ea6162fa2995c8b7c54210263))
+* **unit-listing:** sitemap isnt called ([b63e8ea](https://github.com/oaknational/Oak-Web-Application/commit/b63e8eaed2d6156b08c81a3a71d7ad8c5e450af3))
+* **unit-listing:** sitemap isnt called ([577db3b](https://github.com/oaknational/Oak-Web-Application/commit/577db3be95827fdcc00bd16d949e646017db35e3))
+* **unit-listing:** trigger check rerun ([d2358ac](https://github.com/oaknational/Oak-Web-Application/commit/d2358ac06ff6f9a57362e6a92392f6ceb2a6054f))
+* **unit-listing:** update unit listing query ([fbf20c5](https://github.com/oaknational/Oak-Web-Application/commit/fbf20c5187e2e1c5b6ee95958b674a1cfe740018))
+
 # [1.202.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.201.2...v1.202.0) (2023-07-06)
 
 
