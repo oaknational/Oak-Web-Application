@@ -2,11 +2,11 @@ import { match, compile, MatchFunction } from "path-to-regexp";
 
 import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import config from "../../config/browser";
 import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 import OakError from "../../errors/OakError";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
@@ -38,7 +38,7 @@ const getCurrentHostname = () => {
   if (isBrowser) {
     return window.location.hostname;
   }
-  return config.get("clientAppBaseUrl");
+  return getBrowserConfig("clientAppBaseUrl");
 };
 export const isOakPage = (page: MaybeOakPageType): page is OakPageType => {
   return Object.keys(OAK_PAGES).includes(page);

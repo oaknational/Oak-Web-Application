@@ -1,4 +1,4 @@
-import config from "../../config/browser";
+import getBrowserConfig from "../getBrowserConfig";
 
 import { AvoEnv } from "./Avo";
 
@@ -7,7 +7,7 @@ import { AvoEnv } from "./Avo";
  * @todo: use release stage from constants
  */
 const getAvoEnv = () => {
-  switch (config.get("releaseStage")) {
+  switch (getBrowserConfig("releaseStage")) {
     case "production":
       return AvoEnv.Prod;
     case "development":
