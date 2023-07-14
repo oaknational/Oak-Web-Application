@@ -14,7 +14,7 @@ import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 
 export type UnitListItemProps = Omit<
-  UnitListingData["units"][number],
+  UnitListingData["units"][number][number],
   "year" | "unitStudyOrder"
 > & {
   hideTopHeading?: boolean;
