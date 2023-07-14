@@ -1,8 +1,7 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import { URLParams } from "../[keyStageSlug]/subjects/[subjectSlug]/programmes";
-
-import { getServerSideProps } from ".";
+import { getServerSideProps } from "../../../../pages/beta/[viewType]/key-stages/sitemap.xml";
+import { URLParams } from "../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 
 jest.unmock(".");
 
