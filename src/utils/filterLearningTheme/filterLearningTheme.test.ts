@@ -28,6 +28,12 @@ describe("filterLearningTheme", () => {
           unitStudyOrder: 1,
           expired: false,
           expiredLessonCount: 0,
+          learningThemes: [
+            {
+              themeSlug: "computer-science-1",
+              themeTitle: "Computer Science",
+            },
+          ],
         },
       ],
     ]);
