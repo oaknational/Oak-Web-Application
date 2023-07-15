@@ -97,6 +97,12 @@ const unitsData = z.array(
       unitStudyOrder: z.number(),
       expired: z.boolean().nullable(),
       expiredLessonCount: z.number().nullable(),
+      learningThemes: z.array(
+        z.object({
+          themeSlug: z.string().nullable(),
+          themeTitle: z.string().nullable(),
+        })
+      ),
     })
   )
 );
@@ -391,9 +397,16 @@ const curriculumApi = {
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const unitsWithVariants = units.map((unit) => {
+      const learningThemes = [
+        {
+          themeTitle: unit.themeTitle,
+          themeSlug: unit.themeSlug,
+        },
+      ];
       return [
         {
           ...unit,
+          learningThemes,
         },
       ];
     });
@@ -403,8 +416,6 @@ const curriculumApi = {
       themeSlug: unitWithTheme[0]?.themeSlug,
       themeTitle: unitWithTheme[0]?.themeTitle || "No theme",
     }));
-
-    // !Refactor index signature to be more specific
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(

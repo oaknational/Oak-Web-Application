@@ -22,6 +22,12 @@ const props = {
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
+  learningThemes: [
+    {
+      themeTitle: "Circles",
+      themeSlug: "circles",
+    },
+  ],
 };
 
 const unitSelected = jest.fn();
