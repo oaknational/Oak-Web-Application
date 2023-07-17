@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const learningThemesSchema = z.object({
+  themeTitle: z.string().nullable(),
+  themeSlug: z.string().nullable(),
+});
+
 const unitSchema = z.array(
   z.array(
     z.object({
@@ -17,6 +22,7 @@ const unitSchema = z.array(
       expiredLessonCount: z.number().nullable(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
+      learningThemes: z.array(learningThemesSchema),
     })
   )
 );
@@ -42,12 +48,7 @@ const unitListingSchema = z.object({
   totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
-  learningThemes: z.array(
-    z.object({
-      themeTitle: z.string().nullable(),
-      themeSlug: z.string().nullable(),
-    })
-  ),
+  learningThemes: z.array(learningThemesSchema),
 });
 
 export type unitListingPageData = z.infer<typeof unitListingSchema>;

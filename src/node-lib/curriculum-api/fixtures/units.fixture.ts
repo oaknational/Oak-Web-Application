@@ -17,6 +17,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 1,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "computer-systems-e17a",
@@ -33,6 +39,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 2,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "networks-fe4b",
@@ -49,6 +61,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 3,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "security-a5e3",
@@ -65,6 +83,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 4,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "impacts-on-society-fb09",
@@ -81,6 +105,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 5,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "algorithms-a118",
@@ -97,6 +127,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 6,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "programming-1-sequence-2cbd",
@@ -113,6 +149,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 1,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "programming-2-selection-cbc4",
@@ -129,6 +171,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 2,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "no-theme",
+          themeTitle: null,
+        },
+      ],
     },
     {
       slug: "programming-3-iteration-2e20",
@@ -145,6 +193,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 3,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "no-theme",
+          themeTitle: null,
+        },
+      ],
     },
     {
       slug: "programming-4-subroutines-7e33",
@@ -161,6 +215,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 4,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "no-theme",
+          themeTitle: null,
+        },
+      ],
     },
     {
       slug: "programming-5-strings-and-lists-9161",
@@ -177,6 +237,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 5,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "no-theme",
+          themeTitle: null,
+        },
+      ],
     },
     {
       slug: "programming-6-dictionaries-and-datafiles-b91f",
@@ -193,6 +259,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 6,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "no-theme",
+          themeTitle: null,
+        },
+      ],
     },
     {
       slug: "databases-and-sql-73d9",
@@ -209,6 +281,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 7,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "html-beb0",
@@ -225,6 +303,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 8,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
     {
       slug: "object-oriented-programming-dc22",
@@ -241,6 +325,12 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 9,
       expired: false,
       expiredLessonCount: 0,
+      learningThemes: [
+        {
+          themeSlug: "computer-science-2",
+          themeTitle: "Computer Science",
+        },
+      ],
     },
   ];
 };
