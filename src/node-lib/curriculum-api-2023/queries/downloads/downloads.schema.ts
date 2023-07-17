@@ -17,7 +17,7 @@ export const lessonDownloadsSchema = z.object({
       ext: z.string(),
       forbidden: z.union([
         z.array(z.object({ copyright_info: z.string() })),
-        z.boolean().optional().nullable(),
+        z.boolean().optional().nullish(),
       ]),
     })
   ),
