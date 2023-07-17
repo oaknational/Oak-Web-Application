@@ -11,33 +11,30 @@ import Card from "../Card";
 import useClickableCard from "../../hooks/useClickableCard";
 import Box from "../Box";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-
-export type TierListItemProps = {
-  subjectTitle: string;
-  subjectSlug: string;
-  tierTitle?: string | null;
-  tierSlug: string | null;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  totalUnitCount: number | null;
-  activeLessonCount: number | null;
-  programmeSlug: string;
-};
+import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 type BackgroundProps = {
   background: OakColorName;
 };
 
-const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
+const ProgrammeListItem: FC<
+  Pick<
+    ProgrammeListingPageData,
+    "subjectSlug" | "keyStageSlug" | "keyStageTitle"
+  > &
+    ProgrammeListingPageData["programmes"][number] &
+    BackgroundProps
+> = (props) => {
   const {
-    subjectTitle,
     subjectSlug,
+    subjectTitle,
     tierTitle,
+    examBoardTitle,
     keyStageSlug,
     keyStageTitle,
     background,
-    activeLessonCount,
-    totalUnitCount,
+    lessonCount,
+    unitCount,
     programmeSlug,
   } = props;
   const { containerProps, isHovered, primaryTargetProps } =
@@ -45,16 +42,12 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  if (!tierTitle) {
-    return null;
-  }
-
   return (
     <Card
       $overflow={"hidden"}
       {...containerProps}
       $pa={0}
-      data-testid={"tier-list-item"}
+      data-testid={"programme-list-item"}
     >
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
@@ -67,18 +60,19 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           viewType="teachers"
           programmeSlug={programmeSlug}
           onClick={() => {
-            track.tierSelected({
-              subjectTitle,
-              subjectSlug,
-              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-              keyStageSlug,
-              tierName: tierTitle,
-              analyticsUseCase,
-            });
+            tierTitle !== null &&
+              track.tierSelected({
+                subjectTitle,
+                subjectSlug,
+                keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                keyStageSlug,
+                tierName: tierTitle,
+                analyticsUseCase,
+              });
           }}
         >
           <Heading $ma={16} $font={"heading-7"} tag="h3">
-            {tierTitle}
+            {tierTitle ?? examBoardTitle}
           </Heading>
         </OakLink>
       </Flex>
@@ -93,8 +87,8 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
           $font={"body-3"}
           $color={"oakGrey4"}
         >
-          <Span $mb={4}>{`${totalUnitCount} units`}</Span>
-          <Span $font={"body-3"}>{`${activeLessonCount} lessons`}</Span>
+          <Span $mb={4}>{`${unitCount} units`}</Span>
+          <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>
       </Box>
       <BoxBorders gapPosition="rightTop" />
@@ -102,4 +96,4 @@ const TierListItem: FC<TierListItemProps & BackgroundProps> = (props) => {
   );
 };
 
-export default TierListItem;
+export default ProgrammeListItem;

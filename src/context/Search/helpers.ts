@@ -105,14 +105,12 @@ export function getLessonObject(props: {
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
-    themeTitle: highlightedHit.theme_title?.toString() || null,
     subjectSlug: highlightedHit.subject_slug?.toString(),
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
     unitSlug: highlightedHit.topic_slug?.toString() || "",
     unitTitle: highlightedHit.topic_title?.toString() || "",
-    themeSlug: null, // null values -  add to elastic slug index in acorn
     videoCount: null,
     presentationCount: null,
     worksheetCount: null,
@@ -150,6 +148,7 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     expired: Boolean(highlightedHit.expired),
+    learningThemes: [{ themeSlug: null, themeTitle: null }],
   };
 }
 

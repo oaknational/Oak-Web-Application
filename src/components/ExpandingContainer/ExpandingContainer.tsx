@@ -145,7 +145,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 background={"teachersPastelBlue"}
                 icon="external"
                 onClick={() => {
-                  console.log("External Clicked!");
+                  // console.log("External Clicked!");
                 }}
                 variant="brush"
               />
@@ -158,7 +158,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 background={"teachersPastelBlue"}
                 icon="project"
                 onClick={() => {
-                  console.log("Project Clicked!");
+                  // console.log("Project Clicked!");
                 }}
                 variant="brush"
               />

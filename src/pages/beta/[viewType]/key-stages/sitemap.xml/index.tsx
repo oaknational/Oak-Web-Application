@@ -56,9 +56,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const subjectResults = await curriculumApi.subjectListing({
       keyStageSlug,
     });
-    subjectResults.programmesAvailable.forEach((programme) => {
+    subjectResults.subjects.forEach((subject) => {
       const programmeSlug: ProgrammeSlug = {
-        programmeSlug: programme.programmeSlug,
+        programmeSlug: subject.programmeSlug,
       };
       programmeSlugs.push(programmeSlug);
     });
@@ -95,8 +95,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
     unitResults.units.forEach((unit) => {
       const unitSlug: UnitSlug = {
-        programmeSlug: unit.programmeSlug,
-        unitSlug: unit.slug,
+        programmeSlug: unit[0] ? unit[0].programmeSlug : programmeSlug,
+        unitSlug: unit[0] ? unit[0].slug : "",
       };
       unitSlugs.push(unitSlug);
     });
@@ -143,8 +143,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     });
     lessonResults.lessons.forEach((lesson) => {
       const lessonSlug: LessonSlug = {
-        programmeSlug: lesson.programmeSlug,
-        unitSlug: lesson.unitSlug,
+        programmeSlug: lessonResults.programmeSlug,
+        unitSlug: lessonResults.unitSlug,
         lessonSlug: lesson.lessonSlug,
       };
       lessonSlugs.push(lessonSlug);

@@ -7,7 +7,6 @@ import {
 } from "next";
 
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../node-lib/isr";
@@ -25,6 +24,7 @@ import Grid from "../../../../../../../../components/Grid";
 import curriculumApi, {
   LessonOverviewData,
 } from "../../../../../../../../node-lib/curriculum-api";
+import curriculumApi2023 from "../../../../../../../../node-lib/curriculum-api-2023";
 import LessonHelper from "../../../../../../../../components/LessonHelper";
 import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
@@ -43,6 +43,7 @@ import type {
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
 import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../../node-lib/getPageProps";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -409,31 +410,41 @@ export const getStaticProps: GetStaticProps<
   LessonOverviewPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context.params");
-  }
-  const { lessonSlug, unitSlug, programmeSlug } = context.params;
+  return getPageProps({
+    page: "lesson-overview::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-  const curriculumData = await curriculumApi.lessonOverview({
-    programmeSlug,
-    lessonSlug,
-    unitSlug,
-  });
+      const curriculumData =
+        context?.params.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonOverview({
+              lessonSlug,
+            })
+          : await curriculumApi.lessonOverview({
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<LessonOverviewPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonOverviewPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default LessonOverviewPage;

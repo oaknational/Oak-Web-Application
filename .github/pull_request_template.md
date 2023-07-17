@@ -8,7 +8,7 @@ Fixes #
 
 ## How to test
 
-1. Go to {cloud link}
+1. Go to {owa_deployment_url}
 2. Click on _______
 3. You should see _______
 

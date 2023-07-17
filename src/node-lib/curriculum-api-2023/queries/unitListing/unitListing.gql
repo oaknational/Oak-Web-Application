@@ -1,0 +1,20 @@
+query unitListing($programmeSlug: String!) {
+  programme: published_mv_unit_listing_page_5(
+    where: {
+      programmeSlug: { _eq: $programmeSlug }
+    }
+  ) {
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    tierSlug
+    totalUnitCount:unitCount
+    tiers
+    units
+    examBoardTitle
+    examBoardSlug
+    learningThemes
+  }
+}

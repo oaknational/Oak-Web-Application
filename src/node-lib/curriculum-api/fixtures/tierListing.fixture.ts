@@ -1,4 +1,68 @@
 import { TierListingData } from "..";
+import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+
+export const programmeListingFixture = (
+  partial?: Partial<ProgrammeListingPageData>
+): ProgrammeListingPageData => {
+  return {
+    keyStageSlug: "ks3",
+    keyStageTitle: "Key stage 3",
+    subjectSlug: "maths",
+    subjectTitle: "Maths",
+    programmes: [
+      {
+        programmeSlug: "maths-secondary-ks4-core",
+        subjectTitle: "Maths",
+        unitCount: 61,
+        lessonCount: 284,
+        tierSlug: "core",
+        tierTitle: "Core",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-foundation",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 256,
+        tierSlug: "foundation",
+        tierTitle: "Foundation",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-higher",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 275,
+        tierSlug: "higher",
+        tierTitle: "Higher",
+        tierDisplayOrder: "1",
+        examBoardDisplayOrder: null,
+        examBoardSlug: null,
+        examBoardTitle: null,
+      },
+      {
+        programmeSlug: "maths-secondary-ks4-aqa",
+        subjectTitle: "Maths",
+        unitCount: 63,
+        lessonCount: 275,
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardDisplayOrder: "1",
+        examBoardSlug: "aqa",
+        examBoardTitle: "AQA",
+      },
+    ],
+
+    ...partial,
+  };
+};
 
 const tierListingFixture = (
   partial?: Partial<TierListingData>
