@@ -5,25 +5,14 @@ export const filterLearningTheme = (
   units: UnitListingData["units"]
 ): UnitListingData["units"] => {
   if (themeSlug) {
-    const filteredUnits = [];
+    const filteredUnits = units.filter((unitVariant) =>
+      unitVariant.some((unit) =>
+        unit.learningThemes.some(
+          (learningTheme) => learningTheme.themeSlug === themeSlug
+        )
+      )
+    );
 
-    for (const unitVariant of units) {
-      let hasMatch = false;
-
-      for (const unit of unitVariant) {
-        for (const learningTheme of unit.learningThemes) {
-          if (learningTheme.themeSlug === themeSlug) {
-            filteredUnits.push(unitVariant);
-            hasMatch = true;
-            break;
-          }
-        }
-
-        if (hasMatch) {
-          break;
-        }
-      }
-    }
     return filteredUnits;
   } else {
     return units;
