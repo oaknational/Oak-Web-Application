@@ -5,7 +5,15 @@ export const filterLearningTheme = (
   units: UnitListingData["units"]
 ): UnitListingData["units"] => {
   if (themeSlug) {
-    return units.filter((unit) => unit[0]?.themeSlug === themeSlug);
+    const filteredUnits = units.filter((unitVariant) =>
+      unitVariant.some((unit) =>
+        unit.learningThemes.some(
+          (learningTheme) => learningTheme.themeSlug === themeSlug
+        )
+      )
+    );
+
+    return filteredUnits;
   } else {
     return units;
   }
