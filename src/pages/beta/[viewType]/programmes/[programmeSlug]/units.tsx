@@ -35,6 +35,7 @@ import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
 import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
+import { filterLearningTheme } from "../../../../../utils/filterLearningTheme/filterLearningTheme";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -53,16 +54,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     learningThemes,
-    totalUnitCount,
     examBoardTitle,
   } = curriculumData;
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = themeSlug
-    ? units.filter((unit) => unit.themeSlug === themeSlug)
-    : units;
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
@@ -206,7 +204,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 <Flex $position={["absolute", "relative"]}>
                   <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    {`Units (${totalUnitCount})`}
+                    {`Units (${unitsFilteredByLearningTheme.length})`}
                   </Heading>
                 </Flex>
                 {learningThemes?.length > 1 && (

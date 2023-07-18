@@ -1,22 +1,30 @@
 import { z } from "zod";
 
+const learningThemesSchema = z.object({
+  themeTitle: z.string().nullable(),
+  themeSlug: z.string().nullable(),
+});
+
 const unitSchema = z.array(
-  z.object({
-    slug: z.string(),
-    title: z.string(),
-    programmeSlug: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    lessonCount: z.number().nullable(),
-    quizCount: z.number().nullable(),
-    unitStudyOrder: z.number(),
-    expired: z.boolean().nullable(),
-    expiredLessonCount: z.number().nullable(),
-    themeSlug: z.string().nullable(),
-    themeTitle: z.string().nullable(),
-  })
+  z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      programmeSlug: z.string(),
+      keyStageSlug: z.string(),
+      keyStageTitle: z.string(),
+      subjectSlug: z.string(),
+      subjectTitle: z.string(),
+      lessonCount: z.number().nullable(),
+      quizCount: z.number().nullable(),
+      unitStudyOrder: z.number(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      learningThemes: z.array(learningThemesSchema),
+    })
+  )
 );
 const tierSchema = z.array(
   z.object({
@@ -40,12 +48,7 @@ const unitListingSchema = z.object({
   totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
-  learningThemes: z.array(
-    z.object({
-      themeTitle: z.string().nullable(),
-      themeSlug: z.string().nullable(),
-    })
-  ),
+  learningThemes: z.array(learningThemesSchema),
 });
 
 export type unitListingPageData = z.infer<typeof unitListingSchema>;

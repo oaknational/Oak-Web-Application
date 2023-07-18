@@ -92,22 +92,30 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
 };
 
 const unitsData = z.array(
-  z.object({
-    slug: z.string(),
-    title: z.string(),
-    programmeSlug: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    themeSlug: z.string().nullable(),
-    themeTitle: z.string().nullable(),
-    lessonCount: z.number().nullable(),
-    quizCount: z.number().nullable(),
-    unitStudyOrder: z.number(),
-    expired: z.boolean().nullable(),
-    expiredLessonCount: z.number().nullable(),
-  })
+  z.array(
+    z.object({
+      slug: z.string(),
+      title: z.string(),
+      programmeSlug: z.string(),
+      keyStageSlug: z.string(),
+      keyStageTitle: z.string(),
+      subjectSlug: z.string(),
+      subjectTitle: z.string(),
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+      lessonCount: z.number().nullable(),
+      quizCount: z.number().nullable(),
+      unitStudyOrder: z.number(),
+      expired: z.boolean().nullable(),
+      expiredLessonCount: z.number().nullable(),
+      learningThemes: z.array(
+        z.object({
+          themeSlug: z.string().nullable(),
+          themeTitle: z.string().nullable(),
+        })
+      ),
+    })
+  )
 );
 
 const tiersData = z.array(
@@ -421,13 +429,26 @@ const curriculumApi = {
     const res = await sdk.unitListing(...args);
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
-    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
-    const learningThemes = units.map((unitWithTheme) => ({
-      themeSlug: unitWithTheme?.themeSlug,
-      themeTitle: unitWithTheme?.themeTitle || "No theme",
-    }));
+    const unitsWithVariants = units.map((unit) => {
+      const learningThemes = [
+        {
+          themeTitle: unit.themeTitle,
+          themeSlug: unit.themeSlug,
+        },
+      ];
+      return [
+        {
+          ...unit,
+          learningThemes,
+        },
+      ];
+    });
 
-    // !Refactor index signature to be more specific
+    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+    const learningThemes = unitsWithVariants.map((unitWithTheme) => ({
+      themeSlug: unitWithTheme[0]?.themeSlug,
+      themeTitle: unitWithTheme[0]?.themeTitle || "No theme",
+    }));
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(
@@ -455,7 +476,7 @@ const curriculumApi = {
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
-      units,
+      units: unitsWithVariants,
     });
   },
   lessonOverviewPaths: async () => {
