@@ -1,6 +1,6 @@
 import { tryGetAssetPath } from "@sanity/asset-utils";
 
-import browserConfig from "../../config/browser";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 /**
  *
@@ -21,7 +21,7 @@ function getProxiedSanityAssetUrl(url: string | null | undefined) {
     return url;
   }
 
-  return `https://${browserConfig.get("sanityAssetCDNHost")}/${assetPath}`;
+  return `https://${getBrowserConfig("sanityAssetCDNHost")}/${assetPath}`;
 }
 
 export default getProxiedSanityAssetUrl;

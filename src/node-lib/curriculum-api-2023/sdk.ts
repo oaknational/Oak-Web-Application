@@ -1,12 +1,12 @@
 import { GraphQLClient } from "graphql-request";
 
-import config from "../../config/server";
+import getServerConfig from "../getServerConfig";
 
 import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApi2023Url");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApi2023AuthKey");
+const curriculumApiUrl = getServerConfig("curriculumApi2023Url");
+const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
+const curriculumApiAuthKey = getServerConfig("curriculumApi2023AuthKey");
 
 /**
  * TS complaining when Headers in not typed.

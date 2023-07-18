@@ -20,12 +20,12 @@ import posthogToAnalyticsService, {
   PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 import hubspotWithQueue from "../../browser-lib/hubspot/hubspot";
-import config from "../../config/browser";
 import useHasConsentedTo from "../../browser-lib/cookie-consent/useHasConsentedTo";
 import useStableCallback from "../../hooks/useStableCallback";
 import isBrowser from "../../utils/isBrowser";
 import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
 import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 export type UserId = string;
 export type EventName = string;
@@ -115,8 +115,8 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const posthog = useAnalyticsService({
     service: posthogService,
     config: {
-      apiHost: config.get("posthogApiHost"),
-      apiKey: config.get("posthogApiKey"),
+      apiHost: getBrowserConfig("posthogApiHost"),
+      apiKey: getBrowserConfig("posthogApiKey"),
     },
     consentState: posthogConsent,
     setPosthogDistinctId,
@@ -126,8 +126,8 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
    * Hubspot
    */
   const hubspotConfig = {
-    portalId: config.get("hubspotPortalId"),
-    scriptDomain: config.get("hubspotScriptDomain"),
+    portalId: getBrowserConfig("hubspotPortalId"),
+    scriptDomain: getBrowserConfig("hubspotScriptDomain"),
   };
   const hubspotConsent = useHasConsentedTo("hubspot");
   const hubspot = useAnalyticsService({

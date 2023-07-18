@@ -2,9 +2,9 @@ import path from "node:path/posix";
 
 import { GetServerSidePropsContext, GetStaticPropsResult } from "next";
 
-import serverConfig from "../../config/server";
+import getServerConfig from "../getServerConfig";
 
-const disableIsr = serverConfig.get("disableIsr");
+const disableIsr = getServerConfig("disableIsr");
 if (disableIsr) {
   console.info("ISR disabled in env");
 }
@@ -27,7 +27,7 @@ function decorateWithIsr<P>(
 ): GetStaticPropsResult<P> {
   const decoratedResults = { ...results };
   if (!disableIsr) {
-    const revalidateTimeInSeconds = serverConfig.get("sanityRevalidateSeconds");
+    const revalidateTimeInSeconds = getServerConfig("sanityRevalidateSeconds");
     decoratedResults.revalidate = revalidateTimeInSeconds;
   }
 

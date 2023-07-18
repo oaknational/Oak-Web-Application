@@ -188,7 +188,7 @@ type NonNullEnvValue<K extends ConfigKey> = NonNullable<
   typeof envVars[K]["value"]
 >;
 
-const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
+const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   const { value, default: defaultValue, envName } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"
@@ -206,14 +206,10 @@ const configGet = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
 
   if (!isBrowser) {
     throw new Error(
-      `configGet('${key}') failed because there is no env value ${envName}`
+      `getServerConfig('${key}') failed because there is no env value ${envName}`
     );
   }
   return "";
 };
 
-const config = {
-  get: configGet,
-};
-
-export default config;
+export default getServerConfig;

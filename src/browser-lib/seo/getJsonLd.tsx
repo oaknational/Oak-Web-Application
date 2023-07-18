@@ -11,16 +11,16 @@ import {
 } from "next-seo";
 
 import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
-import config from "../../config/browser";
 import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
 import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
 import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
 import { getOakLinkHref } from "../../components/OakLink/OakLink";
+import getBrowserConfig from "../getBrowserConfig";
 
 const courseProvider = {
-  name: config.get("seoAppName"),
-  url: config.get("seoAppUrl"),
+  name: getBrowserConfig("seoAppName"),
+  url: getBrowserConfig("seoAppUrl"),
 };
 
 // Organization
@@ -28,10 +28,13 @@ const courseProvider = {
 export const OrganizationJsonLd = () => {
   return (
     <OrganizationJsonLdNextSeo
-      name={config.get("seoAppName")}
-      url={config.get("seoAppUrl")}
-      sameAs={[config.get("seoAppFacebook"), config.get("seoAppTwitter")]}
-      logo={`${config.get("seoAppUrl")}${config.get("seoAppLogo")}`}
+      name={getBrowserConfig("seoAppName")}
+      url={getBrowserConfig("seoAppUrl")}
+      sameAs={[
+        getBrowserConfig("seoAppFacebook"),
+        getBrowserConfig("seoAppTwitter"),
+      ]}
+      logo={`${getBrowserConfig("seoAppUrl")}${getBrowserConfig("seoAppLogo")}`}
     />
   );
 };
@@ -70,12 +73,12 @@ export const BreadcrumbJsonLd: FC<BreadcrumbProps> = (props) => {
 const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("seoAppUrl")}${resolveOakHref({
+    url: `${getBrowserConfig("seoAppUrl")}${resolveOakHref({
       page: "blog-single",
       blogSlug: blog.slug,
     })}`,
     title: blog.seo?.title || blog.title,
-    images: [blog.mainImage.asset?.url || config.get("seoAppUrl")],
+    images: [blog.mainImage.asset?.url || getBrowserConfig("seoAppUrl")],
     datePublished: blog.date,
     dateModified: blog.date,
     authorName: blog.author.name,
@@ -88,7 +91,7 @@ const webinarToArticle = (
 ): ArticleJsonLdProps => {
   return {
     type: "Article",
-    url: `${config.get("seoAppUrl")}${resolveOakHref({
+    url: `${getBrowserConfig("seoAppUrl")}${resolveOakHref({
       page: "webinar-single",
       webinarSlug: webinar.slug,
     })}`,
@@ -96,7 +99,7 @@ const webinarToArticle = (
     images: [
       getVideoThumbnail({
         video: webinar.video.video.asset,
-      }) || config.get("seoAppLogo"),
+      }) || getBrowserConfig("seoAppLogo"),
     ],
     datePublished: webinar.date,
     dateModified: webinar.date,

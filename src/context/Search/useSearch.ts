@@ -2,12 +2,12 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import errorReporter from "../../common-lib/error-reporter";
-import config from "../../config/browser";
 import OakError from "../../errors/OakError";
 import useStableCallback from "../../hooks/useStableCallback";
 import handleFetchError from "../../utils/handleFetchError";
 import { resolveOakHref } from "../../common-lib/urls";
 import { SearchPageData } from "../../node-lib/curriculum-api/index";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 import constructElasticQuery from "./constructElasticQuery";
 import {
@@ -146,7 +146,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
         body: JSON.stringify(constructElasticQuery(query)),
       };
 
-      const response = await fetch(config.get("searchApiUrl"), options);
+      const response = await fetch(getBrowserConfig("searchApiUrl"), options);
 
       handleFetchError(response);
 

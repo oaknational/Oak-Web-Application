@@ -1,4 +1,4 @@
-import config from "../../../config/browser";
+import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
 import formatDate from "../../../utils/formatDate";
 
@@ -15,7 +15,7 @@ const useUpcomingWebinarWall = (
     buttonOnClick: () => {
       // tracking
     },
-    buttonHref: config.get("webinarSignUpUrl"),
+    buttonHref: getBrowserConfig("webinarSignUpUrl"),
     buttonText: "Save my place",
     buttonSuffixA11y: "on the webinar",
   };
