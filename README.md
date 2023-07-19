@@ -41,7 +41,7 @@ Create an environment configuration file by running:
 touch .env
 ```
 
-Now populate the file with secret manager services and the Oak config location. See [here](https://www.notion.so/oaknationalacademy/How-to-set-up-OWA-21ae880e58bb40bfaaa289030e984abd?pvs=4) for further details.
+Now populate the file with secret manager services and the Oak config location. Fill in other values, if required, by asking another member of the team.
 
 Now install dependencies
 
