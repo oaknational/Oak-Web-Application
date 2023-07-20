@@ -5,11 +5,19 @@ import Heading from "../Typography";
 import UL from "../Typography/UL";
 import LI from "../Typography/LI";
 
-type CoreContent = {
-  coreContent: (string | null)[];
+type KeyLearningPoint = {
+  keyLearningPoint: string | null;
 };
 
-const LessonOverview = ({ coreContent }: CoreContent) => {
+type KeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
+
+const LessonOverview = ({ keyLearningPoints }: KeyLearningPoints) => {
+  const filteredKeyLearningPoints = keyLearningPoints.filter(
+    (keyLearningPoint: KeyLearningPoint) => {
+      return keyLearningPoint.keyLearningPoint !== null;
+    }
+  );
+
   return (
     <Flex $justifyContent={"center"} $width={"100%"}>
       <Flex
@@ -21,22 +29,25 @@ const LessonOverview = ({ coreContent }: CoreContent) => {
         $width={["100%", 840]}
       >
         <Heading $font={"heading-5"} $mb={[16, 24]} data-testid={"heading"}>
-          Core content
+          Key learning points
         </Heading>
         <UL $pl={24}>
-          {coreContent.map((contentString, i) => {
-            if (!contentString) {
-              return null;
+          {filteredKeyLearningPoints.map(
+            (keyLearningPoint: KeyLearningPoint, i: number) => {
+              if (!keyLearningPoint) {
+                return null;
+              } else {
+                return (
+                  <LI
+                    key={`core-content-string-${i}`}
+                    $font={["list-item-2", "list-item-1"]}
+                  >
+                    {keyLearningPoint.keyLearningPoint}
+                  </LI>
+                );
+              }
             }
-            return (
-              <LI
-                key={`core-content-string-${i}`}
-                $font={["list-item-2", "list-item-1"]}
-              >
-                {contentString}
-              </LI>
-            );
-          })}
+          )}
         </UL>
       </Flex>
     </Flex>
