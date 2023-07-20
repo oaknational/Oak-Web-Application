@@ -4,7 +4,7 @@ import {
   SanityImageSource,
 } from "@sanity/image-url/lib/types/types";
 
-import config from "../../config/browser";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 /**
  * Provide a "client like" object instead of using the
@@ -12,9 +12,9 @@ import config from "../../config/browser";
  */
 export const sanityClientLike: SanityClientLike = {
   clientConfig: {
-    projectId: config.get("sanityProjectId"),
-    dataset: config.get("sanityDataset"),
-    apiHost: `https://${config.get("sanityAssetCDNHost")}`,
+    projectId: getBrowserConfig("sanityProjectId"),
+    dataset: getBrowserConfig("sanityDataset"),
+    apiHost: `https://${getBrowserConfig("sanityAssetCDNHost")}`,
   },
 };
 export const imageBuilder = sanityImage(sanityClientLike);

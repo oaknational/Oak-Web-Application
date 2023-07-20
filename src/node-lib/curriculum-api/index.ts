@@ -2,7 +2,6 @@ import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
 //import errorReporter from "../../common-lib/error-reporter";
-import config from "../../config/server";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
@@ -12,14 +11,14 @@ import {
   lessonOverviewQuizData,
   lessonQuizInfoData,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-
-import { getSdk } from "./generated/sdk";
+import getServerConfig from "../getServerConfig";
 
 //const reportError = errorReporter("curriculum-api");
+import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApiUrl");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+const curriculumApiUrl = getServerConfig("curriculumApiUrl");
+const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
+const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
 
 /**
  * 'Admin secret' for local development only.

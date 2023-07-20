@@ -5,12 +5,12 @@
 import { z } from "zod";
 
 import errorReporter from "../../../common-lib/error-reporter";
-import config from "../../../config/browser";
 import OakError, { ErrorMeta } from "../../../errors/OakError";
+import getBrowserConfig from "../../getBrowserConfig";
 
-const hubspotPortalId = config.get("hubspotPortalId");
-const hubspotFallbackFormId = config.get("hubspotFallbackFormId");
-const hubspotFormSubmissionUrl = config.get("hubspotFormSubmissionUrl");
+const hubspotPortalId = getBrowserConfig("hubspotPortalId");
+const hubspotFallbackFormId = getBrowserConfig("hubspotFallbackFormId");
+const hubspotFormSubmissionUrl = getBrowserConfig("hubspotFormSubmissionUrl");
 
 const reportError = errorReporter("hubspotSubmitForm", {
   hubspotPortalId,
@@ -117,7 +117,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
 
       try {
         const hubspotSuccess = hubspotSuccessSchema.parse(responseBody);
-        console.log(hubspotSuccess.inlineMessage);
+
         return hubspotSuccess.inlineMessage;
       } catch (error) {
         // Not an issue, form responded with 200 but optional inlineMessage was not present

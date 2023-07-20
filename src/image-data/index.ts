@@ -4,7 +4,7 @@
  * Other files which consume this image data should import from this file,
  * rather than importing directly from ./generated
  */
-import config from "../config/browser";
+import getBrowserConfig from "../browser-lib/getBrowserConfig";
 
 import uiIcons from "./generated/ui-icons.json";
 import uiGraphics from "./generated/ui-graphics.json";
@@ -50,7 +50,7 @@ export const getIllustrationAsset = (
 
 export const SOCIAL_SHARING_IMAGE_HEIGHT = socialSharingImage.height;
 export const SOCIAL_SHARING_IMAGE_WIDTH = socialSharingImage.width;
-export const SOCIAL_SHARING_IMAGE_URL = `${config.get("seoAppUrl")}/${
+export const SOCIAL_SHARING_IMAGE_URL = `${getBrowserConfig("seoAppUrl")}/${
   socialSharingImage.filePath
 }?${new Date().getFullYear()}`;
 
