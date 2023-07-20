@@ -1,36 +1,36 @@
 import React from "react";
 import { DefaultSeo as NextDefaultSeo } from "next-seo";
 
-import config from "../../config/browser";
 import {
   SOCIAL_SHARING_IMAGE_HEIGHT,
   SOCIAL_SHARING_IMAGE_URL,
   SOCIAL_SHARING_IMAGE_WIDTH,
 } from "../../image-data";
+import getBrowserConfig from "../getBrowserConfig";
 
 const DefaultSeo = () => {
   return (
     <NextDefaultSeo
-      title={config.get("seoAppName")}
-      description={config.get("seoAppDescription")}
+      title={getBrowserConfig("seoAppName")}
+      description={getBrowserConfig("seoAppDescription")}
       openGraph={{
-        url: config.get("seoAppName"),
-        locale: config.get("seoAppLocale"),
-        title: config.get("seoAppName"),
-        description: config.get("seoAppDescription"),
+        url: getBrowserConfig("seoAppName"),
+        locale: getBrowserConfig("seoAppLocale"),
+        title: getBrowserConfig("seoAppName"),
+        description: getBrowserConfig("seoAppDescription"),
         images: [
           {
             url: SOCIAL_SHARING_IMAGE_URL,
             width: SOCIAL_SHARING_IMAGE_WIDTH,
             height: SOCIAL_SHARING_IMAGE_HEIGHT,
-            alt: config.get("seoAppName"),
+            alt: getBrowserConfig("seoAppName"),
           },
         ],
-        site_name: config.get("seoAppName"),
+        site_name: getBrowserConfig("seoAppName"),
       }}
       twitter={{
-        handle: config.get("seoAppTwitter"),
-        site: config.get("seoAppTwitter"),
+        handle: getBrowserConfig("seoAppTwitter"),
+        site: getBrowserConfig("seoAppTwitter"),
         cardType: "summary_large_image",
       }}
     />

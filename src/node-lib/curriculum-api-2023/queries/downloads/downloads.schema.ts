@@ -15,7 +15,10 @@ export const lessonDownloadsSchema = z.object({
       ]),
       label: z.string(),
       ext: z.string(),
-      forbidden: z.boolean().optional().nullable(),
+      forbidden: z.union([
+        z.array(z.object({ copyright_info: z.string() })),
+        z.boolean().optional().nullish(),
+      ]),
     })
   ),
   programmeSlug: z.string(),

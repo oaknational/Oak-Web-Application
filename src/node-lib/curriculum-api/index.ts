@@ -2,7 +2,6 @@ import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
 //import errorReporter from "../../common-lib/error-reporter";
-import config from "../../config/server";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
@@ -12,14 +11,14 @@ import {
   lessonOverviewQuizData,
   lessonQuizInfoData,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-
-import { getSdk } from "./generated/sdk";
+import getServerConfig from "../getServerConfig";
 
 //const reportError = errorReporter("curriculum-api");
+import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApiUrl");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+const curriculumApiUrl = getServerConfig("curriculumApiUrl");
+const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
+const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
 
 /**
  * 'Admin secret' for local development only.
@@ -97,6 +96,12 @@ const unitsData = z.array(
       unitStudyOrder: z.number(),
       expired: z.boolean().nullable(),
       expiredLessonCount: z.number().nullable(),
+      learningThemes: z.array(
+        z.object({
+          themeSlug: z.string().nullable(),
+          themeTitle: z.string().nullable(),
+        })
+      ),
     })
   )
 );
@@ -391,9 +396,16 @@ const curriculumApi = {
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const unitsWithVariants = units.map((unit) => {
+      const learningThemes = [
+        {
+          themeTitle: unit.themeTitle,
+          themeSlug: unit.themeSlug,
+        },
+      ];
       return [
         {
           ...unit,
+          learningThemes,
         },
       ];
     });
@@ -403,8 +415,6 @@ const curriculumApi = {
       themeSlug: unitWithTheme[0]?.themeSlug,
       themeTitle: unitWithTheme[0]?.themeTitle || "No theme",
     }));
-
-    // !Refactor index signature to be more specific
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(

@@ -1,5 +1,5 @@
 query subjectListing($keyStageSlug: String!) {
-  keyStageSubjects: published_mv_subject_listing(
+  keyStageSubjects: published_mv_subject_listing_2(
     where: { keyStageSlug: { _eq: $keyStageSlug } }
   ) {
     keyStageSlug

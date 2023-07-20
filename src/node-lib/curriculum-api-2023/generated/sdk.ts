@@ -23123,7 +23123,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_2', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -23131,7 +23131,7 @@ export type LessonListingQueryVariables = Exact<{
 }>;
 
 
-export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_3', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
+export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_4', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -23158,7 +23158,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing_2', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -23175,25 +23175,25 @@ export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ _
 
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  downloads: published_mv_downloads(
-    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  downloads: published_mv_downloads_2(
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     downloads
-    programmeSlug: programme_slug
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    lessonSlug: lesson_slug
-    lessonTitle: lesson_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    unitSlug: unit_slug
-    unitTitle: unit_title
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    lessonSlug
+    lessonTitle
+    subjectSlug
+    subjectTitle
+    unitSlug
+    unitTitle
   }
 }
     `;
 export const LessonListingDocument = gql`
     query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_lesson_listing_3(
+  unit: published_mv_lesson_listing_4(
     where: {programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     programmeSlug
@@ -23260,7 +23260,7 @@ export const SearchPageDocument = gql`
     `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String!) {
-  keyStageSubjects: published_mv_subject_listing(
+  keyStageSubjects: published_mv_subject_listing_2(
     where: {keyStageSlug: {_eq: $keyStageSlug}}
   ) {
     keyStageSlug

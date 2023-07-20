@@ -8,8 +8,8 @@ import Document, {
 import { ServerStyleSheet } from "styled-components";
 import parse from "html-react-parser";
 
-import config from "../config/browser";
 import { FAVICON_LINKS_HEAD_INNER_HTML } from "../image-data";
+import getBrowserConfig from "../browser-lib/getBrowserConfig";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -49,13 +49,16 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
 
-          <meta name="release-stage" content={config.get("releaseStage")} />
+          <meta
+            name="release-stage"
+            content={getBrowserConfig("releaseStage")}
+          />
           <meta name="revised" content={new Date().toUTCString()} />
-          <meta name="version" content={config.get("appVersion")} />
+          <meta name="version" content={getBrowserConfig("appVersion")} />
 
           <meta
             name="pingdom-uptime-check"
-            content={config.get("pingdomUptimeId")}
+            content={getBrowserConfig("pingdomUptimeId")}
           />
         </Head>
         <body>

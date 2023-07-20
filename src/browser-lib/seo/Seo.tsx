@@ -2,17 +2,17 @@ import React, { FC } from "react";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 
-import config from "../../config/browser";
 import { SOCIAL_SHARING_IMAGE_URL } from "../../image-data";
+import getBrowserConfig from "../getBrowserConfig";
 
 export const DEFAULT_SEO_PROPS = {
-  title: config.get("seoAppName"),
-  description: config.get("seoAppDescription"),
+  title: getBrowserConfig("seoAppName"),
+  description: getBrowserConfig("seoAppDescription"),
 };
 
 export const BETA_SEO_PROPS = {
-  title: config.get("seoAppName"),
-  description: config.get("seoAppDescription"),
+  title: getBrowserConfig("seoAppName"),
+  description: getBrowserConfig("seoAppDescription"),
   noIndex: true,
   noFollow: true,
 };
@@ -42,7 +42,7 @@ const Seo: FC<SeoProps> = ({
 
   // Trim trailing slashes
   const formattedCanonicalURL = (
-    canonicalURL || `${config.get("seoAppUrl")}${router.asPath}`
+    canonicalURL || `${getBrowserConfig("seoAppUrl")}${router.asPath}`
   )?.replace(/\/$/, ""); //?
 
   return (
@@ -53,17 +53,17 @@ const Seo: FC<SeoProps> = ({
       openGraph={{
         title,
         description,
-        url: `${config.get("seoAppUrl")}${router.asPath}`,
+        url: `${getBrowserConfig("seoAppUrl")}${router.asPath}`,
         images: [
           {
             url: imageUrl,
           },
         ],
-        site_name: config.get("seoAppName"),
+        site_name: getBrowserConfig("seoAppName"),
       }}
       twitter={{
-        handle: config.get("seoAppTwitterHandle"),
-        site: config.get("seoAppTwitterHandle"),
+        handle: getBrowserConfig("seoAppTwitterHandle"),
+        site: getBrowserConfig("seoAppTwitterHandle"),
         cardType: "summary_large_image",
       }}
       noindex={noIndex}
