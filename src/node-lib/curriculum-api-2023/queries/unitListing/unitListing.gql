@@ -1,8 +1,6 @@
 query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_6(
-    where: {
-      programmeSlug: { _eq: $programmeSlug }
-    }
+  programme: published_mv_unit_listing_page_7(
+    where: { programmeSlug: { _eq: $programmeSlug } }
   ) {
     programmeSlug
     keyStageSlug
@@ -10,7 +8,7 @@ query unitListing($programmeSlug: String!) {
     subjectSlug
     subjectTitle
     tierSlug
-    totalUnitCount:unitCount
+    totalUnitCount: unitCount
     tiers
     units
     examBoardTitle
