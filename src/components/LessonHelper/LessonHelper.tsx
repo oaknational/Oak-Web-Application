@@ -48,33 +48,31 @@ const LessonHelper: FC<HelperProps> = ({
         <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
           <Icon variant="minimal" name={helperIcon} /> {helperTitle}
         </Heading>
-        {contentGuidance
-          ? contentGuidance.map((guidance: ContentGuidance) => {
-              return (
-                <Typography
-                  $font={"body-2"}
-                  $ma={12}
-                  key={guidance.contentGuidanceLabel}
-                >
-                  {guidance.contentGuidanceLabel}
-                </Typography>
-              );
-            })
-          : null}
-        {supervisionLevel ? (
+        {contentGuidance &&
+          contentGuidance.map((guidance: ContentGuidance) => {
+            return (
+              <Typography
+                $font={"body-2"}
+                $ma={12}
+                key={guidance.contentGuidanceLabel}
+              >
+                {guidance.contentGuidanceLabel}
+              </Typography>
+            );
+          })}
+        {supervisionLevel && (
           <Typography $font={"body-2"} $ma={12}>
             {supervisionLevel}
           </Typography>
-        ) : null}
-        {equipment
-          ? equipment.map(({ equipment }) => {
-              return (
-                <Typography $font={"body-2"} $ma={12} key={equipment}>
-                  {equipment}
-                </Typography>
-              );
-            })
-          : null}
+        )}
+        {equipment &&
+          equipment.map(({ equipment }) => {
+            return (
+              <Typography $font={"body-2"} $ma={12} key={equipment}>
+                {equipment}
+              </Typography>
+            );
+          })}
 
         <BrushBorders color="teachersPastelYellow" />
       </Card>

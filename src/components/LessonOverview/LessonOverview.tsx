@@ -13,9 +13,9 @@ type KeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
 
 const LessonOverview = ({ keyLearningPoints }: KeyLearningPoints) => {
   const filteredKeyLearningPoints = keyLearningPoints.filter(
-    (keyLearningPoint: KeyLearningPoint) => {
-      return keyLearningPoint.keyLearningPoint !== null;
-    }
+    (keyLearningPoint) =>
+      keyLearningPoint.keyLearningPoint !== null &&
+      keyLearningPoint.keyLearningPoint !== ""
   );
 
   return (
