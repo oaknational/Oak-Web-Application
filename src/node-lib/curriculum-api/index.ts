@@ -592,9 +592,11 @@ const curriculumApi = {
         };
       });
 
-    return programmeListingSchema.parse(
-      tierListingToProgrammeListing2013[0]?.programmes
-    );
+    const result = getFirstResultOrWarnOrFail()({
+      results: tierListingToProgrammeListing2013,
+    });
+
+    return programmeListingSchema.parse(result.programmes);
   },
 };
 
