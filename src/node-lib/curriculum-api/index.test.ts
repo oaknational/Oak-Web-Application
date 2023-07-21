@@ -75,8 +75,9 @@ const lessonOverview = jest.fn(() => ({
       unitTitle: lessonOverviewFixture().unitTitle,
       subjectSlug: lessonOverviewFixture().subjectSlug,
       subjectTitle: lessonOverviewFixture().subjectTitle,
-      coreContent: lessonOverviewFixture().coreContent,
-      equipmentRequired: lessonOverviewFixture().equipmentRequired,
+      keyLearningPoints: lessonOverviewFixture().keyLearningPoints,
+      lessonEquipmentAndResources:
+        lessonOverviewFixture().lessonEquipmentAndResources,
       supervisionLevel: lessonOverviewFixture().supervisionLevel,
       contentGuidance: lessonOverviewFixture().contentGuidance,
       presentationUrl: lessonOverviewFixture().presentationUrl,
