@@ -77,6 +77,22 @@ export type URLParams = {
   viewType: ViewType;
 };
 
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log(shouldSkipInitialBuild);
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+console.log("====================================");
+
 export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {
     return getFallbackBlockingConfig();
