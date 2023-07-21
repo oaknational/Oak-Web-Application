@@ -49,7 +49,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       const res = await getStaticPaths();
 
       expect(res).toEqual({
-        fallback: false,
+        fallback: "blocking",
         paths: [],
       });
     });

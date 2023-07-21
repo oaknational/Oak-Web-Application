@@ -377,7 +377,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       const res = await getStaticPaths();
 
       expect(res).toEqual({
-        fallback: false,
+        fallback: "blocking",
         paths: [],
       });
     });

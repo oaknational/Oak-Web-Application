@@ -141,7 +141,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       const res = await getStaticPaths();
 
       expect(res).toEqual({
-        fallback: false,
+        fallback: "blocking",
         paths: [],
       });
     });

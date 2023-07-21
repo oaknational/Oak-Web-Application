@@ -51,12 +51,13 @@ describe("programmes listing page", () => {
       });
     });
   });
+
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
       const res = await getStaticPaths();
 
       expect(res).toEqual({
-        fallback: false,
+        fallback: "blocking",
         paths: [],
       });
     });
