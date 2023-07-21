@@ -83,7 +83,7 @@ export const getStaticPaths = async () => {
   }
 
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
+    fallback: "blocking",
     paths: [],
   };
   return config;
