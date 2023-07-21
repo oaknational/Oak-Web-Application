@@ -25,17 +25,8 @@ const lessonOverviewQuery =
 
     return lessonOverviewSchema.parse({
       ...lesson,
-      coreContent: [],
-      contentGuidance: null,
-      equipmentRequired: null,
-      presentationUrl: null,
-      supervisionLevel: null,
-      worksheetUrl: null,
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
-      videoMuxPlaybackId: null,
-      videoWithSignLanguageMuxPlaybackId: null,
-      transcriptSentences: null,
       hasDownloadableResources: null,
       introQuiz: [],
       exitQuiz: [],

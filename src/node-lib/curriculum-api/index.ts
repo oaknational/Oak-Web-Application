@@ -458,6 +458,26 @@ const curriculumApi = {
       results: lessons,
     });
 
+    const lessonKeyLearningPoints = lesson.coreContent?.map(
+      (content: string) => {
+        return { keyLearningPoint: content };
+      }
+    );
+
+    const lessonEquipmentAndResources = lesson.equipmentRequired
+      ? [{ equipment: lesson.equipmentRequired }]
+      : null;
+
+    const lessonContentGuidance = lesson.contentGuidance
+      ? [
+          {
+            contentGuidanceLabel: lesson.contentGuidance,
+            contentGuidanceDescription: lesson.contentGuidance,
+            contentGuidanceArea: "contentGuidanceArea",
+          },
+        ]
+      : null;
+
     const exitQuizInfoSingle = getFirstResultOrNull()({
       results: exitQuizInfo,
     });
@@ -466,7 +486,34 @@ const curriculumApi = {
       results: introQuizInfo,
     });
     return lessonOverviewData.parse({
-      ...lesson,
+      lessonTitle: lesson.lessonTitle,
+      lessonSlug: lesson.lessonSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitSlug: lesson.unitSlug,
+      unitTitle: lesson.unitTitle,
+      keyStageSlug: lesson.keyStageSlug,
+      keyStageTitle: lesson.keyStageTitle,
+      subjectSlug: lesson.subjectSlug,
+      subjectTitle: lesson.subjectTitle,
+      misconceptionAndCommonMistakes: null,
+      lessonEquipmentAndResources: lessonEquipmentAndResources,
+      teacherTips: null,
+      keyLearningPoints: lessonKeyLearningPoints,
+      pupilLessonOutcome: null,
+      lessonKeywords: null,
+      copyRightContent: null,
+      contentGuidance: lessonContentGuidance,
+      supervisionLevel: lesson.supervisionLevel,
+      worksheetUrl: lesson.worksheetUrl,
+      isWorksheetLandscape: lesson.isWorksheetLandscape,
+      presentationUrl: lesson.presentationUrl,
+      hasCopyrightMaterial: lesson.hasCopyrightMaterial,
+      videoMuxPlaybackId: lesson.videoMuxPlaybackId,
+      videoWithSignLanguageMuxPlaybackId:
+        lesson.videoWithSignLanguageMuxPlaybackId,
+      transcriptSentences: lesson.transcriptSentences,
+      hasDownloadableResources: lesson.hasDownloadableResources,
+      expired: lesson.expired,
       introQuizInfo: introQuizInfoSingle,
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
