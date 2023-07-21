@@ -175,6 +175,19 @@ describe("curriculum-api", () => {
       subjectSlug: "higher",
     });
   });
+  test("tierListing: not found", async () => {
+    tierListing.mockImplementationOnce(() => {
+      return {
+        mv_programmes: [],
+      };
+    });
+    await expect(
+      curriculumApi.tierListing({
+        keyStageSlug: "ks4",
+        subjectSlug: "not-found",
+      })
+    ).rejects.toThrow("Resource not found");
+  });
   test("subjectListing", async () => {
     await curriculumApi.subjectListing({
       keyStageSlug: "ks4",
