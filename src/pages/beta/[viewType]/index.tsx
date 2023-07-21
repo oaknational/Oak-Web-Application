@@ -37,7 +37,7 @@ import {
 } from "../../../node-lib/isr";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
-import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
+import { ViewType } from "../../../common-lib/urls";
 import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
 import getPageProps from "../../../node-lib/getPageProps";
 
@@ -169,13 +169,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const paths = VIEW_TYPES.map((viewType) => ({
-    params: { viewType },
-  }));
-
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
-    paths,
+    paths: [],
   };
   return config;
 };

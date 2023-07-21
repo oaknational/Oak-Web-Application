@@ -15,7 +15,7 @@ import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import useSearchFilters from "../../../context/Search/useSearchFilters";
 import usePagination from "../../../components/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "../../../components/SearchResults/SearchResults";
-import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
+import { ViewType } from "../../../common-lib/urls";
 import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
 import getPageProps from "../../../node-lib/getPageProps";
 
@@ -83,13 +83,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const paths = VIEW_TYPES.map((viewType) => ({
-    params: { viewType },
-  }));
-
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
-    paths,
+    paths: [],
   };
   return config;
 };

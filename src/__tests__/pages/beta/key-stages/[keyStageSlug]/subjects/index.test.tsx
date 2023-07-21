@@ -45,10 +45,13 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticPaths", () => {
-    it("Should return the paths of all key stages", async () => {
-      await getStaticPaths();
+    it("Should not generate pages at build time", async () => {
+      const res = await getStaticPaths();
 
-      expect(curriculumApi.teachersHomePage).toHaveBeenCalled();
+      expect(res).toEqual({
+        fallback: false,
+        paths: [],
+      });
     });
   });
 

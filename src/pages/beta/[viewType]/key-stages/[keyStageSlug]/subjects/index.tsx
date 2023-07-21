@@ -14,7 +14,7 @@ import {
 } from "../../../../../../node-lib/isr";
 import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
-import { VIEW_TYPES, ViewType } from "../../../../../../common-lib/urls";
+import { ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
 import {
   KeyStageSubjectData,
@@ -87,28 +87,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  /**
-   * @todo this should probably be a new query called 'teachersKeyStageSubjectsPaths',
-   * although there's a trade off between having well named and specific queries for
-   * each concern, and ensuring that linked data integrity is intact.
-   *
-   * E.g. on the home page, we fetch a list of key stages (each which links to an
-   * instance of this page). The 'paths' query for this page must align exactly with
-   * the key stages returned by the 'props' query in the home page. My current
-   * thinking is that they should be separate queries but there should be tests to
-   * ensure alignment.
-   */
-  const { keyStages } = await curriculumApi.teachersHomePage();
-
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    keyStages.map((keyStage) => ({
-      params: { viewType, keyStageSlug: keyStage.slug },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
     fallback: false,
-    paths,
+    paths: [],
   };
   return config;
 };
