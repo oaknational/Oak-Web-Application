@@ -3,16 +3,14 @@ import { screen } from "@testing-library/react";
 import CurriculumHomePage, {
   getStaticProps,
   CurriculumHomePageProps,
-} from "pages/beta/teachers/curriculum";
+} from "pages/beta/[viewType]/curriculum";
 import renderWithProviders from "__tests__/__helpers__/renderWithProviders";
-import curriculumHomePageFixture from "node-lib/curriculum-api/fixtures/curriculumHomePage.fixture";
+import subjectPhaseOptions from "browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
 
 const props: CurriculumHomePageProps = {
-  data: {
-    programmes: [],
-  },
+  subjectPhaseOptions: subjectPhaseOptions,
 };
 
 describe("pages/beta/curriculum/index", () => {
@@ -28,7 +26,7 @@ describe("pages/beta/curriculum/index", () => {
       const testRes = (await getStaticProps({})) as {
         props: CurriculumHomePageProps;
       };
-      expect(testRes.props.data).toEqual(curriculumHomePageFixture());
+      expect(testRes.props).toEqual(props);
     });
   });
 });

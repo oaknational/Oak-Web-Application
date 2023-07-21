@@ -7,6 +7,7 @@ import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
+import curriculumSubjectPhaseQuery from "./queries/curriculumSubjectPhase/curriculumSubjectPhase.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -19,13 +20,16 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const subjectSchema = z.array(
-  z.object({
-    title: z.string(),
-    slug: z.string(),
-    displayOrder: z.number(),
-  })
-);
+const subjectSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number(),
+});
+const phaseSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number(),
+});
 const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),
   title: z.union([z.literal("Units"), z.literal("Lessons")]),
@@ -33,12 +37,21 @@ const contentTypesSchema = z.object({
 
 const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
-  subjects: subjectSchema,
+  subjects: z.array(subjectSchema),
   contentTypes: z.array(contentTypesSchema),
 });
 
+// const SubjectPhaseOptionsSchema = z.object({
+//   newSubjects: z.array(subjectSchema),
+//   legacySubjects: z.array(subjectSchema),
+//   phases: z.array(phaseSchema),
+// })
+
+export type Phase = z.infer<typeof phaseSchema>;
+export type Subject = z.infer<typeof subjectSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
+// export type SubjectPhaseOptions = z.infer<typeof SubjectPhaseOptionsSchema>;
 
 export const getFirstResultOrNull =
   () =>
@@ -70,6 +83,7 @@ const curriculumApi2023 = {
   subjectListingPage: subjectListingQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
+  curriculumSubjectPhase: curriculumSubjectPhaseQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

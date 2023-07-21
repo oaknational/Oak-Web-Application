@@ -12,7 +12,7 @@ import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
 import lessonDownloadPathsFixture from "../fixtures/lessonDownloadPaths.fixture";
 import programmeListingPathsFixture from "../fixtures/programmeListingPaths.fixture";
-import curriculumHomePageFixture from "../fixtures/curriculumHomePage.fixture";
+// import curriculumSubjectPhaseFixture from "../../curriculum-api-2023/fixtures/curriculumSubjectPhase.fixture";
 
 const curriculumApi: CurriculumApi = {
   searchPage: jest.fn(async () => {
@@ -54,9 +54,9 @@ const curriculumApi: CurriculumApi = {
   lessonOverviewPaths: jest.fn(async () => {
     return lessonOverviewPathsFixture();
   }),
-  curriculumHomePage: jest.fn(async () => {
-    return curriculumHomePageFixture();
-  }),
+  // curriculumSubjectPhase: jest.fn(async () => {
+  //   return curriculumSubjectPhaseFixture();
+  // }),
 };
 
 export default curriculumApi;

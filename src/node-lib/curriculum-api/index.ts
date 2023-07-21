@@ -14,7 +14,6 @@ import {
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 import { getSdk } from "./generated/sdk";
-import { getSdk as getSdk2023 } from "./generated/sdk-2023";
 
 //const reportError = errorReporter("curriculum-api");
 
@@ -46,16 +45,6 @@ const headers: Headers = curriculumApiAdminSecret
     };
 
 const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
-
-const graphqlClient2023 = new GraphQLClient(
-  process.env.CURRICULUM_API_2023_URL || "",
-  {
-    headers: {
-      "x-oak-auth-type": curriculumApiAuthType,
-      "x-oak-auth-key": process.env.CURRICULUM_API_2023_AUTH_KEY || "",
-    },
-  }
-);
 
 /**
  * Rather than using a lib, or build a function to deeply transform any keys
@@ -258,25 +247,6 @@ const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
 
-const curriculumHomePageData = z.object({
-  programmes: z.array(
-    z.object({
-      programme_id: z.number(),
-      programme_fields: z.object({
-        year: z.number().nullish(),
-        optionality: z.string().nullish(),
-        phase: z.string().nullish(),
-        phase_description: z.string().nullish(),
-        subject: z.string().nullish(),
-        subject_slug: z.string().nullish(),
-        subject_description: z.string().nullish(),
-        subject_display_order: z.string().nullish(),
-        tier_description: z.string().nullish(),
-      }),
-    })
-  ),
-});
-
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
@@ -290,11 +260,8 @@ export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 export type ProgrammeListingPaths = z.infer<typeof programmeListingPaths>;
 export type TierListingData = z.infer<typeof tierListingData>;
-export type CurriculumHomePageData = z.infer<typeof curriculumHomePageData>;
 
 const sdk = getSdk(graphqlClient);
-
-const sdk2023 = getSdk2023(graphqlClient2023);
 
 const getFirstResultOrWarnOrFail =
   () =>
@@ -582,10 +549,6 @@ const curriculumApi = {
     return programmeListingSchema.parse(
       tierListingToProgrammeListing2013[0]?.programmes
     );
-  },
-  curriculumHomePage: async () => {
-    const res = await sdk2023.curriculumHomePage();
-    return curriculumHomePageData.parse(res);
   },
 };
 
