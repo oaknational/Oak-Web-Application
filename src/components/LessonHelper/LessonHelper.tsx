@@ -9,17 +9,33 @@ import Typography, { Heading } from "../Typography";
 type HelperProps = {
   helperIcon: IconName;
   helperTitle: string;
-  helperDescription: string | null;
+  contentGuidance?: ContentGuidance[] | null | undefined;
+  equipment?:
+    | {
+        equipment: string;
+      }[]
+    | null
+    | undefined;
+  supervisionLevel?: string | null | undefined;
+};
+
+type ContentGuidance = {
+  contentGuidanceLabel: string;
+  contentGuidanceDescription: string;
+  contentGuidanceArea: string;
 };
 
 const LessonHelper: FC<HelperProps> = ({
   helperIcon,
   helperTitle,
-  helperDescription,
+  supervisionLevel,
+  contentGuidance,
+  equipment,
 }) => {
-  if (!helperDescription) {
+  if (!contentGuidance && !equipment && !supervisionLevel) {
     return null;
   }
+
   return (
     <GridArea $colSpan={[12, 12, 4]}>
       <Card
@@ -32,9 +48,32 @@ const LessonHelper: FC<HelperProps> = ({
         <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
           <Icon variant="minimal" name={helperIcon} /> {helperTitle}
         </Heading>
-        <Typography $font={"body-2"} $ma={12}>
-          {helperDescription}
-        </Typography>
+        {contentGuidance &&
+          contentGuidance.map((guidance: ContentGuidance) => {
+            return (
+              <Typography
+                $font={"body-2"}
+                $ma={12}
+                key={guidance.contentGuidanceLabel}
+              >
+                {guidance.contentGuidanceLabel}
+              </Typography>
+            );
+          })}
+        {supervisionLevel && (
+          <Typography $font={"body-2"} $ma={12}>
+            {supervisionLevel}
+          </Typography>
+        )}
+        {equipment &&
+          equipment.map(({ equipment }) => {
+            return (
+              <Typography $font={"body-2"} $ma={12} key={equipment}>
+                {equipment}
+              </Typography>
+            );
+          })}
+
         <BrushBorders color="teachersPastelYellow" />
       </Card>
     </GridArea>

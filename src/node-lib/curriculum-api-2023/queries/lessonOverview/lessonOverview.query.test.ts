@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import lessonOverview from "./lessonOverview.query";
 
-describe("lessonListing()", () => {
+describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await lessonOverview({
@@ -30,6 +30,14 @@ describe("lessonListing()", () => {
               keyStageTitle: "key-stage-title",
               lessonSlug: "lesson-slug",
               lessonTitle: "lesson-title",
+              supervisionLevel: "supervision-level",
+              presentationUrl: "presentation-url",
+              worksheetUrl: "worksheet-url",
+              videoWithSignLanguage: "video-with-sign-language",
+              transcriptSentences: null,
+              videoMuxPlaybackId: "video-mux-playback-id",
+              videoWithSignLanguageMuxPlaybackId:
+                "video-with-sign-language-mux-playback-id",
             },
             {
               programmeSlug: "programme-slug-1",
@@ -41,6 +49,14 @@ describe("lessonListing()", () => {
               keyStageTitle: "key-stage-title",
               lessonSlug: "lesson-slug",
               lessonTitle: "lesson-title",
+              supervisionLevel: "supervision-level",
+              presentationUrl: "presentation-url",
+              worksheetUrl: "worksheet-url",
+              videoWithSignLanguage: "video-with-sign-language",
+              transcriptSentences: null,
+              videoMuxPlaybackId: "video-mux-playback-id",
+              videoWithSignLanguageMuxPlaybackId:
+                "video-with-sign-language-mux-playback-id",
             },
           ],
         })

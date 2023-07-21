@@ -4,17 +4,24 @@ import LessonOverview from "./LessonOverview";
 
 describe("LessonOverview component", () => {
   it("should render", () => {
+    const keyLearningPoints = [{ keyLearningPoint: "test" }];
     const { getByTestId, getByText } = renderWithTheme(
-      <LessonOverview coreContent={[]} />
+      <LessonOverview keyLearningPoints={keyLearningPoints} />
     );
-    const coreConentTitle = getByText("Core content");
+    const componentTitle = getByText("Key learning points");
     expect(getByTestId("heading")).toBeInTheDocument();
-    expect(coreConentTitle).toBeInTheDocument();
+    expect(componentTitle).toBeInTheDocument();
   });
 
   it("should render with multiple core content list", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonOverview coreContent={["test", "test2", "test3"]} />
+      <LessonOverview
+        keyLearningPoints={[
+          { keyLearningPoint: "test" },
+          { keyLearningPoint: "test 2" },
+          { keyLearningPoint: "test 3" },
+        ]}
+      />
     );
 
     const listItems = getAllByRole("listitem");
@@ -23,7 +30,12 @@ describe("LessonOverview component", () => {
 
   it("should render with null and non-null core content", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonOverview coreContent={["test", null]} />
+      <LessonOverview
+        keyLearningPoints={[
+          { keyLearningPoint: "test" },
+          { keyLearningPoint: null },
+        ]}
+      />
     );
 
     const listItems = getAllByRole("listitem");
