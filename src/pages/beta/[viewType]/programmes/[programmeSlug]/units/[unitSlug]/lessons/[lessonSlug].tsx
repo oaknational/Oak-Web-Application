@@ -102,14 +102,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     programmeSlug,
     keyStageTitle,
     keyStageSlug,
-    coreContent,
+    keyLearningPoints,
     subjectSlug,
     subjectTitle,
-    equipmentRequired,
     supervisionLevel,
     contentGuidance,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
+    lessonEquipmentAndResources,
     presentationUrl,
     worksheetUrl,
     isWorksheetLandscape,
@@ -250,16 +250,17 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
             <Hr $color={"oakGrey3"} />
 
-            {coreContent && (
+            {keyLearningPoints && (
               <ExpandingContainer
                 title={"Lesson overview"}
                 downloadable={false}
                 toggleClosed={true}
                 {...curriculumData}
               >
-                <LessonOverview coreContent={coreContent} />
+                <LessonOverview keyLearningPoints={keyLearningPoints} />
               </ExpandingContainer>
             )}
+
             {presentationUrl && !hasCopyrightMaterial && (
               <ExpandingContainer
                 downloadable={true}
@@ -350,24 +351,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       {!expired && (
         <>
           <MaxWidth $ph={[0, 16, 16]}>
-            {(equipmentRequired || supervisionLevel || contentGuidance) && (
-              <Hr $color={"oakGrey3"} />
-            )}
+            {(lessonEquipmentAndResources ||
+              supervisionLevel ||
+              contentGuidance) && <Hr $color={"oakGrey3"} />}
             <Grid $rg={32} $cg={32} $mv={16}>
               <LessonHelper
                 helperTitle={"Equipment required"}
                 helperIcon={"equipment-required"}
-                helperDescription={equipmentRequired}
+                equipment={lessonEquipmentAndResources}
               />
               <LessonHelper
                 helperTitle={"Supervision level"}
                 helperIcon={"supervision-level"}
-                helperDescription={supervisionLevel}
+                supervisionLevel={supervisionLevel}
               />
               <LessonHelper
                 helperTitle={"Content guidance"}
                 helperIcon={"content-guidance"}
-                helperDescription={contentGuidance}
+                contentGuidance={contentGuidance}
               />
             </Grid>
           </MaxWidth>

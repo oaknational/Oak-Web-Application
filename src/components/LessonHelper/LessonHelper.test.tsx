@@ -10,7 +10,7 @@ describe("LessonHelper", () => {
       <LessonHelper
         helperTitle={"equipment-required"}
         helperIcon={"equipment-required"}
-        helperDescription={"equipment description"}
+        supervisionLevel={"supervisionLevel"}
       />
     );
 
@@ -23,7 +23,7 @@ describe("LessonHelper", () => {
       <LessonHelper
         helperTitle={"equipment-required"}
         helperIcon={"equipment-required"}
-        helperDescription={null}
+        equipment={null}
       />
     );
     expect(container).toBeEmptyDOMElement();
