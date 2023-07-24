@@ -4,11 +4,11 @@ import {
   NewsletterHubspotFormData,
 } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
-import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import useUtmParams from "../../../hooks/useUtmParams";
+import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
-const hubspotNewsletterFormId = config.get("hubspotNewsletterFormId");
+const hubspotNewsletterFormId = getBrowserConfig("hubspotNewsletterFormId");
 
 type UseNewsletterFormProps = {
   onSubmit?: () => void;

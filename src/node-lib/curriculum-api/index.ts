@@ -2,7 +2,6 @@ import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
 //import errorReporter from "../../common-lib/error-reporter";
-import config from "../../config/server";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
@@ -12,14 +11,14 @@ import {
   lessonOverviewQuizData,
   lessonQuizInfoData,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-
-import { getSdk } from "./generated/sdk";
+import getServerConfig from "../getServerConfig";
 
 //const reportError = errorReporter("curriculum-api");
+import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApiUrl");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+const curriculumApiUrl = getServerConfig("curriculumApiUrl");
+const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
+const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
 
 /**
  * 'Admin secret' for local development only.
@@ -459,6 +458,26 @@ const curriculumApi = {
       results: lessons,
     });
 
+    const lessonKeyLearningPoints = lesson.coreContent?.map(
+      (content: string) => {
+        return { keyLearningPoint: content };
+      }
+    );
+
+    const lessonEquipmentAndResources = lesson.equipmentRequired
+      ? [{ equipment: lesson.equipmentRequired }]
+      : null;
+
+    const lessonContentGuidance = lesson.contentGuidance
+      ? [
+          {
+            contentGuidanceLabel: lesson.contentGuidance,
+            contentGuidanceDescription: lesson.contentGuidance,
+            contentGuidanceArea: "contentGuidanceArea",
+          },
+        ]
+      : null;
+
     const exitQuizInfoSingle = getFirstResultOrNull()({
       results: exitQuizInfo,
     });
@@ -467,7 +486,34 @@ const curriculumApi = {
       results: introQuizInfo,
     });
     return lessonOverviewData.parse({
-      ...lesson,
+      lessonTitle: lesson.lessonTitle,
+      lessonSlug: lesson.lessonSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitSlug: lesson.unitSlug,
+      unitTitle: lesson.unitTitle,
+      keyStageSlug: lesson.keyStageSlug,
+      keyStageTitle: lesson.keyStageTitle,
+      subjectSlug: lesson.subjectSlug,
+      subjectTitle: lesson.subjectTitle,
+      misconceptionAndCommonMistakes: null,
+      lessonEquipmentAndResources: lessonEquipmentAndResources,
+      teacherTips: null,
+      keyLearningPoints: lessonKeyLearningPoints,
+      pupilLessonOutcome: null,
+      lessonKeywords: null,
+      copyRightContent: null,
+      contentGuidance: lessonContentGuidance,
+      supervisionLevel: lesson.supervisionLevel,
+      worksheetUrl: lesson.worksheetUrl,
+      isWorksheetLandscape: lesson.isWorksheetLandscape,
+      presentationUrl: lesson.presentationUrl,
+      hasCopyrightMaterial: lesson.hasCopyrightMaterial,
+      videoMuxPlaybackId: lesson.videoMuxPlaybackId,
+      videoWithSignLanguageMuxPlaybackId:
+        lesson.videoWithSignLanguageMuxPlaybackId,
+      transcriptSentences: lesson.transcriptSentences,
+      hasDownloadableResources: lesson.hasDownloadableResources,
+      expired: lesson.expired,
       introQuizInfo: introQuizInfoSingle,
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,

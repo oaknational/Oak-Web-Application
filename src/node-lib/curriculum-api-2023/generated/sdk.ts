@@ -24286,7 +24286,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', downloads: Array<{ __typename?: 'published_mv_downloads_2', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -24301,7 +24301,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, keyLearningPoints?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, pupilLessonOutcome?: any | null, starterQuiz?: any | null, exitQuiz?: any | null, lessonKeywords?: any | null, presentationUrl?: string | null, transcriptSentences?: string | null, contentGuidance?: any | null, equipmentRequired?: any | null, hasCopyrightMaterial?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_1', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -24348,19 +24348,19 @@ export const CurriculumSubjectPhaseDocument = gql`
     `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
-  downloads: published_mv_downloads(
-    where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  downloads: published_mv_downloads_2(
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
   ) {
     downloads
-    programmeSlug: programme_slug
-    keyStageSlug: key_stage_slug
-    keyStageTitle: key_stage_title
-    lessonSlug: lesson_slug
-    lessonTitle: lesson_title
-    subjectSlug: subject_slug
-    subjectTitle: subject_title
-    unitSlug: unit_slug
-    unitTitle: unit_title
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    lessonSlug
+    lessonTitle
+    subjectSlug
+    subjectTitle
+    unitSlug
+    unitTitle
   }
 }
     `;
@@ -24382,7 +24382,7 @@ export const LessonListingDocument = gql`
     `;
 export const LessonOverviewDocument = gql`
     query lessonOverview($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview(where: {lessonSlug: {_eq: $lessonSlug}}) {
+  lesson: published_mv_lesson_overview_1(where: {lessonSlug: {_eq: $lessonSlug}}) {
     lessonSlug
     lessonTitle
     programmeSlug
@@ -24392,20 +24392,22 @@ export const LessonOverviewDocument = gql`
     keyStageTitle
     subjectSlug
     subjectTitle
-    contentGuidance: contentGuidanceDetails
-    equipmentRequired: lessonEquipmentAndResources
+    misconceptionsAndCommonMistakes
+    lessonEquipmentAndResources
+    teacherTips
     keyLearningPoints
+    pupilLessonOutcome
+    lessonKeywords
+    copyrightContent
+    contentGuidance
     supervisionLevel
     worksheetUrl
-    hasCopyrightMaterial: copyrightContent
+    presentationUrl
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
-    pupilLessonOutcome
+    transcriptSentences
     starterQuiz
     exitQuiz
-    lessonKeywords
-    presentationUrl
-    transcriptSentences
   }
 }
     `;

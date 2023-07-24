@@ -7,12 +7,12 @@ import downloadLessonResources from "../helpers/downloadLessonResources";
 import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
 import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
-import config from "../../../config/browser";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
+import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-const hubspotDownloadsFormId = config.get("hubspotDownloadsFormId");
+const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;

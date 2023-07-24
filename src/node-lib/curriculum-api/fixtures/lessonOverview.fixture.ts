@@ -13,8 +13,12 @@ const lessonOverviewFixture = (
     subjectTitle: "Maths",
     unitTitle: "Maths unit",
     unitSlug: "maths-unit",
-    coreContent: ["Lesson", "core", "content"],
-    equipmentRequired: null,
+    keyLearningPoints: [
+      { keyLearningPoint: "Lesson" },
+      { keyLearningPoint: "learning" },
+      { keyLearningPoint: "points" },
+    ],
+    lessonEquipmentAndResources: null,
     supervisionLevel: null,
     contentGuidance: null,
     presentationUrl:
