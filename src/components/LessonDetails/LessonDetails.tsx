@@ -1,0 +1,53 @@
+import React, { FC } from "react";
+
+import Grid, { GridArea } from "../Grid";
+import Flex from "../Flex";
+import Heading from "../Typography";
+import KeyLearningPoints from "../KeyLearningPoints/KeyLearningPoints";
+import CommonMisconceptions from "../CommonMisconceptions/CommonMisconceptions";
+import KeyWords from "../KeyWords/KeyWords";
+
+export type KeyLearningPoint = {
+  keyLearningPoint: string | null;
+};
+
+export type CommonMisconception = {
+  misconception: string;
+  response: string;
+};
+
+export type KeyWord = {
+  keyword: string;
+  description: string;
+};
+
+type LessonDetailsProps = {
+  keyLearningPoints: KeyLearningPoint[] | null | undefined;
+  commonMisconceptions: CommonMisconception[] | null | undefined;
+  keyWords: KeyWord[] | null | undefined;
+};
+
+const LessonDetails: FC<LessonDetailsProps> = ({
+  keyLearningPoints,
+  commonMisconceptions,
+  keyWords,
+}) => {
+  return (
+    <Flex $flexDirection={"column"}>
+      <Heading $font={["heading-5", "heading-4"]}>Lesson details</Heading>
+      <Grid $width={"100%"} $mt={[48, 24]} $mb={[56, 24]}>
+        <GridArea $colSpan={[12, 8]}>
+          {keyLearningPoints && (
+            <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
+          )}
+          {commonMisconceptions && (
+            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+          )}
+          {keyWords && <KeyWords keyWords={keyWords} />}
+        </GridArea>
+      </Grid>
+    </Flex>
+  );
+};
+
+export default LessonDetails;

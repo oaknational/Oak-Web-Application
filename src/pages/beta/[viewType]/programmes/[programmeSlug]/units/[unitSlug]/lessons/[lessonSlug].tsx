@@ -41,9 +41,9 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
-import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
 import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../../node-lib/getPageProps";
+import LessonDetails from "../../../../../../../../components/LessonDetails/LessonDetails";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -107,6 +107,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     subjectTitle,
     supervisionLevel,
     contentGuidance,
+    misconceptionsAndCommonMistakes,
+    lessonKeywords,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
@@ -250,17 +252,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
             <Hr $color={"oakGrey3"} />
 
-            {keyLearningPoints && (
-              <ExpandingContainer
-                title={"Lesson overview"}
-                downloadable={false}
-                toggleClosed={true}
-                {...curriculumData}
-              >
-                <LessonOverview keyLearningPoints={keyLearningPoints} />
-              </ExpandingContainer>
-            )}
-
             {presentationUrl && !hasCopyrightMaterial && (
               <ExpandingContainer
                 downloadable={true}
@@ -280,6 +271,23 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 />
               </ExpandingContainer>
             )}
+            <Hr $color={"teachersPastelBlue"} $mb={[12, 24]} />
+            <LessonDetails
+              keyLearningPoints={keyLearningPoints}
+              commonMisconceptions={misconceptionsAndCommonMistakes}
+              keyWords={lessonKeywords}
+            />
+            {/* {keyLearningPoints && (
+              <ExpandingContainer
+                title={"Lesson overview"}
+                downloadable={false}
+                toggleClosed={true}
+                {...curriculumData}
+              >
+                <LessonOverview keyLearningPoints={keyLearningPoints} />
+              </ExpandingContainer>
+            )} */}
+
             {videoMuxPlaybackId && (
               <ExpandingContainer {...curriculumData} title={"Video"}>
                 <OverviewVideo
