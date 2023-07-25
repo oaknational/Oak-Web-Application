@@ -42,7 +42,7 @@ import type {
 } from "../../../../../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
 import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
-import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
+import { ViewType } from "../../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../../node-lib/getPageProps";
 
 export type LessonOverviewPageProps = {
@@ -393,16 +393,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { lessons } = await curriculumApi.lessonOverviewPaths();
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    lessons.map((params) => ({
-      params: { viewType, ...params },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };
