@@ -69,10 +69,21 @@ export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
    * @see https://www.sanity.io/docs/image-urls#rect-b9848ab43728
    */
   cropRect?: [number, number, number, number];
+  /**
+   * Format: "webp" | null (set null if source is svg and you want to keep it as svg)
+   */
+  format?: "webp" | null;
 };
 
 const CMSImage: FC<CMSImageProps> = (props) => {
-  const { image, loader: propsLoader, noCrop, cropRect, ...rest } = props;
+  const {
+    image,
+    loader: propsLoader,
+    noCrop,
+    cropRect,
+    format = "webp",
+    ...rest
+  } = props;
 
   const id = getSanityRefId(image);
   const originalDimensions = getImageDimensions(id, { fill: rest.fill });
@@ -82,7 +93,6 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       let builtImage = imageBuilder
         .image(image)
         .width(srcWidth)
-        .format("webp")
         .auto("format")
         .quality(80)
         .fit("clip");
@@ -93,6 +103,10 @@ const CMSImage: FC<CMSImageProps> = (props) => {
         originalDimensions,
         cropRect,
       });
+
+      if (format) {
+        builtImage = builtImage.format(format);
+      }
 
       if (aspectRatio) {
         builtImage = builtImage.height(Math.floor(srcWidth / aspectRatio));
@@ -118,7 +132,15 @@ const CMSImage: FC<CMSImageProps> = (props) => {
 
       return builtImage.url();
     },
-    [image, noCrop, originalDimensions, props.height, props.width, cropRect]
+    [
+      image,
+      noCrop,
+      originalDimensions,
+      props.height,
+      props.width,
+      cropRect,
+      format,
+    ]
   );
 
   const loader: ImageLoader = propsLoader || defaultLoader;
