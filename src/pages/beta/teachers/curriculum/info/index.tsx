@@ -1,8 +1,9 @@
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+// import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import { NextPage } from "next";
 import { FC } from "react";
 
-import curriculumApi, { ProgrammeListingPaths } from "node-lib/curriculum-api";
-import { decorateWithIsr } from "node-lib/isr";
+// import curriculumApi from "node-lib/curriculum-api";
+// import { decorateWithIsr } from "node-lib/isr";
 import { BETA_SEO_PROPS } from "browser-lib/seo/Seo";
 import AppLayout from "components/AppLayout";
 import Box from "components/Box";
@@ -22,7 +23,7 @@ import OakLink from "components/OakLink/OakLink";
 import Icon from "components/Icon/Icon";
 
 export type CurriculumInfoPageProps = {
-  data: ProgrammeListingPaths;
+  data: [];
 };
 
 const mathsCurriculaDesc =
@@ -174,18 +175,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps<
-  CurriculumInfoPageProps
-> = async () => {
-  const data = await curriculumApi.programmeListingPaths();
-  const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
-    props: {
-      data: data,
-    },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
-};
+// export const getStaticProps: GetStaticProps<
+//   CurriculumInfoPageProps
+// > = async () => {
+//   const data = await curriculumApi.programmeListingPaths();
+//   const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
+//     props: {
+//       data: data,
+//     },
+//   };
+//   const resultsWithIsr = decorateWithIsr(results);
+//   return resultsWithIsr;
+// };
 
 export default CurriculumInfoPage;
 
