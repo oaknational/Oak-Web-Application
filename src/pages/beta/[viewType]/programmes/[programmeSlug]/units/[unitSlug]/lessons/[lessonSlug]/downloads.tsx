@@ -57,10 +57,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../node-lib/isr";
-import {
-  VIEW_TYPES,
-  ViewType,
-} from "../../../../../../../../../common-lib/urls";
+import { ViewType } from "../../../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../../../../../node-lib/curriculum-api-2023";
 
@@ -482,16 +479,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { downloads } = await curriculumApi.lessonDownloadPaths();
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    downloads.map((params) => ({
-      params: { viewType, ...params },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };

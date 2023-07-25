@@ -1,3 +1,12 @@
+## [1.203.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.7...v1.203.8) (2023-07-25)
+
+
+### Bug Fixes
+
+* set all getStaticProps to return paths: [] ([d27d070](https://github.com/oaknational/Oak-Web-Application/commit/d27d0705129dca63478c41bbc928ffe56cf57362))
+* set fallback: blocking ([668372c](https://github.com/oaknational/Oak-Web-Application/commit/668372c47b8f17d7a2759d05d1d4badd8af85088))
+* tier-listing 'not found' error ([2c9dc16](https://github.com/oaknational/Oak-Web-Application/commit/2c9dc165b873dc1be35703ba9796d6cc0e6addc9))
+
 ## [1.203.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.6...v1.203.7) (2023-07-21)
 
 ## [1.203.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.5...v1.203.6) (2023-07-20)
