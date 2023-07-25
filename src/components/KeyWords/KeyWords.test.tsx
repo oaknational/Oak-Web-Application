@@ -29,7 +29,6 @@ describe("KeyWords component", () => {
     const { getAllByRole } = renderWithTheme(
       <KeyWords keyWords={[{ keyword: "test1", description: null }]} />
     );
-    q;
 
     const listItems = getAllByRole("listitem");
     expect(listItems).toHaveLength(1);
