@@ -1,3 +1,22 @@
+# [1.204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.8...v1.204.0) (2023-07-25)
+
+
+### Bug Fixes
+
+* **lesson-listing:** put lessons in correct order ([0894269](https://github.com/oaknational/Oak-Web-Application/commit/0894269d78d72e720c3e0bea7a7d04c0de413047))
+* **lessons:** connect to latest lesson list mv ([425f0f1](https://github.com/oaknational/Oak-Web-Application/commit/425f0f18d1224caf40583c49e85d9f4230a150b2))
+* **lessons:** connect units 8, remove science dupes ([ba26e5c](https://github.com/oaknational/Oak-Web-Application/commit/ba26e5cf744a2b0eb0fd31feae7038d9394340b0))
+* **lessons:** final unitvariant bugs fix ([6c5c508](https://github.com/oaknational/Oak-Web-Application/commit/6c5c5085977a320f340d5e5afd55bf17d839de28))
+* **main:** merge ([22a350f](https://github.com/oaknational/Oak-Web-Application/commit/22a350f0f853b735dc8b989fc22114a8ad9406d6))
+* **main:** merge main ([0b13aa0](https://github.com/oaknational/Oak-Web-Application/commit/0b13aa0e551759f56a43e92c8e647d4f99c7059d))
+
+
+### Features
+
+* **unit and programme:** merge ([9018929](https://github.com/oaknational/Oak-Web-Application/commit/9018929d94570b20be79ac44e02a96275c1f1895))
+* **unit and programme:** update query for lessons and units ([2f36120](https://github.com/oaknational/Oak-Web-Application/commit/2f36120a0f447490fddfa7f5591a5a4aa0780504))
+* **unit and programme:** update query to display unitvariant data on unit list ([3e1f369](https://github.com/oaknational/Oak-Web-Application/commit/3e1f3699c7b24f59b10ad04e62b88ba4c857f2d1))
+
 ## [1.203.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.7...v1.203.8) (2023-07-25)
 
 
