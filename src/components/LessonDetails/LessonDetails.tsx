@@ -12,13 +12,13 @@ export type KeyLearningPoint = {
 };
 
 export type CommonMisconception = {
-  misconception: string;
-  response: string;
+  misconception: string | null;
+  response: string | null;
 };
 
 export type KeyWord = {
   keyword: string;
-  description: string;
+  description: string | null;
 };
 
 type LessonDetailsProps = {

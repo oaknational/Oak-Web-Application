@@ -29,16 +29,15 @@ describe("CommonMisconceptions component", () => {
     expect(response).toBeInTheDocument();
   });
 
-  // Ask Thomas if you can pass null as a response ot misconception
-  //   it("should render with null and non-null core content", () => {
-  //     const commonMisconceptions = [
-  //       { misconception: "test misconception", response: null },
-  //     ];
-  //     const { getAllByRole } = renderWithTheme(
-  //       <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
-  //     );
+  it("should render with null and non-null core content", () => {
+    const commonMisconceptions = [
+      { misconception: "test misconception", response: null },
+    ];
+    const { queryByText } = renderWithTheme(
+      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+    );
 
-  //     const listItems = getAllByRole("listitem");
-  //     expect(listItems).toHaveLength(1);
-  //   });
+    const misconception = queryByText("test misconception");
+    expect(misconception).toBeInTheDocument();
+  });
 });

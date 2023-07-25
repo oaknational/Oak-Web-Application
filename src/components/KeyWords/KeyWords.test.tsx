@@ -24,15 +24,14 @@ describe("KeyWords component", () => {
     const listItems = getAllByRole("listitem");
     expect(listItems).toHaveLength(2);
   });
-  // ASK THOMAS
-  //   it("should render with null and non-null core content", () => {
-  //     const { getAllByRole } = renderWithTheme(
-  //       <KeyWords
-  //         keyWords={[{ keyLearningPoint: "test" }, { keyLearningPoint: null }]}
-  //       />
-  //     );
 
-  //     const listItems = getAllByRole("listitem");
-  //     expect(listItems).toHaveLength(1);
-  //   });
+  it("should render with null and non-null core content", () => {
+    const { getAllByRole } = renderWithTheme(
+      <KeyWords keyWords={[{ keyword: "test1", description: null }]} />
+    );
+    q;
+
+    const listItems = getAllByRole("listitem");
+    expect(listItems).toHaveLength(1);
+  });
 });
