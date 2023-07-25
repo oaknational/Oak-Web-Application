@@ -148,6 +148,7 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     expired: Boolean(highlightedHit.expired),
+    learningThemes: [{ themeSlug: null, themeTitle: null }],
   };
 }
 

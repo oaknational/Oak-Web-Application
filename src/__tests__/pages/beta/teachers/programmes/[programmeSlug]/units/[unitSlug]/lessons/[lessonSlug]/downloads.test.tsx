@@ -5,7 +5,6 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import curriculumApi from "../../../../../../../../../../node-lib/curriculum-api/__mocks__";
 import waitForNextTick from "../../../../../../../../../__helpers__/waitForNextTick";
 import renderWithSeo from "../../../../../../../../../__helpers__/renderWithSeo";
 import { mockSeoResult } from "../../../../../../../../../__helpers__/cms";
@@ -372,12 +371,18 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
     });
   });
+
   describe("getStaticPaths", () => {
-    it("should fetch the correct data", async () => {
-      await getStaticPaths();
-      expect(curriculumApi.lessonDownloadPaths).toHaveBeenCalledTimes(1);
+    it("Should not generate pages at build time", async () => {
+      const res = await getStaticPaths();
+
+      expect(res).toEqual({
+        fallback: "blocking",
+        paths: [],
+      });
     });
   });
+
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({

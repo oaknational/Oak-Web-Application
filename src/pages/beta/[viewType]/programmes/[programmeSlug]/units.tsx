@@ -32,9 +32,10 @@ import TabularNav from "../../../../../components/TabularNav";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
-import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
+import { ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
+import { filterLearningTheme } from "../../../../../utils/filterLearningTheme/filterLearningTheme";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -53,15 +54,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     learningThemes,
-    totalUnitCount,
+    examBoardTitle,
   } = curriculumData;
 
   const router = useRouter();
-  const learningThemeSlug = router.query["learning-theme"]?.toString();
+  const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = learningThemeSlug
-    ? units.filter((unit) => unit.themeSlug === learningThemeSlug)
-    : units;
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
@@ -139,7 +138,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           page={"subject"}
           keyStage={keyStageTitle}
           keyStageSlug={keyStageSlug}
-          title={subjectTitle}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
           slug={subjectSlug}
           $mt={0}
           $mb={24}
@@ -175,9 +174,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
-                    selectedThemeSlug={
-                      learningThemeSlug ? learningThemeSlug : "all"
-                    }
+                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "unit-index",
                       viewType: "teachers",
@@ -207,7 +204,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 <Flex $position={["absolute", "relative"]}>
                   <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    {`Units (${totalUnitCount})`}
+                    {`Units (${unitsFilteredByLearningTheme.length})`}
                   </Heading>
                 </Flex>
                 {learningThemes?.length > 1 && (
@@ -219,9 +216,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <LearningThemeFilters
                       labelledBy={learningThemesFilterId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={
-                        learningThemeSlug ? learningThemeSlug : "all"
-                      }
+                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
                         page: "unit-index",
                         viewType: "teachers",
@@ -283,16 +278,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { programmes } = await curriculumApi.unitListingPaths();
-
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    programmes.map((programme) => ({
-      params: { viewType, programmeSlug: programme.programmeSlug },
-    }))
-  );
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };

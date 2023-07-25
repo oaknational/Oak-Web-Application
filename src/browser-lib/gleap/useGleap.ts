@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
-import config from "../../config/browser";
+import getBrowserConfig from "../getBrowserConfig";
 
 import startGleap, { hasLoaded } from "./startGleap";
 
-const apiKey = config.get("gleapApiKey");
-const apiUrl = config.get("gleapApiUrl");
-const frameUrl = config.get("gleapFrameUrl");
+const apiKey = getBrowserConfig("gleapApiKey");
+const apiUrl = getBrowserConfig("gleapApiUrl");
+const frameUrl = getBrowserConfig("gleapFrameUrl");
 
 type UseGleapProps = {
   enabled: boolean;

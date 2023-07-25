@@ -3,8 +3,8 @@ import { PostHog } from "posthog-js";
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
 import getHasConsentedTo from "../cookie-consent/getHasConsentedTo";
 import withQueue from "../analytics/withQueue";
-import config from "../../config/browser";
 import getLegacyAnonymousId from "../analytics/getLegacyAnonymousId";
+import getBrowserConfig from "../getBrowserConfig";
 
 export type PosthogDistinctId = string;
 export type MaybeDistinctId = string | null;
@@ -22,7 +22,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
     new Promise((resolve) => {
       client.init(apiKey, {
         api_host: apiHost,
-        debug: config.get("releaseStage") !== "production",
+        debug: getBrowserConfig("releaseStage") !== "production",
         loaded: () => {
           const legacyAnonymousId = getLegacyAnonymousId();
           if (legacyAnonymousId) {

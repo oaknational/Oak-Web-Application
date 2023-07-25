@@ -4,10 +4,10 @@ import useAxe from "../../browser-lib/axe/useAxe";
 import useBugsnag from "../../browser-lib/bugsnag/useBugsnag";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import useGleap from "../../browser-lib/gleap";
-import config from "../../config/browser";
 import isBrowser from "../../utils/isBrowser";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import removeDecommissionedKeys from "../../config/removeDecommissionedKeys";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 /**
  * Anything code that should run once in the browser should be placed here
@@ -29,7 +29,7 @@ const useAppHooks = () => {
     userId: posthogDistinctId,
   });
   useGleap({ enabled: hasConsentedTo("gleap") === "enabled" });
-  useAxe({ enabled: config.get("axeA11yLogging") === "on" });
+  useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
 };
 
 const AppHooks = () => {

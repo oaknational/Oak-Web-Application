@@ -17,8 +17,9 @@ jest.mock("./generated/sdk", () => ({
 describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
     jest.resetModules();
-    jest.mock("../../config/server", () => ({
-      get: configGetSpy,
+    jest.mock("../getServerConfig", () => ({
+      __esModule: true,
+      default: configGetSpy,
     }));
     jest.mock("graphql-request", () => ({
       GraphQLClient: GraphQLClientSpy,

@@ -1,3 +1,5 @@
+import mockRouter from "next-router-mock";
+
 import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
   getStaticPaths,
@@ -38,6 +40,27 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
+  it("title card render correct title", () => {
+    const { getByRole } = render(
+      <UnitListingPage curriculumData={unitListingFixture()} />
+    );
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+  });
+  it("title card renderd correct title when examboard is present", () => {
+    const { getByRole } = render(
+      <UnitListingPage
+        curriculumData={{
+          ...unitListingFixture(),
+          examBoardTitle: "OCR",
+        }}
+      />
+    );
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent(
+      "Computing OCR"
+    );
+  });
 
   describe("SEO", () => {
     it("renders the correct SEO details for tiered programme", async () => {
@@ -74,6 +97,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         robots: "noindex,nofollow",
       });
     });
+
     it("renders the correct SEO details for programmes with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 10;
       const { seo } = renderWithSeo()(
@@ -98,12 +122,28 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
+  it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
+    mockRouter.push({
+      pathname: "/beta/teachers/programmes/art-primary-ks1/units",
+      query: {
+        learningTheme: "computer-science-2",
+      },
+    });
+    const { getByRole } = render(
+      <UnitListingPage curriculumData={unitListingFixture()} />
+    );
+
+    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+  });
 
   describe("getStaticPaths", () => {
-    it("Should return the paths of all programmes", async () => {
-      await getStaticPaths();
+    it("Should not generate pages at build time", async () => {
+      const res = await getStaticPaths();
 
-      expect(curriculumApi.unitListingPaths).toHaveBeenCalledTimes(1);
+      expect(res).toEqual({
+        fallback: "blocking",
+        paths: [],
+      });
     });
   });
 
