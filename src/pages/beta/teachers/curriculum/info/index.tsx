@@ -9,25 +9,33 @@ import AppLayout from "components/AppLayout";
 import Box from "components/Box";
 import Flex from "components/Flex";
 import MaxWidth from "components/MaxWidth/MaxWidth";
-import { Heading, P } from "components/Typography";
+import { Heading, Hr, P, UL, LI } from "components/Typography";
 import Grid, { GridArea } from "components/Grid";
 import Button from "components/Button/Button";
 import Card from "components/Card/Card";
 import DropdownSelect from "components/DropdownSelect";
-import ButtonAsLink from "components/Button/ButtonAsLink";
 import SubjectIcon from "components/SubjectIcon/SubjectIcon";
 import BrushBorders from "components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import AvatarImage from "components/AvatarImage/AvatarImage";
-import BoxBorders from "components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import OakLink from "components/OakLink/OakLink";
 import Icon from "components/Icon/Icon";
-
+import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
+import TabularNav from "components/TabularNav/TabularNav";
+import IconButton from "components/Button/IconButton";
+import ButtonAsLink from "components/Button/ButtonAsLink";
 export type CurriculumInfoPageProps = {
   data: [];
 };
 
-const mathsCurriculaDesc =
-  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
+const curriculaDesc =
+  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in English. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
+
+const subjectPrinciples = [
+  "Pairing procedural knowledge with conceptual understanding",
+  "Aligning with the Concrete Pictorial Abstract approach to mathematics teaching and learning",
+  "Use an agreed set of models and representations which bridge mathematical concepts",
+  "Use of variation theory in practice tasks and modelling",
+];
 
 const schoolPhase = [
   { value: "KS1-2", label: "Key Stage 1&2" },
@@ -38,11 +46,6 @@ const schoolPhase = [
   { value: "KS4", label: "Key Stage 4" },
 ];
 
-// const examBoards = [
-//   { value: "AQA", label: "AQA" },
-//   { value: "Edexcel", label: "Edexcel" },
-//   { value: "OCR", label: "OCR" },
-// ];
 const subjects = [
   { value: "biology", label: "Biology" },
   { value: "chemistry", label: "Chemistry" },
@@ -58,114 +61,168 @@ const subjects = [
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
       <CurriculaSelection />
-      <Flex $background={"grey1"} $justifyContent={"center"} $pv={48}>
-        <Box $width={"80%"}>
-          <MaxWidth $background={"grey1"}>
-            <Flex $background={"grey1"}>
-              <Heading tag={"h2"} $font={"heading-light-3"} $mr={26}>
-                Secondary Maths
-              </Heading>
-              <ButtonAsLink
-                label={"Get curriculum resources"}
-                page={"develop-your-curriculum"}
-              />
-            </Flex>
-          </MaxWidth>
-        </Box>
-      </Flex>
+
+      <Box style={{ background: "rgba(176,226,222, 0.5)" }}>
+        <Flex $justifyContent={"center"} $pv={32}>
+          <Box $width={"80%"}>
+            <MaxWidth>
+              <Flex $alignItems={"center"}>
+                <Box $background={"pupilsLightGreen"} $mr={12}>
+                  <SubjectIcon
+                    subjectSlug="maths"
+                    $maxHeight={56}
+                    $maxWidth={56}
+                    $color="white"
+                    $borderColor="white"
+                  />
+                </Box>
+
+                <Heading tag={"h2"} $font={"heading-light-3"} $mr={26}>
+                  Secondary Maths
+                </Heading>
+              </Flex>
+            </MaxWidth>
+          </Box>
+        </Flex>
+        <TabularNav
+          $width={"80%"}
+          $ma={"auto"}
+          label="Curriculum Selection"
+          links={[
+            { href: "https://exammple.com", label: "Overview", page: null },
+            {
+              href: "https://exammple.com",
+              label: "Unit sequence",
+              page: null,
+            },
+            { href: "https://exammple.com", label: "Downloads", page: null },
+          ]}
+          onClick={() => null}
+        />
+      </Box>
+
       <Box $background={"white"}>
-        <Box $background={"grey1"}>
-          <Flex $width={"80%"} $ma={"auto"}>
-            <Button label="Overview" $ml={0} $mb={1} background={"grey1"} />
-            <Button label="Units" $ml={12} $mb={1} background={"white"} />
-            <Button label="Downloads" $ml={12} $mb={1} background={"white"} />
-          </Flex>
-        </Box>
-        <Box $width={"80%"} $ma={"auto"}>
-          <Flex $width={"100%"} $mv={10} $justifyContent={"space-between"}>
-            <Box $mv={20} $mr={16}>
-              <P>{mathsCurriculaDesc}</P>
+        <Box $width={"80%"} $ma={"auto"} $pb={80}>
+          <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
+            <Box $pt={20} $mr={16} $maxWidth={"60%"}>
+              <Heading tag="h5" $font={["heading-5", "heading-6"]}>
+                Curriculum intent
+              </Heading>
+              <P $mv={6} $mr={12}>
+                {curriculaDesc}
+              </P>
             </Box>
 
             <Card
               $ml={40}
-              $height={"100%"}
-              $width={"100%"}
+              $maxHeight={200}
+              $maxWidth={200}
               $ma={"auto"}
-              $background={"teachersLilac"}
+              $zIndex={"inFront"}
+              $transform={[
+                "rotate(-2.179deg) scale(1.5, 1.5) translate(25%,50%)",
+
+                // "translate(-10%,120%)",
+              ]}
+              $background={"teachersPastelYellow"}
             >
-              <BrushBorders color="teachersLilac" />
+              <BrushBorders color="teachersPastelYellow" />
               <SubjectIcon
                 subjectSlug="maths"
-                $minWidth={120}
-                $background={"teachersLilac"}
+                $maxHeight={200}
+                $maxWidth={200}
+                $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
+                $background={"teachersPastelYellow"}
               />
             </Card>
           </Flex>
         </Box>
 
-        <Box $maxWidth={"80%"} $ma={"auto"}>
-          <h3>Subject principles</h3>
-          <Flex $justifyContent={"center"}>
-            {[1, 2, 3, 4].map((pointNum) => {
-              return (
-                <Card
-                  $mh={3}
-                  $mv={20}
-                  $background={"white"}
-                  key={`example-curricula-points-${pointNum}`}
-                >
-                  <BoxBorders />
-                  <P>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </P>
-                </Card>
-              );
-            })}
-          </Flex>
-        </Box>
-
-        <Box $maxWidth={"80%"} $ma={"auto"}>
-          <Heading $mv={6} tag="h3">
-            Video guide
+        <Card $maxWidth={"80%"} $ma={"auto"} $background={"pastelTurquoise"}>
+          <BrushBorders color={"pastelTurquoise"} />
+          <Heading tag="h5" $font={["heading-5", "heading-6"]}>
+            Subject principles
           </Heading>
+          <UL $reset={true} $mt={10}>
+            {subjectPrinciples.map((item) => (
+              <LI $mb={[10]}>
+                <Flex $alignItems={"center"}>
+                  <IconButton
+                    icon="arrow-right"
+                    disabled={true}
+                    $mt={[4]}
+                    background={"grey1"}
+                    aria-label="pointer to subject principles"
+                    $mr={4}
+                  />
+                  {item}
+                </Flex>
+              </LI>
+            ))}
+          </UL>
+        </Card>
+
+        <Box $maxWidth={"80%"} $ma={"auto"} $pt={80} $pb={80}>
           <Flex $justifyContent={"space-around"}>
-            <Box $mh={6} $maxWidth={"40%"}>
+            <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
+              Video here
+            </Box>
+            <Box $mh={6} $ph={50}>
+              <Heading $mv={6} tag="h3">
+                Video guide
+              </Heading>
               <P $mv={6}>
                 Our new curriculum sequence has recently launched. For
                 additional support, watch this video guide by [Firstname
                 Surname] from our educational team, as they talk you through how
                 to use this new tool.
               </P>
-              <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
-                Read more about our new curriculum
-                <Icon name={"chevron-right"} />
-              </OakLink>
-            </Box>
-            <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
-              Video here
+              <Flex>
+                <OakLink
+                  $color={"black"}
+                  $font="heading-7"
+                  page={"help"}
+                  $mv={6}
+                >
+                  Read more about our new curriculum
+                  <Icon name={"chevron-right"} />
+                </OakLink>
+              </Flex>
+              <ButtonAsLink
+                variant="brush"
+                label="View unit sequence"
+                page="search"
+                viewType="teachers"
+                $mv={10}
+              />
             </Box>
           </Flex>
         </Box>
 
         <Card
-          $background={"teachersLilac"}
+          $background={"teachersPastelYellow"}
           $width={"80%"}
           $mt={24}
           $ma={"auto"}
         >
-          <BrushBorders color="teachersLilac" />
+          <BrushBorders color="teachersPastelYellow" />
           <Flex $justifyContent={"center"}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
             <Box>
-              <h4>This curriculum was created by [Firstname Surname]</h4>
+              <Heading tag="h5" $font={"heading-5"}>
+                Our curriculum partner
+              </Heading>
               <P>
-                [Firstname Surname] is a [role] who has had the following
-                experience: Aliquam in hendrerit urna. Pellentesque sit amet
-                sapien fringilla, mattis ligula consectetur, ultrices mauris.
-                Maecenas vitae mattis tellus.
+                Mathematics in Education and Industry (MEI) is an established
+                charity and curriculum development body. Their primary aims are
+                to raise the quality of maths education and promote the
+                relevance of maths education to everyone. MEI are highly
+                respected and are well connected with other quality assured
+                organisations, including being a key partner in the NCETM, and
+                are well known in schools for their excellent training and
+                support programmes.
               </P>
             </Box>
           </Flex>
@@ -212,17 +269,35 @@ const CurriculaSelection: FC = () => {
   }
 
   return (
-    <Flex $background={"grey1"} $justifyContent={"center"} $pv={[20]}>
-      <MaxWidth>
-        <Box $pt={20}>
-          <Heading
-            $font={"heading-4"}
-            tag={"h3"}
-            $mb={36}
-            $textAlign={"center"}
-          >
-            Oak's Curricula
-          </Heading>
+    <Flex $background={"pastelTurquoise"} $justifyContent={"center"} $pv={[20]}>
+      <Box $width={"80%"}>
+        <Breadcrumbs
+          breadcrumbs={[
+            {
+              oakLinkProps: {
+                page: "home",
+                viewType: "teachers",
+              },
+              label: "Home",
+            },
+            {
+              oakLinkProps: {
+                page: "home",
+                viewType: "teachers",
+              },
+              label: "Curriculum resource",
+            },
+            {
+              oakLinkProps: {
+                page: "home",
+                viewType: "teachers",
+              },
+              label: "Secondary English",
+            },
+          ]}
+        />
+        <Hr $color={"white"} />
+        <Box $pt={10}>
           <Grid>
             <GridArea $colSpan={[12, 5]}>
               <DropdownSelect
@@ -255,7 +330,7 @@ const CurriculaSelection: FC = () => {
             </GridArea>
           </Grid>
         </Box>
-      </MaxWidth>
+      </Box>
     </Flex>
   );
 };
