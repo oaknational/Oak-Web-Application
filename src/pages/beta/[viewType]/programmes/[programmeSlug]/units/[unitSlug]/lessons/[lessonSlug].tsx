@@ -277,16 +277,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               commonMisconceptions={misconceptionsAndCommonMistakes}
               keyWords={lessonKeywords}
             />
-            {/* {keyLearningPoints && (
-              <ExpandingContainer
-                title={"Lesson overview"}
-                downloadable={false}
-                toggleClosed={true}
-                {...curriculumData}
-              >
-                <LessonOverview keyLearningPoints={keyLearningPoints} />
-              </ExpandingContainer>
-            )} */}
 
             {videoMuxPlaybackId && (
               <ExpandingContainer {...curriculumData} title={"Video"}>
