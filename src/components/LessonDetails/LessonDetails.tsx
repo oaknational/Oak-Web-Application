@@ -3,23 +3,13 @@ import React, { FC } from "react";
 import Grid, { GridArea } from "../Grid";
 import Flex from "../Flex";
 import Heading from "../Typography";
-import KeyLearningPoints from "../KeyLearningPoints/KeyLearningPoints";
-import CommonMisconceptions from "../CommonMisconceptions/CommonMisconceptions";
-import KeyWords from "../KeyWords/KeyWords";
-
-export type KeyLearningPoint = {
-  keyLearningPoint: string | null;
-};
-
-export type CommonMisconception = {
-  misconception: string | null;
-  response: string | null;
-};
-
-export type KeyWord = {
-  keyword: string;
-  description: string | null;
-};
+import KeyLearningPoints, {
+  KeyLearningPoint,
+} from "../KeyLearningPoints/KeyLearningPoints";
+import CommonMisconceptions, {
+  CommonMisconception,
+} from "../CommonMisconceptions/CommonMisconceptions";
+import KeyWords, { KeyWord } from "../KeyWords/KeyWords";
 
 type LessonDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;

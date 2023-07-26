@@ -2,17 +2,29 @@ import React from "react";
 
 import Flex from "../Flex";
 import Heading, { P } from "../Typography";
-import { CommonMisconception } from "../LessonDetails/LessonDetails";
 
 export type CommonMisconceptionsAndResponses = {
   commonMisconceptions: CommonMisconception[] | null | undefined;
 };
 
+export type CommonMisconception = {
+  misconception: string | null;
+  response: string | null;
+};
+
 const CommonMisconceptions = ({
   commonMisconceptions,
 }: CommonMisconceptionsAndResponses) => {
+  if (
+    commonMisconceptions &&
+    !commonMisconceptions[0]?.misconception &&
+    !commonMisconceptions[0]?.response
+  ) {
+    return null;
+  }
+
   return (
-    <Flex $justifyContent={"center"} $width={"100%"} $mt={36} $mb={48}>
+    <Flex $justifyContent={"center"} $width={"100%"} $mb={48}>
       <Flex
         $flexDirection={"column"}
         $position={"relative"}

@@ -2,7 +2,11 @@ import React from "react";
 
 import Flex from "../Flex";
 import Heading, { LI, P, Span, UL } from "../Typography";
-import { KeyWord } from "../LessonDetails/LessonDetails";
+
+export type KeyWord = {
+  keyword: string;
+  description: string | null;
+};
 
 export type KeyWordsAndDescription = { keyWords: KeyWord[] };
 
@@ -23,6 +27,8 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
             const capitalisedKeyword =
               keyWord.keyword.charAt(0).toUpperCase() +
               keyWord.keyword.slice(1);
+
+            const description = `- ${keyWord.description}`;
             return (
               <LI key={`${keyWord.keyword}-${i}`} $mb={12}>
                 <P>
@@ -30,7 +36,7 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
                     <Span $font={["body-2-bold", "body-1-bold"]}>
                       {capitalisedKeyword}
                     </Span>{" "}
-                    – {keyWord.description}
+                    {!keyWord.description ? null : description}
                   </Span>
                 </P>
               </LI>

@@ -2,10 +2,12 @@ import React from "react";
 
 import Flex from "../Flex";
 import Heading from "../Typography";
-import UL from "../Typography/UL";
-import P from "../Typography/P";
+import OL from "../Typography/OL";
 import LI from "../Typography/LI";
-import { KeyLearningPoint } from "../LessonDetails/LessonDetails";
+
+export type KeyLearningPoint = {
+  keyLearningPoint: string | null;
+};
 
 type LessonKeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
 
@@ -17,7 +19,7 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   );
 
   return (
-    <Flex $justifyContent={"center"} $width={"100%"}>
+    <Flex $justifyContent={"center"} $width={"100%"} $mb={48}>
       <Flex
         $flexDirection={"column"}
         $position={"relative"}
@@ -31,10 +33,9 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
         >
           Key learning points
         </Heading>
-        <UL $reset>
+        <OL $mb={0} $mt={0}>
           {filteredKeyLearningPoints.map(
             (keyLearningPoint: KeyLearningPoint, i: number) => {
-              const listNumber = i + 1;
               if (!keyLearningPoint) {
                 return null;
               } else {
@@ -43,16 +44,13 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
                     key={`key-learning-point-${i}`}
                     $font={["list-item-2", "list-item-1"]}
                   >
-                    <Flex $mb={12}>
-                      <P $mr={4}>{listNumber}. </P>
-                      <P>{`${keyLearningPoint.keyLearningPoint}`}</P>
-                    </Flex>
+                    {`${keyLearningPoint.keyLearningPoint}`}
                   </LI>
                 );
               }
             }
           )}
-        </UL>
+        </OL>
       </Flex>
     </Flex>
   );
