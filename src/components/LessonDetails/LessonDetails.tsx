@@ -10,7 +10,7 @@ import CommonMisconceptions, {
   CommonMisconception,
 } from "../CommonMisconceptions/CommonMisconceptions";
 import KeyWords, { KeyWord } from "../KeyWords/KeyWords";
-import TeacherTips from "../TeacherTips/TeacherTips";
+import TeacherTips, { TeacherTip } from "../TeacherTips/TeacherTips";
 
 type LessonDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;
