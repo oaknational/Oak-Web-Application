@@ -38,10 +38,10 @@ Other documentation can be found in standalone READMEs:
 Create an environment configuration file by running:
 
 ```bash
-touch .env
+cp .env.example .env
 ```
 
-Now populate the file with secret manager services and the Oak config location. Fill in other values, if required, by asking another member of the team.
+Now populate the new file with values found in 1Password (search "owa .env").
 
 Now install dependencies
 
