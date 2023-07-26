@@ -21,7 +21,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $justifyContent={"center"}
       $display={["none", "flex"]}
       $alignItems={"center"}
-      $minWidth={82}
+      $minWidth={80}
       $background={background}
       $position={"relative"}
       $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
