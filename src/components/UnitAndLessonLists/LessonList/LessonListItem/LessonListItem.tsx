@@ -7,7 +7,7 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import ListItemHeader from "../../ListItemHeader";
-import { Span } from "../../../Typography";
+import { P, Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
@@ -101,6 +101,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     hitCount,
     currentPage,
     firstItemRef,
+    pupilLessonOutcome,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -172,6 +173,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           slug={lessonSlug}
           fromSearchPage={fromSearchPage}
         />
+        <P $font={"body-2"}>{pupilLessonOutcome}</P>
         {expired ? (
           <Expired page={"lesson"} />
         ) : (
@@ -186,7 +188,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
               />
             </Flex>
             {resources.length > 0 && (
-              <Box $mt={16}>
+              <Box $mt={12}>
                 <LessonResourceGraphics items={resources} />
               </Box>
             )}
