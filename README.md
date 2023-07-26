@@ -41,7 +41,7 @@ Create an environment configuration file by running:
 cp .env.example .env
 ```
 
-Now populate the new file with values found in 1Password (search "owa .env").
+Now populate the new file, asking a colleague for the values.
 
 Now install dependencies
 
