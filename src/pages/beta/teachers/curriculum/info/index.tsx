@@ -8,7 +8,7 @@ import { BETA_SEO_PROPS } from "browser-lib/seo/Seo";
 import AppLayout from "components/AppLayout";
 import Box from "components/Box";
 import Flex from "components/Flex";
-import { Heading, Hr, P, UL, LI } from "components/Typography";
+import { Heading, Hr, UL, LI } from "components/Typography";
 import Grid, { GridArea } from "components/Grid";
 import Button from "components/Button/Button";
 import Card from "components/Card/Card";
@@ -22,13 +22,14 @@ import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import TabularNav from "components/TabularNav/TabularNav";
 import IconButton from "components/Button/IconButton";
 import ButtonAsLink from "components/Button/ButtonAsLink";
+import Typography from "components/Typography/Typography";
 
 export type CurriculumInfoPageProps = {
   data: [];
 };
 
 const curriculaDesc =
-  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in English. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
+  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
 
 const subjectPrinciples = [
   "Pairing procedural knowledge with conceptual understanding",
@@ -115,13 +116,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
       <Box $background={"white"}>
         <Box $width={"80%"} $ma={"auto"} $pb={80}>
           <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
-            <Box $pt={20} $mr={16} $maxWidth={"60%"}>
+            <Box $pt={20} $mr={16} $maxWidth={"70%"} $textAlign={"justify"}>
               <Heading tag="h5" $font={["heading-5", "heading-6"]}>
                 Curriculum intent
               </Heading>
-              <P $mv={6} $mr={12}>
+              <Typography
+                $font={["body-2", "body-1"]}
+                style={{ fontWeight: "light" }}
+                $mt={10}
+                $mr={12}
+              >
                 {curriculaDesc}
-              </P>
+              </Typography>
             </Box>
 
             <Card
@@ -131,7 +137,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               $ma={"auto"}
               $zIndex={"inFront"}
               $transform={[
-                "rotate(-2.179deg) scale(1.5, 1.5) translate(25%,50%)",
+                "rotate(-2.179deg) scale(1.5, 1.5) translate(5%,55%)",
               ]}
               $background={"lemon50"}
             >
@@ -154,7 +160,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           </Heading>
           <UL $reset={true} $mt={10}>
             {subjectPrinciples.map((item) => (
-              <LI $mb={[10]}>
+              <LI $mb={[12]}>
                 <Flex $alignItems={"center"}>
                   <IconButton
                     icon="arrow-right"
@@ -180,12 +186,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               <Heading $mv={6} tag="h3">
                 Video guide
               </Heading>
-              <P $mv={6}>
+              <Typography $mv={6} $font={"body-1"}>
                 Our new curriculum sequence has recently launched. For
                 additional support, watch this video guide by [Firstname
                 Surname] from our educational team, as they talk you through how
                 to use this new tool.
-              </P>
+              </Typography>
               <Flex>
                 <OakLink
                   $color={"black"}
@@ -208,7 +214,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           </Flex>
         </Box>
 
-        <Card $background={"lemon30"} $width={"80%"} $mt={24} $ma={"auto"}>
+        <Card $background={"lemon30"} $width={"80%"} $ma={"auto"}>
           <BrushBorders color="lemon30" />
           <Flex $justifyContent={"center"}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
@@ -216,7 +222,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               <Heading tag="h5" $font={"heading-5"}>
                 Our curriculum partner
               </Heading>
-              <P>
+              <Typography $font={"body-1"}>
                 Mathematics in Education and Industry (MEI) is an established
                 charity and curriculum development body. Their primary aims are
                 to raise the quality of maths education and promote the
@@ -225,7 +231,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
                 organisations, including being a key partner in the NCETM, and
                 are well known in schools for their excellent training and
                 support programmes.
-              </P>
+              </Typography>
             </Box>
           </Flex>
         </Card>
