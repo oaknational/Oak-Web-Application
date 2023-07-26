@@ -150,6 +150,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     <ListItemCard
       title={lessonTitle}
       subjectSlug={subjectSlug}
+      index={index}
+      fromSearchPage={fromSearchPage}
       isHovered={isHovered}
       background={"pupilsPink"}
       containerProps={containerProps}

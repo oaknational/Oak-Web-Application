@@ -35,7 +35,6 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const {
     title,
     slug,
-    themeTitle,
     lessonCount,
     index,
     expired,
@@ -96,13 +95,15 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       containerProps={containerProps}
       background={"teachersLilac"}
       expired={expired}
+      index={index}
+      fromSearchPage={fromSearchPage}
     >
       <Flex
         $ml={[16, 24]}
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
-        $pb={24}
+        $gap={"8px"}
       >
         <ListItemHeader
           {...props}
@@ -117,23 +118,21 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           <Expired page={"unit"} />
         ) : (
           <Flex $flexDirection={["column", "row"]}>
-            {themeTitle && (
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: themeTitle,
-                }}
-                $mr={16}
-                $mb={[4, 0]}
-                $font={["body-3", "heading-light-7"]}
-              />
-            )}
             <Flex>
               {lessonCount && expiredLessonCount ? (
-                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                <Span
+                  $mr={16}
+                  $font={["body-3", "heading-light-7"]}
+                  $color={"oakGrey4"}
+                >
                   {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
                 </Span>
               ) : (
-                <Span $mr={16} $font={["body-3", "heading-light-7"]}>
+                <Span
+                  $mr={16}
+                  $font={["body-3", "heading-light-7"]}
+                  $color={"oakGrey4"}
+                >
                   {lessonCount && `${lessonCount} lessons`}
                 </Span>
               )}

@@ -10,7 +10,7 @@ export const outlineShadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
 
 type OutlineHeadingProps = Omit<HeadingProps, "$fontSize">;
-type OutlineSize = 40 | 50 | 60 | 100 | 120;
+type OutlineSize = 32 | 40 | 50 | 60 | 100 | 120;
 type OutlineSizeResponsive = ResponsiveValues<OutlineSize>;
 
 const parse = (value?: unknown) => {
