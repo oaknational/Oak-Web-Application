@@ -12,7 +12,7 @@ export type KeyWordsAndDescription = { keyWords: KeyWord[] };
 
 const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
   return (
-    <Flex $justifyContent={"center"} $width={"100%"}>
+    <Flex $justifyContent={"center"} $width={"100%"} $mb={[48, 0]}>
       <Flex
         $flexDirection={"column"}
         $position={"relative"}
