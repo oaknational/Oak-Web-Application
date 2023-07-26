@@ -19,7 +19,7 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
         $justifyContent={"center"}
         $width={["100%", 840]}
       >
-        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h4">
+        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
           Key words
         </Heading>
         <UL $reset>

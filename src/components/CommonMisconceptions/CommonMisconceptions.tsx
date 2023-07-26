@@ -31,7 +31,7 @@ const CommonMisconceptions = ({
         $justifyContent={"center"}
         $width={["100%", 840]}
       >
-        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h4">
+        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
           Common misconceptions
         </Heading>
         {commonMisconceptions?.map(

@@ -30,7 +30,7 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
           $font={["heading-6", "heading-5"]}
           $mb={24}
           data-testid={"heading"}
-          tag="h4"
+          tag="h3"
         >
           Key learning points
         </Heading>

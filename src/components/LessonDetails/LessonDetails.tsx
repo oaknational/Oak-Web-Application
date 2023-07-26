@@ -24,7 +24,7 @@ const LessonDetails: FC<LessonDetailsProps> = ({
 }) => {
   return (
     <Flex $flexDirection={"column"}>
-      <Heading $font={["heading-5", "heading-4"]} tag={"h3"}>
+      <Heading $font={["heading-5", "heading-4"]} tag={"h2"}>
         Lesson details
       </Heading>
 
