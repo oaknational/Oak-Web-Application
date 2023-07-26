@@ -8,7 +8,6 @@ import { BETA_SEO_PROPS } from "browser-lib/seo/Seo";
 import AppLayout from "components/AppLayout";
 import Box from "components/Box";
 import Flex from "components/Flex";
-import MaxWidth from "components/MaxWidth/MaxWidth";
 import { Heading, Hr, P, UL, LI } from "components/Typography";
 import Grid, { GridArea } from "components/Grid";
 import Button from "components/Button/Button";
@@ -23,6 +22,7 @@ import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
 import TabularNav from "components/TabularNav/TabularNav";
 import IconButton from "components/Button/IconButton";
 import ButtonAsLink from "components/Button/ButtonAsLink";
+
 export type CurriculumInfoPageProps = {
   data: [];
 };
@@ -61,29 +61,30 @@ const subjects = [
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
+    <AppLayout
+      seoProps={BETA_SEO_PROPS}
+      $background={"white"}
+      headerVariant="landing-pages"
+    >
       <CurriculaSelection />
-
-      <Box style={{ background: "rgba(176,226,222, 0.5)" }}>
+      <Box $background={"aqua50"}>
         <Flex $justifyContent={"center"} $pv={32}>
           <Box $width={"80%"}>
-            <MaxWidth>
-              <Flex $alignItems={"center"}>
-                <Box $background={"pupilsLightGreen"} $mr={12}>
-                  <SubjectIcon
-                    subjectSlug="maths"
-                    $maxHeight={56}
-                    $maxWidth={56}
-                    $color="white"
-                    $borderColor="white"
-                  />
-                </Box>
+            <Flex $alignItems={"center"} $justifyContent={"left"}>
+              <Box $background={"aqua"} $borderRadius={6} $mr={12}>
+                <SubjectIcon
+                  subjectSlug="maths"
+                  $maxHeight={56}
+                  $maxWidth={56}
+                  $color="white"
+                  $borderColor="white"
+                />
+              </Box>
 
-                <Heading tag={"h2"} $font={"heading-light-3"} $mr={26}>
-                  Secondary Maths
-                </Heading>
-              </Flex>
-            </MaxWidth>
+              <Heading tag={"h2"} $font={"heading-light-3"} $mr={26}>
+                Secondary Maths
+              </Heading>
+            </Flex>
           </Box>
         </Flex>
         <TabularNav
@@ -91,13 +92,21 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           $ma={"auto"}
           label="Curriculum Selection"
           links={[
-            { href: "https://exammple.com", label: "Overview", page: null },
             {
-              href: "https://exammple.com",
+              href: "/beta/teachers/curriculum/info",
+              label: "Overview",
+              page: null,
+            },
+            {
+              href: "/beta/teachers/curriculum/info",
               label: "Unit sequence",
               page: null,
             },
-            { href: "https://exammple.com", label: "Downloads", page: null },
+            {
+              href: "/beta/teachers/curriculum/info",
+              label: "Downloads",
+              page: null,
+            },
           ]}
           onClick={() => null}
         />
@@ -123,25 +132,23 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               $zIndex={"inFront"}
               $transform={[
                 "rotate(-2.179deg) scale(1.5, 1.5) translate(25%,50%)",
-
-                // "translate(-10%,120%)",
               ]}
-              $background={"teachersPastelYellow"}
+              $background={"lemon50"}
             >
-              <BrushBorders color="teachersPastelYellow" />
+              <BrushBorders color="lemon50" />
               <SubjectIcon
                 subjectSlug="maths"
                 $maxHeight={200}
                 $maxWidth={200}
                 $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
-                $background={"teachersPastelYellow"}
+                $background={"lemon50"}
               />
             </Card>
           </Flex>
         </Box>
 
-        <Card $maxWidth={"80%"} $ma={"auto"} $background={"pastelTurquoise"}>
-          <BrushBorders color={"pastelTurquoise"} />
+        <Card $maxWidth={"80%"} $ma={"auto"} $background={"aqua30"}>
+          <BrushBorders color={"aqua30"} />
           <Heading tag="h5" $font={["heading-5", "heading-6"]}>
             Subject principles
           </Heading>
@@ -201,13 +208,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
           </Flex>
         </Box>
 
-        <Card
-          $background={"teachersPastelYellow"}
-          $width={"80%"}
-          $mt={24}
-          $ma={"auto"}
-        >
-          <BrushBorders color="teachersPastelYellow" />
+        <Card $background={"lemon30"} $width={"80%"} $mt={24} $ma={"auto"}>
+          <BrushBorders color="lemon30" />
           <Flex $justifyContent={"center"}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
             <Box>
@@ -269,7 +271,7 @@ const CurriculaSelection: FC = () => {
   }
 
   return (
-    <Flex $background={"pastelTurquoise"} $justifyContent={"center"} $pv={[20]}>
+    <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
       <Box $width={"80%"}>
         <Breadcrumbs
           breadcrumbs={[

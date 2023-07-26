@@ -49,6 +49,12 @@ const theme: OakTheme = {
     videoBlue: "#CEE7E5",
     // hyperlinks
     hyperlink: "#0D24C4",
+    // new design kit colours
+    aqua: "#B0E2DE",
+    aqua50: "#CEE7E5",
+    aqua30: "#E7F6F5",
+    lemon50: "#f6e8a0",
+    lemon30: "#fff7cc",
   },
   contrastColors: {
     white: "black",
@@ -96,6 +102,12 @@ const theme: OakTheme = {
     twilight: "black",
     videoBlue: "black",
     hyperlink: "white",
+    // new design kit colours
+    aqua: "black",
+    aqua30: "black",
+    aqua50: "black",
+    lemon50: "black",
+    lemon30: "black",
   },
   buttonIconBackgroundColors: {
     teachersHighlight: "teachersYellow",
