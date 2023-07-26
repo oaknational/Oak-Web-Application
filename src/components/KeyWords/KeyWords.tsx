@@ -1,7 +1,7 @@
 import React from "react";
 
 import Flex from "../Flex";
-import Heading, { LI, P, Span, UL } from "../Typography";
+import { LI, P, Span, UL, Heading } from "../Typography";
 
 export type KeyWord = {
   keyword: string;
@@ -19,7 +19,7 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
         $justifyContent={"center"}
         $width={["100%", 840]}
       >
-        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"}>
+        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h4">
           Key words
         </Heading>
         <UL $reset>

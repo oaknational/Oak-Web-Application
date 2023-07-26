@@ -1,7 +1,7 @@
 import React from "react";
 
 import Flex from "../Flex";
-import Heading from "../Typography";
+import { Heading } from "../Typography";
 import OL from "../Typography/OL";
 import LI from "../Typography/LI";
 
@@ -30,6 +30,7 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
           $font={["heading-6", "heading-5"]}
           $mb={24}
           data-testid={"heading"}
+          tag="h4"
         >
           Key learning points
         </Heading>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Flex from "../Flex";
-import Heading, { P } from "../Typography";
+import { Heading, P } from "../Typography";
 
 export type CommonMisconceptionsAndResponses = {
   commonMisconceptions: CommonMisconception[] | null | undefined;
@@ -31,7 +31,7 @@ const CommonMisconceptions = ({
         $justifyContent={"center"}
         $width={["100%", 840]}
       >
-        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"}>
+        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h4">
           Common misconceptions
         </Heading>
         {commonMisconceptions?.map(
