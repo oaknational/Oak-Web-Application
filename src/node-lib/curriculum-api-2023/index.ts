@@ -23,12 +23,12 @@ const teachersHomePageData = z.object({
 const subjectSchema = z.object({
   title: z.string(),
   slug: z.string(),
-  displayOrder: z.number(),
+  displayOrder: z.number().optional(),
 });
 const phaseSchema = z.object({
   title: z.string(),
   slug: z.string(),
-  displayOrder: z.number(),
+  displayOrder: z.number().optional(),
 });
 const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),

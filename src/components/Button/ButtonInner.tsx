@@ -23,6 +23,8 @@ import {
 } from "./common";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
+import SubjectIcon from "components/SubjectIcon";
+
 export const ButtonFocusUnderline = styled(Svg)<{
   $color: OakColorName;
 }>`
@@ -46,6 +48,7 @@ export type ButtonInnerProps = {
   label: string;
   labelSuffixA11y?: string;
   icon?: IconName;
+  subjectIcon?: string;
   iconBackground?: OakColorName;
   $iconPosition: IconPosition;
   shouldHideLabel?: boolean[];
@@ -64,6 +67,7 @@ export type ButtonInnerProps = {
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
+  const { subjectIcon } = props;
   const {
     $iconPosition,
     iconBackground,
@@ -106,21 +110,31 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
 
   return (
     <>
-      {icon && (
+      {(icon || subjectIcon) && (
         <Flex
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
-          $mr={$iconPosition === "leading" ? 8 : 0}
+          $mr={$iconPosition === "leading" && !subjectIcon ? 8 : 0}
           $ml={$iconPosition === "trailing" ? 8 : 0}
           $color={isCurrent ? currentColor : undefined}
         >
-          <Icon
-            variant="brush"
-            name={icon}
-            size={iconSize}
-            $background={iconBackground || defaultIconBackground}
-          />
+          {icon && (
+            <Icon
+              variant="brush"
+              name={icon}
+              size={iconSize}
+              $background={iconBackground || defaultIconBackground}
+            />
+          )}
+          {subjectIcon && (
+            <SubjectIcon
+              subjectSlug={subjectIcon}
+              $ml={-8}
+              height={40}
+              width={40}
+            />
+          )}
           {variant === "minimal" && (
             <IconFocusUnderline $color={underlineColor} />
           )}

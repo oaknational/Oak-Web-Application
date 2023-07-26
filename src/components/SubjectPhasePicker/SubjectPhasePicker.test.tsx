@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "../../browser-lib/fixtures/subjectPhaseOptions";
 
@@ -11,22 +12,20 @@ describe("Component - subject phase picker", () => {
     jest.clearAllMocks();
   });
 
-  test("renders a heading", () => {
-    const { getByText } = renderWithTheme(
+  test("user clicks a subject", async () => {
+    const { getAllByText } = renderWithTheme(
       <SubjectPhasePicker {...subjectPhaseOptions} />
     );
-    const heading = getByText("Title");
-    expect(heading).toBeInTheDocument();
-  });
-
-  test("user clicks a subject"),
-    () => {
-      const { getByText } = renderWithTheme(
-        <SubjectPhasePicker {...subjectPhaseOptions} />
+    const buttons = getAllByText("English");
+    expect(buttons).toHaveLength(2);
+    const parent = buttons[0]?.closest("button");
+    if (!buttons[0]) {
+      throw new Error("No buttons found");
+    } else {
+      userEvent.click(buttons[0]);
+      await waitFor(() =>
+        expect(parent?.parentElement).toHaveClass("selected")
       );
-      const button = getByText("English");
-      expect(button).toBeInTheDocument();
-      userEvent.click(button);
-      // expect(button).toHaveClass("active");
-    };
+    }
+  });
 });
