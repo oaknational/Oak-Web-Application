@@ -105,7 +105,6 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-  console.log(description, "<");
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
