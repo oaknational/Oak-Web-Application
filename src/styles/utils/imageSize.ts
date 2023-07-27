@@ -1,13 +1,13 @@
 import { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "./responsive";
-import { pxToRemString } from "./pxToRemString";
+import { getRemUnits } from "./getRemUnits";
 
 type ImageSizeValue = number | null;
 export type ImageSizeValues = ResponsiveValues<ImageSizeValue>;
 
 const parse = (value?: ImageSizeValue) => {
-  return pxToRemString(value);
+  return getRemUnits(value);
 };
 
 export type ImageSizeProps = {

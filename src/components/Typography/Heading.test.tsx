@@ -1,5 +1,6 @@
 import { FontVariant, FONT_VARIANTS } from "../../styles/utils/typography";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import { REM_DP } from "../../styles/utils/getRemUnits";
 
 import Heading, { HeadingTag } from "./Heading";
 
@@ -22,8 +23,12 @@ describe("Heading", () => {
       );
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
-      expect(getByTestId("test")).toHaveStyle(`font-size: ${fontSize}px`);
-      expect(getByTestId("test")).toHaveStyle(`line-height: ${lineHeight}px`);
+      expect(getByTestId("test")).toHaveStyle(
+        `font-size: ${(fontSize / 16).toFixed(REM_DP)}rem`
+      );
+      expect(getByTestId("test")).toHaveStyle(
+        `line-height:  ${(lineHeight / 16).toFixed(REM_DP)}rem`
+      );
       expect(getByTestId("test")).toHaveStyle(`font-weight: ${fontWeight}`);
       expect(getByTestId("test")).toHaveStyle(
         `letter-spacing: ${letterSpacing}`

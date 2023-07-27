@@ -3,7 +3,7 @@ import { css } from "styled-components";
 import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
-import { pxToRemString } from "./pxToRemString";
+import { getRemUnits } from "./getRemUnits";
 
 type SizeValue =
   | PercentSpacing
@@ -14,7 +14,7 @@ type SizeValue =
 export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
-  return pxToRemString(value);
+  return getRemUnits(value);
 };
 
 export type SizeProps = {

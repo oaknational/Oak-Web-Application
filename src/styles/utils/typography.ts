@@ -3,7 +3,7 @@ import { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
-import { pxToRemString } from "./pxToRemString";
+import { getRemUnits } from "./getRemUnits";
 
 export type FontVariant =
   | "heading-1"
@@ -66,13 +66,13 @@ const getFontWeight = (font?: FontVariant | null): FontWeight | undefined => {
 const getFontSize = (font?: FontVariant | null): string | null | undefined => {
   if (!font) return;
   const fontSizePx = FONT_VARIANTS[font][0];
-  return pxToRemString(fontSizePx);
+  return getRemUnits(fontSizePx);
 };
 const getLineHeight = (
   font?: FontVariant | null
 ): string | null | undefined => {
   if (!font) return;
-  return pxToRemString(FONT_VARIANTS[font][1]);
+  return getRemUnits(FONT_VARIANTS[font][1]);
 };
 const getLetterSpacing = (
   font?: FontVariant | null

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import typography, { FontVariant, FONT_VARIANTS } from "./typography";
+import { REM_DP } from "./getRemUnits";
 
 const StyledComponent = styled.div`
   ${typography}
@@ -18,10 +19,10 @@ describe("typography", () => {
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
       expect(getByTestId("test")).toHaveStyle(
-        `font-size: ${Number((fontSize / 16).toFixed(3))}rem`
+        `font-size: ${Number((fontSize / 16).toFixed(REM_DP))}rem`
       );
       expect(getByTestId("test")).toHaveStyle(
-        `line-height: ${Number((lineHeight / 16).toFixed(3))}rem`
+        `line-height: ${Number((lineHeight / 16).toFixed(REM_DP))}rem`
       );
       expect(getByTestId("test")).toHaveStyle(`font-weight: ${fontWeight}`);
       expect(getByTestId("test")).toHaveStyle(

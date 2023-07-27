@@ -4,7 +4,7 @@ import { NullablePixelSpacing, OakColorName } from "../theme/types";
 import getColorByName from "../themeHelpers/getColorByName";
 
 import responsive, { ResponsiveValues } from "./responsive";
-import { pxToRemString } from "./pxToRemString";
+import { getRemUnits } from "./getRemUnits";
 
 type BorderValue = NullablePixelSpacing;
 type BorderValueResponsive = ResponsiveValues<BorderValue>;
@@ -27,11 +27,11 @@ export type BorderProps = {
 };
 
 const parseBorderRadius = (value?: BorderRadius) => {
-  return pxToRemString(value);
+  return getRemUnits(value);
 };
 
 const parseBorder = (value?: BorderRadius) => {
-  const borderWidth = pxToRemString(value);
+  const borderWidth = getRemUnits(value);
   if (!borderWidth) {
     return;
   }
