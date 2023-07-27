@@ -17,8 +17,12 @@ describe("typography", () => {
       );
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
-      expect(getByTestId("test")).toHaveStyle(`font-size: ${fontSize}px`);
-      expect(getByTestId("test")).toHaveStyle(`line-height: ${lineHeight}px`);
+      expect(getByTestId("test")).toHaveStyle(
+        `font-size: ${Number((fontSize / 16).toFixed(3))}rem`
+      );
+      expect(getByTestId("test")).toHaveStyle(
+        `line-height: ${Number((lineHeight / 16).toFixed(3))}rem`
+      );
       expect(getByTestId("test")).toHaveStyle(`font-weight: ${fontWeight}`);
       expect(getByTestId("test")).toHaveStyle(
         `letter-spacing: ${letterSpacing}`

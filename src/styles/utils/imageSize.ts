@@ -1,17 +1,13 @@
 import { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "./responsive";
+import { pxToRemString } from "./pxToRemString";
 
 type ImageSizeValue = number | null;
 export type ImageSizeValues = ResponsiveValues<ImageSizeValue>;
 
 const parse = (value?: ImageSizeValue) => {
-  switch (typeof value) {
-    case "string":
-      return value;
-    case "number":
-      return `${value}px`;
-  }
+  return pxToRemString(value);
 };
 
 export type ImageSizeProps = {

@@ -3,6 +3,8 @@ import { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
+import { pxToRemString } from "./pxToRemString";
+
 export type FontVariant =
   | "heading-1"
   | "heading-2"
@@ -57,23 +59,20 @@ export const FONT_VARIANTS: Record<FontVariant, Font> = {
   "list-item-2": [16, 24, 300, "-0.005em"],
 } as const;
 
-type WithPx<WithoutPx extends number> = `${WithoutPx}px`;
-
 const getFontWeight = (font?: FontVariant | null): FontWeight | undefined => {
   if (!font) return;
   return FONT_VARIANTS[font][2];
 };
-const getFontSize = (
-  font?: FontVariant | null
-): WithPx<FontSize> | undefined => {
+const getFontSize = (font?: FontVariant | null): string | null | undefined => {
   if (!font) return;
-  return `${FONT_VARIANTS[font][0]}px`;
+  const fontSizePx = FONT_VARIANTS[font][0];
+  return pxToRemString(fontSizePx);
 };
 const getLineHeight = (
   font?: FontVariant | null
-): WithPx<LineHeight> | undefined => {
+): string | null | undefined => {
   if (!font) return;
-  return `${FONT_VARIANTS[font][1]}px`;
+  return pxToRemString(FONT_VARIANTS[font][1]);
 };
 const getLetterSpacing = (
   font?: FontVariant | null
