@@ -176,20 +176,23 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <Expired page={"lesson"} />
         ) : (
           <>
-            <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              {(description && (
-                <Span
-                  dangerouslySetInnerHTML={{
-                    __html: description,
-                  }}
-                  $font={["body-3", "body-2"]}
-                  $color={"oakGrey5"}
-                />
-              )) ||
-                (pupilLessonOutcome && (
-                  <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
-                ))}
-            </Flex>
+            {description ||
+              (pupilLessonOutcome && (
+                <Flex $mt={[8, 0]} $mr={[16, 0]}>
+                  {(description && (
+                    <Span
+                      dangerouslySetInnerHTML={{
+                        __html: description,
+                      }}
+                      $font={["body-3", "body-2"]}
+                      $color={"oakGrey5"}
+                    />
+                  )) ||
+                    (pupilLessonOutcome && (
+                      <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
+                    ))}
+                </Flex>
+              ))}
             {resources.length > 0 && (
               <Box $mt={12}>
                 <LessonResourceGraphics items={resources} />
