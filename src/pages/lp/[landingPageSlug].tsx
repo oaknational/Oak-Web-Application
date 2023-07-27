@@ -1,9 +1,4 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -13,10 +8,6 @@ import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
 import { ABTest, ABTestedLandingPage } from "../../common-lib/cms-types/abTest";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "../../node-lib/isr";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
 import { Quote } from "../../components/pages/LandingPages/Quote";
 import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
@@ -125,31 +116,14 @@ type URLParams = {
   landingPageSlug: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const landingResults = await CMSClient.landingPages();
-
-  const paths = landingResults.map((landingPage) => ({
-    params: { landingPageSlug: landingPage.slug },
-  }));
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths,
-  };
-  return config;
-};
-
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   LandingPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "landing-page::getStaticProps",
+    page: "landing-page::getServerSideProps",
     context,
+    withIsr: false,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
 
@@ -175,7 +149,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LandingPageProps> = {
+      const results: GetServerSidePropsResult<LandingPageProps> = {
         props: {
           pageData: landingPageResult,
           abTest,
