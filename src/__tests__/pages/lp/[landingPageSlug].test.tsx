@@ -1,8 +1,8 @@
 import { screen, waitFor } from "@testing-library/react";
+import { GetServerSidePropsContext } from "next";
 
 import LandingPageTemplate, {
-  getStaticPaths,
-  getStaticProps,
+  getServerSideProps,
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
@@ -86,21 +86,22 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
   });
 
-  describe("getStaticPaths", () => {
-    it("Should return the paths of all landing pages", async () => {
-      const pathsResult = await getStaticPaths();
-
-      expect(pathsResult.paths).toEqual([
-        { params: { landingPageSlug: "some-landing-page" } },
-      ]);
-    });
-  });
-
-  describe("getStaticProps", () => {
-    it("Should fetch the correct landing page", async () => {
-      await getStaticProps({
+  describe("getServerSideProps", () => {
+    const getContext = (overrides: Partial<GetServerSidePropsContext>) =>
+      ({
+        req: {},
+        res: {},
+        query: {},
         params: { landingPageSlug: "some-landing-page" },
-      });
+        ...overrides,
+      } as unknown as GetServerSidePropsContext<{ landingPageSlug: string }>);
+
+    it("Should fetch the correct landing page", async () => {
+      await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "some-landing-page" },
+        })
+      );
 
       expect(mockCMSClient.landingPageBySlug).toHaveBeenCalledWith(
         "some-landing-page",
@@ -111,9 +112,11 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     it("should return notFound when a landing page is missing", async () => {
       mockCMSClient.landingPageBySlug.mockResolvedValueOnce(null as never);
 
-      const propsResult = await getStaticProps({
-        params: { landingPageSlug: "some-landing-page" },
-      });
+      const propsResult = await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "some-landing-page" },
+        })
+      );
 
       expect(propsResult).toMatchObject({
         notFound: true,

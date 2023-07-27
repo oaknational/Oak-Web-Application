@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Layout from "../../components/Layout";
@@ -7,60 +6,19 @@ import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
-import { ABTest, ABTestedLandingPage } from "../../common-lib/cms-types/abTest";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
 import { Quote } from "../../components/pages/LandingPages/Quote";
 import { SignupPrompt } from "../../components/pages/LandingPages/SignupPrompt";
 import { LandingPageTextBlock } from "../../components/pages/LandingPages/LandingPageTextBlock";
 import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
 import getPageProps from "../../node-lib/getPageProps";
+import { getABTestedLandingPage } from "../../node-lib/cms/ab-testing";
 
 export type LandingPageProps = {
   pageData: LandingPage;
-  abTest: ABTestedLandingPage | null;
 };
 
-const Landing: NextPage<LandingPageProps> = ({ pageData, abTest }) => {
-  const pageVariant = usePageVariant<ABTestedLandingPage, LandingPage>(abTest);
-
-  return <LandingPageTemplate pageData={pageVariant || pageData} />;
-};
-
-/**
- * Given an A/B test object, return either the matching variant for
- * the user or the control
- *
- * Currently co-located while only landing pages are A/B tested
- */
-function usePageVariant<ABTestForPage extends ABTest, PageType>(
-  abTest: ABTestForPage | null
-): PageType | null {
-  const variantForUser = useFeatureFlagVariantKey(
-    abTest?.posthogFeatureFlagKey ?? ""
-  );
-
-  // The hook returns undefined before posthog
-  // has initialized, so default to control
-  const variantName = variantForUser ?? "control";
-
-  if (!abTest) {
-    return null;
-  }
-
-  const variant = abTest?.variants.find(
-    (variantOption) => variantOption.posthogVariant === variantName
-  );
-
-  return variant?.page || abTest.controlVariant;
-}
-
-export type LandingPageTemplateProps = {
-  pageData: LandingPage;
-};
-
-const LandingPageTemplate: NextPage<LandingPageTemplateProps> = ({
-  pageData,
-}) => {
+const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
   return (
     <Layout
       headerVariant="landing-pages"
@@ -129,14 +87,16 @@ export const getServerSideProps: GetServerSideProps<
 
       const landingPageSlug = context?.params?.landingPageSlug as string;
 
-      const abTest = await CMSClient.landingPageABTestBySlug(landingPageSlug, {
-        previewMode: isPreviewMode,
-      });
-
       let landingPageResult;
 
-      if (abTest) {
-        landingPageResult = abTest.controlVariant;
+      const abTestedPage = await getABTestedLandingPage(
+        landingPageSlug,
+        context,
+        isPreviewMode
+      );
+
+      if (abTestedPage) {
+        landingPageResult = abTestedPage;
       } else {
         landingPageResult = await CMSClient.landingPageBySlug(landingPageSlug, {
           previewMode: isPreviewMode,
@@ -152,7 +112,6 @@ export const getServerSideProps: GetServerSideProps<
       const results: GetServerSidePropsResult<LandingPageProps> = {
         props: {
           pageData: landingPageResult,
-          abTest,
         },
       };
       return results;
