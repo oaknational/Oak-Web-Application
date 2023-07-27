@@ -105,7 +105,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-
+  console.log(description, "<");
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
@@ -173,19 +173,23 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           slug={lessonSlug}
           fromSearchPage={fromSearchPage}
         />
-        <P $font={"body-2"}>{pupilLessonOutcome}</P>
         {expired ? (
           <Expired page={"lesson"} />
         ) : (
           <>
             <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-                $font={["body-3", "body-2"]}
-                $color={"oakGrey5"}
-              />
+              {description && (
+                <Span
+                  dangerouslySetInnerHTML={{
+                    __html: description,
+                  }}
+                  $font={["body-3", "body-2"]}
+                  $color={"oakGrey5"}
+                />
+              )}
+              {pupilLessonOutcome && (
+                <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
+              )}
             </Flex>
             {resources.length > 0 && (
               <Box $mt={12}>
