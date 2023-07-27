@@ -8,10 +8,13 @@ import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
-import Expired from "../../Expired";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
+import ListItemIndexDesktop from "../../ListItemIndexDesktop";
+import ListItemIndexMobile from "../../ListItemIndexMobile";
+import ListItemIconMobile from "../../ListItemIconMobile";
+import ListItemIconDesktop from "../../ListItemIconDesktop";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -26,11 +29,10 @@ export type UnitListItemProps = Omit<
 };
 
 /**
- * Contains an title, icon, leaning theme, number of lessons and optional Unit Quiz .
+ * Contains an title, icon, learning theme, number of lessons and optional Unit Quiz .
  * Links to a lesson-index page
  *
- *
- */
+ **/
 const UnitListItem: FC<UnitListItemProps> = (props) => {
   const {
     title,
@@ -87,17 +89,25 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
+  const background = expired ? "oakGrey2" : "teachersLilac";
+
   return (
     <ListItemCard
       title={title}
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
-      background={"teachersLilac"}
+      background={expired ? "oakGrey1" : "white"}
       expired={expired}
       index={index}
       fromSearchPage={fromSearchPage}
     >
+      {!fromSearchPage && (
+        <>
+          <ListItemIndexDesktop index={index + 1} background={background} />
+          <ListItemIndexMobile background={background} index={index + 1} />
+        </>
+      )}
       <Flex
         $ml={[16, 24]}
         $mr={[0, 24]}
@@ -114,32 +124,44 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           fromSearchPage={fromSearchPage}
           firstItemRef={firstItemRef}
         />
-        {expired ? (
-          <Expired page={"unit"} />
-        ) : (
-          <Flex $flexDirection={["column", "row"]}>
-            <Flex>
-              {lessonCount && expiredLessonCount ? (
-                <Span
-                  $mr={16}
-                  $font={["body-3", "heading-light-7"]}
-                  $color={"oakGrey4"}
-                >
-                  {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
-                </Span>
-              ) : (
-                <Span
-                  $mr={16}
-                  $font={["body-3", "heading-light-7"]}
-                  $color={"oakGrey4"}
-                >
-                  {lessonCount && `${lessonCount} lessons`}
-                </Span>
-              )}
-            </Flex>
+
+        <Flex $flexDirection={["column", "row"]}>
+          <Flex>
+            {lessonCount && expiredLessonCount ? (
+              <Span
+                $mr={16}
+                $font={["body-3", "heading-light-7"]}
+                $color={"oakGrey4"}
+              >
+                {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
+              </Span>
+            ) : (
+              <Span
+                $mr={16}
+                $font={["body-3", "heading-light-7"]}
+                $color={"oakGrey4"}
+              >
+                {!!lessonCount && `${lessonCount} lessons`}
+                {expired && ` Coming soon`}
+              </Span>
+            )}
           </Flex>
-        )}
+        </Flex>
       </Flex>
+      {fromSearchPage && (
+        <>
+          <ListItemIconDesktop
+            title={title}
+            background={background}
+            isHovered={isHovered}
+            subjectSlug={subjectSlug}
+          />
+          <ListItemIconMobile
+            background={background}
+            subjectSlug={subjectSlug}
+          />
+        </>
+      )}
     </ListItemCard>
   );
 };

@@ -7,14 +7,10 @@ import OutlineHeading from "../OutlineHeading/OutlineHeading";
 export type ListItemIndexDesktopProps = {
   index: number;
   background: OakColorName;
-  isHovered: boolean;
-  fromSearchPage?: boolean;
 };
 
 const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
-  const { background, isHovered, index, fromSearchPage } = props;
-
-  const indexString = index ? index.toString() : "";
+  const { background, index } = props;
 
   return (
     <Flex
@@ -22,17 +18,14 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $display={["none", "flex"]}
       $alignItems={"center"}
       $minWidth={80}
+      $height={"100%"}
       $background={background}
       $position={"relative"}
-      $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
-      $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
-      {!fromSearchPage && indexString && (
-        <OutlineHeading tag={"h1"} $fontSize={32}>
-          {indexString}
-        </OutlineHeading>
-      )}
+      <OutlineHeading tag={"h3"} $fontSize={32}>
+        {index.toString()}
+      </OutlineHeading>
     </Flex>
   );
 };

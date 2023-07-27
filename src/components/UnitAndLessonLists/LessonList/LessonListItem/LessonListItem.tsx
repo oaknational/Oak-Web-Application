@@ -15,6 +15,10 @@ import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import ListItemIndexDesktop from "../../ListItemIndexDesktop";
+import ListItemIndexMobile from "../../ListItemIndexMobile";
+import ListItemIconDesktop from "../../ListItemIconDesktop";
+import ListItemIconMobile from "../../ListItemIconMobile";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -146,6 +150,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const resources = getAvailableResourceList(props);
 
+  const background = "pupilsPink";
+
   return (
     <ListItemCard
       title={lessonTitle}
@@ -153,48 +159,95 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       index={index}
       fromSearchPage={fromSearchPage}
       isHovered={isHovered}
-      background={"pupilsPink"}
+      background={expired ? "oakGrey2" : "white"}
       containerProps={containerProps}
       expired={expired}
     >
+      {!expired && !fromSearchPage && (
+        <ListItemIndexDesktop index={index + 1} background={background} />
+      )}
+
       <Flex
-        $ml={[16, 24]}
+        $ml={[0, 24]}
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
-        $pb={24}
+        $gap={["4px", "12px"]}
+        $pt={[0, 20]}
+        $pb={20}
       >
-        <ListItemHeader
-          {...props}
-          primaryTargetProps={primaryTargetProps}
-          page="Lesson"
-          index={index}
-          onClick={trackLessonSelected}
-          title={lessonTitle}
-          slug={lessonSlug}
-          fromSearchPage={fromSearchPage}
-        />
-        {expired ? (
-          <Expired page={"lesson"} />
-        ) : (
+        {!expired && (
           <>
-            <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-                $font={["body-3", "body-2"]}
-                $color={"oakGrey5"}
-              />
-            </Flex>
-            {resources.length > 0 && (
-              <Box $mt={16}>
-                <LessonResourceGraphics items={resources} />
-              </Box>
+            {fromSearchPage ? (
+              <Flex $pl={[16, 0]} $pt={[20, 0]} $alignItems={"center"}>
+                <ListItemHeader
+                  {...props}
+                  primaryTargetProps={primaryTargetProps}
+                  page="Lesson"
+                  index={index}
+                  onClick={trackLessonSelected}
+                  title={lessonTitle}
+                  slug={lessonSlug}
+                  fromSearchPage={fromSearchPage}
+                />
+              </Flex>
+            ) : (
+              <Flex $gap={"10px"} $alignItems={"center"}>
+                <ListItemIndexMobile
+                  background={background}
+                  index={index + 1}
+                />
+                <ListItemHeader
+                  {...props}
+                  primaryTargetProps={primaryTargetProps}
+                  page="Lesson"
+                  index={index}
+                  onClick={trackLessonSelected}
+                  title={lessonTitle}
+                  slug={lessonSlug}
+                  fromSearchPage={fromSearchPage}
+                />
+              </Flex>
             )}
           </>
         )}
+        <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
+          {expired ? (
+            <Expired page={"lesson"} />
+          ) : (
+            <>
+              <Flex $mt={[8, 0]} $mr={[16, 0]}>
+                <Span
+                  dangerouslySetInnerHTML={{
+                    __html: description,
+                  }}
+                  $font={["body-3", "body-2"]}
+                  $color={"oakGrey5"}
+                />
+              </Flex>
+              {resources.length > 0 && (
+                <Box>
+                  <LessonResourceGraphics items={resources} />
+                </Box>
+              )}
+            </>
+          )}
+        </Flex>
       </Flex>
+      {fromSearchPage && (
+        <>
+          <ListItemIconDesktop
+            title={lessonTitle}
+            background={background}
+            isHovered={isHovered}
+            subjectSlug={subjectSlug}
+          />
+          <ListItemIconMobile
+            background={background}
+            subjectSlug={subjectSlug}
+          />
+        </>
+      )}
     </ListItemCard>
   );
 };

@@ -101,12 +101,16 @@ describe("Lesson List Item", () => {
       subjectTitle: "Maths",
     });
   });
-  test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
+
+  // TODO: Fix this test
+  test.only("It calls tracking.searchResultClicked with correct props when clicked", async () => {
     const { getByText } = render(
       <LessonListItem {...{ ...props, fromSearchPage: true }} />
     );
 
     const lesson = getByText("Add two surds");
+
+    console.log({ lesson });
 
     const user = userEvent.setup();
     await user.click(lesson);

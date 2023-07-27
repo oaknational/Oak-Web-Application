@@ -6,31 +6,26 @@ import OutlineHeading from "../OutlineHeading";
 
 export type ListItemIndexMobileProps = {
   background: OakColorName;
-  fromSearchPage?: boolean;
-  index?: number;
+  index: number;
 };
 
 const ListItemIndexMobile: FC<ListItemIndexMobileProps> = (props) => {
-  const { background, index, fromSearchPage } = props;
-
-  const indexString = index ? index.toString() : "";
+  const { background, index } = props;
 
   return (
     <Flex
       $justifyContent={"center"}
       $display={["flex", "none"]}
       $alignItems={"center"}
-      $minHeight={72}
-      $minWidth={72}
+      $minWidth={[64, 72]}
+      $minHeight={[64, 72]}
+      $height={"100%"}
       $background={background}
       $position={"relative"}
-      $ml={"auto"}
     >
-      {!fromSearchPage && indexString && (
-        <OutlineHeading tag={"h1"} $fontSize={32}>
-          {indexString}
-        </OutlineHeading>
-      )}
+      <OutlineHeading tag={"h3"} $fontSize={[32, 24]}>
+        {index.toString()}
+      </OutlineHeading>
     </Flex>
   );
 };

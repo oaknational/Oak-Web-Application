@@ -6,9 +6,6 @@ import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { OakColorName } from "../../styles/theme/types";
 
-import ListItemIndexDesktop from "./ListItemIndexDesktop";
-import ListItemIndexMobile from "./ListItemIndexMobile";
-
 export type ListItemCardProps = {
   title: string;
   subjectSlug: string;
@@ -29,15 +26,7 @@ export type ListItemCardProps = {
  */
 
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const {
-    children,
-    isHovered,
-    containerProps,
-    background,
-    expired,
-    index,
-    fromSearchPage,
-  } = props;
+  const { children, isHovered, containerProps, background, expired } = props;
 
   const applyHoverStyles = isHovered && !expired;
 
@@ -51,21 +40,6 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       $pa={0}
       {...(!expired ? containerProps : null)}
     >
-      {!expired && (
-        <>
-          <ListItemIndexDesktop
-            index={index + 1}
-            background={background}
-            isHovered={isHovered}
-            fromSearchPage={fromSearchPage}
-          />
-          <ListItemIndexMobile
-            background={background}
-            index={index + 1}
-            fromSearchPage={fromSearchPage}
-          />
-        </>
-      )}
       <Flex
         $transform={applyHoverStyles ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
@@ -75,6 +49,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $justifyContent={"space-between"}
         $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
         $alignItems={"center"}
+        $background={background}
       >
         {children}
       </Flex>
