@@ -1,3 +1,10 @@
+# [1.205.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.204.1...v1.205.0) (2023-07-27)
+
+
+### Features
+
+* update colours in default theme ([099fc9d](https://github.com/oaknational/Oak-Web-Application/commit/099fc9d63d141e08ea702e6a857e14d939c6524e))
+
 ## [1.204.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.204.0...v1.204.1) (2023-07-26)
 
 # [1.204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.8...v1.204.0) (2023-07-25)
