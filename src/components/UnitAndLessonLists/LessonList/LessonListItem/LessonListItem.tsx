@@ -177,7 +177,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         ) : (
           <>
             <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              {description && (
+              {(description && (
                 <Span
                   dangerouslySetInnerHTML={{
                     __html: description,
@@ -185,10 +185,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                   $font={["body-3", "body-2"]}
                   $color={"oakGrey5"}
                 />
-              )}
-              {pupilLessonOutcome && (
-                <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
-              )}
+              )) ||
+                (pupilLessonOutcome && (
+                  <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
+                ))}
             </Flex>
             {resources.length > 0 && (
               <Box $mt={12}>
