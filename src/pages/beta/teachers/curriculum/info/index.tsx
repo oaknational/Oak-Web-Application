@@ -116,7 +116,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
       <Box $background={"white"}>
         <Box $width={"80%"} $ma={"auto"} $pb={80}>
           <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
-            <Box $pt={20} $mr={16} $maxWidth={"70%"} $textAlign={"justify"}>
+            <Box $pt={20} $mr={16} $maxWidth={"65%"} $textAlign={"left"}>
               <Heading tag="h5" $font={["heading-5", "heading-6"]}>
                 Curriculum intent
               </Heading>
@@ -137,7 +137,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               $ma={"auto"}
               $zIndex={"inFront"}
               $transform={[
-                "rotate(-2.179deg) scale(1.5, 1.5) translate(5%,55%)",
+                "rotate(-2.179deg) scale(1.5, 1.5) translate(15%,60%)",
               ]}
               $background={"lemon50"}
             >
