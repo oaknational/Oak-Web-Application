@@ -24,7 +24,7 @@ import {
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
-import { abTestSchema } from "../../../common-lib/cms-types/abTest";
+import { getABTestSchema } from "../../../common-lib/cms-types/abTest";
 
 import { getSingleton, getBySlug, getList } from "./cmsMethods";
 
@@ -190,9 +190,9 @@ const getSanityClient = () => ({
     landingPageSchema,
     (result) => result?.allLandingPage?.[0]
   ),
-  abTestBySlug: getBySlug(
+  landingPageABTestBySlug: getBySlug(
     sanityGraphqlApi.abTestedPageBySlug,
-    abTestSchema,
+    getABTestSchema(landingPageSchema),
     (result) => result?.allAbTest?.[0]
   ),
 });
