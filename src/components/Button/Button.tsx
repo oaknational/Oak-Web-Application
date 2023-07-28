@@ -28,6 +28,7 @@ export type ButtonProps = CommonButtonProps & {
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
+  title?: string;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -43,6 +44,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     iconBackground,
     $font,
     disabled,
+    title,
     ...spacingProps
   } = props;
 
@@ -56,7 +58,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     <StyledButton
       ref={ref}
       {...htmlButtonProps}
-      title={htmlButtonProps.title || defaultTitle}
+      title={title || htmlButtonProps.title || defaultTitle}
       aria-label={ariaLabel}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       size={size}

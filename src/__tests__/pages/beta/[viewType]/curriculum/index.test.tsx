@@ -1,11 +1,13 @@
 import { screen } from "@testing-library/react";
 
 import CurriculumHomePage, {
+  fetchSubjectPhaseOptions,
   getStaticProps,
   CurriculumHomePageProps,
 } from "pages/beta/[viewType]/curriculum";
 import renderWithProviders from "__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "browser-lib/fixtures/subjectPhaseOptions";
+import { SubjectPhaseOptions } from "components/SubjectPhasePicker/SubjectPhasePicker";
 
 const render = renderWithProviders();
 
@@ -27,6 +29,13 @@ describe("pages/beta/curriculum/index", () => {
         props: CurriculumHomePageProps;
       };
       expect(testRes.props).toEqual(props);
+    });
+  });
+
+  describe("fetchSubjectPhaseOptions", () => {
+    it("Should fetch the correct data", async () => {
+      const testRes = (await fetchSubjectPhaseOptions()) as SubjectPhaseOptions;
+      expect(testRes).toEqual(subjectPhaseOptions);
     });
   });
 });

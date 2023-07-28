@@ -12,20 +12,29 @@ describe("Component - subject phase picker", () => {
     jest.clearAllMocks();
   });
 
-  test("user clicks a subject", async () => {
-    const { getAllByText } = renderWithTheme(
+  test("user clicks to open subjects and sees subjects", async () => {
+    const { getByTitle, getAllByTitle } = renderWithTheme(
       <SubjectPhasePicker {...subjectPhaseOptions} />
     );
-    const buttons = getAllByText("English");
-    expect(buttons).toHaveLength(2);
-    const parent = buttons[0]?.closest("button");
-    if (!buttons[0]) {
-      throw new Error("No buttons found");
-    } else {
-      userEvent.click(buttons[0]);
-      await waitFor(() =>
-        expect(parent?.parentElement).toHaveClass("selected")
-      );
-    }
+    const control = getByTitle("Subject");
+    expect(control).toBeTruthy();
+    userEvent.click(control);
+    await waitFor(() => {
+      const buttons = getAllByTitle("English");
+      expect(buttons).toHaveLength(2);
+    });
+  });
+
+  test("user clicks to open phases and sees phases", async () => {
+    const { getByTitle } = renderWithTheme(
+      <SubjectPhasePicker {...subjectPhaseOptions} />
+    );
+    const control = getByTitle("Phase");
+    expect(control).toBeTruthy();
+    userEvent.click(control);
+    await waitFor(() => {
+      const button = getByTitle("Primary");
+      expect(button).toBeTruthy();
+    });
   });
 });

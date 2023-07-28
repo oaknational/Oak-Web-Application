@@ -87,16 +87,16 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
   const defactoBackground =
-    (variant === "minimal" || variant === "buttonStyledAsLink") &&
-    iconBackground
+    ["minimal", "buttonStyledAsLink"].includes(variant) && iconBackground
       ? iconBackground
       : background;
 
   const underlineColor =
-    theme.buttonFocusUnderlineColors[defactoBackground] || "black";
+    theme.buttonFocusUnderlineColors[defactoBackground] ?? "black";
 
-  icon =
-    isCurrent && currentStyles?.includes("arrow-icon") ? "arrow-right" : icon;
+  if (isCurrent && currentStyles?.includes("arrow-icon")) {
+    icon = "arrow-right";
+  }
 
   /**
    * currentColor is the text/icon color when the button has state "current"
@@ -107,48 +107,59 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * case it should come from theme.
    */
   const currentColor: OakColorName = "oakGrey4";
+  const displayProperty = shouldHideLabel?.map((hide) =>
+    hide ? "none" : "block"
+  );
+  const textDecoration =
+    isCurrent && currentStyles?.includes("text-underline")
+      ? "underline"
+      : undefined;
+  const color =
+    isCurrent && currentStyles?.includes("color") ? currentColor : undefined;
 
   return (
     <>
-      {(icon || subjectIcon) && (
+      {icon && (
         <Flex
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
-          $mr={$iconPosition === "leading" && !subjectIcon ? 8 : 0}
+          $mr={$iconPosition === "leading" ? 8 : 0}
           $ml={$iconPosition === "trailing" ? 8 : 0}
-          $color={isCurrent ? currentColor : undefined}
+          $color={color}
         >
-          {icon && (
-            <Icon
-              variant="brush"
-              name={icon}
-              size={iconSize}
-              $background={iconBackground || defaultIconBackground}
-            />
-          )}
-          {subjectIcon && (
-            <SubjectIcon
-              subjectSlug={subjectIcon}
-              $ml={-8}
-              height={40}
-              width={40}
-            />
-          )}
+          <Icon
+            variant="brush"
+            name={icon}
+            size={iconSize}
+            $background={iconBackground || defaultIconBackground}
+          />
           {variant === "minimal" && (
             <IconFocusUnderline $color={underlineColor} />
           )}
         </Flex>
       )}
 
+      {subjectIcon && (
+        <Flex
+          $display={"inline-flex"}
+          $position="relative"
+          $alignItems="center"
+          $color={currentColor}
+        >
+          <SubjectIcon
+            subjectSlug={subjectIcon}
+            $ml={-8}
+            height={40}
+            width={40}
+          />
+        </Flex>
+      )}
+
       <Box $position={"relative"}>
         <Box
-          $display={shouldHideLabel?.map((hide) => (hide ? "none" : "block"))}
-          $textDecoration={
-            isCurrent && currentStyles?.includes("text-underline")
-              ? "underline"
-              : undefined
-          }
+          $display={displayProperty}
+          $textDecoration={textDecoration}
           $color={
             isCurrent && currentStyles?.includes("color")
               ? currentColor

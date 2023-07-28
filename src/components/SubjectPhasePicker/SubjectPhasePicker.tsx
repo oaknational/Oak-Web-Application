@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "../Grid";
-import { Heading } from "../Typography";
+import { Heading, Span } from "../Typography";
 
 import Box from "components/Box";
 import BoxBorders from "components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
@@ -15,8 +15,6 @@ import UnstyledButton from "components/UnstyledButton/UnstyledButton";
 import Svg from "components/Svg";
 import { OakColorName } from "styles/theme";
 import Icon from "components/Icon";
-// import { ButtonFocusUnderline } from "components/Button/ButtonInner";
-// import useAnalytics from "../../context/Analytics/useAnalytics";
 
 interface SubjectPhaseOption extends Subject {
   phases: Phase[];
@@ -98,9 +96,6 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
   newSubjects,
   legacySubjects,
 }) => {
-  // TODO: Implement analytics
-  // const { track } = useAnalytics();
-
   interface SelectedSubject extends SubjectPhaseOption {
     isNew: boolean;
   }
@@ -158,6 +153,7 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
 
   const handleSelectPhase = (phase: Phase): void => {
     setShowPhaseError(false);
+    setShowExamboardError(false);
     setSelectedExamboard(null);
     if (selectedPhase && selectedPhase.slug === phase.slug) {
       setSelectedPhase(null);
@@ -167,7 +163,7 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
   };
 
   const handleSelectExamboard = (examboard: Examboard): void => {
-    setShowSubjectError(false);
+    setShowExamboardError(false);
     if (selectedExamboard && selectedExamboard.slug === examboard.slug) {
       setSelectedExamboard(null);
     } else {
@@ -210,20 +206,48 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
     }
   };
 
+  const labelColor = (hasError: boolean) => {
+    return hasError ? "failure" : "inherit";
+  };
+
+  const phaseLabel = (phase: Phase) => {
+    switch (phase.slug) {
+      case "primary":
+        return "Primary\r\nKey Stage 1&2\r\nYears 1-6";
+      case "secondary":
+        return "Secondary\r\nKey Stage 3&4\r\nYears 7-11";
+      default:
+        throw new Error("Invalid phase: " + phase.title);
+    }
+  };
+
+  const isSelected = (option: Subject | Phase | Examboard, isNew = false) => {
+    return (
+      (option.slug == selectedSubject?.slug &&
+        isNew == selectedSubject?.isNew) ||
+      option.slug == selectedPhase?.slug ||
+      option.slug == selectedExamboard?.slug
+    );
+  };
+
   return (
-    // TODO: Add appropriate aria labels for accessibility?
     <Box $position="relative">
       <BoxBorders />
       <Grid $position="relative">
         <GridArea $colSpan={[12, 5]} $mr={8}>
           <Box $ph={16} $pv={12}>
-            <SelectButton $ph={16} $pv={12} onClick={toggleShowSubjects}>
+            <SelectButton
+              $ph={16}
+              $pv={12}
+              onClick={toggleShowSubjects}
+              title="Subject"
+            >
               <BoxBorders hideBottom={true} hideTop={true} />
               <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
                 Subject
               </Heading>
-              <P $color={showSubjectError ? "failure" : "inherit"}>
-                {showSubjectError ? (
+              <P $color={labelColor(showSubjectError)}>
+                {showSubjectError && (
                   <>
                     <Icon
                       $color={"failure"}
@@ -232,125 +256,109 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
                     />
                     <span>Please select a subject</span>
                   </>
-                ) : selectedSubject ? (
-                  `${selectedSubject.title}${
-                    selectedSubject.isNew ? " (new)" : ""
-                  }`
-                ) : (
-                  "Select"
                 )}
+                {selectedSubject && (
+                  <>
+                    {selectedSubject.title}
+                    {selectedSubject.isNew && " (new)"}
+                  </>
+                )}
+                {!showSubjectError && !selectedSubject && "Select"}
               </P>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
           </Box>
-          <Box
-            $background={"white"}
-            $display={showSubjects ? "" : "none"}
-            $dropShadow="interactiveCardHover"
-            $left={0}
-            $mt={8}
-            $pa={32}
-            $position="absolute"
-            $top={"100%"}
-            $zIndex={"inFront"}
-            $width={"100%"}
-          >
-            <BoxBorders />
-            <FocusOn
-              enabled={showSubjects}
-              onClickOutside={() => setShowSubjects(false)}
-              onEscapeKey={() => setShowSubjects(false)}
-              scrollLock={false}
+          {showSubjects && (
+            <Box
+              $background={"white"}
+              $dropShadow="interactiveCardHover"
+              $left={0}
+              $mt={8}
+              $pa={32}
+              $position="absolute"
+              $top={"100%"}
+              $zIndex={"inFront"}
+              $width={"100%"}
             >
-              <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
-                Latest Resources
-                <Box
-                  $background="black"
-                  $color="white"
-                  $display="inline-block"
-                  $dropShadow="subjectCard"
-                  $font="heading-light-7"
-                  $ml={12}
-                  $pa={1}
-                  $position="relative"
-                >
-                  <BrushBorders color="black" />
-                  New
-                </Box>
-              </Heading>
-              <P $mb={16}>Explore our new curricula for 2023/2024.</P>
-              {newSubjects.map((subject) => (
-                <ButtonContainer
-                  className={
-                    selectedSubject?.isNew &&
-                    selectedSubject.slug == subject.slug
-                      ? "selected"
-                      : ""
-                  }
-                  key={subject.slug}
-                >
-                  <Button
-                    $mb={24}
-                    $mr={24}
-                    background={
-                      selectedSubject?.isNew &&
-                      selectedSubject.slug == subject.slug
-                        ? "black"
-                        : "oakGrey1"
-                    }
-                    subjectIcon={subject.slug}
+              <BoxBorders />
+              <FocusOn
+                onClickOutside={() => setShowSubjects(false)}
+                onEscapeKey={() => setShowSubjects(false)}
+                scrollLock={false}
+              >
+                <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
+                  Latest Resources
+                  <Box
+                    $background="black"
+                    $color="white"
+                    $display="inline-block"
+                    $dropShadow="subjectCard"
+                    $font="heading-light-7"
+                    $ml={12}
+                    $pa={1}
+                    $position="relative"
+                  >
+                    <BrushBorders color="black" />
+                    New
+                  </Box>
+                </Heading>
+                <P $mb={16}>Explore our new curricula for 2023/2024.</P>
+                {newSubjects.map((subject) => (
+                  <ButtonContainer
+                    className={isSelected(subject, true) ? "selected" : ""}
                     key={subject.slug}
-                    label={subject.title}
-                    onClick={() => handleSelectSubject(subject, true)}
-                  />
-                </ButtonContainer>
-              ))}
-              <Heading tag={"h4"} $font={"heading-light-7"} $mb={16} $mt={16}>
-                Legacy Resources
-              </Heading>
-              <P $mb={16}>Curricula from year 2020-2022.</P>
-              {legacySubjects.map((subject) => (
-                <ButtonContainer
-                  className={
-                    !selectedSubject?.isNew &&
-                    selectedSubject?.slug == subject.slug
-                      ? "selected"
-                      : ""
-                  }
-                  key={subject.slug}
-                >
-                  <Button
-                    background={
-                      !selectedSubject?.isNew &&
-                      selectedSubject?.slug == subject.slug
-                        ? "black"
-                        : "oakGrey1"
-                    }
-                    subjectIcon={subject.slug}
+                  >
+                    <Button
+                      $mb={24}
+                      $mr={24}
+                      background={
+                        isSelected(subject, true) ? "black" : "oakGrey1"
+                      }
+                      subjectIcon={subject.slug}
+                      label={subject.title}
+                      onClick={() => handleSelectSubject(subject, true)}
+                      title={subject.title}
+                    />
+                  </ButtonContainer>
+                ))}
+                <Heading tag={"h4"} $font={"heading-light-7"} $mb={16} $mt={16}>
+                  Legacy Resources
+                </Heading>
+                <P $mb={16}>Curricula from year 2020-2022.</P>
+                {legacySubjects.map((subject) => (
+                  <ButtonContainer
+                    className={isSelected(subject) ? "selected" : ""}
                     key={subject.slug}
-                    label={subject.title}
-                    $mb={16}
-                    $mr={16}
-                    onClick={() => handleSelectSubject(subject, false)}
-                  />
-                </ButtonContainer>
-              ))}
-            </FocusOn>
-          </Box>
+                  >
+                    <Button
+                      background={isSelected(subject) ? "black" : "oakGrey1"}
+                      subjectIcon={subject.slug}
+                      label={subject.title}
+                      $mb={16}
+                      $mr={16}
+                      onClick={() => handleSelectSubject(subject, false)}
+                      title={subject.title}
+                    />
+                  </ButtonContainer>
+                ))}
+              </FocusOn>
+            </Box>
+          )}
         </GridArea>
 
         <GridArea $colSpan={[12, 5]} $position="relative" $mr={16}>
           <Box $ph={16} $pv={12}>
-            <SelectButton $ph={16} $pv={12} onClick={toggleShowPhases}>
+            <SelectButton
+              $ph={16}
+              $pv={12}
+              onClick={toggleShowPhases}
+              title="Phase"
+            >
               <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
                 Phase
               </Heading>
-              <P
-                $color={
-                  showPhaseError || showExamboardError ? "failure" : "inherit"
-                }
-              >
-                {showPhaseError ? (
+              <P $color={labelColor(showPhaseError || showExamboardError)}>
+                {showPhaseError && (
                   <>
                     <Icon
                       $color={"failure"}
@@ -359,7 +367,8 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
                     />
                     Select a phase
                   </>
-                ) : showExamboardError ? (
+                )}
+                {showExamboardError && (
                   <>
                     <Icon
                       $color={"failure"}
@@ -368,99 +377,96 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
                     />
                     Select an exam board
                   </>
-                ) : selectedPhase ? (
-                  `${selectedPhase.title}${
-                    selectedExamboard ? `, ${selectedExamboard.title}` : ``
-                  }`
-                ) : (
-                  "Select"
                 )}
+                {selectedPhase && !showExamboardError && (
+                  <>
+                    <Span>{selectedPhase.title}</Span>
+                    {selectedExamboard && (
+                      <Span>, {selectedExamboard.title}</Span>
+                    )}
+                  </>
+                )}
+                {!selectedPhase &&
+                  !showPhaseError &&
+                  !showExamboardError &&
+                  "Select"}
               </P>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
           </Box>
-          <FocusOn
-            enabled={showPhases}
-            onClickOutside={() => setShowPhases(false)}
-            onEscapeKey={() => setShowPhases(false)}
-            scrollLock={false}
-          >
+          {showPhases && (
             <Box
               $background={"white"}
-              $display={showPhases ? "" : "none"}
               $dropShadow="interactiveCardHover"
               $left={0}
               $mt={8}
               $pa={32}
               $position="absolute"
               $top={"100%"}
+              $zIndex={"inFront"}
             >
               <BoxBorders />
-              <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
-                Choose a school phase:
-              </Heading>
-              {(selectedSubject?.phases ?? phases).map((phase) => (
-                <ButtonContainer className="multi-line" key={phase.slug}>
-                  <Button
-                    $mr={24}
-                    background={
-                      selectedPhase?.slug == phase.slug ? "black" : "oakGrey1"
-                    }
-                    key={phase.slug}
-                    label={
-                      phase.title +
-                      "\r\nKey Stage " +
-                      (phase.slug == "primary" ? " 1&2" : " 3&4") +
-                      "\r\nYears " +
-                      (phase.slug == "primary" ? " 1-6" : " 7-11")
-                    }
-                    onClick={() => handleSelectPhase(phase)}
-                  />
-                </ButtonContainer>
-              ))}
-              {selectedPhase?.slug == "secondary" &&
-                selectedSubject?.examboards && (
-                  <>
-                    <Heading
-                      tag={"h4"}
-                      $color={showExamboardError ? "failure" : "inherit"}
-                      $font={"heading-light-7"}
-                      $mb={16}
-                      $mt={16}
-                    >
-                      {showExamboardError ? (
-                        <>
-                          <Icon
-                            $color={"failure"}
-                            name="content-guidance"
-                            verticalAlign="bottom"
+              <FocusOn
+                onClickOutside={() => setShowPhases(false)}
+                onEscapeKey={() => setShowPhases(false)}
+                scrollLock={false}
+              >
+                <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
+                  Choose a school phase:
+                </Heading>
+                {(selectedSubject?.phases ?? phases).map((phase) => (
+                  <ButtonContainer className="multi-line" key={phase.slug}>
+                    <Button
+                      $mr={24}
+                      background={isSelected(phase) ? "black" : "oakGrey1"}
+                      label={phaseLabel(phase)}
+                      onClick={() => handleSelectPhase(phase)}
+                      title={phase.title}
+                    />
+                  </ButtonContainer>
+                ))}
+                {selectedPhase?.slug == "secondary" &&
+                  selectedSubject?.examboards && (
+                    <>
+                      <Heading
+                        tag={"h4"}
+                        $color={labelColor(showExamboardError)}
+                        $font={"heading-light-7"}
+                        $mb={16}
+                        $mt={16}
+                      >
+                        {showExamboardError ? (
+                          <>
+                            <Icon
+                              $color={"failure"}
+                              name="content-guidance"
+                              verticalAlign="bottom"
+                            />
+                            <span>Please select an exam board</span>
+                          </>
+                        ) : (
+                          "Exam board"
+                        )}
+                      </Heading>
+                      {selectedSubject.examboards.map((examboard) => (
+                        <ButtonContainer key={examboard.slug}>
+                          <Button
+                            $mr={24}
+                            background={
+                              isSelected(examboard) ? "black" : "oakGrey1"
+                            }
+                            label={examboard.title}
+                            onClick={() => handleSelectExamboard(examboard)}
+                            size="large"
+                            title={examboard.title}
                           />
-                          <span>Please select an exam board</span>
-                        </>
-                      ) : (
-                        "Exam board"
-                      )}
-                    </Heading>
-                    {selectedSubject.examboards.map((examboard) => (
-                      <ButtonContainer>
-                        <Button
-                          $mr={24}
-                          background={
-                            selectedExamboard?.slug == examboard.slug
-                              ? "black"
-                              : "oakGrey1"
-                          }
-                          key={examboard.slug}
-                          label={examboard.title}
-                          onClick={() => handleSelectExamboard(examboard)}
-                          size="large"
-                        />
-                      </ButtonContainer>
-                    ))}
-                  </>
-                )}
+                        </ButtonContainer>
+                      ))}
+                    </>
+                  )}
+              </FocusOn>
             </Box>
-          </FocusOn>
+          )}
         </GridArea>
 
         <GridArea $colSpan={[12, 2]}>

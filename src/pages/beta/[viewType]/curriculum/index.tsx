@@ -11,8 +11,6 @@ import Box from "components/Box";
 import Flex from "components/Flex";
 import MaxWidth from "components/MaxWidth/MaxWidth";
 import { Heading, UL, LI, P } from "components/Typography";
-// import curriculumApi from "node-lib/curriculum";
-// import curriculumApi2023 from "node-lib/curriculum-api-2023";
 import Grid, { GridArea } from "components/Grid";
 import Card from "components/Card/Card";
 import CardLink from "components/Card/CardLink";
@@ -180,13 +178,7 @@ export const getStaticPaths = async () => {
 
 export const fetchSubjectPhaseOptions: () => Promise<SubjectPhaseOptions> =
   async () => {
-    // TODO: Request legacy data and create newSubjects and legacySubjects
-    // const newSubjectPhaseData = await curriculumApi2023.curriculumSubjectPhase({});
-    // const legacySubjectPhaseData = await curriculumApi.curriculumSubjectPhase({});
-    // TODO: Get live data for subjects (legacy & new) and phases
-    // TODO: Combine new and legacy subjects into return data
-
-    // Example data
+    // Hardcoded data
     return {
       newSubjects: [
         {

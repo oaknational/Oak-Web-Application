@@ -1,7 +1,0 @@
-query curriculumSubjectPhase {
-  # TODO: Update this with MV that fetches subject / phase data from old Curriculum DB
-  programmes(where: {_state: {_eq: "new"}, _deleted: {_eq: false}, _not: {programme_fields: {_has_keys_any: "keystage"}}}) {
-    programme_id
-    programme_fields
-  }
-}
