@@ -7,10 +7,11 @@ import OutlineHeading from "../OutlineHeading/OutlineHeading";
 export type ListItemIndexDesktopProps = {
   index: number;
   background: OakColorName;
+  expired?: boolean;
 };
 
 const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
-  const { background, index } = props;
+  const { background, index, expired } = props;
 
   return (
     <Flex
@@ -23,7 +24,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $position={"relative"}
       $transition={"all 0.4s ease-out"}
     >
-      <OutlineHeading tag={"h3"} $fontSize={32}>
+      <OutlineHeading tag={"h3"} $fontSize={32} lightShadow={expired}>
         {index.toString()}
       </OutlineHeading>
     </Flex>

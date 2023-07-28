@@ -6,11 +6,11 @@ import { margin } from "../../styles/utils/spacing";
 import typography from "../../styles/utils/typography";
 import { HeadingProps, HeadingTagComponent } from "../Typography/Heading";
 
-export const outlineShadow =
-  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";
+export const outlineShadow = `-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}`;
+const outlineShadowLight = `-1px -1px 0 #878787, 1px -1px 0 #878787, -1px 1px 0 #878787, 1px 1px 0 #878787}`;
 
 type OutlineHeadingProps = Omit<HeadingProps, "$fontSize">;
-type OutlineSize = 32 | 40 | 50 | 60 | 100 | 120;
+type OutlineSize = 24 | 32 | 40 | 50 | 60 | 100 | 120;
 type OutlineSizeResponsive = ResponsiveValues<OutlineSize>;
 
 const parse = (value?: unknown) => {
@@ -29,9 +29,15 @@ const fontSize = css<{ $fontSize?: OutlineSizeResponsive }>`
 // Todo: use the theme to ensure the shadow color is the contrast color
 const OutlineHeading = styled(HeadingTagComponent).attrs({
   className: "pa11y-ignore",
-})<OutlineHeadingProps & { $fontSize: OutlineSizeResponsive }>`
+})<
+  OutlineHeadingProps & {
+    $fontSize: OutlineSizeResponsive;
+    $lightShadow?: boolean;
+  }
+>`
   color: white;
-  text-shadow: ${outlineShadow};
+  text-shadow: ${(props) =>
+    props.$lightShadow ? outlineShadowLight : outlineShadow};
   ${fontSize}
   ${margin}
   ${typography}

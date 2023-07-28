@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import useClickableCard from "../../../../hooks/useClickableCard";
 import useAnalytics from "../../../../context/Analytics/useAnalytics";
 import Flex from "../../../Flex";
-import { Span } from "../../../Typography";
 import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
@@ -15,6 +14,8 @@ import ListItemIndexDesktop from "../../ListItemIndexDesktop";
 import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIconMobile from "../../ListItemIconMobile";
 import ListItemIconDesktop from "../../ListItemIconDesktop";
+
+import { UnitListLessonCount } from "./UnitListLessonCount";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -104,7 +105,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     >
       {!fromSearchPage && (
         <>
-          <ListItemIndexDesktop index={index + 1} background={background} />
+          <ListItemIndexDesktop
+            index={index + 1}
+            background={background}
+            expired
+          />
           <ListItemIndexMobile background={background} index={index + 1} />
         </>
       )}
@@ -112,8 +117,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $ml={[16, 24]}
         $mr={[0, 24]}
         $flexDirection={"column"}
+        $justifyContent={"center"}
         $width={"100%"}
+        $height={"100%"}
         $gap={"8px"}
+        $pv={[8, 12]}
       >
         <ListItemHeader
           {...props}
@@ -126,26 +134,11 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         />
 
         <Flex $flexDirection={["column", "row"]}>
-          <Flex>
-            {lessonCount && expiredLessonCount ? (
-              <Span
-                $mr={16}
-                $font={["body-3", "heading-light-7"]}
-                $color={"oakGrey4"}
-              >
-                {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
-              </Span>
-            ) : (
-              <Span
-                $mr={16}
-                $font={["body-3", "heading-light-7"]}
-                $color={"oakGrey4"}
-              >
-                {!!lessonCount && `${lessonCount} lessons`}
-                {expired && ` Coming soon`}
-              </Span>
-            )}
-          </Flex>
+          <UnitListLessonCount
+            expired={expired}
+            expiredLessonCount={expiredLessonCount}
+            lessonCount={lessonCount}
+          />
         </Flex>
       </Flex>
       {fromSearchPage && (

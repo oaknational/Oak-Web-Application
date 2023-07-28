@@ -12,11 +12,12 @@ type HeadingTagProps = {
   children?: React.ReactNode;
   id?: string;
   tag: HeadingTag;
+  ariaLabel?: string;
 };
 export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
-  const { tag, ...otherProps } = props;
+  const { tag, ariaLabel, ...otherProps } = props;
   const Tag = tag;
-  return <Tag {...otherProps} />;
+  return <Tag {...otherProps} aria-label={ariaLabel} />;
 };
 
 export type HeadingProps = TypographyProps &

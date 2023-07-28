@@ -48,7 +48,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $flexDirection={"row"}
         $justifyContent={"space-between"}
         $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
-        $alignItems={"center"}
+        $alignItems={"start"}
         $background={background}
       >
         {children}
