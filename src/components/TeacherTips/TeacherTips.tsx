@@ -16,7 +16,7 @@ const TeacherTips = ({ teacherTips }: LessonTeacherTips) => {
       <Flex $flexDirection={"column"}>
         <P>{teacherTip?.teacherTip}</P>
         <Heading tag="h3" data-testid={"heading"}>
-          Teacher tips
+          Teacher tip
         </Heading>
       </Flex>
     </Flex>
