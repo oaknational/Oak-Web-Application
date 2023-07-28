@@ -25,7 +25,6 @@ const LessonDetails: FC<LessonDetailsProps> = ({
   keyWords,
   teacherTips,
 }) => {
-  console.log(teacherTips);
   return (
     <Flex $flexDirection={"column"}>
       <Heading $font={["heading-5", "heading-4"]} tag={"h2"}>
