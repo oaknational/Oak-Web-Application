@@ -8,7 +8,7 @@ describe("TeacherTips component", () => {
     const { getByTestId, getByText } = renderWithTheme(
       <TeacherTips teacherTips={teacherTips} />
     );
-    const componentTitle = getByText("Teacher tips");
+    const componentTitle = getByText("Teacher tip");
     expect(getByTestId("heading")).toBeInTheDocument();
     expect(componentTitle).toBeInTheDocument();
   });

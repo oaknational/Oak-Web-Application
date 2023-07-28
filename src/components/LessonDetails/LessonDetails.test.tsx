@@ -103,7 +103,7 @@ describe("LessonDetails component", () => {
       />
     );
 
-    const keyWordsComponent = getByText("Teacher tips");
+    const keyWordsComponent = getByText("Teacher tip");
     expect(keyWordsComponent).toBeInTheDocument();
   });
 
