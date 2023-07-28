@@ -7,7 +7,7 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import ListItemHeader from "../../ListItemHeader";
-import { Span } from "../../../Typography";
+import { P, Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
 import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
@@ -101,10 +101,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     hitCount,
     currentPage,
     firstItemRef,
+    pupilLessonOutcome,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
@@ -176,17 +176,25 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <Expired page={"lesson"} />
         ) : (
           <>
-            <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-                $font={["body-3", "body-2"]}
-                $color={"oakGrey5"}
-              />
-            </Flex>
+            {(description && (
+              <Flex $mt={[8, 0]} $mr={[16, 0]}>
+                <Span
+                  dangerouslySetInnerHTML={{
+                    __html: description,
+                  }}
+                  $font={["body-3", "body-2"]}
+                  $color={"oakGrey5"}
+                />
+              </Flex>
+            )) ||
+              (pupilLessonOutcome && (
+                <Flex $mt={[8, 0]} $mr={[16, 0]}>
+                  <P $font={["body-3", "body-2"]}>{pupilLessonOutcome}</P>
+                </Flex>
+              ))}
+
             {resources.length > 0 && (
-              <Box $mt={16}>
+              <Box $mt={12}>
                 <LessonResourceGraphics items={resources} />
               </Box>
             )}
