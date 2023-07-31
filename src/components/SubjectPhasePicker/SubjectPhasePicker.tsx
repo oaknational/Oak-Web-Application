@@ -159,6 +159,13 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
       setSelectedPhase(null);
     } else {
       setSelectedPhase(phase);
+      if (
+        phase.slug == "primary" ||
+        !selectedSubject ||
+        !selectedSubject.examboards
+      ) {
+        setShowPhases(false);
+      }
     }
   };
 
@@ -168,6 +175,7 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
       setSelectedExamboard(null);
     } else {
       setSelectedExamboard(examboard);
+      setShowPhases(false);
     }
   };
 
@@ -231,7 +239,7 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
   };
 
   return (
-    <Box $position="relative">
+    <Box $position="relative" data-testid="subjectPhasePicker">
       <BoxBorders />
       <Grid $position="relative">
         <GridArea $colSpan={[12, 5]} $mr={8}>
@@ -365,7 +373,7 @@ const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Select a phase
+                    Please select a phase
                   </>
                 )}
                 {showExamboardError && (

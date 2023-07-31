@@ -15,11 +15,6 @@ const subjectPhaseOptions: SubjectPhaseOptions = {
       ],
     },
     {
-      title: "Combined Science",
-      slug: "combined-science",
-      phases: [{ title: "Secondary", slug: "secondary" }],
-    },
-    {
       title: "Geography",
       slug: "geography",
       phases: [
@@ -59,21 +54,6 @@ const subjectPhaseOptions: SubjectPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
-    },
-    {
-      title: "Biology",
-      slug: "biology",
-      phases: [{ title: "Secondary", slug: "secondary" }],
-    },
-    {
-      title: "Physics",
-      slug: "physics",
-      phases: [{ title: "Secondary", slug: "secondary" }],
-    },
-    {
-      title: "Chemistry",
-      slug: "chemistry",
-      phases: [{ title: "Secondary", slug: "secondary" }],
     },
   ],
   legacySubjects: [

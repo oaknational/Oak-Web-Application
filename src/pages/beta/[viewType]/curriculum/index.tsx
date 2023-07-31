@@ -179,224 +179,64 @@ export const getStaticPaths = async () => {
 export const fetchSubjectPhaseOptions: () => Promise<SubjectPhaseOptions> =
   async () => {
     // Hardcoded data
+    const createSubject = (
+      title: string,
+      slug: string,
+      hasBothPhases: boolean,
+      hasExamBoards: boolean
+    ) => {
+      const phases = [
+        { title: "Primary", slug: "primary" },
+        { title: "Secondary", slug: "secondary" },
+      ];
+      const examBoards = [
+        { title: "AQA", slug: "aqa" },
+        { title: "Edexcel", slug: "edexcel" },
+      ];
+      return {
+        title,
+        slug,
+        phases: hasBothPhases ? phases : phases.slice(1),
+        ...(hasExamBoards && { examboards: examBoards }),
+      };
+    };
+
+    const subjects: [string, string, boolean, boolean][] = [
+      ["English", "english", true, true],
+      ["Geography", "geography", true, false],
+      ["History", "history", true, true],
+      ["Maths", "maths", true, false],
+      ["Music", "music", false, false],
+      ["Science", "science", true, false],
+    ];
+
+    const legacySubjects: [string, string, boolean, boolean][] = [
+      ["Art & Design", "art", true, false],
+      ["Citizenship", "citizenship", false, false],
+      ["Computing", "computing", true, false],
+      ["Design & Technology", "design-technology", true, false],
+      ["Drama", "drama", true, false],
+      ["English", "english", true, false],
+      ["French", "french", true, false],
+      ["Geography", "geography", true, false],
+      ["German", "german", false, false],
+      ["History", "history", true, false],
+      ["Latin", "latin", false, false],
+      ["Maths", "maths", true, false],
+      ["Music", "music", true, false],
+      ["Physical Education", "physical-education", true, false],
+      ["Physics", "physics", false, false],
+      ["Religious Education", "religious-education", true, false],
+      ["RSHE (PSHE)", "rshe-pshe", true, false],
+      ["Science", "science", true, false],
+      ["Spanish", "spanish", true, false],
+    ];
+
     return {
-      newSubjects: [
-        {
-          title: "English",
-          slug: "english",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-          examboards: [
-            { title: "AQA", slug: "aqa" },
-            { title: "Edexcel", slug: "edexcel" },
-          ],
-        },
-        {
-          title: "Combined Science",
-          slug: "combined-science",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Geography",
-          slug: "geography",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "History",
-          slug: "history",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-          examboards: [
-            { title: "AQA", slug: "aqa" },
-            { title: "Edexcel", slug: "edexcel" },
-          ],
-        },
-        {
-          title: "Maths",
-          slug: "maths",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Music",
-          slug: "music",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Science",
-          slug: "science",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Biology",
-          slug: "biology",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Physics",
-          slug: "physics",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Chemistry",
-          slug: "chemistry",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-      ],
-      legacySubjects: [
-        {
-          title: "Art & Design",
-          slug: "art",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Citizenship",
-          slug: "citizenship",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Computing",
-          slug: "computing",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Design & Technology",
-          slug: "design-technology",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Drama",
-          slug: "drama",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "English",
-          slug: "english",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "French",
-          slug: "french",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Geography",
-          slug: "geography",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "German",
-          slug: "german",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "History",
-          slug: "history",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Latin",
-          slug: "latin",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Maths",
-          slug: "maths",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Music",
-          slug: "music",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Physical Education",
-          slug: "physical-education",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Physics",
-          slug: "physics",
-          phases: [{ title: "Secondary", slug: "secondary" }],
-        },
-        {
-          title: "Religious Education",
-          slug: "religious-education",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "RSHE (PSHE)",
-          slug: "rshe-pshe",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Science",
-          slug: "science",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-        {
-          title: "Spanish",
-          slug: "spanish",
-          phases: [
-            { title: "Primary", slug: "primary" },
-            { title: "Secondary", slug: "secondary" },
-          ],
-        },
-      ],
+      newSubjects: subjects.map((subject) => createSubject(...subject)),
+      legacySubjects: legacySubjects.map((subject) =>
+        createSubject(...subject)
+      ),
     };
   };
 

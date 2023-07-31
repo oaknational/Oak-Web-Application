@@ -52,13 +52,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     getButtonStylesProps(props);
 
   const defaultTitle =
-    ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
+    ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
 
   return (
     <StyledButton
       ref={ref}
       {...htmlButtonProps}
-      title={title || htmlButtonProps.title || defaultTitle}
+      title={title ?? htmlButtonProps.title ?? defaultTitle}
       aria-label={ariaLabel}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       size={size}
