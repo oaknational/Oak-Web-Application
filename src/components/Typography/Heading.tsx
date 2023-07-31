@@ -6,7 +6,7 @@ import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
-const HEADING_TAGS = ["li", "h1", "h2", "h3", "h4", "h5", "h6"] as const;
+const HEADING_TAGS = ["div", "h1", "h2", "h3", "h4", "h5", "h6"] as const;
 export type HeadingTag = typeof HEADING_TAGS[number];
 type HeadingTagProps = {
   children?: React.ReactNode;

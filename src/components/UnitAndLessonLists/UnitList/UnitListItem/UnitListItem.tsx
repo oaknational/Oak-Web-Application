@@ -108,9 +108,13 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           <ListItemIndexDesktop
             index={index + 1}
             background={background}
-            expired
+            expired={expired}
           />
-          <ListItemIndexMobile background={background} index={index + 1} />
+          <ListItemIndexMobile
+            background={background}
+            index={index + 1}
+            expired={expired}
+          />
         </>
       )}
       <Flex

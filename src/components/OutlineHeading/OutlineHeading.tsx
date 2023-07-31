@@ -32,7 +32,7 @@ const OutlineHeading = styled(HeadingTagComponent).attrs({
 })<
   OutlineHeadingProps & {
     $fontSize: OutlineSizeResponsive;
-    $lightShadow?: boolean;
+    $lightShadow?: boolean | null;
   }
 >`
   color: white;

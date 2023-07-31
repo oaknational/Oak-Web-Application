@@ -104,10 +104,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     hitCount,
     currentPage,
     firstItemRef,
+    pupilLessonOutcome,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
@@ -218,13 +218,19 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         {!expired && (
           <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
             <Flex $mt={[8, 0]} $mr={[16, 0]} $maxWidth={[null, 600]}>
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-                $font={["body-3", "body-2"]}
-                $color={"oakGrey5"}
-              />
+              {description ? (
+                <Span
+                  dangerouslySetInnerHTML={{
+                    __html: description,
+                  }}
+                  $font={["body-3", "body-2"]}
+                  $color={"oakGrey5"}
+                />
+              ) : (
+                <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
+                  {pupilLessonOutcome}
+                </P>
+              )}
             </Flex>
             {resources.length > 0 && (
               <Box>

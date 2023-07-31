@@ -1,17 +1,17 @@
 import React from "react";
 
 import Flex from "../Flex";
-import Heading from "../Typography";
-import UL from "../Typography/UL";
+import { Heading } from "../Typography";
+import OL from "../Typography/OL";
 import LI from "../Typography/LI";
 
-type KeyLearningPoint = {
+export type KeyLearningPoint = {
   keyLearningPoint: string | null;
 };
 
-type KeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
+type LessonKeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
 
-const LessonOverview = ({ keyLearningPoints }: KeyLearningPoints) => {
+const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   const filteredKeyLearningPoints = keyLearningPoints.filter(
     (keyLearningPoint) =>
       keyLearningPoint.keyLearningPoint !== null &&
@@ -19,19 +19,22 @@ const LessonOverview = ({ keyLearningPoints }: KeyLearningPoints) => {
   );
 
   return (
-    <Flex $justifyContent={"center"} $width={"100%"}>
+    <Flex $justifyContent={"center"} $width={"100%"} $mb={48}>
       <Flex
-        $pa={[10, 24]}
         $flexDirection={"column"}
-        $mt={22}
         $position={"relative"}
         $justifyContent={"center"}
         $width={["100%", 840]}
       >
-        <Heading $font={"heading-5"} $mb={[16, 24]} data-testid={"heading"}>
+        <Heading
+          $font={["heading-6", "heading-5"]}
+          $mb={24}
+          data-testid={"heading"}
+          tag="h3"
+        >
           Key learning points
         </Heading>
-        <UL $pl={24}>
+        <OL $mb={0} $mt={0}>
           {filteredKeyLearningPoints.map(
             (keyLearningPoint: KeyLearningPoint, i: number) => {
               if (!keyLearningPoint) {
@@ -39,19 +42,19 @@ const LessonOverview = ({ keyLearningPoints }: KeyLearningPoints) => {
               } else {
                 return (
                   <LI
-                    key={`core-content-string-${i}`}
+                    key={`key-learning-point-${i}`}
                     $font={["list-item-2", "list-item-1"]}
                   >
-                    {keyLearningPoint.keyLearningPoint}
+                    {`${keyLearningPoint.keyLearningPoint}`}
                   </LI>
                 );
               }
             }
           )}
-        </UL>
+        </OL>
       </Flex>
     </Flex>
   );
 };
 
-export default LessonOverview;
+export default KeyLearningPoints;
