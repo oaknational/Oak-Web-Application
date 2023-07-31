@@ -1,13 +1,16 @@
 import { GraphQLClient } from "graphql-request";
 
+import errorReporter from "../../common-lib/error-reporter";
 import getServerConfig from "../getServerConfig";
 
 import {
+  getSdk,
+  SdkFunctionWrapper,
   // AllBlogPostsQuery,
   // AllWebinarsQuery,
-  getSdk,
-  // SdkFunctionWrapper,
 } from "./generated/sdk";
+
+const reportError = errorReporter("sanity-graphql.ts");
 
 export const sanityConfig = {
   projectId: getServerConfig("sanityProjectId"),
@@ -36,10 +39,11 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
 });
 
 /**
- * Pass fixtureGenerationWrapper as a second argument to getSdk to have fixtures
+ * Call fixtureGenerationWrapper from requestWithLogging to have fixtures
  * automatically generated for each API operation
  *
- * n.b Make sure tests aren't running when this happens
+ * n.b Make sure tests aren't running when this happens as it will
+ * continuously re-render
  */
 // const fixtureGenerationWrapper: SdkFunctionWrapper = async (
 //   action,
@@ -77,8 +81,29 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
 //   return response;
 // };
 
-const sanityGraphqlApi = getSdk(
-  sanityGraphqlClient /*, fixtureGenerationWrapper */
-);
+const requestWithLogging: SdkFunctionWrapper = async (
+  action,
+  operationName
+) => {
+  try {
+    // Swap these lines to generate fixtures locally for use testing
+    // const response = await fixtureGenerationWrapper(action, operationName)
+    const response = await action();
+
+    return response;
+  } catch (err) {
+    console.log(
+      `Failed to fetch graphql query operationName=${operationName}, graphqlAPIUrl=${graphqlAPIUrl}`
+    );
+
+    reportError(err, {
+      graphqlOperationName: operationName,
+      graphqlAPIUrl,
+    });
+    throw err;
+  }
+};
+
+const sanityGraphqlApi = getSdk(sanityGraphqlClient, requestWithLogging);
 
 export default sanityGraphqlApi;
