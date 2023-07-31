@@ -1,3 +1,21 @@
+# [1.206.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.2...v1.206.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* add missing type to Heading ([0298049](https://github.com/oaknational/Oak-Web-Application/commit/0298049e93fc9daf296c368260a0f06f4bbd8f0d))
+* conflicts ([82aad53](https://github.com/oaknational/Oak-Web-Application/commit/82aad539f8ac1e2938551666e85d2548209ad361))
+* qa feedback ([b237445](https://github.com/oaknational/Oak-Web-Application/commit/b237445f8a4ab97a00abb2e484ce271332c5dcc8))
+
+
+### Features
+
+* fix non-conformant styling ([dc54a1a](https://github.com/oaknational/Oak-Web-Application/commit/dc54a1ac4d3405203f3767c5309c30256669e6db))
+* implementing unit and lesson list new styling mobile, desktop, expired ([f7d26f3](https://github.com/oaknational/Oak-Web-Application/commit/f7d26f3000c1c03119df7c2b44ce2712ae3d5f42))
+* limiting text width, screen reader accessiblity and unavailable states ([f8fefc7](https://github.com/oaknational/Oak-Web-Application/commit/f8fefc76a50935728fba6cc7a5be319044f44851))
+* unit and lesson list stying tests updated ([27f0a3f](https://github.com/oaknational/Oak-Web-Application/commit/27f0a3f9013bb6de0435693b2aecc48aea1d5063))
+* wip working list item styling ([6b5f857](https://github.com/oaknational/Oak-Web-Application/commit/6b5f8575e4726f8afdcc760685b3537f4c153a2c))
+
 ## [1.205.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.1...v1.205.2) (2023-07-31)
 
 ## [1.205.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.0...v1.205.1) (2023-07-28)
