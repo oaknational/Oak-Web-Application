@@ -6,7 +6,9 @@ import CurriculumHomePage, {
 } from "pages/beta/[viewType]/curriculum";
 import renderWithProviders from "__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "browser-lib/fixtures/subjectPhaseOptions";
-import SubjectPhasePicker, { SubjectPhaseOptions } from "components/SubjectPhasePicker/SubjectPhasePicker";
+import SubjectPhasePicker, {
+  SubjectPhaseOptions,
+} from "components/SubjectPhasePicker/SubjectPhasePicker";
 
 jest.mock("node-lib/isr", () => ({
   decorateWithIsr: jest.fn(),
