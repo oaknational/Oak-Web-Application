@@ -117,7 +117,7 @@ Oak preview and production builds are on Netlify.
 
 #### Required Environment Variables for Builds
 
-### Release Mechanism
+### Release Mechanism.
 
 - All changes to the `main` branch must happen through pull requests.
 - Changes on the `main` branch trigger the `create_semantic_release` Github workflow which creates a Github release, and updates the package.json version number. The commit message has a structure set in [`release.config.js`](release.config.js).
