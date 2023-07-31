@@ -58,7 +58,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   sanityDatasetTag: {
     value: process.env.SANITY_DATASET_TAG,
     envName: "SANITY_DATASET_TAG",
-    required: false,
+    required: true,
     availableInBrowser: false,
     default: "default", // Literally 'default', not a typo
   },
