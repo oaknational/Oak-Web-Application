@@ -206,39 +206,45 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                 slug={lessonSlug}
                 fromSearchPage={fromSearchPage}
               />
-              {expired && (
+              {/* {expired && (
                 <P $mt={8} $font={["body-3", "body-2"]}>
                   This lesson is currently unavailable.
                 </P>
-              )}
+              )} */}
             </Flex>
           </Flex>
         )}
 
-        {!expired && (
-          <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
-            <Flex $mt={[8, 0]} $mr={[16, 0]} $maxWidth={[null, 600]}>
-              {description ? (
-                <Span
-                  dangerouslySetInnerHTML={{
-                    __html: description,
-                  }}
-                  $font={["body-3", "body-2"]}
-                  $color={"oakGrey5"}
-                />
-              ) : (
-                <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
-                  {pupilLessonOutcome}
-                </P>
-              )}
-            </Flex>
-            {resources.length > 0 && (
-              <Box>
-                <LessonResourceGraphics items={resources} />
-              </Box>
+        <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
+          <Flex $mt={[8, 0]} $mr={[16, 0]}>
+            {expired ? (
+              <P $mt={8} $font={["body-3", "body-2"]}>
+                This lesson is currently unavailable.
+              </P>
+            ) : (
+              <>
+                {description ? (
+                  <Span
+                    dangerouslySetInnerHTML={{
+                      __html: description,
+                    }}
+                    $font={["body-3", "body-2"]}
+                    $color={"oakGrey5"}
+                  />
+                ) : (
+                  <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
+                    {pupilLessonOutcome}
+                  </P>
+                )}
+              </>
             )}
           </Flex>
-        )}
+          {resources.length > 0 && !expired && (
+            <Box>
+              <LessonResourceGraphics items={resources} />
+            </Box>
+          )}
+        </Flex>
       </Flex>
       {fromSearchPage && (
         <>

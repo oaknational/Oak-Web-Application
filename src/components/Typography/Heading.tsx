@@ -13,11 +13,14 @@ type HeadingTagProps = {
   id?: string;
   tag: HeadingTag;
   ariaLabel?: string;
+  ariaHidden?: boolean;
 };
 export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
-  const { tag, ariaLabel, ...otherProps } = props;
+  const { tag, ariaLabel, ariaHidden, ...otherProps } = props;
   const Tag = tag;
-  return <Tag {...otherProps} aria-label={ariaLabel} />;
+  return (
+    <Tag {...otherProps} aria-label={ariaLabel} aria-hidden={ariaHidden} />
+  );
 };
 
 export type HeadingProps = TypographyProps &

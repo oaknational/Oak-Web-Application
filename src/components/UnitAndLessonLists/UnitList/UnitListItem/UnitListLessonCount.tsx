@@ -29,7 +29,7 @@ export const UnitListLessonCount = ({
           </Span>
         )}
 
-        {!expired && <Icon name="chevron-right" size={20} />}
+        {!expired && lessonCount && <Icon name="chevron-right" size={20} />}
       </Flex>
     </>
   );

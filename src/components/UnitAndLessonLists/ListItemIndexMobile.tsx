@@ -24,7 +24,12 @@ const ListItemIndexMobile: FC<ListItemIndexMobileProps> = (props) => {
       $background={background}
       $position={"relative"}
     >
-      <OutlineHeading tag={"div"} $fontSize={24} $lightShadow={expired}>
+      <OutlineHeading
+        tag={"div"}
+        $fontSize={24}
+        $lightShadow={expired}
+        ariaHidden={true}
+      >
         {index.toString()}
       </OutlineHeading>
     </Flex>

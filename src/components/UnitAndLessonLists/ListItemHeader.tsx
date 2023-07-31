@@ -66,7 +66,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
 
   if (expired) {
     return (
-      <Flex $flexDirection={"column"} $maxWidth={[null, 600]}>
+      <Flex $flexDirection={"column"}>
         <ListTitle expired={true} index={fromSearchPage ? undefined : index}>
           {itemTitle}
         </ListTitle>
@@ -75,7 +75,7 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   }
 
   return (
-    <Flex $maxWidth={[null, 600]}>
+    <Flex>
       <Flex $flexDirection={"column"}>
         {!hideTopHeading && (
           <CategoryHeading

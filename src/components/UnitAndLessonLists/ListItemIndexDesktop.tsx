@@ -24,7 +24,12 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $position={"relative"}
       $transition={"all 0.4s ease-out"}
     >
-      <OutlineHeading tag={"div"} $fontSize={32} $lightShadow={expired}>
+      <OutlineHeading
+        tag={"div"}
+        $fontSize={32}
+        $lightShadow={expired}
+        ariaHidden={true}
+      >
         {index.toString()}
       </OutlineHeading>
     </Flex>
