@@ -318,13 +318,21 @@ type NonNullEnvValue<K extends ConfigKey> = NonNullable<
 >;
 
 const getBrowserConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
-  const { value, default: defaultValue, envName } = envVars[key] || {};
+  const {
+    value,
+    default: defaultValue,
+    envName,
+    required,
+    availableInBrowser,
+  } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
 
-  // Allow falsy values to be passed, but not `undefined`
-  if (parsedValue !== undefined) {
+  const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
+
+  // Allow falsy values to be passed, but not `undefined`, don't allow empty strings for values that should be present.
+  if (parsedValue !== undefined && !(shouldBePresent && parsedValue === "")) {
     return parsedValue;
   }
 
