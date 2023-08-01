@@ -105,15 +105,23 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
               page: null,
             },
           ]}
-          onClick={() => null}
         />
       </Box>
 
       <Box $background={"white"}>
         <Box $width={"80%"} $ma={"auto"} $pb={80}>
           <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
-            <Box $pt={20} $mr={16} $maxWidth={"65%"} $textAlign={"left"}>
-              <Heading tag="h5" $font={["heading-5", "heading-6"]}>
+            <Box
+              $pt={20}
+              $mr={16}
+              $maxWidth={["100%", "65%"]}
+              $textAlign={"left"}
+            >
+              <Heading
+                tag="h5"
+                $font={["heading-5", "heading-6"]}
+                data-testid="intent-heading"
+              >
                 Curriculum intent
               </Heading>
               <Typography
@@ -129,12 +137,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
             <Card
               $ml={40}
               $maxHeight={200}
-              $maxWidth={200}
+              $maxWidth={["100%", 200]}
               $ma={"auto"}
               $zIndex={"inFront"}
               $transform={[
                 "rotate(-2.179deg) scale(1.5, 1.5) translate(15%,60%)",
               ]}
+              $display={["none", "flex"]}
               $background={"lemon50"}
             >
               <BrushBorders color="lemon50" />
@@ -155,8 +164,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
             Subject principles
           </Heading>
           <UL $reset={true} $mt={10}>
-            {subjectPrinciples.map((item) => (
-              <LI $mb={[12]}>
+            {subjectPrinciples.map((item, i) => (
+              <LI $mb={[12]} key={`principle-${i + 1}`}>
                 <Flex $alignItems={"center"}>
                   <IconButton
                     icon="arrow-right"
