@@ -12,6 +12,7 @@ export type FlexCssProps = {
   $flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
   $alignSelf?: ResponsiveValues<CSSProperties["alignSelf"]>;
   $flexShrink?: ResponsiveValues<CSSProperties["flexShrink"]>;
+  $gap?: ResponsiveValues<CSSProperties["gap"]>;
 };
 
 const flex = css<FlexCssProps>`
@@ -23,6 +24,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex-wrap", (props) => props.$flexWrap)}
   ${responsive("align-self", (props) => props.$alignSelf)}
   ${responsive("flex-shrink", (props) => props.$flexShrink)}
+  ${responsive("gap", (props) => props.$gap)}
 `;
 
 export default flex;

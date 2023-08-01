@@ -32,7 +32,7 @@ import TabularNav from "../../../../../components/TabularNav";
 import Breadcrumbs from "../../../../../components/Breadcrumbs";
 import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
-import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
+import { ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
 import { filterLearningTheme } from "../../../../../utils/filterLearningTheme/filterLearningTheme";
@@ -278,16 +278,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { programmes } = await curriculumApi.unitListingPaths();
-
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    programmes.map((programme) => ({
-      params: { viewType, programmeSlug: programme.programmeSlug },
-    }))
-  );
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };

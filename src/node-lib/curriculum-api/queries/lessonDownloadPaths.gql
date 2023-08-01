@@ -1,7 +1,0 @@
-query lessonDownloadPaths {
-  mv_downloads: mv_downloads_1 {
-    lessonSlug: lesson_slug
-    programmeSlug: programme_slug
-    unitSlug: unit_slug
-  }
-}
