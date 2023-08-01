@@ -122,6 +122,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
+
   it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
     mockRouter.push({
       pathname: "/beta/teachers/programmes/art-primary-ks1/units",

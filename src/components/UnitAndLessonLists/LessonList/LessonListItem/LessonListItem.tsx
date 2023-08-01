@@ -7,14 +7,17 @@ import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
 import Box from "../../../Box";
 import ListItemHeader from "../../ListItemHeader";
-import { Span } from "../../../Typography";
+import { P, Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
-import Expired from "../../Expired";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
 import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
 import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import ListItemIndexDesktop from "../../ListItemIndexDesktop";
+import ListItemIndexMobile from "../../ListItemIndexMobile";
+import ListItemIconDesktop from "../../ListItemIconDesktop";
+import ListItemIconMobile from "../../ListItemIconMobile";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -101,10 +104,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
     hitCount,
     currentPage,
     firstItemRef,
+    pupilLessonOutcome,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
-
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = () => {
@@ -146,53 +149,117 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const resources = getAvailableResourceList(props);
 
+  const background = expired ? "oakGrey2" : "pupilsPink";
+
   return (
     <ListItemCard
       title={lessonTitle}
       subjectSlug={subjectSlug}
+      index={index}
+      fromSearchPage={fromSearchPage}
       isHovered={isHovered}
-      background={"pupilsPink"}
+      background={expired ? "oakGrey1" : "white"}
       containerProps={containerProps}
       expired={expired}
     >
+      {!fromSearchPage && (
+        <ListItemIndexDesktop
+          index={index + 1}
+          background={background}
+          expired={expired}
+        />
+      )}
+
       <Flex
-        $ml={[16, 24]}
+        $ml={[0, 24]}
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
-        $pb={24}
+        $gap={["4px", "12px"]}
+        $pt={[0, 20]}
+        $pb={20}
       >
-        <ListItemHeader
-          {...props}
-          primaryTargetProps={primaryTargetProps}
-          page="Lesson"
-          index={index}
-          onClick={trackLessonSelected}
-          title={lessonTitle}
-          slug={lessonSlug}
-          fromSearchPage={fromSearchPage}
-        />
-        {expired ? (
-          <Expired page={"lesson"} />
+        {fromSearchPage ? (
+          <Flex $pl={[16, 0]} $pt={[20, 0]} $alignItems={"center"}>
+            <ListItemHeader
+              {...props}
+              primaryTargetProps={primaryTargetProps}
+              page="Lesson"
+              index={index}
+              onClick={trackLessonSelected}
+              title={lessonTitle}
+              slug={lessonSlug}
+              fromSearchPage={fromSearchPage}
+            />
+          </Flex>
         ) : (
-          <>
-            <Flex $mt={[8, 0]} $mr={[16, 0]}>
-              <Span
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}
-                $font={["body-3", "body-2"]}
-                $color={"oakGrey5"}
+          <Flex $gap={"10px"} $alignItems={"center"}>
+            <ListItemIndexMobile background={background} index={index + 1} />
+            <Flex $flexDirection={"column"} $height={"100%"}>
+              <ListItemHeader
+                {...props}
+                primaryTargetProps={primaryTargetProps}
+                page="Lesson"
+                index={index}
+                onClick={trackLessonSelected}
+                title={lessonTitle}
+                slug={lessonSlug}
+                fromSearchPage={fromSearchPage}
               />
+              {/* {expired && (
+                <P $mt={8} $font={["body-3", "body-2"]}>
+                  This lesson is currently unavailable.
+                </P>
+              )} */}
             </Flex>
-            {resources.length > 0 && (
-              <Box $mt={16}>
-                <LessonResourceGraphics items={resources} />
-              </Box>
-            )}
-          </>
+          </Flex>
         )}
+
+        <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
+          <Flex $mt={[8, 0]} $mr={[16, 0]}>
+            {expired ? (
+              <P $mt={8} $font={["body-3", "body-2"]}>
+                This lesson is currently unavailable.
+              </P>
+            ) : (
+              <>
+                {description ? (
+                  <Span
+                    dangerouslySetInnerHTML={{
+                      __html: description,
+                    }}
+                    $font={["body-3", "body-2"]}
+                    $color={"oakGrey5"}
+                  />
+                ) : (
+                  <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
+                    {pupilLessonOutcome}
+                  </P>
+                )}
+              </>
+            )}
+          </Flex>
+          {resources.length > 0 && !expired && (
+            <Box>
+              <LessonResourceGraphics items={resources} />
+            </Box>
+          )}
+        </Flex>
       </Flex>
+      {fromSearchPage && (
+        <>
+          <ListItemIconDesktop
+            title={lessonTitle}
+            background={background}
+            isHovered={isHovered}
+            subjectSlug={subjectSlug}
+          />
+          <ListItemIconMobile
+            background={background}
+            subjectSlug={subjectSlug}
+          />
+        </>
+      )}
     </ListItemCard>
   );
 };
