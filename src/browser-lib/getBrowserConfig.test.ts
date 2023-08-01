@@ -23,6 +23,16 @@ describe("getBrowserConfig()", () => {
       "http://localhost:3000"
     );
   });
+  it("should return the default value for required values set to empty strings", async () => {
+    process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL = "";
+    const { default: getBrowserConfig } = await import(
+      "../browser-lib/getBrowserConfig"
+    );
+
+    expect(getBrowserConfig("clientAppBaseUrl")).toEqual(
+      "http://localhost:3000"
+    );
+  });
   it("should allow parsing numeric env vars", async () => {
     process.env.SANITY_REVALIDATE_SECONDS = "123";
     const { default: getBrowserConfig } = await import(
