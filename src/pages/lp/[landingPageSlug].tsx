@@ -87,8 +87,6 @@ export const getServerSideProps: GetServerSideProps<
 
       const landingPageSlug = context?.params?.landingPageSlug as string;
 
-      let landingPageResult;
-
       const abTestedPage = await getABTestedLandingPage(
         landingPageSlug,
         context,
@@ -96,12 +94,27 @@ export const getServerSideProps: GetServerSideProps<
       );
 
       if (abTestedPage) {
-        landingPageResult = abTestedPage;
-      } else {
-        landingPageResult = await CMSClient.landingPageBySlug(landingPageSlug, {
-          previewMode: isPreviewMode,
-        });
+        /**
+         * For simplified tracking purposes, explicitly redirect the user to
+         * the variant page.
+         * This means if users that haven't consented when this request comes in
+         * then submit the form (therefor consenting to hubspot) their variant
+         * will still be tracked in some way
+         */
+        return {
+          redirect: {
+            destination: `/lp/${abTestedPage.slug}`,
+            permanent: false,
+          },
+        };
       }
+
+      const landingPageResult = await CMSClient.landingPageBySlug(
+        landingPageSlug,
+        {
+          previewMode: isPreviewMode,
+        }
+      );
 
       if (!landingPageResult) {
         return {
