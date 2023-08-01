@@ -81,7 +81,7 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
 //   return response;
 // };
 
-const requestWithLogging: SdkFunctionWrapper = async (
+export const requestWithLogging: SdkFunctionWrapper = async (
   action,
   operationName
 ) => {

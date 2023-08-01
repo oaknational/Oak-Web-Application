@@ -1,4 +1,4 @@
-import graphqlApi from ".";
+import graphqlApi, { requestWithLogging } from ".";
 
 const configGetSpy = jest.fn((key: string) => {
   return {
@@ -14,9 +14,19 @@ jest.mock("./generated/sdk", () => ({
   getSdk: jest.fn(() => "the sdk"),
 }));
 
+const reportError = jest.fn();
+jest.mock("../../common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
+
 describe("node-lib/sanity-graphql/index.ts", () => {
   beforeEach(() => {
     jest.resetModules();
+
     jest.mock("../getServerConfig", () => ({
       __esModule: true,
       default: configGetSpy,
@@ -42,6 +52,30 @@ describe("node-lib/sanity-graphql/index.ts", () => {
     await import(".");
     expect(GraphQLClientSpy).toHaveBeenCalledWith(expect.any(String), {
       headers: { Authorization: "Bearer sanity-secret" },
+    });
+  });
+
+  it("requestWithLogging should call the given action", async () => {
+    const actionResult = {};
+    const action = jest.fn().mockResolvedValue(actionResult);
+
+    const res = await requestWithLogging(action, "someOperation");
+
+    expect(res).toBe(actionResult);
+  });
+
+  it("requestWithLogging should report graphql errors to bugsnag", async () => {
+    const originalError = new Error(`GraphQL Error (Code: 504)`);
+
+    const action = jest.fn().mockRejectedValue(originalError);
+
+    await expect(async () => {
+      await requestWithLogging(action, "someOperation");
+    }).rejects.toThrow();
+
+    expect(reportError).toHaveBeenCalledWith(originalError, {
+      graphqlAPIUrl: expect.any(String),
+      graphqlOperationName: "someOperation",
     });
   });
 });
