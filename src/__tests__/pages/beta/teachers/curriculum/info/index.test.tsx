@@ -8,7 +8,7 @@ describe("curriculum info page", () => {
   describe("components rendering on page", () => {
     it("renders overview headings", () => {
       const { queryByTestId } = render(
-        <CurriculumInfoPage data={curriculumOverviewFixture()[0]} />
+        <CurriculumInfoPage data={curriculumOverviewFixture()} />
       );
 
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
