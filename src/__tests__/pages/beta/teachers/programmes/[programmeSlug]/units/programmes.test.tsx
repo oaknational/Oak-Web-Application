@@ -1,6 +1,5 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import ProgrammesListingPage, {
   getStaticPaths,
   getStaticProps,
@@ -52,10 +51,15 @@ describe("programmes listing page", () => {
       });
     });
   });
+
   describe("getStaticPaths", () => {
-    it("should fetch the correct data", async () => {
-      await getStaticPaths();
-      expect(curriculumApi.programmeListingPaths).toHaveBeenCalledTimes(1);
+    it("Should not generate pages at build time", async () => {
+      const res = await getStaticPaths();
+
+      expect(res).toEqual({
+        fallback: "blocking",
+        paths: [],
+      });
     });
   });
   describe("getStaticProps", () => {
