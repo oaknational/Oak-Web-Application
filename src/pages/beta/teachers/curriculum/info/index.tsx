@@ -1,28 +1,28 @@
 // import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { NextPage } from "next";
-import { FC } from "react";
+import React, { FC } from "react";
 
 // import curriculumApi from "node-lib/curriculum-api";
 // import { decorateWithIsr } from "node-lib/isr";
-import { BETA_SEO_PROPS } from "browser-lib/seo/Seo";
-import AppLayout from "components/AppLayout";
-import Box from "components/Box";
-import Flex from "components/Flex";
-import { Heading, Hr, UL, LI } from "components/Typography";
-import Grid, { GridArea } from "components/Grid";
-import Button from "components/Button/Button";
-import Card from "components/Card/Card";
-import DropdownSelect from "components/DropdownSelect";
-import SubjectIcon from "components/SubjectIcon/SubjectIcon";
-import BrushBorders from "components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import AvatarImage from "components/AvatarImage/AvatarImage";
-import OakLink from "components/OakLink/OakLink";
-import Icon from "components/Icon/Icon";
-import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs";
-import TabularNav from "components/TabularNav/TabularNav";
-import IconButton from "components/Button/IconButton";
-import ButtonAsLink from "components/Button/ButtonAsLink";
-import Typography from "components/Typography/Typography";
+import AppLayout from "../../../../../components/AppLayout/AppLayout";
+import Box from "../../../../../components/Box/Box";
+import Flex from "../../../../../components/Flex/Flex";
+import { Heading, Hr, UL, LI } from "../../../../../components/Typography";
+import Grid, { GridArea } from "../../../../../components/Grid";
+import Button from "../../../../../components/Button/Button";
+import Card from "../../../../../components/Card/Card";
+import DropdownSelect from "../../../../../components/DropdownSelect";
+import SubjectIcon from "../../../../../components/SubjectIcon/SubjectIcon";
+import BrushBorders from "../../../../../components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import AvatarImage from "../../../../../components/AvatarImage/AvatarImage";
+import OakLink from "../../../../../components/OakLink/OakLink";
+import Icon from "../../../../../components/Icon/Icon";
+import Breadcrumbs from "../../../../../components/Breadcrumbs/Breadcrumbs";
+import TabularNav from "../../../../../components/TabularNav/TabularNav";
+import IconButton from "../../../../../components/Button/IconButton";
+import ButtonAsLink from "../../../../../components/Button/ButtonAsLink";
+import Typography from "../../../../../components/Typography/Typography";
+import { BETA_SEO_PROPS } from "../../../../../browser-lib/seo/Seo";
 
 export type CurriculumInfoPageProps = {
   data: [];
