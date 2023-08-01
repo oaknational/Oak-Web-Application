@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { PostHog as PostHogNode } from "posthog-node";
+import { sample } from "lodash/fp";
 
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
@@ -99,11 +100,4 @@ function getPosthogIdFromCookie(
   }
 
   return null;
-}
-
-/**
- * Get a random element from an array
- */
-function sample<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)] as T;
 }
