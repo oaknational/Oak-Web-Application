@@ -1,17 +1,11 @@
-// import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { NextPage } from "next";
-import React, { FC } from "react";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import React from "react";
 
-// import curriculumApi from "node-lib/curriculum-api";
-// import { decorateWithIsr } from "node-lib/isr";
 import AppLayout from "../../../../../components/AppLayout/AppLayout";
 import Box from "../../../../../components/Box/Box";
 import Flex from "../../../../../components/Flex/Flex";
 import { Heading, Hr, UL, LI } from "../../../../../components/Typography";
-import Grid, { GridArea } from "../../../../../components/Grid";
-import Button from "../../../../../components/Button/Button";
 import Card from "../../../../../components/Card/Card";
-import DropdownSelect from "../../../../../components/DropdownSelect";
 import SubjectIcon from "../../../../../components/SubjectIcon/SubjectIcon";
 import BrushBorders from "../../../../../components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import AvatarImage from "../../../../../components/AvatarImage/AvatarImage";
@@ -22,52 +16,54 @@ import TabularNav from "../../../../../components/TabularNav/TabularNav";
 import IconButton from "../../../../../components/Button/IconButton";
 import ButtonAsLink from "../../../../../components/Button/ButtonAsLink";
 import Typography from "../../../../../components/Typography/Typography";
+import curriculumApi, {
+  curriculumSubjectPhaseOverviewData,
+} from "../../../../../node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "../../../../../browser-lib/seo/Seo";
+import { decorateWithIsr } from "../../../../../node-lib/isr";
 
 export type CurriculumInfoPageProps = {
-  data: [];
+  data: curriculumSubjectPhaseOverviewData;
 };
 
-const curriculaDesc =
-  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
-
-const subjectPrinciples = [
-  "Pairing procedural knowledge with conceptual understanding",
-  "Aligning with the Concrete Pictorial Abstract approach to mathematics teaching and learning",
-  "Use an agreed set of models and representations which bridge mathematical concepts",
-  "Use of variation theory in practice tasks and modelling",
-];
-
-const schoolPhase = [
-  { value: "KS1-2", label: "Key Stage 1&2" },
-  { value: "KS3-4", label: "Key Stage 3&4" },
-  { value: "KS1", label: "Key Stage 1" },
-  { value: "KS2", label: "Key Stage 2" },
-  { value: "KS3", label: "Key Stage 3" },
-  { value: "KS4", label: "Key Stage 4" },
-];
-
-const subjects = [
-  { value: "biology", label: "Biology" },
-  { value: "chemistry", label: "Chemistry" },
-  { value: "combined-science", label: "Combined Science" },
-  { value: "english", label: "English" },
-  { value: "geography", label: "Geography" },
-  { value: "history", label: "History" },
-  { value: "maths", label: "Maths" },
-  { value: "music", label: "Music" },
-  { value: "physics", label: "Physics" },
-  { value: "science", label: "Science" },
-];
-
-const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
+const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
+  const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } = data;
   return (
     <AppLayout
       seoProps={BETA_SEO_PROPS}
       $background={"white"}
       headerVariant="landing-pages"
     >
-      <CurriculaSelection />
+      <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
+        <Box $width={"80%"}>
+          <Breadcrumbs
+            breadcrumbs={[
+              {
+                oakLinkProps: {
+                  page: "home",
+                  viewType: "teachers",
+                },
+                label: "Home",
+              },
+              {
+                oakLinkProps: {
+                  page: "home",
+                  viewType: "teachers",
+                },
+                label: "Curriculum resource",
+              },
+              {
+                oakLinkProps: {
+                  page: "home",
+                  viewType: "teachers",
+                },
+                label: "Secondary English",
+              },
+            ]}
+          />
+          <Hr $color={"white"} />
+        </Box>
+      </Flex>
       <Box $background={"aqua50"}>
         <Flex $justifyContent={"center"} $pv={32}>
           <Box $width={"80%"}>
@@ -187,10 +183,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
                 Video guide
               </Heading>
               <Typography $mv={6} $font={"body-1"}>
-                Our new curriculum sequence has recently launched. For
-                additional support, watch this video guide by [Firstname
-                Surname] from our educational team, as they talk you through how
-                to use this new tool.
+                {videoGuideDesc}
               </Typography>
               <Flex>
                 <OakLink
@@ -222,16 +215,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
               <Heading tag="h5" $font={"heading-5"}>
                 Our curriculum partner
               </Heading>
-              <Typography $font={"body-1"}>
-                Mathematics in Education and Industry (MEI) is an established
-                charity and curriculum development body. Their primary aims are
-                to raise the quality of maths education and promote the
-                relevance of maths education to everyone. MEI are highly
-                respected and are well connected with other quality assured
-                organisations, including being a key partner in the NCETM, and
-                are well known in schools for their excellent training and
-                support programmes.
-              </Typography>
+              <Typography $font={"body-1"}>{partnerBio}</Typography>
             </Box>
           </Flex>
         </Card>
@@ -240,105 +224,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = () => {
   );
 };
 
-// export const getStaticProps: GetStaticProps<
-//   CurriculumInfoPageProps
-// > = async () => {
-//   const data = await curriculumApi.programmeListingPaths();
-//   const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
-//     props: {
-//       data: data,
-//     },
-//   };
-//   const resultsWithIsr = decorateWithIsr(results);
-//   return resultsWithIsr;
-// };
+export const getStaticProps: GetStaticProps<
+  CurriculumInfoPageProps
+> = async () => {
+  const data = await curriculumApi.curriculumSubjectPhaseOverviewPage();
+  const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
+    props: {
+      data: data,
+    },
+  };
+  const resultsWithIsr = decorateWithIsr(results);
+  return resultsWithIsr;
+};
 
 export default CurriculumInfoPage;
-
-const CurriculaSelection: FC = () => {
-  const canViewCurriculum = false;
-
-  function handleYearGroupChange(e: {
-    target: { name: string; value: string };
-  }): void {
-    // TODO: Update subject dropdown options based on year group selection
-    console.log(e.target.value);
-  }
-
-  function handleSubjectChange(e: {
-    target: { name: string; value: string };
-  }): void {
-    // TODO: Update year groups based on subject selection?
-    console.log(e.target.value);
-  }
-
-  function handleCurriculumClick(): void {
-    // TODO: Navigate to curriculum view based on year group and subject selection
-  }
-
-  return (
-    <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
-      <Box $width={"80%"}>
-        <Breadcrumbs
-          breadcrumbs={[
-            {
-              oakLinkProps: {
-                page: "home",
-                viewType: "teachers",
-              },
-              label: "Home",
-            },
-            {
-              oakLinkProps: {
-                page: "home",
-                viewType: "teachers",
-              },
-              label: "Curriculum resource",
-            },
-            {
-              oakLinkProps: {
-                page: "home",
-                viewType: "teachers",
-              },
-              label: "Secondary English",
-            },
-          ]}
-        />
-        <Hr $color={"white"} />
-        <Box $pt={10}>
-          <Grid>
-            <GridArea $colSpan={[12, 5]}>
-              <DropdownSelect
-                id="subject"
-                name={"subject"}
-                label={"Subject"}
-                placeholder={"Maths"}
-                listItems={subjects}
-                onChange={handleSubjectChange}
-                $mr={[0, 24]}
-              />
-            </GridArea>
-            <GridArea $colSpan={[12, 5]}>
-              <DropdownSelect
-                id="school-phase"
-                name={"school-phase"}
-                label={"School Phase"}
-                placeholder={"Key Stage 3&4"}
-                listItems={schoolPhase}
-                onChange={handleYearGroupChange}
-                $mr={[0, 24]}
-              />
-            </GridArea>
-            <GridArea $colSpan={[12, 2]}>
-              <Button
-                label="View"
-                disabled={!canViewCurriculum}
-                onClick={handleCurriculumClick}
-              />
-            </GridArea>
-          </Grid>
-        </Box>
-      </Box>
-    </Flex>
-  );
-};
