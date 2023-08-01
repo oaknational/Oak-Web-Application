@@ -17,7 +17,11 @@
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
