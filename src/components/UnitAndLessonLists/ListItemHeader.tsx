@@ -5,7 +5,6 @@ import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
 import CategoryHeading from "./CategoryHeading";
-import ListItemIconMobile from "./ListItemIconMobile";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
@@ -19,7 +18,6 @@ interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
-  expired: boolean | null;
   onClick?: () => void;
 }
 
@@ -27,18 +25,21 @@ type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
     title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    expired: boolean | null;
+    index?: number;
   };
 
-const ListTitle: FC<{ children?: React.ReactNode; expired?: boolean }> = ({
-  children,
-  expired,
-}) => {
+const ListTitle: FC<{
+  children?: React.ReactNode;
+  expired?: boolean;
+  index?: number;
+}> = ({ children, expired, index }) => {
   return (
     <Heading
-      $mb={12}
       $color={expired ? "oakGrey4" : "black"}
       $font={["heading-7", expired ? "heading-light-6" : "heading-6"]}
       tag={"h3"}
+      ariaLabel={index !== undefined ? `${index + 1}. ${children}` : undefined}
     >
       {children}
     </Heading>
@@ -49,33 +50,33 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   const {
     title,
     slug,
-    subjectSlug,
     subjectTitle,
     hideTopHeading,
     keyStageTitle,
     primaryTargetProps,
     page,
-    index,
     expired,
     onClick,
     programmeSlug,
     fromSearchPage,
+    index,
   } = props;
 
-  const itemTitle =
-    (index !== null && !fromSearchPage ? `${index + 1}. ` : "") + title;
+  const itemTitle = title;
 
   if (expired) {
     return (
-      <Flex $mt={24} $flexDirection={"column"}>
-        <ListTitle expired={expired}>{itemTitle}</ListTitle>
+      <Flex $flexDirection={"column"}>
+        <ListTitle expired={true} index={fromSearchPage ? undefined : index}>
+          {itemTitle}
+        </ListTitle>
       </Flex>
     );
   }
 
   return (
     <Flex>
-      <Flex $mt={24} $flexDirection={"column"}>
+      <Flex $flexDirection={"column"}>
         {!hideTopHeading && (
           <CategoryHeading
             keyStageTitle={keyStageTitle}
@@ -94,7 +95,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>{itemTitle}</ListTitle>
+            <ListTitle index={fromSearchPage ? undefined : index}>
+              {itemTitle}
+            </ListTitle>
           </OakLink>
         ) : (
           // unit
@@ -106,15 +109,12 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             onClick={onClick}
             {...primaryTargetProps}
           >
-            <ListTitle>{itemTitle}</ListTitle>
+            <ListTitle index={fromSearchPage ? undefined : index}>
+              {itemTitle}
+            </ListTitle>
           </OakLink>
         )}
       </Flex>
-
-      <ListItemIconMobile
-        background={page == "Unit" ? "teachersLilac" : "pupilsPink"}
-        subjectSlug={subjectSlug}
-      />
     </Flex>
   );
 };
