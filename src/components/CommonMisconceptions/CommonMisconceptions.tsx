@@ -24,30 +24,28 @@ const CommonMisconceptions = ({
   }
 
   return (
-    <Flex $justifyContent={"center"} $width={"100%"} $mb={48}>
-      <Flex
-        $flexDirection={"column"}
-        $position={"relative"}
-        $justifyContent={"center"}
-        $width={["100%", 840]}
-      >
-        <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
-          Common misconceptions
-        </Heading>
-        {commonMisconceptions?.map(
-          (commonMisconception: CommonMisconception, i: number) => {
-            return (
-              <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
-                <P $mb={24} $font={"body-1-bold"}>
-                  {commonMisconception.misconception}
-                </P>
-                <P $font={"body-1"}>{commonMisconception.response}</P>
-              </Flex>
-            );
-          }
-        )}
-      </Flex>
+    <Flex
+      $flexDirection={"column"}
+      $position={"relative"}
+      $justifyContent={"center"}
+    >
+      <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
+        Common misconceptions
+      </Heading>
+      {commonMisconceptions?.map(
+        (commonMisconception: CommonMisconception, i: number) => {
+          return (
+            <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
+              <P $mb={24} $font={"body-1-bold"}>
+                {commonMisconception.misconception}
+              </P>
+              <P $font={"body-1"}>{commonMisconception.response}</P>
+            </Flex>
+          );
+        }
+      )}
     </Flex>
+    // </Flex>
   );
 };
 

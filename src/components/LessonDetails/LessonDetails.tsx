@@ -31,19 +31,36 @@ const LessonDetails: FC<LessonDetailsProps> = ({
         Lesson details
       </Heading>
 
-      <Grid $width={"100%"} $mt={[48, 24]} $mb={[56, 24]} $cg={16}>
-        <GridArea $colSpan={[12, 8]}>
-          {keyLearningPoints && (
+      <Grid $width={"100%"} $mt={[48, 24]} $mb={[56, 24]} $cg={16} $rg={48}>
+        {keyLearningPoints && (
+          <GridArea $colSpan={[12, 8]} $colStart={1} $width={"100%"}>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
-          )}
-          {commonMisconceptions && (
-            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
-          )}
-          {keyWords && <KeyWords keyWords={keyWords} />}
-        </GridArea>
-        <GridArea $colSpan={[12, 4]}>
-          {teacherTips && <TeacherTips teacherTips={teacherTips} />}
-        </GridArea>
+          </GridArea>
+        )}
+        {commonMisconceptions && (
+          <GridArea $colSpan={[12, 8]} $colStart={1}>
+            {commonMisconceptions && (
+              <CommonMisconceptions
+                commonMisconceptions={commonMisconceptions}
+              />
+            )}
+          </GridArea>
+        )}
+        {keyWords && (
+          <GridArea $colSpan={[12, 8]} $colStart={1}>
+            {keyWords && <KeyWords keyWords={keyWords} />}
+          </GridArea>
+        )}
+        {teacherTips && (
+          <GridArea
+            $colSpan={[12, 4]}
+            $colStart={[1, 9]}
+            $width={"100%"}
+            $rowStart={[4, 1]}
+          >
+            <TeacherTips teacherTips={teacherTips} />
+          </GridArea>
+        )}
       </Grid>
     </Flex>
   );
