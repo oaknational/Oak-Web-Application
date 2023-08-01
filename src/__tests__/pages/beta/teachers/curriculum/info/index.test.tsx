@@ -4,20 +4,11 @@ import renderWithProviders from "../../../../../__helpers__/renderWithProviders"
 
 const render = renderWithProviders();
 
-const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } =
-  curriculumOverviewFixture()[0];
 describe("curriculum info page", () => {
   describe("components rendering on page", () => {
     it("renders overview headings", () => {
       const { queryByTestId } = render(
-        <CurriculumInfoPage
-          data={{
-            subjectPrinciples,
-            curriculaDesc,
-            partnerBio,
-            videoGuideDesc,
-          }}
-        />
+        <CurriculumInfoPage data={curriculumOverviewFixture()[0]} />
       );
 
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
