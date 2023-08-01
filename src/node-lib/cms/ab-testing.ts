@@ -66,12 +66,10 @@ export async function getABTestedLandingPage(
   } else {
     /**
      * We don't have a distinct ID to identify the user which means they
-     * probably haven't consented to posthog. Fall back to showing the control variant
-     *
-     * @TODO: We need some additional logic to ensure that once the user does consent, they're
-     *        still only shown the control. (same for the above missing variant fallback)
+     * probably haven't consented to posthog. Fall back to showing a random variant.
      */
-    return abTest.controlVariant;
+    const variantPages = abTest.variants.map((variant) => variant.page);
+    return sample([abTest.controlVariant, ...variantPages]);
   }
 }
 
@@ -101,4 +99,11 @@ function getPosthogIdFromCookie(
   }
 
   return null;
+}
+
+/**
+ * Get a random element from an array
+ */
+function sample<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)] as T;
 }
