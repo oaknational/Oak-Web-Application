@@ -45,7 +45,6 @@ const CommonMisconceptions = ({
         }
       )}
     </Flex>
-    // </Flex>
   );
 };
 
