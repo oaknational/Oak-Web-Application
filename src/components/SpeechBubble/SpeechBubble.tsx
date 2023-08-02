@@ -12,7 +12,7 @@ type SpeechBubbleProps = {
 const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
   const charCount = text?.length || 0;
 
-  if (charCount > 250 || !text || charCount == 0) {
+  if (charCount > 250 || !text || charCount === 0) {
     return null;
   }
 
