@@ -8,13 +8,14 @@ describe("LessonDetails component", () => {
     { misconception: "misconception", response: "response" },
   ];
   const keyWords = [{ keyword: "keyword", description: "description" }];
-
+  const teacherTips = [{ teacherTip: "test teacher tip" }];
   it("should render Lesson details", () => {
     const { getByText } = renderWithTheme(
       <LessonDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
       />
     );
 
@@ -28,6 +29,7 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
       />
     );
 
@@ -41,6 +43,7 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
       />
     );
 
@@ -54,6 +57,7 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={null}
         keyWords={keyWords}
+        teacherTips={teacherTips}
       />
     );
 
@@ -67,6 +71,7 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
       />
     );
 
@@ -80,10 +85,39 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={null}
+        teacherTips={teacherTips}
       />
     );
 
     const componentTitle = queryByText("Key words");
+    expect(componentTitle).not.toBeInTheDocument();
+  });
+
+  it("should render TeacherTips component with keywords", () => {
+    const { getByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+      />
+    );
+
+    const keyWordsComponent = getByText("Teacher tip");
+    expect(keyWordsComponent).toBeInTheDocument();
+  });
+
+  it("should not render TeacherTips when passed null/undefined", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={null}
+      />
+    );
+
+    const componentTitle = queryByText("Teacher tips");
     expect(componentTitle).not.toBeInTheDocument();
   });
 });
