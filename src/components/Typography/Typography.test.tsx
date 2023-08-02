@@ -14,10 +14,10 @@ describe("Typography", () => {
 
       expect(getByTestId("test")).toHaveStyle("font-family: Lexend,sans-serif");
       expect(getByTestId("test")).toHaveStyle(
-        `font-size: ${(fontSize / 16).toFixed(REM_DP)}rem`
+        `font-size: ${Number((fontSize / 16).toFixed(REM_DP))}rem`
       );
       expect(getByTestId("test")).toHaveStyle(
-        `line-height:  ${(lineHeight / 16).toFixed(REM_DP)}rem`
+        `line-height:  ${Number((lineHeight / 16).toFixed(REM_DP))}rem`
       );
       expect(getByTestId("test")).toHaveStyle(`font-weight: ${fontWeight}`);
       expect(getByTestId("test")).toHaveStyle(
