@@ -9,6 +9,7 @@ import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
+import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
 jest.mock("../../../node-lib/cms");
 
@@ -54,6 +55,9 @@ const testLandingPage: LandingPage = {
   ],
   seo: null,
 };
+
+jest.mock("../../../node-lib/cms/ab-testing");
+
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
@@ -120,6 +124,26 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should redirect the user to an A/B tested page if it exists", async () => {
+      (getABTestedLandingPage as jest.Mock).mockResolvedValue({
+        ...testLandingPage,
+        slug: "ab-tested-page-variant",
+      });
+
+      const redirected = await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "ab-tested-page" },
+        })
+      );
+
+      expect(redirected).toEqual({
+        redirect: {
+          destination: "/lp/ab-tested-page-variant",
+          permanent: false,
+        },
       });
     });
   });
