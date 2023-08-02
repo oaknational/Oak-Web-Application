@@ -1,11 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
-import subjectPhaseOptions from "../../browser-lib/fixtures/subjectPhaseOptions";
-
-import SubjectPhasePicker from "./SubjectPhasePicker";
-
-import renderWithTheme from "__tests__/__helpers__/renderWithTheme";
+import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import SubjectPhasePicker from "@/components/SubjectPhasePicker";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Component - subject phase picker", () => {
   test("user can see subjects when they click the control", async () => {

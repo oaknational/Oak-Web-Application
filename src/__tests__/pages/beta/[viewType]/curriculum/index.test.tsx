@@ -1,14 +1,12 @@
 import { screen } from "@testing-library/react";
 
 import CurriculumHomePage, {
-  fetchSubjectPhaseOptions,
+  fetchSubjectPhasePickerData,
   CurriculumHomePageProps,
-} from "pages/beta/[viewType]/curriculum";
-import renderWithProviders from "__tests__/__helpers__/renderWithProviders";
-import subjectPhaseOptions from "browser-lib/fixtures/subjectPhaseOptions";
-import SubjectPhasePicker, {
-  SubjectPhaseOptions,
-} from "components/SubjectPhasePicker/SubjectPhasePicker";
+} from "@/pages/beta/[viewType]/curriculum";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import SubjectPhasePicker from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 
 jest.mock("node-lib/isr", () => ({
   decorateWithIsr: jest.fn(),
@@ -42,9 +40,9 @@ describe("pages/beta/curriculum/index", () => {
     );
   });
 
-  describe("fetchSubjectPhaseOptions", () => {
+  describe("fetchSubjectPhasePickerData", () => {
     it("Should fetch the correct data", async () => {
-      const testRes = (await fetchSubjectPhaseOptions()) as SubjectPhaseOptions;
+      const testRes = await fetchSubjectPhasePickerData();
       expect(testRes).toEqual(subjectPhaseOptions);
     });
   });

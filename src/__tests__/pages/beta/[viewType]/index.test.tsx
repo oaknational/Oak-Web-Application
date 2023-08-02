@@ -3,12 +3,12 @@ import { screen, within, getByRole } from "@testing-library/react";
 import Teachers, {
   getStaticProps,
   TeachersHomePageProps,
-} from "pages/beta/[viewType]";
-import { HomePageProps, SerializedPost } from "pages";
-import CMSClient from "node-lib/cms";
-import { BlogPostPreview, WebinarPreview } from "common-lib/cms-types";
-import renderWithProviders from "__tests__/__helpers__/renderWithProviders";
-import keyStageKeypad from "browser-lib/fixtures/keyStageKeypad";
+} from "@/pages/beta/[viewType]";
+import { HomePageProps, SerializedPost } from "@/pages";
+import CMSClient from "@/node-lib/cms";
+import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 
 jest.mock("node-lib/cms");
 
@@ -155,7 +155,7 @@ describe("pages/beta/[viewType]/index.tsx", () => {
       ]);
       const result = (await getStaticProps({})) as { props: HomePageProps };
 
-      const postIds = result.props.posts.map((p) => p.id);
+      const postIds = result.props.posts.map((p) => p.id as string);
       expect(postIds).toEqual(["2", "3"]);
     });
 

@@ -5,27 +5,28 @@ import {
   NextPage,
 } from "next";
 
-import { BETA_SEO_PROPS } from "browser-lib/seo/Seo";
-import AppLayout from "components/AppLayout";
-import Box from "components/Box";
-import Flex from "components/Flex";
-import MaxWidth from "components/MaxWidth/MaxWidth";
-import { Heading, UL, LI, P } from "components/Typography";
-import Grid, { GridArea } from "components/Grid";
-import Card from "components/Card/Card";
-import CardLink from "components/Card/CardLink";
+import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import AppLayout from "@/components/AppLayout";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import { Heading, UL, LI, P } from "@/components/Typography";
+import Grid, { GridArea } from "@/components/Grid";
+import Card from "@/components/Card/Card";
+import CardLink from "@/components/Card/CardLink";
 import SubjectPhasePicker, {
-  SubjectPhaseOptions,
-} from "components/SubjectPhasePicker/SubjectPhasePicker";
+  SubjectPhasePickerData,
+} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "node-lib/isr";
-import { VIEW_TYPES, ViewType } from "common-lib/urls";
+} from "@/node-lib/isr";
+import { VIEW_TYPES, ViewType } from "@/common-lib/urls";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type CurriculumHomePageProps = {
-  subjectPhaseOptions: SubjectPhaseOptions;
+  subjectPhaseOptions: SubjectPhasePickerData;
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
@@ -176,74 +177,54 @@ export const getStaticPaths = async () => {
   return config;
 };
 
-export const fetchSubjectPhaseOptions: () => Promise<SubjectPhaseOptions> =
+export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    // Hardcoded data
-    const createSubject = (
-      title: string,
-      slug: string,
-      hasBothPhases: boolean,
-      hasExamBoards: boolean
-    ) => {
-      const phases = [
-        { title: "Primary", slug: "primary" },
-        { title: "Secondary", slug: "secondary" },
-      ];
-      const examBoards = [
-        { title: "AQA", slug: "aqa" },
-        { title: "Edexcel", slug: "edexcel" },
-      ];
-      return {
-        title,
-        slug,
-        phases: hasBothPhases ? phases : phases.slice(1),
-        ...(hasExamBoards && { examboards: examBoards }),
-      };
-    };
+    const newSubjects = await curriculumApi2023.subjectPhaseOptions();
 
-    const subjects: [string, string, boolean, boolean][] = [
-      ["English", "english", true, true],
-      ["Geography", "geography", true, false],
-      ["History", "history", true, true],
-      ["Maths", "maths", true, false],
-      ["Music", "music", false, false],
-      ["Science", "science", true, false],
+    // Legacy data is hardcoded
+    const legacySubjects: [string, string, boolean][] = [
+      ["Art & Design", "art", true],
+      ["Citizenship", "citizenship", false],
+      ["Computing", "computing", true],
+      ["Design & Technology", "design-technology", true],
+      ["Drama", "drama", true],
+      ["English", "english", true],
+      ["French", "french", true],
+      ["Geography", "geography", true],
+      ["German", "german", false],
+      ["History", "history", true],
+      ["Latin", "latin", false],
+      ["Maths", "maths", true],
+      ["Music", "music", true],
+      ["Physical Education", "physical-education", true],
+      ["Physics", "physics", false],
+      ["Religious Education", "religious-education", true],
+      ["RSHE (PSHE)", "rshe-pshe", true],
+      ["Science", "science", true],
+      ["Spanish", "spanish", true],
     ];
 
-    const legacySubjects: [string, string, boolean, boolean][] = [
-      ["Art & Design", "art", true, false],
-      ["Citizenship", "citizenship", false, false],
-      ["Computing", "computing", true, false],
-      ["Design & Technology", "design-technology", true, false],
-      ["Drama", "drama", true, false],
-      ["English", "english", true, false],
-      ["French", "french", true, false],
-      ["Geography", "geography", true, false],
-      ["German", "german", false, false],
-      ["History", "history", true, false],
-      ["Latin", "latin", false, false],
-      ["Maths", "maths", true, false],
-      ["Music", "music", true, false],
-      ["Physical Education", "physical-education", true, false],
-      ["Physics", "physics", false, false],
-      ["Religious Education", "religious-education", true, false],
-      ["RSHE (PSHE)", "rshe-pshe", true, false],
-      ["Science", "science", true, false],
-      ["Spanish", "spanish", true, false],
+    const phases = [
+      { title: "Primary", slug: "primary" },
+      { title: "Secondary", slug: "secondary" },
     ];
 
     return {
-      newSubjects: subjects.map((subject) => createSubject(...subject)),
-      legacySubjects: legacySubjects.map((subject) =>
-        createSubject(...subject)
-      ),
+      newSubjects: newSubjects,
+      legacySubjects: legacySubjects.map((subject) => {
+        return {
+          title: subject[0],
+          slug: subject[1],
+          phases: subject[2] ? phases : phases.slice(1),
+        };
+      }),
     };
   };
 
 export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
-  const data = await fetchSubjectPhaseOptions();
+  const data = await fetchSubjectPhasePickerData();
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       subjectPhaseOptions: data,

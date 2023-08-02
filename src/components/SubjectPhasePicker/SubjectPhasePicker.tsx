@@ -2,40 +2,34 @@ import { FC, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Grid, { GridArea } from "../Grid";
-import { Heading, Span } from "../Typography";
-
-import Box from "components/Box";
-import BoxBorders from "components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Button from "components/Button/Button";
-import P from "components/Typography/P";
-import { Phase, Subject } from "node-lib/curriculum-api-2023";
-import UnstyledButton from "components/UnstyledButton/UnstyledButton";
-import Svg from "components/Svg";
-import { OakColorName } from "styles/theme";
-import Icon from "components/Icon";
-
-interface SubjectPhaseOption extends Subject {
-  phases: Phase[];
-  examboards?: Examboard[];
-}
-
-type Examboard = {
-  title: string;
-  slug: string;
-};
-
-export type SubjectPhaseOptions = {
-  newSubjects: SubjectPhaseOption[];
-  legacySubjects: SubjectPhaseOption[];
-};
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Grid, { GridArea } from "@/components/Grid";
+import { Heading, Span } from "@/components/Typography";
+import Box from "@/components/Box";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import Button from "@/components/Button/Button";
+import P from "@/components/Typography/P";
+import {
+  Examboard,
+  Phase,
+  Subject,
+  SubjectPhaseOption,
+} from "@/node-lib/curriculum-api-2023";
+import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
+import Svg from "@/components/Svg";
+import { OakColorName } from "@/styles/theme";
+import Icon from "@/components/Icon";
 
 /**
  * Interface to pick a subject (new or legacy), phase, and if applicable, an exam board.
  * ## Usage
  * Used on curriculum homepage, new curriculum pages, legacy curriculum pages.
  */
+
+export type SubjectPhasePickerData = {
+  newSubjects: SubjectPhaseOption[];
+  legacySubjects: SubjectPhaseOption[];
+};
 
 const SelectButton = styled(UnstyledButton)<object>`
   position: relative;
@@ -92,7 +86,7 @@ const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
   color: ${(props) => props.$color};
 `;
 
-const SubjectPhasePicker: FC<SubjectPhaseOptions> = ({
+const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   newSubjects,
   legacySubjects,
 }) => {

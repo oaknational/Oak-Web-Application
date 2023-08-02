@@ -1,6 +1,4 @@
-import { SubjectPhaseOptions } from "components/SubjectPhasePicker/SubjectPhasePicker";
-
-const subjectPhaseOptions: SubjectPhaseOptions = {
+const subjectPhaseOptions = {
   newSubjects: [
     {
       title: "English",
@@ -21,6 +19,7 @@ const subjectPhaseOptions: SubjectPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
+      examboards: null,
     },
     {
       title: "History",
@@ -41,11 +40,13 @@ const subjectPhaseOptions: SubjectPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
+      examboards: null,
     },
     {
       title: "Music",
       slug: "music",
       phases: [{ title: "Secondary", slug: "secondary" }],
+      examboards: null,
     },
     {
       title: "Science",
@@ -54,6 +55,7 @@ const subjectPhaseOptions: SubjectPhaseOptions = {
         { title: "Primary", slug: "primary" },
         { title: "Secondary", slug: "secondary" },
       ],
+      examboards: null,
     },
   ],
   legacySubjects: [
