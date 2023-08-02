@@ -9,12 +9,12 @@ import {
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
-const lessonOverview = lessonOverviewFixture();
+const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
 const props: LessonItemContainerProps = {
   title: "Slide deck",
   downloadable: true,
-  curriculumData: lessonOverview,
+  slugs: { lessonSlug, unitSlug, programmeSlug },
 };
 
 const meta: Meta<typeof LessonItemContainer> = {

@@ -9,42 +9,35 @@ import {
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../../../node-lib/isr";
-import AppLayout from "../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../components/Flex";
-import MaxWidth from "../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import { getSeoProps } from "../../../../../../../../browser-lib/seo/getSeoProps";
-import Typography, {
-  Heading,
-  Hr,
-} from "../../../../../../../../components/Typography";
-import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink";
-import Grid, { GridArea } from "../../../../../../../../components/Grid";
-import curriculumApi, {
-  LessonOverviewData,
-} from "../../../../../../../../node-lib/curriculum-api";
-import curriculumApi2023 from "../../../../../../../../node-lib/curriculum-api-2023";
-import LessonHelper from "../../../../../../../../components/LessonHelper";
-import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
-import ExpandingContainer from "../../../../../../../../components/ExpandingContainer";
-import QuizContainer from "../../../../../../../../components/QuizContainer";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "../../../../../../../../components/Breadcrumbs";
-import Box from "../../../../../../../../components/Box";
-import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
+} from "@/node-lib/isr";
+import AppLayout from "@/components/AppLayout";
+import Flex from "@/components/Flex";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import Typography, { Heading, Hr } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Grid, { GridArea } from "@/components/Grid";
+import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import LessonHelper from "@/components/LessonHelper";
+import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewTranscript from "@/components/pages/TeachersLessonOverview/OverviewTranscript";
+import ExpandingContainer from "@/components/ExpandingContainer";
+import QuizContainer from "@/components/QuizContainer";
+import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
+import Box from "@/components/Box";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
-} from "../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
-import { ViewType } from "../../../../../../../../common-lib/urls";
-import getPageProps from "../../../../../../../../node-lib/getPageProps";
-import LessonDetails from "../../../../../../../../components/LessonDetails/LessonDetails";
-import { LessonItemContainer } from "../../../../../../../../components/LessonItemContainer/LessonItemContainer";
+} from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ViewType } from "@/common-lib/urls";
+import getPageProps from "@/node-lib/getPageProps";
+import LessonDetails from "@/components/LessonDetails/LessonDetails";
+import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -149,6 +142,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       analyticsUseCase,
     });
   };
+
+  const slugs = { unitSlug, lessonSlug, programmeSlug };
 
   return (
     <AppLayout
@@ -261,7 +256,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                           downloadResourceButtonName: "slide deck",
                         });
                       }}
-                      curriculumData={curriculumData}
+                      slugs={slugs}
                     >
                       <OverviewPresentation
                         asset={presentationUrl}

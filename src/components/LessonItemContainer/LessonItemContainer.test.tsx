@@ -53,7 +53,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        curriculumData={lessonOverview}
+        slugs={lessonOverview}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
@@ -81,7 +81,7 @@ describe("LessonItemContainer", () => {
     renderWithTheme(
       <LessonItemContainer
         downloadable={true}
-        curriculumData={lessonOverview}
+        slugs={lessonOverview}
         title={"Video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
@@ -102,7 +102,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Worksheet"}
         downloadable={true}
-        curriculumData={lessonOverview}
+        slugs={lessonOverview}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box

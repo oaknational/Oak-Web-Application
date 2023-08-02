@@ -1,13 +1,13 @@
 import { FC } from "react";
 
-import Box from "../../Box";
-import Flex from "../../Flex";
-import Pagination, { PaginationProps } from "../../Pagination";
-import { UsePaginationProps } from "../../Pagination/usePagination";
-import { Heading, LI, UL } from "../../Typography";
-import { HeadingTag } from "../../Typography/Heading";
-
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
+
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import Pagination, { PaginationProps } from "@/components/Pagination";
+import { UsePaginationProps } from "@/components/Pagination/usePagination";
+import { Heading, LI, UL } from "@/components/Typography";
+import { HeadingTag } from "@/components/Typography/Heading";
 
 export type LessonListProps = {
   lessonCount: number;

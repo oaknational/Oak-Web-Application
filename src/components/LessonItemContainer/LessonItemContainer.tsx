@@ -21,11 +21,16 @@ export type LessonItemTitle =
   | "Transcript"
   | "Lesson details";
 
+type Slugs = Pick<
+  LessonOverviewData,
+  "unitSlug" | "lessonSlug" | "programmeSlug"
+>;
+
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
   title: LessonItemTitle;
   downloadable?: boolean;
-  curriculumData?: LessonOverviewData;
+  slugs?: Slugs;
   onDownloadButtonClick?: () => void;
 }
 
@@ -34,13 +39,7 @@ const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
 };
 
 export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
-  const {
-    children,
-    title,
-    downloadable,
-    onDownloadButtonClick,
-    curriculumData,
-  } = props;
+  const { children, title, downloadable, onDownloadButtonClick, slugs } = props;
   const preselected = getPreselectedQueryFromTitle(title);
 
   const lowerCaseTitle = title.toLowerCase();
@@ -58,7 +57,7 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
             {title}
           </Heading>
         )}
-        {downloadable && curriculumData && (
+        {downloadable && slugs && (
           <ButtonAsLink
             data-testid={"download-button"}
             variant={"minimal"}
@@ -76,7 +75,7 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
             query={{
               preselected: preselected,
             }}
-            {...curriculumData}
+            {...slugs}
           />
         )}
       </Flex>
