@@ -122,6 +122,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
+
   it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
     mockRouter.push({
       pathname: "/beta/teachers/programmes/art-primary-ks1/units",
@@ -135,11 +136,15 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
   });
-  describe("getStaticPaths", () => {
-    it("Should return the paths of all programmes", async () => {
-      await getStaticPaths();
 
-      expect(curriculumApi.unitListingPaths).toHaveBeenCalledTimes(1);
+  describe("getStaticPaths", () => {
+    it("Should not generate pages at build time", async () => {
+      const res = await getStaticPaths();
+
+      expect(res).toEqual({
+        fallback: "blocking",
+        paths: [],
+      });
     });
   });
 

@@ -9,41 +9,34 @@ import {
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../../../node-lib/isr";
-import AppLayout from "../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../components/Flex";
-import MaxWidth from "../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import { getSeoProps } from "../../../../../../../../browser-lib/seo/getSeoProps";
-import Typography, {
-  Heading,
-  Hr,
-} from "../../../../../../../../components/Typography";
-import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink";
-import Grid from "../../../../../../../../components/Grid";
-import curriculumApi, {
-  LessonOverviewData,
-} from "../../../../../../../../node-lib/curriculum-api";
-import curriculumApi2023 from "../../../../../../../../node-lib/curriculum-api-2023";
-import LessonHelper from "../../../../../../../../components/LessonHelper";
-import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
-import ExpandingContainer from "../../../../../../../../components/ExpandingContainer";
-import QuizContainer from "../../../../../../../../components/QuizContainer";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "../../../../../../../../components/Breadcrumbs";
-import Box from "../../../../../../../../components/Box";
-import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
+} from "@/node-lib/isr";
+import AppLayout from "@/components/AppLayout";
+import Flex from "@/components/Flex";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import Typography, { Heading, Hr } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Grid from "@/components/Grid";
+import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import LessonHelper from "@/components/LessonHelper";
+import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewTranscript from "@/components/pages/TeachersLessonOverview/OverviewTranscript";
+import ExpandingContainer from "@/components/ExpandingContainer";
+import QuizContainer from "@/components/QuizContainer";
+import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
+import Box from "@/components/Box";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
-} from "../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
-import LessonOverview from "../../../../../../../../components/LessonOverview/LessonOverview";
-import { VIEW_TYPES, ViewType } from "../../../../../../../../common-lib/urls";
-import getPageProps from "../../../../../../../../node-lib/getPageProps";
+} from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ViewType } from "@/common-lib/urls";
+import getPageProps from "@/node-lib/getPageProps";
+import LessonDetails from "@/components/LessonDetails/LessonDetails";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -107,6 +100,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     subjectTitle,
     supervisionLevel,
     contentGuidance,
+    misconceptionsAndCommonMistakes,
+    lessonKeywords,
+    teacherTips,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
@@ -250,17 +246,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
             <Hr $color={"oakGrey3"} />
 
-            {keyLearningPoints && (
-              <ExpandingContainer
-                title={"Lesson overview"}
-                downloadable={false}
-                toggleClosed={true}
-                {...curriculumData}
-              >
-                <LessonOverview keyLearningPoints={keyLearningPoints} />
-              </ExpandingContainer>
-            )}
-
             {presentationUrl && !hasCopyrightMaterial && (
               <ExpandingContainer
                 downloadable={true}
@@ -280,6 +265,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 />
               </ExpandingContainer>
             )}
+            <Hr $color={"teachersPastelBlue"} $mb={[12, 24]} />
+            <LessonDetails
+              keyLearningPoints={keyLearningPoints}
+              commonMisconceptions={misconceptionsAndCommonMistakes}
+              keyWords={lessonKeywords}
+              teacherTips={teacherTips}
+            />
+
             {videoMuxPlaybackId && (
               <ExpandingContainer {...curriculumData} title={"Video"}>
                 <OverviewVideo
@@ -393,16 +386,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { lessons } = await curriculumApi.lessonOverviewPaths();
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    lessons.map((params) => ({
-      params: { viewType, ...params },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };

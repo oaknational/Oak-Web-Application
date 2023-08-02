@@ -1,3 +1,81 @@
+# [1.208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.207.0...v1.208.0) (2023-08-02)
+
+
+### Features
+
+* speech bubble ([11be92d](https://github.com/oaknational/Oak-Web-Application/commit/11be92d8410ab65022e9173d1987157810644d40))
+
+# [1.207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.2...v1.207.0) (2023-08-02)
+
+
+### Features
+
+* path aliases ([815415e](https://github.com/oaknational/Oak-Web-Application/commit/815415e81bb1a20669e8a0fcf504e41bb8591b52))
+* path aliases ([9f434a7](https://github.com/oaknational/Oak-Web-Application/commit/9f434a775b93ac86a4f5787ab7bae620ea73b1b0))
+
+## [1.206.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.1...v1.206.2) (2023-08-02)
+
+## [1.206.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.0...v1.206.1) (2023-08-01)
+
+# [1.206.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.2...v1.206.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* add missing type to Heading ([0298049](https://github.com/oaknational/Oak-Web-Application/commit/0298049e93fc9daf296c368260a0f06f4bbd8f0d))
+* conflicts ([82aad53](https://github.com/oaknational/Oak-Web-Application/commit/82aad539f8ac1e2938551666e85d2548209ad361))
+* qa feedback ([b237445](https://github.com/oaknational/Oak-Web-Application/commit/b237445f8a4ab97a00abb2e484ce271332c5dcc8))
+
+
+### Features
+
+* fix non-conformant styling ([dc54a1a](https://github.com/oaknational/Oak-Web-Application/commit/dc54a1ac4d3405203f3767c5309c30256669e6db))
+* implementing unit and lesson list new styling mobile, desktop, expired ([f7d26f3](https://github.com/oaknational/Oak-Web-Application/commit/f7d26f3000c1c03119df7c2b44ce2712ae3d5f42))
+* limiting text width, screen reader accessiblity and unavailable states ([f8fefc7](https://github.com/oaknational/Oak-Web-Application/commit/f8fefc76a50935728fba6cc7a5be319044f44851))
+* unit and lesson list stying tests updated ([27f0a3f](https://github.com/oaknational/Oak-Web-Application/commit/27f0a3f9013bb6de0435693b2aecc48aea1d5063))
+* wip working list item styling ([6b5f857](https://github.com/oaknational/Oak-Web-Application/commit/6b5f8575e4726f8afdcc760685b3537f4c153a2c))
+
+## [1.205.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.1...v1.205.2) (2023-07-31)
+
+## [1.205.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.205.0...v1.205.1) (2023-07-28)
+
+# [1.205.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.204.1...v1.205.0) (2023-07-27)
+
+
+### Features
+
+* update colours in default theme ([099fc9d](https://github.com/oaknational/Oak-Web-Application/commit/099fc9d63d141e08ea702e6a857e14d939c6524e))
+
+## [1.204.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.204.0...v1.204.1) (2023-07-26)
+
+# [1.204.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.8...v1.204.0) (2023-07-25)
+
+
+### Bug Fixes
+
+* **lesson-listing:** put lessons in correct order ([0894269](https://github.com/oaknational/Oak-Web-Application/commit/0894269d78d72e720c3e0bea7a7d04c0de413047))
+* **lessons:** connect to latest lesson list mv ([425f0f1](https://github.com/oaknational/Oak-Web-Application/commit/425f0f18d1224caf40583c49e85d9f4230a150b2))
+* **lessons:** connect units 8, remove science dupes ([ba26e5c](https://github.com/oaknational/Oak-Web-Application/commit/ba26e5cf744a2b0eb0fd31feae7038d9394340b0))
+* **lessons:** final unitvariant bugs fix ([6c5c508](https://github.com/oaknational/Oak-Web-Application/commit/6c5c5085977a320f340d5e5afd55bf17d839de28))
+* **main:** merge ([22a350f](https://github.com/oaknational/Oak-Web-Application/commit/22a350f0f853b735dc8b989fc22114a8ad9406d6))
+* **main:** merge main ([0b13aa0](https://github.com/oaknational/Oak-Web-Application/commit/0b13aa0e551759f56a43e92c8e647d4f99c7059d))
+
+
+### Features
+
+* **unit and programme:** merge ([9018929](https://github.com/oaknational/Oak-Web-Application/commit/9018929d94570b20be79ac44e02a96275c1f1895))
+* **unit and programme:** update query for lessons and units ([2f36120](https://github.com/oaknational/Oak-Web-Application/commit/2f36120a0f447490fddfa7f5591a5a4aa0780504))
+* **unit and programme:** update query to display unitvariant data on unit list ([3e1f369](https://github.com/oaknational/Oak-Web-Application/commit/3e1f3699c7b24f59b10ad04e62b88ba4c857f2d1))
+
+## [1.203.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.7...v1.203.8) (2023-07-25)
+
+
+### Bug Fixes
+
+* set all getStaticProps to return paths: [] ([d27d070](https://github.com/oaknational/Oak-Web-Application/commit/d27d0705129dca63478c41bbc928ffe56cf57362))
+* set fallback: blocking ([668372c](https://github.com/oaknational/Oak-Web-Application/commit/668372c47b8f17d7a2759d05d1d4badd8af85088))
+* tier-listing 'not found' error ([2c9dc16](https://github.com/oaknational/Oak-Web-Application/commit/2c9dc165b873dc1be35703ba9796d6cc0e6addc9))
+
 ## [1.203.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.6...v1.203.7) (2023-07-21)
 
 ## [1.203.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.203.5...v1.203.6) (2023-07-20)

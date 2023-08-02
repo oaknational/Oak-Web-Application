@@ -23,7 +23,7 @@ const OL = styled.ol<MarginProps>`
     padding: 0 0 0 16px;
     text-indent: -16px;
     list-style-type: none;
-    margin-bottom: 32px;
+    line-height: 32px;
 
     // Portable text generates linebreaks within list items
 
@@ -36,7 +36,6 @@ const OL = styled.ol<MarginProps>`
 
   & li::before {
     font-family: ${getFontFamily("ui")};
-    font-weight: 600;
     padding-right: 4px;
     content: counter(item) ".";
   }
