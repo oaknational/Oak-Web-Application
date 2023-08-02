@@ -49,8 +49,8 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
     <Flex $flexDirection="column">
       <Flex
         $flexDirection={["column", "row"]}
-        $alignItems={"end"}
-        $gap={"40px"}
+        $alignItems={["start", "end"]}
+        $gap={[12, 40]}
         $mb={[24]}
       >
         {title && (
@@ -64,7 +64,6 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
             variant={"minimal"}
             page={"lesson-downloads"}
             viewType="teachers"
-            aria-label={`download ${lowerCaseTitle}`}
             iconBackground="black"
             icon="arrow-right"
             $iconPosition="trailing"
@@ -83,7 +82,7 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
       </Flex>
 
       <Box>{children}</Box>
-      <Hr $color={"teachersPastelBlue"} $mt={[56]} $mb={[24]} />
+      <Hr $color={"teachersPastelBlue"} $mt={[24, 56]} $mb={[12, 24]} />
     </Flex>
   );
 };

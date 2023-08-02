@@ -249,8 +249,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ) : (
           <>
             <Grid $pt={[48]}>
-              <GridArea $colSpan={[3]} />
-              <GridArea $colSpan={[9]}>
+              <GridArea $colSpan={[12, 3]} />
+              <GridArea $colSpan={[12, 9]}>
                 <Flex $flexDirection={"column"}>
                   {presentationUrl && !hasCopyrightMaterial && (
                     <LessonItemContainer
