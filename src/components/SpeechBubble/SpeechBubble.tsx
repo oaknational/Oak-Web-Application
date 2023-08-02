@@ -17,7 +17,7 @@ const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
   }
 
   return (
-    <Box $ba={1} $width={320}>
+    <Box $width={320}>
       <Flex
         $alignItems={"center"}
         $flexDirection={"column"}
@@ -32,10 +32,7 @@ const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
           $zIndex={"inFront"}
           $mb={12}
         >
-          <Span
-            $textAlign={"center"}
-            $font={charCount > 190 ? "heading-7" : "heading-6"}
-          >
+          <Span $textAlign={"center"} $font={"heading-7"}>
             {text}
           </Span>
         </Flex>

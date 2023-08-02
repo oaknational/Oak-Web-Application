@@ -49,38 +49,4 @@ describe("SpeechBubble", () => {
       )
     ).toBeInTheDocument();
   });
-  it("component will render fontsize 16 when the char count is > 190", () => {
-    const { getByText } = renderWithTheme(
-      <SpeechBubble
-        data-testid={"speech-bubble"}
-        label="Teacher tip"
-        text={
-          "Encourage students to ask 'why' questions, fostering curiosity and critical thinking. Emphasize that no question is silly and every inquiry is an opportunity to learn and promote active learning by incorporating group discussions,"
-        }
-      />
-    );
-
-    const element = getByText(
-      "Encourage students to ask 'why' questions, fostering curiosity and critical thinking. Emphasize that no question is silly and every inquiry is an opportunity to learn and promote active learning by incorporating group discussions,"
-    );
-
-    const styles = window.getComputedStyle(element);
-
-    expect(styles.fontSize).toBe("16px");
-  });
-  it("component will render fontsize 20 when the char count is <= 190", () => {
-    const { getByText } = renderWithTheme(
-      <SpeechBubble
-        data-testid={"speech-bubble"}
-        label="Teacher tip"
-        text={"Encourage students to ask 'why' questions,"}
-      />
-    );
-
-    const element = getByText("Encourage students to ask 'why' questions,");
-
-    const styles = window.getComputedStyle(element);
-
-    expect(styles.fontSize).toBe("20px");
-  });
 });
