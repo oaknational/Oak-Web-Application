@@ -102,6 +102,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     contentGuidance,
     misconceptionsAndCommonMistakes,
     lessonKeywords,
+    teacherTips,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
@@ -269,6 +270,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               keyLearningPoints={keyLearningPoints}
               commonMisconceptions={misconceptionsAndCommonMistakes}
               keyWords={lessonKeywords}
+              teacherTips={teacherTips}
             />
 
             {videoMuxPlaybackId && (
