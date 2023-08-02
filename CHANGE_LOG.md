@@ -1,3 +1,11 @@
+# [1.207.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.2...v1.207.0) (2023-08-02)
+
+
+### Features
+
+* path aliases ([815415e](https://github.com/oaknational/Oak-Web-Application/commit/815415e81bb1a20669e8a0fcf504e41bb8591b52))
+* path aliases ([9f434a7](https://github.com/oaknational/Oak-Web-Application/commit/9f434a775b93ac86a4f5787ab7bae620ea73b1b0))
+
 ## [1.206.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.1...v1.206.2) (2023-08-02)
 
 ## [1.206.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.206.0...v1.206.1) (2023-08-01)
