@@ -6,7 +6,6 @@ import {
   GetStaticPathsResult,
 } from "next";
 
-
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -27,7 +26,6 @@ import { ViewType } from "../../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "../../../../../../../node-lib/getPageProps";
-
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;

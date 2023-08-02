@@ -19,40 +19,37 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   );
 
   return (
-    <Flex $justifyContent={"center"} $width={"100%"} $mb={48}>
-      <Flex
-        $flexDirection={"column"}
-        $position={"relative"}
-        $justifyContent={"center"}
-        $width={["100%", 840]}
+    <Flex
+      $flexDirection={"column"}
+      $position={"relative"}
+      $justifyContent={"center"}
+    >
+      <Heading
+        $font={["heading-6", "heading-5"]}
+        $mb={24}
+        data-testid={"heading"}
+        tag="h3"
       >
-        <Heading
-          $font={["heading-6", "heading-5"]}
-          $mb={24}
-          data-testid={"heading"}
-          tag="h3"
-        >
-          Key learning points
-        </Heading>
-        <OL $mb={0} $mt={0}>
-          {filteredKeyLearningPoints.map(
-            (keyLearningPoint: KeyLearningPoint, i: number) => {
-              if (!keyLearningPoint) {
-                return null;
-              } else {
-                return (
-                  <LI
-                    key={`key-learning-point-${i}`}
-                    $font={["list-item-2", "list-item-1"]}
-                  >
-                    {`${keyLearningPoint.keyLearningPoint}`}
-                  </LI>
-                );
-              }
+        Key learning points
+      </Heading>
+      <OL $mb={0} $mt={0}>
+        {filteredKeyLearningPoints.map(
+          (keyLearningPoint: KeyLearningPoint, i: number) => {
+            if (!keyLearningPoint) {
+              return null;
+            } else {
+              return (
+                <LI
+                  key={`key-learning-point-${i}`}
+                  $font={["list-item-2", "list-item-1"]}
+                >
+                  {`${keyLearningPoint.keyLearningPoint}`}
+                </LI>
+              );
             }
-          )}
-        </OL>
-      </Flex>
+          }
+        )}
+      </OL>
     </Flex>
   );
 };
