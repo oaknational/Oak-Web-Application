@@ -94,8 +94,9 @@ function getPosthogIdFromCookie(
 
       return parsedCookie?.distinct_id ?? null;
     } catch (err) {
+      // Fall back to returning null if we can't
+      // parse the cookie
       console.error(err);
-      // TODO: no empty catch, warn about malformed cookie
     }
   }
 
