@@ -50,7 +50,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
             <GridArea
               $mb={[64, 0]}
               $colSpan={[12, 8]}
-              $rowSpan={3}
+              $rowSpan={[3]}
               $order={[3, 0]}
             >
               <Box
