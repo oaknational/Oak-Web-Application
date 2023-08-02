@@ -8,7 +8,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 
-jest.mock("node-lib/isr", () => ({
+jest.mock("src/node-lib/isr", () => ({
   decorateWithIsr: jest.fn(),
   getFallbackBlockingConfig: jest.fn(),
   shouldSkipInitialBuild: jest.fn(),
@@ -20,7 +20,7 @@ const props: CurriculumHomePageProps = {
   subjectPhaseOptions: subjectPhaseOptions,
 };
 
-jest.mock("components/SubjectPhasePicker/SubjectPhasePicker", () => {
+jest.mock("src/components/SubjectPhasePicker/SubjectPhasePicker", () => {
   return jest.fn(() => <div>Mock SubjectPhasePicker</div>);
 });
 

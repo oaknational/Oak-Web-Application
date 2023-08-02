@@ -47,16 +47,14 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks to open phases when they click the control", async () => {
-    const { getByTitle } = renderWithTheme(
+    const { findByTitle, getByTitle } = renderWithTheme(
       <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Phase");
     expect(control).toBeTruthy();
     userEvent.click(control);
-    await waitFor(() => {
-      const button = getByTitle("Primary");
-      expect(button).toBeTruthy();
-    });
+    const button = await findByTitle("Primary");
+    expect(button).toBeInTheDocument();
   });
 
   test("user selects then deselects primary", async () => {
