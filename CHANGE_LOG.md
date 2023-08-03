@@ -1,3 +1,11 @@
+## [1.211.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.211.0...v1.211.1) (2023-08-03)
+
+
+### Bug Fixes
+
+* **merge main:** merge main into branch ([4126fae](https://github.com/oaknational/Oak-Web-Application/commit/4126fae9a50b4f4734953a64afcecb736afd0b4f))
+* **programmes:** correct unit and lesson count displayed on programme listing ([8703684](https://github.com/oaknational/Oak-Web-Application/commit/87036846e4307465ae811e808236f78798523809))
+
 # [1.211.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.210.0...v1.211.0) (2023-08-03)
 
 
