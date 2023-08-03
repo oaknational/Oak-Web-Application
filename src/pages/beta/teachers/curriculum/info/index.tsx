@@ -225,7 +225,10 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
 export const getStaticProps: GetStaticProps<
   CurriculumInfoPageProps
 > = async () => {
-  const data = await curriculumApi.curriculumSubjectPhaseOverviewPage();
+  const data = await curriculumApi.curriculumSubjectPhaseOverviewPage({
+    subject: "maths",
+    phase: "secondary",
+  });
   const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
     props: {
       data: data,

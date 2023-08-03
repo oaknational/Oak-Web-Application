@@ -7,7 +7,7 @@ import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/downloads/downloads.query";
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
-import curriculumSubjectPhaseOverview from "./queries/curriculumSubjectPhaseOverview/overview.query";
+import curriculumSubjectPhaseOverviewQuery from "./queries/curriculumSubjectPhaseOverview/overview.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -81,7 +81,7 @@ const curriculumApi2023 = {
   subjectListingPage: subjectListingQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
-  curriculumSubjectPhaseOverviewPage: curriculumSubjectPhaseOverview(),
+  curriculumSubjectPhaseOverviewPage: curriculumSubjectPhaseOverviewQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
