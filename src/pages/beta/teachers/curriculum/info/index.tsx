@@ -242,7 +242,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 
         <Card $background={"lemon30"} $width={"80%"} $ma={"auto"}>
           <BrushBorders color="lemon30" />
-          <Flex $justifyContent={"center"} $pa={48}>
+          <Flex $justifyContent={"center"} $pa={16}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
             <Box>
               <Heading tag="h2" $font={"heading-5"}>
