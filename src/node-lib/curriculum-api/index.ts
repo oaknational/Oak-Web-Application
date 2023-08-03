@@ -200,25 +200,6 @@ const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
 
-const curriculumHomePageData = z.object({
-  programmes: z.array(
-    z.object({
-      programme_id: z.number(),
-      programme_fields: z.object({
-        year: z.number().nullish(),
-        optionality: z.string().nullish(),
-        phase: z.string().nullish(),
-        phase_description: z.string().nullish(),
-        subject: z.string().nullish(),
-        subject_slug: z.string().nullish(),
-        subject_description: z.string().nullish(),
-        subject_display_order: z.string().nullish(),
-        tier_description: z.string().nullish(),
-      }),
-    })
-  ),
-});
-
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
@@ -227,7 +208,6 @@ export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 export type TierListingData = z.infer<typeof tierListingData>;
-export type CurriculumHomePageData = z.infer<typeof curriculumHomePageData>;
 
 const sdk = getSdk(graphqlClient);
 
