@@ -1,3 +1,18 @@
+# [1.209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.208.0...v1.209.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* lesson details test and narrow props for LessonItemContainer ([6b12eca](https://github.com/oaknational/Oak-Web-Application/commit/6b12eca59e5156518f861a93df6557449a629f94))
+* missing attribute after merge ([c141ab3](https://github.com/oaknational/Oak-Web-Application/commit/c141ab359692f1af454fb6c581f2b0c3afe767c3))
+* resolve changed type for flex gap attr ([87aadf4](https://github.com/oaknational/Oak-Web-Application/commit/87aadf447f4fd2b9718bbdec2286c458a6255370))
+
+
+### Features
+
+* slide deck new styling ([f0279e2](https://github.com/oaknational/Oak-Web-Application/commit/f0279e2713827079b89a6da2f26895acd242c5d3))
+* wip new styling for slide deck ([6d3ea8e](https://github.com/oaknational/Oak-Web-Application/commit/6d3ea8e9f751ef861f549b7f3c055ff7314e16e1))
+
 # [1.208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.207.0...v1.208.0) (2023-08-02)
 
 
