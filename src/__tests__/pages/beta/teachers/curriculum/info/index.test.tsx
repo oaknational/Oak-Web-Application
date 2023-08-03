@@ -1,4 +1,4 @@
-import CurriculumInfoPage from "../../../../../../pages/beta/teachers/curriculum/info";
+import CurriculumInfoPage from "../../../../../../pages/beta/[viewType]/curriculum/[subjectPhaseSlug]";
 import curriculumOverviewFixture from "../../../../../../node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixtures";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import subjectPhaseOptions from "../../../../../../browser-lib/fixtures/subjectPhaseOptions";

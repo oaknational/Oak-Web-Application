@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
+import router from "next/router";
 
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/Grid";
@@ -197,14 +198,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowPhases(true);
     }
     if (canViewCurriculum) {
-      alert(
-        "TODO: Go to the **" +
-          selectedSubject?.title +
-          " " +
-          selectedPhase?.title +
-          (selectedExamboard ? " " + selectedExamboard.title : "") +
-          "** curriculum page!"
-      );
+      let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
+      if (selectedExamboard) {
+        subjectPhaseSlug += "-" + selectedExamboard.slug;
+      }
+      router.push({
+        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}`,
+      });
     }
   };
 

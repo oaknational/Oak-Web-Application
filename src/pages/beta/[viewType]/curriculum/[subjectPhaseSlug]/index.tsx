@@ -1,29 +1,40 @@
-import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import React from "react";
 
-import AppLayout from "../../../../../components/AppLayout/AppLayout";
-import Box from "../../../../../components/Box/Box";
-import Flex from "../../../../../components/Flex/Flex";
-import { Heading, Hr, UL, LI } from "../../../../../components/Typography";
-import Card from "../../../../../components/Card/Card";
-import SubjectIcon from "../../../../../components/SubjectIcon/SubjectIcon";
-import BrushBorders from "../../../../../components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import AvatarImage from "../../../../../components/AvatarImage/AvatarImage";
-import OakLink from "../../../../../components/OakLink/OakLink";
-import Icon from "../../../../../components/Icon/Icon";
-import Breadcrumbs from "../../../../../components/Breadcrumbs/Breadcrumbs";
-import TabularNav from "../../../../../components/TabularNav/TabularNav";
-import ButtonAsLink from "../../../../../components/Button/ButtonAsLink";
-import Typography from "../../../../../components/Typography/Typography";
+import AppLayout from "@/components/AppLayout/AppLayout";
+import Box from "@/components/Box/Box";
+import Flex from "@/components/Flex/Flex";
+import { Heading, Hr, UL, LI } from "@/components/Typography";
+import Card from "@/components/Card/Card";
+import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import AvatarImage from "@/components/AvatarImage/AvatarImage";
+import OakLink from "@/components/OakLink/OakLink";
+import Icon from "@/components/Icon/Icon";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import TabularNav from "@/components/TabularNav/TabularNav";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Typography from "@/components/Typography/Typography";
 import curriculumApi, {
   curriculumSubjectPhaseOverviewData,
-} from "../../../../../node-lib/curriculum-api-2023";
-import { BETA_SEO_PROPS } from "../../../../../browser-lib/seo/Seo";
-import { decorateWithIsr } from "../../../../../node-lib/isr";
+} from "@/node-lib/curriculum-api-2023";
+import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import {
+  decorateWithIsr,
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "@/node-lib/isr";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
-} from "../../../../../components/SubjectPhasePicker/SubjectPhasePicker";
-import { fetchSubjectPhasePickerData } from "../../../../beta/[viewType]/curriculum";
+} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { fetchSubjectPhasePickerData } from "@/pages/beta/[viewType]/curriculum/index";
+import getPageProps from "@/node-lib/getPageProps";
+import { ViewType } from "@/common-lib/urls";
 
 export type CurriculumInfoPageProps = {
   data: curriculumSubjectPhaseOverviewData;
@@ -257,22 +268,50 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<
-  CurriculumInfoPageProps
-> = async () => {
-  const overviewData = await curriculumApi.curriculumSubjectPhaseOverviewPage({
-    subject: "maths",
-    phase: "secondary",
-  });
-  const subjectPhaseData = await fetchSubjectPhasePickerData();
-  const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
-    props: {
-      data: overviewData,
-      subjectPhaseOptions: subjectPhaseData,
-    },
+export type URLParams = {
+  viewType: ViewType;
+  subjectPhaseSlug: string;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths: [],
   };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<CurriculumInfoPageProps> = async (
+  context
+) => {
+  return getPageProps({
+    page: "curriculum-info::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("Missing params");
+      }
+      // Parse and use params instead of "maths" and "secondary" when MV is ready
+      const overviewData =
+        await curriculumApi.curriculumSubjectPhaseOverviewPage({
+          subject: "maths",
+          phase: "secondary",
+        });
+      const subjectPhaseData = await fetchSubjectPhasePickerData();
+      const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
+        props: {
+          data: overviewData,
+          subjectPhaseOptions: subjectPhaseData,
+        },
+      };
+      const resultsWithIsr = decorateWithIsr(results);
+      return resultsWithIsr;
+    },
+  });
 };
 
 export default CurriculumInfoPage;
