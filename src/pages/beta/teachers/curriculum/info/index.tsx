@@ -159,11 +159,11 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
 
         <Card $maxWidth={"80%"} $ma={"auto"} $background={"aqua30"}>
           <BrushBorders color={"aqua30"} />
-          <Box $pa={4}>
+          <Box $ma={16}>
             <Heading tag="h2" $font={["heading-5", "heading-6"]}>
               Subject principles
             </Heading>
-            <UL $reset={true} $mt={20}>
+            <UL $reset={true} $mt={24}>
               {subjectPrinciples.map((item, i) => (
                 <LI $mb={[12]} key={`principle-${i + 1}`}>
                   <Flex $alignItems={"center"}>
@@ -172,7 +172,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
                       $borderRadius={"50%"}
                       $borderColor="aqua"
                       $mt={[4]}
-                      $mr={4}
+                      $mr={10}
                       $pa={1}
                     >
                       <Icon name="arrow-right" $ma={"auto"} $pa={2} />
