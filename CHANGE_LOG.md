@@ -1,3 +1,71 @@
+# [1.211.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.210.0...v1.211.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* **curric:** added new colours for info page ([622195f](https://github.com/oaknational/Oak-Web-Application/commit/622195f8732fca021430be0188cdbb924b222134))
+* **curric:** adjusted styling changes ([bb2d143](https://github.com/oaknational/Oak-Web-Application/commit/bb2d143afa86500c801b5d6a50416bbfae471bdb))
+* **curric:** all data in tsx file ([ced9205](https://github.com/oaknational/Oak-Web-Application/commit/ced9205253c398e0fe2e577144d71406873d74e0))
+* **curric:** reduced padding spacing on bio ([97eaf25](https://github.com/oaknational/Oak-Web-Application/commit/97eaf256869bbd3cf19f10b548e6a6038befd68b))
+* **curric:** update curric intent test ([50cdde7](https://github.com/oaknational/Oak-Web-Application/commit/50cdde7fc32ff519267694201ee284193312dd29))
+* **curric:** update spacing around bullets ([a8edf71](https://github.com/oaknational/Oak-Web-Application/commit/a8edf71b01b89a975049174fc50d058e82271914))
+* **curric:** update spacing for principles card ([15ca1e0](https://github.com/oaknational/Oak-Web-Application/commit/15ca1e0981d1b0458b1d9e217cdc61d0c5353dd4))
+* **curric:** updated fixture return type ([b7ae057](https://github.com/oaknational/Oak-Web-Application/commit/b7ae057175c89391088dacb6e483f3b22c3a737c))
+* **curric:** updated lemon50 hex ([47e11b7](https://github.com/oaknational/Oak-Web-Application/commit/47e11b7219224593d22ced09e37295f846ddd782))
+* **curric:** updated P to Typography components ([a0f9b9f](https://github.com/oaknational/Oak-Web-Application/commit/a0f9b9f05de2dbc977268556bb2c18722aec83b1))
+* **curric:** updated paths for components ([fb2e432](https://github.com/oaknational/Oak-Web-Application/commit/fb2e432ec937e31f03bbf3fc9f79f1ac887ebcf6))
+* **curric:** updated percent spacing ([517f376](https://github.com/oaknational/Oak-Web-Application/commit/517f3760714390ca664c71a3ad18bb2dd831f93a))
+* **curric:** updated spacing on cards ([bf95da4](https://github.com/oaknational/Oak-Web-Application/commit/bf95da41938f43fcad21e806f6ead90ef79e2a65))
+* **curric:** updated styling ([86c9648](https://github.com/oaknational/Oak-Web-Application/commit/86c9648246ef2508c8d088ff9399d03bae5706f7))
+* **curric:** updated test to include picker props ([4556665](https://github.com/oaknational/Oak-Web-Application/commit/4556665898d2638607e88aa7817ecfd0e038788a))
+
+
+### Features
+
+* **curric:** add landing page and new DB integration ([7010a23](https://github.com/oaknational/Oak-Web-Application/commit/7010a2366833959a8215be20d8159775d385136c))
+* **curric:** added circles around bullets ([ac34ae7](https://github.com/oaknational/Oak-Web-Application/commit/ac34ae7866ecf7f38d2e68900f256a0ba0d18954))
+* **curric:** added curriculum info page [draft] ([e8649a9](https://github.com/oaknational/Oak-Web-Application/commit/e8649a94f8c07a609623bffd9e2441615b753ca9))
+* **curric:** added subject phase picker ([2491029](https://github.com/oaknational/Oak-Web-Application/commit/24910299f97073d357137f4f2b57dd0837c967d5))
+* **curric:** added video guide and spacing ([0f82376](https://github.com/oaknational/Oak-Web-Application/commit/0f8237649a6f64886a9796d1cf881b66513a3c89))
+* **curric:** created api call for overview page ([83c3a9a](https://github.com/oaknational/Oak-Web-Application/commit/83c3a9a8f26e79aae015a083a8f7412c0507b626))
+* **curric:** new design update ([1ab9cc6](https://github.com/oaknational/Oak-Web-Application/commit/1ab9cc69a72b41be3f6d9cecc42e78bb0374bf9b))
+* **curric:** remove dummy api refa ([b239f0e](https://github.com/oaknational/Oak-Web-Application/commit/b239f0e2149a27afe024d2f0aa238b9afe350ab2))
+* **curric:** removed landing page ([d03cfcd](https://github.com/oaknational/Oak-Web-Application/commit/d03cfcd37428c635285535afa1e19f3fae133e18))
+* **curric:** removed landing page tests ([854225b](https://github.com/oaknational/Oak-Web-Application/commit/854225ba3ef4a4605141d673846296c8a4f390f0))
+* **curric:** update home page with placeholder info ([7e752e7](https://github.com/oaknational/Oak-Web-Application/commit/7e752e7dff05b331b17be441e237d0cf49a46d3d))
+* **curric:** updated ui to match final design ([85c7420](https://github.com/oaknational/Oak-Web-Application/commit/85c74204cf84f595e53cb8bbe4bf464626375254))
+
+# [1.210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.209.0...v1.210.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* enabling mock for 2023 API, fixing tests ([73387fc](https://github.com/oaknational/Oak-Web-Application/commit/73387fcd7327869e46873f59a5b4baffd1ef9c30))
+
+
+### Features
+
+* **curric:** add landing page and new DB integration ([132e369](https://github.com/oaknational/Oak-Web-Application/commit/132e36958abc9e7cc977ba964a09dfdf94347795))
+* **curric:** add subject-phase picker functionality ([63813c6](https://github.com/oaknational/Oak-Web-Application/commit/63813c6d560d28771019ce3443644e8f5b5bf85a))
+* **curric:** add subject-phase picker with mock data ([00ce113](https://github.com/oaknational/Oak-Web-Application/commit/00ce113cd0daee83d636ddea33660908efc9208f))
+* **curric:** integrate subject phase picker mv ([2f58569](https://github.com/oaknational/Oak-Web-Application/commit/2f585691d6ba590b7fc166acd31ffee8a2357bd3))
+* **curric:** update home page with placeholder info ([363c180](https://github.com/oaknational/Oak-Web-Application/commit/363c1806f0a17ac361baa84e021d9316f745b826))
+
+# [1.209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.208.0...v1.209.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* lesson details test and narrow props for LessonItemContainer ([6b12eca](https://github.com/oaknational/Oak-Web-Application/commit/6b12eca59e5156518f861a93df6557449a629f94))
+* missing attribute after merge ([c141ab3](https://github.com/oaknational/Oak-Web-Application/commit/c141ab359692f1af454fb6c581f2b0c3afe767c3))
+* resolve changed type for flex gap attr ([87aadf4](https://github.com/oaknational/Oak-Web-Application/commit/87aadf447f4fd2b9718bbdec2286c458a6255370))
+
+
+### Features
+
+* slide deck new styling ([f0279e2](https://github.com/oaknational/Oak-Web-Application/commit/f0279e2713827079b89a6da2f26895acd242c5d3))
+* wip new styling for slide deck ([6d3ea8e](https://github.com/oaknational/Oak-Web-Application/commit/6d3ea8e9f751ef861f549b7f3c055ff7314e16e1))
+
 # [1.208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.207.0...v1.208.0) (2023-08-02)
 
 

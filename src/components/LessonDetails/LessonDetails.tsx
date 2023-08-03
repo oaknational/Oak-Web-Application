@@ -2,7 +2,6 @@ import React, { FC } from "react";
 
 import Grid, { GridArea } from "../Grid";
 import Flex from "../Flex";
-import { Heading } from "../Typography";
 import KeyLearningPoints, {
   KeyLearningPoint,
 } from "../KeyLearningPoints/KeyLearningPoints";
@@ -27,11 +26,7 @@ const LessonDetails: FC<LessonDetailsProps> = ({
 }) => {
   return (
     <Flex $flexDirection={"column"}>
-      <Heading $font={["heading-5", "heading-4"]} tag={"h2"}>
-        Lesson details
-      </Heading>
-
-      <Grid $width={"100%"} $mt={[48, 24]} $mb={[56, 24]} $cg={16} $rg={48}>
+      <Grid $width={"100%"} $cg={16} $rg={48}>
         {keyLearningPoints && (
           <GridArea $colSpan={[12, 8]} $colStart={1} $width={"100%"}>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
