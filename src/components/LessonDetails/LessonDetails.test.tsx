@@ -8,8 +8,9 @@ describe("LessonDetails component", () => {
     { misconception: "misconception", response: "response" },
   ];
   const keyWords = [{ keyword: "keyword", description: "description" }];
+
   const teacherTips = [{ teacherTip: "test teacher tip" }];
-  it("should render Lesson details", () => {
+  it("it should not render its own title", () => {
     const { getByText } = renderWithTheme(
       <LessonDetails
         keyLearningPoints={keyLearningPoints}
@@ -19,8 +20,7 @@ describe("LessonDetails component", () => {
       />
     );
 
-    const componentTitle = getByText("Lesson details");
-    expect(componentTitle).toBeInTheDocument();
+    expect(() => getByText("Lesson details")).toThrow();
   });
 
   it("should render KeyLearningPoints component with key learning points", () => {

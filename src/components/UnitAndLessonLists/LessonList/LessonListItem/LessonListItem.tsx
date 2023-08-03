@@ -175,7 +175,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
-        $gap={["4px", "12px"]}
+        $gap={[4, 12]}
         $pt={[0, 20]}
         $pb={20}
       >
@@ -193,7 +193,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             />
           </Flex>
         ) : (
-          <Flex $gap={"10px"} $alignItems={"center"}>
+          <Flex $gap={[10]} $alignItems={"center"}>
             <ListItemIndexMobile background={background} index={index + 1} />
             <Flex $flexDirection={"column"} $height={"100%"}>
               <ListItemHeader
@@ -215,7 +215,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           </Flex>
         )}
 
-        <Flex $flexDirection={"column"} $gap={"12px"} $ml={[16, 0]}>
+        <Flex $flexDirection={"column"} $gap={[12]} $ml={[16, 0]}>
           <Flex $mt={[8, 0]} $mr={[16, 0]}>
             {expired ? (
               <P $mt={8} $font={["body-3", "body-2"]}>
