@@ -34,7 +34,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   data,
   subjectPhaseOptions,
 }) => {
-  console.log(subjectPhaseOptions);
   const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } = data;
 
   return (
