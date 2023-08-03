@@ -1,3 +1,19 @@
+# [1.210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.209.0...v1.210.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* enabling mock for 2023 API, fixing tests ([73387fc](https://github.com/oaknational/Oak-Web-Application/commit/73387fcd7327869e46873f59a5b4baffd1ef9c30))
+
+
+### Features
+
+* **curric:** add landing page and new DB integration ([132e369](https://github.com/oaknational/Oak-Web-Application/commit/132e36958abc9e7cc977ba964a09dfdf94347795))
+* **curric:** add subject-phase picker functionality ([63813c6](https://github.com/oaknational/Oak-Web-Application/commit/63813c6d560d28771019ce3443644e8f5b5bf85a))
+* **curric:** add subject-phase picker with mock data ([00ce113](https://github.com/oaknational/Oak-Web-Application/commit/00ce113cd0daee83d636ddea33660908efc9208f))
+* **curric:** integrate subject phase picker mv ([2f58569](https://github.com/oaknational/Oak-Web-Application/commit/2f585691d6ba590b7fc166acd31ffee8a2357bd3))
+* **curric:** update home page with placeholder info ([363c180](https://github.com/oaknational/Oak-Web-Application/commit/363c1806f0a17ac361baa84e021d9316f745b826))
+
 # [1.209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.208.0...v1.209.0) (2023-08-03)
 
 

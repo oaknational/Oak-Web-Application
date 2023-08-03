@@ -51152,11 +51152,6 @@ export type Years_Variance_Order_By = {
   phase_id?: InputMaybe<Order_By>;
 };
 
-export type LessonDownloadPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type LessonDownloadPathsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', lessonSlug?: string | null, programmeSlug?: string | null, unitSlug?: string | null }> };
-
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   programmeSlug: Scalars['String']['input'];
@@ -51174,11 +51169,6 @@ export type LessonListingQueryVariables = Exact<{
 
 export type LessonListingQuery = { __typename?: 'query_root', mv_units: Array<{ __typename?: 'mv_units_3', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_6', description?: string | null, expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, themeTitle?: string | null, themeSlug?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, supervisionLevel?: string | null, videoCount?: number | null, presentationCount?: any | null, worksheetCount?: any | null, hasCopyrightMaterial?: boolean | null, hasDownloadableResources?: boolean | null, quizCount?: any | null }> };
 
-export type LessonListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type LessonListingPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_units_3', programmeSlug?: string | null, unitSlug?: string | null }> };
-
 export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   lessonSlug: Scalars['String']['input'];
@@ -51187,16 +51177,6 @@ export type LessonOverviewQueryVariables = Exact<{
 
 
 export type LessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, isWorksheetLandscape?: boolean | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: any | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
-
-export type LessonOverviewPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type LessonOverviewPathsQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', lessonSlug?: string | null, programmeSlug?: string | null, unitSlug?: string | null }> };
-
-export type ProgrammeListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type ProgrammeListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, subjectSlug?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -51230,21 +51210,7 @@ export type UnitListingQueryVariables = Exact<{
 
 export type UnitListingQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_7', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, totalUnitCount?: any | null }>, mv_tiers: Array<{ __typename?: 'mv_tiers_2', tierTitle?: string | null, tierSlug?: string | null, tierProgrammeSlug?: string | null, lessonCount?: any | null, unitCount?: any | null }>, mv_units: Array<{ __typename?: 'mv_units_3', slug?: string | null, title?: string | null, year?: string | null, expired?: boolean | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, lessonCount?: any | null, quizCount?: any | null, unitStudyOrder?: number | null, expiredLessonCount?: any | null }> };
 
-export type UnitListingPathsQueryVariables = Exact<{ [key: string]: never; }>;
 
-
-export type UnitListingPathsQuery = { __typename?: 'query_root', mv_programmes: Array<{ __typename?: 'mv_programmes_7', programmeSlug?: string | null }> };
-
-
-export const LessonDownloadPathsDocument = gql`
-    query lessonDownloadPaths {
-  mv_downloads: mv_downloads_1 {
-    lessonSlug: lesson_slug
-    programmeSlug: programme_slug
-    unitSlug: unit_slug
-  }
-}
-    `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $programmeSlug: String!, $unitSlug: String!) {
   mv_downloads: mv_downloads_1(
@@ -51303,14 +51269,6 @@ export const LessonListingDocument = gql`
     hasDownloadableResources: has_downloadable_resources
     quizCount: quiz_count
     expired
-  }
-}
-    `;
-export const LessonListingPathsDocument = gql`
-    query lessonListingPaths {
-  mv_lessons: mv_units_3 {
-    programmeSlug: programme_slug
-    unitSlug: slug
   }
 }
     `;
@@ -51405,23 +51363,6 @@ export const LessonOverviewDocument = gql`
     type
     order
     displayNumber: display_number
-  }
-}
-    `;
-export const LessonOverviewPathsDocument = gql`
-    query lessonOverviewPaths {
-  mv_lessons: mv_lessons_6 {
-    lessonSlug: lesson_slug
-    programmeSlug: programme_slug
-    unitSlug: unit_slug
-  }
-}
-    `;
-export const ProgrammeListingPathsDocument = gql`
-    query programmeListingPaths {
-  mv_programmes: mv_programmes_7 {
-    keyStageSlug: key_stage_slug
-    subjectSlug: subject_slug
   }
 }
     `;
@@ -51544,13 +51485,6 @@ export const UnitListingDocument = gql`
   }
 }
     `;
-export const UnitListingPathsDocument = gql`
-    query unitListingPaths {
-  mv_programmes: mv_programmes_7 {
-    programmeSlug: programme_slug
-  }
-}
-    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -51559,26 +51493,14 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    lessonDownloadPaths(variables?: LessonDownloadPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadPathsQuery>(LessonDownloadPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadPaths', 'query');
-    },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
-    lessonListingPaths(variables?: LessonListingPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonListingPathsQuery>(LessonListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListingPaths', 'query');
-    },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
-    },
-    lessonOverviewPaths(variables?: LessonOverviewPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewPathsQuery>(LessonOverviewPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewPaths', 'query');
-    },
-    programmeListingPaths(variables?: ProgrammeListingPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingPathsQuery>(ProgrammeListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListingPaths', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');
@@ -51594,9 +51516,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query');
-    },
-    unitListingPaths(variables?: UnitListingPathsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingPathsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UnitListingPathsQuery>(UnitListingPathsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListingPaths', 'query');
     }
   };
 }

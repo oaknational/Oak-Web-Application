@@ -4,7 +4,6 @@ schema:
       headers:
         x-oak-auth-type: ${CURRICULUM_API_AUTH_TYPE}
         x-oak-auth-key: ${CURRICULUM_API_AUTH_KEY}
-        # x-hasura-admin-secret: ${CURRICULUM_API_ADMIN_SECRET}
 
 documents: "src/node-lib/curriculum-api/queries/*.{graphql,gql}"
 generates:

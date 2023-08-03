@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import { getServerSideProps } from "../../../../pages/beta/[viewType]/key-stages/sitemap.xml";
-import { URLParams } from "../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
+import { getServerSideProps } from "../../../../../pages/beta/[viewType]/key-stages/sitemap.xml";
+import { URLParams } from "../../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 
 describe("Sitemap", () => {
   beforeEach(() => {
