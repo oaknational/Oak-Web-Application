@@ -8,6 +8,7 @@ import lessonDownloadsQuery from "./queries/downloads/downloads.query";
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
 import subjectPhaseOptionsQuery from "./queries/subjectPhaseOptions/subjectPhaseOptions.query";
+import curriculumSubjectPhaseOverviewQuery from "./queries/curriculumSubjectPhaseOverview/overview.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -54,8 +55,18 @@ export type Subject = z.infer<typeof subjectSchema>;
 export type Examboard = z.infer<typeof examboardSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 
+const curriculumSubjectPhaseOverviewData = z.object({
+  subjectPrinciples: z.array(z.string()),
+  curriculaDesc: z.string(),
+  partnerBio: z.string(),
+  videoGuideDesc: z.string(),
+});
+
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
+export type curriculumSubjectPhaseOverviewData = z.infer<
+  typeof curriculumSubjectPhaseOverviewData
+>;
 
 export const getFirstResultOrNull =
   () =>
@@ -88,6 +99,7 @@ const curriculumApi2023 = {
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  curriculumSubjectPhaseOverviewPage: curriculumSubjectPhaseOverviewQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
