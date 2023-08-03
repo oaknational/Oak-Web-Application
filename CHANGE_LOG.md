@@ -1,3 +1,11 @@
+# [1.212.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.211.1...v1.212.0) (2023-08-03)
+
+
+### Features
+
+* allow creating anchor link targets in the CMS ([cf8b118](https://github.com/oaknational/Oak-Web-Application/commit/cf8b11840c820a886b2c7173eed1828d692092c0))
+* allow linking to any page anchor from the CMS ([3e3551b](https://github.com/oaknational/Oak-Web-Application/commit/3e3551b41d600157ed0e17d9ee9567860a606b6c))
+
 ## [1.211.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.211.0...v1.211.1) (2023-08-03)
 
 
