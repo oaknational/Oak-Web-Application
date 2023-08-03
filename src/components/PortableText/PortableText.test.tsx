@@ -76,8 +76,23 @@ describe("PortableText", () => {
       expect(link).toHaveAttribute("href", "/legal/some-policy");
     });
 
+    it("renders nothing when not passed a reference", () => {
+      const { container } = renderWithTheme(
+        <PTInternalLink
+          children={["Some internal link"]}
+          text="Some internal link"
+          markType="internalLink"
+          value={{ _type: "internalLink", reference: undefined }}
+          renderNode={() => undefined}
+        />
+      );
+
+      expect(container).toBeEmptyDOMElement();
+      expect(consoleWarnSpy).toHaveBeenCalled();
+    });
+
     it("renders nothing and warns when passed an un-resolved ref", () => {
-      const { queryByRole } = renderWithTheme(
+      const { container } = renderWithTheme(
         <PTInternalLink
           children={["Some internal link"]}
           text="Some internal link"
@@ -89,9 +104,7 @@ describe("PortableText", () => {
           renderNode={() => undefined}
         />
       );
-
-      const link = queryByRole("link");
-      expect(link).not.toBeInTheDocument();
+      expect(container).toBeEmptyDOMElement();
 
       expect(consoleWarnSpy).toHaveBeenCalled();
       expect(reportError).toHaveBeenCalledWith(
@@ -103,7 +116,7 @@ describe("PortableText", () => {
     });
 
     it("renders nothing and warns when it can't resolve a href", () => {
-      const { queryByRole } = renderWithTheme(
+      const { container } = renderWithTheme(
         <PTInternalLink
           children={["Some internal link"]}
           text="Some internal link"
@@ -116,8 +129,7 @@ describe("PortableText", () => {
         />
       );
 
-      const link = queryByRole("link");
-      expect(link).not.toBeInTheDocument();
+      expect(container).toBeEmptyDOMElement();
 
       expect(consoleWarnSpy).toHaveBeenCalled();
       expect(reportError).toHaveBeenCalledWith(
@@ -180,10 +192,23 @@ describe("PortableText", () => {
       expect(link).toHaveAccessibleName("An anchor link");
       expect(link).toHaveAttribute("href", "#a-section-of-the-page");
     });
+
+    it("renders nothing when not passed an anchor", async () => {
+      const { container } = renderWithTheme(
+        <PTAnchorLink
+          children={["An anchor link"]}
+          text="An anchor link"
+          markType="anchor"
+          renderNode={() => undefined}
+        />
+      );
+
+      expect(container).toBeEmptyDOMElement();
+    });
   });
 
   describe("PTAnchorTarget", () => {
-    it("renders an anchor target  ", async () => {
+    it("renders an anchor target", async () => {
       const { getByText, container } = renderWithTheme(
         <PTAnchorTarget
           children={["An anchor target"]}
@@ -203,6 +228,19 @@ describe("PortableText", () => {
       ) as HTMLElement;
 
       expect(tag).toContainElement(anchorTarget);
+    });
+
+    it("renders nothing when not passed an anchor", async () => {
+      const { container } = renderWithTheme(
+        <PTAnchorTarget
+          children={["An anchor target"]}
+          text="An anchor target"
+          markType="anchorTarget"
+          renderNode={() => undefined}
+        />
+      );
+
+      expect(container).toBeEmptyDOMElement();
     });
   });
 
