@@ -1,18 +1,14 @@
 import { screen } from "@testing-library/react";
+import { GetStaticPropsContext, PreviewData } from "next";
 
 import CurriculumHomePage, {
-  fetchSubjectPhasePickerData,
+  getStaticProps,
   CurriculumHomePageProps,
+  URLParams,
 } from "@/pages/beta/[viewType]/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-
-jest.mock("src/node-lib/isr", () => ({
-  decorateWithIsr: jest.fn(),
-  getFallbackBlockingConfig: jest.fn(),
-  shouldSkipInitialBuild: jest.fn(),
-}));
 
 const render = renderWithProviders();
 
@@ -40,10 +36,14 @@ describe("pages/beta/curriculum/index", () => {
     );
   });
 
-  describe("fetchSubjectPhasePickerData", () => {
+  describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
-      const testRes = await fetchSubjectPhasePickerData();
-      expect(testRes).toEqual(subjectPhaseOptions);
+      const testRes = (await getStaticProps({
+        params: {},
+      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
+        props: CurriculumHomePageProps;
+      };
+      expect(testRes.props.subjectPhaseOptions).toEqual(subjectPhaseOptions);
     });
   });
 });

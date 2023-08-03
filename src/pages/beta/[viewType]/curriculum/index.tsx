@@ -157,7 +157,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-type URLParams = {
+export type URLParams = {
   viewType: ViewType;
 };
 
@@ -180,7 +180,6 @@ export const getStaticPaths = async () => {
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const newSubjects = await curriculumApi2023.subjectPhaseOptions();
-
     // Legacy data is hardcoded
     const legacySubjects: [string, string, boolean][] = [
       ["Art & Design", "art", true],
