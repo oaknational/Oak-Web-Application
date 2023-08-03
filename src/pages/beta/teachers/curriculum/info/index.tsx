@@ -13,7 +13,6 @@ import OakLink from "../../../../../components/OakLink/OakLink";
 import Icon from "../../../../../components/Icon/Icon";
 import Breadcrumbs from "../../../../../components/Breadcrumbs/Breadcrumbs";
 import TabularNav from "../../../../../components/TabularNav/TabularNav";
-import IconButton from "../../../../../components/Button/IconButton";
 import ButtonAsLink from "../../../../../components/Button/ButtonAsLink";
 import Typography from "../../../../../components/Typography/Typography";
 import curriculumApi, {
@@ -78,7 +77,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
                 />
               </Box>
 
-              <Heading tag={"h2"} $font={"heading-light-3"} $mr={26}>
+              <Heading tag={"h1"} $font={"heading-light-3"} $mr={26}>
                 Secondary Maths
               </Heading>
             </Flex>
@@ -118,7 +117,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
               $textAlign={"left"}
             >
               <Heading
-                tag="h5"
+                tag="h2"
                 $font={["heading-5", "heading-6"]}
                 data-testid="intent-heading"
               >
@@ -160,21 +159,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
 
         <Card $maxWidth={"80%"} $ma={"auto"} $background={"aqua30"}>
           <BrushBorders color={"aqua30"} />
-          <Heading tag="h5" $font={["heading-5", "heading-6"]}>
+          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={10}>
             {subjectPrinciples.map((item, i) => (
               <LI $mb={[12]} key={`principle-${i + 1}`}>
                 <Flex $alignItems={"center"}>
-                  <IconButton
-                    icon="arrow-right"
-                    disabled={true}
-                    $mt={[4]}
-                    background={"grey1"}
-                    aria-label="pointer to subject principles"
-                    $mr={4}
-                  />
+                  <Icon name="arrow-right" $mt={[4]} $mr={4} />
                   {item}
                 </Flex>
               </LI>
@@ -188,23 +180,20 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
               Video here
             </Box>
             <Box $mh={6} $ph={50}>
-              <Heading $mv={6} tag="h3">
+              <Heading $mv={6} tag="h2" $font={["heading-5", "heading-6"]}>
                 Video guide
               </Heading>
               <Typography $mv={6} $font={"body-1"}>
                 {videoGuideDesc}
               </Typography>
-              <Flex>
-                <OakLink
-                  $color={"black"}
-                  $font="heading-7"
-                  page={"help"}
-                  $mv={6}
-                >
+
+              <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
+                <Flex>
                   Read more about our new curriculum
-                  <Icon name={"chevron-right"} />
-                </OakLink>
-              </Flex>
+                  <Icon name={"chevron-right"} $ml={0} $ma={"auto"} />
+                </Flex>
+              </OakLink>
+
               <ButtonAsLink
                 variant="brush"
                 label="View unit sequence"
@@ -221,7 +210,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
           <Flex $justifyContent={"center"}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
             <Box>
-              <Heading tag="h5" $font={"heading-5"}>
+              <Heading tag="h2" $font={"heading-5"}>
                 Our curriculum partner
               </Heading>
               <Typography $font={"body-1"}>{partnerBio}</Typography>

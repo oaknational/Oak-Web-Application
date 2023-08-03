@@ -57,7 +57,7 @@ const theme: OakTheme = {
     aqua: "#b0e2de",
     aqua50: "#cee7e5",
     aqua30: "#e7f6f5",
-    lemon: "#ff3555",
+    lemon: "#ffe555",
     lemon50: "#f6e8a0",
     lemon30: "#fff7cc",
     lavender: "#a0b6f2",
