@@ -43,6 +43,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { size, variant, $iconPosition, background } =
     getButtonStylesProps(transformedProps);
 
+  // QUESTION: I don't follow the logic of this. It can result in rendering undefined as a title.
   const defaultTitle =
     ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
 

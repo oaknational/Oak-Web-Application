@@ -1,3 +1,34 @@
+# [1.210.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.209.0...v1.210.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* enabling mock for 2023 API, fixing tests ([73387fc](https://github.com/oaknational/Oak-Web-Application/commit/73387fcd7327869e46873f59a5b4baffd1ef9c30))
+
+
+### Features
+
+* **curric:** add landing page and new DB integration ([132e369](https://github.com/oaknational/Oak-Web-Application/commit/132e36958abc9e7cc977ba964a09dfdf94347795))
+* **curric:** add subject-phase picker functionality ([63813c6](https://github.com/oaknational/Oak-Web-Application/commit/63813c6d560d28771019ce3443644e8f5b5bf85a))
+* **curric:** add subject-phase picker with mock data ([00ce113](https://github.com/oaknational/Oak-Web-Application/commit/00ce113cd0daee83d636ddea33660908efc9208f))
+* **curric:** integrate subject phase picker mv ([2f58569](https://github.com/oaknational/Oak-Web-Application/commit/2f585691d6ba590b7fc166acd31ffee8a2357bd3))
+* **curric:** update home page with placeholder info ([363c180](https://github.com/oaknational/Oak-Web-Application/commit/363c1806f0a17ac361baa84e021d9316f745b826))
+
+# [1.209.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.208.0...v1.209.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* lesson details test and narrow props for LessonItemContainer ([6b12eca](https://github.com/oaknational/Oak-Web-Application/commit/6b12eca59e5156518f861a93df6557449a629f94))
+* missing attribute after merge ([c141ab3](https://github.com/oaknational/Oak-Web-Application/commit/c141ab359692f1af454fb6c581f2b0c3afe767c3))
+* resolve changed type for flex gap attr ([87aadf4](https://github.com/oaknational/Oak-Web-Application/commit/87aadf447f4fd2b9718bbdec2286c458a6255370))
+
+
+### Features
+
+* slide deck new styling ([f0279e2](https://github.com/oaknational/Oak-Web-Application/commit/f0279e2713827079b89a6da2f26895acd242c5d3))
+* wip new styling for slide deck ([6d3ea8e](https://github.com/oaknational/Oak-Web-Application/commit/6d3ea8e9f751ef861f549b7f3c055ff7314e16e1))
+
 # [1.208.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.207.0...v1.208.0) (2023-08-02)
 
 
