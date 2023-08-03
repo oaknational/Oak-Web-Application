@@ -159,28 +159,30 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
 
         <Card $maxWidth={"80%"} $ma={"auto"} $background={"aqua30"}>
           <BrushBorders color={"aqua30"} />
-          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
-            Subject principles
-          </Heading>
-          <UL $reset={true} $mt={10}>
-            {subjectPrinciples.map((item, i) => (
-              <LI $mb={[12]} key={`principle-${i + 1}`}>
-                <Flex $alignItems={"center"}>
-                  <Flex
-                    $background={"aqua"}
-                    $borderRadius={"50%"}
-                    $borderColor="aqua"
-                    $mt={[4]}
-                    $mr={4}
-                    $pa={1}
-                  >
-                    <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+          <Box $pa={4}>
+            <Heading tag="h2" $font={["heading-5", "heading-6"]}>
+              Subject principles
+            </Heading>
+            <UL $reset={true} $mt={20}>
+              {subjectPrinciples.map((item, i) => (
+                <LI $mb={[12]} key={`principle-${i + 1}`}>
+                  <Flex $alignItems={"center"}>
+                    <Flex
+                      $background={"aqua"}
+                      $borderRadius={"50%"}
+                      $borderColor="aqua"
+                      $mt={[4]}
+                      $mr={4}
+                      $pa={1}
+                    >
+                      <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+                    </Flex>
+                    {item}
                   </Flex>
-                  {item}
-                </Flex>
-              </LI>
-            ))}
-          </UL>
+                </LI>
+              ))}
+            </UL>
+          </Box>
         </Card>
 
         <Box $maxWidth={"80%"} $ma={"auto"} $pt={80} $pb={80}>
