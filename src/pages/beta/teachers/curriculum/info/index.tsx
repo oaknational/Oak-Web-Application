@@ -190,35 +190,44 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
             <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
               Video here
             </Box>
-            <Box $mh={6} $ph={50}>
+
+            <Flex
+              $mh={50}
+              $ph={50}
+              $flexDirection={"column"}
+              $justifyContent={"space-between"}
+            >
               <Heading $mv={6} tag="h2" $font={["heading-5", "heading-6"]}>
                 Video guide
               </Heading>
               <Typography $mv={6} $font={"body-1"}>
                 {videoGuideDesc}
               </Typography>
-
               <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
                 <Flex>
                   Read more about our new curriculum
                   <Icon name={"chevron-right"} $ml={0} $ma={"auto"} />
                 </Flex>
               </OakLink>
-
               <ButtonAsLink
                 variant="brush"
                 label="View unit sequence"
                 page="search"
                 viewType="teachers"
                 $mv={10}
+                icon="arrow-right"
+                iconBackground="transparent"
+                $iconPosition="trailing"
+                size="large"
+                $maxWidth={"20%"}
               />
-            </Box>
+            </Flex>
           </Flex>
         </Box>
 
         <Card $background={"lemon30"} $width={"80%"} $ma={"auto"}>
           <BrushBorders color="lemon30" />
-          <Flex $justifyContent={"center"}>
+          <Flex $justifyContent={"center"} $pa={48}>
             <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
             <Box>
               <Heading tag="h2" $font={"heading-5"}>
