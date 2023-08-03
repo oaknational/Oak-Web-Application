@@ -166,7 +166,16 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
             {subjectPrinciples.map((item, i) => (
               <LI $mb={[12]} key={`principle-${i + 1}`}>
                 <Flex $alignItems={"center"}>
-                  <Icon name="arrow-right" $mt={[4]} $mr={4} />
+                  <Flex
+                    $background={"aqua"}
+                    $borderRadius={"50%"}
+                    $borderColor="aqua"
+                    $mt={[4]}
+                    $mr={4}
+                    $pa={1}
+                  >
+                    <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+                  </Flex>
                   {item}
                 </Flex>
               </LI>
