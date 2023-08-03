@@ -20,13 +20,23 @@ import curriculumApi, {
 } from "../../../../../node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "../../../../../browser-lib/seo/Seo";
 import { decorateWithIsr } from "../../../../../node-lib/isr";
+import SubjectPhasePicker, {
+  SubjectPhasePickerData,
+} from "../../../../../components/SubjectPhasePicker/SubjectPhasePicker";
+import { fetchSubjectPhasePickerData } from "../../../../beta/[viewType]/curriculum";
 
 export type CurriculumInfoPageProps = {
   data: curriculumSubjectPhaseOverviewData;
+  subjectPhaseOptions: SubjectPhasePickerData;
 };
 
-const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
+const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
+  data,
+  subjectPhaseOptions,
+}) => {
+  console.log(subjectPhaseOptions);
   const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } = data;
+
   return (
     <AppLayout
       seoProps={BETA_SEO_PROPS}
@@ -61,6 +71,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
             ]}
           />
           <Hr $color={"white"} />
+          <SubjectPhasePicker {...subjectPhaseOptions} />
         </Box>
       </Flex>
       <Box $background={"aqua50"}>
@@ -157,7 +168,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
           </Flex>
         </Box>
 
-        <Card $maxWidth={"80%"} $ma={"auto"} $background={"aqua30"}>
+        <Card
+          $maxWidth={"80%"}
+          $ma={"auto"}
+          $background={"aqua30"}
+          $zIndex={"neutral"}
+        >
           <BrushBorders color={"aqua30"} />
           <Box $ma={16}>
             <Heading tag="h2" $font={["heading-5", "heading-6"]}>
@@ -245,13 +261,15 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({ data }) => {
 export const getStaticProps: GetStaticProps<
   CurriculumInfoPageProps
 > = async () => {
-  const data = await curriculumApi.curriculumSubjectPhaseOverviewPage({
+  const overviewData = await curriculumApi.curriculumSubjectPhaseOverviewPage({
     subject: "maths",
     phase: "secondary",
   });
+  const subjectPhaseData = await fetchSubjectPhasePickerData();
   const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
     props: {
-      data: data,
+      data: overviewData,
+      subjectPhaseOptions: subjectPhaseData,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);

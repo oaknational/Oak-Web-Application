@@ -233,7 +233,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   };
 
   return (
-    <Box $position="relative" data-testid="subjectPhasePicker">
+    <Box
+      $position="relative"
+      data-testid="subjectPhasePicker"
+      $zIndex={"mobileFilters"}
+      $background="white"
+    >
       <BoxBorders />
       <Grid $position="relative">
         <GridArea $colSpan={[12, 5]} $mr={8}>
