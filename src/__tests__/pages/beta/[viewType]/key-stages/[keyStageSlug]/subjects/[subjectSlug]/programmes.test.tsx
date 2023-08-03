@@ -4,12 +4,12 @@ import ProgrammesListingPage, {
   getStaticPaths,
   getStaticProps,
   URLParams,
-} from "../../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
-import { mockSeoResult } from "../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
-import { programmeListingFixture } from "../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
-import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+} from "../../../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes";
+import { mockSeoResult } from "../../../../../../../__helpers__/cms";
+import renderWithProviders from "../../../../../../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../../../../../../__helpers__/renderWithSeo";
+import { programmeListingFixture } from "../../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { ProgrammeListingPageData } from "../../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const render = renderWithProviders();
 
