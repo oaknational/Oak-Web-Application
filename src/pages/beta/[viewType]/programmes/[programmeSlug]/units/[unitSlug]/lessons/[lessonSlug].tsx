@@ -246,7 +246,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           </Box>
         ) : (
           <>
-            <Grid id="test" $pt={[48]}>
+            <Grid $pt={[48]}>
               <GridArea $colSpan={[12, 3]} />
               <GridArea $colSpan={[12, 9]}>
                 <Flex $flexDirection={"column"}>
@@ -279,7 +279,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   </LessonItemContainer>
 
                   {videoMuxPlaybackId && (
-                    // <ExpandingContainer {...curriculumData} title={"Video"}>
                     <LessonItemContainer title={"Video"}>
                       <OverviewVideo
                         video={videoMuxPlaybackId}
@@ -288,7 +287,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                         transcriptSentences={transcriptSentences}
                       />
                     </LessonItemContainer>
-                    // </ExpandingContainer>
                   )}
                   {worksheetUrl && (
                     <ExpandingContainer
