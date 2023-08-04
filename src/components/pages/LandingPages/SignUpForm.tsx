@@ -5,7 +5,6 @@ import Box from "../../Box";
 import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
 import AnchorTarget from "../../AnchorTarget";
 import CardTitle from "../../Card/CardComponents/CardTitle";
-import { anchorMap } from "../../../utils/portableText/resolveInternalHref";
 
 export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
   const { onSubmit } = useNewsletterForm();
@@ -20,7 +19,14 @@ export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
       $background={"white"}
       $dropShadow={"notificationCard"}
     >
-      <AnchorTarget id={anchorMap["formBlock"]} />
+      {/**
+       * We previously constrained editors to a pre-set list of possible anchors
+       * within the CMS, although "formBlock" was the only option. Now that editors
+       * can select any, we have this redundancy to avoid the need to map
+       * "formBlock"->"form-block" until all instances are updated in the CMS
+       */}
+      <AnchorTarget id={"formBlock"} />
+      <AnchorTarget id={"form-block"} />
 
       <CardTitle
         icon="magic-carpet"
