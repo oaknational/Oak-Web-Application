@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { OverviewVideo, OveriewVideoProps } from "./OverviewVideo";
+import { OverviewVideo, OverviewVideoProps } from "./OverviewVideo";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
@@ -19,7 +19,7 @@ const transcriptSentences = [
   "Here is an example of a secure password, and notice, you've got a number, either side, and you've got three random words in the middle there.",
 ];
 
-const props: OveriewVideoProps = {
+const props: OverviewVideoProps = {
   video: "video",
   title: "title",
   transcriptSentences,
