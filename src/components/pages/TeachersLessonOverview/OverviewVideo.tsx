@@ -56,7 +56,8 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
       >
         {hasCaptions && !transcriptOn && (
           <Button
-            label="Show video transcript"
+            label="Show transcript"
+            aria-label="Show video transcript"
             icon={"chevron-down"}
             onClick={toggleTranscript}
             {...buttonParams}
@@ -64,7 +65,8 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
         )}
         {hasCaptions && transcriptOn && (
           <Button
-            label="Hide video transcript"
+            label="Hide transcript"
+            aria-label="Hide video transcript"
             icon={"chevron-up"}
             onClick={toggleTranscript}
             {...buttonParams}
@@ -73,7 +75,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
         <Flex $flexGrow={[0, 1]} $justifyContent={["center", "end"]}>
           {signLanguageVideo && !signLanguageOn && (
             <Button
-              label="Signed video"
+              label="Show sign language"
               icon={"sign-language"}
               onClick={toggleSignLanguage}
               {...buttonParams}
@@ -81,9 +83,9 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           )}
           {signLanguageVideo && signLanguageOn && (
             <Button
-              label="Unsigned video"
+              label="Hide sign language"
               background="teachersHighlight"
-              icon={"video"}
+              icon={"sign-language"}
               onClick={toggleSignLanguage}
               {...buttonParams}
             />

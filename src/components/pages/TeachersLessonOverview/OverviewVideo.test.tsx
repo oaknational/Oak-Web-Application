@@ -29,7 +29,7 @@ describe("OverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
-    expect(getByText("Show video transcript")).toBeInTheDocument();
+    expect(getByText("Show transcript")).toBeInTheDocument();
   });
 
   it("Does not render the video transcript toggle when there is no transcript available", () => {
@@ -39,7 +39,7 @@ describe("OverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
-    expect(() => getByText("Show video transcript")).toThrow();
+    expect(() => getByText("Show transcript")).toThrow();
   });
 
   it("Renders the video transcript when the transcript toggle is clicked", async () => {
@@ -51,7 +51,7 @@ describe("OverviewVideo", () => {
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
 
-    await fireEvent.click(getByText("Show video transcript"));
+    await fireEvent.click(getByText("Show transcript"));
 
     expect(getByText("test sentence 1")).toBeInTheDocument();
   });
@@ -65,8 +65,8 @@ describe("OverviewVideo", () => {
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
 
-    await fireEvent.click(getByText("Show video transcript"));
-    await fireEvent.click(getByText("Hide video transcript"));
+    await fireEvent.click(getByText("Show transcript"));
+    await fireEvent.click(getByText("Hide transcript"));
 
     expect(() => getByText("test sentence 1")).toThrow();
   });
@@ -79,7 +79,7 @@ describe("OverviewVideo", () => {
       signLanguageVideo: "signLanguageVideo",
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
-    expect(getByText("Signed video")).toBeInTheDocument();
+    expect(getByText("Show sign language")).toBeInTheDocument();
   });
 
   it("does not render the signed video toggle when there is no signed video available", () => {
@@ -89,7 +89,7 @@ describe("OverviewVideo", () => {
       transcriptSentences: ["test sentence 1", "test sentence 2"],
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
-    expect(() => getByText("Signed video")).toThrow();
+    expect(() => getByText("Show sign language")).toThrow();
   });
 
   // TODO: Not sure how to test this yet
