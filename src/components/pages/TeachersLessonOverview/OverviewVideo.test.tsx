@@ -87,6 +87,7 @@ describe("OverviewVideo", () => {
       video: "video",
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
+      signLanguageVideo: null,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
     expect(() => getByText("Show sign language")).toThrow();

@@ -137,7 +137,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <Flex $flexDirection={"column"} $width={"100%"} $height={[100]}>
+      <Flex
+        $flexDirection={"column"}
+        $width={"100%"}
+        $height={[240]}
+        $alignItems={"center"}
+        $justifyContent={"center"}
+      >
         <BoxBorders />
         <P $textAlign="center">Loading...</P>
       </Flex>

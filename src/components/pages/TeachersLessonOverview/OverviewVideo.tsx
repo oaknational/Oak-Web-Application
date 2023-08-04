@@ -10,7 +10,7 @@ export interface OverviewVideoProps {
   video: string;
   signLanguageVideo: string | null;
   title: string;
-  transcriptSentences?: string[];
+  transcriptSentences?: string[] | null;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
