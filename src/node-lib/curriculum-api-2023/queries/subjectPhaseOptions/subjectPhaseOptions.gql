@@ -1,0 +1,8 @@
+query subjectPhaseOptions {
+  options: published_mv_subject_phase_options {
+    title
+    slug
+    phases
+    examboards
+  }
+}

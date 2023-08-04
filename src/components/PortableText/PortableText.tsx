@@ -7,15 +7,13 @@ import {
 import styled from "styled-components";
 
 import errorReporter from "../../common-lib/error-reporter";
-import {
-  anchorMap,
-  resolveInternalHref,
-  anchorKeys,
-} from "../../utils/portableText/resolveInternalHref";
+import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
 import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
+import AnchorTarget from "../AnchorTarget";
+import Box from "../Box";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -110,16 +108,33 @@ export const PTExternalLink: PortableTextMarkComponent<{
 
 export const PTAnchorLink: PortableTextMarkComponent<{
   _type: "anchor";
-  anchor: anchorKeys;
+  anchor: string;
 }> = (props) => {
-  if (!props.value) {
+  if (!props.value?.anchor) {
     return null;
   }
 
   return (
-    <OakLink page={null} href={`#${anchorMap[props.value.anchor]}`} $isInline>
+    <OakLink page={null} href={`#${props.value.anchor}`} $isInline>
       {props.children}
     </OakLink>
+  );
+};
+
+export const PTAnchorTarget: PortableTextMarkComponent<{
+  _type: "anchorTarget";
+  anchor: string;
+}> = (props) => {
+  if (!props.value?.anchor) {
+    return null;
+  }
+
+  return (
+    <Box as="span" $position="relative">
+      <AnchorTarget id={props.value.anchor} />
+
+      {props.children}
+    </Box>
   );
 };
 
@@ -161,6 +176,7 @@ export const basePortableTextComponents: PortableTextComponents = {
     internalLink: PTInternalLink,
     link: PTExternalLink,
     anchorLink: PTAnchorLink,
+    anchorTarget: PTAnchorTarget,
     action: PTActionTrigger,
   },
 };

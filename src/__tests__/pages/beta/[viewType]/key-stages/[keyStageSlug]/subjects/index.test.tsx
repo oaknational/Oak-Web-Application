@@ -1,14 +1,14 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import curriculumApi from "../../../../../../node-lib/curriculum-api/__mocks__";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
 import SubjectListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
-import { mockSeoResult } from "../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../../../../__helpers__/renderWithSeo";
-import subjectPagePropsFixture from "../../../../../../node-lib/curriculum-api/fixtures/subjectPageProps";
+} from "../../../../../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { mockSeoResult } from "../../../../../../__helpers__/cms";
+import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
+import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
+import subjectPagePropsFixture from "../../../../../../../node-lib/curriculum-api/fixtures/subjectPageProps";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 const props = subjectPagePropsFixture();
