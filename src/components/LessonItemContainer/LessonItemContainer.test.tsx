@@ -1,12 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-import { LessonOverviewData } from "../../node-lib/curriculum-api";
-import Card from "../Card";
-
 import { LessonItemContainer } from "./LessonItemContainer";
+
+import Card from "@/components/Card";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import { LessonOverviewData } from "@/node-lib/curriculum-api";
 
 const resourceContainerExpanded = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
