@@ -17,33 +17,35 @@ describe("Component - subject phase picker", () => {
     expect(buttons).toHaveLength(2);
   });
 
-  test("user clicks new and old subjects, then deselects", async () => {
+  test("user clicks new and old subjects", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
       <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Subject");
     userEvent.click(control);
     const buttons = await findAllByTitle("Science");
-    const newButton = buttons[0];
-    if (!newButton) {
+    const button = buttons[0];
+    if (!button) {
       throw new Error("New button not found");
     }
-    userEvent.click(newButton);
+    userEvent.click(button);
     await waitFor(() => {
       expect(control).toHaveTextContent("Science (new)");
     });
-    const oldButton = buttons[1];
-    if (!oldButton) {
-      throw new Error("Old button not found");
-    }
-    userEvent.click(oldButton);
-    await waitFor(() => {
-      expect(control).toHaveTextContent("Science");
-    });
-    userEvent.click(oldButton);
-    await waitFor(() => {
-      expect(control).toHaveTextContent("Science");
-    });
+  });
+
+  test("user selects and deselects an old subject", async () => {
+    const { getByTitle, findByTitle } = renderWithTheme(
+      <SubjectPhasePicker {...subjectPhaseOptions} />
+    );
+    const control = getByTitle("Subject");
+    userEvent.click(control);
+    await userEvent.click(await findByTitle("Citizenship"));
+    expect(control).toHaveTextContent("Citizenship");
+    await userEvent.click(document.body);
+    userEvent.click(control);
+    await userEvent.click(await findByTitle("Citizenship"));
+    expect(control).toHaveTextContent("Select");
   });
 
   test("user clicks to open phases when they click the control", async () => {
@@ -65,8 +67,8 @@ describe("Component - subject phase picker", () => {
     userEvent.click(control);
     await userEvent.click(await findByTitle("Primary"));
     expect(control).toHaveTextContent("Primary");
-    expect(await queryByTitle("Exam board")).toBeNull();
-    await userEvent.click(control);
+    expect(queryByTitle("Exam board")).toBeNull();
+    userEvent.click(control);
     await userEvent.click(await findByTitle("Primary"));
     expect(control).toHaveTextContent("Select");
   });
@@ -80,7 +82,7 @@ describe("Component - subject phase picker", () => {
       throw new Error("Expected 2 buttons");
     }
     userEvent.click(button);
-    const control = await getByTitle("Phase");
+    const control = getByTitle("Phase");
     userEvent.click(await findByTitle("Secondary"));
     const examboardTitle = await findByText("Exam board");
     expect(examboardTitle).toBeTruthy();
@@ -89,27 +91,39 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can close selection panels on outside click", async () => {
-    const { findByText, getByTitle, queryByText } = renderWithTheme(
+    const { getByTitle, queryByText } = renderWithTheme(
       <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     await userEvent.click(getByTitle("Subject"));
-    expect(await findByText("Latest Resources")).toBeTruthy();
+    expect(queryByText("Latest Resources")).toBeTruthy();
     await userEvent.click(document.body);
     expect(queryByText("Latest Resources")).toBeNull();
     await userEvent.click(getByTitle("Phase"));
-    expect(await findByText("Choose a school phase:")).toBeTruthy();
+    expect(queryByText("Choose a school phase:")).toBeTruthy();
     await userEvent.click(document.body);
     expect(queryByText("Choose a school phase:")).toBeNull();
   });
 
-  test("user clicks View without selection and gets error", async () => {
-    const { findByText, getByText } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
-    );
-    userEvent.click(getByText("View"));
-    const subjectError = await findByText("Please select a subject");
-    const phaseError = await findByText("Please select a phase");
-    expect(subjectError).toBeTruthy();
-    expect(phaseError).toBeTruthy();
+  test("user clicks View without complete selection and gets error", async () => {
+    const { getByText, getAllByTitle, getByTitle, queryByText } =
+      renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
+    const viewButton = getByText("View");
+    await userEvent.click(viewButton);
+    expect(queryByText("Please select a subject")).toBeTruthy();
+    expect(queryByText("Please select a phase")).toBeTruthy();
+    const subjectButtons = getAllByTitle("History");
+    const historyButton = subjectButtons[0];
+    if (!historyButton) {
+      throw new Error("History button not found");
+    }
+    userEvent.click(historyButton);
+    await userEvent.click(document.body);
+    await userEvent.click(viewButton);
+    expect(queryByText("Please select a subject")).toBeNull();
+    expect(queryByText("Please select a phase")).toBeTruthy();
+    userEvent.click(getByTitle("Secondary"));
+    await userEvent.click(document.body);
+    await userEvent.click(viewButton);
+    expect(queryByText("Select an exam board")).toBeTruthy();
   });
 });
