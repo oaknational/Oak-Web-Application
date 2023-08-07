@@ -26,7 +26,8 @@ const NavLink = ({ label, href }: LinkProps) => {
       <Box $display={["none", "block"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
-          variant={isCurrent ? "minimal" : "brush"}
+          variant={isCurrent ? "brushNav" : "minimal"}
+          $hoverStyles={["underline-text"]}
           label={label}
           href={href}
           page={null}

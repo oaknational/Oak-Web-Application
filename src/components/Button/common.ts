@@ -12,7 +12,11 @@ import { OpacityProps } from "../../styles/utils/opacity";
 import { MarginProps } from "../../styles/utils/spacing";
 import { IconName } from "../Icon";
 
-export type ButtonVariant = "brush" | "minimal" | "buttonStyledAsLink";
+export type ButtonVariant =
+  | "brush"
+  | "brushNav"
+  | "minimal"
+  | "buttonStyledAsLink";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
@@ -80,6 +84,18 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 10,
   },
+  "small-brushNav-button": {
+    height: 44,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 10,
+  },
+  "large-brushNav-button": {
+    height: 50,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 10,
+  },
   "small-minimal-icon-button": {
     height: 20,
     iconOuterHeight: 20,
@@ -111,6 +127,18 @@ const BUTTON_CONFIGS: Record<
     paddingH: 0,
   },
   "large-brush-icon-button": {
+    height: 36,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 0,
+  },
+  "small-brushNav-icon-button": {
+    height: 30,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 0,
+  },
+  "large-brushNav-icon-button": {
     height: 36,
     iconOuterHeight: 36,
     iconInnerHeight: 30,
@@ -216,6 +244,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
+    $hoverStyles?: string[];
     disabled?: boolean;
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {
