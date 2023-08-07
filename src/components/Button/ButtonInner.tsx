@@ -87,7 +87,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
   const defactoBackground =
-    ["minimal", "buttonStyledAsLink"].includes(variant) && iconBackground
+    ["minimal", "minimalNav", "buttonStyledAsLink"].includes(variant) &&
+    iconBackground
       ? iconBackground
       : background;
 
@@ -134,7 +135,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground || defaultIconBackground}
           />
-          {variant === "minimal" && (
+          {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
         </Flex>
@@ -173,7 +174,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             )}
           </ButtonLabel>
         </Box>
-        {variant === "minimal" && (
+        {(variant === "minimal" || variant === "minimalNav") && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
             name="underline-1"

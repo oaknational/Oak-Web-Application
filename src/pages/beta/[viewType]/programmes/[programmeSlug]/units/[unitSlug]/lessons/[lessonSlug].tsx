@@ -37,6 +37,7 @@ import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
+import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -145,6 +146,18 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
+  const pageLinks = [
+    { label: "Slide deck", href: "#sideDeck" },
+    {
+      label: "Lesson details",
+      href: "#lessonDetails",
+      isCurrentOverride: true,
+    },
+    { label: "Video", href: "#video" },
+    { label: "Worksheet", href: "#worksheet" },
+    { label: "Exit Quiz", href: "#exitQuiz" },
+  ];
+
   return (
     <AppLayout
       seoProps={{
@@ -247,7 +260,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ) : (
           <>
             <Grid $pt={[48]}>
-              <GridArea $colSpan={[12, 3]} />
+              <GridArea $colSpan={[12, 3]}>
+                <ButtonLinkNav
+                  ariaLabel="page navigation"
+                  buttons={pageLinks}
+                  $flexDirection={"column"}
+                  $alignItems={"flex-start"}
+                  $gap={[8]}
+                  arrowSuffix
+                />
+              </GridArea>
               <GridArea $colSpan={[12, 9]}>
                 <Flex $flexDirection={"column"}>
                   {presentationUrl && !hasCopyrightMaterial && (

@@ -41,7 +41,7 @@ export type ButtonStylesProps = OpacityProps &
     $fullWidth?: boolean;
     disabled?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: [];
+    $hoverStyles?: string[];
     "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (
@@ -153,7 +153,7 @@ const buttonStyles = css<ButtonStylesProps>`
     `}
 
   ${(props) =>
-    props.variant === "minimal" &&
+    (props.variant === "minimal" || props.variant === "minimalNav") &&
     css`
       & ${BackgroundIcon} {
         transition: filter 0.3s ease-in-out;
@@ -179,7 +179,7 @@ const buttonStyles = css<ButtonStylesProps>`
 
   ${(props) =>
     props.$hoverStyles &&
-    props.$hoverStyles.includes("underline-text") &&
+    props.$hoverStyles.includes("underline-link-text") &&
     !props.disabled &&
     css`
       :hover:not(:focus) ${ButtonLabel} {
