@@ -1,3 +1,36 @@
+# [1.213.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.212.0...v1.213.0) (2023-08-07)
+
+
+### Bug Fixes
+
+* import typo ([25aae28](https://github.com/oaknational/Oak-Web-Application/commit/25aae281b0ac6f90cac1e3e69c4774729b716de1))
+* review fixes ([a82ec4f](https://github.com/oaknational/Oak-Web-Application/commit/a82ec4f04c745490a33e7ec9560fe20fba1ddad8))
+* ts errors ([181b308](https://github.com/oaknational/Oak-Web-Application/commit/181b3084ba3bbc851531e250e3bf1cb666e8d7e3))
+* updated e2e tests ([07e19fa](https://github.com/oaknational/Oak-Web-Application/commit/07e19fa860f5e9040412a9c5353360732cad89c5))
+
+
+### Features
+
+* change transcript and signed button labels ([2dcc52d](https://github.com/oaknational/Oak-Web-Application/commit/2dcc52d856f3fca7046fac8b1fec35d31586ef99))
+* styled video ([441f637](https://github.com/oaknational/Oak-Web-Application/commit/441f637c8805c2391ed94760f6716b8f431dba2f))
+* unit testing ([3f8b576](https://github.com/oaknational/Oak-Web-Application/commit/3f8b5768b9f7ad55354898e62c5928be0d10e8df))
+
+# [1.212.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.211.1...v1.212.0) (2023-08-03)
+
+
+### Features
+
+* allow creating anchor link targets in the CMS ([cf8b118](https://github.com/oaknational/Oak-Web-Application/commit/cf8b11840c820a886b2c7173eed1828d692092c0))
+* allow linking to any page anchor from the CMS ([3e3551b](https://github.com/oaknational/Oak-Web-Application/commit/3e3551b41d600157ed0e17d9ee9567860a606b6c))
+
+## [1.211.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.211.0...v1.211.1) (2023-08-03)
+
+
+### Bug Fixes
+
+* **merge main:** merge main into branch ([4126fae](https://github.com/oaknational/Oak-Web-Application/commit/4126fae9a50b4f4734953a64afcecb736afd0b4f))
+* **programmes:** correct unit and lesson count displayed on programme listing ([8703684](https://github.com/oaknational/Oak-Web-Application/commit/87036846e4307465ae811e808236f78798523809))
+
 # [1.211.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.210.0...v1.211.0) (2023-08-03)
 
 
