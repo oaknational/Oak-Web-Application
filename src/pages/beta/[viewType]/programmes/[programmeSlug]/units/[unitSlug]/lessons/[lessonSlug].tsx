@@ -23,7 +23,6 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import LessonHelper from "@/components/LessonHelper";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "@/components/pages/TeachersLessonOverview/OverviewTranscript";
 import ExpandingContainer from "@/components/ExpandingContainer";
 import QuizContainer from "@/components/QuizContainer";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
@@ -157,8 +156,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <MaxWidth $ph={16}>
-        <Flex $flexDirection={"column"} $alignItems={"start"}>
+        <>
           <Box $mv={[24, 48]}>
+            {/* NB. BreadcrumbsConstrainer doesn't play nicely when nested inside a flex box */}
             <Breadcrumbs
               breadcrumbs={[
                 ...lessonBreadcrumbArray(
@@ -184,42 +184,43 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             />
           </Box>
 
-          <TitleCard
-            page={"lesson"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            subject={subjectTitle}
-            subjectSlug={subjectSlug}
-            title={lessonTitle}
-          />
-
-          {!expired && hasDownloadableResources && (
-            <ButtonAsLink
-              $mr={24}
-              icon="download"
-              iconBackground="teachersHighlight"
-              label="Download all resources"
-              page={"lesson-downloads"}
-              viewType="teachers"
-              size="small"
-              variant="minimal"
-              $iconPosition={"trailing"}
-              $mt={16}
-              data-testid={"download-all-button"}
-              query={{
-                preselected: "all",
-              }}
-              programmeSlug={programmeSlug}
-              lessonSlug={lessonSlug}
-              unitSlug={unitSlug}
-              onClick={() => {
-                trackDownloadResourceButtonClicked({
-                  downloadResourceButtonName: "all",
-                });
-              }}
+          <Flex $alignItems={"start"} $flexDirection={"column"}>
+            <TitleCard
+              page={"lesson"}
+              keyStage={keyStageTitle}
+              keyStageSlug={keyStageSlug}
+              subject={subjectTitle}
+              subjectSlug={subjectSlug}
+              title={lessonTitle}
             />
-          )}
-          {/*
+
+            {!expired && hasDownloadableResources && (
+              <ButtonAsLink
+                $mr={24}
+                icon="download"
+                iconBackground="teachersHighlight"
+                label="Download all resources"
+                page={"lesson-downloads"}
+                viewType="teachers"
+                size="small"
+                variant="minimal"
+                $iconPosition={"trailing"}
+                $mt={16}
+                data-testid={"download-all-button"}
+                query={{
+                  preselected: "all",
+                }}
+                programmeSlug={programmeSlug}
+                lessonSlug={lessonSlug}
+                unitSlug={unitSlug}
+                onClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "all",
+                  });
+                }}
+              />
+            )}
+            {/*
           TODO: Uncomment when we have a way to send to pupil
            <Button
             $mr={24}
@@ -232,7 +233,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $iconPosition={"trailing"}
             $mt={16}
           /> */}
-        </Flex>
+          </Flex>
+        </>
         {expired ? (
           <Box $pa={16} $mb={64}>
             <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
@@ -277,14 +279,14 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   </LessonItemContainer>
 
                   {videoMuxPlaybackId && (
-                    <ExpandingContainer {...curriculumData} title={"Video"}>
+                    <LessonItemContainer title={"Video"}>
                       <OverviewVideo
                         video={videoMuxPlaybackId}
                         signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                         title={lessonTitle}
-                        hasCaptions={Boolean(transcriptSentences)}
+                        transcriptSentences={transcriptSentences}
                       />
-                    </ExpandingContainer>
+                    </LessonItemContainer>
                   )}
                   {worksheetUrl && (
                     <ExpandingContainer
@@ -336,17 +338,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                       }}
                     >
                       <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-                    </ExpandingContainer>
-                  )}
-
-                  {transcriptSentences && (
-                    <ExpandingContainer
-                      {...curriculumData}
-                      title={"Transcript"}
-                    >
-                      <OverviewTranscript
-                        transcriptSentences={transcriptSentences}
-                      />
                     </ExpandingContainer>
                   )}
                 </Flex>
