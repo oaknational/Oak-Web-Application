@@ -9,7 +9,9 @@ export type KeyLearningPoint = {
   keyLearningPoint: string | null;
 };
 
-type LessonKeyLearningPoints = { keyLearningPoints: KeyLearningPoint[] };
+type LessonKeyLearningPoints = {
+  keyLearningPoints: KeyLearningPoint[];
+};
 
 const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   const filteredKeyLearningPoints = keyLearningPoints.filter(

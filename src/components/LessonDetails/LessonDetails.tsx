@@ -1,6 +1,7 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 
-import Grid, { GridArea } from "../Grid";
+import Box from "../Box";
 import Flex from "../Flex";
 import KeyLearningPoints, {
   KeyLearningPoint,
@@ -10,53 +11,75 @@ import CommonMisconceptions, {
 } from "../CommonMisconceptions/CommonMisconceptions";
 import KeyWords, { KeyWord } from "../KeyWords/KeyWords";
 import TeacherTips, { TeacherTip } from "../TeacherTips/TeacherTips";
+import LessonHelper from "../LessonHelper/LessonHelper";
+
+import {
+  ContentGuidance,
+  Equipment,
+} from "@/components/LessonRequirements/LessonRequirements";
 
 type LessonDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;
   commonMisconceptions: CommonMisconception[] | null | undefined;
   keyWords: KeyWord[] | null | undefined;
   teacherTips: TeacherTip[] | null | undefined;
+  equipmentAndResources: Equipment[] | null | undefined;
+  contentGuidance: ContentGuidance[] | null | undefined;
+  supervisionLevel: string | null | undefined;
 };
+
+const StyledBox = styled(Box)`
+  margin-bottom: 48px;
+
+  &:last-child {
+    margin-bottom: 24px;
+  }
+`;
 
 const LessonDetails: FC<LessonDetailsProps> = ({
   keyLearningPoints,
   commonMisconceptions,
   keyWords,
   teacherTips,
+  equipmentAndResources,
+  contentGuidance,
+  supervisionLevel,
 }) => {
   return (
-    <Flex $flexDirection={"column"}>
-      <Grid $width={"100%"} $cg={16} $rg={48}>
+    <Flex
+      $flexDirection={"row"}
+      $flexWrap={["wrap", "nowrap"]}
+      $justifyContent={"center"}
+    >
+      <Flex $flexDirection={"column"} $mr={16}>
         {keyLearningPoints && (
-          <GridArea $colSpan={[12, 8]} $colStart={1} $width={"100%"}>
+          <StyledBox>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
-          </GridArea>
+          </StyledBox>
         )}
         {commonMisconceptions && (
-          <GridArea $colSpan={[12, 8]} $colStart={1}>
-            {commonMisconceptions && (
-              <CommonMisconceptions
-                commonMisconceptions={commonMisconceptions}
-              />
-            )}
-          </GridArea>
+          <StyledBox>
+            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+          </StyledBox>
         )}
-        {keyWords && (
-          <GridArea $colSpan={[12, 8]} $colStart={1}>
-            {keyWords && <KeyWords keyWords={keyWords} />}
-          </GridArea>
-        )}
+        {keyWords && <KeyWords keyWords={keyWords} />}
+      </Flex>
+      <Flex $flexDirection={"column"} $mt={[48, 0]}>
         {teacherTips && (
-          <GridArea
-            $colSpan={[12, 4]}
-            $colStart={[1, 9]}
-            $width={"100%"}
-            $rowStart={[4, 1]}
-          >
+          <StyledBox>
             <TeacherTips teacherTips={teacherTips} />
-          </GridArea>
+          </StyledBox>
         )}
-      </Grid>
+        {equipmentAndResources || contentGuidance || supervisionLevel ? (
+          <StyledBox>
+            <LessonHelper
+              equipment={equipmentAndResources}
+              contentGuidance={contentGuidance}
+              supervisionLevel={supervisionLevel}
+            />
+          </StyledBox>
+        ) : null}
+      </Flex>
     </Flex>
   );
 };

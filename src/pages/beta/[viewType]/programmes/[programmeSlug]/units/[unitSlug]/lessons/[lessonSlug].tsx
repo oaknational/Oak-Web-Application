@@ -20,7 +20,6 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Grid, { GridArea } from "@/components/Grid";
 import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import LessonHelper from "@/components/LessonHelper";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
 import OverviewTranscript from "@/components/pages/TeachersLessonOverview/OverviewTranscript";
@@ -273,6 +272,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                       commonMisconceptions={misconceptionsAndCommonMistakes}
                       keyWords={lessonKeywords}
                       teacherTips={teacherTips}
+                      equipmentAndResources={lessonEquipmentAndResources}
+                      contentGuidance={contentGuidance}
+                      supervisionLevel={supervisionLevel}
                     />
                   </LessonItemContainer>
 
@@ -358,7 +360,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       </MaxWidth>
       {!expired && (
         <>
-          <MaxWidth $ph={[0, 16, 16]}>
+          {/* <MaxWidth $ph={[0, 16, 16]}>
             {(lessonEquipmentAndResources ||
               supervisionLevel ||
               contentGuidance) && <Hr $color={"oakGrey3"} />}
@@ -379,7 +381,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 contentGuidance={contentGuidance}
               />
             </Grid>
-          </MaxWidth>
+          </MaxWidth> */}
           <MaxWidth $ph={16}>
             <Hr $color={"oakGrey3"} />
           </MaxWidth>

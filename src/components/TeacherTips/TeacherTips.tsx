@@ -1,24 +1,24 @@
 import React from "react";
 
+import SpeechBubble from "../SpeechBubble/SpeechBubble";
 import Flex from "../Flex";
-import { Heading, P } from "../Typography";
+
+import { MarginValues } from "@/styles/utils/spacing";
 
 export type TeacherTip = {
   teacherTip: string | null;
 };
 
-type LessonTeacherTips = { teacherTips: TeacherTip[] };
+type LessonTeacherTips = {
+  teacherTips: TeacherTip[];
+  marginBottom?: MarginValues;
+};
 
-const TeacherTips = ({ teacherTips }: LessonTeacherTips) => {
+const TeacherTips = ({ teacherTips, marginBottom }: LessonTeacherTips) => {
   const [teacherTip] = teacherTips;
   return (
-    <Flex>
-      <Flex $flexDirection={"column"}>
-        <P>{teacherTip?.teacherTip}</P>
-        <Heading tag="h3" data-testid={"heading"}>
-          Teacher tip
-        </Heading>
-      </Flex>
+    <Flex $mb={marginBottom}>
+      <SpeechBubble text={teacherTip?.teacherTip} label={"Teacher tip"} />
     </Flex>
   );
 };

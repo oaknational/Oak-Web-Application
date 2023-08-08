@@ -8,6 +8,15 @@ describe("LessonDetails component", () => {
     { misconception: "misconception", response: "response" },
   ];
   const keyWords = [{ keyword: "keyword", description: "description" }];
+  const equipmentAndResources = [{ equipment: "equipment" }];
+  const contentGuidance = [
+    {
+      contentGuidanceLabel: "content guidance",
+      contentGuidanceDescription: "content guidance",
+      contentGuidanceArea: "content guidance area",
+    },
+  ];
+  const supervisionLevel = "supervision level";
 
   const teacherTips = [{ teacherTip: "test teacher tip" }];
   it("it should not render its own title", () => {
@@ -17,6 +26,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -30,6 +42,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -44,6 +59,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -58,6 +76,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={null}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -72,6 +93,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -86,6 +110,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={null}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -100,6 +127,9 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -114,10 +144,35 @@ describe("LessonDetails component", () => {
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={null}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
     const componentTitle = queryByText("Teacher tips");
     expect(componentTitle).not.toBeInTheDocument();
+  });
+
+  it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={null}
+        contentGuidance={null}
+        supervisionLevel={undefined}
+      />
+    );
+
+    const equipmentTitle = queryByText("Equipment");
+    const contentGuidanceTitle = queryByText("Content guidance");
+    const supervisionLevelTitle = queryByText("supervision");
+
+    expect(equipmentTitle).not.toBeInTheDocument();
+    expect(contentGuidanceTitle).not.toBeInTheDocument();
+    expect(supervisionLevelTitle).not.toBeInTheDocument();
   });
 });
