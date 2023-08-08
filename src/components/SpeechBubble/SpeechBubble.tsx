@@ -17,7 +17,7 @@ const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
   }
 
   return (
-    <Box $width={320}>
+    <Box $minWidth={320}>
       <Flex
         $alignItems={"center"}
         $flexDirection={"column"}

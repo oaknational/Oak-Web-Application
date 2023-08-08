@@ -35,7 +35,7 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
   return (
     <Flex $flexDirection={"column"} $justifyContent={"center"}>
       <Flex $flexDirection={"row"} $alignItems={"center"}>
-        <Icon $color={"aqua50"} name={helperIcon} variant="minimal" $mr={8} />
+        <Icon name={helperIcon} variant="minimal" $mr={8} />
         <Heading $font={"heading-7"} tag="h4">
           {heading}
         </Heading>

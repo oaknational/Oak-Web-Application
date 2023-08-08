@@ -51,8 +51,9 @@ const LessonDetails: FC<LessonDetailsProps> = ({
       $flexDirection={"row"}
       $flexWrap={["wrap", "nowrap"]}
       $justifyContent={["center", "normal"]}
+      $alignItems={"flex-start"}
     >
-      <Flex $flexDirection={"column"} $mr={16}>
+      <Flex $flexDirection={"column"} $flexGrow={1} $mr={16}>
         {keyLearningPoints && (
           <StyledBox>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
@@ -63,7 +64,11 @@ const LessonDetails: FC<LessonDetailsProps> = ({
             <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
           </StyledBox>
         )}
-        {keyWords && <KeyWords keyWords={keyWords} />}
+        {keyWords && (
+          <StyledBox>
+            <KeyWords keyWords={keyWords} />
+          </StyledBox>
+        )}
       </Flex>
       <Flex $flexDirection={"column"} $mt={[48, 0]}>
         {teacherTips && (
