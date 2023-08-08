@@ -3,8 +3,6 @@ import React from "react";
 import Flex from "../Flex";
 import { LI, P, Span, UL, Heading } from "../Typography";
 
-import { MarginValues } from "@/styles/utils/spacing";
-
 export type KeyWord = {
   keyword: string;
   description: string | null;
@@ -12,16 +10,14 @@ export type KeyWord = {
 
 export type KeyWordsAndDescription = {
   keyWords: KeyWord[];
-  marginBottom?: MarginValues;
 };
 
-const KeyWords = ({ keyWords, marginBottom }: KeyWordsAndDescription) => {
+const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
   return (
     <Flex
       $flexDirection={"column"}
       $position={"relative"}
       $justifyContent={"center"}
-      $mb={marginBottom}
     >
       <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
         Key words
