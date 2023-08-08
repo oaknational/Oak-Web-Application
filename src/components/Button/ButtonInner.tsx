@@ -184,7 +184,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
       {(variant === "brush" || variant === "brushNav") && (
         <ButtonBorders background={background} />
       )}
+
       <ButtonFocusUnderline $color={underlineColor} name="underline-1" />
+
       {variant === "buttonStyledAsLink" && (
         <ButtonStyledAsLinkFocusUnderline $color={"black"} name="underline-1" />
       )}

@@ -146,16 +146,29 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
-  const pageLinks = [
-    { label: "Slide deck", href: "#slideDeck" },
-    {
-      label: "Lesson details",
-      href: "#lessonDetails",
-    },
-    { label: "Video", href: "#video" },
-    { label: "Worksheet", href: "#worksheet" },
-    { label: "Exit Quiz", href: "#exitQuiz" },
-  ];
+  const pageLinks = [];
+
+  if (presentationUrl && !hasCopyrightMaterial) {
+    pageLinks.push({ label: "Slide deck", href: "#slideDeck" });
+  }
+
+  pageLinks.push({ label: "Lesson details", href: "#lessonDetails" });
+
+  if (videoMuxPlaybackId) {
+    pageLinks.push({ label: "Video", href: "#video" });
+  }
+
+  if (worksheetUrl) {
+    pageLinks.push({ label: "Worksheet", href: "#worksheet" });
+  }
+
+  if (introQuiz.length > 0) {
+    pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
+  }
+
+  if (exitQuiz.length > 0) {
+    pageLinks.push({ label: "Exit quiz", href: "#exitQuiz" });
+  }
 
   return (
     <AppLayout
@@ -262,7 +275,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size
+              $display={["none", "block"]}
+              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <ButtonLinkNav
                 ariaLabel="page navigation"
@@ -271,11 +285,12 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 $alignItems={"flex-start"}
                 $gap={[8]}
                 arrowSuffix
+                shallow
               />
             </GridArea>
             <GridArea $colSpan={[12, 9]}>
               <Flex $flexDirection={"column"} $position={"relative"}>
-                {presentationUrl && !hasCopyrightMaterial && (
+                {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
                     title={"Slide deck"}
                     downloadable={true}
@@ -307,7 +322,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                   />
                 </LessonItemContainer>
 
-                {videoMuxPlaybackId && (
+                {pageLinks.find((p) => p.label === "Video") && (
                   <LessonItemContainer title={"Video"} anchorId="video">
                     <OverviewVideo
                       video={videoMuxPlaybackId}
@@ -317,7 +332,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     />
                   </LessonItemContainer>
                 )}
-                {worksheetUrl && (
+                {pageLinks.find((p) => p.label === "Worksheet") && (
                   <ExpandingContainer
                     downloadable={true}
                     {...curriculumData}

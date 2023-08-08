@@ -7,7 +7,7 @@ import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";
 import Flex from "@/components/Flex";
 
 export interface OverviewVideoProps {
-  video: string;
+  video: string | null;
   signLanguageVideo: string | null;
   title: string;
   transcriptSentences?: string[] | null;

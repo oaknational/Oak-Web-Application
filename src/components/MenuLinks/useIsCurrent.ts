@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-
 const isSubPath = ({
   currentPath,
   href,

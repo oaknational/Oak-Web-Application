@@ -11,15 +11,17 @@ type LinkProps = {
   href: string;
   isCurrentOverride?: boolean;
   arrowSuffix?: boolean;
+  shallow?: boolean;
 };
 
 type ButtonLinkNavProps = {
   ariaLabel: string;
   buttons: LinkProps[];
   arrowSuffix?: boolean;
+  shallow?: boolean;
 } & FlexProps;
 
-const NavLink = ({ label, href, arrowSuffix }: LinkProps) => {
+const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
 
   const htmlAnchorProps: HTMLAnchorProps = {
@@ -43,6 +45,8 @@ const NavLink = ({ label, href, arrowSuffix }: LinkProps) => {
           icon={isCurrent && arrowSuffix ? "arrow-right" : undefined}
           iconBackground={isCurrent && arrowSuffix ? "transparent" : undefined}
           $iconPosition="trailing"
+          shallow={shallow}
+          scroll={shallow}
         />
       </Box>
       {/* Mobile */}
@@ -76,6 +80,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
   ariaLabel,
   arrowSuffix,
+  shallow,
   ...props
 }) => {
   return (
@@ -87,7 +92,12 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
         {...props}
       >
         {buttons.map((button) => (
-          <NavLink key={button.href} arrowSuffix={arrowSuffix} {...button} />
+          <NavLink
+            key={button.href}
+            arrowSuffix={arrowSuffix}
+            shallow={shallow}
+            {...button}
+          />
         ))}
       </Flex>
     </nav>
