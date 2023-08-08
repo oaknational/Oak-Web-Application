@@ -14,6 +14,7 @@ const lessonListingSchema = z.object({
       lessonSlug: z.string(),
       lessonTitle: z.string(),
       description: z.string(),
+      pupilLessonOutcome: z.string().nullish(),
       expired: z.boolean(),
       quizCount: z.number().nullish(),
       videoCount: z.number().nullish(),

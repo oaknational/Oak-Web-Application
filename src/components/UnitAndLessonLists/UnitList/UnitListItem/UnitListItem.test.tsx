@@ -52,7 +52,7 @@ describe("Unit List Item", () => {
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
     const { getByText } = render(<UnitListItem {...props} />);
 
-    const unit = getByText("4. Numbers and numerals");
+    const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
     await user.click(unit);

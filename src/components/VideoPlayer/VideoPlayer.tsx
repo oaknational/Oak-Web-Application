@@ -3,13 +3,6 @@ import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 
-import Flex from "../Flex";
-import OakError from "../../errors/OakError";
-import theme, { OakColorName } from "../../styles/theme";
-import errorReporter from "../../common-lib/error-reporter";
-import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
-import { P } from "../Typography";
-
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
 import getSubtitleTrack from "./getSubtitleTrack";
@@ -21,6 +14,14 @@ import {
   useSignedThumbnailToken,
   useSignedStoryboardToken,
 } from "./useSignedVideoToken";
+
+import theme, { OakColorName } from "@/styles/theme";
+import errorReporter from "@/common-lib/error-reporter";
+import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
+import OakError from "@/errors/OakError";
+import Flex from "@/components/Flex";
+import { P } from "@/components/Typography";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -136,7 +137,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
-      <Flex $flexDirection={"column"} $width={"100%"}>
+      <Flex
+        $flexDirection={"column"}
+        $width={"100%"}
+        $height={[240]}
+        $alignItems={"center"}
+        $justifyContent={"center"}
+      >
+        <BoxBorders />
         <P $textAlign="center">Loading...</P>
       </Flex>
     );
@@ -153,7 +161,12 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   };
 
   return (
-    <Flex $flexDirection={"column"} $width={"100%"}>
+    <Flex
+      $flexDirection={"column"}
+      $width={"100%"}
+      $ba={[3]}
+      $borderColor={"black"}
+    >
       <MuxPlayer
         preload="metadata"
         streamType="on-demand"
@@ -174,6 +187,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onTimeUpdate={onTimeUpdate}
         style={{
           aspectRatio: "16/9",
+          overflow: "hidden",
         }}
       />
     </Flex>

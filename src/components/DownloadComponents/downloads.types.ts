@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { ExpandingContainerTitle } from "../ExpandingContainer/ExpandingContainer";
+import { LessonItemTitle } from "../LessonItemContainer/LessonItemContainer";
 
 const DOWNLOAD_RESOURCE_TYPES = [
   "presentation",
@@ -34,13 +35,14 @@ export const preselectedDownloadTypeMap: Record<
 };
 
 export const containerTitleToPreselectMap: Record<
-  ExpandingContainerTitle,
+  ExpandingContainerTitle | LessonItemTitle,
   PreselectedDownloadType | null
 > = {
   "Slide deck": "slide deck",
   "Exit quiz": "exit quiz",
   "Starter quiz": "starter quiz",
   "Lesson overview": null,
+  "Lesson details": null,
   Worksheet: "worksheet",
   Transcript: null,
   Video: null,

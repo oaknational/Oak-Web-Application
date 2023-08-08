@@ -9,11 +9,11 @@ class TeacherKeyStagesSubjectsProgrammesUnitsLessonsPage extends Page {
    */
 
   public get transcriptControl() {
-    return $("button=Transcript");
+    return $('button[aria-label="Show video transcript"]'); // TODO: this needs updating for the current aria label
   }
 
   public get transcriptContents() {
-    return $("aria/The video transcript");
+    return $("aria/The video transcript"); // TODO: check this matches the current aria label for the transcript
   }
 
   async toggleTranscript() {
