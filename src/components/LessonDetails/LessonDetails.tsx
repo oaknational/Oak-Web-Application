@@ -32,7 +32,7 @@ const StyledBox = styled(Box)`
   margin-bottom: 48px;
 
   &:last-child {
-    margin-bottom: 24px;
+    margin-bottom: 1px;
   }
 `;
 
