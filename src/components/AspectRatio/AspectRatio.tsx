@@ -24,13 +24,12 @@ const AspectRatioOuter = styled.div<{ ratio: AspectRatios }>`
   ${responsive("padding-top", (props) => props.ratio, ratioToPercentage)}
 `;
 const AspectRatioInner = styled.div`
+  display: flex;
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   top: 0;
-  overflow: hidden;
-  display: inline-block;
 `;
 
 type AspectRatioProps = {
