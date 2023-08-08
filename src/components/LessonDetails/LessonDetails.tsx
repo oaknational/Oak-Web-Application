@@ -49,7 +49,7 @@ const LessonDetails: FC<LessonDetailsProps> = ({
     <Flex
       $flexDirection={"row"}
       $flexWrap={["wrap", "nowrap"]}
-      $justifyContent={"center"}
+      $justifyContent={["center", "normal"]}
     >
       <Flex $flexDirection={"column"} $mr={16}>
         {keyLearningPoints && (
