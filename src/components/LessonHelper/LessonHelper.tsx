@@ -20,8 +20,8 @@ const LessonHelper: FC<LessonHelperProps> = ({
   supervisionLevel,
 }) => {
   return (
-    <Box $background={"aqua50"} $position={"relative"}>
-      <Grid $minWidth={320} $rg={32} $pa={24}>
+    <Box $background={"aqua50"} $position={"relative"} $width={320}>
+      <Grid $rg={32} $pa={24}>
         {equipment && (
           <GridArea $colStart={1} $colSpan={[12]}>
             <LessonRequirements
