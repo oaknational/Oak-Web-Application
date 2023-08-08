@@ -35,7 +35,7 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
             border: "none",
           }}
         />
-            <BoxBorders gapPosition="rightTop"/>
+        <BoxBorders gapPosition="rightTop" />
       </AspectRatio>
     </Box>
   );
