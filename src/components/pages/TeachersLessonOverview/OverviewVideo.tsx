@@ -40,14 +40,16 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
 
   return (
     <Flex $flexDirection={"column"} $gap={[24]}>
-      <VideoPlayer
-        playbackId={
-          signLanguageVideo && signLanguageOn ? signLanguageVideo : video
-        }
-        playbackPolicy={"signed"}
-        title={title}
-        location={"lesson"}
-      />
+      {video && (
+        <VideoPlayer
+          playbackId={
+            signLanguageVideo && signLanguageOn ? signLanguageVideo : video
+          }
+          playbackPolicy={"signed"}
+          title={title}
+          location={"lesson"}
+        />
+      )}
 
       <Flex
         $flexDirection={["column-reverse", "row"]}
