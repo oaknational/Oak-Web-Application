@@ -31,6 +31,7 @@ type LessonDetailsProps = {
 const StyledBox = styled(Box)`
   margin-bottom: 48px;
 
+  // can't set margin-bottom to 0px on the last child because of the lint rule
   &:last-child {
     margin-bottom: 1px;
   }
