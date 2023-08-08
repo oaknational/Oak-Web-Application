@@ -291,15 +291,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     </LessonItemContainer>
                   )}
                   {worksheetUrl && (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
+                    <LessonItemContainer
                       title={"Worksheet"}
+                      downloadable={true}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "worksheet",
                         });
                       }}
+                      slugs={slugs}
                     >
                       <OverviewPresentation
                         asset={worksheetUrl}
@@ -307,7 +307,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                         isWorksheetLandscape={isWorksheetLandscape}
                         isWorksheet={true}
                       />
-                    </ExpandingContainer>
+                    </LessonItemContainer>
                   )}
                   {introQuiz.length > 0 ? (
                     <ExpandingContainer
