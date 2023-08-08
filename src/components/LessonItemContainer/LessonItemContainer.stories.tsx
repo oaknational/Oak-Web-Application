@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import lessonOverviewFixture from "../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 import { P } from "../Typography";
 import Flex from "../Flex";
 
@@ -8,6 +7,8 @@ import {
   LessonItemContainer,
   LessonItemContainerProps,
 } from "./LessonItemContainer";
+
+import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
