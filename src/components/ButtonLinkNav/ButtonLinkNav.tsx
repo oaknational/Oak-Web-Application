@@ -46,7 +46,7 @@ const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           iconBackground={isCurrent && arrowSuffix ? "transparent" : undefined}
           $iconPosition="trailing"
           shallow={shallow}
-          scroll={shallow}
+          scroll={!shallow}
         />
       </Box>
       {/* Mobile */}

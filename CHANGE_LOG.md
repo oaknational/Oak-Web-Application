@@ -1,3 +1,14 @@
+# [1.214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.213.0...v1.214.0) (2023-08-08)
+
+
+### Features
+
+* **worksheet:** make worksheet style match figma ([bb7bb65](https://github.com/oaknational/Oak-Web-Application/commit/bb7bb65de15052c662890967eb16cd1a2aefddc2))
+* **worksheet:** make worksheet style match figma ([24bb8a0](https://github.com/oaknational/Oak-Web-Application/commit/24bb8a079866aa94108107e5868156277be63c6e))
+* **worksheet:** make worksheet style match figma ([2128e5b](https://github.com/oaknational/Oak-Web-Application/commit/2128e5bfaeb2b1349229d0f44abf9a5a71c8e2d6))
+* **worksheet:** prettier fix ([c735677](https://github.com/oaknational/Oak-Web-Application/commit/c73567734715826d71ed9d3fbc7478b4fb35e0cc))
+* **worksheet:** reverse changes ([4062e0c](https://github.com/oaknational/Oak-Web-Application/commit/4062e0cf068f36941fd94003793c9460be491aab))
+
 # [1.213.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.212.0...v1.213.0) (2023-08-07)
 
 
