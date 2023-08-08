@@ -6,6 +6,7 @@ import { Heading, Hr } from "../Typography";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import { containerTitleToPreselectMap } from "../DownloadComponents/downloads.types";
 import { LessonOverviewData } from "../../node-lib/curriculum-api";
+import AnchorTarget from "../AnchorTarget";
 
 /**
  * This replaces the old ExpandingContainer component on the lesson page. It should wrap each item of lesson content.
@@ -29,6 +30,7 @@ type Slugs = Pick<
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
   title: LessonItemTitle;
+  anchorId: string;
   downloadable?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
@@ -39,18 +41,27 @@ const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
 };
 
 export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
-  const { children, title, downloadable, onDownloadButtonClick, slugs } = props;
+  const {
+    children,
+    title,
+    downloadable,
+    onDownloadButtonClick,
+    slugs,
+    anchorId,
+  } = props;
   const preselected = getPreselectedQueryFromTitle(title);
 
   const lowerCaseTitle = title.toLowerCase();
 
   return (
-    <Flex $flexDirection="column">
+    <Flex $flexDirection="column" $position={"relative"}>
+      <AnchorTarget id={anchorId} $paddingTop={24} />
       <Flex
         $flexDirection={["column", "row"]}
         $alignItems={["start", "end"]}
         $gap={[12, 40]}
         $mb={[24]}
+        $position={"relative"}
       >
         {title && (
           <Heading $font={["heading-5", "heading-4"]} tag={"h2"}>

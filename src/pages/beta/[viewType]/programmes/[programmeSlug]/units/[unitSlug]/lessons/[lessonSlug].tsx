@@ -147,11 +147,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
   const pageLinks = [
-    { label: "Slide deck", href: "#sideDeck" },
+    { label: "Slide deck", href: "#slideDeck" },
     {
       label: "Lesson details",
       href: "#lessonDetails",
-      isCurrentOverride: true,
     },
     { label: "Video", href: "#video" },
     { label: "Worksheet", href: "#worksheet" },
@@ -258,115 +257,118 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             </Typography>
           </Box>
         ) : (
-          <>
-            <Grid $pt={[48]}>
-              <GridArea $colSpan={[12, 3]}>
-                <ButtonLinkNav
-                  ariaLabel="page navigation"
-                  buttons={pageLinks}
-                  $flexDirection={"column"}
-                  $alignItems={"flex-start"}
-                  $gap={[8]}
-                  arrowSuffix
-                />
-              </GridArea>
-              <GridArea $colSpan={[12, 9]}>
-                <Flex $flexDirection={"column"}>
-                  {presentationUrl && !hasCopyrightMaterial && (
-                    <LessonItemContainer
-                      title={"Slide deck"}
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "slide deck",
-                        });
-                      }}
-                      slugs={slugs}
-                    >
-                      <OverviewPresentation
-                        asset={presentationUrl}
-                        title={lessonTitle}
-                        isWorksheet={false}
-                      />
-                    </LessonItemContainer>
-                  )}
-
-                  <LessonItemContainer title={"Lesson details"}>
-                    <LessonDetails
-                      keyLearningPoints={keyLearningPoints}
-                      commonMisconceptions={misconceptionsAndCommonMistakes}
-                      keyWords={lessonKeywords}
-                      teacherTips={teacherTips}
+          <Grid $mt={[48]}>
+            <GridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={"sticky"}
+              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size
+            >
+              <ButtonLinkNav
+                ariaLabel="page navigation"
+                buttons={pageLinks}
+                $flexDirection={"column"}
+                $alignItems={"flex-start"}
+                $gap={[8]}
+                arrowSuffix
+              />
+            </GridArea>
+            <GridArea $colSpan={[12, 9]}>
+              <Flex $flexDirection={"column"} $position={"relative"}>
+                {presentationUrl && !hasCopyrightMaterial && (
+                  <LessonItemContainer
+                    title={"Slide deck"}
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "slide deck",
+                      });
+                    }}
+                    slugs={slugs}
+                    anchorId="slideDeck"
+                  >
+                    <OverviewPresentation
+                      asset={presentationUrl}
+                      title={lessonTitle}
+                      isWorksheet={false}
                     />
                   </LessonItemContainer>
+                )}
 
-                  {videoMuxPlaybackId && (
-                    <LessonItemContainer title={"Video"}>
-                      <OverviewVideo
-                        video={videoMuxPlaybackId}
-                        signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                        title={lessonTitle}
-                        transcriptSentences={transcriptSentences}
-                      />
-                    </LessonItemContainer>
-                  )}
-                  {worksheetUrl && (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Worksheet"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "worksheet",
-                        });
-                      }}
-                    >
-                      <OverviewPresentation
-                        asset={worksheetUrl}
-                        title={lessonTitle}
-                        isWorksheetLandscape={isWorksheetLandscape}
-                        isWorksheet={true}
-                      />
-                    </ExpandingContainer>
-                  )}
-                  {introQuiz.length > 0 ? (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Starter quiz"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "starter quiz",
-                        });
-                      }}
-                    >
-                      <QuizContainer
-                        questions={introQuiz}
-                        info={introQuizInfo}
-                      />
-                    </ExpandingContainer>
-                  ) : (
-                    ""
-                  )}
-                  {exitQuiz.length > 0 && (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Exit quiz"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "exit quiz",
-                        });
-                      }}
-                    >
-                      <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-                    </ExpandingContainer>
-                  )}
-                </Flex>
-              </GridArea>
-              <GridArea $colSpan={[1]} />
-            </Grid>
-          </>
+                <LessonItemContainer
+                  title={"Lesson details"}
+                  anchorId="lessonDetails"
+                >
+                  <LessonDetails
+                    keyLearningPoints={keyLearningPoints}
+                    commonMisconceptions={misconceptionsAndCommonMistakes}
+                    keyWords={lessonKeywords}
+                    teacherTips={teacherTips}
+                  />
+                </LessonItemContainer>
+
+                {videoMuxPlaybackId && (
+                  <LessonItemContainer title={"Video"} anchorId="video">
+                    <OverviewVideo
+                      video={videoMuxPlaybackId}
+                      signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+                      title={lessonTitle}
+                      transcriptSentences={transcriptSentences}
+                    />
+                  </LessonItemContainer>
+                )}
+                {worksheetUrl && (
+                  <ExpandingContainer
+                    downloadable={true}
+                    {...curriculumData}
+                    title={"Worksheet"}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "worksheet",
+                      });
+                    }}
+                  >
+                    <OverviewPresentation
+                      asset={worksheetUrl}
+                      title={lessonTitle}
+                      isWorksheetLandscape={isWorksheetLandscape}
+                      isWorksheet={true}
+                    />
+                  </ExpandingContainer>
+                )}
+                {introQuiz.length > 0 ? (
+                  <ExpandingContainer
+                    downloadable={true}
+                    {...curriculumData}
+                    title={"Starter quiz"}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "starter quiz",
+                      });
+                    }}
+                  >
+                    <QuizContainer questions={introQuiz} info={introQuizInfo} />
+                  </ExpandingContainer>
+                ) : (
+                  ""
+                )}
+                {exitQuiz.length > 0 && (
+                  <ExpandingContainer
+                    downloadable={true}
+                    {...curriculumData}
+                    title={"Exit quiz"}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "exit quiz",
+                      });
+                    }}
+                  >
+                    <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                  </ExpandingContainer>
+                )}
+              </Flex>
+            </GridArea>
+          </Grid>
         )}
       </MaxWidth>
       {!expired && (

@@ -4,13 +4,13 @@ import {
   AnchorHTMLAttributes,
 } from "react";
 
-import { OakColorName } from "../../styles/theme";
-import { PixelSpacing, PropsWithTheme } from "../../styles/theme/types";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import getTextColorForBackground from "../../styles/themeHelpers/getTextColorForBackground";
-import { OpacityProps } from "../../styles/utils/opacity";
-import { MarginProps } from "../../styles/utils/spacing";
-import { IconName } from "../Icon";
+import { OakColorName } from "@/styles/theme";
+import { PixelSpacing, PropsWithTheme } from "@/styles/theme/types";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import getTextColorForBackground from "@/styles/themeHelpers/getTextColorForBackground";
+import { OpacityProps } from "@/styles/utils/opacity";
+import { MarginProps } from "@/styles/utils/spacing";
+import { IconName } from "@/components/Icon";
 
 export type ButtonVariant =
   | "brush"
@@ -199,7 +199,11 @@ export const getButtonBackground = (
   variant: ButtonVariant,
   disabled?: boolean
 ) => {
-  if (variant === "minimal" || variant === "minimalNav" || variant === "buttonStyledAsLink") {
+  if (
+    variant === "minimal" ||
+    variant === "minimalNav" ||
+    variant === "buttonStyledAsLink"
+  ) {
     return "transparent";
   } else if (variant === "brush" && disabled) {
     return getColorByName("grey6");
@@ -211,7 +215,9 @@ export const getButtonColor = (
   background: ButtonBackground,
   variant: ButtonVariant
 ) =>
-  variant === "minimal" || variant === "buttonStyledAsLink" || variant === "minimalNav"
+  variant === "minimal" ||
+  variant === "buttonStyledAsLink" ||
+  variant === "minimalNav"
     ? "black"
     : getTextColorForBackground(background);
 export const getButtonIconBackground =

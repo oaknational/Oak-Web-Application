@@ -19,13 +19,8 @@ type ButtonLinkNavProps = {
   arrowSuffix?: boolean;
 } & FlexProps;
 
-const NavLink = ({
-  label,
-  href,
-  isCurrentOverride,
-  arrowSuffix,
-}: LinkProps) => {
-  const isCurrent = useIsCurrent({ href }) || isCurrentOverride;
+const NavLink = ({ label, href, arrowSuffix }: LinkProps) => {
+  const isCurrent = useIsCurrent({ href });
 
   const htmlAnchorProps: HTMLAnchorProps = {
     "aria-current": isCurrent ? "page" : undefined,
@@ -75,7 +70,7 @@ const NavLink = ({
  *
  * ## Usage
  *
- * Used in the 'About Us' summary card
+ * Used in the 'About Us' summary card and lessons page.
  */
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
