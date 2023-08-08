@@ -4,7 +4,7 @@ import TeacherTips from "./TeacherTips";
 
 describe("TeacherTips component", () => {
   const teacherTips = [{ teacherTip: "test teacher tip" }];
-  it.only("should render with correct title", () => {
+  it("should render with correct title", () => {
     const { getByTestId, getByText } = renderWithTheme(
       <TeacherTips teacherTips={teacherTips} />
     );
