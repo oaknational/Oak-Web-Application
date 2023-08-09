@@ -7,7 +7,7 @@ import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";
 import Flex from "@/components/Flex";
 
 export interface OverviewVideoProps {
-  video: string;
+  video: string | null;
   signLanguageVideo: string | null;
   title: string;
   transcriptSentences?: string[] | null;
@@ -40,14 +40,16 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
 
   return (
     <Flex $flexDirection={"column"} $gap={[24]}>
-      <VideoPlayer
-        playbackId={
-          signLanguageVideo && signLanguageOn ? signLanguageVideo : video
-        }
-        playbackPolicy={"signed"}
-        title={title}
-        location={"lesson"}
-      />
+      {video && (
+        <VideoPlayer
+          playbackId={
+            signLanguageVideo && signLanguageOn ? signLanguageVideo : video
+          }
+          playbackPolicy={"signed"}
+          title={title}
+          location={"lesson"}
+        />
+      )}
 
       <Flex
         $flexDirection={["column-reverse", "row"]}

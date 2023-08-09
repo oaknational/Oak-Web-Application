@@ -1,3 +1,47 @@
+# [1.216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.1...v1.216.0) (2023-08-09)
+
+
+### Bug Fixes
+
+* resolve merge conflicts with main ([365c989](https://github.com/oaknational/Oak-Web-Application/commit/365c98967b680b2e7bcdf485a90f557438e7aadd))
+* type errors ([c35496a](https://github.com/oaknational/Oak-Web-Application/commit/c35496a4e8f8e958c900dd3e4973d020ca43e573))
+
+
+### Features
+
+* added vertical navigation to lessons overview ([2b0d5d2](https://github.com/oaknational/Oak-Web-Application/commit/2b0d5d2e81a4747b5da060440b81d6e2e5af3e1b))
+* lesson nav ready for tests ([ff3eaa6](https://github.com/oaknational/Oak-Web-Application/commit/ff3eaa61d5458ba961e67e5640d4655bedd554ba))
+* restyle ButtonLinkNav ([465bd79](https://github.com/oaknational/Oak-Web-Application/commit/465bd79d581ec38386cf041b4b634c5d93c3e5fe))
+* wip lesson nav now uses anchor targets ([53efda6](https://github.com/oaknational/Oak-Web-Application/commit/53efda6fa5b14860c2b5a633b1e12e5e2c7304c0))
+
+## [1.215.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.0...v1.215.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* subject icon to pull svg ([992dd33](https://github.com/oaknational/Oak-Web-Application/commit/992dd334fdb2aa5531d28ea8aa1c9b9e282f9d25))
+* subject icons should pull down as svgs ([39cdbf4](https://github.com/oaknational/Oak-Web-Application/commit/39cdbf4bc415137c01f2c14a9495307214292d50))
+
+# [1.215.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.1...v1.215.0) (2023-08-09)
+
+
+### Features
+
+* resolve css to rem units ([be5ed24](https://github.com/oaknational/Oak-Web-Application/commit/be5ed241b316f6e2250144e99b237d6e586abced))
+
+## [1.214.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.0...v1.214.1) (2023-08-09)
+
+# [1.214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.213.0...v1.214.0) (2023-08-08)
+
+
+### Features
+
+* **worksheet:** make worksheet style match figma ([bb7bb65](https://github.com/oaknational/Oak-Web-Application/commit/bb7bb65de15052c662890967eb16cd1a2aefddc2))
+* **worksheet:** make worksheet style match figma ([24bb8a0](https://github.com/oaknational/Oak-Web-Application/commit/24bb8a079866aa94108107e5868156277be63c6e))
+* **worksheet:** make worksheet style match figma ([2128e5b](https://github.com/oaknational/Oak-Web-Application/commit/2128e5bfaeb2b1349229d0f44abf9a5a71c8e2d6))
+* **worksheet:** prettier fix ([c735677](https://github.com/oaknational/Oak-Web-Application/commit/c73567734715826d71ed9d3fbc7478b4fb35e0cc))
+* **worksheet:** reverse changes ([4062e0c](https://github.com/oaknational/Oak-Web-Application/commit/4062e0cf068f36941fd94003793c9460be491aab))
+
 # [1.213.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.212.0...v1.213.0) (2023-08-07)
 
 
