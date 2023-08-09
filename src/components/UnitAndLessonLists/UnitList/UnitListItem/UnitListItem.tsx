@@ -124,7 +124,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $justifyContent={"center"}
         $width={"100%"}
         $height={"100%"}
-        $gap={"8px"}
+        $gap={[8]}
         $pv={[8, 12]}
       >
         <ListItemHeader
