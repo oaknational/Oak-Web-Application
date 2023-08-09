@@ -24,7 +24,7 @@ const SubjectIcon: FC<SubjectIconProps> = ({
     );
   }
 
-  return <CMSImage image={{ asset }} {...cmsImageProps} />;
+  return <CMSImage image={{ asset }} {...cmsImageProps} format={null} />;
 };
 
 export default SubjectIcon;
