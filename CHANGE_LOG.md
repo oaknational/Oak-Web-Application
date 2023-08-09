@@ -1,3 +1,19 @@
+# [1.216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.1...v1.216.0) (2023-08-09)
+
+
+### Bug Fixes
+
+* resolve merge conflicts with main ([365c989](https://github.com/oaknational/Oak-Web-Application/commit/365c98967b680b2e7bcdf485a90f557438e7aadd))
+* type errors ([c35496a](https://github.com/oaknational/Oak-Web-Application/commit/c35496a4e8f8e958c900dd3e4973d020ca43e573))
+
+
+### Features
+
+* added vertical navigation to lessons overview ([2b0d5d2](https://github.com/oaknational/Oak-Web-Application/commit/2b0d5d2e81a4747b5da060440b81d6e2e5af3e1b))
+* lesson nav ready for tests ([ff3eaa6](https://github.com/oaknational/Oak-Web-Application/commit/ff3eaa61d5458ba961e67e5640d4655bedd554ba))
+* restyle ButtonLinkNav ([465bd79](https://github.com/oaknational/Oak-Web-Application/commit/465bd79d581ec38386cf041b4b634c5d93c3e5fe))
+* wip lesson nav now uses anchor targets ([53efda6](https://github.com/oaknational/Oak-Web-Application/commit/53efda6fa5b14860c2b5a633b1e12e5e2c7304c0))
+
 ## [1.215.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.0...v1.215.1) (2023-08-09)
 
 
