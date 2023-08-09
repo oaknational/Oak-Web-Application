@@ -3,13 +3,14 @@
  */
 import React from "react";
 
-import { searchResultsHitsSchema } from "../../context/Search/helpers";
 import elasticResponseFixture from "../../context/Search/elasticResponse.fixture.json";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 import truthy from "../../utils/truthy";
 
 import SearchResults from "./SearchResults";
+
+import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 export const hits = searchResultsHitsSchema.parse(
   elasticResponseFixture.hits.hits

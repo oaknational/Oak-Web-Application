@@ -21,6 +21,7 @@ import getPageProps from "../../../node-lib/getPageProps";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
+  viewType?: string | string[];
 };
 
 const SearchPage: NextPage<SearchPageProps> = (props) => {
@@ -104,6 +105,7 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
       const results = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
       return results;

@@ -2,7 +2,6 @@ import { match, compile, MatchFunction } from "path-to-regexp";
 
 import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 import OakError from "../../errors/OakError";
@@ -11,6 +10,8 @@ import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
+
+import { SearchQuery } from "@/context/Search/search.types";
 
 const reportError = errorReporter("urls.ts");
 
@@ -603,6 +604,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
       meta: props,
     });
     reportError(err);
-    throw err;
+
+    return "/";
   }
 };

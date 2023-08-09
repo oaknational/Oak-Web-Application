@@ -2,11 +2,12 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import { searchResultsHitsSchema } from "../../context/Search/helpers";
 import elasticResponseFixture from "../../context/Search/elasticResponse.fixture.json";
 import teachersHomePageFixture from "../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 
 import Component from "./SearchResults";
+
+import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 export default {
   title: "Lists/Search Results",

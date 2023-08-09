@@ -1,33 +1,21 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import errorReporter from "../../common-lib/error-reporter";
-import OakError from "../../errors/OakError";
 import useStableCallback from "../../hooks/useStableCallback";
-import handleFetchError from "../../utils/handleFetchError";
 import { resolveOakHref } from "../../common-lib/urls";
 import { SearchPageData } from "../../node-lib/curriculum-api/index";
-import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
-import constructElasticQuery from "./constructElasticQuery";
+import { getFilterForQuery, isFilterItem } from "./search.helpers";
 import {
-  getFilterForQuery,
-  isFilterItem,
+  ContentType,
+  KeyStage,
   SearchHit,
-  searchResultsSchema,
-} from "./helpers";
-import { KeyStage, ContentType } from "./useSearchFilters";
+  SearchQuery,
+  SetSearchQuery,
+} from "./search.types";
+import { performSearch as performSearch2023 } from "./search-api-2023";
+// import { performSearch as performSearch2020 } from "./search-api-2020";
 
-export type SearchQuery = {
-  term: string;
-  keyStages?: string[];
-  subjects?: string[];
-  contentTypes?: string[];
-};
-
-export type SetSearchQuery = (
-  arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>)
-) => void;
 type UseSearchQueryReturnType = {
   query: SearchQuery;
   setQuery: SetSearchQuery;
@@ -76,7 +64,10 @@ const useSearchQuery = ({
         ? getFilterForQueryCallback(subjects, allSubjects)
         : [],
       contentTypes: allContentTypes
-        ? getFilterForQueryCallback(contentTypes, allContentTypes)
+        ? getFilterForQueryCallback(contentTypes, allContentTypes).filter(
+            (type): type is "lesson" | "unit" =>
+              type === "lesson" || type === "unit"
+          )
         : [],
     };
   }, [
@@ -103,8 +94,6 @@ const useSearchQuery = ({
 
   return { query, setQuery };
 };
-
-const reportError = errorReporter("search");
 
 export type RequestStatus = "not-asked" | "loading" | "success" | "fail";
 export type UseSearchReturnType = {
@@ -134,39 +123,22 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
   const fetchResults = useStableCallback(async () => {
-    setStatus("loading");
-    setSearchStartTime(performance.now());
-    try {
-      const options: RequestInit = {
-        method: "POST",
-        redirect: "follow",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(constructElasticQuery(query)),
-      };
-
-      const response = await fetch(getBrowserConfig("searchApiUrl"), options);
-
-      handleFetchError(response);
-
-      const unparsedData = await response.json();
-      const data = searchResultsSchema.parse(unparsedData);
-      if (data) {
-        const { hits } = data;
-        const hitList = hits.hits;
-        setResults(hitList);
+    /**
+     * Current this searches the 2023 curriculum.
+     * We will want to search both 2020 and 2023, and merge the results.
+     */
+    performSearch2023({
+      query,
+      onStart: () => {
+        setStatus("loading");
+        setSearchStartTime(performance.now());
+      },
+      onSuccess: (results) => {
+        setResults(results);
         setStatus("success");
-      }
-    } catch (error) {
-      const oakError = new OakError({
-        code: "search/unknown",
-        originalError: error,
-      });
-
-      reportError(oakError);
-      setStatus("fail");
-    }
+      },
+      onFail: () => setStatus("fail"),
+    });
   });
 
   /**

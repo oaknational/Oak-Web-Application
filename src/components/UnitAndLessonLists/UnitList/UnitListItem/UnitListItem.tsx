@@ -9,7 +9,7 @@ import ListItemCard from "../../ListItemCard";
 import { UnitListingData } from "../../../../node-lib/curriculum-api";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
-import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/search.helpers";
 import ListItemIndexDesktop from "../../ListItemIndexDesktop";
 import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIconMobile from "../../ListItemIconMobile";

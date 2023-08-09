@@ -1,7 +1,7 @@
-import errorReporter from "../../common-lib/error-reporter";
-import truthy from "../../utils/truthy";
+import { SearchQuery } from "./search.types";
 
-import { SearchQuery } from "./useSearch";
+import errorReporter from "@/common-lib/error-reporter";
+import truthy from "@/utils/truthy";
 
 type ConstructQueryParams = SearchQuery;
 

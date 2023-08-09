@@ -2,12 +2,6 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
-import {
-  KeyStage,
-  UseSearchFiltersReturnType,
-} from "../../context/Search/useSearchFilters";
-import { UseSearchReturnType } from "../../context/Search/useSearch";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import Box from "../Box";
 import Card from "../Card";
@@ -23,10 +17,10 @@ import NoSearchResults from "../SearchResults/NoSearchResults";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
 
-export type SearchProps = UseSearchReturnType & {
-  searchFilters: UseSearchFiltersReturnType;
-  allKeyStages: KeyStage[];
-};
+import { SearchProps } from "./search.page.types";
+
+import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+
 const Search: FC<SearchProps> = (props) => {
   const {
     query,
