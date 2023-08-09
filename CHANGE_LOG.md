@@ -1,3 +1,20 @@
+## [1.215.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.0...v1.215.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* subject icon to pull svg ([992dd33](https://github.com/oaknational/Oak-Web-Application/commit/992dd334fdb2aa5531d28ea8aa1c9b9e282f9d25))
+* subject icons should pull down as svgs ([39cdbf4](https://github.com/oaknational/Oak-Web-Application/commit/39cdbf4bc415137c01f2c14a9495307214292d50))
+
+# [1.215.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.1...v1.215.0) (2023-08-09)
+
+
+### Features
+
+* resolve css to rem units ([be5ed24](https://github.com/oaknational/Oak-Web-Application/commit/be5ed241b316f6e2250144e99b237d6e586abced))
+
+## [1.214.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.0...v1.214.1) (2023-08-09)
+
 # [1.214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.213.0...v1.214.0) (2023-08-08)
 
 
