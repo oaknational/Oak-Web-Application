@@ -12,7 +12,11 @@ import { UiIconName } from "../../image-data";
 import useIconAnimation from "./useIconAnimation";
 
 export type IconName = UiIconName;
-type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
+export type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
+
+export const isIconVariant = (variant: string): variant is IconVariant =>
+  ["minimal", "brush", "buttonStyledAsLink"].includes(variant);
+
 type VerticalAlign = "baseline" | "bottom";
 
 type RotateValue = 0 | 180;

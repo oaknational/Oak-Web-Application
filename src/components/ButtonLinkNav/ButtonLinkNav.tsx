@@ -2,18 +2,26 @@ import { FC } from "react";
 
 import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import { HTMLAnchorProps } from "../Button/common";
 import Flex, { FlexProps } from "../Flex";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
+import { HTMLAnchorProps } from "../Button/common";
 
-type LinkProps = { label: string; href: string };
+type LinkProps = {
+  label: string;
+  href: string;
+  isCurrentOverride?: boolean;
+  arrowSuffix?: boolean;
+  shallow?: boolean;
+};
 
 type ButtonLinkNavProps = {
   ariaLabel: string;
   buttons: LinkProps[];
+  arrowSuffix?: boolean;
+  shallow?: boolean;
 } & FlexProps;
 
-const NavLink = ({ label, href }: LinkProps) => {
+const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
 
   const htmlAnchorProps: HTMLAnchorProps = {
@@ -26,13 +34,19 @@ const NavLink = ({ label, href }: LinkProps) => {
       <Box $display={["none", "block"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
-          variant={isCurrent ? "minimal" : "brush"}
+          variant={isCurrent ? "brushNav" : "minimalNav"}
+          $hoverStyles={["underline-link-text"]}
           label={label}
           href={href}
           page={null}
           $mr={[0, 36]}
           disabled={isCurrent}
           isCurrent={isCurrent}
+          icon={isCurrent && arrowSuffix ? "arrow-right" : undefined}
+          iconBackground={isCurrent && arrowSuffix ? "transparent" : undefined}
+          $iconPosition="trailing"
+          shallow={shallow}
+          scroll={!shallow}
         />
       </Box>
       {/* Mobile */}
@@ -60,11 +74,13 @@ const NavLink = ({ label, href }: LinkProps) => {
  *
  * ## Usage
  *
- * Used in the 'About Us' summary card
+ * Used in the 'About Us' summary card and lessons page.
  */
 const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
   buttons,
   ariaLabel,
+  arrowSuffix,
+  shallow,
   ...props
 }) => {
   return (
@@ -76,7 +92,12 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
         {...props}
       >
         {buttons.map((button) => (
-          <NavLink key={button.href} {...button} />
+          <NavLink
+            key={button.href}
+            arrowSuffix={arrowSuffix}
+            shallow={shallow}
+            {...button}
+          />
         ))}
       </Flex>
     </nav>

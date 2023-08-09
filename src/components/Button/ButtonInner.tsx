@@ -14,16 +14,16 @@ import {
 } from "./common";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
-import { OakColorName } from "@/styles/theme";
 import Box from "@/components/Box";
 import Icon, { IconName } from "@/components/Icon";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/Svg";
-import getColorByName from "@/styles/themeHelpers/getColorByName";
+import SubjectIcon from "@/components/SubjectIcon";
 import ScreenReaderOnly from "@/components/ScreenReaderOnly";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { OakColorName } from "@/styles/theme";
 import { FontVariant } from "@/styles/utils/typography";
 import { ResponsiveValues } from "@/styles/utils/responsive";
-import SubjectIcon from "@/components/SubjectIcon";
 
 export const ButtonFocusUnderline = styled(Svg)<{
   $color: OakColorName;
@@ -87,7 +87,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
   const defactoBackground =
-    ["minimal", "buttonStyledAsLink"].includes(variant) && iconBackground
+    ["minimal", "minimalNav", "buttonStyledAsLink"].includes(variant) &&
+    iconBackground
       ? iconBackground
       : background;
 
@@ -132,9 +133,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             variant="brush"
             name={icon}
             size={iconSize}
-            $background={iconBackground || defaultIconBackground}
+            $background={iconBackground ?? defaultIconBackground}
           />
-          {variant === "minimal" && (
+          {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
         </Flex>
@@ -173,15 +174,19 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             )}
           </ButtonLabel>
         </Box>
-        {variant === "minimal" && (
+        {(variant === "minimal" || variant === "minimalNav") && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
             name="underline-1"
           />
         )}
       </Box>
-      {variant === "brush" && <ButtonBorders background={background} />}
+      {(variant === "brush" || variant === "brushNav") && (
+        <ButtonBorders background={background} />
+      )}
+
       <ButtonFocusUnderline $color={underlineColor} name="underline-1" />
+
       {variant === "buttonStyledAsLink" && (
         <ButtonStyledAsLinkFocusUnderline $color={"black"} name="underline-1" />
       )}
