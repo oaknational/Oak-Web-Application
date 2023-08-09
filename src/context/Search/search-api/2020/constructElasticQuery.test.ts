@@ -2,7 +2,6 @@ import { createSearchQuery } from "../../useSearch";
 
 import constructElasticQuery from "./constructElasticQuery";
 
-
 describe("Search/2020/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
