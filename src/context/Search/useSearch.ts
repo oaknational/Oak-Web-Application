@@ -13,8 +13,7 @@ import {
   SearchQuery,
   SetSearchQuery,
 } from "./search.types";
-import { performSearch as performSearch2023 } from "./search-api-2023";
-// import { performSearch as performSearch2020 } from "./search-api-2020";
+import { performSearch } from "./search-api/performSearch";
 
 type UseSearchQueryReturnType = {
   query: SearchQuery;
@@ -122,13 +121,16 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
+  const viewType = useRouter().query.viewType?.toString() || "teachers";
+
   const fetchResults = useStableCallback(async () => {
     /**
      * Current this searches the 2023 curriculum.
      * We will want to search both 2020 and 2023, and merge the results.
      */
-    performSearch2023({
+    performSearch({
       query,
+      apiVersion: viewType === "teachers-2023" ? "2023" : "2020",
       onStart: () => {
         setStatus("loading");
         setSearchStartTime(performance.now());
@@ -137,7 +139,9 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
         setResults(results);
         setStatus("success");
       },
-      onFail: () => setStatus("fail"),
+      onFail: () => {
+        setStatus("fail");
+      },
     });
   });
 

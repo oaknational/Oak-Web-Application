@@ -1,4 +1,4 @@
-import { SearchQuery } from "./search.types";
+import { SearchQuery } from "../../search.types";
 
 import errorReporter from "@/common-lib/error-reporter";
 import truthy from "@/utils/truthy";
@@ -86,7 +86,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
 
   const result = {
     from: 0, // index first result shown
-    size: 10000, // how many per page
+    size: 100, // how many results to fetch
     query: {
       bool: {
         // search twice with an OR

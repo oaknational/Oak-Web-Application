@@ -1,14 +1,18 @@
-import constructElasticQuery from "./constructElasticQuery";
-import { createSearchQuery } from "./useSearch";
+import { createSearchQuery } from "../../useSearch";
 
-describe("Search/constructElasticQuery", () => {
+import { constructElasticQuery } from "./constructElasticQuery";
+
+describe("Search/2023/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({ term: "writing" })
     );
+
+    console.log(JSON.stringify(elasticQuery));
+
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -17,7 +21,12 @@ describe("Search/constructElasticQuery", () => {
                 query: "writing",
                 type: "phrase",
                 analyzer: "stop",
-                fields: ["title^10", "*_title^6", "lesson_description^3"],
+                fields: [
+                  "lessonTitle^6",
+                  "unitTitle^6",
+                  "lessonDescription^3",
+                  "lessons.lessonTitle^3",
+                ],
               },
             },
             {
@@ -31,13 +40,7 @@ describe("Search/constructElasticQuery", () => {
               },
             },
           ],
-          filter: [
-            { term: { expired: false } },
-            { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            { terms: { type: ["lesson", "unit"] } },
-          ],
+          filter: [],
           minimum_should_match: 1,
         },
       },
@@ -45,7 +48,7 @@ describe("Search/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
+        fields: {},
       },
     });
   });
@@ -54,9 +57,11 @@ describe("Search/constructElasticQuery", () => {
       createSearchQuery({ term: "macbeth", keyStages: ["ks3"] })
     );
 
+    console.log(elasticQuery);
+
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -65,7 +70,12 @@ describe("Search/constructElasticQuery", () => {
                 query: "macbeth",
                 type: "phrase",
                 analyzer: "stop",
-                fields: ["title^10", "*_title^6", "lesson_description^3"],
+                fields: [
+                  "lessonTitle^6",
+                  "unitTitle^6",
+                  "lessonDescription^3",
+                  "lessons.lessonTitle^3",
+                ],
               },
             },
             {
@@ -80,11 +90,11 @@ describe("Search/constructElasticQuery", () => {
             },
           ],
           filter: [
-            { term: { expired: false } },
-            { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
-            { terms: { key_stage_slug: ["1", "2", "3", "4"] } },
-            { terms: { type: ["lesson", "unit"] } },
+            {
+              terms: {
+                keyStageSlug: ["ks3"],
+              },
+            },
           ],
           minimum_should_match: 1,
         },
@@ -93,7 +103,7 @@ describe("Search/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
+        fields: {},
       },
     });
   });
@@ -108,7 +118,7 @@ describe("Search/constructElasticQuery", () => {
 
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -117,7 +127,12 @@ describe("Search/constructElasticQuery", () => {
                 query: "macbeth",
                 type: "phrase",
                 analyzer: "stop",
-                fields: ["title^10", "*_title^6", "lesson_description^3"],
+                fields: [
+                  "lessonTitle^6",
+                  "unitTitle^6",
+                  "lessonDescription^3",
+                  "lessons.lessonTitle^3",
+                ],
               },
             },
             {
@@ -132,11 +147,8 @@ describe("Search/constructElasticQuery", () => {
             },
           ],
           filter: [
-            { term: { expired: false } },
-            { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
-            { terms: { subject_slug: ["computing"] } },
-            { terms: { type: ["lesson", "unit"] } },
+            { terms: { keyStageSlug: ["ks3"] } },
+            { terms: { subjectSlug: ["computing"] } },
           ],
           minimum_should_match: 1,
         },
@@ -145,7 +157,7 @@ describe("Search/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
+        fields: {},
       },
     });
   });
@@ -161,7 +173,7 @@ describe("Search/constructElasticQuery", () => {
     );
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -170,7 +182,12 @@ describe("Search/constructElasticQuery", () => {
                 query: "macbeth",
                 type: "phrase",
                 analyzer: "stop",
-                fields: ["title^10", "*_title^6", "lesson_description^3"],
+                fields: [
+                  "lessonTitle^6",
+                  "unitTitle^6",
+                  "lessonDescription^3",
+                  "lessons.lessonTitle^3",
+                ],
               },
             },
             {
@@ -185,10 +202,8 @@ describe("Search/constructElasticQuery", () => {
             },
           ],
           filter: [
-            { term: { expired: false } },
-            { term: { is_specialist: false } },
-            { terms: { key_stage_slug: ["3"] } },
-            { terms: { subject_slug: ["computing"] } },
+            { terms: { keyStageSlug: ["ks3"] } },
+            { terms: { subjectSlug: ["computing"] } },
             { terms: { type: ["lesson"] } },
           ],
           minimum_should_match: 1,
@@ -198,7 +213,7 @@ describe("Search/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: { topic_title: {}, theme_title: {}, lesson_description: {} },
+        fields: {},
       },
     });
   });

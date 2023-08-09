@@ -7,7 +7,7 @@ export type ConstructQueryParams = {
   contentTypes?: ("unit" | "lesson")[];
 };
 
-export const constructQuery = (query: ConstructQueryParams) => {
+export const constructElasticQuery = (query: ConstructQueryParams) => {
   const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
 
   const keyStageFilters = () => {
@@ -56,7 +56,7 @@ export const constructQuery = (query: ConstructQueryParams) => {
 
   const body = {
     from: 0, // index first result shown
-    size: 10000, // how many per page
+    size: 100, // how many results to fetch
     query: {
       bool: {
         // search multiple times with an OR
