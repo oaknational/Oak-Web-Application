@@ -345,7 +345,7 @@ const curriculumApi = {
           themeSlug: unit.themeSlug,
         },
       ];
-      const nullTitle = unit.title
+      const nullTitle = unit.title;
       return [
         {
           ...unit,
