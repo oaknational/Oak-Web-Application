@@ -1,3 +1,10 @@
+## [1.216.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.0...v1.216.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **curric:** updated max height for button subject svg ([28db007](https://github.com/oaknational/Oak-Web-Application/commit/28db007e02a39d0fbb044f150ed37124b1c8c042))
+
 # [1.216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.1...v1.216.0) (2023-08-09)
 
 
