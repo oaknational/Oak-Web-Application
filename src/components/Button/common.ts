@@ -209,6 +209,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     variant?: ButtonVariant;
     background?: ButtonBackground;
     icon?: IconName;
+    subjectIcon?: string;
     $iconPosition?: IconPosition;
     iconBackground?: OakColorName;
     size?: ButtonSize;

@@ -9,41 +9,34 @@ import {
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../../../node-lib/isr";
-import AppLayout from "../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../components/Flex";
-import MaxWidth from "../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import { getSeoProps } from "../../../../../../../../browser-lib/seo/getSeoProps";
-import Typography, {
-  Heading,
-  Hr,
-} from "../../../../../../../../components/Typography";
-import ButtonAsLink from "../../../../../../../../components/Button/ButtonAsLink";
-import Grid from "../../../../../../../../components/Grid";
-import curriculumApi, {
-  LessonOverviewData,
-} from "../../../../../../../../node-lib/curriculum-api";
-import curriculumApi2023 from "../../../../../../../../node-lib/curriculum-api-2023";
-import LessonHelper from "../../../../../../../../components/LessonHelper";
-import OverviewPresentation from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "../../../../../../../../components/pages/TeachersLessonOverview/OverviewTranscript";
-import ExpandingContainer from "../../../../../../../../components/ExpandingContainer";
-import QuizContainer from "../../../../../../../../components/QuizContainer";
-import Breadcrumbs, {
-  Breadcrumb,
-} from "../../../../../../../../components/Breadcrumbs";
-import Box from "../../../../../../../../components/Box";
-import useAnalytics from "../../../../../../../../context/Analytics/useAnalytics";
+} from "@/node-lib/isr";
+import AppLayout from "@/components/AppLayout";
+import Flex from "@/components/Flex";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import Typography, { Heading, Hr } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Grid, { GridArea } from "@/components/Grid";
+import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import LessonHelper from "@/components/LessonHelper";
+import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
+import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
+import ExpandingContainer from "@/components/ExpandingContainer";
+import QuizContainer from "@/components/QuizContainer";
+import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
+import Box from "@/components/Box";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
   DownloadResourceButtonNameValueType,
-} from "../../../../../../../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../../../../../../../hooks/useAnalyticsPageProps";
-import { ViewType } from "../../../../../../../../common-lib/urls";
-import getPageProps from "../../../../../../../../node-lib/getPageProps";
-import LessonDetails from "../../../../../../../../components/LessonDetails/LessonDetails";
+} from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ViewType } from "@/common-lib/urls";
+import getPageProps from "@/node-lib/getPageProps";
+import LessonDetails from "@/components/LessonDetails/LessonDetails";
+import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -109,6 +102,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     contentGuidance,
     misconceptionsAndCommonMistakes,
     lessonKeywords,
+    teacherTips,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     lessonEquipmentAndResources,
@@ -149,6 +143,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     });
   };
 
+  const slugs = { unitSlug, lessonSlug, programmeSlug };
+
   return (
     <AppLayout
       seoProps={{
@@ -160,83 +156,72 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       }}
     >
       <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          {" "}
-          <Breadcrumbs
-            breadcrumbs={[
-              ...lessonBreadcrumbArray(
-                keyStageTitle,
-                keyStageSlug,
-                programmeSlug,
-                subjectTitle,
-                unitSlug,
-                unitTitle
-              ),
-              {
-                oakLinkProps: {
-                  page: "lesson-overview",
-                  viewType: "teachers",
+        <>
+          <Box $mv={[24, 48]}>
+            {/* NB. BreadcrumbsConstrainer doesn't play nicely when nested inside a flex box */}
+            <Breadcrumbs
+              breadcrumbs={[
+                ...lessonBreadcrumbArray(
+                  keyStageTitle,
+                  keyStageSlug,
                   programmeSlug,
+                  subjectTitle,
                   unitSlug,
-                  lessonSlug,
+                  unitTitle
+                ),
+                {
+                  oakLinkProps: {
+                    page: "lesson-overview",
+                    viewType: "teachers",
+                    programmeSlug,
+                    unitSlug,
+                    lessonSlug,
+                  },
+                  label: lessonTitle,
+                  disabled: true,
                 },
-                label: lessonTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
-
-        <Flex $mb={36} $display={"inline-flex"} $mt={0}>
-          <TitleCard
-            page={"lesson"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            subject={subjectTitle}
-            subjectSlug={subjectSlug}
-            title={lessonTitle}
-          />
-        </Flex>
-        {expired ? (
-          <Box $pa={16} $mb={64}>
-            <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
-              No lesson available
-            </Heading>
-            <Typography $font={"body-1"}>
-              Sorry, this lesson no longer exists.
-            </Typography>
+              ]}
+            />
           </Box>
-        ) : (
-          <>
-            <Flex $mt={12} $flexWrap={"wrap"}>
-              {hasDownloadableResources && (
-                <ButtonAsLink
-                  $mr={24}
-                  icon="download"
-                  iconBackground="teachersHighlight"
-                  label="Download all resources"
-                  page={"lesson-downloads"}
-                  viewType="teachers"
-                  size="small"
-                  variant="minimal"
-                  $iconPosition={"trailing"}
-                  $mt={16}
-                  data-testid={"download-all-button"}
-                  query={{
-                    preselected: "all",
-                  }}
-                  programmeSlug={programmeSlug}
-                  lessonSlug={lessonSlug}
-                  unitSlug={unitSlug}
-                  onClick={() => {
-                    trackDownloadResourceButtonClicked({
-                      downloadResourceButtonName: "all",
-                    });
-                  }}
-                />
-              )}
-              {/*
-          todo
+
+          <Flex $alignItems={"start"} $flexDirection={"column"}>
+            <TitleCard
+              page={"lesson"}
+              keyStage={keyStageTitle}
+              keyStageSlug={keyStageSlug}
+              subject={subjectTitle}
+              subjectSlug={subjectSlug}
+              title={lessonTitle}
+            />
+
+            {!expired && hasDownloadableResources && (
+              <ButtonAsLink
+                $mr={24}
+                icon="download"
+                iconBackground="teachersHighlight"
+                label="Download all resources"
+                page={"lesson-downloads"}
+                viewType="teachers"
+                size="small"
+                variant="minimal"
+                $iconPosition={"trailing"}
+                $mt={16}
+                data-testid={"download-all-button"}
+                query={{
+                  preselected: "all",
+                }}
+                programmeSlug={programmeSlug}
+                lessonSlug={lessonSlug}
+                unitSlug={unitSlug}
+                onClick={() => {
+                  trackDownloadResourceButtonClicked({
+                    downloadResourceButtonName: "all",
+                  });
+                }}
+              />
+            )}
+            {/*
+          TODO: Uncomment when we have a way to send to pupil
            <Button
             $mr={24}
             icon="send"
@@ -248,101 +233,117 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             $iconPosition={"trailing"}
             $mt={16}
           /> */}
-            </Flex>
+          </Flex>
+        </>
+        {expired ? (
+          <Box $pa={16} $mb={64}>
+            <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
+              No lesson available
+            </Heading>
+            <Typography $font={"body-1"}>
+              Sorry, this lesson no longer exists.
+            </Typography>
+          </Box>
+        ) : (
+          <>
+            <Grid $pt={[48]}>
+              <GridArea $colSpan={[12, 3]} />
+              <GridArea $colSpan={[12, 9]}>
+                <Flex $flexDirection={"column"}>
+                  {presentationUrl && !hasCopyrightMaterial && (
+                    <LessonItemContainer
+                      title={"Slide deck"}
+                      downloadable={true}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "slide deck",
+                        });
+                      }}
+                      slugs={slugs}
+                    >
+                      <OverviewPresentation
+                        asset={presentationUrl}
+                        title={lessonTitle}
+                        isWorksheet={false}
+                      />
+                    </LessonItemContainer>
+                  )}
 
-            <Hr $color={"oakGrey3"} />
+                  <LessonItemContainer title={"Lesson details"}>
+                    <LessonDetails
+                      keyLearningPoints={keyLearningPoints}
+                      commonMisconceptions={misconceptionsAndCommonMistakes}
+                      keyWords={lessonKeywords}
+                      teacherTips={teacherTips}
+                    />
+                  </LessonItemContainer>
 
-            {presentationUrl && !hasCopyrightMaterial && (
-              <ExpandingContainer
-                downloadable={true}
-                toggleClosed={false}
-                {...curriculumData}
-                title={"Slide deck"}
-                onDownloadButtonClick={() => {
-                  trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "slide deck",
-                  });
-                }}
-              >
-                <OverviewPresentation
-                  asset={presentationUrl}
-                  title={lessonTitle}
-                  isWorksheet={false}
-                />
-              </ExpandingContainer>
-            )}
-            <Hr $color={"teachersPastelBlue"} $mb={[12, 24]} />
-            <LessonDetails
-              keyLearningPoints={keyLearningPoints}
-              commonMisconceptions={misconceptionsAndCommonMistakes}
-              keyWords={lessonKeywords}
-            />
-
-            {videoMuxPlaybackId && (
-              <ExpandingContainer {...curriculumData} title={"Video"}>
-                <OverviewVideo
-                  video={videoMuxPlaybackId}
-                  signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                  title={lessonTitle}
-                  hasCaptions={Boolean(transcriptSentences)}
-                />
-              </ExpandingContainer>
-            )}
-            {worksheetUrl && (
-              <ExpandingContainer
-                downloadable={true}
-                {...curriculumData}
-                title={"Worksheet"}
-                onDownloadButtonClick={() => {
-                  trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "worksheet",
-                  });
-                }}
-              >
-                <OverviewPresentation
-                  asset={worksheetUrl}
-                  title={lessonTitle}
-                  isWorksheetLandscape={isWorksheetLandscape}
-                  isWorksheet={true}
-                />
-              </ExpandingContainer>
-            )}
-            {introQuiz.length > 0 ? (
-              <ExpandingContainer
-                downloadable={true}
-                {...curriculumData}
-                title={"Starter quiz"}
-                onDownloadButtonClick={() => {
-                  trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "starter quiz",
-                  });
-                }}
-              >
-                <QuizContainer questions={introQuiz} info={introQuizInfo} />
-              </ExpandingContainer>
-            ) : (
-              ""
-            )}
-            {exitQuiz.length > 0 && (
-              <ExpandingContainer
-                downloadable={true}
-                {...curriculumData}
-                title={"Exit quiz"}
-                onDownloadButtonClick={() => {
-                  trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "exit quiz",
-                  });
-                }}
-              >
-                <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-              </ExpandingContainer>
-            )}
-
-            {transcriptSentences && (
-              <ExpandingContainer {...curriculumData} title={"Transcript"}>
-                <OverviewTranscript transcriptSentences={transcriptSentences} />
-              </ExpandingContainer>
-            )}
+                  {videoMuxPlaybackId && (
+                    <LessonItemContainer title={"Video"}>
+                      <OverviewVideo
+                        video={videoMuxPlaybackId}
+                        signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+                        title={lessonTitle}
+                        transcriptSentences={transcriptSentences}
+                      />
+                    </LessonItemContainer>
+                  )}
+                  {worksheetUrl && (
+                    <LessonItemContainer
+                      title={"Worksheet"}
+                      downloadable={true}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "worksheet",
+                        });
+                      }}
+                      slugs={slugs}
+                    >
+                      <OverviewPresentation
+                        asset={worksheetUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={isWorksheetLandscape}
+                        isWorksheet={true}
+                      />
+                    </LessonItemContainer>
+                  )}
+                  {introQuiz.length > 0 ? (
+                    <ExpandingContainer
+                      downloadable={true}
+                      {...curriculumData}
+                      title={"Starter quiz"}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "starter quiz",
+                        });
+                      }}
+                    >
+                      <QuizContainer
+                        questions={introQuiz}
+                        info={introQuizInfo}
+                      />
+                    </ExpandingContainer>
+                  ) : (
+                    ""
+                  )}
+                  {exitQuiz.length > 0 && (
+                    <ExpandingContainer
+                      downloadable={true}
+                      {...curriculumData}
+                      title={"Exit quiz"}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "exit quiz",
+                        });
+                      }}
+                    >
+                      <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                    </ExpandingContainer>
+                  )}
+                </Flex>
+              </GridArea>
+              <GridArea $colSpan={[1]} />
+            </Grid>
           </>
         )}
       </MaxWidth>

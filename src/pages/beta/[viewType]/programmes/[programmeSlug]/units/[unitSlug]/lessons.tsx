@@ -6,8 +6,6 @@ import {
   GetStaticPathsResult,
 } from "next";
 
-import curriculumApi from "../../../../../../../node-lib/curriculum-api";
-import usePagination from "../../../../../../../components/Pagination/usePagination";
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
@@ -16,10 +14,13 @@ import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
 import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
 import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonList from "../../../../../../../components/UnitAndLessonLists/LessonList";
+import usePagination from "../../../../../../../components/Pagination/usePagination";
+import Grid, { GridArea } from "../../../../../../../components/Grid";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 import { RESULTS_PER_PAGE } from "../../../../../../../utils/resultsPerPage";
 import { ViewType } from "../../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
@@ -143,16 +144,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           lessonPage={true}
         />
 
-        <Box $mt={56}>
-          <LessonList
-            {...curriculumData}
-            lessonCount={lessons.length}
-            currentPageItems={currentPageItems}
-            paginationProps={paginationProps}
-            headingTag={"h2"}
-            unitTitle={unitTitle}
-          />
-        </Box>
+        <Grid>
+          <GridArea $colSpan={[12, 9]} $mt={[16, 56]}>
+            <LessonList
+              {...curriculumData}
+              lessonCount={lessons.length}
+              currentPageItems={currentPageItems}
+              paginationProps={paginationProps}
+              headingTag={"h2"}
+              unitTitle={unitTitle}
+            />
+          </GridArea>
+        </Grid>
       </MaxWidth>
     </AppLayout>
   );

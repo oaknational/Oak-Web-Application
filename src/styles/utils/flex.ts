@@ -1,6 +1,8 @@
 import { CSSProperties } from "react";
 import { css } from "styled-components";
 
+import { NullablePixelSpacing } from "../theme";
+
 import responsive, { ResponsiveValues } from "./responsive";
 
 export type FlexCssProps = {
@@ -12,6 +14,16 @@ export type FlexCssProps = {
   $flexWrap?: ResponsiveValues<CSSProperties["flexWrap"]>;
   $alignSelf?: ResponsiveValues<CSSProperties["alignSelf"]>;
   $flexShrink?: ResponsiveValues<CSSProperties["flexShrink"]>;
+  $gap?: ResponsiveValues<NullablePixelSpacing>;
+};
+
+const parse = (value?: unknown) => {
+  switch (typeof value) {
+    case "string":
+      return value;
+    case "number":
+      return `${value}px`;
+  }
 };
 
 const flex = css<FlexCssProps>`
@@ -23,6 +35,7 @@ const flex = css<FlexCssProps>`
   ${responsive("flex-wrap", (props) => props.$flexWrap)}
   ${responsive("align-self", (props) => props.$alignSelf)}
   ${responsive("flex-shrink", (props) => props.$flexShrink)}
+  ${responsive("gap", (props) => props.$gap, parse)}
 `;
 
 export default flex;

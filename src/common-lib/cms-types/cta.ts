@@ -14,7 +14,14 @@ const linkTypeExternal = z.object({
 
 const linkTypeAnchor = z.object({
   linkType: z.literal("anchor"),
-  anchor: z.literal("formBlock"),
+  /**
+   * Allow lowercase alphanumeric with dashes (like a slug)
+   * with the formBlock fallback for back-compat
+   */
+  anchor: z
+    .string()
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+    .or(z.literal("formBlock")),
 });
 
 export const linkSchema = z.discriminatedUnion("linkType", [
