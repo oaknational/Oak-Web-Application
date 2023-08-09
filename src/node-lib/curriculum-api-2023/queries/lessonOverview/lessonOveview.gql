@@ -1,5 +1,5 @@
 query lessonOverview($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_1(
+  lesson: published_mv_lesson_overview_2(
     where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     lessonSlug
