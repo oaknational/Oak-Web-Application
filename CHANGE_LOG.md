@@ -1,3 +1,10 @@
+## [1.216.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.1...v1.216.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* **sec:** update tough-cookie dep ([2955aa4](https://github.com/oaknational/Oak-Web-Application/commit/2955aa4683a59af0fc2d883e0991ae2746b3ddf8))
+
 ## [1.216.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.0...v1.216.1) (2023-08-09)
 
 
