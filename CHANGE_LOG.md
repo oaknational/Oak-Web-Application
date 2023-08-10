@@ -1,3 +1,18 @@
+# [1.217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.4...v1.217.0) (2023-08-10)
+
+
+### Bug Fixes
+
+* **main:** merge main fix conflicts ([e06ec11](https://github.com/oaknational/Oak-Web-Application/commit/e06ec116aaac08fb9b056055b491c6fb63ff5484))
+* **nullTitle:** fix mock content in test to include nullTitle ([5e4709d](https://github.com/oaknational/Oak-Web-Application/commit/5e4709d44086f10d9ad4f70e54aa2d187a896655))
+* **nullTitle:** fix type errors to fixtures and test caused by adding nullTitle ([6b2de3a](https://github.com/oaknational/Oak-Web-Application/commit/6b2de3a774cf1833fe152a37f58d18b1a4a42447))
+
+
+### Features
+
+* **unitlisting:** add null title to units with optionality ([4180538](https://github.com/oaknational/Oak-Web-Application/commit/4180538e20827e29dd1cb5a1be8bbe03386e0892))
+* **unitlisting:** prettier ([e2b4e18](https://github.com/oaknational/Oak-Web-Application/commit/e2b4e18773a86c25c6a39410aab867adc87e3a0b))
+
 ## [1.216.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.3...v1.216.4) (2023-08-10)
 
 ## [1.216.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.2...v1.216.3) (2023-08-10)
