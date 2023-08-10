@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import Icon, { IconName } from "@/components/Icon";
 import Flex from "@/components/Flex";
-import { Heading, P } from "@/components/Typography";
+import { Heading, P, UL, LI } from "@/components/Typography";
 
 type LessonRequirementsProps = {
   helperIcon: IconName;
@@ -33,21 +33,24 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
     return null;
   }
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"}>
+    <Flex $flexDirection={"column"} $justifyContent={"center"} $gap={8}>
       <Flex $flexDirection={"row"} $alignItems={"center"}>
         <Icon name={helperIcon} variant="minimal" $mr={8} />
-        <Heading $font={"heading-7"} tag="h4">
+        <Heading $font={"heading-7"} tag="h3">
           {heading}
         </Heading>
       </Flex>
-      {contentGuidance &&
-        contentGuidance.map((guidance: ContentGuidance) => {
-          return (
-            <P $font={"body-2"} key={guidance.contentGuidanceLabel}>
-              {guidance.contentGuidanceLabel}
-            </P>
-          );
-        })}
+      {contentGuidance && (
+        <UL $reset>
+          {contentGuidance.map((guidance: ContentGuidance) => {
+            return (
+              <LI $font={"body-2"} key={guidance.contentGuidanceLabel}>
+                {guidance.contentGuidanceLabel}
+              </LI>
+            );
+          })}
+        </UL>
+      )}
       {supervisionLevel && <P $font={"body-2"}>{supervisionLevel}</P>}
       {equipment &&
         equipment.map(({ equipment }) => {
