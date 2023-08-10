@@ -19,6 +19,7 @@ const unitListingFixture = (
         {
           slug: "data-representation-618b",
           title: "Data Representation",
+          nullTitle: "Data Representation",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -43,6 +44,7 @@ const unitListingFixture = (
         {
           slug: "computer-systems-e17a",
           title: "Computer Systems",
+          nullTitle: "Computer Systems",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -67,6 +69,7 @@ const unitListingFixture = (
         {
           slug: "networks-fe4b",
           title: "Networks",
+          nullTitle: "Networks",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -91,6 +94,7 @@ const unitListingFixture = (
         {
           slug: "security-a5e3",
           title: "Security",
+          nullTitle: "Security",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -115,6 +119,7 @@ const unitListingFixture = (
         {
           slug: "impacts-on-society-fb09",
           title: "Impacts on society",
+          nullTitle: "Impacts on society",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -139,6 +144,7 @@ const unitListingFixture = (
         {
           slug: "algorithms-a118",
           title: "Algorithms",
+          nullTitle: "Algorithms",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -163,6 +169,7 @@ const unitListingFixture = (
         {
           slug: "programming-1-sequence-2cbd",
           title: "Programming 1: Sequence",
+          nullTitle: "Programming 1: Sequence",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -187,6 +194,7 @@ const unitListingFixture = (
         {
           slug: "programming-2-selection-cbc4",
           title: "Programming 2: Selection",
+          nullTitle: "Programming 2: Selection",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -211,6 +219,7 @@ const unitListingFixture = (
         {
           slug: "programming-3-iteration-2e20",
           title: "Programming 3: Iteration",
+          nullTitle: "Programming 3: Iteration",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -235,6 +244,7 @@ const unitListingFixture = (
         {
           slug: "programming-4-subroutines-7e33",
           title: "Programming 4: Subroutines",
+          nullTitle: "Programming 4: Subroutines",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -259,6 +269,7 @@ const unitListingFixture = (
         {
           slug: "programming-5-strings-and-lists-9161",
           title: "Programming 5: Strings and lists",
+          nullTitle: "Programming 5: Strings and lists",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -283,6 +294,7 @@ const unitListingFixture = (
         {
           slug: "programming-6-dictionaries-and-datafiles-b91f",
           title: "Programming 6: Dictionaries and datafiles",
+          nullTitle: "Programming 6: Dictionaries and datafiles",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -307,6 +319,7 @@ const unitListingFixture = (
         {
           slug: "databases-and-sql-73d9",
           title: "Databases and SQL",
+          nullTitle: "Databases and SQL",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -331,6 +344,7 @@ const unitListingFixture = (
         {
           slug: "html-beb0",
           title: "HTML",
+          nullTitle: "HTML",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",
@@ -355,6 +369,7 @@ const unitListingFixture = (
         {
           slug: "object-oriented-programming-dc22",
           title: "Object-oriented programming",
+          nullTitle: "Object-oriented programming",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",

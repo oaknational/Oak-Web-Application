@@ -64,7 +64,7 @@ describe("lessonOverview()", () => {
         })
       ),
     })({
-      lessonSlug: "lesson-slug",
+      lessonSlug: "programme-slug",
       unitSlug: "unit-slug",
       programmeSlug: "programme-slug",
     });
