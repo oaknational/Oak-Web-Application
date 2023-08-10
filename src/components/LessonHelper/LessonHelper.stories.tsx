@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./";
+import Component from "@/components/LessonHelper/LessonHelper";
 
 export default {
   title: "Element/Lesson Helper ",
@@ -15,6 +15,12 @@ export const LessonHelper = Template.bind({});
 
 LessonHelper.args = {
   supervisionLevel: "this is the helper description",
-  helperIcon: "content-guidance",
-  helperTitle: "this is the helper title",
+  equipment: [{ equipment: "this is the equipment description" }],
+  contentGuidance: [
+    {
+      contentGuidanceLabel: "test label",
+      contentGuidanceArea: "test area",
+      contentGuidanceDescription: "test details",
+    },
+  ],
 };
