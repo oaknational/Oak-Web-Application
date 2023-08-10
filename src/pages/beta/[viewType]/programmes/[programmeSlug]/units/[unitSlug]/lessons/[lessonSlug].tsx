@@ -455,9 +455,9 @@ export const getStaticProps: GetStaticProps<
       const curriculumData =
         context?.params.viewType === "teachers-2023"
           ? await curriculumApi2023.lessonOverview({
-            programmeSlug,
-            lessonSlug,
-            unitSlug,
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
             })
           : await curriculumApi.lessonOverview({
               programmeSlug,
