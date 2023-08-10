@@ -1,3 +1,12 @@
+## [1.217.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.217.0...v1.217.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* faulty buttonAsLink aria-label logic ([b1d9963](https://github.com/oaknational/Oak-Web-Application/commit/b1d99639f46084bd7ee9ad6f35920849a2d6e69c))
+* sonar flag ([8a490f0](https://github.com/oaknational/Oak-Web-Application/commit/8a490f00a23e6f6682ae4f1a456e091cad4bf6bc))
+* ts errors from a merged commit ([4ab7101](https://github.com/oaknational/Oak-Web-Application/commit/4ab71012511f9288304f3a63348d475d3a49a4b8))
+
 # [1.217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.4...v1.217.0) (2023-08-10)
 
 
