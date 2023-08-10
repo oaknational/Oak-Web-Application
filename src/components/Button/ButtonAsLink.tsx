@@ -46,7 +46,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   // aria-label overrides label.
   // If labelSuffixA11y is provided, it is appended to the label.
   const defaultTitle =
-    ariaLabel || (labelSuffixA11y ? `${label} ${labelSuffixA11y}` : label);
+    ariaLabel ?? (labelSuffixA11y ? `${label} ${labelSuffixA11y}` : label);
 
   return (
     <Link {...nextLinkProps} passHref legacyBehavior>
