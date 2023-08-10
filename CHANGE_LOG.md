@@ -1,3 +1,11 @@
+## [1.216.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.2...v1.216.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* **lesson-overview:** prittier ([bc5f08d](https://github.com/oaknational/Oak-Web-Application/commit/bc5f08d3824d82bfdd7651ed67bf6ccc4bb5e6f1))
+* **lesson-overview:** programme and unit slugs must be used as query arguments ([f4103d5](https://github.com/oaknational/Oak-Web-Application/commit/f4103d553a4f30ab70be6b8a2ba6b9b615514c1f))
+
 ## [1.216.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.1...v1.216.2) (2023-08-10)
 
 
