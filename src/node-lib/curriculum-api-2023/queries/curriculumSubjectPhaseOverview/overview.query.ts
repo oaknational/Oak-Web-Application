@@ -20,10 +20,19 @@ const curriculumSubjectPhaseOverviewQuery =
     const videoGuideDesc =
       "Our new curriculum sequence has recently launched. For additional support, watch this video guide by {videoGuideAuthor} from our educational team, as they talk you through how to use this new tool.";
 
+    const subject = { name: "Maths", slug: "maths" };
+    const phase = { name: "Secondary", slug: "secondary" };
     if (Object.values(args).some((arg) => !arg.length)) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    return { curriculaDesc, subjectPrinciples, partnerBio, videoGuideDesc };
+    return {
+      curriculaDesc,
+      subjectPrinciples,
+      partnerBio,
+      videoGuideDesc,
+      subject,
+      phase,
+    };
   };
 
 export default curriculumSubjectPhaseOverviewQuery;

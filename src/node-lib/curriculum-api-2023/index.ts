@@ -60,6 +60,8 @@ const curriculumSubjectPhaseOverviewData = z.object({
   curriculaDesc: z.string(),
   partnerBio: z.string(),
   videoGuideDesc: z.string(),
+  subject: z.object({ name: z.string(), slug: z.string() }),
+  phase: z.object({ name: z.string(), slug: z.string() }),
 });
 
 export type SearchPageData = z.infer<typeof searchPageSchema>;
