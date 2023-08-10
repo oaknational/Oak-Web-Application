@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styled from "styled-components";
 
 import KeyLearningPoints, {
   KeyLearningPoint,
@@ -27,15 +26,6 @@ type LessonDetailsProps = {
   supervisionLevel: string | null | undefined;
 };
 
-const StyledBox = styled(Box)`
-  margin-bottom: 48px;
-
-  &:last-child {
-    /* stylelint-disable-next-line length-zero-no-unit */
-    margin-bottom: 0px;
-  }
-`;
-
 const LessonDetails: FC<LessonDetailsProps> = ({
   keyLearningPoints,
   commonMisconceptions,
@@ -52,37 +42,37 @@ const LessonDetails: FC<LessonDetailsProps> = ({
       $justifyContent={["center", "normal"]}
       $alignItems={"flex-start"}
     >
-      <Flex $flexDirection={"column"} $flexGrow={1} $mr={16}>
+      <Flex $flexDirection={"column"} $flexGrow={1} $mr={16} $gap={48} $mb={24}>
         {keyLearningPoints && (
-          <StyledBox>
+          <Box>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
-          </StyledBox>
+          </Box>
         )}
         {commonMisconceptions && (
-          <StyledBox>
+          <Box>
             <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
-          </StyledBox>
+          </Box>
         )}
         {keyWords && (
-          <StyledBox>
+          <Box>
             <KeyWords keyWords={keyWords} />
-          </StyledBox>
+          </Box>
         )}
       </Flex>
-      <Flex $flexDirection={"column"} $mt={[48, 0]}>
+      <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
         {teacherTips && (
-          <StyledBox>
+          <Box>
             <TeacherTips teacherTips={teacherTips} />
-          </StyledBox>
+          </Box>
         )}
         {equipmentAndResources || contentGuidance || supervisionLevel ? (
-          <StyledBox>
+          <Box>
             <LessonHelper
               equipment={equipmentAndResources}
               contentGuidance={contentGuidance}
               supervisionLevel={supervisionLevel}
             />
-          </StyledBox>
+          </Box>
         ) : null}
       </Flex>
     </Flex>
