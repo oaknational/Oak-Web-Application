@@ -84,6 +84,7 @@ const unitsData = z.array(
     z.object({
       slug: z.string(),
       title: z.string(),
+      nullTitle: z.string(),
       programmeSlug: z.string(),
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),
@@ -344,9 +345,11 @@ const curriculumApi = {
           themeSlug: unit.themeSlug,
         },
       ];
+      const nullTitle = unit.title;
       return [
         {
           ...unit,
+          nullTitle,
           learningThemes,
         },
       ];

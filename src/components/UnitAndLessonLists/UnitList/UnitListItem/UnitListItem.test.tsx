@@ -6,6 +6,7 @@ import UnitListItem from "./UnitListItem";
 
 const props = {
   title: "Numbers and numerals",
+  nullTitle: "Numbers and numerals",
   slug: "numbers-and-numerals",
   themeTitle: "Circles",
   themeSlug: "circles",

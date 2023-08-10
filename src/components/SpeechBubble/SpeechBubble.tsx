@@ -6,7 +6,7 @@ import { Span } from "../Typography";
 import Box from "../Box";
 
 type SpeechBubbleProps = {
-  text?: string;
+  text?: string | null | undefined;
   label: string;
 };
 const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
@@ -32,7 +32,11 @@ const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
           $zIndex={"inFront"}
           $mb={12}
         >
-          <Span $textAlign={"center"} $font={"heading-7"}>
+          <Span
+            $textAlign={"center"}
+            $font={"heading-7"}
+            data-testid={"heading"}
+          >
             {text}
           </Span>
         </Flex>
