@@ -30,11 +30,10 @@ type LessonDetailsProps = {
 const StyledBox = styled(Box)`
   margin-bottom: 48px;
 
-  /* stylelint-disable */
   &:last-child {
+    /* stylelint-disable-next-line length-zero-no-unit */
     margin-bottom: 0px;
   }
-  /* stylelint-enable */
 `;
 
 const LessonDetails: FC<LessonDetailsProps> = ({
