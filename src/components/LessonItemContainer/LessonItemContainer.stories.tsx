@@ -16,6 +16,7 @@ const props: LessonItemContainerProps = {
   title: "Slide deck",
   downloadable: true,
   slugs: { lessonSlug, unitSlug, programmeSlug },
+  anchorId: "slideDeck",
 };
 
 const meta: Meta<typeof LessonItemContainer> = {

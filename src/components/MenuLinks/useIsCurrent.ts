@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-import { resolveOakHref } from "../../common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
 
 const isSubPath = ({
   currentPath,
@@ -14,6 +15,7 @@ const isSubPath = ({
   }
 
   const betaHomeHref = resolveOakHref({ page: "home", viewType: "teachers" });
+
   if (currentPath.startsWith(betaHomeHref + "/")) {
     return false;
   }
@@ -31,12 +33,18 @@ type UseIsCurrentProps = {
  */
 const useIsCurrent = (props: UseIsCurrentProps) => {
   const { href } = props;
-  const { pathname: currentPath } = useRouter();
+  const { pathname: currentPath, asPath } = useRouter();
+  const [isCurrent, setIsCurrent] = useState(false);
 
-  const isCurrent = isSubPath({
-    currentPath,
-    href,
-  });
+  // NB. We use useEffect here to avoid a server-side render error
+  useEffect(() => {
+    const hash = asPath.split("#")[1];
+    const isCurrentPath = isSubPath({
+      currentPath,
+      href,
+    });
+    setIsCurrent(isCurrentPath || hash === href.substring(1));
+  }, [currentPath, href, asPath]);
 
   return isCurrent;
 };

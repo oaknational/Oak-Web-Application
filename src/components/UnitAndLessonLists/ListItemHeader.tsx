@@ -29,7 +29,7 @@ type ListItemHeadingProps = CommonProps &
     index?: number;
   };
 
-const ListTitle: FC<{
+export const ListTitle: FC<{
   children?: React.ReactNode;
   expired?: boolean;
   index?: number;

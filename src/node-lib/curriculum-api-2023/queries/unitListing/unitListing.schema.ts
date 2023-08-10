@@ -10,6 +10,7 @@ const unitSchema = z.array(
     z.object({
       slug: z.string(),
       title: z.string(),
+      nullTitle: z.string(),
       programmeSlug: z.string(),
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),

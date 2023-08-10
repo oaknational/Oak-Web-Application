@@ -6,14 +6,14 @@ import {
 } from "react";
 import styled from "styled-components";
 
-import UnstyledButton from "../UnstyledButton";
-
 import { CommonIconButtonProps } from "./common";
 import iconButtonStyles, {
   getIconButtonStylesProps,
   IconButtonStylesProps,
 } from "./iconButton.styles";
 import IconButtonInner from "./IconButtonInner";
+
+import UnstyledButton from "@/components/UnstyledButton";
 
 const StyledButton = styled(UnstyledButton)<IconButtonStylesProps>`
   transform: rotate(${(props) => props.rotate}deg);
