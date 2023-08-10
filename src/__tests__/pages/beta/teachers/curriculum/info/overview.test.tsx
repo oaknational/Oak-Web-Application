@@ -1,4 +1,4 @@
-import CurriculumInfoPage from "../../../../../../pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import CurriculumInfoPage from "../../../../../../pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/overview";
 import curriculumOverviewFixture from "../../../../../../node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixtures";
 import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
 import subjectPhaseOptions from "../../../../../../browser-lib/fixtures/subjectPhaseOptions";
@@ -11,7 +11,6 @@ describe("curriculum info page", () => {
         <CurriculumInfoPage
           data={curriculumOverviewFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
-          tab="over"
         />
       );
 
