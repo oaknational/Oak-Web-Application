@@ -151,8 +151,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           <SubjectIcon
             subjectSlug={subjectIcon}
             $ml={-8}
-            height={40}
-            width={40}
+            $maxHeight={40}
+            $maxWidth={40}
           />
         </Flex>
       )}
