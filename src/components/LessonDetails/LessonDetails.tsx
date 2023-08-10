@@ -1,18 +1,17 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import Box from "../Box";
-import Flex from "../Flex";
 import KeyLearningPoints, {
   KeyLearningPoint,
-} from "../KeyLearningPoints/KeyLearningPoints";
+} from "@/components/KeyLearningPoints/KeyLearningPoints";
 import CommonMisconceptions, {
   CommonMisconception,
-} from "../CommonMisconceptions/CommonMisconceptions";
-import KeyWords, { KeyWord } from "../KeyWords/KeyWords";
-import TeacherTips, { TeacherTip } from "../TeacherTips/TeacherTips";
-import LessonHelper from "../LessonHelper/LessonHelper";
-
+} from "@/components/CommonMisconceptions/CommonMisconceptions";
+import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
+import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
+import LessonHelper from "@/components/LessonHelper/LessonHelper";
+import Flex from "@/components/Flex";
+import Box from "@/components/Box";
 import {
   ContentGuidance,
   Equipment,
@@ -31,10 +30,11 @@ type LessonDetailsProps = {
 const StyledBox = styled(Box)`
   margin-bottom: 48px;
 
-  // can't set margin-bottom to 0px on the last child because of the lint rule
+  /* stylelint-disable */
   &:last-child {
-    margin-bottom: 1px;
+    margin-bottom: 0px;
   }
+  /* stylelint-enable */
 `;
 
 const LessonDetails: FC<LessonDetailsProps> = ({

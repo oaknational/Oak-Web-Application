@@ -351,28 +351,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       </MaxWidth>
       {!expired && (
         <>
-          {/* <MaxWidth $ph={[0, 16, 16]}>
-            {(lessonEquipmentAndResources ||
-              supervisionLevel ||
-              contentGuidance) && <Hr $color={"oakGrey3"} />}
-            <Grid $rg={32} $cg={32} $mv={16}>
-              <LessonHelper
-                helperTitle={"Equipment required"}
-                helperIcon={"equipment-required"}
-                equipment={lessonEquipmentAndResources}
-              />
-              <LessonHelper
-                helperTitle={"Supervision level"}
-                helperIcon={"supervision-level"}
-                supervisionLevel={supervisionLevel}
-              />
-              <LessonHelper
-                helperTitle={"Content guidance"}
-                helperIcon={"content-guidance"}
-                contentGuidance={contentGuidance}
-              />
-            </Grid>
-          </MaxWidth> */}
           <MaxWidth $ph={16}>
             <Hr $color={"oakGrey3"} />
           </MaxWidth>
