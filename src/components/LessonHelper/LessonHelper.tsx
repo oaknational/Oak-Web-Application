@@ -1,82 +1,57 @@
 import React, { FC } from "react";
 
-import Card from "../Card";
-import { GridArea } from "../Grid";
-import Icon, { IconName } from "../Icon";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Typography, { Heading } from "../Typography";
+import Box from "@/components/Box";
+import Grid, { GridArea } from "@/components/Grid";
+import LessonRequirements, {
+  Equipment,
+  ContentGuidance,
+} from "@/components/LessonRequirements/LessonRequirements";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
-type HelperProps = {
-  helperIcon: IconName;
-  helperTitle: string;
-  contentGuidance?: ContentGuidance[] | null | undefined;
-  equipment?:
-    | {
-        equipment: string;
-      }[]
-    | null
-    | undefined;
-  supervisionLevel?: string | null | undefined;
+type LessonHelperProps = {
+  equipment: Equipment[] | null | undefined;
+  contentGuidance: ContentGuidance[] | null | undefined;
+  supervisionLevel: string | null | undefined;
 };
 
-type ContentGuidance = {
-  contentGuidanceLabel: string;
-  contentGuidanceDescription: string;
-  contentGuidanceArea: string;
-};
-
-const LessonHelper: FC<HelperProps> = ({
-  helperIcon,
-  helperTitle,
-  supervisionLevel,
-  contentGuidance,
+const LessonHelper: FC<LessonHelperProps> = ({
   equipment,
+  contentGuidance,
+  supervisionLevel,
 }) => {
-  if (!contentGuidance && !equipment && !supervisionLevel) {
-    return null;
-  }
-
   return (
-    <GridArea $colSpan={[12, 12, 4]}>
-      <Card
-        $background={"teachersPastelYellow"}
-        $flexDirection={"row"}
-        $flexWrap={"wrap"}
-        $alignItems={"center"}
-        $pa={12}
-      >
-        <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
-          <Icon variant="minimal" name={helperIcon} /> {helperTitle}
-        </Heading>
-        {contentGuidance &&
-          contentGuidance.map((guidance: ContentGuidance) => {
-            return (
-              <Typography
-                $font={"body-2"}
-                $ma={12}
-                key={guidance.contentGuidanceLabel}
-              >
-                {guidance.contentGuidanceLabel}
-              </Typography>
-            );
-          })}
-        {supervisionLevel && (
-          <Typography $font={"body-2"} $ma={12}>
-            {supervisionLevel}
-          </Typography>
+    <Box $background={"aqua50"} $position={"relative"} $width={320}>
+      <Grid $rg={32} $pa={24}>
+        {equipment && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"equipment-required"}
+              heading="Equipment"
+              equipment={equipment}
+            />
+          </GridArea>
         )}
-        {equipment &&
-          equipment.map(({ equipment }) => {
-            return (
-              <Typography $font={"body-2"} $ma={12} key={equipment}>
-                {equipment}
-              </Typography>
-            );
-          })}
-
-        <BrushBorders color="teachersPastelYellow" />
-      </Card>
-    </GridArea>
+        {contentGuidance && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"content-guidance"}
+              heading="Content guidance"
+              contentGuidance={contentGuidance}
+            />
+          </GridArea>
+        )}
+        {supervisionLevel && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"supervision-level"}
+              heading="Supervision"
+              supervisionLevel={supervisionLevel}
+            />
+          </GridArea>
+        )}
+      </Grid>
+      <BrushBorders color="aqua50" />
+    </Box>
   );
 };
 

@@ -20,7 +20,6 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Grid, { GridArea } from "@/components/Grid";
 import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import LessonHelper from "@/components/LessonHelper";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
 import ExpandingContainer from "@/components/ExpandingContainer";
@@ -319,6 +318,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     commonMisconceptions={misconceptionsAndCommonMistakes}
                     keyWords={lessonKeywords}
                     teacherTips={teacherTips}
+                    equipmentAndResources={lessonEquipmentAndResources}
+                    contentGuidance={contentGuidance}
+                    supervisionLevel={supervisionLevel}
                   />
                 </LessonItemContainer>
 
@@ -389,28 +391,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       </MaxWidth>
       {!expired && (
         <>
-          <MaxWidth $ph={[0, 16, 16]}>
-            {(lessonEquipmentAndResources ||
-              supervisionLevel ||
-              contentGuidance) && <Hr $color={"oakGrey3"} />}
-            <Grid $rg={32} $cg={32} $mv={16}>
-              <LessonHelper
-                helperTitle={"Equipment required"}
-                helperIcon={"equipment-required"}
-                equipment={lessonEquipmentAndResources}
-              />
-              <LessonHelper
-                helperTitle={"Supervision level"}
-                helperIcon={"supervision-level"}
-                supervisionLevel={supervisionLevel}
-              />
-              <LessonHelper
-                helperTitle={"Content guidance"}
-                helperIcon={"content-guidance"}
-                contentGuidance={contentGuidance}
-              />
-            </Grid>
-          </MaxWidth>
           <MaxWidth $ph={16}>
             <Hr $color={"oakGrey3"} />
           </MaxWidth>
