@@ -6,9 +6,8 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "./components/CurriculumHeader";
-import DownloadTab from "./components/tabs/DownloadTab";
-
+import CurriculumHeader from "@/components/Grid/CurriculumInfo/CurriculumHeader";
+import DownloadTab from "@/components/Grid/CurriculumInfo/tabs/DownloadTab";
 import Box from "@/components/Box/Box";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import curriculumApi, {
