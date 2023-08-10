@@ -1,6 +1,14 @@
-query lessonOverview($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview_1(
-    where: { lessonSlug: { _eq: $lessonSlug } }
+query lessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  lesson: published_mv_lesson_overview_3(
+    where: {
+      lessonSlug: { _eq: $lessonSlug }
+      programmeSlug: { _eq: $programmeSlug }
+      unitSlug: { _eq: $unitSlug }
+    }
   ) {
     lessonSlug
     lessonTitle

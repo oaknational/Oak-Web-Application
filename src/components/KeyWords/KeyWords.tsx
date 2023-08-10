@@ -1,7 +1,7 @@
 import React from "react";
 
-import Flex from "../Flex";
-import { LI, P, Span, UL, Heading } from "../Typography";
+import Flex from "@/components/Flex";
+import { LI, P, Span, UL, Heading } from "@/components/Typography";
 
 export type KeyWord = {
   keyword: string;

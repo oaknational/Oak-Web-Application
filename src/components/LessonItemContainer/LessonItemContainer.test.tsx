@@ -28,7 +28,7 @@ describe("LessonItemContainer", () => {
 
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonItemContainer title={"Slide deck"}>
+      <LessonItemContainer title={"Slide deck"} anchorId={"slideDeck"}>
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
@@ -39,7 +39,7 @@ describe("LessonItemContainer", () => {
 
   it("renders the children", () => {
     const { getByText } = renderWithTheme(
-      <LessonItemContainer title={"Slide deck"}>
+      <LessonItemContainer title={"Slide deck"} anchorId="slideDeck">
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
@@ -53,6 +53,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
+        anchorId={"slideDeck"}
         slugs={lessonOverview}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -65,7 +66,11 @@ describe("LessonItemContainer", () => {
 
   it("doesn't render the download button without curriculum data", () => {
     const { getAllByRole } = renderWithTheme(
-      <LessonItemContainer title={"Slide deck"} downloadable={true}>
+      <LessonItemContainer
+        title={"Slide deck"}
+        downloadable={true}
+        anchorId="slideDeck"
+      >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
@@ -83,6 +88,7 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         slugs={lessonOverview}
         title={"Video"}
+        anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -102,6 +108,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Worksheet"}
         downloadable={true}
+        anchorId="worksheet"
         slugs={lessonOverview}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
