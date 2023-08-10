@@ -5,7 +5,7 @@ import { Sdk } from "../../sdk";
 import lessonOverviewSchema from "./lessonOverview.schema";
 
 const lessonOverviewQuery =
-  (sdk: Sdk) => async (args: { lessonSlug: string }) => {
+  (sdk: Sdk) => async (args: { lessonSlug: string, unitSlug: string, programmeSlug: string }) => {
     const res = await sdk.lessonOverview(args);
     const [lesson] = res.lesson;
     if (!lesson) {
