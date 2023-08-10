@@ -12,10 +12,10 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $ma={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("margin-left: 12px");
-    expect(getByTestId("test")).toHaveStyle("margin-top: 12px");
-    expect(getByTestId("test")).toHaveStyle("margin-bottom: 12px");
-    expect(getByTestId("test")).toHaveStyle("margin-right: 12px");
+    expect(getByTestId("test")).toHaveStyle("margin-left: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("margin-top: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("margin-bottom: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("margin-right: 0.75rem");
   });
   test("should correctly handle prop 'mv'", async () => {
     const StyledComponent = styled.div`
@@ -25,8 +25,8 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $mv={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("margin-top: 12px");
-    expect(getByTestId("test")).toHaveStyle("margin-bottom: 12px");
+    expect(getByTestId("test")).toHaveStyle("margin-top: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("margin-bottom: 0.75rem");
   });
   test("should correctly handle prop 'mh'", async () => {
     const StyledComponent = styled.div`
@@ -36,8 +36,8 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $mh={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("margin-left: 12px");
-    expect(getByTestId("test")).toHaveStyle("margin-right: 12px");
+    expect(getByTestId("test")).toHaveStyle("margin-left: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("margin-right: 0.75rem");
   });
   test("should correctly handle prop 'pv'", async () => {
     const StyledComponent = styled.div`
@@ -47,8 +47,8 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $pv={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("padding-top: 12px");
-    expect(getByTestId("test")).toHaveStyle("padding-bottom: 12px");
+    expect(getByTestId("test")).toHaveStyle("padding-top: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("padding-bottom: 0.75rem");
   });
   test("should correctly handle prop 'ph'", async () => {
     const StyledComponent = styled.div`
@@ -58,8 +58,8 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $ph={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
-    expect(getByTestId("test")).toHaveStyle("padding-right: 12px");
+    expect(getByTestId("test")).toHaveStyle("padding-left: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("padding-right: 0.75rem");
   });
   test("should correctly handle prop 'pa'", async () => {
     const StyledComponent = styled.div`
@@ -69,10 +69,10 @@ describe("spacing", () => {
       <StyledComponent data-testid="test" $pa={12} />
     );
 
-    expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
-    expect(getByTestId("test")).toHaveStyle("padding-top: 12px");
-    expect(getByTestId("test")).toHaveStyle("padding-bottom: 12px");
-    expect(getByTestId("test")).toHaveStyle("padding-right: 12px");
+    expect(getByTestId("test")).toHaveStyle("padding-left: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("padding-top: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("padding-bottom: 0.75rem");
+    expect(getByTestId("test")).toHaveStyle("padding-right: 0.75rem");
   });
   test.each([
     ["$pl", "1em", "padding-left: 1em;"],
