@@ -1,3 +1,58 @@
+## [1.216.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.2...v1.216.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* **lesson-overview:** prittier ([bc5f08d](https://github.com/oaknational/Oak-Web-Application/commit/bc5f08d3824d82bfdd7651ed67bf6ccc4bb5e6f1))
+* **lesson-overview:** programme and unit slugs must be used as query arguments ([f4103d5](https://github.com/oaknational/Oak-Web-Application/commit/f4103d553a4f30ab70be6b8a2ba6b9b615514c1f))
+
+## [1.216.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.1...v1.216.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* **sec:** update tough-cookie dep ([2955aa4](https://github.com/oaknational/Oak-Web-Application/commit/2955aa4683a59af0fc2d883e0991ae2746b3ddf8))
+
+## [1.216.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.0...v1.216.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **curric:** updated max height for button subject svg ([28db007](https://github.com/oaknational/Oak-Web-Application/commit/28db007e02a39d0fbb044f150ed37124b1c8c042))
+
+# [1.216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.1...v1.216.0) (2023-08-09)
+
+
+### Bug Fixes
+
+* resolve merge conflicts with main ([365c989](https://github.com/oaknational/Oak-Web-Application/commit/365c98967b680b2e7bcdf485a90f557438e7aadd))
+* type errors ([c35496a](https://github.com/oaknational/Oak-Web-Application/commit/c35496a4e8f8e958c900dd3e4973d020ca43e573))
+
+
+### Features
+
+* added vertical navigation to lessons overview ([2b0d5d2](https://github.com/oaknational/Oak-Web-Application/commit/2b0d5d2e81a4747b5da060440b81d6e2e5af3e1b))
+* lesson nav ready for tests ([ff3eaa6](https://github.com/oaknational/Oak-Web-Application/commit/ff3eaa61d5458ba961e67e5640d4655bedd554ba))
+* restyle ButtonLinkNav ([465bd79](https://github.com/oaknational/Oak-Web-Application/commit/465bd79d581ec38386cf041b4b634c5d93c3e5fe))
+* wip lesson nav now uses anchor targets ([53efda6](https://github.com/oaknational/Oak-Web-Application/commit/53efda6fa5b14860c2b5a633b1e12e5e2c7304c0))
+
+## [1.215.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.0...v1.215.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* subject icon to pull svg ([992dd33](https://github.com/oaknational/Oak-Web-Application/commit/992dd334fdb2aa5531d28ea8aa1c9b9e282f9d25))
+* subject icons should pull down as svgs ([39cdbf4](https://github.com/oaknational/Oak-Web-Application/commit/39cdbf4bc415137c01f2c14a9495307214292d50))
+
+# [1.215.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.1...v1.215.0) (2023-08-09)
+
+
+### Features
+
+* resolve css to rem units ([be5ed24](https://github.com/oaknational/Oak-Web-Application/commit/be5ed241b316f6e2250144e99b237d6e586abced))
+
+## [1.214.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.214.0...v1.214.1) (2023-08-09)
+
 # [1.214.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.213.0...v1.214.0) (2023-08-08)
 
 
