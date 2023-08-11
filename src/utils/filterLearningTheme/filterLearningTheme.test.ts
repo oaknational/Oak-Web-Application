@@ -16,6 +16,7 @@ describe("filterLearningTheme", () => {
         {
           slug: "data-representation-618b",
           title: "Data Representation",
+          nullTitle: "Data Representation",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key stage 4",

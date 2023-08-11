@@ -43,9 +43,10 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { size, variant, $iconPosition, background } =
     getButtonStylesProps(transformedProps);
 
-  // QUESTION: I don't follow the logic of this. It can result in rendering undefined as a title.
+  // aria-label overrides label.
+  // If labelSuffixA11y is provided, it is appended to the label.
   const defaultTitle =
-    ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
+    ariaLabel ?? (labelSuffixA11y ? `${label} ${labelSuffixA11y}` : label);
 
   return (
     <Link {...nextLinkProps} passHref legacyBehavior>

@@ -1,3 +1,51 @@
+## [1.217.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.217.0...v1.217.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* faulty buttonAsLink aria-label logic ([b1d9963](https://github.com/oaknational/Oak-Web-Application/commit/b1d99639f46084bd7ee9ad6f35920849a2d6e69c))
+* sonar flag ([8a490f0](https://github.com/oaknational/Oak-Web-Application/commit/8a490f00a23e6f6682ae4f1a456e091cad4bf6bc))
+* ts errors from a merged commit ([4ab7101](https://github.com/oaknational/Oak-Web-Application/commit/4ab71012511f9288304f3a63348d475d3a49a4b8))
+
+# [1.217.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.4...v1.217.0) (2023-08-10)
+
+
+### Bug Fixes
+
+* **main:** merge main fix conflicts ([e06ec11](https://github.com/oaknational/Oak-Web-Application/commit/e06ec116aaac08fb9b056055b491c6fb63ff5484))
+* **nullTitle:** fix mock content in test to include nullTitle ([5e4709d](https://github.com/oaknational/Oak-Web-Application/commit/5e4709d44086f10d9ad4f70e54aa2d187a896655))
+* **nullTitle:** fix type errors to fixtures and test caused by adding nullTitle ([6b2de3a](https://github.com/oaknational/Oak-Web-Application/commit/6b2de3a774cf1833fe152a37f58d18b1a4a42447))
+
+
+### Features
+
+* **unitlisting:** add null title to units with optionality ([4180538](https://github.com/oaknational/Oak-Web-Application/commit/4180538e20827e29dd1cb5a1be8bbe03386e0892))
+* **unitlisting:** prettier ([e2b4e18](https://github.com/oaknational/Oak-Web-Application/commit/e2b4e18773a86c25c6a39410aab867adc87e3a0b))
+
+## [1.216.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.3...v1.216.4) (2023-08-10)
+
+## [1.216.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.2...v1.216.3) (2023-08-10)
+
+
+### Bug Fixes
+
+* **lesson-overview:** prittier ([bc5f08d](https://github.com/oaknational/Oak-Web-Application/commit/bc5f08d3824d82bfdd7651ed67bf6ccc4bb5e6f1))
+* **lesson-overview:** programme and unit slugs must be used as query arguments ([f4103d5](https://github.com/oaknational/Oak-Web-Application/commit/f4103d553a4f30ab70be6b8a2ba6b9b615514c1f))
+
+## [1.216.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.1...v1.216.2) (2023-08-10)
+
+
+### Bug Fixes
+
+* **sec:** update tough-cookie dep ([2955aa4](https://github.com/oaknational/Oak-Web-Application/commit/2955aa4683a59af0fc2d883e0991ae2746b3ddf8))
+
+## [1.216.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.216.0...v1.216.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **curric:** updated max height for button subject svg ([28db007](https://github.com/oaknational/Oak-Web-Application/commit/28db007e02a39d0fbb044f150ed37124b1c8c042))
+
 # [1.216.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.215.1...v1.216.0) (2023-08-09)
 
 

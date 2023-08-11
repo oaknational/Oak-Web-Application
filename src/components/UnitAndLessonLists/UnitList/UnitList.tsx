@@ -5,6 +5,7 @@ import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
 import { LI, UL } from "../../Typography";
 import { UnitListingData } from "../../../node-lib/curriculum-api";
+import { ListTitle } from "../ListItemHeader";
 
 import UnitListItem from "./UnitListItem";
 import { UnitListItemProps } from "./UnitListItem/UnitListItem";
@@ -34,6 +35,9 @@ const UnitList: FC<UnitListProps> = (props) => {
           <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
+                {item.length > 1 && (
+                  <ListTitle index={index}>{item[0]?.nullTitle}</ListTitle>
+                )}
                 <Flex>
                   {" "}
                   {item.map((unitOption) => {

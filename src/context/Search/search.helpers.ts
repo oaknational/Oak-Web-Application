@@ -161,6 +161,7 @@ export function getUnitObject(props: {
   const unitResult = {
     programmeSlug: getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
+    nullTitle: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
     themeTitle: highlightedHit.theme_title?.toString() || null,
     themeSlug: null, // null values need to be added to elastic search

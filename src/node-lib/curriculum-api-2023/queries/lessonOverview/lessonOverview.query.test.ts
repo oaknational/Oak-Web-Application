@@ -10,6 +10,8 @@ describe("lessonOverview()", () => {
         lessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
+        unitSlug: "unit-slug",
+        programmeSlug: "programme-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -62,7 +64,9 @@ describe("lessonOverview()", () => {
         })
       ),
     })({
-      lessonSlug: "programme-slug",
+      lessonSlug: "lesson-slug",
+      unitSlug: "unit-slug",
+      programmeSlug: "programme-slug",
     });
     expect(lesson.programmeSlug).toEqual("programme-slug-0");
   });
@@ -102,6 +106,8 @@ describe("lessonOverview()", () => {
         ),
       })({
         lessonSlug: "lesson-slug",
+        unitSlug: "unit-slug",
+        programmeSlug: "programme-slug",
       });
     }).rejects.toThrow(`subjectSlug`);
   });

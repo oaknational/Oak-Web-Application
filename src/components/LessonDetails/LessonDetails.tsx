@@ -1,21 +1,29 @@
 import React, { FC } from "react";
 
-import Grid, { GridArea } from "../Grid";
-import Flex from "../Flex";
 import KeyLearningPoints, {
   KeyLearningPoint,
-} from "../KeyLearningPoints/KeyLearningPoints";
+} from "@/components/KeyLearningPoints/KeyLearningPoints";
 import CommonMisconceptions, {
   CommonMisconception,
-} from "../CommonMisconceptions/CommonMisconceptions";
-import KeyWords, { KeyWord } from "../KeyWords/KeyWords";
-import TeacherTips, { TeacherTip } from "../TeacherTips/TeacherTips";
+} from "@/components/CommonMisconceptions/CommonMisconceptions";
+import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
+import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
+import LessonHelper from "@/components/LessonHelper/LessonHelper";
+import Flex from "@/components/Flex";
+import Box from "@/components/Box";
+import {
+  ContentGuidance,
+  Equipment,
+} from "@/components/LessonRequirements/LessonRequirements";
 
 type LessonDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;
   commonMisconceptions: CommonMisconception[] | null | undefined;
   keyWords: KeyWord[] | null | undefined;
   teacherTips: TeacherTip[] | null | undefined;
+  equipmentAndResources: Equipment[] | null | undefined;
+  contentGuidance: ContentGuidance[] | null | undefined;
+  supervisionLevel: string | null | undefined;
 };
 
 const LessonDetails: FC<LessonDetailsProps> = ({
@@ -23,40 +31,50 @@ const LessonDetails: FC<LessonDetailsProps> = ({
   commonMisconceptions,
   keyWords,
   teacherTips,
+  equipmentAndResources,
+  contentGuidance,
+  supervisionLevel,
 }) => {
   return (
-    <Flex $flexDirection={"column"}>
-      <Grid $width={"100%"} $cg={16} $rg={48}>
+    <Flex
+      $flexDirection={"row"}
+      $flexWrap={["wrap", "nowrap"]}
+      $justifyContent={["center", "normal"]}
+      $alignItems={"flex-start"}
+    >
+      <Flex $flexDirection={"column"} $flexGrow={1} $mr={16} $gap={48} $mb={24}>
         {keyLearningPoints && (
-          <GridArea $colSpan={[12, 8]} $colStart={1} $width={"100%"}>
+          <Box>
             <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
-          </GridArea>
+          </Box>
         )}
         {commonMisconceptions && (
-          <GridArea $colSpan={[12, 8]} $colStart={1}>
-            {commonMisconceptions && (
-              <CommonMisconceptions
-                commonMisconceptions={commonMisconceptions}
-              />
-            )}
-          </GridArea>
+          <Box>
+            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+          </Box>
         )}
         {keyWords && (
-          <GridArea $colSpan={[12, 8]} $colStart={1}>
-            {keyWords && <KeyWords keyWords={keyWords} />}
-          </GridArea>
+          <Box>
+            <KeyWords keyWords={keyWords} />
+          </Box>
         )}
+      </Flex>
+      <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
         {teacherTips && (
-          <GridArea
-            $colSpan={[12, 4]}
-            $colStart={[1, 9]}
-            $width={"100%"}
-            $rowStart={[4, 1]}
-          >
+          <Box>
             <TeacherTips teacherTips={teacherTips} />
-          </GridArea>
+          </Box>
         )}
-      </Grid>
+        {equipmentAndResources || contentGuidance || supervisionLevel ? (
+          <Box>
+            <LessonHelper
+              equipment={equipmentAndResources}
+              contentGuidance={contentGuidance}
+              supervisionLevel={supervisionLevel}
+            />
+          </Box>
+        ) : null}
+      </Flex>
     </Flex>
   );
 };
