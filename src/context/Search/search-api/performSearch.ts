@@ -24,6 +24,9 @@ export async function performSearch({
   try {
     onStart();
 
+    /**
+     * Caution, if one search endpoint fails, then the whole search fails.
+     */
     const [results2023, results2020] = await Promise.all([
       fetchResults2023(query),
       fetchResults2020(query),
@@ -32,7 +35,7 @@ export async function performSearch({
     /**
      * Depending on the designs, we may want to merge the results here.
      */
-    console.log({ results2023, results2020 });
+    // console.log({ results2023, results2020 });
 
     /**
      * Hack to show results depending on [viewType]

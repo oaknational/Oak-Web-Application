@@ -5,6 +5,7 @@ import { SearchQuery } from "../../search.types";
 
 import { constructElasticQuery } from "./constructElasticQuery";
 
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import handleFetchError from "@/utils/handleFetchError";
 
 export async function fetchResults(query: SearchQuery) {
@@ -18,10 +19,7 @@ export async function fetchResults(query: SearchQuery) {
     body: JSON.stringify(constructElasticQuery(query)),
   };
 
-  const response = await fetch(
-    "http://localhost:9200/units,lessons/_search",
-    options
-  );
+  const response = await fetch(getBrowserConfig("searchApiUrl2023"), options);
 
   handleFetchError(response);
 
@@ -64,7 +62,6 @@ export async function fetchResults(query: SearchQuery) {
     deep: true,
     exclude: ["_id", "_index", "_score", "_source"],
   });
-  console.log(snakeaseData);
 
   const data = searchResultsSchema.parse(snakeaseData);
 

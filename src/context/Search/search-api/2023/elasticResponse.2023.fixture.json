@@ -1,0 +1,618 @@
+{
+  "took": 50,
+  "timed_out": false,
+  "_shards": {
+    "total": 3,
+    "successful": 3,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 19,
+      "relation": "eq"
+    },
+    "max_score": 121.737686,
+    "hits": [
+      {
+        "_index": "lessons_test",
+        "_id": "5KnzTocBd235CCw7oqe1",
+        "_score": 121.737686,
+        "_source": {
+          "id": 211319,
+          "type": "lesson",
+          "lessonSlug": "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
+          "lessonTitle": "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+          "lessonDescription": "In this lesson we are introduced to Macbeth and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.",
+          "unitTitle": "Dipping into Shakespeare",
+          "themeTitle": null,
+          "unitSlug": "dipping-into-shakespeare-da5e",
+          "subjectTitle": "Drama",
+          "subjectSlug": "drama",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 6",
+          "yearSlug": "year-6",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson we are introduced to <mark class=\"highlighted\">Macbeth</mark> and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches."
+          ],
+          "title": [
+            "Dipping into <mark class=\"highlighted\">Macbeth</mark> - Brave <mark class=\"highlighted\">Macbeth</mark> (Part 2)"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "-6n2TocBd235CCw7t7bd",
+        "_score": 121.539116,
+        "_source": {
+          "id": 211797,
+          "type": "lesson",
+          "lessonSlug": "dipping-into-macbeth-lady-macbeth-part-3-6cwkjd",
+          "lessonTitle": "Dipping into Macbeth - Lady Macbeth (Part 3)\n",
+          "lessonDescription": "In this lesson, we are introduced to Lady Macbeth. We will use a number of drama activities to explore her character and the impact she has on the play.",
+          "unitTitle": "Dipping into Shakespeare",
+          "themeTitle": null,
+          "unitSlug": "dipping-into-shakespeare-da5e",
+          "subjectTitle": "Drama",
+          "subjectSlug": "drama",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 6",
+          "yearSlug": "year-6",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we are introduced to Lady <mark class=\"highlighted\">Macbeth</mark>. We will use a number of drama activities to explore her character and the impact she has on the play."
+          ],
+          "title": [
+            "Dipping into <mark class=\"highlighted\">Macbeth</mark> - Lady <mark class=\"highlighted\">Macbeth</mark> (Part 3)"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "C6n1TocBd235CCw7i7J0",
+        "_score": 91.291405,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 555,
+          "type": "lesson",
+          "lessonSlug": "to-analyse-the-opening-of-the-play-macbeth-c9h3cd",
+          "lessonTitle": "To analyse the opening of the play Macbeth",
+          "lessonDescription": "In this lesson, we will look at the text type features of a play and how this is different to other text types. We will then read aloud the opening of the play and check for meaning of vocabulary. After that, we will picture the setting from reading the opening and draw our own interpretation of the settings.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 4",
+          "keyStageSlug": "key-stage-4",
+          "yearTitle": "Year 11",
+          "yearSlug": "year-11",
+          "tier": "higher",
+          "phase": "secondary"
+        },
+        "highlight": {
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ],
+          "title": [
+            "To analyse the opening of the play <mark class=\"highlighted\">Macbeth</mark>"
+          ]
+        }
+      },
+      {
+        "_index": "units_production",
+        "_id": "36nxTocBd235CCw75pYd",
+        "_score": 90.53305,
+        "_source": {
+          "id": 4913,
+          "type": "unit",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "unitTitle": "Macbeth - Narrative writing",
+          "subjectTitle": "English",
+          "number_of_lessons_calculated": 20,
+          "number_of_lessons_expired": null,
+          "subjectSlug": "english",
+          "themeTitle": "Writing",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "title": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "units_production",
+        "_id": "36nxTocBd235CCw75pYd",
+        "_score": 90.53305,
+        "_source": {
+          "id": 4913,
+          "type": "unit",
+          "unitSlug": "macbeth-narrative-writing-core",
+          "unitTitle": "Macbeth - Narrative writing",
+          "subjectTitle": "English",
+          "number_of_lessons_calculated": 20,
+          "number_of_lessons_expired": null,
+          "subjectSlug": "english",
+          "themeTitle": "Writing",
+          "keyStageTitle": "Key Stage 4",
+          "keyStageSlug": "key-stage-4",
+          "yearSlug": "year-10",
+          "tier": "core",
+          "phase": "secondary"
+        },
+        "highlight": {
+          "title": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "16nyTocBd235CCw7Xpzz",
+        "_score": 86.01493,
+        "_source": {
+          "id": 6938,
+          "type": "lesson",
+          "lessonSlug": "to-build-knowledge-of-the-historical-context-of-the-play-macbeth-6ngker",
+          "lessonTitle": "To build knowledge of the historical context of the play 'Macbeth'",
+          "lessonDescription": "In this lesson, we will look at the author William Shakespeare and the time period in which the play, 'Macbeth', was written. Then we will explore different types of plays and end on a brief introduction into the play.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will look at the author William Shakespeare and the time period in which the play, '<mark class=\"highlighted\">Macbeth</mark>', was written. Then we will explore different types of plays and end on a brief introduction into the play."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ],
+          "title": [
+            "To build knowledge of the historical context of the play '<mark class=\"highlighted\">Macbeth</mark>'"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "jKnzTocBd235CCw7oqe1",
+        "_score": 86.000854,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 211352,
+          "type": "lesson",
+          "lessonSlug": "dipping-into-macbeth-the-witches-part-1-6njp4c",
+          "lessonTitle": "Dipping into Macbeth - The Witches (Part 1) \n",
+          "lessonDescription": "In this lesson we will meet a witch! We will look at lines in Act 1 Scene 1 of Macbeth. We will then explore how we might voice the witch's words in different ways and we will consider which way is the most effective. We will try moving and using gestures in different ways as we bring the character to life and start to ask questions about who (or what) she might be.\n\nThis lesson includes some physical activity, please make sure your child is adequately supervised.",
+          "unitTitle": "Dipping into Shakespeare",
+          "themeTitle": null,
+          "unitSlug": "dipping-into-shakespeare-da5e",
+          "subjectTitle": "Drama",
+          "subjectSlug": "drama",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 6",
+          "yearSlug": "year-6",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson we will meet a witch! We will look at lines in Act 1 Scene 1 of <mark class=\"highlighted\">Macbeth</mark>. We will then explore how we might voice the witch's words in different ways and we will consider which way is the most effective. We will try moving and using gestures in different ways as we bring the character to life and start to ask questions about who (or what) she might be.\n\nThis lesson includes some physical activity, please make sure your child is adequately supervised."
+          ],
+          "title": [
+            "Dipping into <mark class=\"highlighted\">Macbeth</mark> - The Witches (Part 1)"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "TKn2TocBd235CCw70LcQ",
+        "_score": 82.54817,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 211391,
+          "type": "lesson",
+          "lessonSlug": "dipping-into-macbeth-murder-and-the-crown-part-4-71h3ac",
+          "lessonTitle": "Dipping into Macbeth - Murder and the Crown. (Part 4)\n",
+          "lessonDescription": "In this lesson, we will find out whether Macbeth goes through with murder. We will use a range of drama activities to explore Macbeth's ever changing character and look at the consequences of his actions. \n\nThis lesson includes some physical activity, please make sure your child is adequately supervised.",
+          "unitTitle": "Dipping into Shakespeare",
+          "themeTitle": null,
+          "unitSlug": "dipping-into-shakespeare-da5e",
+          "subjectTitle": "Drama",
+          "subjectSlug": "drama",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 6",
+          "yearSlug": "year-6",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will find out whether <mark class=\"highlighted\">Macbeth</mark> goes through with murder. We will use a range of drama activities to explore <mark class=\"highlighted\">Macbeth's</mark> ever changing character and look at the consequences of his actions. \n\nThis lesson includes some physical activity, please make sure your child is adequately supervised."
+          ],
+          "title": [
+            "Dipping into <mark class=\"highlighted\">Macbeth</mark> - Murder and the Crown. (Part 4)"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "uan0TocBd235CCw7Jqqa",
+        "_score": 65.00431,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 6942,
+          "type": "lesson",
+          "lessonSlug": "to-generate-vocabulary-cmt62c",
+          "lessonTitle": "To generate vocabulary",
+          "lessonDescription": "In this lesson, we will look at two types of figurative language in detail: simile and personification. We will write our own sentences with a type of figurative language. Next, we will generate vocabulary (adjectives, verbs and adverbs) for the opening scene of Macbeth using the Animated Macbeth clip as a stimulus.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will look at two types of figurative language in detail: simile and personification. We will write our own sentences with a type of figurative language. Next, we will generate vocabulary (adjectives, verbs and adverbs) for the opening scene of <mark class=\"highlighted\">Macbeth</mark> using the Animated <mark class=\"highlighted\">Macbeth</mark> clip as a stimulus."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "4Kn1TocBd235CCw7zrIK",
+        "_score": 63.2014,
+        "_source": {
+          "id": 7379,
+          "type": "lesson",
+          "lessonSlug": "to-analyse-quotes-from-the-script-71jpcc",
+          "lessonTitle": "To analyse quotes from the script",
+          "lessonDescription": "In this lesson, we will then look at Act 1 Scene 3 when Macbeth meets the witches on the heath. During this section of the play, we will analyse and unpick any Shakespearean language that is unfamiliar and explain the meaning.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will then look at Act 1 Scene 3 when <mark class=\"highlighted\">Macbeth</mark> meets the witches on the heath. During this section of the play, we will analyse and unpick any Shakespearean language that is unfamiliar and explain the meaning."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "hqnyTocBd235CCw79aKO",
+        "_score": 62.668194,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 650,
+          "type": "lesson",
+          "lessonSlug": "to-plan-a-character-description-cmu6ar",
+          "lessonTitle": "To plan a character description",
+          "lessonDescription": "In this lesson, we will use film clips from Shakespeare's Animated Tales to plan a character description. Next, we will look at the qualities Macbeth possesses at four significant points in the play. To support our assessments of each quality, we will use evidence from the film clips.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will use film clips from Shakespeare's Animated Tales to plan a character description. Next, we will look at the qualities <mark class=\"highlighted\">Macbeth</mark> possesses at four significant points in the play. To support our assessments of each quality, we will use evidence from the film clips."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "yqnzTocBd235CCw7GqMu",
+        "_score": 61.722958,
+        "_source": {
+          "id": 633,
+          "type": "lesson",
+          "lessonSlug": "to-practise-using-precise-verbs-and-adverbs-for-characterisation-65jkge",
+          "lessonTitle": "To practise using precise verbs and adverbs for characterisation",
+          "lessonDescription": "In this lesson, we will use the film clips from Shakespeare's Animated Tales to describe Macbeth's actions, facial features and body language at different points in the play, highlighting how they change throughout the play.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will use the film clips from Shakespeare's Animated Tales to describe <mark class=\"highlighted\">Macbeth's</mark> actions, facial features and body language at different points in the play, highlighting how they change throughout the play."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "fqn0TocBd235CCw7FKp5",
+        "_score": 61.24677,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 629,
+          "type": "lesson",
+          "lessonSlug": "to-analyse-evidence-from-the-clip-6njkec",
+          "lessonTitle": "To analyse evidence from the clip",
+          "lessonDescription": "In this lesson, we will use the film clips from Shakespeare's Animated Tales to make deductions about Macbeth's character and how he changes over the course of the play. We will then generate adjectives appropriate to his character at different points in the play.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will use the film clips from Shakespeare's Animated Tales to make deductions about <mark class=\"highlighted\">Macbeth's</mark> character and how he changes over the course of the play. We will then generate adjectives appropriate to his character at different points in the play."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "yKnyTocBd235CCw7SJsD",
+        "_score": 61.15386,
+        "_source": {
+          "id": 659,
+          "type": "lesson",
+          "lessonSlug": "to-write-a-character-description-part-2-6mvkac",
+          "lessonTitle": "To write a character description (Part 2)",
+          "lessonDescription": "In this lesson, we will use the plan from the previous lesson to write about Macbeth's character with a main focus on two aspects of his character: at the start of the play when he is depicted as a warrior and later on when he becomes ambitious.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will use the plan from the previous lesson to write about <mark class=\"highlighted\">Macbeth's</mark> character with a main focus on two aspects of his character: at the start of the play when he is depicted as a warrior and later on when he becomes ambitious."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "qKnzTocBd235CCw79Km_",
+        "_score": 60.744938,
+        "_ignored": ["lessonDescription.keyword"],
+        "_source": {
+          "id": 663,
+          "type": "lesson",
+          "lessonSlug": "to-write-a-character-description-part-3-chjpce",
+          "lessonTitle": "To write a character description (Part 3)",
+          "lessonDescription": "In this lesson, we will use the plan from the previous lesson to write about Macbeth's character with a main focus on the last two aspects of his character: when he turns weak and decides that he wants to abandon his plans and at the end when he is overwhelmed by guilt and starts to hallucinate.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "lessonDescription": [
+            "In this lesson, we will use the plan from the previous lesson to write about <mark class=\"highlighted\">Macbeth's</mark> character with a main focus on the last two aspects of his character: when he turns weak and decides that he wants to abandon his plans and at the end when he is overwhelmed by guilt and starts to hallucinate."
+          ],
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "o6nyTocBd235CCw7Xpzz",
+        "_score": 57.056934,
+        "_source": {
+          "id": 591,
+          "type": "lesson",
+          "lessonSlug": "to-write-the-setting-description-c8u34r",
+          "lessonTitle": "To write the setting description",
+          "lessonDescription": "In this lesson, we will use the plan from the previous lesson to write a description of the play's setting. The success criteria will be shared and we will use this to help us to complete the writing.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "RqnzTocBd235CCw7JqSU",
+        "_score": 57.056934,
+        "_source": {
+          "id": 864,
+          "type": "lesson",
+          "lessonSlug": "to-practise-writing-complex-sentences-69h3ed",
+          "lessonTitle": "To practise writing complex sentences",
+          "lessonDescription": "In this lesson, we will investigate what complex sentences are and look in detail at adverbial and relative complex sentences.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "highlight": {
+            "unitTitle": [
+              "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+            ]
+          }
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "PqnzTocBd235CCw7s6h6",
+        "_score": 57.056934,
+        "_source": {
+          "id": 4523,
+          "type": "lesson",
+          "lessonSlug": "to-plan-the-setting-description-cmv66d",
+          "lessonTitle": "To plan the setting description",
+          "lessonDescription": "In this lesson, we will use a clip from Shakespeare's Animated Tales and pictures from the clip to plan adjectives, verbs, adverbs, figurative language and adverbial phrases for each section of the clip.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "highlight": {
+            "unitTitle": [
+              "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+            ]
+          }
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "XqnzTocBd235CCw7lKe1",
+        "_score": 57.056934,
+        "_source": {
+          "id": 3722,
+          "type": "lesson",
+          "lessonSlug": "to-develop-a-rich-understanding-of-words-associated-with-intelligence-and-confidence-cmvp4t",
+          "lessonTitle": "To develop a rich understanding of words associated with intelligence and confidence",
+          "lessonDescription": "In this lesson, we will introduce new vocabulary, identify word pairs and synonyms and apply the vocabulary in sentences.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "highlight": {
+            "unitTitle": [
+              "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+            ]
+          }
+        }
+      },
+      {
+        "_index": "lessons_test",
+        "_id": "CKn3TocBd235CCw7Nblk",
+        "_score": 57.056934,
+        "_source": {
+          "id": 3708,
+          "type": "lesson",
+          "lessonSlug": "to-develop-a-rich-understanding-of-words-associated-with-dark-and-rainy-weather-6mtp2r",
+          "lessonTitle": "To develop a rich understanding of words associated with dark and rainy weather",
+          "lessonDescription": "In this lesson, we will introduce new vocabulary, identify word pairs and synonyms and apply the vocabulary in sentences.",
+          "unitTitle": "Macbeth - Narrative writing",
+          "themeTitle": "Writing",
+          "unitSlug": "macbeth-narrative-writing-9566",
+          "subjectTitle": "English",
+          "subjectSlug": "english",
+          "keyStageTitle": "Key Stage 2",
+          "keyStageSlug": "key-stage-2",
+          "yearTitle": "Year 5",
+          "yearSlug": "year-5",
+          "tier": null,
+          "phase": "primary"
+        },
+        "highlight": {
+          "unitTitle": [
+            "<mark class=\"highlighted\">Macbeth</mark> - Narrative writing"
+          ]
+        }
+      }
+    ]
+  }
+}

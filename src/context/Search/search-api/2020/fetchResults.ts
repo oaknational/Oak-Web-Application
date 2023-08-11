@@ -16,7 +16,7 @@ export async function fetchResults(query: SearchQuery) {
     body: JSON.stringify(constructElasticQuery(query)),
   };
 
-  const response = await fetch(getBrowserConfig("searchApiUrl"), options);
+  const response = await fetch(getBrowserConfig("searchApiUrl2020"), options);
 
   handleFetchError(response);
 
