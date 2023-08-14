@@ -79,9 +79,8 @@ describe("performSearch", () => {
     });
     expect(callbacks.onFail).toHaveBeenCalled();
   });
-  test("should call both 2020 and 2023 data sets", async () => {
+  test("apiVersion 2020: should call 2020 data sets", async () => {
     fetchResults2020Spy.mockResolvedValue(mockResults2020);
-    fetchResults2023Spy.mockResolvedValue(mockResults2023);
     await performSearch({
       query: {
         term: "test",
@@ -90,6 +89,18 @@ describe("performSearch", () => {
       ...callbacks,
     });
     expect(fetchResults2020Spy).toHaveBeenCalled();
+    expect(fetchResults2023Spy).not.toHaveBeenCalled();
+  });
+  test("apiVersion 2023: should call only 2023 data sets", async () => {
+    fetchResults2023Spy.mockResolvedValue(mockResults2023);
+    await performSearch({
+      query: {
+        term: "test",
+      },
+      apiVersion: "2023",
+      ...callbacks,
+    });
+    expect(fetchResults2020Spy).not.toHaveBeenCalled();
     expect(fetchResults2023Spy).toHaveBeenCalled();
   });
 });

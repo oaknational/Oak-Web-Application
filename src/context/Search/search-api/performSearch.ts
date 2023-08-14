@@ -24,26 +24,15 @@ export async function performSearch({
   try {
     onStart();
 
-    /**
-     * Caution, if one search endpoint fails, then the whole search fails.
-     */
-    const [results2023, results2020] = await Promise.all([
-      fetchResults2023(query),
-      fetchResults2020(query),
-    ]);
-
-    /**
-     * Depending on the designs, we may want to merge the results here.
-     */
-    // console.log({ results2023, results2020 });
-
-    /**
-     * Hack to show results depending on [viewType]
-     */
-    const results = apiVersion === "2023" ? results2023 : results2020;
+    const results =
+      apiVersion === "2023"
+        ? await fetchResults2023(query)
+        : await fetchResults2020(query);
 
     onSuccess(results);
   } catch (error) {
+    console.log("performSearch.ts: performSearch(): error:", error);
+
     const oakError = new OakError({
       code: "search/unknown",
       originalError: error,
