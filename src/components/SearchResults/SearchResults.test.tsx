@@ -3,7 +3,7 @@
  */
 import React from "react";
 
-import elasticResponseFixture from "../../context/Search/elasticResponse.fixture.json";
+import elasticResponseFixture from "../../context/Search/elasticResponse.2020.fixture.json";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 import truthy from "../../utils/truthy";

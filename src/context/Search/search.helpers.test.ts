@@ -6,7 +6,7 @@ import {
   getUnitObject,
   isFilterItem,
 } from "./search.helpers";
-import elasticResponseFixture from "./elasticResponse.fixture.json";
+import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 
 const lessonHit = lessonSearchHitSchema.parse(

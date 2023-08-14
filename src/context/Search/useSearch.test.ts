@@ -4,7 +4,7 @@ import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
 
 import useSearch from "./useSearch";
-import elasticResponseFixture from "./elasticResponse.fixture.json";
+import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 
 const goodFetchResolvedValueWithResults = {
   ok: true,
@@ -112,10 +112,10 @@ describe("useSearch()", () => {
     );
     expect(fetch).not.toHaveBeenCalled();
   });
-  test("fetch should be called (twice, one for 2020, one for 2023) if search term in query", async () => {
+  test("fetch should be called once if search term in query", async () => {
     renderHookWithProviders(providers)(() => useSearch({ allKeyStages }));
 
-    expect(fetch).toHaveBeenCalledTimes(2);
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
   test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);

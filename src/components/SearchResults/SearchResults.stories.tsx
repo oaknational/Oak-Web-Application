@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import elasticResponseFixture from "../../context/Search/elasticResponse.fixture.json";
+import elasticResponseFixture from "../../context/Search/elasticResponse.2020.fixture.json";
 import teachersHomePageFixture from "../../node-lib/curriculum-api/fixtures/teachersHomePage.fixture";
 
 import Component from "./SearchResults";
