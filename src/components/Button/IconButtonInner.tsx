@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import { OakColorName } from "../../styles/theme";
-import Icon, { IconName } from "../Icon";
+import Icon, { IconName, isIconVariant } from "../Icon";
 
 import {
   ButtonBackground,
@@ -30,6 +30,8 @@ export type IconButtonInnerProps = {
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   const { variant, size, background, icon, iconColorOverride, iconAnimateTo } =
     props;
+
+  const iconVariant = variant.replace("Nav", "");
   const theme = useTheme();
   const underlineColor =
     theme.buttonFocusUnderlineColors[background] || "black";
@@ -37,7 +39,7 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   return (
     <IconButtonWrapper size={size} variant={variant} background={background}>
       <Icon
-        variant={variant}
+        variant={isIconVariant(iconVariant) ? iconVariant : undefined}
         name={icon}
         size={getIconButtonHeight(size, variant)}
         $color={iconColorOverride}
