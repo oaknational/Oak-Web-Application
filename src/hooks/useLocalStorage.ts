@@ -1,8 +1,8 @@
 // Adapted from:
 // https://usehooks-ts.com/react-hook/use-local-storage
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
-import isEqual from 'lodash/isEqual';
-import { z } from 'zod';
+import isEqual from "lodash/isEqual";
+import { z } from "zod";
 
 import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
