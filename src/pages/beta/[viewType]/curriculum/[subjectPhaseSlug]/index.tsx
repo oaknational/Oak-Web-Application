@@ -277,7 +277,6 @@ export const getStaticPaths = async () => {
   if (shouldSkipInitialBuild) {
     return getFallbackBlockingConfig();
   }
-
   const config: GetStaticPathsResult<URLParams> = {
     fallback: "blocking",
     paths: [],

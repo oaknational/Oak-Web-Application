@@ -124,54 +124,42 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const handleSelectSubject = (
     subject: SubjectPhaseOption,
-    isNew = false
+    isNew: boolean
   ): void => {
     setShowSubjectError(false);
     setSelectedExamboard(null);
-    if (selectedSubject && selectedSubject.slug === subject.slug) {
-      setSelectedSubject(null);
-    } else {
-      setSelectedSubject({
-        ...subject,
-        isNew,
-      });
-      if (
-        selectedPhase &&
-        !subject.phases.some((phase) => phase.slug === selectedPhase.slug)
-      ) {
-        setSelectedPhase(null);
-      }
-      setShowSubjects(false);
-      setShowPhases(true);
+    setSelectedSubject({
+      ...subject,
+      isNew,
+    });
+    if (
+      selectedPhase &&
+      !subject.phases.some((phase) => phase.slug === selectedPhase.slug)
+    ) {
+      setSelectedPhase(null);
     }
+    setShowSubjects(false);
+    setShowPhases(true);
   };
 
   const handleSelectPhase = (phase: Phase): void => {
     setShowPhaseError(false);
     setShowExamboardError(false);
     setSelectedExamboard(null);
-    if (selectedPhase && selectedPhase.slug === phase.slug) {
-      setSelectedPhase(null);
-    } else {
-      setSelectedPhase(phase);
-      if (
-        phase.slug == "primary" ||
-        !selectedSubject ||
-        !selectedSubject.examboards
-      ) {
-        setShowPhases(false);
-      }
+    setSelectedPhase(phase);
+    if (
+      phase.slug == "primary" ||
+      !selectedSubject ||
+      !selectedSubject.examboards
+    ) {
+      setShowPhases(false);
     }
   };
 
   const handleSelectExamboard = (examboard: Examboard): void => {
     setShowExamboardError(false);
-    if (selectedExamboard && selectedExamboard.slug === examboard.slug) {
-      setSelectedExamboard(null);
-    } else {
-      setSelectedExamboard(examboard);
-      setShowPhases(false);
-    }
+    setSelectedExamboard(examboard);
+    setShowPhases(false);
   };
 
   const handleViewCurriculum = () => {
