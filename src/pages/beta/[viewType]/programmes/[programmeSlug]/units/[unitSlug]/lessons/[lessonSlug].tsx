@@ -368,7 +368,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     <QuizContainer questions={introQuiz} info={introQuizInfo} />
                   </LessonItemContainer>
                 )}
-                {pageLinks.find((p) => p.label === "Starter quiz") && (
+                {pageLinks.find((p) => p.label === "Exit quiz") && (
                   <LessonItemContainer
                     title={"Exit quiz"}
                     anchorId="exitQuiz"
