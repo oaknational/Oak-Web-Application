@@ -1,3 +1,10 @@
+## [1.218.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.0...v1.218.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **contentguidance:** remove all content guidance values regression ([a2f0a3a](https://github.com/oaknational/Oak-Web-Application/commit/a2f0a3ad4b50b3e14428244245586166dc10e89b))
+
 # [1.218.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.217.1...v1.218.0) (2023-08-15)
 
 
