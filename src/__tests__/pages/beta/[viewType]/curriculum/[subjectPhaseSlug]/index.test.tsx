@@ -30,7 +30,7 @@ describe("curriculum info page", () => {
     });
     it("Should provide the expected data", async () => {
       const testRes = (await getStaticProps({
-        params: { subjectPhaseSlug: "maths-secondary" },
+        params: { viewType: "teachers", subjectPhaseSlug: "maths-secondary" },
       })) as {
         props: OverviewPageProps;
       };
