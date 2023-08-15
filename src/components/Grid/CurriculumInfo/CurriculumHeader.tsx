@@ -22,6 +22,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   phase,
 }) => {
   const subjectPhaseName = `${subject.name} ${phase.name}`;
+  const pageSlug = `${subject.slug}-${phase.slug}`;
   return (
     <Box>
       <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
@@ -30,24 +31,25 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             breadcrumbs={[
               {
                 oakLinkProps: {
-                  page: "home",
-                  viewType: "teachers",
+                  page: null,
+                  href: "/beta/teachers/",
                 },
                 label: "Home",
               },
               {
                 oakLinkProps: {
-                  page: "home",
-                  viewType: "teachers",
+                  page: null,
+                  href: "/beta/teachers/curriculum",
                 },
                 label: "Curriculum resource",
               },
               {
                 oakLinkProps: {
-                  page: "home",
-                  viewType: "teachers",
+                  page: null,
+                  href: "",
                 },
                 label: subjectPhaseName,
+                disabled: true,
               },
             ]}
           />
@@ -81,19 +83,19 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           label="Curriculum Selection"
           links={[
             {
-              href: `/beta/teachers/curriculum/info/overview`, //`/beta/teachers/curriculum/info/${subjectPhase}/overview`,
+              href: `/beta/teachers/curriculum/${pageSlug}/overview`, //`/beta/teachers/curriculum/info/${subjectPhase}/overview`,
               label: "Overview",
               page: null,
               scroll: false,
             },
             {
-              href: "/beta/teachers/curriculum/info/sequence",
+              href: `/beta/teachers/curriculum/${pageSlug}/sequence`,
               label: "Unit sequence",
               page: null,
               scroll: false,
             },
             {
-              href: "/beta/teachers/curriculum/info/downloads",
+              href: `/beta/teachers/curriculum/${pageSlug}/downloads`,
               label: "Downloads",
               page: null,
               scroll: false,

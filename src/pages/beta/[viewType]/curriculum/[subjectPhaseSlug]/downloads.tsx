@@ -27,11 +27,13 @@ import { ViewType } from "@/common-lib/urls";
 export type DownloadPageProps = {
   data: curriculumSubjectPhaseOverviewData;
   subjectPhaseOptions: SubjectPhasePickerData;
+  subjectPhaseSlug: string;
 };
 
 const DownloadPage: NextPage<DownloadPageProps> = ({
   data,
   subjectPhaseOptions,
+  subjectPhaseSlug,
 }) => {
   return (
     <AppLayout
@@ -45,7 +47,7 @@ const DownloadPage: NextPage<DownloadPageProps> = ({
         subjectPhaseOptions={subjectPhaseOptions}
       />
       <Box $background={"white"}>
-        <DownloadTab {...data} slug="maths-secondary" />
+        <DownloadTab {...data} slug={subjectPhaseSlug} />
       </Box>
     </AppLayout>
   );
@@ -90,6 +92,7 @@ export const getStaticProps: GetStaticProps<DownloadPageProps> = async (
         props: {
           data: overviewData,
           subjectPhaseOptions: subjectPhaseData,
+          subjectPhaseSlug: "maths-secondary",
         },
       };
       const resultsWithIsr = decorateWithIsr(results);
