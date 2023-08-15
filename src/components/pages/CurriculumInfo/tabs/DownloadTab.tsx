@@ -12,7 +12,7 @@ const DownloadTab: FC<DownloadTabProps> = (props: DownloadTabProps) => {
   return (
     <Box $maxWidth={"80%"} $ma={"auto"} $pb={80}>
       <Heading tag="h1" $font={"heading-2"}>
-        Download
+        Downloads
       </Heading>
       {slug}
     </Box>

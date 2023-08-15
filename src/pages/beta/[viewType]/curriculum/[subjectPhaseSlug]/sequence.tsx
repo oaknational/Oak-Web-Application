@@ -91,21 +91,23 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  CurriculumSequencePageProps
+  CurriculumSequencePageProps,
+  URLParams
 > = async (context) => {
   return getPageProps({
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
-      if (!context.params) {
-        throw new Error("Missing params");
+      if (!context.params?.subjectPhaseSlug) {
+        throw new Error("Missing subject phase slug");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
+
       const overviewData =
         await curriculumApi.curriculumSubjectPhaseOverviewPage({
-          subject: "maths",
-          phase: "secondary",
+          slug: context.params?.subjectPhaseSlug,
         });
+
       const subjectPhaseData = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<CurriculumSequencePageProps> = {
