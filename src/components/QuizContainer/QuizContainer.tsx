@@ -13,7 +13,12 @@ export type QuizProps = {
 
 const QuizContainer: FC<QuizProps> = (props) => {
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"} $width={"100%"} $position={'relative'}>
+    <Flex
+      $flexDirection={"column"}
+      $justifyContent={"center"}
+      $width={"100%"}
+      $position={"relative"}
+    >
       <QuestionsList {...props} />
       <BoxBorders gapPosition="rightTop" />
     </Flex>
