@@ -45,9 +45,8 @@ describe("pages/beta/curriculum/index", () => {
   });
 
   describe("getStaticPaths", () => {
-    it("Should return the right pages the correct data", async () => {
+    it("Shouldn't return any paths when shouldSkipInitialBuild is true", async () => {
       const paths = await getStaticPaths();
-      console.log(paths);
       expect(paths).toEqual({ fallback: "blocking", paths: [] });
     });
   });
