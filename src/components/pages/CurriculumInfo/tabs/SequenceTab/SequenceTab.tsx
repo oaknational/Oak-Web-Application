@@ -45,9 +45,9 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
               </Heading>
               <P $mv={6}>Select to highlight in the curriculum sequence</P>
               <Flex $flexDirection={"column"}>
-                {threads.map((thread, i) => (
+                {threads.map((thread) => (
                   <Card
-                    key={i + "thread"}
+                    key={thread.split(" ").join("-")}
                     $background={"aqua50"}
                     $mv={4}
                     $pa={10}
@@ -67,10 +67,10 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
             Year 10
           </Heading>{" "}
           <Flex $maxWidth={"85%"} $flexWrap={"wrap"} data-testid="unit-cards">
-            {units.map((unit, i) => {
+            {units.map((unit) => {
               return (
                 <Card
-                  key={i + "unit"}
+                  key={unit.split(" ").join("-")}
                   $background={"aqua30"}
                   $mv={8}
                   $ml={12}

@@ -11,7 +11,7 @@ const render = renderWithProviders();
 describe("curriculum sequence page", () => {
   describe("components rendering on page", () => {
     it("renders the unit cards", () => {
-      const { queryByTestId, queryAllByText } = render(
+      const { queryByTestId } = render(
         <CurriculumSequencePage
           data={curriculumOverviewFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
@@ -19,7 +19,6 @@ describe("curriculum sequence page", () => {
       );
 
       expect(queryByTestId("unit-cards")).toBeInTheDocument();
-      expect(queryAllByText("Unit info"));
     });
   });
 
