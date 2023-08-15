@@ -6,8 +6,8 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "@/components/Grid/CurriculumInfo/CurriculumHeader";
-import SequenceTab from "@/components/Grid/CurriculumInfo/tabs/SequenceTab";
+import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
+import SequenceTab from "@/components/pages/CurriculumInfo/tabs/SequenceTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {

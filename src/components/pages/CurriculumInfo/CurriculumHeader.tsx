@@ -21,7 +21,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subject,
   phase,
 }) => {
-  const subjectPhaseName = `${subject.name} ${phase.name}`;
+  const subjectPhaseName = ` ${phase.name} ${subject.name}`;
   const pageSlug = `${subject.slug}-${phase.slug}`;
   return (
     <Box>
@@ -83,7 +83,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           label="Curriculum Selection"
           links={[
             {
-              href: `/beta/teachers/curriculum/${pageSlug}/overview`, //`/beta/teachers/curriculum/info/${subjectPhase}/overview`,
+              href: `/beta/teachers/curriculum/${pageSlug}/overview`,
               label: "Overview",
               page: null,
               scroll: false,

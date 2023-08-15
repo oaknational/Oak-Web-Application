@@ -17,11 +17,18 @@ type OverviewTabProps = {
   curriculaDesc: string;
   partnerBio: string;
   videoGuideDesc: string;
+  subject: { name: string; slug: string };
+  phase: { name: string; slug: string };
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } =
-    props;
+  const {
+    subjectPrinciples,
+    curriculaDesc,
+    partnerBio,
+    videoGuideDesc,
+    subject,
+  } = props;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
@@ -61,7 +68,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         >
           <BrushBorders color="lemon50" />
           <SubjectIcon
-            subjectSlug="maths"
+            subjectSlug={subject.slug}
             $maxHeight={200}
             $maxWidth={200}
             $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}

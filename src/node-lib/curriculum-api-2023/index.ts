@@ -50,11 +50,6 @@ export const subjectPhaseOptionSchema = subjectSchema.extend({
   examboards: z.array(examboardSchema).optional().nullable(),
 });
 
-export type Phase = z.infer<typeof phaseSchema>;
-export type Subject = z.infer<typeof subjectSchema>;
-export type Examboard = z.infer<typeof examboardSchema>;
-export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
-
 const curriculumSubjectPhaseOverviewData = z.object({
   subjectPrinciples: z.array(z.string()),
   curriculaDesc: z.string(),
@@ -64,6 +59,10 @@ const curriculumSubjectPhaseOverviewData = z.object({
   phase: z.object({ name: z.string(), slug: z.string() }),
 });
 
+export type Phase = z.infer<typeof phaseSchema>;
+export type Subject = z.infer<typeof subjectSchema>;
+export type Examboard = z.infer<typeof examboardSchema>;
+export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type curriculumSubjectPhaseOverviewData = z.infer<

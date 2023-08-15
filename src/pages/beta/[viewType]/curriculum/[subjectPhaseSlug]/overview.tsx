@@ -6,8 +6,8 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "@/components/Grid/CurriculumInfo/CurriculumHeader";
-import OverviewTab from "@/components/Grid/CurriculumInfo/tabs/OverviewTab";
+import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
+import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab";
 import Box from "@/components/Box/Box";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import curriculumApi, {
@@ -69,22 +69,24 @@ export const getStaticPaths = async () => {
   return config;
 };
 
-export const getStaticProps: GetStaticProps<OverviewPageProps> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<
+  OverviewPageProps,
+  URLParams
+> = async (context) => {
   return getPageProps({
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
-      if (!context.params) {
-        throw new Error("Missing params");
+      if (!context.params?.subjectPhaseSlug) {
+        throw new Error("Missing subject phase slug");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
+
       const overviewData =
         await curriculumApi.curriculumSubjectPhaseOverviewPage({
-          subject: "maths",
-          phase: "secondary",
+          slug: context.params?.subjectPhaseSlug,
         });
+
       const subjectPhaseData = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<OverviewPageProps> = {
