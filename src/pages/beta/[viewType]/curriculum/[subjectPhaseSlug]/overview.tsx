@@ -78,7 +78,7 @@ export const getStaticProps: GetStaticProps<
     context,
     getProps: async () => {
       if (!context.params?.subjectPhaseSlug) {
-        throw new Error("Missing subject phase slug");
+        throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
 
