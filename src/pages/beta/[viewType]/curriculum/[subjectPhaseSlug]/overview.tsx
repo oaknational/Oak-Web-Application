@@ -7,7 +7,7 @@ import {
 import React from "react";
 
 import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
-import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab";
+import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import Box from "@/components/Box/Box";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import curriculumApi, {
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
-      if (!context.params?.subjectPhaseSlug) {
+      if (!context.params) {
         throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready

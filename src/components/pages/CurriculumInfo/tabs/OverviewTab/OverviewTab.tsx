@@ -28,7 +28,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     partnerBio,
     videoGuideDesc,
     subject,
+    phase,
   } = props;
+  const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
@@ -90,7 +92,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </Heading>
           <UL $reset={true} $mt={24}>
             {subjectPrinciples.map((item, i) => (
-              <LI $mb={[12]} key={`principle-${i + 1}`}>
+              <LI
+                $mb={[12]}
+                key={`principle-${i + 1}`}
+                data-testid="subjectPrinciples"
+              >
                 <Flex $alignItems={"center"}>
                   <Flex
                     $background={"aqua"}
@@ -137,8 +143,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             <ButtonAsLink
               variant="brush"
               label="View unit sequence"
-              page="search"
-              viewType="teachers"
+              page={null}
+              href={`/beta/teachers/curriculum/${subjectPhaseSlug}/sequence`}
               $mv={10}
               icon="arrow-right"
               iconBackground="transparent"

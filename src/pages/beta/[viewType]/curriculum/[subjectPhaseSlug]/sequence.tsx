@@ -7,7 +7,7 @@ import {
 import React from "react";
 
 import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
-import SequenceTab from "@/components/pages/CurriculumInfo/tabs/SequenceTab";
+import SequenceTab from "@/components/pages/CurriculumInfo/tabs/SequenceTab/SequenceTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
@@ -98,8 +98,8 @@ export const getStaticProps: GetStaticProps<
     page: "curriculum-info::getStaticProps",
     context,
     getProps: async () => {
-      if (!context.params?.subjectPhaseSlug) {
-        throw new Error("Missing subject phase slug");
+      if (!context.params) {
+        throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
 

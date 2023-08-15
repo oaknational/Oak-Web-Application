@@ -35,7 +35,12 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
 
           <Box>
             <Box>
-              <Heading tag={"h3"} $font={"heading-7"} $mv={12}>
+              <Heading
+                tag={"h3"}
+                $font={"heading-7"}
+                $mv={12}
+                data-testid="heading"
+              >
                 Threads
               </Heading>
               <P $mv={6}>Select to highlight in the curriculum sequence</P>
@@ -47,6 +52,7 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
                     $mv={4}
                     $pa={10}
                     $borderRadius={6}
+                    data-testid={"threadOption"}
                   >
                     {thread}
                   </Card>
@@ -60,7 +66,7 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
           <Heading tag="h4" $font={"heading-6"} $mv={20}>
             Year 10
           </Heading>{" "}
-          <Flex $maxWidth={"85%"} $flexWrap={"wrap"}>
+          <Flex $maxWidth={"85%"} $flexWrap={"wrap"} data-testid="unit-cards">
             {units.map((unit, i) => {
               return (
                 <Card
@@ -70,6 +76,7 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
                   $ml={12}
                   $maxWidth={"30%"}
                   $borderRadius={8}
+                  data-testid={"unitCard"}
                 >
                   <Heading tag={"h3"} $font={"heading-7"}>
                     {unit}
