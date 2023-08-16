@@ -36,7 +36,7 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           $maxWidth={[64, 80]}
         >
           <Heading tag="h6" $font={"heading-7"} $textAlign={"center"} $mv={0}>
-            Unit Options
+            Unit options
           </Heading>
           <OutlineHeading
             tag={"div"}
