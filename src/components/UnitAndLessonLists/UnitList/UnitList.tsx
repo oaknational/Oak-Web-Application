@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 
-import UnitListItem, { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import UnitListItem, {
+  UnitListItemProps,
+} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import Pagination, { PaginationProps } from "@/components/Pagination";
