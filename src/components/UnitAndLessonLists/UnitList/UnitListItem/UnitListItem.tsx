@@ -132,7 +132,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $gap={[8]}
         $pv={[8, 12]}
       >
-        {!isUnitOption && (
+        {!isUnitOption && yearTitle && (
           <Heading
             tag="h6"
             $font={"heading-light-7"}
