@@ -346,13 +346,11 @@ const curriculumApi = {
         },
       ];
       const nullTitle = unit.title;
-      const yearTitle = unit.year;
       return [
         {
           ...unit,
           nullTitle,
           learningThemes,
-          yearTitle,
         },
       ];
     });

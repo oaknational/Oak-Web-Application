@@ -35,7 +35,7 @@ query unitListing($programmeSlug: String!) {
     lessonCount: lesson_count
     quizCount: quiz_count
     unitStudyOrder: unit_study_order
-    year
+    yearTitle: year
     expired
     expiredLessonCount: expired_lesson_count
   }
