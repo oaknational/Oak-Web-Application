@@ -117,8 +117,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             disabled: true,
           },
         ]}
-        background={"lavender30"}
-        subjectIconBackgroundColor={"lavender"}
+        background={"pink30"}
+        subjectIconBackgroundColor={"pink"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         {...curriculumData}
