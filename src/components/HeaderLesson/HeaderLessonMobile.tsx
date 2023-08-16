@@ -50,9 +50,11 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
           />
         </Box>
         <Flex $flexDirection={"column"}>
-          <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-            {yearTitle}
-          </Span>
+          {yearTitle && (
+            <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
+              {yearTitle}
+            </Span>
+          )}
 
           <Heading tag={"h1"} $font={"heading-5"}>
             {lessonTitle}

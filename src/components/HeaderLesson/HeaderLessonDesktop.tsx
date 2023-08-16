@@ -56,9 +56,11 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
         </GridArea>
         <GridArea $justifyContent={"center"} $colSpan={[12, 9]}>
           <Box>
-            <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              {yearTitle}
-            </Span>
+            {yearTitle && (
+              <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
+                {yearTitle}
+              </Span>
+            )}
 
             <Heading $mb={24} tag={"h1"} $font={"heading-3"}>
               {lessonTitle}
