@@ -114,6 +114,7 @@ export const baseLessonOverviewData = z.object({
   isWorksheetLandscape: z.boolean(),
   hasDownloadableResources: z.boolean().nullable(),
   hasCopyrightMaterial: z.boolean(),
+  yearTitle: z.string(),
 });
 
 const lessonOverviewSchema = baseLessonOverviewData.extend({
