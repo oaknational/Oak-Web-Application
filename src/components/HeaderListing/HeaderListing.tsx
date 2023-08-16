@@ -52,8 +52,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
         <Flex>
           <Box $height={[80, 140]} $width={[80, 140]} $mr={[16, 32]}>
             <SubjectIconBrushBorders
+              $pa={8}
               subjectSlug={subjectSlug}
-              height={20}
+              height={15}
               width={20}
               $ma={"auto"}
               lessonIsNew={lessonIsNew}
