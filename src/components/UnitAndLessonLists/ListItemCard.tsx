@@ -1,10 +1,10 @@
 import { DOMAttributes, FC, MouseEventHandler } from "react";
 import { FocusableElement } from "@react-types/shared";
 
-import Card from "../Card";
-import Flex from "../Flex";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { OakColorName } from "../../styles/theme/types";
+import Card from "@/components/Card";
+import Flex from "@/components/Flex";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import { OakColorName } from "@/styles/theme/types";
 
 export type ListItemCardProps = {
   title: string;
@@ -18,6 +18,7 @@ export type ListItemCardProps = {
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
   } & Pick<DOMAttributes<FocusableElement>, "onClick">;
+  isUnitOption?: boolean;
 };
 
 /**
@@ -35,7 +36,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       $justifyContent={"space-between"}
       $flexDirection={"row"}
       $mb={16}
-      $minHeight={96}
+      $minHeight={80}
       $overflow={"hidden"}
       $pa={0}
       {...(!expired ? containerProps : null)}
