@@ -3,17 +3,6 @@ import HeaderLesson, { HeaderLessonProps } from "./HeaderLesson";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
-const downloadResourceButtonClicked = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      downloadResourceButtonClicked: (...args: unknown[]) =>
-        downloadResourceButtonClicked(...args),
-    },
-  }),
-}));
-
 const props = {
   ...lessonOverviewFixture(),
   breadcrumbs: [],
@@ -31,76 +20,36 @@ describe("HeaderLesson", () => {
     expect(subjectHeading[0]).toHaveTextContent("Islamic Geometry");
   });
 
-  //   it("renders the children", () => {
-  //     const { getByText } = renderWithTheme(
-  //       <HeaderLesson title={"Slide deck"} anchorId="slideDeck">
-  //         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
-  //           Inner content
-  //         </Card>
-  //       </HeaderLesson>
-  //     );
-  //     expect(getByText("Inner content")).toBeInTheDocument();
-  //   });
-
   it("renders the download button when !expired && hasDownloadableResources", () => {
     const { getAllByRole } = renderWithTheme(<HeaderLesson {...props} />);
     expect(getAllByRole("link")).toHaveLength(1);
   });
 
-  // it("doesn't render the download button when expired", () => {
-  //   const { getAllByRole } = renderWithTheme(
-  //     <HeaderLesson
-  //       title={"Slide deck"}
-  //       downloadable={true}
-  //       anchorId="slideDeck"
-  //     >
+  it("does not render the download button when expired && hasDownloadableResources", () => {
+    const { queryByRole } = renderWithTheme(
+      <HeaderLesson {...props} expired={true} />
+    );
+    const downloadLink = queryByRole("link");
+    expect(downloadLink).toBeNull();
+  });
 
-  //   );
-  //   expect(() => getAllByRole("link")).toThrow();
-  // });
+  it("does not render the download button when !expired && !hasDownloadableResources", () => {
+    const { queryByRole } = renderWithTheme(
+      <HeaderLesson {...props} hasDownloadableResources={false} />
+    );
+    const downloadLink = queryByRole("link");
+    expect(downloadLink).toBeNull();
+  });
 
-  //   it("calls trackingCallback on Download Button click if provided in props", async () => {
-  //     const user = userEvent.setup();
-  //     const onDownloadButtonClick = jest.fn();
+  it("renders year title when passed in ", () => {
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...props} />);
+    const year = getAllByText("year 11");
+    expect(year).toHaveLength(2); // mobile and desktop
+  });
 
-  //     renderWithTheme(
-  //       <HeaderLesson
-  //         downloadable={true}
-  //         slugs={lessonOverview}
-  //         title={"Video"}
-  //         anchorId={"video"}
-  //         onDownloadButtonClick={onDownloadButtonClick}
-  //       >
-  //         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
-  //           Grid box
-  //         </Card>
-  //       </HeaderLesson>
-  //     );
-
-  //     const downloadLinkButton = screen.getByTestId("download-button");
-
-  //     await user.click(downloadLinkButton);
-  //     expect(onDownloadButtonClick).toHaveBeenCalledTimes(1);
-  //   });
-
-  //   it("adds selected+[title] to query string", async () => {
-  //     renderWithTheme(
-  //       <HeaderLesson
-  //         title={"Worksheet"}
-  //         downloadable={true}
-  //         anchorId="worksheet"
-  //         slugs={lessonOverview}
-  //       >
-  //         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
-  //           Grid box
-  //         </Card>
-  //       </HeaderLesson>
-  //     );
-
-  //     const downloadLinkButton = screen.getByTestId("download-button");
-  //     expect(downloadLinkButton).toHaveAttribute(
-  //       "href",
-  //       "/beta/teachers/programmes/maths-higher-ks4/units/maths-unit/lessons/macbeth-lesson-1/downloads?preselected=worksheet"
-  //     );
-  //   });
+  it("renders a lesson description when passed in ", () => {
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...props} />);
+    const description = getAllByText("A lesson description");
+    expect(description).toHaveLength(2); // mobile and desktop
+  });
 });

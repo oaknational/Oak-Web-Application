@@ -6,7 +6,7 @@ import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-const props = {
+export const headerListingProps = {
   breadcrumbs: [
     {
       oakLinkProps: {
@@ -80,7 +80,7 @@ type Story = StoryObj<typeof Component>;
 
 export const HeaderLesson: Story = {
   args: {
-    ...(props as unknown as HeaderListingProps),
+    ...(headerListingProps as unknown as HeaderListingProps),
   },
   render: (args) => {
     return <Component {...args} />;
