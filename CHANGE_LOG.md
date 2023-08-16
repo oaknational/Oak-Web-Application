@@ -1,3 +1,22 @@
+# [1.219.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.2...v1.219.0) (2023-08-16)
+
+
+### Bug Fixes
+
+* **curric:** fixed code smells ([6402ff0](https://github.com/oaknational/Oak-Web-Application/commit/6402ff025c15731a7f153fe17832568c1a4985d9))
+* **curric:** updated breadcrumbs ([a928b3e](https://github.com/oaknational/Oak-Web-Application/commit/a928b3e035a64493e4742d56a3f155ba48eb215b))
+* **curric:** updated params tests ([8aee6ec](https://github.com/oaknational/Oak-Web-Application/commit/8aee6ec0daf572282984689492e5ff31b1629f12))
+* **curric:** updated static props for pages ([c485a8b](https://github.com/oaknational/Oak-Web-Application/commit/c485a8b6dca003ec2bcfb4f3b8ccbe296212ec07))
+* **curric:** updated test for index ([50fda92](https://github.com/oaknational/Oak-Web-Application/commit/50fda92fcf7d8b706455cbbd2e4a1adedbdfbcc2))
+* **curric:** updated tests for overview ([8323a51](https://github.com/oaknational/Oak-Web-Application/commit/8323a51d3a5456822ae56aa04ccf2de91d0df023))
+* **curric:** updated url in subject phase picker ([70660ca](https://github.com/oaknational/Oak-Web-Application/commit/70660caa45558504b403444a09b1e1769d0b5257))
+* updated error message ([92b1a8f](https://github.com/oaknational/Oak-Web-Application/commit/92b1a8ffc6fd109fbdc1ec01c195afbaf5c29909))
+
+
+### Features
+
+* **curric:** added tab routes and sequence layout ([8543a4a](https://github.com/oaknational/Oak-Web-Application/commit/8543a4ab91a712398c2b2816c6d4249c6b5d9ce2))
+
 ## [1.218.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.1...v1.218.2) (2023-08-16)
 
 ## [1.218.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.0...v1.218.1) (2023-08-15)
