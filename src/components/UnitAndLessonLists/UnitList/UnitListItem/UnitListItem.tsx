@@ -15,6 +15,7 @@ import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMo
 import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
 import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
+import Heading from "@/components/Typography/Heading";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -52,6 +53,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     currentPage,
     firstItemRef,
     isUnitOption,
+    yearTitle,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -130,6 +132,16 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $gap={[8]}
         $pv={[8, 12]}
       >
+        {!isUnitOption && (
+          <Heading
+            tag="h6"
+            $font={"heading-light-7"}
+            $color={"oakGrey4"}
+            $mv={0}
+          >
+            {yearTitle}
+          </Heading>
+        )}
         <ListItemHeader
           {...props}
           primaryTargetProps={primaryTargetProps}
