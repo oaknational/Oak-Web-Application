@@ -15,7 +15,7 @@ import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMo
 import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
 import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
-import Heading from "@/components/Typography/Heading";
+import { P } from "@/components/Typography";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -133,14 +133,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $pv={[8, 12]}
       >
         {!isUnitOption && yearTitle && (
-          <Heading
-            tag="h6"
-            $font={"heading-light-7"}
-            $color={"oakGrey4"}
-            $mv={0}
-          >
+          <P $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
             {yearTitle}
-          </Heading>
+          </P>
         )}
         <ListItemHeader
           {...props}
