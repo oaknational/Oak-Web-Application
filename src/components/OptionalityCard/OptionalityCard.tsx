@@ -18,6 +18,7 @@ type OptionalityCardProps = {
 const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
   const stringIndex = (index + 1).toString();
   const unitTitle = unitOptions[0]?.nullTitle;
+  const unitYear = unitOptions[0]?.yearTitle;
 
   return (
     <Box
@@ -55,7 +56,16 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           $pb={12}
           $width={"100%"}
         >
-          <Flex $mb={16}>
+          <Flex $mb={16} $flexDirection={"column"}>
+            <Heading
+              tag="h6"
+              $font={"heading-light-7"}
+              $mt={4}
+              $color={"oakGrey4"}
+              $mb={8}
+            >
+              {unitYear}
+            </Heading>
             <ListTitle index={index}>{unitTitle}</ListTitle>
           </Flex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>

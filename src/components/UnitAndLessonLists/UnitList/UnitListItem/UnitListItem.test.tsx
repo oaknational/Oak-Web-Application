@@ -23,6 +23,7 @@ const props = {
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
+  yearTitle: "Year 1",
   learningThemes: [
     {
       themeTitle: "Circles",
