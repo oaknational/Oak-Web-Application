@@ -3,7 +3,6 @@ import React, { FC } from "react";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
-import { ListTitle } from "@/components/UnitAndLessonLists/ListItemHeader";
 import UnitListItem from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
@@ -66,7 +65,9 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
             >
               {unitYear}
             </Heading>
-            <ListTitle index={index}>{unitTitle}</ListTitle>
+            <Heading tag="h6" $font={"heading-6"} $mv={0}>
+              {unitTitle}
+            </Heading>
           </Flex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {
