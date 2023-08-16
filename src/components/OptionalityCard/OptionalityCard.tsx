@@ -61,7 +61,10 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {
               return (
-                <Flex $width={["100%", "calc(50% - 6px)"]}>
+                <Flex
+                  $width={["100%", "calc(50% - 6px)"]}
+                  key={unitOption.slug}
+                >
                   <UnitListItem
                     {...unitOption}
                     hideTopHeading
