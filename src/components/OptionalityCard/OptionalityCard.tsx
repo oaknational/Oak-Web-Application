@@ -58,7 +58,7 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           <Flex $mb={16}>
             <ListTitle index={index}>{unitTitle}</ListTitle>
           </Flex>
-          <Flex $gap={[0, 12]} $width={"100%"} $flexWrap={"wrap"}>
+          <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {
               return (
                 <Flex $width={["100%", "calc(50% - 6px)"]}>
