@@ -5,16 +5,9 @@ import Flex from "../Flex";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import { Heading, P, Span } from "../Typography";
 import Grid, { GridArea } from "../Grid";
-import ButtonAsLink from "../Button/ButtonAsLink";
 
 import { HeaderLessonProps } from "./HeaderLesson";
-
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-
-/**
- * This is a wrapper for the headers on the lesson overview and listing pages.
- *
- */
+import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
 
 export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
   const {
@@ -22,19 +15,8 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     yearTitle,
     lessonTitle,
     lessonDescription,
-    expired,
-    hasDownloadableResources,
-    programmeSlug,
-    lessonSlug,
-    unitSlug,
-    keyStageSlug,
-    keyStageTitle,
-    unitTitle,
-    subjectTitle,
     lessonIsNew,
     subjectIconBackgroundColor,
-    track,
-    analyticsUseCase,
   } = props;
 
   return (
@@ -71,42 +53,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
               </Box>
             )}
           </Box>
-          <Flex>
-            {!expired && hasDownloadableResources && (
-              <ButtonAsLink
-                $ml={4}
-                icon={"download"}
-                iconBackground="black"
-                label="Download all resources"
-                page={"lesson-downloads"}
-                viewType="teachers"
-                size={"large"}
-                variant="brush"
-                $iconPosition={"trailing"}
-                data-testid={"download-all-button-desktop"}
-                query={{
-                  preselected: "all",
-                }}
-                programmeSlug={programmeSlug}
-                lessonSlug={lessonSlug}
-                unitSlug={unitSlug}
-                onClick={() => {
-                  track.downloadResourceButtonClicked({
-                    keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                    keyStageSlug,
-                    subjectTitle,
-                    subjectSlug,
-                    unitName: unitTitle,
-                    unitSlug,
-                    lessonName: lessonTitle,
-                    lessonSlug,
-                    downloadResourceButtonName: "all",
-                    analyticsUseCase,
-                  });
-                }}
-              />
-            )}
-          </Flex>
+          <HeaderDownloadAllButton {...props} />
         </GridArea>
       </Grid>
     </Box>

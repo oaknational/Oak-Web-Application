@@ -39,7 +39,7 @@ describe("pages/beta/teachers/lessons", () => {
   it("renders Download All button if lesson has downloadable resources", async () => {
     render(<LessonOverviewPage {...props} />);
 
-    expect(screen.getByTestId("download-all-button-desktop")).toHaveTextContent(
+    expect(screen.getByTestId("download-all-button")).toHaveTextContent(
       "Download all resources"
     );
   });
