@@ -2,8 +2,7 @@ import React, { FC } from "react";
 
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
-import { Heading } from "@/components/Typography";
-import { ListTitle } from "@/components/UnitAndLessonLists/ListItemHeader";
+import { Heading, P } from "@/components/Typography";
 import UnitListItem from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
@@ -18,6 +17,7 @@ type OptionalityCardProps = {
 const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
   const stringIndex = (index + 1).toString();
   const unitTitle = unitOptions[0]?.nullTitle;
+  const unitYear = unitOptions[0]?.yearTitle;
 
   return (
     <Box
@@ -55,8 +55,13 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           $pb={12}
           $width={"100%"}
         >
-          <Flex $mb={16}>
-            <ListTitle index={index}>{unitTitle}</ListTitle>
+          <Flex $mb={16} $flexDirection={"column"}>
+            <P $font={"heading-light-7"} $mt={4} $color={"oakGrey4"} $mb={8}>
+              {unitYear}
+            </P>
+            <Heading tag="h6" $font={"heading-6"} $mv={0}>
+              {unitTitle}
+            </Heading>
           </Flex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
             {unitOptions.map((unitOption: UnitOption) => {
