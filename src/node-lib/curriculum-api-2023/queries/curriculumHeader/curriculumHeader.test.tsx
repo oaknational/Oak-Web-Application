@@ -25,3 +25,11 @@ test("throws a not found error if no slug is found", async () => {
     })({ slug: "" });
   }).rejects.toThrow(`Resource not found`);
 });
+
+test("tests if no exam board is passed in, then values are empty", async () => {
+  const query = await curriculumHeaderQuery({
+    ...sdk,
+  })({ slug: "secondary-maths" });
+  expect(query).toHaveProperty("examBoard");
+  expect(query.examBoard.title).toBe("");
+});
