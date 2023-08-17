@@ -6,12 +6,13 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
-import SequenceTab from "@/components/pages/CurriculumInfo/tabs/SequenceTab/SequenceTab";
+import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
+import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
-  curriculumSubjectPhaseOverviewData,
+  CurriculumHeaderData,
+  CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
@@ -24,14 +25,18 @@ import { fetchSubjectPhasePickerData } from "@/pages/beta/[viewType]/curriculum/
 import getPageProps from "@/node-lib/getPageProps";
 import { ViewType } from "@/common-lib/urls";
 
-export type CurriculumSequencePageProps = {
-  data: curriculumSubjectPhaseOverviewData;
+export type CurriculumUnitsPageProps = {
+  curriculumUnitsData: CurriculumUnitsTabData;
+  curriculumHeaderData: CurriculumHeaderData;
   subjectPhaseOptions: SubjectPhasePickerData;
+  pageSlug: string;
 };
 
-const CurriculumSequencePage: NextPage<CurriculumSequencePageProps> = ({
-  data,
+const CurriculumUnitsPage: NextPage<CurriculumUnitsPageProps> = ({
+  curriculumUnitsData,
+  curriculumHeaderData,
   subjectPhaseOptions,
+  pageSlug,
 }) => {
   return (
     <AppLayout
@@ -40,34 +45,14 @@ const CurriculumSequencePage: NextPage<CurriculumSequencePageProps> = ({
       headerVariant="landing-pages"
     >
       <CurriculumHeader
-        subject={data.subject}
-        phase={data.phase}
+        data={curriculumHeaderData}
         subjectPhaseOptions={subjectPhaseOptions}
+        pageSlug={pageSlug}
+        tab="units"
       />
 
       <Box $background={"white"}>
-        <SequenceTab
-          {...{
-            threads: [
-              "Algebra",
-              "Geometry and Measure",
-              "Number",
-              "Probability",
-              "Ratio and Proportion",
-              "Statistics",
-            ],
-            units: [
-              "Counting, recognising and comparing numbers 0-10",
-              "Counting to and from 20",
-              "Counting in tens - decade numbers",
-              "Pattern in counting from 20 to 100",
-              "Comparing quantities - part whole relationships",
-              "Composition of numbers 0 to 5",
-              "Recognise, compose, decompose and manipulate 3D shapes",
-              " Composition of numbers 6 to 10",
-            ],
-          }}
-        />
+        <UnitsTab data={curriculumUnitsData} />
       </Box>
     </AppLayout>
   );
@@ -91,7 +76,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  CurriculumSequencePageProps,
+  CurriculumUnitsPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -102,18 +87,19 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
-
-      const overviewData =
-        await curriculumApi.curriculumSubjectPhaseOverviewPage({
-          slug: context.params?.subjectPhaseSlug,
-        });
-
+      const slug = context.params?.subjectPhaseSlug;
+      const curriculumUnitsData = await curriculumApi.curriculumUnits({ slug });
+      const curriculumHeaderData = await curriculumApi.curriculumHeader({
+        slug,
+      });
       const subjectPhaseData = await fetchSubjectPhasePickerData();
 
-      const results: GetStaticPropsResult<CurriculumSequencePageProps> = {
+      const results: GetStaticPropsResult<CurriculumUnitsPageProps> = {
         props: {
-          data: overviewData,
+          curriculumUnitsData,
+          curriculumHeaderData,
           subjectPhaseOptions: subjectPhaseData,
+          pageSlug: context.params?.subjectPhaseSlug,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);
@@ -122,4 +108,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default CurriculumSequencePage;
+export default CurriculumUnitsPage;

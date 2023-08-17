@@ -9,20 +9,24 @@ import TabularNav from "@/components/TabularNav/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { CurriculumHeaderData } from "@/node-lib/curriculum-api-2023";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
-  subject: { name: string; slug: string };
-  phase: { name: string; slug: string };
+  data: CurriculumHeaderData;
+  pageSlug: string;
+  tab: string;
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
-  subject,
-  phase,
+  pageSlug,
+  tab,
+  data,
 }) => {
-  const subjectPhaseName = ` ${phase.name} ${subject.name}`;
-  const pageSlug = `${subject.slug}-${phase.slug}`;
+  const { subject, phase, examBoard } = data;
+  const examBoardTitle = examBoard.title ? ` ${examBoard.title}` : "";
+  const pageTitle = ` ${phase.title} ${subject.title}${examBoardTitle}`;
   return (
     <Box>
       <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
@@ -48,7 +52,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   page: null,
                   href: "",
                 },
-                label: subjectPhaseName,
+                label: pageTitle,
                 disabled: true,
               },
             ]}
@@ -72,7 +76,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               </Box>
 
               <Heading tag={"h1"} $font={"heading-light-3"} $mr={26}>
-                {subjectPhaseName}
+                {pageTitle}
               </Heading>
             </Flex>
           </Box>
@@ -87,18 +91,24 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Overview",
               page: null,
               scroll: false,
+              isCurrent: tab === "overview",
+              currentStyles: ["text-underline"],
             },
             {
-              href: `/beta/teachers/curriculum/${pageSlug}/sequence`,
+              href: `/beta/teachers/curriculum/${pageSlug}/units`,
               label: "Unit sequence",
               page: null,
               scroll: false,
+              isCurrent: tab === "units",
+              currentStyles: ["text-underline"],
             },
             {
               href: `/beta/teachers/curriculum/${pageSlug}/downloads`,
               label: "Downloads",
               page: null,
               scroll: false,
+              isCurrent: tab === "downloads",
+              currentStyles: ["text-underline"],
             },
           ]}
         />

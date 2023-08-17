@@ -6,12 +6,13 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
+import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import Box from "@/components/Box/Box";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import curriculumApi, {
-  curriculumSubjectPhaseOverviewData,
+  CurriculumHeaderData,
+  CurriculumOverviewTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
@@ -25,13 +26,17 @@ import getPageProps from "@/node-lib/getPageProps";
 import { ViewType } from "@/common-lib/urls";
 
 export type OverviewPageProps = {
-  data: curriculumSubjectPhaseOverviewData;
+  overviewData: CurriculumOverviewTabData;
+  curriculumHeaderData: CurriculumHeaderData;
   subjectPhaseOptions: SubjectPhasePickerData;
+  slug: string;
 };
 
 const OverviewPage: NextPage<OverviewPageProps> = ({
-  data,
+  overviewData,
+  curriculumHeaderData,
   subjectPhaseOptions,
+  slug,
 }) => {
   return (
     <AppLayout
@@ -40,13 +45,14 @@ const OverviewPage: NextPage<OverviewPageProps> = ({
       headerVariant="landing-pages"
     >
       <CurriculumHeader
-        subject={data.subject}
-        phase={data.phase}
+        data={curriculumHeaderData}
         subjectPhaseOptions={subjectPhaseOptions}
+        pageSlug={slug}
+        tab="overview"
       />
 
       <Box $background={"white"}>
-        <OverviewTab {...data} />
+        <OverviewTab data={overviewData} slug={slug} />
       </Box>
     </AppLayout>
   );
@@ -81,18 +87,19 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
-
-      const overviewData =
-        await curriculumApi.curriculumSubjectPhaseOverviewPage({
-          slug: context.params?.subjectPhaseSlug,
-        });
-
+      const slug = context.params?.subjectPhaseSlug;
+      const overviewData = await curriculumApi.curriculumOverview({ slug });
+      const curriculumHeaderData = await curriculumApi.curriculumHeader({
+        slug,
+      });
       const subjectPhaseData = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<OverviewPageProps> = {
         props: {
-          data: overviewData,
+          overviewData,
+          curriculumHeaderData,
           subjectPhaseOptions: subjectPhaseData,
+          slug: context.params?.subjectPhaseSlug,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

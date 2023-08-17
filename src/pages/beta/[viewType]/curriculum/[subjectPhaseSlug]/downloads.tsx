@@ -6,12 +6,13 @@ import {
 } from "next";
 import React from "react";
 
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader";
+import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
 import DownloadTab from "@/components/pages/CurriculumInfo/tabs/DownloadTab/DownloadTab";
 import Box from "@/components/Box/Box";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import curriculumApi, {
-  curriculumSubjectPhaseOverviewData,
+  CurriculumDownloadTabData,
+  CurriculumHeaderData,
 } from "@/node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
@@ -25,15 +26,17 @@ import getPageProps from "@/node-lib/getPageProps";
 import { ViewType } from "@/common-lib/urls";
 
 export type DownloadPageProps = {
-  data: curriculumSubjectPhaseOverviewData;
+  downloadsData: CurriculumDownloadTabData;
   subjectPhaseOptions: SubjectPhasePickerData;
   subjectPhaseSlug: string;
+  curriculumHeaderData: CurriculumHeaderData;
 };
 
 const DownloadPage: NextPage<DownloadPageProps> = ({
-  data,
+  downloadsData,
   subjectPhaseOptions,
   subjectPhaseSlug,
+  curriculumHeaderData,
 }) => {
   return (
     <AppLayout
@@ -42,12 +45,13 @@ const DownloadPage: NextPage<DownloadPageProps> = ({
       headerVariant="landing-pages"
     >
       <CurriculumHeader
-        subject={data.subject}
-        phase={data.phase}
+        data={curriculumHeaderData}
         subjectPhaseOptions={subjectPhaseOptions}
+        pageSlug={subjectPhaseSlug}
+        tab="downloads"
       />
       <Box $background={"white"}>
-        <DownloadTab {...data} slug={subjectPhaseSlug} />
+        <DownloadTab data={downloadsData} slug={subjectPhaseSlug} />
       </Box>
     </AppLayout>
   );
@@ -82,17 +86,19 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Missing params");
       }
       // Parse and use params instead of "maths" and "secondary" when MV is ready
+      const slug = context.params?.subjectPhaseSlug;
+      const downloadsData = await curriculumApi.curriculumDownloads({ slug });
 
-      const overviewData =
-        await curriculumApi.curriculumSubjectPhaseOverviewPage({
-          slug: context.params?.subjectPhaseSlug,
-        });
+      const curriculumHeaderData = await curriculumApi.curriculumHeader({
+        slug,
+      });
 
       const subjectPhaseData = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<DownloadPageProps> = {
         props: {
-          data: overviewData,
+          downloadsData,
+          curriculumHeaderData,
           subjectPhaseOptions: subjectPhaseData,
           subjectPhaseSlug: context.params?.subjectPhaseSlug,
         },
