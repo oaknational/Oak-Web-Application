@@ -32,6 +32,8 @@ import { getSizes } from "../components/CMSImage/getSizes";
 import HomeNotification from "../components/pages/Home/HomeNotification";
 import getPageProps from "../node-lib/getPageProps";
 
+import MathJaxWrapper from "@/components/MathJaxWrapper/MathJaxWrapper";
+
 export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
   | ({ type: "webinar" } & SerializedWebinarPreview);
@@ -45,12 +47,16 @@ const Home: NextPage<HomePageProps> = (props) => {
   const { track } = useAnalytics();
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
+  const data =
+    "When \\(a \\ne 0\\), there exists two solutions for\\(ax^2 + bx + c = 0\\) as \\[x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.\\]";
 
   return (
     <Layout
       seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
     >
       <Flex $flexDirection={"column"} $position="relative">
+        <MathJaxWrapper>{data}</MathJaxWrapper>
+
         <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
           <MaxWidth $ph={[0, 12]}>
             <Flex
