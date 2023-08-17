@@ -29,6 +29,7 @@ describe("filterLearningTheme", () => {
           unitStudyOrder: 1,
           expired: false,
           expiredLessonCount: 0,
+          yearTitle: "Year 10",
           learningThemes: [
             {
               themeSlug: "computer-science-1",
