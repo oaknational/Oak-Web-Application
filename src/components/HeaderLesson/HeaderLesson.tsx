@@ -20,7 +20,7 @@ export type HeaderLessonProps = LessonOverviewData & {
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
   lessonDescription?: string; // Check this is coming through from the API
-  lessonIsNew?: boolean;
+  isNew?: boolean;
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
