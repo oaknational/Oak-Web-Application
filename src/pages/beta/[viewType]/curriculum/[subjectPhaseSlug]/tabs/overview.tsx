@@ -1,5 +1,10 @@
 import { FC } from "react";
 
+import {
+  CurriculumOverviewTabData,
+  Subject,
+  Phase,
+} from "@/node-lib/curriculum-api-2023";
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
 import { Heading, UL, LI } from "@/components/Typography";
@@ -12,24 +17,15 @@ import Icon from "@/components/Icon/Icon";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
 
-type OverviewTabProps = {
-  subjectPrinciples: string[];
-  curriculaDesc: string;
-  partnerBio: string;
-  videoGuideDesc: string;
-  subject: { name: string; slug: string };
-  phase: { name: string; slug: string };
+export type OverviewTabProps = {
+  data: CurriculumOverviewTabData;
+  subject: Subject;
+  phase: Phase;
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const {
-    subjectPrinciples,
-    curriculaDesc,
-    partnerBio,
-    videoGuideDesc,
-    subject,
-    phase,
-  } = props;
+  const { data, subject, phase } = props;
+  const { subjectPrinciples, curriculaDesc, partnerBio, videoGuideDesc } = data;
   const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
@@ -144,7 +140,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               variant="brush"
               label="View unit sequence"
               page={null}
-              href={`/beta/teachers/curriculum/${subjectPhaseSlug}/sequence`}
+              href={`/beta/teachers/curriculum/${subjectPhaseSlug}/units`}
               $mv={10}
               icon="arrow-right"
               iconBackground="transparent"

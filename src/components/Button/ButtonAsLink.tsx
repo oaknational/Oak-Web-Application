@@ -20,6 +20,7 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
    pointer-events: none;
   `}
 `;
+
 export type ButtonAsLinkProps = CommonButtonProps &
   OakLinkPropsWithoutChildren &
   Pick<ButtonInnerProps, "currentStyles"> & {

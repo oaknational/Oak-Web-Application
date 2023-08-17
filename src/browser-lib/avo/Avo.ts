@@ -1136,6 +1136,10 @@ export const PageName = {
   'ABOUT_US_WORK_WITH_US': 'About Us: Work With Us',
   'LEGAL': 'Legal',
   'LANDING_PAGE': 'Landing Page',
+  'CURRICULUM_LANDING_PAGE': 'Curriculum Landing Page',
+  'CURRICULUM_OVERVIEW': 'Curriculum Overview',
+  'CURRICULUM_UNIT_SEQUENCE': 'Curriculum Unit Sequence',
+  'CURRICULUM_DOWNLOADS': 'Curriculum Downloads',
 } as const;
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];

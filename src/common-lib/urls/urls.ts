@@ -159,6 +159,25 @@ type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
+type CurriculumLandingPageLinkProps = {
+  page: "curriculum-landing-page";
+  viewType: ViewType;
+};
+type CurriculumOverviewLinkProps = {
+  page: "curriculum-overview";
+  viewType: ViewType;
+  subjectPhaseSlug: string;
+};
+type CurriculumUnitsLinkProps = {
+  page: "curriculum-units";
+  viewType: ViewType;
+  subjectPhaseSlug: string;
+};
+type CurriculumDownloadsLinkProps = {
+  page: "curriculum-downloads";
+  viewType: ViewType;
+  subjectPhaseSlug: string;
+};
 type OakLinkProps =
   | SubjectListingLinkProps
   | LandingPageLinkProps
@@ -188,7 +207,11 @@ type OakLinkProps =
   | OurTeachersLinkProps
   | OakCurriculumLinkProps
   | ClassroomLinkProps
-  | TeacherHubLinkProps;
+  | TeacherHubLinkProps
+  | CurriculumLandingPageLinkProps
+  | CurriculumOverviewLinkProps
+  | CurriculumUnitsLinkProps
+  | CurriculumDownloadsLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -230,6 +253,10 @@ type OakPages = {
   "subject-index": OakPageConfig<SubjectListingLinkProps>;
   "webinar-single": OakPageConfig<WebinarSingleLinkProps>;
   "blog-single": OakPageConfig<BlogSingleLinkProps>;
+  "curriculum-landing-page": OakPageConfig<CurriculumLandingPageLinkProps>;
+  "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
+  "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
+  "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
 };
 
 type OakPageConfig<
@@ -552,6 +579,30 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "programme-index",
   }),
+  "curriculum-landing-page": createOakPageConfig({
+    pathPattern: "/beta/:viewType/curriculum",
+    analyticsPageName: "Curriculum Landing Page",
+    configType: "internal",
+    pageType: "curriculum-landing-page",
+  }),
+  "curriculum-overview": createOakPageConfig({
+    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/overview",
+    analyticsPageName: "Curriculum Overview",
+    configType: "internal",
+    pageType: "curriculum-overview",
+  }),
+  "curriculum-units": createOakPageConfig({
+    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/units",
+    analyticsPageName: "Curriculum Unit Sequence",
+    configType: "internal",
+    pageType: "curriculum-units",
+  }),
+  "curriculum-downloads": createOakPageConfig({
+    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/downloads",
+    analyticsPageName: "Curriculum Downloads",
+    configType: "internal",
+    pageType: "curriculum-downloads",
+  }),
 };
 
 export type ResolveOakHrefProps = Exclude<
@@ -593,7 +644,6 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
-
     const pathWithCorrectViewType = replaceViewType2023(path);
     return pathWithCorrectViewType;
   } catch (error) {

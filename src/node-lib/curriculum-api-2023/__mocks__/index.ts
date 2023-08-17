@@ -1,16 +1,27 @@
-import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
-import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
-import curriculumOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+import { CurriculumApi } from "../../curriculum-api-2023";
+import subjectPhaseOptionsFixture from "../fixtures/subjectPhaseOptions.fixture";
+import curriculumOverviewFixture from "../fixtures/curriculumOverview.fixture";
+import curriculumUnitsFixture from "../fixtures/curriculumUnits.fixture";
+import curriculumDownloadsFixture from "../fixtures/curriculumDownloads.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
-  "subjectPhaseOptions" | "curriculumSubjectPhaseOverviewPage"
+  | "subjectPhaseOptions"
+  | "curriculumOverview"
+  | "curriculumUnits"
+  | "curriculumDownloads"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
   }),
-  curriculumSubjectPhaseOverviewPage: jest.fn(async () => {
+  curriculumOverview: jest.fn(async () => {
     return curriculumOverviewFixture();
+  }),
+  curriculumUnits: jest.fn(async () => {
+    return curriculumUnitsFixture();
+  }),
+  curriculumDownloads: jest.fn(async () => {
+    return curriculumDownloadsFixture();
   }),
 };
 
