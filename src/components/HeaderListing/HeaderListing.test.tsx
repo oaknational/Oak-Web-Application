@@ -25,10 +25,10 @@ describe("HeaderListing", () => {
   });
 
   it("renders the curriculum download button", () => {
-    const { queryByText } = renderWithTheme(<HeaderListing {...props} />);
-    const downloadLink = queryByText("Curriculum download (PDF)");
+    const { queryAllByText } = renderWithTheme(<HeaderListing {...props} />);
+    const downloadLink = queryAllByText("Curriculum download (PDF)");
 
-    expect(downloadLink).toBeInTheDocument();
+    expect(downloadLink[0]).toBeInTheDocument();
   });
 
   it("renders key stage title when passed in ", () => {
