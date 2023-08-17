@@ -1,3 +1,14 @@
+# [1.220.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.219.0...v1.220.0) (2023-08-17)
+
+
+### Features
+
+* **quizzes:** add box border to quizzes ([b987951](https://github.com/oaknational/Oak-Web-Application/commit/b98795190f00fa54531272e8d7fe535bf861e4e6))
+* **quizzes:** exit quiz navigates to correct quiz ([67b6c12](https://github.com/oaknational/Oak-Web-Application/commit/67b6c1286319f962c85605ce7cda199e37231168))
+* **quizzes:** prettier ([55a4492](https://github.com/oaknational/Oak-Web-Application/commit/55a4492b74498cf89137e90e73094633d79ab265))
+* **quizzes:** put quizzes inside new lesson item container ([7cb24c9](https://github.com/oaknational/Oak-Web-Application/commit/7cb24c9f464470dfcaf42d02f3afa6dfd2c08930))
+* **quizzes:** remove undeline of questions ([cf6d752](https://github.com/oaknational/Oak-Web-Application/commit/cf6d752c79de359998b924061c9f41f3bc104242))
+
 # [1.219.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.2...v1.219.0) (2023-08-16)
 
 
