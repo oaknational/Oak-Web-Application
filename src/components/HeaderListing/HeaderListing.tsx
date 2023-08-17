@@ -48,7 +48,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
 
   return (
     <HeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <Flex $flexDirection={"column"}>
+      <Flex $mb={[12, 0]} $flexDirection={"column"}>
         <Flex>
           <Box $height={[80, 140]} $width={[80, 140]} $mr={[16, 32]}>
             <SubjectIconBrushBorders
@@ -80,11 +80,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex
-        $background={background}
-        $justifyContent={"space-around"}
-        $display={["flex", "none"]}
-      >
+      <Flex $background={background} $display={["inline", "none"]}>
         <CurriculumDownloadButton
           keyStageSlug={keyStageSlug}
           keyStageTitle={keyStageTitle}
