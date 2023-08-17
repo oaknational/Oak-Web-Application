@@ -27,6 +27,7 @@ const optionalityProps = {
         unitStudyOrder: 1,
         expired: false,
         expiredLessonCount: 0,
+        yearTitle: "Year 10",
         learningThemes: [
           {
             themeSlug: "computer-science-1",
@@ -50,6 +51,7 @@ const optionalityProps = {
         unitStudyOrder: 2,
         expired: false,
         expiredLessonCount: 0,
+        yearTitle: "Year 10",
         learningThemes: [
           {
             themeSlug: "human-geography-1",
