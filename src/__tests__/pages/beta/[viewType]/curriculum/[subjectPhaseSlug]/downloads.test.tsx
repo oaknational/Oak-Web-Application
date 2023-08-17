@@ -1,24 +1,25 @@
-import CurriculumInfoPage, {
-  CurriculumInfoPageProps,
+import DownloadPage, {
+  DownloadPageProps,
   getStaticProps,
   getStaticPaths,
-} from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]";
+} from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/downloads";
 import curriculumOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 const render = renderWithProviders();
 
-describe("curriculum info page", () => {
+describe("curriculum download page", () => {
   describe("components rendering on page", () => {
     it("renders overview headings", () => {
       const { queryByTestId } = render(
-        <CurriculumInfoPage
+        <DownloadPage
           data={curriculumOverviewFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
+          subjectPhaseSlug="maths-secondary"
         />
       );
 
-      expect(queryByTestId("intent-heading")).toBeInTheDocument();
+      expect(queryByTestId("heading")).toBeInTheDocument();
     });
   });
 
@@ -30,9 +31,9 @@ describe("curriculum info page", () => {
     });
     it("Should provide the expected data", async () => {
       const testRes = (await getStaticProps({
-        params: { subjectPhaseSlug: "maths-secondary" },
+        params: { viewType: "teachers", subjectPhaseSlug: "maths-secondary" },
       })) as {
-        props: CurriculumInfoPageProps;
+        props: DownloadPageProps;
       };
       expect(testRes.props.subjectPhaseOptions).toEqual(subjectPhaseOptions);
     });
