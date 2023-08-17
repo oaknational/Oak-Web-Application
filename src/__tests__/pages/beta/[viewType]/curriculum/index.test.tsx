@@ -1,10 +1,9 @@
 import { screen } from "@testing-library/react";
-import { GetStaticPropsContext, PreviewData } from "next";
 
 import CurriculumHomePage, {
+  getStaticPaths,
   getStaticProps,
   CurriculumHomePageProps,
-  URLParams,
 } from "@/pages/beta/[viewType]/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
@@ -38,12 +37,17 @@ describe("pages/beta/curriculum/index", () => {
 
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
-      const testRes = (await getStaticProps({
-        params: {},
-      } as GetStaticPropsContext<URLParams, PreviewData>)) as {
+      const testRes = (await getStaticProps({})) as {
         props: CurriculumHomePageProps;
       };
       expect(testRes.props.subjectPhaseOptions).toEqual(subjectPhaseOptions);
+    });
+  });
+
+  describe("getStaticPaths", () => {
+    it("Shouldn't return any paths when shouldSkipInitialBuild is true", async () => {
+      const paths = await getStaticPaths();
+      expect(paths).toEqual({ fallback: "blocking", paths: [] });
     });
   });
 });

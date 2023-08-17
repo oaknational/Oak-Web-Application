@@ -5,12 +5,16 @@ import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 import responsive, { ResponsiveValues } from "./responsive";
 import { getRemUnits } from "./getRemUnits";
 
+type CalcValues = `calc(${PercentSpacing} - ${NullablePixelSpacing}px)`;
+
 type SizeValue =
   | PercentSpacing
   | "auto"
   | "none"
   | NullablePixelSpacing
-  | "max-content";
+  | "max-content"
+  | CalcValues;
+
 export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
