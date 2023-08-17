@@ -22,7 +22,6 @@ import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
-import ExpandingContainer from "@/components/ExpandingContainer";
 import QuizContainer from "@/components/QuizContainer";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Box from "@/components/Box";
@@ -354,35 +353,35 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     />
                   </LessonItemContainer>
                 )}
-                {introQuiz.length > 0 ? (
-                  <ExpandingContainer
-                    downloadable={true}
-                    {...curriculumData}
+                {pageLinks.find((p) => p.label === "Starter quiz") && (
+                  <LessonItemContainer
                     title={"Starter quiz"}
+                    anchorId="starterQuiz"
+                    downloadable={true}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "starter quiz",
                       });
                     }}
+                    slugs={slugs}
                   >
                     <QuizContainer questions={introQuiz} info={introQuizInfo} />
-                  </ExpandingContainer>
-                ) : (
-                  ""
+                  </LessonItemContainer>
                 )}
-                {exitQuiz.length > 0 && (
-                  <ExpandingContainer
-                    downloadable={true}
-                    {...curriculumData}
+                {pageLinks.find((p) => p.label === "Exit quiz") && (
+                  <LessonItemContainer
                     title={"Exit quiz"}
+                    anchorId="exitQuiz"
+                    downloadable={true}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "exit quiz",
                       });
                     }}
+                    slugs={slugs}
                   >
                     <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-                  </ExpandingContainer>
+                  </LessonItemContainer>
                 )}
               </Flex>
             </GridArea>

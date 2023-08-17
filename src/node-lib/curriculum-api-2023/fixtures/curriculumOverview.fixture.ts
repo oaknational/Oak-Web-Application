@@ -14,7 +14,8 @@ const curriculumOverviewFixture = (
     ],
     partnerBio:
       "Mathematics in Education and Industry (MEI) is an established charity and curriculum development body. Their primary aims are to raise the quality of maths education and promote the relevance of maths education to everyone. MEI are highly respected and are well connected with other quality assured organisations, including being a key partner in the NCETM, and are well known in schools for their excellent training and support programmes.",
-
+    subject: { name: "Maths", slug: "maths" },
+    phase: { name: "Secondary", slug: "secondary" },
     videoGuideDesc:
       "Our new curriculum sequence has recently launched. For additional support, watch this video guide by {videoGuideAuthor} from our educational team, as they talk you through how to use this new tool.",
     ...partial,

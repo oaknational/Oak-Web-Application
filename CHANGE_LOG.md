@@ -1,3 +1,33 @@
+# [1.220.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.219.0...v1.220.0) (2023-08-17)
+
+
+### Features
+
+* **quizzes:** add box border to quizzes ([b987951](https://github.com/oaknational/Oak-Web-Application/commit/b98795190f00fa54531272e8d7fe535bf861e4e6))
+* **quizzes:** exit quiz navigates to correct quiz ([67b6c12](https://github.com/oaknational/Oak-Web-Application/commit/67b6c1286319f962c85605ce7cda199e37231168))
+* **quizzes:** prettier ([55a4492](https://github.com/oaknational/Oak-Web-Application/commit/55a4492b74498cf89137e90e73094633d79ab265))
+* **quizzes:** put quizzes inside new lesson item container ([7cb24c9](https://github.com/oaknational/Oak-Web-Application/commit/7cb24c9f464470dfcaf42d02f3afa6dfd2c08930))
+* **quizzes:** remove undeline of questions ([cf6d752](https://github.com/oaknational/Oak-Web-Application/commit/cf6d752c79de359998b924061c9f41f3bc104242))
+
+# [1.219.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.2...v1.219.0) (2023-08-16)
+
+
+### Bug Fixes
+
+* **curric:** fixed code smells ([6402ff0](https://github.com/oaknational/Oak-Web-Application/commit/6402ff025c15731a7f153fe17832568c1a4985d9))
+* **curric:** updated breadcrumbs ([a928b3e](https://github.com/oaknational/Oak-Web-Application/commit/a928b3e035a64493e4742d56a3f155ba48eb215b))
+* **curric:** updated params tests ([8aee6ec](https://github.com/oaknational/Oak-Web-Application/commit/8aee6ec0daf572282984689492e5ff31b1629f12))
+* **curric:** updated static props for pages ([c485a8b](https://github.com/oaknational/Oak-Web-Application/commit/c485a8b6dca003ec2bcfb4f3b8ccbe296212ec07))
+* **curric:** updated test for index ([50fda92](https://github.com/oaknational/Oak-Web-Application/commit/50fda92fcf7d8b706455cbbd2e4a1adedbdfbcc2))
+* **curric:** updated tests for overview ([8323a51](https://github.com/oaknational/Oak-Web-Application/commit/8323a51d3a5456822ae56aa04ccf2de91d0df023))
+* **curric:** updated url in subject phase picker ([70660ca](https://github.com/oaknational/Oak-Web-Application/commit/70660caa45558504b403444a09b1e1769d0b5257))
+* updated error message ([92b1a8f](https://github.com/oaknational/Oak-Web-Application/commit/92b1a8ffc6fd109fbdc1ec01c195afbaf5c29909))
+
+
+### Features
+
+* **curric:** added tab routes and sequence layout ([8543a4a](https://github.com/oaknational/Oak-Web-Application/commit/8543a4ab91a712398c2b2816c6d4249c6b5d9ce2))
+
 ## [1.218.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.1...v1.218.2) (2023-08-16)
 
 ## [1.218.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.218.0...v1.218.1) (2023-08-15)
