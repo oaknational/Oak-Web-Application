@@ -23,7 +23,7 @@ import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023
 import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "../../../../../../../node-lib/getPageProps";
 
-import HeaderListing from "@/components/HeaderListing/HeaderListing";
+import HeaderListing from "@/components/HeaderListing";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -55,7 +55,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     unitTitle,
     subjectTitle,
     programmeSlug,
-    examBoardTitle,
   } = curriculumData;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
@@ -119,7 +118,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         ]}
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}
-        title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
+        title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         {...curriculumData}
       />
