@@ -15,7 +15,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     yearTitle,
     lessonTitle,
     lessonDescription,
-    lessonIsNew,
+    isNew,
     subjectIconBackgroundColor,
   } = props;
 
@@ -32,7 +32,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
               $maxWidth={140}
               $ma={"auto"}
               color={subjectIconBackgroundColor}
-              lessonIsNew={lessonIsNew}
+              isNew={isNew}
             />
           </Flex>
         </GridArea>

@@ -11,7 +11,7 @@ import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDow
 import { OakColorName } from "@/styles/theme";
 
 /**
- * This is a header for the lesson overview page.
+ * This is a header for the listing pages (lesson, unit and programme).
  *
  */
 
@@ -26,7 +26,7 @@ export type HeaderListingProps = {
   keyStageTitle: string;
   tierSlug?: string | null;
   lessonDescription?: string;
-  lessonIsNew?: boolean;
+  isNew?: boolean;
   title: string;
   programmeFactor: string;
 };
@@ -39,7 +39,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
-    lessonIsNew,
+    isNew,
     subjectIconBackgroundColor,
     breadcrumbs,
     background,
@@ -57,7 +57,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               height={15}
               width={20}
               $ma={"auto"}
-              lessonIsNew={lessonIsNew}
+              isNew={isNew}
               color={subjectIconBackgroundColor}
             />
           </Box>

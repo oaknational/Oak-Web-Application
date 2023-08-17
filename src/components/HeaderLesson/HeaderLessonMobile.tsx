@@ -14,7 +14,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     yearTitle,
     lessonTitle,
     lessonDescription,
-    lessonIsNew,
+    isNew,
     subjectIconBackgroundColor,
   } = props;
 
@@ -27,7 +27,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
             height={20}
             width={20}
             $ma={"auto"}
-            lessonIsNew={lessonIsNew}
+            isNew={isNew}
             color={subjectIconBackgroundColor}
           />
         </Box>
