@@ -191,7 +191,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         subjectPhaseSlug += "-" + selectedExamboard.slug;
       }
       router.push({
-        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}`,
+        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}/overview`,
       });
     }
   };
