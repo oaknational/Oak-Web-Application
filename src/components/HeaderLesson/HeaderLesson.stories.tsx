@@ -121,7 +121,7 @@ const props = {
   introQuizInfo: null,
   exitQuizInfo: null,
   expired: false,
-  lessonIsNew: true,
+  isNew: true,
 };
 
 const meta: Meta<typeof Component> = {

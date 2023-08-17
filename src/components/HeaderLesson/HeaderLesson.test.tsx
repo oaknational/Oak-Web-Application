@@ -8,7 +8,7 @@ const props = {
   breadcrumbs: [],
   background: "pink30",
   lessonDescription: "A lesson description",
-  lessonIsNew: true,
+  isNew: true,
   subjectIconBackgroundColor: "pink",
 } as unknown as HeaderLessonProps;
 

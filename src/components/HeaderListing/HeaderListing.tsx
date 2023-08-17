@@ -68,15 +68,30 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
               {title}
             </Heading>
-            <CurriculumDownloadButton
-              keyStageSlug={keyStageSlug}
-              keyStageTitle={keyStageTitle}
-              subjectSlug={subjectSlug}
-              subjectTitle={subjectTitle}
-              tier={tierSlug}
-            />
+            <Flex $display={["none", "flex"]}>
+              <CurriculumDownloadButton
+                keyStageSlug={keyStageSlug}
+                keyStageTitle={keyStageTitle}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle}
+                tier={tierSlug}
+              />
+            </Flex>
           </Flex>
         </Flex>
+      </Flex>
+      <Flex
+        $background={background}
+        $justifyContent={"space-around"}
+        $display={["flex", "none"]}
+      >
+        <CurriculumDownloadButton
+          keyStageSlug={keyStageSlug}
+          keyStageTitle={keyStageTitle}
+          subjectSlug={subjectSlug}
+          subjectTitle={subjectTitle}
+          tier={tierSlug}
+        />
       </Flex>
     </HeaderWrapper>
   );
