@@ -5,25 +5,20 @@ import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, Span } from "../Typography";
-import { OakColorName } from "../../styles/theme/types";
 import OakLink from "../OakLink";
 import Card from "../Card";
 import useClickableCard from "../../hooks/useClickableCard";
 import Box from "../Box";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-
-type BackgroundProps = {
-  background: OakColorName;
-};
+import Icon from "../Icon/Icon";
 
 const ProgrammeListItem: FC<
   Pick<
     ProgrammeListingPageData,
     "subjectSlug" | "keyStageSlug" | "keyStageTitle"
   > &
-    ProgrammeListingPageData["programmes"][number] &
-    BackgroundProps
+    ProgrammeListingPageData["programmes"][number]
 > = (props) => {
   const {
     subjectSlug,
@@ -32,7 +27,6 @@ const ProgrammeListItem: FC<
     examBoardTitle,
     keyStageSlug,
     keyStageTitle,
-    background,
     lessonCount,
     unitCount,
     programmeSlug,
@@ -48,11 +42,12 @@ const ProgrammeListItem: FC<
       {...containerProps}
       $pa={0}
       data-testid={"programme-list-item"}
+      $background={"white"}
     >
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
-        $background={background}
+        $ph={12}
       >
         <OakLink
           {...primaryTargetProps}
@@ -71,7 +66,7 @@ const ProgrammeListItem: FC<
               });
           }}
         >
-          <Heading $ma={16} $font={"heading-7"} tag="h3">
+          <Heading $mt={8} $mb={2} $font={"heading-7"} tag="h3">
             {tierTitle ?? examBoardTitle}
           </Heading>
         </OakLink>
@@ -80,14 +75,19 @@ const ProgrammeListItem: FC<
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $transition={"all 0.4s ease-out"}
         $transform={isHovered ? "translateY(-8px)" : null}
+        $ph={12}
       >
         <Flex
-          $ma={16}
-          $flexDirection={"column"}
+          $mt={2}
+          $mb={8}
+          $flexDirection={"row"}
           $font={"body-3"}
           $color={"oakGrey4"}
         >
           <Span $mb={4}>{`${unitCount} units`}</Span>
+          <Span $mh={4}>
+            <Icon name="dot" size={10} />
+          </Span>
           <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>
       </Box>
