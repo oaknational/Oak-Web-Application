@@ -1,3 +1,14 @@
+# [1.222.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.221.0...v1.222.0) (2023-08-18)
+
+
+### Features
+
+* add sanity client method for fetching A/B tests by slug ([27011f1](https://github.com/oaknational/Oak-Web-Application/commit/27011f1400bb0ae90d0e7f43916d8d75f0b6fa53))
+* assign anonymous users to randomly chosen landing page variants ([0534d50](https://github.com/oaknational/Oak-Web-Application/commit/0534d504b90a0c85e04416cfba1667a24aa930a3))
+* implement client-side A/B testing of landing pages ([20ea34e](https://github.com/oaknational/Oak-Web-Application/commit/20ea34eb712df1da81a731c17e338ff8aa1123e1))
+* redirect users to variants instead of directly rendering variant ([3e21652](https://github.com/oaknational/Oak-Web-Application/commit/3e2165205040fbfe715a05f189af53511635096a))
+* resolve landing page A/B tests variants server side ([e322c06](https://github.com/oaknational/Oak-Web-Application/commit/e322c06489dce6dcd88954953a1d82b162e4fec7))
+
 # [1.221.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.220.1...v1.221.0) (2023-08-18)
 
 
