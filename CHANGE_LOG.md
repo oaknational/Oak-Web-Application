@@ -1,3 +1,20 @@
+# [1.221.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.220.1...v1.221.0) (2023-08-18)
+
+
+### Bug Fixes
+
+* color on lesson listing to pink ([ed98a6f](https://github.com/oaknational/Oak-Web-Application/commit/ed98a6ff5c539ad1cd784c5874da11a39c494494))
+* make year slugs optional as some are undefined in the database ([5e30a18](https://github.com/oaknational/Oak-Web-Application/commit/5e30a1873cb59e76ffb6d264e13250a16e052adf))
+* mobile curriculum button ([5034459](https://github.com/oaknational/Oak-Web-Application/commit/50344599b0d63675b288fdc94e5853c7848367a6))
+* rename prop ([663f382](https://github.com/oaknational/Oak-Web-Application/commit/663f3825f0b66387990dbc1e7f91cf3edcdad5f0))
+* unit title on lesson listing page ([a84fc2e](https://github.com/oaknational/Oak-Web-Application/commit/a84fc2e44f1825bb8ec967abb5b805b32f81ad4f))
+
+
+### Features
+
+* header downloads button component ([195a4b9](https://github.com/oaknational/Oak-Web-Application/commit/195a4b98d24f2f3b151084be76a88693af5d952b))
+* lesson and listing headers ([d14ad08](https://github.com/oaknational/Oak-Web-Application/commit/d14ad0843fa7815afde2d013b92fcb3e92d991f3))
+
 ## [1.220.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.220.0...v1.220.1) (2023-08-17)
 
 # [1.220.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.219.0...v1.220.0) (2023-08-17)
