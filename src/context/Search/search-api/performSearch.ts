@@ -31,8 +31,6 @@ export async function performSearch({
 
     onSuccess(results);
   } catch (error) {
-    console.log("performSearch.ts: performSearch(): error:", error);
-
     const oakError = new OakError({
       code: "search/unknown",
       originalError: error,

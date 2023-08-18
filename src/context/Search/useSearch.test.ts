@@ -38,7 +38,6 @@ const badFetchResolvedValue = {
 };
 
 const goodFetchMockImplementation = (url: string) => {
-  console.log(url);
   if (url === "NEXT_PUBLIC_SEARCH_API_URL") {
     return goodFetchResolvedValueWithResults;
   } else {

@@ -8,8 +8,6 @@ describe("Search/2023/constructElasticQuery", () => {
       createSearchQuery({ term: "writing" })
     );
 
-    console.log(JSON.stringify(elasticQuery));
-
     expect(elasticQuery).toEqual({
       from: 0,
       size: 100,
@@ -56,8 +54,6 @@ describe("Search/2023/constructElasticQuery", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({ term: "macbeth", keyStages: ["ks3"] })
     );
-
-    console.log(elasticQuery);
 
     expect(elasticQuery).toEqual({
       from: 0,
