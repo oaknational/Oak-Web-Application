@@ -29,6 +29,7 @@ export type PixelSpacing =
   | 8
   | 10
   | 12
+  | 14
   | 16
   | 18
   | 20
@@ -94,7 +95,8 @@ export type NegativePixelSpacing =
   | -16
   | -12
   | -8
-  | -4;
+  | -4
+  | -2;
 export type PercentSpacing =
   | "100%"
   | "99%"

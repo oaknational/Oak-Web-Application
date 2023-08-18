@@ -13,6 +13,7 @@ const lessonOverviewFixture = (
     subjectTitle: "Maths",
     unitTitle: "Maths unit",
     unitSlug: "maths-unit",
+    yearTitle: "year 11",
     keyLearningPoints: [
       { keyLearningPoint: "Lesson" },
       { keyLearningPoint: "learning" },

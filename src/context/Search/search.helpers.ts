@@ -167,6 +167,7 @@ export function getUnitObject(props: {
     themeSlug: null, // null values need to be added to elastic search
     lessonCount: null,
     quizCount: null,
+    yearTitle: null,
     subjectSlug: highlightedHit.subject_slug?.toString(),
     subjectTitle: highlightedHit.subject_title?.toString(),
     keyStageSlug: keyStage?.slug?.toString() || "",

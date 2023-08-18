@@ -27,7 +27,7 @@ const ProgrammeList: FC<ProgrammeListingPageData> = ({
               keyStageTitle={keyStageTitle}
               subjectSlug={subjectSlug}
               {...programme}
-              background={"teachersPastelYellow"}
+              background={"lavender30"}
             />
           </GridArea>
         );
