@@ -301,8 +301,6 @@ const curriculumApi = {
       programmesUnavailable,
     } = transformMVCase(res);
 
-    // const keyStages2 = res.keyStageList;
-    // console.log(keyStages2);
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
 
     const filteredUnavailableProgrammeDuplicate =
