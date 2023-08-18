@@ -36785,7 +36785,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectLessonCount?: any | null, nonDuplicateSubjectUnitCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null, activeUnitCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectUnitCount?: any | null, nonDuplicateSubjectLessonCount?: any | null, totalUnitCount?: any | null, activeUnitCount?: any | null, activeLessonCount?: any | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', mv_key_stages: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null }>, mv_programmes_available: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectLessonCount?: any | null, nonDuplicateSubjectUnitCount?: any | null, totalUnitCount?: any | null, activeLessonCount?: any | null, activeUnitCount?: any | null }>, mv_programmes_unavailable: Array<{ __typename?: 'mv_programmes_7', keyStageSlug?: string | null, keyStageTitle?: string | null, programmeSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, nonDuplicateSubjectUnitCount?: any | null, nonDuplicateSubjectLessonCount?: any | null, totalUnitCount?: any | null, activeUnitCount?: any | null, activeLessonCount?: any | null }>, keyStageList: Array<{ __typename?: 'mv_key_stages', slug?: string | null, title?: string | null, shortCode?: string | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -37012,6 +37012,11 @@ export const SubjectListingDocument = gql`
     totalUnitCount: total_unit_count
     activeUnitCount: active_unit_count
     activeLessonCount: active_lesson_count
+  }
+  keyStageList: mv_key_stages(order_by: {short_code: asc}) {
+    shortCode: short_code
+    slug
+    title
   }
 }
     `;

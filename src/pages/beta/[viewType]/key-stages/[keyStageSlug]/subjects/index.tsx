@@ -16,6 +16,7 @@ import Box from "../../../../../../components/Box";
 import { ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
 import {
+  KeyStageData,
   KeyStageSubjectData,
   SubjectListingPageData,
 } from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
@@ -34,20 +35,11 @@ export type SubjectListingPageProps = {
   subjectsUnavailable: KeyStageSubject[];
   keyStageSlug: string;
   keyStageTitle: string;
+  keyStages: KeyStageData[];
 };
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
-  const { keyStageSlug, keyStageTitle } = props;
-
-  /* 
-  ! DEVELOPMENT ONLY - CHANGE TO FETCH FROM API
-  **/
-  const keyStages = [
-    { slug: "ks1", title: "Key Stage 1", shortCode: "KS1" },
-    { slug: "ks2", title: "Key Stage 2", shortCode: "KS2" },
-    { slug: "ks3", title: "Key Stage 3", shortCode: "KS3" },
-    { slug: "ks4", title: "Key Stage 4", shortCode: "KS4" },
-  ];
+  const { keyStageSlug, keyStageTitle, keyStages } = props;
 
   return (
     <AppLayout
@@ -121,8 +113,13 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } =
-        curriculumData;
+      const {
+        subjects,
+        subjectsUnavailable,
+        keyStageSlug,
+        keyStageTitle,
+        keyStages,
+      } = curriculumData;
 
       const keyStageSubjectAvailable = Object.values(
         groupBy(
@@ -145,6 +142,7 @@ export const getStaticProps: GetStaticProps<
           keyStageTitle,
           subjects: keyStageSubjectAvailable,
           subjectsUnavailable: keyStageSubjectUnavailable,
+          keyStages,
         },
       };
 

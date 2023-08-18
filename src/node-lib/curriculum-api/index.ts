@@ -174,6 +174,7 @@ export const subjectListingData = z.object({
   keyStageTitle: z.string(),
   subjects: z.array(programmesData),
   subjectsUnavailable: z.array(programmesData),
+  keyStages: z.array(keyStageSchema),
 });
 
 const unitListingData = z.object({
@@ -300,6 +301,8 @@ const curriculumApi = {
       programmesUnavailable,
     } = transformMVCase(res);
 
+    // const keyStages2 = res.keyStageList;
+    // console.log(keyStages2);
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
 
     const filteredUnavailableProgrammeDuplicate =
@@ -332,6 +335,7 @@ const curriculumApi = {
         addCurriculum2023Counts(
           programmesArray.parse(filteredUnavailableProgrammeDuplicate)
         ) || [],
+      keyStages: res.keyStageList,
     });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {

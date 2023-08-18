@@ -39,4 +39,9 @@ query subjectListing($keyStageSlug: String!) {
     activeUnitCount: active_unit_count
     activeLessonCount: active_lesson_count
   }
+  keyStageList: mv_key_stages(order_by: { short_code: asc }) {
+    shortCode: short_code
+    slug
+    title
+  }
 }

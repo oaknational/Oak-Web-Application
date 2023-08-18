@@ -8,7 +8,7 @@ describe("subjectListing()", () => {
       await subjectListing({
         ...sdk,
         subjectListing: jest.fn(() =>
-          Promise.resolve({ keyStageSubjects: [] })
+          Promise.resolve({ keyStageSubjects: [], keyStages: [] })
         ),
       })({
         keyStageSlug: "key-stage-slug",

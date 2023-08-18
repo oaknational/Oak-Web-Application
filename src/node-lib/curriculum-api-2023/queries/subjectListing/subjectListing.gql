@@ -1,10 +1,13 @@
 query subjectListing($keyStageSlug: String!) {
-  keyStageSubjects: published_mv_subject_listing_2(
+  keyStageSubjects: published_mv_subject_listing_3(
     where: { keyStageSlug: { _eq: $keyStageSlug } }
   ) {
     keyStageSlug
     keyStageTitle
     subjects
     subjectsUnavailable
+  }
+  keyStages: published_mv_homepage_2 {
+    keyStages: key_stages
   }
 }
