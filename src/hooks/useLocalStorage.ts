@@ -60,7 +60,7 @@ function useLocalStorage<T>(
       if (schema && !schema.safeParse(parsedItem).success) {
         return valuePending;
       }
-      
+
       return parsedItem;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
@@ -102,6 +102,19 @@ function useLocalStorage<T>(
       ) {
         // If areEqual function is passed, and old/new values are equal, don't update
         return;
+      }
+
+      if (schema) {
+        // If schema is provided, and newValue is invalid, don't update
+        const schemaParseResult = schema.safeParse(newValue);
+
+        if (!schemaParseResult.success) {
+          console.warn(
+            `Error setting localStorage key “${key}”:`,
+            schemaParseResult.error.flatten()
+          );
+          return;
+        }
       }
 
       // Save to local storage
