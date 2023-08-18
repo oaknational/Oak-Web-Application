@@ -459,6 +459,7 @@ const curriculumApi = {
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
+      yearTitle: "",
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
