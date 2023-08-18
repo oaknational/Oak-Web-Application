@@ -9,7 +9,6 @@ const unitListingQuery =
     const res = await sdk.unitListing(args);
 
     const [programme] = res.programme;
-
     if (!programme) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }

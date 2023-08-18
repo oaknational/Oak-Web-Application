@@ -95,6 +95,7 @@ const unitData = z.object({
   unitStudyOrder: z.number(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
+  yearTitle: z.string().nullable(),
   learningThemes: z.array(
     z.object({
       themeSlug: z.string().nullable(),
@@ -458,6 +459,7 @@ const curriculumApi = {
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
+      yearTitle: "",
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
