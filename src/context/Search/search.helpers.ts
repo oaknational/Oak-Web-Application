@@ -76,6 +76,10 @@ const getProgrammeSlug = (
   hit: LessonSearchHit | UnitSearchHit,
   allKeyStages: KeyStage[]
 ) => {
+  if (hit._source.programme_slug) {
+    return hit._source.programme_slug;
+  }
+
   return [
     hit._source.subject_slug,
     hit._source.phase,

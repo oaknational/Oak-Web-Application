@@ -4,6 +4,8 @@ const searchResultsSourceCommon = z.object({
   id: z.number().nullish(),
   slug: z.string(),
   title: z.string(),
+  // Shouldn't be nullish, but 2020 results are currently constructed on the client
+  programme_slug: z.string().nullish(),
   subject_title: z.string(),
   subject_slug: z.string(),
   key_stage_title: z.string(),
