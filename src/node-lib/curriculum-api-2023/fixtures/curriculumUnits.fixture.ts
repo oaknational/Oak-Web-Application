@@ -64,6 +64,7 @@ const curriculumUnitsTabFixture = (
         slug: "statistics",
       },
     ],
+    years: [6, 7, 8, 9, 10, 11],
   },
   ...partial,
 });

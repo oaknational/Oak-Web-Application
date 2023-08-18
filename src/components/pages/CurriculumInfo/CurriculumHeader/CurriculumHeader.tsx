@@ -92,7 +92,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: null,
               scroll: false,
               isCurrent: tab === "overview",
-              currentStyles: ["text-underline"],
+              currentStyles: ["underline"],
             },
             {
               href: `/beta/teachers/curriculum/${pageSlug}/units`,
@@ -100,7 +100,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: null,
               scroll: false,
               isCurrent: tab === "units",
-              currentStyles: ["text-underline"],
+              currentStyles: ["underline"],
             },
             {
               href: `/beta/teachers/curriculum/${pageSlug}/downloads`,
@@ -108,7 +108,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: null,
               scroll: false,
               isCurrent: tab === "downloads",
-              currentStyles: ["text-underline"],
+              currentStyles: ["underline"],
             },
           ]}
         />

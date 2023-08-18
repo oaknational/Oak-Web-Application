@@ -12,7 +12,7 @@ const render = renderWithProviders();
 describe("curriculum sequence page", () => {
   describe("components rendering on page", () => {
     it("renders the unit cards", () => {
-      const { queryByTestId } = render(
+      const { queryAllByTestId } = render(
         <CurriculumUnitsPage
           curriculumUnitsData={curriculumUnitsTabFixture()}
           curriculumHeaderData={curriculumHeaderFixture()}
@@ -21,7 +21,7 @@ describe("curriculum sequence page", () => {
         />
       );
 
-      expect(queryByTestId("unit-cards")).toBeInTheDocument();
+      expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
     });
   });
 

@@ -44,6 +44,7 @@ const threadSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
+
 const examboardSchema = z.object({
   title: z.string(),
   slug: z.string(),
@@ -81,6 +82,7 @@ const curriculumOverviewTabData = z.object({
 const curriculumUnitsTabData = z.object({
   units: z.array(unitSchema),
   threads: z.array(threadSchema),
+  years: z.array(z.number()),
 });
 
 const curriculumDownloadTabData = z.object({
