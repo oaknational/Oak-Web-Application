@@ -324,6 +324,7 @@ const curriculumApi = {
     };
 
     return subjectListingData.parse({
+      keyStages: res.mv_key_stages,
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
       subjects:
@@ -333,7 +334,6 @@ const curriculumApi = {
         addCurriculum2023Counts(
           programmesArray.parse(filteredUnavailableProgrammeDuplicate)
         ) || [],
-      keyStages: res.keyStageList,
     });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
