@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
 import ProgrammeList from "../ProgrammeList";
-import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import Grid, { GridArea, GridAreaProps } from "../Grid";
@@ -28,8 +27,7 @@ const ProgrammeListContainer: FC<LessonItemContainerProps> = (props) => {
 const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
   ...props
 }) => {
-  const { keyStageSlug, subjectSlug, keyStageTitle, subjectTitle, programmes } =
-    props;
+  const { programmes } = props;
 
   const examboards = Array.from(
     new Set(programmes.map((programme) => programme.examBoardTitle))
@@ -47,16 +45,6 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
 
   return (
     <>
-      <TitleCard
-        page={"subject"}
-        keyStage={keyStageTitle ?? ""}
-        keyStageSlug={keyStageSlug}
-        title={subjectTitle}
-        slug={subjectSlug}
-        $mt={48}
-        $mb={64}
-        $alignSelf={"flex-start"}
-      />
       <Grid $cg={16} $rg={16}>
         {examboards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 8, 6]}>
