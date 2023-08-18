@@ -8,6 +8,7 @@ import { Heading } from "../Typography";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
+import useIsCurrent from "../MenuLinks/useIsCurrent";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -20,11 +21,13 @@ const KeypadLink: FC<KeypadItem> = (props) => {
   const { shortCode, slug, title } = props;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const isCurrent = useIsCurrent({ keyStageSlug: slug });
+  const backgroundColour = isCurrent ? "black" : "white";
 
   return (
     <GridArea $colSpan={[3]}>
       <OakLink
-        $background={"white"}
+        $background={backgroundColour}
         $position={"relative"}
         $justifyContent={"center"}
         $alignItems={"center"}
@@ -42,10 +45,10 @@ const KeypadLink: FC<KeypadItem> = (props) => {
           });
         }}
       >
-        <BrushBorders color={"white"} />
         <Heading $font={"heading-7"} tag={"h4"}>
           {shortCode}
         </Heading>
+        <BrushBorders color={backgroundColour} />
       </OakLink>
     </GridArea>
   );
@@ -59,8 +62,8 @@ const KeypadLink: FC<KeypadItem> = (props) => {
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <Heading $color={"oakGrey5"} $mb={20} tag="h3" $font={"heading-light-7"}>
-        Key stage
+      <Heading $color={"black"} $mb={16} tag="h3" $font={"heading-7"}>
+        Select key stage
       </Heading>
       <Grid $mb={years ? 48 : 24} $cg={24} $ph={8}>
         {keyStages.map((keyStage) => (

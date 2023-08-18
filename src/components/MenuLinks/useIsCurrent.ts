@@ -24,7 +24,8 @@ const isSubPath = ({
 };
 
 type UseIsCurrentProps = {
-  href: string;
+  href?: string;
+  keyStageSlug?: string;
 };
 
 /**
@@ -32,19 +33,25 @@ type UseIsCurrentProps = {
  * i.e. if the link's href is a subpath of the current path.
  */
 const useIsCurrent = (props: UseIsCurrentProps) => {
-  const { href } = props;
+  const { href, keyStageSlug } = props;
   const { pathname: currentPath, asPath } = useRouter();
   const [isCurrent, setIsCurrent] = useState(false);
-
   // NB. We use useEffect here to avoid a server-side render error
   useEffect(() => {
-    const hash = asPath.split("#")[1];
-    const isCurrentPath = isSubPath({
-      currentPath,
-      href,
-    });
-    setIsCurrent(isCurrentPath || hash === href.substring(1));
-  }, [currentPath, href, asPath]);
+    if (href) {
+      const hash = asPath.split("#")[1];
+      const isCurrentPath = isSubPath({
+        currentPath,
+        href,
+      });
+      setIsCurrent(isCurrentPath || hash === href.substring(1));
+    }
+    if (keyStageSlug) {
+      const isKeyStageCurrent = asPath.includes(keyStageSlug);
+
+      setIsCurrent(isKeyStageCurrent);
+    }
+  }, [currentPath, href, asPath, keyStageSlug]);
 
   return isCurrent;
 };

@@ -12,7 +12,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
-import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 import { ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
@@ -21,6 +20,8 @@ import {
   SubjectListingPageData,
 } from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "../../../../../../node-lib/getPageProps";
+
+import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -37,6 +38,17 @@ export type SubjectListingPageProps = {
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle } = props;
+
+  /* 
+  ! DEVELOPMENT ONLY - CHANGE TO FETCH FROM API
+  **/
+  const keyStages = [
+    { slug: "ks1", title: "Key Stage 1", shortCode: "KS1" },
+    { slug: "ks2", title: "Key Stage 2", shortCode: "KS2" },
+    { slug: "ks3", title: "Key Stage 3", shortCode: "KS3" },
+    { slug: "ks4", title: "Key Stage 4", shortCode: "KS4" },
+  ];
+
   return (
     <AppLayout
       seoProps={{
@@ -48,28 +60,16 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
+      <Box $mb={40} $background={"lavender50"} $height={[120, 140]}>
+        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
+          <Box $width={[360, 400]} $pv={32}>
+            <KeyStageKeypad keyStages={keyStages} />
+          </Box>
+        </MaxWidth>
+      </Box>
       <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: { page: "home", viewType: "teachers" },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
-        <Heading tag={"h1"} $font={"heading-4"}>
-          {keyStageTitle}
+        <Heading tag={"h1"} $font={["heading-5", "heading-3"]}>
+          {`${keyStageTitle} subjects`}
         </Heading>
       </MaxWidth>
       <SubjectListingPage {...props} />
