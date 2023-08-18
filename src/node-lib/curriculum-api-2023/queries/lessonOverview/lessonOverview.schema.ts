@@ -1,52 +1,5 @@
 import { z } from "zod";
 
-// OLD SCHEMA
-export const lessonOverviewQuizData = z.array(
-  z.object({
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    unitSlug: z.string(),
-    unitTitle: z.string(),
-    order: z.number().nullable().optional(),
-    title: z.string().nullable().optional(),
-    points: z.number().nullable().optional(),
-    required: z.boolean().nullable(),
-    choices: z.array(
-      z.object({
-        choice: z.string(),
-        image: z.string().nullable(),
-      })
-    ),
-    active: z.boolean(),
-    answer: z.union([z.array(z.string()), z.string()]),
-    type: z.string(),
-    quizType: z.string(),
-    images: z
-      .array(
-        z.union([
-          z.object({
-            title: z.string().nullable(),
-            images: z.array(z.string()),
-          }),
-          z.string(),
-        ])
-      )
-      .nullable(),
-    feedbackCorrect: z.string().nullable(),
-    feedbackIncorrect: z.string().nullable(),
-    displayNumber: z.string().nullable(),
-  })
-);
-
-export const lessonQuizInfoData = z
-  .object({
-    title: z.string(),
-    questionCount: z.number(),
-  })
-  .nullable();
-
 // NEW SCHEMA
 
 const contentGuidanceSchema = z.object({
@@ -80,6 +33,79 @@ const keywordsSchema = z.object({
   keyword: z.string(),
   description: z.string(),
 });
+
+const stemTextObjectSchema = z.object({
+  text: z.string(),
+  type: z.enum(["text"]),
+});
+
+const stemImageObjectSchema = z.object({
+  image_object: z.object({
+    format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]),
+    secure_url: z.string().url(),
+    url: z.string(),
+    height: z.number(),
+    width: z.number(),
+    metadata: z.object({}),
+    public_id: z.string(),
+    version: z.number(),
+  }),
+  type: z.enum(["image"]),
+});
+
+const answersMultipleChoiceSchema = z.object({
+  "multiple-choice": z
+    .array(
+      z.object({
+        answer: z.array(z.union([stemTextObjectSchema, stemImageObjectSchema])),
+        answer_is_correct: z.boolean(),
+      })
+    )
+    .nullable()
+    .optional(),
+  match: z
+    .array(
+      z.object({
+        correct_choice: z.array(stemTextObjectSchema),
+        match_option: z.array(stemTextObjectSchema),
+      })
+    )
+    .nullable()
+    .optional(),
+  order: z
+    .array(
+      z.object({
+        answer: z.array(stemTextObjectSchema),
+        correct_order: z.number(),
+      })
+    )
+    .nullable()
+    .optional(),
+  "short-answer": z.array(
+    z.object({
+      answer: z.array(stemTextObjectSchema),
+      answer_is_default: z.boolean(),
+    })
+  ),
+});
+
+export const lessonOverviewQuizData = z
+  .array(
+    z.object({
+      questionId: z.number(),
+      questionUid: z.string(),
+      questionType: z.string(),
+      questionStem: z.array(
+        z.union([stemTextObjectSchema, stemImageObjectSchema])
+      ),
+      answers: z.object({}),
+      feedback: z.string(),
+      hint: z.string(),
+      active: z.boolean(),
+    })
+  )
+  .nullable()
+  .optional();
 
 export const baseLessonOverviewData = z.object({
   lessonSlug: z.string(),
@@ -120,8 +146,6 @@ export const baseLessonOverviewData = z.object({
 const lessonOverviewSchema = baseLessonOverviewData.extend({
   introQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
-  introQuizInfo: lessonQuizInfoData,
-  exitQuizInfo: lessonQuizInfoData,
   expired: z.boolean(),
   hasCopyrightMaterial: z.boolean(),
 });

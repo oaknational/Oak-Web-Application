@@ -20,7 +20,7 @@ import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
-import QuizContainer from "@/components/QuizContainer";
+import QuizContainerNew from "@/components/QuizContainerNew";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Box from "@/components/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -111,8 +111,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     hasCopyrightMaterial,
     introQuiz,
     exitQuiz,
-    introQuizInfo,
-    exitQuizInfo,
     unitTitle,
     unitSlug,
     expired,
@@ -158,11 +156,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     pageLinks.push({ label: "Worksheet", href: "#worksheet" });
   }
 
-  if (introQuiz.length > 0) {
+  if (introQuiz && introQuiz.length > 0) {
     pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
   }
 
-  if (exitQuiz.length > 0) {
+  if (exitQuiz && exitQuiz.length > 0) {
     pageLinks.push({ label: "Exit quiz", href: "#exitQuiz" });
   }
 
@@ -313,7 +311,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainer questions={introQuiz} info={introQuizInfo} />
+                    {/* <QuizContainer questions={introQuiz} info={introQuizInfo} /> */}
                   </LessonItemContainer>
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (
@@ -328,7 +326,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                    <QuizContainerNew questions={exitQuiz} />
                   </LessonItemContainer>
                 )}
               </Flex>

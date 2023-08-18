@@ -395,6 +395,8 @@ const curriculumApi = {
     const { lessons = [] } = transformMVCase(res);
     const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
 
+    // Transform quizzes here because the schema is not the same as the one returned by the API
+
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
     });
