@@ -242,7 +242,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadButton = screen.getByTestId("expand-button");
     await user.click(downloadButton);
     expect(screen.getByTestId("expanded-container")).toHaveStyle(
-      "max-height: 9600px"
+      "max-height: 600rem"
     );
   });
   it("has aria-expanded false when closed ", async () => {

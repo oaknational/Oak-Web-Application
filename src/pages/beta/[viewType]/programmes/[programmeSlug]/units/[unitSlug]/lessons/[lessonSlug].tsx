@@ -13,20 +13,15 @@ import {
 import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Typography, { Heading, Hr } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Grid, { GridArea } from "@/components/Grid";
 import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import LessonHelper from "@/components/LessonHelper";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
-import OverviewTranscript from "@/components/pages/TeachersLessonOverview/OverviewTranscript";
-import ExpandingContainer from "@/components/ExpandingContainer";
 import QuizContainer from "@/components/QuizContainer";
-import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
+import { Breadcrumb } from "@/components/Breadcrumbs";
 import Box from "@/components/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
@@ -38,6 +33,8 @@ import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
+import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
+import HeaderLesson from "@/components/HeaderLesson";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -112,7 +109,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
-    hasDownloadableResources,
     introQuiz,
     exitQuiz,
     introQuizInfo,
@@ -146,6 +142,30 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
 
+  const pageLinks = [];
+
+  if (presentationUrl && !hasCopyrightMaterial) {
+    pageLinks.push({ label: "Slide deck", href: "#slideDeck" });
+  }
+
+  pageLinks.push({ label: "Lesson details", href: "#lessonDetails" });
+
+  if (videoMuxPlaybackId) {
+    pageLinks.push({ label: "Video", href: "#video" });
+  }
+
+  if (worksheetUrl) {
+    pageLinks.push({ label: "Worksheet", href: "#worksheet" });
+  }
+
+  if (introQuiz.length > 0) {
+    pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
+  }
+
+  if (exitQuiz.length > 0) {
+    pageLinks.push({ label: "Exit quiz", href: "#exitQuiz" });
+  }
+
   return (
     <AppLayout
       seoProps={{
@@ -156,83 +176,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ...{ noFollow: true, noIndex: true },
       }}
     >
+      <HeaderLesson
+        // lessonDescription={lessonDescription} //  add to MV ticket LESQ-242
+        breadcrumbs={[
+          ...lessonBreadcrumbArray(
+            keyStageTitle,
+            keyStageSlug,
+            programmeSlug,
+            subjectTitle,
+            unitSlug,
+            unitTitle
+          ),
+          {
+            oakLinkProps: {
+              page: "lesson-overview",
+              viewType: "teachers",
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            },
+            label: lessonTitle,
+            disabled: true,
+          },
+        ]}
+        background={"pink30"}
+        subjectIconBackgroundColor={"pink"}
+        track={track}
+        analyticsUseCase={analyticsUseCase}
+        {...curriculumData}
+      />
       <MaxWidth $ph={16}>
-        <Flex $flexDirection={"column"} $alignItems={"start"}>
-          <Box $mv={[24, 48]}>
-            <Breadcrumbs
-              breadcrumbs={[
-                ...lessonBreadcrumbArray(
-                  keyStageTitle,
-                  keyStageSlug,
-                  programmeSlug,
-                  subjectTitle,
-                  unitSlug,
-                  unitTitle
-                ),
-                {
-                  oakLinkProps: {
-                    page: "lesson-overview",
-                    viewType: "teachers",
-                    programmeSlug,
-                    unitSlug,
-                    lessonSlug,
-                  },
-                  label: lessonTitle,
-                  disabled: true,
-                },
-              ]}
-            />
-          </Box>
-
-          <TitleCard
-            page={"lesson"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            subject={subjectTitle}
-            subjectSlug={subjectSlug}
-            title={lessonTitle}
-          />
-
-          {!expired && hasDownloadableResources && (
-            <ButtonAsLink
-              $mr={24}
-              icon="download"
-              iconBackground="teachersHighlight"
-              label="Download all resources"
-              page={"lesson-downloads"}
-              viewType="teachers"
-              size="small"
-              variant="minimal"
-              $iconPosition={"trailing"}
-              $mt={16}
-              data-testid={"download-all-button"}
-              query={{
-                preselected: "all",
-              }}
-              programmeSlug={programmeSlug}
-              lessonSlug={lessonSlug}
-              unitSlug={unitSlug}
-              onClick={() => {
-                trackDownloadResourceButtonClicked({
-                  downloadResourceButtonName: "all",
-                });
-              }}
-            />
-          )}
-          {/*
-          TODO: Uncomment when we have a way to send to pupil
-           <Button
-            $mr={24}
-            icon="send"
-            iconBackground="teachersHighlight"
-            label="Send to pupil"
-            onClick={() => null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-            $mt={16}
-          /> */}
-        </Flex>
         {expired ? (
           <Box $pa={16} $mb={64}>
             <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
@@ -243,143 +216,128 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             </Typography>
           </Box>
         ) : (
-          <>
-            <Grid $pt={[48]}>
-              <GridArea $colSpan={[12, 3]} />
-              <GridArea $colSpan={[12, 9]}>
-                <Flex $flexDirection={"column"}>
-                  {presentationUrl && !hasCopyrightMaterial && (
-                    <LessonItemContainer
-                      title={"Slide deck"}
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "slide deck",
-                        });
-                      }}
-                      slugs={slugs}
-                    >
-                      <OverviewPresentation
-                        asset={presentationUrl}
-                        title={lessonTitle}
-                        isWorksheet={false}
-                      />
-                    </LessonItemContainer>
-                  )}
-
-                  <LessonItemContainer title={"Lesson details"}>
-                    <LessonDetails
-                      keyLearningPoints={keyLearningPoints}
-                      commonMisconceptions={misconceptionsAndCommonMistakes}
-                      keyWords={lessonKeywords}
-                      teacherTips={teacherTips}
+          <Grid $mt={[48]}>
+            <GridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={"sticky"}
+              $display={["none", "block"]}
+              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+            >
+              <ButtonLinkNav
+                ariaLabel="page navigation"
+                buttons={pageLinks}
+                $flexDirection={"column"}
+                $alignItems={"flex-start"}
+                $gap={[8]}
+                arrowSuffix
+                shallow
+              />
+            </GridArea>
+            <GridArea $colSpan={[12, 9]}>
+              <Flex $flexDirection={"column"} $position={"relative"}>
+                {pageLinks.find((p) => p.label === "Slide deck") && (
+                  <LessonItemContainer
+                    title={"Slide deck"}
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "slide deck",
+                      });
+                    }}
+                    slugs={slugs}
+                    anchorId="slideDeck"
+                  >
+                    <OverviewPresentation
+                      asset={presentationUrl}
+                      title={lessonTitle}
+                      isWorksheet={false}
                     />
                   </LessonItemContainer>
+                )}
 
-                  {videoMuxPlaybackId && (
-                    <ExpandingContainer {...curriculumData} title={"Video"}>
-                      <OverviewVideo
-                        video={videoMuxPlaybackId}
-                        signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                        title={lessonTitle}
-                        hasCaptions={Boolean(transcriptSentences)}
-                      />
-                    </ExpandingContainer>
-                  )}
-                  {worksheetUrl && (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Worksheet"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "worksheet",
-                        });
-                      }}
-                    >
-                      <OverviewPresentation
-                        asset={worksheetUrl}
-                        title={lessonTitle}
-                        isWorksheetLandscape={isWorksheetLandscape}
-                        isWorksheet={true}
-                      />
-                    </ExpandingContainer>
-                  )}
-                  {introQuiz.length > 0 ? (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Starter quiz"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "starter quiz",
-                        });
-                      }}
-                    >
-                      <QuizContainer
-                        questions={introQuiz}
-                        info={introQuizInfo}
-                      />
-                    </ExpandingContainer>
-                  ) : (
-                    ""
-                  )}
-                  {exitQuiz.length > 0 && (
-                    <ExpandingContainer
-                      downloadable={true}
-                      {...curriculumData}
-                      title={"Exit quiz"}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "exit quiz",
-                        });
-                      }}
-                    >
-                      <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
-                    </ExpandingContainer>
-                  )}
+                <LessonItemContainer
+                  title={"Lesson details"}
+                  anchorId="lessonDetails"
+                >
+                  <LessonDetails
+                    keyLearningPoints={keyLearningPoints}
+                    commonMisconceptions={misconceptionsAndCommonMistakes}
+                    keyWords={lessonKeywords}
+                    teacherTips={teacherTips}
+                    equipmentAndResources={lessonEquipmentAndResources}
+                    contentGuidance={contentGuidance}
+                    supervisionLevel={supervisionLevel}
+                  />
+                </LessonItemContainer>
 
-                  {transcriptSentences && (
-                    <ExpandingContainer
-                      {...curriculumData}
-                      title={"Transcript"}
-                    >
-                      <OverviewTranscript
-                        transcriptSentences={transcriptSentences}
-                      />
-                    </ExpandingContainer>
-                  )}
-                </Flex>
-              </GridArea>
-              <GridArea $colSpan={[1]} />
-            </Grid>
-          </>
+                {pageLinks.find((p) => p.label === "Video") && (
+                  <LessonItemContainer title={"Video"} anchorId="video">
+                    <OverviewVideo
+                      video={videoMuxPlaybackId}
+                      signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+                      title={lessonTitle}
+                      transcriptSentences={transcriptSentences}
+                    />
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Worksheet") && (
+                  <LessonItemContainer
+                    title={"Worksheet"}
+                    anchorId="worksheet"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "worksheet",
+                      });
+                    }}
+                    slugs={slugs}
+                  >
+                    <OverviewPresentation
+                      asset={worksheetUrl}
+                      title={lessonTitle}
+                      isWorksheetLandscape={isWorksheetLandscape}
+                      isWorksheet={true}
+                    />
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Starter quiz") && (
+                  <LessonItemContainer
+                    title={"Starter quiz"}
+                    anchorId="starterQuiz"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "starter quiz",
+                      });
+                    }}
+                    slugs={slugs}
+                  >
+                    <QuizContainer questions={introQuiz} info={introQuizInfo} />
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Exit quiz") && (
+                  <LessonItemContainer
+                    title={"Exit quiz"}
+                    anchorId="exitQuiz"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "exit quiz",
+                      });
+                    }}
+                    slugs={slugs}
+                  >
+                    <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                  </LessonItemContainer>
+                )}
+              </Flex>
+            </GridArea>
+          </Grid>
         )}
       </MaxWidth>
       {!expired && (
         <>
-          <MaxWidth $ph={[0, 16, 16]}>
-            {(lessonEquipmentAndResources ||
-              supervisionLevel ||
-              contentGuidance) && <Hr $color={"oakGrey3"} />}
-            <Grid $rg={32} $cg={32} $mv={16}>
-              <LessonHelper
-                helperTitle={"Equipment required"}
-                helperIcon={"equipment-required"}
-                equipment={lessonEquipmentAndResources}
-              />
-              <LessonHelper
-                helperTitle={"Supervision level"}
-                helperIcon={"supervision-level"}
-                supervisionLevel={supervisionLevel}
-              />
-              <LessonHelper
-                helperTitle={"Content guidance"}
-                helperIcon={"content-guidance"}
-                contentGuidance={contentGuidance}
-              />
-            </Grid>
-          </MaxWidth>
           <MaxWidth $ph={16}>
             <Hr $color={"oakGrey3"} />
           </MaxWidth>
@@ -424,7 +382,9 @@ export const getStaticProps: GetStaticProps<
       const curriculumData =
         context?.params.viewType === "teachers-2023"
           ? await curriculumApi2023.lessonOverview({
+              programmeSlug,
               lessonSlug,
+              unitSlug,
             })
           : await curriculumApi.lessonOverview({
               programmeSlug,

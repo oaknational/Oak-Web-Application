@@ -33,15 +33,13 @@ describe("pages/beta/teachers/lessons", () => {
   it("renders sign language button if there is a sign language video", async () => {
     render(<LessonOverviewPage {...props} />);
 
-    expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
-      "Signed video"
-    );
+    expect(screen.getByText("Show sign language")).toBeInTheDocument();
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
     render(<LessonOverviewPage {...props} />);
 
-    expect(screen.getByTestId("download-all-button")).toHaveTextContent(
+    expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
       "Download all resources"
     );
   });
@@ -49,13 +47,11 @@ describe("pages/beta/teachers/lessons", () => {
   it("sign language button toggles on click", async () => {
     render(<LessonOverviewPage {...props} />);
 
-    const signLanguageButton = screen.getByTestId("sign-language-button");
+    const signLanguageButton = screen.getByText("Show sign language");
     act(() => {
       signLanguageButton.click();
     });
-    expect(screen.getByTestId("sign-language-button")).toHaveTextContent(
-      "Unsigned"
-    );
+    expect(screen.getByText("Hide sign language")).toBeInTheDocument();
   });
 
   it("renders an iframe for a presentation and worksheet", async () => {

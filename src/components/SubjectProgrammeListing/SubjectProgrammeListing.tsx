@@ -1,15 +1,13 @@
 import React, { FC } from "react";
 
 import ProgrammeList from "../ProgrammeList";
-import TitleCard from "../Card/SubjectUnitLessonTitleCard";
 import { Heading } from "../Typography";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
   ...props
 }) => {
-  const { keyStageSlug, subjectSlug, keyStageTitle, subjectTitle, programmes } =
-    props;
+  const { programmes } = props;
 
   const tierProgrammes = programmes.filter(
     (programme) => programme.tierSlug !== null
@@ -23,16 +21,6 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
 
   return (
     <>
-      <TitleCard
-        page={"subject"}
-        keyStage={keyStageTitle ?? ""}
-        keyStageSlug={keyStageSlug}
-        title={subjectTitle}
-        slug={subjectSlug}
-        $mt={48}
-        $mb={64}
-        $alignSelf={"flex-start"}
-      />
       {tierProgrammes.length > 0 && (
         <>
           <Heading tag="h2" $font="heading-5" $mb={30}>

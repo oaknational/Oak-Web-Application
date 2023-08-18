@@ -58,7 +58,10 @@ export type TrackEventName = Extract<
   | "aboutSelected"
 >;
 
-type TrackFns = Omit<typeof Avo, "initAvo" | "AvoEnv" | "avoInspectorApiKey">;
+export type TrackFns = Omit<
+  typeof Avo,
+  "initAvo" | "AvoEnv" | "avoInspectorApiKey"
+>;
 type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;

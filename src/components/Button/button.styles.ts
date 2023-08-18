@@ -41,6 +41,7 @@ export type ButtonStylesProps = OpacityProps &
     $fullWidth?: boolean;
     disabled?: boolean;
     $focusStyles?: [];
+    $hoverStyles?: string[];
     "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (
@@ -61,7 +62,7 @@ export const getButtonStylesProps = (
     $iconPosition,
     variant,
     $fullWidth,
-    background: disabled ? "grey6" : background,
+    background: disabled && variant !== "brushNav" ? "grey6" : background, // we don't discolor brushNav buttons when disabled
     $focusStyles,
     disabled,
   };
@@ -122,7 +123,7 @@ const buttonStyles = css<ButtonStylesProps>`
   }
 
   ${(props) =>
-    props.variant === "brush" &&
+    (props.variant === "brush" || props.variant == "brushNav") &&
     css`
       :hover {
         box-shadow: ${props["aria-disabled"]
@@ -152,7 +153,7 @@ const buttonStyles = css<ButtonStylesProps>`
     `}
 
   ${(props) =>
-    props.variant === "minimal" &&
+    (props.variant === "minimal" || props.variant === "minimalNav") &&
     css`
       & ${BackgroundIcon} {
         transition: filter 0.3s ease-in-out;
@@ -172,7 +173,18 @@ const buttonStyles = css<ButtonStylesProps>`
       ${ButtonMinimalFocusUnderline} {
         filter: drop-shadow(1px 4px 0px rgb(0 0 0));
       }
+
       ${iconFocusUnderline}
+    `}
+
+  ${(props) =>
+    props.$hoverStyles &&
+    props.$hoverStyles.includes("underline-link-text") &&
+    !props.disabled &&
+    css`
+      :hover:not(:focus) ${ButtonLabel} {
+        text-decoration: underline;
+      }
     `}
 
   ${(props) =>

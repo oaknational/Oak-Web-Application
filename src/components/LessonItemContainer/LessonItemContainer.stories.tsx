@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import lessonOverviewFixture from "../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 import { P } from "../Typography";
 import Flex from "../Flex";
 
@@ -9,12 +8,15 @@ import {
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
+import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+
 const { lessonSlug, unitSlug, programmeSlug } = lessonOverviewFixture();
 
 const props: LessonItemContainerProps = {
   title: "Slide deck",
   downloadable: true,
   slugs: { lessonSlug, unitSlug, programmeSlug },
+  anchorId: "slideDeck",
 };
 
 const meta: Meta<typeof LessonItemContainer> = {

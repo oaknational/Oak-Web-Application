@@ -15,6 +15,7 @@ export type FlexCssProps = {
   $alignSelf?: ResponsiveValues<CSSProperties["alignSelf"]>;
   $flexShrink?: ResponsiveValues<CSSProperties["flexShrink"]>;
   $gap?: ResponsiveValues<NullablePixelSpacing>;
+  $cg?: ResponsiveValues<NullablePixelSpacing>;
 };
 
 const parse = (value?: unknown) => {
@@ -36,6 +37,7 @@ const flex = css<FlexCssProps>`
   ${responsive("align-self", (props) => props.$alignSelf)}
   ${responsive("flex-shrink", (props) => props.$flexShrink)}
   ${responsive("gap", (props) => props.$gap, parse)}
+  ${responsive("column-gap", (props) => props.$cg, parse)}
 `;
 
 export default flex;

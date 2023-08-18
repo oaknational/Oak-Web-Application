@@ -22,7 +22,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { VIEW_TYPES, ViewType } from "@/common-lib/urls";
+import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type CurriculumHomePageProps = {
@@ -166,13 +166,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const paths = VIEW_TYPES.map((viewType) => ({
-    params: { viewType },
-  }));
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };

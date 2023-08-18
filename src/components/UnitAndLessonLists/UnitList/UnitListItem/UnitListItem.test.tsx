@@ -6,6 +6,7 @@ import UnitListItem from "./UnitListItem";
 
 const props = {
   title: "Numbers and numerals",
+  nullTitle: "Numbers and numerals",
   slug: "numbers-and-numerals",
   themeTitle: "Circles",
   themeSlug: "circles",
@@ -22,6 +23,7 @@ const props = {
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
+  yearTitle: "Year 1",
   learningThemes: [
     {
       themeTitle: "Circles",

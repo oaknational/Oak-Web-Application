@@ -1,24 +1,21 @@
 import React from "react";
 
+import SpeechBubble from "../SpeechBubble/SpeechBubble";
 import Flex from "../Flex";
-import { Heading, P } from "../Typography";
 
 export type TeacherTip = {
   teacherTip: string | null;
 };
 
-type LessonTeacherTips = { teacherTips: TeacherTip[] };
+type LessonTeacherTips = {
+  teacherTips: TeacherTip[];
+};
 
 const TeacherTips = ({ teacherTips }: LessonTeacherTips) => {
   const [teacherTip] = teacherTips;
   return (
     <Flex>
-      <Flex $flexDirection={"column"}>
-        <P>{teacherTip?.teacherTip}</P>
-        <Heading tag="h3" data-testid={"heading"}>
-          Teacher tip
-        </Heading>
-      </Flex>
+      <SpeechBubble text={teacherTip?.teacherTip} label={"Teacher tip"} />
     </Flex>
   );
 };
