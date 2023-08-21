@@ -50,6 +50,7 @@ describe("lessonOverview()", () => {
               keyStageSlug: "key-stage-slug",
               keyStageTitle: "key-stage-title",
               lessonSlug: "lesson-slug",
+              yearTitle: "year-title",
               lessonTitle: "lesson-title",
               supervisionLevel: "supervision-level",
               presentationUrl: "presentation-url",

@@ -13,17 +13,15 @@ import {
 import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Typography, { Heading, Hr } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Grid, { GridArea } from "@/components/Grid";
 import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
 import QuizContainer from "@/components/QuizContainer";
-import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
+import { Breadcrumb } from "@/components/Breadcrumbs";
 import Box from "@/components/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
@@ -36,6 +34,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
+import HeaderLesson from "@/components/HeaderLesson";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -110,7 +109,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
-    hasDownloadableResources,
     introQuiz,
     exitQuiz,
     introQuizInfo,
@@ -178,86 +176,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ...{ noFollow: true, noIndex: true },
       }}
     >
+      <HeaderLesson
+        // lessonDescription={lessonDescription} //  add to MV ticket LESQ-242
+        breadcrumbs={[
+          ...lessonBreadcrumbArray(
+            keyStageTitle,
+            keyStageSlug,
+            programmeSlug,
+            subjectTitle,
+            unitSlug,
+            unitTitle
+          ),
+          {
+            oakLinkProps: {
+              page: "lesson-overview",
+              viewType: "teachers",
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            },
+            label: lessonTitle,
+            disabled: true,
+          },
+        ]}
+        background={"pink30"}
+        subjectIconBackgroundColor={"pink"}
+        track={track}
+        analyticsUseCase={analyticsUseCase}
+        {...curriculumData}
+      />
       <MaxWidth $ph={16}>
-        <>
-          <Box $mv={[24, 48]}>
-            {/* NB. BreadcrumbsConstrainer doesn't play nicely when nested inside a flex box */}
-            <Breadcrumbs
-              breadcrumbs={[
-                ...lessonBreadcrumbArray(
-                  keyStageTitle,
-                  keyStageSlug,
-                  programmeSlug,
-                  subjectTitle,
-                  unitSlug,
-                  unitTitle
-                ),
-                {
-                  oakLinkProps: {
-                    page: "lesson-overview",
-                    viewType: "teachers",
-                    programmeSlug,
-                    unitSlug,
-                    lessonSlug,
-                  },
-                  label: lessonTitle,
-                  disabled: true,
-                },
-              ]}
-            />
-          </Box>
-
-          <Flex $alignItems={"start"} $flexDirection={"column"}>
-            <TitleCard
-              page={"lesson"}
-              keyStage={keyStageTitle}
-              keyStageSlug={keyStageSlug}
-              subject={subjectTitle}
-              subjectSlug={subjectSlug}
-              title={lessonTitle}
-            />
-
-            {!expired && hasDownloadableResources && (
-              <ButtonAsLink
-                $mr={24}
-                icon="download"
-                iconBackground="teachersHighlight"
-                label="Download all resources"
-                page={"lesson-downloads"}
-                viewType="teachers"
-                size="small"
-                variant="minimal"
-                $iconPosition={"trailing"}
-                $mt={16}
-                data-testid={"download-all-button"}
-                query={{
-                  preselected: "all",
-                }}
-                programmeSlug={programmeSlug}
-                lessonSlug={lessonSlug}
-                unitSlug={unitSlug}
-                onClick={() => {
-                  trackDownloadResourceButtonClicked({
-                    downloadResourceButtonName: "all",
-                  });
-                }}
-              />
-            )}
-            {/*
-          TODO: Uncomment when we have a way to send to pupil
-           <Button
-            $mr={24}
-            icon="send"
-            iconBackground="teachersHighlight"
-            label="Send to pupil"
-            onClick={() => null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-            $mt={16}
-          /> */}
-          </Flex>
-        </>
         {expired ? (
           <Box $pa={16} $mb={64}>
             <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
