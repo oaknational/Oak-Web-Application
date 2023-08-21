@@ -1,7 +1,7 @@
 import { TierListingData } from "..";
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-export const tieredProgrammeListingFixture = (
+export const examboardProgrammeListingFixture = (
   partial?: Partial<ProgrammeListingPageData>
 ): ProgrammeListingPageData => {
   return {
@@ -11,28 +11,28 @@ export const tieredProgrammeListingFixture = (
     subjectTitle: "Maths",
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks4-foundation",
-        subjectTitle: "Maths",
-        unitCount: 30,
-        lessonCount: 247,
-        tierSlug: "foundation",
-        tierTitle: "Foundation",
-        tierDisplayOrder: "1",
-        examBoardSlug: null,
-        examBoardTitle: null,
-        examBoardDisplayOrder: null,
+        programmeSlug: "history-secondary-ks4-aqa",
+        subjectTitle: "History",
+        unitCount: 21,
+        lessonCount: 180,
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardSlug: "aqa",
+        examBoardTitle: "AQA",
+        examBoardDisplayOrder: "1",
       },
       {
-        programmeSlug: "maths-secondary-ks4-higher",
-        subjectTitle: "Maths",
-        unitCount: 36,
-        lessonCount: 413,
-        tierSlug: "higher",
-        tierTitle: "Higher",
-        tierDisplayOrder: "3",
-        examBoardSlug: null,
-        examBoardTitle: null,
-        examBoardDisplayOrder: null,
+        programmeSlug: "history-secondary-ks4-edexcel",
+        subjectTitle: "History",
+        unitCount: 19,
+        lessonCount: 120,
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: null,
+        examBoardSlug: "edexcel",
+        examBoardTitle: "Edexcel",
+        examBoardDisplayOrder: "2",
       },
     ],
 
