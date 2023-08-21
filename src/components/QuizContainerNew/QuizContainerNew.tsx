@@ -2,16 +2,16 @@ import { FC } from "react";
 
 import QuestionsListNew from "./QuestionsListNew";
 
-import { LessonOverviewData } from "@/node-lib/curriculum-api";
+import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import Flex from "@/components/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type QuizProps = {
-  questions: LessonOverviewData["exitQuiz"];
+  questions: NonNullable<LessonOverviewQuizData>;
 };
 
 const QuizContainerNew: FC<QuizProps> = (props) => {
-  return (
+  return props.questions && props.questions.length > 0 ? (
     <Flex
       $flexDirection={"column"}
       $justifyContent={"center"}
@@ -21,7 +21,7 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
       <QuestionsListNew {...props} />
       <BoxBorders gapPosition="rightTop" />
     </Flex>
-  );
+  ) : null;
 };
 
 export default QuizContainerNew;

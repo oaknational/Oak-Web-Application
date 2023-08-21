@@ -1,9 +1,9 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import lessonOverviewFixture from "../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
-
 import { CorrectAnswer } from "./QuestionListItem";
 
 import QuestionListItem, { QuestionListItemProps } from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 
 const testProps = lessonOverviewFixture().introQuiz[0] as QuestionListItemProps;
 

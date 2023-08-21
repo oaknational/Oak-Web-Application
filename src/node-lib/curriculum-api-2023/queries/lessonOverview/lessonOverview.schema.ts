@@ -39,6 +39,8 @@ const stemTextObjectSchema = z.object({
   type: z.enum(["text"]),
 });
 
+export type StemTextObject = z.infer<typeof stemImageObjectSchema>;
+
 const stemImageObjectSchema = z.object({
   image_object: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]),
@@ -53,16 +55,17 @@ const stemImageObjectSchema = z.object({
   type: z.enum(["image"]),
 });
 
-const answersMultipleChoiceSchema = z.object({
-  "multiple-choice": z
-    .array(
-      z.object({
-        answer: z.array(z.union([stemTextObjectSchema, stemImageObjectSchema])),
-        answer_is_correct: z.boolean(),
-      })
-    )
-    .nullable()
-    .optional(),
+export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
+
+const mcAnswer = z.object({
+  answer: z.array(z.union([stemTextObjectSchema, stemImageObjectSchema])),
+  answer_is_correct: z.boolean(),
+});
+
+export type MCAnswer = z.infer<typeof mcAnswer>;
+
+const answersSchema = z.object({
+  "multiple-choice": z.array(mcAnswer).nullable().optional(),
   match: z
     .array(
       z.object({
@@ -81,12 +84,15 @@ const answersMultipleChoiceSchema = z.object({
     )
     .nullable()
     .optional(),
-  "short-answer": z.array(
-    z.object({
-      answer: z.array(stemTextObjectSchema),
-      answer_is_default: z.boolean(),
-    })
-  ),
+  "short-answer": z
+    .array(
+      z.object({
+        answer: z.array(stemTextObjectSchema),
+        answer_is_default: z.boolean(),
+      })
+    )
+    .nullable()
+    .optional(),
 });
 
 export const lessonOverviewQuizData = z
@@ -98,7 +104,7 @@ export const lessonOverviewQuizData = z
       questionStem: z.array(
         z.union([stemTextObjectSchema, stemImageObjectSchema])
       ),
-      answers: z.object({}),
+      answers: answersSchema,
       feedback: z.string(),
       hint: z.string(),
       active: z.boolean(),
@@ -107,7 +113,9 @@ export const lessonOverviewQuizData = z
   .nullable()
   .optional();
 
-export const baseLessonOverviewData = z.object({
+export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
+
+export const lessonOverviewSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   programmeSlug: z.string(),
@@ -137,19 +145,17 @@ export const baseLessonOverviewData = z.object({
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.array(z.string()).nullable(),
-  isWorksheetLandscape: z.boolean(),
-  hasDownloadableResources: z.boolean().nullable(),
-  hasCopyrightMaterial: z.boolean(),
+  isWorksheetLandscape: z.boolean().optional().nullable(),
+  hasDownloadableResources: z.boolean().optional().nullable(),
+  hasCopyrightMaterial: z.boolean().optional().nullable(),
   yearTitle: z.string().nullable().optional(),
-});
-
-const lessonOverviewSchema = baseLessonOverviewData.extend({
-  introQuiz: lessonOverviewQuizData,
+  starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
-  expired: z.boolean(),
-  hasCopyrightMaterial: z.boolean(),
+  expired: z.boolean().optional().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 
 export default lessonOverviewSchema;
+
+export const baseLessonOverviewData = lessonOverviewSchema;
