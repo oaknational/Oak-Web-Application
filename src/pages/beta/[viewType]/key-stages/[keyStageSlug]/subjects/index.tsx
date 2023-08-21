@@ -52,7 +52,12 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box $mb={40} $background={"lavender50"} $height={[120, 140]}>
+      <Box
+        $mb={40}
+        $background={"lavender50"}
+        $height={[120, 140]}
+        $minWidth={"min-content"}
+      >
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
           <Box $width={[360, 400]} $pv={32}>
             <KeyStageKeypad keyStages={keyStages} />
