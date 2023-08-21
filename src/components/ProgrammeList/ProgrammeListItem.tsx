@@ -66,7 +66,15 @@ const ProgrammeListItem: FC<
               });
           }}
         >
-          <Heading $mt={8} $mb={2} $font={"heading-7"} tag="h3" ariaLabel={`${tierTitle ? tierTitle : ""} ${examBoardTitle? examBoardTitle : ""}`}>
+          <Heading
+            $mt={8}
+            $mb={2}
+            $font={"heading-7"}
+            tag="h3"
+            ariaLabel={`${tierTitle ? tierTitle : ""} ${
+              examBoardTitle ? examBoardTitle : ""
+            }`}
+          >
             {tierTitle ?? examBoardTitle}
           </Heading>
         </OakLink>
