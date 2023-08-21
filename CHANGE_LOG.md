@@ -1,3 +1,11 @@
+## [1.222.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.222.0...v1.222.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **local storage hook:** zod schema? parse before updating ([1719f60](https://github.com/oaknational/Oak-Web-Application/commit/1719f6013348e1279bb483428ee68e0e70224ee6))
+* **localstorage:** compare binary expression ([5753b87](https://github.com/oaknational/Oak-Web-Application/commit/5753b87f07101d519cd50db54d45ea679422c28a))
+
 # [1.222.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.221.0...v1.222.0) (2023-08-18)
 
 
