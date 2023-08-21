@@ -13,7 +13,8 @@ type SizeValue =
   | "none"
   | NullablePixelSpacing
   | "max-content"
-  | CalcValues;
+  | CalcValues
+  | "min-content";
 
 export type SizeValues = ResponsiveValues<SizeValue>;
 

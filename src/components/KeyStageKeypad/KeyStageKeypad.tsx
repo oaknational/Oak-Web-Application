@@ -1,10 +1,9 @@
 import { FC } from "react";
 
 import { TeachersHomePageData } from "../../node-lib/curriculum-api";
-import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import { Heading } from "../Typography";
+import { Heading, UL, LI, P } from "../Typography";
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
@@ -25,33 +24,29 @@ const KeypadLink: FC<KeypadItem> = (props) => {
   const backgroundColour = isCurrent ? "black" : "white";
 
   return (
-    <GridArea $colSpan={[3]}>
-      <OakLink
-        $background={backgroundColour}
-        $position={"relative"}
-        $justifyContent={"center"}
-        $alignItems={"center"}
-        $height={28}
-        $display={"flex"}
-        keyStageSlug={slug}
-        page={"subject-index"}
-        viewType="teachers"
-        $isSelected={isCurrent}
-        onClick={() => {
-          track.keyStageSelected({
-            keyStageTitle: title as KeyStageTitleValueType,
-            keyStageSlug: slug,
-            navigatedFrom: "card",
-            analyticsUseCase,
-          });
-        }}
-      >
-        <Heading $font={"heading-7"} tag={"h4"}>
-          {shortCode}
-        </Heading>
-        <BrushBorders color={backgroundColour} />
-      </OakLink>
-    </GridArea>
+    <OakLink
+      $background={backgroundColour}
+      $position={"relative"}
+      $justifyContent={"center"}
+      $alignItems={"center"}
+      $height={28}
+      $display={"flex"}
+      keyStageSlug={slug}
+      page={"subject-index"}
+      viewType="teachers"
+      $isSelected={isCurrent}
+      onClick={() => {
+        track.keyStageSelected({
+          keyStageTitle: title as KeyStageTitleValueType,
+          keyStageSlug: slug,
+          navigatedFrom: "card",
+          analyticsUseCase,
+        });
+      }}
+    >
+      <P $font={"heading-7"}>{shortCode}</P>
+      <BrushBorders color={backgroundColour} />
+    </OakLink>
   );
 };
 
@@ -63,14 +58,17 @@ const KeypadLink: FC<KeypadItem> = (props) => {
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
   return (
     <nav aria-label="key stages and year groups">
-      <Heading $color={"black"} $mb={16} tag="h3" $font={"heading-7"}>
+      <P $color={"black"} $mb={16} $font={"heading-7"}>
         Select key stage
-      </Heading>
-      <Grid $mb={years ? 48 : 24} $cg={24} $ph={8}>
+      </P>
+      <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8}>
         {keyStages.map((keyStage) => (
-          <KeypadLink key={`key-stage:${keyStage.title}`} {...keyStage} />
+          <LI $width={"100%"} key={`key-stage:${keyStage.title}`} $mr={24}>
+            <KeypadLink {...keyStage} />
+          </LI>
         ))}
-      </Grid>
+      </UL>
+
       {years && (
         <>
           <Heading
@@ -81,11 +79,13 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
           >
             Year
           </Heading>
-          <Grid $rg={24} $mb={24} $cg={24} $ph={8}>
+          <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8}>
             {years.map((years) => (
-              <KeypadLink key={`year:${years.title}`} {...years} />
+              <LI $width={"100%"} key={`year:${years.title}`} $mr={24}>
+                <KeypadLink key={`year:${years.title}`} {...years} />
+              </LI>
             ))}
-          </Grid>
+          </UL>
         </>
       )}
     </nav>

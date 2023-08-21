@@ -44,7 +44,7 @@ const $hoverStyles = css`
   text-decoration: underline;
 `;
 
-const $selectedStyle = css`
+export const $selectedStyle = css`
   transition-duration: 0s;
   transition-delay: 0s;
 `;
