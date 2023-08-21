@@ -10,7 +10,7 @@ import { decorateWithIsr } from "./isr";
 initialiseBugsnag(null);
 
 /**
- * This fucntion is intended to wrap NextJS page functions (e.g. getStaticProps,
+ * This function is intended to wrap NextJS page functions (e.g. getStaticProps,
  * getServerSideProps, etc.).It takes an async getProps() function as an argument
  * and it catches any errors thrown during the execution of the getProps(), and
  * reports them to our error reporting service. It then rethrows the error so

@@ -35,5 +35,6 @@ query lessonOverview(
     transcriptSentences
     starterQuiz
     exitQuiz
+    yearTitle
   }
 }

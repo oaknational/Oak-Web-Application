@@ -9,10 +9,6 @@ import {
 import AppLayout from "../../../../../../../components/AppLayout";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import Box from "../../../../../../../components/Box";
-import Breadcrumbs from "../../../../../../../components/Breadcrumbs";
-import TitleCard from "../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import CurriculumDownloadButton from "../../../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonList from "../../../../../../../components/UnitAndLessonLists/LessonList";
 import usePagination from "../../../../../../../components/Pagination/usePagination";
 import Grid, { GridArea } from "../../../../../../../components/Grid";
@@ -26,6 +22,8 @@ import { ViewType } from "../../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "../../../../../../../node-lib/getPageProps";
+
+import HeaderListing from "@/components/HeaderListing";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -55,7 +53,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     keyStageTitle,
     keyStageSlug,
     unitTitle,
-    subjectSlug,
     subjectTitle,
     programmeSlug,
   } = curriculumData;
@@ -81,69 +78,51 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       }}
       $background="white"
     >
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: {
+              page: "home",
+              viewType: "teachers",
+            },
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
+              viewType: "teachers",
+              keyStageSlug,
+            },
+            label: keyStageTitle,
+          },
+          {
+            oakLinkProps: {
+              page: "unit-index",
+              viewType: "teachers",
+              programmeSlug,
+            },
+            label: subjectTitle,
+          },
+
+          {
+            oakLinkProps: {
+              page: "lesson-index",
+              viewType: "teachers",
+              unitSlug,
+              programmeSlug: programmeSlug,
+            },
+
+            label: unitTitle,
+            disabled: true,
+          },
+        ]}
+        background={"pink30"}
+        subjectIconBackgroundColor={"pink"}
+        title={unitTitle}
+        programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
+        {...curriculumData}
+      />
       <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: {
-                  page: "home",
-                  viewType: "teachers",
-                },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "unit-index",
-                  viewType: "teachers",
-                  programmeSlug,
-                },
-                label: subjectTitle,
-              },
-
-              {
-                oakLinkProps: {
-                  page: "lesson-index",
-                  viewType: "teachers",
-                  unitSlug,
-                  programmeSlug: programmeSlug,
-                },
-
-                label: unitTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
-
-        <TitleCard
-          page={"lessons"}
-          keyStage={keyStageTitle}
-          keyStageSlug={keyStageSlug}
-          subjectSlug={subjectSlug}
-          subject={subjectTitle}
-          title={unitTitle}
-          $mt={0}
-          $mb={24}
-          $alignSelf={"flex-start"}
-        />
-
-        <CurriculumDownloadButton
-          keyStageSlug={keyStageSlug}
-          keyStageTitle={keyStageTitle}
-          subjectSlug={subjectSlug}
-          subjectTitle={subjectTitle}
-          lessonPage={true}
-        />
-
         <Grid>
           <GridArea $colSpan={[12, 9]} $mt={[16, 56]}>
             <LessonList
