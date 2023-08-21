@@ -24,9 +24,16 @@ module.exports = {
     [
       "@semantic-release/git",
       {
-        assets: ["CHANGE_LOG.md"],
+        assets: ["CHANGE_LOG.md", "sonar-project.properties"],
         // Note, this isn't a string literal, it's a Mustache-style template.
         message: "build(release v${nextRelease.version}): See CHANGE_LOG.md",
+      },
+    ],
+    // Bump the version number in the sonar-project.properties file.
+    [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "node ./scripts/release/change_sonarcloud_project_version.js ${nextRelease.version}",
       },
     ],
 
