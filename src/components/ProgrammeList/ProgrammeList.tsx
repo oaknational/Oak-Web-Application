@@ -17,12 +17,16 @@ const ProgrammeList: FC<ProgrammeListingPageData> = ({
   keyStageSlug,
   keyStageTitle,
 }) => {
-  const colSpan = programmes.length === 2 ? 6 : 4
+  const colSpan = programmes.length === 2 ? 6 : 4;
   return (
     <Grid $cg={16}>
       {programmes.map((programme) => {
         return (
-          <GridArea $mb={16} $colSpan={[12,12, colSpan]} key={programme.programmeSlug}>
+          <GridArea
+            $mb={16}
+            $colSpan={[12, 12, colSpan]}
+            key={programme.programmeSlug}
+          >
             <ProgrammeListItem
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}
