@@ -10,6 +10,8 @@ const brushBorder = css<{ color: OakColorName }>`
   position: absolute;
   color: ${(props) => getColorByName(props.color)};
   mask-position: center;
+  transition-duration: 0s;
+  transition-delay: 0s;
 `;
 
 const hideBrushOnMobile = css`

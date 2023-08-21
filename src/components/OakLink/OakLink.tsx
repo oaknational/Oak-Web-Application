@@ -32,6 +32,7 @@ type StyleProps = FlexProps &
      * be affected: text-decoration: underline;
      */
     $isInline?: boolean;
+    $isSelected?: boolean;
   };
 
 const inlineStyles = css`
@@ -41,6 +42,11 @@ const inlineStyles = css`
 `;
 const $hoverStyles = css`
   text-decoration: underline;
+`;
+
+const $selectedStyle = css`
+  transition-duration: 0s;
+  transition-delay: 0s;
 `;
 
 const StyledNextLink = styled.a<StyleProps>`
@@ -54,6 +60,8 @@ const StyledNextLink = styled.a<StyleProps>`
   :hover {
     ${$hoverStyles}
   }
+
+  ${(props) => props.$isSelected && $selectedStyle}
 `;
 
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &
