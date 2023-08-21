@@ -67,7 +67,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         programmeFactor={keyStageTitle}
         {...props}
       />
-      <MaxWidth $mt={72} $ph={16}>
+      <MaxWidth $mt={[56, 72]} $ph={16}>
         <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>
