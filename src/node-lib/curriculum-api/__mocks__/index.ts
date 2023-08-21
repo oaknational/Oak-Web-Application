@@ -5,7 +5,7 @@ import lessonDownloadsFixtures from "../fixtures/lessonDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
-import { programmeListingFixture } from "../fixtures/tierListing.fixture";
+import { tieredProgrammeListingFixture } from "../fixtures/tierListing.fixture";
 import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 
 const curriculumApi: CurriculumApi = {
@@ -28,7 +28,7 @@ const curriculumApi: CurriculumApi = {
     return unitListingFixture();
   }),
   tierListing: jest.fn(async () => {
-    return programmeListingFixture();
+    return tieredProgrammeListingFixture();
   }),
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();

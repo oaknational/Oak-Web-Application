@@ -1,7 +1,7 @@
 import { TierListingData } from "..";
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-export const programmeListingFixture = (
+export const tieredProgrammeListingFixture = (
   partial?: Partial<ProgrammeListingPageData>
 ): ProgrammeListingPageData => {
   return {
@@ -11,52 +11,28 @@ export const programmeListingFixture = (
     subjectTitle: "Maths",
     programmes: [
       {
-        programmeSlug: "maths-secondary-ks4-core",
-        subjectTitle: "Maths",
-        unitCount: 61,
-        lessonCount: 284,
-        tierSlug: "core",
-        tierTitle: "Core",
-        tierDisplayOrder: "1",
-        examBoardDisplayOrder: null,
-        examBoardSlug: null,
-        examBoardTitle: null,
-      },
-      {
         programmeSlug: "maths-secondary-ks4-foundation",
         subjectTitle: "Maths",
-        unitCount: 63,
-        lessonCount: 256,
+        unitCount: 30,
+        lessonCount: 247,
         tierSlug: "foundation",
         tierTitle: "Foundation",
         tierDisplayOrder: "1",
-        examBoardDisplayOrder: null,
         examBoardSlug: null,
         examBoardTitle: null,
+        examBoardDisplayOrder: null,
       },
       {
         programmeSlug: "maths-secondary-ks4-higher",
         subjectTitle: "Maths",
-        unitCount: 63,
-        lessonCount: 275,
+        unitCount: 36,
+        lessonCount: 413,
         tierSlug: "higher",
         tierTitle: "Higher",
-        tierDisplayOrder: "1",
-        examBoardDisplayOrder: null,
+        tierDisplayOrder: "3",
         examBoardSlug: null,
         examBoardTitle: null,
-      },
-      {
-        programmeSlug: "maths-secondary-ks4-aqa",
-        subjectTitle: "Maths",
-        unitCount: 63,
-        lessonCount: 275,
-        tierSlug: null,
-        tierTitle: null,
-        tierDisplayOrder: null,
-        examBoardDisplayOrder: "1",
-        examBoardSlug: "aqa",
-        examBoardTitle: "AQA",
+        examBoardDisplayOrder: null,
       },
     ],
 
