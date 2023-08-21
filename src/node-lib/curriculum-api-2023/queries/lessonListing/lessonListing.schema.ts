@@ -9,6 +9,8 @@ const lessonListingSchema = z.object({
   unitSlug: z.string(),
   unitTitle: z.string(),
   tierSlug: z.string().nullish(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
   lessons: z.array(
     z.object({
       lessonSlug: z.string(),

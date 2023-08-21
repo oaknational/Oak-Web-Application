@@ -2611,6 +2611,704 @@ export enum Cursor_Ordering {
   Desc = 'DESC'
 }
 
+/** columns and relationships of "internal.archives" */
+export type Internal_Archives = {
+  __typename?: 'internal_archives';
+  _cohort: Scalars['String']['output'];
+  _deleted: Scalars['Boolean']['output'];
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state: Scalars['String']['output'];
+  archive_id: Scalars['Int']['output'];
+  archive_uid?: Maybe<Scalars['bpchar']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  source_id?: Maybe<Scalars['Int']['output']>;
+  source_release_id?: Maybe<Scalars['Int']['output']>;
+  source_row?: Maybe<Scalars['json']['output']>;
+  source_schema?: Maybe<Scalars['String']['output']>;
+  source_table?: Maybe<Scalars['String']['output']>;
+  source_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "internal.archives" */
+export type Internal_ArchivesSource_RowArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "internal.archives" */
+export type Internal_Archives_Aggregate = {
+  __typename?: 'internal_archives_aggregate';
+  aggregate?: Maybe<Internal_Archives_Aggregate_Fields>;
+  nodes: Array<Internal_Archives>;
+};
+
+/** aggregate fields of "internal.archives" */
+export type Internal_Archives_Aggregate_Fields = {
+  __typename?: 'internal_archives_aggregate_fields';
+  avg?: Maybe<Internal_Archives_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Internal_Archives_Max_Fields>;
+  min?: Maybe<Internal_Archives_Min_Fields>;
+  stddev?: Maybe<Internal_Archives_Stddev_Fields>;
+  stddev_pop?: Maybe<Internal_Archives_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Internal_Archives_Stddev_Samp_Fields>;
+  sum?: Maybe<Internal_Archives_Sum_Fields>;
+  var_pop?: Maybe<Internal_Archives_Var_Pop_Fields>;
+  var_samp?: Maybe<Internal_Archives_Var_Samp_Fields>;
+  variance?: Maybe<Internal_Archives_Variance_Fields>;
+};
+
+
+/** aggregate fields of "internal.archives" */
+export type Internal_Archives_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Internal_Archives_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Internal_Archives_Avg_Fields = {
+  __typename?: 'internal_archives_avg_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "internal.archives". All fields are combined with a logical 'AND'. */
+export type Internal_Archives_Bool_Exp = {
+  _and?: InputMaybe<Array<Internal_Archives_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Internal_Archives_Bool_Exp>;
+  _or?: InputMaybe<Array<Internal_Archives_Bool_Exp>>;
+  _release_id?: InputMaybe<Int_Comparison_Exp>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  archive_id?: InputMaybe<Int_Comparison_Exp>;
+  archive_uid?: InputMaybe<Bpchar_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  source_id?: InputMaybe<Int_Comparison_Exp>;
+  source_release_id?: InputMaybe<Int_Comparison_Exp>;
+  source_row?: InputMaybe<Json_Comparison_Exp>;
+  source_schema?: InputMaybe<String_Comparison_Exp>;
+  source_table?: InputMaybe<String_Comparison_Exp>;
+  source_uid?: InputMaybe<Bpchar_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "internal.archives" */
+export enum Internal_Archives_Constraint {
+  /** unique or primary key constraint on columns "_state", "archive_id" */
+  ArchivesPkey = 'archives_pkey'
+}
+
+/** input type for incrementing numeric columns in table "internal.archives" */
+export type Internal_Archives_Inc_Input = {
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  archive_id?: InputMaybe<Scalars['Int']['input']>;
+  source_id?: InputMaybe<Scalars['Int']['input']>;
+  source_release_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "internal.archives" */
+export type Internal_Archives_Insert_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  archive_id?: InputMaybe<Scalars['Int']['input']>;
+  archive_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  source_id?: InputMaybe<Scalars['Int']['input']>;
+  source_release_id?: InputMaybe<Scalars['Int']['input']>;
+  source_row?: InputMaybe<Scalars['json']['input']>;
+  source_schema?: InputMaybe<Scalars['String']['input']>;
+  source_table?: InputMaybe<Scalars['String']['input']>;
+  source_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Internal_Archives_Max_Fields = {
+  __typename?: 'internal_archives_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  archive_id?: Maybe<Scalars['Int']['output']>;
+  archive_uid?: Maybe<Scalars['bpchar']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  source_id?: Maybe<Scalars['Int']['output']>;
+  source_release_id?: Maybe<Scalars['Int']['output']>;
+  source_schema?: Maybe<Scalars['String']['output']>;
+  source_table?: Maybe<Scalars['String']['output']>;
+  source_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Internal_Archives_Min_Fields = {
+  __typename?: 'internal_archives_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  archive_id?: Maybe<Scalars['Int']['output']>;
+  archive_uid?: Maybe<Scalars['bpchar']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  source_id?: Maybe<Scalars['Int']['output']>;
+  source_release_id?: Maybe<Scalars['Int']['output']>;
+  source_schema?: Maybe<Scalars['String']['output']>;
+  source_table?: Maybe<Scalars['String']['output']>;
+  source_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "internal.archives" */
+export type Internal_Archives_Mutation_Response = {
+  __typename?: 'internal_archives_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Internal_Archives>;
+};
+
+/** on_conflict condition type for table "internal.archives" */
+export type Internal_Archives_On_Conflict = {
+  constraint: Internal_Archives_Constraint;
+  update_columns?: Array<Internal_Archives_Update_Column>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "internal.archives". */
+export type Internal_Archives_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  archive_id?: InputMaybe<Order_By>;
+  archive_uid?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  source_id?: InputMaybe<Order_By>;
+  source_release_id?: InputMaybe<Order_By>;
+  source_row?: InputMaybe<Order_By>;
+  source_schema?: InputMaybe<Order_By>;
+  source_table?: InputMaybe<Order_By>;
+  source_uid?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: internal.archives */
+export type Internal_Archives_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  archive_id: Scalars['Int']['input'];
+};
+
+/** select columns of table "internal.archives" */
+export enum Internal_Archives_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  ArchiveId = 'archive_id',
+  /** column name */
+  ArchiveUid = 'archive_uid',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  SourceId = 'source_id',
+  /** column name */
+  SourceReleaseId = 'source_release_id',
+  /** column name */
+  SourceRow = 'source_row',
+  /** column name */
+  SourceSchema = 'source_schema',
+  /** column name */
+  SourceTable = 'source_table',
+  /** column name */
+  SourceUid = 'source_uid',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "internal.archives" */
+export type Internal_Archives_Set_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  archive_id?: InputMaybe<Scalars['Int']['input']>;
+  archive_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  source_id?: InputMaybe<Scalars['Int']['input']>;
+  source_release_id?: InputMaybe<Scalars['Int']['input']>;
+  source_row?: InputMaybe<Scalars['json']['input']>;
+  source_schema?: InputMaybe<Scalars['String']['input']>;
+  source_table?: InputMaybe<Scalars['String']['input']>;
+  source_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Internal_Archives_Stddev_Fields = {
+  __typename?: 'internal_archives_stddev_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Internal_Archives_Stddev_Pop_Fields = {
+  __typename?: 'internal_archives_stddev_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Internal_Archives_Stddev_Samp_Fields = {
+  __typename?: 'internal_archives_stddev_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "internal_archives" */
+export type Internal_Archives_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Internal_Archives_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Internal_Archives_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  archive_id?: InputMaybe<Scalars['Int']['input']>;
+  archive_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  source_id?: InputMaybe<Scalars['Int']['input']>;
+  source_release_id?: InputMaybe<Scalars['Int']['input']>;
+  source_row?: InputMaybe<Scalars['json']['input']>;
+  source_schema?: InputMaybe<Scalars['String']['input']>;
+  source_table?: InputMaybe<Scalars['String']['input']>;
+  source_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Internal_Archives_Sum_Fields = {
+  __typename?: 'internal_archives_sum_fields';
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  archive_id?: Maybe<Scalars['Int']['output']>;
+  source_id?: Maybe<Scalars['Int']['output']>;
+  source_release_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "internal.archives" */
+export enum Internal_Archives_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  ArchiveId = 'archive_id',
+  /** column name */
+  ArchiveUid = 'archive_uid',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  SourceId = 'source_id',
+  /** column name */
+  SourceReleaseId = 'source_release_id',
+  /** column name */
+  SourceRow = 'source_row',
+  /** column name */
+  SourceSchema = 'source_schema',
+  /** column name */
+  SourceTable = 'source_table',
+  /** column name */
+  SourceUid = 'source_uid',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Internal_Archives_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Internal_Archives_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Internal_Archives_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Internal_Archives_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Internal_Archives_Var_Pop_Fields = {
+  __typename?: 'internal_archives_var_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Internal_Archives_Var_Samp_Fields = {
+  __typename?: 'internal_archives_var_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Internal_Archives_Variance_Fields = {
+  __typename?: 'internal_archives_variance_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  archive_id?: Maybe<Scalars['Float']['output']>;
+  source_id?: Maybe<Scalars['Float']['output']>;
+  source_release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "internal.releases" */
+export type Internal_Releases = {
+  __typename?: 'internal_releases';
+  _cohort: Scalars['String']['output'];
+  _deleted: Scalars['Boolean']['output'];
+  _state: Scalars['String']['output'];
+  approved: Scalars['Boolean']['output'];
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  locked: Scalars['Boolean']['output'];
+  release_details?: Maybe<Scalars['jsonb']['output']>;
+  release_id: Scalars['Int']['output'];
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "internal.releases" */
+export type Internal_ReleasesRelease_DetailsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "internal.releases" */
+export type Internal_Releases_Aggregate = {
+  __typename?: 'internal_releases_aggregate';
+  aggregate?: Maybe<Internal_Releases_Aggregate_Fields>;
+  nodes: Array<Internal_Releases>;
+};
+
+/** aggregate fields of "internal.releases" */
+export type Internal_Releases_Aggregate_Fields = {
+  __typename?: 'internal_releases_aggregate_fields';
+  avg?: Maybe<Internal_Releases_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Internal_Releases_Max_Fields>;
+  min?: Maybe<Internal_Releases_Min_Fields>;
+  stddev?: Maybe<Internal_Releases_Stddev_Fields>;
+  stddev_pop?: Maybe<Internal_Releases_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Internal_Releases_Stddev_Samp_Fields>;
+  sum?: Maybe<Internal_Releases_Sum_Fields>;
+  var_pop?: Maybe<Internal_Releases_Var_Pop_Fields>;
+  var_samp?: Maybe<Internal_Releases_Var_Samp_Fields>;
+  variance?: Maybe<Internal_Releases_Variance_Fields>;
+};
+
+
+/** aggregate fields of "internal.releases" */
+export type Internal_Releases_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Internal_Releases_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Internal_Releases_Append_Input = {
+  release_details?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Internal_Releases_Avg_Fields = {
+  __typename?: 'internal_releases_avg_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "internal.releases". All fields are combined with a logical 'AND'. */
+export type Internal_Releases_Bool_Exp = {
+  _and?: InputMaybe<Array<Internal_Releases_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Internal_Releases_Bool_Exp>;
+  _or?: InputMaybe<Array<Internal_Releases_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  approved?: InputMaybe<Boolean_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  locked?: InputMaybe<Boolean_Comparison_Exp>;
+  release_details?: InputMaybe<Jsonb_Comparison_Exp>;
+  release_id?: InputMaybe<Int_Comparison_Exp>;
+  release_uid?: InputMaybe<Bpchar_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "internal.releases" */
+export enum Internal_Releases_Constraint {
+  /** unique or primary key constraint on columns "_state", "release_id" */
+  ReleasesPkey = 'releases_pkey'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Internal_Releases_Delete_At_Path_Input = {
+  release_details?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Internal_Releases_Delete_Elem_Input = {
+  release_details?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Internal_Releases_Delete_Key_Input = {
+  release_details?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "internal.releases" */
+export type Internal_Releases_Inc_Input = {
+  release_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "internal.releases" */
+export type Internal_Releases_Insert_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  approved?: InputMaybe<Scalars['Boolean']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  locked?: InputMaybe<Scalars['Boolean']['input']>;
+  release_details?: InputMaybe<Scalars['jsonb']['input']>;
+  release_id?: InputMaybe<Scalars['Int']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Internal_Releases_Max_Fields = {
+  __typename?: 'internal_releases_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  release_id?: Maybe<Scalars['Int']['output']>;
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Internal_Releases_Min_Fields = {
+  __typename?: 'internal_releases_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  release_id?: Maybe<Scalars['Int']['output']>;
+  release_uid?: Maybe<Scalars['bpchar']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "internal.releases" */
+export type Internal_Releases_Mutation_Response = {
+  __typename?: 'internal_releases_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Internal_Releases>;
+};
+
+/** on_conflict condition type for table "internal.releases" */
+export type Internal_Releases_On_Conflict = {
+  constraint: Internal_Releases_Constraint;
+  update_columns?: Array<Internal_Releases_Update_Column>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "internal.releases". */
+export type Internal_Releases_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  approved?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  locked?: InputMaybe<Order_By>;
+  release_details?: InputMaybe<Order_By>;
+  release_id?: InputMaybe<Order_By>;
+  release_uid?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: internal.releases */
+export type Internal_Releases_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  release_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Internal_Releases_Prepend_Input = {
+  release_details?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "internal.releases" */
+export enum Internal_Releases_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  State = '_state',
+  /** column name */
+  Approved = 'approved',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Locked = 'locked',
+  /** column name */
+  ReleaseDetails = 'release_details',
+  /** column name */
+  ReleaseId = 'release_id',
+  /** column name */
+  ReleaseUid = 'release_uid',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "internal.releases" */
+export type Internal_Releases_Set_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  approved?: InputMaybe<Scalars['Boolean']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  locked?: InputMaybe<Scalars['Boolean']['input']>;
+  release_details?: InputMaybe<Scalars['jsonb']['input']>;
+  release_id?: InputMaybe<Scalars['Int']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Internal_Releases_Stddev_Fields = {
+  __typename?: 'internal_releases_stddev_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Internal_Releases_Stddev_Pop_Fields = {
+  __typename?: 'internal_releases_stddev_pop_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Internal_Releases_Stddev_Samp_Fields = {
+  __typename?: 'internal_releases_stddev_samp_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "internal_releases" */
+export type Internal_Releases_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Internal_Releases_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Internal_Releases_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  approved?: InputMaybe<Scalars['Boolean']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  locked?: InputMaybe<Scalars['Boolean']['input']>;
+  release_details?: InputMaybe<Scalars['jsonb']['input']>;
+  release_id?: InputMaybe<Scalars['Int']['input']>;
+  release_uid?: InputMaybe<Scalars['bpchar']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Internal_Releases_Sum_Fields = {
+  __typename?: 'internal_releases_sum_fields';
+  release_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "internal.releases" */
+export enum Internal_Releases_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  State = '_state',
+  /** column name */
+  Approved = 'approved',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Locked = 'locked',
+  /** column name */
+  ReleaseDetails = 'release_details',
+  /** column name */
+  ReleaseId = 'release_id',
+  /** column name */
+  ReleaseUid = 'release_uid',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Internal_Releases_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Internal_Releases_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Internal_Releases_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Internal_Releases_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Internal_Releases_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Internal_Releases_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Internal_Releases_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Internal_Releases_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Internal_Releases_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Internal_Releases_Var_Pop_Fields = {
+  __typename?: 'internal_releases_var_pop_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Internal_Releases_Var_Samp_Fields = {
+  __typename?: 'internal_releases_var_samp_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Internal_Releases_Variance_Fields = {
+  __typename?: 'internal_releases_variance_fields';
+  release_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "internal.review_lessons" */
 export type Internal_Review_Lessons = {
   __typename?: 'internal_review_lessons';
@@ -4671,6 +5369,14 @@ export type Mutation_Root = {
   delete_cat_tags?: Maybe<Cat_Tags_Mutation_Response>;
   /** delete single row from the table: "cat_tags" */
   delete_cat_tags_by_pk?: Maybe<Cat_Tags>;
+  /** delete data from the table: "internal.archives" */
+  delete_internal_archives?: Maybe<Internal_Archives_Mutation_Response>;
+  /** delete single row from the table: "internal.archives" */
+  delete_internal_archives_by_pk?: Maybe<Internal_Archives>;
+  /** delete data from the table: "internal.releases" */
+  delete_internal_releases?: Maybe<Internal_Releases_Mutation_Response>;
+  /** delete single row from the table: "internal.releases" */
+  delete_internal_releases_by_pk?: Maybe<Internal_Releases>;
   /** delete data from the table: "internal.review_lessons" */
   delete_internal_review_lessons?: Maybe<Internal_Review_Lessons_Mutation_Response>;
   /** delete single row from the table: "internal.review_lessons" */
@@ -4783,6 +5489,14 @@ export type Mutation_Root = {
   insert_cat_tags?: Maybe<Cat_Tags_Mutation_Response>;
   /** insert a single row into the table: "cat_tags" */
   insert_cat_tags_one?: Maybe<Cat_Tags>;
+  /** insert data into the table: "internal.archives" */
+  insert_internal_archives?: Maybe<Internal_Archives_Mutation_Response>;
+  /** insert a single row into the table: "internal.archives" */
+  insert_internal_archives_one?: Maybe<Internal_Archives>;
+  /** insert data into the table: "internal.releases" */
+  insert_internal_releases?: Maybe<Internal_Releases_Mutation_Response>;
+  /** insert a single row into the table: "internal.releases" */
+  insert_internal_releases_one?: Maybe<Internal_Releases>;
   /** insert data into the table: "internal.review_lessons" */
   insert_internal_review_lessons?: Maybe<Internal_Review_Lessons_Mutation_Response>;
   /** insert a single row into the table: "internal.review_lessons" */
@@ -4907,6 +5621,18 @@ export type Mutation_Root = {
   update_cat_tags_by_pk?: Maybe<Cat_Tags>;
   /** update multiples rows of table: "cat_tags" */
   update_cat_tags_many?: Maybe<Array<Maybe<Cat_Tags_Mutation_Response>>>;
+  /** update data of the table: "internal.archives" */
+  update_internal_archives?: Maybe<Internal_Archives_Mutation_Response>;
+  /** update single row of the table: "internal.archives" */
+  update_internal_archives_by_pk?: Maybe<Internal_Archives>;
+  /** update multiples rows of table: "internal.archives" */
+  update_internal_archives_many?: Maybe<Array<Maybe<Internal_Archives_Mutation_Response>>>;
+  /** update data of the table: "internal.releases" */
+  update_internal_releases?: Maybe<Internal_Releases_Mutation_Response>;
+  /** update single row of the table: "internal.releases" */
+  update_internal_releases_by_pk?: Maybe<Internal_Releases>;
+  /** update multiples rows of table: "internal.releases" */
+  update_internal_releases_many?: Maybe<Array<Maybe<Internal_Releases_Mutation_Response>>>;
   /** update data of the table: "internal.review_lessons" */
   update_internal_review_lessons?: Maybe<Internal_Review_Lessons_Mutation_Response>;
   /** update single row of the table: "internal.review_lessons" */
@@ -5117,6 +5843,32 @@ export type Mutation_RootDelete_Cat_TagsArgs = {
 export type Mutation_RootDelete_Cat_Tags_By_PkArgs = {
   _state: Scalars['String']['input'];
   tag_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_ArchivesArgs = {
+  where: Internal_Archives_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_Archives_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  archive_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_ReleasesArgs = {
+  where: Internal_Releases_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_Releases_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  release_id: Scalars['Int']['input'];
 };
 
 
@@ -5491,6 +6243,34 @@ export type Mutation_RootInsert_Cat_TagsArgs = {
 export type Mutation_RootInsert_Cat_Tags_OneArgs = {
   object: Cat_Tags_Insert_Input;
   on_conflict?: InputMaybe<Cat_Tags_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_ArchivesArgs = {
+  objects: Array<Internal_Archives_Insert_Input>;
+  on_conflict?: InputMaybe<Internal_Archives_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_Archives_OneArgs = {
+  object: Internal_Archives_Insert_Input;
+  on_conflict?: InputMaybe<Internal_Archives_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_ReleasesArgs = {
+  objects: Array<Internal_Releases_Insert_Input>;
+  on_conflict?: InputMaybe<Internal_Releases_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Internal_Releases_OneArgs = {
+  object: Internal_Releases_Insert_Input;
+  on_conflict?: InputMaybe<Internal_Releases_On_Conflict>;
 };
 
 
@@ -5981,6 +6761,60 @@ export type Mutation_RootUpdate_Cat_Tags_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Cat_Tags_ManyArgs = {
   updates: Array<Cat_Tags_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_ArchivesArgs = {
+  _inc?: InputMaybe<Internal_Archives_Inc_Input>;
+  _set?: InputMaybe<Internal_Archives_Set_Input>;
+  where: Internal_Archives_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Archives_By_PkArgs = {
+  _inc?: InputMaybe<Internal_Archives_Inc_Input>;
+  _set?: InputMaybe<Internal_Archives_Set_Input>;
+  pk_columns: Internal_Archives_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Archives_ManyArgs = {
+  updates: Array<Internal_Archives_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_ReleasesArgs = {
+  _append?: InputMaybe<Internal_Releases_Append_Input>;
+  _delete_at_path?: InputMaybe<Internal_Releases_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Internal_Releases_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Internal_Releases_Delete_Key_Input>;
+  _inc?: InputMaybe<Internal_Releases_Inc_Input>;
+  _prepend?: InputMaybe<Internal_Releases_Prepend_Input>;
+  _set?: InputMaybe<Internal_Releases_Set_Input>;
+  where: Internal_Releases_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Releases_By_PkArgs = {
+  _append?: InputMaybe<Internal_Releases_Append_Input>;
+  _delete_at_path?: InputMaybe<Internal_Releases_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Internal_Releases_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Internal_Releases_Delete_Key_Input>;
+  _inc?: InputMaybe<Internal_Releases_Inc_Input>;
+  _prepend?: InputMaybe<Internal_Releases_Prepend_Input>;
+  _set?: InputMaybe<Internal_Releases_Set_Input>;
+  pk_columns: Internal_Releases_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Releases_ManyArgs = {
+  updates: Array<Internal_Releases_Updates>;
 };
 
 
@@ -20684,6 +21518,18 @@ export type Query_Root = {
   cat_tags_aggregate: Cat_Tags_Aggregate;
   /** fetch data from the table: "cat_tags" using primary key columns */
   cat_tags_by_pk?: Maybe<Cat_Tags>;
+  /** fetch data from the table: "internal.archives" */
+  internal_archives: Array<Internal_Archives>;
+  /** fetch aggregated fields from the table: "internal.archives" */
+  internal_archives_aggregate: Internal_Archives_Aggregate;
+  /** fetch data from the table: "internal.archives" using primary key columns */
+  internal_archives_by_pk?: Maybe<Internal_Archives>;
+  /** fetch data from the table: "internal.releases" */
+  internal_releases: Array<Internal_Releases>;
+  /** fetch aggregated fields from the table: "internal.releases" */
+  internal_releases_aggregate: Internal_Releases_Aggregate;
+  /** fetch data from the table: "internal.releases" using primary key columns */
+  internal_releases_by_pk?: Maybe<Internal_Releases>;
   /** fetch data from the table: "internal.review_lessons" */
   internal_review_lessons: Array<Internal_Review_Lessons>;
   /** fetch aggregated fields from the table: "internal.review_lessons" */
@@ -21148,6 +21994,54 @@ export type Query_RootCat_Tags_AggregateArgs = {
 export type Query_RootCat_Tags_By_PkArgs = {
   _state: Scalars['String']['input'];
   tag_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootInternal_ArchivesArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Archives_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Archives_Order_By>>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Archives_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Archives_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Archives_Order_By>>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Archives_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  archive_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootInternal_ReleasesArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Releases_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Releases_Order_By>>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Releases_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Releases_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Releases_Order_By>>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Releases_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  release_id: Scalars['Int']['input'];
 };
 
 
@@ -24210,6 +25104,22 @@ export type Subscription_Root = {
   cat_tags_by_pk?: Maybe<Cat_Tags>;
   /** fetch data from the table in a streaming manner: "cat_tags" */
   cat_tags_stream: Array<Cat_Tags>;
+  /** fetch data from the table: "internal.archives" */
+  internal_archives: Array<Internal_Archives>;
+  /** fetch aggregated fields from the table: "internal.archives" */
+  internal_archives_aggregate: Internal_Archives_Aggregate;
+  /** fetch data from the table: "internal.archives" using primary key columns */
+  internal_archives_by_pk?: Maybe<Internal_Archives>;
+  /** fetch data from the table in a streaming manner: "internal.archives" */
+  internal_archives_stream: Array<Internal_Archives>;
+  /** fetch data from the table: "internal.releases" */
+  internal_releases: Array<Internal_Releases>;
+  /** fetch aggregated fields from the table: "internal.releases" */
+  internal_releases_aggregate: Internal_Releases_Aggregate;
+  /** fetch data from the table: "internal.releases" using primary key columns */
+  internal_releases_by_pk?: Maybe<Internal_Releases>;
+  /** fetch data from the table in a streaming manner: "internal.releases" */
+  internal_releases_stream: Array<Internal_Releases>;
   /** fetch data from the table: "internal.review_lessons" */
   internal_review_lessons: Array<Internal_Review_Lessons>;
   /** fetch aggregated fields from the table: "internal.review_lessons" */
@@ -24854,6 +25764,68 @@ export type Subscription_RootCat_Tags_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Cat_Tags_Stream_Cursor_Input>>;
   where?: InputMaybe<Cat_Tags_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_ArchivesArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Archives_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Archives_Order_By>>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Archives_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Archives_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Archives_Order_By>>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Archives_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  archive_id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootInternal_Archives_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Internal_Archives_Stream_Cursor_Input>>;
+  where?: InputMaybe<Internal_Archives_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_ReleasesArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Releases_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Releases_Order_By>>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Releases_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Internal_Releases_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Internal_Releases_Order_By>>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Releases_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  release_id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootInternal_Releases_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Internal_Releases_Stream_Cursor_Input>>;
+  where?: InputMaybe<Internal_Releases_Bool_Exp>;
 };
 
 
@@ -31339,7 +32311,7 @@ export type LessonListingQueryVariables = Exact<{
 }>;
 
 
-export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_11', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null }> };
+export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_lesson_listing_11', programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, lessons?: any | null, examBoardSlug?: string | null, examBoardTitle?: string | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -31348,7 +32320,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_4', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_4', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -31418,6 +32390,8 @@ export const LessonListingDocument = gql`
     keyStageTitle
     subjectSlug
     subjectTitle
+    examBoardSlug: examboardSlug
+    examBoardTitle: examboardTitle
     lessons
   }
 }
@@ -31452,6 +32426,7 @@ export const LessonOverviewDocument = gql`
     transcriptSentences
     starterQuiz
     exitQuiz
+    yearTitle
   }
 }
     `;
