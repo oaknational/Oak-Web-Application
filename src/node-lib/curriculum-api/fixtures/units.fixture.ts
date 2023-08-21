@@ -18,6 +18,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 1,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -41,6 +42,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 2,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -64,6 +66,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 3,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -87,6 +90,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 4,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -110,6 +114,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 5,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -133,6 +138,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 6,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -156,6 +162,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 1,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -179,6 +186,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 2,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "no-theme",
@@ -202,6 +210,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 3,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "no-theme",
@@ -225,6 +234,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 4,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "no-theme",
@@ -248,6 +258,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 5,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "no-theme",
@@ -271,6 +282,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 6,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "no-theme",
@@ -294,6 +306,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 7,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -317,6 +330,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 8,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 10",
       learningThemes: [
         {
           themeSlug: "computer-science-2",
@@ -340,6 +354,7 @@ const unitsFixture = (): UnitListingData["units"][number] => {
       unitStudyOrder: 9,
       expired: false,
       expiredLessonCount: 0,
+      yearTitle: "Year 11",
       learningThemes: [
         {
           themeSlug: "computer-science-2",

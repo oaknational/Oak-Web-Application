@@ -1,21 +1,21 @@
-import { FC, MutableRefObject } from "react";
+import React, { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
-import useClickableCard from "../../../../hooks/useClickableCard";
-import useAnalytics from "../../../../context/Analytics/useAnalytics";
-import Flex from "../../../Flex";
-import ListItemHeader from "../../ListItemHeader";
-import ListItemCard from "../../ListItemCard";
-import { UnitListingData } from "../../../../node-lib/curriculum-api";
-import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
-import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
-import ListItemIndexDesktop from "../../ListItemIndexDesktop";
-import ListItemIndexMobile from "../../ListItemIndexMobile";
-import ListItemIconMobile from "../../ListItemIconMobile";
-import ListItemIconDesktop from "../../ListItemIconDesktop";
-
-import { UnitListLessonCount } from "./UnitListLessonCount";
+import useClickableCard from "@/hooks/useClickableCard";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import Flex from "@/components/Flex";
+import ListItemHeader from "@/components/UnitAndLessonLists/ListItemHeader";
+import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
+import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { getSortedSearchFiltersSelected } from "@/context/Search/helpers";
+import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
+import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
+import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
+import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
+import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
+import { P } from "@/components/Typography";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -27,6 +27,8 @@ export type UnitListItemProps = Omit<
   index: number;
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
+  isUnitOption?: boolean;
+  unitOptions?: UnitData[];
 };
 
 /**
@@ -50,6 +52,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     hitCount,
     currentPage,
     firstItemRef,
+    isUnitOption,
+    yearTitle,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -102,8 +106,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       expired={expired}
       index={index}
       fromSearchPage={fromSearchPage}
+      isUnitOption={isUnitOption}
     >
-      {!fromSearchPage && (
+      {!fromSearchPage && !isUnitOption && (
         <>
           <ListItemIndexDesktop
             index={index + 1}
@@ -121,12 +126,17 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $ml={[16, 24]}
         $mr={[0, 24]}
         $flexDirection={"column"}
-        $justifyContent={"center"}
+        $justifyContent={"space-between"}
         $width={"100%"}
         $height={"100%"}
         $gap={[8]}
         $pv={[8, 12]}
       >
+        {!isUnitOption && yearTitle && (
+          <P $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
+            {yearTitle}
+          </P>
+        )}
         <ListItemHeader
           {...props}
           primaryTargetProps={primaryTargetProps}

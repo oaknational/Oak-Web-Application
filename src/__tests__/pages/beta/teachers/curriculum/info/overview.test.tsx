@@ -1,7 +1,7 @@
-import CurriculumInfoPage from "../../../../../../pages/beta/teachers/curriculum/info";
-import curriculumOverviewFixture from "../../../../../../node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixtures";
-import renderWithProviders from "../../../../../__helpers__/renderWithProviders";
-import subjectPhaseOptions from "../../../../../../browser-lib/fixtures/subjectPhaseOptions";
+import CurriculumInfoPage from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/overview";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 const render = renderWithProviders();
 
 describe("curriculum info page", () => {

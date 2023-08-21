@@ -79,33 +79,32 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   };
 };
 
-const unitsData = z.array(
-  z.array(
+const unitData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  nullTitle: z.string(),
+  programmeSlug: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
+  lessonCount: z.number().nullable(),
+  quizCount: z.number().nullable(),
+  unitStudyOrder: z.number(),
+  expired: z.boolean().nullable(),
+  expiredLessonCount: z.number().nullable(),
+  yearTitle: z.string().nullable(),
+  learningThemes: z.array(
     z.object({
-      slug: z.string(),
-      title: z.string(),
-      nullTitle: z.string(),
-      programmeSlug: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-      learningThemes: z.array(
-        z.object({
-          themeSlug: z.string().nullable(),
-          themeTitle: z.string().nullable(),
-        })
-      ),
     })
-  )
-);
+  ),
+});
+
+const unitsData = z.array(z.array(unitData));
 
 const tiersData = z.array(
   z.object({
@@ -209,6 +208,7 @@ export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 export type TierListingData = z.infer<typeof tierListingData>;
+export type UnitData = z.infer<typeof unitData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -459,6 +459,7 @@ const curriculumApi = {
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
+      yearTitle: "",
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
