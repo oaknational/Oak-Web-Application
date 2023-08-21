@@ -47,7 +47,7 @@ const ProgrammeListItem: FC<
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
-        $ph={12}
+        $ph={16}
       >
         <OakLink
           {...primaryTargetProps}
@@ -66,7 +66,7 @@ const ProgrammeListItem: FC<
               });
           }}
         >
-          <Heading $mt={8} $mb={2} $font={"heading-7"} tag="h3">
+          <Heading $mt={8} $mb={2} $font={"heading-7"} tag="h3" ariaLabel={`${tierTitle ? tierTitle : ""} ${examBoardTitle? examBoardTitle : ""}`}>
             {tierTitle ?? examBoardTitle}
           </Heading>
         </OakLink>
@@ -75,7 +75,7 @@ const ProgrammeListItem: FC<
         $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
         $transition={"all 0.4s ease-out"}
         $transform={isHovered ? "translateY(-8px)" : null}
-        $ph={12}
+        $ph={16}
       >
         <Flex
           $mt={2}
@@ -86,7 +86,7 @@ const ProgrammeListItem: FC<
         >
           <Span $mb={4}>{`${unitCount} units`}</Span>
           <Span $mh={4}>
-            <Icon name="dot" size={10} />
+            <Icon name="dot" size={8} />
           </Span>
           <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
         </Flex>

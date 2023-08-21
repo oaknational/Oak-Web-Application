@@ -43,11 +43,14 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
     (programme) => programme.examBoardSlug !== null
   );
 
+  const tierColSpan = tierProgrammes.length === 2 ? 6 : 9;
+  const examboardColSpan = examBoardProgrammes.length === 2 ? 6 : 9;
+
   return (
     <>
       <Grid $cg={16} $rg={16}>
         {examboards.length < 2 && (
-          <ProgrammeListContainer $colSpan={[12, 8, 6]}>
+          <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select tier of learning
             </Heading>
@@ -55,7 +58,7 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
           </ProgrammeListContainer>
         )}
         {tiers.length < 2 && (
-          <ProgrammeListContainer $colSpan={[12, 8, 6]}>
+          <ProgrammeListContainer $colSpan={[12, 6, examboardColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select exam board
             </Heading>
@@ -69,7 +72,7 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
                 (programme) => programme.examBoardTitle == examboard
               );
               return (
-                <ProgrammeListContainer $colSpan={[12, 6, 4]}>
+                <ProgrammeListContainer $colSpan={[12, 4]}>
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examboard}
                   </Heading>
