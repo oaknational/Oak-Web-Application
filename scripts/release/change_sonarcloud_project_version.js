@@ -16,7 +16,7 @@ if (!newVersion) {
 // Sanitise the version number.
 const versionRegex = /^[vV]\d+\.\d+\.\d+$/;
 if (!versionRegex.test(newVersion)) {
-  throw new Error(`Version ${newVersion} does not match ${versionRegex}`);
+  throw new Error(`Version "${newVersion}" does not match ${versionRegex}`);
 }
 
 // Update the version in memory.
@@ -31,7 +31,7 @@ properties.update("sonar.projectVersion", {
 try {
   writeFileSync(SONAR_PROJECT_PROPERTIES_FILE, properties.format());
   console.log(
-    `Updating ${SONAR_PROJECT_PROPERTIES_FILE} to version ${newVersion}`
+    `Updating ${SONAR_PROJECT_PROPERTIES_FILE} to version: ${newVersion}`
   );
 } catch (error) {
   console.error(error);
