@@ -1,3 +1,10 @@
+## [1.224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.0...v1.224.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* correct syntax in update_pr_description conditional ([316be3c](https://github.com/oaknational/Oak-Web-Application/commit/316be3cff1dce39de23964384d3afcd9b03a0712))
+
 # [1.224.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.2...v1.224.0) (2023-08-22)
 
 
