@@ -342,6 +342,104 @@ const lessonOverviewFixture = (
         ],
         questionType: "multiple-choice",
       },
+      {
+        hint: "A Horse chestnut tree grows from a conker.",
+        active: false,
+        answers: {
+          match: [
+            {
+              correct_choice: [{ text: "producer", type: "text" }],
+              match_option: [{ text: "grass", type: "text" }],
+            },
+            {
+              correct_choice: [{ text: "primary consumer", type: "text" }],
+              match_option: [{ text: "cow", type: "text" }],
+            },
+            {
+              correct_choice: [{ text: "secondary consumer", type: "text" }],
+              match_option: [{ text: "human", type: "text" }],
+            },
+          ],
+        },
+        feedback: "Correct! Trees do grow from seeds.",
+        questionId: 20,
+        questionUid: "QUES-CKPSN-KFF20",
+        questionStem: [
+          {
+            text: "Match each organism from the food chain to the correct term used to describe it.",
+            type: "text",
+          },
+        ],
+        questionType: "match",
+      },
+      {
+        hint: "A Horse chestnut tree grows from a conker.",
+        active: false,
+        answers: {
+          order: [
+            {
+              answer: [
+                {
+                  text: "Edward the Confessor was exiled in Normandy.",
+                  type: "text",
+                },
+              ],
+              correct_order: 1,
+            },
+            {
+              answer: [
+                { text: "Edward the Confessor became king.", type: "text" },
+              ],
+              correct_order: 2,
+            },
+            {
+              answer: [
+                {
+                  text: "Harold Godwinson travelled to Normandy.",
+                  type: "text",
+                },
+              ],
+              correct_order: 3,
+            },
+            {
+              answer: [{ text: "Edward the Confessor died.", type: "text" }],
+              correct_order: 4,
+            },
+          ],
+        },
+        feedback: "Correct! Trees do grow from seeds.",
+        questionId: 20,
+        questionUid: "QUES-CKPSN-KFF20",
+        questionStem: [
+          {
+            text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
+            type: "text",
+          },
+        ],
+        questionType: "order",
+      },
+      {
+        hint: "A Horse chestnut tree grows from a conker.",
+        active: false,
+        answers: {
+          "short-answer": [
+            {
+              answer: [{ text: "water", type: "text" }],
+              answer_is_default: true,
+            },
+          ],
+        },
+        feedback: "Correct! Trees do grow from seeds.",
+        questionId: 20,
+        questionUid: "QUES-CKPSN-KFF20",
+        questionStem: [
+          {
+            text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
+            type: "text",
+          },
+        ],
+        questionType: "short-answer",
+      },
     ],
     exitQuiz: [
       {

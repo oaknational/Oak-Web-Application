@@ -39,7 +39,7 @@ const stemTextObjectSchema = z.object({
   type: z.enum(["text"]),
 });
 
-export type StemTextObject = z.infer<typeof stemImageObjectSchema>;
+export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
 
 const stemImageObjectSchema = z.object({
   image_object: z.object({
@@ -58,41 +58,40 @@ const stemImageObjectSchema = z.object({
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
 
 const mcAnswer = z.object({
-  answer: z.array(z.union([stemTextObjectSchema, stemImageObjectSchema])),
+  answer: z
+    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+    .min(1),
   answer_is_correct: z.boolean(),
 });
 
 export type MCAnswer = z.infer<typeof mcAnswer>;
 
+const matchAnswer = z.object({
+  correct_choice: z.array(stemTextObjectSchema).length(1),
+  match_option: z.array(stemTextObjectSchema).length(1),
+});
+
+export type MatchAnswer = z.infer<typeof matchAnswer>;
+
+const orderAnswer = z.object({
+  answer: z.array(stemTextObjectSchema).length(1),
+  correct_order: z.number(),
+});
+
+export type OrderAnswer = z.infer<typeof orderAnswer>;
+
+const shortAnswer = z.object({
+  answer: z.array(stemTextObjectSchema).length(1),
+  answer_is_default: z.boolean(),
+});
+
+export type ShortAnswer = z.infer<typeof shortAnswer>;
+
 const answersSchema = z.object({
   "multiple-choice": z.array(mcAnswer).nullable().optional(),
-  match: z
-    .array(
-      z.object({
-        correct_choice: z.array(stemTextObjectSchema),
-        match_option: z.array(stemTextObjectSchema),
-      })
-    )
-    .nullable()
-    .optional(),
-  order: z
-    .array(
-      z.object({
-        answer: z.array(stemTextObjectSchema),
-        correct_order: z.number(),
-      })
-    )
-    .nullable()
-    .optional(),
-  "short-answer": z
-    .array(
-      z.object({
-        answer: z.array(stemTextObjectSchema),
-        answer_is_default: z.boolean(),
-      })
-    )
-    .nullable()
-    .optional(),
+  match: z.array(matchAnswer).nullable().optional(),
+  order: z.array(orderAnswer).nullable().optional(),
+  "short-answer": z.array(shortAnswer).nullable().optional(),
 });
 
 export const lessonOverviewQuizData = z
