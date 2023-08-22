@@ -23,7 +23,7 @@ type ColRowSpan =
 type ColSpan = ColRowSpan;
 type RowSpan = ColRowSpan;
 
-type GridAreaProps = {
+export type GridAreaProps = {
   $colSpan: Array<ColSpan>;
   $rowSpan?: Array<RowSpan>;
   $order?: ResponsiveValues<number>;
