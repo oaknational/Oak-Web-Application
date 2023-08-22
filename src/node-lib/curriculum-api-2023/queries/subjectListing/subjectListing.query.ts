@@ -7,11 +7,8 @@ const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
     const [keyStageSubjects] = res.keyStageSubjects;
-    const [keyStages] = res.keyStages;
-
     const subjectListing = {
       ...keyStageSubjects,
-      keyStages: keyStages?.keyStages,
     };
 
     if (!keyStageSubjects) {

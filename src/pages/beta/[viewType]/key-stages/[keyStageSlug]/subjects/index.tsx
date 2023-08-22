@@ -40,7 +40,6 @@ export type SubjectListingPageProps = {
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
-
   return (
     <AppLayout
       seoProps={{

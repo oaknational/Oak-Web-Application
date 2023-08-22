@@ -23,10 +23,9 @@ const isSubPath = ({
   return `${currentPath}/`.startsWith(`${href}/`);
 };
 
-type UseIsCurrentProps = {
-  href?: string;
-  keyStageSlug?: string;
-};
+type UseIsCurrentProps =
+  | { href: string; keyStageSlug?: never }
+  | { href?: never; keyStageSlug: string };
 
 /**
  * Returns true if a menu link is should be styled as 'current',
@@ -38,6 +37,9 @@ const useIsCurrent = (props: UseIsCurrentProps) => {
   const [isCurrent, setIsCurrent] = useState(false);
   // NB. We use useEffect here to avoid a server-side render error
   useEffect(() => {
+    // Add in when href and keyStage at the same time or neither of them in also
+    // throw new Error("useIsCurrent is not implemented");
+
     if (href) {
       const hash = asPath.split("#")[1];
       const isCurrentPath = isSubPath({
@@ -45,13 +47,15 @@ const useIsCurrent = (props: UseIsCurrentProps) => {
         href,
       });
       setIsCurrent(isCurrentPath || hash === href.substring(1));
+      return;
     }
     if (keyStageSlug) {
       const isKeyStageCurrent = asPath.includes(keyStageSlug);
 
       setIsCurrent(isKeyStageCurrent);
+      return;
     }
-  }, [currentPath, href, asPath, keyStageSlug]);
+  }, [currentPath, href, asPath, keyStageSlug, isCurrent]);
 
   return isCurrent;
 };
