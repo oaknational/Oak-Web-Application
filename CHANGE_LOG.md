@@ -1,3 +1,19 @@
+# [1.224.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.2...v1.224.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **curric:** update api calls and queries ([ee852ae](https://github.com/oaknational/Oak-Web-Application/commit/ee852aeacdf758c1a4e2c8b61de7dbe3a6de7947))
+
+
+### Features
+
+* **curric:** added fixtures ([15f5002](https://github.com/oaknational/Oak-Web-Application/commit/15f5002daada05f4b62abfdef2034313d66e2c48))
+* **curric:** added/ updated tests ([f9013c3](https://github.com/oaknational/Oak-Web-Application/commit/f9013c31cab8267a5c00fc621ae692c706033f84))
+* **release:** update the sonarcloud project version when a new release is created ([ebb2f99](https://github.com/oaknational/Oak-Web-Application/commit/ebb2f99d724901b27d813db67bb59375b0bf266e))
+
+## [1.223.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.1...v1.223.2) (2023-08-22)
+
 ## [1.223.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.0...v1.223.1) (2023-08-22)
 
 # [1.223.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.222.2...v1.223.0) (2023-08-21)
