@@ -35,6 +35,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       page={"subject-index"}
       viewType="teachers"
       $isSelected={isCurrent}
+      aria-label={title}
       onClick={() => {
         track.keyStageSelected({
           keyStageTitle: title as KeyStageTitleValueType,
@@ -63,11 +64,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       </P>
       <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8} $gap={24}>
         {keyStages.map((keyStage) => (
-          <LI
-            $width={[64, 96]}
-            key={`key-stage:${keyStage.title}`}
-            aria-label={keyStage.title}
-          >
+          <LI $width={[64, 96]} key={`key-stage:${keyStage.title}`}>
             <KeypadLink {...keyStage} />
           </LI>
         ))}
