@@ -45,7 +45,7 @@ const stemImageObjectSchema = z.object({
   image_object: z.object({
     format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]),
     secure_url: z.string().url(),
-    url: z.string(),
+    url: z.string().url(),
     height: z.number(),
     width: z.number(),
     metadata: z.object({}),

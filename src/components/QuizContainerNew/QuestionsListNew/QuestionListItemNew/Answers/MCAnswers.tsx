@@ -24,6 +24,7 @@ export const MCAnswers = (props: {
     <Flex
       $flexDirection={"column"}
       $alignItems={containsImages ? undefined : "start"}
+      role="list"
     >
       {answers.map((choice, i) => {
         const encloseAnswer =
@@ -43,6 +44,7 @@ export const MCAnswers = (props: {
             $borderStyle="solid"
             $borderColor="black"
             $borderRadius={8}
+            role="listitem"
           >
             {choice.answer.map((answerItem, j) => {
               if (answerItem.type === "text" && !choice.answer_is_correct) {

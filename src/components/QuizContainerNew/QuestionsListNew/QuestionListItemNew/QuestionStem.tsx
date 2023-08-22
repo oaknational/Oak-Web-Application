@@ -19,7 +19,7 @@ export const QuestionStem = ({
   const displayNumber = `Q${index + 1}.`;
   return (
     <Flex $flexDirection={"column"} $gap={4}>
-      <Flex>
+      <Flex key="stem-header">
         {displayNumber && (
           <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
             {displayNumber}
@@ -47,16 +47,13 @@ export const QuestionStem = ({
           );
         } else if (stemItem.type === "image") {
           return (
-            <Flex $pv={24}>
+            <Flex $pv={24} key={`q-${displayNumber}-stem-element-${i}`}>
               <QuizImage
-                key={`q-${displayNumber}-stem-element-${i}`}
                 src={stemItem.image_object}
                 alt="An image supporting the question"
               />
             </Flex>
           );
-        } else {
-          return <></>;
         }
       })}
     </Flex>

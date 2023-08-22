@@ -1,4 +1,19 @@
-import { LessonOverviewPageData } from "../queries/lessonOverview/lessonOverview.schema";
+import {
+  LessonOverviewPageData,
+  StemImageObject,
+} from "../queries/lessonOverview/lessonOverview.schema";
+
+const image_object: StemImageObject["image_object"] = {
+  format: "jpg",
+  url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
+  secure_url:
+    "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
+  width: 1280,
+  height: 852,
+  metadata: {},
+  public_id: "Trees",
+  version: 1687374653,
+};
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>
@@ -80,6 +95,12 @@ const lessonOverviewFixture = (
       {
         hint: "Main clause is the most powerful of the clauses.",
         active: false,
+        questionStem: [
+          {
+            text: "What is a main clause?",
+            type: "text",
+          },
+        ],
         answers: {
           "multiple-choice": [
             {
@@ -124,12 +145,7 @@ const lessonOverviewFixture = (
           "Correct! A main clause can form a simple sentence by itself.",
         questionId: 985,
         questionUid: "QUES-EKUYT-EE985",
-        questionStem: [
-          {
-            text: "What is a **main clause**?",
-            type: "text",
-          },
-        ],
+
         questionType: "multiple-choice",
       },
       {
@@ -176,33 +192,7 @@ const lessonOverviewFixture = (
           },
           {
             type: "image",
-            image_object: {
-              url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-              tags: ["forest", "plant", "tree"],
-              type: "upload",
-              bytes: 739344,
-              width: 1280,
-              format: "jpg",
-              height: 852,
-              version: 1687374653,
-              duration: null,
-              metadata: [],
-              public_id: "Trees",
-              created_at: "2023-06-21T19:10:53Z",
-              created_by: {
-                id: "de2910af8038af9b8621cf9c751113",
-                type: "user",
-              },
-              secure_url:
-                "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-              access_mode: "public",
-              uploaded_by: {
-                id: "de2910af8038af9b8621cf9c751113",
-                type: "user",
-              },
-              resource_type: "image",
-              access_control: [],
-            },
+            image_object,
           },
         ],
         questionType: "multiple-choice",
@@ -216,33 +206,7 @@ const lessonOverviewFixture = (
               answer: [
                 {
                   type: "image",
-                  image_object: {
-                    url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    tags: ["forest", "plant", "tree"],
-                    type: "upload",
-                    bytes: 739344,
-                    width: 1280,
-                    format: "jpg",
-                    height: 852,
-                    version: 1687374653,
-                    duration: null,
-                    metadata: [],
-                    public_id: "Trees",
-                    created_at: "2023-06-21T19:10:53Z",
-                    created_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    secure_url:
-                      "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    access_mode: "public",
-                    uploaded_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    resource_type: "image",
-                    access_control: [],
-                  },
+                  image_object,
                 },
                 {
                   text: "Trees grow from seeds.",
@@ -255,33 +219,7 @@ const lessonOverviewFixture = (
               answer: [
                 {
                   type: "image",
-                  image_object: {
-                    url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    tags: ["forest", "plant", "tree"],
-                    type: "upload",
-                    bytes: 739344,
-                    width: 1280,
-                    format: "jpg",
-                    height: 852,
-                    version: 1687374653,
-                    duration: null,
-                    metadata: [],
-                    public_id: "Trees",
-                    created_at: "2023-06-21T19:10:53Z",
-                    created_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    secure_url:
-                      "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    access_mode: "public",
-                    uploaded_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    resource_type: "image",
-                    access_control: [],
-                  },
+                  image_object,
                 },
                 {
                   text: "Trees grow from something different to seeds.",
@@ -294,33 +232,7 @@ const lessonOverviewFixture = (
               answer: [
                 {
                   type: "image",
-                  image_object: {
-                    url: "http://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    tags: ["forest", "plant", "tree"],
-                    type: "upload",
-                    bytes: 739344,
-                    width: 1280,
-                    format: "jpg",
-                    height: 852,
-                    version: 1687374653,
-                    duration: null,
-                    metadata: [],
-                    public_id: "Trees",
-                    created_at: "2023-06-21T19:10:53Z",
-                    created_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    secure_url:
-                      "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
-                    access_mode: "public",
-                    uploaded_by: {
-                      id: "de2910af8038af9b8621cf9c751113",
-                      type: "user",
-                    },
-                    resource_type: "image",
-                    access_control: [],
-                  },
+                  image_object,
                 },
                 {
                   text: "Trees are put in the ground by people.",
@@ -375,6 +287,12 @@ const lessonOverviewFixture = (
       {
         hint: "A Horse chestnut tree grows from a conker.",
         active: false,
+        questionStem: [
+          {
+            text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
+            type: "text",
+          },
+        ],
         answers: {
           order: [
             {
@@ -410,12 +328,7 @@ const lessonOverviewFixture = (
         feedback: "Correct! Trees do grow from seeds.",
         questionId: 20,
         questionUid: "QUES-CKPSN-KFF20",
-        questionStem: [
-          {
-            text: "Put the following events in the order in which they happened, according to William of Poitiers. Start with the earliest event.",
-            type: "text",
-          },
-        ],
+
         questionType: "order",
       },
       {
