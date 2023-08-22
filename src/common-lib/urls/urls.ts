@@ -17,17 +17,16 @@ const reportError = errorReporter("urls.ts");
 
 /**
  * type pattern below is to allow any string value whilst offering autocomplete
- * on a union type specified. E.g. type A = "foo" | "bar" | OrString would
+ * on a union type specified. E.g. type A =  OrString<"foo" | "bar"> would
  * allow strings, but would autocomplete with "foo", "bar"
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-type OrString = string & {};
+type OrString<T extends string> = T | (string & Record<never, never>);
 
 export type OakPageType = keyof OakPages;
 export type OakHref = ReturnType<OakPages[OakPageType]["resolveHref"]>;
 
-export type MaybeOakHref = OakHref | OrString;
-export type MaybeOakPageType = OakPageType | OrString;
+export type MaybeOakHref = OrString<OakHref>;
+export type MaybeOakPageType = OrString<OakPageType>;
 
 export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
@@ -153,7 +152,7 @@ type LegalLinkProps = {
    * string, but the assumption is that the slugs will not be changing from
    * their current values:
    */
-  legalSlug: "privacy-policy" | "terms-and-conditions" | OrString;
+  legalSlug: OrString<"privacy-policy" | "terms-and-conditions">;
 };
 type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
