@@ -8,7 +8,7 @@ import ProgrammesListingPage, {
 import { mockSeoResult } from "../../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../../__helpers__/renderWithSeo";
-import { programmeListingFixture } from "../../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { tieredProgrammeListingFixture } from "../../../../../../../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 import { ProgrammeListingPageData } from "../../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const render = renderWithProviders();
@@ -17,7 +17,7 @@ describe("programmes listing page", () => {
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...programmeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
@@ -25,26 +25,26 @@ describe("programmes listing page", () => {
 
     it("renders the correct number of tiers and tier cards", () => {
       const { getAllByTestId } = render(
-        <ProgrammesListingPage {...programmeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
       );
 
-      expect(getAllByTestId("programme-list-item")).toHaveLength(4);
+      expect(getAllByTestId("programme-list-item")).toHaveLength(2);
     });
   });
 
   describe("SEO and Tracking", () => {
     it("renders the correct SEO details for programmes page", async () => {
       const { seo } = renderWithSeo()(
-        <ProgrammesListingPage {...programmeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
       );
 
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title: "Key stage 3 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "We have resources for tiers: Core, Foundation, Higher",
+        description: "We have resources for tiers: Foundation, Higher",
         ogTitle: "Key stage 3 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "We have resources for tiers: Core, Foundation, Higher",
+        ogDescription: "We have resources for tiers: Foundation, Higher",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
@@ -73,7 +73,7 @@ describe("programmes listing page", () => {
         props: ProgrammeListingPageData;
       };
 
-      expect(testRes.props).toEqual(programmeListingFixture());
+      expect(testRes.props).toEqual(tieredProgrammeListingFixture());
     });
     it("should throw error when not provided context params", async () => {
       await expect(
