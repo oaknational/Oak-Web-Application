@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import { programmeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
 
 import Component from ".";
 
@@ -18,5 +18,5 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const ProgrammeList = Template.bind({});
 
 ProgrammeList.args = {
-  ...programmeListingFixture(),
+  ...tieredProgrammeListingFixture(),
 };

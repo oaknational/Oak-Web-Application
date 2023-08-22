@@ -12,7 +12,6 @@ const subjectListingQuery =
     if (!keyStageSubjects) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-
     return subjectListingSchema.parse(keyStageSubjects);
   };
 

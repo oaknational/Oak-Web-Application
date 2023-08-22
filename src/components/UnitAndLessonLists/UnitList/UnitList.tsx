@@ -1,13 +1,14 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
-import Box from "../../Box";
-import Flex from "../../Flex";
-import Pagination, { PaginationProps } from "../../Pagination";
-import { LI, UL } from "../../Typography";
-import { UnitListingData } from "../../../node-lib/curriculum-api";
-
-import UnitListItem from "./UnitListItem";
-import { UnitListItemProps } from "./UnitListItem/UnitListItem";
+import UnitListItem, {
+  UnitListItemProps,
+} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import Pagination, { PaginationProps } from "@/components/Pagination";
+import { LI, UL } from "@/components/Typography";
+import { UnitListingData } from "@/node-lib/curriculum-api";
+import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
 
 export type Tier = {
   title: string;
@@ -34,19 +35,28 @@ const UnitList: FC<UnitListProps> = (props) => {
           <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
-                <Flex>
-                  {" "}
-                  {item.map((unitOption) => {
-                    return (
-                      <UnitListItem
-                        {...unitOption}
-                        hideTopHeading
-                        index={index + pageSize * (currentPage - 1)}
-                        firstItemRef={index === 0 ? firstItemRef : null}
-                      />
-                    );
-                  })}
-                </Flex>
+                {item.length > 1 ? (
+                  <>
+                    <OptionalityCard
+                      unitOptions={item}
+                      index={index + pageSize * (currentPage - 1)}
+                    />
+                  </>
+                ) : (
+                  <Flex>
+                    {" "}
+                    {item.map((unitOption) => {
+                      return (
+                        <UnitListItem
+                          {...unitOption}
+                          hideTopHeading
+                          index={index + pageSize * (currentPage - 1)}
+                          firstItemRef={index === 0 ? firstItemRef : null}
+                        />
+                      );
+                    })}
+                  </Flex>
+                )}
               </LI>
             ))}
           </UL>

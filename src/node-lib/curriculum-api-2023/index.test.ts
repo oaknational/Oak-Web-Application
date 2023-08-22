@@ -1,4 +1,4 @@
-import searchPageFixture from "./fixtures/searchPage.fixtures";
+import searchPageFixture from "./fixtures/searchPage.fixture";
 
 import curriculumApi from ".";
 

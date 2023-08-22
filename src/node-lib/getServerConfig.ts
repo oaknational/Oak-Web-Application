@@ -58,7 +58,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
   sanityDatasetTag: {
     value: process.env.SANITY_DATASET_TAG,
     envName: "SANITY_DATASET_TAG",
-    required: false,
+    required: true,
     availableInBrowser: false,
     default: "default", // Literally 'default', not a typo
   },
@@ -149,7 +149,6 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
   const {
     value: envValue,
     required,
-    availableInBrowser,
     default: defaultValue,
     envName,
   } = envVarConfig;
@@ -157,7 +156,7 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
   // These secrets shouldn't be making it to the browser, so existence
   // checks will fail.
   if (!isBrowser) {
-    const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
+    const shouldBePresent = required;
     const isPresent = Boolean(envValue || defaultValue);
 
     /**
@@ -189,13 +188,18 @@ type NonNullEnvValue<K extends ConfigKey> = NonNullable<
 >;
 
 const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
-  const { value, default: defaultValue, envName } = envVars[key] || {};
+  const {
+    value,
+    default: defaultValue,
+    envName,
+    required,
+  } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
 
-  // Allow falsy values to be passed, but not `undefined`
-  if (parsedValue !== undefined) {
+  // Allow falsy values to be passed, but not `undefined`, don't allow empty strings on required values.
+  if (parsedValue !== undefined && !(required && parsedValue === "")) {
     return parsedValue;
   }
 

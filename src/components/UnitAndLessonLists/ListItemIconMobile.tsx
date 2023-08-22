@@ -17,6 +17,7 @@ const ListItemIconMobile: FC<ListItemIconMobileProps> = (props) => {
       $justifyContent={"center"}
       $display={["flex", "none"]}
       $alignItems={"center"}
+      $height={"100%"}
       $minHeight={72}
       $minWidth={72}
       $background={background}

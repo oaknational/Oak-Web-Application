@@ -79,32 +79,32 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   };
 };
 
-const unitsData = z.array(
-  z.array(
+const unitData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  nullTitle: z.string(),
+  programmeSlug: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
+  lessonCount: z.number().nullable(),
+  quizCount: z.number().nullable(),
+  unitStudyOrder: z.number(),
+  expired: z.boolean().nullable(),
+  expiredLessonCount: z.number().nullable(),
+  yearTitle: z.string().nullable(),
+  learningThemes: z.array(
     z.object({
-      slug: z.string(),
-      title: z.string(),
-      programmeSlug: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-      lessonCount: z.number().nullable(),
-      quizCount: z.number().nullable(),
-      unitStudyOrder: z.number(),
-      expired: z.boolean().nullable(),
-      expiredLessonCount: z.number().nullable(),
-      learningThemes: z.array(
-        z.object({
-          themeSlug: z.string().nullable(),
-          themeTitle: z.string().nullable(),
-        })
-      ),
     })
-  )
-);
+  ),
+});
+
+const unitsData = z.array(z.array(unitData));
 
 const tiersData = z.array(
   z.object({
@@ -142,35 +142,6 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const lessonListingPaths = z.object({
-  units: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-    })
-  ),
-});
-
-const lessonOverviewPaths = z.object({
-  lessons: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-      lessonSlug: z.string(),
-    })
-  ),
-});
-
-const lessonDownloadPaths = z.object({
-  downloads: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-      lessonSlug: z.string(),
-    })
-  ),
-});
-
 export const lessonOverviewData = baseLessonOverviewData.extend({
   introQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
@@ -205,14 +176,6 @@ export const subjectListingData = z.object({
   subjectsUnavailable: z.array(programmesData),
 });
 
-const unitListingPaths = z.object({
-  programmes: z.array(
-    z.object({
-      programmeSlug: z.string(),
-    })
-  ),
-});
-
 const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
@@ -233,32 +196,19 @@ const unitListingData = z.object({
   ),
 });
 
-const programmeListingPaths = z.object({
-  programmes: z.array(
-    z.object({
-      subjectSlug: z.string(),
-      keyStageSlug: z.string(),
-    })
-  ),
-});
-
 const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
 
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
-export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
-export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
-export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
-export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
-export type ProgrammeListingPaths = z.infer<typeof programmeListingPaths>;
 export type TierListingData = z.infer<typeof tierListingData>;
+export type UnitData = z.infer<typeof unitData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -384,13 +334,6 @@ const curriculumApi = {
         ) || [],
     });
   },
-  unitListingPaths: async () => {
-    const res = await sdk.unitListingPaths();
-    const { programmes } = transformMVCase(res);
-    return unitListingPaths.parse({
-      programmes,
-    });
-  },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
@@ -402,9 +345,11 @@ const curriculumApi = {
           themeSlug: unit.themeSlug,
         },
       ];
+      const nullTitle = unit.title;
       return [
         {
           ...unit,
+          nullTitle,
           learningThemes,
         },
       ];
@@ -444,10 +389,6 @@ const curriculumApi = {
       tiers,
       units: unitsWithVariants,
     });
-  },
-  lessonOverviewPaths: async () => {
-    const res = await sdk.lessonOverviewPaths();
-    return lessonOverviewPaths.parse(transformMVCase(res));
   },
   lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
     const res = await sdk.lessonOverview(...args);
@@ -518,16 +459,9 @@ const curriculumApi = {
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
+      yearTitle: "",
     });
   },
-  lessonListingPaths: async () => {
-    const res = await sdk.lessonListingPaths();
-    const { units = [] } = transformMVCase(res);
-    return lessonListingPaths.parse({
-      units,
-    });
-  },
-
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
@@ -541,10 +475,6 @@ const curriculumApi = {
       lessons,
     });
   },
-  lessonDownloadPaths: async () => {
-    const res = await sdk.lessonDownloadPaths();
-    return lessonDownloadPaths.parse(transformMVCase(res));
-  },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...args);
     const { downloads = [] } = transformMVCase(res);
@@ -556,10 +486,6 @@ const curriculumApi = {
     return lessonDownloadsSchema.parse({
       ...download,
     });
-  },
-  programmeListingPaths: async () => {
-    const res = await sdk.programmeListingPaths();
-    return programmeListingPaths.parse(transformMVCase(res));
   },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
     const res = await sdk.tierListing(...args);
@@ -592,9 +518,11 @@ const curriculumApi = {
         };
       });
 
-    return programmeListingSchema.parse(
-      tierListingToProgrammeListing2013[0]?.programmes
-    );
+    const result = getFirstResultOrWarnOrFail()({
+      results: tierListingToProgrammeListing2013,
+    });
+
+    return programmeListingSchema.parse(result.programmes);
   },
 };
 

@@ -1,15 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-import { OakColorName } from "../../styles/theme";
-import Box from "../Box";
-import Icon, { IconName } from "../Icon";
-import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
-import Svg from "../Svg";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import ScreenReaderOnly from "../ScreenReaderOnly";
-import { FontVariant } from "../../styles/utils/typography";
-import { ResponsiveValues } from "../../styles/utils/responsive";
 import Flex from "../Flex";
 
 import ButtonLabel from "./ButtonLabel";
@@ -22,6 +13,17 @@ import {
   IconPosition,
 } from "./common";
 import { IconFocusUnderline } from "./IconFocusUnderline";
+
+import Box from "@/components/Box";
+import Icon, { IconName } from "@/components/Icon";
+import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
+import Svg from "@/components/Svg";
+import SubjectIcon from "@/components/SubjectIcon";
+import ScreenReaderOnly from "@/components/ScreenReaderOnly";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { OakColorName } from "@/styles/theme";
+import { FontVariant } from "@/styles/utils/typography";
+import { ResponsiveValues } from "@/styles/utils/responsive";
 
 export const ButtonFocusUnderline = styled(Svg)<{
   $color: OakColorName;
@@ -46,6 +48,7 @@ export type ButtonInnerProps = {
   label: string;
   labelSuffixA11y?: string;
   icon?: IconName;
+  subjectIcon?: string;
   iconBackground?: OakColorName;
   $iconPosition: IconPosition;
   shouldHideLabel?: boolean[];
@@ -64,6 +67,7 @@ export type ButtonInnerProps = {
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
+  const { subjectIcon } = props;
   const {
     $iconPosition,
     iconBackground,
@@ -83,16 +87,17 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
   const defactoBackground =
-    (variant === "minimal" || variant === "buttonStyledAsLink") &&
+    ["minimal", "minimalNav", "buttonStyledAsLink"].includes(variant) &&
     iconBackground
       ? iconBackground
       : background;
 
   const underlineColor =
-    theme.buttonFocusUnderlineColors[defactoBackground] || "black";
+    theme.buttonFocusUnderlineColors[defactoBackground] ?? "black";
 
-  icon =
-    isCurrent && currentStyles?.includes("arrow-icon") ? "arrow-right" : icon;
+  if (isCurrent && currentStyles?.includes("arrow-icon")) {
+    icon = "arrow-right";
+  }
 
   /**
    * currentColor is the text/icon color when the button has state "current"
@@ -103,6 +108,15 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * case it should come from theme.
    */
   const currentColor: OakColorName = "oakGrey4";
+  const displayProperty = shouldHideLabel?.map((hide) =>
+    hide ? "none" : "block"
+  );
+  const textDecoration =
+    isCurrent && currentStyles?.includes("text-underline")
+      ? "underline"
+      : undefined;
+  const color =
+    isCurrent && currentStyles?.includes("color") ? currentColor : undefined;
 
   return (
     <>
@@ -113,28 +127,40 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $alignItems="center"
           $mr={$iconPosition === "leading" ? 8 : 0}
           $ml={$iconPosition === "trailing" ? 8 : 0}
-          $color={isCurrent ? currentColor : undefined}
+          $color={color}
         >
           <Icon
             variant="brush"
             name={icon}
             size={iconSize}
-            $background={iconBackground || defaultIconBackground}
+            $background={iconBackground ?? defaultIconBackground}
           />
-          {variant === "minimal" && (
+          {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
         </Flex>
       )}
 
+      {subjectIcon && (
+        <Flex
+          $display={"inline-flex"}
+          $position="relative"
+          $alignItems="center"
+          $color={currentColor}
+        >
+          <SubjectIcon
+            subjectSlug={subjectIcon}
+            $ml={-8}
+            $maxHeight={40}
+            $maxWidth={40}
+          />
+        </Flex>
+      )}
+
       <Box $position={"relative"}>
         <Box
-          $display={shouldHideLabel?.map((hide) => (hide ? "none" : "block"))}
-          $textDecoration={
-            isCurrent && currentStyles?.includes("text-underline")
-              ? "underline"
-              : undefined
-          }
+          $display={displayProperty}
+          $textDecoration={textDecoration}
           $color={
             isCurrent && currentStyles?.includes("color")
               ? currentColor
@@ -148,15 +174,19 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             )}
           </ButtonLabel>
         </Box>
-        {variant === "minimal" && (
+        {(variant === "minimal" || variant === "minimalNav") && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
             name="underline-1"
           />
         )}
       </Box>
-      {variant === "brush" && <ButtonBorders background={background} />}
+      {(variant === "brush" || variant === "brushNav") && (
+        <ButtonBorders background={background} />
+      )}
+
       <ButtonFocusUnderline $color={underlineColor} name="underline-1" />
+
       {variant === "buttonStyledAsLink" && (
         <ButtonStyledAsLinkFocusUnderline $color={"black"} name="underline-1" />
       )}

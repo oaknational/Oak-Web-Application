@@ -3,6 +3,7 @@ import { css } from "styled-components";
 import { NegativePixelSpacing, NullablePixelSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
+import { getRemUnits } from "./getRemUnits";
 
 type PaddingValue = NullablePixelSpacing;
 type PaddingValues = ResponsiveValues<PaddingValue>;
@@ -27,13 +28,8 @@ export type MarginProps = {
   $mb?: MarginValues;
 };
 
-const parse = (value?: unknown) => {
-  switch (typeof value) {
-    case "string":
-      return value;
-    case "number":
-      return `${value}px`;
-  }
+const parse = (value?: PaddingValue | MarginValue) => {
+  return getRemUnits(value);
 };
 const paddingAll = css<{ $pa?: PaddingValues }>`
   ${responsive("padding", (props) => props.$pa, parse)}

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Heading, Hr, UL } from "../../Typography";
+import { Heading, UL } from "../../Typography";
 import MaxWidth from "../../MaxWidth/MaxWidth";
 import QuestionListItem from "../QuestionListItem";
 import { QuizProps } from "../QuizContainer";
@@ -13,10 +13,9 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
 
   return (
     <MaxWidth $maxWidth={[360, 580, 720]} $ph={10}>
-      <Heading $font={"heading-5"} tag={"h3"} $mt={56}>
+      <Heading $font={"heading-5"} tag={"h3"} $mt={56} $mb={56}>
         {questionCount} Questions
       </Heading>
-      <Hr />
       <UL $reset>
         {questions.map((question, i) => {
           return (
