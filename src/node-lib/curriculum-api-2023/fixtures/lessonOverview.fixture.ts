@@ -1,6 +1,9 @@
 import {
   LessonOverviewPageData,
+  MCAnswer,
+  OrderAnswer,
   StemImageObject,
+  StemTextObject,
 } from "../queries/lessonOverview/lessonOverview.schema";
 
 const image_object: StemImageObject["image_object"] = {
@@ -14,6 +17,134 @@ const image_object: StemImageObject["image_object"] = {
   public_id: "Trees",
   version: 1687374653,
 };
+
+export const questionStem: (StemImageObject | StemTextObject)[] = [
+  {
+    text: "What is a main clause?",
+    type: "text",
+  },
+];
+
+export const questionStemWithImage: (StemImageObject | StemTextObject)[] = [
+  {
+    text: "Which of these statements about trees is true?",
+    type: "text",
+  },
+  {
+    type: "image",
+    image_object,
+  },
+];
+
+export const mcqTextAnswers: MCAnswer[] = [
+  {
+    answer: [
+      {
+        text: "a sentence starter followed by a comma",
+        type: "text",
+      },
+    ],
+    answer_is_correct: false,
+  },
+  {
+    answer: [
+      {
+        text: "a group of letters",
+        type: "text",
+      },
+    ],
+    answer_is_correct: false,
+  },
+  {
+    answer: [
+      {
+        text: "a group of words that contains a verb and makes complete sense",
+        type: "text",
+      },
+    ],
+    answer_is_correct: true,
+  },
+  {
+    answer: [
+      {
+        text: "a word that joins",
+        type: "text",
+      },
+    ],
+    answer_is_correct: false,
+  },
+];
+
+export const mcqImageAnswers: MCAnswer[] = [
+  {
+    answer: [
+      {
+        type: "image",
+        image_object,
+      },
+      {
+        text: "Trees grow from seeds.",
+        type: "text",
+      },
+    ],
+    answer_is_correct: true,
+  },
+  {
+    answer: [
+      {
+        type: "image",
+        image_object,
+      },
+      {
+        text: "Trees grow from something different to seeds.",
+        type: "text",
+      },
+    ],
+    answer_is_correct: false,
+  },
+  {
+    answer: [
+      {
+        type: "image",
+        image_object,
+      },
+      {
+        text: "Trees are put in the ground by people.",
+        type: "text",
+      },
+    ],
+    answer_is_correct: false,
+  },
+];
+
+export const orderAnswers: OrderAnswer[] = [
+  {
+    answer: [
+      {
+        text: "Edward the Confessor was exiled in Normandy.",
+        type: "text",
+      },
+    ],
+    correct_order: 1,
+  },
+  {
+    answer: [{ text: "Edward the Confessor became king.", type: "text" }],
+    correct_order: 2,
+  },
+  {
+    answer: [
+      {
+        text: "Harold Godwinson travelled to Normandy.",
+        type: "text",
+      },
+    ],
+    correct_order: 3,
+  },
+  {
+    answer: [{ text: "Edward the Confessor died.", type: "text" }],
+    correct_order: 4,
+  },
+];
 
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>
@@ -95,51 +226,9 @@ const lessonOverviewFixture = (
       {
         hint: "Main clause is the most powerful of the clauses.",
         active: false,
-        questionStem: [
-          {
-            text: "What is a main clause?",
-            type: "text",
-          },
-        ],
+        questionStem,
         answers: {
-          "multiple-choice": [
-            {
-              answer: [
-                {
-                  text: "a sentence starter followed by a comma",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: false,
-            },
-            {
-              answer: [
-                {
-                  text: "a group of letters",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: false,
-            },
-            {
-              answer: [
-                {
-                  text: "a word that joins",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: false,
-            },
-            {
-              answer: [
-                {
-                  text: "a group of words that contains a verb and makes complete sense",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: true,
-            },
-          ],
+          "multiple-choice": mcqTextAnswers,
         },
         feedback:
           "Correct! A main clause can form a simple sentence by itself.",
@@ -185,63 +274,14 @@ const lessonOverviewFixture = (
         feedback: "Correct! Trees do grow from seeds.",
         questionId: 20,
         questionUid: "QUES-CKPSN-KFF20",
-        questionStem: [
-          {
-            text: "Which of these statements about trees is true?",
-            type: "text",
-          },
-          {
-            type: "image",
-            image_object,
-          },
-        ],
+        questionStem: questionStemWithImage,
         questionType: "multiple-choice",
       },
       {
         hint: "A Horse chestnut tree grows from a conker.",
         active: false,
         answers: {
-          "multiple-choice": [
-            {
-              answer: [
-                {
-                  type: "image",
-                  image_object,
-                },
-                {
-                  text: "Trees grow from seeds.",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: true,
-            },
-            {
-              answer: [
-                {
-                  type: "image",
-                  image_object,
-                },
-                {
-                  text: "Trees grow from something different to seeds.",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: false,
-            },
-            {
-              answer: [
-                {
-                  type: "image",
-                  image_object,
-                },
-                {
-                  text: "Trees are put in the ground by people.",
-                  type: "text",
-                },
-              ],
-              answer_is_correct: false,
-            },
-          ],
+          "multiple-choice": mcqImageAnswers,
         },
         feedback: "Correct! Trees do grow from seeds.",
         questionId: 20,
@@ -294,36 +334,7 @@ const lessonOverviewFixture = (
           },
         ],
         answers: {
-          order: [
-            {
-              answer: [
-                {
-                  text: "Edward the Confessor was exiled in Normandy.",
-                  type: "text",
-                },
-              ],
-              correct_order: 1,
-            },
-            {
-              answer: [
-                { text: "Edward the Confessor became king.", type: "text" },
-              ],
-              correct_order: 2,
-            },
-            {
-              answer: [
-                {
-                  text: "Harold Godwinson travelled to Normandy.",
-                  type: "text",
-                },
-              ],
-              correct_order: 3,
-            },
-            {
-              answer: [{ text: "Edward the Confessor died.", type: "text" }],
-              correct_order: 4,
-            },
-          ],
+          order: orderAnswers,
         },
         feedback: "Correct! Trees do grow from seeds.",
         questionId: 20,

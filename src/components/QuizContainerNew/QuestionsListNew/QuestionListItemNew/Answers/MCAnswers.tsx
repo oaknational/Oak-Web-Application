@@ -1,3 +1,5 @@
+import { VisuallyHidden } from "react-aria";
+
 import QuizImage from "../QuizImage";
 import { removeMarkdown } from "../../../quizUtils";
 
@@ -69,11 +71,14 @@ export const MCAnswers = (props: {
                     $ph={8}
                     $alignItems={"center"}
                   >
-                    <Box $minWidth={32}>
+                    <Box $minWidth={32} aria-hidden>
                       <Icon name={"tick"} />
                     </Box>
+                    <VisuallyHidden>
+                      Correct answer: {removeMarkdown(answerItem.text)}
+                    </VisuallyHidden>
 
-                    <Typography $font={["body-2", "body-1"]}>
+                    <Typography $font={["body-2", "body-1"]} aria-hidden>
                       {removeMarkdown(answerItem.text)}
                     </Typography>
                   </Flex>
