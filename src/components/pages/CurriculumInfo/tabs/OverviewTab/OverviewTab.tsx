@@ -11,26 +11,22 @@ import OakLink from "@/components/OakLink/OakLink";
 import Icon from "@/components/Icon/Icon";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
+import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
 
 type OverviewTabProps = {
-  subjectPrinciples: string[];
-  curriculaDesc: string;
-  partnerBio: string;
-  videoGuideDesc: string;
-  subject: { name: string; slug: string };
-  phase: { name: string; slug: string };
+  data: CurriculumOverviewTabData;
+  slug: string;
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
+  const { data, slug } = props;
   const {
     subjectPrinciples,
     curriculaDesc,
     partnerBio,
     videoGuideDesc,
-    subject,
-    phase,
-  } = props;
-  const subjectPhaseSlug = `${subject.slug}-${phase.slug}`;
+    subjectSlug,
+  } = data;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
@@ -70,7 +66,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         >
           <BrushBorders color="lemon50" />
           <SubjectIcon
-            subjectSlug={subject.slug}
+            subjectSlug={subjectSlug}
             $maxHeight={200}
             $maxWidth={200}
             $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
@@ -79,12 +75,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Card>
       </Flex>
 
-      <Card
-        $maxWidth={"100%"}
-        // $ma={"auto"}
-        $background={"aqua30"}
-        $zIndex={"neutral"}
-      >
+      <Card $maxWidth={"100%"} $background={"aqua30"} $zIndex={"neutral"}>
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
           <Heading tag="h2" $font={["heading-5", "heading-6"]}>
@@ -144,7 +135,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               variant="brush"
               label="View unit sequence"
               page={null}
-              href={`/beta/teachers/curriculum/${subjectPhaseSlug}/sequence`}
+              href={`/beta/teachers/curriculum/${slug}/units`}
               $mv={10}
               icon="arrow-right"
               iconBackground="transparent"

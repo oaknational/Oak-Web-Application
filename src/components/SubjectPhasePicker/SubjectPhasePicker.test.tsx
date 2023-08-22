@@ -115,7 +115,7 @@ describe("Component - subject phase picker", () => {
     if (!historyButton) {
       throw new Error("History button not found");
     }
-    userEvent.click(historyButton);
+    await userEvent.click(historyButton);
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
     expect(queryByText("Please select a subject")).toBeNull();
