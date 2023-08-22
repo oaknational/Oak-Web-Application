@@ -1,3 +1,17 @@
+# [1.225.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.2...v1.225.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* and env oakConfig fallback for search api url 2023 ([6cd584f](https://github.com/oaknational/Oak-Web-Application/commit/6cd584f1af4ece0d6b7617a33401560f4a4c5e91))
+* **search api:** only call request for version specified by apiVesrion ([bb3a5e7](https://github.com/oaknational/Oak-Web-Application/commit/bb3a5e70ce733ec282ae7ceeaabb26c883133adb))
+* **search results:** programme_slug ([e060a50](https://github.com/oaknational/Oak-Web-Application/commit/e060a50681f671792c8deb14b63a9647de9ca96a))
+
+
+### Features
+
+* integrate with search-api 2023 ([e53e641](https://github.com/oaknational/Oak-Web-Application/commit/e53e64161f4c4634daa6c72e919b180827ed8b59))
+
 ## [1.224.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.1...v1.224.2) (2023-08-22)
 
 ## [1.224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.0...v1.224.1) (2023-08-22)
