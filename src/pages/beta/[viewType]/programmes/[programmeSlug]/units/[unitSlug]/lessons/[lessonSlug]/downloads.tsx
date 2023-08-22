@@ -54,14 +54,12 @@ import NoResourcesToDownload from "../../../../../../../../../components/Downloa
 import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../../../node-lib/isr";
-import {
-  VIEW_TYPES,
-  ViewType,
-} from "../../../../../../../../../common-lib/urls";
+import { ViewType } from "../../../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../../../../../node-lib/curriculum-api-2023";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -481,16 +479,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { downloads } = await curriculumApi.lessonDownloadPaths();
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    downloads.map((params) => ({
-      params: { viewType, ...params },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };
@@ -499,30 +490,42 @@ export const getStaticProps: GetStaticProps<
   LessonDownloadsPageProps,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context.params");
-  }
-  const { lessonSlug, programmeSlug, unitSlug } = context.params;
+  return getPageProps({
+    page: "downloads::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-  const curriculumData = await curriculumApi.lessonDownloads({
-    lessonSlug,
-    programmeSlug,
-    unitSlug,
-  });
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.lessonDownloads({
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            })
+          : await curriculumApi.lessonDownloads({
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+            });
 
-  if (!curriculumData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
-    props: {
-      curriculumData,
+      const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default LessonDownloadsPage;

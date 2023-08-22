@@ -3,9 +3,9 @@
  */
 import { CookieSetOptions } from "universal-cookie";
 
-import config from "../../../config/browser";
+import getBrowserConfig from "../../getBrowserConfig";
 
-const releaseStage = config.get("releaseStage");
+const releaseStage = getBrowserConfig("releaseStage");
 
 const getDomain = (_releaseStage: string) => {
   switch (_releaseStage) {

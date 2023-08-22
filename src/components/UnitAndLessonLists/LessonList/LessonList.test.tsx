@@ -6,7 +6,11 @@ import LessonList from ".";
 
 const render = renderWithProviders();
 
-const lessonProps = lessonListingFixture().lessons;
+const { lessons, ...unit } = lessonListingFixture();
+const lessonsWithUnitData = lessons.map((lesson) => ({
+  ...lesson,
+  ...unit,
+}));
 
 describe("components/ Lesson List", () => {
   test("it renders the list items", () => {
@@ -16,9 +20,9 @@ describe("components/ Lesson List", () => {
         subjectSlug={"computing"}
         keyStageSlug={"2"}
         headingTag={"h2"}
-        currentPageItems={[]}
+        currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
-        lessons={lessonProps}
+        lessonCount={lessons.length}
       />
     );
 

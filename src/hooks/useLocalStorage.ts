@@ -1,6 +1,8 @@
 // Adapted from:
 // https://usehooks-ts.com/react-hook/use-local-storage
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import isEqual from "lodash/isEqual";
+import { z } from "zod";
 
 import useStableCallback from "./useStableCallback";
 import useEventListener from "./useEventListener";
@@ -35,20 +37,12 @@ const callIfFunction = <T>(value: T) => {
   return value;
 };
 
-/**
- * @TODO we should add zod schema argument to this hook, so that if the value
- * changes shape, it sets the value to null, rather than passing back an
- * incorrect value which could then lead to an unhandled exception.
- * The other option would be to use versioning, in a solution such as
- * indexdb. But that is much more involved and likely beyond what we need.
- * The case fall indexdb will arise when we want to use local storage to
- * facilitate "personalisation" features for visitors who aren't logged in.
- */
 function useLocalStorage<T>(
   key: string,
   initialValue: T,
   // pass an areEqual function to ensure state doesn't get updated too often
-  areEqual?: (a: T, b: T) => boolean
+  areEqual?: (a: T, b: T) => boolean,
+  schema?: z.ZodSchema<T>
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
@@ -60,7 +54,14 @@ function useLocalStorage<T>(
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? (parseJSON(item) as T) : valuePending;
+      const parsedItem = item ? (parseJSON(item) as T) : valuePending;
+
+      // If schema is provided, validate the parsed item
+      if (schema && !schema.safeParse(parsedItem).success) {
+        return valuePending;
+      }
+
+      return parsedItem;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return valuePending;
@@ -79,7 +80,7 @@ function useLocalStorage<T>(
   // ... persists the new value to localStorage.
   const onValueChange: SetValue<T> = (value) => {
     // Prevent build error "window is undefined" but keeps working
-    if (typeof window == "undefined") {
+    if (typeof window === "undefined") {
       console.warn(
         `Tried setting localStorage key “${key}” even though environment is not a client`
       );
@@ -89,7 +90,7 @@ function useLocalStorage<T>(
       // Allow value to be a function so we have the same API as useState
       const newValue = value instanceof Function ? value(currentValue) : value;
 
-      if (newValue === localStorageValue) {
+      if (isEqual(newValue, localStorageValue)) {
         // If newValue is the same as the value currently in local storage, don't update
         return;
       }
@@ -101,6 +102,19 @@ function useLocalStorage<T>(
       ) {
         // If areEqual function is passed, and old/new values are equal, don't update
         return;
+      }
+
+      if (schema) {
+        // If schema is provided, and newValue is invalid, don't update
+        const schemaParseResult = schema.safeParse(newValue);
+
+        if (!schemaParseResult.success) {
+          console.warn(
+            `Error setting localStorage key “${key}”:`,
+            schemaParseResult.error.flatten()
+          );
+          return;
+        }
       }
 
       // Save to local storage
@@ -120,7 +134,7 @@ function useLocalStorage<T>(
 
   useEffect(() => {
     // Store the initialValue if no value present
-    if (readLSValue() === valuePending && typeof initialValue !== undefined) {
+    if (readLSValue() === valuePending && initialValue !== undefined) {
       setValue(initialValue);
     }
   }, [readLSValue, setValue, initialValue]);

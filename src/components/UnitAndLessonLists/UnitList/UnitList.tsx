@@ -1,13 +1,14 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
-import Box from "../../Box";
-import Flex from "../../Flex";
-import Pagination, { PaginationProps } from "../../Pagination";
-import { LI, UL } from "../../Typography";
-import { UnitListingData } from "../../../node-lib/curriculum-api";
-
-import UnitListItem from "./UnitListItem";
-import { UnitListItemProps } from "./UnitListItem/UnitListItem";
+import UnitListItem, {
+  UnitListItemProps,
+} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import Pagination, { PaginationProps } from "@/components/Pagination";
+import { LI, UL } from "@/components/Typography";
+import { UnitListingData } from "@/node-lib/curriculum-api";
+import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
 
 export type Tier = {
   title: string;
@@ -16,18 +17,13 @@ export type Tier = {
 };
 
 type PageSize = { pageSize: number };
-type CurrenPageItemsProps = Omit<UnitListItemProps, "index">;
+type CurrenPageItemsProps = Omit<UnitListItemProps, "index">[];
 
 export type UnitListProps = UnitListingData & {
   currentPageItems: CurrenPageItemsProps[];
   paginationProps: PaginationProps & PageSize;
 };
-/**
- * Contains a list of units
- *
- * ## Usage
- * Used on subject, unit and search results page
- */
+
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
@@ -38,13 +34,29 @@ const UnitList: FC<UnitListProps> = (props) => {
         <>
           <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
-              <LI key={`UnitList-UnitListItem-${item.slug}`}>
-                <UnitListItem
-                  {...item}
-                  hideTopHeading
-                  index={index + pageSize * (currentPage - 1)}
-                  firstItemRef={index === 0 ? firstItemRef : null}
-                />
+              <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
+                {item.length > 1 ? (
+                  <>
+                    <OptionalityCard
+                      unitOptions={item}
+                      index={index + pageSize * (currentPage - 1)}
+                    />
+                  </>
+                ) : (
+                  <Flex>
+                    {" "}
+                    {item.map((unitOption) => {
+                      return (
+                        <UnitListItem
+                          {...unitOption}
+                          hideTopHeading
+                          index={index + pageSize * (currentPage - 1)}
+                          firstItemRef={index === 0 ? firstItemRef : null}
+                        />
+                      );
+                    })}
+                  </Flex>
+                )}
               </LI>
             ))}
           </UL>

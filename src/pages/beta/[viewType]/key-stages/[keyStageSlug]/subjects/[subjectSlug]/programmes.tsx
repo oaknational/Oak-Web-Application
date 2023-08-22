@@ -1,46 +1,35 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
-import curriculumApi, {
-  TierListingData,
-} from "../../../../../../../node-lib/curriculum-api";
+import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../components/AppLayout/AppLayout";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
-import Box from "../../../../../../../components/Box";
-import SubjectTierListing from "../../../../../../../components/SubjectTierListing/SubjectTierListing";
+import SubjectTierListing from "../../../../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../../node-lib/isr";
-import { VIEW_TYPES, ViewType } from "../../../../../../../common-lib/urls";
+import { ViewType } from "../../../../../../../common-lib/urls";
+import getPageProps from "../../../../../../../node-lib/getPageProps";
+import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
+import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-export type ProgrammeListingPageProps = TierListingData;
+import HeaderListing from "@/components/HeaderListing/HeaderListing";
 
-const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
-  const { programmes } = props;
+const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
+  const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
+    props;
+
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
-
-  const keyStageSlug = programmes[0]?.keyStageSlug;
-  const keyStageTitle = programmes[0]?.keyStageTitle;
-  const subjectSlug = programmes[0]?.subjectSlug;
-  const subjectTitle = programmes[0]?.subjectTitle;
-
-  const programmeDetails = {
-    keyStageSlug,
-    keyStageTitle,
-    subjectSlug,
-    subjectTitle,
-  };
 
   const tiersSEO = {
     ...getSeoProps({
       title: `${keyStageTitle} ${subjectTitle} tiers`,
       description: `We have resources for tiers: ${programmes
+        .filter((programme) => programme.tierTitle)
         .map((programme) => programme.tierTitle)
         .join(", ")}`,
     }),
@@ -48,38 +37,38 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageProps> = (props) => {
   };
   return (
     <AppLayout seoProps={tiersSEO}>
-      <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: { page: "home", viewType: "teachers" },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "programme-index",
-                  viewType: "teachers",
-                  subjectSlug,
-                  keyStageSlug,
-                },
-                label: subjectTitle,
-              },
-            ]}
-          />
-        </Box>
-        <SubjectTierListing
-          programmes={programmes}
-          programmeDetails={programmeDetails}
-        />
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: { page: "home", viewType: "teachers" },
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
+              viewType: "teachers",
+              keyStageSlug,
+            },
+            label: keyStageTitle ?? "",
+          },
+          {
+            oakLinkProps: {
+              page: "programme-index",
+              viewType: "teachers",
+              subjectSlug,
+              keyStageSlug,
+            },
+            label: subjectTitle,
+          },
+        ]}
+        background={"lavender30"}
+        subjectIconBackgroundColor={"lavender"}
+        title={subjectTitle}
+        programmeFactor={keyStageTitle}
+        {...props}
+      />
+      <MaxWidth $mt={[56, 72]} $ph={16}>
+        <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>
   );
@@ -96,40 +85,45 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { programmes } = await curriculumApi.programmeListingPaths();
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    programmes.map((programme) => ({
-      params: { viewType, ...programme },
-    }))
-  );
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };
 
 export const getStaticProps: GetStaticProps<
-  ProgrammeListingPageProps,
+  ProgrammeListingPageData,
   URLParams
 > = async (context) => {
-  if (!context.params) {
-    throw new Error("No context params");
-  }
-  const curriculumData = await curriculumApi.tierListing({
-    keyStageSlug: context.params?.keyStageSlug,
-    subjectSlug: context.params?.subjectSlug,
-  });
+  return getPageProps({
+    page: "teachers-programme-listing::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context params");
+      }
 
-  const results = {
-    props: {
-      programmes: curriculumData.programmes,
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.programmeListingPage({
+              keyStageSlug: context.params?.keyStageSlug,
+              subjectSlug: context.params?.subjectSlug,
+            })
+          : await curriculumApi.tierListing({
+              keyStageSlug: context.params?.keyStageSlug,
+              subjectSlug: context.params?.subjectSlug,
+            });
+
+      const results = {
+        props: {
+          ...curriculumData,
+        },
+      };
+
+      return results;
     },
-  };
-
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default ProgrammesListingPage;

@@ -4,48 +4,6 @@ query landingPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
     sort: { _updatedAt: DESC }
     limit: 1
   ) {
-    id: _id
-    slug {
-      current
-    }
-    headerCta {
-      ...CTA
-    }
-    hero {
-      title
-      heading
-      image {
-        ...ImageWithAltText
-      }
-      cta {
-        ...CTA
-      }
-    }
-    content {
-      type: __typename
-      ... on LandingPageTextBlock {
-        bodyPortableText: textRaw
-      }
-      ... on LandingPageFormBlock {
-        title
-        bodyPortableText: textRaw
-        form {
-          title
-        }
-      }
-      ... on LandingPageQuoteBlock {
-        quote {
-          ...Quote
-        }
-      }
-      ... on LandingPageTextAndMediaBlock {
-        textAndMedia {
-          ...TextAndMedia
-        }
-      }
-    }
-    seo {
-      ...Seo
-    }
+    ...LandingPage
   }
 }

@@ -1,7 +1,8 @@
-import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import ActiveFilters from "./ActiveFilters";
+
+import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 export const mockOnChange = jest.fn();

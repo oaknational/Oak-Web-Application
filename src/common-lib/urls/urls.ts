@@ -2,31 +2,31 @@ import { match, compile, MatchFunction } from "path-to-regexp";
 
 import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
-import config from "../../config/browser";
-import { SearchQuery } from "../../context/Search/useSearch";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
 import OakError from "../../errors/OakError";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 import createQueryStringFromObject, {
   UrlQueryObject,
 } from "./createQueryStringFromObject";
 
+import { SearchQuery } from "@/context/Search/search.types";
+
 const reportError = errorReporter("urls.ts");
 
 /**
  * type pattern below is to allow any string value whilst offering autocomplete
- * on a union type specified. E.g. type A = "foo" | "bar" | OrString would
+ * on a union type specified. E.g. type A =  OrString<"foo" | "bar"> would
  * allow strings, but would autocomplete with "foo", "bar"
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-type OrString = string & {};
+type OrString<T extends string> = T | (string & Record<never, never>);
 
 export type OakPageType = keyof OakPages;
 export type OakHref = ReturnType<OakPages[OakPageType]["resolveHref"]>;
 
-export type MaybeOakHref = OakHref | OrString;
-export type MaybeOakPageType = OakPageType | OrString;
+export type MaybeOakHref = OrString<OakHref>;
+export type MaybeOakPageType = OrString<OakPageType>;
 
 export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
@@ -38,7 +38,7 @@ const getCurrentHostname = () => {
   if (isBrowser) {
     return window.location.hostname;
   }
-  return config.get("clientAppBaseUrl");
+  return getBrowserConfig("clientAppBaseUrl");
 };
 export const isOakPage = (page: MaybeOakPageType): page is OakPageType => {
   return Object.keys(OAK_PAGES).includes(page);
@@ -152,7 +152,7 @@ type LegalLinkProps = {
    * string, but the assumption is that the slugs will not be changing from
    * their current values:
    */
-  legalSlug: "privacy-policy" | "terms-and-conditions" | OrString;
+  legalSlug: OrString<"privacy-policy" | "terms-and-conditions">;
 };
 type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
@@ -603,6 +603,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
       meta: props,
     });
     reportError(err);
-    throw err;
+
+    return "/";
   }
 };

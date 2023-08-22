@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 
-import serverConfig from "../../config/server";
+import getServerConfig from "../getServerConfig";
 
 import {
   // AllBlogPostsQuery,
@@ -10,10 +10,10 @@ import {
 } from "./generated/sdk";
 
 export const sanityConfig = {
-  projectId: serverConfig.get("sanityProjectId"),
-  dataset: serverConfig.get("sanityDataset"),
-  datasetTag: serverConfig.get("sanityDatasetTag"),
-  useCDN: serverConfig.get("sanityUseCDN") === "true",
+  projectId: getServerConfig("sanityProjectId"),
+  dataset: getServerConfig("sanityDataset"),
+  datasetTag: getServerConfig("sanityDatasetTag"),
+  useCDN: getServerConfig("sanityUseCDN") === "true",
 };
 
 const getGraphqlEndpoint = (opts: {
@@ -31,7 +31,7 @@ const graphqlAPIUrl = getGraphqlEndpoint(sanityConfig);
 
 export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
   headers: {
-    Authorization: `Bearer ${serverConfig.get("sanityGraphqlApiSecret")}`,
+    Authorization: `Bearer ${getServerConfig("sanityGraphqlApiSecret")}`,
   },
 });
 

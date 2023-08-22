@@ -2,16 +2,23 @@ import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
 //import errorReporter from "../../common-lib/error-reporter";
-import config from "../../config/server";
 import OakError from "../../errors/OakError";
-
-import { getSdk } from "./generated/sdk";
+import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
+import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import {
+  baseLessonOverviewData,
+  lessonOverviewQuizData,
+  lessonQuizInfoData,
+} from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import getServerConfig from "../getServerConfig";
 
 //const reportError = errorReporter("curriculum-api");
+import { getSdk } from "./generated/sdk";
 
-const curriculumApiUrl = config.get("curriculumApiUrl");
-const curriculumApiAuthType = config.get("curriculumApiAuthType");
-const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
+const curriculumApiUrl = getServerConfig("curriculumApiUrl");
+const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
+const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
 
 /**
  * 'Admin secret' for local development only.
@@ -19,7 +26,7 @@ const curriculumApiAuthKey = config.get("curriculumApiAuthKey");
  * cloud authentication (according to Thomas) but locally it's not working so
  * need to use admin-secret instead.
  */
-const curruclumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
+const curriculumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
 
 /**
  * TS complaining when Headers in not typed.
@@ -27,9 +34,9 @@ const curruclumApiAdminSecret = process.env.CURRICULUM_API_ADMIN_SECRET;
 type Headers =
   | { "x-hasura-admin-secret": string }
   | { "x-oak-auth-type": string; "x-oak-auth-key": string };
-const headers: Headers = curruclumApiAdminSecret
+const headers: Headers = curriculumApiAdminSecret
   ? {
-      "x-hasura-admin-secret": curruclumApiAdminSecret,
+      "x-hasura-admin-secret": curriculumApiAdminSecret,
     }
   : {
       "x-oak-auth-type": curriculumApiAuthType,
@@ -72,33 +79,40 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   };
 };
 
-const unitsData = z.array(
-  z.object({
-    slug: z.string(),
-    title: z.string(),
-    programmeSlug: z.string(),
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    themeSlug: z.string().nullable(),
-    themeTitle: z.string().nullable(),
-    lessonCount: z.number().nullable(),
-    quizCount: z.number().nullable(),
-    unitStudyOrder: z.number(),
-    year: z.string(),
-    expired: z.boolean().nullable(),
-    expiredLessonCount: z.number().nullable(),
-  })
-);
+const unitData = z.object({
+  slug: z.string(),
+  title: z.string(),
+  nullTitle: z.string(),
+  programmeSlug: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  themeSlug: z.string().nullable(),
+  themeTitle: z.string().nullable(),
+  lessonCount: z.number().nullable(),
+  quizCount: z.number().nullable(),
+  unitStudyOrder: z.number(),
+  expired: z.boolean().nullable(),
+  expiredLessonCount: z.number().nullable(),
+  yearTitle: z.string().nullable(),
+  learningThemes: z.array(
+    z.object({
+      themeSlug: z.string().nullable(),
+      themeTitle: z.string().nullable(),
+    })
+  ),
+});
+
+const unitsData = z.array(z.array(unitData));
 
 const tiersData = z.array(
   z.object({
     tierSlug: z.string(),
     tierTitle: z.string(),
     tierProgrammeSlug: z.string(),
-    unitCount: z.number().nullable(),
-    lessonCount: z.number().nullable(),
+    unitCount: z.number().nullable().optional(),
+    lessonCount: z.number().nullable().optional(),
   })
 );
 
@@ -128,135 +142,7 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const lessonListingPaths = z.object({
-  units: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-    })
-  ),
-});
-
-const lessonListing = z.object({
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-  lessons: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      expired: z.boolean().nullable(),
-      lessonSlug: z.string(),
-      lessonTitle: z.string(),
-      description: z.string(),
-      keyStageSlug: z.string(),
-      keyStageTitle: z.string(),
-      subjectSlug: z.string(),
-      subjectTitle: z.string(),
-      unitSlug: z.string(),
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-      quizCount: z.number().nullable(),
-      videoCount: z.number().nullable(),
-      presentationCount: z.number().nullable(),
-      worksheetCount: z.number().nullable(),
-      hasCopyrightMaterial: z.boolean(),
-    })
-  ),
-});
-
-const lessonOverviewQuizData = z.array(
-  z.object({
-    keyStageSlug: z.string(),
-    keyStageTitle: z.string(),
-    subjectSlug: z.string(),
-    subjectTitle: z.string(),
-    unitSlug: z.string(),
-    unitTitle: z.string(),
-    order: z.number().nullable().optional(),
-    title: z.string().nullable().optional(),
-    points: z.number().nullable().optional(),
-    required: z.boolean().nullable(),
-    choices: z.array(
-      z.object({
-        choice: z.string(),
-        image: z.string().nullable(),
-      })
-    ),
-    active: z.boolean(),
-    answer: z.union([z.array(z.string()), z.string()]),
-    type: z.string(),
-    quizType: z.string(),
-    images: z
-      .array(
-        z.union([
-          z.object({
-            title: z.string().nullable(),
-            images: z.array(z.string()),
-          }),
-          z.string(),
-        ])
-      )
-      .nullable(),
-    feedbackCorrect: z.string().nullable(),
-    feedbackIncorrect: z.string().nullable(),
-    displayNumber: z.string().nullable(),
-  })
-);
-
-const lessonQuizInfoData = z
-  .object({
-    title: z.string(),
-    questionCount: z.number(),
-  })
-  .nullable();
-
-const lessonOverviewPaths = z.object({
-  lessons: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-      lessonSlug: z.string(),
-    })
-  ),
-});
-
-const lessonDownloadPaths = z.object({
-  downloads: z.array(
-    z.object({
-      programmeSlug: z.string(),
-      unitSlug: z.string(),
-      lessonSlug: z.string(),
-    })
-  ),
-});
-
-const lessonOverviewData = z.object({
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  programmeSlug: z.string(),
-  unitTitle: z.string(),
-  unitSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  coreContent: z.array(z.string().nullable()),
-  contentGuidance: z.string().nullable(),
-  equipmentRequired: z.string().nullable(),
-  presentationUrl: z.string().nullable(),
-  supervisionLevel: z.string().nullable(),
-  worksheetUrl: z.string().nullable(),
-  isWorksheetLandscape: z.boolean(),
-  hasCopyrightMaterial: z.boolean(),
-  videoMuxPlaybackId: z.string().nullable(),
-  videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
-  transcriptSentences: z.array(z.string()).nullable(),
-  hasDownloadableResources: z.boolean().nullable(),
+export const lessonOverviewData = baseLessonOverviewData.extend({
   introQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
   introQuizInfo: lessonQuizInfoData,
@@ -264,38 +150,7 @@ const lessonOverviewData = z.object({
   expired: z.boolean(),
 });
 
-const lessonDownloadsData = z.object({
-  downloads: z.array(
-    z.object({
-      exists: z.boolean(),
-      type: z.enum([
-        "presentation",
-        "intro-quiz-questions",
-        "intro-quiz-answers",
-        "exit-quiz-questions",
-        "exit-quiz-answers",
-        "worksheet-pdf",
-        "worksheet-pptx",
-      ]),
-      label: z.string(),
-      ext: z.string(),
-      forbidden: z.boolean().optional(),
-    })
-  ),
-  programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
-  themeSlug: z.string().nullable(),
-  themeTitle: z.string().nullable(),
-  unitSlug: z.string(),
-  unitTitle: z.string(),
-});
-
-const programmesData = z.object({
+export const programmesData = z.object({
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   keyStageSlug: z.string(),
@@ -308,29 +163,25 @@ const programmesData = z.object({
   programmeSlug: z.string(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable().optional(),
+  lessonCount: z.number().optional(),
+  unitCount: z.number().optional(),
 });
 
 const programmesArray = z.array(programmesData);
 
-const subjectListingData = z.object({
+export const subjectListingData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  programmesAvailable: z.array(programmesData),
-  programmesUnavailable: z.array(programmesData),
-});
-
-const unitListingPaths = z.object({
-  programmes: z.array(
-    z.object({
-      programmeSlug: z.string(),
-    })
-  ),
+  subjects: z.array(programmesData),
+  subjectsUnavailable: z.array(programmesData),
 });
 
 const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
+  examBoardSlug: z.string().nullable(),
+  examBoardTitle: z.string().nullable(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
   tierSlug: z.string().nullable(),
@@ -339,17 +190,8 @@ const unitListingData = z.object({
   units: unitsData,
   learningThemes: z.array(
     z.object({
-      learningThemeTitle: z.string().nullable(),
-      learningThemeSlug: z.string().nullable(),
-    })
-  ),
-});
-
-const programmeListingPaths = z.object({
-  programmes: z.array(
-    z.object({
-      subjectSlug: z.string(),
-      keyStageSlug: z.string(),
+      themeTitle: z.string().nullable(),
+      themeSlug: z.string().nullable(),
     })
   ),
 });
@@ -360,18 +202,13 @@ const tierListingData = z.object({
 
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
-export type LessonListingPaths = z.infer<typeof lessonListingPaths>;
-export type LessonListing = z.infer<typeof lessonListing>;
-export type LessonOverviewPaths = z.infer<typeof lessonOverviewPaths>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
-export type LessonDownloadsData = z.infer<typeof lessonDownloadsData>;
-export type LessonDownloadPaths = z.infer<typeof lessonDownloadPaths>;
+export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
-export type UnitListingPaths = z.infer<typeof unitListingPaths>;
 export type UnitListingData = z.infer<typeof unitListingData>;
-export type ProgrammeListingPaths = z.infer<typeof programmeListingPaths>;
 export type TierListingData = z.infer<typeof tierListingData>;
+export type UnitData = z.infer<typeof unitData>;
 
 const sdk = getSdk(graphqlClient);
 
@@ -471,41 +308,68 @@ const curriculumApi = {
         programmesArray.parse(programmesUnavailable)
       );
 
+    const addCurriculum2023Counts = (
+      programmes: ProgrammesData[] | undefined
+    ) => {
+      return programmes
+        ? programmes.map((programme) => {
+            return {
+              ...programme,
+              lessonCount: programme.nonDuplicateSubjectLessonCount,
+              unitCount: programme.nonDuplicateSubjectUnitCount,
+            };
+          })
+        : [];
+    };
+
     return subjectListingData.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
-      programmesAvailable,
-      programmesUnavailable: filteredUnavailableProgrammeDuplicate || [],
-    });
-  },
-  unitListingPaths: async () => {
-    const res = await sdk.unitListingPaths();
-    const { programmes } = transformMVCase(res);
-    return unitListingPaths.parse({
-      programmes,
+      subjects:
+        addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
+        [],
+      subjectsUnavailable:
+        addCurriculum2023Counts(
+          programmesArray.parse(filteredUnavailableProgrammeDuplicate)
+        ) || [],
     });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
-    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
-    const learningThemes = units.map((unitWithTheme) => ({
-      learningThemeSlug: unitWithTheme?.themeSlug,
-      learningThemeTitle: unitWithTheme?.themeTitle || "No theme",
-    }));
+    const unitsWithVariants = units.map((unit) => {
+      const learningThemes = [
+        {
+          themeTitle: unit.themeTitle,
+          themeSlug: unit.themeSlug,
+        },
+      ];
+      const nullTitle = unit.title;
+      return [
+        {
+          ...unit,
+          nullTitle,
+          learningThemes,
+        },
+      ];
+    });
 
-    // !Refactor index signature to be more specific
+    const programme = getFirstResultOrWarnOrFail()({ results: programmes });
+    const learningThemes = unitsWithVariants.map((unitWithTheme) => ({
+      themeSlug: unitWithTheme[0]?.themeSlug,
+      themeTitle: unitWithTheme[0]?.themeTitle || "No theme",
+    }));
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(
         learningThemes.map((theme) => [JSON.stringify(theme), theme])
       ).values(),
     ].sort((a, b) => {
-      if (a.learningThemeTitle < b.learningThemeTitle) {
+      if (a.themeTitle < b.themeTitle) {
         return -1;
       }
-      if (a.learningThemeTitle > b.learningThemeTitle) {
+      if (a.themeTitle > b.themeTitle) {
         return 1;
       }
       return 0;
@@ -515,18 +379,16 @@ const curriculumApi = {
       programmeSlug: programme?.programmeSlug,
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
+      examBoardSlug: null,
+      examBoardTitle: null,
       subjectSlug: programme?.subjectSlug,
       subjectTitle: programme?.subjectTitle,
       totalUnitCount: programme?.totalUnitCount,
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
       tiers,
-      units,
+      units: unitsWithVariants,
     });
-  },
-  lessonOverviewPaths: async () => {
-    const res = await sdk.lessonOverviewPaths();
-    return lessonOverviewPaths.parse(transformMVCase(res));
   },
   lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
     const res = await sdk.lessonOverview(...args);
@@ -537,6 +399,26 @@ const curriculumApi = {
       results: lessons,
     });
 
+    const lessonKeyLearningPoints = lesson.coreContent?.map(
+      (content: string) => {
+        return { keyLearningPoint: content };
+      }
+    );
+
+    const lessonEquipmentAndResources = lesson.equipmentRequired
+      ? [{ equipment: lesson.equipmentRequired }]
+      : null;
+
+    const lessonContentGuidance = lesson.contentGuidance
+      ? [
+          {
+            contentGuidanceLabel: lesson.contentGuidance,
+            contentGuidanceDescription: lesson.contentGuidance,
+            contentGuidanceArea: "contentGuidanceArea",
+          },
+        ]
+      : null;
+
     const exitQuizInfoSingle = getFirstResultOrNull()({
       results: exitQuizInfo,
     });
@@ -545,21 +427,41 @@ const curriculumApi = {
       results: introQuizInfo,
     });
     return lessonOverviewData.parse({
-      ...lesson,
+      lessonTitle: lesson.lessonTitle,
+      lessonSlug: lesson.lessonSlug,
+      programmeSlug: lesson.programmeSlug,
+      unitSlug: lesson.unitSlug,
+      unitTitle: lesson.unitTitle,
+      keyStageSlug: lesson.keyStageSlug,
+      keyStageTitle: lesson.keyStageTitle,
+      subjectSlug: lesson.subjectSlug,
+      subjectTitle: lesson.subjectTitle,
+      misconceptionAndCommonMistakes: null,
+      lessonEquipmentAndResources: lessonEquipmentAndResources,
+      teacherTips: null,
+      keyLearningPoints: lessonKeyLearningPoints,
+      pupilLessonOutcome: null,
+      lessonKeywords: null,
+      copyRightContent: null,
+      contentGuidance: lessonContentGuidance,
+      supervisionLevel: lesson.supervisionLevel,
+      worksheetUrl: lesson.worksheetUrl,
+      isWorksheetLandscape: lesson.isWorksheetLandscape,
+      presentationUrl: lesson.presentationUrl,
+      hasCopyrightMaterial: lesson.hasCopyrightMaterial,
+      videoMuxPlaybackId: lesson.videoMuxPlaybackId,
+      videoWithSignLanguageMuxPlaybackId:
+        lesson.videoWithSignLanguageMuxPlaybackId,
+      transcriptSentences: lesson.transcriptSentences,
+      hasDownloadableResources: lesson.hasDownloadableResources,
+      expired: lesson.expired,
       introQuizInfo: introQuizInfoSingle,
       exitQuizInfo: exitQuizInfoSingle,
       introQuiz,
       exitQuiz,
+      yearTitle: "",
     });
   },
-  lessonListingPaths: async () => {
-    const res = await sdk.lessonListingPaths();
-    const { units = [] } = transformMVCase(res);
-    return lessonListingPaths.parse({
-      units,
-    });
-  },
-
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...args);
     const { units = [], lessons = [] } = transformMVCase(res);
@@ -568,21 +470,10 @@ const curriculumApi = {
       results: units,
     });
 
-    return lessonListing.parse({
+    return lessonListingSchema.parse({
       ...unit,
-      themeSlug: "theme slug example",
-      themeTitle: "theme-slug-example",
-      tierSlug: null,
-      quizCount: null, // @todo
-      videoCount: null, // @todo
-      presentationCount: null, // @todo
-      worksheetCount: null, // @todo
       lessons,
     });
-  },
-  lessonDownloadPaths: async () => {
-    const res = await sdk.lessonDownloadPaths();
-    return lessonDownloadPaths.parse(transformMVCase(res));
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...args);
@@ -592,19 +483,46 @@ const curriculumApi = {
       results: downloads,
     });
 
-    return lessonDownloadsData.parse({
+    return lessonDownloadsSchema.parse({
       ...download,
     });
-  },
-  programmeListingPaths: async () => {
-    const res = await sdk.programmeListingPaths();
-    return programmeListingPaths.parse(transformMVCase(res));
   },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
     const res = await sdk.tierListing(...args);
     const { programmes = [] } = transformMVCase(res);
 
-    return tierListingData.parse({ programmes });
+    const tierListingToProgrammeListing2013 = tierListingData
+      .parse({ programmes })
+      .programmes.map((programme) => {
+        return {
+          programmes: {
+            subjectSlug: programme.subjectSlug,
+            subjectTitle: programme.subjectTitle,
+            keyStageSlug: programme.keyStageSlug,
+            keyStageTitle: programme.keyStageTitle,
+            programmes: programmes.map((programme) => {
+              return {
+                programmeSlug: programme.programmeSlug,
+                subjectTitle: programme.subjectTitle,
+                unitCount: programme.totalUnitCount,
+                lessonCount: programme.activeLessonCount,
+                tierSlug: programme.tierSlug,
+                tierTitle: programme.tierTitle,
+                tierDisplayOrder: null,
+                examBoardSlug: null,
+                examBoardTitle: null,
+                examBoardDisplayOrder: null,
+              };
+            }),
+          },
+        };
+      });
+
+    const result = getFirstResultOrWarnOrFail()({
+      results: tierListingToProgrammeListing2013,
+    });
+
+    return programmeListingSchema.parse(result.programmes);
   },
 };
 

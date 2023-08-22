@@ -1,12 +1,12 @@
 import { Client as HubspotClient } from "@hubspot/api-client";
 
-import config from "../../config/server";
 import { FormDefinition } from "../../common-lib/forms/FormDefinition";
+import getServerConfig from "../getServerConfig";
 
 import { transformHubspotForm } from "./transformHubspotForm";
 
 const hubspot = new HubspotClient({
-  accessToken: config.get("hubspotFormsAccessToken"),
+  accessToken: getServerConfig("hubspotFormsAccessToken"),
 });
 
 export const getHubspotFormById = async (

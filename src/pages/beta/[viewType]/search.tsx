@@ -8,7 +8,6 @@ import curriculumApi, {
   SearchPageData,
 } from "../../../node-lib/curriculum-api";
 import {
-  decorateWithIsr,
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../node-lib/isr";
@@ -16,7 +15,9 @@ import { getSeoProps } from "../../../browser-lib/seo/getSeoProps";
 import useSearchFilters from "../../../context/Search/useSearchFilters";
 import usePagination from "../../../components/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "../../../components/SearchResults/SearchResults";
-import { VIEW_TYPES, ViewType } from "../../../common-lib/urls";
+import { ViewType } from "../../../common-lib/urls";
+import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
+import getPageProps from "../../../node-lib/getPageProps";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -82,26 +83,32 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const paths = VIEW_TYPES.map((viewType) => ({
-    params: { viewType },
-  }));
-
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };
 
-export const getStaticProps: GetStaticProps<SearchPageProps> = async () => {
-  const curriculumData = await curriculumApi.searchPage();
-  const results = {
-    props: {
-      curriculumData,
+export const getStaticProps: GetStaticProps<SearchPageProps> = async (
+  context
+) => {
+  return getPageProps({
+    page: "teachers-search::getStaticProps",
+    context,
+    getProps: async () => {
+      const curriculumData =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.searchPage()
+          : await curriculumApi.searchPage();
+      const results = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default SearchPage;

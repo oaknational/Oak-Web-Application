@@ -12,11 +12,19 @@ import { UiIconName } from "../../image-data";
 import useIconAnimation from "./useIconAnimation";
 
 export type IconName = UiIconName;
-type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
+export type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
+
+export const isIconVariant = (variant: string): variant is IconVariant =>
+  ["minimal", "brush", "buttonStyledAsLink"].includes(variant);
+
+type VerticalAlign = "baseline" | "bottom";
 
 type RotateValue = 0 | 180;
 type RotateProps = { rotate?: RotateValue };
-type IconOuterWrapperProps = { variant: IconVariant } & SizeProps &
+type IconOuterWrapperProps = {
+  variant: IconVariant;
+  verticalAlign?: VerticalAlign;
+} & SizeProps &
   RotateProps &
   BoxProps;
 const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
@@ -30,6 +38,7 @@ const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
 
   ${size}
   ${box}
+  vertical-align: ${(props) => props.verticalAlign};
 `;
 
 const IconWrapper = styled.span<BoxProps>`
@@ -72,6 +81,7 @@ type IconProps = Partial<IconOuterWrapperProps> &
     width?: IconSize;
     height?: IconSize;
     animateTo?: IconName;
+    verticalAlign?: VerticalAlign;
   };
 /**
  * The `<Icon />` component should be the go to component wherever you seen an
@@ -90,6 +100,7 @@ const Icon: FC<IconProps> = (props) => {
     $color,
     $background,
     animateTo,
+    verticalAlign = "baseline",
     ...rootProps
   } = props;
 
@@ -128,6 +139,7 @@ const Icon: FC<IconProps> = (props) => {
       $minHeight={outerHeight}
       $width={outerWidth}
       $minWidth={outerWidth}
+      verticalAlign={verticalAlign}
       {...rootProps}
     >
       {variant === "brush" && (

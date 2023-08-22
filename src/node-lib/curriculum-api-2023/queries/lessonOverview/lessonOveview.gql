@@ -1,0 +1,40 @@
+query lessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  lesson: published_mv_lesson_overview_4(
+    where: {
+      lessonSlug: { _eq: $lessonSlug }
+      programmeSlug: { _eq: $programmeSlug }
+      unitSlug: { _eq: $unitSlug }
+    }
+  ) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    misconceptionsAndCommonMistakes
+    lessonEquipmentAndResources
+    teacherTips
+    keyLearningPoints
+    pupilLessonOutcome
+    lessonKeywords
+    copyrightContent
+    contentGuidance
+    supervisionLevel
+    worksheetUrl
+    presentationUrl
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
+    starterQuiz
+    exitQuiz
+    yearTitle
+  }
+}

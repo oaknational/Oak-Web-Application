@@ -6,6 +6,7 @@ import UnitListItem from "./UnitListItem";
 
 const props = {
   title: "Numbers and numerals",
+  nullTitle: "Numbers and numerals",
   slug: "numbers-and-numerals",
   themeTitle: "Circles",
   themeSlug: "circles",
@@ -22,6 +23,13 @@ const props = {
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
+  yearTitle: "Year 1",
+  learningThemes: [
+    {
+      themeTitle: "Circles",
+      themeSlug: "circles",
+    },
+  ],
 };
 
 const unitSelected = jest.fn();
@@ -46,7 +54,7 @@ describe("Unit List Item", () => {
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
     const { getByText } = render(<UnitListItem {...props} />);
 
-    const unit = getByText("4. Numbers and numerals");
+    const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
     await user.click(unit);

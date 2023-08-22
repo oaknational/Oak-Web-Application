@@ -43,8 +43,10 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { size, variant, $iconPosition, background } =
     getButtonStylesProps(transformedProps);
 
+  // aria-label overrides label.
+  // If labelSuffixA11y is provided, it is appended to the label.
   const defaultTitle =
-    ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
+    ariaLabel ?? (labelSuffixA11y ? `${label} ${labelSuffixA11y}` : label);
 
   return (
     <Link {...nextLinkProps} passHref legacyBehavior>
@@ -61,6 +63,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         disabled={disabled}
         // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
         aria-disabled={disabled}
+        tabIndex={disabled ? -1 : undefined}
       >
         <ButtonInner
           label={label}

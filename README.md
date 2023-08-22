@@ -35,27 +35,27 @@ Other documentation can be found in standalone READMEs:
 
 ## Getting started
 
-First, run the following to create a local environment file:
+Create an environment configuration file by running:
 
 ```bash
-cp .env.test .env.development.local
+cp .env.example .env
 ```
 
-and fill in any values, if required, by asking another member of the team.
+Now populate the new file, asking a colleague for the values.
 
-Next, run:
+Now install dependencies
 
 ```bash
-touch .env
+npm install
 ```
-
-to create an environment file containing secret manager services and the Oak config location. See [here](https://www.notion.so/oaknationalacademy/How-to-set-up-OWA-21ae880e58bb40bfaaa289030e984abd?pvs=4) for further details.
 
 Then, run the development server:
 
 ```bash
-npm run dev 
+npm run dev
 ```
+
+If successful two further config files `.env.development.local` and `.env.local` will have been automatically generated. You can access the running web app on `http://localhost:3000`
 
 ## Automatic Checks
 
