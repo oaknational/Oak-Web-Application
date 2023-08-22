@@ -61,12 +61,11 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       <P $color={"black"} $mb={16} $font={"heading-7"}>
         Select key stage
       </P>
-      <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8}>
+      <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8} $gap={24}>
         {keyStages.map((keyStage) => (
           <LI
-            $width={"100%"}
+            $width={[64, 96]}
             key={`key-stage:${keyStage.title}`}
-            $mr={24}
             aria-label={keyStage.title}
           >
             <KeypadLink {...keyStage} />
