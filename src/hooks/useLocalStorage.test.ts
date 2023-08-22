@@ -1,8 +1,13 @@
 import { renderHook, act } from "@testing-library/react";
+import { z } from "zod";
 
 import "../__tests__/__helpers__/LocalStorageMock";
 
 import useLocalStorage from "./useLocalStorage";
+
+const consoleWarnSpy = jest
+  .spyOn(console, "warn")
+  .mockImplementation(() => null);
 
 describe("useLocalStorage()", () => {
   beforeEach(() => {
@@ -101,5 +106,35 @@ describe("useLocalStorage()", () => {
     });
 
     expect(B.current[0]).toBe("edited");
+  });
+
+  test("doesn't update if schema parse fails setting", () => {
+    const { result } = renderHook(() =>
+      useLocalStorage("key", "value", (a, b) => a === b, z.string())
+    );
+
+    act(() => {
+      const setState = result.current[1];
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      setState(49);
+    });
+
+    expect(result.current[0]).toBe("value");
+    expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("updates if schema parse succeeds", () => {
+    const { result } = renderHook(() =>
+      useLocalStorage("key", "value", (a, b) => a === b, z.string())
+    );
+
+    act(() => {
+      const setState = result.current[1];
+      setState("49");
+    });
+
+    expect(result.current[0]).toBe("49");
+    expect(consoleWarnSpy).toHaveBeenCalledTimes(0);
   });
 });

@@ -132,9 +132,16 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
-  searchApiUrl: {
+  searchApiUrl2020: {
     value: process.env.NEXT_PUBLIC_SEARCH_API_URL,
     envName: "NEXT_PUBLIC_SEARCH_API_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
+  searchApiUrl2023: {
+    value: process.env.NEXT_PUBLIC_SEARCH_API_URL_2023,
+    envName: "NEXT_PUBLIC_SEARCH_API_URL_2023",
     required: true,
     availableInBrowser: true,
     default: null,
@@ -318,13 +325,21 @@ type NonNullEnvValue<K extends ConfigKey> = NonNullable<
 >;
 
 const getBrowserConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
-  const { value, default: defaultValue, envName } = envVars[key] || {};
+  const {
+    value,
+    default: defaultValue,
+    envName,
+    required,
+    availableInBrowser,
+  } = envVars[key] || {};
 
   // Without parsing, undefined gets stringified as "undefined"
   const parsedValue = parseValue(value);
 
-  // Allow falsy values to be passed, but not `undefined`
-  if (parsedValue !== undefined) {
+  const shouldBePresent = required && (isBrowser ? availableInBrowser : true);
+
+  // Allow falsy values to be passed, but not `undefined`, don't allow empty strings for values that should be present.
+  if (parsedValue !== undefined && !(shouldBePresent && parsedValue === "")) {
     return parsedValue;
   }
 

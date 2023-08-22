@@ -1,32 +1,9 @@
-import { SearchPageData } from "../../node-lib/curriculum-api";
-
-import { SearchQuery, SetSearchQuery } from "./useSearch";
-
-export type KeyStage = SearchPageData["keyStages"][number];
-export type Subject = SearchPageData["subjects"][number];
-export type ContentType = {
-  slug: "lesson" | "unit";
-  title: "Lessons" | "Units";
-};
-
-export type UseSearchFiltersProps = {
-  allKeyStages: KeyStage[];
-  allSubjects: SearchPageData["subjects"];
-  allContentTypes: ContentType[];
-  setQuery: SetSearchQuery;
-  query: SearchQuery;
-};
-
-export type CheckBoxProps = {
-  onChange: () => void;
-  checked: boolean;
-};
-
-export type UseSearchFiltersReturnType = {
-  subjectFilters: (Subject & CheckBoxProps)[];
-  keyStageFilters: (KeyStage & CheckBoxProps)[];
-  contentTypeFilters: (ContentType & CheckBoxProps)[];
-};
+import {
+  SetSearchQuery,
+  SearchQuery,
+  UseSearchFiltersProps,
+  UseSearchFiltersReturnType,
+} from "./search.types";
 
 const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,

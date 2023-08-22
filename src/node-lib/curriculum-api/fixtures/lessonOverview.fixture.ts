@@ -13,6 +13,7 @@ const lessonOverviewFixture = (
     subjectTitle: "Maths",
     unitTitle: "Maths unit",
     unitSlug: "maths-unit",
+    yearTitle: "year 11",
     keyLearningPoints: [
       { keyLearningPoint: "Lesson" },
       { keyLearningPoint: "learning" },
@@ -29,7 +30,7 @@ const lessonOverviewFixture = (
     hasCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
-    transcriptSentences: null,
+    transcriptSentences: ["this is a sentence", "this is another sentence"],
     hasDownloadableResources: true,
     introQuiz: [
       {

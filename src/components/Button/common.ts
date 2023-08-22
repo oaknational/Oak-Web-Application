@@ -4,15 +4,20 @@ import {
   AnchorHTMLAttributes,
 } from "react";
 
-import { OakColorName } from "../../styles/theme";
-import { PixelSpacing, PropsWithTheme } from "../../styles/theme/types";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import getTextColorForBackground from "../../styles/themeHelpers/getTextColorForBackground";
-import { OpacityProps } from "../../styles/utils/opacity";
-import { MarginProps } from "../../styles/utils/spacing";
-import { IconName } from "../Icon";
+import { OakColorName } from "@/styles/theme";
+import { PixelSpacing, PropsWithTheme } from "@/styles/theme/types";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import getTextColorForBackground from "@/styles/themeHelpers/getTextColorForBackground";
+import { OpacityProps } from "@/styles/utils/opacity";
+import { MarginProps } from "@/styles/utils/spacing";
+import { IconName } from "@/components/Icon";
 
-export type ButtonVariant = "brush" | "minimal" | "buttonStyledAsLink";
+export type ButtonVariant =
+  | "brush"
+  | "brushNav"
+  | "minimal"
+  | "minimalNav"
+  | "buttonStyledAsLink";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large";
@@ -56,6 +61,18 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
+  "small-minimalNav-button": {
+    height: 44,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 10,
+  },
+  "large-minimalNav-button": {
+    height: 50,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 10,
+  },
   "small-buttonStyledAsLink-button": {
     height: 30,
     iconOuterHeight: 30,
@@ -80,6 +97,18 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 10,
   },
+  "small-brushNav-button": {
+    height: 44,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 10,
+  },
+  "large-brushNav-button": {
+    height: 50,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 10,
+  },
   "small-minimal-icon-button": {
     height: 20,
     iconOuterHeight: 20,
@@ -87,6 +116,18 @@ const BUTTON_CONFIGS: Record<
     paddingH: 0,
   },
   "large-minimal-icon-button": {
+    height: 30,
+    iconOuterHeight: 30,
+    iconInnerHeight: 30,
+    paddingH: 0,
+  },
+  "small-minimalNav-icon-button": {
+    height: 20,
+    iconOuterHeight: 20,
+    iconInnerHeight: 20,
+    paddingH: 0,
+  },
+  "large-minimalNav-icon-button": {
     height: 30,
     iconOuterHeight: 30,
     iconInnerHeight: 30,
@@ -111,6 +152,18 @@ const BUTTON_CONFIGS: Record<
     paddingH: 0,
   },
   "large-brush-icon-button": {
+    height: 36,
+    iconOuterHeight: 36,
+    iconInnerHeight: 30,
+    paddingH: 0,
+  },
+  "small-brushNav-icon-button": {
+    height: 30,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 0,
+  },
+  "large-brushNav-icon-button": {
     height: 36,
     iconOuterHeight: 36,
     iconInnerHeight: 30,
@@ -146,8 +199,12 @@ export const getButtonBackground = (
   variant: ButtonVariant,
   disabled?: boolean
 ) => {
-  if (variant === "minimal" || variant === "buttonStyledAsLink") {
-    return "tranparent";
+  if (
+    variant === "minimal" ||
+    variant === "minimalNav" ||
+    variant === "buttonStyledAsLink"
+  ) {
+    return "transparent";
   } else if (variant === "brush" && disabled) {
     return getColorByName("grey6");
   } else {
@@ -158,7 +215,9 @@ export const getButtonColor = (
   background: ButtonBackground,
   variant: ButtonVariant
 ) =>
-  variant === "minimal" || variant === "buttonStyledAsLink"
+  variant === "minimal" ||
+  variant === "buttonStyledAsLink" ||
+  variant === "minimalNav"
     ? "black"
     : getTextColorForBackground(background);
 export const getButtonIconBackground =
@@ -209,12 +268,14 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     variant?: ButtonVariant;
     background?: ButtonBackground;
     icon?: IconName;
+    subjectIcon?: string;
     $iconPosition?: IconPosition;
     iconBackground?: OakColorName;
     size?: ButtonSize;
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
+    $hoverStyles?: string[];
     disabled?: boolean;
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {

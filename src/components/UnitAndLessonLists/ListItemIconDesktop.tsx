@@ -21,6 +21,7 @@ const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
       $alignItems={"center"}
       $minHeight={110}
       $minWidth={130}
+      $height={"100%"}
       $background={background}
       $position={"relative"}
       $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}

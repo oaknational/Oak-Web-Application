@@ -10,6 +10,7 @@ const unitSchema = z.array(
     z.object({
       slug: z.string(),
       title: z.string(),
+      nullTitle: z.string(),
       programmeSlug: z.string(),
       keyStageSlug: z.string(),
       keyStageTitle: z.string(),
@@ -22,6 +23,7 @@ const unitSchema = z.array(
       expiredLessonCount: z.number().nullable(),
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
+      yearTitle: z.string().nullable(),
       learningThemes: z.array(learningThemesSchema),
     })
   )

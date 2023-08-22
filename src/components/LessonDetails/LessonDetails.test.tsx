@@ -8,18 +8,31 @@ describe("LessonDetails component", () => {
     { misconception: "misconception", response: "response" },
   ];
   const keyWords = [{ keyword: "keyword", description: "description" }];
+  const equipmentAndResources = [{ equipment: "equipment" }];
+  const contentGuidance = [
+    {
+      contentGuidanceLabel: "content guidance",
+      contentGuidanceDescription: "content guidance",
+      contentGuidanceArea: "content guidance area",
+    },
+  ];
+  const supervisionLevel = "supervision level";
 
-  it("should render Lesson details", () => {
+  const teacherTips = [{ teacherTip: "test teacher tip" }];
+  it("it should not render its own title", () => {
     const { getByText } = renderWithTheme(
       <LessonDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
-    const componentTitle = getByText("Lesson details");
-    expect(componentTitle).toBeInTheDocument();
+    expect(() => getByText("Lesson details")).toThrow();
   });
 
   it("should render KeyLearningPoints component with key learning points", () => {
@@ -28,6 +41,10 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -41,6 +58,10 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -54,6 +75,10 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={null}
         keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -67,6 +92,10 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
@@ -80,10 +109,70 @@ describe("LessonDetails component", () => {
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={null}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
       />
     );
 
     const componentTitle = queryByText("Key words");
     expect(componentTitle).not.toBeInTheDocument();
+  });
+
+  it("should render TeacherTips component with keywords", () => {
+    const { getByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
+      />
+    );
+
+    const keyWordsComponent = getByText("Teacher tip");
+    expect(keyWordsComponent).toBeInTheDocument();
+  });
+
+  it("should not render TeacherTips when passed null/undefined", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={null}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
+      />
+    );
+
+    const componentTitle = queryByText("Teacher tips");
+    expect(componentTitle).not.toBeInTheDocument();
+  });
+
+  it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
+    const { queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={null}
+        contentGuidance={null}
+        supervisionLevel={undefined}
+      />
+    );
+
+    const equipmentTitle = queryByText("Equipment");
+    const contentGuidanceTitle = queryByText("Content guidance");
+    const supervisionLevelTitle = queryByText("supervision");
+
+    expect(equipmentTitle).not.toBeInTheDocument();
+    expect(contentGuidanceTitle).not.toBeInTheDocument();
+    expect(supervisionLevelTitle).not.toBeInTheDocument();
   });
 });
