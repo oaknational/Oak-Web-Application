@@ -24,7 +24,8 @@ module.exports = {
     [
       "@semantic-release/exec",
       {
-        prepareCmd: "node ./scripts/release/change_sonarcloud_project_version.js v${nextRelease.version}",
+        prepareCmd:
+          "node ./scripts/release/change_sonarcloud_project_version.js v${nextRelease.version}",
       },
     ],
     // Commit the change log and the updated SonarCloud project version number.

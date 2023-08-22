@@ -1,3 +1,5 @@
+## [1.224.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.1...v1.224.2) (2023-08-22)
+
 ## [1.224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.0...v1.224.1) (2023-08-22)
 
 
