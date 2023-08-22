@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { BreadcrumbJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Icon from "../Icon";
 import UL from "../Typography/UL";
-import ellipsis from "../../styles/ellipsis";
 import OakLink from "../OakLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "../../common-lib/urls";
+
+import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`
   display: flex;

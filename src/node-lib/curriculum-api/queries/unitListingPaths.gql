@@ -1,5 +1,0 @@
-query unitListingPaths {
-  mv_programmes: mv_programmes_7 {
-    programmeSlug: programme_slug
-  }
-}

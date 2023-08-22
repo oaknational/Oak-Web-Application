@@ -8,12 +8,12 @@
 import React, { ElementType, ReactElement, ReactNode } from "react";
 import {
   render,
-  renderHook,
   RenderOptions,
   RenderHookOptions,
   RenderHookResult,
   queries,
   Queries,
+  renderHook,
 } from "@testing-library/react";
 import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 import { ThemeProvider } from "styled-components";

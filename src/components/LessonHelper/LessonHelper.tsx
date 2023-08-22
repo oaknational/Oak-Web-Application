@@ -1,43 +1,57 @@
 import React, { FC } from "react";
 
-import Card from "../Card";
-import { GridArea } from "../Grid";
-import Icon, { IconName } from "../Icon";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Typography, { Heading } from "../Typography";
+import Box from "@/components/Box";
+import Grid, { GridArea } from "@/components/Grid";
+import LessonRequirements, {
+  Equipment,
+  ContentGuidance,
+} from "@/components/LessonRequirements/LessonRequirements";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
-type HelperProps = {
-  helperIcon: IconName;
-  helperTitle: string;
-  helperDescription: string | null;
+type LessonHelperProps = {
+  equipment: Equipment[] | null | undefined;
+  contentGuidance: ContentGuidance[] | null | undefined;
+  supervisionLevel: string | null | undefined;
 };
 
-const LessonHelper: FC<HelperProps> = ({
-  helperIcon,
-  helperTitle,
-  helperDescription,
+const LessonHelper: FC<LessonHelperProps> = ({
+  equipment,
+  contentGuidance,
+  supervisionLevel,
 }) => {
-  if (!helperDescription) {
-    return null;
-  }
   return (
-    <GridArea $colSpan={[12, 12, 4]}>
-      <Card
-        $background={"teachersPastelYellow"}
-        $flexDirection={"row"}
-        $flexWrap={"wrap"}
-        $alignItems={"center"}
-        $pa={12}
-      >
-        <Heading $font={"heading-5"} tag={"h3"} $ma={12}>
-          <Icon variant="minimal" name={helperIcon} /> {helperTitle}
-        </Heading>
-        <Typography $font={"body-2"} $ma={12}>
-          {helperDescription}
-        </Typography>
-        <BrushBorders color="teachersPastelYellow" />
-      </Card>
-    </GridArea>
+    <Box $background={"aqua50"} $position={"relative"} $width={320}>
+      <Grid $rg={32} $pa={24}>
+        {equipment && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"equipment-required"}
+              heading="Equipment"
+              equipment={equipment}
+            />
+          </GridArea>
+        )}
+        {contentGuidance && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"content-guidance"}
+              heading="Content guidance"
+              contentGuidance={contentGuidance}
+            />
+          </GridArea>
+        )}
+        {supervisionLevel && (
+          <GridArea $colStart={1} $colSpan={[12]}>
+            <LessonRequirements
+              helperIcon={"supervision-level"}
+              heading="Supervision"
+              supervisionLevel={supervisionLevel}
+            />
+          </GridArea>
+        )}
+      </Grid>
+      <BrushBorders color="aqua50" />
+    </Box>
   );
 };
 

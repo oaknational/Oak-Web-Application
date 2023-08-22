@@ -10,7 +10,7 @@ const meta: Meta<typeof Component> = {
       defaultValue: "Click me",
     },
     variant: {
-      defaultValue: "minimal",
+      defaultValue: "brushNav",
     },
     href: {
       defaultValue: "/",
@@ -24,7 +24,7 @@ type Story = StoryObj<typeof Component>;
 export const ButtonAsLink: Story = {
   args: {
     label: "Click me",
-    variant: "minimal",
+    variant: "brushNav",
     href: "/",
   },
 };
