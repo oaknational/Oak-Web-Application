@@ -36,7 +36,7 @@ const keywordsSchema = z.object({
 
 const stemTextObjectSchema = z.object({
   text: z.string(),
-  type: z.enum(["text", "image"]),
+  type: z.literal("text"),
 });
 
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
@@ -52,7 +52,7 @@ const stemImageObjectSchema = z.object({
     public_id: z.string(),
     version: z.number(),
   }),
-  type: z.enum(["image", "text"]),
+  type: z.literal("image"),
 });
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;

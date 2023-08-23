@@ -17,10 +17,23 @@ describe("Match Answers", () => {
     );
 
     const items = getAllByRole("listitem");
+
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      const match_option = matchAnswers[i].match_option[0];
-      const correct_choice = matchAnswers[i].correct_choice[0];
+      const t = matchAnswers[i];
+
+      if (
+        !t?.correct_choice ||
+        !t?.match_option ||
+        !t?.correct_choice[0] ||
+        !t?.match_option[0]
+      ) {
+        throw new Error("Invalid test data");
+      }
+
+      const match_option = t.match_option[0];
+      const correct_choice = t.correct_choice[0];
+
       expect(item).toHaveTextContent(match_option.text);
       expect(item).toHaveTextContent(correct_choice.text);
     }

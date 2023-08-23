@@ -294,7 +294,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     <OverviewPresentation
                       asset={worksheetUrl}
                       title={lessonTitle}
-                      isWorksheetLandscape={isWorksheetLandscape}
+                      isWorksheetLandscape={!!isWorksheetLandscape}
                       isWorksheet={true}
                     />
                   </LessonItemContainer>
