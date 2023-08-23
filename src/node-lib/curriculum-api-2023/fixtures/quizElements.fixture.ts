@@ -15,7 +15,7 @@ export const image_object: StemImageObject["image_object"] = {
     "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
   width: 1280,
   height: 852,
-  metadata: {},
+  metadata: [],
   public_id: "Trees",
   version: 1687374653,
 };

@@ -19,7 +19,7 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
       $position={"relative"}
     >
       <QuestionsListNew {...props} />
-      <BoxBorders gapPosition="rightTop" />
+      <BoxBorders />
     </Flex>
   ) : null;
 };

@@ -20,28 +20,37 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
 
   return (
     <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
-      <QuestionStem questionStem={questionStem} index={index} />
+      <QuestionStem
+        questionStem={questionStem}
+        index={index}
+        showIndex={question.questionType !== "explanatory-text"}
+      />
 
-      {answers["multiple-choice"] && answers["multiple-choice"].length > 0 && (
-        <MCAnswers
-          answers={answers["multiple-choice"]}
-          questionNumber={index}
-        />
-      )}
+      {answers && (
+        <>
+          {answers["multiple-choice"] &&
+            answers["multiple-choice"].length > 0 && (
+              <MCAnswers
+                answers={answers["multiple-choice"]}
+                questionNumber={index}
+              />
+            )}
 
-      {answers["match"] && answers["match"].length > 0 && (
-        <MatchAnswers answers={answers["match"]} questionNumber={index} />
-      )}
+          {answers["match"] && answers["match"].length > 0 && (
+            <MatchAnswers answers={answers["match"]} questionNumber={index} />
+          )}
 
-      {answers["order"] && answers["order"].length > 0 && (
-        <OrderAnswers answers={answers["order"]} questionNumber={index} />
-      )}
+          {answers["order"] && answers["order"].length > 0 && (
+            <OrderAnswers answers={answers["order"]} questionNumber={index} />
+          )}
 
-      {answers["short-answer"] && answers["short-answer"].length > 0 && (
-        <ShortAnswers
-          answers={answers["short-answer"]}
-          questionNumber={index}
-        />
+          {answers["short-answer"] && answers["short-answer"].length > 0 && (
+            <ShortAnswers
+              answers={answers["short-answer"]}
+              questionNumber={index}
+            />
+          )}
+        </>
       )}
     </Flex>
   );

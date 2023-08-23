@@ -27,6 +27,7 @@ export const MCAnswers = (props: {
       $flexDirection={"column"}
       $alignItems={containsImages ? undefined : "start"}
       role="list"
+      $gap={8}
     >
       {answers.map((choice, i) => {
         const encloseAnswer =
@@ -41,7 +42,6 @@ export const MCAnswers = (props: {
             $ph={encloseAnswer ? 10 : 0}
             $pv={encloseAnswer ? 16 : 0}
             $ba={encloseAnswer ? 1 : 0}
-            $mb={encloseAnswer ? 8 : 0}
             $maxWidth={encloseAnswer ? 450 : "100%"}
             $borderStyle="solid"
             $borderColor="black"

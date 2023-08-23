@@ -12,15 +12,17 @@ import {
 export const QuestionStem = ({
   questionStem,
   index,
+  showIndex = true,
 }: {
   questionStem: (StemImageObject | StemTextObject)[];
   index: number;
+  showIndex?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
   return (
     <Flex $flexDirection={"column"} $gap={4}>
       <Flex key="stem-header">
-        {displayNumber && (
+        {showIndex && (
           <Typography $font={["body-2-bold", "body-1-bold"]} $mr={12}>
             {displayNumber}
           </Typography>

@@ -311,7 +311,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainerNew questions={starterQuiz} />
+                    {starterQuiz && (
+                      <QuizContainerNew questions={starterQuiz} />
+                    )}
                   </LessonItemContainer>
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (
@@ -326,7 +328,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainerNew questions={exitQuiz} />
+                    {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
                   </LessonItemContainer>
                 )}
               </Flex>

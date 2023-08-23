@@ -36,7 +36,7 @@ const keywordsSchema = z.object({
 
 const stemTextObjectSchema = z.object({
   text: z.string(),
-  type: z.enum(["text"]),
+  type: z.enum(["text", "image"]),
 });
 
 export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
@@ -48,11 +48,11 @@ const stemImageObjectSchema = z.object({
     url: z.string().url(),
     height: z.number(),
     width: z.number(),
-    metadata: z.object({}),
+    metadata: z.union([z.array(z.any()), z.object({})]),
     public_id: z.string(),
     version: z.number(),
   }),
-  type: z.enum(["image"]),
+  type: z.enum(["image", "text"]),
 });
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
@@ -92,6 +92,7 @@ const answersSchema = z.object({
   match: z.array(matchAnswer).nullable().optional(),
   order: z.array(orderAnswer).nullable().optional(),
   "short-answer": z.array(shortAnswer).nullable().optional(),
+  "explanatory-text": z.null().optional(),
 });
 
 export const lessonOverviewQuizData = z
@@ -99,11 +100,17 @@ export const lessonOverviewQuizData = z
     z.object({
       questionId: z.number(),
       questionUid: z.string(),
-      questionType: z.string(),
-      questionStem: z.array(
-        z.union([stemTextObjectSchema, stemImageObjectSchema])
-      ),
-      answers: answersSchema,
+      questionType: z.enum([
+        "multiple-choice",
+        "match",
+        "order",
+        "short-answer",
+        "explanatory-text",
+      ]),
+      questionStem: z
+        .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+        .min(1),
+      answers: answersSchema.nullable().optional(),
       feedback: z.string(),
       hint: z.string(),
       active: z.boolean(),

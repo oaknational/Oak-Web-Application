@@ -19,7 +19,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
       <Heading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
       </Heading>
-      <Flex $flexDirection={"column"} $gap={32} role="list">
+      <Flex $flexDirection={"column"} $gap={56} role="list">
         {questions.map((question, i) => {
           return (
             <QuestionListItem
