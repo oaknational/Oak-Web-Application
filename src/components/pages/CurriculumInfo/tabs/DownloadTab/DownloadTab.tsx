@@ -2,8 +2,10 @@ import React, { FC } from "react";
 
 import Box from "@/components/Box/Box";
 import { Heading } from "@/components/Typography";
+import { CurriculumDownloadTabData } from "@/node-lib/curriculum-api-2023";
 
 type DownloadTabProps = {
+  data: CurriculumDownloadTabData;
   slug: string;
 };
 

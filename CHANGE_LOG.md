@@ -1,3 +1,66 @@
+# [1.225.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.2...v1.225.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* and env oakConfig fallback for search api url 2023 ([6cd584f](https://github.com/oaknational/Oak-Web-Application/commit/6cd584f1af4ece0d6b7617a33401560f4a4c5e91))
+* **search api:** only call request for version specified by apiVesrion ([bb3a5e7](https://github.com/oaknational/Oak-Web-Application/commit/bb3a5e70ce733ec282ae7ceeaabb26c883133adb))
+* **search results:** programme_slug ([e060a50](https://github.com/oaknational/Oak-Web-Application/commit/e060a50681f671792c8deb14b63a9647de9ca96a))
+
+
+### Features
+
+* integrate with search-api 2023 ([e53e641](https://github.com/oaknational/Oak-Web-Application/commit/e53e64161f4c4634daa6c72e919b180827ed8b59))
+
+## [1.224.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.1...v1.224.2) (2023-08-22)
+
+## [1.224.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.0...v1.224.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* correct syntax in update_pr_description conditional ([316be3c](https://github.com/oaknational/Oak-Web-Application/commit/316be3cff1dce39de23964384d3afcd9b03a0712))
+
+# [1.224.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.2...v1.224.0) (2023-08-22)
+
+
+### Bug Fixes
+
+* **curric:** update api calls and queries ([ee852ae](https://github.com/oaknational/Oak-Web-Application/commit/ee852aeacdf758c1a4e2c8b61de7dbe3a6de7947))
+
+
+### Features
+
+* **curric:** added fixtures ([15f5002](https://github.com/oaknational/Oak-Web-Application/commit/15f5002daada05f4b62abfdef2034313d66e2c48))
+* **curric:** added/ updated tests ([f9013c3](https://github.com/oaknational/Oak-Web-Application/commit/f9013c31cab8267a5c00fc621ae692c706033f84))
+* **release:** update the sonarcloud project version when a new release is created ([ebb2f99](https://github.com/oaknational/Oak-Web-Application/commit/ebb2f99d724901b27d813db67bb59375b0bf266e))
+
+## [1.223.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.1...v1.223.2) (2023-08-22)
+
+## [1.223.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.223.0...v1.223.1) (2023-08-22)
+
+# [1.223.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.222.2...v1.223.0) (2023-08-21)
+
+
+### Features
+
+* **programmes:** design fixes ([615d063](https://github.com/oaknational/Oak-Web-Application/commit/615d063bfb5194419da777dea87a92e27240d97a))
+* **programmes:** design fixes ([941d67f](https://github.com/oaknational/Oak-Web-Application/commit/941d67f4989ed520022a0a9e34455ba4298c1de0))
+* **programmes:** fix failing tests ([345bde4](https://github.com/oaknational/Oak-Web-Application/commit/345bde4b23fb7a0cdd5c143f6e634f26fa90d34e))
+* **programmes:** fix failing tests ([4c9a717](https://github.com/oaknational/Oak-Web-Application/commit/4c9a7176a433938d3ed53f37619b76685373256e))
+* **programmes:** prettier fixes ([acc2d20](https://github.com/oaknational/Oak-Web-Application/commit/acc2d20864f6ae2049511c309d4d8b10e9917e9e))
+* **programmes:** update style to match new figma for programmes ([e500c38](https://github.com/oaknational/Oak-Web-Application/commit/e500c38de6287ae0c597935b9ef00903d21eb8dd))
+
+## [1.222.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.222.1...v1.222.2) (2023-08-21)
+
+## [1.222.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.222.0...v1.222.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **local storage hook:** zod schema? parse before updating ([1719f60](https://github.com/oaknational/Oak-Web-Application/commit/1719f6013348e1279bb483428ee68e0e70224ee6))
+* **localstorage:** compare binary expression ([5753b87](https://github.com/oaknational/Oak-Web-Application/commit/5753b87f07101d519cd50db54d45ea679422c28a))
+
 # [1.222.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.221.0...v1.222.0) (2023-08-18)
 
 

@@ -1,14 +1,15 @@
-import constructElasticQuery from "./constructElasticQuery";
-import { createSearchQuery } from "./useSearch";
+import { createSearchQuery } from "../../useSearch";
 
-describe("Search/constructElasticQuery", () => {
+import constructElasticQuery from "./constructElasticQuery";
+
+describe("Search/2020/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
       createSearchQuery({ term: "writing" })
     );
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -56,7 +57,7 @@ describe("Search/constructElasticQuery", () => {
 
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -108,7 +109,7 @@ describe("Search/constructElasticQuery", () => {
 
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
@@ -161,7 +162,7 @@ describe("Search/constructElasticQuery", () => {
     );
     expect(elasticQuery).toEqual({
       from: 0,
-      size: 10000,
+      size: 100,
       query: {
         bool: {
           should: [
