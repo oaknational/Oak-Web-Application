@@ -13,6 +13,7 @@ const subjectCardListItemProps: KeyStageSubject = [
     lessonCount: 4,
     unitCount: 1,
     programmeSlug: "biology-secondary-ks4",
+    programmeCount: 2,
   },
 ];
 
@@ -23,6 +24,7 @@ const subjectCardListItemTrackingProps: KeyStageSubject = [
     lessonCount: 4,
     unitCount: 1,
     programmeSlug: "biology-secondary-ks4",
+    programmeCount: 2,
   },
   {
     subjectSlug: "biology",
@@ -30,6 +32,7 @@ const subjectCardListItemTrackingProps: KeyStageSubject = [
     lessonCount: 4,
     unitCount: 1,
     programmeSlug: "biology-secondary-ks4-higher",
+    programmeCount: 2,
   },
 ];
 

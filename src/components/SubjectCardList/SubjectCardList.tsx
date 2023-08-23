@@ -1,14 +1,14 @@
 import { FC } from "react";
 
-import { SubjectListingPageProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { KeyStageSubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Grid, { GridArea } from "../Grid";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
-export type SubjectCardListProps = Omit<
-  SubjectListingPageProps,
-  "subjectsUnavailable"
-> & {
+export type SubjectCardListProps = {
+  subjects: KeyStageSubject[];
+  keyStageSlug: string;
+  keyStageTitle: string;
   isAvailable: boolean;
 };
 

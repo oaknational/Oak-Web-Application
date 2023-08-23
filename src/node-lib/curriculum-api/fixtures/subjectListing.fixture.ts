@@ -1,5 +1,35 @@
 import { SubjectListingData } from "..";
 
+import { SubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+
+export const subjectListingFixture2023 = (
+  partial?: Partial<SubjectListingPageData>
+): SubjectListingPageData => {
+  return {
+    keyStageSlug: "ks4",
+    keyStageTitle: "Key stage 4",
+    subjects: [
+      {
+        subjectSlug: "biology",
+        subjectTitle: "Biology",
+        programmeSlug: "biology-secondary-ks4",
+        lessonCount: 23,
+        unitCount: 4,
+        programmeCount: 1,
+      },
+      {
+        subjectSlug: "chemistry",
+        subjectTitle: "Chemistry",
+        programmeSlug: "chemistry-secondary-ks4",
+        lessonCount: 23,
+        unitCount: 4,
+        programmeCount: 2,
+      },
+    ],
+    ...partial,
+  };
+};
+
 const subjectListingFixture = (
   partial?: Partial<SubjectListingData>
 ): SubjectListingData => {

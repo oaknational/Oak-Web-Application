@@ -2,41 +2,37 @@ import { FC } from "react";
 
 import { SubjectListingPageProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
+import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
-import SubjectCardList from "../SubjectCardList/SubjectCardList";
+import SubjectCardDouble from "../SubjectCardDouble/SubjectCardDouble";
 import { Heading } from "../Typography";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
-  const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } = props;
+  const { subjects, keyStageSlug, keyStageTitle } = props;
 
   return (
     <Flex $flexDirection={"column"}>
-      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $pt={20} $font={"body-2"}>
-          {subjects.length} subjects
-        </Flex>
-        <Heading $font={"heading-5"} tag={"h2"} $mt={[32, 64]} $mb={30}>
-          All subjects
+      <MaxWidth $ph={[12]}>
+        <Heading $font={"heading-3"} tag={"h1"} $mt={[32, 40]} $mb={40}>
+          {`${keyStageTitle} subjects`}
         </Heading>
-        <SubjectCardList
-          subjects={subjects}
-          keyStageSlug={keyStageSlug}
-          keyStageTitle={keyStageTitle}
-          isAvailable={true}
-        />
-        {subjectsUnavailable && subjectsUnavailable.length > 0 && (
-          <>
-            <Heading $font={"heading-7"} tag={"h6"} $mv={16}>
-              Coming soon
-            </Heading>
-            <SubjectCardList
-              subjects={subjectsUnavailable}
-              isAvailable={false}
-              keyStageSlug={keyStageSlug}
-              keyStageTitle={keyStageTitle}
-            />
-          </>
-        )}
+        <Grid $rg={16} $cg={16} $gridAutoRows={"1fr"} $mb={72}>
+          {subjects.map((subject, i) => {
+            return (
+              <GridArea
+                key={`subject-list-item-${subject.subjectSlug}-${i}`}
+                $colSpan={[12, 6, 3]}
+              >
+                <SubjectCardDouble
+                  subject={subject}
+                  subjectSlug={subject.subjectSlug}
+                  keyStageSlug={keyStageSlug}
+                  keyStageTitle={keyStageTitle}
+                />
+              </GridArea>
+            );
+          })}
+        </Grid>
       </MaxWidth>
     </Flex>
   );
