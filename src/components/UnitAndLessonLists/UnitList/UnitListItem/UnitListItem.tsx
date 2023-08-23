@@ -9,13 +9,13 @@ import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
 import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { getSortedSearchFiltersSelected } from "@/context/Search/helpers";
 import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
 import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
 import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
 import { P } from "@/components/Typography";
+import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],

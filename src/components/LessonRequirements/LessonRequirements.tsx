@@ -32,6 +32,15 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
   if (!contentGuidance && !equipment && !supervisionLevel) {
     return null;
   }
+
+  const removedGuidanceDuplicates = Array.from(
+    new Set(
+      contentGuidance?.map(
+        (guidance: ContentGuidance) => guidance.contentGuidanceLabel
+      )
+    )
+  );
+
   return (
     <Flex $flexDirection={"column"} $justifyContent={"center"} $gap={8}>
       <Flex $flexDirection={"row"} $alignItems={"center"}>
@@ -42,10 +51,10 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
       </Flex>
       {contentGuidance && (
         <UL $reset>
-          {contentGuidance.map((guidance: ContentGuidance) => {
+          {removedGuidanceDuplicates.map((guidance: string) => {
             return (
-              <LI $font={"body-2"} key={guidance.contentGuidanceLabel}>
-                {guidance.contentGuidanceLabel}
+              <LI $font={"body-2"} key={guidance}>
+                {guidance}
               </LI>
             );
           })}

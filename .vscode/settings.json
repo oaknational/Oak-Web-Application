@@ -12,6 +12,7 @@
     "portabletext",
     "posthog",
     "sdlc",
+    "sonarcloud",
     "Testrunner"
   ],
   "deno.enable": true,

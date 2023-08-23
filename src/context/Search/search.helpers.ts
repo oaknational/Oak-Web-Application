@@ -1,12 +1,15 @@
-import { z } from "zod";
+import {
+  KeyStage,
+  LessonSearchHit,
+  UnitSearchHit,
+  SearchHit,
+} from "./search.types";
 
-import errorReporter from "../../common-lib/error-reporter";
-import { LessonListItemProps } from "../../components/UnitAndLessonLists/LessonList/LessonListItem";
-import { UnitListItemProps } from "../../components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
-import OakError from "../../errors/OakError";
-import truthy from "../../utils/truthy";
-
-import { KeyStage } from "./useSearchFilters";
+import errorReporter from "@/common-lib/error-reporter";
+import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/LessonListItem";
+import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import OakError from "@/errors/OakError";
+import truthy from "@/utils/truthy";
 
 const reportError = errorReporter("search/helpers");
 
@@ -73,6 +76,10 @@ const getProgrammeSlug = (
   hit: LessonSearchHit | UnitSearchHit,
   allKeyStages: KeyStage[]
 ) => {
+  if (hit._source.programme_slug) {
+    return hit._source.programme_slug;
+  }
+
   return [
     hit._source.subject_slug,
     hit._source.phase,
@@ -92,7 +99,7 @@ export function getLessonObject(props: {
 }): Omit<
   LessonListItemProps,
   "hideTopHeading" | "trackSearchListItemSelected" | "index" | "hitCount"
-> {
+> | null {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -100,7 +107,7 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-  return {
+  const lessonResult = {
     programmeSlug: getProgrammeSlug(hit, allKeyStages),
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
@@ -109,7 +116,10 @@ export function getLessonObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     subjectTitle: highlightedHit.subject_title?.toString(),
-    unitSlug: highlightedHit.topic_slug?.toString() || "",
+    unitSlug:
+      highlightedHit.unit_slug?.toString() ||
+      highlightedHit.topic_slug?.toString() ||
+      "",
     unitTitle: highlightedHit.topic_title?.toString() || "",
     videoCount: null,
     presentationCount: null,
@@ -118,6 +128,23 @@ export function getLessonObject(props: {
     quizCount: null,
     expired: Boolean(highlightedHit.expired),
   };
+
+  const { unitSlug, programmeSlug, lessonSlug, keyStageSlug, subjectSlug } =
+    lessonResult;
+
+  if (
+    !unitSlug ||
+    !programmeSlug ||
+    !lessonSlug ||
+    !keyStageSlug ||
+    !subjectSlug
+  ) {
+    console.warn(`Search result was omitted due to empty slug`, lessonResult);
+
+    return null;
+  }
+
+  return lessonResult;
 }
 
 export function getUnitObject(props: {
@@ -126,7 +153,7 @@ export function getUnitObject(props: {
 }): Omit<
   UnitListItemProps,
   "hideTopHeading" | "index" | "hitCount" | "expiredLessonCount"
-> {
+> | null {
   const { hit, allKeyStages } = props;
   const { _source, highlight } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -135,7 +162,7 @@ export function getUnitObject(props: {
     allKeyStages,
   });
 
-  return {
+  const unitResult = {
     programmeSlug: getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     nullTitle: highlightedHit.title?.toString(),
@@ -152,79 +179,18 @@ export function getUnitObject(props: {
     expired: Boolean(highlightedHit.expired),
     learningThemes: [{ themeSlug: null, themeTitle: null }],
   };
+
+  const { slug, programmeSlug, keyStageSlug, subjectSlug } = unitResult;
+
+  if (!slug || !programmeSlug || !keyStageSlug || !subjectSlug) {
+    console.warn(`Search result was omitted due to empty slug:`, unitResult);
+
+    return null;
+  }
+
+  return unitResult;
 }
-
-const searchResultsSourceCommon = z.object({
-  id: z.number(),
-  slug: z.string(),
-  title: z.string(),
-  subject_title: z.string(),
-  subject_slug: z.string(),
-  key_stage_title: z.string(),
-  key_stage_slug: z.string(),
-  expired: z.boolean().nullish(),
-  theme_title: z.string().nullish(),
-  tier: z.string().nullish(),
-  phase: z.string().nullish(),
-});
-
-const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({
-  type: z.string(),
-  lesson_description: z.string().nullish(),
-  // topic slug/title are deprecated terms for unit slug/title
-  topic_title: z.string().nullish(),
-  topic_slug: z.string().nullish(),
-  has_copyright_material: z.boolean().nullish(),
-});
-
-const searchResultsSourceUnitSchema = searchResultsSourceCommon.extend({
-  type: z.literal("unit"),
-  year_slug: z.string().nullish(),
-  number_of_lessons_calculated: z.number().nullish(),
-  number_of_lessons_expired: z.number().nullish(),
-});
-
-const searchResultsHighlightLessonSchema = z.object({
-  lesson_description: z.coerce.string(),
-  topic_title: z.coerce.string(),
-});
-
-const searchResultsHighlightUnitSchema = z.object({
-  topic_title: z.coerce.string(),
-});
-
-export const lessonSearchHitSchema = z.object({
-  _id: z.string(),
-  _index: z.string(),
-  _score: z.number(),
-  _ignored: z.array(z.string()).nullish(),
-  _source: searchResultsSourceLessonSchema,
-  highlight: searchResultsHighlightLessonSchema.partial().nullish(),
-});
-export const unitSearchHitSchema = z.object({
-  _id: z.string(),
-  _index: z.string(),
-  _score: z.number(),
-  _source: searchResultsSourceUnitSchema,
-  highlight: searchResultsHighlightUnitSchema.partial().nullish(),
-});
-export const searchResultsHitSchema = z.union([
-  lessonSearchHitSchema,
-  unitSearchHitSchema,
-]);
-export const searchResultsHitsSchema = z.array(searchResultsHitSchema);
-export const searchResultsSchema = z.object({
-  took: z.number(),
-  hits: z.object({
-    hits: z.array(searchResultsHitSchema),
-  }),
-});
-
-export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;
-export type UnitSearchHit = z.infer<typeof unitSearchHitSchema>;
 
 export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
   return x._source.type === "lesson";
 }
-
-export type SearchHit = z.infer<typeof searchResultsHitSchema>;

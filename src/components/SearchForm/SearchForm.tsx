@@ -23,7 +23,7 @@ import {
   StyledInputProps,
 } from "../Input/Input";
 import useAnalytics from "../../context/Analytics/useAnalytics";
-import { getSortedSearchFiltersSelected } from "../../context/Search/helpers";
+import { getSortedSearchFiltersSelected } from "../../context/Search/search.helpers";
 import { SearchSourceValueType } from "../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
