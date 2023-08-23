@@ -6,6 +6,8 @@ import Svg from "../../../Svg";
 import { OakColorName } from "../../../../styles/theme/types";
 import { getBreakpoint } from "../../../../styles/utils/responsive";
 
+import { $selectedStyle } from "@/components/OakLink/OakLink";
+
 const brushBorder = css<{ color: OakColorName }>`
   position: absolute;
   color: ${(props) => getColorByName(props.color)};
@@ -25,6 +27,7 @@ const LEFT_THICKNESS = 8;
 
 const brushBorderTop = css`
   ${brushBorder}
+  ${$selectedStyle}
   height: ${TOP_THICKNESS}px;
   left: 0;
   bottom: calc(100% - 2px);
@@ -32,6 +35,7 @@ const brushBorderTop = css`
 
 const brushBorderRight = css`
   ${brushBorder}
+  ${$selectedStyle}
   width: ${RIGHT_THICKNESS}px;
   top: -${TOP_THICKNESS - 4}px;
   left: calc(100% - 2px);
@@ -40,6 +44,7 @@ const brushBorderRight = css`
 
 const brushBorderBottom = css`
   ${brushBorder}
+  ${$selectedStyle}
   height: ${BOTTOM_THICKNESS}px;
   top: calc(100% - 1px);
   left: 0;
@@ -47,6 +52,7 @@ const brushBorderBottom = css`
 
 const brushBorderLeft = css`
   ${brushBorder}
+  ${$selectedStyle}
   width: ${LEFT_THICKNESS}px;
   bottom: -${10}px;
   right: calc(100% - 1px);
@@ -74,6 +80,7 @@ type BrushBordersProps = {
   color: OakColorName;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
+  isSelected?: boolean;
 };
 /**
  * Presentational component just for the borders for the brush cards.
