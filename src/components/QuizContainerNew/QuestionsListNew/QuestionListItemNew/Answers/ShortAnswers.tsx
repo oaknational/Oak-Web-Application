@@ -1,3 +1,5 @@
+import { VisuallyHidden } from "react-aria";
+
 import { removeMarkdown } from "../../../quizUtils";
 
 import Box from "@/components/Box";
@@ -28,11 +30,15 @@ export const ShortAnswers = ({
               $alignItems={"center"}
               $gap={8}
             >
-              <Box $minWidth={32}>
+              <VisuallyHidden>
+                Correct Answer: {removeMarkdown(shortAnswer.text)}
+              </VisuallyHidden>
+
+              <Box $minWidth={32} aria-hidden>
                 <Icon name={"tick"} />
               </Box>
 
-              <Typography $font={["body-2", "body-1"]}>
+              <Typography $font={["body-2", "body-1"]} aria-hidden>
                 {removeMarkdown(shortAnswer.text)}
               </Typography>
             </Flex>

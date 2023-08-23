@@ -4,7 +4,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mcqImageAnswers,
   mcqTextAnswers,
-} from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 describe("MCAnswers", () => {

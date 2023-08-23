@@ -1,3 +1,5 @@
+import { VisuallyHidden } from "react-aria";
+
 import { removeMarkdown } from "../../../quizUtils";
 
 import Box from "@/components/Box";
@@ -14,7 +16,7 @@ export const MatchAnswers = ({
   questionNumber: number;
 }) => {
   return (
-    <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"}>
+    <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"} role="list">
       {answers.map((item, i) => {
         const match_option = item.match_option[0];
         const correct_choice = item.correct_choice[0];
@@ -28,16 +30,23 @@ export const MatchAnswers = ({
               $ph={8}
               $alignItems={"center"}
               $gap={8}
+              role="listitem"
             >
-              <Box $minWidth={32}>
+              <VisuallyHidden>
+                Correct Answer:
+                {removeMarkdown(match_option.text)},
+                {removeMarkdown(correct_choice.text)}
+              </VisuallyHidden>
+
+              <Box $minWidth={32} aria-hidden>
                 <Icon name={"tick"} />
               </Box>
 
-              <Typography $font={["body-2-bold", "body-1-bold"]}>
+              <Typography $font={["body-2-bold", "body-1-bold"]} aria-hidden>
                 {removeMarkdown(match_option.text)}
               </Typography>
 
-              <Typography $font={["body-2", "body-1"]}>
+              <Typography $font={["body-2", "body-1"]} aria-hidden>
                 - {removeMarkdown(correct_choice.text)}
               </Typography>
             </Flex>
