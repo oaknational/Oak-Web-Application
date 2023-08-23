@@ -19,7 +19,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   signLanguageVideo,
   title,
   transcriptSentences,
-  isVideoPublic
+  isVideoPublic,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);

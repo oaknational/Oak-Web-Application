@@ -16,7 +16,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByTestId } = renderWithTheme(<OverviewVideo {...props} />);
     expect(getByTestId("video-element")).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
     expect(getByText("Show transcript")).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("OverviewVideo", () => {
       video: "video",
       title: "title",
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
     expect(() => getByText("Show transcript")).toThrow();
@@ -51,7 +51,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
 
@@ -66,7 +66,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
 
@@ -82,7 +82,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: "signLanguageVideo",
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
     expect(getByText("Show sign language")).toBeInTheDocument();
@@ -94,7 +94,7 @@ describe("OverviewVideo", () => {
       title: "title",
       transcriptSentences: ["test sentence 1", "test sentence 2"],
       signLanguageVideo: null,
-      isVideoPublic:true,
+      isVideoPublic: true,
     };
     const { getByText } = renderWithTheme(<OverviewVideo {...props} />);
     expect(() => getByText("Show sign language")).toThrow();
