@@ -109,7 +109,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
-    introQuiz,
+    starterQuiz,
     exitQuiz,
     unitTitle,
     unitSlug,
@@ -156,7 +156,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     pageLinks.push({ label: "Worksheet", href: "#worksheet" });
   }
 
-  if (introQuiz && introQuiz.length > 0) {
+  if (starterQuiz && starterQuiz.length > 0) {
     pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
   }
 
@@ -311,7 +311,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    {/* <QuizContainer questions={introQuiz} info={introQuizInfo} /> */}
+                    <QuizContainerNew questions={starterQuiz} />
                   </LessonItemContainer>
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (

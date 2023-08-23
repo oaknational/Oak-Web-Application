@@ -9,7 +9,6 @@ import { programmeListingSchema } from "../curriculum-api-2023/queries/programme
 import {
   baseLessonOverviewData,
   lessonOverviewQuizData,
-  lessonQuizInfoData,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 
@@ -143,10 +142,8 @@ const teachersHomePageData = z.object({
 });
 
 export const lessonOverviewData = baseLessonOverviewData.extend({
-  introQuiz: lessonOverviewQuizData,
-  exitQuiz: lessonOverviewQuizData,
-  introQuizInfo: lessonQuizInfoData,
-  exitQuizInfo: lessonQuizInfoData,
+  // introQuiz: lessonOverviewQuizData,
+  // exitQuiz: lessonOverviewQuizData,
   expired: z.boolean(),
 });
 

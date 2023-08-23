@@ -114,7 +114,7 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-export const lessonOverviewSchema = z.object({
+const baseLessonOverviewSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   programmeSlug: z.string(),
@@ -148,13 +148,16 @@ export const lessonOverviewSchema = z.object({
   hasDownloadableResources: z.boolean().optional().nullable(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
   yearTitle: z.string().nullable().optional(),
+  expired: z.boolean().optional().nullable(),
+});
+
+export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
-  expired: z.boolean().optional().nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
 
 export default lessonOverviewSchema;
 
-export const baseLessonOverviewData = lessonOverviewSchema;
+export const baseLessonOverviewData = baseLessonOverviewSchema;
