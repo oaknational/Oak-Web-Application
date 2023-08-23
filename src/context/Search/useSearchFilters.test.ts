@@ -1,6 +1,7 @@
 import { renderHook, act } from "@testing-library/react";
 
-import useSearchFilters, { UseSearchFiltersProps } from "./useSearchFilters";
+import useSearchFilters from "./useSearchFilters";
+import { UseSearchFiltersProps } from "./search.types";
 
 const setQuery = jest.fn();
 
@@ -42,7 +43,7 @@ describe("useSearchFilters()", () => {
     expect(checked).toBe(false);
   });
   test("'checked' should be true if key stage filter active", () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, keyStages: ["ks1"] },
     };
@@ -64,7 +65,7 @@ describe("useSearchFilters()", () => {
     expect(unitChecked).toBe(false);
   });
   test("'checked' should be true if key stage filter active", () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, contentTypes: ["unit", "lesson"] },
     };
@@ -82,7 +83,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("onChange should remove lesson from query if active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, contentTypes: ["unit", "lesson"] },
     };
@@ -102,7 +103,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("onChange should add lesson from query if not active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, contentTypes: ["unit"] },
     };
@@ -122,7 +123,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("onChange should remove key stage from query if active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, keyStages: ["ks1", "ks3"] },
     };
@@ -141,7 +142,7 @@ describe("useSearchFilters()", () => {
     expect(passedFunction({})).toEqual({ keyStages: ["ks3"] });
   });
   test("onChange should add key stage to query if not active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, keyStages: ["ks1"] },
     };
@@ -168,7 +169,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("'checked' should be true if subject filter active", () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, subjects: ["computing"] },
     };
@@ -182,7 +183,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("onChange should remove subject from query if active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, subjects: ["computing", "english"] },
     };
@@ -202,7 +203,7 @@ describe("useSearchFilters()", () => {
   });
 
   test("onChange should add subject to query if not active", async () => {
-    const withFilterActive = {
+    const withFilterActive: UseSearchFiltersProps = {
       ...props,
       query: { ...props.query, subjects: ["computing"] },
     };
