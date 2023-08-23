@@ -159,7 +159,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       ? storyboardToken.playbackToken
       : undefined,
   };
-  console.log("tokens", tokens);
+  console.log("muxPlaybackid", playbackId);
   return (
     <Flex
       $flexDirection={"column"}
