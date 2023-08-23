@@ -6,11 +6,44 @@ jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml
 
+  # Do a find-and-replace to add a link to the deployment to the PR body
+  update_pr_description:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Filter out storybook deployments and temporarily Netlify deployments
+    if: ${{ (github.event.deployment.ref != 'main') && (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    name: Add deploy URL to PR description
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      - run: npm ci
+
+      - uses: ./.github/actions/ref_from_sha
+        name: Get PR Ref from SHA
+        id: ref_from_sha
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          prNumber: ${{ steps.ref_from_sha.outputs.pr_number }}
+          find: "{owa_deployment_url}"
+          replace: ${{ github.event.deployment_status.environment_url }}
+
   # Run Pa11yCI against a deployment.
   pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Pa11y
     runs-on: ubuntu-latest
 
@@ -27,8 +60,6 @@ jobs:
           cache: "npm"
       # Install.
       - run: npm ci
-        env:
-          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -58,7 +89,7 @@ jobs:
   percy:
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Percy
     runs-on: ubuntu-latest
 
@@ -74,8 +105,6 @@ jobs:
           node-version: 18.x
           cache: "npm"
       - run: npm ci
-        env:
-          NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
 
       - name: Log out URL
         run: echo "${{ github.event.deployment_status.environment_url }}"
@@ -121,63 +150,64 @@ jobs:
           state: ${{ steps.run_percy.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  # TO DO: rework in a framework with first class Browserstack support.
-  # # Run browser e2e tests (engineering) with Playwright on Browserstack.
-  # browser_e2e_eng:
-  #   # Only want to run on success, otherwise it might be "pending", or "failure".
-  #   # Filter out storybook deployments and temporarily Netlify deployments
-  #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook') && !endsWith(github.event.deployment_status.environment_url, 'vercel.app')}}
-  #   name: Browser E2E Eng
-  #   runs-on: ubuntu-latest
+  # Run browser e2e tests (engineering) with WDIO on Browserstack.
+  browser_e2e_eng:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Filter out storybook deployments and temporarily Netlify deployments
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    name: Browser E2E Eng
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-  #     # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-  #     # branch or pull request.
-  #     # https://github.com/actions/cache/issues/319
-  #     - name: Use Node.js
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18.x
-  #         cache: "npm"
-  #     - run: npm ci
-  #       env:
-  #         NEXT_PUBLIC_GRAPHQL_API_URL: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_URL }}
+    steps:
+      - uses: actions/checkout@v3
+      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+      # branch or pull request.
+      # https://github.com/actions/cache/issues/319
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      - run: npm ci
 
-  #     # Get branch name and PR number for deployment so we
-  #     # can send the info to Browserstack to make analysis
-  #     # easier.
-  #     - uses: ./.github/actions/ref_from_sha
-  #       name: Get PR Ref from SHA
-  #       id: ref_from_sha
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+      # # Get branch name and PR number for deployment so we
+      # # can send the info to Browserstack to make analysis
+      # # easier.
+      # - uses: ./.github/actions/ref_from_sha
+      #   name: Get PR Ref from SHA
+      #   id: ref_from_sha
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
 
-  #     - name: print branch name and PR number from sha
-  #       run: |
-  #         echo "${{ steps.ref_from_sha.outputs.branch_name }}"
-  #         echo "${{ steps.ref_from_sha.outputs.pr_number }}"
+      # - name: print branch name and PR number from sha
+      #   run: |
+      #     echo "${{ steps.ref_from_sha.outputs.branch_name }}"
+      #     echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
-  #     # Run Playwright
-  #     - name: run Playwright
-  #       id: run_playwright
-  #       run: npm run playwright:test:ci
-  #       env:
-  #         BASE_URL: ${{ github.event.deployment_status.environment_url }}
-  #         BRANCH_NAME: ${{ steps.ref_from_sha.outputs.branch_name }}
-  #         PR_NUMBER: ${{ steps.ref_from_sha.outputs.pr_number }}
-  #         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-  #         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-  #         CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-  #         CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+      # Run WebdriverIO
+      - name: run WebdriverIO
+        id: run_wdio
+        run: npm run wdio:ci
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          BRANCH_NAME: ${{ github.event.deployment.ref }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
-  #     # Set custom status so results preserved between multiple
-  #     # deployment events from same commit
-  #     - uses: ./.github/actions/custom_statuses
-  #       name: Set Playwright check result
-  #       if: ${{ always() }}
-  #       with:
-  #         description: E2E Browser Eng (${{github.event.deployment_status.environment}})
-  #         state: ${{ steps.run_playwright.outcome }}
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+      # Set custom status so results preserved between multiple
+      # deployment events from same commit
+      - uses: ./.github/actions/custom_statuses
+        name: Set WebdriverIO check result
+        if: ${{ always() }}
+        with:
+          description: E2E Browser Eng (${{github.event.deployment_status.environment}})
+          state: ${{ steps.run_wdio.outcome }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Add a link to the results into the job output.
+      - name: results link
+        if: ${{ always() }}
+        run: echo -e "\n***\nFor more information see https://observability.browserstack.com/ \n***"

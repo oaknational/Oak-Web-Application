@@ -1,36 +1,39 @@
 import { FC } from "react";
 
-import { ProgrammeProps } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { SubjectListingPageProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import SubjectCardList from "../SubjectCardList/SubjectCardList";
 import { Heading } from "../Typography";
 
-const SubjectListingPage: FC<ProgrammeProps> = (props) => {
-  const { programmesBySubjectAvailable, programmesBySubjectUnavailable } =
-    props;
+const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
+  const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } = props;
 
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $pv={20} $font={"body-2"}>
-          {programmesBySubjectAvailable.length} subjects
+        <Flex $pt={20} $font={"body-2"}>
+          {subjects.length} subjects
         </Flex>
-        <Heading $font={"heading-5"} tag={"h5"} $mb={30}>
+        <Heading $font={"heading-5"} tag={"h2"} $mt={[32, 64]} $mb={30}>
           All subjects
         </Heading>
         <SubjectCardList
-          subjects={programmesBySubjectAvailable}
+          subjects={subjects}
+          keyStageSlug={keyStageSlug}
+          keyStageTitle={keyStageTitle}
           isAvailable={true}
         />
-        {programmesBySubjectUnavailable.length > 0 && (
+        {subjectsUnavailable && subjectsUnavailable.length > 0 && (
           <>
             <Heading $font={"heading-7"} tag={"h6"} $mv={16}>
               Coming soon
             </Heading>
             <SubjectCardList
-              subjects={programmesBySubjectUnavailable}
+              subjects={subjectsUnavailable}
               isAvailable={false}
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
             />
           </>
         )}

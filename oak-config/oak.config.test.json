@@ -9,7 +9,7 @@
     "frameUrl": "gleap-frame-url"
   },
   "hubspot": {
-    "formSubmissionUrl":"https://hubspot-forms.thenational.academy/submissions/v3/integration/submit",
+    "formSubmissionUrl": "https://hubspot-forms.thenational.academy/submissions/v3/integration/submit",
     "portalId": "12345",
     "newsletterFormId": "uuid-oijfeoe-ijfere-g-ererg",
     "downloadsFormId": "uuid-oijfeoe-ijfere-g-ererg",
@@ -20,9 +20,15 @@
     "appBaseUrl": "http://localhost:3000",
     "appName": "Oak Web Application",
     "curriculumApiUrl": "https://graphql.thenational.academy/v1/graphql",
+    "curriculumApi2023Url": "https://test-cricket-894.hasura.app/v1/graphql",
     "curriculumApiAuthType": "oak-admin",
+    "searchApiUrl": "https://www.example.com/_search",
+    "searchApiUrl2023": "http://www.example.com/_search",
     "webinarSignUpUrl": "https://example.com/webinar-sign-up",
-    "requiredSecrets": ["CURRICULUM_API_AUTH_KEY"],
+    "requiredSecrets": [
+      "CURRICULUM_API_AUTH_KEY",
+      "CURRICULUM_API_2023_AUTH_KEY"
+    ],
     "vercelApiUrl": "https://api.thenational.academy"
   },
   "posthog": {

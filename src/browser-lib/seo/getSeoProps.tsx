@@ -1,6 +1,6 @@
 import { DEFAULT_SEO_PROPS, SeoProps } from "../../browser-lib/seo/Seo";
 import { Seo } from "../../common-lib/cms-types";
-import config from "../../config/browser";
+import getBrowserConfig from "../getBrowserConfig";
 
 type GetSeoProps = Pick<SeoProps, "imageUrl">;
 
@@ -14,7 +14,7 @@ export const getSeoProps = (
 
   const title =
     options.addTitleSuffix && props.title
-      ? `${props.title} | ${config.get("seoAppName")}`
+      ? `${props.title} | ${getBrowserConfig("seoAppName")}`
       : props.title;
 
   return {

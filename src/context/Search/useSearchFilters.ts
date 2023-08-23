@@ -1,31 +1,15 @@
-import { SearchPageData } from "../../node-lib/curriculum-api";
-
-import { SearchQuery, SetSearchQuery } from "./useSearch";
-
-export type KeyStage = SearchPageData["keyStages"][number];
-export type Subject = SearchPageData["subjects"][number];
-export type UseSearchFiltersProps = {
-  allKeyStages: KeyStage[];
-  allSubjects: SearchPageData["subjects"];
-  setQuery: SetSearchQuery;
-  query: SearchQuery;
-};
-
-export type CheckBoxProps = {
-  onChange: () => void;
-  checked: boolean;
-};
-
-export type UseSearchFiltersReturnType = {
-  subjectFilters: (Subject & CheckBoxProps)[];
-  keyStageFilters: (KeyStage & CheckBoxProps)[];
-};
+import {
+  SetSearchQuery,
+  SearchQuery,
+  UseSearchFiltersProps,
+  UseSearchFiltersReturnType,
+} from "./search.types";
 
 const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects"
+  name: "keyStages" | "subjects" | "contentTypes"
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
@@ -48,7 +32,7 @@ const getCheckboxFilters = <T extends { slug: string }>(
 const useSearchFilters = (
   props: UseSearchFiltersProps
 ): UseSearchFiltersReturnType => {
-  const { allKeyStages, allSubjects, query, setQuery } = props;
+  const { allKeyStages, allSubjects, allContentTypes, query, setQuery } = props;
 
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     const filters = getCheckboxFilters(
@@ -70,9 +54,20 @@ const useSearchFilters = (
     return filters;
   });
 
+  const ContentTypeCheckboxFilters = allContentTypes.map((ContentType) => {
+    const filters = getCheckboxFilters(
+      ContentType,
+      query.contentTypes || [],
+      setQuery,
+      "contentTypes"
+    );
+    return filters;
+  });
+
   return {
     subjectFilters: subjectCheckboxFilters,
     keyStageFilters: keyStageCheckboxFilters,
+    contentTypeFilters: ContentTypeCheckboxFilters,
   };
 };
 

@@ -3,22 +3,22 @@ import { css } from "styled-components";
 import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 
 import responsive, { ResponsiveValues } from "./responsive";
+import { getRemUnits } from "./getRemUnits";
+
+type CalcValues = `calc(${PercentSpacing} - ${NullablePixelSpacing}px)`;
 
 type SizeValue =
   | PercentSpacing
   | "auto"
   | "none"
   | NullablePixelSpacing
-  | "max-content";
+  | "max-content"
+  | CalcValues;
+
 export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
-  switch (typeof value) {
-    case "string":
-      return value;
-    case "number":
-      return `${value}px`;
-  }
+  return getRemUnits(value);
 };
 
 export type SizeProps = {

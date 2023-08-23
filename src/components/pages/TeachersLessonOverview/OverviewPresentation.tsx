@@ -1,22 +1,28 @@
-import { FC } from "react";
+import { FC, memo, useState } from "react";
 
 import AspectRatio from "../../AspectRatio";
 
-import OverviewAssetWrap from "./OverviewAssetWrap";
+import Box from "@/components/Box";
 
 interface OverviewPresentationProps {
-  asset: string;
+  asset: string | null;
   title: string;
+  isWorksheetLandscape?: boolean;
+  isWorksheet: boolean;
 }
 
 const OverviewPresentation: FC<OverviewPresentationProps> = ({
   asset,
   title,
+  isWorksheetLandscape,
+  isWorksheet,
 }) => {
-  const slidesId = asset.split("/")?.[5];
+  const [slidesId] = useState(asset ? asset.split("/")?.[5] : null);
+
+  const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
   return (
-    <OverviewAssetWrap>
-      <AspectRatio ratio={"16:9"}>
+    <Box $ba={[3]} $width={"100%"}>
+      <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
         <iframe
           src={`https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`}
           title={`slide deck: ${title}`}
@@ -25,10 +31,14 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
           // We know the google slides aren't accessible.
           className="pa11y-ignore"
           data-testid="overview-presentation"
+          style={{
+            border: "none",
+          }}
+          loading="eager"
         />
       </AspectRatio>
-    </OverviewAssetWrap>
+    </Box>
   );
 };
 
-export default OverviewPresentation;
+export default memo(OverviewPresentation);

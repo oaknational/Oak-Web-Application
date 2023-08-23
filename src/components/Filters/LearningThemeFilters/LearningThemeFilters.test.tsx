@@ -16,15 +16,15 @@ describe("PostCategoryList", () => {
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
-            learningThemeTitle: "Grammar",
-            learningThemeSlug: "grammar",
+            themeTitle: "Grammar",
+            themeSlug: "grammar",
           },
         ]}
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
           viewType: "teachers",
-          programme: "maths-secondary-ks3",
+          programmeSlug: "maths-secondary-ks3",
         }}
         trackingProps={{
           keyStageSlug: "ks3",

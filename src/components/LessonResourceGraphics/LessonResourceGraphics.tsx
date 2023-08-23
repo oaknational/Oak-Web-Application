@@ -17,7 +17,7 @@ type LessonResourceGraphicsProps = {
 
 const LessonResourceGraphics: FC<LessonResourceGraphicsProps> = ({ items }) => {
   return (
-    <Flex>
+    <Flex $justifyContent={["space-evenly", "start"]}>
       {items.map((item, index) => (
         <LessonResourceGraphicsItem
           key={`graphics-item-${item.titleSingular}-${index}`}

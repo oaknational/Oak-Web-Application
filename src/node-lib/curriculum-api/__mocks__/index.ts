@@ -4,15 +4,11 @@ import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "../fixtures/lessonDownloads.fixture";
 import subjectListingFixture from "../fixtures/subjectListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
-import unitListingPathsFixture from "../fixtures/unitListingPaths.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
-import tierListingFixture from "../fixtures/tierListing.fixture";
-import lessonListingPathsFixture from "../fixtures/lessonListingPaths.fixture";
+import { tieredProgrammeListingFixture } from "../fixtures/tierListing.fixture";
 import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
-import lessonOverviewPathsFixture from "../fixtures/lessonOverviewPaths.fixture";
 
 const curriculumApi: CurriculumApi = {
-  // teachersHomePage: jest.mock(Promise.resolve(teachersHomePageFixture),
   searchPage: jest.fn(async () => {
     return searchPageFixture();
   }),
@@ -25,9 +21,6 @@ const curriculumApi: CurriculumApi = {
   subjectListing: jest.fn(async () => {
     return subjectListingFixture();
   }),
-  lessonListingPaths: jest.fn(async () => {
-    return lessonListingPathsFixture();
-  }),
   lessonListing: jest.fn(async () => {
     return lessonListingFixture();
   }),
@@ -35,16 +28,10 @@ const curriculumApi: CurriculumApi = {
     return unitListingFixture();
   }),
   tierListing: jest.fn(async () => {
-    return tierListingFixture();
-  }),
-  unitListingPaths: jest.fn(async () => {
-    return unitListingPathsFixture();
+    return tieredProgrammeListingFixture();
   }),
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
-  }),
-  lessonOverviewPaths: jest.fn(async () => {
-    return lessonOverviewPathsFixture();
   }),
 };
 

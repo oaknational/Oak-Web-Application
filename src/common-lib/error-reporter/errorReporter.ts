@@ -1,7 +1,7 @@
 import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
 
-import config from "../../config/browser";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 import getHasConsentedTo from "../../browser-lib/cookie-consent/getHasConsentedTo";
 import isBrowser from "../../utils/isBrowser";
 import OakError from "../../errors/OakError";
@@ -104,9 +104,9 @@ const getBugsnagConfig = ({
 
 export const initialiseBugsnag = (userId: PosthogDistinctId | null) => {
   const bugsnagConfig = getBugsnagConfig({
-    apiKey: config.get("bugsnagApiKey"),
-    appVersion: config.get("appVersion"),
-    releaseStage: config.get("releaseStage"),
+    apiKey: getBrowserConfig("bugsnagApiKey"),
+    appVersion: getBrowserConfig("appVersion"),
+    releaseStage: getBrowserConfig("releaseStage"),
     userId,
   });
 
@@ -191,13 +191,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
     }
   };
 
-  return function (maybeError: OakError | Error | unknown, data?: ErrorData) {
-    // Calling .then() to prevent sonarcloud erroneous codesniff
-    reportError(maybeError, data).then(
-      () => null,
-      () => null
-    );
-  };
+  return reportError;
 };
 
 export default errorReporter;

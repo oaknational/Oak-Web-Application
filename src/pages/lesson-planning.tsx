@@ -4,7 +4,6 @@ import { PortableText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
 import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
-import { decorateWithIsr } from "../node-lib/isr";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -27,6 +26,7 @@ import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "../components/Illustration";
 import { IllustrationSlug } from "../image-data";
 import { getSizes } from "../components/CMSImage/getSizes";
+import getPageProps from "../node-lib/getPageProps";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -362,7 +362,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
             <Box $minWidth={["50%"]}>
               <Box $display={["block", "block", "none"]}>
-                <CardTitle $font={["heading-5", "heading-4"]} tag="h4">
+                <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
@@ -386,7 +386,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $minWidth={["50%"]}
             >
               <Box $display={["none", "none", "block"]}>
-                <CardTitle $font={"heading-4"} tag="h4">
+                <CardTitle $font={"heading-4"} tag="h2">
                   {pageData.learnMoreBlock1.title}
                 </CardTitle>
               </Box>
@@ -412,7 +412,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $mb={[48, 48, 0]}
               $ph={[16, 0, 0]}
             >
-              <CardTitle $font={["heading-5", "heading-4"]} tag={"h4"}>
+              <CardTitle $font={["heading-5", "heading-4"]} tag={"h2"}>
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
               <Typography $font={["body-2", "body-1"]}>
@@ -469,25 +469,31 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "lesson-planning::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const planningPage = await CMSClient.planningPage({
-    previewMode: isPreviewMode,
-  });
+      const planningPage = await CMSClient.planningPage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!planningPage) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!planningPage) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const results: GetStaticPropsResult<PlanALessonProps> = {
-    props: {
-      pageData: planningPage,
+      const results: GetStaticPropsResult<PlanALessonProps> = {
+        props: {
+          pageData: planningPage,
+        },
+      };
+
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default PlanALesson;

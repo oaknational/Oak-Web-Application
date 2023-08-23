@@ -2,12 +2,10 @@ import teachersHomePageFixture from "./fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "./fixtures/lessonDownloads.fixture";
 import unitListingFixture from "./fixtures/unitListing.fixture";
 import tierListingFixture from "./fixtures/tierListing.fixture";
-import unitListingPathsFixture from "./fixtures/unitListingPaths.fixture";
 import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
-import lessonOverviewPathsFixture from "./fixtures/lessonOverviewPaths.fixture";
 import lessonListingFixture from "./fixtures/lessonListing.fixture";
-import lessonListingPathsFixture from "./fixtures/lessonListingPaths.fixture";
 import subjectListingFixture from "./fixtures/subjectListing.fixture";
+import unitsFixture from "./fixtures/units.fixture";
 
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
@@ -22,9 +20,6 @@ const teachersHomePage = jest.fn(() => ({
 const lessonDownloads = jest.fn(() => ({
   mv_downloads: [lessonDownloadsFixtures()],
 }));
-const unitListingPaths = jest.fn(() => ({
-  mv_programmes: unitListingPathsFixture().programmes,
-}));
 const unitListing = jest.fn(() => ({
   mv_programmes: [
     {
@@ -34,14 +29,13 @@ const unitListing = jest.fn(() => ({
       subjectSlug: unitListingFixture().subjectSlug,
       subjectTitle: unitListingFixture().subjectTitle,
       tierSlug: unitListingFixture().tierSlug,
+      examBoardSlug: unitListingFixture().examBoardSlug,
+      examBoardTitle: unitListingFixture().examBoardTitle,
       totalUnitCount: unitListingFixture().totalUnitCount,
     },
   ],
   mv_tiers: unitListingFixture().tiers,
-  mv_units: unitListingFixture().units,
-}));
-const lessonListingPaths = jest.fn(() => ({
-  mv_lessons: lessonListingPathsFixture().units,
+  mv_units: unitsFixture(),
 }));
 const lessonListing = jest.fn(() => ({
   mv_units: [
@@ -70,12 +64,14 @@ const lessonOverview = jest.fn(() => ({
       unitTitle: lessonOverviewFixture().unitTitle,
       subjectSlug: lessonOverviewFixture().subjectSlug,
       subjectTitle: lessonOverviewFixture().subjectTitle,
-      coreContent: lessonOverviewFixture().coreContent,
-      equipmentRequired: lessonOverviewFixture().equipmentRequired,
+      keyLearningPoints: lessonOverviewFixture().keyLearningPoints,
+      lessonEquipmentAndResources:
+        lessonOverviewFixture().lessonEquipmentAndResources,
       supervisionLevel: lessonOverviewFixture().supervisionLevel,
       contentGuidance: lessonOverviewFixture().contentGuidance,
       presentationUrl: lessonOverviewFixture().presentationUrl,
       worksheetUrl: lessonOverviewFixture().worksheetUrl,
+      isWorksheetLandscape: lessonOverviewFixture().isWorksheetLandscape,
       hasCopyrightMaterial: lessonOverviewFixture().hasCopyrightMaterial,
       videoMuxPlaybackId: lessonOverviewFixture().videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
@@ -89,17 +85,12 @@ const lessonOverview = jest.fn(() => ({
   introQuiz: lessonOverviewFixture().introQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
-const lessonOverviewPaths = jest.fn(() => ({
-  mv_lessons: lessonOverviewPathsFixture().lessons,
-}));
-
 const tierListing = jest.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
-
 const subjectListing = jest.fn(() => ({
-  mv_programmes_available: subjectListingFixture().programmesAvailable,
-  mv_programmes_unavailable: subjectListingFixture().programmesUnavailable,
+  mv_programmes_available: subjectListingFixture().subjects,
+  mv_programmes_unavailable: subjectListingFixture().subjectsUnavailable,
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
 
@@ -110,11 +101,8 @@ jest.mock("./generated/sdk", () => ({
   getSdk: () => ({
     teachersHomePage: (...args: []) => teachersHomePage(...args),
     lessonDownloads: (...args: []) => lessonDownloads(...args),
-    unitListingPaths: (...args: []) => unitListingPaths(...args),
     unitListing: (...args: []) => unitListing(...args),
-    lessonOverviewPaths: (...args: []) => lessonOverviewPaths(...args),
     lessonOverview: (...args: []) => lessonOverview(...args),
-    lessonListingPaths: (...args: []) => lessonListingPaths(...args),
     lessonListing: (...args: []) => lessonListing(...args),
     tierListing: (...args: []) => tierListing(...args),
     subjectListing: (...args: []) => subjectListing(...args),
@@ -129,15 +117,13 @@ describe("curriculum-api", () => {
     await curriculumApi.lessonDownloads({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
     expect(lessonDownloads).toHaveBeenCalledWith({
       programmeSlug: "math-higher-ks4",
       lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
     });
-  });
-  test("unitListingPaths", async () => {
-    await curriculumApi.unitListingPaths();
-    expect(unitListingPaths).toHaveBeenCalled();
   });
   test("unitListing", async () => {
     await curriculumApi.unitListing({
@@ -152,15 +138,10 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
     const hasThemes =
-      units.learningThemes?.filter(
-        (theme) => theme.learningThemeSlug === "no-theme"
-      ).length > 0;
+      units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
+        .length > 0;
 
     expect(hasThemes).toBe(true);
-  });
-  test("lessonListingPaths", async () => {
-    await curriculumApi.lessonListingPaths();
-    expect(lessonListingPaths).toHaveBeenCalled();
   });
   test("lessonListing", async () => {
     await curriculumApi.lessonListing({
@@ -171,10 +152,6 @@ describe("curriculum-api", () => {
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
     });
-  });
-  test("lessonOverviewPaths", async () => {
-    await curriculumApi.lessonOverviewPaths();
-    expect(lessonOverviewPaths).toHaveBeenCalled();
   });
   test("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
@@ -198,6 +175,19 @@ describe("curriculum-api", () => {
       subjectSlug: "higher",
     });
   });
+  test("tierListing: not found", async () => {
+    tierListing.mockImplementationOnce(() => {
+      return {
+        mv_programmes: [],
+      };
+    });
+    await expect(
+      curriculumApi.tierListing({
+        keyStageSlug: "ks4",
+        subjectSlug: "not-found",
+      })
+    ).rejects.toThrow("Resource not found");
+  });
   test("subjectListing", async () => {
     await curriculumApi.subjectListing({
       keyStageSlug: "ks4",
@@ -207,8 +197,8 @@ describe("curriculum-api", () => {
     });
   });
   test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
-    const availableProgrammes = subjectListingFixture().programmesAvailable;
-    const unavailableProgrammes = subjectListingFixture().programmesUnavailable;
+    const availableProgrammes = subjectListingFixture().subjects;
+    const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
       availableProgrammes,
       unavailableProgrammes

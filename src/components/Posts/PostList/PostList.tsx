@@ -4,7 +4,7 @@ import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
 import Box from "../../Box";
-import config from "../../../config/browser";
+import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import PostListItem, { PostListItemProps } from "./PostListItem";
@@ -49,6 +49,8 @@ const PostList: FC<PostListProps> = (props) => {
     withUpcomingItem,
   } = props;
 
+  const { firstItemRef } = paginationProps;
+
   return (
     <Flex
       $flexDirection="column"
@@ -61,7 +63,7 @@ const PostList: FC<PostListProps> = (props) => {
         <>
           <UpcomingWebinarListItem
             {...upcomingItem}
-            signUpHref={config.get("webinarSignUpUrl")}
+            signUpHref={getBrowserConfig("webinarSignUpUrl")}
             signUpOnClick={() => null}
           />
           {withContainingHrs && <Hr thickness={4} $mv={32} />}
@@ -73,7 +75,11 @@ const PostList: FC<PostListProps> = (props) => {
             {currentPageItems.map((item, i) => (
               <LI key={`PostList-PostListItem-${i}`}>
                 {i !== 0 && <Hr thickness={4} $mv={32} />}
-                <PostListItem {...item} withImage={withImage} />
+                <PostListItem
+                  {...item}
+                  withImage={withImage}
+                  firstItemRef={i === 0 ? firstItemRef : null}
+                />
               </LI>
             ))}
           </UL>

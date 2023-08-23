@@ -1,0 +1,5 @@
+query teachersHomePage {
+  teachersHomePage: published_mv_homepage_2 {
+    keyStages: key_stages
+  }
+}

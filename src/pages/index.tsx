@@ -3,7 +3,6 @@ import { toPlainText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
 import { HomePage } from "../common-lib/cms-types";
-import { decorateWithIsr } from "../node-lib/isr";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
@@ -31,6 +30,7 @@ import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
 import Illustration from "../components/Illustration";
 import { getSizes } from "../components/CMSImage/getSizes";
 import HomeNotification from "../components/pages/Home/HomeNotification";
+import getPageProps from "../node-lib/getPageProps";
 
 export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
@@ -139,7 +139,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   <Heading
                     $ml={[0, "auto"]}
                     $font={["heading-6", "heading-4"]}
-                    tag={"h3"}
+                    tag={"h2"}
                   >
                     <CardLink
                       page="classroom"
@@ -202,7 +202,7 @@ const Home: NextPage<HomePageProps> = (props) => {
                   <Heading
                     $ml={[0, "auto"]}
                     $font={["heading-6", "heading-4"]}
-                    tag={"h3"}
+                    tag={"h2"}
                   >
                     <CardLink
                       page="teacher-hub"
@@ -279,28 +279,33 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context
 ) => {
-  const isPreviewMode = context.preview === true;
+  return getPageProps({
+    page: "contact-us::getStaticProps",
+    context,
+    getProps: async () => {
+      const isPreviewMode = context.preview === true;
 
-  const homepageData = await CMSClient.homepage({
-    previewMode: isPreviewMode,
-  });
+      const homepageData = await CMSClient.homepage({
+        previewMode: isPreviewMode,
+      });
 
-  if (!homepageData) {
-    return {
-      notFound: true,
-    };
-  }
+      if (!homepageData) {
+        return {
+          notFound: true,
+        };
+      }
 
-  const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
+      const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
-  const results: GetStaticPropsResult<HomePageProps> = {
-    props: {
-      pageData: homepageData,
-      posts,
+      const results: GetStaticPropsResult<HomePageProps> = {
+        props: {
+          pageData: homepageData,
+          posts,
+        },
+      };
+      return results;
     },
-  };
-  const resultsWithIsr = decorateWithIsr(results);
-  return resultsWithIsr;
+  });
 };
 
 export default Home;

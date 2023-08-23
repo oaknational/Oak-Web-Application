@@ -1,47 +1,35 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { ProgrammesBySubject } from "../../pages/beta/teachers/key-stages/[keyStageSlug]/subjects";
+import { KeyStageSubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
-const subjectCardListemProps: ProgrammesBySubject = [
+const subjectCardListItemProps: KeyStageSubject = [
   {
     subjectSlug: "biology",
     subjectTitle: "Biology",
-    keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
-    totalUnitCount: 1,
-    activeUnitCount: 1,
-    activeLessonCount: 4,
+    lessonCount: 4,
+    unitCount: 1,
     programmeSlug: "biology-secondary-ks4",
-    tierSlug: null,
   },
 ];
 
-const subjectTrackingProps: ProgrammesBySubject = [
+const subjectCardListItemTrackingProps: KeyStageSubject = [
   {
-    subjectSlug: "combined-science",
-    subjectTitle: "Combined Science",
-    keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
-    totalUnitCount: 2,
-    activeUnitCount: 2,
-    activeLessonCount: 4,
-    programmeSlug: "combined-science-secondary-ks4-foundation",
-    tierSlug: "foundation",
+    subjectSlug: "biology",
+    subjectTitle: "Biology",
+    lessonCount: 4,
+    unitCount: 1,
+    programmeSlug: "biology-secondary-ks4",
   },
   {
-    subjectSlug: "combined-science",
-    subjectTitle: "Combined Science",
-    keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
-    totalUnitCount: 2,
-    activeLessonCount: 4,
-    activeUnitCount: 2,
-    programmeSlug: "combined-science-secondary-ks4-higher",
-    tierSlug: "higher",
+    subjectSlug: "biology",
+    subjectTitle: "Biology",
+    lessonCount: 4,
+    unitCount: 1,
+    programmeSlug: "biology-secondary-ks4-higher",
   },
 ];
 
@@ -64,8 +52,10 @@ describe("SubjectCardListItem", () => {
     renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        programmes={subjectCardListemProps}
         isAvailable={true}
+        subject={subjectCardListItemProps}
+        keyStageSlug={"ks4"}
+        keyStageTitle={"Key stage 4"}
       />
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
@@ -74,7 +64,9 @@ describe("SubjectCardListItem", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        programmes={subjectCardListemProps}
+        subject={subjectCardListItemProps}
+        keyStageSlug={"ks4"}
+        keyStageTitle={"Key stage 4"}
         isAvailable={true}
       />
     );
@@ -87,12 +79,14 @@ describe("SubjectCardListItem", () => {
     const { getByRole } = renderWithTheme(
       <SubjectCardListItem
         titleTag="h3"
-        programmes={subjectTrackingProps}
+        subject={subjectCardListItemTrackingProps}
+        keyStageSlug={"ks4"}
+        keyStageTitle={"Key stage 4"}
         isAvailable={true}
       />
     );
     const cardClickTarget = getByRole("link", {
-      name: "Combined Science",
+      name: "Biology",
     });
 
     const user = userEvent.setup();
@@ -102,8 +96,8 @@ describe("SubjectCardListItem", () => {
     expect(subjectSelected).toHaveBeenCalledWith({
       keyStageSlug: "ks4",
       keyStageTitle: "Key stage 4",
-      subjectSlug: "combined-science",
-      subjectTitle: "Combined Science",
+      subjectSlug: "biology",
+      subjectTitle: "Biology",
       analyticsUseCase: null,
     });
   });

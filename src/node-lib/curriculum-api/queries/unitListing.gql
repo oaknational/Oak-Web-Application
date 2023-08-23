@@ -1,5 +1,5 @@
 query unitListing($programmeSlug: String!) {
-  mv_programmes: mv_programmes_5(
+  mv_programmes: mv_programmes_7(
     where: { programme_slug: { _eq: $programmeSlug } }
   ) {
     programmeSlug: programme_slug
@@ -10,7 +10,7 @@ query unitListing($programmeSlug: String!) {
     tierSlug: tier_slug
     totalUnitCount: active_unit_count
   }
-  mv_tiers: mv_tiers_1(
+  mv_tiers: mv_tiers_2(
     where: { current_programme_slug: { _eq: $programmeSlug } }
   ) {
     tierTitle: tier_title
@@ -19,7 +19,7 @@ query unitListing($programmeSlug: String!) {
     lessonCount: lesson_count
     unitCount: unit_count
   }
-  mv_units: mv_units_2(
+  mv_units: mv_units_3(
     where: { programme_slug: { _eq: $programmeSlug } }
     order_by: { year: asc, unit_study_order: asc }
   ) {
@@ -35,7 +35,7 @@ query unitListing($programmeSlug: String!) {
     lessonCount: lesson_count
     quizCount: quiz_count
     unitStudyOrder: unit_study_order
-    year
+    yearTitle: year
     expired
     expiredLessonCount: expired_lesson_count
   }

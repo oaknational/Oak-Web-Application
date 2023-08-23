@@ -29,6 +29,7 @@ export type PixelSpacing =
   | 8
   | 10
   | 12
+  | 14
   | 16
   | 18
   | 20
@@ -63,6 +64,8 @@ export type PixelSpacing =
   | 270
   | 300
   | 320
+  | 340
+  | 350
   | 360
   | 380
   | 400
@@ -92,7 +95,8 @@ export type NegativePixelSpacing =
   | -16
   | -12
   | -8
-  | -4;
+  | -4
+  | -2;
 export type PercentSpacing =
   | "100%"
   | "99%"
@@ -101,6 +105,7 @@ export type PercentSpacing =
   | "85%"
   | "80%"
   | "70%"
+  | "65%"
   | "60%"
   | "55%"
   | "50%"
@@ -161,6 +166,29 @@ const OakColorNameZod = z.union([
   z.literal("twilight"),
   z.literal("videoBlue"),
   z.literal("hyperlink"),
+  z.literal("oakGreen"),
+  z.literal("mint"),
+  z.literal("mint50"),
+  z.literal("mint30"),
+  z.literal("aqua"),
+  z.literal("aqua50"),
+  z.literal("aqua30"),
+  z.literal("lemon"),
+  z.literal("lemon50"),
+  z.literal("lemon30"),
+  z.literal("lavender"),
+  z.literal("lavender50"),
+  z.literal("lavender30"),
+  z.literal("pink"),
+  z.literal("pink50"),
+  z.literal("pink30"),
+  z.literal("amber"),
+  z.literal("amber50"),
+  z.literal("amber30"),
+  z.literal("blue"),
+  z.literal("magenta"),
+  z.literal("purple"),
+  z.literal("teal"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

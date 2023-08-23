@@ -1,7 +1,8 @@
-import { UseSearchFiltersReturnType } from "../../context/Search/useSearchFilters";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import ActiveFilters from "./ActiveFilters";
+
+import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 export const mockOnChange = jest.fn();
@@ -33,6 +34,15 @@ export const searchFilters: UseSearchFiltersReturnType = {
       slug: "science",
       title: "Science",
       onChange: jest.fn(),
+      checked: true,
+    },
+  ],
+  contentTypeFilters: [
+    { slug: "unit", title: "Units", onChange: mockOnChange, checked: false },
+    {
+      slug: "lesson",
+      title: "Lessons",
+      onChange: mockOnChange,
       checked: true,
     },
   ],
@@ -85,6 +95,34 @@ describe("ActiveFilters", () => {
       <ActiveFilters searchFilters={searchFilters} />
     );
     const button = queryByRole("button", { name: `Remove ${subject} filter` });
+    expect(button).not.toBeInTheDocument();
+  });
+
+  test.each(
+    searchFilters.contentTypeFilters
+      .filter((type) => type.checked)
+      .map((ContentType) => ContentType.title)
+  )("should render the checked type filters: %s", (ContentType) => {
+    const { getByRole } = renderWithTheme(
+      <ActiveFilters searchFilters={searchFilters} />
+    );
+    const button = getByRole("button", {
+      name: `Remove ${ContentType} filter`,
+    });
+    expect(button).toBeInTheDocument();
+  });
+
+  test.each(
+    searchFilters.contentTypeFilters
+      .filter((type) => !type.checked)
+      .map((ContentType) => ContentType.title)
+  )("should not render the unchecked type filters: %s", (ContentType) => {
+    const { queryByRole } = renderWithTheme(
+      <ActiveFilters searchFilters={searchFilters} />
+    );
+    const button = queryByRole("button", {
+      name: `Remove ${ContentType} filter`,
+    });
     expect(button).not.toBeInTheDocument();
   });
 });

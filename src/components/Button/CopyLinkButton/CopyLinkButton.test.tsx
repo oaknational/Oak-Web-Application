@@ -39,4 +39,36 @@ describe("Copy link button", () => {
     const clickedButton = getByLabelText("Copied to clipboard");
     expect(clickedButton).toBeInTheDocument();
   });
+
+  it("copies the current URL to the clipboard by default", async () => {
+    const { getByLabelText } = renderWithTheme(
+      <ToastProvider>
+        <CopyLinkButton />
+      </ToastProvider>
+    );
+
+    const user = userEvent.setup();
+
+    const button = getByLabelText("Copy to clipboard");
+    await user.click(button);
+
+    const clipboardText = await navigator.clipboard.readText();
+    expect(clipboardText).toBe("http://localhost/");
+  });
+
+  it("copies the provided URL to the clipboard", async () => {
+    const { getByLabelText } = renderWithTheme(
+      <ToastProvider>
+        <CopyLinkButton href="https://example.com" />
+      </ToastProvider>
+    );
+
+    const user = userEvent.setup();
+
+    const button = getByLabelText("Copy to clipboard");
+    await user.click(button);
+
+    const clipboardText = await navigator.clipboard.readText();
+    expect(clipboardText).toBe("https://example.com");
+  });
 });

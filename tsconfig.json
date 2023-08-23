@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom", 
+      "dom.iterable", 
+      "esnext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
@@ -10,14 +14,20 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" }
+    ],
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
   },
   "include": [
     "next-env.d.ts",
@@ -26,5 +36,9 @@
     "e2e_tests/browser/fixtures.ts",
     "src/__tests__/__helpers__/reporters/slowTestReporter.js"
   ],
-  "exclude": ["node_modules", "netlify/edge-functions"]
+  "exclude": [
+    "node_modules", 
+    "netlify/edge-functions", 
+    "e2e_tests"
+  ]
 }

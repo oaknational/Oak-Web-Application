@@ -2,13 +2,18 @@
   "cSpell.words": [
     "arrowdown",
     "booleancheckbox",
+    "chromedriver",
     "excalidraw",
     "gcloud",
     "hookform",
     "Nextjs",
+    "pageobjects",
     "phonenumber",
     "portabletext",
-    "sdlc"
+    "posthog",
+    "sdlc",
+    "sonarcloud",
+    "Testrunner"
   ],
   "deno.enable": true,
   "deno.enablePaths": ["netlify/edge-functions"],

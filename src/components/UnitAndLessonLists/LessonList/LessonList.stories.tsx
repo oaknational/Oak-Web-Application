@@ -14,11 +14,15 @@ export default {
   component: Component,
 } as ComponentMeta<typeof Component>;
 
-const lessons = lessonListingFixture().lessons;
+const { lessons, ...unit } = lessonListingFixture();
+const lessonsWithUnitData = lessons.map((lesson) => ({
+  ...lesson,
+  ...unit,
+}));
 
 const currentPageItems: LessonListProps = {
-  lessons,
-  currentPageItems: lessons,
+  lessonCount: lessons.length,
+  currentPageItems: lessonsWithUnitData,
   keyStageSlug: "4",
   subjectSlug: "computing",
   headingTag: "h2",

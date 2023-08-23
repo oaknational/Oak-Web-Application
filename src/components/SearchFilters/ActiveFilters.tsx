@@ -3,28 +3,31 @@ import { FC } from "react";
 import Flex from "../Flex";
 import Button from "../Button";
 import { P, Span } from "../Typography";
+
 import {
-  CheckBoxProps,
+  UseSearchFiltersReturnType,
   KeyStage,
   Subject,
-  UseSearchFiltersReturnType,
-} from "../../context/Search/useSearchFilters";
+  ContentType,
+  SearchCheckBoxProps,
+} from "@/context/Search/search.types";
 
 type ActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   const { searchFilters } = props;
-  const { keyStageFilters, subjectFilters } = searchFilters;
+  const { keyStageFilters, subjectFilters, contentTypeFilters } = searchFilters;
 
   const activeFilters = [
     ...keyStageFilters.filter((keyStage) => keyStage.checked),
     ...subjectFilters.filter((subject) => subject.checked),
+    ...contentTypeFilters.filter((contentType) => contentType.checked),
   ];
 
   const maxActiveFilters = 4;
-  const slicedActiveFilters: ((Subject | KeyStage) & CheckBoxProps)[] =
-    activeFilters.slice(0, maxActiveFilters);
+  const slicedActiveFilters: ((Subject | KeyStage | ContentType) &
+    SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (
     <Flex

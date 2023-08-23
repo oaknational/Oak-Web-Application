@@ -1,12 +1,10 @@
 import { DOMAttributes, FC, MouseEventHandler } from "react";
 import { FocusableElement } from "@react-types/shared";
 
-import Card from "../Card";
-import Flex from "../Flex";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { OakColorName } from "../../styles/theme/types";
-
-import ListItemIconDesktop from "./ListItemIconDesktop";
+import Card from "@/components/Card";
+import Flex from "@/components/Flex";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import { OakColorName } from "@/styles/theme/types";
 
 export type ListItemCardProps = {
   title: string;
@@ -15,25 +13,21 @@ export type ListItemCardProps = {
   children: React.ReactNode;
   background: OakColorName;
   expired: boolean | null;
+  index: number;
+  fromSearchPage?: boolean;
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
   } & Pick<DOMAttributes<FocusableElement>, "onClick">;
+  isUnitOption?: boolean;
 };
 
 /**
  * Contains a lesson title, description, icon, and icons for resources
  * Links to a lesson-index page
  */
+
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const {
-    title,
-    children,
-    isHovered,
-    containerProps,
-    background,
-    expired,
-    subjectSlug,
-  } = props;
+  const { children, isHovered, containerProps, background, expired } = props;
 
   const applyHoverStyles = isHovered && !expired;
 
@@ -42,6 +36,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       $justifyContent={"space-between"}
       $flexDirection={"row"}
       $mb={16}
+      $minHeight={80}
       $overflow={"hidden"}
       $pa={0}
       {...(!expired ? containerProps : null)}
@@ -54,18 +49,12 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $flexDirection={"row"}
         $justifyContent={"space-between"}
         $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
-        $alignItems={"center"}
+        $alignItems={"start"}
+        $background={background}
       >
         {children}
       </Flex>
-      {!expired && (
-        <ListItemIconDesktop
-          title={title}
-          subjectSlug={subjectSlug}
-          background={background}
-          isHovered={isHovered}
-        />
-      )}
+
       <BoxBorders
         $color={expired ? "oakGrey2" : "black"}
         gapPosition="bottomRightCorner"
