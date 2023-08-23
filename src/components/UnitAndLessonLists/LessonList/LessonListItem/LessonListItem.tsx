@@ -12,7 +12,7 @@ import ListItemCard from "../../ListItemCard";
 import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
 import type { KeyStageTitleValueType } from "../../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../../hooks/useAnalyticsPageProps";
-import { getSortedSearchFiltersSelected } from "../../../../context/Search/helpers";
+import { getSortedSearchFiltersSelected } from "../../../../context/Search/search.helpers";
 import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexDesktop from "../../ListItemIndexDesktop";
 import ListItemIndexMobile from "../../ListItemIndexMobile";

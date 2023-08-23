@@ -92,6 +92,7 @@ const subjectListing = jest.fn(() => ({
   mv_programmes_available: subjectListingFixture().subjects,
   mv_programmes_unavailable: subjectListingFixture().subjectsUnavailable,
   mv_key_stages: teachersHomePageFixture().keyStages,
+  keyStageList: [{ slug: "ks4", title: "Key stage 4", shortCode: "KS4" }],
 }));
 
 jest.mock("");

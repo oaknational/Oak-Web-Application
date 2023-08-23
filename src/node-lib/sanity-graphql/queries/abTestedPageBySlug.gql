@@ -1,0 +1,27 @@
+query abTestedPageBySlug($slug: String, $isDraftFilter: Sanity_DocumentFilter) {
+  allAbTest(
+    where: { _: $isDraftFilter, slug: { current: { eq: $slug } } }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    slug {
+      current
+    }
+    posthogFeatureFlagKey
+    controlVariant {
+      ... on LandingPage {
+        ...LandingPage
+      }
+    }
+    variants {
+      posthogVariant
+      page {
+        _type
+        ... on LandingPage {
+          ...LandingPage
+        }
+      }
+    }
+  }
+}

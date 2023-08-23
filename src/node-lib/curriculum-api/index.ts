@@ -164,6 +164,7 @@ export const subjectListingData = z.object({
   keyStageTitle: z.string(),
   subjects: z.array(programmesData),
   subjectsUnavailable: z.array(programmesData),
+  keyStages: z.array(keyStageSchema).optional(),
 });
 
 const unitListingData = z.object({
@@ -289,8 +290,8 @@ const curriculumApi = {
       programmesAvailable,
       programmesUnavailable,
     } = transformMVCase(res);
-
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
+    const keyStageList = res.keyStageList;
 
     const filteredUnavailableProgrammeDuplicate =
       filterOutDuplicateProgrammesOrNull(
@@ -311,18 +312,19 @@ const curriculumApi = {
           })
         : [];
     };
-
-    return subjectListingData.parse({
+    const subjectListing = {
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
-      subjects:
-        addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
-        [],
-      subjectsUnavailable:
-        addCurriculum2023Counts(
-          programmesArray.parse(filteredUnavailableProgrammeDuplicate)
-        ) || [],
-    });
+      subjects: addCurriculum2023Counts(
+        programmesArray.parse(programmesAvailable)
+      ),
+      subjectsUnavailable: addCurriculum2023Counts(
+        programmesArray.parse(filteredUnavailableProgrammeDuplicate)
+      ),
+      keyStages: keyStageList,
+    };
+
+    return subjectListingData.parse(subjectListing);
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);

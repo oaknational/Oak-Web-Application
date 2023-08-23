@@ -17098,6 +17098,118 @@ export type Published_Mv_Subject_Listing_3_Stream_Cursor_Value_Input = {
   subjectsUnavailable?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** columns and relationships of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4 = {
+  __typename?: 'published_mv_subject_listing_4';
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
+  keyStages?: Maybe<Scalars['jsonb']['output']>;
+  subjects?: Maybe<Scalars['jsonb']['output']>;
+  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4KeyStagesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4SubjectsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4_Aggregate = {
+  __typename?: 'published_mv_subject_listing_4_aggregate';
+  aggregate?: Maybe<Published_Mv_Subject_Listing_4_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Subject_Listing_4>;
+};
+
+/** aggregate fields of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4_Aggregate_Fields = {
+  __typename?: 'published_mv_subject_listing_4_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Subject_Listing_4_Max_Fields>;
+  min?: Maybe<Published_Mv_Subject_Listing_4_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_subject_listing_4". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Subject_Listing_4_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Bool_Exp>>;
+  keyStageSlug?: InputMaybe<String_Comparison_Exp>;
+  keyStageTitle?: InputMaybe<String_Comparison_Exp>;
+  keyStages?: InputMaybe<Jsonb_Comparison_Exp>;
+  subjects?: InputMaybe<Jsonb_Comparison_Exp>;
+  subjectsUnavailable?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Subject_Listing_4_Max_Fields = {
+  __typename?: 'published_mv_subject_listing_4_max_fields';
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
+  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Subject_Listing_4_Min_Fields = {
+  __typename?: 'published_mv_subject_listing_4_min_fields';
+  keyStageSlug?: Maybe<Scalars['String']['output']>;
+  keyStageTitle?: Maybe<Scalars['String']['output']>;
+  subjectsUnavailable?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_subject_listing_4". */
+export type Published_Mv_Subject_Listing_4_Order_By = {
+  keyStageSlug?: InputMaybe<Order_By>;
+  keyStageTitle?: InputMaybe<Order_By>;
+  keyStages?: InputMaybe<Order_By>;
+  subjects?: InputMaybe<Order_By>;
+  subjectsUnavailable?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_subject_listing_4" */
+export enum Published_Mv_Subject_Listing_4_Select_Column {
+  /** column name */
+  KeyStageSlug = 'keyStageSlug',
+  /** column name */
+  KeyStageTitle = 'keyStageTitle',
+  /** column name */
+  KeyStages = 'keyStages',
+  /** column name */
+  Subjects = 'subjects',
+  /** column name */
+  SubjectsUnavailable = 'subjectsUnavailable'
+}
+
+/** Streaming cursor of the table "published_mv_subject_listing_4" */
+export type Published_Mv_Subject_Listing_4_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Subject_Listing_4_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Subject_Listing_4_Stream_Cursor_Value_Input = {
+  keyStageSlug?: InputMaybe<Scalars['String']['input']>;
+  keyStageTitle?: InputMaybe<Scalars['String']['input']>;
+  keyStages?: InputMaybe<Scalars['jsonb']['input']>;
+  subjects?: InputMaybe<Scalars['jsonb']['input']>;
+  subjectsUnavailable?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** aggregated selection of "published.mv_subject_listing" */
 export type Published_Mv_Subject_Listing_Aggregate = {
   __typename?: 'published_mv_subject_listing_aggregate';
@@ -22582,6 +22694,10 @@ export type Query_Root = {
   published_mv_subject_listing_3: Array<Published_Mv_Subject_Listing_3>;
   /** fetch aggregated fields from the table: "published.mv_subject_listing_3" */
   published_mv_subject_listing_3_aggregate: Published_Mv_Subject_Listing_3_Aggregate;
+  /** fetch data from the table: "published.mv_subject_listing_4" */
+  published_mv_subject_listing_4: Array<Published_Mv_Subject_Listing_4>;
+  /** fetch aggregated fields from the table: "published.mv_subject_listing_4" */
+  published_mv_subject_listing_4_aggregate: Published_Mv_Subject_Listing_4_Aggregate;
   /** fetch aggregated fields from the table: "published.mv_subject_listing" */
   published_mv_subject_listing_aggregate: Published_Mv_Subject_Listing_Aggregate;
   /** fetch data from the table: "published.mv_subject_phase_options" */
@@ -23705,6 +23821,24 @@ export type Query_RootPublished_Mv_Subject_Listing_3_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_3_Order_By>>;
   where?: InputMaybe<Published_Mv_Subject_Listing_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Listing_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Listing_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
 };
 
 
@@ -26383,6 +26517,12 @@ export type Subscription_Root = {
   published_mv_subject_listing_3_aggregate: Published_Mv_Subject_Listing_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_subject_listing_3" */
   published_mv_subject_listing_3_stream: Array<Published_Mv_Subject_Listing_3>;
+  /** fetch data from the table: "published.mv_subject_listing_4" */
+  published_mv_subject_listing_4: Array<Published_Mv_Subject_Listing_4>;
+  /** fetch aggregated fields from the table: "published.mv_subject_listing_4" */
+  published_mv_subject_listing_4_aggregate: Published_Mv_Subject_Listing_4_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_subject_listing_4" */
+  published_mv_subject_listing_4_stream: Array<Published_Mv_Subject_Listing_4>;
   /** fetch aggregated fields from the table: "published.mv_subject_listing" */
   published_mv_subject_listing_aggregate: Published_Mv_Subject_Listing_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_subject_listing" */
@@ -27901,6 +28041,31 @@ export type Subscription_RootPublished_Mv_Subject_Listing_3_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Subject_Listing_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Subject_Listing_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Listing_4Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Listing_4_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Listing_4_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Listing_4_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Subject_Listing_4_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Subject_Listing_4_Bool_Exp>;
 };
 
 
@@ -33438,7 +33603,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing_2', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects: Array<{ __typename?: 'published_mv_subject_listing_4', keyStageSlug?: string | null, keyStageTitle?: string | null, subjects?: any | null, subjectsUnavailable?: string | null, keyStages?: any | null }> };
 
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -33552,13 +33717,14 @@ export const SearchPageDocument = gql`
     `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String!) {
-  keyStageSubjects: published_mv_subject_listing_2(
+  keyStageSubjects: published_mv_subject_listing_4(
     where: {keyStageSlug: {_eq: $keyStageSlug}}
   ) {
     keyStageSlug
     keyStageTitle
     subjects
     subjectsUnavailable
+    keyStages
   }
 }
     `;
