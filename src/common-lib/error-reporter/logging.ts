@@ -1,4 +1,4 @@
-import config from "../../config/browser";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 /**
  * In order to stop logs cluttering the console during tests, by default
@@ -7,6 +7,6 @@ import config from "../../config/browser";
  */
 const noop = () => null;
 export const consoleLog =
-  config.get("releaseStage") === "test" ? noop : console.log;
+  getBrowserConfig("releaseStage") === "test" ? noop : console.log;
 export const consoleError =
-  config.get("releaseStage") === "test" ? noop : console.log;
+  getBrowserConfig("releaseStage") === "test" ? noop : console.log;

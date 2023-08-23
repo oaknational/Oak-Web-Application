@@ -1,6 +1,14 @@
-query lessonOverview($lessonSlug: String!) {
-  lesson: published_mv_lesson_overview(
-    where: { lessonSlug: { _eq: $lessonSlug } }
+query lessonOverview(
+  $programmeSlug: String!
+  $lessonSlug: String!
+  $unitSlug: String!
+) {
+  lesson: published_mv_lesson_overview_4(
+    where: {
+      lessonSlug: { _eq: $lessonSlug }
+      programmeSlug: { _eq: $programmeSlug }
+      unitSlug: { _eq: $unitSlug }
+    }
   ) {
     lessonSlug
     lessonTitle
@@ -11,19 +19,22 @@ query lessonOverview($lessonSlug: String!) {
     keyStageTitle
     subjectSlug
     subjectTitle
-    contentGuidance: contentGuidanceDetails
-    equipmentRequired: lessonEquipmentAndResources
+    misconceptionsAndCommonMistakes
+    lessonEquipmentAndResources
+    teacherTips
     keyLearningPoints
+    pupilLessonOutcome
+    lessonKeywords
+    copyrightContent
+    contentGuidance
     supervisionLevel
     worksheetUrl
-    hasCopyrightMaterial: copyrightContent
+    presentationUrl
     videoMuxPlaybackId
     videoWithSignLanguageMuxPlaybackId
-    pupilLessonOutcome
+    transcriptSentences
     starterQuiz
     exitQuiz
-    lessonKeywords
-    presentationUrl
-    transcriptSentences
+    yearTitle
   }
 }

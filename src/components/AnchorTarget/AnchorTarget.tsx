@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+import theme from "@/styles/theme";
 
 /**
  * AnchorTarget is a component to enable in-page linking to a particular section
@@ -12,10 +14,23 @@ import styled from "styled-components";
  * that this component is not reliable. We should set actual 'height' on the
  * site header.
  */
-const AnchorTarget = styled.span`
-  scroll-margin-top: ${({ theme }) => theme.header.height}px;
-  position: absolute;
-  top: 0;
+type AnchorTargetProps = {
+  $paddingTop?: number;
+};
+
+const anchorTarget = css<AnchorTargetProps>`
+  ${(props) =>
+    css`
+      scroll-margin-top: ${props.$paddingTop !== undefined
+        ? theme.header.height + props.$paddingTop
+        : theme.header.height}px;
+      position: absolute;
+      top: 0;
+    `}
+`;
+
+const AnchorTarget = styled.span<AnchorTargetProps>`
+  ${anchorTarget}
 `;
 
 export default AnchorTarget;

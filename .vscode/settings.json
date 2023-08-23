@@ -10,7 +10,9 @@
     "pageobjects",
     "phonenumber",
     "portabletext",
+    "posthog",
     "sdlc",
+    "sonarcloud",
     "Testrunner"
   ],
   "deno.enable": true,

@@ -28,6 +28,7 @@ export type ButtonProps = CommonButtonProps & {
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
+  title?: string;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -37,11 +38,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     labelSuffixA11y,
     shouldHideLabel,
     icon,
+    subjectIcon,
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     iconBackground,
     $font,
     disabled,
+    title,
     ...spacingProps
   } = props;
 
@@ -49,13 +52,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     getButtonStylesProps(props);
 
   const defaultTitle =
-    ariaLabel || labelSuffixA11y ? `${label} ${labelSuffixA11y}` : "";
+    ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
 
   return (
     <StyledButton
       ref={ref}
       {...htmlButtonProps}
-      title={htmlButtonProps.title || defaultTitle}
+      title={title ?? htmlButtonProps.title ?? defaultTitle}
       aria-label={ariaLabel}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       size={size}
@@ -69,6 +72,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         label={label}
         labelSuffixA11y={labelSuffixA11y}
         icon={icon}
+        subjectIcon={subjectIcon}
         $iconPosition={$iconPosition}
         iconBackground={iconBackground}
         shouldHideLabel={shouldHideLabel}

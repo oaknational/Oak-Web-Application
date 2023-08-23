@@ -2,7 +2,7 @@ import sdk from "../../sdk";
 
 import lessonOverview from "./lessonOverview.query";
 
-describe("lessonListing()", () => {
+describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await lessonOverview({
@@ -10,6 +10,8 @@ describe("lessonListing()", () => {
         lessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
+        unitSlug: "unit-slug",
+        programmeSlug: "programme-slug",
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -30,6 +32,14 @@ describe("lessonListing()", () => {
               keyStageTitle: "key-stage-title",
               lessonSlug: "lesson-slug",
               lessonTitle: "lesson-title",
+              supervisionLevel: "supervision-level",
+              presentationUrl: "presentation-url",
+              worksheetUrl: "worksheet-url",
+              videoWithSignLanguage: "video-with-sign-language",
+              transcriptSentences: null,
+              videoMuxPlaybackId: "video-mux-playback-id",
+              videoWithSignLanguageMuxPlaybackId:
+                "video-with-sign-language-mux-playback-id",
             },
             {
               programmeSlug: "programme-slug-1",
@@ -40,13 +50,24 @@ describe("lessonListing()", () => {
               keyStageSlug: "key-stage-slug",
               keyStageTitle: "key-stage-title",
               lessonSlug: "lesson-slug",
+              yearTitle: "year-title",
               lessonTitle: "lesson-title",
+              supervisionLevel: "supervision-level",
+              presentationUrl: "presentation-url",
+              worksheetUrl: "worksheet-url",
+              videoWithSignLanguage: "video-with-sign-language",
+              transcriptSentences: null,
+              videoMuxPlaybackId: "video-mux-playback-id",
+              videoWithSignLanguageMuxPlaybackId:
+                "video-with-sign-language-mux-playback-id",
             },
           ],
         })
       ),
     })({
-      lessonSlug: "programme-slug",
+      lessonSlug: "lesson-slug",
+      unitSlug: "unit-slug",
+      programmeSlug: "programme-slug",
     });
     expect(lesson.programmeSlug).toEqual("programme-slug-0");
   });
@@ -86,6 +107,8 @@ describe("lessonListing()", () => {
         ),
       })({
         lessonSlug: "lesson-slug",
+        unitSlug: "unit-slug",
+        programmeSlug: "programme-slug",
       });
     }).rejects.toThrow(`subjectSlug`);
   });

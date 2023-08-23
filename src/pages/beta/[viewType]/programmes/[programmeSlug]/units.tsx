@@ -16,7 +16,6 @@ import type { KeyStageTitleValueType } from "../../../../../browser-lib/avo/Avo"
 import AppLayout from "../../../../../components/AppLayout";
 import Flex from "../../../../../components/Flex";
 import MaxWidth from "../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../components/Card/SubjectUnitLessonTitleCard";
 import { getSeoProps } from "../../../../../browser-lib/seo/getSeoProps";
 import usePagination from "../../../../../components/Pagination/usePagination";
 import curriculumApi, {
@@ -29,12 +28,13 @@ import LearningThemeFilters from "../../../../../components/Filters/LearningThem
 import MobileFilters from "../../../../../components/MobileFilters";
 import { Heading } from "../../../../../components/Typography";
 import TabularNav from "../../../../../components/TabularNav";
-import Breadcrumbs from "../../../../../components/Breadcrumbs";
-import CurriculumDownloadButton from "../../../../../components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import { RESULTS_PER_PAGE } from "../../../../../utils/resultsPerPage";
-import { VIEW_TYPES, ViewType } from "../../../../../common-lib/urls";
+import { ViewType } from "../../../../../common-lib/urls";
 import getPageProps from "../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../node-lib/curriculum-api-2023";
+import { filterLearningTheme } from "../../../../../utils/filterLearningTheme/filterLearningTheme";
+
+import HeaderListing from "@/components/HeaderListing/HeaderListing";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -53,16 +53,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tiers,
     units,
     learningThemes,
-    totalUnitCount,
     examBoardTitle,
   } = curriculumData;
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = themeSlug
-    ? units.filter((unit) => unit.themeSlug === themeSlug)
-    : units;
+  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
 
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
@@ -107,53 +104,37 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           : unitsSEO
       }
     >
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: { page: "home", viewType: "teachers" },
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
+              viewType: "teachers",
+              keyStageSlug,
+            },
+            label: keyStageTitle,
+          },
+          {
+            oakLinkProps: {
+              page: "unit-index",
+              viewType: "teachers",
+              programmeSlug,
+            },
+            label: subjectTitle,
+            disabled: true,
+          },
+        ]}
+        background={"lavender30"}
+        subjectIconBackgroundColor={"lavender"}
+        title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
+        programmeFactor={keyStageTitle}
+        {...curriculumData}
+      />
       <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: { page: "home", viewType: "teachers" },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle,
-              },
-              {
-                oakLinkProps: {
-                  page: "unit-index",
-                  viewType: "teachers",
-                  programmeSlug,
-                },
-                label: subjectTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
-
-        <TitleCard
-          page={"subject"}
-          keyStage={keyStageTitle}
-          keyStageSlug={keyStageSlug}
-          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
-          slug={subjectSlug}
-          $mt={0}
-          $mb={24}
-          $alignSelf={"flex-start"}
-        />
-        <CurriculumDownloadButton
-          keyStageSlug={keyStageSlug}
-          keyStageTitle={keyStageTitle}
-          subjectSlug={subjectSlug}
-          subjectTitle={subjectTitle}
-          tier={tierSlug}
-        />
-
         <Grid>
           <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
             <Box
@@ -206,7 +187,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               >
                 <Flex $position={["absolute", "relative"]}>
                   <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    {`Units (${totalUnitCount})`}
+                    {`Units (${unitsFilteredByLearningTheme.length})`}
                   </Heading>
                 </Flex>
                 {learningThemes?.length > 1 && (
@@ -280,16 +261,9 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const { programmes } = await curriculumApi.unitListingPaths();
-
-  const paths = VIEW_TYPES.flatMap((viewType) =>
-    programmes.map((programme) => ({
-      params: { viewType, programmeSlug: programme.programmeSlug },
-    }))
-  );
   const config: GetStaticPathsResult<URLParams> = {
-    fallback: false,
-    paths,
+    fallback: "blocking",
+    paths: [],
   };
   return config;
 };
