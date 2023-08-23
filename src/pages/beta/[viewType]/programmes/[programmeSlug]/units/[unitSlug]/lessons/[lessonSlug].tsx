@@ -103,6 +103,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     teacherTips,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
+    isVideoPublic,
     lessonEquipmentAndResources,
     presentationUrl,
     worksheetUrl,
@@ -278,6 +279,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                       title={lessonTitle}
                       transcriptSentences={transcriptSentences}
+                      isVideoPublic={isVideoPublic}
                     />
                   </LessonItemContainer>
                 )}

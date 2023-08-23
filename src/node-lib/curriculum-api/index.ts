@@ -452,6 +452,7 @@ const curriculumApi = {
       videoMuxPlaybackId: lesson.videoMuxPlaybackId,
       videoWithSignLanguageMuxPlaybackId:
         lesson.videoWithSignLanguageMuxPlaybackId,
+      isVideoPublic: false,
       transcriptSentences: lesson.transcriptSentences,
       hasDownloadableResources: lesson.hasDownloadableResources,
       expired: lesson.expired,

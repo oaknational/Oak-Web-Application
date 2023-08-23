@@ -30,6 +30,7 @@ const lessonOverviewFixture = (
     hasCopyrightMaterial: false,
     videoMuxPlaybackId: null,
     videoWithSignLanguageMuxPlaybackId: null,
+    isVideoPublic: true,
     transcriptSentences: ["this is a sentence", "this is another sentence"],
     hasDownloadableResources: true,
     introQuiz: [

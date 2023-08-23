@@ -159,7 +159,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       ? storyboardToken.playbackToken
       : undefined,
   };
-
+console.log("tokens", tokens)
   return (
     <Flex
       $flexDirection={"column"}
@@ -176,7 +176,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         playbackId={playbackId}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
-        customDomain={"video.thenational.academy"}
+        customDomain={playbackPolicy==="signed" ? "video.thenational.academy" : undefined}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}

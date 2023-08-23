@@ -30,6 +30,7 @@ const lessonOverviewQuery =
 
     return lessonOverviewSchema.parse({
       ...lesson,
+      isVideoPublic: true,
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
       hasDownloadableResources: null,

@@ -110,6 +110,7 @@ export const baseLessonOverviewData = z.object({
   presentationUrl: z.string().nullable(),
   videoMuxPlaybackId: z.string().nullable(),
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
+  isVideoPublic: z.boolean(),
   transcriptSentences: z.array(z.string()).nullable(),
   isWorksheetLandscape: z.boolean(),
   hasDownloadableResources: z.boolean().nullable(),
