@@ -12,10 +12,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   return (
     <Flex $flexDirection={"column"}>
       <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Flex $pt={20} $font={"body-2"}>
-          {subjects.length} subjects
-        </Flex>
-        <Heading $font={"heading-5"} tag={"h2"} $mt={[32, 64]} $mb={30}>
+        <Heading $font={"heading-5"} tag={"h2"} $mt={[24, 40]} $mb={30}>
           All subjects
         </Heading>
         <SubjectCardList

@@ -12,15 +12,17 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
-import Breadcrumbs from "../../../../../../components/Breadcrumbs";
 import Box from "../../../../../../components/Box";
 import { ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
 import {
+  KeyStageData,
   KeyStageSubjectData,
   SubjectListingPageData,
 } from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "../../../../../../node-lib/getPageProps";
+
+import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -33,10 +35,11 @@ export type SubjectListingPageProps = {
   subjectsUnavailable: KeyStageSubject[];
   keyStageSlug: string;
   keyStageTitle: string;
+  keyStages: KeyStageData[];
 };
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
-  const { keyStageSlug, keyStageTitle } = props;
+  const { keyStageSlug, keyStageTitle, keyStages } = props;
   return (
     <AppLayout
       seoProps={{
@@ -48,28 +51,21 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
+      <Box
+        $mb={40}
+        $background={"lavender50"}
+        $height={[120, 140]}
+        $minWidth={"min-content"}
+      >
+        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
+          <Box $pv={32}>
+            <KeyStageKeypad keyStages={keyStages} />
+          </Box>
+        </MaxWidth>
+      </Box>
       <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: { page: "home", viewType: "teachers" },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle,
-                disabled: true,
-              },
-            ]}
-          />
-        </Box>
-        <Heading tag={"h1"} $font={"heading-4"}>
-          {keyStageTitle}
+        <Heading tag={"h1"} $font={["heading-5", "heading-3"]}>
+          {`${keyStageTitle} subjects`}
         </Heading>
       </MaxWidth>
       <SubjectListingPage {...props} />
@@ -121,8 +117,13 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { subjects, subjectsUnavailable, keyStageSlug, keyStageTitle } =
-        curriculumData;
+      const {
+        subjects,
+        subjectsUnavailable,
+        keyStageSlug,
+        keyStageTitle,
+        keyStages,
+      } = curriculumData;
 
       const keyStageSubjectAvailable = Object.values(
         groupBy(
@@ -145,6 +146,7 @@ export const getStaticProps: GetStaticProps<
           keyStageTitle,
           subjects: keyStageSubjectAvailable,
           subjectsUnavailable: keyStageSubjectUnavailable,
+          keyStages,
         },
       };
 
