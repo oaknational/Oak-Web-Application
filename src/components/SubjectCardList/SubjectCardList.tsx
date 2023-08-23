@@ -7,7 +7,7 @@ import SubjectCardListItem from "./SubjectCardListItem";
 
 export type SubjectCardListProps = Omit<
   SubjectListingPageProps,
-  "subjectsUnavailable"
+  "subjectsUnavailable" | "keyStages"
 > & {
   isAvailable: boolean;
 };
