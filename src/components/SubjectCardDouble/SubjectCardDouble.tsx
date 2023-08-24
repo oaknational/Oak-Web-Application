@@ -47,6 +47,7 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
           $mh={[0, 12]}
           $alignItems={["start", "center"]}
           $minHeight={[0, 72]}
+          $width={["75%", null]}
         >
           <Heading
             $textAlign={["start", "center"]}
