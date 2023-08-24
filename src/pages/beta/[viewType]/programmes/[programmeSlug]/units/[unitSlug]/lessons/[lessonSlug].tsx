@@ -116,7 +116,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitTitle,
     unitSlug,
     expired,
-    supplementaryAssetsUrl,
+    additionalMaterialUrl,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -159,13 +159,11 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     pageLinks.push({ label: "Worksheet", href: "#worksheet" });
   }
 
-  let additionalMaterialUrl = null;
-  if (supplementaryAssetsUrl) {
+  if (additionalMaterialUrl) {
     pageLinks.push({
       label: "Additional material",
       href: "#additionalMaterial",
     });
-    additionalMaterialUrl = supplementaryAssetsUrl.url;
   }
 
   if (introQuiz.length > 0) {

@@ -445,7 +445,7 @@ const curriculumApi = {
       pupilLessonOutcome: null,
       lessonKeywords: null,
       copyRightContent: null,
-      supplementaryAssetsUrl: null,
+      additionalMaterialUrl: null,
       contentGuidance: lessonContentGuidance,
       supervisionLevel: lesson.supervisionLevel,
       worksheetUrl: lesson.worksheetUrl,
