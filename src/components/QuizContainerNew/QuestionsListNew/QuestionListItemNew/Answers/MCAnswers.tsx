@@ -88,7 +88,6 @@ export const MCAnswers = (props: {
                   <QuizImage
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.image_object}
-                    alt="An image supporting the question"
                   />
                 );
               }

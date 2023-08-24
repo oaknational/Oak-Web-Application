@@ -45,10 +45,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           )}
 
           {answers["short-answer"] && answers["short-answer"].length > 0 && (
-            <ShortAnswers
-              answers={answers["short-answer"]}
-              questionNumber={index}
-            />
+            <ShortAnswers answers={answers["short-answer"]} />
           )}
         </>
       )}

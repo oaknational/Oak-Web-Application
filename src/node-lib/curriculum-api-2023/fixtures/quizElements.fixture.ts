@@ -121,8 +121,16 @@ export const mcqImageAnswers: MCAnswer[] = [
 
 export const shortAnswers: ShortAnswer[] = [
   {
-    answer: [{ text: "water", type: "text" }],
+    answer: [{ text: "earth", type: "text" }],
     answer_is_default: true,
+  },
+  {
+    answer: [{ text: "wind", type: "text" }],
+    answer_is_default: false,
+  },
+  {
+    answer: [{ text: "fire", type: "text" }],
+    answer_is_default: false,
   },
 ];
 

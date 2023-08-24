@@ -56,10 +56,10 @@ describe("MCAnswers", () => {
   });
 
   it("renders the image answers", () => {
-    const { getAllByAltText } = renderWithTheme(
+    const { getAllByRole } = renderWithTheme(
       <MCAnswers answers={mcqImageAnswers} questionNumber={0} />
     );
 
-    expect(getAllByAltText("An image supporting the question").length).toBe(3);
+    expect(getAllByRole("img").length).toBe(3);
   });
 });

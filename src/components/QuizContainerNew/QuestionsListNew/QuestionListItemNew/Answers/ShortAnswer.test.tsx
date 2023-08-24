@@ -8,6 +8,6 @@ describe("Short Answers", () => {
     const { getByText } = renderWithTheme(
       <ShortAnswers answers={shortAnswers} questionNumber={1} />
     );
-    expect(getByText("water")).toBeInTheDocument();
+    expect(getByText("earth, wind, fire")).toBeInTheDocument();
   });
 });

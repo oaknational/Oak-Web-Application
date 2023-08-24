@@ -50,10 +50,7 @@ export const QuestionStem = ({
         } else if (stemItem.type === "image") {
           return (
             <Flex $pv={24} key={`q-${displayNumber}-stem-element-${i}`}>
-              <QuizImage
-                src={stemItem.image_object}
-                alt="An image supporting the question"
-              />
+              <QuizImage src={stemItem.image_object} />
             </Flex>
           );
         }

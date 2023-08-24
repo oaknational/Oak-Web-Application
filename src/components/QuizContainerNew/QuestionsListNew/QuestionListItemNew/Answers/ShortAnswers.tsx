@@ -8,43 +8,38 @@ import Icon from "@/components/Icon";
 import Typography from "@/components/Typography";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
-export const ShortAnswers = ({
-  answers,
-  questionNumber,
-}: {
-  answers: ShortAnswer[];
-  questionNumber: number;
-}) => {
+export const ShortAnswers = ({ answers }: { answers: ShortAnswer[] }) => {
+  const answerString = answers.reduce((acc, cur) => {
+    if (acc === "") {
+      return (cur.answer && cur.answer[0] && cur.answer[0].text) || acc;
+    }
+
+    return cur.answer && cur.answer[0] && cur.answer[0].text
+      ? `${acc}, ${cur.answer[0].text}`
+      : acc;
+  }, "");
+
   return (
     <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"}>
-      {answers.map((item, i) => {
-        const shortAnswer =
-          item.answer && item.answer.length > 0 ? item.answer[0] : undefined;
-        return (
-          shortAnswer && (
-            <Flex
-              key={`q-${questionNumber}-answer${i}`}
-              $background={"teachersPastelYellow"}
-              $borderRadius={8}
-              $ph={8}
-              $alignItems={"center"}
-              $gap={8}
-            >
-              <VisuallyHidden>
-                Correct Answer: {removeMarkdown(shortAnswer.text)}
-              </VisuallyHidden>
+      <Flex
+        $background={"teachersPastelYellow"}
+        $borderRadius={8}
+        $ph={8}
+        $alignItems={"center"}
+        $gap={8}
+      >
+        <VisuallyHidden>
+          Correct Answer: {removeMarkdown(answerString)}
+        </VisuallyHidden>
 
-              <Box $minWidth={32} aria-hidden>
-                <Icon name={"tick"} />
-              </Box>
+        <Box $minWidth={32} aria-hidden>
+          <Icon name={"tick"} />
+        </Box>
 
-              <Typography $font={["body-2", "body-1"]} aria-hidden>
-                {removeMarkdown(shortAnswer.text)}
-              </Typography>
-            </Flex>
-          )
-        );
-      })}
+        <Typography $font={["body-2", "body-1"]} aria-hidden>
+          {removeMarkdown(answerString)}
+        </Typography>
+      </Flex>
     </Flex>
   );
 };
