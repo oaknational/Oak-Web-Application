@@ -116,6 +116,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitTitle,
     unitSlug,
     expired,
+    supplementaryAssetsUrl,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -156,6 +157,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
 
   if (worksheetUrl) {
     pageLinks.push({ label: "Worksheet", href: "#worksheet" });
+  }
+
+  let additionalMaterialUrl = null;
+  if (supplementaryAssetsUrl) {
+    pageLinks.push({
+      label: "Additional material",
+      href: "#additionalMaterial",
+    });
+    additionalMaterialUrl = supplementaryAssetsUrl.url;
   }
 
   if (introQuiz.length > 0) {
@@ -301,6 +311,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     />
                   </LessonItemContainer>
                 )}
+
                 {pageLinks.find((p) => p.label === "Starter quiz") && (
                   <LessonItemContainer
                     title={"Starter quiz"}
@@ -329,6 +340,27 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     slugs={slugs}
                   >
                     <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Additional material") && (
+                  <LessonItemContainer
+                    title={"Additional material"}
+                    anchorId="additionalMaterial"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "additional material",
+                      });
+                    }}
+                    slugs={slugs}
+                  >
+                    <OverviewPresentation
+                      asset={additionalMaterialUrl}
+                      isAdditionalMaterial={true}
+                      title={lessonTitle}
+                      isWorksheetLandscape={isWorksheetLandscape}
+                      isWorksheet={true}
+                    />
                   </LessonItemContainer>
                 )}
               </Flex>

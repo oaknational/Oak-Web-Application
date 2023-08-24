@@ -1095,6 +1095,7 @@ export const DownloadResourceButtonName = {
   'STARTER_QUIZ': 'starter quiz',
   'EXIT_QUIZ': 'exit quiz',
   'SLIDE_DECK': 'slide deck',
+  'ADDITIONAL MATERIAL': 'additional material',
 } as const;
 export type DownloadResourceButtonNameType = typeof DownloadResourceButtonName;
 export type DownloadResourceButtonNameValueType = DownloadResourceButtonNameType[keyof DownloadResourceButtonNameType];

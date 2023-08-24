@@ -81,6 +81,10 @@ const keywordsSchema = z.object({
   description: z.string(),
 });
 
+const supplementaryAssetsUrlSchema = z.object({
+  url: z.string(),
+});
+
 export const baseLessonOverviewData = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
@@ -101,6 +105,7 @@ export const baseLessonOverviewData = z.object({
     .array(lessonEquipmentAndResourcesSchema)
     .nullable()
     .optional(),
+  supplementaryAssetsUrl: supplementaryAssetsUrlSchema.nullable(),
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),

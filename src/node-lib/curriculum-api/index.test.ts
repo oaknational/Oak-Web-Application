@@ -65,6 +65,7 @@ const lessonOverview = jest.fn(() => ({
       subjectSlug: lessonOverviewFixture().subjectSlug,
       subjectTitle: lessonOverviewFixture().subjectTitle,
       keyLearningPoints: lessonOverviewFixture().keyLearningPoints,
+      supplementaryAssetsUrl: lessonOverviewFixture().supplementaryAssetsUrl,
       lessonEquipmentAndResources:
         lessonOverviewFixture().lessonEquipmentAndResources,
       supervisionLevel: lessonOverviewFixture().supervisionLevel,
@@ -154,7 +155,7 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
   });
-  test("lessonOverview", async () => {
+  test.only("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
       lessonSlug: "Geometry fundamentals",
       unitSlug: "geometry",

@@ -43,6 +43,7 @@ export const containerTitleToPreselectMap: Record<
   "Starter quiz": "starter quiz",
   "Lesson overview": null,
   "Lesson details": null,
+  "Additional material": null,
   Worksheet: "worksheet",
   Transcript: null,
   Video: null,

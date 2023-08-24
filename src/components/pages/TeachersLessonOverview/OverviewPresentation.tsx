@@ -9,6 +9,7 @@ interface OverviewPresentationProps {
   title: string;
   isWorksheetLandscape?: boolean;
   isWorksheet: boolean;
+  isAdditionalMaterial?: boolean;
 }
 
 const OverviewPresentation: FC<OverviewPresentationProps> = ({
@@ -16,15 +17,21 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
   title,
   isWorksheetLandscape,
   isWorksheet,
+  isAdditionalMaterial,
 }) => {
   const [slidesId] = useState(asset ? asset.split("/")?.[5] : null);
-
   const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
+
+  const srcUrl =
+    isAdditionalMaterial && asset
+      ? asset
+      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`;
+
   return (
     <Box $ba={[3]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
         <iframe
-          src={`https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`}
+          src={srcUrl}
           title={`slide deck: ${title}`}
           width="100%"
           height="100%"
