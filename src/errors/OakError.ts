@@ -151,7 +151,7 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "urls/failed-to-resolve": {
     message:
-      "Failed to resolve URL. Likely caused by a mismatch between the TS types and the pathPattern",
+      "Failed to resolve URL. Likely caused by either an empty param (e.g. slug) or a mismatch between the TS types and the pathPattern",
     shouldNotify: true,
   },
   "downloads/failed-to-fetch": {
