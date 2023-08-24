@@ -155,7 +155,7 @@ describe("curriculum-api", () => {
       programmeSlug: "maths-secondary-ks4",
     });
   });
-  test.only("lessonOverview", async () => {
+  test("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
       lessonSlug: "Geometry fundamentals",
       unitSlug: "geometry",
