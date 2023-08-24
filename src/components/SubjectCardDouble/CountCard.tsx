@@ -46,12 +46,11 @@ const CountCard: FC<CountCardProps> = ({
       $borderRadius={4}
     >
       {isNew && (
-        <Flex $right={50} $top={[10, 3]} $position={"absolute"}>
+        <Flex $right={46} $top={[10, 3]} $position={"absolute"}>
           <TagPromotional size={"small"} $color="mint" />
         </Flex>
       )}
       <OakLink
-        aria-name={subjectSlug}
         aria-label={ariaLabel}
         page={programmeCount > 1 ? "programme-index" : "unit-index"}
         programmeSlug={programmeSlug}

@@ -18,7 +18,7 @@ export type SubjectCardDoubleProps = Omit<CardProps, "children"> & {
 };
 
 const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
-  titleTag = "h3",
+  titleTag = "h2",
   subject,
   keyStageSlug,
   keyStageTitle,
@@ -36,21 +36,22 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
         $position={"relative"}
         $flexDirection={["row", "column"]}
         $alignItems={"center"}
-        $mb={[12, 32]}
+        $mb={[12, 0]}
         $ml={[12, 0]}
-        $mt={[12, 32]}
+        $mt={[12, 12]}
       >
         <Flex $mr={[8, 0]} $mb={[0, 8]} $height={[56, 72]} $width={[56, 72]}>
           <SubjectIcon subjectSlug={subjectSlug} $ma={"auto"} />
         </Flex>
-        <Heading
-          $textAlign={"center"}
-          $font={["heading-6", "heading-5"]}
-          tag={titleTag}
-          id={"subject-title"}
-        >
-          {subject.new?.subjectTitle || subject.old?.subjectTitle}
-        </Heading>
+        <Flex $alignItems={"center"} $minHeight={[0, 72]}>
+          <Heading
+            $textAlign={"center"}
+            $font={["heading-6", "heading-5"]}
+            tag={titleTag}
+          >
+            {subject.new?.subjectTitle || subject.old?.subjectTitle}
+          </Heading>
+        </Flex>
       </Flex>
       <UL
         $display={"flex"}
