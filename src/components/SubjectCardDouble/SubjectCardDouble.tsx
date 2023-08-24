@@ -43,9 +43,13 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
         <Flex $mr={[8, 0]} $mb={[0, 8]} $height={[56, 72]} $width={[56, 72]}>
           <SubjectIcon subjectSlug={subjectSlug} $ma={"auto"} />
         </Flex>
-        <Flex $mh={[0, 12]} $alignItems={"center"} $minHeight={[0, 72]}>
+        <Flex
+          $mh={[0, 12]}
+          $alignItems={["start", "center"]}
+          $minHeight={[0, 72]}
+        >
           <Heading
-            $textAlign={"center"}
+            $textAlign={["start", "center"]}
             $font={["heading-6", "heading-5"]}
             tag={titleTag}
           >
