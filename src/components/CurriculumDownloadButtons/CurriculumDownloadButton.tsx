@@ -71,15 +71,15 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   };
 
   return (
-    <Flex $mb={[20, 0]}>
+    <Flex>
       {lessonPage && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
         <Flex $flexDirection={"column"}>
           <Button
-            icon="download"
+            icon={"download"}
             size="large"
             variant="minimal"
             $iconPosition={"trailing"}
-            iconBackground="teachersHighlight"
+            iconBackground="black"
             label={downloadLabel}
             onClick={handleZipDownloadClick}
           />
@@ -91,8 +91,8 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
         </Flex>
       ) : (
         <ButtonAsLink
-          icon="download"
-          iconBackground="teachersHighlight"
+          icon={"download"}
+          iconBackground="black"
           label={downloadLabel}
           href={downloadLink}
           onClick={() => trackCurriculumMapDownloaded()}

@@ -5,8 +5,6 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api";
 import { getSeoProps } from "../../../../../../../browser-lib/seo/getSeoProps";
 import AppLayout from "../../../../../../../components/AppLayout/AppLayout";
 import MaxWidth from "../../../../../../../components/MaxWidth/MaxWidth";
-import Breadcrumbs from "../../../../../../../components/Breadcrumbs/Breadcrumbs";
-import Box from "../../../../../../../components/Box";
 import SubjectTierListing from "../../../../../../../components/SubjectProgrammeListing/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,
@@ -16,6 +14,8 @@ import { ViewType } from "../../../../../../../common-lib/urls";
 import getPageProps from "../../../../../../../node-lib/getPageProps";
 import curriculumApi2023 from "../../../../../../../node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "../../../../../../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+
+import HeaderListing from "@/components/HeaderListing/HeaderListing";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
@@ -37,34 +37,37 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   };
   return (
     <AppLayout seoProps={tiersSEO}>
-      <MaxWidth $ph={16}>
-        <Box $mv={[24, 48]}>
-          <Breadcrumbs
-            breadcrumbs={[
-              {
-                oakLinkProps: { page: "home", viewType: "teachers" },
-                label: "Home",
-              },
-              {
-                oakLinkProps: {
-                  page: "subject-index",
-                  viewType: "teachers",
-                  keyStageSlug,
-                },
-                label: keyStageTitle ?? "",
-              },
-              {
-                oakLinkProps: {
-                  page: "programme-index",
-                  viewType: "teachers",
-                  subjectSlug,
-                  keyStageSlug,
-                },
-                label: subjectTitle,
-              },
-            ]}
-          />
-        </Box>
+      <HeaderListing
+        breadcrumbs={[
+          {
+            oakLinkProps: { page: "home", viewType: "teachers" },
+            label: "Home",
+          },
+          {
+            oakLinkProps: {
+              page: "subject-index",
+              viewType: "teachers",
+              keyStageSlug,
+            },
+            label: keyStageTitle ?? "",
+          },
+          {
+            oakLinkProps: {
+              page: "programme-index",
+              viewType: "teachers",
+              subjectSlug,
+              keyStageSlug,
+            },
+            label: subjectTitle,
+          },
+        ]}
+        background={"lavender30"}
+        subjectIconBackgroundColor={"lavender"}
+        title={subjectTitle}
+        programmeFactor={keyStageTitle}
+        {...props}
+      />
+      <MaxWidth $mt={[56, 72]} $ph={16}>
         <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>

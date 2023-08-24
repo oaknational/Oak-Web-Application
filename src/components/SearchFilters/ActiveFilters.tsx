@@ -3,13 +3,14 @@ import { FC } from "react";
 import Flex from "../Flex";
 import Button from "../Button";
 import { P, Span } from "../Typography";
+
 import {
-  CheckBoxProps,
+  UseSearchFiltersReturnType,
   KeyStage,
   Subject,
   ContentType,
-  UseSearchFiltersReturnType,
-} from "../../context/Search/useSearchFilters";
+  SearchCheckBoxProps,
+} from "@/context/Search/search.types";
 
 type ActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
@@ -26,7 +27,7 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
 
   const maxActiveFilters = 4;
   const slicedActiveFilters: ((Subject | KeyStage | ContentType) &
-    CheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
+    SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (
     <Flex
