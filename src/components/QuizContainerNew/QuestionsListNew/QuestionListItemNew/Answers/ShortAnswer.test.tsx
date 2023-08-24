@@ -6,7 +6,7 @@ import { shortAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElemen
 describe("Short Answers", () => {
   it("renders the answer", () => {
     const { getByText } = renderWithTheme(
-      <ShortAnswers answers={shortAnswers} questionNumber={1} />
+      <ShortAnswers answers={shortAnswers} />
     );
     expect(getByText("earth, wind, fire")).toBeInTheDocument();
   });

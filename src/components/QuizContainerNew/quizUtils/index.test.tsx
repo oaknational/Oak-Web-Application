@@ -2,7 +2,6 @@ import { removeMarkdown, shortAnswerTitleFormatter } from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("shortAnswerTitleFormatter", () => {
   it("when passed an empty str returns an empty string", () => {
     const result = shortAnswerTitleFormatter("");
