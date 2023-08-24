@@ -1,10 +1,12 @@
 import styled, { css } from "styled-components";
 
 import { box, BoxProps } from "../Box";
+import { FlexProps } from "../Flex";
 
-type ULProps = BoxProps & {
-  $reset?: boolean;
-};
+type ULProps = BoxProps &
+  FlexProps & {
+    $reset?: boolean;
+  };
 /**
  * Styled `ul` (unordered list) component.
  *

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Heading, HeadingTag } from "../Typography";
+import { Heading, HeadingTag, LI, UL } from "../Typography";
 import Flex from "../Flex";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
@@ -52,24 +52,35 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
           {subject.new?.subjectTitle || subject.old?.subjectTitle}
         </Heading>
       </Flex>
-      <Flex $pb={12} $ph={12} $gap={12} $width={"100%"}>
+      <UL
+        $display={"flex"}
+        $pb={12}
+        $ph={12}
+        $gap={12}
+        $width={"100%"}
+        $reset={true}
+      >
         {subject.old && (
-          <CountCard
-            isNew={false}
-            keyStageSlug={keyStageSlug}
-            keyStageTitle={keyStageTitle}
-            {...subject.old}
-          />
+          <LI $flex={1} $display={"flex"}>
+            <CountCard
+              isNew={false}
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              {...subject.old}
+            />
+          </LI>
         )}
         {subject.new && (
-          <CountCard
-            isNew={true}
-            keyStageTitle={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            {...subject.new}
-          />
+          <LI $flex={1} $display={"flex"}>
+            <CountCard
+              isNew={true}
+              keyStageTitle={keyStageTitle}
+              keyStageSlug={keyStageSlug}
+              {...subject.new}
+            />
+          </LI>
         )}
-      </Flex>
+      </UL>
     </Card>
   );
 };
