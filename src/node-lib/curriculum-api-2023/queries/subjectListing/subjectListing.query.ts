@@ -10,7 +10,6 @@ import subjectListingSchema, {
 const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
-
     const [keyStageSubjects] = res.keyStageSubjects;
 
     if (!keyStageSubjects) {

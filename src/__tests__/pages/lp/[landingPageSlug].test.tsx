@@ -1,14 +1,15 @@
 import { screen, waitFor } from "@testing-library/react";
+import { GetServerSidePropsContext } from "next";
 
 import LandingPageTemplate, {
-  getStaticPaths,
-  getStaticProps,
+  getServerSideProps,
 } from "../../../pages/lp/[landingPageSlug]";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import CMSClient from "../../../node-lib/cms";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
+import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
 jest.mock("../../../node-lib/cms");
 
@@ -54,6 +55,9 @@ const testLandingPage: LandingPage = {
   ],
   seo: null,
 };
+
+jest.mock("../../../node-lib/cms/ab-testing");
+
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
@@ -86,21 +90,22 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
   });
 
-  describe("getStaticPaths", () => {
-    it("Should return the paths of all landing pages", async () => {
-      const pathsResult = await getStaticPaths();
-
-      expect(pathsResult.paths).toEqual([
-        { params: { landingPageSlug: "some-landing-page" } },
-      ]);
-    });
-  });
-
-  describe("getStaticProps", () => {
-    it("Should fetch the correct landing page", async () => {
-      await getStaticProps({
+  describe("getServerSideProps", () => {
+    const getContext = (overrides: Partial<GetServerSidePropsContext>) =>
+      ({
+        req: {},
+        res: {},
+        query: {},
         params: { landingPageSlug: "some-landing-page" },
-      });
+        ...overrides,
+      } as unknown as GetServerSidePropsContext<{ landingPageSlug: string }>);
+
+    it("Should fetch the correct landing page", async () => {
+      await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "some-landing-page" },
+        })
+      );
 
       expect(mockCMSClient.landingPageBySlug).toHaveBeenCalledWith(
         "some-landing-page",
@@ -111,12 +116,34 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     it("should return notFound when a landing page is missing", async () => {
       mockCMSClient.landingPageBySlug.mockResolvedValueOnce(null as never);
 
-      const propsResult = await getStaticProps({
-        params: { landingPageSlug: "some-landing-page" },
-      });
+      const propsResult = await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "some-landing-page" },
+        })
+      );
 
       expect(propsResult).toMatchObject({
         notFound: true,
+      });
+    });
+
+    it("should redirect the user to an A/B tested page if it exists", async () => {
+      (getABTestedLandingPage as jest.Mock).mockResolvedValue({
+        ...testLandingPage,
+        slug: "ab-tested-page-variant",
+      });
+
+      const redirected = await getServerSideProps(
+        getContext({
+          params: { landingPageSlug: "ab-tested-page" },
+        })
+      );
+
+      expect(redirected).toEqual({
+        redirect: {
+          destination: "/lp/ab-tested-page-variant",
+          permanent: false,
+        },
       });
     });
   });

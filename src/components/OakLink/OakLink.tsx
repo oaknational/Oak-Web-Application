@@ -33,6 +33,7 @@ type StyleProps = FlexProps &
      */
     $isInline?: boolean;
     $hideDefaultFocus?: boolean;
+    $isSelected?: boolean;
   };
 
 const inlineStyles = css`
@@ -44,6 +45,11 @@ const $hoverStyles = css`
   text-decoration: underline;
 `;
 
+export const $selectedStyle = css`
+  transition-duration: 0s;
+  transition-delay: 0s;
+`;
+
 const StyledNextLink = styled.a<StyleProps>`
   ${box}
   ${flex}
@@ -51,6 +57,8 @@ const StyledNextLink = styled.a<StyleProps>`
   ${(props) =>
     props.$focusStyles?.includes("underline") && focusUnderlineStyles}
   ${(props) => props.$isHovered && $hoverStyles}
+
+  ${(props) => props.$isSelected && $selectedStyle}
   :hover {
     ${$hoverStyles}
   }

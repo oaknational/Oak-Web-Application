@@ -9,10 +9,17 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "../../../../../../node-lib/isr";
+import Box from "../../../../../../components/Box";
 import { ViewType } from "../../../../../../common-lib/urls";
 import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
-import { KeyStageSubjectData } from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import {
+  KeyStageData,
+  KeyStageSubjectData,
+} from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "../../../../../../node-lib/getPageProps";
+
+import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -30,10 +37,11 @@ export type SubjectListingPageProps = {
   subjects: Subjects;
   keyStageSlug: string;
   keyStageTitle: string;
+  keyStages: KeyStageData[];
 };
 
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
-  const { keyStageSlug, keyStageTitle } = props;
+  const { keyStageSlug, keyStageTitle, keyStages } = props;
   return (
     <AppLayout
       seoProps={{
@@ -45,10 +53,22 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
+      <Box
+        $background={"lavender50"}
+        $height={[120, 140]}
+        // $minWidth={"min-content"}
+      >
+        <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
+          <Box $pv={32}>
+            <KeyStageKeypad keyStages={keyStages} />
+          </Box>
+        </MaxWidth>
+      </Box>
       <SubjectListingPage
         subjects={props.subjects}
         keyStageSlug={keyStageSlug}
         keyStageTitle={keyStageTitle}
+        keyStages={props.keyStages}
       />
     </AppLayout>
   );
@@ -97,7 +117,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { keyStageSlug, keyStageTitle } = curriculumData;
+      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
       const subjectSlugs = curriculumData.subjects.map((s) => s.subjectSlug);
       const subjectSlugs2023 = curriculumData2023.subjects.map(
         (s) => s.subjectSlug
@@ -126,7 +146,7 @@ export const getStaticProps: GetStaticProps<
           keyStageSlug,
           keyStageTitle,
           subjects: subjects,
-          subjectsUnavailable: [],
+          keyStages,
         },
       };
 

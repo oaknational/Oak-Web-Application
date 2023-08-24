@@ -5,10 +5,9 @@ import {
   getLessonObject,
   getUnitObject,
   isFilterItem,
-  lessonSearchHitSchema,
-  unitSearchHitSchema,
-} from "./helpers";
-import elasticResponseFixture from "./elasticResponse.fixture.json";
+} from "./search.helpers";
+import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
+import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 
 const lessonHit = lessonSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson")
@@ -38,20 +37,20 @@ describe("search helpers", () => {
       allKeyStages,
     });
 
-    expect(lessonListObject.keyStageSlug).toEqual("ks2");
+    expect(lessonListObject?.keyStageSlug).toEqual("ks2");
   });
 
   test("getUnitObject maps to new key stage slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
 
-    expect(unitListObject.keyStageSlug).toEqual("ks2");
+    expect(unitListObject?.keyStageSlug).toEqual("ks2");
   });
 
   test("getProgrammeSlug returns a correct slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
     const lessonListObject = getLessonObject({ hit: lessonHit, allKeyStages });
-    expect(unitListObject.programmeSlug).toEqual("english-primary-ks2");
-    expect(lessonListObject.programmeSlug).toEqual("drama-primary-ks2");
+    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2");
+    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2");
   });
   test("getProgrammeSlug returns a correct slug with tier", () => {
     const unitListObject = getUnitObject({ hit: unitHitTier, allKeyStages });
@@ -59,8 +58,8 @@ describe("search helpers", () => {
       hit: lessonHitTier,
       allKeyStages,
     });
-    expect(unitListObject.programmeSlug).toEqual("english-secondary-ks4-core");
-    expect(lessonListObject.programmeSlug).toEqual(
+    expect(unitListObject?.programmeSlug).toEqual("english-secondary-ks4-core");
+    expect(lessonListObject?.programmeSlug).toEqual(
       "english-secondary-ks4-higher"
     );
   });

@@ -1,11 +1,12 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { SearchHit } from "../../context/Search/helpers";
-import { SearchQuery } from "../../context/Search/useSearch";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import Search, { SearchProps } from "./Search.page";
+import Search from "./Search.page";
+import { SearchProps } from "./search.page.types";
+
+import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 
 const createSearchResult = (): SearchHit => {
   return {

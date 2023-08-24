@@ -5,14 +5,14 @@ import Flex from "@/components/Flex/Flex";
 import P, { Heading } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import DropdownSelect from "@/components/DropdownSelect/DropdownSelect";
+import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 
-type SequenceTabProps = {
-  units: string[];
-  threads: string[];
+type UnitsTabProps = {
+  data: CurriculumUnitsTabData;
 };
 
-const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
-  const { units, threads } = props;
+const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
+  const { units, threads } = data;
   return (
     <Box $maxWidth={"80%"} $ma={"auto"} $pb={80}>
       <Flex $justifyContent={"space-between"}>
@@ -47,14 +47,14 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
               <Flex $flexDirection={"column"}>
                 {threads.map((thread) => (
                   <Card
-                    key={thread.split(" ").join("-")}
+                    key={thread.slug}
                     $background={"aqua50"}
                     $mv={4}
                     $pa={10}
                     $borderRadius={6}
                     data-testid={"threadOption"}
                   >
-                    {thread}
+                    {thread.title}
                   </Card>
                 ))}
               </Flex>
@@ -70,7 +70,7 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
             {units.map((unit) => {
               return (
                 <Card
-                  key={unit.split(" ").join("-")}
+                  key={unit.slug}
                   $background={"aqua30"}
                   $mv={8}
                   $ml={12}
@@ -79,7 +79,7 @@ const SequenceTab: FC<SequenceTabProps> = (props: SequenceTabProps) => {
                   data-testid={"unitCard"}
                 >
                   <Heading tag={"h3"} $font={"heading-7"}>
-                    {unit}
+                    {unit.title}
                   </Heading>
                   <P $textAlign={"right"}>Unit info</P>
                 </Card>

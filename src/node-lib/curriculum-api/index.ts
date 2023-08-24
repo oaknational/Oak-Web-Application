@@ -174,6 +174,7 @@ export const subjectListingData = z.object({
   keyStageTitle: z.string(),
   subjects: z.array(programmesData),
   subjectsUnavailable: z.array(programmesData),
+  keyStages: z.array(keyStageSchema).optional(),
 });
 
 const unitListingData = z.object({
@@ -297,6 +298,7 @@ const curriculumApi = {
     const { keyStages = [], programmesAvailable } = transformMVCase(res);
 
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
+    const keyStageList = res.keyStageList;
 
     const addCurriculum2023Counts = (
       programmes: ProgrammesData[] | undefined
@@ -321,6 +323,7 @@ const curriculumApi = {
     return subjectListingSchema.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
+      keyStages: keyStageList,
       subjects:
         addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
         [],

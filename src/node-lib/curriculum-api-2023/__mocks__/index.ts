@@ -5,14 +5,12 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api/fixtures/su
 
 const curriculumApi: Pick<
   CurriculumApi,
-  | "subjectPhaseOptions"
-  | "curriculumSubjectPhaseOverviewPage"
-  | "subjectListingPage"
+  "subjectPhaseOptions" | "curriculumOverview" | "subjectListingPage"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
   }),
-  curriculumSubjectPhaseOverviewPage: jest.fn(async () => {
+  curriculumOverview: jest.fn(async () => {
     return curriculumOverviewFixture();
   }),
   subjectListingPage: jest.fn(async () => {
