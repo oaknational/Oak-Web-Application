@@ -28,6 +28,8 @@
     "image-data:all": "./scripts/build/image_data/all.sh",
     "lint": "NODE_ENV=test next lint",
     "lint:styles": "stylelint 'src/**/*.{j,t}{s,sx}'",
+    "madge:circulars": "npx madge --circular --extensions ts,tsx,js,jsx .",
+    "madge:circulars-image": "npx madge --circular --image madge/circulars.svg --extensions ts,tsx,js,jsx .",
     "pa11y": "pa11y-ci -c pa11yci.config.js",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
