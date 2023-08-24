@@ -86,3 +86,6 @@ public/images/sprite/*
 public/images/favicons/*
 public/images/sharing/*
 src/image-data/generated/*.svg
+
+# Madge generated graph files
+madge
