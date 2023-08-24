@@ -25,6 +25,7 @@ export type PositionProps = {
   $objectPosition?: ResponsiveValues<CSSProperties["objectPosition"]>;
   $pointerEvents?: ResponsiveValues<CSSProperties["pointerEvents"]>;
   $visibility?: ResponsiveValues<CSSProperties["visibility"]>;
+  $gap?: ResponsiveValues<PxOrPercent>;
 };
 const parsePxOrPercent = (value?: PxOrPercent) => {
   return typeof value === "number" ? `${value}px` : value;
@@ -42,6 +43,7 @@ const position = css<PositionProps>`
   ${responsive("object-position", (props) => props.$objectPosition)}
   ${responsive("pointer-events", (props) => props.$pointerEvents)}
   ${responsive("visibility", (props) => props.$visibility)}
+  ${responsive("gap", (props) => props.$gap, parsePxOrPercent)}
 `;
 
 export default position;
