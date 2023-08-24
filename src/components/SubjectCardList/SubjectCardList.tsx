@@ -1,9 +1,12 @@
 import { FC } from "react";
 
-import { KeyStageSubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Grid, { GridArea } from "../Grid";
 
 import SubjectCardListItem from "./SubjectCardListItem";
+
+import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+
+export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
 
 export type SubjectCardListProps = {
   subjects: KeyStageSubject[];

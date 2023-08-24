@@ -1,23 +1,22 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
-import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
-import AppLayout from "../../../../../../components/AppLayout";
-import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
-import curriculumApi from "../../../../../../node-lib/curriculum-api";
+import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
+import AppLayout from "@/components/AppLayout";
+import SubjectListingPage from "@/components/pages/SubjectListing.page";
+import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../node-lib/isr";
-import Box from "../../../../../../components/Box";
-import { ViewType } from "../../../../../../common-lib/urls";
-import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
+} from "@/node-lib/isr";
+import Box from "@//components/Box";
+import { ViewType } from "@/common-lib/urls";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
-} from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
-import getPageProps from "../../../../../../node-lib/getPageProps";
-
+} from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 
@@ -25,7 +24,6 @@ export type KeyStagePageProps = {
   keyStageTitle: string;
   keyStageSlug: string;
 };
-export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
 
 export type Subjects = {
   subjectSlug: string;
@@ -53,11 +51,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box
-        $background={"lavender50"}
-        $height={[120, 140]}
-        // $minWidth={"min-content"}
-      >
+      <Box $background={"lavender50"} $height={[120, 140]}>
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
           <Box $pv={32}>
             <KeyStageKeypad keyStages={keyStages} />
