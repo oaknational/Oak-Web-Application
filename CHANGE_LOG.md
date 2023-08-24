@@ -1,3 +1,28 @@
+# [1.227.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.226.2...v1.227.0) (2023-08-24)
+
+
+### Bug Fixes
+
+* **lesson-overview:** remove empty content guidance arrays ([6189588](https://github.com/oaknational/Oak-Web-Application/commit/6189588bb917da6b5e1e5d7e313b939684790845))
+
+
+### Features
+
+* **lesson overview:** add lesson assets and videos to lesson overview page ([9373529](https://github.com/oaknational/Oak-Web-Application/commit/9373529af5e84b53319a7b84a468c216c12376e1))
+
+## [1.226.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.226.1...v1.226.2) (2023-08-24)
+
+## [1.226.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.226.0...v1.226.1) (2023-08-24)
+
+# [1.226.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.225.2...v1.226.0) (2023-08-23)
+
+
+### Features
+
+* add logging and bugsnag error reporting to sanity-graphql client ([28e4b36](https://github.com/oaknational/Oak-Web-Application/commit/28e4b36acd7e97ee5ab3ffb7c4ccec523c7d0d8a))
+
+## [1.225.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.225.1...v1.225.2) (2023-08-23)
+
 ## [1.225.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.225.0...v1.225.1) (2023-08-23)
 
 # [1.225.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.224.2...v1.225.0) (2023-08-22)
