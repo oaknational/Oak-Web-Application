@@ -31,6 +31,11 @@ const CountCard: FC<CountCardProps> = ({
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const ariaLabel = `${subjectTitle}: ${unitCount} ${
+    unitCount > 1 ? "units" : "unit"
+  }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
+    isNew ? "- new content" : ""
+  }`;
 
   return (
     <TextTile
@@ -47,11 +52,7 @@ const CountCard: FC<CountCardProps> = ({
       )}
       <OakLink
         aria-name={subjectSlug}
-        aria-label={`${subjectTitle}: ${unitCount} ${
-          unitCount > 1 ? "units" : "unit"
-        }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
-          isNew ? "- new content" : ""
-        }`}
+        aria-label={ariaLabel}
         page={programmeCount > 1 ? "programme-index" : "unit-index"}
         programmeSlug={programmeSlug}
         keyStageSlug={keyStageSlug}
