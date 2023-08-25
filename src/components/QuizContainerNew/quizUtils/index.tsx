@@ -1,6 +1,6 @@
 import reactStringReplace from "react-string-replace";
 
-import Underline from "../../../Underline";
+import Underline from "../../Underline";
 
 export const shortAnswerTitleFormatter = (
   title: string | null | undefined
