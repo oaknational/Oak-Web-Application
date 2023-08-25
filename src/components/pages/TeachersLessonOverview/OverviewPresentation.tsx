@@ -21,10 +21,9 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
 }) => {
   const [slidesId] = useState(asset ? asset.split("/")?.[5] : null);
   const isWorksheetPortrait = !isWorksheetLandscape && isWorksheet;
-
   const srcUrl =
     isAdditionalMaterial && asset
-      ? asset
+      ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
       : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`;
   return (
     <Box $ba={[3]} $width={"100%"}>
