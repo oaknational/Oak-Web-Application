@@ -3,19 +3,44 @@ import { FC } from "react";
 import Flex from "../Flex";
 import Svg from "../Svg";
 import { Span } from "../Typography";
+import { OakColorName } from "../../styles/theme/types";
 
-const TagPromotional: FC = () => {
+export const tagWidthMap = {
+  small: 44,
+  large: 56,
+} as const;
+
+export const tagFontMap = {
+  small: "body-4",
+  large: "heading-7",
+} as const;
+
+type TagWithMap = keyof typeof tagWidthMap;
+
+type TagPromotionalProps = {
+  $color?: OakColorName;
+  size?: TagWithMap;
+};
+
+const TagPromotional: FC<TagPromotionalProps> = ({
+  $color = "white",
+  size = "large",
+}) => {
   return (
     <Flex $zIndex={"inFront"} $height={[18, 50]} $position={"relative"}>
       <Svg
-        $width={56}
+        $width={tagWidthMap[size]}
         $color={"oakGrey6"}
         $position={"absolute"}
         name={"tag-promotional"}
         $bottom={1}
       />
-      <Flex $left={[14, 8]} $top={[-2, 12]} $position={"absolute"}>
-        <Span $color={"white"} $font={["body-4", "heading-7"]}>
+      <Flex
+        $left={[size == "large" ? 12 : 8, size == "large" ? 8 : 6]}
+        $top={[-2, size == "large" ? 12 : 14]}
+        $position={"absolute"}
+      >
+        <Span $color={$color} $font={["body-4", tagFontMap[size]]}>
           New
         </Span>
       </Flex>

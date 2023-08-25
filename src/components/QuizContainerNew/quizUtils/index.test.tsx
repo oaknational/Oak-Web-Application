@@ -1,7 +1,6 @@
-import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme";
-import QuestionListItem from "../QuestionListItem";
-
 import { removeMarkdown, shortAnswerTitleFormatter } from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("shortAnswerTitleFormatter", () => {
   it("when passed an empty str returns an empty string", () => {
@@ -22,58 +21,23 @@ describe("shortAnswerTitleFormatter", () => {
   });
 
   it("when passed a string with {{}} pattern returns the string with underscores component replacing the pattern", () => {
-    const testProps = {
-      active: true,
-      answer: [],
-      choices: [],
-      images: [],
-      displayNumber: "Q2.",
-      feedbackCorrect: "Well done!",
-      feedbackIncorrect: "Incorrect",
-      keyStageSlug: "ks3",
-      keyStageTitle: "Key stage 3",
-      order: 2,
-      points: 1,
-      quizType: "exit",
-      required: true,
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-      title: "Given that a = 3b, fill in the gap: a + 3b = {{}}b.",
-      type: "short-answer",
-      unitSlug: "expressions-equations-and-inequalities-7d65",
-      unitTitle: "Expression, Equations and Inequalities",
-    };
-
     const { getByTestId } = renderWithTheme(
-      <QuestionListItem {...testProps} />
+      <>
+        {shortAnswerTitleFormatter(
+          "Given that a = 3b, fill in the gap: a + 3b = {{}}b."
+        )}
+      </>
     );
     expect(getByTestId("underline")).toBeInTheDocument();
   });
-  it("when passed a string with {{some text}} pattern returns the string with underscores component replacing the pattern", () => {
-    const testProps = {
-      active: true,
-      answer: [],
-      choices: [],
-      images: [],
-      displayNumber: "Q2.",
-      feedbackCorrect: "Well done!",
-      feedbackIncorrect: "Incorrect",
-      keyStageSlug: "ks3",
-      keyStageTitle: "Key stage 3",
-      order: 2,
-      points: 1,
-      quizType: "exit",
-      required: true,
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-      title: "Given that a = 3b, fill in the gap: a + 3b = {{hello!}}b.",
-      type: "short-answer",
-      unitSlug: "expressions-equations-and-inequalities-7d65",
-      unitTitle: "Expression, Equations and Inequalities",
-    };
 
+  it("when passed a string with {{some text}} pattern returns the string with underscores component replacing the pattern", () => {
     const { getByTestId } = renderWithTheme(
-      <QuestionListItem {...testProps} />
+      <>
+        {shortAnswerTitleFormatter(
+          "Given that a = 3b, fill in the gap: a + 3b = {{hello!}}b."
+        )}
+      </>
     );
     expect(getByTestId("underline")).toBeInTheDocument();
   });

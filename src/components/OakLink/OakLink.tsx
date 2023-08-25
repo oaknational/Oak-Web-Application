@@ -32,6 +32,7 @@ type StyleProps = FlexProps &
      * be affected: text-decoration: underline;
      */
     $isInline?: boolean;
+    $hideDefaultFocus?: boolean;
     $isSelected?: boolean;
   };
 
@@ -55,13 +56,20 @@ const StyledNextLink = styled.a<StyleProps>`
   ${(props) => props.$isInline && inlineStyles}
   ${(props) =>
     props.$focusStyles?.includes("underline") && focusUnderlineStyles}
-
   ${(props) => props.$isHovered && $hoverStyles}
+
+  ${(props) => props.$isSelected && $selectedStyle}
   :hover {
     ${$hoverStyles}
   }
 
-  ${(props) => props.$isSelected && $selectedStyle}
+  :focus {
+    ${(props) =>
+      props.$hideDefaultFocus &&
+      css`
+        outline: none;
+      `}
+  }
 `;
 
 export type OakLinkProps = Omit<LinkProps, "href" | "passHref" | "as"> &

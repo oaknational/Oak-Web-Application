@@ -53,7 +53,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
           $zIndex={"inFront"}
           $position={"absolute"}
         >
-          <TagPromotional />
+          <TagPromotional $color={"white"} />
         </Flex>
       )}
     </Flex>

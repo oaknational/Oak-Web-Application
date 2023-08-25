@@ -1,3 +1,45 @@
+# [1.229.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.228.0...v1.229.0) (2023-08-25)
+
+
+### Bug Fixes
+
+* ensure content guidance doesn't reder with empty array ([2125833](https://github.com/oaknational/Oak-Web-Application/commit/21258336fc1955cef4acd7d2030a1156f51862b8))
+* merge conflicts new mv lesson overview ([d3eda34](https://github.com/oaknational/Oak-Web-Application/commit/d3eda34739da0c2fa3434e9c593c6475f787f7ca))
+* minor ts error ([a5cbaeb](https://github.com/oaknational/Oak-Web-Application/commit/a5cbaeb04c7d85ef81024767a6e995c95b114898))
+* resolved confliucts gen sdk ([6a4d727](https://github.com/oaknational/Oak-Web-Application/commit/6a4d7279fd5e48643ce377ce57b531ad2c97fcff))
+* short answer qa fixes ([31d90a1](https://github.com/oaknational/Oak-Web-Application/commit/31d90a12c74eb682699b77ff52291a02541b2ce0))
+
+
+### Features
+
+* integrating new quiz into lesson overview wip ([82290f2](https://github.com/oaknational/Oak-Web-Application/commit/82290f2e51afd2f123fa651d85bcd1837921b3bc))
+* new quiz  updating to match test data ([6342770](https://github.com/oaknational/Oak-Web-Application/commit/63427708a82e6766172aba90e1facd228cc86412))
+* new quiz component - tests ([ff8ebfb](https://github.com/oaknational/Oak-Web-Application/commit/ff8ebfb5dcf2620965119222e64b904e29f42282))
+* new quiz component render all answer types ([306b4c8](https://github.com/oaknational/Oak-Web-Application/commit/306b4c88b38c1724de5a0c5eaed5bd5c1625012c))
+* new quizzes fix tests ([8257b20](https://github.com/oaknational/Oak-Web-Application/commit/8257b2074f179dbc6a42eec5d375e4ceed3c8156))
+* new quizzes tests completed ([41b1c75](https://github.com/oaknational/Oak-Web-Application/commit/41b1c75a281443aaca59df22ef6d41628ead4c3f))
+* order answer unit tests ([b163d8d](https://github.com/oaknational/Oak-Web-Application/commit/b163d8d9bdbe7cec3621e56dfa17f3f1a0f328e8))
+* wip new quiz component to render new quiz data ([fa12fc1](https://github.com/oaknational/Oak-Web-Application/commit/fa12fc15887f9d7fcd45448b6a28ec4061fb6996))
+* wip new quiz data rendering ([3600737](https://github.com/oaknational/Oak-Web-Application/commit/3600737d3de50b563fca8a45f9738b71869e8173))
+
+# [1.228.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.227.0...v1.228.0) (2023-08-25)
+
+
+### Bug Fixes
+
+* add key stages to fixtures ([18ba933](https://github.com/oaknational/Oak-Web-Application/commit/18ba933aa6429aacc4ca3a3d79a06ccf75f0d9fd))
+* aria role ([243922f](https://github.com/oaknational/Oak-Web-Application/commit/243922f44492d42ca457bb888c9c1ec11967c667))
+* axe and style changes ([10359e4](https://github.com/oaknational/Oak-Web-Application/commit/10359e4f66f0ef5c0ef8385991093dd0d628446b))
+* gap mismatch from spread props ([ef1211a](https://github.com/oaknational/Oak-Web-Application/commit/ef1211a6ebea287c4ba20adbc400e9a875c2df86))
+* icon resize ([120cb0d](https://github.com/oaknational/Oak-Web-Application/commit/120cb0d711480ac5d1d0fc0fca3e94a34031b422))
+* imports and role for list ([7bab659](https://github.com/oaknational/Oak-Web-Application/commit/7bab659f6fe61b3f22896cb12354821cde57e84d))
+* type errors ([968c7c8](https://github.com/oaknational/Oak-Web-Application/commit/968c7c8845a0fd27e54215a645c8d52dff885e68))
+
+
+### Features
+
+* double subject card ([385ac8f](https://github.com/oaknational/Oak-Web-Application/commit/385ac8f2546836e3624db0e60d02f84ce36a2e77))
+
 # [1.227.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.226.2...v1.227.0) (2023-08-24)
 
 
