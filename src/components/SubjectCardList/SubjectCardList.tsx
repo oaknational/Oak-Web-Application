@@ -1,14 +1,17 @@
 import { FC } from "react";
 
-import { SubjectListingPageProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import Grid, { GridArea } from "../Grid";
 
 import SubjectCardListItem from "./SubjectCardListItem";
 
-export type SubjectCardListProps = Omit<
-  SubjectListingPageProps,
-  "subjectsUnavailable" | "keyStages"
-> & {
+import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+
+export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
+
+export type SubjectCardListProps = {
+  subjects: KeyStageSubject[];
+  keyStageSlug: string;
+  keyStageTitle: string;
   isAvailable: boolean;
 };
 

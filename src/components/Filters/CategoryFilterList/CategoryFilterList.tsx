@@ -29,7 +29,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
 
   return (
     <nav aria-labelledby={labelledBy}>
-      <UL {...boxProps} $reset $mr={30}>
+      <UL {...boxProps} $gap={0} $reset $mr={30}>
         {categories.map((category) => {
           return (
             <CategoryFilterListItem

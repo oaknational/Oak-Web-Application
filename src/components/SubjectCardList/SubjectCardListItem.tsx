@@ -9,8 +9,9 @@ import Flex from "../Flex";
 import OakLink from "../OakLink";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import { KeyStageSubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
+
+import { KeyStageSubject } from "./SubjectCardList";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;
