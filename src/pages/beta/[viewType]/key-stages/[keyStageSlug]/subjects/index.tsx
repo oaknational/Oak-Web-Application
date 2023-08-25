@@ -128,10 +128,11 @@ export const getStaticProps: GetStaticProps<
             curriculumData.subjects.find(
               (subject) => subject.subjectSlug === subjectSlug
             ) || null,
-          new:
-            curriculumData2023.subjects.find(
-              (subject) => subject.subjectSlug === subjectSlug
-            ) || null,
+          new: null,
+          // new:
+          //   curriculumData2023.subjects.find(
+          //     (subject) => subject.subjectSlug === subjectSlug
+          //   ) || null,
         };
       });
 
