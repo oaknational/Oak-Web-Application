@@ -140,9 +140,9 @@ As will all web projects we are dependent on open source libraries maintained by
 
 ## Licence
 
-Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any trademarks or logos are included, they are not released under the [MIT License][mit].
+Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any Oak National Academy trademarks or logos are included, these are not released under the [MIT License][mit], and should be used in line with Oak National Academy brand guidelines.
 
-Any documentation included is © [Oak National Academy][oak] and available under the terms of the [Open Government Licence v3.0][ogl].
+Any documentation included is © [Oak National Academy][oak] and available under the terms of the [Open Government Licence v3.0][ogl], except where otherwise stated.
 
 [mit]: LICENCE
 [oak]: https://www.thenational.academy/
