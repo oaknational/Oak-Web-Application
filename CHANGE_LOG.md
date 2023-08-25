@@ -1,3 +1,21 @@
+# [1.228.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.227.0...v1.228.0) (2023-08-25)
+
+
+### Bug Fixes
+
+* add key stages to fixtures ([18ba933](https://github.com/oaknational/Oak-Web-Application/commit/18ba933aa6429aacc4ca3a3d79a06ccf75f0d9fd))
+* aria role ([243922f](https://github.com/oaknational/Oak-Web-Application/commit/243922f44492d42ca457bb888c9c1ec11967c667))
+* axe and style changes ([10359e4](https://github.com/oaknational/Oak-Web-Application/commit/10359e4f66f0ef5c0ef8385991093dd0d628446b))
+* gap mismatch from spread props ([ef1211a](https://github.com/oaknational/Oak-Web-Application/commit/ef1211a6ebea287c4ba20adbc400e9a875c2df86))
+* icon resize ([120cb0d](https://github.com/oaknational/Oak-Web-Application/commit/120cb0d711480ac5d1d0fc0fca3e94a34031b422))
+* imports and role for list ([7bab659](https://github.com/oaknational/Oak-Web-Application/commit/7bab659f6fe61b3f22896cb12354821cde57e84d))
+* type errors ([968c7c8](https://github.com/oaknational/Oak-Web-Application/commit/968c7c8845a0fd27e54215a645c8d52dff885e68))
+
+
+### Features
+
+* double subject card ([385ac8f](https://github.com/oaknational/Oak-Web-Application/commit/385ac8f2546836e3624db0e60d02f84ce36a2e77))
+
 # [1.227.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.226.2...v1.227.0) (2023-08-24)
 
 
