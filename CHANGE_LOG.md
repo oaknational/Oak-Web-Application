@@ -1,3 +1,11 @@
+## [1.229.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.0...v1.229.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** align addon versions ([be35051](https://github.com/oaknational/Oak-Web-Application/commit/be3505119c7270cc994fdcc6b1c675b868aef57e))
+* **package-lock:** align addon versions ([2139045](https://github.com/oaknational/Oak-Web-Application/commit/213904590fc447d58262e470aa0d757793dd7898))
+
 # [1.229.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.228.0...v1.229.0) (2023-08-25)
 
 
