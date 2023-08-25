@@ -1,3 +1,10 @@
+## [1.229.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.2...v1.229.3) (2023-08-25)
+
+
+### Bug Fixes
+
+* **subject listing:** hide new content ([1abea18](https://github.com/oaknational/Oak-Web-Application/commit/1abea182cd786f5a9a724ad59db66fc566d2a754))
+
 ## [1.229.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.1...v1.229.2) (2023-08-25)
 
 ## [1.229.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.0...v1.229.1) (2023-08-25)
