@@ -121,20 +121,24 @@ export const getStaticProps: GetStaticProps<
         ...new Set(subjectSlugs.concat(subjectSlugs2023)),
       ];
 
-      const subjects = uniqueSubjectSlugs.map((subjectSlug) => {
-        return {
-          subjectSlug,
-          old:
-            curriculumData.subjects.find(
-              (subject) => subject.subjectSlug === subjectSlug
-            ) || null,
-          new: null,
-          // new:
-          //   curriculumData2023.subjects.find(
-          //     (subject) => subject.subjectSlug === subjectSlug
-          //   ) || null,
-        };
-      });
+      const subjects = uniqueSubjectSlugs
+        .map((subjectSlug) => {
+          return {
+            subjectSlug,
+            old:
+              curriculumData.subjects.find(
+                (subject) => subject.subjectSlug === subjectSlug
+              ) || null,
+            // Temporarily disable new curriculum (was being leaked to public)
+            new: null,
+            // new:
+            //   curriculumData2023.subjects.find(
+            //     (subject) => subject.subjectSlug === subjectSlug
+            //   ) || null,
+          };
+        })
+        // Filter out subjects that don't exist in either curriculum
+        .filter((subject) => subject.old || subject.new);
 
       const results = {
         props: {
