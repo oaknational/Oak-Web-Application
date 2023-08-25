@@ -12,10 +12,10 @@ import {
   lessonQuizInfoData,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
-
 //const reportError = errorReporter("curriculum-api");
-import { getSdk } from "./generated/sdk";
+import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
+import { getSdk } from "./generated/sdk";
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
 const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
@@ -295,19 +295,10 @@ const curriculumApi = {
   },
   subjectListing: async (...args: Parameters<typeof sdk.subjectListing>) => {
     const res = await sdk.subjectListing(...args);
-    const {
-      keyStages = [],
-      programmesAvailable,
-      programmesUnavailable,
-    } = transformMVCase(res);
+    const { keyStages = [], programmesAvailable } = transformMVCase(res);
+
     const keyStage = getFirstResultOrWarnOrFail()({ results: keyStages });
     const keyStageList = res.keyStageList;
-
-    const filteredUnavailableProgrammeDuplicate =
-      filterOutDuplicateProgrammesOrNull(
-        programmesArray.parse(programmesAvailable),
-        programmesArray.parse(programmesUnavailable)
-      );
 
     const addCurriculum2023Counts = (
       programmes: ProgrammesData[] | undefined
@@ -315,26 +306,28 @@ const curriculumApi = {
       return programmes
         ? programmes.map((programme) => {
             return {
-              ...programme,
+              programmeSlug: programme.programmeSlug,
+              subjectSlug: programme.subjectSlug,
+              subjectTitle: programme.subjectTitle,
               lessonCount: programme.nonDuplicateSubjectLessonCount,
               unitCount: programme.nonDuplicateSubjectUnitCount,
+              programmeCount:
+                programmes.filter(
+                  (subject) => subject.subjectSlug === programme.subjectSlug
+                ).length || 0,
             };
           })
         : [];
     };
-    const subjectListing = {
+
+    return subjectListingSchema.parse({
       keyStageSlug: keyStage.slug,
       keyStageTitle: keyStage.title,
-      subjects: addCurriculum2023Counts(
-        programmesArray.parse(programmesAvailable)
-      ),
-      subjectsUnavailable: addCurriculum2023Counts(
-        programmesArray.parse(filteredUnavailableProgrammeDuplicate)
-      ),
       keyStages: keyStageList,
-    };
-
-    return subjectListingData.parse(subjectListing);
+      subjects:
+        addCurriculum2023Counts(programmesArray.parse(programmesAvailable)) ||
+        [],
+    });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
     const res = await sdk.unitListing(...args);
