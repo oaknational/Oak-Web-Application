@@ -2,9 +2,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 
+import { KeyStageSubject } from "./SubjectCardList";
 import Component from "./SubjectCardListItem";
-
-import { KeyStageSubject } from "@/pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 
 export default {
   title: "Lists/SubjectCardList/SubjectCardListItem",

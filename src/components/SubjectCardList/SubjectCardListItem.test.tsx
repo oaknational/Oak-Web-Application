@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { KeyStageSubject } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
+import { KeyStageSubject } from "./SubjectCardList";
 import SubjectCardListItem from "./SubjectCardListItem";
 
 const subjectCardListItemProps: KeyStageSubject = [
