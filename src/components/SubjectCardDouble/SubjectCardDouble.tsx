@@ -75,7 +75,7 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
           </Flex>
         )}
         {subject.new && (
-          <Flex role={"li"} $flex={1}>
+          <Flex role={"listitem"} $flex={1}>
             <CountCard
               isNew={true}
               keyStageTitle={keyStageTitle}
