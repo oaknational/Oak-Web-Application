@@ -1,3 +1,17 @@
+## [1.229.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.3...v1.229.4) (2023-08-25)
+
+
+### Bug Fixes
+
+* **subject listing:** don't show subject card unless there is content ([1252c7f](https://github.com/oaknational/Oak-Web-Application/commit/1252c7f3d0ab646ba724acabfb972e0c8375c04d))
+
+## [1.229.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.2...v1.229.3) (2023-08-25)
+
+
+### Bug Fixes
+
+* **subject listing:** hide new content ([1abea18](https://github.com/oaknational/Oak-Web-Application/commit/1abea182cd786f5a9a724ad59db66fc566d2a754))
+
 ## [1.229.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.1...v1.229.2) (2023-08-25)
 
 ## [1.229.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.0...v1.229.1) (2023-08-25)
