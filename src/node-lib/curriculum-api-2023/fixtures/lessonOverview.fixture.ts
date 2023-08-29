@@ -17,6 +17,7 @@ const lessonOverviewFixture = (
     subjectSlug: "english",
     subjectTitle: "English",
     yearTitle: "Year 3",
+    additionalMaterialUrl: "www.google.com",
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],
     lessonEquipmentAndResources: null,
     teacherTips: null,

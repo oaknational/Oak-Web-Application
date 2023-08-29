@@ -7,7 +7,7 @@ import Box from "@/components/Box";
 interface OverviewPresentationProps {
   asset: string | null;
   title: string;
-  isWorksheetLandscape?: boolean;
+  isWorksheetLandscape?: boolean | null;
   isWorksheet: boolean;
   isAdditionalMaterial?: boolean;
 }
