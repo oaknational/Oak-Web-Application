@@ -136,6 +136,9 @@ async function main() {
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
+    NEXT_PUBLIC_DOWNLOAD_API_URL:
+      process.env.NEXT_PUBLIC_DOWNLOAD_API_URL ||
+      oakConfig.oak.NEXT_PUBLIC_DOWNLOAD_API_URL,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
