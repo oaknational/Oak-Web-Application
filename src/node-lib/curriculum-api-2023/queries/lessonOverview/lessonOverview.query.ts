@@ -1,8 +1,8 @@
-import errorReporter from "../../../../common-lib/error-reporter";
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
-
 import lessonOverviewSchema from "./lessonOverview.schema";
+
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
 const lessonOverviewQuery =
   (sdk: Sdk) =>
@@ -33,10 +33,6 @@ const lessonOverviewQuery =
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
       hasDownloadableResources: null,
-      introQuiz: [],
-      exitQuiz: [],
-      introQuizInfo: null,
-      exitQuizInfo: null,
       expired: false,
     });
   };

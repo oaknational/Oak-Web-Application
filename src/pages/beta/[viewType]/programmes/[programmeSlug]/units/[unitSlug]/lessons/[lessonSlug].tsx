@@ -20,7 +20,7 @@ import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
-import QuizContainer from "@/components/QuizContainer";
+import QuizContainerNew from "@/components/QuizContainerNew";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Box from "@/components/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -109,10 +109,8 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     isWorksheetLandscape,
     transcriptSentences,
     hasCopyrightMaterial,
-    introQuiz,
+    starterQuiz,
     exitQuiz,
-    introQuizInfo,
-    exitQuizInfo,
     unitTitle,
     unitSlug,
     expired,
@@ -166,11 +164,18 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     });
   }
 
-  if (introQuiz.length > 0) {
+  if (additionalMaterialUrl) {
+    pageLinks.push({
+      label: "Additional material",
+      href: "#additionalMaterial",
+    });
+  }
+
+  if (starterQuiz && starterQuiz.length > 0) {
     pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
   }
 
-  if (exitQuiz.length > 0) {
+  if (exitQuiz && exitQuiz.length > 0) {
     pageLinks.push({ label: "Exit quiz", href: "#exitQuiz" });
   }
 
@@ -304,7 +309,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     <OverviewPresentation
                       asset={worksheetUrl}
                       title={lessonTitle}
-                      isWorksheetLandscape={isWorksheetLandscape}
+                      isWorksheetLandscape={!!isWorksheetLandscape}
                       isWorksheet={true}
                     />
                   </LessonItemContainer>
@@ -322,7 +327,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainer questions={introQuiz} info={introQuizInfo} />
+                    {starterQuiz && (
+                      <QuizContainerNew questions={starterQuiz} />
+                    )}
                   </LessonItemContainer>
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (
@@ -337,7 +344,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                     }}
                     slugs={slugs}
                   >
-                    <QuizContainer questions={exitQuiz} info={exitQuizInfo} />
+                    {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
                   </LessonItemContainer>
                 )}
                 {pageLinks.find((p) => p.label === "Additional material") && (

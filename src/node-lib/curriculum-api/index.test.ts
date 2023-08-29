@@ -83,7 +83,7 @@ const lessonOverview = jest.fn(() => ({
         lessonOverviewFixture().hasDownloadableResources,
     },
   ],
-  introQuiz: lessonOverviewFixture().introQuiz,
+  starterQuiz: lessonOverviewFixture().starterQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
 const tierListing = jest.fn(() => ({

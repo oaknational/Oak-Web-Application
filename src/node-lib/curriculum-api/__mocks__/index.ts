@@ -2,7 +2,7 @@ import { CurriculumApi } from "..";
 import searchPageFixture from "../fixtures/searchPage.fixture";
 import teachersHomePageFixture from "../fixtures/teachersHomePage.fixture";
 import lessonDownloadsFixtures from "../fixtures/lessonDownloads.fixture";
-import subjectListingFixture from "../fixtures/subjectListing.fixture";
+import { subjectListingFixture2023 } from "../fixtures/subjectListing.fixture";
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import lessonListingFixture from "../fixtures/lessonListing.fixture";
 import { tieredProgrammeListingFixture } from "../fixtures/tierListing.fixture";
@@ -19,7 +19,7 @@ const curriculumApi: CurriculumApi = {
     return lessonDownloadsFixtures();
   }),
   subjectListing: jest.fn(async () => {
-    return subjectListingFixture();
+    return subjectListingFixture2023();
   }),
   lessonListing: jest.fn(async () => {
     return lessonListingFixture();
