@@ -43,6 +43,12 @@ export const ButtonStyledAsLinkFocusUnderline = styled(Svg)<{
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
 `;
+const BrushUnderline = styled(Svg)`
+  position: absolute;
+  mask-position: center;
+  height: 4px;
+  top: 100%;
+`;
 
 export type ButtonInnerProps = {
   label: string;
@@ -62,7 +68,7 @@ export type ButtonInnerProps = {
    * has state `current`. In some cases the text is underlined, in others
    * it has an arrow icon.
    */
-  currentStyles?: ("arrow-icon" | "text-underline" | "color")[];
+  currentStyles?: ("arrow-icon" | "color" | "text-underline" | "underline")[];
   $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -157,7 +163,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </Flex>
       )}
 
-      <Box $position={"relative"}>
+      <Box $position={"relative"} $minWidth={0}>
         <Box
           $display={displayProperty}
           $textDecoration={textDecoration}
@@ -180,6 +186,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             name="underline-1"
           />
         )}
+        {variant === "minimal" &&
+          currentStyles?.includes("underline") &&
+          isCurrent && <BrushUnderline name="horizontal-rule" />}
       </Box>
       {(variant === "brush" || variant === "brushNav") && (
         <ButtonBorders background={background} />
