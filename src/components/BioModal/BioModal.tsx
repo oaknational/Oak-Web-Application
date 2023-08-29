@@ -160,15 +160,17 @@ const BioModal: FC<BioModalProps> = (props) => {
               </Box>
             </GridArea>
             <GridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
-              <Box
-                $ml={[0, 0, 72]}
-                $mb={[72]}
-                $mt={[0, 72, 0]}
-                $font={["body-2", "body-1"]}
-                $minHeight={["auto", 270]}
-              >
-                <PortableText value={bioPortableText} />
-              </Box>
+              {bioPortableText && (
+                <Box
+                  $ml={[0, 0, 72]}
+                  $mb={[72]}
+                  $mt={[0, 72, 0]}
+                  $font={["body-2", "body-1"]}
+                  $minHeight={["auto", 270]}
+                >
+                  <PortableText value={bioPortableText} />
+                </Box>
+              )}
             </GridArea>
           </Grid>
           <Flex
