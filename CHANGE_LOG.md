@@ -1,3 +1,11 @@
+## [1.229.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.4...v1.229.5) (2023-08-29)
+
+
+### Bug Fixes
+
+* allow null bios in BioModal component types ([0b6b8b9](https://github.com/oaknational/Oak-Web-Application/commit/0b6b8b9c3b638c1b75e895e8bfb993c3cafd9082))
+* handle missing bios in leadership page ([f39c013](https://github.com/oaknational/Oak-Web-Application/commit/f39c0132b8771ff190cbd4295e77619bba236942))
+
 ## [1.229.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.3...v1.229.4) (2023-08-25)
 
 
