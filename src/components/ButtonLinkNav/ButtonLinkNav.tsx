@@ -30,7 +30,7 @@ const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   return (
     <>
       {/* Desktop */}
-      <Box $display={["none", "block"]}>
+      <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           variant={isCurrent ? "brushNav" : "minimalNav"}
@@ -91,7 +91,12 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
         {...props}
       >
         {buttons.map((button) => (
-          <NavLink key={button.href} shallow={shallow} {...button} />
+          <NavLink
+            key={button.href}
+            shallow={shallow}
+            {...button}
+            arrowSuffix
+          />
         ))}
       </Flex>
     </nav>

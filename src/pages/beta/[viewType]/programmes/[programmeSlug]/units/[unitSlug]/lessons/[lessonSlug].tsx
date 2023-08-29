@@ -230,6 +230,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
               $display={["none", "block"]}
               $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
+              {/* <ButtonLinkNavCustomBreak> */}
               <ButtonLinkNav
                 ariaLabel="page navigation"
                 buttons={pageLinks}
@@ -238,7 +239,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
                 $gap={[8]}
                 arrowSuffix
                 shallow
+                $pr={[16]}
               />
+              {/* </ButtonLinkNavCustomBreak> */}
             </GridArea>
             <GridArea $colSpan={[12, 9]}>
               <Flex $flexDirection={"column"} $position={"relative"}>
