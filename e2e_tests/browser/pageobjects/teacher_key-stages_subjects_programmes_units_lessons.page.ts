@@ -18,6 +18,7 @@ class TeacherKeyStagesSubjectsProgrammesUnitsLessonsPage extends Page {
     const firstLesson = await lessons[0];
 
     await firstLesson.scrollIntoView(this.scrollOptions);
+    await firstLesson.waitForClickable();
     await firstLesson.click();
   }
 }
