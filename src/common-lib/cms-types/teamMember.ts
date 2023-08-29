@@ -15,7 +15,7 @@ export type TeamMemberSocials = z.infer<typeof teamMemberSocialsSchema>;
 export const teamMemberSchema = z
   .object({
     name: z.string(),
-    bioPortableText: portableTextSchema,
+    bioPortableText: portableTextSchema.nullish(),
     image: imageSchema.nullish(),
     id: z.string(),
     role: z.string().nullish(),

@@ -6,11 +6,7 @@ import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import {
-  baseLessonOverviewData,
-  lessonOverviewQuizData,
-  lessonQuizInfoData,
-} from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 //const reportError = errorReporter("curriculum-api");
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
@@ -142,13 +138,7 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-export const lessonOverviewData = baseLessonOverviewData.extend({
-  introQuiz: lessonOverviewQuizData,
-  exitQuiz: lessonOverviewQuizData,
-  introQuizInfo: lessonQuizInfoData,
-  exitQuizInfo: lessonQuizInfoData,
-  expired: z.boolean(),
-});
+export const lessonOverviewData = lessonOverviewSchema;
 
 export const programmesData = z.object({
   subjectSlug: z.string(),
@@ -388,7 +378,8 @@ const curriculumApi = {
   lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
     const res = await sdk.lessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
-    const { introQuiz, exitQuiz, exitQuizInfo = [], introQuizInfo = [] } = res;
+
+    // Transform quizzes here because the schema is not the same as the one returned by the API
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
@@ -414,13 +405,6 @@ const curriculumApi = {
         ]
       : null;
 
-    const exitQuizInfoSingle = getFirstResultOrNull()({
-      results: exitQuizInfo,
-    });
-
-    const introQuizInfoSingle = getFirstResultOrNull()({
-      results: introQuizInfo,
-    });
     return lessonOverviewData.parse({
       lessonTitle: lesson.lessonTitle,
       lessonSlug: lesson.lessonSlug,
@@ -450,10 +434,6 @@ const curriculumApi = {
       transcriptSentences: lesson.transcriptSentences,
       hasDownloadableResources: lesson.hasDownloadableResources,
       expired: lesson.expired,
-      introQuizInfo: introQuizInfoSingle,
-      exitQuizInfo: exitQuizInfoSingle,
-      introQuiz,
-      exitQuiz,
       yearTitle: "",
     });
   },
