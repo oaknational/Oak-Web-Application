@@ -91,12 +91,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
         {...props}
       >
         {buttons.map((button) => (
-          <NavLink
-            key={button.href}
-            arrowSuffix={arrowSuffix}
-            shallow={shallow}
-            {...button}
-          />
+          <NavLink key={button.href} shallow={shallow} {...button} />
         ))}
       </Flex>
     </nav>
