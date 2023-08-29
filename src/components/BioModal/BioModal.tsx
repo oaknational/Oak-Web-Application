@@ -29,7 +29,7 @@ export type BioData = {
   role?: string | null;
   image?: Image | null;
   socials?: TeamMemberSocials | null;
-  bioPortableText?: PortableTextJSON;
+  bioPortableText?: PortableTextJSON | null;
 };
 
 export type BioModalProps = {
