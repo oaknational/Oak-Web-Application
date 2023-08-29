@@ -65,7 +65,9 @@ const LessonDetails: FC<LessonDetailsProps> = ({
             <TeacherTips teacherTips={teacherTips} />
           </Box>
         )}
-        {equipmentAndResources || contentGuidance || supervisionLevel ? (
+        {(equipmentAndResources && equipmentAndResources.length > 0) ||
+        (contentGuidance && contentGuidance.length > 0) ||
+        supervisionLevel ? (
           <Box>
             <LessonHelper
               equipment={equipmentAndResources}
