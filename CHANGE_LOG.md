@@ -1,3 +1,14 @@
+## [1.229.10](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.9...v1.229.10) (2023-08-30)
+
+## [1.229.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.8...v1.229.9) (2023-08-30)
+
+
+### Bug Fixes
+
+* **error reporter:** report meta field from OakError ([41eb99e](https://github.com/oaknational/Oak-Web-Application/commit/41eb99e1cc6bfb061f6052d9ee5ecc764b816c58))
+
+## [1.229.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.7...v1.229.8) (2023-08-29)
+
 ## [1.229.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.6...v1.229.7) (2023-08-29)
 
 
