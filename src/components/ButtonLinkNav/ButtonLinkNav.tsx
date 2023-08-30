@@ -95,7 +95,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
             key={button.href}
             shallow={shallow}
             {...button}
-            arrowSuffix
+            arrowSuffix={arrowSuffix}
           />
         ))}
       </Flex>
