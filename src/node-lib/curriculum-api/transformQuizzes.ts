@@ -15,6 +15,7 @@ const questionTypeMap = (questionType?: string | null) => {
     case null:
       return "explanatory-text" as keyof AnswersSchema;
     case "checkbox":
+    case "dropdown":
       return "multiple-choice" as keyof AnswersSchema;
     default:
       return questionType as keyof AnswersSchema;
@@ -57,7 +58,8 @@ export const transformQuiz = (quizQuestions: LegacyQuizData[]) => {
 
       switch (quizQuestion.type) {
         case "multiple-choice":
-        case "checkbox": {
+        case "checkbox":
+        case "dropdown": {
           answers["multiple-choice"] = quizQuestion.choices?.map((choice) => {
             const answerElems: (StemTextObject | StemImageObject)[] = [];
 
