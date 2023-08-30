@@ -22,7 +22,6 @@ type UseDownloadFormProps = {
 };
 
 const useDownloadForm = (props: UseDownloadFormProps) => {
-  console.log("props", props);
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,

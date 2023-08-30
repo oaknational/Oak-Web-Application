@@ -52,7 +52,8 @@ describe("useDownloadExistenceCheck", () => {
       expect(getDownloadResourcesExistenceMock).toBeCalledTimes(1);
       expect(getDownloadResourcesExistenceMock).toBeCalledWith(
         lessonSlug,
-        "exit-quiz-answers,worksheet-pdf"
+        "exit-quiz-answers,worksheet-pdf",
+        "teachers"
       );
     });
 
