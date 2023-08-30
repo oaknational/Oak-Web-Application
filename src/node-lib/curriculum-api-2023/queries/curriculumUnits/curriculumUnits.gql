@@ -2,10 +2,15 @@ query curriculumUnits($where: published_mv_curriculum_units_bool_exp) {
   units: published_mv_curriculum_units(where: $where) {
     title
     slug
+    planned_number_of_lessons
+    connection_prior_unit_description
+    connection_future_unit_description
     subject
     subject_slug
     phase
     phase_slug
+    keystage_slug
+    tier_slug
     year
     examboard
     examboard_slug

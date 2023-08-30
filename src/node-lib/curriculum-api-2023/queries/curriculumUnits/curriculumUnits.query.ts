@@ -1,4 +1,4 @@
-import curriculumUnitsSchema from "./curriculumUnits.schema";
+import CurriculumUnitsSchema from "./curriculumUnits.schema";
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
@@ -53,7 +53,7 @@ const curriculumUnitsQuery = (sdk: Sdk) => async (args: { slug: string }) => {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
 
-  return curriculumUnitsSchema.parse(res);
+  return CurriculumUnitsSchema.parse(res);
 };
 
 export default curriculumUnitsQuery;

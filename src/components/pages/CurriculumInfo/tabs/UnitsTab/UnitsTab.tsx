@@ -4,19 +4,21 @@ import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
 import P, { Heading } from "@/components/Typography";
 import Card from "@/components/Card/Card";
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
+import {
+  CurriculumUnit,
+  CurriculumUnitsTabData,
+} from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import OakLink from "@/components/OakLink/OakLink";
 // import Radio from "@/components/RadioButtons/Radio";
 // import RadioGroup from "@/components/RadioButtons/RadioGroup";
-import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
 
-const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
+const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const { units } = data;
   const unitsByYear: { [key: string]: CurriculumUnit[] } = {};
   units.forEach((unit) => {
@@ -26,13 +28,9 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
     unitsByYear[unit.year]?.push(unit);
   });
   const buildProgrammeSlug = (unit: CurriculumUnit) => {
-    // Update with real keystage and tier info from API data
-    const keystage_slug = "ks3";
-    const tier_slug = "";
-    //
-    let slug = `${unit.subject_slug}-${unit.phase_slug}-${keystage_slug}`;
-    if (tier_slug) {
-      slug = `${slug}-${tier_slug}`;
+    let slug = `${unit.subject_slug}-${unit.phase_slug}-${unit.keystage_slug}`;
+    if (unit.tier_slug) {
+      slug = `${slug}-${unit.tier_slug}`;
     }
     if (unit.examboard_slug) {
       slug = `${slug}-${unit.examboard_slug}`;
@@ -201,4 +199,4 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
     </Box>
   );
 };
-export default SequenceTab;
+export default UnitsTab;

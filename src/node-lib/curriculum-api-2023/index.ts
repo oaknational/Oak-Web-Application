@@ -12,6 +12,7 @@ import curriculumOverviewQuery from "./queries/curriculumOverview/curriculumOver
 import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.query";
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
+import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -33,23 +34,6 @@ const phaseSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
-});
-const threadSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-const curriculumUnitSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  subject: z.string(),
-  subject_slug: z.string(),
-  phase: z.string(),
-  phase_slug: z.string(),
-  year: z.string(),
-  examboard: z.string().nullable(),
-  examboard_slug: z.string().nullable(),
-  threads: z.array(threadSchema),
 });
 const examboardSchema = z.object({
   title: z.string(),
@@ -85,10 +69,6 @@ const curriculumOverviewTabData = z.object({
   subjectSlug: z.string(),
 });
 
-const curriculumUnitsTabData = z.object({
-  units: curriculumUnitSchema.array(),
-});
-
 const curriculumDownloadTabData = z.object({
   urls: z.array(z.string()),
 });
@@ -96,18 +76,21 @@ const curriculumDownloadTabData = z.object({
 export type Phase = z.infer<typeof phaseSchema>;
 export type Subject = z.infer<typeof subjectSchema>;
 export type Examboard = z.infer<typeof examboardSchema>;
-export type CurriculumUnit = z.infer<typeof curriculumUnitSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewTabData = z.infer<
   typeof curriculumOverviewTabData
 >;
-export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsTabData>;
 export type CurriculumDownloadTabData = z.infer<
   typeof curriculumDownloadTabData
 >;
 export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
+
+export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
+export type CurriculumUnit = z.infer<
+  typeof curriculumUnitsSchema
+>["units"][number];
 
 export const getFirstResultOrNull =
   () =>
