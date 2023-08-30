@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import Link from "next/link";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
@@ -7,18 +6,49 @@ import P, { Heading } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
-import Radio from "@/components/RadioButtons/Radio";
-import RadioGroup from "@/components/RadioButtons/RadioGroup";
+import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
+import OakLink from "@/components/OakLink/OakLink";
+// import Radio from "@/components/RadioButtons/Radio";
+// import RadioGroup from "@/components/RadioButtons/RadioGroup";
+import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
 
 const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
-  const { units, threads, years } = data;
+  const { units } = data;
+  const unitsByYear: { [key: string]: CurriculumUnit[] } = {};
+  units.forEach((unit) => {
+    if (!unitsByYear[unit.year]) {
+      unitsByYear[unit.year] = [];
+    }
+    unitsByYear[unit.year]?.push(unit);
+  });
+  const buildProgrammeSlug = (unit: CurriculumUnit) => {
+    // Update with real keystage and tier info from API data
+    const keystage_slug = "ks3";
+    const tier_slug = "";
+    //
+    let slug = `${unit.subject_slug}-${unit.phase_slug}-${keystage_slug}`;
+    if (tier_slug) {
+      slug = `${slug}-${tier_slug}`;
+    }
+    if (unit.examboard_slug) {
+      slug = `${slug}-${unit.examboard_slug}`;
+    }
+    return slug;
+  };
+
   return (
-    <Box $maxWidth={"80%"} $ma={"auto"} $pb={80}>
-      <Card $background={"lemon30"} $pa={0} $pl={96} $mv={48}>
+    <Box $maxWidth={["100%", "80%"]} $ma={"auto"} $pb={80}>
+      <Card
+        $background={"lemon30"}
+        $pa={0}
+        $pl={96}
+        $mv={[16, 48]}
+        $mh={[16, 0]}
+      >
         <Box
           $background={"lemon"}
           $height={"100%"}
@@ -37,7 +67,12 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
           />
         </Box>
         <Box $pa={20}>
-          <Heading tag={"h2"} $font={"heading-7"} $mb={12}>
+          <Heading
+            tag={"h2"}
+            $font={"heading-7"}
+            $mb={12}
+            data-testid="heading"
+          >
             Introducing our new curriculum sequence for 2023/2024!
           </Heading>
           <P>
@@ -47,14 +82,13 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
         </Box>
       </Card>
       <Flex $justifyContent={"space-between"}>
-        <Box $minWidth={"20%"} $maxWidth={"20%"} $mr={10}>
+        {/* <Box $minWidth={"20%"} $maxWidth={"20%"} $mr={10}>
           <Box>
             <Box $mb={36}>
               <Heading
                 tag={"h3"}
                 $font={"heading-6"}
                 $mv={12}
-                data-testid="heading"
               >
                 Highlight a thread
               </Heading>
@@ -110,32 +144,32 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
               </RadioGroup>
             </Box>
           </Box>
-        </Box>
+        </Box> */}
 
         <Box>
-          {[6, 7, 8].map((year) => (
-            <Box $background={"pink30"} $pt={16} $pl={16} $mb={12}>
-              <Heading tag="h4" $font={"heading-6"} $mb={16}>
+          {Object.keys(unitsByYear).map((year) => (
+            <Box key={year} $background={"pink30"} $pt={16} $pl={16} $mb={36}>
+              <Heading tag="h4" $font={"heading-4"} $mb={16}>
                 Year {year}
               </Heading>
-              <Flex
-                $flexWrap={"wrap"}
-                $flexGrow={"unset"}
-                data-testid="unit-cards"
-              >
-                {units.map((unit) => {
+              <Flex $flexWrap={"wrap"} data-testid="unit-cards">
+                {unitsByYear[year]?.map((unit, index) => {
                   return (
                     <Card
                       key={unit.slug}
                       $background={"white"}
                       $mb={16}
                       $mr={16}
-                      $pb={56}
-                      $maxWidth={"calc(33% - 16px)"}
+                      $pb={64}
+                      $width={["100%", "calc(33% - 16px)"]}
                       $borderRadius={8}
                       data-testid={"unitCard"}
                       $position={"relative"}
+                      $flexGrow={"unset"}
                     >
+                      <OutlineHeading tag={"h3"} $fontSize={24} $mb={12}>
+                        {index + 1}
+                      </OutlineHeading>
                       <Heading tag={"h3"} $font={"heading-7"}>
                         {unit.title}
                       </Heading>
@@ -145,10 +179,16 @@ const SequenceTab: FC<UnitsTabProps> = ({ data }) => {
                         $right={16}
                         $font={"body-2-bold"}
                       >
-                        <Link href={"curriculum-info"}>
+                        <OakLink
+                          page="lesson-index"
+                          viewType="teachers-2023"
+                          programmeSlug={buildProgrammeSlug(unit)}
+                          unitSlug={unit.slug}
+                          data-testid="unitLink"
+                        >
                           Unit info
                           <Icon name="chevron-right" verticalAlign="bottom" />
-                        </Link>
+                        </OakLink>
                       </Box>
                     </Card>
                   );

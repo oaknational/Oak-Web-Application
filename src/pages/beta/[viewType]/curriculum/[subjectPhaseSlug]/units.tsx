@@ -26,14 +26,14 @@ import getPageProps from "@/node-lib/getPageProps";
 import { ViewType } from "@/common-lib/urls";
 
 export type CurriculumUnitsPageProps = {
-  curriculumUnitsData: CurriculumUnitsTabData;
+  curriculumUnitsTabData: CurriculumUnitsTabData;
   curriculumHeaderData: CurriculumHeaderData;
   subjectPhaseOptions: SubjectPhasePickerData;
   pageSlug: string;
 };
 
 const CurriculumUnitsPage: NextPage<CurriculumUnitsPageProps> = ({
-  curriculumUnitsData,
+  curriculumUnitsTabData,
   curriculumHeaderData,
   subjectPhaseOptions,
   pageSlug,
@@ -49,10 +49,12 @@ const CurriculumUnitsPage: NextPage<CurriculumUnitsPageProps> = ({
         subjectPhaseOptions={subjectPhaseOptions}
         pageSlug={pageSlug}
         tab="units"
+        color1="mint"
+        color2="mint30"
       />
 
       <Box $background={"white"}>
-        <UnitsTab data={curriculumUnitsData} />
+        <UnitsTab data={curriculumUnitsTabData} />
       </Box>
     </AppLayout>
   );
@@ -86,20 +88,20 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      // Parse and use params instead of "maths" and "secondary" when MV is ready
-      const slug = context.params?.subjectPhaseSlug;
-      const curriculumUnitsData = await curriculumApi.curriculumUnits({ slug });
+      const pageSlug = context.params?.subjectPhaseSlug;
+      const curriculumUnitsTabData = await curriculumApi.curriculumUnits({
+        slug: pageSlug,
+      });
       const curriculumHeaderData = await curriculumApi.curriculumHeader({
-        slug,
+        slug: pageSlug,
       });
       const subjectPhaseData = await fetchSubjectPhasePickerData();
-
       const results: GetStaticPropsResult<CurriculumUnitsPageProps> = {
         props: {
-          curriculumUnitsData,
+          curriculumUnitsTabData,
           curriculumHeaderData,
           subjectPhaseOptions: subjectPhaseData,
-          pageSlug: context.params?.subjectPhaseSlug,
+          pageSlug: pageSlug,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

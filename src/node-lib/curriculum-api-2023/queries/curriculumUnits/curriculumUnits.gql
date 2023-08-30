@@ -1,0 +1,14 @@
+query curriculumUnits($where: published_mv_curriculum_units_bool_exp) {
+  units: published_mv_curriculum_units(where: $where) {
+    title
+    slug
+    subject
+    subject_slug
+    phase
+    phase_slug
+    year
+    examboard
+    examboard_slug
+    threads
+  }
+}

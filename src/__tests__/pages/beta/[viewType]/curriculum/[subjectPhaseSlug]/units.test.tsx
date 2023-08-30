@@ -14,13 +14,12 @@ describe("curriculum sequence page", () => {
     it("renders the unit cards", () => {
       const { queryAllByTestId } = render(
         <CurriculumUnitsPage
-          curriculumUnitsData={curriculumUnitsTabFixture()}
+          curriculumUnitsTabData={curriculumUnitsTabFixture()}
           curriculumHeaderData={curriculumHeaderFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
           pageSlug="secondary-maths"
         />
       );
-
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
     });
   });

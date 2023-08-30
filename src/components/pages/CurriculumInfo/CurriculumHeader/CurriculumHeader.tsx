@@ -10,12 +10,15 @@ import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import { CurriculumHeaderData } from "@/node-lib/curriculum-api-2023";
+import { OakColorName } from "@/styles/theme/types";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   data: CurriculumHeaderData;
   pageSlug: string;
   tab: string;
+  color1?: OakColorName;
+  color2?: OakColorName;
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -23,13 +26,15 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   pageSlug,
   tab,
   data,
+  color1 = "aqua",
+  color2 = "aqua30",
 }) => {
   const { subject, phase, examBoard } = data;
   const examBoardTitle = examBoard.title ? ` ${examBoard.title}` : "";
   const pageTitle = ` ${phase.title} ${subject.title}${examBoardTitle}`;
   return (
     <Box>
-      <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
+      <Flex $background={color1} $justifyContent={"center"} $pv={[20]}>
         <Box $width={"80%"}>
           <Breadcrumbs
             breadcrumbs={[
@@ -45,7 +50,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   page: null,
                   href: "/beta/teachers/curriculum",
                 },
-                label: "Curriculum resource",
+                label: "Curriculum resources",
               },
               {
                 oakLinkProps: {
@@ -58,20 +63,24 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             ]}
           />
           <Hr $color={"white"} />
-          <SubjectPhasePicker {...subjectPhaseOptions} />
+          <SubjectPhasePicker
+            {...subjectPhaseOptions}
+            currentSelection={data}
+          />
         </Box>
       </Flex>
-      <Box $background={"aqua50"}>
+      <Box $background={color2}>
         <Flex $justifyContent={"center"} $pv={32}>
           <Box $width={"80%"}>
             <Flex $alignItems={"center"} $justifyContent={"left"}>
-              <Box $background={"aqua"} $borderRadius={6} $mr={12}>
+              <Box $background={color1} $borderRadius={6} $mr={12}>
                 <SubjectIcon
                   subjectSlug={subject.slug}
                   $maxHeight={56}
                   $maxWidth={56}
                   $color="white"
                   $borderColor="white"
+                  data-testid="subjectIcon"
                 />
               </Box>
 
@@ -111,6 +120,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               currentStyles: ["underline"],
             },
           ]}
+          data-testid="tabularNav"
         />
       </Box>
     </Box>

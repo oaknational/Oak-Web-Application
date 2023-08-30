@@ -22,14 +22,18 @@ import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
 
 /**
- * Interface to pick a subject (new or legacy), phase, and if applicable, an exam board.
+ * Interface to pick a subject, phase, and if applicable, an exam board.
  * ## Usage
- * Used on curriculum homepage, new curriculum pages, legacy curriculum pages.
+ * Used on curriculum homepage, new curriculum pages.
  */
 
 export type SubjectPhasePickerData = {
-  newSubjects: SubjectPhaseOption[];
-  legacySubjects: SubjectPhaseOption[];
+  subjects: SubjectPhaseOption[];
+  currentSelection?: {
+    subject: Subject;
+    phase: Phase;
+    examboard?: Examboard;
+  };
 };
 
 const SelectButton = styled(UnstyledButton)<object>`
@@ -88,25 +92,30 @@ const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
 `;
 
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
-  newSubjects,
-  legacySubjects,
+  subjects,
+  currentSelection,
 }) => {
-  interface SelectedSubject extends SubjectPhaseOption {
-    isNew: boolean;
-  }
-
   const phases = [
     { title: "Primary", slug: "primary", isHidden: false },
     { title: "Secondary", slug: "secondary", isHidden: false },
   ];
 
+  const initialSubject = subjects.find(
+    (option) => option.slug == currentSelection?.subject.slug
+  );
+
+  const initialPhase = currentSelection?.phase;
+  const initialExamboard = currentSelection?.examboard;
+
   const [showSubjects, setShowSubjects] = useState(false);
   const [showPhases, setShowPhases] = useState(false);
   const [selectedSubject, setSelectedSubject] =
-    useState<SelectedSubject | null>(null);
-  const [selectedPhase, setSelectedPhase] = useState<Phase | null>(null);
+    useState<SubjectPhaseOption | null>(initialSubject || null);
+  const [selectedPhase, setSelectedPhase] = useState<Phase | null>(
+    initialPhase || null
+  );
   const [selectedExamboard, setSelectedExamboard] = useState<Examboard | null>(
-    null
+    initialExamboard || null
   );
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
@@ -122,16 +131,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowSubjects(false);
   };
 
-  const handleSelectSubject = (
-    subject: SubjectPhaseOption,
-    isNew: boolean
-  ): void => {
+  const handleSelectSubject = (subject: SubjectPhaseOption): void => {
     setShowSubjectError(false);
     setSelectedExamboard(null);
-    setSelectedSubject({
-      ...subject,
-      isNew,
-    });
+    setSelectedSubject(subject);
     if (
       selectedPhase &&
       !subject.phases.some((phase) => phase.slug === selectedPhase.slug)
@@ -211,10 +214,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   };
 
-  const isSelected = (option: Subject | Phase | Examboard, isNew = false) => {
+  const isSelected = (option: Subject | Phase | Examboard) => {
     return (
-      (option.slug == selectedSubject?.slug &&
-        isNew == selectedSubject?.isNew) ||
+      option.slug == selectedSubject?.slug ||
       option.slug == selectedPhase?.slug ||
       option.slug == selectedExamboard?.slug
     );
@@ -252,12 +254,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <span>Please select a subject</span>
                   </>
                 )}
-                {selectedSubject && (
-                  <>
-                    {selectedSubject.title}
-                    {selectedSubject.isNew && " (new)"}
-                  </>
-                )}
+                {selectedSubject && <>{selectedSubject.title}</>}
                 {!showSubjectError && !selectedSubject && "Select"}
               </P>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
@@ -298,40 +295,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </Box>
                 </Heading>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>
-                {newSubjects.map((subject) => (
-                  <ButtonContainer
-                    className={isSelected(subject, true) ? "selected" : ""}
-                    key={subject.slug}
-                  >
-                    <Button
-                      $mb={24}
-                      $mr={24}
-                      background={
-                        isSelected(subject, true) ? "black" : "oakGrey1"
-                      }
-                      subjectIcon={subject.slug}
-                      label={subject.title}
-                      onClick={() => handleSelectSubject(subject, true)}
-                      title={subject.title}
-                    />
-                  </ButtonContainer>
-                ))}
-                <Heading tag={"h4"} $font={"heading-light-7"} $mb={16} $mt={16}>
-                  Legacy Resources
-                </Heading>
-                <P $mb={16}>Curricula from year 2020-2022.</P>
-                {legacySubjects.map((subject) => (
+                {subjects.map((subject) => (
                   <ButtonContainer
                     className={isSelected(subject) ? "selected" : ""}
                     key={subject.slug}
                   >
                     <Button
+                      $mb={24}
+                      $mr={24}
                       background={isSelected(subject) ? "black" : "oakGrey1"}
                       subjectIcon={subject.slug}
                       label={subject.title}
-                      $mb={16}
-                      $mr={16}
-                      onClick={() => handleSelectSubject(subject, false)}
+                      onClick={() => handleSelectSubject(subject)}
                       title={subject.title}
                     />
                   </ButtonContainer>

@@ -26,6 +26,7 @@ const ERROR_CODES = [
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
+  "curriculum-api/params-incorrect",
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
@@ -143,6 +144,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "curriculum-api/uniqueness-assumption-violated": {
     message: "Multiple resources were found when maximum 1 was expected",
+    shouldNotify: true,
+  },
+  "curriculum-api/params-incorrect": {
+    message: "The params provided are incorrect",
     shouldNotify: true,
   },
   "school-picker/fetch-suggestions": {
