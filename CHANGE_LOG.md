@@ -1,3 +1,15 @@
+## [1.229.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.7...v1.229.8) (2023-08-29)
+
+## [1.229.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.6...v1.229.7) (2023-08-29)
+
+
+### Bug Fixes
+
+* **curric:** update page definitons, tab styling ([56d37c0](https://github.com/oaknational/Oak-Web-Application/commit/56d37c0ed6a469bcab4dd963f5368d9eba04c7e5))
+* excluding urls list file from Sonar duplicate check ([a16a1bc](https://github.com/oaknational/Oak-Web-Application/commit/a16a1bced55b681a37ec904adff207103706c189))
+
+## [1.229.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.5...v1.229.6) (2023-08-29)
+
 ## [1.229.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.4...v1.229.5) (2023-08-29)
 
 
