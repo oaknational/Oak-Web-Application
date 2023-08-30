@@ -71,11 +71,12 @@ const curriculumHeaderData = z.object({
 });
 
 const curriculumOverviewTabData = z.object({
-  subjectPrinciples: z.array(z.string()),
   curriculaDesc: z.string(),
-  partnerBio: z.string(),
   videoGuideDesc: z.string(),
   subjectSlug: z.string(),
+  subject: z.string(),
+  examboard: z.string().optional(),
+  phase: z.string(),
 });
 
 const curriculumUnitsTabData = z.object({

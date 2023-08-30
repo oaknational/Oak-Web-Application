@@ -21,6 +21,7 @@ import {
   landingPageSchema,
   supportPageSchema,
   blogListingPageSchema,
+  curriculumOverviewSchema,
 } from "../../../common-lib/cms-types";
 import { webinarsListingPageSchema } from "../../../common-lib/cms-types/webinarsListingPage";
 import getProxiedSanityAssetUrl from "../../../common-lib/urls/getProxiedSanityAssetUrl";
@@ -194,6 +195,11 @@ const getSanityClient = () => ({
     sanityGraphqlApi.abTestedPageBySlug,
     getABTestSchema(landingPageSchema),
     (result) => result?.allAbTest?.[0]
+  ),
+  curriculumOverviewPage: getSingleton(
+    sanityGraphqlApi.curriculumOverview,
+    curriculumOverviewSchema,
+    (result) => result?.allCurriculumInfoPageOverview?.[0]
   ),
 });
 

@@ -1,0 +1,25 @@
+query curriculumOverview(
+  $isDraftFilter: Sanity_DocumentFilter
+  $subjectSlug: String
+  $phaseSlug: String
+) {
+  allCurriculumInfoPageOverview(
+    where: {
+      _: $isDraftFilter
+      subject: { matches: $subjectSlug }
+      phase: { matches: $phaseSlug }
+    }
+    sort: { _updatedAt: DESC }
+    limit: 1
+  ) {
+    id: _id
+    subjectPrinciples
+    partnerBio
+    curriculumPartner {
+      name
+      image {
+        ...Image
+      }
+    }
+  }
+}

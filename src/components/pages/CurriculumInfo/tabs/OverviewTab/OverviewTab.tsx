@@ -12,21 +12,19 @@ import Icon from "@/components/Icon/Icon";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewPage } from "@/common-lib/cms-types";
 
 type OverviewTabProps = {
-  data: CurriculumOverviewTabData;
+  curriculumInfo: CurriculumOverviewTabData;
+  curriculumCMSInfo: CurriculumOverviewPage;
   slug: string;
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { data, slug } = props;
-  const {
-    subjectPrinciples,
-    curriculaDesc,
-    partnerBio,
-    videoGuideDesc,
-    subjectSlug,
-  } = data;
+  const { curriculumCMSInfo, curriculumInfo, slug } = props;
+  const { subjectPrinciples, partnerBio, curriculumPartner } =
+    curriculumCMSInfo;
+  const { curriculaDesc, videoGuideDesc, subjectSlug } = curriculumInfo;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
@@ -150,7 +148,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       <Card $background={"lemon30"} $width={"100%"}>
         <BrushBorders color="lemon30" />
         <Flex $justifyContent={"center"} $pa={16}>
-          <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
+          <AvatarImage
+            $background={"grey1"}
+            $ma={"auto"}
+            $ml={20}
+            $mr={20}
+            image={curriculumPartner.image}
+          />
           <Box>
             <Heading tag="h2" $font={"heading-5"}>
               Our curriculum partner

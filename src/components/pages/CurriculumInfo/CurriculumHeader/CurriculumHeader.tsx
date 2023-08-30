@@ -9,11 +9,15 @@ import TabularNav from "@/components/TabularNav/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import { CurriculumHeaderData } from "@/node-lib/curriculum-api-2023";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
-  data: CurriculumHeaderData;
+  data: {
+    examboard?: string;
+    subject: string;
+    subjectSlug: string;
+    phase: string;
+  };
   pageSlug: string;
   tab: string;
 };
@@ -24,9 +28,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   tab,
   data,
 }) => {
-  const { subject, phase, examBoard } = data;
-  const examBoardTitle = examBoard.title ? ` ${examBoard.title}` : "";
-  const pageTitle = ` ${phase.title} ${subject.title}${examBoardTitle}`;
+  const { subject, phase, examboard, subjectSlug } = data;
+  const examBoardTitle = examboard ? ` ${examboard}` : "";
+  const pageTitle = ` ${phase} ${subject}${examBoardTitle}`;
   return (
     <Box>
       <Flex $background={"aqua"} $justifyContent={"center"} $pv={[20]}>
@@ -68,7 +72,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             <Flex $alignItems={"center"} $justifyContent={"left"}>
               <Box $background={"aqua"} $borderRadius={6} $mr={12}>
                 <SubjectIcon
-                  subjectSlug={subject.slug}
+                  subjectSlug={subjectSlug}
                   $maxHeight={56}
                   $maxWidth={56}
                   $color="white"
@@ -94,6 +98,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               subjectPhaseSlug: pageSlug,
               isCurrent: tab == "overview",
               currentStyles: ["underline"],
+              scroll: false,
             },
             {
               label: "Unit sequence",
@@ -102,6 +107,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               subjectPhaseSlug: pageSlug,
               isCurrent: tab == "units",
               currentStyles: ["underline"],
+              scroll: false,
             },
             {
               label: "Downloads",
@@ -110,6 +116,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               subjectPhaseSlug: pageSlug,
               isCurrent: tab == "downloads",
               currentStyles: ["underline"],
+              scroll: false,
             },
           ]}
         />
