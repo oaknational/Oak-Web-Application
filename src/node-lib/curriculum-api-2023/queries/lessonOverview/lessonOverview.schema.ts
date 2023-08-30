@@ -141,6 +141,7 @@ const baseLessonOverviewSchema = z.object({
     .array(lessonEquipmentAndResourcesSchema)
     .nullable()
     .optional(),
+  additionalMaterialUrl: z.string().nullable(),
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),
