@@ -47,10 +47,12 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
           alt={alt ?? ""}
           style={{ objectFit: "contain" }}
           onLoad={(e) => {
-            setDims({
-              width: e.currentTarget.naturalWidth,
-              height: e.currentTarget.naturalHeight,
-            });
+            setDims(
+              calcDims(
+                e.currentTarget.naturalWidth,
+                e.currentTarget.naturalHeight
+              )
+            );
           }}
         />
       )}
