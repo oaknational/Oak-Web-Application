@@ -6,7 +6,7 @@ import {
   StemTextObject,
 } from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
-import { LegacyQuizData } from "./legacyQuizSchema";
+import { LegacyQuizData } from "./legacyQuiz.schema";
 
 const questionTypeMap = (questionType?: string | null) => {
   switch (questionType) {

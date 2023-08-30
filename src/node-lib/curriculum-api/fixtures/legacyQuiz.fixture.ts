@@ -1,4 +1,4 @@
-import { LegacyQuizData } from "../legacyQuizSchema";
+import { LegacyQuizData } from "../legacyQuiz.schema";
 
 export const legacyQuizFixture = (partial?: LegacyQuizData[]) => {
   const q: LegacyQuizData[] = [
