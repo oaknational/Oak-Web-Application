@@ -113,4 +113,42 @@ describe("checkIfDownloadResourcesExist()", () => {
       "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
     );
   });
+  it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
+    const originalEnv = process.env;
+    delete process.env.NEXT_PUBLIC_DOWNLOAD_API_URL;
+
+    try {
+      await getDownloadResourcesExistence(
+        "lesson-slug",
+        "exit-quiz-answers,worksheet-pdf",
+        "teachers-2023"
+      );
+    } catch (error) {
+      expect(error).toEqual(
+        new TypeError(
+          "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined"
+        )
+      );
+    } finally {
+      process.env = originalEnv;
+    }
+  });
+  it("should throw an error when NEXT_PUBLIC_VERCEL_API_URL is not defined", async () => {
+    const originalEnv = process.env;
+    delete process.env.NEXT_PUBLIC_VERCEL_API_URL;
+
+    try {
+      await getDownloadResourcesExistence(
+        "lesson-slug",
+        "exit-quiz-answers,worksheet-pdf",
+        "teachers-2023"
+      );
+    } catch (error) {
+      expect(error).toEqual(
+        new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined")
+      );
+    } finally {
+      process.env = originalEnv;
+    }
+  });
 });
