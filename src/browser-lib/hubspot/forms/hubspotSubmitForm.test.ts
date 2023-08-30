@@ -303,6 +303,7 @@ describe("hubspotSubmitForm", () => {
     beforeEach(() => {
       server.use(
         rest.post(primaryFormEndpoint, (req, res) =>
+          // DEBUG this is now resulting in an OakError, so the following tests fail.
           res.networkError("Failed to connect")
         )
       );

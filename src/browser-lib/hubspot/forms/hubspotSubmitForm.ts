@@ -212,7 +212,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           throw error;
         }
         /**
-         * We've recieved an error but not been able to parse it as a hubspot errror
+         * We've received an error but not been able to parse it as a hubspot error
          */
         throw new OakError({
           code: "hubspot/unknown",
