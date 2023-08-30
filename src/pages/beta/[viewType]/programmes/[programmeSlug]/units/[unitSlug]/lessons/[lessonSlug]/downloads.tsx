@@ -255,8 +255,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     return errorMessage;
   };
 
-  console.log(resourcesToDownload);
-
   useDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
