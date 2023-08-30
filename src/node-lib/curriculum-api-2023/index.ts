@@ -65,9 +65,12 @@ export const subjectPhaseOptionSchema = subjectSchema.extend({
 });
 
 const curriculumHeaderData = z.object({
-  subject: subjectSchema,
-  phase: phaseSchema,
-  examBoard: examboardSchema,
+  subject: z.string(),
+  subjectSlug: z.string(),
+  phase: z.string(),
+  phaseSlug: z.string(),
+  examboard: z.string().optional(),
+  examboardSlug: z.string().optional(),
 });
 
 const curriculumOverviewTabData = z.object({
