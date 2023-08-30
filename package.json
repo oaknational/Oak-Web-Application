@@ -125,7 +125,7 @@
     "@next/bundle-analyzer": "^13.4.4",
     "@next/env": "^13.4.4",
     "@next/eslint-plugin-next": "^13.4.4",
-    "@percy/cli": "^1.24.2",
+    "@percy/cli": "^1.27.0",
     "@sanity/client": "^3.4.1",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/exec": "^6.0.3",
