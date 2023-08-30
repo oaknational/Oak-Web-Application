@@ -422,6 +422,7 @@ const curriculumApi = {
       pupilLessonOutcome: null,
       lessonKeywords: null,
       copyRightContent: null,
+      additionalMaterialUrl: null,
       contentGuidance: lessonContentGuidance,
       supervisionLevel: lesson.supervisionLevel,
       worksheetUrl: lesson.worksheetUrl,

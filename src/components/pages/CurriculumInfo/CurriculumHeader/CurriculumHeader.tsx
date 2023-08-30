@@ -40,22 +40,23 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             breadcrumbs={[
               {
                 oakLinkProps: {
-                  page: null,
-                  href: "/beta/teachers/",
+                  page: "home",
+                  viewType: "teachers",
                 },
                 label: "Home",
               },
               {
                 oakLinkProps: {
-                  page: null,
-                  href: "/beta/teachers/curriculum",
+                  page: "curriculum-landing-page",
+                  viewType: "teachers",
                 },
                 label: "Curriculum resources",
               },
               {
                 oakLinkProps: {
-                  page: null,
-                  href: "",
+                  page: "curriculum-overview",
+                  viewType: "teachers",
+                  subjectPhaseSlug: pageSlug,
                 },
                 label: pageTitle,
                 disabled: true,
@@ -96,27 +97,27 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           label="Curriculum Selection"
           links={[
             {
-              href: `/beta/teachers/curriculum/${pageSlug}/overview`,
               label: "Overview",
-              page: null,
-              scroll: false,
-              isCurrent: tab === "overview",
+              page: "curriculum-overview",
+              viewType: "teachers",
+              subjectPhaseSlug: pageSlug,
+              isCurrent: tab == "overview",
               currentStyles: ["underline"],
             },
             {
-              href: `/beta/teachers/curriculum/${pageSlug}/units`,
               label: "Unit sequence",
-              page: null,
-              scroll: false,
-              isCurrent: tab === "units",
+              page: "curriculum-units",
+              viewType: "teachers",
+              subjectPhaseSlug: pageSlug,
+              isCurrent: tab == "units",
               currentStyles: ["underline"],
             },
             {
-              href: `/beta/teachers/curriculum/${pageSlug}/downloads`,
               label: "Downloads",
-              page: null,
-              scroll: false,
-              isCurrent: tab === "downloads",
+              page: "curriculum-downloads",
+              viewType: "teachers",
+              subjectPhaseSlug: pageSlug,
+              isCurrent: tab == "downloads",
               currentStyles: ["underline"],
             },
           ]}

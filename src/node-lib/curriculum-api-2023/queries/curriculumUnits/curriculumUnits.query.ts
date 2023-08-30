@@ -3,7 +3,6 @@ import curriculumUnitsSchema from "./curriculumUnits.schema";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
-
 const curriculumUnitsQuery = (sdk: Sdk) => async (args: { slug: string }) => {
   const parts = args.slug.split("-");
   const lastSlug = parts.pop();

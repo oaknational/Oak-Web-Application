@@ -68,7 +68,7 @@ export type ButtonInnerProps = {
    * has state `current`. In some cases the text is underlined, in others
    * it has an arrow icon.
    */
-  currentStyles?: ("arrow-icon" | "text-underline" | "color" | "underline")[];
+  currentStyles?: ("arrow-icon" | "color" | "text-underline" | "underline")[];
   $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -163,7 +163,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </Flex>
       )}
 
-      <Box $position={"relative"}>
+      <Box $position={"relative"} $minWidth={0}>
         <Box
           $display={displayProperty}
           $textDecoration={textDecoration}

@@ -20,6 +20,7 @@ on:
     # events, to avoid this exact situation).
     paths-ignore:
       - "CHANGE_LOG.md"
+      - "sonar-project.properties"
 jobs:
   semantic_release:
     name: semantic release
