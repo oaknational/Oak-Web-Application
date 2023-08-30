@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@bugsnag/js": "^7.21.0",
-    "@bugsnag/plugin-react": "^7.18.0",
+    "@bugsnag/plugin-react": "^7.19.0",
     "@hookform/resolvers": "^2.9.10",
     "@hubspot/api-client": "^7.1.2",
     "@mux/mux-player-react": "^1.8.0",
