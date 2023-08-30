@@ -130,11 +130,12 @@ export const getStaticProps: GetStaticProps<
                 (subject) => subject.subjectSlug === subjectSlug
               ) || null,
             // Temporarily disable new curriculum (was being leaked to public)
-            new: null,
-            // new:
-            //   curriculumData2023.subjects.find(
-            //     (subject) => subject.subjectSlug === subjectSlug
-            //   ) || null,
+            new:
+              context?.params?.viewType === "teachers-2023"
+                ? curriculumData2023.subjects.find(
+                    (subject) => subject.subjectSlug === subjectSlug
+                  ) || null
+                : null,
           };
         })
         // Filter out subjects that don't exist in either curriculum
