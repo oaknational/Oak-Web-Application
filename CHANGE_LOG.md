@@ -1,3 +1,28 @@
+## [1.229.12](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.11...v1.229.12) (2023-08-30)
+
+
+### Bug Fixes
+
+* button ellipsis ([1243e4a](https://github.com/oaknational/Oak-Web-Application/commit/1243e4a48c6e7157fdd0155ba904c3279dcc30d5))
+* fix link button ([dc4736b](https://github.com/oaknational/Oak-Web-Application/commit/dc4736ba4c55851828b632adbe43554fa4adb5d4))
+
+## [1.229.11](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.10...v1.229.11) (2023-08-30)
+
+
+### Bug Fixes
+
+* bring back new on teachers 2023 ([98d2c05](https://github.com/oaknational/Oak-Web-Application/commit/98d2c056f0973501f952c33bc2a0ab3f6fcd940f))
+* end to end test ([ab9132e](https://github.com/oaknational/Oak-Web-Application/commit/ab9132e17b44dec4efc3faafd5f92c2156996bee))
+
+## [1.229.10](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.9...v1.229.10) (2023-08-30)
+
+## [1.229.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.8...v1.229.9) (2023-08-30)
+
+
+### Bug Fixes
+
+* **error reporter:** report meta field from OakError ([41eb99e](https://github.com/oaknational/Oak-Web-Application/commit/41eb99e1cc6bfb061f6052d9ee5ecc764b816c58))
+
 ## [1.229.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.7...v1.229.8) (2023-08-29)
 
 ## [1.229.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.6...v1.229.7) (2023-08-29)
