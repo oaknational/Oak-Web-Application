@@ -21,7 +21,7 @@ type ButtonLinkNavProps = {
   shallow?: boolean;
 } & FlexProps;
 
-const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
+export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   const isCurrent = useIsCurrent({ href });
   const htmlAnchorProps: HTMLAnchorProps = {
     "aria-current": isCurrent ? "page" : undefined,
