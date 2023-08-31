@@ -98,7 +98,7 @@ describe("transformQuiz", () => {
       // @ts-expect-error: previous tests guarantee that the path exists
       expect(answer.correct_choice[0].text).toEqual(
         // @ts-expect-error: previous tests guarantee that the path exists
-        answer.match_option[0].text.toUpperCase()
+        answer.match_option[0].text.toLowerCase()
       );
     });
   });

@@ -94,12 +94,17 @@ export const transformQuiz = (quizQuestions: LegacyQuizData[]) => {
           ) {
             answers.match = quizQuestion.choices.map((choice, i) => {
               return {
-                correct_choice: [{ text: choice.choice, type: "text" }],
-                match_option: [
+                correct_choice: [
                   {
                     text: quizQuestion.answer
                       ? quizQuestion.answer[i] || "null string"
                       : "null string",
+                    type: "text",
+                  },
+                ],
+                match_option: [
+                  {
+                    text: choice.choice,
                     type: "text",
                   },
                 ],
