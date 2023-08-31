@@ -8,7 +8,7 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import { Heading } from "../Typography";
 import Typography from "../Typography/Typography";
 
-const ExemplarUnitsHeader = () => {
+const EarlyReleaseUnitsHeader = () => {
   return (
     <Box $background={"aqua"} $pv={24}>
       <MaxWidth $pv={24}>
@@ -63,4 +63,4 @@ const ExemplarUnitsHeader = () => {
   );
 };
 
-export default ExemplarUnitsHeader;
+export default EarlyReleaseUnitsHeader;

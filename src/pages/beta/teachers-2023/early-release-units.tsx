@@ -2,14 +2,14 @@ import { NextPage } from "next";
 
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout/AppLayout";
-import ExemplarUnitsHeader from "@/components/ExemplarUnitsHeader/";
+import EarlyReleaseUnitsHeader from "@/components/EarlyReleaseUnitsHeader";
 
-const ExemplarUnits: NextPage = () => {
+const EarlyReleaseUnits: NextPage = () => {
   return (
     <AppLayout seoProps={BETA_SEO_PROPS}>
-      <ExemplarUnitsHeader />
+      <EarlyReleaseUnitsHeader />
     </AppLayout>
   );
 };
 
-export default ExemplarUnits;
+export default EarlyReleaseUnits;

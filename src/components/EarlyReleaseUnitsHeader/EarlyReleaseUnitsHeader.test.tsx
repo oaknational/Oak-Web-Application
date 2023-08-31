@@ -2,13 +2,13 @@ import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
-import ExemplarUnitstitle from ".";
+import EarlyReleaseUnitstitle from ".";
 
 const render = renderWithProviders();
 
 describe("components/AppHeader", () => {
   test("renders correct copy", () => {
-    render(<ExemplarUnitstitle />);
+    render(<EarlyReleaseUnitstitle />);
 
     expect(screen.getByText("Teachers & Subject Leads")).toBeInTheDocument();
     expect(screen.getByText("New teaching resources")).toBeInTheDocument();
