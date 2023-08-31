@@ -1,3 +1,10 @@
+## [1.230.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.0...v1.230.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* exclude api test fixtures from sonar duplication checks ([813f9a8](https://github.com/oaknational/Oak-Web-Application/commit/813f9a824d332a10a70edec67f6eff18be739406))
+
 # [1.230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.12...v1.230.0) (2023-08-31)
 
 
