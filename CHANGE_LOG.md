@@ -1,3 +1,11 @@
+## [1.229.12](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.11...v1.229.12) (2023-08-30)
+
+
+### Bug Fixes
+
+* button ellipsis ([1243e4a](https://github.com/oaknational/Oak-Web-Application/commit/1243e4a48c6e7157fdd0155ba904c3279dcc30d5))
+* fix link button ([dc4736b](https://github.com/oaknational/Oak-Web-Application/commit/dc4736ba4c55851828b632adbe43554fa4adb5d4))
+
 ## [1.229.11](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.10...v1.229.11) (2023-08-30)
 
 
