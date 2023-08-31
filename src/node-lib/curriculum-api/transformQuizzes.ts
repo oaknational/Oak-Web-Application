@@ -77,7 +77,8 @@ export const transformQuiz = (quizQuestions: LegacyQuizData[]) => {
               answer: answerElems,
               answer_is_correct:
                 choice.choice === quizQuestion.answer ||
-                quizQuestion.answer?.includes(choice.choice) ||
+                (Array.isArray(quizQuestion.answer) &&
+                  quizQuestion.answer?.includes(choice.choice)) ||
                 false,
             };
             return a;
