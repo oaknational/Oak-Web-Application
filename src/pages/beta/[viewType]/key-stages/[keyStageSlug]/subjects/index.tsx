@@ -1,38 +1,38 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
-import { groupBy } from "lodash";
 
-import { getSeoProps } from "../../../../../../browser-lib/seo/getSeoProps";
-import AppLayout from "../../../../../../components/AppLayout";
-import MaxWidth from "../../../../../../components/MaxWidth/MaxWidth";
-import SubjectListingPage from "../../../../../../components/pages/SubjectListing.page";
-import { Heading } from "../../../../../../components/Typography";
-import curriculumApi from "../../../../../../node-lib/curriculum-api";
+import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
+import AppLayout from "@/components/AppLayout";
+import SubjectListingPage from "@/components/pages/SubjectListing.page";
+import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../node-lib/isr";
-import Box from "../../../../../../components/Box";
-import { ViewType } from "../../../../../../common-lib/urls";
-import curriculumApi2023 from "../../../../../../node-lib/curriculum-api-2023";
+} from "@/node-lib/isr";
+import Box from "@//components/Box";
+import { ViewType } from "@/common-lib/urls";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
-  SubjectListingPageData,
-} from "../../../../../../node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
-import getPageProps from "../../../../../../node-lib/getPageProps";
-
+} from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
   keyStageSlug: string;
 };
-export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];
+
+export type Subjects = {
+  subjectSlug: string;
+  new?: KeyStageSubjectData;
+  old?: KeyStageSubjectData;
+}[];
 
 export type SubjectListingPageProps = {
-  subjects: KeyStageSubject[];
-  subjectsUnavailable: KeyStageSubject[];
+  subjects: Subjects;
   keyStageSlug: string;
   keyStageTitle: string;
   keyStages: KeyStageData[];
@@ -51,24 +51,19 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       }}
       $background="white"
     >
-      <Box
-        $mb={40}
-        $background={"lavender50"}
-        $height={[120, 140]}
-        $minWidth={"min-content"}
-      >
+      <Box $background={"lavender50"} $height={[120, 140]}>
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
           <Box $pv={32}>
             <KeyStageKeypad keyStages={keyStages} />
           </Box>
         </MaxWidth>
       </Box>
-      <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]}>
-        <Heading tag={"h1"} $font={["heading-5", "heading-3"]}>
-          {`${keyStageTitle} subjects`}
-        </Heading>
-      </MaxWidth>
-      <SubjectListingPage {...props} />
+      <SubjectListingPage
+        subjects={props.subjects}
+        keyStageSlug={keyStageSlug}
+        keyStageTitle={keyStageTitle}
+        keyStages={props.keyStages}
+      />
     </AppLayout>
   );
 };
@@ -102,50 +97,55 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No keyStageSlug");
       }
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.subjectListingPage({
-              keyStageSlug: context.params?.keyStageSlug,
-            })
-          : await curriculumApi.subjectListing({
-              keyStageSlug: context.params?.keyStageSlug,
-            });
+      const curriculumData = await curriculumApi.subjectListing({
+        keyStageSlug: context.params?.keyStageSlug,
+      });
 
-      if (!curriculumData) {
+      const curriculumData2023 = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: context.params?.keyStageSlug,
+      });
+
+      if (!curriculumData && !curriculumData2023) {
         return {
           notFound: true,
         };
       }
 
-      const {
-        subjects,
-        subjectsUnavailable,
-        keyStageSlug,
-        keyStageTitle,
-        keyStages,
-      } = curriculumData;
+      const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
+      const subjectSlugs = curriculumData.subjects.map((s) => s.subjectSlug);
+      const subjectSlugs2023 = curriculumData2023.subjects.map(
+        (s) => s.subjectSlug
+      );
 
-      const keyStageSubjectAvailable = Object.values(
-        groupBy(
-          subjects,
-          (subject: SubjectListingPageData["subjects"][number]) =>
-            subject.subjectSlug
-        )
-      );
-      const keyStageSubjectUnavailable = Object.values(
-        groupBy(
-          subjectsUnavailable,
-          (subject: SubjectListingPageData["subjects"][number]) =>
-            subject.subjectSlug
-        )
-      );
+      const uniqueSubjectSlugs = [
+        ...new Set(subjectSlugs.concat(subjectSlugs2023)),
+      ];
+
+      const subjects = uniqueSubjectSlugs
+        .map((subjectSlug) => {
+          return {
+            subjectSlug,
+            old:
+              curriculumData.subjects.find(
+                (subject) => subject.subjectSlug === subjectSlug
+              ) || null,
+            // Temporarily disable new curriculum (was being leaked to public)
+            new:
+              context?.params?.viewType === "teachers-2023"
+                ? curriculumData2023.subjects.find(
+                    (subject) => subject.subjectSlug === subjectSlug
+                  ) || null
+                : null,
+          };
+        })
+        // Filter out subjects that don't exist in either curriculum
+        .filter((subject) => subject.old || subject.new);
 
       const results = {
         props: {
           keyStageSlug,
           keyStageTitle,
-          subjects: keyStageSubjectAvailable,
-          subjectsUnavailable: keyStageSubjectUnavailable,
+          subjects: subjects,
           keyStages,
         },
       };

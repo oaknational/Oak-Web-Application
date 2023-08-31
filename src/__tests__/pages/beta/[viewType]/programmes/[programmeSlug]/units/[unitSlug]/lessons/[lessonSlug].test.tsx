@@ -1,15 +1,15 @@
 import { act, screen } from "@testing-library/react";
 import { GetStaticPropsContext, PreviewData } from "next";
 
-import renderWithSeo from "../../../../../../../../__helpers__/renderWithSeo";
-import { mockSeoResult } from "../../../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../../../__helpers__/renderWithProviders";
-import lessonOverviewFixture from "../../../../../../../../../node-lib/curriculum-api/fixtures/lessonOverview.fixture";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
   URLParams,
-} from "../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+} from "@/pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -54,10 +54,10 @@ describe("pages/beta/teachers/lessons", () => {
     expect(screen.getByText("Hide sign language")).toBeInTheDocument();
   });
 
-  it("renders an iframe for a presentation and worksheet", async () => {
+  it("renders an iframe for a presentation, worksheet and additional material", async () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
     const iframeElement = getAllByTestId("overview-presentation");
-    expect(iframeElement.length).toEqual(2);
+    expect(iframeElement.length).toEqual(3);
   });
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {

@@ -150,64 +150,66 @@ jobs:
           state: ${{ steps.run_percy.outcome }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+  # Temporarily disable E2E tests in CI until we remove Confirmic,
+  # and can focus on testing a few key user journeys.
   # Run browser e2e tests (engineering) with WDIO on Browserstack.
-  browser_e2e_eng:
-    # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
-    name: Browser E2E Eng
-    runs-on: ubuntu-latest
+  # browser_e2e_eng:
+  #   # Only want to run on success, otherwise it might be "pending", or "failure".
+  #   # Filter out storybook deployments and temporarily Netlify deployments
+  #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+  #   name: Browser E2E Eng
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: "npm"
-      - run: npm ci
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
+  #     # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
+  #     # branch or pull request.
+  #     # https://github.com/actions/cache/issues/319
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18.x
+  #         cache: "npm"
+  #     - run: npm ci
 
-      # # Get branch name and PR number for deployment so we
-      # # can send the info to Browserstack to make analysis
-      # # easier.
-      # - uses: ./.github/actions/ref_from_sha
-      #   name: Get PR Ref from SHA
-      #   id: ref_from_sha
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+  #     # # Get branch name and PR number for deployment so we
+  #     # # can send the info to Browserstack to make analysis
+  #     # # easier.
+  #     # - uses: ./.github/actions/ref_from_sha
+  #     #   name: Get PR Ref from SHA
+  #     #   id: ref_from_sha
+  #     #   with:
+  #     #     github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: print branch name and PR number from sha
-      #   run: |
-      #     echo "${{ steps.ref_from_sha.outputs.branch_name }}"
-      #     echo "${{ steps.ref_from_sha.outputs.pr_number }}"
+  #     # - name: print branch name and PR number from sha
+  #     #   run: |
+  #     #     echo "${{ steps.ref_from_sha.outputs.branch_name }}"
+  #     #     echo "${{ steps.ref_from_sha.outputs.pr_number }}"
 
-      # Run WebdriverIO
-      - name: run WebdriverIO
-        id: run_wdio
-        run: npm run wdio:ci
-        env:
-          BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          BRANCH_NAME: ${{ github.event.deployment.ref }}
-          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+  #     # Run WebdriverIO
+  #     - name: run WebdriverIO
+  #       id: run_wdio
+  #       run: npm run wdio:ci
+  #       env:
+  #         BASE_URL: ${{ github.event.deployment_status.environment_url }}
+  #         BRANCH_NAME: ${{ github.event.deployment.ref }}
+  #         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  #         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+  #         CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+  #         CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
-      # Set custom status so results preserved between multiple
-      # deployment events from same commit
-      - uses: ./.github/actions/custom_statuses
-        name: Set WebdriverIO check result
-        if: ${{ always() }}
-        with:
-          description: E2E Browser Eng (${{github.event.deployment_status.environment}})
-          state: ${{ steps.run_wdio.outcome }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+  #     # Set custom status so results preserved between multiple
+  #     # deployment events from same commit
+  #     - uses: ./.github/actions/custom_statuses
+  #       name: Set WebdriverIO check result
+  #       if: ${{ always() }}
+  #       with:
+  #         description: E2E Browser Eng (${{github.event.deployment_status.environment}})
+  #         state: ${{ steps.run_wdio.outcome }}
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Add a link to the results into the job output.
-      - name: results link
-        if: ${{ always() }}
-        run: echo -e "\n***\nFor more information see https://observability.browserstack.com/ \n***"
+  #     # Add a link to the results into the job output.
+  #     - name: results link
+  #       if: ${{ always() }}
+  #       run: echo -e "\n***\nFor more information see https://observability.browserstack.com/ \n***"

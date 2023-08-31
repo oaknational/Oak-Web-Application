@@ -1,9 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import subjectPagePropsFixture from "../../node-lib/curriculum-api/fixtures/subjectPageProps";
 
-import Component from "./SubjectCardList";
+import Component, { KeyStageSubject } from "./SubjectCardList";
 
 export default {
   title: "Lists/SubjectCardList/SubjectCardList",
@@ -18,14 +17,26 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const SubjectCardList = Template.bind({});
 
+const subjects = [
+  [
+    {
+      subjectSlug: "biology",
+      subjectTitle: "Biology",
+      lessonCount: 4,
+      programmeSlug: "biology-secondary-ks4",
+      unitCount: 1,
+    },
+  ],
+] as unknown as KeyStageSubject[];
+
 SubjectCardList.args = {
-  subjects: subjectPagePropsFixture().subjects,
+  subjects: subjects,
   isAvailable: true,
 };
 
 export const SubjectCardListUnavailable = Template.bind({});
 
 SubjectCardListUnavailable.args = {
-  subjects: subjectPagePropsFixture().subjectsUnavailable,
+  subjects: subjects,
   isAvailable: false,
 };

@@ -65,6 +65,7 @@ const lessonOverview = jest.fn(() => ({
       subjectSlug: lessonOverviewFixture().subjectSlug,
       subjectTitle: lessonOverviewFixture().subjectTitle,
       keyLearningPoints: lessonOverviewFixture().keyLearningPoints,
+      additionalMaterialUrl: lessonOverviewFixture().additionalMaterialUrl,
       lessonEquipmentAndResources:
         lessonOverviewFixture().lessonEquipmentAndResources,
       supervisionLevel: lessonOverviewFixture().supervisionLevel,
@@ -82,7 +83,7 @@ const lessonOverview = jest.fn(() => ({
         lessonOverviewFixture().hasDownloadableResources,
     },
   ],
-  introQuiz: lessonOverviewFixture().introQuiz,
+  starterQuiz: lessonOverviewFixture().starterQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
 const tierListing = jest.fn(() => ({

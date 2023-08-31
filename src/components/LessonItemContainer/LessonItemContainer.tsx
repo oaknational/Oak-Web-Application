@@ -20,7 +20,8 @@ export type LessonItemTitle =
   | "Worksheet"
   | "Video"
   | "Transcript"
-  | "Lesson details";
+  | "Lesson details"
+  | "Additional material";
 
 type Slugs = Pick<
   LessonOverviewData,
