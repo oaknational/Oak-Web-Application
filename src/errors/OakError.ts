@@ -186,10 +186,17 @@ export interface ErrorInfo {
  */
 class OakError extends Error {
   private errorInfo;
+  private _hasBeenReported = false;
 
   constructor(errorInfo: ErrorInfo) {
     super(getErrorMessage(errorInfo));
     this.errorInfo = errorInfo;
+    if (
+      errorInfo.originalError instanceof OakError &&
+      errorInfo.originalError.hasBeenReported
+    ) {
+      this.hasBeenReported = true;
+    }
   }
 
   /** @returns The error code. */
@@ -215,6 +222,14 @@ class OakError extends Error {
   /** @returns The error config (all details for this code, which will include the above, which are left in for convenience). */
   public get config(): ErrorConfig {
     return getErrorConfig(this.code);
+  }
+
+  public set hasBeenReported(x: boolean) {
+    this._hasBeenReported = x;
+  }
+
+  public get hasBeenReported() {
+    return this._hasBeenReported;
   }
 
   /** @returns The object representation of the error. */

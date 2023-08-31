@@ -7,7 +7,7 @@ import errorReporter, {
   ErrorData,
   matchesUserAgent,
   matchesIgnoredError,
-  bugsnagOnError,
+  getBugsnagOnError,
 } from "./errorReporter";
 
 const getHasConsentedTo = jest.fn();
@@ -21,7 +21,15 @@ const parentMetaFields = {
   query: { paramName: "paramValue" },
 };
 const testContext = "/test/endpoint";
-const reportError = errorReporter(testContext, parentMetaFields);
+const consoleLog = jest.fn();
+const consoleError = jest.fn();
+const consoleWarn = jest.fn();
+const logger = {
+  log: consoleLog,
+  warn: consoleWarn,
+  error: consoleError,
+};
+const reportError = errorReporter(testContext, parentMetaFields, { logger });
 
 const childMetaFields = {
   resourceId: "resource-123",
@@ -41,7 +49,6 @@ const event = {
 };
 
 const mockNotify = jest.fn(async (err, cb) => cb(event));
-Bugsnag.notify = mockNotify;
 jest.mock("./bugsnagNotify", () => ({
   __esModule: true,
   default: (err: unknown, cb: unknown) => mockNotify(err, cb),
@@ -49,13 +56,6 @@ jest.mock("./bugsnagNotify", () => ({
 
 const mockStart = jest.fn();
 Bugsnag.start = mockStart;
-
-const consoleLog = jest.fn();
-const consoleError = jest.fn();
-jest.mock("./logging", () => ({
-  consoleLog: (...args: []) => consoleLog(...args),
-  consoleError: (...args: []) => consoleError(...args),
-}));
 
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
@@ -99,14 +99,14 @@ describe("common-lib/error-reporter", () => {
           },
         ],
       } as BugsnagEvent;
-      const result = bugsnagOnError(event);
+      const result = getBugsnagOnError({ logger })(event);
       expect(result).toBe(undefined);
     });
     it("Returns false for ignored user agents", () => {
       const event = {
         device: { userAgent: "detectify" },
       } as BugsnagEvent;
-      const result = bugsnagOnError(event);
+      const result = getBugsnagOnError({ logger })(event);
       expect(result).toBe(false);
     });
     it("Returns false for ignored errors", () => {
@@ -118,7 +118,7 @@ describe("common-lib/error-reporter", () => {
           },
         ],
       } as BugsnagEvent;
-      const result = bugsnagOnError(event);
+      const result = getBugsnagOnError({ logger })(event);
       expect(result).toBe(false);
     });
   });
@@ -132,6 +132,8 @@ describe("common-lib/error-reporter", () => {
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
       jest.clearAllMocks();
+
+      (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
       getHasConsentedTo.mockImplementation(() => true);
     });
     it("calls bugsnag.notify with the error", async () => {
@@ -178,6 +180,44 @@ describe("common-lib/error-reporter", () => {
         ...parentMetaFields,
         originalError,
       });
+    });
+    test("will not call Bugsnag.notify if error.hasBeenReported is true", () => {
+      const error = new OakError({ code: "misc/unknown" });
+      error.hasBeenReported = true;
+      reportError(error);
+      expect(mockNotify).not.toHaveBeenCalled();
+    });
+    test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
+      reportError({
+        originalError: {
+          originalError: {
+            originalError: {
+              hasBeenReported: true,
+            },
+          },
+        },
+      });
+      expect(mockNotify).not.toHaveBeenCalled();
+    });
+    test("will not get stuck in a recursive loop", () => {
+      const error = new Error("self referential error");
+      (error as { originalError?: unknown }).originalError = error;
+      reportError(error);
+      expect(mockNotify).toHaveBeenCalled();
+    });
+    test("sets error.hasBeenReported = true", async () => {
+      const error = new OakError({ code: "misc/unknown" });
+      reportError(error);
+      expect(error.hasBeenReported).toBe(true);
+    });
+    test("will not report same error twice", () => {
+      const error = new OakError({ code: "misc/unknown" });
+      reportError(error);
+      reportError(error);
+      expect(mockNotify).toHaveBeenCalledTimes(1);
+      expect(consoleWarn).toHaveBeenCalledWith(
+        expect.stringContaining("already reported")
+      );
     });
   });
   describe("[disabled]: errorReporter()()", () => {
