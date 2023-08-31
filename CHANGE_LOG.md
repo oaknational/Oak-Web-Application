@@ -1,3 +1,22 @@
+# [1.230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.12...v1.230.0) (2023-08-31)
+
+
+### Bug Fixes
+
+* excluded fixtures from sonar ([48b71ab](https://github.com/oaknational/Oak-Web-Application/commit/48b71abd490266ad0842f6d7e199a5375cbda94e))
+* map dropdown question type to multiple choice ([797c7c2](https://github.com/oaknational/Oak-Web-Application/commit/797c7c24a4b04be095fc11ff2be27508067e9c59))
+* mcq ensure asnwer is array before includes check ([b27f768](https://github.com/oaknational/Oak-Web-Application/commit/b27f768be3e381aaa216c0a51ccacdd28fb49a9b))
+* merge conflicts ([29a5c88](https://github.com/oaknational/Oak-Web-Application/commit/29a5c887af46c50fea04d1a429fec425858e60b1))
+* missing size constraint on quiz images ([8e2cb41](https://github.com/oaknational/Oak-Web-Application/commit/8e2cb4116a4711962150b891aadb86f94067fc22))
+* swap match answer and choice for legacy ([35d4419](https://github.com/oaknational/Oak-Web-Application/commit/35d4419644e42851e23d52ab7d7e41612a454495))
+
+
+### Features
+
+* transform old quiz data to view it with new component ([09e3866](https://github.com/oaknational/Oak-Web-Application/commit/09e3866573aa32665bc12a5b43b81711a7c95236))
+* unit tests for quiz image ([19bbf76](https://github.com/oaknational/Oak-Web-Application/commit/19bbf76620a8e60754bffb170b18c23e5b2cc364))
+* unit tests for transform quizzes ([b780048](https://github.com/oaknational/Oak-Web-Application/commit/b7800480435849eb7d212fe1f49aa49a9d25439e))
+
 ## [1.229.12](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.11...v1.229.12) (2023-08-30)
 
 
