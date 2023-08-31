@@ -159,6 +159,7 @@
     "@wdio/mocha-framework": "^8.15.9",
     "@wdio/spec-reporter": "^8.15.7",
     "browserstack-local": "^1.5.2",
+    "chromedriver": "^116.0.0",
     "dotenv": "^16.0.3",
     "eslint": "^8.41.0",
     "eslint-config-next": "^13.4.19",
