@@ -78,7 +78,7 @@
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "^13.4.4",
-    "next-sanity-image": "^5.0.0",
+    "next-sanity-image": "^6.1.0",
     "next-seo": "^6.0.0",
     "node-fetch": "^2.6.7",
     "path-browserify": "^1.0.1",
