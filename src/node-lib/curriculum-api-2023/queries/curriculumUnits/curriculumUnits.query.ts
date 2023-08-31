@@ -24,7 +24,12 @@ const curriculumUnitsQuery = (sdk: Sdk) => async (args: { slug: string }) => {
 
   const baseWhere = {
     _and: [
-      { subject_slug: { _eq: subjectSlug } },
+      {
+        _or: [
+          { subject_slug: { _eq: subjectSlug } },
+          { subject_parent_slug: { _eq: subjectSlug } },
+        ],
+      },
       { phase_slug: { _eq: phaseSlug } },
     ],
   };

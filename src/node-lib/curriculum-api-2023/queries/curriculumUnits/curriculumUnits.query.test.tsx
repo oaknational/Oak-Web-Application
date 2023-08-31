@@ -26,7 +26,7 @@ describe("curriculumUnits()", () => {
       await curriculumUnitsQuery({
         ...sdk,
         curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
-      })({ slug: "english-primary" });
+      })({ slug: "english-secondary-aqa" });
     }).rejects.toThrow(`Resource not found`);
   });
 });
