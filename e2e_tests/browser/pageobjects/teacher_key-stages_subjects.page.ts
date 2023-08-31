@@ -11,7 +11,7 @@ class TeacherKeyStagesSubjectsPage extends Page {
   public get subjectMaths() {
     // This is a pretty fragile selector, but there is very little
     // semantic page structure to use.
-    return $("=Maths");
+    return $("a[aria-label*=Maths]");
   }
 
   async selectMaths() {

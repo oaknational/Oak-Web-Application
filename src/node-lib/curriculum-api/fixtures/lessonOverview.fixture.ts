@@ -19,6 +19,7 @@ const lessonOverviewFixture = (
       { keyLearningPoint: "learning" },
       { keyLearningPoint: "points" },
     ],
+    additionalMaterialUrl: "https://www.google.com",
     lessonEquipmentAndResources: null,
     supervisionLevel: null,
     contentGuidance: null,

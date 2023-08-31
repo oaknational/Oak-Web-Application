@@ -163,7 +163,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </Flex>
       )}
 
-      <Box $position={"relative"}>
+      <Box $position={"relative"} $minWidth={0}>
         <Box
           $display={displayProperty}
           $textDecoration={textDecoration}
