@@ -15,7 +15,7 @@ const EarlyReleaseUnitsHeader = () => {
         <Grid $ph={[16, 0]}>
           <GridArea $colSpan={[12, 12, 6]} $pt={36} $gap={24}>
             <Heading tag={"h1"} $font={"heading-7"}>
-              Teachers & Subject Leads
+              Teachers & Subject leads
             </Heading>
             <Heading tag="h2" $font={"heading-3"}>
               New teaching resources
@@ -25,7 +25,7 @@ const EarlyReleaseUnitsHeader = () => {
               year, with everything available to you by summer 2024.
             </Typography>
             <Typography>Explore our early-release units...</Typography>
-            <Flex $gap={16} $flexDirection={["column", "row"]}>
+            <Flex $gap={30} $flexDirection={["column", "row"]}>
               <ButtonAsLink
                 variant={"brushNav"}
                 page={null}
