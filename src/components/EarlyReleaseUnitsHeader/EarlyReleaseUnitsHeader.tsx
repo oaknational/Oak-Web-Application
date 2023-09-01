@@ -55,6 +55,8 @@ const EarlyReleaseUnitsHeader = () => {
                 $objectFit="contain"
                 $position={"relative"}
                 $maxHeight={420}
+                height={420}
+                width={420}
               />
             </Box>
           </GridArea>
