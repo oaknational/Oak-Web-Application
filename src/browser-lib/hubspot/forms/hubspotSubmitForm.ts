@@ -103,13 +103,23 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
     // Cloudflare worker proxy forwards hubspot-forms.thenational.academy -> api.hsforms.com
     const url = `${hubspotFormSubmissionUrl}/${hubspotPortalId}/${hubspotFormId}`;
 
-    const res = await fetch(url, {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    let res: Response;
+
+    try {
+      res = await fetch(url, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      throw new OakError({
+        code: "misc/network-error",
+        originalError: error,
+        meta: errorMeta,
+      });
+    }
 
     if (res.ok) {
       const responseBody = await res.json();
@@ -222,10 +232,6 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
       }
     }
   } catch (error) {
-    if (error instanceof Error && error.name === "NetworkError") {
-      throw new OakError({ code: "misc/network-error" });
-    }
-
     const oakError =
       error instanceof OakError
         ? error
@@ -236,7 +242,6 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           });
 
     if (oakError.config.shouldNotify) {
-      // should not report if already reported!
       reportError(oakError, oakError.meta);
     }
     throw oakError;
