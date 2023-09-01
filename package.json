@@ -197,7 +197,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "svg-sprite": "^2.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
+    "typescript": "^5.1.0",
     "typescript-plugin-css-modules": "^5.0.1",
     "wdio-chromedriver-service": "^8.1.1",
     "wdio-wait-for": "^3.0.6",
