@@ -111,7 +111,7 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@axe-core/react": "^4.5.1",
+    "@axe-core/react": "^4.7.3",
     "@babel/core": "^7.20.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
