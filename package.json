@@ -74,7 +74,7 @@
     "date-fns": "^2.30.0",
     "favicons": "^7.1.4",
     "gleap": "^9.0.2",
-    "html-react-parser": "^3.0.15",
+    "html-react-parser": "^4.2.2",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "^13.4.4",
