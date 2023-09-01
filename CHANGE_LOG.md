@@ -1,3 +1,10 @@
+## [1.231.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.0...v1.231.1) (2023-09-01)
+
+
+### Bug Fixes
+
+* hubspot/msw/NetworkError test ([1aa2096](https://github.com/oaknational/Oak-Web-Application/commit/1aa209659af042a89dc6e5778bce62373c92b9f2))
+
 # [1.231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.1...v1.231.0) (2023-09-01)
 
 
