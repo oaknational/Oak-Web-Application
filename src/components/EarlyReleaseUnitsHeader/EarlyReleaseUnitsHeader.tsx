@@ -49,11 +49,12 @@ const EarlyReleaseUnitsHeader = () => {
           <GridArea $colSpan={[0, 0, 6]}>
             <Box $ph={96}>
               <Illustration
+                noCrop
+                $display={["none", "none", "block"]}
                 slug={"teacher-carrying-stuff"}
                 $objectFit="contain"
                 $position={"relative"}
                 $maxHeight={420}
-                $display={["none", "none", "block"]}
               />
             </Box>
           </GridArea>
