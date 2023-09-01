@@ -1,3 +1,10 @@
+## [1.231.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.1...v1.231.2) (2023-09-01)
+
+
+### Bug Fixes
+
+* type after ts update ([dfc087d](https://github.com/oaknational/Oak-Web-Application/commit/dfc087d89501c9230326c77a2240b7055e14cbb9))
+
 ## [1.231.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.0...v1.231.1) (2023-09-01)
 
 
