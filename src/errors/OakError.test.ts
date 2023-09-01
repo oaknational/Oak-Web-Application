@@ -7,9 +7,9 @@ describe("errors/OakError", () => {
     expect(error.stack).toContain("Error: An unknown error has occurred");
   });
   it("should get the correct error message", () => {
-    const error = new OakError({ code: "auth/token-error-unknown" });
+    const error = new OakError({ code: "school-picker/fetch-suggestions" });
 
-    expect(error.message).toBe("Could not verify token");
+    expect(error.message).toBe("Error fetching suggested schools list");
   });
   it("should be an instance of Error", () => {
     const error = new OakError({ code: "misc/unknown" });
