@@ -222,7 +222,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
       }
     }
   } catch (error) {
-    if (error instanceof Error && error.message === "Network request failed") {
+    if (error instanceof Error && error.name === "NetworkError") {
       throw new OakError({ code: "misc/network-error" });
     }
 
