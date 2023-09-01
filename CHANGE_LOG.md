@@ -1,3 +1,54 @@
+## [1.231.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.0...v1.231.1) (2023-09-01)
+
+
+### Bug Fixes
+
+* hubspot/msw/NetworkError test ([1aa2096](https://github.com/oaknational/Oak-Web-Application/commit/1aa209659af042a89dc6e5778bce62373c92b9f2))
+
+# [1.231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.1...v1.231.0) (2023-09-01)
+
+
+### Features
+
+* **exemplar-units:** create exemplar page and header component ([071e2d2](https://github.com/oaknational/Oak-Web-Application/commit/071e2d214cdd7f515185816177cbdfac7ca6cf02))
+* **exemplar-units:** formatter ([b7aa943](https://github.com/oaknational/Oak-Web-Application/commit/b7aa94380bf3c05460853902982ac9473410c9bf))
+* **exemplar-units:** hide exemplar units behind teachers-2023 ([c257ffd](https://github.com/oaknational/Oak-Web-Application/commit/c257ffd24fa030d65888ec1506aa5f083c60a76a))
+* **exemplar-units:** merge main ([8ce247a](https://github.com/oaknational/Oak-Web-Application/commit/8ce247a7d78e377709e1644a293e4ea09e84804b))
+* **exemplar-units:** merge main ([69a1c00](https://github.com/oaknational/Oak-Web-Application/commit/69a1c0047826ba05e8df67c20f37d4b6c5e0fc94))
+* **exemplar-units:** merge main ([dc15748](https://github.com/oaknational/Oak-Web-Application/commit/dc15748ab3986c1bf4377b0f8c2fd9a84b95d87c))
+* **exemplar-units:** noCrop prop ([b446790](https://github.com/oaknational/Oak-Web-Application/commit/b446790cce0c07f93a73525e8907cb9a457b6bd9))
+* **exemplar-units:** replace exemplar for early release ([2ab26e3](https://github.com/oaknational/Oak-Web-Application/commit/2ab26e3618aebbaf0f51746b239fbc4b2bf73dfb))
+* **exemplar-units:** spacing and copy ([92748fd](https://github.com/oaknational/Oak-Web-Application/commit/92748fde82e28e1bc76640698d2647d1f1391ba2))
+* **exemplar-units:** test fix ([ae22e60](https://github.com/oaknational/Oak-Web-Application/commit/ae22e60a5e564373394b4c76788be794e2435aee))
+* **exemplar-units:** test fix ([0efbf09](https://github.com/oaknational/Oak-Web-Application/commit/0efbf09553973c80b2676ff790161ed4fe4d6391))
+* **exemplar-units:** unit test for early releace page ([f95a1aa](https://github.com/oaknational/Oak-Web-Application/commit/f95a1aa20746fe9377f6063ef275ae6e1afd5c45))
+
+## [1.230.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.0...v1.230.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* exclude api test fixtures from sonar duplication checks ([813f9a8](https://github.com/oaknational/Oak-Web-Application/commit/813f9a824d332a10a70edec67f6eff18be739406))
+
+# [1.230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.12...v1.230.0) (2023-08-31)
+
+
+### Bug Fixes
+
+* excluded fixtures from sonar ([48b71ab](https://github.com/oaknational/Oak-Web-Application/commit/48b71abd490266ad0842f6d7e199a5375cbda94e))
+* map dropdown question type to multiple choice ([797c7c2](https://github.com/oaknational/Oak-Web-Application/commit/797c7c24a4b04be095fc11ff2be27508067e9c59))
+* mcq ensure asnwer is array before includes check ([b27f768](https://github.com/oaknational/Oak-Web-Application/commit/b27f768be3e381aaa216c0a51ccacdd28fb49a9b))
+* merge conflicts ([29a5c88](https://github.com/oaknational/Oak-Web-Application/commit/29a5c887af46c50fea04d1a429fec425858e60b1))
+* missing size constraint on quiz images ([8e2cb41](https://github.com/oaknational/Oak-Web-Application/commit/8e2cb4116a4711962150b891aadb86f94067fc22))
+* swap match answer and choice for legacy ([35d4419](https://github.com/oaknational/Oak-Web-Application/commit/35d4419644e42851e23d52ab7d7e41612a454495))
+
+
+### Features
+
+* transform old quiz data to view it with new component ([09e3866](https://github.com/oaknational/Oak-Web-Application/commit/09e3866573aa32665bc12a5b43b81711a7c95236))
+* unit tests for quiz image ([19bbf76](https://github.com/oaknational/Oak-Web-Application/commit/19bbf76620a8e60754bffb170b18c23e5b2cc364))
+* unit tests for transform quizzes ([b780048](https://github.com/oaknational/Oak-Web-Application/commit/b7800480435849eb7d212fe1f49aa49a9d25439e))
+
 ## [1.229.12](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.11...v1.229.12) (2023-08-30)
 
 

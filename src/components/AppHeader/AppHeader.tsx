@@ -23,7 +23,7 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu } = useMenuContext();
 
   return (
-    <FixedHeader $background="pastelTurquoise">
+    <FixedHeader $background="white">
       <Flex
         $justifyContent={"space-between"}
         $flexGrow={1}
