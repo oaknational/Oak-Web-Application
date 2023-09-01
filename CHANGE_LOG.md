@@ -1,3 +1,17 @@
+## [1.231.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.2...v1.231.3) (2023-09-01)
+
+
+### Bug Fixes
+
+* **early release:** image resolution ([92e5169](https://github.com/oaknational/Oak-Web-Application/commit/92e51696de45e484e0ff20f62281be97ba8aca46))
+
+## [1.231.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.1...v1.231.2) (2023-09-01)
+
+
+### Bug Fixes
+
+* type after ts update ([dfc087d](https://github.com/oaknational/Oak-Web-Application/commit/dfc087d89501c9230326c77a2240b7055e14cbb9))
+
 ## [1.231.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.0...v1.231.1) (2023-09-01)
 
 
