@@ -6,7 +6,6 @@ import OakError from "../../../errors/OakError";
 import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 
 import NewsletterForm from "./NewsletterForm";
-import NewsletterFormWrap from "./NewsletterFormWrap";
 
 jest.setTimeout(10000);
 
@@ -19,16 +18,14 @@ describe("NewsletterForm", () => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
-    render(
-      <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
-    );
+    render(<NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />);
 
     const user = userEvent.setup();
-    await user.tab();
-    // tab -> privacy policy link
-    await user.tab();
+
     // tab -> name
+    await user.tab();
     await user.keyboard("a name");
+    // tab -> email
     await user.tab();
     await user.keyboard("email@example.com");
     // tab => dropdown select
