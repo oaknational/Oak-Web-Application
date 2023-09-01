@@ -14,8 +14,6 @@ const lessonDownloadsQuery =
     const res = await sdk.lessonDownloads(args);
     const [downloads] = res.downloads;
 
-    console.log(downloads, "<< RESULT FROM QUERY");
-
     if (!downloads) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }

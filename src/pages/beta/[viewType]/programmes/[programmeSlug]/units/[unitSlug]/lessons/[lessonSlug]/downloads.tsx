@@ -91,8 +91,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
       mode: "onBlur",
     });
 
-  console.log(downloads, "<< from the downloads page");
-
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
       .filter((download) => download.exists && !download.forbidden)
@@ -514,7 +512,6 @@ export const getStaticProps: GetStaticProps<
               lessonSlug,
             });
 
-      console.log(curriculumData, "<< curriculumData");
       if (!curriculumData) {
         return {
           notFound: true,
