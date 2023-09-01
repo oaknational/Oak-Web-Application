@@ -6,7 +6,7 @@ import Typography from "../Typography";
 type ExemplarCategoryHeadingProps = {
   keyStageTitle?: string;
   subjectTitle?: string;
-  yearTitle?: string;
+  yearTitle?: string | null;
 };
 
 const ExemplarCategoryHeading: FC<ExemplarCategoryHeadingProps> = ({

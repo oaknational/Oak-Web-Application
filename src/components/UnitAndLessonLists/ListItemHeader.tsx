@@ -29,7 +29,7 @@ type ListItemHeadingProps = CommonProps &
     expired: boolean | null;
     index?: number;
     isExemplarUnit?: boolean;
-    yearTitle?: string;
+    yearTitle?: string | null;
   };
 
 export const ListTitle: FC<{

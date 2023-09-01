@@ -30,7 +30,7 @@ export type UnitListItemProps = Omit<
   isUnitOption?: boolean;
   unitOptions?: UnitData[];
   isExemplarUnit?: boolean;
-  yearTitle?: string;
+  yearTitle?: string | null;
 };
 
 /**
