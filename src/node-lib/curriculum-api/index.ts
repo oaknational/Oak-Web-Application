@@ -1,17 +1,17 @@
 import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
-//import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
-//const reportError = errorReporter("curriculum-api");
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
+import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
+
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
 const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
@@ -379,7 +379,14 @@ const curriculumApi = {
     const res = await sdk.lessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
 
+    const { introQuiz, exitQuiz } = res;
+
     // Transform quizzes here because the schema is not the same as the one returned by the API
+    const introQuizTransformed =
+      introQuiz && introQuiz.length > 0 ? transformQuiz(introQuiz) : null;
+
+    const exitQuizTransformed =
+      exitQuiz && exitQuiz.length > 0 ? transformQuiz(exitQuiz) : null;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
@@ -422,6 +429,7 @@ const curriculumApi = {
       pupilLessonOutcome: null,
       lessonKeywords: null,
       copyRightContent: null,
+      additionalMaterialUrl: null,
       contentGuidance: lessonContentGuidance,
       supervisionLevel: lesson.supervisionLevel,
       worksheetUrl: lesson.worksheetUrl,
@@ -435,6 +443,8 @@ const curriculumApi = {
       hasDownloadableResources: lesson.hasDownloadableResources,
       expired: lesson.expired,
       yearTitle: "",
+      starterQuiz: introQuizTransformed,
+      exitQuiz: exitQuizTransformed,
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {

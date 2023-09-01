@@ -43,14 +43,14 @@ export type StemTextObject = z.infer<typeof stemTextObjectSchema>;
 
 const stemImageObjectSchema = z.object({
   image_object: z.object({
-    format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]),
+    format: z.enum(["png", "jpg", "jpeg", "webp", "gif", "svg"]).optional(),
     secure_url: z.string().url(),
-    url: z.string().url(),
-    height: z.number(),
-    width: z.number(),
+    url: z.string().url().optional(),
+    height: z.number().optional(),
+    width: z.number().optional(),
     metadata: z.union([z.array(z.any()), z.object({})]),
-    public_id: z.string(),
-    version: z.number(),
+    public_id: z.string().optional(),
+    version: z.number().optional(),
   }),
   type: z.literal("image"),
 });
@@ -94,6 +94,8 @@ const answersSchema = z.object({
   "short-answer": z.array(shortAnswer).nullable().optional(),
   "explanatory-text": z.null().optional(),
 });
+
+export type AnswersSchema = z.infer<typeof answersSchema>;
 
 export const lessonOverviewQuizData = z
   .array(
@@ -141,6 +143,7 @@ const baseLessonOverviewSchema = z.object({
     .array(lessonEquipmentAndResourcesSchema)
     .nullable()
     .optional(),
+  additionalMaterialUrl: z.string().nullable(),
   keyLearningPoints: z.array(keyLearningPointsSchema).nullable().optional(),
   pupilLessonOutcome: z.string().nullable().optional(),
   lessonKeywords: z.array(keywordsSchema).nullable().optional(),

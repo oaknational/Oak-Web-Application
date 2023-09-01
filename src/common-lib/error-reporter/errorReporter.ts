@@ -166,6 +166,9 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         const originalError =
           maybeError instanceof OakError ? maybeError.originalError : undefined;
 
+        const oakErrorMeta =
+          maybeError instanceof OakError ? maybeError.meta : undefined;
+
         const { severity, groupingHash, ...metaFields } = {
           ...metadata,
           ...data,
@@ -180,6 +183,7 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         }
 
         metaFields.originalError = originalError;
+        metaFields.oakErrorMeta = oakErrorMeta;
 
         event.addMetadata("Meta", metaFields);
       });

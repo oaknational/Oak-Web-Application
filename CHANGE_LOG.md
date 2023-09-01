@@ -1,3 +1,54 @@
+## [1.230.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.0...v1.230.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* exclude api test fixtures from sonar duplication checks ([813f9a8](https://github.com/oaknational/Oak-Web-Application/commit/813f9a824d332a10a70edec67f6eff18be739406))
+
+# [1.230.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.12...v1.230.0) (2023-08-31)
+
+
+### Bug Fixes
+
+* excluded fixtures from sonar ([48b71ab](https://github.com/oaknational/Oak-Web-Application/commit/48b71abd490266ad0842f6d7e199a5375cbda94e))
+* map dropdown question type to multiple choice ([797c7c2](https://github.com/oaknational/Oak-Web-Application/commit/797c7c24a4b04be095fc11ff2be27508067e9c59))
+* mcq ensure asnwer is array before includes check ([b27f768](https://github.com/oaknational/Oak-Web-Application/commit/b27f768be3e381aaa216c0a51ccacdd28fb49a9b))
+* merge conflicts ([29a5c88](https://github.com/oaknational/Oak-Web-Application/commit/29a5c887af46c50fea04d1a429fec425858e60b1))
+* missing size constraint on quiz images ([8e2cb41](https://github.com/oaknational/Oak-Web-Application/commit/8e2cb4116a4711962150b891aadb86f94067fc22))
+* swap match answer and choice for legacy ([35d4419](https://github.com/oaknational/Oak-Web-Application/commit/35d4419644e42851e23d52ab7d7e41612a454495))
+
+
+### Features
+
+* transform old quiz data to view it with new component ([09e3866](https://github.com/oaknational/Oak-Web-Application/commit/09e3866573aa32665bc12a5b43b81711a7c95236))
+* unit tests for quiz image ([19bbf76](https://github.com/oaknational/Oak-Web-Application/commit/19bbf76620a8e60754bffb170b18c23e5b2cc364))
+* unit tests for transform quizzes ([b780048](https://github.com/oaknational/Oak-Web-Application/commit/b7800480435849eb7d212fe1f49aa49a9d25439e))
+
+## [1.229.12](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.11...v1.229.12) (2023-08-30)
+
+
+### Bug Fixes
+
+* button ellipsis ([1243e4a](https://github.com/oaknational/Oak-Web-Application/commit/1243e4a48c6e7157fdd0155ba904c3279dcc30d5))
+* fix link button ([dc4736b](https://github.com/oaknational/Oak-Web-Application/commit/dc4736ba4c55851828b632adbe43554fa4adb5d4))
+
+## [1.229.11](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.10...v1.229.11) (2023-08-30)
+
+
+### Bug Fixes
+
+* bring back new on teachers 2023 ([98d2c05](https://github.com/oaknational/Oak-Web-Application/commit/98d2c056f0973501f952c33bc2a0ab3f6fcd940f))
+* end to end test ([ab9132e](https://github.com/oaknational/Oak-Web-Application/commit/ab9132e17b44dec4efc3faafd5f92c2156996bee))
+
+## [1.229.10](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.9...v1.229.10) (2023-08-30)
+
+## [1.229.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.8...v1.229.9) (2023-08-30)
+
+
+### Bug Fixes
+
+* **error reporter:** report meta field from OakError ([41eb99e](https://github.com/oaknational/Oak-Web-Application/commit/41eb99e1cc6bfb061f6052d9ee5ecc764b816c58))
+
 ## [1.229.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.7...v1.229.8) (2023-08-29)
 
 ## [1.229.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.229.6...v1.229.7) (2023-08-29)

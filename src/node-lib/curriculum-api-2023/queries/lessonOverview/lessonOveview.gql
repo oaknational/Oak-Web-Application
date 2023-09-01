@@ -3,7 +3,7 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_7(
+  lesson: published_mv_lesson_overview_8(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -27,6 +27,7 @@ query lessonOverview(
     lessonKeywords
     copyrightContent
     contentGuidance
+    additionalMaterialUrl
     supervisionLevel
     worksheetUrl
     presentationUrl
