@@ -146,7 +146,7 @@ const errorify = (maybeError: unknown): Error => {
 /**
  * Checks to see if the error has already been reported
  */
-function getHasBeenReported(maybeError: unknown, depth = 0) {
+function getHasBeenReported(maybeError: unknown, depth = 0): boolean {
   if (depth > 9) {
     return false;
   }
