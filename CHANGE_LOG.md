@@ -1,3 +1,10 @@
+## [1.231.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.3...v1.231.4) (2023-09-01)
+
+
+### Bug Fixes
+
+* **test:** newletter form react testing library ([995ee30](https://github.com/oaknational/Oak-Web-Application/commit/995ee3025ebf5ade1205d8a6c4073593ed87bbfd))
+
 ## [1.231.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.2...v1.231.3) (2023-09-01)
 
 
