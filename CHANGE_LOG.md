@@ -1,3 +1,21 @@
+# [1.231.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.1...v1.231.0) (2023-09-01)
+
+
+### Features
+
+* **exemplar-units:** create exemplar page and header component ([071e2d2](https://github.com/oaknational/Oak-Web-Application/commit/071e2d214cdd7f515185816177cbdfac7ca6cf02))
+* **exemplar-units:** formatter ([b7aa943](https://github.com/oaknational/Oak-Web-Application/commit/b7aa94380bf3c05460853902982ac9473410c9bf))
+* **exemplar-units:** hide exemplar units behind teachers-2023 ([c257ffd](https://github.com/oaknational/Oak-Web-Application/commit/c257ffd24fa030d65888ec1506aa5f083c60a76a))
+* **exemplar-units:** merge main ([8ce247a](https://github.com/oaknational/Oak-Web-Application/commit/8ce247a7d78e377709e1644a293e4ea09e84804b))
+* **exemplar-units:** merge main ([69a1c00](https://github.com/oaknational/Oak-Web-Application/commit/69a1c0047826ba05e8df67c20f37d4b6c5e0fc94))
+* **exemplar-units:** merge main ([dc15748](https://github.com/oaknational/Oak-Web-Application/commit/dc15748ab3986c1bf4377b0f8c2fd9a84b95d87c))
+* **exemplar-units:** noCrop prop ([b446790](https://github.com/oaknational/Oak-Web-Application/commit/b446790cce0c07f93a73525e8907cb9a457b6bd9))
+* **exemplar-units:** replace exemplar for early release ([2ab26e3](https://github.com/oaknational/Oak-Web-Application/commit/2ab26e3618aebbaf0f51746b239fbc4b2bf73dfb))
+* **exemplar-units:** spacing and copy ([92748fd](https://github.com/oaknational/Oak-Web-Application/commit/92748fde82e28e1bc76640698d2647d1f1391ba2))
+* **exemplar-units:** test fix ([ae22e60](https://github.com/oaknational/Oak-Web-Application/commit/ae22e60a5e564373394b4c76788be794e2435aee))
+* **exemplar-units:** test fix ([0efbf09](https://github.com/oaknational/Oak-Web-Application/commit/0efbf09553973c80b2676ff790161ed4fe4d6391))
+* **exemplar-units:** unit test for early releace page ([f95a1aa](https://github.com/oaknational/Oak-Web-Application/commit/f95a1aa20746fe9377f6063ef275ae6e1afd5c45))
+
 ## [1.230.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.230.0...v1.230.1) (2023-08-31)
 
 
