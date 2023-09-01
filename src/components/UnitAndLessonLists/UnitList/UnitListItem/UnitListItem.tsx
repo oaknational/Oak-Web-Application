@@ -29,6 +29,8 @@ export type UnitListItemProps = Omit<
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   isUnitOption?: boolean;
   unitOptions?: UnitData[];
+  isExemplarUnit?: boolean;
+  yearTitle?: string;
 };
 
 /**
@@ -54,6 +56,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     firstItemRef,
     isUnitOption,
     yearTitle,
+    isExemplarUnit,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -132,7 +135,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $gap={[8]}
         $pv={[8, 12]}
       >
-        {!isUnitOption && yearTitle && (
+        {!isUnitOption && yearTitle && !isExemplarUnit && (
           <P $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
             {yearTitle}
           </P>
