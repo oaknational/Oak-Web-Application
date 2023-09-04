@@ -1,0 +1,62 @@
+import React, { FC } from "react";
+
+import { Heading, P } from "@/components/Typography";
+import Flex from "@/components/Flex/Flex";
+import Box from "@/components/Box/Box";
+import SubjectPhasePicker, {
+  SubjectPhasePickerData,
+} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import Illustration from "@/components/Illustration/Illustration";
+
+type CurriculumLandingHeroProps = {
+  subjectPhaseOptions: SubjectPhasePickerData;
+};
+
+const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
+  const { subjectPhaseOptions } = props;
+  return (
+    <Flex $position={"relative"} $flexDirection={"row"} $width={"100%"}>
+      <Flex $flexDirection={"column"} $zIndex={"inFront"} $width={"100%"}>
+        <Box $maxWidth={600} $mb={[48, 80]}>
+          <Heading tag="h1" $font={["heading-4", "heading-3"]} $mb={[16, 24]}>
+            Oak's curricula
+          </Heading>
+          <P $font={["body-2", "body-1"]}>
+            Our curricula covers all the national curriculum subjects across
+            primary and secondary. Use our fully-sequenced units of lessons as
+            high-quality models that represent great design from across the
+            sector.
+          </P>
+        </Box>
+        <Box $width={["100%", "fit-content"]}>
+          <SubjectPhasePicker {...subjectPhaseOptions} />
+        </Box>
+      </Flex>
+      <Box
+        $position={"absolute"}
+        $top={0}
+        $bottom={0}
+        $left={0}
+        $right={0}
+        $display={["none", "none", "block"]}
+      >
+        <Flex
+          $width={"100%"}
+          $height={"100%"}
+          $flexDirection={"row"}
+          $justifyContent={"flex-end"}
+        >
+          <Illustration
+            $maxWidth={480}
+            $maxHeight={400}
+            $display={["none", "block"]}
+            $position={"absolute"}
+            slug="planning-curriculum"
+          />
+        </Flex>
+      </Box>
+    </Flex>
+  );
+};
+
+export default CurriculumLandingHero;
