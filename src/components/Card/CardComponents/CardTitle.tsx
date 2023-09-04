@@ -9,7 +9,7 @@ import Icon, { IconName } from "../../Icon";
 import Heading, { HeadingTag } from "../../Typography/Heading";
 
 export const getIconFlexPosition = (
-  $iconPosition: IconPosition | null
+  $iconPosition: IconPosition | null,
 ): CSSProperties["flexDirection"] => {
   switch ($iconPosition) {
     case "leading":
@@ -43,7 +43,7 @@ const CardTitle: FC<CardTitleProps> = ({
   $font = "heading-5",
 }) => {
   const iconPositionArray: (IconPosition | null)[] = Array.isArray(
-    $iconPosition
+    $iconPosition,
   )
     ? $iconPosition
     : [$iconPosition];
@@ -52,7 +52,7 @@ const CardTitle: FC<CardTitleProps> = ({
     <Flex
       $flexDirection={iconPositionArray.map(getIconFlexPosition)}
       $alignItems={iconPositionArray.map((pos) =>
-        pos === "aboveTitle" ? "flex-start" : "center"
+        pos === "aboveTitle" ? "flex-start" : "center",
       )}
       $mb={24}
     >
@@ -60,7 +60,7 @@ const CardTitle: FC<CardTitleProps> = ({
         <Icon
           name={icon}
           size={iconPositionArray.map((pos) =>
-            pos === "aboveTitle" ? 64 : iconSize
+            pos === "aboveTitle" ? 64 : iconSize,
           )}
           $mb={iconPositionArray.map((pos) => (pos === "aboveTitle" ? 12 : 0))}
           $mr={iconPositionArray.map((pos) => {

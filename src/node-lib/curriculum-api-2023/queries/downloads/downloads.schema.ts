@@ -19,7 +19,7 @@ export const lessonDownloadsSchema = z.object({
         z.array(z.object({ copyright_info: z.string() })),
         z.boolean().optional().nullish(),
       ]),
-    })
+    }),
   ),
   programmeSlug: z.string(),
   keyStageSlug: z.string(),

@@ -22,8 +22,8 @@ const subjectListingQuery =
       groupBy(
         subjects,
         (subject: SubjectListingPageData["subjects"][number]) =>
-          subject.subjectSlug
-      )
+          subject.subjectSlug,
+      ),
     );
 
     const subjectsWithProgrammeCount = groupedSubjects.map((subject) => {

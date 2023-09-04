@@ -1,7 +1,7 @@
 import { TeachersHomePageData } from "..";
 
 const teachersHomePageFixture = (
-  partial?: Partial<TeachersHomePageData>
+  partial?: Partial<TeachersHomePageData>,
 ): TeachersHomePageData => {
   return {
     keyStages: [

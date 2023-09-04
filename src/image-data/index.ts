@@ -34,7 +34,7 @@ const subjectIconsByString = subjectIcons as Record<
  * is just typed as string
  */
 export const getSubjectIconAsset = (
-  maybeSlug: string
+  maybeSlug: string,
 ): SubjectIconAsset | undefined => {
   return subjectIconsByString[maybeSlug];
 };
@@ -43,7 +43,7 @@ type AvailableIllustrations = typeof illustrations;
 export type IllustrationSlug = keyof AvailableIllustrations;
 type IllustrationAsset = AvailableIllustrations[IllustrationSlug];
 export const getIllustrationAsset = (
-  slug: IllustrationSlug
+  slug: IllustrationSlug,
 ): IllustrationAsset => {
   return illustrations[slug];
 };

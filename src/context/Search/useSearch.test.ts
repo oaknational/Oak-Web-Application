@@ -91,7 +91,7 @@ describe("useSearch()", () => {
   });
   test("status should default to 'not-asked' if no search term in url", () => {
     const { result } = renderHookWithProviders({ router: { url: "" } })(() =>
-      useSearch({ allKeyStages })
+      useSearch({ allKeyStages }),
     );
     const { status } = result.current;
 
@@ -107,7 +107,7 @@ describe("useSearch()", () => {
   });
   test("fetch should not be called if no search term in query", () => {
     renderHookWithProviders({ router: { url: "" } })(() =>
-      useSearch({ allKeyStages })
+      useSearch({ allKeyStages }),
     );
     expect(fetch).not.toHaveBeenCalled();
   });
@@ -120,7 +120,7 @@ describe("useSearch()", () => {
     fetch.mockImplementation(goodFetchMockImplementation);
 
     const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages })
+      useSearch({ allKeyStages }),
     );
 
     await waitFor(() =>
@@ -151,13 +151,13 @@ describe("useSearch()", () => {
           lesson_description:
             'In this lesson we are introduced to <mark class="highlighted">Macbeth</mark> and Banquo. We will explore the characters\' thoughts and feelings and how they respond when they encounter the witches.',
         },
-      })
+      }),
     );
   });
   test("results should be returned in the correct form", async () => {
     fetch.mockImplementation(goodFetchMockImplementation);
     const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages })
+      useSearch({ allKeyStages }),
     );
     await waitFor(() => {
       expect(result.current.results.length).toBe(20);
@@ -166,7 +166,7 @@ describe("useSearch()", () => {
   test("status should be 'fail' if fetch fails", async () => {
     fetch.mockResolvedValue(badFetchResolvedValue);
     const { result } = renderHookWithProviders(providers)(() =>
-      useSearch({ allKeyStages })
+      useSearch({ allKeyStages }),
     );
 
     await waitFor(() => expect(result.current.status).toBe("fail"));

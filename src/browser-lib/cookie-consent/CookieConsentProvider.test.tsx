@@ -7,7 +7,7 @@ describe("CookieConsentProvider", () => {
     const { getByTestId } = render(
       <CookieConsentProvider>
         <div data-testid="child" />
-      </CookieConsentProvider>
+      </CookieConsentProvider>,
     );
 
     expect(getByTestId("child")).toBeInTheDocument();

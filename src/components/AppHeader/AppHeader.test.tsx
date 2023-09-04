@@ -17,7 +17,7 @@ describe("components/AppHeader", () => {
     const { getByRole } = render(<AppHeader />);
 
     expect(getByRole("banner")).toHaveStyle(
-      "background-color: rgb(255, 255, 255);"
+      "background-color: rgb(255, 255, 255);",
     );
   });
 

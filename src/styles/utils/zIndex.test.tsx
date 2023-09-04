@@ -9,7 +9,7 @@ describe("zIndex", () => {
       ${zIndex}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $zIndex="inFront" />
+      <StyledComponent data-testid="test" $zIndex="inFront" />,
     );
 
     expect(getByTestId("test")).toHaveStyle("z-index: 1");
@@ -21,7 +21,7 @@ describe("zIndex", () => {
     const { getByTestId } = render(
       // eslint-disable-next-line
       // @ts-ignore
-      <StyledComponent data-testid="test" $zIndex={["neutral"]} />
+      <StyledComponent data-testid="test" $zIndex={["neutral"]} />,
     );
 
     expect(getByTestId("test")).toHaveStyle("z-index: 0");
