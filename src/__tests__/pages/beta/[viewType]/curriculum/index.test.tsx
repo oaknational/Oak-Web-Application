@@ -24,14 +24,14 @@ describe("pages/beta/curriculum/index", () => {
     render(<CurriculumHomePage {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
-    expect(h1).toHaveTextContent("Curriculum Resources");
+    expect(h1).toHaveTextContent("Oak's curricula");
   });
 
   it("passes correct props to SubjectPhasePicker", () => {
     render(<CurriculumHomePage {...props} />);
     expect(SubjectPhasePicker).toHaveBeenCalledWith(
       props.subjectPhaseOptions,
-      expect.anything(),
+      expect.anything()
     );
   });
 
