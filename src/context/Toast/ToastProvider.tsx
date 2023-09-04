@@ -25,7 +25,7 @@ export const ToastProvider: FC<{ children?: React.ReactNode }> = ({
       setRole(_role);
       setShown(true);
     },
-    [setShown]
+    [setShown],
   );
 
   const hideToast = useCallback(() => {

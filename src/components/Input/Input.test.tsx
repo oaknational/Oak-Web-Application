@@ -12,7 +12,7 @@ describe("Input", () => {
         label="An input"
         value="Hello world"
         onChange={jest.fn()}
-      />
+      />,
     );
 
     const input = screen.getByRole("textbox");
@@ -26,7 +26,7 @@ describe("Input", () => {
         label="A particular label"
         value="Hello world"
         onChange={jest.fn()}
-      />
+      />,
     );
     const input = getByRole("textbox");
     expect(input).toHaveAccessibleName("A particular label");
@@ -39,7 +39,7 @@ describe("Input", () => {
         value="Hello world"
         onChange={jest.fn()}
         error="You done wrong"
-      />
+      />,
     );
     const input = getByRole("textbox");
     expect(input).toHaveAccessibleDescription("You done wrong");

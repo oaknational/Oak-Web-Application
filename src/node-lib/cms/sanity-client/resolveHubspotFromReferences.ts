@@ -16,9 +16,9 @@ const reportError = errorReporter("resolveHubspotFormReferences.ts");
  * `{_type: "reference"}` and fetch and replace them with actual content
  */
 export const resolveHubspotFromReferences = async <
-  T extends Record<string, unknown> | Record<string, unknown>[]
+  T extends Record<string, unknown> | Record<string, unknown>[],
 >(
-  document: T
+  document: T,
 ): Promise<T> => {
   /**
    * Find all paths to embedded references within the document, e.g.
@@ -32,7 +32,7 @@ export const resolveHubspotFromReferences = async <
    * and store in a tuple with the path
    */
   const pathsAndRefs: [ObjectPath, { id: string }][] = pathsToUpdate.map(
-    (path) => [path, get([...path, "hubspotForm"], document)]
+    (path) => [path, get([...path, "hubspotForm"], document)],
   );
 
   /**
@@ -69,8 +69,8 @@ export const resolveHubspotFromReferences = async <
 
           return [formRef.id, null];
         }
-      }
-    )
+      },
+    ),
   );
 
   /**
@@ -85,7 +85,7 @@ export const resolveHubspotFromReferences = async <
     return update(
       path,
       (data) => ({ ...data, hubspotForm: matchingForm }),
-      acc
+      acc,
     );
   }, document);
 

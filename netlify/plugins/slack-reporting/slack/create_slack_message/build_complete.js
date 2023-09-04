@@ -41,13 +41,13 @@ function createSlackBuildCompleteMessage(config) {
       "appVersion",
       "buildStatus",
     ],
-    config
+    config,
   );
 
   const isSuccess = buildStatus === "success";
   if (isSuccess && !deploymentUrl) {
     throw new TypeError(
-      `Successful build reports require 'deploymentUrl' to be passed.`
+      `Successful build reports require 'deploymentUrl' to be passed.`,
     );
   }
 

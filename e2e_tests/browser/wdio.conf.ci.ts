@@ -5,7 +5,7 @@ const bsUser = process.env.BROWSERSTACK_USERNAME;
 const bsKey = process.env.BROWSERSTACK_ACCESS_KEY;
 if (!bsUser || !bsKey) {
   throw new Error(
-    `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`
+    `Please define BROWSERSTACK_USERNAME (${bsUser}) and BROWSERSTACK_ACCESS_KEY (${bsKey}})`,
   );
 }
 const initialBaseUrl = process.env.BASE_URL;

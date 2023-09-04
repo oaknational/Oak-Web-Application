@@ -47,7 +47,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
     {
       imageBuilder: (imageUrlBuilder) =>
         imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
-    }
+    },
   );
 
   return (
@@ -64,7 +64,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
         categories,
         blog,
         "blog",
-        "Blog"
+        "Blog",
       )}
     >
       <PostSingleLayout content={props}>
@@ -115,7 +115,7 @@ export const getStaticProps: GetStaticProps<
       const blogResults = await CMSClient.blogPosts();
       const categories = uniqBy(
         "title",
-        blogResults.map((blogResult) => blogResult.category)
+        blogResults.map((blogResult) => blogResult.category),
       ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
       if (!blogResult) {
