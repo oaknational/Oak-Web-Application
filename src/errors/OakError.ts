@@ -8,10 +8,6 @@ const ERROR_CODES = [
   "misc/network-error",
   "misc/unexpected-type",
   "misc/import-count",
-  "auth/send-sign-in-link",
-  "auth/token-expired",
-  "auth/token-error-unknown",
-  "graphql/validation", // for this we actually want more details when the error is thrown
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
@@ -50,26 +46,6 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/network-error": {
     message: "Failed to connect.",
     responseStatusCode: 500,
-    // If a network error occurs on the server, we want to know about it, maybe not on the client
-    shouldNotify: true,
-  },
-  "auth/token-expired": {
-    message: "JWT has expired. Please refresh token and try again",
-    responseStatusCode: 401,
-    shouldNotify: false,
-  },
-  "auth/token-error-unknown": {
-    message: "Could not verify token",
-    responseStatusCode: 403, // check this
-    shouldNotify: true,
-  },
-  "graphql/validation": {
-    message: "Graphql validation error",
-    responseStatusCode: 500,
-    shouldNotify: true,
-  },
-  "auth/send-sign-in-link": {
-    message: "Could not send sign in link to provided email",
     shouldNotify: true,
   },
   "misc/unexpected-type": {
