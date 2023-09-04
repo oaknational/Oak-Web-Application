@@ -29,7 +29,7 @@ export type IconButtonStylesProps = MarginProps & {
   disabled?: boolean;
 };
 export const getIconButtonStylesProps = (
-  props: CommonIconButtonProps
+  props: CommonIconButtonProps,
 ): IconButtonStylesProps => {
   const {
     background = DEFAULT_BUTTON_BACKGROUND,

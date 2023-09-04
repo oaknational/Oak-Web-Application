@@ -13,7 +13,7 @@ const getClient = () => {
 
   console.log("Parsing GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT value");
   const serviceAccount = JSON.parse(
-    process.env.GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT
+    process.env.GOOGLE_SECRET_MANAGER_SERVICE_ACCOUNT,
   );
 
   return new SecretManagerServiceClient({
@@ -42,12 +42,12 @@ async function fetchSecrets({ projectId, secretNames }) {
     (secretName) =>
       !allAvailableSecrets
         .map((secret) => secret.name)
-        .includes(getFullSecretName(projectId, secretName))
+        .includes(getFullSecretName(projectId, secretName)),
   );
 
   if (missingSecrets.length > 0) {
     const message = `Oak.google_secret_manager the following secrets could not be found:\n${missingSecrets.join(
-      "\n"
+      "\n",
     )}`;
     console.warn(message);
   }
@@ -61,7 +61,7 @@ async function fetchSecrets({ projectId, secretNames }) {
 
     // We find the first enabled version, which is the latest
     const latestEnabledSecretVersion = versions.find(
-      (version) => version.state === "ENABLED"
+      (version) => version.state === "ENABLED",
     );
 
     if (!latestEnabledSecretVersion) {

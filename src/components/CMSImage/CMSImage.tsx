@@ -126,7 +126,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
           0,
           0,
           originalDimensions.width,
-          originalDimensions.height
+          originalDimensions.height,
         );
       }
 
@@ -140,7 +140,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
       props.width,
       cropRect,
       format,
-    ]
+    ],
   );
 
   const loader: ImageLoader = propsLoader || defaultLoader;
@@ -167,7 +167,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
    */
   const finalUrl = useMemo(
     () => (image ? imageBuilder.image(image).url()?.toString() : null),
-    [image]
+    [image],
   );
 
   if (!finalUrl) {

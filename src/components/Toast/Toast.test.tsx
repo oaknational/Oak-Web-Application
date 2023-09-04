@@ -14,7 +14,7 @@ describe("toast notification", () => {
       <ToastProvider>
         <CopyLinkButton />
         <Toast />
-      </ToastProvider>
+      </ToastProvider>,
     );
 
     const user = userEvent.setup();
@@ -29,7 +29,7 @@ describe("toast notification", () => {
     rerender(
       <ToastProvider>
         <Toast />
-      </ToastProvider>
+      </ToastProvider>,
     );
 
     expect(getByRole(ROLE)).toHaveTextContent("Copied to clipboard");

@@ -3,7 +3,7 @@ import { UnitListingData } from "..";
 import unitListingFixture from "./unitListing.fixture";
 
 const unitListingWithTiers = (
-  partial?: Partial<UnitListingData>
+  partial?: Partial<UnitListingData>,
 ): UnitListingData => {
   return {
     ...unitListingFixture(),

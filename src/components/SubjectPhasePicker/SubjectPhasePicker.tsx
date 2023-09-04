@@ -106,7 +106,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     useState<SelectedSubject | null>(null);
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(null);
   const [selectedExamboard, setSelectedExamboard] = useState<Examboard | null>(
-    null
+    null,
   );
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
@@ -124,7 +124,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const handleSelectSubject = (
     subject: SubjectPhaseOption,
-    isNew: boolean
+    isNew: boolean,
   ): void => {
     setShowSubjectError(false);
     setSelectedExamboard(null);

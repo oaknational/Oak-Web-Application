@@ -60,7 +60,7 @@ const Search: FC<SearchProps> = (props) => {
 
       track.searchCompleted({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages
+          router.query.keyStages,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,

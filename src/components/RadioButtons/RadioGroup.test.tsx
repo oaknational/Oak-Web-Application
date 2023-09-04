@@ -12,7 +12,7 @@ describe("RadioGroup", () => {
       <RadioGroup label="Select one of the following:">
         <Radio value="home">Home schooled</Radio>
         <Radio value="notListed">My school isn't listed</Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     const radioGroup = screen.getByRole("radiogroup");
@@ -25,7 +25,7 @@ describe("RadioGroup", () => {
       <RadioGroup label="Select one of the following:">
         <Radio value="home">Home schooled</Radio>
         <Radio value="notListed">My school isn't listed</Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     const label = screen.getByText("Select one of the following:");
@@ -51,7 +51,7 @@ describe("RadioGroup", () => {
         <Radio data-testid={"radio-2"} value="notListed">
           My school isn't listed
         </Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     const radio1 = getByTestId("radio-1");
@@ -71,7 +71,7 @@ describe("RadioGroup", () => {
         <Radio data-testid={"radio-2"} value="notListed">
           My school isn't listed
         </Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     expect(radio1).toBeChecked();
@@ -97,7 +97,7 @@ describe("RadioGroup", () => {
         <Radio data-testid={"radio-2"} value="notListed">
           My school isn't listed
         </Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     const radio1 = getByTestId("radio-1");
@@ -124,7 +124,7 @@ describe("RadioGroup", () => {
         <Radio data-testid={"radio-2"} value="notListed">
           My school isn't listed
         </Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
 
     expect(radio1).not.toBeChecked();
@@ -151,7 +151,7 @@ describe("RadioGroup", () => {
         <Radio data-testid={"radio-2"} value="notListed">
           My school isn't listed
         </Radio>
-      </RadioGroup>
+      </RadioGroup>,
     );
     const label = getByText("error");
 

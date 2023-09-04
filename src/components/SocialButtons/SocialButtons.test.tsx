@@ -20,13 +20,13 @@ describe("SocialButtons", () => {
     "should be correct %s link (url and a11y label)",
     (network, profileIdentifier, profileUrl) => {
       const { getByRole } = renderWithTheme(
-        <SocialButtons for="someone" {...{ [network]: profileIdentifier }} />
+        <SocialButtons for="someone" {...{ [network]: profileIdentifier }} />,
       );
       const label = `${network} for someone`;
       const link = getByRole("link", { name: label });
       expect(link).toHaveAccessibleName(label);
       expect(link).toHaveAttribute("href", profileUrl);
-    }
+    },
   );
   test("renders nothing if no socials passed", () => {
     const { container } = renderWithTheme(<SocialButtons for="no one" />);
@@ -38,7 +38,7 @@ describe("SocialButtons", () => {
         for="someone"
         instagram={"donuts"}
         linkedIn={"cheese cake"}
-      />
+      />,
     );
     expect(getAllByRole("link")).toHaveLength(2);
   });

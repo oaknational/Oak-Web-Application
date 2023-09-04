@@ -23,14 +23,14 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
   };
 
   const sortedErrorsArray = errorsArray.sort(
-    (a, b) => errorMessagesAndOrder[a]?.order - errorMessagesAndOrder[b]?.order
+    (a, b) => errorMessagesAndOrder[a]?.order - errorMessagesAndOrder[b]?.order,
   );
 
   const errorMessagesArray = sortedErrorsArray
     .map((errorKey: ErrorKeysType) =>
       errorMessagesAndOrder[errorKey]
         ? errorMessagesAndOrder[errorKey]?.message
-        : undefined
+        : undefined,
     )
     .filter(Boolean);
 

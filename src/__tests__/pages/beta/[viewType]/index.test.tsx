@@ -83,7 +83,7 @@ describe("pages/beta/[viewType]/index.tsx", () => {
     expect(
       getByRole(items[0] as HTMLElement, "link", {
         name: "Some blog post",
-      })
+      }),
     ).toHaveAttribute("href", "/blog/some-blog-post");
   });
 
@@ -166,7 +166,7 @@ describe("pages/beta/[viewType]/index.tsx", () => {
       expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
         expect.objectContaining({
           previewMode: false,
-        })
+        }),
       );
     });
 

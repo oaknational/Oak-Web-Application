@@ -12,7 +12,7 @@ const color = css<ColorProps>`
   ${responsive<ColorProps, OakColorName>(
     "color",
     (props) => props.$color,
-    getColorByName
+    getColorByName,
   )}
 `;
 

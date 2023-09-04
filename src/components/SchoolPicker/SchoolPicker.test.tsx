@@ -61,7 +61,7 @@ describe("search autocomplete", () => {
         schoolPickerInputValue={"Dor"}
         label={"School picker"}
         setSelectedSchool={setSelectedSchool}
-      />
+      />,
     );
 
     const searchAutoComplete = screen.getByTestId("search-combobox-input");
@@ -141,7 +141,7 @@ describe("search autocomplete", () => {
     const { getByText } = renderWithTheme(<Wrapper />);
 
     expect(getByText("School picker")).toHaveStyle(
-      `background: rgb(229, 29, 77) `
+      `background: rgb(229, 29, 77) `,
     );
   });
 
@@ -194,7 +194,7 @@ describe("search autocomplete", () => {
     await user.keyboard("{arrowdown}");
 
     expect(
-      getByText("Dorothy Bricks Nursery School, Westminster, AB1 1CD")
+      getByText("Dorothy Bricks Nursery School, Westminster, AB1 1CD"),
     ).toBeInTheDocument();
   });
 
@@ -229,7 +229,7 @@ describe("search autocomplete", () => {
     await user.keyboard("{arrowdown}");
     await user.keyboard("{Enter}");
     expect(input).toHaveValue(
-      "Dorothy Meadows Primary School, Sunderland, AB1 3CD"
+      "Dorothy Meadows Primary School, Sunderland, AB1 3CD",
     );
   });
 });

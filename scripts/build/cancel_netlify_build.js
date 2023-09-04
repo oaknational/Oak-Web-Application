@@ -47,7 +47,7 @@ if (!commitRegex.test(commitRef)) {
 }
 const netlifyCommitLog = execSync(
   `git show --no-patch --oneline ${commitRef}`,
-  { encoding: "utf8" }
+  { encoding: "utf8" },
 );
 if (!netlifyCommitLog) {
   const err = new TypeError("Could not determine commit message");
