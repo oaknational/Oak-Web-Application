@@ -29,7 +29,7 @@ const curriculumUnitsSchema = z.object({
       domains: z.array(
         z.object({
           title: z.string(),
-          slug: z.string(),
+          tag_id: z.number(),
         })
       ),
     })

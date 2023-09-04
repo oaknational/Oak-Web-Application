@@ -1,16 +1,14 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
 import P, { Heading } from "@/components/Typography";
 import Card from "@/components/Card/Card";
-import {
-  CurriculumUnit,
-  CurriculumUnitsTabData,
-} from "@/node-lib/curriculum-api-2023";
+import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import OakLink from "@/components/OakLink/OakLink";
+import Button from "@/components/Button/Button";
 // import Radio from "@/components/RadioButtons/Radio";
 // import RadioGroup from "@/components/RadioButtons/RadioGroup";
 
@@ -19,15 +17,115 @@ type UnitsTabProps = {
 };
 
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
-  const { units } = data;
-  const unitsByYear: { [key: string]: CurriculumUnit[] } = {};
-  units.forEach((unit) => {
-    if (!unitsByYear[unit.year]) {
-      unitsByYear[unit.year] = [];
+  type Unit = CurriculumUnitsTabData["units"][number];
+
+  interface Subject {
+    subject: string;
+    subject_slug: string;
+  }
+
+  interface Domain {
+    title: string;
+    tag_id: number | null;
+  }
+
+  interface Tier {
+    tier: string;
+    tier_slug: string;
+  }
+
+  interface YearSelection {
+    [key: string]: {
+      subject?: Subject | null;
+      domain?: Domain | null;
+      tier?: Tier | null;
+    };
+  }
+
+  const yearData: {
+    [key: string]: {
+      units: Unit[];
+      childSubjects: Subject[];
+      domains: Domain[];
+      tiers: Tier[];
+    };
+  } = {};
+
+  data.units.forEach((unit) => {
+    let data = yearData[unit.year];
+    if (!data) {
+      data = {
+        units: [],
+        childSubjects: [],
+        domains: [],
+        tiers: [],
+      };
+      yearData[unit.year] = data;
     }
-    unitsByYear[unit.year]?.push(unit);
+    data.units.push(unit);
+    const domain = unit.domains[0];
+    if (
+      unit.subject_parent &&
+      unit.subject_parent_slug &&
+      data.childSubjects.every((c) => c.subject_slug !== unit.subject_slug)
+    ) {
+      data.childSubjects.push({
+        subject: unit.subject,
+        subject_slug: unit.subject_slug,
+      });
+    }
+    if (domain && data.domains.every((d) => d.tag_id !== domain.tag_id)) {
+      data.domains.push(domain);
+    }
+    if (
+      unit.tier &&
+      unit.tier_slug &&
+      data.tiers.every((t) => t.tier_slug !== unit.tier_slug)
+    ) {
+      data.tiers.push({
+        tier: unit.tier,
+        tier_slug: unit.tier_slug,
+      });
+    }
   });
-  const buildProgrammeSlug = (unit: CurriculumUnit) => {
+
+  const initialYearSelection = {} as YearSelection;
+  Object.keys(yearData).forEach((year) => {
+    const data = yearData[year];
+    if (!data) {
+      throw new Error(`No data found for year ${year}`);
+    }
+    data.childSubjects.sort((a, b) => {
+      if (a.subject_slug === "combined-science") {
+        return -1;
+      } else if (b.subject_slug === "combined-science") {
+        return 1;
+      } else {
+        return a.subject_slug.localeCompare(b.subject_slug);
+      }
+    });
+    if (data.domains.length > 0) {
+      data.domains
+        .sort((a, b) => Number(a.tag_id) - Number(b.tag_id))
+        .unshift({
+          title: "All",
+          tag_id: null,
+        });
+    }
+    data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
+    initialYearSelection[year] = {
+      subject:
+        data.childSubjects.find((s) => s.subject_slug === "combined-science") ??
+        null,
+      domain: data.domains.length ? data.domains[0] : null,
+      tier: data.tiers.length ? data.tiers[0] : null,
+    };
+  });
+
+  const [yearSelection, setYearSelection] =
+    useState<YearSelection>(initialYearSelection);
+
+  const buildProgrammeSlug = (unit: Unit) => {
     let slug = `${unit.subject_slug}-${unit.phase_slug}-${unit.keystage_slug}`;
     if (unit.tier_slug) {
       slug = `${slug}-${unit.tier_slug}`;
@@ -37,6 +135,48 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
     return slug;
   };
+
+  function handleSelectSubject(year: string, subject: Subject) {
+    const selection = { ...yearSelection[year] };
+    selection.subject = subject;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
+  function handleSelectDomain(year: string, domain: Domain) {
+    const selection = { ...yearSelection[year] };
+    selection.domain = domain;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
+  function handleSelectTier(year: string, tier: Tier) {
+    const selection = { ...yearSelection[year] };
+    selection.tier = tier;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
+  function isSelectedDomain(year: string, domain: Domain) {
+    return yearSelection[year]?.domain?.tag_id == domain.tag_id;
+  }
+
+  function isSelectedSubject(year: string, subject: Subject) {
+    return yearSelection[year]?.subject?.subject_slug == subject.subject_slug;
+  }
+
+  function isSelectedTier(year: string, tier: Tier) {
+    return yearSelection[year]?.tier?.tier_slug == tier.tier_slug;
+  }
+
+  function isVisibleUnit(year: string, unit: Unit) {
+    const s = yearSelection[year] || {};
+    const filterBySubject =
+      !s.subject || s.subject.subject_slug === unit.subject_slug;
+    const filterByDomain =
+      !s.domain ||
+      s.domain.tag_id === null ||
+      s.domain.tag_id === unit.domains[0]?.tag_id;
+    const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
+    return filterBySubject && filterByDomain && filterByTier;
+  }
 
   return (
     <Box $maxWidth={["100%", "80%"]} $ma={"auto"} $pb={80}>
@@ -145,55 +285,113 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         </Box> */}
 
         <Box>
-          {Object.keys(unitsByYear).map((year) => (
-            <Box key={year} $background={"pink30"} $pt={16} $pl={16} $mb={36}>
-              <Heading tag="h4" $font={"heading-4"} $mb={16}>
-                Year {year}
-              </Heading>
-              <Flex $flexWrap={"wrap"} data-testid="unit-cards">
-                {unitsByYear[year]?.map((unit, index) => {
-                  return (
-                    <Card
-                      key={unit.slug}
-                      $background={"white"}
-                      $mb={16}
-                      $mr={16}
-                      $pb={64}
-                      $width={["100%", "calc(33% - 16px)"]}
-                      $borderRadius={8}
-                      data-testid={"unitCard"}
-                      $position={"relative"}
-                      $flexGrow={"unset"}
-                    >
-                      <OutlineHeading tag={"h3"} $fontSize={24} $mb={12}>
-                        {index + 1}
-                      </OutlineHeading>
-                      <Heading tag={"h3"} $font={"heading-7"}>
-                        {unit.title}
-                      </Heading>
-                      <Box
-                        $position={"absolute"}
-                        $bottom={16}
-                        $right={16}
-                        $font={"body-2-bold"}
-                      >
-                        <OakLink
-                          page="lesson-index"
-                          viewType="teachers-2023"
-                          programmeSlug={buildProgrammeSlug(unit)}
-                          unitSlug={unit.slug}
-                          data-testid="unitLink"
+          {Object.keys(yearData).map((year) => {
+            const { units, childSubjects, domains, tiers } = yearData[
+              year
+            ] as typeof yearData[string];
+            return (
+              <Box key={year} $background={"pink30"} $pt={16} $pl={16} $mb={36}>
+                <Heading tag="h4" $font={"heading-4"} $mb={16}>
+                  Year {year}
+                </Heading>
+                {childSubjects.length > 0 && (
+                  <Box $mb={16}>
+                    {childSubjects.map((subject) => (
+                      <Button
+                        $mr={16}
+                        background={
+                          isSelectedSubject(year, subject) ? "black" : "white"
+                        }
+                        key={subject.subject_slug}
+                        label={subject.subject}
+                        onClick={() => handleSelectSubject(year, subject)}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+                )}
+                {domains.length > 0 && (
+                  <Box $mb={16}>
+                    {domains.map((domain) => (
+                      <Button
+                        $mr={16}
+                        background={
+                          isSelectedDomain(year, domain) ? "black" : "white"
+                        }
+                        key={domain.tag_id}
+                        label={domain.title}
+                        onClick={() => handleSelectDomain(year, domain)}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+                )}
+                {tiers.length > 0 && (
+                  <Box $mb={16}>
+                    {tiers.map((tier) => (
+                      <Button
+                        $mr={16}
+                        key={tier.tier_slug}
+                        label={tier.tier}
+                        onClick={() => handleSelectTier(year, tier)}
+                        size="small"
+                        variant="minimal"
+                        isCurrent={isSelectedTier(year, tier)}
+                        currentStyles={["underline"]}
+                      />
+                    ))}
+                  </Box>
+                )}
+                <Flex $flexWrap={"wrap"} data-testid="unit-cards">
+                  {units
+                    .filter((unit) => isVisibleUnit(year, unit))
+                    .map((unit, index) => {
+                      return (
+                        <Card
+                          key={unit.slug}
+                          $background={"white"}
+                          $mb={16}
+                          $mr={16}
+                          $pb={64}
+                          $width={["100%", "calc(33% - 16px)"]}
+                          $borderRadius={8}
+                          data-testid={"unitCard"}
+                          $position={"relative"}
+                          $flexGrow={"unset"}
                         >
-                          Unit info
-                          <Icon name="chevron-right" verticalAlign="bottom" />
-                        </OakLink>
-                      </Box>
-                    </Card>
-                  );
-                })}
-              </Flex>
-            </Box>
-          ))}
+                          <OutlineHeading tag={"h3"} $fontSize={24} $mb={12}>
+                            {index + 1}
+                          </OutlineHeading>
+                          <Heading tag={"h3"} $font={"heading-7"}>
+                            {unit.title}
+                          </Heading>
+                          <Box
+                            $position={"absolute"}
+                            $bottom={16}
+                            $right={16}
+                            $font={"body-2-bold"}
+                          >
+                            <OakLink
+                              page="lesson-index"
+                              viewType="teachers-2023"
+                              programmeSlug={buildProgrammeSlug(unit)}
+                              unitSlug={unit.slug}
+                              data-testid="unitLink"
+                            >
+                              Unit info
+                              <Icon
+                                name="chevron-right"
+                                verticalAlign="bottom"
+                              />
+                            </OakLink>
+                          </Box>
+                        </Card>
+                      );
+                    })}
+                </Flex>
+              </Box>
+            );
+          })}
         </Box>
       </Flex>
     </Box>

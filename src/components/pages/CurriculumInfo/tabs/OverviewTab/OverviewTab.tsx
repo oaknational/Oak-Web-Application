@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useRouter } from "next/router";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
@@ -15,11 +16,12 @@ import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
 
 type OverviewTabProps = {
   data: CurriculumOverviewTabData;
-  slug: string;
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { data, slug } = props;
+  const { data } = props;
+  const router = useRouter();
+  const slug = router.query.subjectPhaseSlug as string;
   const {
     subjectPrinciples,
     curriculaDesc,

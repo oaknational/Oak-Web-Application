@@ -8,7 +8,12 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("Component - subject phase picker", () => {
   test("populates selection if supplied", () => {
     const currentSelection = {
-      subject: { title: "English", slug: "english" },
+      subject: {
+        title: "English",
+        slug: "english",
+        phases: [],
+        examboards: [],
+      },
       phase: { title: "Secondary", slug: "secondary" },
       examboard: { title: "AQA", slug: "aqa" },
     };

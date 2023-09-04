@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useRouter } from "next/router";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
@@ -9,29 +10,56 @@ import TabularNav from "@/components/TabularNav/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import { CurriculumHeaderData } from "@/node-lib/curriculum-api-2023";
 import { OakColorName } from "@/styles/theme/types";
+import {
+  CurriculumSelectionSlugs,
+  CurriculumTab,
+} from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
-  data: CurriculumHeaderData;
-  pageSlug: string;
-  tab: string;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
   color1?: OakColorName;
   color2?: OakColorName;
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
-  subjectPhaseOptions,
-  pageSlug,
-  tab,
-  data,
   color1 = "aqua",
   color2 = "aqua30",
+  curriculumSelectionSlugs,
+  subjectPhaseOptions,
 }) => {
-  const { subject, phase, examBoard } = data;
-  const examBoardTitle = examBoard.title ? ` ${examBoard.title}` : "";
-  const pageTitle = ` ${phase.title} ${subject.title}${examBoardTitle}`;
+  const router = useRouter();
+  const tab = router.query.tab as CurriculumTab;
+  const subject = subjectPhaseOptions.subjects.find(
+    (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug
+  );
+  const phase = subject?.phases.find(
+    (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug
+  );
+  const examboard =
+    subject?.examboards?.find(
+      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug
+    ) ?? null;
+
+  if (!subject || !phase) {
+    throw new Error("Subject or phase not found");
+  }
+
+  const currentSelection = {
+    subject: subject,
+    phase: phase,
+    examboard: examboard,
+  };
+
+  const pageTitle = `${phase.title} ${subject.title}${
+    examboard ? ` ${examboard.title}` : ""
+  }`;
+
+  const subjectPhaseSlug = `${subject.slug}-${phase.slug}${
+    examboard ? `-${examboard.slug}` : ""
+  }`;
+
   return (
     <Box>
       <Flex $background={color1} $justifyContent={"center"} $pv={[20]}>
@@ -56,7 +84,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 oakLinkProps: {
                   page: "curriculum-overview",
                   viewType: "teachers",
-                  subjectPhaseSlug: pageSlug,
+                  subjectPhaseSlug: subjectPhaseSlug,
                 },
                 label: pageTitle,
                 disabled: true,
@@ -66,7 +94,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           <Hr $color={"white"} />
           <SubjectPhasePicker
             {...subjectPhaseOptions}
-            currentSelection={data}
+            currentSelection={currentSelection}
           />
         </Box>
       </Flex>
@@ -100,7 +128,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Overview",
               page: "curriculum-overview",
               viewType: "teachers",
-              subjectPhaseSlug: pageSlug,
+              subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab == "overview",
               currentStyles: ["underline"],
             },
@@ -108,7 +136,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Unit sequence",
               page: "curriculum-units",
               viewType: "teachers",
-              subjectPhaseSlug: pageSlug,
+              subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab == "units",
               currentStyles: ["underline"],
             },
@@ -116,7 +144,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Downloads",
               page: "curriculum-downloads",
               viewType: "teachers",
-              subjectPhaseSlug: pageSlug,
+              subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab == "downloads",
               currentStyles: ["underline"],
             },

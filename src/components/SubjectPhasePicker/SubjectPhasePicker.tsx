@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
-import router from "next/router";
+import { useRouter } from "next/router";
 
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/Grid";
@@ -20,6 +20,7 @@ import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
 import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
+import { CurriculumTab } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -30,9 +31,9 @@ import Icon from "@/components/Icon";
 export type SubjectPhasePickerData = {
   subjects: SubjectPhaseOption[];
   currentSelection?: {
-    subject: Subject;
+    subject: SubjectPhaseOption;
     phase: Phase;
-    examboard?: Examboard;
+    examboard: Examboard | null;
   };
 };
 
@@ -95,17 +96,25 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
 }) => {
+  const router = useRouter();
+  const tab = (router.query.tab as CurriculumTab) ?? "overview";
+
   const phases = [
-    { title: "Primary", slug: "primary", isHidden: false },
-    { title: "Secondary", slug: "secondary", isHidden: false },
+    { title: "Primary", slug: "primary" },
+    { title: "Secondary", slug: "secondary" },
   ];
 
   const initialSubject = subjects.find(
     (option) => option.slug == currentSelection?.subject.slug
   );
 
-  const initialPhase = currentSelection?.phase;
-  const initialExamboard = currentSelection?.examboard;
+  const initialPhase = initialSubject?.phases.find(
+    (option) => option.slug == currentSelection?.phase.slug
+  );
+
+  const initialExamboard = initialSubject?.examboards?.find(
+    (option) => option.slug == currentSelection?.examboard?.slug
+  );
 
   const [showSubjects, setShowSubjects] = useState(false);
   const [showPhases, setShowPhases] = useState(false);
@@ -194,7 +203,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         subjectPhaseSlug += "-" + selectedExamboard.slug;
       }
       router.push({
-        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}/overview`,
+        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
       });
     }
   };

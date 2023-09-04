@@ -69,7 +69,7 @@ const curriculumOverviewTabData = z.object({
   subjectSlug: z.string(),
 });
 
-const curriculumDownloadTabData = z.object({
+const curriculumDownloadsTabData = z.object({
   urls: z.array(z.string()),
 });
 
@@ -82,8 +82,8 @@ export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewTabData = z.infer<
   typeof curriculumOverviewTabData
 >;
-export type CurriculumDownloadTabData = z.infer<
-  typeof curriculumDownloadTabData
+export type CurriculumDownloadsTabData = z.infer<
+  typeof curriculumDownloadsTabData
 >;
 export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
 
@@ -123,9 +123,9 @@ const curriculumApi2023 = {
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  curriculumOverview: curriculumOverviewQuery(sdk),
+  curriculumOverview: curriculumOverviewQuery(),
   curriculumUnits: curriculumUnitsQuery(sdk),
-  curriculumDownloads: curriculumDownloadsQuery(sdk),
+  curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
 };
 

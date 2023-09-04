@@ -2,22 +2,17 @@ import sdk from "../../sdk";
 
 import curriculumUnitsQuery from "./curriculumUnits.query";
 
-describe("curriculumUnits()", () => {
-  test("throws params incorrect error if slug is missing", async () => {
+describe("curriculum units query", () => {
+  test("throws params incorrect error if slugs are blank", async () => {
     await expect(async () => {
       await curriculumUnitsQuery({
         ...sdk,
         curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
-      })({ slug: "" });
-    }).rejects.toThrow(`The params provided are incorrect`);
-  });
-
-  test("throws params incorrect error if slug is incorrect", async () => {
-    await expect(async () => {
-      await curriculumUnitsQuery({
-        ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
-      })({ slug: "notavalidslug" });
+      })({
+        subjectSlug: "",
+        phaseSlug: "",
+        examboardSlug: null,
+      });
     }).rejects.toThrow(`The params provided are incorrect`);
   });
 
@@ -26,7 +21,11 @@ describe("curriculumUnits()", () => {
       await curriculumUnitsQuery({
         ...sdk,
         curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
-      })({ slug: "english-secondary-aqa" });
+      })({
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        examboardSlug: "aqa",
+      });
     }).rejects.toThrow(`Resource not found`);
   });
 });
