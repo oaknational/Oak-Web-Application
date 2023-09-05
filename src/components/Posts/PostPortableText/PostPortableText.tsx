@@ -26,7 +26,7 @@ import {
 
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,
-  options,
+  options
 ) => {
   console.log(message, {
     type: options.type,

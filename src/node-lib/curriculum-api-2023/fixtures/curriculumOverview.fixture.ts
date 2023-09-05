@@ -1,7 +1,7 @@
 import { CurriculumOverviewTabData } from "..";
 
 const curriculumOverviewTabFixture = (
-  partial?: Partial<CurriculumOverviewTabData>,
+  partial?: Partial<CurriculumOverviewTabData>
 ): CurriculumOverviewTabData => {
   return {
     curriculaDesc:

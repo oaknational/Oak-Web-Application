@@ -44,14 +44,14 @@ describe("pages/about-us/board.tsx", () => {
     renderWithProviders()(<AboutPartners pageData={testPartnersPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "About us",
+      "About us"
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutPartners pageData={testPartnersPageData} />,
+        <AboutPartners pageData={testPartnersPageData} />
       );
 
       expect(seo).toEqual({

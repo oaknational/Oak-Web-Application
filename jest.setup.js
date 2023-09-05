@@ -32,11 +32,11 @@ jest.mock("@bugsnag/js", () => ({
 }));
 
 jest.mock("./src/node-lib/curriculum-api", () =>
-  jest.requireActual("./src/node-lib/curriculum-api/__mocks__"),
+  jest.requireActual("./src/node-lib/curriculum-api/__mocks__")
 );
 
 jest.mock("./src/node-lib/curriculum-api-2023", () =>
-  jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
+  jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__")
 );
 
 jest.mock(
@@ -44,7 +44,7 @@ jest.mock(
   () => ({
     __esModule: true,
     MetomicProvider: ({ children }) => children,
-  }),
+  })
 );
 
 jest.mock("posthog-js", () => ({

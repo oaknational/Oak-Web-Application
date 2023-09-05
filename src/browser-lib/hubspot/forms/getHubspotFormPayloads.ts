@@ -3,7 +3,7 @@ import { UtmParams } from "../../../hooks/useUtmParams";
 import { HubspotPayload } from "./hubspotSubmitForm";
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
-export type UserRole = (typeof USER_ROLES)[number];
+export type UserRole = typeof USER_ROLES[number];
 export type NewsletterHubspotFormData = {
   // when sending email to 'fallback' form
   emailTextOnly?: string;
@@ -39,7 +39,7 @@ export const getSnakeCaseData = (data: NewsletterHubspotFormData) => {
 };
 
 export type NewsletterSnakeCaseData = typeof getSnakeCaseData extends (
-  data: infer T,
+  data: infer T
 ) => infer U
   ? U
   : never;
@@ -62,14 +62,14 @@ export const getDownloadsSnakeCaseData = (data: DownloadsHubspotFormData) => {
 };
 
 export type DownloadsSnakeCaseData = typeof getDownloadsSnakeCaseData extends (
-  data: infer T,
+  data: infer T
 ) => infer U
   ? U
   : never;
 
 export const getPayload = (
   snakeCaseData: NewsletterSnakeCaseData | DownloadsSnakeCaseData,
-  hutk?: string,
+  hutk?: string
 ) => {
   return {
     fields: Object.entries(snakeCaseData)

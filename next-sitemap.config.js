@@ -4,7 +4,7 @@ const path = require("node:path/posix");
 const sitemapBaseUrl = process.env.SITEMAP_BASE_URL;
 if (!sitemapBaseUrl || sitemapBaseUrl === "undefined") {
   throw new TypeError(
-    "process.env.SITEMAP_BASE_URL not defined. See code in next.config.js",
+    "process.env.SITEMAP_BASE_URL not defined. See code in next.config.js"
   );
 }
 
@@ -24,7 +24,7 @@ const serversideSitemapPaths = [
   // "/beta/teachers/key-stages/sitemap.xml",
 ];
 const serversideSitemapUrls = serversideSitemapPaths.map(
-  (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href,
+  (sitemapPath) => new URL(path.join(sitemapBaseUrl, sitemapPath)).href
 );
 
 // https://github.com/iamvishnusankar/next-sitemap#readme
@@ -68,6 +68,6 @@ module.exports = {
     "/contact",
   ].concat(
     // Exclude dynamically created sitemaps
-    shouldSkipInitialBuild ? serversideSitemapPaths : [],
+    shouldSkipInitialBuild ? serversideSitemapPaths : []
   ),
 };

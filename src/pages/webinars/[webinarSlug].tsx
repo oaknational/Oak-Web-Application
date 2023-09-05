@@ -64,7 +64,7 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
         categories,
         webinar,
         "webinars",
-        "Webinars",
+        "Webinars"
       )}
     >
       <PostSingleLayout content={props}>
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<
 
       const categories = uniqBy(
         "title",
-        webinarResults.map((w) => w.category),
+        webinarResults.map((w) => w.category)
       ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
       const webinar: SerializedWebinar = {

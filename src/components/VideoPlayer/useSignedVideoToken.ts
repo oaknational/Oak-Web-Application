@@ -40,7 +40,7 @@ export const useSignedMuxToken = ({
       ? `${apiEndpoint}?id=${playbackId}&type=${type}`
       : null,
     getSignedVideoToken,
-    options,
+    options
   );
   const token = data?.token;
 

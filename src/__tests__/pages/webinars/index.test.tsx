@@ -90,16 +90,16 @@ describe("pages/webinar/index.tsx", () => {
           pageData={testPageData}
           categories={[]}
           categorySlug={null}
-        />,
+        />
       );
 
       expect(
-        screen.getByText("An upcoming webinar").closest("a"),
+        screen.getByText("An upcoming webinar").closest("a")
       ).toHaveAttribute("href", "/webinars/an-upcoming-webinar");
 
       expect(screen.getByText("A past webinar").closest("a")).toHaveAttribute(
         "href",
-        "/webinars/a-past-webinar",
+        "/webinars/a-past-webinar"
       );
     });
 
@@ -121,7 +121,7 @@ describe("pages/webinar/index.tsx", () => {
             }}
             categories={[]}
             categorySlug={null}
-          />,
+          />
         );
 
         expect(seo).toMatchObject({
@@ -143,7 +143,7 @@ describe("pages/webinar/index.tsx", () => {
             pageData={testPageData}
             categories={[]}
             categorySlug={null}
-          />,
+          />
         );
 
         expect(seo).toMatchObject({

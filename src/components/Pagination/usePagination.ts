@@ -13,7 +13,7 @@ export type UsePaginationProps = {
 };
 
 const usePagination = <T>(
-  props: UsePaginationProps & Items<T>,
+  props: UsePaginationProps & Items<T>
 ): { currentPageItems: T[] } & UsePaginationProps & PaginationProps => {
   const { pageSize, totalResults, items } = props;
   const totalPages = Math.ceil(totalResults / pageSize);

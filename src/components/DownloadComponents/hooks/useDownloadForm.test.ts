@@ -61,24 +61,30 @@ describe("useDownloadForm", () => {
     window.localStorage.clear();
   });
   it("should attempt to get the hubspotutk cookie", async () => {
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
 
     expect(getHubspotUserToken).toHaveBeenCalled();
   });
   it("should set email in local storage if passed in props", async () => {
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
 
     await waitFor(() => {
       expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith(
-        "test@test.com",
+        "test@test.com"
       );
     });
   });
 
   it("should set school in local storage if passed in props", async () => {
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
@@ -97,7 +103,9 @@ describe("useDownloadForm", () => {
       downloads: ["intro-quiz-questions"],
     };
 
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
@@ -116,7 +124,9 @@ describe("useDownloadForm", () => {
       downloads: ["intro-quiz-questions"],
     };
 
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
       expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
@@ -127,7 +137,9 @@ describe("useDownloadForm", () => {
   });
 
   it("should set terms in local storage if passed in props", async () => {
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
       expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true);
@@ -135,13 +147,17 @@ describe("useDownloadForm", () => {
   });
 
   it("should call downloadLessonResources with correct parameters", async () => {
-    const { result } = renderHook(() => useDownloadForm());
+    const { result } = renderHook(() =>
+      useDownloadForm({ viewType: "teachers" })
+    );
     result.current.onSubmit(data, "lesson");
 
     await waitFor(() => {
-      expect(downloadLessonResources).toHaveBeenCalledWith("lesson", [
-        "intro-quiz-questions",
-      ]);
+      expect(downloadLessonResources).toHaveBeenCalledWith(
+        "lesson",
+        ["intro-quiz-questions"],
+        "teachers"
+      );
     });
   });
 });

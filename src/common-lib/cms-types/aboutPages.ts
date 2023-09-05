@@ -65,12 +65,12 @@ export const aboutPartnersPageSchema = aboutPageBaseSchema.extend({
   techPartners: z.array(
     imageSchema.extend({
       name: z.string(),
-    }),
+    })
   ),
   curriculumPartners: z.array(
     imageSchema.extend({
       name: z.string(),
-    }),
+    })
   ),
 });
 

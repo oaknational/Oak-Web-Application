@@ -135,7 +135,7 @@ const errorify = (maybeError: unknown): Error => {
     return new Error(message);
   } catch (jsonStringifyError) {
     return new Error(
-      `Failed to stringify maybeError, type: ${typeof maybeError}`,
+      `Failed to stringify maybeError, type: ${typeof maybeError}`
     );
   }
 };
@@ -143,7 +143,7 @@ const errorify = (maybeError: unknown): Error => {
 const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
   const reportError = async (
     maybeError: OakError | Error | unknown,
-    data?: ErrorData,
+    data?: ErrorData
   ) => {
     try {
       consoleError(maybeError);

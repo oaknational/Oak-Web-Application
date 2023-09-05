@@ -1,14 +1,25 @@
+import { ViewType } from "@/common-lib/urls";
+
 const getDownloadResourcesExistence = async (
   lessonSlug: string,
   resourceTypesString: string,
+  viewType: ViewType
 ) => {
   if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
     throw new TypeError(
-      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined",
+      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"
+    );
+  }
+  if (!process.env.NEXT_PUBLIC_DOWNLOAD_API_URL) {
+    throw new TypeError(
+      "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined"
     );
   }
 
-  const checkWhichResourcesExistEndpoint = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+  const checkWhichResourcesExistEndpoint =
+    viewType === "teachers"
+      ? `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`
+      : `${process.env.NEXT_PUBLIC_DOWNLOAD_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
 
   const res = await fetch(checkWhichResourcesExistEndpoint);
   const { data, error } = await res.json();

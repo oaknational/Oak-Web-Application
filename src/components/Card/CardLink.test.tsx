@@ -23,24 +23,24 @@ describe("CardLink", () => {
           Drop a CardLink component into a Card and pass in href. The whole card
           becomes a link.
         </P>
-      </Card>,
+      </Card>
     );
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
-      "https://www.test.com",
+      "https://www.test.com"
     );
   });
   it("resolves page -> href", async () => {
     renderWithTheme(
       <CardLink page="legal" legalSlug="privacy-policy">
         Click Me
-      </CardLink>,
+      </CardLink>
     );
 
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
-      "/legal/privacy-policy",
+      "/legal/privacy-policy"
     );
   });
 });

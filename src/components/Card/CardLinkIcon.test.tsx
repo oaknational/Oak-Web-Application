@@ -13,7 +13,7 @@ describe("CardLinkIcon", () => {
         background="pupilsLimeGreen"
         page={null}
         href={"/planning"}
-      />,
+      />
     );
 
     expect(screen.getByRole("link")).toHaveAttribute("href", "/planning");
@@ -25,7 +25,7 @@ describe("CardLinkIcon", () => {
         titleTag={"h4"}
         background="pupilsLimeGreen"
         page="about-board"
-      />,
+      />
     );
 
     expect(screen.getByRole("link")).toHaveAttribute("href", "/about-us/board");
@@ -37,11 +37,11 @@ describe("CardLinkIcon", () => {
         titleTag={"h4"}
         background="pupilsLimeGreen"
         page={"contact"}
-      />,
+      />
     );
 
     expect(screen.getByRole("heading", { level: 4 }).textContent).toBe(
-      "Plan a lesson",
+      "Plan a lesson"
     );
   });
 });

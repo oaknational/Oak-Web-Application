@@ -49,7 +49,7 @@ const hubspotErrorSchema = z.object({
     z.object({
       errorType: z.enum(HUBSPOT_ERRORS),
       message: z.string().optional(),
-    }),
+    })
   ),
 });
 const hubspotSuccessSchema = z.object({
@@ -142,7 +142,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
         const hubspotError = hubspotErrorSchema.parse(responseBody);
         errorMeta.hubspotError = hubspotError;
         const isInvalidEmail = hubspotError.errors.some(
-          (err) => err.errorType === "INVALID_EMAIL",
+          (err) => err.errorType === "INVALID_EMAIL"
         );
         errorMeta.isInvalidEmail = isInvalidEmail;
 
@@ -153,7 +153,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           try {
             const emailTextOnly = (payload: HubspotPayload) => {
               const emailField = payload.fields.find(
-                (field) => field.name === "email",
+                (field) => field.name === "email"
               );
               if (!emailField) {
                 throw new OakError({

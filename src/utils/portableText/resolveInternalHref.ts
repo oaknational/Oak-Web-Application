@@ -51,8 +51,8 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
       assertUnreachable(
         entry,
         new Error(
-          `Error resolving internal href; unexpected entry:\n${entryJSON}`,
-        ),
+          `Error resolving internal href; unexpected entry:\n${entryJSON}`
+        )
       );
     }
   }

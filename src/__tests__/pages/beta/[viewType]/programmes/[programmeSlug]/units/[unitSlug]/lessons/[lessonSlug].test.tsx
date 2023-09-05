@@ -26,7 +26,7 @@ describe("pages/beta/teachers/lessons", () => {
     render(<LessonOverviewPage {...props} />);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Islamic Geometry",
+      "Islamic Geometry"
     );
   });
 
@@ -40,7 +40,7 @@ describe("pages/beta/teachers/lessons", () => {
     render(<LessonOverviewPage {...props} />);
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
-      "Download all resources",
+      "Download all resources"
     );
   });
 
@@ -93,12 +93,12 @@ describe("pages/beta/teachers/lessons", () => {
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1",
+        "macbeth-lesson-1"
       );
     });
     it("should throw error", async () => {
       await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
       ).rejects.toThrowError("No context.params");
     });
   });

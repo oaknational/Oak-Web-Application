@@ -3,7 +3,7 @@ import reactStringReplace from "react-string-replace";
 import Underline from "../../Underline";
 
 export const shortAnswerTitleFormatter = (
-  title: string | null | undefined,
+  title: string | null | undefined
 ): string | React.ReactNode => {
   const shortAnswerRegex = /\{\{(?:[^{}]|(?!\{\{|\}\})\w)*\}\}/g;
   if (!title) return "";

@@ -12,13 +12,16 @@ import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
+import { ViewType } from "@/common-lib/urls";
+
 const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
+  viewType: ViewType;
 };
 
-const useDownloadForm = (props: UseDownloadFormProps = {}) => {
+const useDownloadForm = (props: UseDownloadFormProps) => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,
@@ -77,7 +80,11 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       setTermsInLocalStorage(terms);
     }
 
-    await downloadLessonResources(slug, downloads as DownloadResourceType[]);
+    await downloadLessonResources(
+      slug,
+      downloads as DownloadResourceType[],
+      props.viewType
+    );
     return hubspotFormResponse;
   };
 

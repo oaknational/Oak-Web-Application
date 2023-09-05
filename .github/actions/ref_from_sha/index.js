@@ -21,7 +21,7 @@ async function run() {
     const repo = github.context.payload.repository.name;
     if (!owner || !repo) {
       throw new Error(
-        `Could not determine repo details, got: owner "${owner} and repo "${repo}".`,
+        `Could not determine repo details, got: owner "${owner} and repo "${repo}".`
       );
     }
 
@@ -59,7 +59,7 @@ async function run() {
     core.info(
       `Found pull request or branch for for SHA: ${sha} with ref: ${fullHeadRef}.${
         prNumber ? `Found PR number: ${prNumber}` : ""
-      }`,
+      }`
     );
   } catch (error) {
     core.error(error);

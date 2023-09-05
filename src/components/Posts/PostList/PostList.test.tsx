@@ -24,7 +24,7 @@ describe("components/PostList", () => {
             date: new Date(2022, 8, 22).toISOString(),
           },
         ]}
-      />,
+      />
     );
 
     const listHeading = getByRole("heading", { level: 3 });
@@ -50,7 +50,7 @@ describe("components/PostList", () => {
             date: new Date(2022, 7, 22, 14).toISOString(),
           },
         ]}
-      />,
+      />
     );
 
     const formattedDate = getByText("22 August 2022");

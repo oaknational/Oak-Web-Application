@@ -1,7 +1,7 @@
 import { SearchPageData } from "..";
 
 const searchPageFixture = (
-  partial?: Partial<SearchPageData>,
+  partial?: Partial<SearchPageData>
 ): SearchPageData => {
   return {
     keyStages: [

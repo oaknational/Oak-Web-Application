@@ -153,7 +153,7 @@ const render = renderWithProviders();
 describe("components/PostPortableText", () => {
   test("text and media renders an image", () => {
     const { getByAltText } = render(
-      <PostPortableText portableText={textAndMedia} />,
+      <PostPortableText portableText={textAndMedia} />
     );
 
     const imageAltText = getByAltText("image alt text");
@@ -162,7 +162,7 @@ describe("components/PostPortableText", () => {
   });
   test("image with alt text has alt text", () => {
     const { getByAltText } = render(
-      <PostPortableText portableText={[textAndMedia[0]?.image]} />,
+      <PostPortableText portableText={[textAndMedia[0]?.image]} />
     );
 
     const imageAltText = getByAltText("image alt text");
@@ -173,14 +173,14 @@ describe("components/PostPortableText", () => {
     const { getByText } = render(<PostPortableText portableText={quote} />);
 
     const quoteText = getByText(
-      "“The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality.”",
+      "“The best curricula generate at least 25% more learning than the worst, irrespective of teacher quality.”"
     );
 
     expect(quoteText).toBeInTheDocument();
   });
   test("cta renders a button with a label", () => {
     const { getByText } = render(
-      <PostPortableText portableText={[textAndMedia[0]?.cta]} />,
+      <PostPortableText portableText={[textAndMedia[0]?.cta]} />
     );
 
     const ctaLabel = getByText("CTA");
@@ -206,7 +206,7 @@ describe("components/PostPortableText", () => {
   describe("footnotes", () => {
     test("footnote links are rendered inline", () => {
       const { getAllByRole } = render(
-        <PostPortableText portableText={withFootnotes} />,
+        <PostPortableText portableText={withFootnotes} />
       );
 
       const footnoteLinks = getAllByRole("doc-noteref");
@@ -214,40 +214,40 @@ describe("components/PostPortableText", () => {
       expect(footnoteLinks).toHaveLength(2);
       expect(footnoteLinks[0]).toHaveAttribute(
         "href",
-        "#footnote-ref-FOOTNOTE_MARK_1",
+        "#footnote-ref-FOOTNOTE_MARK_1"
       );
     });
     test("footnote references are rendered with backlinks", () => {
       const { getByRole } = render(
-        <PostPortableText portableText={withFootnotes} />,
+        <PostPortableText portableText={withFootnotes} />
       );
 
       const footnotes = within(getByRole("doc-endnotes")).getAllByRole(
-        "listitem",
+        "listitem"
       );
 
       expect(footnotes[0]).toHaveTextContent(
-        "The citation for the first footnote",
+        "The citation for the first footnote"
       );
 
       const firstFootnoteBacklink = within(
-        footnotes[0] as HTMLElement,
+        footnotes[0] as HTMLElement
       ).getByRole("doc-backlink");
 
       expect(firstFootnoteBacklink).toHaveAttribute(
         "href",
-        "#footnote-note-FOOTNOTE_MARK_1",
+        "#footnote-note-FOOTNOTE_MARK_1"
       );
 
       const footnoteWithSource = within(footnotes[1] as HTMLElement).getByRole(
-        "link",
+        "link"
       );
       expect(footnoteWithSource).toHaveAttribute("href", "https://example.com");
     });
 
     test("does not render the footnotes section when none exist", () => {
       const { queryByRole } = render(
-        <PostPortableText portableText={textAndMedia} />,
+        <PostPortableText portableText={textAndMedia} />
       );
 
       const footnotesSection = queryByRole("doc-endnotes");

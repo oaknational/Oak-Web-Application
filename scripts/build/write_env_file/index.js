@@ -54,7 +54,7 @@ async function main() {
       process.env.OVERRIDE_RELEASE_STAGE ||
         process.env.VERCEL_ENV ||
         // Netlify
-        process.env.CONTEXT,
+        process.env.CONTEXT
     );
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
     appVersion = getAppVersion(isProductionBuild);
@@ -136,6 +136,8 @@ async function main() {
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
+    NEXT_PUBLIC_DOWNLOAD_API_URL:
+      process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:

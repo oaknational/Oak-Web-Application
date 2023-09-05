@@ -17,7 +17,7 @@ describe("curriculum overview page", () => {
           curriculumHeaderData={curriculumHeaderFixture()}
           slug="maths-secondary"
           subjectPhaseOptions={subjectPhaseOptions}
-        />,
+        />
       );
 
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
