@@ -8,6 +8,7 @@ import SubjectPhasePicker, {
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import Illustration from "@/components/Illustration/Illustration";
 import { getSizes } from "@/components/CMSImage/getSizes";
+import Cover from "@/components/Cover/Cover";
 
 type CurriculumLandingHeroProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -29,34 +30,27 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
             sector.
           </P>
         </Box>
-        <Box $maxWidth={["100%", "80%"]}>
+        <Box $maxWidth={["100%", 960]}>
           <SubjectPhasePicker {...subjectPhaseOptions} />
         </Box>
       </Flex>
-      <Box
-        $top={0}
-        $bottom={0}
-        $left={0}
-        $right={0}
+      <Cover
+        $top={[48, 48, 0]}
+        $right={[0, 12, 0]}
         $display={["none", "block"]}
       >
-        <Flex
-          $width={"100%"}
-          $height={"100%"}
-          $flexDirection={"row"}
-          $justifyContent={"flex-end"}
-        >
+        <Flex $justifyContent={"flex-end"}>
           <Illustration
             noCrop
             $width={"40%"}
-            $maxHeight={480}
-            $maxWidth={480}
+            $maxHeight={[480, 400, 480]}
+            $maxWidth={[480, 400, 480]}
             $position={"absolute"}
             sizes={getSizes([400, 600])}
             slug="planning-curriculum"
           />
         </Flex>
-      </Box>
+      </Cover>
     </Flex>
   );
 };

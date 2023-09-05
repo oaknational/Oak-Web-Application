@@ -31,7 +31,6 @@ export type CurriculumHomePageProps = {
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   const { subjectPhaseOptions } = props;
-  // const posts = usePostList({ items: [], withImage: true });
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
