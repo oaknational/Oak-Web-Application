@@ -31,6 +31,7 @@ export type CurriculumHomePageProps = {
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   const { subjectPhaseOptions } = props;
+  // const posts = usePostList({ items: [], withImage: true });
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
@@ -54,37 +55,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             />
             <Hr $color={"white"} $mb={0} />
           </Box>
-          <Flex $mt={[80]} $mb={[80]}>
+          <Flex $mt={[24, 80]} $mb={[80]}>
             <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
           </Flex>
-
-          {/* <Box $ph={[16, 0]} $pb={[18, 48, 48]}>
-            <Heading
-              $font={["heading-5", "heading-4"]}
-              tag={"h1"}
-              $mt={120}
-              $color={"black"}
-            >
-              Curriculum Resources
-            </Heading>
-            <Heading $font={"heading-light-6"} tag={"h2"} $mv={8}>
-              A collection of high quality resources to support you, whether
-              you're looking for exemplars or help with starting from scratch.
-            </Heading>
-          </Box> */}
         </MaxWidth>
       </Flex>
 
-      {/* <Flex $background={"white"} $pv={[48]}> */}
-      {/* <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[24]}>
-            <Heading tag={"h2"} $font={"heading-light-6"} $mb={16}>
-              Oak's Curricula
-            </Heading>
-            <SubjectPhasePicker {...subjectPhaseOptions} />
-          </Box>
-        </MaxWidth> */}
-      {/* </Flex> */}
       <Flex
         $background={"teachersPastelYellow"}
         $justifyContent={"center"}
@@ -243,6 +219,7 @@ export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
+
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       subjectPhaseOptions: data,
