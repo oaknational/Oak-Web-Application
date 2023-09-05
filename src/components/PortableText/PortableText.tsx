@@ -7,6 +7,7 @@ import {
 } from "@portabletext/react";
 import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
+import { merge } from "lodash/fp";
 
 import errorReporter from "../../common-lib/error-reporter";
 import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
@@ -189,7 +190,7 @@ export function PortableTextWithDefaults<
   return (
     <PortableText
       {...props}
-      components={{ ...basePortableTextComponents, ...props.components }}
+      components={merge(basePortableTextComponents, props.components)}
     />
   );
 }
