@@ -1,3 +1,15 @@
+# [1.232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.9...v1.232.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* tests ([918f29c](https://github.com/oaknational/Oak-Web-Application/commit/918f29c31fff23eed841eadbe9b750f28794a2bd))
+
+
+### Features
+
+* 2023 content downloads ([8f00732](https://github.com/oaknational/Oak-Web-Application/commit/8f00732b9025d95c347708265ac44f6633780852))
+
 ## [1.231.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.8...v1.231.9) (2023-09-04)
 
 ## [1.231.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.7...v1.231.8) (2023-09-04)
