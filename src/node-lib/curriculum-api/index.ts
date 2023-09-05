@@ -96,7 +96,7 @@ const unitData = z.object({
     z.object({
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-    }),
+    })
   ),
 });
 
@@ -109,7 +109,7 @@ const tiersData = z.array(
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullable().optional(),
     lessonCount: z.number().nullable().optional(),
-  }),
+  })
 );
 
 const keyStageSchema = z.object({
@@ -183,7 +183,7 @@ const unitListingData = z.object({
     z.object({
       themeTitle: z.string().nullable(),
       themeSlug: z.string().nullable(),
-    }),
+    })
   ),
 });
 
@@ -242,13 +242,13 @@ export const getFirstResultOrNull =
 
 export const filterOutDuplicateProgrammesOrNull = (
   programmesAvailable: ProgrammesData[],
-  programmesUnavailable: ProgrammesData[],
+  programmesUnavailable: ProgrammesData[]
 ) => {
   return programmesUnavailable.filter(
     (unavailable) =>
       !programmesAvailable.some(
-        (available) => available.subjectSlug === unavailable.subjectSlug,
-      ),
+        (available) => available.subjectSlug === unavailable.subjectSlug
+      )
   );
 };
 
@@ -260,8 +260,8 @@ const curriculumApi = {
 
     const keyStageSlugs = keyStages?.map((keyStage) => keyStage.slug);
 
-    const filteredByActiveKeyStages = programmesAvailable?.filter(
-      (subject) => keyStageSlugs?.includes(subject.keyStageSlug),
+    const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
+      keyStageSlugs?.includes(subject.keyStageSlug)
     );
     const uniqueProgrammes = filteredByActiveKeyStages
       ?.filter((subject, index, self) => {
@@ -291,7 +291,7 @@ const curriculumApi = {
     const keyStageList = res.keyStageList;
 
     const addCurriculum2023Counts = (
-      programmes: ProgrammesData[] | undefined,
+      programmes: ProgrammesData[] | undefined
     ) => {
       return programmes
         ? programmes.map((programme) => {
@@ -303,7 +303,7 @@ const curriculumApi = {
               unitCount: programme.nonDuplicateSubjectUnitCount,
               programmeCount:
                 programmes.filter(
-                  (subject) => subject.subjectSlug === programme.subjectSlug,
+                  (subject) => subject.subjectSlug === programme.subjectSlug
                 ).length || 0,
             };
           })
@@ -348,7 +348,7 @@ const curriculumApi = {
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(
-        learningThemes.map((theme) => [JSON.stringify(theme), theme]),
+        learningThemes.map((theme) => [JSON.stringify(theme), theme])
       ).values(),
     ].sort((a, b) => {
       if (a.themeTitle < b.themeTitle) {
@@ -395,7 +395,7 @@ const curriculumApi = {
     const lessonKeyLearningPoints = lesson.coreContent?.map(
       (content: string) => {
         return { keyLearningPoint: content };
-      },
+      }
     );
 
     const lessonEquipmentAndResources = lesson.equipmentRequired

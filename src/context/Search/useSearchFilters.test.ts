@@ -48,7 +48,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, keyStages: ["ks1"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const checked =
       useSearchFiltersHook.result.current.keyStageFilters[0]?.checked;
@@ -70,7 +70,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, contentTypes: ["unit", "lesson"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
 
     const lessonChecked =
@@ -88,7 +88,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, contentTypes: ["unit", "lesson"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const lessonOnChange =
       useSearchFiltersHook.result.current.contentTypeFilters[0]?.onChange;
@@ -108,7 +108,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, contentTypes: ["unit"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const lessonOnChange =
       useSearchFiltersHook.result.current.contentTypeFilters[0]?.onChange;
@@ -128,7 +128,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, keyStages: ["ks1", "ks3"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const onChange =
       useSearchFiltersHook.result.current.keyStageFilters[0]?.onChange;
@@ -147,7 +147,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, keyStages: ["ks1"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const onChange =
       useSearchFiltersHook.result.current.keyStageFilters[3]?.onChange;
@@ -174,7 +174,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, subjects: ["computing"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const checked =
       useSearchFiltersHook.result.current.subjectFilters[0]?.checked;
@@ -188,7 +188,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, subjects: ["computing", "english"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const onChange =
       useSearchFiltersHook.result.current.subjectFilters[0]?.onChange;
@@ -208,7 +208,7 @@ describe("useSearchFilters()", () => {
       query: { ...props.query, subjects: ["computing"] },
     };
     const useSearchFiltersHook = renderHook(() =>
-      useSearchFilters(withFilterActive),
+      useSearchFilters(withFilterActive)
     );
     const onChange =
       useSearchFiltersHook.result.current.subjectFilters[3]?.onChange;

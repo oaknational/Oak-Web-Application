@@ -277,7 +277,7 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
 };
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
-  context,
+  context
 ) => {
   return getPageProps({
     page: "contact-us::getStaticProps",

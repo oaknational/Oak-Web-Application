@@ -9,7 +9,7 @@ describe("KeyWords component", () => {
   ];
   it("should render with correct title", () => {
     const { getByTestId, getByText } = renderWithTheme(
-      <KeyWords keyWords={keyWordsData} />,
+      <KeyWords keyWords={keyWordsData} />
     );
     const componentTitle = getByText("Key words");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe("KeyWords component", () => {
 
   it("should render with multiple core content list", () => {
     const { getAllByRole } = renderWithTheme(
-      <KeyWords keyWords={keyWordsData} />,
+      <KeyWords keyWords={keyWordsData} />
     );
 
     const listItems = getAllByRole("listitem");
@@ -27,7 +27,7 @@ describe("KeyWords component", () => {
 
   it("should render with null and non-null core content", () => {
     const { getAllByRole } = renderWithTheme(
-      <KeyWords keyWords={[{ keyword: "test1", description: null }]} />,
+      <KeyWords keyWords={[{ keyword: "test1", description: null }]} />
     );
 
     const listItems = getAllByRole("listitem");

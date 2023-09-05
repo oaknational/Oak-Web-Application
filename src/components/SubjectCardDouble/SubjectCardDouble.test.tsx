@@ -32,7 +32,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
   });
@@ -43,7 +43,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByRole("link", {
       name: "Biology: 1 unit, 6 lessons",
@@ -51,7 +51,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/biology-secondary-ks4/units",
+      "/beta/teachers/programmes/biology-secondary-ks4/units"
     );
   });
   test("old units with more than one programme take you to 'teachers' view programme listing page", () => {
@@ -61,7 +61,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByRole("link", {
       name: "Maths: 1 unit, 6 lessons",
@@ -69,7 +69,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/beta/teachers/key-stages/ks4/subjects/maths/programmes",
+      "/beta/teachers/key-stages/ks4/subjects/maths/programmes"
     );
   });
   test("new units with 1 programme take you to 'teachers' view unit listing page", () => {
@@ -79,7 +79,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByRole("link", {
       name: "Biology: 6 units, 35 lessons - new content",
@@ -87,7 +87,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/beta/teachers-2023/key-stages/ks4/subjects/biology/programmes",
+      "/beta/teachers-2023/key-stages/ks4/subjects/biology/programmes"
     );
   });
   test("new units with more than one programme take you to 'teachers' view programme listing page", () => {
@@ -97,7 +97,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByRole("link", {
       name: "Maths: 6 units, 35 lessons - new content",
@@ -105,7 +105,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/beta/teachers-2023/programmes/biology-secondary-ks4/units",
+      "/beta/teachers-2023/programmes/biology-secondary-ks4/units"
     );
   });
   test("new units are labeled as 'new'", () => {
@@ -115,7 +115,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByText("New");
     expect(cardClickTarget).toBeInTheDocument();
@@ -127,7 +127,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = queryByText("New");
     expect(cardClickTarget).not.toBeInTheDocument();
@@ -140,7 +140,7 @@ describe("SubjectCardDouble", () => {
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />,
+      />
     );
     const cardClickTarget = getByRole("link", {
       name: "Biology: 1 unit, 6 lessons",

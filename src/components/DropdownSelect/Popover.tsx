@@ -34,7 +34,7 @@ export function Popover(props: PopoverProps) {
       shouldCloseOnBlur: true,
       isDismissable: false,
     },
-    popoverRef,
+    popoverRef
   );
 
   // Add a hidden <DismissButton> component at the end of the popover

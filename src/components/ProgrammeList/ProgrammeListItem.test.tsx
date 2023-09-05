@@ -37,7 +37,7 @@ describe("ProgrammeListItem", () => {
         examBoardSlug={null}
         examBoardTitle={null}
         examBoardDisplayOrder={null}
-      />,
+      />
     );
 
     expect(screen.getByText("Higher")).toBeInTheDocument();
@@ -60,7 +60,7 @@ describe("ProgrammeListItem", () => {
         examBoardSlug={null}
         examBoardTitle={null}
         examBoardDisplayOrder={null}
-      />,
+      />
     );
 
     const trier = screen.getByText("Higher");

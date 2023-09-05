@@ -34,7 +34,7 @@ describe("useUtmParams()", () => {
   test("gets params from local storage if available", async () => {
     window.localStorage.setItem(
       "oak-utm-params",
-      JSON.stringify({ utm_campaign: "tests rule", utm_term: "hella yeah" }),
+      JSON.stringify({ utm_campaign: "tests rule", utm_term: "hella yeah" })
     );
     const { result } = renderHook(() => useUtmParams());
     expect(result.current).toMatchObject({
@@ -64,7 +64,7 @@ describe("useUtmParams()", () => {
     expect(window.localStorage.getItem("oak-utm-params")).toMatch(
       JSON.stringify({
         utm_source: "twitter",
-      }),
+      })
     );
   });
 });

@@ -87,7 +87,7 @@ const blogToArticle = (blog: SerializedBlogPostPreview): ArticleJsonLdProps => {
 };
 
 const webinarToArticle = (
-  webinar: SerializedWebinarPreview,
+  webinar: SerializedWebinarPreview
 ): ArticleJsonLdProps => {
   return {
     type: "Article",

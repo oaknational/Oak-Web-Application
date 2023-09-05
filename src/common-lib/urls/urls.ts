@@ -32,7 +32,7 @@ export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
 // /teachers/ or /pupils/
 export const VIEW_TYPES = ["teachers", "teachers-2023"] as const;
-export type ViewType = (typeof VIEW_TYPES)[number];
+export type ViewType = typeof VIEW_TYPES[number];
 
 const getCurrentHostname = () => {
   if (isBrowser) {
@@ -222,7 +222,7 @@ const EXTERNAL_PAGE_NAMES = [
   "[external] Teacher hub",
   "[external] Our curriculum",
 ] as const;
-type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
+type ExternalPageName = typeof EXTERNAL_PAGE_NAMES[number];
 
 type OakPages = {
   classroom: OakPageConfig<ClassroomLinkProps>;
@@ -264,7 +264,7 @@ type OakPageConfig<
   ResolveHrefProps extends {
     page: string;
     query?: UrlQueryObject;
-  },
+  }
 > =
   | {
       analyticsPageName: PageNameValueType;
@@ -300,7 +300,7 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         url: string;
         analyticsPageName: ExternalPageName;
         pageType: ResolveHrefProps["page"];
-      },
+      }
 ): OakPageConfig<ResolveHrefProps> {
   switch (props.configType) {
     case "external":
@@ -318,19 +318,19 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         resolveHref: (resolveHrefProps: ResolveHrefProps) => {
           const path = compile<Omit<ResolveHrefProps, "page">>(
             props.pathPattern,
-            { encode: encodeURIComponent },
+            { encode: encodeURIComponent }
           )(resolveHrefProps);
           /**
            * @todo consolidate these -> query
            */
           if ("search" in resolveHrefProps) {
             return `${path}?${createQueryStringFromObject(
-              resolveHrefProps.search,
+              resolveHrefProps.search
             )}`;
           }
           if ("query" in resolveHrefProps) {
             return `${path}?${createQueryStringFromObject(
-              resolveHrefProps.query,
+              resolveHrefProps.query
             )}`;
           }
           return path;
@@ -345,7 +345,7 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
 
 const postMatchHref =
   <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
-    postType: PostListingLinkProps["page"],
+    postType: PostListingLinkProps["page"]
   ) =>
   (href: string) => {
     const path = postType === "blog-index" ? "/blog" : "/webinars";
@@ -359,7 +359,7 @@ const postMatchHref =
   };
 const postResolveHref =
   <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
-    postType: PostListingLinkProps["page"],
+    postType: PostListingLinkProps["page"]
   ) =>
   (props: PostListingLinkProps) => {
     let path = postType === "blog-index" ? "/blog" : "/webinars";

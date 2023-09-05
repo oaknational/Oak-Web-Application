@@ -3,7 +3,7 @@ import { LessonOverviewPageData } from "../queries/lessonOverview/lessonOverview
 import { quizQuestions } from "./quizElements.fixture";
 
 const lessonOverviewFixture = (
-  partial?: Partial<LessonOverviewPageData>,
+  partial?: Partial<LessonOverviewPageData>
 ): LessonOverviewPageData => {
   return {
     unitTitle: "Simple, Compound and Adverbial Complex Sentences",

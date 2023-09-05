@@ -17,7 +17,7 @@ describe("useModalDialog", () => {
           closeModal: noop,
           isOpen: true,
         }),
-      { wrapper: OverlayProvider },
+      { wrapper: OverlayProvider }
     );
 
     renderWithTheme(<ModalDialog {...result.current}>Contents</ModalDialog>);
@@ -37,7 +37,7 @@ describe("useModalDialog", () => {
           isDismissable: true,
           isKeyboardDismissDisabled: true,
         }),
-      { wrapper: OverlayProvider },
+      { wrapper: OverlayProvider }
     );
     renderWithTheme(<ModalDialog {...result.current}>Contents</ModalDialog>);
 

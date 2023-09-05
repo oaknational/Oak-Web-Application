@@ -72,16 +72,16 @@ describe("Lesson List Item", () => {
 
     expect(getByText("Add two surds").closest("a")).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c",
+      "/beta/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c"
     );
   });
   test("It renders expired message is expired lesson", () => {
     const { getByText } = render(
-      <LessonListItem {...{ ...props, expired: true }} />,
+      <LessonListItem {...{ ...props, expired: true }} />
     );
 
     expect(
-      getByText("This lesson is currently unavailable."),
+      getByText("This lesson is currently unavailable.")
     ).toBeInTheDocument();
   });
   test("It calls tracking.lessonSelected with correct props when clicked", async () => {
@@ -108,7 +108,7 @@ describe("Lesson List Item", () => {
 
   test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
     const { getByText } = render(
-      <LessonListItem {...{ ...props, fromSearchPage: true }} />,
+      <LessonListItem {...{ ...props, fromSearchPage: true }} />
     );
 
     const lesson = getByText("Add two surds");

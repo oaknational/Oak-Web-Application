@@ -20,7 +20,7 @@ const posthogClient = new PostHogNode(posthogApiKey, {
 export async function getABTestedLandingPage(
   landingPageSlug: string,
   context: GetServerSidePropsContext,
-  isPreviewMode: boolean,
+  isPreviewMode: boolean
 ) {
   const abTest = await CMSClient.landingPageABTestBySlug(landingPageSlug, {
     previewMode: isPreviewMode,
@@ -36,18 +36,18 @@ export async function getABTestedLandingPage(
 
   const posthogUserId = getPosthogIdFromCookie(
     context.req.cookies,
-    posthogApiKey,
+    posthogApiKey
   );
 
   if (posthogUserId) {
     const variantName = await posthogClient.getFeatureFlag(
       "cms_ab_spike_dev",
-      posthogUserId,
+      posthogUserId
     );
 
     // Look up the users variant in the mapping of variants->pages from the CMS
     const variant = abTest?.variants.find(
-      (variantOption) => variantOption.posthogVariant === variantName,
+      (variantOption) => variantOption.posthogVariant === variantName
     );
 
     if (!variant) {
@@ -79,7 +79,7 @@ export async function getABTestedLandingPage(
  */
 function getPosthogIdFromCookie(
   cookies: Partial<Record<string, string>>,
-  posthogApiKey: string,
+  posthogApiKey: string
 ): string | null {
   const posthogCookieName = `ph_${posthogApiKey}_posthog`;
   const posthogCookie = cookies[posthogCookieName];

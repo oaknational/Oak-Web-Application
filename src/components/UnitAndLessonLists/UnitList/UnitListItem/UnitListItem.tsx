@@ -71,7 +71,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         analyticsUseCase: analyticsUseCase,
         searchRank: (currentPage - 1) * 20 + index + 1,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query.keyStages
         ),
         searchResultCount: hitCount,
         searchResultType: "unit",

@@ -80,7 +80,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
     render(<Curriculum pageData={testCurriculumPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Curriculum title",
+      "Curriculum title"
     );
   });
 
@@ -100,7 +100,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   describe.skip("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <Curriculum pageData={testCurriculumPageData} />,
+        <Curriculum pageData={testCurriculumPageData} />
       );
 
       expect(seo).toEqual({});

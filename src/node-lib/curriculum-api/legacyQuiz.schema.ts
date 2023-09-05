@@ -15,7 +15,7 @@ export const legacyQuizData = z.object({
     z.object({
       choice: z.string(),
       image: z.string().nullable(),
-    }),
+    })
   ),
   active: z.boolean(),
   answer: z.union([z.array(z.string()), z.string()]),
@@ -29,7 +29,7 @@ export const legacyQuizData = z.object({
           images: z.array(z.string()),
         }),
         z.string(),
-      ]),
+      ])
     )
     .nullable(),
   feedbackCorrect: z.string().nullable(),

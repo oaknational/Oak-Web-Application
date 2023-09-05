@@ -99,12 +99,12 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         <WebinarDetailPage
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
-        />,
+        />
       );
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-          "An upcoming webinar",
+          "An upcoming webinar"
         );
       });
     });
@@ -114,7 +114,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
         <WebinarDetailPage
           webinar={testSerializedWebinar}
           categories={[{ title: "Teaching", slug: "teaching" }]}
-        />,
+        />
       );
 
       expect(webinarPageViewed).toHaveBeenCalledTimes(1);
@@ -131,7 +131,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
           <WebinarDetailPage
             webinar={testSerializedWebinar}
             categories={[{ title: "Teaching", slug: "teaching" }]}
-          />,
+          />
         );
 
         expect(seo).toEqual({
@@ -179,7 +179,7 @@ describe("pages/webinar/[webinarSlug].tsx", () => {
 
       expect(webinarBySlug).toHaveBeenCalledWith(
         "an-upcoming-webinar",
-        expect.any(Object),
+        expect.any(Object)
       );
     });
 

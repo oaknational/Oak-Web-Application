@@ -9,11 +9,11 @@ describe("Component - Overview Tab", () => {
       <OverviewTab
         data={curriculumOverviewTabFixture()}
         slug="maths-secondary"
-      />,
+      />
     );
     const subjectPrinciples = await getAllByTestId("subjectPrinciples");
     expect(subjectPrinciples).toHaveLength(
-      curriculumOverviewTabFixture().subjectPrinciples.length,
+      curriculumOverviewTabFixture().subjectPrinciples.length
     );
   });
 });

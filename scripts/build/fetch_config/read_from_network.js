@@ -24,7 +24,7 @@ const readConfigFromNetwork = async (fileUrl) => {
     configJson = await response.json();
   } catch (err) {
     console.error(
-      `Could not parse config from network into JSON object: ${response}`,
+      `Could not parse config from network into JSON object: ${response}`
     );
     throw err;
   }

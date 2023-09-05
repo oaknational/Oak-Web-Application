@@ -25,7 +25,7 @@ type TestProps = {
 const stringify = (
   cssArray:
     | FlattenSimpleInterpolation
-    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>,
+    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>
 ) =>
   (Array.isArray(cssArray) ? cssArray : [cssArray])
     ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
@@ -48,13 +48,13 @@ describe("responsive", () => {
     const styles = responsive(
       "padding-left",
       (props: TestProps) => props.pl,
-      pxOrUndefined,
+      pxOrUndefined
     )(props);
     const StyledComponent = styled.div`
       ${styles}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $pl={12} />,
+      <StyledComponent data-testid="test" $pl={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 12px");
@@ -67,7 +67,7 @@ describe("responsive", () => {
     const actual = responsive(
       "padding-left",
       (props: TestProps) => props.pl,
-      pxOrUndefined,
+      pxOrUndefined
     )(props);
     const expected = css`
       padding-left: 0px;
@@ -87,7 +87,7 @@ describe("responsive", () => {
     const actual = responsive(
       "padding-left",
       (props: TestProps) => props.pl,
-      pxOrUndefined,
+      pxOrUndefined
     )(props);
     const expected = css`
       padding-left: 36px;
@@ -109,7 +109,7 @@ describe("responsive", () => {
 
     const actual = responsive(
       "padding-left",
-      (props: TestProps) => props.pl,
+      (props: TestProps) => props.pl
     )(props);
     const expected = css`
       padding-left: 0.5em;
@@ -121,11 +121,11 @@ describe("responsive", () => {
       ${responsive(
         "color",
         (props) => props.$color,
-        (colorName) => (props) => props.theme.colors[colorName as OakColorName],
+        (colorName) => (props) => props.theme.colors[colorName as OakColorName]
       )}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $color="teachersPurple" />,
+      <StyledComponent data-testid="test" $color="teachersPurple" />
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #845ad9");

@@ -29,7 +29,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     expect(() => getByText("Lesson details")).toThrow();
@@ -45,7 +45,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const keyLearningPointsComponent = getByText("Key learning points");
@@ -62,7 +62,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const commonMisconceptionsComponent = getByText("Common misconceptions");
@@ -79,7 +79,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const componentTitle = queryByText("Common misconceptions");
@@ -96,7 +96,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const keyWordsComponent = getByText("Key words");
@@ -113,7 +113,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const componentTitle = queryByText("Key words");
@@ -130,7 +130,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const keyWordsComponent = getByText("Teacher tip");
@@ -147,7 +147,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={equipmentAndResources}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const componentTitle = queryByText("Teacher tips");
@@ -164,7 +164,7 @@ describe("LessonDetails component", () => {
         equipmentAndResources={null}
         contentGuidance={null}
         supervisionLevel={undefined}
-      />,
+      />
     );
 
     const equipmentTitle = queryByText("Equipment");
