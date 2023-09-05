@@ -6,7 +6,10 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("Component - Download Tab", () => {
   test("user can see see the heading", async () => {
     const { getByTestId } = renderWithTheme(
-      <DownloadTab data={curriculumDownloadsFixture()} slug="maths-secondary" />
+      <DownloadTab
+        data={curriculumDownloadsFixture()}
+        slug="maths-secondary"
+      />,
     );
     expect(getByTestId("heading")).toBeInTheDocument;
   });

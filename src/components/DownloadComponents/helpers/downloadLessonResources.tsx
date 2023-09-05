@@ -5,7 +5,7 @@ import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
 const downloadLessonResources = async (
   lessonSlug: string,
-  selectedResourceTypes: ResourcesToDownloadArrayType
+  selectedResourceTypes: ResourcesToDownloadArrayType,
 ) => {
   if (selectedResourceTypes?.length === 0) {
     console.log("no resources to download");
@@ -16,7 +16,7 @@ const downloadLessonResources = async (
 
   const downloadResourcesLink = await createDownloadResourcesLink(
     lessonSlug,
-    selection
+    selection,
   );
 
   if (downloadResourcesLink) {

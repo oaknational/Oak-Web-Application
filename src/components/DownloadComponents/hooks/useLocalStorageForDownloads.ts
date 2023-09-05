@@ -8,7 +8,7 @@ import useLocalStorage from "../../../hooks/useLocalStorage";
 const useLocalStorageForDownloads = () => {
   const [emailFromLocalStorage, setEmailInLocalStorage] = useLocalStorage(
     LS_KEY_EMAIL,
-    ""
+    "",
   );
 
   const [schoolFromLocalStorage, setSchoolInLocalStorage] = useLocalStorage(
@@ -16,12 +16,12 @@ const useLocalStorageForDownloads = () => {
     {
       schoolId: "",
       schoolName: "",
-    }
+    },
   );
 
   const [termsFromLocalStorage, setTermsInLocalStorage] = useLocalStorage(
     LS_KEY_TERMS,
-    false
+    false,
   );
 
   const hasDetailsFromLocalStorage =

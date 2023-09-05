@@ -1,3 +1,27 @@
+## [1.231.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.8...v1.231.9) (2023-09-04)
+
+## [1.231.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.7...v1.231.8) (2023-09-04)
+
+## [1.231.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.6...v1.231.7) (2023-09-04)
+
+## [1.231.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.5...v1.231.6) (2023-09-04)
+
+## [1.231.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.4...v1.231.5) (2023-09-01)
+
+## [1.231.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.3...v1.231.4) (2023-09-01)
+
+
+### Bug Fixes
+
+* **test:** newletter form react testing library ([995ee30](https://github.com/oaknational/Oak-Web-Application/commit/995ee3025ebf5ade1205d8a6c4073593ed87bbfd))
+
+## [1.231.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.2...v1.231.3) (2023-09-01)
+
+
+### Bug Fixes
+
+* **early release:** image resolution ([92e5169](https://github.com/oaknational/Oak-Web-Application/commit/92e51696de45e484e0ff20f62281be97ba8aca46))
+
 ## [1.231.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.1...v1.231.2) (2023-09-01)
 
 

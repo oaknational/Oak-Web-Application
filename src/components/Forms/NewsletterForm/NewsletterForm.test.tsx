@@ -6,7 +6,6 @@ import OakError from "../../../errors/OakError";
 import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 
 import NewsletterForm from "./NewsletterForm";
-import NewsletterFormWrap from "./NewsletterFormWrap";
 
 jest.setTimeout(10000);
 
@@ -19,16 +18,14 @@ describe("NewsletterForm", () => {
     jest.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
-    render(
-      <NewsletterFormWrap onSubmit={onSubmit} anchorTargetId="email-sign-up" />
-    );
+    render(<NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />);
 
     const user = userEvent.setup();
-    await user.tab();
-    // tab -> privacy policy link
-    await user.tab();
+
     // tab -> name
+    await user.tab();
     await user.keyboard("a name");
+    // tab -> email
     await user.tab();
     await user.keyboard("email@example.com");
     // tab => dropdown select
@@ -57,7 +54,7 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("Anna Smith");
@@ -73,14 +70,14 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
     const { getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("Anna Smith");
     const user = userEvent.setup();
     await user.click(input);
     await user.keyboard(
-      "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
+      "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
     );
     await user.tab();
 
@@ -92,7 +89,7 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur if no email is entered", async () => {
     const { getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("anna@amail.com");
@@ -108,7 +105,7 @@ describe("NewsletterForm", () => {
   });
   test("should display error hint on blur email not formatted correctly", async () => {
     const { getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("anna@amail.com");
@@ -125,7 +122,7 @@ describe("NewsletterForm", () => {
   });
   test("should display all error hints on submit", async () => {
     const { getByRole, getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const input = getByPlaceholderText("Anna Smith");
@@ -143,7 +140,7 @@ describe("NewsletterForm", () => {
   });
   test("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const submit = getByRole("button", { name: "Sign up" });
@@ -156,7 +153,7 @@ describe("NewsletterForm", () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByRole, getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const user = userEvent.setup();
@@ -172,13 +169,13 @@ describe("NewsletterForm", () => {
 
     const error = getByRole("alert");
     expect(error).toHaveTextContent(
-      "Thank you, that's been received, but please check as your email doesn't look quite right."
+      "Thank you, that's been received, but please check as your email doesn't look quite right.",
     );
   });
   test("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByRole, getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
     const user = userEvent.setup();

@@ -25,7 +25,7 @@ describe("subjectPhaseOptions()", () => {
                 // phases missing from response
               },
             ],
-          })
+          }),
         ),
       })();
     }).rejects.toThrow(`phases`);

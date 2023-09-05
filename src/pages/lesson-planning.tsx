@@ -41,7 +41,7 @@ const lessonElementIds = {
 };
 
 const getLessonElementCards = (
-  planningPage: PlanningPage
+  planningPage: PlanningPage,
 ): {
   id: string;
   icon: IconName;
@@ -225,7 +225,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     </Typography>
                   </LessonElementsCard>
                 </GridArea>
-              )
+              ),
             )}
             <GridArea $colSpan={[12, 6]}>
               <Card
@@ -342,7 +342,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     </Card>
                   </GridArea>
                 );
-              }
+              },
             )}
           </Grid>
         </MaxWidth>
@@ -467,7 +467,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<PlanALessonProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "lesson-planning::getStaticProps",

@@ -16,7 +16,7 @@ describe("getAvoBridge", () => {
 
     expect(posthog.track).toHaveBeenCalledWith(
       testEventName,
-      testEventProperties
+      testEventProperties,
     );
   });
 });

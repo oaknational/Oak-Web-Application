@@ -19,7 +19,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
           utm_source: "a source",
           utm_term: "term",
         },
-      })
+      }),
     ).toEqual({
       fields: [
         { name: "email", value: "email value" },
@@ -49,7 +49,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
           userRole: "Parent",
           oakUserId: "oak_user_id value",
         },
-      })
+      }),
     ).toEqual({
       fields: [
         { name: "email_text_only", value: "email value" },
@@ -74,7 +74,7 @@ describe("getHubspotNewsletterFormPayload()", () => {
           userRole: "",
           oakUserId: "oak_user_id value",
         },
-      })
+      }),
     ).toEqual({
       fields: [
         { name: "email_text_only", value: "email value" },
@@ -105,7 +105,7 @@ describe("getHubspotDownloadFormPayload()", () => {
           utm_source: "a source",
           utm_term: "term",
         },
-      })
+      }),
     ).toEqual({
       fields: [
         { name: "contact_school_name", value: "school_name value" },
@@ -140,7 +140,7 @@ describe("getHubspotDownloadFormPayload()", () => {
           utm_source: "a source",
           utm_term: "term",
         },
-      })
+      }),
     ).toEqual({
       fields: [
         { name: "contact_school_name", value: "school_name value" },

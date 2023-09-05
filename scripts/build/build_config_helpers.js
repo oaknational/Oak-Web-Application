@@ -91,7 +91,7 @@ function getAppVersion(isProductionBuild) {
       }
       const netlifyCommitLog = execSync(
         `git show --no-patch --oneline ${netlifyCommitRef}`,
-        { encoding: "utf8" }
+        { encoding: "utf8" },
       );
       infoMessage = netlifyCommitLog;
     } else {
@@ -109,7 +109,7 @@ function getAppVersion(isProductionBuild) {
       const matches = infoMessage.match(/([vV]\d+\.\d+\.\d+)/);
       if (matches === null) {
         throw new TypeError(
-          "Could not extract app version from commit info message"
+          "Could not extract app version from commit info message",
         );
       }
       let version = matches[0];
@@ -127,7 +127,7 @@ function getAppVersion(isProductionBuild) {
     const gitRef = getGitRef();
     if (!gitRef) {
       throw new Error(
-        "Could not determine a Git ref for this non-production build."
+        "Could not determine a Git ref for this non-production build.",
       );
     }
     return gitRef;

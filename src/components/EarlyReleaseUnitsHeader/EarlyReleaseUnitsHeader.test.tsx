@@ -14,11 +14,11 @@ describe("components/AppHeader", () => {
     expect(screen.getByText("New teaching resources")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "We're releasing new teaching resources throughout this academic year, with everything available to you by summer 2024."
-      )
+        "We're releasing new teaching resources throughout this academic year, with everything available to you by summer 2024.",
+      ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("Explore our early-release units...")
+      screen.getByText("Explore our early-release units..."),
     ).toBeInTheDocument();
   });
 });
