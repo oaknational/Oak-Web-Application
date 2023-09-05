@@ -16,8 +16,8 @@ import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMo
 import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
 import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
-import { P } from "@/components/Typography";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { Span } from "@/components/Typography";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -146,9 +146,9 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $pv={[8, 12]}
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <P $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
+          <Span $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
             {yearTitle}
-          </P>
+          </Span>
         )}
         <ListItemHeader
           {...props}

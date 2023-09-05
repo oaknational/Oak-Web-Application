@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
 import { EarlyReleaseExemplarUnitsProps } from "./EarlyReleaseExemplarUnits";
 
 import ExemplarUnits from ".";
 
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 
 const units = unitListingFixture()

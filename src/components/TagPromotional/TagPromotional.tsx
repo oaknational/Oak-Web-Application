@@ -3,7 +3,8 @@ import { FC } from "react";
 import Flex, { FlexProps } from "../Flex";
 import Svg from "../Svg";
 import { Span } from "../Typography";
-import { OakColorName } from "../../styles/theme/types";
+
+import { OakColorName } from "@/styles/theme/types";
 
 const tagDimMap = {
   small: {
