@@ -3,7 +3,7 @@ import { screen } from "@testing-library/react";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
-import { ExemplarUnitsProps } from "./ExemplarUnits";
+import { EarlyReleaseExemplarUnitsProps } from "./EarlyReleaseExemplarUnits";
 
 import ExemplarUnits from ".";
 
@@ -13,7 +13,7 @@ const units = unitListingFixture()
   .units.slice(0, 10)
   .map((unit) => unit[0]) as unknown as UnitListItemProps[];
 
-export const exemplarUnitsProps: ExemplarUnitsProps = {
+export const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
   heading: "Secondary units",
   subHeading: "View and download our early-release units.",
   color: "lavender50",
@@ -30,7 +30,7 @@ const render = renderWithProviders();
 
 describe("components/AppHeader", () => {
   test("renders correct copy", () => {
-    render(<ExemplarUnits {...exemplarUnitsProps} />);
+    render(<ExemplarUnits {...earlyReleaseExemplarUnitsProps} />);
 
     expect(
       screen.getByText("View and download our early-release units.")
@@ -44,7 +44,7 @@ describe("components/AppHeader", () => {
   });
   test("renders a list of units", () => {
     const { getByRole, getAllByRole } = render(
-      <ExemplarUnits {...exemplarUnitsProps} />
+      <ExemplarUnits {...earlyReleaseExemplarUnitsProps} />
     );
 
     const list = getByRole("list");

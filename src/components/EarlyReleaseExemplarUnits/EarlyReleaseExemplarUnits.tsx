@@ -12,7 +12,7 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import { OakColorName } from "@/styles/theme";
 import { ViewType } from "@/common-lib/urls";
 
-export type ExemplarUnitsProps = {
+export type EarlyReleaseExemplarUnitsProps = {
   quote: {
     text: string;
     author: string;
@@ -23,30 +23,36 @@ export type ExemplarUnitsProps = {
   heading: string;
   subHeading: string;
   viewType: ViewType;
+  subjectIconBackground?: OakColorName;
 };
 
-const ExemplarUnits: FC<ExemplarUnitsProps> = ({
+const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
   quote,
   color,
   units,
   heading,
   subHeading,
   viewType,
+  subjectIconBackground,
 }) => {
   return (
-    <MaxWidth $background={color}>
+    <MaxWidth $ph={16} $background={color}>
       <Grid $pt={56} $background={color}>
         <GridArea $order={[2, 1]} $colSpan={[12, 6]}>
           <Flex $mb={[56, 0]} $flexDirection={"column"}>
             <Flex>
-              <Heading $mb={16} $font={["heading-4", "heading-3"]} tag={"h2"}>
+              <Heading
+                $mb={16}
+                $font={["heading-4", "heading-4", "heading-3"]}
+                tag={"h2"}
+              >
                 {heading}
               </Heading>
               <TagPromotional
                 size={"large"}
                 $color={"mint"}
-                $ml={[16, 24]}
-                $mt={[8, 10]}
+                $ml={[16, 16, 24]}
+                $mt={[8, 8, 10]}
               />
             </Flex>
             <Heading $font={"heading-7"} tag={"h3"}>
@@ -63,12 +69,12 @@ const ExemplarUnits: FC<ExemplarUnitsProps> = ({
             <Flex
               $flexDirection={"column"}
               $justifyContent={"flex-end"}
-              $width={["100%", 524]}
+              $width={["100%", 300, 524]}
             >
               <Heading
                 $textAlign={"right"}
                 $mb={16}
-                $font={["heading-6", "heading-5"]}
+                $font={["heading-6", "heading-6", "heading-5"]}
                 tag={"h3"}
               >
                 &ldquo;{quote.text}&rdquo;
@@ -94,6 +100,7 @@ const ExemplarUnits: FC<ExemplarUnitsProps> = ({
               key={`${unit.slug}:${index}`}
               isExemplarUnit={true}
               fromSearchPage={true}
+              subjectIconBackground={subjectIconBackground}
               {...unit}
             />
           </GridArea>
@@ -110,7 +117,7 @@ const ExemplarUnits: FC<ExemplarUnitsProps> = ({
               variant={"minimal"}
               viewType={viewType}
               page={"curriculum-landing-page"}
-              label={"View curriculum plans"}
+              label={"View new curriculum plans"}
               icon={"arrow-right"}
               $iconPosition={"trailing"}
               iconBackground={"black"}
@@ -122,4 +129,4 @@ const ExemplarUnits: FC<ExemplarUnitsProps> = ({
   );
 };
 
-export default ExemplarUnits;
+export default EarlyReleaseExemplarUnits;

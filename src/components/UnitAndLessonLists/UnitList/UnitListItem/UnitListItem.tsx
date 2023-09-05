@@ -1,6 +1,8 @@
 import React, { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
+import { OakColorName } from "../../../../styles/theme/types";
+
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Flex from "@/components/Flex";
@@ -30,6 +32,7 @@ export type UnitListItemProps = Omit<
   isUnitOption?: boolean;
   unitOptions?: UnitData[];
   isExemplarUnit?: boolean;
+  subjectIconBackground?: OakColorName;
   yearTitle?: string | null;
 };
 
@@ -57,6 +60,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     isUnitOption,
     yearTitle,
     isExemplarUnit,
+    subjectIconBackground,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -97,7 +101,13 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  const background = expired ? "oakGrey2" : "teachersLilac";
+  let background: OakColorName = "teachersLilac";
+
+  if (expired) {
+    background = "oakGrey2";
+  } else if (subjectIconBackground) {
+    background = subjectIconBackground;
+  }
 
   return (
     <ListItemCard
