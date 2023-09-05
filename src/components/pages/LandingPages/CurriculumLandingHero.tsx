@@ -7,6 +7,7 @@ import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import Illustration from "@/components/Illustration/Illustration";
+import { getSizes } from "@/components/CMSImage/getSizes";
 
 type CurriculumLandingHeroProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -16,8 +17,8 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
   const { subjectPhaseOptions } = props;
   return (
     <Flex $position={"relative"} $flexDirection={"row"} $width={"100%"}>
-      <Flex $flexDirection={"column"} $zIndex={"inFront"} $width={"100%"}>
-        <Box $maxWidth={600} $mb={[48, 80]}>
+      <Flex $flexDirection={"column"} $width={"100%"}>
+        <Box $maxWidth={["100%", "50%"]} $mb={[48, 80]} $position={"relative"}>
           <Heading tag="h1" $font={["heading-4", "heading-3"]} $mb={[16, 24]}>
             Oak's curricula
           </Heading>
@@ -33,12 +34,11 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
         </Box>
       </Flex>
       <Box
-        $position={"absolute"}
         $top={0}
         $bottom={0}
         $left={0}
         $right={0}
-        $display={["none", "none", "block"]}
+        $display={["none", "block"]}
       >
         <Flex
           $width={"100%"}
@@ -47,10 +47,12 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
           $justifyContent={"flex-end"}
         >
           <Illustration
+            noCrop
+            $width={"40%"}
+            $maxHeight={480}
             $maxWidth={480}
-            $maxHeight={400}
-            $display={["none", "block"]}
             $position={"absolute"}
+            sizes={getSizes([400, 600])}
             slug="planning-curriculum"
           />
         </Flex>
