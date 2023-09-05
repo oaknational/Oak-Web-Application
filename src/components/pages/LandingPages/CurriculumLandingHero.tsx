@@ -29,7 +29,7 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
             sector.
           </P>
         </Box>
-        <Box $width={["100%", "fit-content"]}>
+        <Box $maxWidth={["100%", "80%"]}>
           <SubjectPhasePicker {...subjectPhaseOptions} />
         </Box>
       </Flex>
