@@ -19,14 +19,13 @@ type AnchorTargetProps = {
 };
 
 const anchorTarget = css<AnchorTargetProps>`
-  ${(props) =>
-    css`
-      scroll-margin-top: ${props.$paddingTop !== undefined
-        ? theme.header.height + props.$paddingTop
-        : theme.header.height}px;
-      position: absolute;
-      top: 0;
-    `}
+  ${(props) => css`
+    scroll-margin-top: ${props.$paddingTop !== undefined
+      ? theme.header.height + props.$paddingTop
+      : theme.header.height}px;
+    position: absolute;
+    top: 0;
+  `}
 `;
 
 const AnchorTarget = styled.span<AnchorTargetProps>`

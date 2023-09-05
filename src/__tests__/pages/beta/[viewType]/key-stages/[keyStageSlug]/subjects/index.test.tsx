@@ -21,7 +21,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage 4"
+        "Key stage 4",
       );
     });
   });
@@ -72,7 +72,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
         {
           keyStageSlug: "ks123",
-        }
+        },
       );
     });
   });

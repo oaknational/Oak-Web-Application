@@ -19,7 +19,7 @@
 
 export function assertUnreachable(
   _x: never,
-  err = new Error("Didn't expect to get here")
+  err = new Error("Didn't expect to get here"),
 ): never {
   throw err;
 }

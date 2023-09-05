@@ -83,7 +83,7 @@ export const sanityGraphqlClient = new GraphQLClient(graphqlAPIUrl, {
 
 export const requestWithLogging: SdkFunctionWrapper = async (
   action,
-  operationName
+  operationName,
 ) => {
   try {
     // Swap these lines to generate fixtures locally for use testing
@@ -93,7 +93,7 @@ export const requestWithLogging: SdkFunctionWrapper = async (
     return response;
   } catch (err) {
     console.log(
-      `Failed to fetch graphql query operationName=${operationName}, graphqlAPIUrl=${graphqlAPIUrl}`
+      `Failed to fetch graphql query operationName=${operationName}, graphqlAPIUrl=${graphqlAPIUrl}`,
     );
 
     reportError(err, {

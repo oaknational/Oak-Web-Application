@@ -41,7 +41,7 @@ describe("lessonListing()", () => {
               lessons: [],
             },
           ],
-        })
+        }),
       ),
     })({
       programmeSlug: "programme-slug",
@@ -68,7 +68,7 @@ describe("lessonListing()", () => {
                 lessons: [],
               },
             ],
-          })
+          }),
         ),
       })({
         programmeSlug: "programme-slug",

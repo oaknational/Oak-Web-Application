@@ -46,9 +46,14 @@ export const MatchAnswers = ({
                 {removeMarkdown(match_option.text)}
               </Typography>
 
-              <Typography $font={["body-2", "body-1"]} aria-hidden>
-                - {removeMarkdown(correct_choice.text)}
-              </Typography>
+              <Flex $gap={6}>
+                <Typography $font={["body-2", "body-1"]} aria-hidden>
+                  -
+                </Typography>
+                <Typography $font={["body-2", "body-1"]} aria-hidden>
+                  {removeMarkdown(correct_choice.text)}
+                </Typography>
+              </Flex>
             </Flex>
           )
         );

@@ -10,7 +10,7 @@ describe("opacity", () => {
       ${opacity}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $opacity={0.2} />
+      <StyledComponent data-testid="test" $opacity={0.2} />,
     );
 
     expect(getByTestId("test")).toHaveStyle("opacity: 0.2");
@@ -22,7 +22,7 @@ describe("opacity", () => {
     const { getByTestId } = renderWithTheme(
       // eslint-disable-next-line
       // @ts-ignore
-      <StyledComponent data-testid="test" $opacity={[0.6]} />
+      <StyledComponent data-testid="test" $opacity={[0.6]} />,
     );
 
     expect(getByTestId("test")).toHaveStyle("opacity: 0.6");
