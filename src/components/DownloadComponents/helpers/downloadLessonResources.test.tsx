@@ -41,7 +41,7 @@ describe("downloadLessonResources", () => {
 
     expect(createDownloadResourcesLink).toHaveBeenCalledWith(
       "lesson-slug",
-      resourcesToDownloadAsSelection,
+      resourcesToDownloadAsSelection
     );
   });
 });

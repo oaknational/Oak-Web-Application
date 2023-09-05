@@ -18,13 +18,13 @@ describe("ProgrammeList", () => {
 
     waitFor(() => {
       expect(screen.getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
-        "Foundation",
+        "Foundation"
       );
       expect(screen.getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-        "Core",
+        "Core"
       );
       expect(screen.getAllByRole("heading", { level: 3 })[2]?.textContent).toBe(
-        "Higher",
+        "Higher"
       );
     });
   });

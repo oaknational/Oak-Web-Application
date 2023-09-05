@@ -22,7 +22,7 @@ describe("createDownloadResourcesLink()", () => {
   it("should return correct data if fetch is successful", async () => {
     downloadResourcesLink = await createDownloadResourcesLink(
       "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
+      "exit-quiz-answers,worksheet-pdf"
     );
 
     expect(downloadResourcesLink).toEqual(data.url);
@@ -30,13 +30,13 @@ describe("createDownloadResourcesLink()", () => {
 
   it("should throw error if fetch throws", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
-      Promise.reject("bad thing"),
+      Promise.reject("bad thing")
     );
 
     try {
       await createDownloadResourcesLink(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect(error).toEqual("bad thing");
@@ -51,13 +51,13 @@ describe("createDownloadResourcesLink()", () => {
             error: "specific error",
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await createDownloadResourcesLink(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("specific error");
@@ -72,13 +72,13 @@ describe("createDownloadResourcesLink()", () => {
             data,
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await createDownloadResourcesLink(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("API error");

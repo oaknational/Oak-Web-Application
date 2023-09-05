@@ -20,7 +20,7 @@ describe("getBrowserConfig()", () => {
     );
 
     expect(getBrowserConfig("clientAppBaseUrl")).toEqual(
-      "http://localhost:3000",
+      "http://localhost:3000"
     );
   });
   it("should return the default value for required values set to empty strings", async () => {
@@ -30,7 +30,7 @@ describe("getBrowserConfig()", () => {
     );
 
     expect(getBrowserConfig("clientAppBaseUrl")).toEqual(
-      "http://localhost:3000",
+      "http://localhost:3000"
     );
   });
   it("should allow parsing numeric env vars", async () => {

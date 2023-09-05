@@ -25,7 +25,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   it("should return correct data if fetch is successful", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
+      "exit-quiz-answers,worksheet-pdf"
     );
 
     expect(downloadResourcesExist).toEqual(data);
@@ -33,13 +33,13 @@ describe("checkIfDownloadResourcesExist()", () => {
 
   it("should throw error if fetch throws", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
-      Promise.reject("bad thing"),
+      Promise.reject("bad thing")
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect(error).toEqual("bad thing");
@@ -54,13 +54,13 @@ describe("checkIfDownloadResourcesExist()", () => {
             error: "specific error",
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("specific error");
@@ -75,13 +75,13 @@ describe("checkIfDownloadResourcesExist()", () => {
             data,
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
+        "exit-quiz-answers,worksheet-pdf"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("API error");

@@ -1,7 +1,7 @@
 import { CurriculumDownloadTabData } from "..";
 
 const curriculumDownloadTabFixture = (
-  partial?: Partial<CurriculumDownloadTabData>,
+  partial?: Partial<CurriculumDownloadTabData>
 ): CurriculumDownloadTabData => ({
   ...{
     urls: ["/placeholder-download-url"],

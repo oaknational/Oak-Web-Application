@@ -25,7 +25,7 @@ describe("getBlogBreadcrumbs", () => {
       categories,
       "research-and-insights",
       "blog",
-      "Blog",
+      "Blog"
     );
     const expectedCrumbs = [
       {
@@ -47,7 +47,7 @@ describe("getBlogBreadcrumbs", () => {
       categories,
       null,
       "webinars",
-      "Webinars",
+      "Webinars"
     );
     const expectedCrumbs = [
       {

@@ -72,7 +72,7 @@ describe("useDownloadForm", () => {
 
     await waitFor(() => {
       expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith(
-        "test@test.com",
+        "test@test.com"
       );
     });
   });

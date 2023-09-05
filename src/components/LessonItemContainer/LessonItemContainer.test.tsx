@@ -32,7 +32,7 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
     expect(getAllByRole("heading", { level: 2 })).toHaveLength(1);
   });
@@ -43,7 +43,7 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
     expect(getByText("Inner content")).toBeInTheDocument();
   });
@@ -59,7 +59,7 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
     expect(getAllByRole("link")).toHaveLength(1);
   });
@@ -74,7 +74,7 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Inner content
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
     expect(() => getAllByRole("link")).toThrow();
   });
@@ -94,7 +94,7 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
@@ -114,13 +114,13 @@ describe("LessonItemContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </LessonItemContainer>,
+      </LessonItemContainer>
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-higher-ks4/units/maths-unit/lessons/macbeth-lesson-1/downloads?preselected=worksheet",
+      "/beta/teachers/programmes/maths-higher-ks4/units/maths-unit/lessons/macbeth-lesson-1/downloads?preselected=worksheet"
     );
   });
 });

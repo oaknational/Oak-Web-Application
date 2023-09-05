@@ -44,7 +44,7 @@ describe("getPageProps()", () => {
         getProps: async () => {
           throw new OakError({ code: "misc/unknown" });
         },
-      }),
+      })
     ).rejects.toThrow();
   });
 });

@@ -14,7 +14,7 @@ const owner = github.context.payload.repository.owner.login;
 const repo = github.context.payload.repository.name;
 if (!owner || !repo) {
   throw new Error(
-    `Could not determine repo details, got: owner "${owner} and repo "${repo}".`,
+    `Could not determine repo details, got: owner "${owner} and repo "${repo}".`
   );
 }
 

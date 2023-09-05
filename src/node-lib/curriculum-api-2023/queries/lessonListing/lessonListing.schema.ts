@@ -24,7 +24,7 @@ const lessonListingSchema = z.object({
       worksheetCount: z.number().nullish(),
       hasCopyrightMaterial: z.boolean().nullish(),
       orderInUnit: z.number().nullish(),
-    }),
+    })
   ),
 });
 

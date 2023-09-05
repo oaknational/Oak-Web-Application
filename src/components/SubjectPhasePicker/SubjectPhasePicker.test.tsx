@@ -8,7 +8,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("Component - subject phase picker", () => {
   test("user can see subjects when they click the control", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />,
+      <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Subject");
     expect(control).toBeTruthy();
@@ -19,7 +19,7 @@ describe("Component - subject phase picker", () => {
 
   test("user selects a new subject", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />,
+      <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Subject");
     userEvent.click(control);
@@ -36,7 +36,7 @@ describe("Component - subject phase picker", () => {
 
   test("user selects an old subject", async () => {
     const { getByTitle, findByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />,
+      <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Subject");
     userEvent.click(control);
@@ -46,7 +46,7 @@ describe("Component - subject phase picker", () => {
 
   test("user clicks to open phases when they click the control", async () => {
     const { findByTitle, getByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />,
+      <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     const control = getByTitle("Phase");
     expect(control).toBeTruthy();
@@ -91,7 +91,7 @@ describe("Component - subject phase picker", () => {
 
   test("user can close selection panels with escape button", async () => {
     const { getByTitle, queryByText } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />,
+      <SubjectPhasePicker {...subjectPhaseOptions} />
     );
     await userEvent.click(getByTitle("Subject"));
     expect(queryByText("Latest Resources")).toBeTruthy();

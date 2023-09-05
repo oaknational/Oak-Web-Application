@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<
         ...new Map(
           webinarResults
             .map((webinar) => webinar.category)
-            .map((item) => [item["slug"], item]),
+            .map((item) => [item["slug"], item])
         ).values(),
       ].sort((a, b) => (a.title < b.title ? -1 : 1));
 

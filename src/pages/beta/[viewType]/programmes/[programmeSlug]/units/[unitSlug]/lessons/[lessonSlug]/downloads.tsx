@@ -182,7 +182,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         shouldValidate: true,
       });
     },
-    [setValue, schoolNameFromLocalStorage],
+    [setValue, schoolNameFromLocalStorage]
   );
 
   const { errors } = formState;
@@ -194,7 +194,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
-      getInitialResourcesToDownloadState(),
+      getInitialResourcesToDownloadState()
     );
 
   const hasResourcesToDownload =
@@ -247,7 +247,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const getFormErrorMessage = () => {
     const errorKeyArray = Object.keys(errors);
     const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[],
+      errorKeyArray as ErrorKeysType[]
     );
 
     return errorMessage;
@@ -284,7 +284,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 programmeSlug,
                 subjectTitle,
                 unitSlug,
-                unitTitle,
+                unitTitle
               ),
               {
                 oakLinkProps: {
@@ -382,7 +382,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                         field: { value, onChange, name, onBlur },
                       }) => {
                         const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
+                          e: ChangeEvent<HTMLInputElement>
                         ) => {
                           return onChange(e.target.checked);
                         };

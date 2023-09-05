@@ -63,7 +63,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
   border-color: ${getColorByLocation(
-    ({ theme }) => theme.input.states.default.border,
+    ({ theme }) => theme.input.states.default.border
   )};
   border-width: ${(props) => props.theme.input.borderWidth};
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
@@ -84,26 +84,26 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     font-size: 14px;
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.default.placeholder,
+      ({ theme }) => theme.input.states.default.placeholder
     )};
     opacity: 1;
   }
 
   :valid:not([value=""]) {
     border-color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.valid.border,
+      ({ theme }) => theme.input.states.valid.border
     )};
 
     ::placeholder {
       font-size: 14px;
       color: ${getColorByLocation(
-        ({ theme }) => theme.input.states.valid.placeholder,
+        ({ theme }) => theme.input.states.valid.placeholder
       )};
     }
 
     ~ ${InputIcon} {
       color: ${getColorByLocation(
-        ({ theme }) => theme.input.states.valid.icon,
+        ({ theme }) => theme.input.states.valid.icon
       )};
     }
   }
@@ -112,7 +112,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 
   ~ ${InputIcon} {
     color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.default.icon,
+      ({ theme }) => theme.input.states.default.icon
     )};
   }
 `;
@@ -167,7 +167,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         <FieldError id={errorId}>{error}</FieldError>
       </>
     );
-  },
+  }
 );
 
 export default Input;

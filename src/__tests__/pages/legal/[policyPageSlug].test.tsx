@@ -53,7 +53,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-          "Privacy Policy",
+          "Privacy Policy"
         );
       });
     });
@@ -70,7 +70,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
     describe("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
-          <Policies policy={testSerializedPolicyPage} />,
+          <Policies policy={testSerializedPolicyPage} />
         );
 
         expect(seo).toEqual({
@@ -109,7 +109,7 @@ describe("pages/legal/[policyPageSlug].tsx", () => {
 
       expect(policyPageBySlug).toHaveBeenCalledWith(
         "privacy-policy",
-        expect.anything(),
+        expect.anything()
       );
     });
 

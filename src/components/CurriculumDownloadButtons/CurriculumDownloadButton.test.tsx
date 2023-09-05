@@ -33,7 +33,7 @@ describe("CurriculumDownloadButton", () => {
         keyStageTitle={"Key stage 4"}
         subjectSlug={"english"}
         subjectTitle="English"
-      />,
+      />
     );
 
     const downloadLink = getByRole("link", {
@@ -42,7 +42,7 @@ describe("CurriculumDownloadButton", () => {
 
     expect(downloadLink).toHaveAttribute(
       "href",
-      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-english&extension=pdf`,
+      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-english&extension=pdf`
     );
   });
 
@@ -53,7 +53,7 @@ describe("CurriculumDownloadButton", () => {
         subjectTitle={"English"}
         keyStageSlug={"ks4"}
         subjectSlug={"english"}
-      />,
+      />
     );
 
     const linkTitle = screen.getByText("Curriculum download (PDF)");
@@ -80,7 +80,7 @@ describe("CurriculumDownloadButton", () => {
         subjectSlug={"maths"}
         subjectTitle={"Maths"}
         tier={"core"}
-      />,
+      />
     );
 
     const downloadLink = getByRole("link", {
@@ -89,7 +89,7 @@ describe("CurriculumDownloadButton", () => {
 
     expect(downloadLink).toHaveAttribute(
       "href",
-      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-maths-core&extension=pdf`,
+      `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-4-maths-core&extension=pdf`
     );
   });
 
@@ -101,7 +101,7 @@ describe("CurriculumDownloadButton", () => {
         keyStageSlug={"ks4"}
         subjectSlug={"maths"}
         lessonPage={true}
-      />,
+      />
     );
 
     const buttonTitle = screen.getByText("Curriculum download (.zip)");
@@ -116,7 +116,7 @@ describe("CurriculumDownloadButton", () => {
         keyStageSlug={"ks4"}
         subjectSlug={"maths"}
         lessonPage={true}
-      />,
+      />
     );
 
     const buttonTitle = screen.getByText("Curriculum download (.zip)");

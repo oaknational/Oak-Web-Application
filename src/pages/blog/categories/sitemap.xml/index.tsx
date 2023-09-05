@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const blogResults = await CMSClient.blogPosts();
   const categorySlugs = blogResults.map(
-    (blogResult) => blogResult.category.slug,
+    (blogResult) => blogResult.category.slug
   );
   const uniqueCategorySlugs = new Set(categorySlugs);
 
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context,
     sitemapBaseUrl,
     "/blog/categories",
-    uniqueCategorySlugs,
+    uniqueCategorySlugs
   );
 
   return getServerSideSitemap(context, fields);

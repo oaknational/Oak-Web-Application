@@ -5,21 +5,21 @@ describe("getSizes", () => {
     const sizes = getSizes([200, 500, 700]);
 
     expect(sizes).toBe(
-      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px",
+      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px"
     );
   });
   test("returns the correct string when passed three widths (incl strings)", () => {
     const sizes = getSizes(["100vw", 500, 700]);
 
     expect(sizes).toBe(
-      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 100vw",
+      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 100vw"
     );
   });
   test("returns the correct string when passed three widths", () => {
     const sizes = getSizes([200, 500, 700]);
 
     expect(sizes).toBe(
-      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px",
+      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px"
     );
   });
   test("returns the correct string when passed two widths", () => {
@@ -43,13 +43,13 @@ describe("getSizes", () => {
     // @ts-ignore
     const sizes = getSizes([200, 500, 700, 1000]);
     expect(sizes).toBe(
-      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px",
+      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px"
     );
     // eslint-disable-next-line
     // @ts-ignore
     const moreSizes = getSizes([200, 500, 700, 1000, 4000, 30]);
     expect(moreSizes).toBe(
-      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px",
+      "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px"
     );
   });
 });

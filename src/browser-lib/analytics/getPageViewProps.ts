@@ -50,7 +50,7 @@ export const getPageViewProps = (href: string): PageViewProps => {
     {
       pageName: null as unknown as PageNameValueType,
       analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
-    },
+    }
   );
 
   return pageViewProps;

@@ -35,7 +35,7 @@ describe("cms/sanity-client/cmsMethods", () => {
     const singletonClientMethod = getSingleton(
       singletonGraphQLMethod,
       z.any(),
-      (res) => res.allResults?.[0],
+      (res) => res.allResults?.[0]
     );
 
     it("invokes the provided graphql client method", async () => {
@@ -52,7 +52,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       const nullReturningSingletonClientMethod = getSingleton(
         jest.fn().mockResolvedValue({}),
         z.any(),
-        (res) => res.allResults?.[0],
+        (res) => res.allResults?.[0]
       );
 
       const res = await nullReturningSingletonClientMethod();
@@ -67,14 +67,14 @@ describe("cms/sanity-client/cmsMethods", () => {
     it("does not fetch draft content by default", async () => {
       await singletonClientMethod();
       expect(singletonGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: false } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: false } })
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await singletonClientMethod({ previewMode: true });
       expect(singletonGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
       );
     });
 
@@ -83,7 +83,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ undefined,
+        /* isPreviewMode: */ undefined
       );
     });
 
@@ -92,7 +92,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ true,
+        /* isPreviewMode: */ true
       );
     });
   });
@@ -104,7 +104,7 @@ describe("cms/sanity-client/cmsMethods", () => {
     const bySlugClientMethod = getBySlug(
       bySlugGraphQLMethod,
       z.any(),
-      (res) => res.allResults?.[0],
+      (res) => res.allResults?.[0]
     );
 
     it("invokes the provided graphql client method", async () => {
@@ -121,7 +121,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       const nullReturningBySlugClientMethod = getBySlug(
         jest.fn().mockResolvedValue({}),
         z.any(),
-        (res) => res.allResults?.[0],
+        (res) => res.allResults?.[0]
       );
 
       const res = await nullReturningBySlugClientMethod("some-slug");
@@ -136,14 +136,14 @@ describe("cms/sanity-client/cmsMethods", () => {
     it("does not fetch draft content by default", async () => {
       await bySlugClientMethod("some-slug");
       expect(bySlugGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: false } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: false } })
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await bySlugClientMethod("some-slug", { previewMode: true });
       expect(bySlugGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
       );
     });
 
@@ -152,7 +152,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ undefined,
+        /* isPreviewMode: */ undefined
       );
     });
 
@@ -161,7 +161,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ true,
+        /* isPreviewMode: */ true
       );
     });
   });
@@ -174,7 +174,7 @@ describe("cms/sanity-client/cmsMethods", () => {
     const listClientMethod = getList(
       listGraphQLMethod,
       z.any(),
-      (res) => res.allResults,
+      (res) => res.allResults
     );
 
     it("invokes the provided graphql client method", async () => {
@@ -191,7 +191,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       const emptyReturningListClientMethod = getList(
         jest.fn().mockResolvedValue({}),
         z.array(z.any()),
-        (res) => res.allResults,
+        (res) => res.allResults
       );
 
       const res = await emptyReturningListClientMethod();
@@ -206,14 +206,14 @@ describe("cms/sanity-client/cmsMethods", () => {
     it("does not fetch draft content by default", async () => {
       await listClientMethod();
       expect(listGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: false } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: false } })
       );
     });
 
     it("fetches draft content when previewMode flag is passed", async () => {
       await listClientMethod({ previewMode: true });
       expect(listGraphQLMethod).toBeCalledWith(
-        expect.objectContaining({ isDraftFilter: { is_draft: undefined } }),
+        expect.objectContaining({ isDraftFilter: { is_draft: undefined } })
       );
     });
 
@@ -222,7 +222,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ undefined,
+        /* isPreviewMode: */ undefined
       );
     });
 
@@ -231,7 +231,7 @@ describe("cms/sanity-client/cmsMethods", () => {
       expect(parseResults).toBeCalledWith(
         expect.anything(),
         expect.anything(),
-        /* isPreviewMode: */ true,
+        /* isPreviewMode: */ true
       );
     });
   });

@@ -22,10 +22,10 @@ type AnalyticsServices = {
 const getAvoBridge = ({ posthog }: AnalyticsServices) => {
   const logEvent: CustomDestination["logEvent"] = (
     eventName,
-    eventProperties = {},
+    eventProperties = {}
   ) => {
     const isObject = (
-      maybeObject: unknown,
+      maybeObject: unknown
     ): maybeObject is Record<string, unknown> => {
       return (
         typeof maybeObject === "object" &&
@@ -35,7 +35,7 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     };
     if (!isObject(eventProperties)) {
       const error = new Error(
-        "Could not track event. Event properties not an object",
+        "Could not track event. Event properties not an object"
       );
       reportError(error, {
         severity: "warning",
