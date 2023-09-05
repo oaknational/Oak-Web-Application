@@ -1,3 +1,10 @@
+# [1.233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.232.0...v1.233.0) (2023-09-05)
+
+
+### Features
+
+* exemplar units component ([dbd4277](https://github.com/oaknational/Oak-Web-Application/commit/dbd42771d5e2752aa820abf11ab54246f815c141))
+
 # [1.232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.9...v1.232.0) (2023-09-05)
 
 
