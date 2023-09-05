@@ -1,15 +1,18 @@
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { TextBlock } from "../../../common-lib/cms-types";
-import { OakColorName } from "../../../styles/theme";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-import ButtonAsLink from "../../Button/ButtonAsLink";
-import Card from "../../Card";
-import CardImage, { CardImageProps } from "../../Card/CardComponents/CardImage";
-import Flex, { FlexProps } from "../../Flex";
-import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import { Heading } from "../../Typography";
+import { TextBlock } from "@/common-lib/cms-types";
+import { OakColorName } from "@/styles/theme";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Card from "@/components/Card";
+import CardImage, {
+  CardImageProps,
+} from "@/components/Card/CardComponents/CardImage";
+import Flex, { FlexProps } from "@/components/Flex";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import { Heading } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const TextBlockCardImageCta: FC<
   TextBlock & {
@@ -50,7 +53,7 @@ const TextBlockCardImageCta: FC<
         <Heading $mb={32} $font={["heading-5", "heading-4"]} tag={"h2"}>
           {title}
         </Heading>
-        <PortableText value={bodyPortableText} />
+        <PortableTextWithDefaults value={bodyPortableText} />
         {cta && (
           <Flex>
             <ButtonAsLink

@@ -1,9 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import {
+  PortableText,
   PortableTextComponents,
-  PortableTextComponentsProvider,
   PortableTextMarkComponent,
+  PortableTextProps,
 } from "@portabletext/react";
+import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
 
 import errorReporter from "../../common-lib/error-reporter";
@@ -181,12 +183,13 @@ export const basePortableTextComponents: PortableTextComponents = {
   },
 };
 
-export const BasePortableTextProvider: FC<{
-  children?: React.ReactNode;
-}> = (props) => {
+export function PortableTextWithDefaults<
+  B extends TypedObject = PortableTextBlock,
+>(props: PortableTextProps<B>): React.JSX.Element {
   return (
-    <PortableTextComponentsProvider components={basePortableTextComponents}>
-      {props.children}
-    </PortableTextComponentsProvider>
+    <PortableText
+      {...props}
+      components={{ ...basePortableTextComponents, ...props.components }}
+    />
   );
-};
+}

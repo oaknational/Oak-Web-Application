@@ -1,13 +1,14 @@
 import { FC } from "react";
-import { PortableText } from "@portabletext/react";
 
-import useAnalytics from "../../../context/Analytics/useAnalytics";
 import ButtonAsLink from "../../Button/ButtonAsLink";
-import type { Card as CardShape } from "../../../common-lib/cms-types";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Typography from "../../Typography";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
+
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { Card as CardShape } from "@/common-lib/cms-types";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 type HomeSidebarTextCard = CardShape;
 
@@ -21,7 +22,7 @@ const HomeAboutCard: FC<HomeSidebarTextCard> = (props) => {
       </CardTitle>
 
       <Typography $font={"body-2"} $mb={24}>
-        <PortableText value={props.bodyPortableText} />
+        <PortableTextWithDefaults value={props.bodyPortableText} />
       </Typography>
 
       {props.cta && (

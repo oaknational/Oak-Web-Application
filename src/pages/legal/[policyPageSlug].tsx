@@ -4,22 +4,22 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 
-import CMSClient from "../../node-lib/cms";
-import { PolicyPage } from "../../common-lib/cms-types";
+import CMSClient from "@/node-lib/cms";
+import { PolicyPage } from "@/common-lib/cms-types";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../node-lib/isr";
-import Flex from "../../components/Flex";
-import Grid, { GridArea } from "../../components/Grid";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import Typography, { Heading, P } from "../../components/Typography";
-import { BasePortableTextProvider } from "../../components/PortableText";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import getPageProps from "../../node-lib/getPageProps";
+} from "@/node-lib/isr";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Typography, { Heading, P } from "@/components/Typography";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -98,12 +98,10 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
               </time>
             </P>
             <Typography>
-              <BasePortableTextProvider>
-                <PortableText
-                  value={policy.bodyPortableText}
-                  components={customPolicyComponent}
-                />
-              </BasePortableTextProvider>
+              <PortableTextWithDefaults
+                value={policy.bodyPortableText}
+                components={customPolicyComponent}
+              />
             </Typography>
           </GridArea>
         </Grid>

@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { PortableText, PortableTextProps } from "@portabletext/react";
+import { PortableTextProps } from "@portabletext/react";
 
 import Card from "../Card";
 import Flex from "../Flex";
 import CardImage, { CardImageProps } from "../Card/CardComponents/CardImage";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
+import { PortableTextWithDefaults } from "../PortableText";
 
 type AboutIntroCardProps = {
   image: CardImageProps;
@@ -27,7 +28,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
         <CardImage {...image} />
       </Flex>
       <Flex $alignItems="center" $font={["body-2", "body-1"]}>
-        <PortableText value={bodyPortableText} />
+        <PortableTextWithDefaults value={bodyPortableText} />
       </Flex>
       <BrushBorders hideOnMobileH color={"twilight"} />
     </Card>

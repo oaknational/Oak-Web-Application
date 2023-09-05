@@ -1,14 +1,15 @@
-import { PortableText, PortableTextComponentProps } from "@portabletext/react";
+import type { PortableTextComponentProps } from "@portabletext/react";
 
-import { PortableTextJSON, TextAndMedia } from "../../../common-lib/cms-types";
-import { OmitKeepDiscriminated } from "../../../utils/generics";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-import Box from "../../Box";
-import ButtonAsLink from "../../Button/ButtonAsLink";
-import CMSImage from "../../CMSImage";
-import Flex from "../../Flex";
-import { Heading } from "../../Typography";
-import VideoPlayer from "../../VideoPlayer";
+import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
+import { OmitKeepDiscriminated } from "@/utils/generics";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import Box from "@/components/Box";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import CMSImage from "@/components/CMSImage";
+import Flex from "@/components/Flex";
+import { Heading } from "@/components/Typography";
+import VideoPlayer from "@/components/VideoPlayer";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 // When we get the JSON portable text it doesn't have the same field names as
 // our generic types / what comes from our graphql queries
@@ -38,7 +39,7 @@ const PostTextAndMedia = (
           {params.title}
         </Heading>
         <Box $mt={32}>
-          <PortableText value={params.body} />
+          <PortableTextWithDefaults value={params.body} />
         </Box>
         {params.cta && (
           <ButtonAsLink

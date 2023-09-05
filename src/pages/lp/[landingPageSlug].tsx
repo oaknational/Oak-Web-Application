@@ -3,7 +3,6 @@ import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import { BasePortableTextProvider } from "../../components/PortableText";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
@@ -28,7 +27,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
       <>
         <MaxWidth $justifyContent={"flex-start"}>
           <LandingPageHero hero={pageData.hero} />
-          <BasePortableTextProvider>
+          <>
             {pageData.content.map((content, index) => {
               if (content.type == "LandingPageTextAndMediaBlock") {
                 return (
@@ -63,7 +62,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
                 );
               }
             })}
-          </BasePortableTextProvider>
+          </>
         </MaxWidth>
       </>
     </Layout>

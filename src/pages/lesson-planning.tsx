@@ -1,32 +1,32 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 
-import CMSClient from "../node-lib/cms";
-import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
-import Card, { CardProps } from "../components/Card";
-import Flex from "../components/Flex";
-import Grid, { GridArea } from "../components/Grid";
-import Layout from "../components/Layout";
-import Typography, { Heading } from "../components/Typography";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
-import Icon, { IconName } from "../components/Icon";
-import LessonElementLinks from "../components/LessonElementLinks";
-import { OakColorName } from "../styles/theme";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
-import Circle from "../components/Circle";
-import Box from "../components/Box";
-import CardTitle from "../components/Card/CardComponents/CardTitle";
-import AnchorTarget from "../components/AnchorTarget";
-import Cover from "../components/Cover";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import CMSVideo from "../components/CMSVideo";
-import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Illustration from "../components/Illustration";
-import { IllustrationSlug } from "../image-data";
-import { getSizes } from "../components/CMSImage/getSizes";
-import getPageProps from "../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
+import Card, { CardProps } from "@/components/Card";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import Layout from "@/components/Layout";
+import Typography, { Heading } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Icon, { IconName } from "@/components/Icon";
+import LessonElementLinks from "@/components/LessonElementLinks";
+import { OakColorName } from "@/styles/theme";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import SummaryCard from "@/components/Card/SummaryCard";
+import Circle from "@/components/Circle";
+import Box from "@/components/Box";
+import CardTitle from "@/components/Card/CardComponents/CardTitle";
+import AnchorTarget from "@/components/AnchorTarget";
+import Cover from "@/components/Cover";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import CMSVideo from "@/components/CMSVideo";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Illustration from "@/components/Illustration";
+import { IllustrationSlug } from "@/image-data";
+import { getSizes } from "@/components/CMSImage/getSizes";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -221,7 +221,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                       {title}
                     </CardTitle>
                     <Typography $font="body-1">
-                      <PortableText value={portableText} />
+                      <PortableTextWithDefaults value={portableText} />
                     </Typography>
                   </LessonElementsCard>
                 </GridArea>
@@ -322,7 +322,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           {title}
                         </Heading>
                         <Typography $font={"body-1"}>
-                          <PortableText value={portableText} />
+                          <PortableTextWithDefaults value={portableText} />
                         </Typography>
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
@@ -391,7 +391,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </CardTitle>
               </Box>
               <Typography $font={["body-2", "body-1"]}>
-                <PortableText
+                <PortableTextWithDefaults
                   value={pageData.learnMoreBlock1.bodyPortableText}
                 />
               </Typography>
@@ -416,7 +416,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
               <Typography $font={["body-2", "body-1"]}>
-                <PortableText
+                <PortableTextWithDefaults
                   value={pageData.learnMoreBlock2.bodyPortableText}
                 />
               </Typography>

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
@@ -9,9 +9,9 @@ import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
-import { BasePortableTextProvider } from "../PortableText/PortableText";
 import Typography from "../Typography/Typography";
 import { PortableTextJSON } from "../../common-lib/cms-types";
+import { PortableTextWithDefaults } from "../PortableText";
 
 const aboutContactCardPortableTextComponents: PortableTextComponents = {
   block: {
@@ -49,12 +49,10 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
             $background={"pupilsLightGreen"}
             $pt={[32, 0]}
           >
-            <BasePortableTextProvider>
-              <PortableText
-                components={aboutContactCardPortableTextComponents}
-                value={props.infoPortableText}
-              />
-            </BasePortableTextProvider>
+            <PortableTextWithDefaults
+              components={aboutContactCardPortableTextComponents}
+              value={props.infoPortableText}
+            />
             <Flex $mb={[32, 0]}>
               <ButtonAsLink label={"Contact us"} page="contact" />
             </Flex>
