@@ -4,10 +4,10 @@ import getColorByName from "./getColorByName";
 
 function getTextColorForBackground(): undefined;
 function getTextColorForBackground(
-  background: OakColorName
+  background: OakColorName,
 ): (props: PropsWithTheme) => string;
 function getTextColorForBackground(
-  background?: OakColorName
+  background?: OakColorName,
 ): ((props: PropsWithTheme) => string) | undefined;
 function getTextColorForBackground(background?: OakColorName) {
   if (!background) {

@@ -25,7 +25,7 @@ describe("UpcomingWebinarWall", () => {
   test("clicking button (link) calls onClick()", async () => {
     const onClick = jest.fn();
     const { getByRole } = renderWithTheme(
-      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />
+      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );
 
     const button = getByRole("link");
@@ -37,7 +37,7 @@ describe("UpcomingWebinarWall", () => {
     // visible label is just "Register", which on its own lacks context
     const onClick = jest.fn();
     const { getByRole } = renderWithTheme(
-      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />
+      <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );
 
     const button = getByRole("link");

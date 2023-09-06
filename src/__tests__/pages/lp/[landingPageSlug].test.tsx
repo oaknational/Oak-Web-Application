@@ -82,7 +82,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
-          <LandingPageTemplate pageData={testLandingPage} />
+          <LandingPageTemplate pageData={testLandingPage} />,
         );
 
         expect(seo).toEqual({});
@@ -98,18 +98,18 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
         query: {},
         params: { landingPageSlug: "some-landing-page" },
         ...overrides,
-      } as unknown as GetServerSidePropsContext<{ landingPageSlug: string }>);
+      }) as unknown as GetServerSidePropsContext<{ landingPageSlug: string }>;
 
     it("Should fetch the correct landing page", async () => {
       await getServerSideProps(
         getContext({
           params: { landingPageSlug: "some-landing-page" },
-        })
+        }),
       );
 
       expect(mockCMSClient.landingPageBySlug).toHaveBeenCalledWith(
         "some-landing-page",
-        expect.anything()
+        expect.anything(),
       );
     });
 
@@ -119,7 +119,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
       const propsResult = await getServerSideProps(
         getContext({
           params: { landingPageSlug: "some-landing-page" },
-        })
+        }),
       );
 
       expect(propsResult).toMatchObject({
@@ -136,7 +136,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
       const redirected = await getServerSideProps(
         getContext({
           params: { landingPageSlug: "ab-tested-page" },
-        })
+        }),
       );
 
       expect(redirected).toEqual({

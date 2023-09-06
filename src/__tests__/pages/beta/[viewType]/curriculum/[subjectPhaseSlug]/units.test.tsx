@@ -18,7 +18,7 @@ describe("curriculum sequence page", () => {
           curriculumHeaderData={curriculumHeaderFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
           pageSlug="secondary-maths"
-        />
+        />,
       );
 
       expect(queryByTestId("unit-cards")).toBeInTheDocument();

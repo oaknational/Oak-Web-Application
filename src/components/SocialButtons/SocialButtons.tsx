@@ -33,7 +33,7 @@ const SOCIAL_NETWORKS = [
   "twitter",
   "linkedIn",
 ] as const;
-type SocialNetwork = typeof SOCIAL_NETWORKS[number];
+type SocialNetwork = (typeof SOCIAL_NETWORKS)[number];
 type SocialButtonConfig = {
   label: string;
   icon: IconName;

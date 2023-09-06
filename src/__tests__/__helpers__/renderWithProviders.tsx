@@ -52,7 +52,7 @@ export type ProviderPartialProps = {
 const providersByName: {
   [K in keyof ProviderPropsByName]: [
     ElementType,
-    Partial<ProviderPropsByName[K]>?
+    Partial<ProviderPropsByName[K]>?,
   ];
 } = {
   cookieConsent: [MockedCookieConsentProvider],
@@ -83,7 +83,7 @@ export const getMockedProviders =
                 </Provider>
               );
             },
-            children
+            children,
           )}
       </>
     );
@@ -96,7 +96,7 @@ const allProviders = Object.entries(providersByName).reduce(
     acc[name] = defaultProps;
     return acc;
   },
-  {} as ProviderPropsByName
+  {} as ProviderPropsByName,
 );
 
 const renderWithProviders =
@@ -113,13 +113,13 @@ export const renderHookWithProviders =
     Props,
     Q extends Queries = typeof queries,
     Container extends Element | DocumentFragment = HTMLElement,
-    BaseElement extends Element | DocumentFragment = Container
+    BaseElement extends Element | DocumentFragment = Container,
   >(
     hook: (initialProps: Props) => Result,
     renderHookOptions?: Omit<
       RenderHookOptions<Props, Q, Container, BaseElement>,
       "wrapper"
-    >
+    >,
   ): RenderHookResult<Result, Props> => {
     const MockedProviders = getMockedProviders(providers);
     return renderHook(hook, { wrapper: MockedProviders, ...renderHookOptions });

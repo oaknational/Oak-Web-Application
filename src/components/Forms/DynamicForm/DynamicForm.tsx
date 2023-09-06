@@ -78,7 +78,7 @@ export const DynamicFormField: FC<DynamicFormFieldProps> = ({
 
 const evaluateConditionalField = (
   field: FormField,
-  formContext: FormValues
+  formContext: FormValues,
 ) => {
   if (field.renderWhen && field.renderWhen?.length > 0) {
     const shouldRender = field.renderWhen?.every((condition) => {
@@ -126,7 +126,7 @@ const DynamicForm: FC<DynamicFormProps> = ({ form, onSubmit }) => {
 
   const isRenderConditionSatisfied = useCallback(
     (field: FormField) => evaluateConditionalField(field, formValues),
-    [formValues]
+    [formValues],
   );
 
   const fieldsToRender = form.fields

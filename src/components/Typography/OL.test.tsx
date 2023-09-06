@@ -11,7 +11,7 @@ describe("OL", () => {
         <li>One</li>
         <li>Two</li>
         <li>Three</li>
-      </OL>
+      </OL>,
     );
 
     const list = screen.getByRole("list");

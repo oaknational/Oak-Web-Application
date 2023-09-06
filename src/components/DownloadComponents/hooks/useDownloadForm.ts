@@ -83,7 +83,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
     await downloadLessonResources(
       slug,
       downloads as DownloadResourceType[],
-      props.viewType
+      props.viewType,
     );
     return hubspotFormResponse;
   };
