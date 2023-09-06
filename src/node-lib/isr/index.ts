@@ -23,7 +23,7 @@ const shouldSkipInitialBuild = !disableIsr;
  * @returns The modified results.
  */
 function decorateWithIsr<P>(
-  results: GetStaticPropsResult<P>
+  results: GetStaticPropsResult<P>,
 ): GetStaticPropsResult<P> {
   const decoratedResults = { ...results };
   if (!disableIsr) {
@@ -61,7 +61,7 @@ function getServerSideSitemapFields(
   context: GetServerSidePropsContext,
   sitemapBaseUrl: string,
   pagePath: string,
-  pageSlugs: string[] | Set<string>
+  pageSlugs: string[] | Set<string>,
 ) {
   const fields = Array.from(pageSlugs).map((slug) => {
     return {

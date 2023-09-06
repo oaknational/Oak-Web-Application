@@ -30,7 +30,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage
         viewType={"teachers"}
         curriculumData={unitListingFixture()}
-      />
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -41,7 +41,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage
         viewType={"teachers"}
         curriculumData={unitListingWithTiersFixture()}
-      />
+      />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage
         viewType={"teachers"}
         curriculumData={unitListingFixture()}
-      />
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -64,11 +64,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           ...unitListingFixture(),
           examBoardTitle: "OCR",
         }}
-      />
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Computing OCR"
+      "Computing OCR",
     );
   });
 
@@ -78,7 +78,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         <UnitListingPage
           viewType={"teachers"}
           curriculumData={unitListingWithTiersFixture()}
-        />
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -97,7 +97,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         <UnitListingPage
           viewType={"teachers"}
           curriculumData={unitListingFixture()}
-        />
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -122,7 +122,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
           curriculumData={{
             ...unitListingFixture(),
           }}
-        />
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -151,7 +151,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       <UnitListingPage
         viewType={"teachers"}
         curriculumData={unitListingFixture()}
-      />
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");

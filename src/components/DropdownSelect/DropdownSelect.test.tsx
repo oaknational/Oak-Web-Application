@@ -26,7 +26,7 @@ describe("select", () => {
         placeholder={"Placeholder"}
         label={"select me"}
         onChange={setSelectedKey}
-      />
+      />,
     );
 
     const select = screen.getByTestId("select");
@@ -43,7 +43,7 @@ describe("select", () => {
         placeholder={"Placeholder"}
         label={"select me"}
         onChange={setSelectedKey}
-      />
+      />,
     );
 
     const user = userEvent.setup();
@@ -67,7 +67,7 @@ describe("select", () => {
         placeholder={"Placeholder"}
         label={"select me"}
         onChange={setSelectedKey}
-      />
+      />,
     );
 
     const user = userEvent.setup();
@@ -85,7 +85,7 @@ describe("select", () => {
         placeholder={"Placeholder"}
         label={"select me"}
         onChange={setSelectedKey}
-      />
+      />,
     );
 
     const buttonSpan = screen.getByTestId("select-span").textContent;
@@ -101,7 +101,7 @@ describe("select", () => {
         placeholder={"Placeholder"}
         label={"select me"}
         onChange={setSelectedKey}
-      />
+      />,
     );
 
     const select = screen.getByTestId("select");

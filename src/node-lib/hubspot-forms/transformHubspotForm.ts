@@ -20,7 +20,7 @@ import {
 
 export const transformHubspotFilter = (
   filter: HubspotDependencyFilter,
-  dependentFieldName: string
+  dependentFieldName: string,
 ): FieldRenderCondition => {
   if (Array.isArray(filter.strValues) && filter.strValues.length > 0) {
     return {
@@ -36,10 +36,10 @@ export const transformHubspotFilter = (
 const addConditions = (
   field: FormField,
   filters: HubspotDependencyFilter[],
-  dependentFieldName: string
+  dependentFieldName: string,
 ): FormField => {
   const conditions = filters.map((filter) =>
-    transformHubspotFilter(filter, dependentFieldName)
+    transformHubspotFilter(filter, dependentFieldName),
   );
 
   return { ...field, renderWhen: conditions };
@@ -82,14 +82,14 @@ const transformField = (field: HubspotFormField): FormField => {
         field,
         new Error(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          `Encountered unknown form field type: ${(field as any)?.type}`
-        )
+          `Encountered unknown form field type: ${(field as any)?.type}`,
+        ),
       );
   }
 };
 
 const transformFieldAndDependents = (
-  field: HubspotFormField
+  field: HubspotFormField,
 ): FormField | FormField[] => {
   if (field.dependentFieldFilters && field.dependentFieldFilters?.length > 0) {
     /**
@@ -108,8 +108,8 @@ const transformFieldAndDependents = (
       addConditions(
         transformField(dependentFieldDef.dependentFormField),
         dependentFieldDef.filters,
-        restOfField.name
-      )
+        restOfField.name,
+      ),
     );
 
     return [mainField, ...dependentFields];
@@ -122,7 +122,7 @@ export const transformHubspotForm = (formRaw: unknown): FormDefinition => {
   const form = hubspotFormDefinitionSchema.parse(formRaw);
 
   const flattenedFields = form.formFieldGroups.flatMap((fieldGroup) =>
-    fieldGroup.fields.flatMap(transformFieldAndDependents)
+    fieldGroup.fields.flatMap(transformFieldAndDependents),
   );
 
   return {

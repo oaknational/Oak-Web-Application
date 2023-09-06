@@ -10,22 +10,22 @@ import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 
 const lessonHit = lessonSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson")
+  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson"),
 );
 const unitHit = unitSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "unit")
+  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "unit"),
 );
 
 const unitHitTier = unitSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find(
-    (hit) => hit._source.slug === "macbeth-narrative-writing-core"
-  )
+    (hit) => hit._source.slug === "macbeth-narrative-writing-core",
+  ),
 );
 const lessonHitTier = lessonSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find(
     (hit) =>
-      hit._source.slug === "to-analyse-the-opening-of-the-play-macbeth-c9h3cd"
-  )
+      hit._source.slug === "to-analyse-the-opening-of-the-play-macbeth-c9h3cd",
+  ),
 );
 
 const allKeyStages = searchPageFixture().keyStages;
@@ -60,7 +60,7 @@ describe("search helpers", () => {
     });
     expect(unitListObject?.programmeSlug).toEqual("english-secondary-ks4-core");
     expect(lessonListObject?.programmeSlug).toEqual(
-      "english-secondary-ks4-higher"
+      "english-secondary-ks4-higher",
     );
   });
   test("isFilterItem returns true if slug is a filter item", () => {

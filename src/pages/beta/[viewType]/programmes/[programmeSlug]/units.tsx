@@ -236,7 +236,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
-                      })
+                      }),
                     )}
                   />
                 </nav>
