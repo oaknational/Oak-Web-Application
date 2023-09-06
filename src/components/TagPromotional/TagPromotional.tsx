@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import Svg from "../Svg";
 import { Span } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
@@ -20,14 +20,21 @@ type TagWithMap = keyof typeof tagWidthMap;
 type TagPromotionalProps = {
   $color?: OakColorName;
   size?: TagWithMap;
-};
+} & FlexProps;
 
 const TagPromotional: FC<TagPromotionalProps> = ({
   $color = "white",
   size = "large",
+  ...flexProps
 }) => {
   return (
-    <Flex $zIndex={"inFront"} $height={[18, 50]} $position={"relative"}>
+    <Flex
+      $zIndex={"inFront"}
+      $height={[18, 50]}
+      $minWidth={[tagWidthMap.small, tagWidthMap.large]}
+      $position={"relative"}
+      {...flexProps}
+    >
       <Svg
         $width={tagWidthMap[size]}
         $color={"oakGrey6"}
