@@ -71,7 +71,7 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <div data-testid="child">The app</div>
       </ErrorBoundary>,
-      { wrapper: WithStatisticsConsent }
+      { wrapper: WithStatisticsConsent },
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
@@ -80,10 +80,10 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <TantrumChild />
       </ErrorBoundary>,
-      { wrapper: WithStatisticsConsent }
+      { wrapper: WithStatisticsConsent },
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "An error occurred"
+      "An error occurred",
     );
   });
   test.skip("[bugsnag:enabled] should call reportError", () => {
@@ -94,7 +94,7 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <TantrumChild />
       </ErrorBoundary>,
-      { wrapper: WithStatisticsConsent }
+      { wrapper: WithStatisticsConsent },
     );
     expect(mockNotify).toHaveBeenCalled();
   });
@@ -103,7 +103,7 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <div data-testid="child">The app</div>
       </ErrorBoundary>,
-      { wrapper: WithoutStatisticsConsent }
+      { wrapper: WithoutStatisticsConsent },
     );
     expect(getByTestId("child")).toBeInTheDocument();
   });
@@ -112,10 +112,10 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <TantrumChild />
       </ErrorBoundary>,
-      { wrapper: WithoutStatisticsConsent }
+      { wrapper: WithoutStatisticsConsent },
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "An error occurred"
+      "An error occurred",
     );
   });
   test("[bugsnag:disabled] should not call reportError", () => {
@@ -123,7 +123,7 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <TantrumChild />
       </ErrorBoundary>,
-      { wrapper: WithoutStatisticsConsent }
+      { wrapper: WithoutStatisticsConsent },
     );
     expect(mockNotify).not.toHaveBeenCalled();
   });
@@ -132,7 +132,7 @@ describe("ErrorBoundary.tsx", () => {
       <ErrorBoundary>
         <TantrumChild />
       </ErrorBoundary>,
-      { wrapper: WithoutStatisticsConsent }
+      { wrapper: WithoutStatisticsConsent },
     );
     expect(getByTestId("homeButton").closest("a")).toHaveAttribute("href", "/");
   });

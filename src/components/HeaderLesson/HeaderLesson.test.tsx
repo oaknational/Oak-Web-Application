@@ -27,7 +27,7 @@ describe("HeaderLesson", () => {
 
   it("does not render the download button when expired && hasDownloadableResources", () => {
     const { queryByRole } = renderWithTheme(
-      <HeaderLesson {...props} expired={true} />
+      <HeaderLesson {...props} expired={true} />,
     );
     const downloadLink = queryByRole("link");
     expect(downloadLink).toBeNull();
@@ -35,7 +35,7 @@ describe("HeaderLesson", () => {
 
   it("does not render the download button when !expired && !hasDownloadableResources", () => {
     const { queryByRole } = renderWithTheme(
-      <HeaderLesson {...props} hasDownloadableResources={false} />
+      <HeaderLesson {...props} hasDownloadableResources={false} />,
     );
     const downloadLink = queryByRole("link");
     expect(downloadLink).toBeNull();

@@ -27,7 +27,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
 ] as const;
-export type ErrorCode = typeof ERROR_CODES[number];
+export type ErrorCode = (typeof ERROR_CODES)[number];
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer

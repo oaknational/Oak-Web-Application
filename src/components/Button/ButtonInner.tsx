@@ -121,7 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    */
   const currentColor: OakColorName = "oakGrey4";
   const displayProperty = shouldHideLabel?.map((hide) =>
-    hide ? "none" : "block"
+    hide ? "none" : "block",
   );
   const textDecoration =
     isCurrent && currentStyles?.includes("text-underline")

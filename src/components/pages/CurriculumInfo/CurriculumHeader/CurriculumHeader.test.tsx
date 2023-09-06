@@ -38,7 +38,7 @@ describe("Component - Curriculum Header", () => {
       curriculumHeaderFixture().subject.title
     }`;
     expect(await findByRole("heading", { level: 1 })).toHaveTextContent(
-      pageTitle
+      pageTitle,
     );
   });
 

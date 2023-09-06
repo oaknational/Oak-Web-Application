@@ -50,13 +50,14 @@ async function main() {
   await Promise.all(
     response.images.map(
       async (image) =>
-        await writeFile(path.join(dest, image.name), image.contents)
-    )
+        await writeFile(path.join(dest, image.name), image.contents),
+    ),
   );
   await Promise.all(
     response.files.map(
-      async (file) => await writeFile(path.join(dest, file.name), file.contents)
-    )
+      async (file) =>
+        await writeFile(path.join(dest, file.name), file.contents),
+    ),
   );
   const innerHTML = response.html.join("");
 

@@ -32,14 +32,14 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
-    (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug
+    (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
   );
   const phase = subject?.phases.find(
-    (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug
+    (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
   const examboard =
     subject?.examboards?.find(
-      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug
+      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug,
     ) ?? null;
 
   if (!subject || !phase) {

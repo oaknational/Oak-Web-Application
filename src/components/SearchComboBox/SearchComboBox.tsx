@@ -18,7 +18,7 @@ import { OakColorName } from "../../styles/theme/types";
 // Reuse the ListBox and Popover from your component library. See below for details.
 
 const SearchComboBox = <T extends School>(
-  props: ComboBoxStateOptions<T> & { hasError?: boolean; required?: boolean }
+  props: ComboBoxStateOptions<T> & { hasError?: boolean; required?: boolean },
 ) => {
   // Setup filter function and state.
   const { contains } = useFilter({ sensitivity: "base" });
@@ -43,7 +43,7 @@ const SearchComboBox = <T extends School>(
       listBoxRef,
       popoverRef,
     },
-    state
+    state,
   );
 
   labelProps.id = useId();

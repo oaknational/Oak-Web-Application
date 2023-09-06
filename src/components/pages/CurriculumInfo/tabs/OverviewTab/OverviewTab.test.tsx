@@ -6,11 +6,11 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("Component - Overview Tab", () => {
   test("user can see the correct number of subject principles", async () => {
     const { getAllByTestId } = renderWithTheme(
-      <OverviewTab data={curriculumOverviewTabFixture()} />
+      <OverviewTab data={curriculumOverviewTabFixture()} />,
     );
     const subjectPrinciples = await getAllByTestId("subject-principles");
     expect(subjectPrinciples).toHaveLength(
-      curriculumOverviewTabFixture().subjectPrinciples.length
+      curriculumOverviewTabFixture().subjectPrinciples.length,
     );
   });
 });

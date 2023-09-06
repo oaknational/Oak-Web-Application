@@ -5,7 +5,7 @@ import { constructElasticQuery } from "./constructElasticQuery";
 describe("Search/2023/constructElasticQuery", () => {
   test("handles search term (without key stages)", () => {
     const elasticQuery = constructElasticQuery(
-      createSearchQuery({ term: "writing" })
+      createSearchQuery({ term: "writing" }),
     );
 
     expect(elasticQuery).toEqual({
@@ -52,7 +52,7 @@ describe("Search/2023/constructElasticQuery", () => {
   });
   test("handles key stages", () => {
     const elasticQuery = constructElasticQuery(
-      createSearchQuery({ term: "macbeth", keyStages: ["ks3"] })
+      createSearchQuery({ term: "macbeth", keyStages: ["ks3"] }),
     );
 
     expect(elasticQuery).toEqual({
@@ -109,7 +109,7 @@ describe("Search/2023/constructElasticQuery", () => {
         term: "macbeth",
         keyStages: ["ks3"],
         subjects: ["computing"],
-      })
+      }),
     );
 
     expect(elasticQuery).toEqual({
@@ -165,7 +165,7 @@ describe("Search/2023/constructElasticQuery", () => {
         keyStages: ["ks3"],
         subjects: ["computing"],
         contentTypes: ["lesson"],
-      })
+      }),
     );
     expect(elasticQuery).toEqual({
       from: 0,

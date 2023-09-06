@@ -105,15 +105,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   ];
 
   const initialSubject = subjects.find(
-    (option) => option.slug === currentSelection?.subject.slug
+    (option) => option.slug === currentSelection?.subject.slug,
   );
 
   const initialPhase = initialSubject?.phases.find(
-    (option) => option.slug === currentSelection?.phase.slug
+    (option) => option.slug === currentSelection?.phase.slug,
   );
 
   const initialExamboard = initialSubject?.examboards?.find(
-    (option) => option.slug === currentSelection?.examboard?.slug
+    (option) => option.slug === currentSelection?.examboard?.slug,
   );
 
   const [showSubjects, setShowSubjects] = useState(false);
@@ -121,10 +121,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [selectedSubject, setSelectedSubject] =
     useState<SubjectPhaseOption | null>(initialSubject || null);
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(
-    initialPhase || null
+    initialPhase || null,
   );
   const [selectedExamboard, setSelectedExamboard] = useState<Examboard | null>(
-    initialExamboard || null
+    initialExamboard || null,
   );
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);

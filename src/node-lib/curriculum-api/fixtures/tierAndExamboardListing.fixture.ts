@@ -1,7 +1,7 @@
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 export const programmeListingFixture = (
-  partial?: Partial<ProgrammeListingPageData>
+  partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks3",
