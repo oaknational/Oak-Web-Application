@@ -187,7 +187,7 @@ describe("curriculum-api", () => {
       curriculumApi.tierListing({
         keyStageSlug: "ks4",
         subjectSlug: "not-found",
-      })
+      }),
     ).rejects.toThrow("Resource not found");
   });
   test("subjectListing", async () => {
@@ -203,7 +203,7 @@ describe("curriculum-api", () => {
     const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
       availableProgrammes,
-      unavailableProgrammes
+      unavailableProgrammes,
     );
 
     let unavailableDuplicates = false;

@@ -61,7 +61,7 @@ describe("/api/preview/[[...path]]", () => {
   it("should reject an invalid preview secret", async () => {
     const { req, res } = createReqRes(
       ["https://", "google.com"],
-      "invalid-secret"
+      "invalid-secret",
     );
     await handler(req, res);
 

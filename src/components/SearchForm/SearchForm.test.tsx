@@ -38,7 +38,7 @@ describe("<SearchForm />", () => {
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const button = getByRole("button");
     expect(button).toBeInTheDocument();
@@ -51,7 +51,7 @@ describe("<SearchForm />", () => {
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -73,7 +73,7 @@ describe("<SearchForm />", () => {
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -95,7 +95,7 @@ describe("<SearchForm />", () => {
         searchTerm={""}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     const searchField = getByRole("searchbox");
@@ -111,7 +111,7 @@ describe("<SearchForm />", () => {
         searchTerm={""}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -125,7 +125,7 @@ describe("<SearchForm />", () => {
         searchTerm={""}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -138,7 +138,7 @@ describe("<SearchForm />", () => {
         searchTerm={""}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -153,7 +153,7 @@ describe("<SearchForm />", () => {
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -175,7 +175,7 @@ describe("<SearchForm />", () => {
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 

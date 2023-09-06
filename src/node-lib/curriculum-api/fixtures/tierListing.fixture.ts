@@ -2,7 +2,7 @@ import { TierListingData } from "..";
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 export const tieredProgrammeListingFixture = (
-  partial?: Partial<ProgrammeListingPageData>
+  partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks3",
@@ -41,7 +41,7 @@ export const tieredProgrammeListingFixture = (
 };
 
 const tierListingFixture = (
-  partial?: Partial<TierListingData>
+  partial?: Partial<TierListingData>,
 ): TierListingData => {
   return {
     programmes: [

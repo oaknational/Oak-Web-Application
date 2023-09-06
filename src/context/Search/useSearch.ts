@@ -20,7 +20,7 @@ type UseSearchQueryReturnType = {
   setQuery: SetSearchQuery;
 };
 export const createSearchQuery = (
-  partialQuery: Partial<SearchQuery>
+  partialQuery: Partial<SearchQuery>,
 ): SearchQuery => {
   const {
     term = "",
@@ -65,7 +65,7 @@ const useSearchQuery = ({
       contentTypes: allContentTypes
         ? getFilterForQueryCallback(contentTypes, allContentTypes).filter(
             (type): type is "lesson" | "unit" =>
-              type === "lesson" || type === "unit"
+              type === "lesson" || type === "unit",
           )
         : [],
     };
@@ -152,7 +152,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const setSearchTerm = useCallback(
     ({ searchTerm }: { searchTerm: string }) =>
       setQuery((_query) => ({ ..._query, term: searchTerm })),
-    [setQuery]
+    [setQuery],
   );
 
   useEffect(() => {

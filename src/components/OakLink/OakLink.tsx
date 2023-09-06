@@ -106,7 +106,7 @@ export const getOakLinkHref = (props: OakLinkPropsWithoutChildren) => {
 };
 
 export const transformOakLinkProps = <T extends OakLinkPropsWithoutChildren>(
-  props: T
+  props: T,
 ) => {
   const {
     htmlAnchorProps,

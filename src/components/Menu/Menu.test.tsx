@@ -21,7 +21,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
         <Menu menuButtonRef={null} />
-      </MenuProvider>
+      </MenuProvider>,
     );
 
     expect(getByLabelText("Close Menu")).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
         <Menu menuButtonRef={null} />
-      </MenuProvider>
+      </MenuProvider>,
     );
 
     expect(getByLabelText("Close Menu")).not.toBeVisible();
@@ -47,7 +47,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
 
     expect(getByLabelText("Close Menu")).toBeVisible();
@@ -63,7 +63,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
     const user = userEvent.setup();
     const closeButton = getByLabelText("Close Menu");
@@ -82,7 +82,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
     const user = userEvent.setup();
     const closeButton = getByLabelText("Close Menu");
@@ -101,7 +101,7 @@ describe("Menu", () => {
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
     const user = userEvent.setup();
     const closeButton = getByLabelText("Close Menu");
@@ -125,7 +125,7 @@ describe("Menu", () => {
     renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
     const user = userEvent.setup();
     await user.keyboard("{Escape}");
@@ -157,7 +157,7 @@ describe("Menu", () => {
           onClick={jest.fn}
         />
         <Menu menuButtonRef={menuButtonRef} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
 
     menuValue.open = false;
@@ -173,7 +173,7 @@ describe("Menu", () => {
           onClick={jest.fn}
         />
         <Menu menuButtonRef={menuButtonRef} />
-      </menuContext.Provider>
+      </menuContext.Provider>,
     );
 
     const menuButton = getByLabelText("Open Menu");

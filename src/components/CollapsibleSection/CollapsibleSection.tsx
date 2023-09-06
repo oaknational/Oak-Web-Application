@@ -53,7 +53,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
   const handleClick = (
     e: React.MouseEvent<
       HTMLInputElement | HTMLButtonElement | HTMLAnchorElement
-    >
+    >,
   ) => {
     e.preventDefault();
     setOpen((o) => !o);

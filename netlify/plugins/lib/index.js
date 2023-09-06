@@ -28,7 +28,7 @@ module.exports = {
 
     const netlifyCommitLog = execSync(
       `git show --no-patch --oneline ${commitRef}`,
-      { encoding: "utf8" }
+      { encoding: "utf8" },
     );
 
     if (!netlifyCommitLog) {
@@ -48,7 +48,7 @@ module.exports = {
     const appVersionMatches = netlifyCommitLog.match(releaseCommitFormat);
     if (!Array.isArray(appVersionMatches)) {
       throw new TypeError(
-        "Could not determine app version from commit message."
+        "Could not determine app version from commit message.",
       );
     }
 

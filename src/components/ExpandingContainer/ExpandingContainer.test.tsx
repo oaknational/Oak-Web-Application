@@ -20,7 +20,7 @@ it("component renders with the title", () => {
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
       </Card>
-    </ExpandingContainer>
+    </ExpandingContainer>,
   );
 
   expect(getAllByRole("button")).toHaveLength(3);
@@ -40,7 +40,7 @@ it("component renders with the title only", () => {
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
       </Card>
-    </ExpandingContainer>
+    </ExpandingContainer>,
   );
 
   expect(getAllByRole("button")).toHaveLength(1);
@@ -63,13 +63,13 @@ it.skip("renders top right icons", async () => {
       <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
         Grid box
       </Card>
-    </ExpandingContainer>
+    </ExpandingContainer>,
   );
 
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?"
+    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?",
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -110,7 +110,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     expect(getAllByRole("button")).toHaveLength(3);
@@ -130,7 +130,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     expect(getAllByRole("button")).toHaveLength(1);
@@ -153,13 +153,13 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz",
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
@@ -188,7 +188,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
@@ -211,13 +211,13 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet"
+      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet",
     );
   });
 
@@ -236,13 +236,13 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadButton = screen.getByTestId("expand-button");
     await user.click(downloadButton);
     expect(screen.getByTestId("expanded-container")).toHaveStyle(
-      "max-height: 600rem"
+      "max-height: 600rem",
     );
   });
   it("has aria-expanded false when closed ", async () => {
@@ -259,7 +259,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadButton = screen.getByTestId("expand-button");
@@ -281,7 +281,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const downloadButton = screen.getByTestId("expand-button");
@@ -304,7 +304,7 @@ describe("comonents/ExpandingContainer", () => {
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
           Grid box
         </Card>
-      </ExpandingContainer>
+      </ExpandingContainer>,
     );
 
     const expandButton = screen.getByTestId("expand-button");
