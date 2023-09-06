@@ -41,7 +41,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "public",
         type: "video",
-      })
+      }),
     );
     const { loading } = result.current;
 
@@ -54,7 +54,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "public",
         type: "video",
-      })
+      }),
     );
     const { playbackToken } = result.current;
 
@@ -66,7 +66,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
-      })
+      }),
     );
     const { loading } = result.current;
 
@@ -79,7 +79,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
-      })
+      }),
     );
 
     expect(result.current).toEqual({
@@ -98,7 +98,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
-      })
+      }),
     );
 
     expect(result.current).toEqual({
@@ -118,7 +118,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
-      })
+      }),
     );
 
     expect(reportError).toHaveBeenCalled();

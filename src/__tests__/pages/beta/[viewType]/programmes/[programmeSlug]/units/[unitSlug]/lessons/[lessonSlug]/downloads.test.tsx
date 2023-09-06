@@ -5,22 +5,23 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import waitForNextTick from "../../../../../../../../../__helpers__/waitForNextTick";
-import renderWithSeo from "../../../../../../../../../__helpers__/renderWithSeo";
-import { mockSeoResult } from "../../../../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../../../../__helpers__/renderWithProviders";
-import "../../../../../../../../../__helpers__/LocalStorageMock";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import "@/__tests__/__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "../../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+} from "@/pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
-const props = {
+const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
+  viewType: "teachers",
 };
 
 const getDownloadResourcesExistenceData = {
@@ -32,18 +33,18 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  "@/components/DownloadComponents/helpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
-  })
+  }),
 );
 
 jest.mock(
-  "../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  "@/components/DownloadComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
-  }
+  },
 );
 
 beforeEach(() => {
@@ -57,19 +58,20 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
   it("Renders title from the props with added 'Downloads' text in front of it", () => {
     render(<LessonDownloadsPage {...props} />);
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Downloads: Islamic Geometry"
+      "Downloads: Islamic Geometry",
     );
   });
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          ...props,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
           },
         }}
-      />
+      />,
     );
 
     expect(screen.getByText("No downloads available")).toBeInTheDocument();
@@ -79,12 +81,13 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          ...props,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
           },
         }}
-      />
+      />,
     );
 
     expect(screen.getByText("No downloads available")).toBeInTheDocument();
@@ -95,13 +98,13 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Your details"
+        "Your details",
       );
       expect(screen.getByTestId("email-heading")).toHaveTextContent(
-        "For regular updates from Oak (optional)"
+        "For regular updates from Oak (optional)",
       );
       expect(
-        screen.getByPlaceholderText("Enter email address here")
+        screen.getByPlaceholderText("Enter email address here"),
       ).toBeInTheDocument();
 
       // Privacy policy link
@@ -111,12 +114,12 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(privacyPolicyLink).toBeInTheDocument();
       expect(privacyPolicyLink).toHaveAttribute(
         "href",
-        "/legal/privacy-policy"
+        "/legal/privacy-policy",
       );
 
       // Terms and conditions checkbox
       expect(
-        screen.getByLabelText("I accept terms and conditions (required)")
+        screen.getByLabelText("I accept terms and conditions (required)"),
       ).toBeInTheDocument();
 
       // Terms and conditions link
@@ -128,7 +131,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Lesson resources to download
       const lessonResourcesToDownload = screen.getAllByTestId(
-        "lessonResourcesToDownload"
+        "lessonResourcesToDownload",
       );
       expect(lessonResourcesToDownload.length).toEqual(2);
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
@@ -144,7 +147,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("should display error hint on blur email if not formatted correctly", async () => {
       const { getByPlaceholderText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       const input = getByPlaceholderText("Enter email address here");
@@ -162,7 +165,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("should not display error hint on blur email if empty", async () => {
       const { getByPlaceholderText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       const input = getByPlaceholderText("Enter email address here");
@@ -188,7 +191,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
       const { getByTestId, getByLabelText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       const exitQuizQuestions = getByLabelText("Exit quiz questions");
@@ -201,7 +204,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("should select all resources if user clicks 'Select all'", async () => {
       const { getByTestId, getByText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       const selectAllButton = getByText("Select all");
@@ -220,7 +223,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
     it("should deselect all resources if user clicks 'Deselect all'", async () => {
       const { getByTestId, getByText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       const deselectAllButton = getByText("Deselect all");
@@ -278,7 +281,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       const { getByText, getByLabelText } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       // user click Edit button
@@ -303,7 +306,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       const { getByText, getByLabelText, getByDisplayValue } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       // user click Edit button
@@ -330,7 +333,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       const { getByText, getByTestId } = render(
-        <LessonDownloadsPage {...props} />
+        <LessonDownloadsPage {...props} />,
       );
 
       // user click Edit button
@@ -398,12 +401,12 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
-        "macbeth-lesson-1"
+        "macbeth-lesson-1",
       );
     });
     it("should throw error", async () => {
       await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("No context.params");
     });
   });

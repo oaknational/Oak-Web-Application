@@ -38,7 +38,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
     isHovered: cardIsHovered,
   } = useClickableCard<HTMLAnchorElement>();
   const { hoverProps: buttonHoverProps, isHovered: buttonIsHovered } = useHover(
-    {}
+    {},
   );
   return (
     <Flex

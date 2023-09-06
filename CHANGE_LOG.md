@@ -1,3 +1,17 @@
+## [1.233.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.3...v1.233.4) (2023-09-06)
+
+## [1.233.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.2...v1.233.3) (2023-09-06)
+
+## [1.233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.1...v1.233.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* failing subject listing test ([1521a07](https://github.com/oaknational/Oak-Web-Application/commit/1521a07a22d9ec219215f1483ef98ebb498d7a51))
+* **subject listing:** only fetch 2023 api data if viewType 2023 ([d6f02f3](https://github.com/oaknational/Oak-Web-Application/commit/d6f02f354738dcf7288978bb3ced2faf5fada731))
+
+## [1.233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.0...v1.233.1) (2023-09-06)
+
 # [1.233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.232.0...v1.233.0) (2023-09-05)
 
 

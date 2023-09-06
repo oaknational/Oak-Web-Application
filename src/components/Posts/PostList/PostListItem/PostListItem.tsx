@@ -32,7 +32,7 @@ const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
   }
 };
 const getItemCategoryLinkProps = (
-  props: PostListItemProps
+  props: PostListItemProps,
 ): ResolveOakHrefProps => {
   switch (props.contentType) {
     case "blog-post":
@@ -93,7 +93,8 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     >
       {withImage && (
         <Box
-          $display={["block", "none", "block"]}
+          //ASK ABOUT CHANGING THIS TO RENDER PIC
+          $display={["block", "block", "block"]}
           $position={"relative"}
           $minWidth={240}
           $maxWidth={[160, "none"]}

@@ -11,7 +11,7 @@ const CfAccessClientId = process.env.CF_ACCESS_CLIENT_ID;
 const CfAccessClientSecret = process.env.CF_ACCESS_CLIENT_SECRET;
 if (CfAccessClientId && !CfAccessClientSecret) {
   throw new TypeError(
-    `Please define envs for both CF_ACCESS_CLIENT_ID and CF_ACCESS_CLIENT_SECRET`
+    `Please define envs for both CF_ACCESS_CLIENT_ID and CF_ACCESS_CLIENT_SECRET`,
   );
 }
 
@@ -44,12 +44,12 @@ if (CfAccessClientId) {
 const eventualResults = urls.map((url) => fetch(url, { headers }));
 
 async function waitForResults(
-  /** @type {Promise<Response>[]} */ _eventualResults
+  /** @type {Promise<Response>[]} */ _eventualResults,
 ) {
   const results = await Promise.all(_eventualResults);
   console.log(
     "responses ok: ",
-    results.map((response) => response.ok)
+    results.map((response) => response.ok),
   );
 }
 

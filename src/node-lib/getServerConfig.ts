@@ -184,7 +184,7 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
 // We can safely assert it's non-nullable as our
 // guard loop above will throw
 type NonNullEnvValue<K extends ConfigKey> = NonNullable<
-  typeof envVars[K]["value"]
+  (typeof envVars)[K]["value"]
 >;
 
 const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
@@ -210,7 +210,7 @@ const getServerConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
 
   if (!isBrowser) {
     throw new Error(
-      `getServerConfig('${key}') failed because there is no env value ${envName}`
+      `getServerConfig('${key}') failed because there is no env value ${envName}`,
     );
   }
   return "";

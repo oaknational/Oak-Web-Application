@@ -14,7 +14,7 @@ import type { Context } from "https://edge.netlify.com";
  */
 async function redirectNetlifySubdomains(
   request: Request,
-  context: Context
+  context: Context,
 ): Promise<Response> {
   let subdomain;
   let redirected;
@@ -23,7 +23,7 @@ async function redirectNetlifySubdomains(
 
   try {
     const subdomainMatches = request?.url?.match(
-      /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:netlify\.app)/
+      /(?:https:\/\/)?([^.]+)?(?:\.netlify)?\.(?:netlify\.app)/,
     );
     if (Array.isArray(subdomainMatches)) {
       subdomain = subdomainMatches[1];
@@ -32,7 +32,7 @@ async function redirectNetlifySubdomains(
     redirected = request.headers.get("x-cloudflare-redirect") || false;
 
     console.log(
-      `Subdomain identified: ${subdomain}\nRedirected from Cloudflare: ${redirected}`
+      `Subdomain identified: ${subdomain}\nRedirected from Cloudflare: ${redirected}`,
     );
   } catch (err) {
     console.error("Subdomain matching failed.");
@@ -50,13 +50,13 @@ async function redirectNetlifySubdomains(
   ];
   const urlPath = new URL(request.url).pathname;
   const isOnAllowList = allowListPathStarts.some((allowPath) =>
-    urlPath.startsWith(allowPath)
+    urlPath.startsWith(allowPath),
   );
   console.log(`URL is on allow list: ${isOnAllowList}`);
 
   if (subdomain && !redirected && !isOnAllowList) {
     const redirectTargetUrl = new URL(
-      `https://${subdomain}.netlify.thenational.academy/`
+      `https://${subdomain}.netlify.thenational.academy/`,
     ).href;
     console.log("Redirected to Cloudflare - ", redirectTargetUrl);
 
