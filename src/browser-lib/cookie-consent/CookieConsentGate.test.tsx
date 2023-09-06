@@ -20,7 +20,7 @@ describe("CookieConsentGate", () => {
       <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
       </CookieConsentGate>,
-      { wrapper: CookieConsentProvider }
+      { wrapper: CookieConsentProvider },
     );
 
     expect(queryByText("child")).not.toBeInTheDocument();
@@ -28,13 +28,13 @@ describe("CookieConsentGate", () => {
   test("should render its children if policy is consented to in cookies", () => {
     window.localStorage.setItem(
       "metomic-consented-pol:b109d120-ec88-4dd7-9f6e-fc67ab6f0ffb",
-      JSON.stringify({ enabled: true })
+      JSON.stringify({ enabled: true }),
     );
     const { queryByText } = render(
       <CookieConsentGate serviceType="bugsnag">
         <div>child</div>
       </CookieConsentGate>,
-      { wrapper: CookieConsentProvider }
+      { wrapper: CookieConsentProvider },
     );
 
     expect(queryByText("child")).toBeInTheDocument();

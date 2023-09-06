@@ -24,9 +24,9 @@ describe("shortAnswerTitleFormatter", () => {
     const { getByTestId } = renderWithTheme(
       <>
         {shortAnswerTitleFormatter(
-          "Given that a = 3b, fill in the gap: a + 3b = {{}}b."
+          "Given that a = 3b, fill in the gap: a + 3b = {{}}b.",
         )}
-      </>
+      </>,
     );
     expect(getByTestId("underline")).toBeInTheDocument();
   });
@@ -35,9 +35,9 @@ describe("shortAnswerTitleFormatter", () => {
     const { getByTestId } = renderWithTheme(
       <>
         {shortAnswerTitleFormatter(
-          "Given that a = 3b, fill in the gap: a + 3b = {{hello!}}b."
+          "Given that a = 3b, fill in the gap: a + 3b = {{hello!}}b.",
         )}
-      </>
+      </>,
     );
     expect(getByTestId("underline")).toBeInTheDocument();
   });
@@ -66,10 +66,10 @@ describe("removeMarkdown", () => {
   });
   it("when passed string returns string without '*'s example question title", () => {
     const result = removeMarkdown(
-      "Which of the following is **not** found in an animal cell"
+      "Which of the following is **not** found in an animal cell",
     );
     expect(result).toBe(
-      "Which of the following is not found in an animal cell"
+      "Which of the following is not found in an animal cell",
     );
   });
   it("does not remove * on there own", () => {

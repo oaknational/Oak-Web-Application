@@ -17,7 +17,7 @@ const getDownloadResourcesExistenceData = {
 };
 
 const getDownloadResourcesExistenceMock = jest.fn(
-  () => getDownloadResourcesExistenceData
+  () => getDownloadResourcesExistenceData,
 );
 
 jest.mock("../helpers/getDownloadResourcesExistence", () => ({
@@ -45,7 +45,7 @@ describe("useDownloadExistenceCheck", () => {
         resourcesToCheck,
         onComplete,
         viewType,
-      })
+      }),
     );
 
     await waitFor(() => {
@@ -53,7 +53,7 @@ describe("useDownloadExistenceCheck", () => {
       expect(getDownloadResourcesExistenceMock).toBeCalledWith(
         lessonSlug,
         "exit-quiz-answers,worksheet-pdf",
-        "teachers"
+        "teachers",
       );
     });
 
@@ -83,7 +83,7 @@ describe("useDownloadExistenceCheck", () => {
         resourcesToCheck,
         onComplete,
         viewType,
-      })
+      }),
     );
 
     await waitFor(() => {

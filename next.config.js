@@ -48,7 +48,7 @@ module.exports = async (phase) => {
       process.env.OVERRIDE_RELEASE_STAGE ||
         process.env.VERCEL_ENV ||
         // Netlify
-        process.env.CONTEXT
+        process.env.CONTEXT,
     );
 
     isProductionBuild = releaseStage === RELEASE_STAGE_PRODUCTION;
@@ -82,7 +82,7 @@ module.exports = async (phase) => {
        */
       // Grab the existing rule that handles SVG imports
       const fileLoaderRule = config.module.rules.find((rule) =>
-        rule.test?.test?.(".svg")
+        rule.test?.test?.(".svg"),
       );
       config.module.rules.push(
         // Reapply the existing rule, but only for svg imports ending in ?url
@@ -121,7 +121,7 @@ module.exports = async (phase) => {
               },
             },
           ],
-        }
+        },
       );
       // Modify the file loader rule to ignore *.svg, since we have it handled now.
       fileLoaderRule.exclude = /\.svg$/i;
@@ -143,7 +143,7 @@ module.exports = async (phase) => {
         config.plugins.push(
           new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
             logLevel: "error",
-          })
+          }),
         );
 
         // Upload production sourcemaps
@@ -154,7 +154,7 @@ module.exports = async (phase) => {
           overwrite: true,
         };
         config.plugins.push(
-          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo)
+          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
         );
       }
 
@@ -218,7 +218,7 @@ module.exports = async (phase) => {
     let baseUrl = process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL;
     if (!baseUrl) {
       throw new TypeError(
-        `Could not determine NEXT_PUBLIC_CLIENT_APP_BASE_URL for sitemap generation.`
+        `Could not determine NEXT_PUBLIC_CLIENT_APP_BASE_URL for sitemap generation.`,
       );
     }
     // Not all services prepend the protocol.

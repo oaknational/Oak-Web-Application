@@ -13,11 +13,11 @@ const breakpointsByName = {
   large: 1280,
 };
 export const breakpoints = Object.values(breakpointsByName).sort((a, b) =>
-  a > b ? 1 : -1
+  a > b ? 1 : -1,
 );
 export type BreakpointName = keyof typeof breakpointsByName;
 export const getBreakpoint = (
-  breakpointName: keyof typeof breakpointsByName
+  breakpointName: keyof typeof breakpointsByName,
 ) => {
   return breakpointsByName[breakpointName];
 };
@@ -41,10 +41,10 @@ const responsive =
     parse:
       | ((unparsed: T | undefined | null) => string | number | undefined | null)
       | ((
-          unparsed: T | undefined | null
+          unparsed: T | undefined | null,
         ) => (props: PropsWithTheme) => string | number | undefined | null) = (
-      x
-    ) => x
+      x,
+    ) => x,
   ) =>
   (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
     const attrCss = (value: T | undefined | null) =>

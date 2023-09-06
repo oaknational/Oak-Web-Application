@@ -45,6 +45,6 @@ describe("useIsCurrent", () => {
       const { result } = renderHook(() => useIsCurrent({ href: linkHref }));
 
       expect(result.current).toBe(expected);
-    }
+    },
   );
 });
