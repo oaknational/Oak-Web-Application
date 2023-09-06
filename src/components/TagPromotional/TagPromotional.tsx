@@ -1,23 +1,50 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import Svg from "../Svg";
 import { Span } from "../Typography";
-import { OakColorName } from "../../styles/theme/types";
 
-export const tagWidthMap = {
-  small: 44,
-  large: 56,
+import { OakColorName } from "@/styles/theme/types";
+
+const tagDimMap = {
+  small: {
+    width: 44,
+    height: 20,
+  },
+  medium: {
+    width: 46,
+    height: 22,
+  },
+  large: {
+    width: 58,
+    height: 34,
+  },
 } as const;
 
-export const tagFontMap = {
+const textPosMap = {
+  small: {
+    left: 8,
+    bottom: 4,
+  },
+  medium: {
+    left: 6,
+    bottom: 3,
+  },
+  large: {
+    left: 10,
+    bottom: 10,
+  },
+} as const;
+
+const tagFontMap = {
   small: "body-4",
+  medium: "body-3",
   large: "heading-7",
 } as const;
 
-type TagWithMap = keyof typeof tagWidthMap;
+type TagWithMap = keyof typeof tagDimMap;
 
-type TagPromotionalProps = {
+type TagPromotionalProps = FlexProps & {
   $color?: OakColorName;
   size?: TagWithMap;
 };
@@ -25,22 +52,29 @@ type TagPromotionalProps = {
 const TagPromotional: FC<TagPromotionalProps> = ({
   $color = "white",
   size = "large",
+  ...props
 }) => {
   return (
-    <Flex $zIndex={"inFront"} $height={[18, 50]} $position={"relative"}>
+    <Flex
+      $zIndex={"inFront"}
+      $width={tagDimMap[size].width}
+      $height={tagDimMap[size].height}
+      $position={"relative"}
+      {...props}
+    >
       <Svg
-        $width={tagWidthMap[size]}
         $color={"oakGrey6"}
         $position={"absolute"}
         name={"tag-promotional"}
         $bottom={1}
+        $objectFit={"contain"}
       />
       <Flex
-        $left={[size == "large" ? 12 : 8, size == "large" ? 8 : 6]}
-        $top={[-2, size == "large" ? 12 : 14]}
+        $left={textPosMap[size].left}
+        $bottom={textPosMap[size].bottom}
         $position={"absolute"}
       >
-        <Span $color={$color} $font={["body-4", tagFontMap[size]]}>
+        <Span $color={$color} $font={tagFontMap[size]}>
           New
         </Span>
       </Flex>

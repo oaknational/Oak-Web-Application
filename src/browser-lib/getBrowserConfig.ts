@@ -76,6 +76,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  downloadApiUrl: {
+    value: process.env.NEXT_PUBLIC_DOWNLOAD_API_URL,
+    envName: "NEXT_PUBLIC_DOWNLOAD_API_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   seoAppName: {
     value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
     envName: "NEXT_PUBLIC_SEO_APP_NAME",

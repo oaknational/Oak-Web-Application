@@ -1,6 +1,8 @@
 import React, { FC, MutableRefObject } from "react";
 import { useRouter } from "next/router";
 
+import { OakColorName } from "../../../../styles/theme/types";
+
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Flex from "@/components/Flex";
@@ -14,8 +16,8 @@ import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMo
 import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
 import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
-import { P } from "@/components/Typography";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { Span } from "@/components/Typography";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -29,6 +31,9 @@ export type UnitListItemProps = Omit<
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   isUnitOption?: boolean;
   unitOptions?: UnitData[];
+  isExemplarUnit?: boolean;
+  subjectIconBackground?: OakColorName;
+  yearTitle?: string | null;
 };
 
 /**
@@ -54,6 +59,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     firstItemRef,
     isUnitOption,
     yearTitle,
+    isExemplarUnit,
+    subjectIconBackground,
   } = props;
   const router = useRouter();
   const { track } = useAnalytics();
@@ -94,7 +101,13 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  const background = expired ? "oakGrey2" : "teachersLilac";
+  let background: OakColorName = "teachersLilac";
+
+  if (expired) {
+    background = "oakGrey2";
+  } else if (subjectIconBackground) {
+    background = subjectIconBackground;
+  }
 
   return (
     <ListItemCard
@@ -132,10 +145,10 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $gap={[8]}
         $pv={[8, 12]}
       >
-        {!isUnitOption && yearTitle && (
-          <P $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
+        {!isUnitOption && yearTitle && !isExemplarUnit && (
+          <Span $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
             {yearTitle}
-          </P>
+          </Span>
         )}
         <ListItemHeader
           {...props}

@@ -19,7 +19,8 @@ import LessonDownloadsPage, {
 import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
-const props = {
+const props: LessonDownloadsPageProps = {
+  viewType: "teachers",
   curriculumData: lessonDownloadsFixtures(),
 };
 
@@ -64,6 +65,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          viewType: props.viewType,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
@@ -79,6 +81,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          viewType: props.viewType,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
