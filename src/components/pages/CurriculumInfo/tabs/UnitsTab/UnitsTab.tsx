@@ -89,7 +89,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
-    const data = yearData[year]!;
+    const data = yearData[year];
+    if (!data) {
+      throw new Error("year data missing");
+    }
     data.childSubjects.sort((a, b) => {
       if (a.subject_slug === "combined-science") {
         return -1;
@@ -149,19 +152,22 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.tag_id == domain.tag_id;
+    return yearSelection[year]?.domain?.tag_id === domain.tag_id;
   }
 
   function isSelectedSubject(year: string, subject: Subject) {
-    return yearSelection[year]?.subject?.subject_slug == subject.subject_slug;
+    return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
   }
 
   function isSelectedTier(year: string, tier: Tier) {
-    return yearSelection[year]?.tier?.tier_slug == tier.tier_slug;
+    return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
   }
 
   function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year]!;
+    const s = yearSelection[year];
+    if (!s) {
+      throw new Error("year selection missing");
+    }
     const filterBySubject =
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
@@ -214,70 +220,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         </Box>
       </Card>
       <Flex $justifyContent={"space-between"}>
-        {/* <Box $minWidth={"20%"} $maxWidth={"20%"} $mr={10}>
-          <Box>
-            <Box $mb={36}>
-              <Heading
-                tag={"h3"}
-                $font={"heading-6"}
-                $mv={12}
-              >
-                Highlight a thread
-              </Heading>
-              <P $mv={6}>
-                Threads are groups of units across the curriculum that build a
-                common body of knowledge.
-              </P>
-              <RadioGroup>
-                {threads.map((thread) => (
-                  <Box
-                    $ba={1}
-                    $borderColor="grey3"
-                    $borderRadius={4}
-                    $ph={12}
-                    $pt={12}
-                    $mb={6}
-                  >
-                    <Radio
-                      key={thread.slug}
-                      value={thread.slug}
-                      data-testid="thread-option"
-                    >
-                      {thread.title}
-                    </Radio>
-                  </Box>
-                ))}
-              </RadioGroup>
-            </Box>
-            <Box>
-              <Heading
-                tag={"h3"}
-                $font={"heading-6"}
-                $mv={12}
-                data-testid="year-group-heading"
-              >
-                Year group
-              </Heading>
-              <RadioGroup>
-                {years.map((year) => (
-                  <Box
-                    $ba={1}
-                    $borderColor="grey3"
-                    $borderRadius={4}
-                    $ph={12}
-                    $pt={12}
-                    $mb={6}
-                  >
-                    <Radio key={year} value={`${year}`}>
-                      {year}
-                    </Radio>
-                  </Box>
-                ))}
-              </RadioGroup>
-            </Box>
-          </Box>
-        </Box> */}
-
         <Box>
           {Object.keys(yearData).map((year) => {
             const { units, childSubjects, domains, tiers } = yearData[

@@ -129,7 +129,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: "curriculum-overview",
               viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab == "overview",
+              isCurrent: tab === "overview",
               currentStyles: ["underline"],
             },
             {
@@ -137,7 +137,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: "curriculum-units",
               viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab == "units",
+              isCurrent: tab === "units",
               currentStyles: ["underline"],
             },
             {
@@ -145,7 +145,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               page: "curriculum-downloads",
               viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab == "downloads",
+              isCurrent: tab === "downloads",
               currentStyles: ["underline"],
             },
           ]}

@@ -57,7 +57,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
 
-  let tabContent;
+  let tabContent: JSX.Element;
   switch (tab) {
     case "overview":
       tabContent = <OverviewTab data={curriculumOverviewTabData} />;
@@ -68,6 +68,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     case "downloads":
       tabContent = <DownloadsTab data={curriculumDownloadsTabData} />;
       break;
+    default:
+      throw new Error("Not a valid tab");
   }
 
   return (
@@ -108,12 +110,12 @@ export const getStaticPaths = async () => {
 
 export const parseSubjectPhaseSlug = (slug: string) => {
   const parts = slug.split("-");
-  const lastSlug = parts.pop();
-  let phaseSlug, examboardSlug;
-  // Update below if any new examboards are added
+  const lastSlug = parts.pop() ?? null;
+  let phaseSlug: string | null, examboardSlug: string | null;
+  // Hardcoded examboards below - should update to query
   if (lastSlug && ["aqa", "edexcel", "ocr"].includes(lastSlug)) {
     examboardSlug = lastSlug;
-    phaseSlug = parts.pop();
+    phaseSlug = parts.pop() ?? null;
   } else {
     examboardSlug = null;
     phaseSlug = lastSlug;

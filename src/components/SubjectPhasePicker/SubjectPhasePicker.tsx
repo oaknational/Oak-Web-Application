@@ -105,15 +105,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   ];
 
   const initialSubject = subjects.find(
-    (option) => option.slug == currentSelection?.subject.slug
+    (option) => option.slug === currentSelection?.subject.slug
   );
 
   const initialPhase = initialSubject?.phases.find(
-    (option) => option.slug == currentSelection?.phase.slug
+    (option) => option.slug === currentSelection?.phase.slug
   );
 
   const initialExamboard = initialSubject?.examboards?.find(
-    (option) => option.slug == currentSelection?.examboard?.slug
+    (option) => option.slug === currentSelection?.examboard?.slug
   );
 
   const [showSubjects, setShowSubjects] = useState(false);
@@ -160,7 +160,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setSelectedExamboard(null);
     setSelectedPhase(phase);
     if (
-      phase.slug == "primary" ||
+      phase.slug === "primary" ||
       !selectedSubject ||
       !selectedSubject.examboards
     ) {
@@ -190,7 +190,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
     if (
       selectedSubject?.examboards &&
-      selectedPhase?.slug == "secondary" &&
+      selectedPhase?.slug === "secondary" &&
       !selectedExamboard
     ) {
       canViewCurriculum = false;
@@ -225,9 +225,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const isSelected = (option: Subject | Phase | Examboard) => {
     return (
-      option.slug == selectedSubject?.slug ||
-      option.slug == selectedPhase?.slug ||
-      option.slug == selectedExamboard?.slug
+      option.slug === selectedSubject?.slug ||
+      option.slug === selectedPhase?.slug ||
+      option.slug === selectedExamboard?.slug
     );
   };
 
@@ -404,7 +404,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     />
                   </ButtonContainer>
                 ))}
-                {selectedPhase?.slug == "secondary" &&
+                {selectedPhase?.slug === "secondary" &&
                   selectedSubject?.examboards && (
                     <>
                       <Heading

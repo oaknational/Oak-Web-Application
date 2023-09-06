@@ -123,7 +123,7 @@ const buttonStyles = css<ButtonStylesProps>`
   }
 
   ${(props) =>
-    (props.variant === "brush" || props.variant == "brushNav") &&
+    (props.variant === "brush" || props.variant === "brushNav") &&
     css`
       :hover {
         box-shadow: ${props["aria-disabled"]
