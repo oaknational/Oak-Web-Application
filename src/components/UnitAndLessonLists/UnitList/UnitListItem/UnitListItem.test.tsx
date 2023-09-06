@@ -74,7 +74,7 @@ describe("Unit List Item", () => {
 
   test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
     const { getByText } = render(
-      <UnitListItem {...{ ...props, fromSearchPage: true }} />
+      <UnitListItem {...{ ...props, fromSearchPage: true }} />,
     );
 
     const unit = getByText("Numbers and numerals");

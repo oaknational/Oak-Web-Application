@@ -101,7 +101,7 @@ const CardLink = forwardRef<HTMLAnchorElement, CardLinkProps>(
         />
       </Link>
     );
-  }
+  },
 );
 
 export default CardLink;

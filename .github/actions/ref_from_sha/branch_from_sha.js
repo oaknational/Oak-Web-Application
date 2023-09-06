@@ -13,7 +13,7 @@ async function branchFromSha(octokit, repoInfo, sha) {
     {
       ...repoInfo,
       commit_sha: sha,
-    }
+    },
   );
 
   // No matching branches.

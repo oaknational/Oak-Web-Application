@@ -89,7 +89,7 @@ describe("hubspotSubmitForm", () => {
     });
     it("should succeed even if user doesn't have hubspot cookie", async () => {
       getHubspotUserToken.mockImplementationOnce(
-        () => undefined as unknown as string
+        () => undefined as unknown as string,
       );
       const successMessage = await hubspotSubmitForm({
         hubspotFormId,
@@ -118,7 +118,7 @@ describe("hubspotSubmitForm", () => {
       }
 
       expect(errorMessage).toBe(
-        "Thank you, that's been received, but please check as your email doesn't look quite right."
+        "Thank you, that's been received, but please check as your email doesn't look quite right.",
       );
     });
     it("should not report error if fallback succeeds", async () => {
@@ -174,7 +174,7 @@ describe("hubspotSubmitForm", () => {
             isFallbackAttempt: true,
           },
           responseBody: unknownErrorData,
-        }
+        },
       );
     });
   });
@@ -223,7 +223,7 @@ describe("hubspotSubmitForm", () => {
           hubspotError: hubspotErrorData,
           responseBody: hubspotErrorData,
           isInvalidEmail: false,
-        }
+        },
       );
     });
     it("should throw with the correct error message", async () => {
@@ -236,7 +236,7 @@ describe("hubspotSubmitForm", () => {
         errorMessage = error.message;
       }
       expect(errorMessage).toBe(
-        "Sorry, we couldn't sign you up just now, try again later."
+        "Sorry, we couldn't sign you up just now, try again later.",
       );
     });
   });
@@ -274,7 +274,7 @@ describe("hubspotSubmitForm", () => {
         errorMessage = error.message;
       }
       expect(errorMessage).toBe(
-        "Sorry, we couldn't sign you up just now, try again later."
+        "Sorry, we couldn't sign you up just now, try again later.",
       );
     });
     test("error is reported", async () => {
@@ -292,8 +292,8 @@ describe("hubspotSubmitForm", () => {
       server.use(
         rest.post(primaryFormEndpoint, (req, res) =>
           // DEBUG this is now resulting in an OakError, so the following tests fail.
-          res.networkError("Failed to connect")
-        )
+          res.networkError("Failed to connect"),
+        ),
       );
     });
     test("user is displayed correct message", async () => {

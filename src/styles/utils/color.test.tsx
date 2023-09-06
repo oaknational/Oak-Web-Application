@@ -10,7 +10,7 @@ describe("color", () => {
       ${color}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $color="teachersLilac" />
+      <StyledComponent data-testid="test" $color="teachersLilac" />,
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #c6d1ef");
@@ -22,7 +22,7 @@ describe("color", () => {
     const { getByTestId } = renderWithTheme(
       // eslint-disable-next-line
       // @ts-ignore
-      <StyledComponent data-testid="test" $color={["black"]} />
+      <StyledComponent data-testid="test" $color={["black"]} />,
     );
 
     expect(getByTestId("test")).toHaveStyle("color: rgb(0, 0, 0)");

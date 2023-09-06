@@ -75,7 +75,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                   field: { value: fieldValue, onChange, name, onBlur },
                 }) => {
                   const onChangeHandler = (
-                    e: ChangeEvent<HTMLInputElement>
+                    e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     if (e.target.checked) {
                       onChange([...fieldValue, download.type]);
@@ -83,8 +83,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                       onChange(
                         fieldValue.filter(
                           (val: DownloadResourceType | string) =>
-                            val !== download.type
-                        )
+                            val !== download.type,
+                        ),
                       );
                     }
                   };
