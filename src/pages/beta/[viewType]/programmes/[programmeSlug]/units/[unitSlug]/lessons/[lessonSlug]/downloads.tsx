@@ -63,10 +63,12 @@ import curriculumApi2023 from "../../../../../../../../../node-lib/curriculum-ap
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
+  viewType: ViewType;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
+  viewType,
 }) => {
   const {
     lessonTitle,
@@ -206,7 +208,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const { onSubmit } = useDownloadForm();
+  const { onSubmit } = useDownloadForm({ viewType: viewType });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     await debouncedSubmit({
@@ -257,6 +259,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
+    viewType,
   });
 
   const handleEditDetailsCompletedClick = () => {
@@ -521,6 +524,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
       return results;
