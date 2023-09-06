@@ -6,7 +6,7 @@ type earlyReleaseExemplarUnitsFixture = {
 };
 
 const earlyReleaseExemplarUnitsFixture = (
-  partial?: Partial<earlyReleaseExemplarUnitsFixture>
+  partial?: Partial<earlyReleaseExemplarUnitsFixture>,
 ): earlyReleaseExemplarUnitsFixture => {
   return {
     primary: {

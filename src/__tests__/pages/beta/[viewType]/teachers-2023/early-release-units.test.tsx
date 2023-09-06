@@ -15,7 +15,7 @@ const providers = {
 const secondaryUnitTitles =
   earlyReleaseExemplarUnitsFixture().secondary.units.map((unit) => unit.title);
 const primaryUnitTitles = earlyReleaseExemplarUnitsFixture().primary.units.map(
-  (unit) => unit.title
+  (unit) => unit.title,
 );
 
 describe("pages/beta/teachers-2023/early-release-units", () => {
@@ -23,7 +23,7 @@ describe("pages/beta/teachers-2023/early-release-units", () => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
 
     expect(
-      getByRole("heading", { name: "New teaching resources" })
+      getByRole("heading", { name: "New teaching resources" }),
     ).toBeInTheDocument();
   });
 
@@ -36,14 +36,14 @@ describe("pages/beta/teachers-2023/early-release-units", () => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
 
     expect(
-      getByRole("heading", { name: "Secondary units" })
+      getByRole("heading", { name: "Secondary units" }),
     ).toBeInTheDocument();
   });
   test("it renders the primary units component", () => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
 
     expect(
-      getByRole("heading", { name: "Secondary units" })
+      getByRole("heading", { name: "Secondary units" }),
     ).toBeInTheDocument();
   });
   test.each(secondaryUnitTitles)(
@@ -54,7 +54,7 @@ describe("pages/beta/teachers-2023/early-release-units", () => {
       const unit = getByRole("heading", { name: title });
 
       expect(unit).toBeInTheDocument();
-    }
+    },
   );
   test.each(primaryUnitTitles)("it renders the primary %s  unit", (title) => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);

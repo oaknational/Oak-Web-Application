@@ -110,7 +110,6 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
               $colSpan={[12, 6]}
             >
               <UnitListItem
-          
                 isExemplarUnit={true}
                 fromSearchPage={true}
                 subjectIconBackground={subjectIconBackground}
