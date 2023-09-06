@@ -10,13 +10,11 @@ import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, UL, LI, P } from "@/components/Typography";
+import { Heading, UL, LI, P, Hr } from "@/components/Typography";
 import Grid, { GridArea } from "@/components/Grid";
 import Card from "@/components/Card/Card";
 import CardLink from "@/components/Card/CardLink";
-import SubjectPhasePicker, {
-  SubjectPhasePickerData,
-} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -24,6 +22,8 @@ import {
 } from "@/node-lib/isr";
 import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -34,34 +34,32 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
-      <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-        <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[18, 48, 48]}>
-            <Heading
-              $font={["heading-5", "heading-4"]}
-              tag={"h1"}
-              $mt={120}
-              $color={"black"}
-            >
-              Curriculum Resources
-            </Heading>
-            <Heading $font={"heading-light-6"} tag={"h2"} $mv={8}>
-              A collection of high quality resources to support you, whether
-              you're looking for exemplars or help with starting from scratch.
-            </Heading>
+      <Flex $justifyContent={"center"} $background={"mint"}>
+        <MaxWidth $ph={16}>
+          <Box $mt={20}>
+            <Breadcrumbs
+              breadcrumbs={[
+                {
+                  oakLinkProps: { page: "home", viewType: "teachers-2023" },
+                  label: "Home",
+                },
+                {
+                  oakLinkProps: {
+                    page: "curriculum-landing-page",
+                    viewType: "teachers-2023",
+                  },
+                  label: "Curriculum resources",
+                },
+              ]}
+            />
+            <Hr $color={"white"} $mb={0} />
           </Box>
+          <Flex $mt={[24, 80]} $mb={[80]}>
+            <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
+          </Flex>
         </MaxWidth>
       </Flex>
-      <Flex $background={"white"} $pv={[48]}>
-        <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[24]}>
-            <Heading tag={"h2"} $font={"heading-light-6"} $mb={16}>
-              Oak's Curricula
-            </Heading>
-            <SubjectPhasePicker {...subjectPhaseOptions} />
-          </Box>
-        </MaxWidth>
-      </Flex>
+
       <Flex
         $background={"teachersPastelYellow"}
         $justifyContent={"center"}
@@ -220,6 +218,7 @@ export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
+
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       subjectPhaseOptions: data,
