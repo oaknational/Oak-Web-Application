@@ -8,7 +8,7 @@ describe("Component - Overview Tab", () => {
     const { getAllByTestId } = renderWithTheme(
       <OverviewTab data={curriculumOverviewTabFixture()} />
     );
-    const subjectPrinciples = await getAllByTestId("subjectPrinciples");
+    const subjectPrinciples = await getAllByTestId("subject-principles");
     expect(subjectPrinciples).toHaveLength(
       curriculumOverviewTabFixture().subjectPrinciples.length
     );

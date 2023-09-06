@@ -88,7 +88,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               <LI
                 $mb={[12]}
                 key={`principle-${i + 1}`}
-                data-testid="subjectPrinciples"
+                data-testid="subject-principles"
               >
                 <Flex $alignItems={"center"}>
                   <Flex

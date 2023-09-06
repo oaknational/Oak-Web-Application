@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import DownloadTab from "@/components/pages/CurriculumInfo/tabs/DownloadTab/DownloadTab";
+import DownloadsTab from "@/components/pages/CurriculumInfo/tabs/DownloadsTab/DownloadsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
@@ -41,7 +41,7 @@ export type CurriculumInfoPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewTabData;
   curriculumUnitsTabData: CurriculumUnitsTabData;
-  curriculumDownloadTabData: CurriculumDownloadsTabData;
+  curriculumDownloadsTabData: CurriculumDownloadsTabData;
 };
 
 const VALID_TABS = ["overview", "units", "downloads"] as const;
@@ -52,7 +52,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   subjectPhaseOptions,
   curriculumOverviewTabData,
   curriculumUnitsTabData,
-  curriculumDownloadTabData,
+  curriculumDownloadsTabData,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
@@ -66,7 +66,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
       break;
     case "downloads":
-      tabContent = <DownloadTab data={curriculumDownloadTabData} />;
+      tabContent = <DownloadsTab data={curriculumDownloadsTabData} />;
       break;
   }
 
@@ -106,7 +106,6 @@ export const getStaticPaths = async () => {
   return config;
 };
 
-// Move to single [tab].tsx page when created, update other imports
 export const parseSubjectPhaseSlug = (slug: string) => {
   const parts = slug.split("-");
   const lastSlug = parts.pop();
@@ -143,7 +142,7 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      const tab = context.params.tab as CurriculumTab;
+      const tab = context.params.tab;
       if (!VALID_TABS.includes(tab)) {
         throw new OakError({
           code: "curriculum-api/not-found",
@@ -154,9 +153,8 @@ export const getStaticProps: GetStaticProps<
         slugs
       );
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
-      const curriculumDownloadTabData = await curriculumApi.curriculumDownloads(
-        slugs
-      );
+      const curriculumDownloadsTabData =
+        await curriculumApi.curriculumDownloads(slugs);
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -164,7 +162,7 @@ export const getStaticProps: GetStaticProps<
           subjectPhaseOptions,
           curriculumOverviewTabData,
           curriculumUnitsTabData,
-          curriculumDownloadTabData,
+          curriculumDownloadsTabData,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

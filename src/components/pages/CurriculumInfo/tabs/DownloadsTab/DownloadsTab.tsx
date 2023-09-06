@@ -4,14 +4,14 @@ import Box from "@/components/Box/Box";
 import { Heading, LI, UL } from "@/components/Typography";
 import { CurriculumDownloadsTabData } from "@/node-lib/curriculum-api-2023";
 
-type DownloadTabProps = {
+type DownloadsTabProps = {
   data: CurriculumDownloadsTabData;
 };
 
-const DownloadTab: FC<DownloadTabProps> = (props: DownloadTabProps) => {
+const DownloadsTab: FC<DownloadsTabProps> = (props: DownloadsTabProps) => {
   return (
     <Box $maxWidth={"80%"} $ma={"auto"} $pb={80}>
-      <Heading tag="h1" $font={"heading-2"} data-testid="heading">
+      <Heading tag="h1" $font={"heading-2"} data-testid="downloads-heading">
         Downloads
       </Heading>
       <UL>
@@ -22,4 +22,4 @@ const DownloadTab: FC<DownloadTabProps> = (props: DownloadTabProps) => {
     </Box>
   );
 };
-export default DownloadTab;
+export default DownloadsTab;

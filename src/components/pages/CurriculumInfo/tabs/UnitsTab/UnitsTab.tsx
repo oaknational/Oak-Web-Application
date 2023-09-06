@@ -9,8 +9,6 @@ import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import OakLink from "@/components/OakLink/OakLink";
 import Button from "@/components/Button/Button";
-// import Radio from "@/components/RadioButtons/Radio";
-// import RadioGroup from "@/components/RadioButtons/RadioGroup";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -91,10 +89,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
-    const data = yearData[year];
-    if (!data) {
-      throw new Error(`No data found for year ${year}`);
-    }
+    const data = yearData[year]!;
     data.childSubjects.sort((a, b) => {
       if (a.subject_slug === "combined-science") {
         return -1;
@@ -105,12 +100,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       }
     });
     if (data.domains.length > 0) {
-      data.domains
-        .sort((a, b) => Number(a.tag_id) - Number(b.tag_id))
-        .unshift({
-          title: "All",
-          tag_id: null,
-        });
+      data.domains.sort((a, b) => Number(a.tag_id) - Number(b.tag_id));
+      data.domains.unshift({
+        title: "All",
+        tag_id: null,
+      });
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
     initialYearSelection[year] = {
@@ -167,7 +161,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year] || {};
+    const s = yearSelection[year]!;
     const filterBySubject =
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
@@ -209,7 +203,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             tag={"h2"}
             $font={"heading-7"}
             $mb={12}
-            data-testid="heading"
+            data-testid="units-heading"
           >
             Introducing our new curriculum sequence for 2023/2024!
           </Heading>
@@ -247,7 +241,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Radio
                       key={thread.slug}
                       value={thread.slug}
-                      data-testid="threadOption"
+                      data-testid="thread-option"
                     >
                       {thread.title}
                     </Radio>
@@ -260,7 +254,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                 tag={"h3"}
                 $font={"heading-6"}
                 $mv={12}
-                data-testid="heading"
+                data-testid="year-group-heading"
               >
                 Year group
               </Heading>
@@ -306,6 +300,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         label={subject.subject}
                         onClick={() => handleSelectSubject(year, subject)}
                         size="small"
+                        data-testid="subject-button"
                       />
                     ))}
                   </Box>
@@ -322,6 +317,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         label={domain.title}
                         onClick={() => handleSelectDomain(year, domain)}
                         size="small"
+                        data-testid="domain-button"
                       />
                     ))}
                   </Box>
@@ -338,6 +334,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         variant="minimal"
                         isCurrent={isSelectedTier(year, tier)}
                         currentStyles={["underline"]}
+                        data-testid="tier-button"
                       />
                     ))}
                   </Box>
@@ -355,7 +352,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           $pb={64}
                           $width={["100%", "calc(33% - 16px)"]}
                           $borderRadius={8}
-                          data-testid={"unitCard"}
+                          data-testid={"unit-card"}
                           $position={"relative"}
                           $flexGrow={"unset"}
                         >
@@ -376,7 +373,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                               viewType="teachers-2023"
                               programmeSlug={buildProgrammeSlug(unit)}
                               unitSlug={unit.slug}
-                              data-testid="unitLink"
+                              data-testid="unit-link"
                             >
                               Unit info
                               <Icon
