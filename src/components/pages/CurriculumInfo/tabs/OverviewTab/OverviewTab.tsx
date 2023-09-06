@@ -7,9 +7,9 @@ import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import AvatarImage from "@/components/AvatarImage/AvatarImage";
-import OakLink from "@/components/OakLink/OakLink";
+// import OakLink from "@/components/OakLink/OakLink";
 import Icon from "@/components/Icon/Icon";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+// import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
 
@@ -19,12 +19,12 @@ type OverviewTabProps = {
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { data, slug } = props;
+  const { data } = props;
   const {
     subjectPrinciples,
     curriculaDesc,
     partnerBio,
-    videoGuideDesc,
+    // videoGuideDesc,
     subjectSlug,
   } = data;
   return (
@@ -74,7 +74,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           />
         </Card>
       </Flex>
-
       <Card $maxWidth={"100%"} $background={"aqua30"} $zIndex={"neutral"}>
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
@@ -107,7 +106,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
 
-      <Box $maxWidth={"100%"} $pt={80} $pb={80}>
+      {/** ! COMMENTED OUT VIDEO SECTION, AS IT IS NOT YET AVAILABLE */}
+      {/* <Box $maxWidth={"100%"} $pt={80} $pb={80}>
         <Flex $justifyContent={"space-around"}>
           <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
             Video here
@@ -145,9 +145,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             />
           </Flex>
         </Flex>
-      </Box>
+      </Box> */}
 
-      <Card $background={"lemon30"} $width={"100%"}>
+      <Card $background={"lemon30"} $width={"100%"} $mt={80}>
         <BrushBorders color="lemon30" />
         <Flex $justifyContent={"center"} $pa={16}>
           <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
