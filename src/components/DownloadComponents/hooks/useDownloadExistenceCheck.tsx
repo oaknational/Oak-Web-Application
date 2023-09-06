@@ -6,15 +6,22 @@ import type {
 } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
+import { ViewType } from "@/common-lib/urls";
+import OakError from "@/errors/OakError";
+import errorReporter from "@/common-lib/error-reporter";
+
+const reportError = errorReporter("useDownloadExistenceCheck");
+
 type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
   resourcesToCheck: ResourcesToDownloadArrayType;
   onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
+  viewType: ViewType;
 };
 
 const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
   const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
-  const { resourcesToCheck, onComplete, lessonSlug } = props;
+  const { resourcesToCheck, onComplete, lessonSlug, viewType } = props;
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
@@ -30,6 +37,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
+            viewType,
           );
 
         const resourcesExistenceAsArray = resourceExistence
@@ -50,12 +58,14 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           filteredResourcesExistenceAsArray as ResourcesToDownloadArrayType,
         );
       } catch (error) {
-        console.log(error);
-        // @todo: add Bugsnag reporting
-        // Bugsnag.notify(error);
+        const oakError = new OakError({
+          code: "downloads/failed-to-fetch",
+          originalError: error,
+        });
+        reportError(oakError);
       }
     })();
-  }, [lessonSlug, hasCheckedFiles, resourcesToCheck, onComplete]);
+  }, [lessonSlug, hasCheckedFiles, resourcesToCheck, onComplete, viewType]);
 };
 
 export default useDownloadExistenceCheck;

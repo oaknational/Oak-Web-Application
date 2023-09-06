@@ -29,7 +29,8 @@
       "CURRICULUM_API_AUTH_KEY",
       "CURRICULUM_API_2023_AUTH_KEY"
     ],
-    "vercelApiUrl": "https://api.thenational.academy"
+    "vercelApiUrl": "https://api.thenational.academy",
+    "downloadApiUrl": "https://downloads-api.thenational.academy"
   },
   "posthog": {
     "apiHost": "http://localhost:8899",

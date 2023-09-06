@@ -27,6 +27,7 @@ import HeaderListing from "@/components/HeaderListing";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
+  viewType: ViewType;
 };
 
 /**
@@ -47,6 +48,7 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
+  viewType,
 }) => {
   const {
     unitSlug,
@@ -120,6 +122,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
+        isNew={viewType === "teachers-2023"}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -188,6 +191,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
       return results;

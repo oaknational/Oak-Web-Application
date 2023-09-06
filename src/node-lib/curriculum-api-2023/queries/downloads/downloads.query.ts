@@ -12,7 +12,6 @@ const lessonDownloadsQuery =
     lessonSlug: string;
   }) => {
     const res = await sdk.lessonDownloads(args);
-
     const [downloads] = res.downloads;
 
     if (!downloads) {

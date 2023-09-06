@@ -58,11 +58,26 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should fetch the correct data", async () => {
+    it("Should call legacy API:subjectListing on 'teachers'", async () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
           viewType: "teachers",
+        },
+      });
+
+      expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
+        keyStageSlug: "ks123",
+      });
+      expect(
+        curriculumApi2023.default.subjectListingPage,
+      ).not.toHaveBeenCalled();
+    });
+    it("Should call both API::subjectListing on 'teachers-2023'", async () => {
+      await getStaticProps({
+        params: {
+          keyStageSlug: "ks123",
+          viewType: "teachers-2023",
         },
       });
 

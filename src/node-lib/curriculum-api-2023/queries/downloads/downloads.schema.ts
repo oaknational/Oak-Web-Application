@@ -12,6 +12,8 @@ export const lessonDownloadsSchema = z.object({
         "exit-quiz-answers",
         "worksheet-pdf",
         "worksheet-pptx",
+        "supplementary-pdf",
+        "supplementary-pptx",
       ]),
       label: z.string(),
       ext: z.string(),
