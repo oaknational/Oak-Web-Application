@@ -31,7 +31,7 @@ describe("pages/beta/curriculum/index", () => {
     render(<CurriculumHomePage {...props} />);
     expect(SubjectPhasePicker).toHaveBeenCalledWith(
       props.subjectPhaseOptions,
-      expect.anything()
+      expect.anything(),
     );
   });
 
