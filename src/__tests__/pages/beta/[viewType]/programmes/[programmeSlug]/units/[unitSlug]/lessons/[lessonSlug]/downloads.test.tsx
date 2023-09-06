@@ -5,22 +5,23 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import waitForNextTick from "../../../../../../../../../__helpers__/waitForNextTick";
-import renderWithSeo from "../../../../../../../../../__helpers__/renderWithSeo";
-import { mockSeoResult } from "../../../../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../../../../__helpers__/renderWithProviders";
-import "../../../../../../../../../__helpers__/LocalStorageMock";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import "@/__tests__/__helpers__/LocalStorageMock";
 import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "../../../../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import useLocalStorageForDownloads from "../../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import lessonDownloadsFixtures from "../../../../../../../../../../node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+} from "@/pages/beta/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
-const props = {
+const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
+  viewType: "teachers",
 };
 
 const getDownloadResourcesExistenceData = {
@@ -32,7 +33,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "../../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  "@/components/DownloadComponents/helpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -40,7 +41,7 @@ jest.mock(
 );
 
 jest.mock(
-  "../../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  "@/components/DownloadComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
@@ -64,6 +65,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          ...props,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
@@ -79,6 +81,7 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     render(
       <LessonDownloadsPage
         {...{
+          ...props,
           curriculumData: {
             ...props.curriculumData,
             downloads: [],
