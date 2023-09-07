@@ -239,36 +239,52 @@ export const getStaticProps: GetStaticProps<
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
 
-  const blogs = await CMSClient.blogPosts({
-    previewMode: true,
-  });
+  // const blogs = await CMSClient.blogPosts({
+  //   previewMode: true,
+  // });
 
-  const serializedPost = blogs
-    .filter((blog) => {
-      return (
-        blog.slug === "how-to-design-a-subject-curriculum" ||
-        blog.slug === "how-to-refresh-your-curriculum-using-oak-units" ||
-        blog.slug === "how-to-design-a-unit-of-study"
-      );
-    })
-    .map(serializeDate);
+  const b = await CMSClient.blogPostBySlug(
+    "how-to-design-a-subject-curriculum",
+  );
+
+  const c = await CMSClient.blogPostBySlug(
+    "how-to-refresh-your-curriculum-using-oak-units",
+  );
+
+  const d = await CMSClient.blogPostBySlug("how-to-design-a-unit-of-study");
+
+  const blogs = [];
+  if (b !== null && c !== null && d !== null) {
+    blogs.push([b, c, d].map(serializeDate));
+  }
+
+  const posts = blogs.flat();
+  // const serializedPost = blogs
+  //   .filter((blog) => {
+  //     return (
+  //       blog.slug === "how-to-design-a-subject-curriculum" ||
+  //       blog.slug === "how-to-refresh-your-curriculum-using-oak-units" ||
+  //       blog.slug === "how-to-design-a-unit-of-study"
+  //     );
+  //   })
+  //   .map(serializeDate);
 
   // TEMPORARY (HACKY) REARRANGEMENT FOR BLOGS ORDER
-  const posts = serializedPost.sort((a, b) => {
-    const slugOrder: { [key: string]: number } = {
-      "how-to-design-a-subject-curriculum": 1,
-      "how-to-refresh-your-curriculum-using-oak-units": 2,
-      "how-to-design-a-unit-of-study": 3,
-    };
-    const slugA = a.slug;
-    const slugB = b.slug;
-    const orderA = slugOrder[slugA];
-    const orderB = slugOrder[slugB];
-    if (!orderA || !orderB) {
-      throw new Error("Missing order for blog post");
-    }
-    return orderA - orderB;
-  });
+  // const posts = serializedPost.sort((a, b) => {
+  //   const slugOrder: { [key: string]: number } = {
+  //     "how-to-design-a-subject-curriculum": 1,
+  //     "how-to-refresh-your-curriculum-using-oak-units": 2,
+  //     "how-to-design-a-unit-of-study": 3,
+  //   };
+  //   const slugA = a.slug;
+  //   const slugB = b.slug;
+  //   const orderA = slugOrder[slugA];
+  //   const orderB = slugOrder[slugB];
+  //   if (!orderA || !orderB) {
+  //     throw new Error("Missing order for blog post");
+  //   }
+  //   return orderA - orderB;
+  // });
 
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
