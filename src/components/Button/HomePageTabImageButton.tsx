@@ -17,9 +17,7 @@ import {
 } from "./NewFocusUndeline";
 import { CommonButtonProps, HTMLButtonProps } from "./common";
 
-import { getIllustrationAsset , IllustrationSlug } from "@/image-data";
-
-
+import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
 
 export type ButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -96,7 +94,7 @@ const HomePageTabImageButton = forwardRef<HTMLButtonElement, ButtonProps>(
         </Flex>
       </StyledButton>
     );
-  }
+  },
 );
 
 export default HomePageTabImageButton;
