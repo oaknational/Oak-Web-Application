@@ -26,11 +26,17 @@ const EarlyReleaseUnits: NextPage = () => {
           $mb={[24, 92]}
           $flexDirection={"column"}
         >
-          <Heading $mt={[24, 48]} $mb={[16, 32]} $font={"heading-3"} tag={"h2"}>
+          <Heading
+            $mt={[24, 48]}
+            $mb={[20, 36]}
+            $mh={[16, 0]}
+            $font={["heading-4", "heading-3"]}
+            tag={"h2"}
+          >
             Designed for your classroom
           </Heading>
           <Grid $rg={32} $cg={32}>
-            <GridArea $colSpan={[12, 4]}>
+            <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
               <Card $background={"teachersPastelYellow"}>
                 <BrushBorders color={"teachersPastelYellow"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
@@ -42,7 +48,7 @@ const EarlyReleaseUnits: NextPage = () => {
                 </P>
               </Card>
             </GridArea>
-            <GridArea $colSpan={[12, 4]}>
+            <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
               <Card $background={"teachersPastelYellow"}>
                 <BrushBorders color={"teachersPastelYellow"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
@@ -54,7 +60,7 @@ const EarlyReleaseUnits: NextPage = () => {
                 </P>
               </Card>
             </GridArea>
-            <GridArea $colSpan={[12, 4]}>
+            <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
               <Card $background={"teachersPastelYellow"}>
                 <BrushBorders color={"teachersPastelYellow"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
