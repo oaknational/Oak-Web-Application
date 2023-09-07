@@ -1,13 +1,13 @@
 import { EarlyReleaseExemplarUnitsProps } from "@/components/EarlyReleaseExemplarUnits/EarlyReleaseExemplarUnits";
 
-type earlyReleaseExemplarUnitsFixture = {
+type earlyReleaseExemplarUnitsFixtureProps = {
   primary: EarlyReleaseExemplarUnitsProps;
   secondary: EarlyReleaseExemplarUnitsProps;
 };
 
 const earlyReleaseExemplarUnitsFixture = (
-  partial?: Partial<earlyReleaseExemplarUnitsFixture>,
-): earlyReleaseExemplarUnitsFixture => {
+  partial?: Partial<earlyReleaseExemplarUnitsFixtureProps>,
+): earlyReleaseExemplarUnitsFixtureProps => {
   return {
     primary: {
       viewType: "teachers-2023",
@@ -27,7 +27,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks1",
           yearTitle: "Year 1",
           keyStageTitle: "Key stage 1",
-          subjectTitle: "english",
+          subjectTitle: "English",
           subjectSlug: "english",
           slug: "wild-reading-and-writing",
           programmeSlug: "english-primary-ks1",
@@ -46,7 +46,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks2",
           yearTitle: "Year 3",
           keyStageTitle: "Key stage 2",
-          subjectTitle: "english",
+          subjectTitle: "English",
           subjectSlug: "english",
           slug: "simple-compound-and-adverbial-complex-sentences",
           programmeSlug: "english-primary-ks2",
@@ -65,7 +65,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks1",
           yearTitle: "Year 1",
           keyStageTitle: "Key stage 1",
-          subjectTitle: "geography",
+          subjectTitle: "Geography",
           subjectSlug: "geography",
           slug: "local-area-why-is-our-place-special",
           programmeSlug: "geography-primary-ks1",
@@ -84,7 +84,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks2",
           yearTitle: "Year 5",
           keyStageTitle: "Key stage 2",
-          subjectTitle: "geography",
+          subjectTitle: "Geography",
           subjectSlug: "geography",
           slug: "south-america-why-does-the-amazon-matter",
           programmeSlug: "geography-primary-ks2",
@@ -104,7 +104,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks1",
           yearTitle: "Year 1",
           keyStageTitle: "Key stage 1",
-          subjectTitle: "history",
+          subjectTitle: "History",
           subjectSlug: "history",
           slug: "travel-and-transport-how-has-travel-and-transport-changed-over-time",
           programmeSlug: "history-primary-ks1",
@@ -123,7 +123,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks2",
           yearTitle: "Year 5",
           keyStageTitle: "Key stage 2",
-          subjectTitle: "history",
+          subjectTitle: "History",
           subjectSlug: "history",
           slug: "the-romans-what-impact-did-the-romans-have-on-britain",
           programmeSlug: "history-primary-ks2",
@@ -142,7 +142,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks1",
           yearTitle: "Year 1",
           keyStageTitle: "Key stage 1",
-          subjectTitle: "maths",
+          subjectTitle: "Maths",
           subjectSlug: "maths",
           slug: "counting-to-and-from-20",
           programmeSlug: "maths-primary-ks1",
@@ -161,7 +161,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks2",
           yearTitle: "Year 6",
           keyStageTitle: "Key stage 2",
-          subjectTitle: "maths",
+          subjectTitle: "Maths",
           subjectSlug: "maths",
           slug: "ratio-and-proportion",
           programmeSlug: "maths-primary-ks2",
@@ -180,7 +180,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks1",
           yearTitle: "Year 1",
           keyStageTitle: "Key stage 1",
-          subjectTitle: "science",
+          subjectTitle: "Science",
           subjectSlug: "science",
           slug: "growing-plants",
           programmeSlug: "science-primary-ks1",
@@ -199,7 +199,7 @@ const earlyReleaseExemplarUnitsFixture = (
           keyStageSlug: "ks2",
           yearTitle: "Year 5",
           keyStageTitle: "Key stage 2",
-          subjectTitle: "science",
+          subjectTitle: "Science",
           subjectSlug: "science",
           slug: "earth-sun-and-moon",
           programmeSlug: "science-primary-ks2",
@@ -230,7 +230,7 @@ const earlyReleaseExemplarUnitsFixture = (
         {
           title: "Surds",
           lessonCount: 12,
-          subjectTitle: "maths",
+          subjectTitle: "Maths",
           keyStageSlug: "ks4",
           yearTitle: "Year 10",
           slug: "surds",
@@ -250,7 +250,7 @@ const earlyReleaseExemplarUnitsFixture = (
           title:
             "Migration: How far was England changed by early modern migration?",
           lessonCount: 7,
-          subjectTitle: "history",
+          subjectTitle: "History",
           keyStageSlug: "ks4",
           yearTitle: "Year 10",
           slug: "migration-how-far-was-england-changed-by-early-modern-migration",
@@ -270,7 +270,7 @@ const earlyReleaseExemplarUnitsFixture = (
           title:
             "The Norman Conquest: How do we know about the impact of the Conquest on England?",
           lessonCount: 6,
-          subjectTitle: "history",
+          subjectTitle: "History",
           keyStageSlug: "ks3",
           yearTitle: "Year 7",
           slug: "the-norman-conquest-how-do-we-know-about-the-impact-of-the-conquest-on-england",
@@ -289,7 +289,7 @@ const earlyReleaseExemplarUnitsFixture = (
         {
           title: "Plant nutrition and photosynthesis",
           lessonCount: 4,
-          subjectTitle: "science",
+          subjectTitle: "Science",
           keyStageSlug: "ks3",
           yearTitle: "Year 9",
           slug: "plant-nutrition-and-photosynthesis",
@@ -307,7 +307,7 @@ const earlyReleaseExemplarUnitsFixture = (
         },
         {
           title: "Measuring waves",
-          subjectTitle: "physics",
+          subjectTitle: "Physics",
           keyStageSlug: "ks4",
           yearTitle: "Year 10",
           slug: "measuring-waves",
@@ -327,7 +327,7 @@ const earlyReleaseExemplarUnitsFixture = (
         {
           title: "Macbeth and masculinity: the struggle for power",
           lessonCount: 7,
-          subjectTitle: "english",
+          subjectTitle: "English",
           keyStageSlug: "ks4",
           yearTitle: "Year 11",
           slug: "",
@@ -346,7 +346,7 @@ const earlyReleaseExemplarUnitsFixture = (
         {
           title: "Victorian childhood",
           lessonCount: 7,
-          subjectTitle: "english",
+          subjectTitle: "English",
           keyStageSlug: "ks3",
           yearTitle: "Year 8",
           slug: "victorian-childhood",
@@ -364,7 +364,7 @@ const earlyReleaseExemplarUnitsFixture = (
         },
         {
           title: "Instrumental fluency: Introduction to keyboard playing",
-          subjectTitle: "music",
+          subjectTitle: "Music",
           keyStageSlug: "ks3",
           yearTitle: "Year 7",
           slug: "instrumental-fluency-introduction-to-keyboard-playing",
@@ -383,7 +383,7 @@ const earlyReleaseExemplarUnitsFixture = (
         },
         {
           title: "Free Composition Exemplars",
-          subjectTitle: "music",
+          subjectTitle: "Music",
           keyStageSlug: "ks4",
           yearTitle: "Year 11",
           slug: "",
@@ -403,7 +403,7 @@ const earlyReleaseExemplarUnitsFixture = (
         {
           title: "Perimeter and area",
           lessonCount: 12,
-          subjectTitle: "maths",
+          subjectTitle: "Maths",
           keyStageSlug: "ks3",
           yearTitle: "Year 7",
           slug: "perimeter-and-area",
