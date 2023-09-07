@@ -29,7 +29,7 @@ const EarlyReleaseUnits: NextPage = () => {
           <Heading $mt={[24, 48]} $mb={[16, 32]} $font={"heading-3"} tag={"h2"}>
             Designed for your classroom
           </Heading>
-          <Grid $cg={32}>
+          <Grid $rg={32} $cg={32}>
             <GridArea $colSpan={[12, 4]}>
               <Card $background={"teachersPastelYellow"}>
                 <BrushBorders color={"teachersPastelYellow"} />

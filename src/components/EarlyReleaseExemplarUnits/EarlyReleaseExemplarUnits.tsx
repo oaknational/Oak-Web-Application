@@ -102,9 +102,9 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
           </GridArea>
         </Grid>
         <Grid $cg={16} role={"list"} $background={color}>
-          {units.map((unit, index) => (
+          {units.map((unit) => (
             <GridArea
-              key={`${unit.slug}:${index}`}
+              key={`${unit.slug}:${unit.index}`}
               role={"listitem"}
               $order={3}
               $colSpan={[12, 6]}
@@ -121,8 +121,8 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
           <GridArea $order={4} $colSpan={[12, 12]}>
             <Flex
               $justifyContent={"flex-end"}
-              $mb={[20, 56]}
-              $mt={[20, 40]}
+              $mb={[56, 56]}
+              $mt={[40, 40]}
               $mr={4}
             >
               <ButtonAsLink
