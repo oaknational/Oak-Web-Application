@@ -47,7 +47,7 @@ const StyledButton = styled(UnstyledButton)<UnstyledButtonProps>`
   ${typography}
   ${newIconFocusUnderline}
 `;
-const TabImageButton = forwardRef<HTMLButtonElement, ButtonProps>(
+const HomePageTabImageButton = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       onClick,
@@ -99,4 +99,4 @@ const TabImageButton = forwardRef<HTMLButtonElement, ButtonProps>(
   }
 );
 
-export default TabImageButton;
+export default HomePageTabImageButton;

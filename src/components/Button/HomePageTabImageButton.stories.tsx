@@ -2,10 +2,10 @@ import React from "react";
 // import { ComponentStory, ComponentMeta } from "@storybook/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./TabImageButton";
+import Component from "./HomePageTabImageButton";
 
 const meta: Meta<typeof Component> = {
-  title: "Buttons/TabImageButton",
+  title: "Buttons/HomePageTabImageButton",
 
   component: Component,
   argTypes: {
@@ -19,7 +19,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const TabImageButton: Story = {
+export const HomePageTabImageButton: Story = {
   args: {
     imageSlug: "teacher-carrying-stuff",
     label: "Teaching Resources",
