@@ -9,6 +9,7 @@ import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import OakLink from "@/components/OakLink/OakLink";
 import Button from "@/components/Button/Button";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -226,15 +227,23 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               year
             ] as (typeof yearData)[string];
             return (
-              <Box key={year} $background={"pink30"} $pt={16} $pl={16} $mb={36}>
-                <Heading tag="h4" $font={"heading-4"} $mb={16}>
+              <Box
+                key={year}
+                $background={"pink30"}
+                $pt={32}
+                $pl={30}
+                $mb={32}
+                $borderRadius={4}
+              >
+                <Heading tag="h4" $font={"heading-4"} $mb={32}>
                   Year {year}
                 </Heading>
                 {childSubjects.length > 0 && (
-                  <Box $mb={16}>
+                  <Box>
                     {childSubjects.map((subject) => (
                       <Button
-                        $mr={16}
+                        $mr={20}
+                        $mb={16}
                         background={
                           isSelectedSubject(year, subject) ? "black" : "white"
                         }
@@ -248,10 +257,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                   </Box>
                 )}
                 {domains.length > 0 && (
-                  <Box $mb={16}>
+                  <Box>
                     {domains.map((domain) => (
                       <Button
-                        $mr={16}
+                        $mr={20}
+                        $mb={16}
                         background={
                           isSelectedDomain(year, domain) ? "black" : "white"
                         }
@@ -265,7 +275,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                   </Box>
                 )}
                 {tiers.length > 0 && (
-                  <Box $mb={16}>
+                  <Box $mb={32}>
                     {tiers.map((tier) => (
                       <Button
                         $mr={16}
@@ -289,15 +299,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         <Card
                           key={unit.slug}
                           $background={"white"}
-                          $mb={16}
-                          $mr={16}
+                          $mb={32}
+                          $mr={28}
                           $pb={64}
-                          $width={["100%", "calc(33% - 16px)"]}
-                          $borderRadius={8}
+                          $width={["100%", "calc(33% - 26px)"]}
                           data-testid={"unit-card"}
                           $position={"relative"}
                           $flexGrow={"unset"}
                         >
+                          <BrushBorders color={"white"} />
                           <OutlineHeading tag={"h3"} $fontSize={24} $mb={12}>
                             {index + 1}
                           </OutlineHeading>
