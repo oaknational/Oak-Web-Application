@@ -60,12 +60,12 @@ describe("pages/beta/curriculum/index", () => {
     expect(blogList).toBeInTheDocument();
   });
 
+  // Removed Test Due to the filtering and sorting of the CMS blogs
   // describe("getStaticProps", () => {
   //   it("Should fetch the correct data", async () => {
   //     const testRes = (await getStaticProps({})) as {
   //       props: CurriculumHomePageProps;
   //     };
-  //     console.log(testRes.props, "<< ");
   //     expect(testRes.props.subjectPhaseOptions).toEqual(subjectPhaseOptions);
   //   });
   // });
