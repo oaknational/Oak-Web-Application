@@ -2,7 +2,6 @@ import { screen } from "@testing-library/react";
 
 import CurriculumHomePage, {
   getStaticPaths,
-  // getStaticProps,
   CurriculumHomePageProps,
 } from "@/pages/beta/[viewType]/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -59,16 +58,6 @@ describe("pages/beta/curriculum/index", () => {
     const blogList = screen.getByTestId("blog-list");
     expect(blogList).toBeInTheDocument();
   });
-
-  // Removed Test Due to the filtering and sorting of the CMS blogs
-  // describe("getStaticProps", () => {
-  //   it("Should fetch the correct data", async () => {
-  //     const testRes = (await getStaticProps({})) as {
-  //       props: CurriculumHomePageProps;
-  //     };
-  //     expect(testRes.props.subjectPhaseOptions).toEqual(subjectPhaseOptions);
-  //   });
-  // });
 
   describe("getStaticPaths", () => {
     it("Shouldn't return any paths when shouldSkipInitialBuild is true", async () => {

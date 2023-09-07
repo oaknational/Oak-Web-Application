@@ -126,7 +126,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </UL>
               <Typography $font={"heading-7"} $mb={12}>
                 <OakLink
-                  page={"webinar-index"}
+                  page={"blog-single"}
+                  blogSlug="our-approach-to-curriculum"
                   $display={"flex"}
                   $alignItems={"center"}
                 >
@@ -144,7 +145,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $mr={[0, 12, 0]}
           >
             <Box $pl={[24, 48]} $pr={[24, 48]} $pt={48} $mb={[48, 0]}>
-              <Heading tag="h3" $font={"heading-4"} $mb={24}>
+              <Heading tag="h2" $font={"heading-4"} $mb={24}>
                 Our blogs on curriculum design
               </Heading>
               {curriculumBlogs.length ? (
