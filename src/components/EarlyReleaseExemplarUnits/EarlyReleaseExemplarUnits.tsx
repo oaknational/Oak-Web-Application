@@ -58,7 +58,7 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
                   $mt={[8, 8, 10]}
                 />
               </Flex>
-              <Heading $font={"heading-7"} tag={"h3"}>
+              <Heading $font={"heading-light-7"} tag={"h3"}>
                 {subHeading}
               </Heading>
             </Flex>
