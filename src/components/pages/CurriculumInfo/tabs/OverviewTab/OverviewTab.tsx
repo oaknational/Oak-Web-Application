@@ -7,9 +7,7 @@ import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import AvatarImage from "@/components/AvatarImage/AvatarImage";
-// import OakLink from "@/components/OakLink/OakLink";
 import Icon from "@/components/Icon/Icon";
-// import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
 
@@ -20,13 +18,7 @@ type OverviewTabProps = {
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { data } = props;
-  const {
-    subjectPrinciples,
-    curriculaDesc,
-    partnerBio,
-    // videoGuideDesc,
-    subjectSlug,
-  } = data;
+  const { subjectPrinciples, curriculaDesc, partnerBio, subjectSlug } = data;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
@@ -74,7 +66,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           />
         </Card>
       </Flex>
-      <Card $maxWidth={"100%"} $background={"aqua30"} $zIndex={"neutral"}>
+      <Card
+        $maxWidth={"100%"}
+        $background={"aqua30"}
+        $zIndex={"neutral"}
+        $mb={80}
+      >
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
           <Heading tag="h2" $font={["heading-5", "heading-6"]}>
@@ -106,48 +103,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
 
-      {/** ! COMMENTED OUT VIDEO SECTION, AS IT IS NOT YET AVAILABLE */}
-      {/* <Box $maxWidth={"100%"} $pt={80} $pb={80}>
-        <Flex $justifyContent={"space-around"}>
-          <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
-            Video here
-          </Box>
-
-          <Flex
-            $mh={50}
-            $ph={50}
-            $flexDirection={"column"}
-            $justifyContent={"space-between"}
-          >
-            <Heading $mv={6} tag="h2" $font={["heading-5", "heading-6"]}>
-              Video guide
-            </Heading>
-            <Typography $mv={6} $font={"body-1"}>
-              {videoGuideDesc}
-            </Typography>
-            <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
-              <Flex>
-                Read more about our new curriculum
-                <Icon name={"chevron-right"} $ml={0} $ma={"auto"} />
-              </Flex>
-            </OakLink>
-            <ButtonAsLink
-              variant="brush"
-              label="View unit sequence"
-              page={null}
-              href={`/beta/teachers/curriculum/${slug}/units`}
-              $mv={10}
-              icon="arrow-right"
-              iconBackground="transparent"
-              $iconPosition="trailing"
-              size="large"
-              $maxWidth={"20%"}
-            />
-          </Flex>
-        </Flex>
-      </Box> */}
-
-      <Card $background={"lemon30"} $width={"100%"} $mt={80}>
+      <Card $background={"lemon30"} $width={"100%"}>
         <BrushBorders color="lemon30" />
         <Flex $justifyContent={"center"} $pa={16}>
           <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
