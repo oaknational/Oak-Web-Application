@@ -1,5 +1,4 @@
 import React from "react";
-// import { ComponentStory, ComponentMeta } from "@storybook/react";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./HomePageTabImageButton";

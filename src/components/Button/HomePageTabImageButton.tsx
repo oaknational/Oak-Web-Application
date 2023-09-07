@@ -1,5 +1,5 @@
 import { forwardRef, MouseEventHandler } from "react";
-import styled, { useTheme } from "styled-components";
+import styled, { css, useTheme } from "styled-components";
 
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import typography, { FontVariant } from "../../styles/utils/typography";
@@ -7,19 +7,22 @@ import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
 import CMSImage from "../CMSImage/CMSImage";
 import Flex from "../Flex/Flex";
 import Box from "../Box/Box";
-import Svg from "../Svg/Svg";
 import TagPromotional from "../TagPromotional/TagPromotional";
 
-import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
+import ButtonLabel, {
+  ButtonLabelSpan,
+} from "./NewButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
 } from "./NewFocusUndeline";
 import { CommonButtonProps, HTMLButtonProps } from "./common";
+import BrushUnderline from "./NewBrushUndeline";
 
 import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
 
-export type ButtonProps = CommonButtonProps & {
+export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
@@ -30,11 +33,11 @@ export type ButtonProps = CommonButtonProps & {
   isNew?: boolean;
 };
 
-const BrushUnderline = styled(Svg)`
-  position: absolute;
-  mask-position: center;
-  height: 8px;
-  top: 100%;
+const buttonLabel = css`
+  :hover ${ButtonLabelSpan} {
+    text-decoration: underline;
+    color: ${getColorByName("grey4")};
+  }
 `;
 
 const StyledButton = styled(UnstyledButton)<UnstyledButtonProps>`
@@ -42,59 +45,70 @@ const StyledButton = styled(UnstyledButton)<UnstyledButtonProps>`
     outline: none;
   }
 
+  ${buttonLabel}
   ${typography}
   ${newIconFocusUnderline}
 `;
-const HomePageTabImageButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
-    const {
-      onClick,
-      label,
-      labelSuffixA11y,
-      "aria-label": ariaLabel,
-      htmlButtonProps = {},
-      disabled,
-      title,
-      imageSlug,
-      isCurrent,
-      isNew,
-    } = props;
+const HomePageTabImageButton = forwardRef<
+  HTMLButtonElement,
+  HomePageNavTabImageButtonProps
+>((props, ref) => {
+  const {
+    onClick,
+    label,
+    labelSuffixA11y,
+    "aria-label": ariaLabel,
+    htmlButtonProps = {},
+    disabled,
+    title,
+    imageSlug,
+    isCurrent,
+    isNew,
+  } = props;
 
-    const defaultTitle =
-      ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
-    const asset = getIllustrationAsset(imageSlug);
-    const theme = useTheme();
-    const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
+  const defaultTitle =
+    ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
+  const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
+  const asset = getIllustrationAsset(imageSlug);
+  const theme = useTheme();
+  const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
 
-    return (
-      <StyledButton
-        ref={ref}
-        {...htmlButtonProps}
-        title={title ?? htmlButtonProps.title ?? defaultTitle}
-        aria-label={ariaLabel}
-        onClick={disabled ? (e) => e.preventDefault() : onClick}
-        aria-disabled={disabled}
+  return (
+    <StyledButton
+      ref={ref}
+      {...htmlButtonProps}
+      title={noneNulltitle}
+      aria-label={ariaLabel}
+      onClick={disabled ? (e) => e.preventDefault() : onClick}
+      aria-disabled={disabled}
+    >
+      <Flex
+        $flexDirection={"column"}
+        $alignItems={"center"}
+        $opacity={isCurrent ? 1 : 0.5}
       >
-        <Flex $flexDirection={"column"} $alignItems={"center"}>
+        <Flex $width={96} $height={96}>
           {" "}
-          <Flex $width={96} $height={96}>
-            {" "}
-            <CMSImage image={{ asset }} noCrop />
-          </Flex>
-          <Box $display={"flex"} $position={"relative"} $minWidth={0}>
-            <Flex $alignItems={"center"} $minHeight={44}>
-              <ButtonLabel $font={"heading-7"} labelSuffixA11y={label}>
-                {label}
-              </ButtonLabel>
-              {isNew && <TagPromotional size={"small"} $ml={3} />}
-            </Flex>
-            {isCurrent && <BrushUnderline name="horizontal-rule" />}
-            <NewIconFocusUnderline $color={underlineColor} />
-          </Box>
+          <CMSImage image={{ asset }} noCrop />
         </Flex>
-      </StyledButton>
-    );
-  },
-);
+        <Box $display={"flex"} $position={"relative"} $minWidth={0}>
+          <Flex $alignItems={"center"} $minHeight={44}>
+            <ButtonLabel
+              $font={["body-3", "heading-7"]}
+              labelSuffixA11y={label}
+              $color={isCurrent ? "black" : "grey6"}
+              $opacity={1}
+            >
+              {label}
+            </ButtonLabel>
+            {isNew && <TagPromotional size={"small"} $ml={3} />}
+          </Flex>
+          {isCurrent && <BrushUnderline name="horizontal-rule" />}
+          <NewIconFocusUnderline $color={underlineColor} />
+        </Box>
+      </Flex>
+    </StyledButton>
+  );
+});
 
 export default HomePageTabImageButton;
