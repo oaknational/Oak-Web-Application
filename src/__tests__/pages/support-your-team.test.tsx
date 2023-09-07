@@ -75,14 +75,14 @@ describe("pages/support-your-team.tsx", () => {
     const { getByRole } = render(<Support pageData={testSupportPageData} />);
 
     expect(getByRole("heading", { level: 1 }).textContent).toBe(
-      "Support title"
+      "Support title",
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details ", async () => {
       const { seo } = renderWithSeo()(
-        <Support pageData={testSupportPageData} />
+        <Support pageData={testSupportPageData} />,
       );
 
       expect(seo).toEqual({

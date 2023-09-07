@@ -1,3 +1,53 @@
+## [1.233.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.3...v1.233.4) (2023-09-06)
+
+## [1.233.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.2...v1.233.3) (2023-09-06)
+
+## [1.233.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.1...v1.233.2) (2023-09-06)
+
+
+### Bug Fixes
+
+* failing subject listing test ([1521a07](https://github.com/oaknational/Oak-Web-Application/commit/1521a07a22d9ec219215f1483ef98ebb498d7a51))
+* **subject listing:** only fetch 2023 api data if viewType 2023 ([d6f02f3](https://github.com/oaknational/Oak-Web-Application/commit/d6f02f354738dcf7288978bb3ced2faf5fada731))
+
+## [1.233.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.0...v1.233.1) (2023-09-06)
+
+# [1.233.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.232.0...v1.233.0) (2023-09-05)
+
+
+### Features
+
+* exemplar units component ([dbd4277](https://github.com/oaknational/Oak-Web-Application/commit/dbd42771d5e2752aa820abf11ab54246f815c141))
+
+# [1.232.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.9...v1.232.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* tests ([918f29c](https://github.com/oaknational/Oak-Web-Application/commit/918f29c31fff23eed841eadbe9b750f28794a2bd))
+
+
+### Features
+
+* 2023 content downloads ([8f00732](https://github.com/oaknational/Oak-Web-Application/commit/8f00732b9025d95c347708265ac44f6633780852))
+
+## [1.231.9](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.8...v1.231.9) (2023-09-04)
+
+## [1.231.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.7...v1.231.8) (2023-09-04)
+
+## [1.231.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.6...v1.231.7) (2023-09-04)
+
+## [1.231.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.5...v1.231.6) (2023-09-04)
+
+## [1.231.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.4...v1.231.5) (2023-09-01)
+
+## [1.231.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.3...v1.231.4) (2023-09-01)
+
+
+### Bug Fixes
+
+* **test:** newletter form react testing library ([995ee30](https://github.com/oaknational/Oak-Web-Application/commit/995ee3025ebf5ade1205d8a6c4073593ed87bbfd))
+
 ## [1.231.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.231.2...v1.231.3) (2023-09-01)
 
 

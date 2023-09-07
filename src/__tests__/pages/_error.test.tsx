@@ -9,20 +9,20 @@ describe("pages/_error.tsx", () => {
   it("Renders 404 message ", async () => {
     render(<ErrorPage statusCode={404} />);
     expect(
-      screen.getByTestId("errorStatus").querySelector("h1")
+      screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("404");
   });
   it("Renders 500 message ", async () => {
     render(<ErrorPage statusCode={500} />);
     expect(
-      screen.getByTestId("errorStatus").querySelector("h1")
+      screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("500");
   });
 
   it("Renders error page with no statusCode ", async () => {
     render(<ErrorPage />);
     expect(
-      screen.getByTestId("errorStatus").querySelector("h1")
+      screen.getByTestId("errorStatus").querySelector("h1"),
     ).toHaveTextContent("An error occurred");
   });
   it("contains a button with link to homepage", () => {
@@ -30,7 +30,7 @@ describe("pages/_error.tsx", () => {
 
     expect(screen.getByTestId("homeButton").closest("a")).toHaveAttribute(
       "href",
-      "/"
+      "/",
     );
   });
   describe("getInitialProps", () => {

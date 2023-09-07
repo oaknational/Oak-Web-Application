@@ -17,7 +17,7 @@ describe("programmes listing page", () => {
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
@@ -25,7 +25,7 @@ describe("programmes listing page", () => {
 
     it("renders the correct number of tiers and tier cards", () => {
       const { getAllByTestId } = render(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
       );
 
       expect(getAllByTestId("programme-list-item")).toHaveLength(2);
@@ -35,7 +35,7 @@ describe("programmes listing page", () => {
   describe("SEO and Tracking", () => {
     it("renders the correct SEO details for programmes page", async () => {
       const { seo } = renderWithSeo()(
-        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />
+        <ProgrammesListingPage {...tieredProgrammeListingFixture()} />,
       );
 
       expect(seo).toEqual({
@@ -77,7 +77,7 @@ describe("programmes listing page", () => {
     });
     it("should throw error when not provided context params", async () => {
       await expect(
-        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>)
+        getStaticProps({} as GetServerSidePropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("No context params");
     });
   });

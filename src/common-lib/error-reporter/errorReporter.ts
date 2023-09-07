@@ -34,7 +34,7 @@ export const matchesIgnoredError = (message: string) => {
 };
 
 export function getBugsnagOnError(
-  { logger }: { logger: Logger } = { logger: console }
+  { logger }: { logger: Logger } = { logger: console },
 ) {
   return function bugsnagOnError(event: Event) {
     const { userAgent } = event.device;
@@ -138,7 +138,7 @@ const errorify = (maybeError: unknown): Error => {
     return new Error(message);
   } catch (jsonStringifyError) {
     return new Error(
-      `Failed to stringify maybeError, type: ${typeof maybeError}`
+      `Failed to stringify maybeError, type: ${typeof maybeError}`,
     );
   }
 };
@@ -181,7 +181,7 @@ type Logger = Pick<typeof console, "log" | "warn" | "error">;
 const errorReporter = (
   context: string,
   metadata?: Record<string, unknown>,
-  { logger }: { logger: Logger } = { logger: console }
+  { logger }: { logger: Logger } = { logger: console },
 ) => {
   const reportError = async (maybeError: MaybeError, data?: ErrorData) => {
     try {

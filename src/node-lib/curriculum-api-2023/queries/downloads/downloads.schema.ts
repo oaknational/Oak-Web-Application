@@ -12,6 +12,8 @@ export const lessonDownloadsSchema = z.object({
         "exit-quiz-answers",
         "worksheet-pdf",
         "worksheet-pptx",
+        "supplementary-pdf",
+        "supplementary-pptx",
       ]),
       label: z.string(),
       ext: z.string(),
@@ -19,7 +21,7 @@ export const lessonDownloadsSchema = z.object({
         z.array(z.object({ copyright_info: z.string() })),
         z.boolean().optional().nullish(),
       ]),
-    })
+    }),
   ),
   programmeSlug: z.string(),
   keyStageSlug: z.string(),

@@ -5,7 +5,7 @@ import {
 } from "../downloads.types";
 
 export const getPreselectedDownloadResourceTypes = (
-  title: PreselectedDownloadType
+  title: PreselectedDownloadType,
 ): DownloadResourceType[] | "all" | undefined => {
   return preselectedDownloadTypeMap[title];
 };

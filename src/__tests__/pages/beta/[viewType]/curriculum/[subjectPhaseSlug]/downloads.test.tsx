@@ -17,7 +17,7 @@ describe("curriculum download page", () => {
           curriculumHeaderData={curriculumHeaderFixture()}
           subjectPhaseOptions={subjectPhaseOptions}
           subjectPhaseSlug="maths-secondary"
-        />
+        />,
       );
 
       expect(queryByTestId("heading")).toBeInTheDocument();

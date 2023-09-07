@@ -38,7 +38,7 @@ module.exports = function getSlackConfig() {
   // If any of the Slack process.env values are missing then throw.
   if (slackConfigEntries.map((entry) => entry[1]).includes(missingValueLabel)) {
     throw new TypeError(`Please specify the following ENV variables:\n${slackConfigKeys.join(
-      "\n"
+      "\n",
     )}
   \nreceived:\n${JSON.stringify(slackConfig, null, 2)}`);
   }

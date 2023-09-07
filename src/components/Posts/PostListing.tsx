@@ -58,12 +58,11 @@ const PostListing: FC<PostListingProps> = ({
 }) => {
   const triggerId = useId();
 
-  const categoryHeading = categories.find(
-    (cat) => cat.slug === categorySlug
-  )?.title;
+  const categoryHeading = categories.find((cat) => cat.slug === categorySlug)
+    ?.title;
 
   const postListItems = posts.map((post) =>
-    "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post)
+    "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post),
   );
 
   return (
@@ -74,7 +73,7 @@ const PostListing: FC<PostListingProps> = ({
         categories,
         categorySlug,
         variant.slug,
-        variant.title
+        variant.title,
       )}
     >
       <MaxWidth $pt={[0, 80, 80]}>

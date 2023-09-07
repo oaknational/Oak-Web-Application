@@ -34,7 +34,7 @@ describe("pages/contact-us.tsx", () => {
     const { getByRole } = render(<ContactUs pageData={testContactPageData} />);
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Contact title"
+      "Contact title",
     );
   });
 
@@ -44,14 +44,14 @@ describe("pages/contact-us.tsx", () => {
     expect(
       getByRole("button", {
         name: /sign up/i,
-      })
+      }),
     ).toHaveAccessibleName("Sign up");
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <ContactUs pageData={testContactPageData} />
+        <ContactUs pageData={testContactPageData} />,
       );
 
       expect(seo).toEqual({ ...mockSeoResult });

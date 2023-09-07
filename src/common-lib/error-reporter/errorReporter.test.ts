@@ -65,22 +65,22 @@ describe("common-lib/error-reporter", () => {
     it("returns false if the ua string doesn't contain words in the disallow list", () => {
       expect(
         matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36"
-        )
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36",
+        ),
       ).toBe(false);
     });
     it("returns true if ua string contains 'percy'", () => {
       expect(
         matchesUserAgent(
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) percy AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36"
-        )
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) percy AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4619.141 Safari/537.36",
+        ),
       ).toBe(true);
     });
   });
   describe("matchesIgnoredError", () => {
     it("returns false if the error should not be ignored", () => {
       const shouldIgnore = matchesIgnoredError(
-        "Proper error that should be reported"
+        "Proper error that should be reported",
       );
       expect(shouldIgnore).toBe(false);
     });
@@ -163,7 +163,7 @@ describe("common-lib/error-reporter", () => {
 
       await reportError("test thing");
       expect(consoleLog).toHaveBeenCalledWith(
-        "Failed to send error to bugsnag:"
+        "Failed to send error to bugsnag:",
       );
       expect(consoleError).toHaveBeenCalledWith("bad thing");
       expect(consoleLog).toHaveBeenCalledWith("Original error:");
@@ -171,7 +171,7 @@ describe("common-lib/error-reporter", () => {
     });
     test("adds originalError if error is OakError", () => {
       const originalError = new Error(
-        "some error from somewhere (not our fault!)"
+        "some error from somewhere (not our fault!)",
       );
       const oakError = new OakError({ code: "misc/unknown", originalError });
       reportError(oakError);
@@ -216,7 +216,7 @@ describe("common-lib/error-reporter", () => {
       reportError(error);
       expect(mockNotify).toHaveBeenCalledTimes(1);
       expect(consoleWarn).toHaveBeenCalledWith(
-        expect.stringContaining("already reported")
+        expect.stringContaining("already reported"),
       );
     });
   });

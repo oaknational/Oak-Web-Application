@@ -15,7 +15,7 @@ export type PosthogConfig = {
 };
 
 export const posthogToAnalyticsServiceWithoutQueue = (
-  client: PostHog
+  client: PostHog,
 ): AnalyticsService<PosthogConfig> => ({
   name: "posthog",
   init: ({ apiKey, apiHost }) =>

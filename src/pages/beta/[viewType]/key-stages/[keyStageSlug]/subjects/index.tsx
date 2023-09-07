@@ -101,9 +101,12 @@ export const getStaticProps: GetStaticProps<
         keyStageSlug: context.params?.keyStageSlug,
       });
 
-      const curriculumData2023 = await curriculumApi2023.subjectListingPage({
-        keyStageSlug: context.params?.keyStageSlug,
-      });
+      const curriculumData2023 =
+        context?.params?.viewType === "teachers-2023"
+          ? await curriculumApi2023.subjectListingPage({
+              keyStageSlug: context.params?.keyStageSlug,
+            })
+          : null;
 
       if (!curriculumData && !curriculumData2023) {
         return {
@@ -113,9 +116,8 @@ export const getStaticProps: GetStaticProps<
 
       const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
       const subjectSlugs = curriculumData.subjects.map((s) => s.subjectSlug);
-      const subjectSlugs2023 = curriculumData2023.subjects.map(
-        (s) => s.subjectSlug
-      );
+      const subjectSlugs2023 =
+        curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
 
       const uniqueSubjectSlugs = [
         ...new Set(subjectSlugs.concat(subjectSlugs2023)),
@@ -127,13 +129,13 @@ export const getStaticProps: GetStaticProps<
             subjectSlug,
             old:
               curriculumData.subjects.find(
-                (subject) => subject.subjectSlug === subjectSlug
+                (subject) => subject.subjectSlug === subjectSlug,
               ) || null,
             // Temporarily disable new curriculum (was being leaked to public)
             new:
               context?.params?.viewType === "teachers-2023"
-                ? curriculumData2023.subjects.find(
-                    (subject) => subject.subjectSlug === subjectSlug
+                ? curriculumData2023?.subjects.find(
+                    (subject) => subject.subjectSlug === subjectSlug,
                   ) || null
                 : null,
           };

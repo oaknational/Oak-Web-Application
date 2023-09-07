@@ -27,7 +27,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders title from props ", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />
+      <UnitListingPage
+        viewType={"teachers"}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -35,14 +38,20 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
-      <UnitListingPage curriculumData={unitListingWithTiersFixture()} />
+      <UnitListingPage
+        viewType={"teachers"}
+        curriculumData={unitListingWithTiersFixture()}
+      />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
   it("title card render correct title", () => {
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />
+      <UnitListingPage
+        viewType={"teachers"}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -50,22 +59,26 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("title card renderd correct title when examboard is present", () => {
     const { getByRole } = render(
       <UnitListingPage
+        viewType={"teachers"}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
         }}
-      />
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "Computing OCR"
+      "Computing OCR",
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details for tiered programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage curriculumData={unitListingWithTiersFixture()} />
+        <UnitListingPage
+          viewType={"teachers"}
+          curriculumData={unitListingWithTiersFixture()}
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -81,7 +94,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
     it("renders the correct SEO details for non tiered programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage curriculumData={unitListingFixture()} />
+        <UnitListingPage
+          viewType={"teachers"}
+          curriculumData={unitListingFixture()}
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -102,10 +118,11 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       utilsMock.RESULTS_PER_PAGE = 10;
       const { seo } = renderWithSeo()(
         <UnitListingPage
+          viewType={"teachers"}
           curriculumData={{
             ...unitListingFixture(),
           }}
-        />
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -131,7 +148,10 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       },
     });
     const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />
+      <UnitListingPage
+        viewType={"teachers"}
+        curriculumData={unitListingFixture()}
+      />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
