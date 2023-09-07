@@ -18,7 +18,7 @@ describe("LessonRequirements component", () => {
         helperIcon="equipment-required"
         equipment={equipment}
         heading={"Equipment"}
-      />
+      />,
     );
 
     const equipmentTitle = getByText("Equipment");
@@ -35,7 +35,7 @@ describe("LessonRequirements component", () => {
         helperIcon={"content-guidance"}
         heading="Content guidance"
         contentGuidance={contentGuidance}
-      />
+      />,
     );
 
     const contentGuidanceTitle = getByText("Content guidance");
@@ -52,7 +52,7 @@ describe("LessonRequirements component", () => {
         helperIcon={"supervision-level"}
         heading="Supervision"
         supervisionLevel={supervisionLevel}
-      />
+      />,
     );
 
     const equipmentTitle = queryByText("Equipment");

@@ -117,12 +117,12 @@ describe("pages/about/who-we-are.tsx", () => {
 
   it("Renders correct title ", async () => {
     renderWithProviders()(
-      <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />
+      <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
     );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
+        "About us",
       );
     });
   });
@@ -130,7 +130,7 @@ describe("pages/about/who-we-are.tsx", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />
+        <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
       );
 
       expect(seo).toEqual({

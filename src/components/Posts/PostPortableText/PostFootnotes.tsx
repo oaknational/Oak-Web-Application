@@ -24,13 +24,13 @@ type FootnoteAnnotation = PortableTextMarkDefinition & {
 export const extractFootnotes = (
   portableText: PortableTextBlock<
     FootnoteAnnotation | PortableTextMarkDefinition
-  >[]
+  >[],
 ): Footnote[] => {
   return portableText
     .filter(({ _type }) => _type === "block")
     .flatMap(({ markDefs }) => markDefs)
     .filter(
-      (markDef): markDef is FootnoteAnnotation => markDef?._type === "footnote"
+      (markDef): markDef is FootnoteAnnotation => markDef?._type === "footnote",
     )
     .map(({ label, _key, source }, i) => {
       return {
@@ -51,7 +51,7 @@ type PostFootnoteAnnotationProps = PortableTextMarkComponentProps & {
 
 export const PostFootnoteAnnotation = (props: PostFootnoteAnnotationProps) => {
   const footnote = props.footnotes.find(
-    (note) => note.markKey === props.markKey
+    (note) => note.markKey === props.markKey,
   );
 
   if (!footnote) {

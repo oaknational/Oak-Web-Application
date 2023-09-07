@@ -11,7 +11,7 @@ describe("subjectListing()", () => {
           Promise.resolve({
             keyStageSubjects: [],
             keyStages: [{ keyStages: [] }],
-          })
+          }),
         ),
       })({
         keyStageSlug: "key-stage-slug",
@@ -44,7 +44,7 @@ describe("subjectListing()", () => {
                 subjectsUnavailable: null,
               },
             ],
-          })
+          }),
         ),
       })({
         keyStageSlug: "slug",

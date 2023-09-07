@@ -47,19 +47,19 @@ const messageConfigProdError = {
 
 const prodStart = createBuildStartedSlackMessage(
   messageConfigProdStart,
-  "production"
+  "production",
 );
 const prodFinish = createBuildCompleteSlackMessage(
   messageConfigProdSuccess,
-  "production"
+  "production",
 );
 const prodCancelled = createBuildCompleteSlackMessage(
   messageConfigProdCancelled,
-  "production"
+  "production",
 );
 const prodError = createBuildCompleteSlackMessage(
   messageConfigProdError,
-  "production"
+  "production",
 );
 
 const slackConfig = getSlackConfig();

@@ -11,6 +11,8 @@ const DOWNLOAD_RESOURCE_TYPES = [
   "exit-quiz-answers",
   "worksheet-pdf",
   "worksheet-pptx",
+  "supplementary-pdf",
+  "supplementary-pptx",
 ] as const;
 
 export const preselectedDownloadType = z.union([
@@ -18,6 +20,7 @@ export const preselectedDownloadType = z.union([
   z.literal("exit quiz"),
   z.literal("starter quiz"),
   z.literal("worksheet"),
+  z.literal("additional material"),
   z.literal("all"),
 ]);
 
@@ -31,6 +34,7 @@ export const preselectedDownloadTypeMap: Record<
   "starter quiz": ["intro-quiz-questions", "intro-quiz-answers"],
   "exit quiz": ["exit-quiz-questions", "exit-quiz-answers"],
   worksheet: ["worksheet-pdf", "worksheet-pptx"],
+  "additional material": ["supplementary-pdf", "supplementary-pptx"],
   all: "all",
 };
 

@@ -14,7 +14,7 @@ describe("DetailsCompleted", () => {
         email={"test@test.com"}
         school={"sample school"}
         onEditClick={() => spy()}
-      />
+      />,
     );
 
     const email = getByText("email: test@test.com");
@@ -34,7 +34,7 @@ describe("DetailsCompleted", () => {
     const spy = jest.fn();
 
     const { queryByTestId } = renderWithTheme(
-      <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />
+      <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />,
     );
 
     const email = queryByTestId("email");
@@ -45,7 +45,7 @@ describe("DetailsCompleted", () => {
     const spy = jest.fn();
 
     const { queryByTestId } = renderWithTheme(
-      <DetailsCompleted email={"test@test.com"} onEditClick={() => spy()} />
+      <DetailsCompleted email={"test@test.com"} onEditClick={() => spy()} />,
     );
 
     const school = queryByTestId("school");
@@ -60,7 +60,7 @@ describe("DetailsCompleted", () => {
         email={"test@test.com"}
         school={"sample school"}
         onEditClick={() => spy()}
-      />
+      />,
     );
 
     const button = getByText("Edit");
@@ -81,7 +81,7 @@ describe("DetailsCompleted", () => {
           email={"test@test.com"}
           school={"homeschool"}
           onEditClick={() => spy()}
-        />
+        />,
       );
 
       const email = getByText("email: test@test.com");
@@ -99,7 +99,7 @@ describe("DetailsCompleted", () => {
           email={"test@test.com"}
           school={"notListed"}
           onEditClick={() => spy()}
-        />
+        />,
       );
 
       const email = getByText("email: test@test.com");

@@ -76,6 +76,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  downloadApiUrl: {
+    value: process.env.NEXT_PUBLIC_DOWNLOAD_API_URL,
+    envName: "NEXT_PUBLIC_DOWNLOAD_API_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   seoAppName: {
     value: process.env.NEXT_PUBLIC_SEO_APP_NAME,
     envName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -321,7 +328,7 @@ for (const [, envVarConfig] of Object.entries(envVars)) {
 // We can safely assert it's non-nullable as our
 // guard loop above will throw
 type NonNullEnvValue<K extends ConfigKey> = NonNullable<
-  typeof envVars[K]["value"]
+  (typeof envVars)[K]["value"]
 >;
 
 const getBrowserConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
@@ -349,7 +356,7 @@ const getBrowserConfig = <K extends ConfigKey>(key: K): NonNullEnvValue<K> => {
   }
 
   throw new Error(
-    `getBrowserConfig('${key}') failed because there is no env value ${envName}`
+    `getBrowserConfig('${key}') failed because there is no env value ${envName}`,
   );
 };
 

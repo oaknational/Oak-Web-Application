@@ -91,7 +91,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<SearchPageProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "teachers-search::getStaticProps",

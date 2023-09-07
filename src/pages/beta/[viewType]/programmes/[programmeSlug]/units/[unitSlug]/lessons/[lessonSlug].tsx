@@ -47,7 +47,7 @@ export const lessonBreadcrumbArray = (
   programmeSlug: string,
   subjectTitle: string,
   unitSlug: string,
-  unitTitle: string
+  unitTitle: string,
 ): Breadcrumb[] => {
   return [
     {
@@ -191,7 +191,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             programmeSlug,
             subjectTitle,
             unitSlug,
-            unitTitle
+            unitTitle,
           ),
           {
             oakLinkProps: {

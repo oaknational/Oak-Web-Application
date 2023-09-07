@@ -38,10 +38,12 @@ import HeaderListing from "@/components/HeaderListing/HeaderListing";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  viewType: ViewType;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  viewType,
 }) => {
   const {
     programmeSlug,
@@ -132,6 +134,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
+        isNew={viewType === "teachers-2023"}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -233,7 +236,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
-                      })
+                      }),
                     )}
                   />
                 </nav>
@@ -299,6 +302,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
 

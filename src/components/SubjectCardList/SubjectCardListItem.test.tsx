@@ -59,7 +59,7 @@ describe("SubjectCardListItem", () => {
         subject={subjectCardListItemProps}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
-      />
+      />,
     );
     expect(screen.getByText("Biology")).toBeInTheDocument();
   });
@@ -71,7 +71,7 @@ describe("SubjectCardListItem", () => {
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
         isAvailable={true}
-      />
+      />,
     );
     const cardClickTarget = getByRole("link", {
       name: "Biology",
@@ -86,7 +86,7 @@ describe("SubjectCardListItem", () => {
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
         isAvailable={true}
-      />
+      />,
     );
     const cardClickTarget = getByRole("link", {
       name: "Biology",

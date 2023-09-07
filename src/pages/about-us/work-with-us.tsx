@@ -86,7 +86,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "work-with-us::getStaticProps",

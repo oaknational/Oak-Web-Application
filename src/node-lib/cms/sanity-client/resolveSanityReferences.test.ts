@@ -85,11 +85,11 @@ it("throws an OakError with metadata when it can't match refs to responses", asy
   });
 
   const capturedError = await resolveSanityReferences(
-    mockObjWithReferences
+    mockObjWithReferences,
   ).catch((err) => err);
 
   await expect(
-    async () => await resolveSanityReferences(mockObjWithReferences)
+    async () => await resolveSanityReferences(mockObjWithReferences),
   ).rejects.toThrowError(new OakError({ code: "cms/invalid-reference-data" }));
 
   expect(capturedError.meta).toEqual({

@@ -47,14 +47,25 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
         format={null}
       />
       {isNew && (
-        <Flex
-          $left={[-8, 12]}
-          $top={[4, 0]}
-          $zIndex={"inFront"}
-          $position={"absolute"}
-        >
-          <TagPromotional $color={"white"} />
-        </Flex>
+        <>
+          <Flex
+            $left={8}
+            $top={10}
+            $zIndex={"inFront"}
+            $position={"absolute"}
+            $display={["none", "flex"]}
+          >
+            <TagPromotional $color={"mint"} size={"large"} />
+          </Flex>
+          <Flex
+            $top={4}
+            $zIndex={"inFront"}
+            $position={"absolute"}
+            $display={["flex", "none"]}
+          >
+            <TagPromotional $color={"mint"} size={"small"} />
+          </Flex>
+        </>
       )}
     </Flex>
   );

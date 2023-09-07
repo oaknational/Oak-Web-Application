@@ -5,7 +5,7 @@ import formatDate from "../../../utils/formatDate";
 import { UpcomingWebinarWallProps } from "./UpcomingWebinarWall";
 
 const useUpcomingWebinarWall = (
-  webinar: SerializedWebinar
+  webinar: SerializedWebinar,
 ): UpcomingWebinarWallProps => {
   return {
     headingText: `Starts at ${formatDate(webinar.date, {

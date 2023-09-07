@@ -30,6 +30,8 @@ export const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
   "exit-quiz-answers": "quiz",
   "worksheet-pdf": "worksheet",
   "worksheet-pptx": "worksheet",
+  "supplementary-pdf": "additional-material",
+  "supplementary-pptx": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`

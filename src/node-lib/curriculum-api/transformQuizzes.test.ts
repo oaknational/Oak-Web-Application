@@ -34,7 +34,7 @@ describe("transformQuiz", () => {
 
     // @ts-expect-error: above line guarantees that secure_url exists
     expect(quizzes[0].questionStem[1].image_object.secure_url).toEqual(
-      "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287"
+      "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
     );
   });
 
@@ -64,15 +64,15 @@ describe("transformQuiz", () => {
 
     expect(
       // @ts-expect-error: above line guarantees that quizzes[0].answers["multiple-choice"].answer[0] exists
-      quizzes[0].answers["multiple-choice"][1].answer[0].image_object
+      quizzes[0].answers["multiple-choice"][1].answer[0].image_object,
     ).toBeDefined();
 
     expect(
       // @ts-expect-error: above line guarantees that quizzes[0].answers["multiple-choice"].answer[0].image_object exists
       quizzes[0].answers["multiple-choice"][1].answer[0].image_object
-        ?.secure_url
+        ?.secure_url,
     ).toEqual(
-      "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287"
+      "https://lh6.googleusercontent.com/OjgbTYtK-NU8_lzFznF36BYjENk_zmTmfitGHQvwt4xZNqTGPX9D6lsyCcvv_JV2dCCxKKqSgffHuamqaOvg8t7K-8I5GnkFSY1EO3QboKWeFXJkAB76pnTXU9xH9okF=w287",
     );
   });
 
@@ -81,7 +81,7 @@ describe("transformQuiz", () => {
     const quizzes = transformQuiz(legacyQuiz);
     expect(
       // @ts-expect-error: above line guarantees that quizzes[0].answers["multiple-choice"].answer[0].image_object exists
-      quizzes[0].answers["multiple-choice"][1].answer_is_correct
+      quizzes[0].answers["multiple-choice"][1].answer_is_correct,
     ).toEqual(true);
   });
 
@@ -98,7 +98,7 @@ describe("transformQuiz", () => {
       // @ts-expect-error: previous tests guarantee that the path exists
       expect(answer.correct_choice[0].text).toEqual(
         // @ts-expect-error: previous tests guarantee that the path exists
-        answer.match_option[0].text.toLowerCase()
+        answer.match_option[0].text.toLowerCase(),
       );
     });
   });

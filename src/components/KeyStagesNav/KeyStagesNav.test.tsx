@@ -23,17 +23,17 @@ describe("components/Key Stages Nav", () => {
     "renders a key stage button with %p text",
     (keyStage) => {
       const { getByText } = renderWithTheme(
-        <KeyStagesNav keyStages={keyStagesNavData} />
+        <KeyStagesNav keyStages={keyStagesNavData} />,
       );
       const keyStageButton = getByText(keyStage);
 
       expect(keyStageButton).toBeInTheDocument();
-    }
+    },
   );
 
   it("it renders a nav with correct assessibilty description", () => {
     const { container } = renderWithTheme(
-      <KeyStagesNav keyStages={keyStagesNavData} />
+      <KeyStagesNav keyStages={keyStagesNavData} />,
     );
 
     const nav = container.querySelector("nav");
@@ -41,7 +41,7 @@ describe("components/Key Stages Nav", () => {
   });
   test.each(years)("renders a year link with %p text", (year) => {
     const { getByText } = renderWithTheme(
-      <KeyStagesNav keyStages={keyStagesNavData} />
+      <KeyStagesNav keyStages={keyStagesNavData} />,
     );
     const keyStageLink = getByText(year);
 
