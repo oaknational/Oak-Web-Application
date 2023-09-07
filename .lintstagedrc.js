@@ -6,5 +6,9 @@ const buildEslintCommand = (filenames) =>
     .join(" --file ")}`;
 
 module.exports = {
-  "*.{js,jsx,ts,tsx}": [buildEslintCommand, "npm run lint:styles"],
+  "*.{js,jsx,ts,tsx}": [
+    "npm run format:precommit",
+    "npx eslint --fix",
+    "npm run lint:styles",
+  ],
 };

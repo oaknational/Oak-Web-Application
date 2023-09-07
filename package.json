@@ -20,6 +20,7 @@
     "dev": "next dev",
     "export": "next export",
     "format": "prettier '**/*.{j,t}{s,sx}' --write",
+    "format:precommit": "prettier --write",
     "format:check": "prettier '**/*.{j,t}{s,sx}' --check",
     "gql-codegen": "npm run gql-codegen:curriculum & npm run gql-codegen:curriculum-2023",
     "gql-codegen:curriculum-2023": "graphql-codegen --config src/node-lib/curriculum-api-2023/codegen.yml -r dotenv/config",
