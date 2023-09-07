@@ -58,6 +58,7 @@ export type PostListItemProps = {
   date: string;
   withImage?: boolean;
   firstItemRef?: RefObject<HTMLAnchorElement> | null;
+  isCurriculumPage?: boolean;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
   | { contentType: "webinar"; thumbnailUrl?: string | null }
@@ -70,8 +71,21 @@ export type PostListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const PostListItem: FC<PostListItemProps> = (props) => {
-  const { titleTag, title, summary, category, date, withImage, firstItemRef } =
-    props;
+  const {
+    titleTag,
+    title,
+    summary,
+    category,
+    date,
+    withImage,
+    firstItemRef,
+    isCurriculumPage,
+  } = props;
+
+  let imageDisplay = ["block", "none", "block"];
+  if (isCurriculumPage) {
+    imageDisplay = ["block", "block", "block"];
+  }
 
   const {
     containerProps,
@@ -93,8 +107,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     >
       {withImage && (
         <Box
-          //ASK ABOUT CHANGING THIS TO RENDER PIC
-          $display={["block", "block", "block"]}
+          $display={imageDisplay}
           $position={"relative"}
           $minWidth={240}
           $maxWidth={[160, "none"]}
