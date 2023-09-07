@@ -256,6 +256,8 @@ export const getStaticProps: GetStaticProps<
   const blogs = [];
   if (b !== null && c !== null && d !== null) {
     blogs.push([b, c, d].map(serializeDate));
+  } else {
+    throw new Error("Missing blog post");
   }
 
   const posts = blogs.flat();
