@@ -234,11 +234,11 @@ export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> 
     };
   };
 
-export const getStaticProps: GetStaticProps<
-  CurriculumHomePageProps
-> = async () => {
-  const data = await fetchSubjectPhasePickerData();
+export type Client = typeof CMSClient;
 
+export async function fetchCurriculumPageBlogs(
+  CMSClient: Client,
+): Promise<SerializedBlogPostPreview[]> {
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
     "how-to-design-a-subject-curriculum",
   );
@@ -252,6 +252,7 @@ export const getStaticProps: GetStaticProps<
   );
 
   const blogs = [];
+
   if (
     subjectCurriculumBlog !== null &&
     refreshCurriculumBlog !== null &&
@@ -266,7 +267,15 @@ export const getStaticProps: GetStaticProps<
     throw new Error("Missing blog post");
   }
 
-  const posts = blogs.flat();
+  return blogs.flat();
+}
+
+export const getStaticProps: GetStaticProps<
+  CurriculumHomePageProps
+> = async () => {
+  const data = await fetchSubjectPhasePickerData();
+
+  const posts = await fetchCurriculumPageBlogs(CMSClient);
 
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
