@@ -1,3 +1,11 @@
+## [1.234.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.234.1...v1.234.2) (2023-09-08)
+
+
+### Bug Fixes
+
+* **error reporter:** shouldn't report error multiple times ([d30bfc4](https://github.com/oaknational/Oak-Web-Application/commit/d30bfc499ef30c1acf282fe458f135d7e4bf2d56))
+* types after ts update ([b40b67a](https://github.com/oaknational/Oak-Web-Application/commit/b40b67acc9b340fcbe62e8d069195ca394bc7637))
+
 ## [1.234.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.234.0...v1.234.1) (2023-09-08)
 
 # [1.234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.5...v1.234.0) (2023-09-08)
