@@ -21,11 +21,7 @@ const EarlyReleaseUnits: NextPage = () => {
     <AppLayout seoProps={BETA_SEO_PROPS}>
       <EarlyReleaseUnitsHeader />
       <MaxWidth>
-        <Flex
-          $justifyContent={"centers"}
-          $mb={[24, 92]}
-          $flexDirection={"column"}
-        >
+        <Flex $mb={[24, 92]} $flexDirection={"column"}>
           <Heading
             $mt={[24, 48]}
             $mb={[20, 36]}
@@ -56,7 +52,7 @@ const EarlyReleaseUnits: NextPage = () => {
                 </Heading>
                 <P $font={"body-1"}>
                   All our teaching resources are free to access and there for
-                  you, whenever you need them
+                  you, whenever you need them.
                 </P>
               </Card>
             </GridArea>
@@ -67,7 +63,7 @@ const EarlyReleaseUnits: NextPage = () => {
                   Adaptable
                 </Heading>
                 <P $font={"body-1"}>
-                  Our slide decks and worksheets are editable so you can adapt
+                  Our slide decks and worksheets are editable, so you can adapt
                   them for your pupils and context.
                 </P>
               </Card>
