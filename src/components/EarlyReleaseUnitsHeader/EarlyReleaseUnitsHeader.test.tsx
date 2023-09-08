@@ -10,7 +10,7 @@ describe("components/AppHeader", () => {
   test("renders correct copy", () => {
     render(<EarlyReleaseUnitstitle />);
 
-    expect(screen.getByText("Teachers & Subject leads")).toBeInTheDocument();
+    expect(screen.getByText("Teachers & subject leads")).toBeInTheDocument();
     expect(screen.getByText("New teaching resources")).toBeInTheDocument();
     expect(
       screen.getByText(
