@@ -36,8 +36,7 @@ export const getPageViewProps = (href: string): PageViewProps => {
       };
 
       const params = matchResult.params;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const viewType = "viewType" in params ? params.viewType : null;
 
       if (viewType === "teachers" || viewType === "pupils") {

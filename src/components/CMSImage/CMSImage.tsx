@@ -178,8 +178,8 @@ const CMSImage: FC<CMSImageProps> = (props) => {
    * $width/$height to be passed to css
    */
   const styleDimensions: { $width?: SizeValues; $height?: SizeValues } = {
-    $width: rest.$width || rest.$cover ? undefined : "100%",
-    $height: rest.$height || rest.$cover ? undefined : "auto",
+    $width: rest.$width || (rest.$cover ? undefined : "100%"),
+    $height: rest.$height || (rest.$cover ? undefined : "auto"),
   };
   /**
    * width/height to be passed to @next/image, so that it can apply appropriate

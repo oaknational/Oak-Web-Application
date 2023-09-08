@@ -10,13 +10,8 @@ import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, UL, LI, P } from "@/components/Typography";
-import Grid, { GridArea } from "@/components/Grid";
-import Card from "@/components/Card/Card";
-import CardLink from "@/components/Card/CardLink";
-import SubjectPhasePicker, {
-  SubjectPhasePickerData,
-} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { Heading, UL, LI, P, Hr } from "@/components/Typography";
+import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -24,133 +19,159 @@ import {
 } from "@/node-lib/isr";
 import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import Illustration from "@/components/Illustration/Illustration";
+import Cover from "@/components/Cover/Cover";
+import { getSizes } from "@/components/CMSImage/getSizes";
+import OakLink from "@/components/OakLink/OakLink";
+import Typography from "@/components/Typography/Typography";
+import Icon from "@/components/Icon/Icon";
+import CMSClient from "@/node-lib/cms";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import {
+  blogToPostListItem,
+  SerializedBlogPostPreview,
+} from "@/components/pages/BlogIndex.page";
+import { serializeDate } from "@/utils/serializeDate";
+import PostListItem from "@/components/Posts/PostList/PostListItem/PostListItem";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
+  posts: SerializedBlogPostPreview[];
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { subjectPhaseOptions } = props;
+  const { subjectPhaseOptions, posts } = props;
+  const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
-      <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-        <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[18, 48, 48]}>
-            <Heading
-              $font={["heading-5", "heading-4"]}
-              tag={"h1"}
-              $mt={120}
-              $color={"black"}
-            >
-              Curriculum Resources
-            </Heading>
-            <Heading $font={"heading-light-6"} tag={"h2"} $mv={8}>
-              A collection of high quality resources to support you, whether
-              you're looking for exemplars or help with starting from scratch.
-            </Heading>
+      <Flex $justifyContent={"center"} $background={"mint"}>
+        <MaxWidth $ph={16}>
+          <Box $mt={20}>
+            <Breadcrumbs
+              breadcrumbs={[
+                {
+                  oakLinkProps: { page: "home", viewType: "teachers-2023" },
+                  label: "Home",
+                },
+                {
+                  oakLinkProps: {
+                    page: "curriculum-landing-page",
+                    viewType: "teachers-2023",
+                  },
+                  label: "Curriculum resources",
+                },
+              ]}
+            />
+            <Hr $color={"white"} $mb={0} />
           </Box>
+          <Flex $mt={[24, 80]} $mb={[80]}>
+            <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
+          </Flex>
         </MaxWidth>
       </Flex>
-      <Flex $background={"white"} $pv={[48]}>
+      <Flex $background={"white"} $justifyContent={"center"}>
         <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[24]}>
-            <Heading tag={"h2"} $font={"heading-light-6"} $mb={16}>
-              Oak's Curricula
-            </Heading>
-            <SubjectPhasePicker {...subjectPhaseOptions} />
-          </Box>
-        </MaxWidth>
-      </Flex>
-      <Flex
-        $background={"teachersPastelYellow"}
-        $justifyContent={"center"}
-        $pv={[48]}
-      >
-        <MaxWidth>
-          <Box $ph={[16, 0]} $pb={[24, 48]}>
-            <Heading tag={"h2"} $font={"heading-light-6"} $mb={16}>
-              How we approach curriculum design
-            </Heading>
-            <P $mb={[24]}>
-              Every school's approach to curriculum design is different, but it
-              can be helpful to see examples to inspire your own. Explore our
-              curriculum maps to learn about the six curriculum principles that
-              guide our lesson and curriculum design. See how we’ve approached:
-            </P>
-            <UL $reset={true} $mb={[24]}>
-              <LI $mb={[10]}>
-                Sequencing subject key stage units, including alternative
-                sequences
-              </LI>
-              <LI $mb={[10]}>Summarising the core content pupils will learn</LI>
-              <LI $mb={[10]}>
-                Identifying lesson specific content (varies by subject)
-                including: lesson vocabulary, equipment requirements and
-                disciplinary knowledge
-              </LI>
-            </UL>
-          </Box>
-          <Box $ph={[16, 0]} $pb={[24, 48]}>
-            <Heading tag={"h2"} $font={"heading-light-6"} $mb={16}>
-              Our blogs about curriculum design
-            </Heading>
-            <Grid>
-              <GridArea $colSpan={[12, 4]}>
-                <Card
-                  $background="teachersPastelBlue"
-                  $pa={[24]}
-                  $height={[150]}
-                  $mr={[0, 16]}
+          <Flex
+            $flexDirection={["column", "row"]}
+            $justifyContent={"space-between"}
+            $alignItems={"center"}
+            $gap={[24, 80, 120]}
+            $mb={80}
+            $pl={[16, 0]}
+            $pr={[16, 0]}
+            $mt={80}
+          >
+            <Box>
+              <Cover
+                $width={[320, 340, 480]}
+                $height={[300, 320, 450]}
+                $position={"relative"}
+              >
+                <Illustration
+                  noCrop
+                  sizes={getSizes([500, 800])}
+                  slug="curriculum-approach"
+                  $objectFit="contain"
+                  $objectPosition={"center"}
+                  fill
+                />
+              </Cover>
+            </Box>
+
+            <Box $height={"100%"}>
+              <Heading tag="h2" $font={["heading-5", "heading-4"]} $mt={12}>
+                Our approach to curriculum
+              </Heading>
+              <P $mv={[16, 24]} $font={"body-1"}>
+                Every school’s approach to curriculum design is different.
+                Whether you are starting from scratch or refreshing your
+                existing curricula, it can be helpful to see examples to inspire
+                your own. Explore our curriculum sequences and learn about the
+                six curriculum principles that guide our lesson and curriculum
+                design. See how we have:
+              </P>
+              <UL $mb={24} $font={"list-item-1"}>
+                <LI>
+                  Sequenced subject units across year groups, including
+                  alternative sequences
+                </LI>
+                <LI>Built coherence through the curricula, using threads</LI>
+                <LI>
+                  Summarised the core content pupils will learn, in our
+                  curriculum statements
+                </LI>
+              </UL>
+              <Typography $font={"heading-7"} $mb={12}>
+                <OakLink
+                  page={"blog-single"}
+                  blogSlug="our-approach-to-curriculum"
+                  $display={"flex"}
+                  $alignItems={"center"}
                 >
-                  <CardLink
-                    page="blog-single"
-                    blogSlug="tbd-link-to-relevant-page"
-                  >
-                    <Heading tag={"h3"} $font={"heading-light-7"} $mb={16}>
-                      Resource
-                    </Heading>
-                    <P>Download our skeleton curriculum template</P>
-                  </CardLink>
-                </Card>
-              </GridArea>
-              <GridArea $colSpan={[12, 4]}>
-                <Card
-                  $background="teachersPastelBlue"
-                  $pa={[24]}
-                  $height={[150]}
-                  $mr={[0, 16]}
-                >
-                  <CardLink
-                    page="blog-single"
-                    blogSlug="tbd-link-to-relevant-page"
-                  >
-                    <Heading tag={"h3"} $font={"heading-light-7"} $mb={16}>
-                      Blog
-                    </Heading>
-                    <P>How to design a subject curriculum</P>
-                  </CardLink>
-                </Card>
-              </GridArea>
-              <GridArea $colSpan={[12, 4]}>
-                <Card
-                  $background="teachersPastelBlue"
-                  $pa={[24]}
-                  $height={[96]}
-                >
-                  <CardLink
-                    page="blog-single"
-                    blogSlug="tbd-link-to-relevant-page"
-                  >
-                    <Heading tag={"h3"} $font={"heading-light-7"} $mb={16}>
-                      Resource
-                    </Heading>
-                    <P>How to design a unit of study</P>
-                  </CardLink>
-                </Card>
-              </GridArea>
-            </Grid>
-          </Box>
+                  Read more about our approach
+                  <Icon name={"chevron-right"} />
+                </OakLink>
+              </Typography>
+            </Box>
+          </Flex>
+          <Flex
+            $background={"grey1"}
+            $position={"relative"}
+            $minHeight={812}
+            $ml={[0, 12, 0]}
+            $mr={[0, 12, 0]}
+          >
+            <Box $pl={[24, 48]} $pr={[24, 48]} $pt={48} $mb={[48, 0]}>
+              <Heading tag="h2" $font={"heading-4"} $mb={24}>
+                Our blogs on curriculum design
+              </Heading>
+              {curriculumBlogs.length ? (
+                <>
+                  <UL $reset data-testid="blog-list">
+                    {curriculumBlogs.map((item, i) => (
+                      <LI
+                        key={`PostList-PostListItem-${i}`}
+                        data-testid="blog-list-item"
+                      >
+                        {i !== 0 && <Hr thickness={4} $mv={32} />}
+                        <PostListItem
+                          {...item}
+                          isCurriculumPage={true}
+                          withImage={true}
+                          firstItemRef={null}
+                        />
+                      </LI>
+                    ))}
+                  </UL>
+                  {<Hr thickness={4} $mt={32} $mb={0} />}
+                </>
+              ) : null}
+            </Box>
+            <BrushBorders color="grey1" />
+          </Flex>
         </MaxWidth>
       </Flex>
     </AppLayout>
@@ -175,54 +196,59 @@ export const getStaticPaths = async () => {
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const newSubjects = await curriculumApi2023.subjectPhaseOptions();
-    // Legacy data is hardcoded
-    const legacySubjects: [string, string, boolean][] = [
-      ["Art & Design", "art", true],
-      ["Citizenship", "citizenship", false],
-      ["Computing", "computing", true],
-      ["Design & Technology", "design-technology", true],
-      ["Drama", "drama", true],
-      ["English", "english", true],
-      ["French", "french", true],
-      ["Geography", "geography", true],
-      ["German", "german", false],
-      ["History", "history", true],
-      ["Latin", "latin", false],
-      ["Maths", "maths", true],
-      ["Music", "music", true],
-      ["Physical Education", "physical-education", true],
-      ["Physics", "physics", false],
-      ["Religious Education", "religious-education", true],
-      ["RSHE (PSHE)", "rshe-pshe", true],
-      ["Science", "science", true],
-      ["Spanish", "spanish", true],
-    ];
-
-    const phases = [
-      { title: "Primary", slug: "primary" },
-      { title: "Secondary", slug: "secondary" },
-    ];
-
+    const subjects = await curriculumApi2023.subjectPhaseOptions();
     return {
-      newSubjects: newSubjects,
-      legacySubjects: legacySubjects.map((subject) => {
-        return {
-          title: subject[0],
-          slug: subject[1],
-          phases: subject[2] ? phases : phases.slice(1),
-        };
-      }),
+      subjects: subjects,
     };
   };
+
+export type Client = typeof CMSClient;
+
+export async function fetchCurriculumPageBlogs(
+  CMSClient: Client,
+): Promise<SerializedBlogPostPreview[]> {
+  const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
+    "how-to-design-a-subject-curriculum",
+  );
+
+  const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
+    "how-to-refresh-your-curriculum-using-oak-units",
+  );
+
+  const designUnitBlog = await CMSClient.blogPostBySlug(
+    "how-to-design-a-unit-of-study",
+  );
+
+  const blogs = [];
+
+  if (
+    subjectCurriculumBlog !== null &&
+    refreshCurriculumBlog !== null &&
+    designUnitBlog !== null
+  ) {
+    blogs.push(
+      [subjectCurriculumBlog, refreshCurriculumBlog, designUnitBlog].map(
+        serializeDate,
+      ),
+    );
+  } else {
+    throw new Error("Missing blog post");
+  }
+
+  return blogs.flat();
+}
 
 export const getStaticProps: GetStaticProps<
   CurriculumHomePageProps
 > = async () => {
   const data = await fetchSubjectPhasePickerData();
+
+  const posts = await fetchCurriculumPageBlogs(CMSClient);
+
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
       subjectPhaseOptions: data,
+      posts,
     },
   };
   const resultsWithIsr = decorateWithIsr(results);
