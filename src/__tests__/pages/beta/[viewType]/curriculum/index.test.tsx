@@ -96,28 +96,36 @@ describe("pages/beta/curriculum/index", () => {
     );
   });
 
-  it("Renders curriculum blogs", () => {
-    render(<CurriculumHomePage {...props} />);
-    const blogList = screen.getByTestId("blog-list");
-    expect(blogList).toBeInTheDocument();
-  });
-
-  describe("fetchCurriculumPageBlogs", () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
+  describe("curriculum blog posts", () => {
+    it("Renders curriculum blogs", () => {
+      render(<CurriculumHomePage {...props} />);
+      const blogList = screen.getByTestId("blog-list");
+      expect(blogList).toBeInTheDocument();
     });
 
-    it("Should return the correct data", async () => {
-      const blogs = await fetchCurriculumPageBlogs(
-        mockCMS() as unknown as Client,
-      );
-      expect(blogs).toEqual(mockPosts);
+    it("Renders the correct number of blogs", () => {
+      render(<CurriculumHomePage {...props} />);
+      const blogs = screen.getAllByTestId("blog-list-item");
+      expect(blogs).toHaveLength(3);
     });
 
-    it("Should throw an error if any of the blogs are missing", async () => {
-      await expect(
-        fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client),
-      ).rejects.toThrow("Missing blog post");
+    describe("fetchCurriculumPageBlogs", () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+      });
+
+      it("Should return the correct data", async () => {
+        const blogs = await fetchCurriculumPageBlogs(
+          mockCMS() as unknown as Client,
+        );
+        expect(blogs).toEqual(mockPosts);
+      });
+
+      it("Should throw an error if any of the blogs are missing", async () => {
+        await expect(
+          fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client),
+        ).rejects.toThrow("Missing blog post");
+      });
     });
   });
 
