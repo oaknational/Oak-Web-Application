@@ -328,7 +328,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $textDecoration={"underline"}
                     $font={"body-2-bold"}
                   >
-                    See curricula from previous academic years{" "}
+                    See curricula from previous academic years
                     <Icon
                       $color={"black"}
                       name="external"
