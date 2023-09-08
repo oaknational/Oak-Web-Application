@@ -8,8 +8,11 @@ describe("Button", () => {
 
     const { getByRole } = renderWithTheme(
       <Button
-            label="Click me"
-            onClick={spy} title={""} imageSlug={"magic-carpet"}      />,
+        label="Click me"
+        onClick={spy}
+        title={""}
+        imageSlug={"magic-carpet"}
+      />,
     );
 
     const button = getByRole("button");
@@ -21,8 +24,11 @@ describe("Button", () => {
 
     const { getByRole } = renderWithTheme(
       <Button
-            label="Click me"
-            onClick={spy} title={""} imageSlug={"magic-carpet"}      />,
+        label="Click me"
+        onClick={spy}
+        title={""}
+        imageSlug={"magic-carpet"}
+      />,
     );
 
     const button = getByRole("button");
@@ -36,9 +42,12 @@ describe("Button", () => {
 
     const { getByRole } = renderWithTheme(
       <Button
-            label="Click me"
-            disabled={true}
-            onClick={spy} title={""} imageSlug={"magic-carpet"}      />,
+        label="Click me"
+        disabled={true}
+        onClick={spy}
+        title={""}
+        imageSlug={"magic-carpet"}
+      />,
     );
 
     const button = getByRole("button");
