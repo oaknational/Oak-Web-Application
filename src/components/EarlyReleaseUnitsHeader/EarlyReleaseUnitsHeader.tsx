@@ -15,7 +15,7 @@ const EarlyReleaseUnitsHeader = () => {
         <Grid $ph={[16, 0]}>
           <GridArea $colSpan={[12, 12, 6]} $pt={36} $gap={24}>
             <Heading tag={"h1"} $font={"heading-7"}>
-              Teachers & Subject leads
+              Teachers & subject leads
             </Heading>
             <Heading tag="h2" $font={"heading-3"}>
               New teaching resources
