@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-
 import EarlyReleaseUnitstitle from ".";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 

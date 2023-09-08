@@ -37,9 +37,15 @@ describe("useDownloadExistenceCheck", () => {
       "worksheet-pdf",
     ];
     const onComplete = jest.fn();
+    const viewType = "teachers";
 
     renderHook(() =>
-      useDownloadExistenceCheck({ lessonSlug, resourcesToCheck, onComplete }),
+      useDownloadExistenceCheck({
+        lessonSlug,
+        resourcesToCheck,
+        onComplete,
+        viewType,
+      }),
     );
 
     await waitFor(() => {
@@ -47,6 +53,7 @@ describe("useDownloadExistenceCheck", () => {
       expect(getDownloadResourcesExistenceMock).toBeCalledWith(
         lessonSlug,
         "exit-quiz-answers,worksheet-pdf",
+        "teachers",
       );
     });
 
@@ -68,9 +75,15 @@ describe("useDownloadExistenceCheck", () => {
         "worksheet-pdf": true,
       },
     }));
+    const viewType = "teachers";
 
     renderHook(() =>
-      useDownloadExistenceCheck({ lessonSlug, resourcesToCheck, onComplete }),
+      useDownloadExistenceCheck({
+        lessonSlug,
+        resourcesToCheck,
+        onComplete,
+        viewType,
+      }),
     );
 
     await waitFor(() => {

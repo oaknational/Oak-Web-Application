@@ -9,32 +9,30 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
-import AppLayout from "../../../../../../../../../components/AppLayout";
-import Flex from "../../../../../../../../../components/Flex";
-import Box from "../../../../../../../../../components/Box";
-import MaxWidth from "../../../../../../../../../components/MaxWidth/MaxWidth";
-import TitleCard from "../../../../../../../../../components/Card/SubjectUnitLessonTitleCard";
-import {
-  Heading,
-  Hr,
-  P,
-} from "../../../../../../../../../components/Typography";
-import OakLink from "../../../../../../../../../components/OakLink";
-import Button from "../../../../../../../../../components/Button";
-import Input from "../../../../../../../../../components/Input";
-import { getSeoProps } from "../../../../../../../../../browser-lib/seo/getSeoProps";
-import useAnalytics from "../../../../../../../../../context/Analytics/useAnalytics";
-import Grid, { GridArea } from "../../../../../../../../../components/Grid";
+import { lessonBreadcrumbArray } from "../[lessonSlug]";
+
+import AppLayout from "@/components/AppLayout";
+import Flex from "@/components/Flex";
+import Box from "@/components/Box";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
+import { Heading, Hr, P } from "@/components/Typography";
+import OakLink from "@/components/OakLink";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import Grid, { GridArea } from "@/components/Grid";
 import curriculumApi, {
   type LessonDownloadsData,
-} from "../../../../../../../../../node-lib/curriculum-api";
-import { KeyStageTitleValueType } from "../../../../../../../../../browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "../../../../../../../../../components/DownloadComponents/helpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadFormErrorMessage";
-import useDownloadExistenceCheck from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadExistenceCheck";
-import useLocalStorageForDownloads from "../../../../../../../../../components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import useDownloadForm from "../../../../../../../../../components/DownloadComponents/hooks/useDownloadForm";
-import { getPreselectedDownloadResourceTypes } from "../../../../../../../../../components/DownloadComponents/helpers/getDownloadResourceType";
+} from "@/node-lib/curriculum-api";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import getFormattedDetailsForTracking from "@/components/DownloadComponents/helpers/getFormattedDetailsForTracking";
+import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
+import useDownloadExistenceCheck from "@/components/DownloadComponents/hooks/useDownloadExistenceCheck";
+import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import useDownloadForm from "@/components/DownloadComponents/hooks/useDownloadForm";
+import { getPreselectedDownloadResourceTypes } from "@/components/DownloadComponents/helpers/getDownloadResourceType";
 import {
   ResourcesToDownloadArrayType,
   ErrorKeysType,
@@ -42,31 +40,32 @@ import {
   DownloadResourceType,
   preselectedDownloadType,
   schema,
-} from "../../../../../../../../../components/DownloadComponents/downloads.types";
-import TermsAndConditionsCheckbox from "../../../../../../../../../components/DownloadComponents/TermsAndConditionsCheckbox";
-import Breadcrumbs from "../../../../../../../../../components/Breadcrumbs";
-import { lessonBreadcrumbArray } from "../[lessonSlug]";
-import DownloadCardGroup from "../../../../../../../../../components/DownloadComponents/DownloadCard/DownloadCardGroup";
-import FieldError from "../../../../../../../../../components/FormFields/FieldError";
-import SchoolPickerRadio from "../../../../../../../../../components/DownloadComponents/SchoolpickerRadio";
-import DetailsCompleted from "../../../../../../../../../components/DownloadComponents/DetailsCompleted";
-import NoResourcesToDownload from "../../../../../../../../../components/DownloadComponents/NoResourcesToDownload";
-import debouncedSubmit from "../../../../../../../../../components/DownloadComponents/helpers/downloadDebounceSubmit";
-import useAnalyticsPageProps from "../../../../../../../../../hooks/useAnalyticsPageProps";
+} from "@/components/DownloadComponents/downloads.types";
+import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import FieldError from "@/components/FormFields/FieldError";
+import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
+import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
+import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
+import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../../../../../../../node-lib/isr";
-import { ViewType } from "../../../../../../../../../common-lib/urls";
-import getPageProps from "../../../../../../../../../node-lib/getPageProps";
-import curriculumApi2023 from "../../../../../../../../../node-lib/curriculum-api-2023";
+} from "@/node-lib/isr";
+import { ViewType } from "@/common-lib/urls";
+import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
+  viewType: ViewType;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
+  viewType,
 }) => {
   const {
     lessonTitle,
@@ -206,7 +205,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const { onSubmit } = useDownloadForm();
+  const { onSubmit } = useDownloadForm({ viewType: viewType });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     await debouncedSubmit({
@@ -257,6 +256,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
+    viewType,
   });
 
   const handleEditDetailsCompletedClick = () => {
@@ -521,6 +521,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
       return results;

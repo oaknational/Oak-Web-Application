@@ -1,10 +1,8 @@
 import React, { FC, useState } from "react";
 
-import useAnalytics from "../../context/Analytics/useAnalytics";
 import Card, { CardProps } from "../Card";
 import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import useClickableCard from "../../hooks/useClickableCard";
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
 import Icon from "../Icon";
@@ -12,7 +10,10 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
 import { containerTitleToPreselectMap } from "../DownloadComponents/downloads.types";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
+
+import useClickableCard from "@/hooks/useClickableCard";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 export type ExpandingContainerTitle =
   | "Slide deck"
