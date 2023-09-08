@@ -13,7 +13,6 @@ import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
 
 type OverviewTabProps = {
   data: CurriculumOverviewTabData;
-  slug: string;
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
@@ -82,7 +81,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               <LI
                 $mb={[12]}
                 key={`principle-${i + 1}`}
-                data-testid="subjectPrinciples"
+                data-testid="subject-principles"
               >
                 <Flex $alignItems={"center"}>
                   <Flex
