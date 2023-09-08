@@ -7,7 +7,6 @@ import { HeaderLessonMobile } from "./HeaderLessonMobile";
 import { HeaderLessonDesktop } from "./HeaderLessonDesktop";
 
 import { OakColorName } from "@/styles/theme";
-import { LessonOverviewData } from "@/node-lib/curriculum-api";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
@@ -16,10 +15,25 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
  *
  */
 
-export type HeaderLessonProps = LessonOverviewData & {
+export type HeaderLessonProps = {
+  // pathway props
+  subjectSlug: string;
+  yearTitle: string;
+  unitSlug: string;
+  keyStageSlug: string;
+  keyStageTitle: string;
+  unitTitle: string;
+  subjectTitle: string;
+  programmeSlug: string;
+  // lesson base props
+  lessonTitle: string;
+  expired?: boolean | null;
+  hasDownloadableResources?: boolean;
+  lessonSlug: string;
+  lessonDescription?: string;
+  // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
-  lessonDescription?: string; // Check this is coming through from the API
   isNew?: boolean;
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;

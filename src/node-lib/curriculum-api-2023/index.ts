@@ -13,6 +13,7 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
+import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -122,6 +123,7 @@ const curriculumApi2023 = {
   subjectListingPage: subjectListingQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
+  lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
   curriculumOverview: curriculumOverviewQuery(),
   curriculumUnits: curriculumUnitsQuery(sdk),

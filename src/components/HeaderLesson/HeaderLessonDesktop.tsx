@@ -24,16 +24,18 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
       <Grid>
         <GridArea $justifyContent={"center"} $colSpan={[12, 3]}>
           <Flex $height={[172, 172, 200]} $width={[172, 172, 200]}>
-            <SubjectIconBrushBorders
-              subjectSlug={subjectSlug}
-              height={96}
-              width={96}
-              $maxHeight={140}
-              $maxWidth={140}
-              $ma={"auto"}
-              color={subjectIconBackgroundColor}
-              isNew={isNew}
-            />
+            {subjectSlug && (
+              <SubjectIconBrushBorders
+                subjectSlug={subjectSlug}
+                height={96}
+                width={96}
+                $maxHeight={140}
+                $maxWidth={140}
+                $ma={"auto"}
+                color={subjectIconBackgroundColor}
+                isNew={isNew}
+              />
+            )}
           </Flex>
         </GridArea>
         <GridArea $justifyContent={"center"} $colSpan={[12, 9]}>

@@ -1,0 +1,37 @@
+query lessonOverviewCanonical(
+  $lessonSlug: String!
+) {
+  lesson: published_mv_lesson_overview_8(
+    where: {
+      lessonSlug: { _eq: $lessonSlug }
+    }
+  ) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    misconceptionsAndCommonMistakes
+    lessonEquipmentAndResources
+    teacherTips
+    keyLearningPoints
+    pupilLessonOutcome
+    lessonKeywords
+    copyrightContent
+    contentGuidance
+    additionalMaterialUrl
+    supervisionLevel
+    worksheetUrl
+    presentationUrl
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
+    starterQuiz
+    exitQuiz
+    yearTitle
+  }
+}

@@ -9,8 +9,6 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
-import { lessonBreadcrumbArray } from "../[lessonSlug]";
-
 import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
@@ -57,6 +55,7 @@ import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
+import { getBreadcrumbsForLessonPathway } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -280,14 +279,15 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         <Box $mv={[24, 48]}>
           <Breadcrumbs
             breadcrumbs={[
-              ...lessonBreadcrumbArray(
+              ...getBreadcrumbsForLessonPathway({
                 keyStageTitle,
                 keyStageSlug,
                 programmeSlug,
                 subjectTitle,
+                subjectSlug,
                 unitSlug,
                 unitTitle,
-              ),
+              }),
               {
                 oakLinkProps: {
                   page: "lesson-overview",
