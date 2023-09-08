@@ -173,44 +173,9 @@ export const getStaticPaths = async () => {
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const newSubjects = await curriculumApi2023.subjectPhaseOptions();
-    // Legacy data is hardcoded
-    const legacySubjects: [string, string, boolean][] = [
-      ["Art & Design", "art", true],
-      ["Citizenship", "citizenship", false],
-      ["Computing", "computing", true],
-      ["Design & Technology", "design-technology", true],
-      ["Drama", "drama", true],
-      ["English", "english", true],
-      ["French", "french", true],
-      ["Geography", "geography", true],
-      ["German", "german", false],
-      ["History", "history", true],
-      ["Latin", "latin", false],
-      ["Maths", "maths", true],
-      ["Music", "music", true],
-      ["Physical Education", "physical-education", true],
-      ["Physics", "physics", false],
-      ["Religious Education", "religious-education", true],
-      ["RSHE (PSHE)", "rshe-pshe", true],
-      ["Science", "science", true],
-      ["Spanish", "spanish", true],
-    ];
-
-    const phases = [
-      { title: "Primary", slug: "primary" },
-      { title: "Secondary", slug: "secondary" },
-    ];
-
+    const subjects = await curriculumApi2023.subjectPhaseOptions();
     return {
-      newSubjects: newSubjects,
-      legacySubjects: legacySubjects.map((subject) => {
-        return {
-          title: subject[0],
-          slug: subject[1],
-          phases: subject[2] ? phases : phases.slice(1),
-        };
-      }),
+      subjects: subjects,
     };
   };
 

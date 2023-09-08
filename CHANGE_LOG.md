@@ -1,3 +1,29 @@
+# [1.234.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.5...v1.234.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* **curric:** adding tests for overview and units tabs, updating downloads tab naming ([edfdbb6](https://github.com/oaknational/Oak-Web-Application/commit/edfdbb687dddd2940351b935f905027e3da2a240))
+* **curric:** code cleanup following review ([393b2e4](https://github.com/oaknational/Oak-Web-Application/commit/393b2e414b78b8ec1ac35cc6d9406b965f3acaa2))
+* **curric:** fixing conflicts with main ([89930fc](https://github.com/oaknational/Oak-Web-Application/commit/89930fc1f07f31345442d39bc48e5a672d3b6101))
+* **curric:** fixing merge conflicts ([744b1b2](https://github.com/oaknational/Oak-Web-Application/commit/744b1b2a3715f74a7799d8d43e8eca0094c19c97))
+* **curric:** fixing merge conflicts ([982545f](https://github.com/oaknational/Oak-Web-Application/commit/982545fb204f4a12c58e33d0f3ef6ba97d0fcfcb))
+* **curric:** fixing merge conflicts ([a45045d](https://github.com/oaknational/Oak-Web-Application/commit/a45045dd54f0d6b741c2237aa22f3a00dc976395))
+* **curric:** fixing merge conflicts ([ecb252e](https://github.com/oaknational/Oak-Web-Application/commit/ecb252ec7a9f17aa9786750ee94618db6855f896))
+* **curric:** style updates from feedback ([0266c26](https://github.com/oaknational/Oak-Web-Application/commit/0266c26c3da11014d9c050748e575731881eeadc))
+* merging latest main ([3d3e3c0](https://github.com/oaknational/Oak-Web-Application/commit/3d3e3c014970fe7de228ff6491a26636a4b3dae5))
+
+
+### Features
+
+* **curric:** add filters to curriculum units, update tab paths ([950668d](https://github.com/oaknational/Oak-Web-Application/commit/950668dd64787dd3d87cdf1fa69b61318ab880d9))
+* **curric:** integrate unit sequence data ([81d4f71](https://github.com/oaknational/Oak-Web-Application/commit/81d4f71e1934cc74bbc6bc7baf757f9b3334892e))
+* **curric:** update curriculum units api request ([fd9bfd3](https://github.com/oaknational/Oak-Web-Application/commit/fd9bfd34f95d0ee180f5650f44be127c65d06eeb))
+* **curric:** update curriculum units link ([9165f9a](https://github.com/oaknational/Oak-Web-Application/commit/9165f9a130ee687829e0fb060f5dbc3e6e8f4782))
+* **curric:** update unit sequence ui ([abca210](https://github.com/oaknational/Oak-Web-Application/commit/abca210411b225d73476132a65aac873283032d0))
+
+## [1.233.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.4...v1.233.5) (2023-09-07)
+
 ## [1.233.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.3...v1.233.4) (2023-09-06)
 
 ## [1.233.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.233.2...v1.233.3) (2023-09-06)
