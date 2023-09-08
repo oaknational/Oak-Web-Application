@@ -8,6 +8,7 @@ import CMSImage from "../CMSImage/CMSImage";
 import Flex from "../Flex/Flex";
 import Box from "../Box/Box";
 import TagPromotional from "../TagPromotional/TagPromotional";
+import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
 
 import ButtonLabel, {
   ButtonLabelSpan,
@@ -16,8 +17,7 @@ import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
 } from "./NewFocusUndeline";
-import { CommonButtonProps, HTMLButtonProps } from "./common";
-import BrushUnderline from "./NewBrushUndeline";
+import { CommonButtonProps, HTMLButtonProps } from "./newCommon";
 
 import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
