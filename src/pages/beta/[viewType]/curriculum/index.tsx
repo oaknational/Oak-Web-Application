@@ -152,7 +152,10 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 <>
                   <UL $reset data-testid="blog-list">
                     {curriculumBlogs.map((item, i) => (
-                      <LI key={`PostList-PostListItem-${i}`}>
+                      <LI
+                        key={`PostList-PostListItem-${i}`}
+                        data-testid="blog-list-item"
+                      >
                         {i !== 0 && <Hr thickness={4} $mv={32} />}
                         <PostListItem
                           {...item}
