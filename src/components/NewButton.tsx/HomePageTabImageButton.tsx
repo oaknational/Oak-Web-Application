@@ -9,13 +9,13 @@ import Flex from "../Flex/Flex";
 import Box from "../Box/Box";
 import TagPromotional from "../TagPromotional/TagPromotional";
 import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
+import { CommonButtonProps, HTMLButtonProps } from "../Button/common";
 
 import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
 } from "./NewFocusUndeline";
-import { CommonButtonProps, HTMLButtonProps } from "./newCommon";
 
 import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
