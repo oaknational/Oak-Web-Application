@@ -1,0 +1,23 @@
+# Infrastructure
+
+This folder current manages the buckets responsible for holding uploaded lesson videos.
+
+The terraform project is broken out into multiple workspaces
+
+- production
+- staging
+- demo
+
+Each workspace will have variables configured in TF cloud
+
+```
+project       = "oak-national-academy"
+region        = "europe-west2"
+retool_origin = "https://creator-staging.thenational.academy"
+environment   = "staging"
+
+```
+
+## Local setup
+
+The current doc on terraform management can be found here https://github.com/oaknational/Data-Tools/tree/development/infrastructure#terraform-cloud

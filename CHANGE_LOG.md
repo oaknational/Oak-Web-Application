@@ -1,3 +1,10 @@
+# [1.238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.237.1...v1.238.0) (2023-09-11)
+
+
+### Features
+
+* **infra:** add lesson video bucket tf config to infra ([69dc70e](https://github.com/oaknational/Oak-Web-Application/commit/69dc70e2650b3655985ecbc4a9536267e67d7393))
+
 ## [1.237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.237.0...v1.237.1) (2023-09-11)
 
 
