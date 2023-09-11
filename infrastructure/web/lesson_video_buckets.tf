@@ -1,4 +1,4 @@
-// I want to create a bucket in gcp to hold lesson videos
+
 resource "google_storage_bucket" "lesson_videos" {
   name          = "lesson-videos-${var.environment}"
   location      = var.region
@@ -16,8 +16,4 @@ resource "google_storage_bucket" "lesson_videos" {
   }
 }
 
-resource "google_storage_bucket_iam_member" "lesson_videos_public" {
-  bucket = google_storage_bucket.lesson_videos.name
-  role   = "roles/storage.objectViewer"
-  member = "allUsers"
-}
+
