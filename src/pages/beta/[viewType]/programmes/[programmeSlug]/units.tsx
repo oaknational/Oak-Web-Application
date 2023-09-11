@@ -196,7 +196,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {learningThemes?.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
-                    label="Learning threads"
+                    label="Threads"
                     $mt={0}
                   >
                     <LearningThemeFilters
