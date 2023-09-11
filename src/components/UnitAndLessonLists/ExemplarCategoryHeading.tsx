@@ -15,7 +15,11 @@ const ExemplarCategoryHeading: FC<ExemplarCategoryHeadingProps> = ({
   yearTitle,
 }) => {
   return (
-    <Typography $font={"heading-light-7"} $color={"oakGrey4"} $mb={4}>
+    <Typography
+      $font={["body-3", "heading-light-7"]}
+      $color={"oakGrey4"}
+      $mb={4}
+    >
       {keyStageTitle} <Icon name="dot" size={6} $mb={2} $mr={4} />
       {yearTitle} <Icon name="dot" size={6} $mb={2} $mr={4} />
       {subjectTitle}
