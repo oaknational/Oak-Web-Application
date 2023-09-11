@@ -20,7 +20,7 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
       $justifyContent={"center"}
     >
       <Heading $font={"heading-5"} $mb={24} data-testid={"heading"} tag="h3">
-        Key words
+        Keywords
       </Heading>
       <UL $reset>
         {keyWords.map((keyWord: KeyWord, i: number) => {

@@ -68,6 +68,7 @@ const TagPromotional: FC<TagPromotionalProps> = ({
         name={"tag-promotional"}
         $bottom={1}
         $objectFit={"contain"}
+        filter={"drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"}
       />
       <Flex
         $left={textPosMap[size].left}

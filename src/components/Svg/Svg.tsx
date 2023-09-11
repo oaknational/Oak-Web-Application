@@ -15,6 +15,7 @@ export type SvgProps = BoxProps & {
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
   color?: OakColorName;
+  filter?: string;
 };
 const Svg: FC<SvgProps> = (props) => {
   return (

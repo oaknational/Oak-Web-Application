@@ -29,4 +29,23 @@ describe("errors/OakError", () => {
       shouldNotify: true,
     });
   });
+  it("should store the original error", () => {
+    const originalError = new Error("original error");
+    const error = new OakError({
+      code: "misc/unknown",
+      originalError,
+    });
+
+    expect(error.originalError).toBe(originalError);
+  });
+  it("should inherit the hasBeenReported property from the original error", () => {
+    const originalError = new OakError({ code: "misc/unknown" });
+    originalError.hasBeenReported = true;
+    const error = new OakError({
+      code: "misc/unknown",
+      originalError,
+    });
+
+    expect(error.hasBeenReported).toBe(true);
+  });
 });
