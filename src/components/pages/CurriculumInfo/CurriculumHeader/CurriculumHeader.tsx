@@ -140,14 +140,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               isCurrent: tab === "units",
               currentStyles: ["underline"],
             },
-            {
-              label: "Downloads",
-              page: "curriculum-downloads",
-              viewType: "teachers",
-              subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "downloads",
-              currentStyles: ["underline"],
-            },
           ]}
           data-testid="tabularNav"
         />
