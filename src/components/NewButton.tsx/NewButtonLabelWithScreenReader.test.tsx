@@ -1,6 +1,6 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import ButtonLabel from './NewButtonLabelWithScreenReaderTitle'
+import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
 
 describe("Span", () => {
   test("should have correct default styles", () => {
