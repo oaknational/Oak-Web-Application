@@ -1,3 +1,10 @@
+## [1.236.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.236.0...v1.236.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* change learning themes to threads ([c0dda1e](https://github.com/oaknational/Oak-Web-Application/commit/c0dda1e6554439bf0f347e65a9ff170174c23b33))
+
 # [1.236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.2...v1.236.0) (2023-09-11)
 
 
