@@ -5,7 +5,10 @@ import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 
-type SpanProps = TypographyProps & ColorProps & OpacityProps & MarginProps;
+export type SpanProps = TypographyProps &
+  ColorProps &
+  OpacityProps &
+  MarginProps;
 /**
  * Span renders a `span` (inline text) component, exposing all the typography props.
  * ## Usage
