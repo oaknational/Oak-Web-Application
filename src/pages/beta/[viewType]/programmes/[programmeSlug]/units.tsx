@@ -155,7 +155,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $font="body-3"
                     $mb={16}
                   >
-                    Learning themes
+                    Threads
                   </Heading>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
@@ -196,7 +196,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {learningThemes?.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
-                    label="Learning themes"
+                    label="Learning threads"
                     $mt={0}
                   >
                     <LearningThemeFilters
