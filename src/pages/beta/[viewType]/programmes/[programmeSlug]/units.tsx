@@ -155,6 +155,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $font="body-3"
                     $mb={16}
                   >
+                    {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
                     Threads
                   </Heading>
                   <LearningThemeFilters
