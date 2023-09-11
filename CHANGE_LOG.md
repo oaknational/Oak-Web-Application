@@ -1,3 +1,10 @@
+## [1.237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.237.0...v1.237.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* **curric:** remove downloads tab ([fe4d04c](https://github.com/oaknational/Oak-Web-Application/commit/fe4d04ce6fadbd2721baa0f973666cae93bae7a0))
+
 # [1.237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.236.1...v1.237.0) (2023-09-11)
 
 
