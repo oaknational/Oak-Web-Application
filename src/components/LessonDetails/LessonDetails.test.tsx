@@ -99,7 +99,7 @@ describe("LessonDetails component", () => {
       />,
     );
 
-    const keyWordsComponent = getByText("Key words");
+    const keyWordsComponent = getByText("Keywords");
     expect(keyWordsComponent).toBeInTheDocument();
   });
 
@@ -116,7 +116,7 @@ describe("LessonDetails component", () => {
       />,
     );
 
-    const componentTitle = queryByText("Key words");
+    const componentTitle = queryByText("Keywords");
     expect(componentTitle).not.toBeInTheDocument();
   });
 
