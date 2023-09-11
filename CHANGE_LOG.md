@@ -1,3 +1,40 @@
+## [1.236.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.236.0...v1.236.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* change learning themes to threads ([c0dda1e](https://github.com/oaknational/Oak-Web-Application/commit/c0dda1e6554439bf0f347e65a9ff170174c23b33))
+
+# [1.236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.2...v1.236.0) (2023-09-11)
+
+
+### Features
+
+* adds legacy button to school picker ([2a3d791](https://github.com/oaknational/Oak-Web-Application/commit/2a3d7918e9ea04075edb3c653733ebcd2b269397))
+
+## [1.235.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.1...v1.235.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* remove waitFors from tests that were timing out - they dont appear to need them ([a3db2de](https://github.com/oaknational/Oak-Web-Application/commit/a3db2de28b4590c0f2d9aa10e454ce44e465fb7d))
+* typo in keywords component and related tests ([370813f](https://github.com/oaknational/Oak-Web-Application/commit/370813f4e73fe69f4379f0009667bd6686c2b5d5))
+
+## [1.235.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.0...v1.235.1) (2023-09-11)
+
+# [1.235.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.234.2...v1.235.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* header test ([e9dfdc5](https://github.com/oaknational/Oak-Web-Application/commit/e9dfdc510c8f795005af920a96c51e48a12cddf0))
+* safari svg color bug ([559236d](https://github.com/oaknational/Oak-Web-Application/commit/559236d77bc5be094289b4307e6691aa13378691))
+
+
+### Features
+
+* exemplar units page ([0348616](https://github.com/oaknational/Oak-Web-Application/commit/0348616121e41537766a08fab8ef3e3b3a0a05da))
+
 ## [1.234.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.234.1...v1.234.2) (2023-09-08)
 
 

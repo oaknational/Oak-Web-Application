@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
@@ -115,20 +115,18 @@ describe("pages/about/who-we-are.tsx", () => {
     jest.resetModules();
   });
 
-  it("Renders correct title ", async () => {
+  it("Renders correct title ", () => {
     renderWithProviders()(
       <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
     );
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us",
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us",
+    );
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
         <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
       );
