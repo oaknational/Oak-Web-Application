@@ -9,6 +9,8 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
+  // increase the default timeout from 5s to 15s, as some tests are slow to run, especially on CI
+  testTimeout: 15000,
   collectCoverage: true,
   collectCoverageFrom: [
     "./src/**",
