@@ -47,11 +47,11 @@ const StyledCMSImage = styled(CMSImage)`
 `;
 
 const noneCurrentButtonLabel = css`
-  color: ${getColorByName("grey4")};
+  color: ${getColorByName("oakGrey4")};
 
   :hover ${ButtonLabel} {
     text-decoration: underline;
-    color: ${getColorByName("grey6")};
+    color: ${getColorByName("oakGrey6")};
   }
 
   ${StyledCMSImage} {
