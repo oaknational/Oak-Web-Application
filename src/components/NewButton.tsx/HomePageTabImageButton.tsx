@@ -33,7 +33,7 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   isNew?: boolean;
 };
 
-export type ButtonStylesProps = OpacityProps &
+export type HomePageNavTabImageButtonStylesProps = OpacityProps &
   MarginProps & {
     disabled?: boolean;
     $focusStyles?: [];
@@ -46,7 +46,8 @@ const StyledCMSImage = styled(CMSImage)`
   opacity: 1;
 `;
 
-const noneCurrentButtonLabel = css`
+const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
+  ${(props) => !props.isCurrent && css`
   color: ${getColorByName("oakGrey4")};
 
   :hover ${ButtonLabel} {
@@ -55,16 +56,16 @@ const noneCurrentButtonLabel = css`
   }
 
   ${StyledCMSImage} {
-    opacity: 0.5;
+    opacity: 0.6;
   }
-`;
-
-const buttonStyles = css<ButtonStylesProps>`
-  ${(props) => !props.isCurrent && noneCurrentButtonLabel}
+  :hover ${StyledCMSImage} {
+    opacity: 1;
+  }
+`}
 `;
 
 const StyledButton = styled(UnstyledButton)<
-  ButtonStylesProps & UnstyledButtonProps
+HomePageNavTabImageButtonStylesProps & UnstyledButtonProps
 >`
   :focus {
     outline: none;
