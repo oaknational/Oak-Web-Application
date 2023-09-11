@@ -289,7 +289,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
               >
-                <Heading tag={"h4"} $font={"body-1-bold"} $mb={16}>
+                <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                   Latest Resources
                   <Box
                     $background="black"
@@ -326,7 +326,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   <OakLink
                     page={"oak-curriculum"}
                     $textDecoration={"underline"}
-                    $font={"body-2-bold"}
+                    $font={"heading-7"}
                   >
                     See curricula from previous academic years
                     <Icon
