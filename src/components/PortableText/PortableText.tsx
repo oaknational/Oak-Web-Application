@@ -50,7 +50,7 @@ export const PTInternalLink: PortableTextMarkComponent<{
   if (!reference) {
     console.warn(
       "Unable to render PTInternalLink (missing reference), props:",
-      props
+      props,
     );
     return null;
   }
@@ -58,11 +58,11 @@ export const PTInternalLink: PortableTextMarkComponent<{
   if (isUnresolvedReference(reference)) {
     reportError(
       new Error("Encountered un-resolved reference within portable text"),
-      { severity: "warning", internalReference: reference }
+      { severity: "warning", internalReference: reference },
     );
     console.warn(
       "Unable to render PTInternalLink (un-resolved reference), props:",
-      props
+      props,
     );
 
     return null;

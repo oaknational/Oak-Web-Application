@@ -17,7 +17,7 @@ describe("getLegacyAnonymousId", () => {
     getCookies.mockReturnValueOnce(
       JSON.stringify({
         userId: "old-anon-id-from-cookies",
-      })
+      }),
     );
     const anonymousId = getLegacyAnonymousId();
 

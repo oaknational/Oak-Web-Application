@@ -48,7 +48,7 @@ describe("formToZod.ts", () => {
 
       const parseResult = schema.safeParse("") as SafeParseError<unknown>;
       expect(parseResult.error.issues?.[0]?.message).toBe(
-        `The Label can't be empty`
+        `The Label can't be empty`,
       );
     });
 
@@ -147,14 +147,14 @@ describe("formToZod.ts", () => {
 
       const emptyParseResult = schema.safeParse("") as SafeParseError<unknown>;
       expect(emptyParseResult.error.issues?.[0]?.message).toBe(
-        `Email Label can't be empty`
+        `Email Label can't be empty`,
       );
 
       const invalidParseResult = schema.safeParse(
-        "not-an-email"
+        "not-an-email",
       ) as SafeParseError<unknown>;
       expect(invalidParseResult.error.issues?.[0]?.message).toBe(
-        `Email not valid`
+        `Email not valid`,
       );
     });
   });

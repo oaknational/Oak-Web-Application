@@ -23,7 +23,7 @@ function pxToRem(px: number): number {
  *
  */
 export function getRemUnits(
-  px: number | string | null | undefined
+  px: number | string | null | undefined,
 ): string | null | undefined {
   if (px === null || px === undefined) {
     return px;

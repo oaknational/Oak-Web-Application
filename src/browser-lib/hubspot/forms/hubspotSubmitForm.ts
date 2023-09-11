@@ -49,7 +49,7 @@ const hubspotErrorSchema = z.object({
     z.object({
       errorType: z.enum(HUBSPOT_ERRORS),
       message: z.string().optional(),
-    })
+    }),
   ),
 });
 const hubspotSuccessSchema = z.object({
@@ -103,13 +103,23 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
     // Cloudflare worker proxy forwards hubspot-forms.thenational.academy -> api.hsforms.com
     const url = `${hubspotFormSubmissionUrl}/${hubspotPortalId}/${hubspotFormId}`;
 
-    const res = await fetch(url, {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    let res: Response;
+
+    try {
+      res = await fetch(url, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      throw new OakError({
+        code: "misc/network-error",
+        originalError: error,
+        meta: errorMeta,
+      });
+    }
 
     if (res.ok) {
       const responseBody = await res.json();
@@ -132,7 +142,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
         const hubspotError = hubspotErrorSchema.parse(responseBody);
         errorMeta.hubspotError = hubspotError;
         const isInvalidEmail = hubspotError.errors.some(
-          (err) => err.errorType === "INVALID_EMAIL"
+          (err) => err.errorType === "INVALID_EMAIL",
         );
         errorMeta.isInvalidEmail = isInvalidEmail;
 
@@ -143,7 +153,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           try {
             const emailTextOnly = (payload: HubspotPayload) => {
               const emailField = payload.fields.find(
-                (field) => field.name === "email"
+                (field) => field.name === "email",
               );
               if (!emailField) {
                 throw new OakError({
@@ -212,7 +222,7 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           throw error;
         }
         /**
-         * We've recieved an error but not been able to parse it as a hubspot errror
+         * We've received an error but not been able to parse it as a hubspot error
          */
         throw new OakError({
           code: "hubspot/unknown",
@@ -222,10 +232,6 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
       }
     }
   } catch (error) {
-    if (error instanceof Error && error.message === "Network request failed") {
-      throw new OakError({ code: "misc/network-error" });
-    }
-
     const oakError =
       error instanceof OakError
         ? error
@@ -236,7 +242,6 @@ const hubspotSubmitForm = async (props: HubspotSubmitFormProps) => {
           });
 
     if (oakError.config.shouldNotify) {
-      // should not report if already reported!
       reportError(oakError, oakError.meta);
     }
     throw oakError;

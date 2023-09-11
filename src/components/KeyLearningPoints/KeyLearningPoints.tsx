@@ -17,7 +17,7 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   const filteredKeyLearningPoints = keyLearningPoints.filter(
     (keyLearningPoint) =>
       keyLearningPoint.keyLearningPoint !== null &&
-      keyLearningPoint.keyLearningPoint !== ""
+      keyLearningPoint.keyLearningPoint !== "",
   );
 
   return (
@@ -49,7 +49,7 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
                 </LI>
               );
             }
-          }
+          },
         )}
       </OL>
     </Flex>

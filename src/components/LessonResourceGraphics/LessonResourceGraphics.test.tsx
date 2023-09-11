@@ -34,7 +34,7 @@ describe("LessonResourceGraphics", () => {
             resourceCount: 1,
           },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe("LessonResourceGraphics", () => {
             resourceCount: 1,
           },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("1 Slide deck")).toBeInTheDocument();
@@ -96,7 +96,7 @@ describe("LessonResourceGraphics", () => {
             resourceCount: 3,
           },
         ]}
-      />
+      />,
     );
 
     expect(screen.getByText("4 Slide decks")).toBeInTheDocument();

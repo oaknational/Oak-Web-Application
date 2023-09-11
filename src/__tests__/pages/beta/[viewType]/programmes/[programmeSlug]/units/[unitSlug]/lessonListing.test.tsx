@@ -12,7 +12,7 @@ import { mockSeoResult } from "../../../../../../../__helpers__/cms";
 const render = renderWithProviders();
 
 const utilsMock = jest.requireMock(
-  "../../../../../../../../utils/resultsPerPage"
+  "../../../../../../../../utils/resultsPerPage",
 );
 jest.mock("../../../../../../../../utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
@@ -21,7 +21,10 @@ jest.mock("../../../../../../../../utils/resultsPerPage", () => ({
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />
+      <LessonListPage
+        viewType={"teachers"}
+        curriculumData={lessonListingFixture()}
+      />,
     );
 
     const pageHeading = getByRole("heading", { level: 1 });
@@ -31,7 +34,10 @@ describe("Lesson listing page", () => {
 
   test("it renders the correct number of lessons", () => {
     const { getByText } = render(
-      <LessonListPage curriculumData={lessonListingFixture()} />
+      <LessonListPage
+        viewType={"teachers"}
+        curriculumData={lessonListingFixture()}
+      />,
     );
 
     const lessonCount = getByText("Lessons (3)");
@@ -41,7 +47,10 @@ describe("Lesson listing page", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <LessonListPage curriculumData={lessonListingFixture()} />
+        <LessonListPage
+          viewType={"teachers"}
+          curriculumData={lessonListingFixture()}
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -58,7 +67,10 @@ describe("Lesson listing page", () => {
     it("renders the correct SEO details with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
-        <LessonListPage curriculumData={lessonListingFixture()} />
+        <LessonListPage
+          viewType={"teachers"}
+          curriculumData={lessonListingFixture()}
+        />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -92,7 +104,7 @@ describe("Lesson listing page", () => {
     });
     it("should throw error", async () => {
       await expect(
-        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>)
+        getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("no context.params");
     });
   });

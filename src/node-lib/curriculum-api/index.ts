@@ -1,17 +1,17 @@
 import { GraphQLClient } from "graphql-request";
 import { z } from "zod";
 
-//import errorReporter from "../../common-lib/error-reporter";
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
-//const reportError = errorReporter("curriculum-api");
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
+import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
+
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
 const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
@@ -96,7 +96,7 @@ const unitData = z.object({
     z.object({
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
-    })
+    }),
   ),
 });
 
@@ -109,7 +109,7 @@ const tiersData = z.array(
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullable().optional(),
     lessonCount: z.number().nullable().optional(),
-  })
+  }),
 );
 
 const keyStageSchema = z.object({
@@ -183,7 +183,7 @@ const unitListingData = z.object({
     z.object({
       themeTitle: z.string().nullable(),
       themeSlug: z.string().nullable(),
-    })
+    }),
   ),
 });
 
@@ -242,13 +242,13 @@ export const getFirstResultOrNull =
 
 export const filterOutDuplicateProgrammesOrNull = (
   programmesAvailable: ProgrammesData[],
-  programmesUnavailable: ProgrammesData[]
+  programmesUnavailable: ProgrammesData[],
 ) => {
   return programmesUnavailable.filter(
     (unavailable) =>
       !programmesAvailable.some(
-        (available) => available.subjectSlug === unavailable.subjectSlug
-      )
+        (available) => available.subjectSlug === unavailable.subjectSlug,
+      ),
   );
 };
 
@@ -260,8 +260,8 @@ const curriculumApi = {
 
     const keyStageSlugs = keyStages?.map((keyStage) => keyStage.slug);
 
-    const filteredByActiveKeyStages = programmesAvailable?.filter((subject) =>
-      keyStageSlugs?.includes(subject.keyStageSlug)
+    const filteredByActiveKeyStages = programmesAvailable?.filter(
+      (subject) => keyStageSlugs?.includes(subject.keyStageSlug),
     );
     const uniqueProgrammes = filteredByActiveKeyStages
       ?.filter((subject, index, self) => {
@@ -291,7 +291,7 @@ const curriculumApi = {
     const keyStageList = res.keyStageList;
 
     const addCurriculum2023Counts = (
-      programmes: ProgrammesData[] | undefined
+      programmes: ProgrammesData[] | undefined,
     ) => {
       return programmes
         ? programmes.map((programme) => {
@@ -303,7 +303,7 @@ const curriculumApi = {
               unitCount: programme.nonDuplicateSubjectUnitCount,
               programmeCount:
                 programmes.filter(
-                  (subject) => subject.subjectSlug === programme.subjectSlug
+                  (subject) => subject.subjectSlug === programme.subjectSlug,
                 ).length || 0,
             };
           })
@@ -348,7 +348,7 @@ const curriculumApi = {
 
     const filteredDuplicatedLearningThemes = [
       ...new Map(
-        learningThemes.map((theme) => [JSON.stringify(theme), theme])
+        learningThemes.map((theme) => [JSON.stringify(theme), theme]),
       ).values(),
     ].sort((a, b) => {
       if (a.themeTitle < b.themeTitle) {
@@ -379,7 +379,14 @@ const curriculumApi = {
     const res = await sdk.lessonOverview(...args);
     const { lessons = [] } = transformMVCase(res);
 
+    const { introQuiz, exitQuiz } = res;
+
     // Transform quizzes here because the schema is not the same as the one returned by the API
+    const introQuizTransformed =
+      introQuiz && introQuiz.length > 0 ? transformQuiz(introQuiz) : null;
+
+    const exitQuizTransformed =
+      exitQuiz && exitQuiz.length > 0 ? transformQuiz(exitQuiz) : null;
 
     const lesson = getFirstResultOrWarnOrFail()({
       results: lessons,
@@ -388,7 +395,7 @@ const curriculumApi = {
     const lessonKeyLearningPoints = lesson.coreContent?.map(
       (content: string) => {
         return { keyLearningPoint: content };
-      }
+      },
     );
 
     const lessonEquipmentAndResources = lesson.equipmentRequired
@@ -436,6 +443,8 @@ const curriculumApi = {
       hasDownloadableResources: lesson.hasDownloadableResources,
       expired: lesson.expired,
       yearTitle: "",
+      starterQuiz: introQuizTransformed,
+      exitQuiz: exitQuizTransformed,
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {

@@ -36,11 +36,10 @@ export const getPageViewProps = (href: string): PageViewProps => {
       };
 
       const params = matchResult.params;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+
       const viewType = "viewType" in params ? params.viewType : null;
 
-      if (viewType) {
+      if (viewType === "teachers" || viewType === "pupils") {
         const analyticsUseCase = getAnalyticsUseCase(viewType);
         pageViewProps.analyticsUseCase = analyticsUseCase;
       }
@@ -50,7 +49,7 @@ export const getPageViewProps = (href: string): PageViewProps => {
     {
       pageName: null as unknown as PageNameValueType,
       analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
-    }
+    },
   );
 
   return pageViewProps;
