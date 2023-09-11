@@ -3,6 +3,8 @@ import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
+import OakLink from "../OakLink/OakLink";
+
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/Grid";
 import { Heading, Span } from "@/components/Typography";
@@ -287,7 +289,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
               >
-                <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
+                <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                   Latest Resources
                   <Box
                     $background="black"
@@ -320,6 +322,20 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     />
                   </ButtonContainer>
                 ))}
+                <Box $mt={24}>
+                  <OakLink
+                    page={"oak-curriculum"}
+                    $textDecoration={"underline"}
+                    $font={"heading-7"}
+                  >
+                    See curricula from previous academic years
+                    <Icon
+                      $color={"black"}
+                      name="external"
+                      verticalAlign="bottom"
+                    />
+                  </OakLink>
+                </Box>
               </FocusOn>
             </Box>
           )}
