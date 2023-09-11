@@ -1,3 +1,10 @@
+# [1.236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.2...v1.236.0) (2023-09-11)
+
+
+### Features
+
+* adds legacy button to school picker ([2a3d791](https://github.com/oaknational/Oak-Web-Application/commit/2a3d7918e9ea04075edb3c653733ebcd2b269397))
+
 ## [1.235.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.1...v1.235.2) (2023-09-11)
 
 
