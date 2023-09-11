@@ -7,18 +7,6 @@ import { Span } from "../Typography";
 import ScreenReaderOnly from "../ScreenReaderOnly/ScreenReaderOnly";
 import { SpanProps } from "../Typography/Span";
 
-export const ButtonLabelSpan = styled(Span)`
-  display: inline-block;
-  vertical-align: text-top;
-  max-width: 100%;
-  ${typography}
-  ${ellipsis}
-`;
-
-ButtonLabelSpan.defaultProps = {
-  $font: "heading-7",
-};
-
 export type ButtonLabelProps = {
   children: React.ReactNode;
   labelSuffixA11y?: string;
@@ -27,13 +15,26 @@ export type ButtonLabelProps = {
 const ButtonLabelWithScreenReaderTitle: FC<ButtonLabelProps> = (props) => {
   const { children, labelSuffixA11y, ...rest } = props;
   return (
-    <ButtonLabelSpan {...rest}>
+    <Span {...rest}>
       {children}
       {labelSuffixA11y && (
         <ScreenReaderOnly>{labelSuffixA11y}</ScreenReaderOnly>
       )}
-    </ButtonLabelSpan>
+    </Span>
   );
 };
 
-export default ButtonLabelWithScreenReaderTitle;
+export const StyledButtonLabelWithScreenReaderTitle = styled(
+  ButtonLabelWithScreenReaderTitle,
+)`
+  display: inline-block;
+  vertical-align: text-top;
+  max-width: 100%;
+  ${typography}
+  ${ellipsis}
+`;
+
+StyledButtonLabelWithScreenReaderTitle.defaultProps = {
+  $font: "heading-7",
+};
+export default StyledButtonLabelWithScreenReaderTitle;

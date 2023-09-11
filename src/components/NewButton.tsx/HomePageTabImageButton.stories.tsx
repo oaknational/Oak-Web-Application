@@ -22,7 +22,7 @@ export const HomePageTabImageButton: Story = {
   args: {
     imageSlug: "teacher-carrying-stuff",
     label: "Teaching Resources",
-    isCurrent: true,
+    isCurrent: false,
     isNew: true,
   },
   render: (args) => <Component {...args} />,

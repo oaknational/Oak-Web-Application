@@ -10,9 +10,7 @@ import Box from "../Box/Box";
 import TagPromotional from "../TagPromotional/TagPromotional";
 import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
 
-import ButtonLabel, {
-  ButtonLabelSpan,
-} from "./NewButtonLabelWithScreenReaderTitle";
+import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
@@ -21,31 +19,58 @@ import { CommonButtonProps, HTMLButtonProps } from "./newCommon";
 
 import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { OpacityProps } from "@/styles/utils/opacity";
+import { MarginProps } from "@/styles/utils/spacing";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
-  title: string;
+  title?: string;
   imageSlug: IllustrationSlug;
   isCurrent?: boolean;
   isNew?: boolean;
 };
 
-const buttonLabel = css`
-  :hover ${ButtonLabelSpan} {
+export type ButtonStylesProps = OpacityProps &
+  MarginProps & {
+    disabled?: boolean;
+    $focusStyles?: [];
+    $hoverStyles?: string[];
+    "aria-disabled"?: boolean;
+    isCurrent?: boolean;
+  };
+
+const StyledCMSImage = styled(CMSImage)`
+  opacity: 1;
+`;
+
+const noneCurrentButtonLabel = css`
+  color: ${getColorByName("grey4")};
+
+  :hover ${ButtonLabel} {
     text-decoration: underline;
-    color: ${getColorByName("grey4")};
+    color: ${getColorByName("grey6")};
+  }
+
+  ${StyledCMSImage} {
+    opacity: 0.5;
   }
 `;
 
-const StyledButton = styled(UnstyledButton)<UnstyledButtonProps>`
+const buttonStyles = css<ButtonStylesProps>`
+  ${(props) => !props.isCurrent && noneCurrentButtonLabel}
+`;
+
+const StyledButton = styled(UnstyledButton)<
+  ButtonStylesProps & UnstyledButtonProps
+>`
   :focus {
     outline: none;
   }
 
-  ${buttonLabel}
+  ${buttonStyles}
   ${typography}
   ${newIconFocusUnderline}
 `;
@@ -60,9 +85,9 @@ const HomePageTabImageButton = forwardRef<
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     disabled,
-    title,
     imageSlug,
     isCurrent,
+    title,
     isNew,
   } = props;
 
@@ -81,23 +106,19 @@ const HomePageTabImageButton = forwardRef<
       aria-label={ariaLabel}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       aria-disabled={disabled}
+      isCurrent={isCurrent}
+      disabled={disabled}
     >
-      <Flex
-        $flexDirection={"column"}
-        $alignItems={"center"}
-        $opacity={isCurrent ? 1 : 0.5}
-      >
+      <Flex $flexDirection={"column"} $alignItems={"center"}>
         <Flex $width={96} $height={96}>
           {" "}
-          <CMSImage image={{ asset }} noCrop />
+          <StyledCMSImage image={{ asset }} noCrop />
         </Flex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>
           <Flex $alignItems={"center"} $minHeight={44}>
             <ButtonLabel
-              $font={["body-3", "heading-7"]}
+              $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
-              $color={isCurrent ? "black" : "grey6"}
-              $opacity={1}
             >
               {label}
             </ButtonLabel>
