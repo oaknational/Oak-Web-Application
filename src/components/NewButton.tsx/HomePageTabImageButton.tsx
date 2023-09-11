@@ -47,25 +47,27 @@ const StyledCMSImage = styled(CMSImage)`
 `;
 
 const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
-  ${(props) => !props.isCurrent && css`
-  color: ${getColorByName("oakGrey4")};
+  ${(props) =>
+    !props.isCurrent &&
+    css`
+      color: ${getColorByName("oakGrey4")};
 
-  :hover ${ButtonLabel} {
-    text-decoration: underline;
-    color: ${getColorByName("oakGrey6")};
-  }
+      :hover ${ButtonLabel} {
+        text-decoration: underline;
+        color: ${getColorByName("oakGrey6")};
+      }
 
-  ${StyledCMSImage} {
-    opacity: 0.6;
-  }
-  :hover ${StyledCMSImage} {
-    opacity: 1;
-  }
-`}
+      ${StyledCMSImage} {
+        opacity: 0.6;
+      }
+      :hover ${StyledCMSImage} {
+        opacity: 1;
+      }
+    `}
 `;
 
 const StyledButton = styled(UnstyledButton)<
-HomePageNavTabImageButtonStylesProps & UnstyledButtonProps
+  HomePageNavTabImageButtonStylesProps & UnstyledButtonProps
 >`
   :focus {
     outline: none;
