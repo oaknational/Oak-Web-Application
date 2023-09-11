@@ -11,7 +11,7 @@ describe("KeyWords component", () => {
     const { getByTestId, getByText } = renderWithTheme(
       <KeyWords keyWords={keyWordsData} />,
     );
-    const componentTitle = getByText("Key words");
+    const componentTitle = getByText("Keywords");
     expect(getByTestId("heading")).toBeInTheDocument();
     expect(componentTitle).toBeInTheDocument();
   });

@@ -1,3 +1,20 @@
+# [1.236.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.2...v1.236.0) (2023-09-11)
+
+
+### Features
+
+* adds legacy button to school picker ([2a3d791](https://github.com/oaknational/Oak-Web-Application/commit/2a3d7918e9ea04075edb3c653733ebcd2b269397))
+
+## [1.235.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.1...v1.235.2) (2023-09-11)
+
+
+### Bug Fixes
+
+* remove waitFors from tests that were timing out - they dont appear to need them ([a3db2de](https://github.com/oaknational/Oak-Web-Application/commit/a3db2de28b4590c0f2d9aa10e454ce44e465fb7d))
+* typo in keywords component and related tests ([370813f](https://github.com/oaknational/Oak-Web-Application/commit/370813f4e73fe69f4379f0009667bd6686c2b5d5))
+
+## [1.235.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.235.0...v1.235.1) (2023-09-11)
+
 # [1.235.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.234.2...v1.235.0) (2023-09-08)
 
 
