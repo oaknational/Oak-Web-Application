@@ -58,7 +58,7 @@ const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
       }
 
       ${StyledCMSImage} {
-        opacity: 0.6;
+        opacity: 0.7;
       }
       :hover ${StyledCMSImage} {
         opacity: 1;
