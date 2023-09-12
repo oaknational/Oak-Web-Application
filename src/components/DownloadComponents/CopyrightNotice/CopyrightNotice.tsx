@@ -47,7 +47,7 @@ const PostAlbCopyright = () => (
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
 }) => (
-  <Box $mb={56} $mt={16}>
+  <Box $mb={56} $mt={16} $maxWidth={[null, 420, 420]}>
     {showPostAlbCopyright ? <PostAlbCopyright /> : <PreAlbCopyright />}
   </Box>
 );
