@@ -312,7 +312,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
                   <Heading tag={"h4"} $font={"heading-6"} $mr={12}>
-                    Latest resources for 2023/24
+                    Latest resources
                   </Heading>
                   <Box $pt={6}>
                     <TagPromotional
@@ -357,7 +357,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             </Box>
           )}
           <Box $height={80} $position={"relative"}>
-            <BoxBorders hideBottom={true} hideTop={true} hideRight={true} />
+            <BoxBorders
+              $color="grey2"
+              hideBottom={true}
+              hideTop={true}
+              hideRight={true}
+            />
           </Box>
           <Box $position={"relative"} $width={"50%"}>
             <SelectButton
@@ -429,6 +434,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <ButtonContainer className="multi-line" key={phase.slug}>
                       <Button
                         $mr={24}
+                        $mv={[8, 0]}
                         background={isSelected(phase) ? "black" : "oakGrey1"}
                         label={phaseLabel(phase)}
                         onClick={() => handleSelectPhase(phase)}
@@ -486,7 +492,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $mt={[18, 0]}
           $display={["block", " none"]}
         >
-          <BoxBorders hideTop={true} hideRight={true} hideLeft={true} />
+          <BoxBorders
+            $color="grey2"
+            hideTop={true}
+            hideRight={true}
+            hideLeft={true}
+          />
         </Box>
         <Box
           $pl={18}
