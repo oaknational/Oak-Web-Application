@@ -10,7 +10,6 @@ import CurriculumInfoPage, {
 import { fetchSubjectPhasePickerData } from "@/pages/beta/[viewType]/curriculum";
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
-import curriculumDownloadsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
@@ -19,7 +18,6 @@ jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
-  curriculumDownloads: jest.fn(),
 }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
@@ -28,10 +26,6 @@ const mockedCurriculumOverview =
 const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
   typeof curriculumApi.curriculumUnits
 >;
-const mockedCurriculumDownloads =
-  curriculumApi.curriculumDownloads as MockedFunction<
-    typeof curriculumApi.curriculumDownloads
-  >;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as MockedFunction<
     typeof fetchSubjectPhasePickerData
@@ -52,6 +46,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
         examboardSlug: "aqa",
       });
     });
+
     it("should reject an invalid slug", () => {
       const slug = "not_a_valid_slug";
       expect(() => parseSubjectPhaseSlug(slug)).toThrow(
@@ -75,7 +70,6 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-          curriculumDownloadsTabData={curriculumDownloadsTabFixture()}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
@@ -95,7 +89,6 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-          curriculumDownloadsTabData={curriculumDownloadsTabFixture()}
         />,
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
@@ -116,31 +109,10 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-          curriculumDownloadsTabData={curriculumDownloadsTabFixture()}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
-    });
-
-    it("renders the Curriculum Downloads Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "downloads" },
-        isPreview: false,
-        pathname:
-          "/beta/teachers-2023/curriculum/english-secondary-aqa/overview",
-      });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
-      const { queryByTestId } = render(
-        <CurriculumInfoPage
-          curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
-          curriculumOverviewTabData={curriculumOverviewTabFixture()}
-          curriculumUnitsTabData={curriculumUnitsTabFixture()}
-          curriculumDownloadsTabData={curriculumDownloadsTabFixture()}
-        />,
-      );
-      expect(queryByTestId("downloads-heading")).toBeInTheDocument();
     });
   });
 
@@ -156,11 +128,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
         curriculumOverviewTabFixture(),
       );
       mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
-      mockedCurriculumDownloads.mockResolvedValue(
-        curriculumDownloadsTabFixture(),
-      );
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
-
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const props = await getStaticProps({
         params: {
@@ -169,15 +137,12 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           viewType: "teachers-2023",
         },
       });
-
-      // Note: If decorateWithIsr modifies the results, you'll need to account for that in your expected output.
       expect(props).toEqual({
         props: {
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewTabData: curriculumOverviewTabFixture(),
           curriculumUnitsTabData: curriculumUnitsTabFixture(),
-          curriculumDownloadsTabData: curriculumDownloadsTabFixture(),
         },
       });
     });
