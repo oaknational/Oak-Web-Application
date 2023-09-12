@@ -18,13 +18,13 @@ describe("ButtonLinkNav", () => {
   });
   test("renders links with correct hrefs and labels", () => {
     const { getAllByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
 
     const links = getAllByRole("link");
     buttons.forEach((button) => {
       const matchingLink = links.find(
-        (link) => link.getAttribute("href") === button.href,
+        (link) => link.getAttribute("href") === button.href
       );
 
       expect(matchingLink).toHaveAttribute("href", button.href);
@@ -33,7 +33,7 @@ describe("ButtonLinkNav", () => {
   });
   test("renders nav with correct a11y label", () => {
     const { getByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
     const nav = getByRole("navigation");
     expect(nav).toHaveAccessibleName("testing 123");
@@ -42,7 +42,7 @@ describe("ButtonLinkNav", () => {
     mockRouter.setCurrentUrl("/second-one");
 
     const { getByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />
     );
     const currentLink = getByRole("link", { name: "Second one" });
     expect(currentLink).toHaveAttribute("aria-current", "page");

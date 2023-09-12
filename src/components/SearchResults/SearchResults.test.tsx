@@ -13,7 +13,7 @@ import SearchResults from "./SearchResults";
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 export const hits = searchResultsHitsSchema.parse(
-  elasticResponseFixture.hits.hits,
+  elasticResponseFixture.hits.hits
 );
 
 const getNHits = (n: number) => {
@@ -28,7 +28,7 @@ const getNHits = (n: number) => {
             // appending i to slug to avoid unique key warning
             _source: { ...hit?._source, slug: hit?._source?.slug + i },
           }
-        : null,
+        : null
     )
     .filter(truthy);
 };
@@ -44,20 +44,20 @@ describe("<SearchResults />", () => {
   test("A lesson search result links to the lesson listing page", () => {
     const { getByRole } = render(<SearchResults {...props} />);
     expect(
-      getByRole("link", { name: "To write the setting description" }),
+      getByRole("link", { name: "To write the setting description" })
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
+      "/beta/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r"
     );
   });
   // @todo when we have programme_slug in search index
   test.skip("A unit search result links to the unit listing page", () => {
     const { getByRole } = render(<SearchResults {...props} />);
     expect(
-      getByRole("link", { name: "Macbeth - Narrative writing" }),
+      getByRole("link", { name: "Macbeth - Narrative writing" })
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons",
+      "/beta/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons"
     );
   });
 

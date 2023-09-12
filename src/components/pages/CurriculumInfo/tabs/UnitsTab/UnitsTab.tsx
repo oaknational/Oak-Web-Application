@@ -225,7 +225,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           {Object.keys(yearData).map((year) => {
             const { units, childSubjects, domains, tiers } = yearData[
               year
-            ] as (typeof yearData)[string];
+            ] as typeof yearData[string];
             return (
               <Box
                 key={year}

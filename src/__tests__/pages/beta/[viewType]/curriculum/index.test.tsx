@@ -92,7 +92,7 @@ describe("pages/beta/curriculum/index", () => {
     render(<CurriculumHomePage {...props} />);
     expect(SubjectPhasePicker).toHaveBeenCalledWith(
       props.subjectPhaseOptions,
-      expect.anything(),
+      expect.anything()
     );
   });
 
@@ -116,14 +116,14 @@ describe("pages/beta/curriculum/index", () => {
 
       it("Should return the correct data", async () => {
         const blogs = await fetchCurriculumPageBlogs(
-          mockCMS() as unknown as Client,
+          mockCMS() as unknown as Client
         );
         expect(blogs).toEqual(mockPosts);
       });
 
       it("Should throw an error if any of the blogs are missing", async () => {
         await expect(
-          fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client),
+          fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client)
         ).rejects.toThrow("Missing blog post");
       });
     });

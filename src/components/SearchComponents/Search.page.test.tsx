@@ -117,25 +117,22 @@ describe("Search.page.tsx", () => {
 
   test("h1 is “{searchTerm}“ if term prop passed", () => {
     const { getByRole } = render(
-      <Search
-        {...props}
-        query={{ ...props.query, term: "test search term" }}
-      />,
+      <Search {...props} query={{ ...props.query, term: "test search term" }} />
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "“test search term”",
+      "“test search term”"
     );
   });
   test("h1 is Search if 'term' prop not passed", () => {
     const { getByRole } = render(
-      <Search {...props} query={{ ...props.query, term: "" }} />,
+      <Search {...props} query={{ ...props.query, term: "" }} />
     );
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Search");
   });
   test("status: error message displayed status is fail", () => {
     const { getByRole } = render(<Search {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
-      "There was an error fetching search results",
+      "There was an error fetching search results"
     );
   });
   test("status: loading not displayed if not passed", () => {
@@ -152,7 +149,7 @@ describe("Search.page.tsx", () => {
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="success"
-      />,
+      />
     );
     expect(getByRole("status")).toHaveTextContent("No search results");
   });
@@ -162,7 +159,7 @@ describe("Search.page.tsx", () => {
         {...props}
         query={{ ...props.query, term: "test search term" }}
         status="loading"
-      />,
+      />
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
@@ -172,7 +169,7 @@ describe("Search.page.tsx", () => {
         {...props}
         query={{ ...props.query, term: "test search term" }}
         results={[createSearchResult()]}
-      />,
+      />
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
@@ -184,7 +181,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(getByRole("link", { name: "lesson title" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/subject-slug-ks1/units/topic-slug/lessons/lesson-slug",
+      "/beta/teachers/programmes/subject-slug-ks1/units/topic-slug/lessons/lesson-slug"
     );
   });
   test("search term is set on enter", async () => {
@@ -223,7 +220,7 @@ describe("Search.page.tsx", () => {
   });
   test("clicking result description clicks the link", async () => {
     const { getByText, getByRole } = render(
-      <Search {...props} {...resultsProps} />,
+      <Search {...props} {...resultsProps} />
     );
     const description = getByText("lesson description");
     const user = userEvent.setup();
@@ -235,7 +232,7 @@ describe("Search.page.tsx", () => {
         event.preventDefault();
         onLinkClick();
       },
-      false,
+      false
     );
     await user.click(description);
 
@@ -245,7 +242,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const ks1OnChange = props.searchFilters.keyStageFilters.find(
-      (ks) => ks.slug === "ks1",
+      (ks) => ks.slug === "ks1"
     )?.onChange as jest.Mock;
     ks1OnChange.mockClear();
     await user.click(getByRole("button", { name: "Filters" }));
@@ -260,7 +257,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const computingOnChange = props.searchFilters.subjectFilters.find(
-      (c) => c.slug === "computing",
+      (c) => c.slug === "computing"
     )?.onChange as jest.Mock;
     computingOnChange.mockClear();
     await user.click(getByRole("button", { name: "Filters" }));
@@ -275,7 +272,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const typeOnChange = props.searchFilters.contentTypeFilters.find(
-      (t) => t.slug === "unit",
+      (t) => t.slug === "unit"
     )?.onChange as jest.Mock;
     typeOnChange.mockClear();
     await user.click(getByRole("button", { name: "Filters" }));

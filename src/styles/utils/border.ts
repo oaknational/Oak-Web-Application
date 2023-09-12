@@ -70,7 +70,7 @@ const borderRadius = css<{ $borderRadius?: BorderRadiusResponsive }>`
   ${responsive(
     "border-radius",
     (props) => props.$borderRadius,
-    parseBorderRadius,
+    parseBorderRadius
   )}
 `;
 

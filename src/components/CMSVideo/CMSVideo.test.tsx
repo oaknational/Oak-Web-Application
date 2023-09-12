@@ -22,7 +22,7 @@ describe("CMSVideo", () => {
         playbackId: mockVideo.video.asset.playbackId,
         thumbnailTime: mockVideo.video.asset.thumbTime,
         title: mockVideo.title,
-      }),
+      })
     );
   });
 });

@@ -6,7 +6,7 @@ describe("KeyLearningPoints component", () => {
   it("should render", () => {
     const keyLearningPoints = [{ keyLearningPoint: "test" }];
     const { getByTestId, getByText } = renderWithTheme(
-      <KeyLearningPoints keyLearningPoints={keyLearningPoints} />,
+      <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
     );
     const componentTitle = getByText("Key learning points");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe("KeyLearningPoints component", () => {
           { keyLearningPoint: "test 2" },
           { keyLearningPoint: "test 3" },
         ]}
-      />,
+      />
     );
 
     const listItems = getAllByRole("listitem");
@@ -35,7 +35,7 @@ describe("KeyLearningPoints component", () => {
           { keyLearningPoint: "test" },
           { keyLearningPoint: null },
         ]}
-      />,
+      />
     );
 
     const listItems = getAllByRole("listitem");

@@ -16,7 +16,7 @@ describe("DownloadCard", () => {
         checked
         onChange={jest.fn()}
         resourceType="worksheet-pdf"
-      />,
+      />
     );
 
     const input = screen.getByRole("checkbox");
@@ -42,7 +42,7 @@ describe("DownloadCard", () => {
         extension="pdf"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
-      />,
+      />
     );
 
     const user = userEvent.setup();
@@ -62,7 +62,7 @@ describe("DownloadCard", () => {
         extension="pdf"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
-      />,
+      />
     );
 
     expect(input).toBeChecked();

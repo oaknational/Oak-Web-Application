@@ -13,7 +13,7 @@ export const defaultConsent: CookieConsent = {
   state: "pending",
   version: "0",
 };
-export type CookiePolicyName = (typeof COOKIE_POLICY_NAMES)[number];
+export type CookiePolicyName = typeof COOKIE_POLICY_NAMES[number];
 
 export const SERVICE_TYPES = [
   "posthog",
@@ -21,7 +21,7 @@ export const SERVICE_TYPES = [
   "bugsnag",
   "hubspot",
 ] as const;
-export type ServiceType = (typeof SERVICE_TYPES)[number];
+export type ServiceType = typeof SERVICE_TYPES[number];
 export const servicePolicyMap: Record<ServiceType, CookiePolicyName> = {
   posthog: "statistics",
   gleap: "statistics",

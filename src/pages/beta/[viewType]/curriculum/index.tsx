@@ -205,18 +205,18 @@ export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> 
 export type Client = typeof CMSClient;
 
 export async function fetchCurriculumPageBlogs(
-  CMSClient: Client,
+  CMSClient: Client
 ): Promise<SerializedBlogPostPreview[]> {
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-subject-curriculum",
+    "how-to-design-a-subject-curriculum"
   );
 
   const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-refresh-your-curriculum-using-oak-units",
+    "how-to-refresh-your-curriculum-using-oak-units"
   );
 
   const designUnitBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-unit-of-study",
+    "how-to-design-a-unit-of-study"
   );
 
   const blogs = [];
@@ -228,8 +228,8 @@ export async function fetchCurriculumPageBlogs(
   ) {
     blogs.push(
       [subjectCurriculumBlog, refreshCurriculumBlog, designUnitBlog].map(
-        serializeDate,
-      ),
+        serializeDate
+      )
     );
   } else {
     throw new Error("Missing blog post");

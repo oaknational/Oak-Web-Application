@@ -174,12 +174,12 @@ const BUTTON_CONFIGS: Record<
 const getButtonConfig = (
   size: ButtonSize,
   variant: ButtonVariant,
-  buttonOrIconButton: "button" | "icon-button",
+  buttonOrIconButton: "button" | "icon-button"
 ): ButtonConfig => BUTTON_CONFIGS[`${size}-${variant}-${buttonOrIconButton}`];
 
 export const getIconButtonHeight = (
   size: ButtonSize,
-  variant: ButtonVariant,
+  variant: ButtonVariant
 ): PixelSpacing => {
   const config = getButtonConfig(size, variant, "icon-button");
 
@@ -197,7 +197,7 @@ export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
 export const getButtonBackground = (
   background: ButtonBackground,
   variant: ButtonVariant,
-  disabled?: boolean,
+  disabled?: boolean
 ) => {
   if (
     variant === "minimal" ||
@@ -213,7 +213,7 @@ export const getButtonBackground = (
 };
 export const getButtonColor = (
   background: ButtonBackground,
-  variant: ButtonVariant,
+  variant: ButtonVariant
 ) =>
   variant === "minimal" ||
   variant === "buttonStyledAsLink" ||
@@ -232,7 +232,7 @@ export const getButtonDropShadowColor =
 export const getButtonPadding = (
   size: ButtonSize,
   variant: ButtonVariant,
-  buttonOrIconButton: "button" | "icon-button",
+  buttonOrIconButton: "button" | "icon-button"
 ) => getButtonConfig(size, variant, buttonOrIconButton).paddingH;
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,

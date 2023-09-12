@@ -25,7 +25,7 @@ const ButtonLabelWithScreenReaderTitle: FC<ButtonLabelProps> = (props) => {
 };
 
 export const StyledButtonLabelWithScreenReaderTitle = styled(
-  ButtonLabelWithScreenReaderTitle,
+  ButtonLabelWithScreenReaderTitle
 )`
   display: inline-block;
   vertical-align: text-top;

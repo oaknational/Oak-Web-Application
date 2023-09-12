@@ -129,13 +129,13 @@ export const getStaticProps: GetStaticProps<
             subjectSlug,
             old:
               curriculumData.subjects.find(
-                (subject) => subject.subjectSlug === subjectSlug,
+                (subject) => subject.subjectSlug === subjectSlug
               ) || null,
             // Temporarily disable new curriculum (was being leaked to public)
             new:
               context?.params?.viewType === "teachers-2023"
                 ? curriculumData2023?.subjects.find(
-                    (subject) => subject.subjectSlug === subjectSlug,
+                    (subject) => subject.subjectSlug === subjectSlug
                   ) || null
                 : null,
           };

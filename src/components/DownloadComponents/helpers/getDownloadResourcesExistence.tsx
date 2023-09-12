@@ -3,16 +3,16 @@ import { ViewType } from "@/common-lib/urls";
 const getDownloadResourcesExistence = async (
   lessonSlug: string,
   resourceTypesString: string,
-  viewType: ViewType,
+  viewType: ViewType
 ) => {
   if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
     throw new TypeError(
-      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined",
+      "process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"
     );
   }
   if (!process.env.NEXT_PUBLIC_DOWNLOAD_API_URL) {
     throw new TypeError(
-      "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined",
+      "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined"
     );
   }
 

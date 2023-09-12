@@ -42,7 +42,7 @@ export type CurriculumInfoPageProps = {
 };
 
 const VALID_TABS = ["overview", "units"] as const;
-export type CurriculumTab = (typeof VALID_TABS)[number];
+export type CurriculumTab = typeof VALID_TABS[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -144,8 +144,9 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
-      const curriculumOverviewTabData =
-        await curriculumApi.curriculumOverview(slugs);
+      const curriculumOverviewTabData = await curriculumApi.curriculumOverview(
+        slugs
+      );
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {

@@ -21,7 +21,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage 4",
+        "Key stage 4"
       );
     });
   });
@@ -70,7 +70,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         keyStageSlug: "ks123",
       });
       expect(
-        curriculumApi2023.default.subjectListingPage,
+        curriculumApi2023.default.subjectListingPage
       ).not.toHaveBeenCalled();
     });
     it("Should call both API::subjectListing on 'teachers-2023'", async () => {
@@ -87,7 +87,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
         {
           keyStageSlug: "ks123",
-        },
+        }
       );
     });
   });

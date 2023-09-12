@@ -35,10 +35,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // key-stages/[keyStageSlug]/subject
   const keyStageResult = await curriculumApi.teachersHomePage();
   const keyStageSlugs = keyStageResult.keyStages.map(
-    (keyStage) => keyStage.slug,
+    (keyStage) => keyStage.slug
   );
   const keyStagePaths = keyStageSlugs.map((keyStageSlug) =>
-    path.join(sitemapBaseUrl, basePath, keyStageSlug, "subjects"),
+    path.join(sitemapBaseUrl, basePath, keyStageSlug, "subjects")
   );
   const keystageFields = keyStagePaths.map((kPath) => {
     return {
@@ -70,10 +70,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         sitemapBaseUrl,
         basePath,
         "programmes",
-        programmeSlug.programmeSlug,
+        programmeSlug.programmeSlug
       );
       return [pagePath, path.join(pagePath, "units")];
-    }),
+    })
   );
   const programmeFields = programmePaths.map((programmePath) => {
     return {
@@ -109,8 +109,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       unitSlug.programmeSlug,
       "units",
       unitSlug.unitSlug,
-      "lessons",
-    ),
+      "lessons"
+    )
   );
   const unitFields = unitPaths.map((unitPath) => {
     return {
@@ -160,10 +160,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         "units",
         lessonSlug.unitSlug,
         "lessons",
-        lessonSlug.lessonSlug,
+        lessonSlug.lessonSlug
       );
       return [lessonPath, path.join(lessonPath, "downloads")];
-    }),
+    })
   );
   const lessonFields = lessonPaths.map((lessonPath) => {
     return {
@@ -176,7 +176,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const fields = keystageFields.concat(
     programmeFields,
     unitFields,
-    lessonFields,
+    lessonFields
   );
   return getServerSideSitemap(context, fields);
 };

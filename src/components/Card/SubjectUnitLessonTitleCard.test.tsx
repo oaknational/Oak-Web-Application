@@ -14,12 +14,12 @@ describe("Subject title card", () => {
         keyStageSlug="key-stage-1"
         subject="Computing"
         subjectSlug="computing"
-      />,
+      />
     );
 
     waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Computer Science",
+        "Computer Science"
       );
     });
   });

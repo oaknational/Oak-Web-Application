@@ -32,7 +32,7 @@ const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
   }
 };
 const getItemCategoryLinkProps = (
-  props: PostListItemProps,
+  props: PostListItemProps
 ): ResolveOakHrefProps => {
   switch (props.contentType) {
     case "blog-post":

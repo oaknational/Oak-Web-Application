@@ -54,7 +54,7 @@ const LearningThemeFilters = ({
         b: {
           label: string | undefined | null;
           slug: string | undefined | null;
-        },
+        }
       ) => {
         if (a?.slug === "no-theme") {
           return 0;
@@ -63,7 +63,7 @@ const LearningThemeFilters = ({
         } else {
           return 0;
         }
-      },
+      }
     );
 
   return (

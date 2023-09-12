@@ -20,7 +20,7 @@ type TextAndMediaBlock = OmitKeepDiscriminated<
 };
 
 const PostTextAndMedia = (
-  props: PortableTextComponentProps<TextAndMediaBlock>,
+  props: PortableTextComponentProps<TextAndMediaBlock>
 ) => {
   if (!props.value) {
     return null;

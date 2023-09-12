@@ -83,17 +83,17 @@ describe("pages/blog/index.tsx", () => {
           pageData={testPageData}
           categories={[]}
           categorySlug={null}
-        />,
+        />
       );
 
       expect(screen.getByText("A blog").closest("a")).toHaveAttribute(
         "href",
-        "/blog/a-blog",
+        "/blog/a-blog"
       );
 
       expect(screen.getByText("Another blog").closest("a")).toHaveAttribute(
         "href",
-        "/blog/another-blog",
+        "/blog/another-blog"
       );
     });
 
@@ -112,7 +112,7 @@ describe("pages/blog/index.tsx", () => {
             }}
             categories={[]}
             categorySlug={null}
-          />,
+          />
         );
 
         expect(seo).toMatchObject({
@@ -131,7 +131,7 @@ describe("pages/blog/index.tsx", () => {
             pageData={testPageData}
             categories={[]}
             categorySlug={null}
-          />,
+          />
         );
 
         expect(seo).toMatchObject({

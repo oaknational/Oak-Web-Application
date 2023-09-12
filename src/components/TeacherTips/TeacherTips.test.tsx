@@ -6,7 +6,7 @@ describe("TeacherTips component", () => {
   const teacherTips = [{ teacherTip: "test teacher tip" }];
   it("should render with correct title", () => {
     const { getByTestId, getByText } = renderWithTheme(
-      <TeacherTips teacherTips={teacherTips} />,
+      <TeacherTips teacherTips={teacherTips} />
     );
     const componentTitle = getByText("Teacher tip");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe("TeacherTips component", () => {
 
   it("should render with teacherTip", () => {
     const { getByText } = renderWithTheme(
-      <TeacherTips teacherTips={teacherTips} />,
+      <TeacherTips teacherTips={teacherTips} />
     );
 
     const tip = getByText("test teacher tip");

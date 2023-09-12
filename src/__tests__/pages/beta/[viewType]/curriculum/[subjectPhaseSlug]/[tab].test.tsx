@@ -50,7 +50,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
     it("should reject an invalid slug", () => {
       const slug = "not_a_valid_slug";
       expect(() => parseSubjectPhaseSlug(slug)).toThrow(
-        "The params provided are incorrect",
+        "The params provided are incorrect"
       );
     });
   });
@@ -70,7 +70,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-        />,
+        />
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
     });
@@ -89,7 +89,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-        />,
+        />
       );
       expect(queryByTestId("intent-heading")).toBeInTheDocument();
       expect(queryAllByTestId("subject-principles")).toHaveLength(4);
@@ -109,7 +109,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
-        />,
+        />
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
@@ -125,7 +125,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     it("should return expected props", async () => {
       mockedCurriculumOverview.mockResolvedValue(
-        curriculumOverviewTabFixture(),
+        curriculumOverviewTabFixture()
       );
       mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);

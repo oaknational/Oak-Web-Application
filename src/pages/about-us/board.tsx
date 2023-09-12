@@ -74,7 +74,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           <Grid $rg={[16]} $cg={[12, 20]}>
             {documents.map((doc) => {
               const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
-                1,
+                1
               );
               return (
                 <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
@@ -134,7 +134,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context,
+  context
 ) => {
   return getPageProps({
     page: "board::getStaticProps",

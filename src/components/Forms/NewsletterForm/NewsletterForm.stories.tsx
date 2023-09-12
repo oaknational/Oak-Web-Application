@@ -46,11 +46,11 @@ WithError.args = {
     await sleep(2000);
     if (data.email.includes("fishy")) {
       throw new Error(
-        "Thank you, that's been received, but please check as your email doesn't look quite right.",
+        "Thank you, that's been received, but please check as your email doesn't look quite right."
       );
     }
     throw new Error(
-      "Sorry, we couldn't sign you up just now, try again later.",
+      "Sorry, we couldn't sign you up just now, try again later."
     );
   },
 };
