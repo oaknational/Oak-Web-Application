@@ -4,7 +4,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { useId } from "react";
 
 import {
   getAndMergeWebinarsAndBlogs,
@@ -37,11 +36,8 @@ import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/Posts/PostList";
-import NewsletterForm, {
-  useNewsletterForm,
-} from "@/components/Forms/NewsletterForm";
-import Card from "@/components/Card";
-import CardTitle from "@/components/Card/CardComponents/CardTitle";
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -67,13 +63,11 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
-  const id = useId();
-  const descriptionId = `${id}-newsletter-form-description`;
 
   return (
     <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
       <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-        <MaxWidth>
+        <MaxWidth $mb={[48, 24]}>
           <Box $ph={[16, 0]}>
             <Heading
               $font={["heading-5", "heading-4"]}
@@ -190,27 +184,9 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
           $mb={80}
           $ph={16}
         >
-          <Card $background={"white"} $maxWidth={["100%", 870]}>
-            <Flex $flexDirection={["column", "row"]}>
-              <Box $width={["100%", "50%"]} $mr={24}>
-                <CardTitle tag="h2" icon="magic-carpet" iconSize={56}>
-                  Don’t miss out
-                </CardTitle>
-                <P $mb={24} color={"black"} id={descriptionId}>
-                  Join over 100k teachers and get free resources and other
-                  helpful content by email. Unsubscribe at any time. Read our
-                  privacy policy.
-                </P>
-              </Box>
-              <Flex $width={["100%", "50%"]} $mt={12}>
-                <NewsletterForm
-                  descriptionId={descriptionId}
-                  id={id}
-                  {...newsletterFormProps}
-                />
-              </Flex>
-            </Flex>
-          </Card>
+          <Flex $maxWidth={["100%", 870]}>
+            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          </Flex>
         </MaxWidth>
       </Flex>
     </AppLayout>
