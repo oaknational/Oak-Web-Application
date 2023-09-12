@@ -31,7 +31,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
   return (
     <Card
       $ph={24}
-      $pv={[24, 40]}
+      $pv={[24, desktopColSpan === 12 ? 24 : 40]}
       $borderRadius={2}
       $background="white"
       {...containerProps}
