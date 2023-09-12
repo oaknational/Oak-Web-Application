@@ -125,6 +125,7 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "curriculum-api/params-incorrect": {
     message: "The params provided are incorrect",
     shouldNotify: true,
+    responseStatusCode: 404,
   },
   "school-picker/fetch-suggestions": {
     message: "Error fetching suggested schools list",
