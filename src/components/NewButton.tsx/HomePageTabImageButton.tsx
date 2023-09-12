@@ -122,6 +122,8 @@ const HomePageTabImageButton = forwardRef<
             <ButtonLabel
               $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
+              $whiteSpace={"normal"}
+              $textAlign={"center"}
             >
               {label}
             </ButtonLabel>
