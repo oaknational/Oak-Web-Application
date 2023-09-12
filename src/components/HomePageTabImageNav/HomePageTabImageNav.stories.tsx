@@ -33,9 +33,7 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => {
   const [current, setCurrent] = useState("teachers");
-  return (
-    <Component {...args} current={current} setCurrent={setCurrent}/>
-  );
+  return <Component {...args} current={current} setCurrent={setCurrent} />;
 };
 
 export const HomePageTabImageNav = Template.bind({});
