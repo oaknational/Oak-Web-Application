@@ -108,9 +108,9 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
-    expect(queryByText("Latest Resources")).toBeTruthy();
+    expect(queryByText("Latest resources for 2023/24")).toBeTruthy();
     await userEvent.keyboard("{Escape}");
-    expect(queryByText("Latest Resources")).toBeNull();
+    expect(queryByText("Latest resources for 2023/24")).toBeNull();
     await userEvent.click(getByTitle("Phase"));
     expect(queryByText("Choose a school phase:")).toBeTruthy();
     await userEvent.keyboard("{Escape}");
