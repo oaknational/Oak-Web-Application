@@ -264,6 +264,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setLocalStorageDetails(false);
   };
 
+  const showPostAlbCopyright = viewType === "teachers-2023";
+
   return (
     <AppLayout
       seoProps={{
@@ -394,6 +396,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                             onBlur={onBlur}
                             id={"terms"}
                             errorMessage={errors?.terms?.message}
+                            showPostAlbCopyright={showPostAlbCopyright}
                           />
                         );
                       }}

@@ -355,6 +355,30 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
 
+  describe("Copyright notice", () => {
+    it("renders pre-ALB copyright notice on teachers view type", async () => {
+      render(<LessonDownloadsPage {...props} />);
+
+      const copyrightNotice = await screen.findByText(
+        "This content is made available by Oak and its partners",
+        { exact: false },
+      );
+
+      expect(copyrightNotice).toBeInTheDocument();
+    });
+
+    it("renders post-ALB copyright notice on teachers-2023 view type", async () => {
+      render(<LessonDownloadsPage {...props} viewType="teachers-2023" />);
+
+      const copyrightNotice = await screen.findByText(
+        "This content is © Oak National Academy (2023), licensed on",
+        { exact: false },
+      );
+
+      expect(copyrightNotice).toBeInTheDocument();
+    });
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonDownloadsPage {...props} />);
