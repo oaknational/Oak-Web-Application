@@ -12,6 +12,17 @@ export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
 };
 
+const PreAlbCopyright = () => (
+  <P $font="body-3">
+    This content is made available by Oak and its partners and licensed under
+    Oak’s{" "}
+    <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
+      terms &amp; conditions
+    </OakLink>
+    , except where otherwise stated.
+  </P>
+);
+
 const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   checked,
   onChange,
@@ -47,13 +58,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         </FieldError>
       </Box>
     )}
-    <P $font="body-3">
-      Read our{" "}
-      <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
-        terms &amp; conditions
-      </OakLink>
-      .
-    </P>
+    <PreAlbCopyright />
   </>
 );
 
