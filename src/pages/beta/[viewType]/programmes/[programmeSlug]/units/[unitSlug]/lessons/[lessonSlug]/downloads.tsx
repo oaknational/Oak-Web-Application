@@ -56,6 +56,7 @@ import {
 import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -326,7 +327,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     onEditClick={handleEditDetailsCompletedClick}
                   />
                 ) : (
-                  <Box $maxWidth={[null, 420, 420]} $mb={56}>
+                  <Box $maxWidth={[null, 420, 420]}>
                     <SchoolPickerRadio
                       errors={errors}
                       setSchool={setSchool}
@@ -385,13 +386,14 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                             onBlur={onBlur}
                             id={"terms"}
                             errorMessage={errors?.terms?.message}
-                            showPostAlbCopyright={showPostAlbCopyright}
                           />
                         );
                       }}
                     />
                   </Box>
                 )}
+
+                <CopyrightNotice showPostAlbCopyright={showPostAlbCopyright} />
               </>
             )}
 

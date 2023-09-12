@@ -16,7 +16,6 @@ import Box from "@/components/Box";
 import Button from "@/components/Button";
 import FieldError from "@/components/FormFields/FieldError";
 
-
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
   control: Control<DownloadFormProps>;
