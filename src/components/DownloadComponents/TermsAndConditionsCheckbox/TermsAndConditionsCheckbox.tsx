@@ -1,4 +1,5 @@
 import { FC } from "react";
+import styled from "styled-components";
 
 import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
 import P from "../../Typography/P";
@@ -10,6 +11,7 @@ import { CheckboxProps } from "../../Checkbox/Checkbox";
 
 export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
+  showPostAlbCopyright: boolean;
 };
 
 const PreAlbCopyright = () => (
@@ -23,10 +25,35 @@ const PreAlbCopyright = () => (
   </P>
 );
 
+const StyledLink = styled.a`
+  display: inline;
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.hyperlink};
+`;
+
+const PostAlbCopyright = () => (
+  <P $font="body-3">
+    This content is © Oak National Academy (2023), licensed on{" "}
+    <StyledLink
+      aria-label={"Open Government License version 3.0"}
+      role="link"
+      href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    >
+      Open Government Licence version 3.0
+    </StyledLink>{" "}
+    except where otherwise stated. See{" "}
+    <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
+      Oak's terms &amp; conditions
+    </OakLink>
+    .
+  </P>
+);
+
 const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   checked,
   onChange,
   errorMessage,
+  showPostAlbCopyright,
   ...props
 }) => (
   <>
@@ -58,7 +85,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         </FieldError>
       </Box>
     )}
-    <PreAlbCopyright />
+    {showPostAlbCopyright ? <PostAlbCopyright /> : <PreAlbCopyright />}
   </>
 );
 

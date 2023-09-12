@@ -12,6 +12,7 @@ describe("TermsAndConditionsCheckbox", () => {
         onChange={jest.fn()}
         id={"123"}
         name={"terms"}
+        showPostAlbCopyright={true}
       />,
     );
 
@@ -27,10 +28,46 @@ describe("TermsAndConditionsCheckbox", () => {
         errorMessage="Please select the checkbox"
         id={"123"}
         name={"terms"}
+        showPostAlbCopyright={true}
       />,
     );
 
     const termsError = screen.getByText("Please select the checkbox");
     expect(termsError).toBeInTheDocument();
+  });
+
+  it("renders pre-ALB copyright notice", () => {
+    renderWithTheme(
+      <TermsAndConditionsCheckbox
+        checked={false}
+        onChange={jest.fn()}
+        id={"123"}
+        name={"terms"}
+        showPostAlbCopyright={false}
+      />,
+    );
+
+    const preAlbCopyright = screen.getByText(
+      "This content is made available by Oak and its partners",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
+  });
+  it("renders post-ALB copyright notice", () => {
+    renderWithTheme(
+      <TermsAndConditionsCheckbox
+        checked={false}
+        onChange={jest.fn()}
+        id={"123"}
+        name={"terms"}
+        showPostAlbCopyright={true}
+      />,
+    );
+
+    const preAlbCopyright = screen.getByText(
+      "This content is © Oak National Academy (2023), licensed on",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
   });
 });
