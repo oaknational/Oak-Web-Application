@@ -1,3 +1,26 @@
+## [1.238.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.1...v1.238.2) (2023-09-12)
+
+## [1.238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.0...v1.238.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* update curric units params-incorrect error to 404 ([6ca7f0c](https://github.com/oaknational/Oak-Web-Application/commit/6ca7f0ccc901e1299cd82cca1dc912022fd13ccb))
+
+# [1.238.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.237.1...v1.238.0) (2023-09-11)
+
+
+### Features
+
+* **infra:** add lesson video bucket tf config to infra ([69dc70e](https://github.com/oaknational/Oak-Web-Application/commit/69dc70e2650b3655985ecbc4a9536267e67d7393))
+
+## [1.237.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.237.0...v1.237.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* **curric:** remove downloads tab ([fe4d04c](https://github.com/oaknational/Oak-Web-Application/commit/fe4d04ce6fadbd2721baa0f973666cae93bae7a0))
+
 # [1.237.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.236.1...v1.237.0) (2023-09-11)
 
 
