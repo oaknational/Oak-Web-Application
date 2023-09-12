@@ -42,6 +42,8 @@ const Radio: FC<AriaRadioProps> = (props) => {
       `}
     border-radius: 50%;
     display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
     align-items: center;
     background: white;
     justify-content: center;
