@@ -7,9 +7,9 @@ describe("errors/OakError", () => {
     expect(error.stack).toContain("Error: An unknown error has occurred");
   });
   it("should get the correct error message", () => {
-    const error = new OakError({ code: "auth/token-error-unknown" });
+    const error = new OakError({ code: "school-picker/fetch-suggestions" });
 
-    expect(error.message).toBe("Could not verify token");
+    expect(error.message).toBe("Error fetching suggested schools list");
   });
   it("should be an instance of Error", () => {
     const error = new OakError({ code: "misc/unknown" });
@@ -28,5 +28,24 @@ describe("errors/OakError", () => {
       responseStatusCode: 500,
       shouldNotify: true,
     });
+  });
+  it("should store the original error", () => {
+    const originalError = new Error("original error");
+    const error = new OakError({
+      code: "misc/unknown",
+      originalError,
+    });
+
+    expect(error.originalError).toBe(originalError);
+  });
+  it("should inherit the hasBeenReported property from the original error", () => {
+    const originalError = new OakError({ code: "misc/unknown" });
+    originalError.hasBeenReported = true;
+    const error = new OakError({
+      code: "misc/unknown",
+      originalError,
+    });
+
+    expect(error.hasBeenReported).toBe(true);
   });
 });

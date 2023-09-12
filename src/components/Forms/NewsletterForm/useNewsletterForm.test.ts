@@ -58,7 +58,7 @@ describe("useNewsletterForm", () => {
       {
         email: "test",
       },
-      ["hubspot"]
+      ["hubspot"],
     );
   });
   test("should call analytics.identify() with rejected email", () => {
@@ -74,7 +74,7 @@ describe("useNewsletterForm", () => {
       {
         email: "test",
       },
-      ["hubspot"]
+      ["hubspot"],
     );
   });
 });

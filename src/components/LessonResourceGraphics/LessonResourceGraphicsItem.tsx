@@ -7,7 +7,7 @@ import { Span } from "../Typography";
 
 const getResourceTitle = (
   { titleSingular, titlePlural }: LessonResourceGraphicsItemProps,
-  resourceCount: number
+  resourceCount: number,
 ) => {
   if (resourceCount === 1) {
     return titleSingular;
@@ -24,7 +24,7 @@ export type LessonResourceGraphicsItemProps = {
 };
 
 const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
-  props
+  props,
 ) => {
   const { icon, resourceCount } = props;
   return (

@@ -8,10 +8,6 @@ const ERROR_CODES = [
   "misc/network-error",
   "misc/unexpected-type",
   "misc/import-count",
-  "auth/send-sign-in-link",
-  "auth/token-expired",
-  "auth/token-error-unknown",
-  "graphql/validation", // for this we actually want more details when the error is thrown
   "search/unknown",
   "hubspot/invalid-email",
   "hubspot/unknown",
@@ -26,11 +22,12 @@ const ERROR_CODES = [
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
+  "curriculum-api/params-incorrect",
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
 ] as const;
-export type ErrorCode = typeof ERROR_CODES[number];
+export type ErrorCode = (typeof ERROR_CODES)[number];
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -49,26 +46,6 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/network-error": {
     message: "Failed to connect.",
     responseStatusCode: 500,
-    // If a network error occurs on the server, we want to know about it, maybe not on the client
-    shouldNotify: true,
-  },
-  "auth/token-expired": {
-    message: "JWT has expired. Please refresh token and try again",
-    responseStatusCode: 401,
-    shouldNotify: false,
-  },
-  "auth/token-error-unknown": {
-    message: "Could not verify token",
-    responseStatusCode: 403, // check this
-    shouldNotify: true,
-  },
-  "graphql/validation": {
-    message: "Graphql validation error",
-    responseStatusCode: 500,
-    shouldNotify: true,
-  },
-  "auth/send-sign-in-link": {
-    message: "Could not send sign in link to provided email",
     shouldNotify: true,
   },
   "misc/unexpected-type": {
@@ -145,6 +122,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Multiple resources were found when maximum 1 was expected",
     shouldNotify: true,
   },
+  "curriculum-api/params-incorrect": {
+    message: "The params provided are incorrect",
+    shouldNotify: true,
+    responseStatusCode: 404,
+  },
   "school-picker/fetch-suggestions": {
     message: "Error fetching suggested schools list",
     shouldNotify: true,
@@ -186,10 +168,17 @@ export interface ErrorInfo {
  */
 class OakError extends Error {
   private errorInfo;
+  private _hasBeenReported = false;
 
   constructor(errorInfo: ErrorInfo) {
     super(getErrorMessage(errorInfo));
     this.errorInfo = errorInfo;
+    if (
+      errorInfo.originalError instanceof OakError &&
+      errorInfo.originalError.hasBeenReported
+    ) {
+      this.hasBeenReported = true;
+    }
   }
 
   /** @returns The error code. */
@@ -215,6 +204,14 @@ class OakError extends Error {
   /** @returns The error config (all details for this code, which will include the above, which are left in for convenience). */
   public get config(): ErrorConfig {
     return getErrorConfig(this.code);
+  }
+
+  public set hasBeenReported(x: boolean) {
+    this._hasBeenReported = x;
+  }
+
+  public get hasBeenReported() {
+    return this._hasBeenReported;
   }
 
   /** @returns The object representation of the error. */

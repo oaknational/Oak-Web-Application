@@ -6,47 +6,61 @@ import SubjectPhasePicker from "@/components/SubjectPhasePicker";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Component - subject phase picker", () => {
+  test("populates selection if supplied", () => {
+    const currentSelection = {
+      subject: {
+        title: "English",
+        slug: "english",
+        phases: [],
+        examboards: [],
+      },
+      phase: { title: "Secondary", slug: "secondary" },
+      examboard: { title: "AQA", slug: "aqa" },
+    };
+    const { getByTitle } = renderWithTheme(
+      <SubjectPhasePicker
+        {...subjectPhaseOptions}
+        currentSelection={currentSelection}
+      />,
+    );
+    const subjectControl = getByTitle("Subject");
+    const phaseControl = getByTitle("Phase");
+    expect(subjectControl).toHaveTextContent("English");
+    expect(phaseControl).toHaveTextContent("Secondary");
+    expect(phaseControl).toHaveTextContent("AQA");
+  });
+
   test("user can see subjects when they click the control", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
     expect(control).toBeTruthy();
     userEvent.click(control);
     const buttons = await findAllByTitle("English");
-    expect(buttons).toHaveLength(2);
+    expect(buttons).toHaveLength(1);
   });
 
-  test("user selects a new subject", async () => {
+  test("user selects a subject", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
     userEvent.click(control);
     const buttons = await findAllByTitle("Science");
     const button = buttons[0];
     if (!button) {
-      throw new Error("New button not found");
+      throw new Error("Button not found");
     }
     userEvent.click(button);
     await waitFor(() => {
-      expect(control).toHaveTextContent("Science (new)");
+      expect(control).toHaveTextContent("Science");
     });
-  });
-
-  test("user selects an old subject", async () => {
-    const { getByTitle, findByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
-    );
-    const control = getByTitle("Subject");
-    userEvent.click(control);
-    await userEvent.click(await findByTitle("Citizenship"));
-    expect(control).toHaveTextContent("Citizenship");
   });
 
   test("user clicks to open phases when they click the control", async () => {
     const { findByTitle, getByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Phase");
     expect(control).toBeTruthy();
@@ -66,7 +80,7 @@ describe("Component - subject phase picker", () => {
     userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("Music"))[0];
     if (!button) {
-      throw new Error("Expected 2 buttons");
+      throw new Error("Could not find button");
     }
     await userEvent.click(button);
     expect(control).toHaveTextContent("Select");
@@ -78,7 +92,7 @@ describe("Component - subject phase picker", () => {
     userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("English"))[0];
     if (!button) {
-      throw new Error("Expected 2 buttons");
+      throw new Error("Could not find button");
     }
     userEvent.click(button);
     const control = getByTitle("Phase");
@@ -91,7 +105,7 @@ describe("Component - subject phase picker", () => {
 
   test("user can close selection panels with escape button", async () => {
     const { getByTitle, queryByText } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
     expect(queryByText("Latest Resources")).toBeTruthy();

@@ -26,8 +26,8 @@ describe("getSignedVideoToken", () => {
         await getSignedVideoToken(
           "https://api/signed-video-token",
           "123",
-          "signed"
-        )
+          "signed",
+        ),
     ).rejects.toThrowError(new OakError({ code: "video/fetch-signed-token" }));
     expect(reportError).toBeCalled();
   });
@@ -42,7 +42,7 @@ describe("getSignedVideoToken", () => {
     const result = await getSignedVideoToken(
       "https://api/signed-video-token",
       "123",
-      "signed"
+      "signed",
     );
     expect(result).toEqual({ res: "this" });
   });

@@ -12,6 +12,7 @@ import curriculumOverviewQuery from "./queries/curriculumOverview/curriculumOver
 import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.query";
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
+import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -30,16 +31,6 @@ const subjectSchema = z.object({
   displayOrder: z.number().optional(),
 });
 const phaseSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-const unitSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-const threadSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -82,12 +73,7 @@ const curriculumOverviewTabData = z.object({
   phase: z.string(),
 });
 
-const curriculumUnitsTabData = z.object({
-  units: z.array(unitSchema),
-  threads: z.array(threadSchema),
-});
-
-const curriculumDownloadTabData = z.object({
+const curriculumDownloadsTabData = z.object({
   urls: z.array(z.string()),
 });
 
@@ -100,11 +86,15 @@ export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewTabData = z.infer<
   typeof curriculumOverviewTabData
 >;
-export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsTabData>;
-export type CurriculumDownloadTabData = z.infer<
-  typeof curriculumDownloadTabData
+export type CurriculumDownloadsTabData = z.infer<
+  typeof curriculumDownloadsTabData
 >;
 export type CurriculumHeaderData = z.infer<typeof curriculumHeaderData>;
+
+export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
+export type CurriculumUnit = z.infer<
+  typeof curriculumUnitsSchema
+>["units"][number];
 
 export const getFirstResultOrNull =
   () =>
@@ -137,9 +127,9 @@ const curriculumApi2023 = {
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  curriculumOverview: curriculumOverviewQuery(sdk),
+  curriculumOverview: curriculumOverviewQuery(),
   curriculumUnits: curriculumUnitsQuery(sdk),
-  curriculumDownloads: curriculumDownloadsQuery(sdk),
+  curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
 };
 

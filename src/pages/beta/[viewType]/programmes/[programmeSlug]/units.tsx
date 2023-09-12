@@ -38,10 +38,12 @@ import HeaderListing from "@/components/HeaderListing/HeaderListing";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
+  viewType: ViewType;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
+  viewType,
 }) => {
   const {
     programmeSlug,
@@ -132,6 +134,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
+        isNew={viewType === "teachers-2023"}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -152,7 +155,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $font="body-3"
                     $mb={16}
                   >
-                    Learning themes
+                    {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
+                    Threads
                   </Heading>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
@@ -193,7 +197,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {learningThemes?.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
-                    label="Learning themes"
+                    label="Threads"
                     $mt={0}
                   >
                     <LearningThemeFilters
@@ -233,7 +237,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
-                      })
+                      }),
                     )}
                   />
                 </nav>
@@ -299,6 +303,7 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           curriculumData,
+          viewType: context?.params?.viewType,
         },
       };
 

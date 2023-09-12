@@ -10,7 +10,7 @@ describe("background", () => {
       ${background}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $background="pupilsGreen" />
+      <StyledComponent data-testid="test" $background="pupilsGreen" />,
     );
 
     expect(getByTestId("test")).toHaveStyle("background-color: #85cb6d");
@@ -21,7 +21,7 @@ describe("background", () => {
       ${background}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $background={["teachersLilac"]} />
+      <StyledComponent data-testid="test" $background={["teachersLilac"]} />,
     );
 
     expect(getByTestId("test")).toHaveStyle("background-color: #c6d1ef");

@@ -21,7 +21,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-        "Key stage 4"
+        "Key stage 4",
       );
     });
   });
@@ -58,7 +58,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   });
 
   describe("getStaticProps", () => {
-    it("Should fetch the correct data", async () => {
+    it("Should call legacy API:subjectListing on 'teachers'", async () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
@@ -69,10 +69,25 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
         keyStageSlug: "ks123",
       });
+      expect(
+        curriculumApi2023.default.subjectListingPage,
+      ).not.toHaveBeenCalled();
+    });
+    it("Should call both API::subjectListing on 'teachers-2023'", async () => {
+      await getStaticProps({
+        params: {
+          keyStageSlug: "ks123",
+          viewType: "teachers-2023",
+        },
+      });
+
+      expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
+        keyStageSlug: "ks123",
+      });
       expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalledWith(
         {
           keyStageSlug: "ks123",
-        }
+        },
       );
     });
   });

@@ -72,7 +72,7 @@ describe("useLocalStorage()", () => {
 
   test("Update the state with undefined", () => {
     const { result } = renderHook(() =>
-      useLocalStorage<string | undefined>("keytest", "value")
+      useLocalStorage<string | undefined>("keytest", "value"),
     );
 
     act(() => {
@@ -110,7 +110,7 @@ describe("useLocalStorage()", () => {
 
   test("doesn't update if schema parse fails setting", () => {
     const { result } = renderHook(() =>
-      useLocalStorage("key", "value", (a, b) => a === b, z.string())
+      useLocalStorage("key", "value", (a, b) => a === b, z.string()),
     );
 
     act(() => {
@@ -126,7 +126,7 @@ describe("useLocalStorage()", () => {
 
   test("updates if schema parse succeeds", () => {
     const { result } = renderHook(() =>
-      useLocalStorage("key", "value", (a, b) => a === b, z.string())
+      useLocalStorage("key", "value", (a, b) => a === b, z.string()),
     );
 
     act(() => {

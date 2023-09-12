@@ -45,7 +45,7 @@ export type ButtonStylesProps = OpacityProps &
     "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (
-  props: CommonButtonProps
+  props: CommonButtonProps,
 ): ButtonStylesProps => {
   const {
     variant = DEFAULT_BUTTON_VARIANT,
@@ -89,7 +89,7 @@ const buttonStyles = css<ButtonStylesProps>`
       background-color: ${getButtonBackground(
         props.background,
         props.variant,
-        props["aria-disabled"]
+        props["aria-disabled"],
       )};
       color: ${getButtonColor(props.background, props.variant)};
     `;
@@ -123,7 +123,7 @@ const buttonStyles = css<ButtonStylesProps>`
   }
 
   ${(props) =>
-    (props.variant === "brush" || props.variant == "brushNav") &&
+    (props.variant === "brush" || props.variant === "brushNav") &&
     css`
       :hover {
         box-shadow: ${props["aria-disabled"]
@@ -142,7 +142,7 @@ const buttonStyles = css<ButtonStylesProps>`
 
       :disabled {
         background-color: ${getColorByLocation(
-          ({ theme }) => theme.button.disabled.background
+          ({ theme }) => theme.button.disabled.background,
         )};
         cursor: not-allowed;
       }

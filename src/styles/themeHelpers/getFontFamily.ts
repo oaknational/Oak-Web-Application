@@ -2,10 +2,10 @@ import { OakFontName, PropsWithTheme } from "../theme";
 
 function getFontFamily(): "inherit";
 function getFontFamily(
-  fontName: OakFontName
+  fontName: OakFontName,
 ): (props: PropsWithTheme) => string;
 function getFontFamily(
-  fontName?: OakFontName
+  fontName?: OakFontName,
 ): ((props: PropsWithTheme) => string) | "inherit";
 function getFontFamily(fontName?: OakFontName) {
   if (!fontName) {

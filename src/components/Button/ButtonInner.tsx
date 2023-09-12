@@ -46,9 +46,15 @@ export const ButtonStyledAsLinkFocusUnderline = styled(Svg)<{
 const BrushUnderline = styled(Svg)`
   position: absolute;
   mask-position: center;
-  height: 4px;
-  top: 100%;
+  height: 8px;
+  bottom: -10px;
 `;
+export type ButtonCurrentStyles = (
+  | "arrow-icon"
+  | "color"
+  | "text-underline"
+  | "underline"
+)[];
 
 export type ButtonInnerProps = {
   label: string;
@@ -68,7 +74,7 @@ export type ButtonInnerProps = {
    * has state `current`. In some cases the text is underlined, in others
    * it has an arrow icon.
    */
-  currentStyles?: ("arrow-icon" | "color" | "text-underline" | "underline")[];
+  currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -115,7 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    */
   const currentColor: OakColorName = "oakGrey4";
   const displayProperty = shouldHideLabel?.map((hide) =>
-    hide ? "none" : "block"
+    hide ? "none" : "block",
   );
   const textDecoration =
     isCurrent && currentStyles?.includes("text-underline")

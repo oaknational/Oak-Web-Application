@@ -22,7 +22,7 @@ const ref = { current: document.createElement("div") };
 const refAddEventListenerSpy = jest.spyOn(ref.current, "addEventListener");
 const refRemoveEventListenerSpy = jest.spyOn(
   ref.current,
-  "removeEventListener"
+  "removeEventListener",
 );
 
 describe("useEventListener()", () => {
@@ -37,7 +37,7 @@ describe("useEventListener()", () => {
 
     expect(windowAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
   });
 
@@ -48,12 +48,12 @@ describe("useEventListener()", () => {
 
     expect(windowAddEventListenerSpy).not.toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
 
     expect(refAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
   });
 
@@ -61,19 +61,19 @@ describe("useEventListener()", () => {
     const eventName = "test-event";
 
     const { unmount } = renderHook(() =>
-      useEventListener(eventName, jest.fn())
+      useEventListener(eventName, jest.fn()),
     );
 
     expect(windowAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
 
     unmount();
 
     expect(windowRemoveEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
   });
 
@@ -81,19 +81,19 @@ describe("useEventListener()", () => {
     const eventName = "test-event";
 
     const { unmount } = renderHook(() =>
-      useEventListener(eventName, jest.fn(), ref)
+      useEventListener(eventName, jest.fn(), ref),
     );
 
     expect(refAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
 
     unmount();
 
     expect(refRemoveEventListenerSpy).toHaveBeenCalledWith(
       eventName,
-      expect.anything()
+      expect.anything(),
     );
   });
 
