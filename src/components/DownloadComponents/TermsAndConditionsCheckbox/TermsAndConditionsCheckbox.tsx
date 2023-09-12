@@ -1,13 +1,13 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import P from "../../Typography/P";
-import Checkbox from "../../Checkbox";
-import Box from "../../Box";
-import OakLink from "../../OakLink";
-import FieldError from "../../FormFields/FieldError";
-import { CheckboxProps } from "../../Checkbox/Checkbox";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import P from "@/components/Typography/P";
+import Checkbox from "@/components/Checkbox";
+import Box from "@/components/Box";
+import OakLink from "@/components/OakLink";
+import FieldError from "@/components/FormFields/FieldError";
+import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 
 export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;

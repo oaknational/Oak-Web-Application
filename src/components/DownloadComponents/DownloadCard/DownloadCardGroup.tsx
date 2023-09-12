@@ -1,19 +1,21 @@
 import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
-import { LessonDownloadsData } from "../../../node-lib/curriculum-api";
 import type {
   DownloadResourceType,
   DownloadFormProps,
 } from "../downloads.types";
-import { GridArea } from "../../Grid";
-import Flex from "../../Flex";
-import { Heading } from "../../Typography";
-import Box from "../../Box";
-import Button from "../../Button";
-import FieldError from "../../FormFields/FieldError";
 
 import DownloadCard from "./DownloadCard";
+
+import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { GridArea } from "@/components/Grid";
+import Flex from "@/components/Flex";
+import { Heading } from "@/components/Typography";
+import Box from "@/components/Box";
+import Button from "@/components/Button";
+import FieldError from "@/components/FormFields/FieldError";
+
 
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];

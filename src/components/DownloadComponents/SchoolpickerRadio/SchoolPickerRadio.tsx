@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
 
-import Box from "../../Box";
-import Flex from "../../Flex";
-import Radio from "../../RadioButtons/Radio";
-import RadioGroup from "../../RadioButtons/RadioGroup";
-import SchoolPicker from "../../SchoolPicker";
-import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
-import { Heading, P } from "../../Typography";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import Radio from "@/components/RadioButtons/Radio";
+import RadioGroup from "@/components/RadioButtons/RadioGroup";
+import SchoolPicker from "@/components/SchoolPicker";
+import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
+import { Heading, P } from "@/components/Typography";
 
 export type SchoolPickerRadioProps = {
   setSchool: (value: string, name?: string) => void;
