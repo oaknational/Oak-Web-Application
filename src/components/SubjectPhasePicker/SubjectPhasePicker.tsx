@@ -272,12 +272,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               onClick={toggleShowSubjects}
               title="Subject"
             >
-              {/* @todo - change first value here for phone */}
-
               <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
                 Subject
               </Heading>
-              <P $color={"grey3"} $font={"body-2"}>
+              <P $font={"body-2"}>
                 {showSubjectError && (
                   <>
                     <Icon
@@ -371,7 +369,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
                 School phase
               </Heading>
-              <P $color={"grey3"} $font={"body-2"}>
+              <P $font={"body-2"}>
                 {showPhaseError && (
                   <>
                     <Icon
