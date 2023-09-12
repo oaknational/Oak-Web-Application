@@ -13,6 +13,7 @@ export type PostListProps = {
   upcomingItem?: PostListItemProps;
   currentPageItems: PostListItemProps[];
   paginationProps: PaginationProps;
+  showImageOnTablet?: boolean;
   /**
    * adds image to each item
    */
@@ -47,6 +48,7 @@ const PostList: FC<PostListProps> = (props) => {
     withContainingHrs,
     withPagination,
     withUpcomingItem,
+    showImageOnTablet,
   } = props;
 
   const { firstItemRef } = paginationProps;
@@ -79,6 +81,7 @@ const PostList: FC<PostListProps> = (props) => {
                   {...item}
                   withImage={withImage}
                   firstItemRef={i === 0 ? firstItemRef : null}
+                  showImageOnTablet={showImageOnTablet}
                 />
               </LI>
             ))}

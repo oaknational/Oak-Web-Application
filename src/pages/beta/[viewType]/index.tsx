@@ -173,7 +173,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
               </Typography>
             </Flex>
           </Flex>
-          <PostList {...blogListProps} />
+          <PostList showImageOnTablet={true} {...blogListProps} />
         </Box>
       </MaxWidth>
       <Flex $background={"lavender50"} $width={"100%"}>
