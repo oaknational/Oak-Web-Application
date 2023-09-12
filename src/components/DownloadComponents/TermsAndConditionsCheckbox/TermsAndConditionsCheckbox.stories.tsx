@@ -6,6 +6,9 @@ import Component from ".";
 export default {
   title: "Form Fields/Checkbox/Terms and Conditions Checkbox",
   component: Component,
+  argTypes: {
+    showPostAlbCopyright: { control: "radio", options: [true, false] },
+  },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => {
