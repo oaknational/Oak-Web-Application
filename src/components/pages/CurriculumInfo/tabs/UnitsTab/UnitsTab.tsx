@@ -181,20 +181,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Card
-        $background={"lemon30"}
-        $pa={0}
-        $pl={96}
-        $mv={[16, 48]}
-        $mh={[16, 0]}
-      >
+      <Card $background={"lemon30"} $pa={0} $pl={96} $mv={[16, 48]}>
         <Box
           $background={"lemon"}
           $height={"100%"}
           $left={0}
           $position={"absolute"}
           $top={0}
-          $width={96}
+          $width={[64, 96]}
           $textAlign={"center"}
         >
           <Icon

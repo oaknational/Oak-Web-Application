@@ -102,7 +102,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         <Flex $pv={32}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <Flex>
-              <Box $background={color1} $borderRadius={6} $mr={12}>
+              <Box
+                $background={color1}
+                $borderRadius={6}
+                $minWidth={56}
+                $mr={12}
+                $mv={"auto"}
+              >
                 <SubjectIcon
                   subjectSlug={subject.slug}
                   $color="white"
@@ -111,8 +117,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-
-              <Heading tag={"h1"} $font={"heading-light-3"}>
+              <Heading tag={"h1"} $font={"heading-4"} $mv={"auto"}>
                 {pageTitle}
               </Heading>
             </Flex>
