@@ -214,8 +214,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </P>
         </Box>
       </Card>
-      <Flex $justifyContent={"space-between"}>
-        <Box>
+      <Flex>
+        <Box $width={"100%"}>
           {Object.keys(yearData).map((year) => {
             const { units, childSubjects, domains, tiers } = yearData[
               year
