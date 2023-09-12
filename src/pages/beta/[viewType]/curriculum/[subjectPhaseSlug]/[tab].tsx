@@ -10,11 +10,9 @@ import { useRouter } from "next/router";
 import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import DownloadsTab from "@/components/pages/CurriculumInfo/tabs/DownloadsTab/DownloadsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
-  CurriculumDownloadsTabData,
   CurriculumOverviewTabData,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
@@ -41,10 +39,9 @@ export type CurriculumInfoPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewTabData;
   curriculumUnitsTabData: CurriculumUnitsTabData;
-  curriculumDownloadsTabData: CurriculumDownloadsTabData;
 };
 
-const VALID_TABS = ["overview", "units", "downloads"] as const;
+const VALID_TABS = ["overview", "units"] as const;
 export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -52,7 +49,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   subjectPhaseOptions,
   curriculumOverviewTabData,
   curriculumUnitsTabData,
-  curriculumDownloadsTabData,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
@@ -64,9 +60,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       break;
     case "units":
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
-      break;
-    case "downloads":
-      tabContent = <DownloadsTab data={curriculumDownloadsTabData} />;
       break;
     default:
       throw new Error("Not a valid tab");
@@ -91,7 +84,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 };
 
 export type URLParams = {
-  tab: "units" | "overview" | "downloads";
+  tab: "units" | "overview";
   viewType: ViewType;
   subjectPhaseSlug: string;
 };
@@ -154,8 +147,6 @@ export const getStaticProps: GetStaticProps<
       const curriculumOverviewTabData =
         await curriculumApi.curriculumOverview(slugs);
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
-      const curriculumDownloadsTabData =
-        await curriculumApi.curriculumDownloads(slugs);
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
@@ -163,7 +154,6 @@ export const getStaticProps: GetStaticProps<
           subjectPhaseOptions,
           curriculumOverviewTabData,
           curriculumUnitsTabData,
-          curriculumDownloadsTabData,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);
