@@ -74,7 +74,7 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   };
   return (
     <>
-      <Heading tag="h2" $font={"heading-5"} $mb={16} $mt={[24, 48]}>
+      <Heading tag="h2" $font={"heading-5"} $mb={16}>
         Your details
       </Heading>
       <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>

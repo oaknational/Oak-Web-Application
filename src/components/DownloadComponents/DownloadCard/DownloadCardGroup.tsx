@@ -8,7 +8,7 @@ import type {
 } from "../downloads.types";
 import { GridArea } from "../../Grid";
 import Flex from "../../Flex";
-import { Heading, Hr } from "../../Typography";
+import { Heading } from "../../Typography";
 import Box from "../../Box";
 import Button from "../../Button";
 import FieldError from "../../FormFields/FieldError";
@@ -38,6 +38,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
         <Flex
           $alignItems={["left", "center"]}
           $flexDirection={["column", "row"]}
+          $mb={28}
         >
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
@@ -57,7 +58,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           </Box>
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
-        <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
       </GridArea>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {

@@ -55,12 +55,6 @@ beforeEach(() => {
 const render = renderWithProviders();
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("Renders title from the props with added 'Downloads' text in front of it", () => {
-    render(<LessonDownloadsPage {...props} />);
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Downloads: Islamic Geometry",
-    );
-  });
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage

@@ -15,8 +15,7 @@ import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
-import { Heading, Hr, P } from "@/components/Typography";
+import { Heading, P } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -312,16 +311,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             ]}
           />
         </Box>
-        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
-          <TitleCard
-            page={"lesson"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            subject={subjectTitle}
-            subjectSlug={subjectSlug}
-            title={`Downloads: ${lessonTitle}`}
-          />
-        </Flex>
 
         {!hasResourcesToDownload ? (
           <NoResourcesToDownload />
@@ -337,7 +326,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     onEditClick={handleEditDetailsCompletedClick}
                   />
                 ) : (
-                  <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                  <Box $maxWidth={[null, 420, 420]} $mb={56}>
                     <SchoolPickerRadio
                       errors={errors}
                       setSchool={setSchool}
@@ -406,7 +395,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               </>
             )}
 
-            <Grid $mt={32}>
+            <Grid>
               <DownloadCardGroup
                 control={control}
                 downloads={downloads}
@@ -417,7 +406,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               />
 
               <GridArea $colSpan={[12]}>
-                <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
                 <Flex
                   $flexDirection={["column", "row"]}
                   $justifyContent={"right"}
