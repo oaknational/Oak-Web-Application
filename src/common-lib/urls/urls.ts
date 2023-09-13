@@ -447,9 +447,9 @@ export const OAK_PAGES: {
             index: 0,
             params: { viewType: null },
           };
-        case "/beta/teachers":
+        case "/teachers":
           return {
-            path: "/beta/teachers",
+            path: "/teachers",
             index: 0,
             params: { viewType: "teachers" },
           };
@@ -458,7 +458,7 @@ export const OAK_PAGES: {
       }
     },
     resolveHref: (props) =>
-      props.viewType === null ? "/" : `/beta/${props.viewType}`,
+      props.viewType === null ? "/" : `/${props.viewType}`,
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -517,34 +517,33 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/programmes/:programmeSlug/units",
+    pathPattern: "/:viewType/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "unit-index",
   }),
   "lesson-index": createOakPageConfig({
-    pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
   }),
   "lesson-overview": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",
   }),
   "lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
   }),
   search: createOakPageConfig({
-    pathPattern: "/beta/:viewType/search",
+    pathPattern: "/:viewType/search",
     analyticsPageName: "Search",
     configType: "internal",
     pageType: "search",
@@ -568,38 +567,38 @@ export const OAK_PAGES: {
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/key-stages/:keyStageSlug/subjects",
+    pathPattern: "/:viewType/key-stages/:keyStageSlug/subjects",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "subject-index",
   }),
   "programme-index": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/key-stages/:keyStageSlug/subjects/:subjectSlug/programmes",
+      "/:viewType/key-stages/:keyStageSlug/subjects/:subjectSlug/programmes",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "programme-index",
   }),
   "curriculum-landing-page": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum",
+    pathPattern: "/:viewType/curriculum",
     analyticsPageName: "Curriculum Landing Page",
     configType: "internal",
     pageType: "curriculum-landing-page",
   }),
   "curriculum-overview": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/overview",
+    pathPattern: "/:viewType/curriculum/:subjectPhaseSlug/overview",
     analyticsPageName: "Curriculum Overview",
     configType: "internal",
     pageType: "curriculum-overview",
   }),
   "curriculum-units": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/units",
+    pathPattern: "/:viewType/curriculum/:subjectPhaseSlug/units",
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "curriculum-units",
   }),
   "curriculum-downloads": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/downloads",
+    pathPattern: "/:viewType/curriculum/:subjectPhaseSlug/downloads",
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
@@ -621,13 +620,12 @@ function replaceViewType2023(path: string): string {
   }
   const pathParts = path.split("/");
   const currentPathParts = window.location.pathname.split("/");
-  const isIn2023Experience =
-    currentPathParts[1] === "beta" && currentPathParts[2] === "teachers-2023";
+  const isIn2023Experience = currentPathParts[1] === "teachers-2023";
   const [, beta, viewType] = pathParts;
   const linkIsBetaTeachers = beta === "beta" && viewType === "teachers";
 
   if (isIn2023Experience && linkIsBetaTeachers) {
-    return ["/beta", "teachers-2023", ...pathParts.slice(3)].join("/");
+    return ["/", "teachers-2023", ...pathParts.slice(3)].join("/");
   }
 
   return path;

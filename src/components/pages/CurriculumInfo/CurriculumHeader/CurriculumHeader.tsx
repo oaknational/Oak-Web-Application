@@ -14,7 +14,7 @@ import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,
   CurriculumTab,
-} from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

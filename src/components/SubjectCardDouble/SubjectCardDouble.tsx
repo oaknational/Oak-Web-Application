@@ -4,7 +4,7 @@ import { Heading, HeadingTag } from "../Typography";
 import Flex from "../Flex";
 import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
-import { Subjects } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { Subjects } from "../../pages/[viewType]/key-stages/[keyStageSlug]/subjects";
 
 import CountCard from "./CountCard";
 

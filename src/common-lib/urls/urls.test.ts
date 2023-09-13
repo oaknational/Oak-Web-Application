@@ -80,7 +80,7 @@ describe("urls.ts", () => {
         programmeSlug: "primary-ks2-maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units",
+        "/teachers/programmes/primary-ks2-maths/units",
       );
     });
     it("Programme listing", () => {
@@ -91,7 +91,7 @@ describe("urls.ts", () => {
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/programmes",
+        "/teachers/key-stages/ks2/subjects/maths/programmes",
       );
     });
     it("Unit listing with query", () => {
@@ -103,7 +103,7 @@ describe("urls.ts", () => {
           search: { "learning-theme": "circls" },
         }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
+        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
       );
     });
     it("Lesson listing", () => {
@@ -115,7 +115,7 @@ describe("urls.ts", () => {
           unitSlug: "geometry-349",
         }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
       );
     });
     it("Lesson overview", () => {
@@ -128,7 +128,7 @@ describe("urls.ts", () => {
           lessonSlug: "semi-circles-48",
         }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
     it("Lesson downloads", () => {
@@ -141,7 +141,7 @@ describe("urls.ts", () => {
           lessonSlug: "semi-circles-48",
         }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads",
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads",
       );
     });
     it("Search", () => {
@@ -150,7 +150,7 @@ describe("urls.ts", () => {
           page: "search",
           viewType: "teachers",
         }),
-      ).toBe("/beta/teachers/search");
+      ).toBe("/teachers/search");
     });
     it("Search with query", () => {
       expect(
@@ -159,7 +159,7 @@ describe("urls.ts", () => {
           viewType: "teachers",
           query: { term: "something", keyStages: ["ks4", "ks2"] },
         }),
-      ).toBe("/beta/teachers/search?term=something&keyStages=ks4%2Cks2");
+      ).toBe("/teachers/search?term=something&keyStages=ks4%2Cks2");
     });
     it("Landing page", () => {
       expect(
@@ -176,7 +176,7 @@ describe("urls.ts", () => {
           viewType: "teachers",
           keyStageSlug: "ks2",
         }),
-      ).toBe("/beta/teachers/key-stages/ks2/subjects");
+      ).toBe("/teachers/key-stages/ks2/subjects");
     });
     it("About us: Board", () => {
       expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
@@ -214,7 +214,7 @@ describe("urls.ts", () => {
     });
     it("Home (teachers)", () => {
       expect(resolveOakHref({ page: "home", viewType: "teachers" })).toBe(
-        "/beta/teachers",
+        "/teachers",
       );
     });
     it("Lesson planning", () => {

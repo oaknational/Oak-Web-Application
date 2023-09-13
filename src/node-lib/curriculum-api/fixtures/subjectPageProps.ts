@@ -1,4 +1,4 @@
-import { SubjectListingPageProps } from "../../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { SubjectListingPageProps } from "../../../pages/[viewType]/key-stages/[keyStageSlug]/subjects";
 
 const subjectPagePropsFixture = (
   partial?: Partial<SubjectListingPageProps>,
