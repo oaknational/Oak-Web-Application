@@ -27,6 +27,7 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
+  title?: string;
   imageSlug: IllustrationSlug;
   isCurrent?: boolean;
   isNew?: boolean;
@@ -84,15 +85,18 @@ const HomePageTabImageButton = forwardRef<
     onClick,
     label,
     labelSuffixA11y,
+    "aria-label": ariaLabel,
     htmlButtonProps = {},
     disabled,
     imageSlug,
     isCurrent,
+    title,
     isNew,
   } = props;
 
-  const defaultTitle = labelSuffixA11y ? labelSuffixA11y : label;
-  const noneNulltitle = defaultTitle;
+  const defaultTitle =
+    ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
+  const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
   const asset = getIllustrationAsset(imageSlug);
   const theme = useTheme();
   const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
@@ -123,21 +127,10 @@ const HomePageTabImageButton = forwardRef<
             >
               {label}
             </ButtonLabel>
-            {isNew && (
-              <TagPromotional
-                size={"small"}
-                $ml={3}
-                $display={["none", "flex"]}
-              />
-            )}
+            {isNew && <TagPromotional size={"small"} $ml={3} />}
           </Flex>
-          {isCurrent && (
-            <BrushUnderline
-              name="horizontal-rule"
-              data-testid={`${defaultTitle} underline`}
-            />
-          )}
-          <NewIconFocusUnderline $color={underlineColor} />
+          {isCurrent && <BrushUnderline name="horizontal-rule" />}
+          <NewIconFocusUnderline $color={underlineColor} data-testid={`${defaultTitle} underline`}/>
         </Box>
       </Flex>
     </StyledButton>
