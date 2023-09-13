@@ -1,3 +1,15 @@
+# [1.239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.2...v1.239.0) (2023-09-13)
+
+
+### Features
+
+* add component for pre alb copyright ([00f1bd2](https://github.com/oaknational/Oak-Web-Application/commit/00f1bd2c4d632abd65c3e9a3987449ed44d07a8a))
+* add post alb copyright component ([03d26c2](https://github.com/oaknational/Oak-Web-Application/commit/03d26c297a6cfddaa80b93df5e043c4e1642c15f))
+* add storybook control to toggle copyright ([3cf3ec6](https://github.com/oaknational/Oak-Web-Application/commit/3cf3ec65572f17e90ab3470d88fbf82213c9a231))
+* downloads page style updates ([c539b33](https://github.com/oaknational/Oak-Web-Application/commit/c539b3356397d887cd0e48a81468ac1a346c287a))
+* give copyright notice a max width the same as the ts and cs checkbox ([f296e34](https://github.com/oaknational/Oak-Web-Application/commit/f296e348087102a118b48782a5bfaeffb193298a))
+* toggle copyright notice on downloads page based on view type ([519a1fb](https://github.com/oaknational/Oak-Web-Application/commit/519a1fbc6834f0e915390f3386fdb1da9714e7fb))
+
 ## [1.238.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.1...v1.238.2) (2023-09-12)
 
 ## [1.238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.0...v1.238.1) (2023-09-11)

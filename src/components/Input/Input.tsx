@@ -141,7 +141,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <Flex $position={"absolute"}>
               <RotatedInputLabel
                 aria-hidden="true"
-                background={error ? "failure" : "pastelTurquoise"}
+                background={error ? "failure" : "teachersYellow"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
                 id={labelId}
