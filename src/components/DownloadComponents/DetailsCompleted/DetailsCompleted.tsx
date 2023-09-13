@@ -41,7 +41,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
   }, [email, school]);
 
   return (
-    <Box $mt={56} $mb={96}>
+    <Box $mt={56}>
       <Flex $mb={12}>
         <Heading tag="h3" $font={"heading-5"}>
           Details complete
