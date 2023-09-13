@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
@@ -18,6 +19,8 @@ import RadioGroup from "@/components/RadioButtons/RadioGroup";
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
+
+let highlightedUnitCount = 0;
 
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   type Unit = CurriculumUnitsTabData["units"][number];
@@ -50,8 +53,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     };
   }
 
-  const threads: Thread[] = [];
-  const years: string[] = [];
+  const threadOptions: Thread[] = [];
+  const yearOptions: string[] = [];
 
   const yearData: {
     [key: string]: {
@@ -63,15 +66,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   } = {};
 
   data.units.forEach((unit) => {
-    // Create list of years
-    if (years.every((y) => y !== unit.year)) {
-      years.push(unit.year);
+    // Populate years object
+    if (yearOptions.every((yo) => yo !== unit.year)) {
+      yearOptions.push(unit.year);
     }
 
-    // Create list of threads
+    // Populate threads object
     unit.threads.forEach((thread) => {
-      if (threads.every((t) => t.slug !== thread.slug)) {
-        threads.push(thread);
+      if (threadOptions.every((to) => to.slug !== thread.slug)) {
+        threadOptions.push(thread);
       }
     });
 
@@ -127,6 +130,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       });
     }
   });
+
+  yearOptions.sort((a, b) => Number(a) - Number(b));
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -223,13 +228,21 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!selectedThread) {
       return false;
     }
-    return unit.threads.some((t) => t.slug === selectedThread.slug);
+    if (unit.threads.some((t) => t.slug === selectedThread.slug)) {
+      highlightedUnitCount++;
+      return true;
+    }
+  }
+
+  function isSelectedThread(thread: Thread) {
+    return selectedThread?.slug === thread.slug;
   }
 
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
 
   function handleSelectThread(slug: string): void {
-    const thread = threads.find((t) => t.slug === slug) ?? null;
+    highlightedUnitCount = 0;
+    const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     setSelectedThread(thread);
   }
 
@@ -306,33 +319,39 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                   None highlighted
                 </Radio>
               </Box>
-              {threads.map((thread) => (
-                <Box
-                  $ba={1}
-                  $background={
-                    selectedThread?.slug === thread.slug ? "black" : "white"
-                  }
-                  $borderColor={
-                    selectedThread?.slug === thread.slug ? "black" : "grey4"
-                  }
-                  $borderRadius={4}
-                  $color={
-                    selectedThread?.slug === thread.slug ? "white" : "black"
-                  }
-                  $ph={12}
-                  $pt={12}
-                  $mb={8}
-                  key={thread.slug}
-                >
-                  <Radio
-                    aria-label={thread.title}
-                    value={thread.slug}
-                    data-testid={"thread-radio"}
+              {threadOptions.map((threadOption) => {
+                const isSelected = isSelectedThread(threadOption);
+                return (
+                  <Box
+                    $ba={1}
+                    $background={isSelected ? "black" : "white"}
+                    $borderColor={isSelected ? "black" : "grey4"}
+                    $borderRadius={4}
+                    $color={isSelected ? "white" : "black"}
+                    $font={isSelected ? "heading-light-7" : "body-2"}
+                    $ph={12}
+                    $pt={12}
+                    $mb={8}
+                    key={threadOption.slug}
                   >
-                    {thread.title}
-                  </Radio>
-                </Box>
-              ))}
+                    <Radio
+                      aria-label={threadOption.title}
+                      value={threadOption.slug}
+                      data-testid={
+                        isSelected ? "selected-thread-radio" : "thread-radio"
+                      }
+                    >
+                      {threadOption.title}
+                      {isSelected && (
+                        <>
+                          <br />
+                          {highlightedUnitCount} units highlighted
+                        </>
+                      )}
+                    </Radio>
+                  </Box>
+                );
+              })}
             </RadioGroup>
           </Box>
 
@@ -354,14 +373,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                   All
                 </Radio>
               </Box>
-              {years.map((year) => (
-                <Box key={year} $mb={16}>
+              {yearOptions.map((yearOption) => (
+                <Box key={yearOption} $mb={16}>
                   <Radio
-                    aria-label={`Year ${year}`}
-                    value={year}
+                    aria-label={`Year ${yearOption}`}
+                    value={yearOption}
                     data-testid={"year-radio"}
                   >
-                    Year {year}
+                    Year {yearOption}
                   </Radio>
                 </Box>
               ))}
@@ -385,7 +404,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                   $borderRadius={4}
                 >
                   <Heading
-                    tag="h4"
+                    tag="h2"
                     $font={"heading-4"}
                     $mb={32}
                     data-testid="year-heading"
@@ -449,13 +468,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     {units
                       .filter((unit) => isVisibleUnit(year, unit))
                       .map((unit, index) => {
+                        const isHighlighted = isHighlightedUnit(unit);
                         return (
                           <Card
                             key={unit.slug}
-                            $background={
-                              isHighlightedUnit(unit) ? "black" : "white"
-                            }
-                            $color={isHighlightedUnit(unit) ? "white" : "black"}
+                            $background={isHighlighted ? "black" : "white"}
+                            $color={isHighlighted ? "white" : "black"}
                             $flexGrow={"unset"}
                             $mb={32}
                             $mr={28}
@@ -463,22 +481,23 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             $position={"relative"}
                             $width={["100%", "calc(33% - 26px)"]}
                             data-testid={
-                              isHighlightedUnit(unit)
+                              isHighlighted
                                 ? "highlighted-unit-card"
                                 : "unit-card"
                             }
                           >
                             <BrushBorders
-                              color={
-                                isHighlightedUnit(unit) ? "black" : "white"
-                              }
+                              color={isHighlighted ? "black" : "white"}
                             />
-                            <OutlineHeading tag={"h3"} $fontSize={24} $mb={12}>
+                            <OutlineHeading tag={"div"} $fontSize={24} $mb={12}>
                               {index + 1}
                             </OutlineHeading>
-                            <Heading tag={"h3"} $font={"heading-7"}>
+                            <Box $font={"heading-7"}>
+                              {isHighlighted && (
+                                <VisuallyHidden>Highlighted:</VisuallyHidden>
+                              )}
                               {unit.title}
-                            </Heading>
+                            </Box>
                             <Box
                               $position={"absolute"}
                               $bottom={16}

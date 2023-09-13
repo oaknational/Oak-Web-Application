@@ -54,7 +54,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can highlight units by threads", async () => {
-    const { queryAllByTestId, findAllByTestId } = renderWithTheme(
+    const { queryByTestId, queryAllByTestId } = renderWithTheme(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const threads = queryAllByTestId("thread-radio");
@@ -69,8 +69,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         (thread) => thread.slug === threads[0]?.getAttribute("value"),
       );
     });
-    const highlightedUnits = await findAllByTestId("highlighted-unit-card");
+    const highlightedUnits = queryAllByTestId("highlighted-unit-card");
     expect(threadUnits).toHaveLength(highlightedUnits.length);
+    const selectedThread = queryByTestId("selected-thread-radio");
+    expect(selectedThread).toBeInTheDocument();
   });
 
   test("user can see all the year group choices", async () => {
@@ -83,6 +85,20 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       curriculumUnitsTabFixture().units.map((unit) => unit.year),
     );
     expect(yearOptions).toHaveLength(yearSet.size);
+  });
+
+  test("Year group choices are properly sorted", async () => {
+    const { findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const yearOptions = await findAllByTestId("year-radio");
+    const extractedYears = yearOptions.map((option) =>
+      parseInt(option.attributes.getNamedItem("value")?.value || "0"),
+    );
+    const isSorted = extractedYears.every((year, index, array) => {
+      return index === 0 || Number(array[index - 1]) <= year;
+    });
+    expect(isSorted).toBe(true);
   });
 
   test("user can filter by year group", async () => {
