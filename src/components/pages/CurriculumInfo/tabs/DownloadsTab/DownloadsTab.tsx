@@ -10,7 +10,7 @@ type DownloadsTabProps = {
 
 const DownloadsTab: FC<DownloadsTabProps> = (props: DownloadsTabProps) => {
   return (
-    <Box $maxWidth={"80%"} $ma={"auto"} $pb={80}>
+    <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
       <Heading tag="h1" $font={"heading-2"} data-testid="downloads-heading">
         Downloads
       </Heading>

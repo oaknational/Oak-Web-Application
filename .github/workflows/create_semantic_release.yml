@@ -26,7 +26,7 @@ jobs:
     name: semantic release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           # Need this to prevent the custom Github credentials on
           # the semantic release step being overridden with the

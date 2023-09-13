@@ -159,7 +159,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                         {i !== 0 && <Hr thickness={4} $mv={32} />}
                         <PostListItem
                           {...item}
-                          isCurriculumPage={true}
+                          showImageOnTablet={true}
                           withImage={true}
                           firstItemRef={null}
                         />

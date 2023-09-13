@@ -19,8 +19,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { data } = props;
   const { subjectPrinciples, curriculaDesc, partnerBio, subjectSlug } = data;
   return (
-    <Box $width={"80%"} $ma={"auto"} $pb={80}>
-      <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
+    <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+      <Flex $mv={10}>
         <Box
           $pt={20}
           $mr={16}
