@@ -1,3 +1,10 @@
+## [1.240.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.2...v1.240.3) (2023-09-13)
+
+
+### Bug Fixes
+
+* landing page header bug fixed ([78f23cb](https://github.com/oaknational/Oak-Web-Application/commit/78f23cbd5c9f7ce93de85e429d8a00f86efcb720))
+
 ## [1.240.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.1...v1.240.2) (2023-09-13)
 
 ## [1.240.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.0...v1.240.1) (2023-09-13)
