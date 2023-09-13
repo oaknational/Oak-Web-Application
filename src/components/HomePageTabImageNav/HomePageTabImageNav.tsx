@@ -26,7 +26,7 @@ const HomePageTabImageNav = ({
       >
         <HomePageTabImageButton
           imageSlug={"teacher-carrying-stuff"}
-          label={"Teaching Resources"}
+          label={"Teaching resources"}
           isCurrent={current === "teachers"}
           isNew={false}
           onClick={() => setCurrent("teachers")}
