@@ -127,7 +127,13 @@ const HomePageTabImageButton = forwardRef<
             >
               {label}
             </ButtonLabel>
-            {isNew && <TagPromotional size={"small"} $ml={3} />}
+            {isNew && (
+              <TagPromotional
+                size={"small"}
+                $ml={3}
+                $display={["none", "flex"]}
+              />
+            )}
           </Flex>
           {isCurrent && <BrushUnderline name="horizontal-rule" />}
           <NewIconFocusUnderline

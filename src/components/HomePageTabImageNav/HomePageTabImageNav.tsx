@@ -15,6 +15,7 @@ const HomePageTabImageNav = ({
   return (
     <Flex $flexDirection={"column"}>
       <Flex
+        as="nav"
         $width={"100%"}
         $pt={[40, 32]}
         $flexDirection={"row"}
