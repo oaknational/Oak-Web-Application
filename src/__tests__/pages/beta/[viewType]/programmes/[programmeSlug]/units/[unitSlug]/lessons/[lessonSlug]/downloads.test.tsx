@@ -55,12 +55,6 @@ beforeEach(() => {
 const render = renderWithProviders();
 
 describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("Renders title from the props with added 'Downloads' text in front of it", () => {
-    render(<LessonDownloadsPage {...props} />);
-    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Downloads: Islamic Geometry",
-    );
-  });
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage
@@ -352,6 +346,30 @@ describe("pages/beta/teachers/lessons/[lessonSlug]/downloads", () => {
 
       expect(schoolId).toBe("222-Primary-School");
       expect(schoolName).toBe("Primary School");
+    });
+  });
+
+  describe("Copyright notice", () => {
+    it("renders pre-ALB copyright notice on teachers view type", async () => {
+      render(<LessonDownloadsPage {...props} />);
+
+      const copyrightNotice = await screen.findByText(
+        "This content is made available by Oak and its partners",
+        { exact: false },
+      );
+
+      expect(copyrightNotice).toBeInTheDocument();
+    });
+
+    it("renders post-ALB copyright notice on teachers-2023 view type", async () => {
+      render(<LessonDownloadsPage {...props} viewType="teachers-2023" />);
+
+      const copyrightNotice = await screen.findByText(
+        "This content is © Oak National Academy (2023), licensed on",
+        { exact: false },
+      );
+
+      expect(copyrightNotice).toBeInTheDocument();
     });
   });
 
