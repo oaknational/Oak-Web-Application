@@ -10,36 +10,34 @@ import {
   HomePageProps,
   postToPostListItem,
 } from "../..";
-import { BETA_SEO_PROPS } from "../../../browser-lib/seo/Seo";
-import AppLayout from "../../../components/AppLayout";
-import Box from "../../../components/Box";
-import Flex from "../../../components/Flex";
-import Grid, { GridArea } from "../../../components/Grid";
-import KeyStageKeypad from "../../../components/KeyStageKeypad";
-import MaxWidth from "../../../components/MaxWidth/MaxWidth";
-import OakLink from "../../../components/OakLink";
-import {
-  HomeSiteCards,
-  SharedHomeContent,
-} from "../../../components/pages/Home";
-import usePostList from "../../../components/Posts/PostList/usePostList";
-import SearchForm from "../../../components/SearchForm";
-import { Heading, P, Span } from "../../../components/Typography";
-import UnderlinedHeading from "../../../components/Typography/UnderlinedHeading";
-import useSearch from "../../../context/Search/useSearch";
-import CMSClient from "../../../node-lib/cms";
-import curriculumApi, {
-  TeachersHomePageData,
-} from "../../../node-lib/curriculum-api";
+import Typography, { Heading, P, Span } from "../../../components/Typography";
+
+import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import AppLayout from "@/components/AppLayout";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import KeyStageKeypad from "@/components/KeyStageKeypad";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import OakLink from "@/components/OakLink";
+import usePostList from "@/components/Posts/PostList/usePostList";
+import SearchForm from "@/components/SearchForm";
+import UnderlinedHeading from "@/components/Typography/UnderlinedHeading";
+import useSearch from "@/context/Search/useSearch";
+import CMSClient from "@/node-lib/cms";
+import curriculumApi, { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../../node-lib/isr";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
-import { ViewType } from "../../../common-lib/urls";
-import curriculumApi2023 from "../../../node-lib/curriculum-api-2023";
-import getPageProps from "../../../node-lib/getPageProps";
+} from "@/node-lib/isr";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ViewType } from "@/common-lib/urls";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
+import PostList from "@/components/Posts/PostList";
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -62,11 +60,14 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       searchSource: "homepage search suggestion",
     });
   };
+  const newsletterFormProps = useNewsletterForm({
+    onSubmit: track.newsletterSignUpCompleted,
+  });
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
       <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-        <MaxWidth>
+        <MaxWidth $mb={[48, 24]}>
           <Box $ph={[16, 0]}>
             <Heading
               $font={["heading-5", "heading-4"]}
@@ -150,13 +151,45 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
               </GridArea>
             </Grid>
           </Box>
-          <HomeSiteCards />
         </MaxWidth>
       </Flex>
-      <SharedHomeContent
-        blogListProps={blogListProps}
-        pageData={props.pageData}
-      />
+      <MaxWidth $mv={[24, 56]}>
+        <Box $ph={[16, 24]} $height={"100%"}>
+          <Flex
+            $width={"100%"}
+            $alignItems={["flex-start", "center"]}
+            $justifyContent="space-between"
+            $mb={48}
+            $flexDirection={["column", "row"]}
+          >
+            <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
+              Stay up to date
+            </Heading>
+            <Flex $flexDirection={"row"}>
+              <Typography $mr={16} $font="heading-7">
+                <OakLink page={"webinar-index"}>All webinars</OakLink>
+              </Typography>
+              <Typography $font="heading-7">
+                <OakLink page={"blog-index"}>All blogs</OakLink>
+              </Typography>
+            </Flex>
+          </Flex>
+          <PostList showImageOnTablet={true} {...blogListProps} />
+        </Box>
+      </MaxWidth>
+      <Flex $background={"lavender50"} $width={"100%"}>
+        <MaxWidth
+          $alignItems={"center"}
+          $background={"lavender50"}
+          $mt={58}
+          $mb={80}
+          $ph={16}
+        >
+          <Flex $maxWidth={["100%", 870]}>
+            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          </Flex>
+        </MaxWidth>
+      </Flex>
     </AppLayout>
   );
 };

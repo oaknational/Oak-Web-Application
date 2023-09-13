@@ -1,3 +1,12 @@
+## [1.239.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.0...v1.239.1) (2023-09-13)
+
+
+### Bug Fixes
+
+* update curriculum visualiser container width ([2b4a56c](https://github.com/oaknational/Oak-Web-Application/commit/2b4a56c215c0a72ed3022f76fb0a4bbcbdbea56e))
+* update mobile title behavior ([5078549](https://github.com/oaknational/Oak-Web-Application/commit/50785490e5a005daf4e2e5f133035f3bfb08b79e))
+* update tab widths, tweak subject phase picker spacing ([9deaf05](https://github.com/oaknational/Oak-Web-Application/commit/9deaf05c9ad1f48be118028b4d9f8e2936f30b55))
+
 # [1.239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.2...v1.239.0) (2023-09-13)
 
 
