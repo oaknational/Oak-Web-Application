@@ -90,6 +90,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                 </P>
                 <Box $mt={16}>
                   <SearchForm
+                    placeholderText="Search by keyword or topic"
                     searchTerm=""
                     handleSubmit={(value) => {
                       setSearchTerm(value);

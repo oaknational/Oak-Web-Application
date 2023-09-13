@@ -80,11 +80,13 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 
 type SearchFormProps = {
   searchTerm: string;
+  placeholderText: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm, analyticsSearchSource } = props;
+  const { handleSubmit, searchTerm, analyticsSearchSource, placeholderText } =
+    props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
@@ -149,7 +151,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
             value={value}
             type="search"
             onChange={onChange}
-            placeholder="Search"
+            placeholder={placeholderText}
           />
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           <ButtonBorders background={"white"} />
