@@ -30,6 +30,7 @@ export const matchesIgnoredError = (error: {
     /OAK_TEST_ERROR_STACKTRACE_FILE/i,
     // Don't error external Hubspot script problems
     /\/\/js\.hubspot\.com/i,
+    /\/\/js\.hsleadflows\.net/i,
   ];
   const messagesToMatch = [
     // Testing
