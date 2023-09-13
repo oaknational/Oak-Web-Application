@@ -37,6 +37,7 @@ const HomePageTabImageNav = ({
           isCurrent={current === "curriculum"}
           isNew={true}
           onClick={() => setCurrent("curriculum")}
+          data-testid="curriculum-plans-button"
         />
         <HomePageTabImageButton
           imageSlug={"three-pupils-standing"}
