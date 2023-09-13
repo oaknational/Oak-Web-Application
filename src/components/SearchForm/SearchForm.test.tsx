@@ -5,9 +5,10 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-
 import SearchForm from "./SearchForm";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
 
 const handleSubmit = jest.fn();
 

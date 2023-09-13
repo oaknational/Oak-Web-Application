@@ -158,7 +158,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
         </InputFieldWrap>
       </Flex>
       <IconButton
-        icon="go"
+        icon="search"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}
         size={"large"}
