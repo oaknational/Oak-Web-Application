@@ -27,6 +27,9 @@ const ErrorTestPage: NextPage<ErrorTestPageProps> = (props) => {
     >
       <MaxWidth $pv={120}>
         <Heading tag="h1">Error test page</Heading>
+        <P>
+          Note: getStaticProps will error if the minute value is an odd number{" "}
+        </P>
         <P>Generated at: {props.generatedAt}</P>
         <P>Time now: {timeNow}</P>
       </MaxWidth>
@@ -41,9 +44,13 @@ export const getStaticProps: GetStaticProps<ErrorTestPageProps> = async (
     page: "error-test-page::getStaticProps",
     context,
     getProps: async () => {
+      const now = new Date();
+      if (now.getMinutes() % 2 === 1) {
+        throw new Error("Test: odd minute value");
+      }
       return {
         props: {
-          generatedAt: new Date().toISOString(),
+          generatedAt: now.toISOString(),
         },
       };
     },
