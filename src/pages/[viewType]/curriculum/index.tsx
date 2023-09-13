@@ -72,6 +72,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </Flex>
         </MaxWidth>
       </Flex>
+
       <Flex $background={"white"} $justifyContent={"center"}>
         <MaxWidth>
           <Flex
@@ -139,12 +140,17 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </Flex>
           <Flex
             $background={"grey1"}
-            $position={"relative"}
             $minHeight={812}
             $ml={[0, 12, 0]}
             $mr={[0, 12, 0]}
           >
-            <Box $pl={[24, 48]} $pr={[24, 48]} $pt={48} $mb={[48, 0]}>
+            <Box
+              $pl={[24, 48]}
+              $pr={[24, 48]}
+              $pt={48}
+              $mb={[48, 0]}
+              $position={"relative"}
+            >
               <Heading tag="h2" $font={"heading-4"} $mb={24}>
                 Our blogs on curriculum design
               </Heading>
@@ -169,8 +175,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   {<Hr thickness={4} $mt={32} $mb={0} />}
                 </>
               ) : null}
+              <BrushBorders color="grey1" hideOnMobileH />
             </Box>
-            <BrushBorders color="grey1" />
           </Flex>
         </MaxWidth>
       </Flex>

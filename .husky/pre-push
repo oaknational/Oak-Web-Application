@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+git diff-index --quiet HEAD -- || (echo "Error: You have uncommitted changes. Please commit or stash them before pushing." && exit 1)
 npm run check-types
 npm run test:ci

@@ -32,6 +32,8 @@ export type BoxBordersProps = {
   $zIndex?: ZIndex;
   hideTop?: boolean;
   hideBottom?: boolean;
+  hideRight?: boolean;
+  hideLeft?: boolean;
   $color?: OakColorName;
 };
 
@@ -62,16 +64,19 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
           $bottom={"unset"}
         />
       )}
-      <Svg
-        name="box-border-right"
-        {...props}
-        $cover
-        $width={3}
-        $top={"unset"}
-        $left={"unset"}
-        $bottom={gapPosition === "bottomRightCorner" ? "5%" : undefined}
-        $height={getBorderHeight(gapPosition)}
-      />
+      {!props.hideRight && (
+        <Svg
+          name="box-border-right"
+          {...props}
+          $cover
+          $width={3}
+          $top={"unset"}
+          $left={"unset"}
+          $bottom={gapPosition === "bottomRightCorner" ? "5%" : undefined}
+          $height={getBorderHeight(gapPosition)}
+        />
+      )}
+
       {!props.hideBottom && (
         <Svg
           name="box-border-bottom"
@@ -82,13 +87,15 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
           $width={getBorderWidth(gapPosition)}
         />
       )}
-      <Svg
-        name="box-border-left"
-        {...props}
-        $cover
-        $width={3}
-        $right={"unset"}
-      />
+      {!props.hideLeft && (
+        <Svg
+          name="box-border-left"
+          {...props}
+          $cover
+          $width={3}
+          $right={"unset"}
+        />
+      )}
     </Box>
   );
 };
