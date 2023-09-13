@@ -29,6 +29,8 @@ export const matchesIgnoredError = (message: string) => {
     // https://github.com/oaknational/Oak-Web-Application/issues/999
     /Multiple lead flow scripts are trying to run on the current page/i,
     /t.report is not a function/i,
+    /null is not an object (evaluating 'e.portalId')/i,
+    /Hubspot script failed to load/i,
   ];
   return messagesToMatch.some((regex) => regex.test(message));
 };
