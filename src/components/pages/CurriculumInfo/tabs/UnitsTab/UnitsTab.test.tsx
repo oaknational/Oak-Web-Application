@@ -42,7 +42,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const { findByTestId, findAllByTestId } = renderWithTheme(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
-    expect(await findByTestId("all-threads-radio")).toBeInTheDocument();
+    expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
     const threads = await findAllByTestId("thread-radio");
     const threadSet = new Set();
     curriculumUnitsTabFixture().units.forEach((unit) => {

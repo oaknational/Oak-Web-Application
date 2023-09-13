@@ -299,9 +299,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             >
               <Box $mv={16}>
                 <Radio
-                  aria-label={"All threads"}
+                  aria-label={"None highlighted"}
                   value={""}
-                  data-testid={"all-threads-radio"}
+                  data-testid={"no-threads-radio"}
                 >
                   None highlighted
                 </Radio>
