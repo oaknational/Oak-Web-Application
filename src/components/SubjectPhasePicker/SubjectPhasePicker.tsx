@@ -239,6 +239,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       data-testid="subjectPhasePicker"
       $zIndex={"mobileFilters"}
       $background="white"
+      $maxWidth={960}
     >
       <BoxBorders />
       <Grid $position="relative">
@@ -395,7 +396,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $dropShadow="interactiveCardHover"
               $left={0}
               $mt={8}
-              $pa={32}
+              $pa={28}
               $position="absolute"
               $top={"100%"}
               $zIndex={"inFront"}
@@ -409,10 +410,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
                   Choose a school phase:
                 </Heading>
-                {(selectedSubject?.phases ?? phases).map((phase) => (
+                {(selectedSubject?.phases ?? phases).map((phase, index) => (
                   <ButtonContainer className="multi-line" key={phase.slug}>
                     <Button
-                      $mr={24}
+                      $mr={index == 0 ? 28 : 0}
                       background={isSelected(phase) ? "black" : "oakGrey1"}
                       label={phaseLabel(phase)}
                       onClick={() => handleSelectPhase(phase)}
