@@ -621,11 +621,10 @@ function replaceViewType2023(path: string): string {
   const pathParts = path.split("/");
   const currentPathParts = window.location.pathname.split("/");
   const isIn2023Experience = currentPathParts[1] === "teachers-2023";
-  const [, beta, viewType] = pathParts;
-  const linkIsBetaTeachers = beta === "beta" && viewType === "teachers";
-
+  const [, viewType] = pathParts;
+  const linkIsBetaTeachers = viewType === "teachers";
   if (isIn2023Experience && linkIsBetaTeachers) {
-    return ["/", "teachers-2023", ...pathParts.slice(3)].join("/");
+    return ["/", "teachers-2023", ...pathParts.slice(2)].join("/");
   }
 
   return path;
