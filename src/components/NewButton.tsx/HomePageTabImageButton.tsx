@@ -130,7 +130,10 @@ const HomePageTabImageButton = forwardRef<
             {isNew && <TagPromotional size={"small"} $ml={3} />}
           </Flex>
           {isCurrent && <BrushUnderline name="horizontal-rule" />}
-          <NewIconFocusUnderline $color={underlineColor} data-testid={`${defaultTitle} underline`}/>
+          <NewIconFocusUnderline
+            $color={underlineColor}
+            data-testid={`${defaultTitle} underline`}
+          />
         </Box>
       </Flex>
     </StyledButton>
