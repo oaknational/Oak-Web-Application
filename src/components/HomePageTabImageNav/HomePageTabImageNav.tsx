@@ -1,9 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { FlexProps } from "../Flex";
-import Flex from "../Flex/Flex";
-import HomePageTabImageButton from "../NewButton.tsx/HomePageTabImageButton";
-import { Hr } from "../Typography";
+import Flex, { FlexProps } from "@/components/Flex";
+import HomePageTabImageButton from "@/components/NewButton.tsx/HomePageTabImageButton";
+import { Hr } from "@/components/Typography";
 
 const HomePageTabImageNav = ({
   current,
