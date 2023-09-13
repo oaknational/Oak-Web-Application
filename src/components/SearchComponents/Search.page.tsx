@@ -116,6 +116,7 @@ const Search: FC<SearchProps> = (props) => {
               >
                 <SearchForm
                   searchTerm={query.term}
+                  placeholderText="Search by keyword or topic"
                   handleSubmit={(value) => {
                     setSearchTerm(value);
                   }}

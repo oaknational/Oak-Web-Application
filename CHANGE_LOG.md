@@ -1,3 +1,15 @@
+## [1.240.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.1...v1.240.2) (2023-09-13)
+
+## [1.240.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.0...v1.240.1) (2023-09-13)
+
+# [1.240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.4...v1.240.0) (2023-09-13)
+
+
+### Features
+
+* add placeholder text param to search field ([7dd7c58](https://github.com/oaknational/Oak-Web-Application/commit/7dd7c585b81aab228ba3e3517948ab222333e620))
+* change search icon to search ([fff6ec0](https://github.com/oaknational/Oak-Web-Application/commit/fff6ec0b8dddd72502111a1345bcc2fb0ecb1ea4))
+
 ## [1.239.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.3...v1.239.4) (2023-09-13)
 
 ## [1.239.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.2...v1.239.3) (2023-09-13)
