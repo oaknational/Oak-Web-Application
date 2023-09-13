@@ -31,6 +31,8 @@ describe("HomePageTabImageNav Component", () => {
     fireEvent.click(getByTitle("Pupils"));
     expect(getAllByTestId("Pupils underline")[0]).toBeInTheDocument();
     fireEvent.click(getByTitle("Teaching Resources"));
-    expect(getAllByTestId("Teaching Resources underline")[0]).toBeInTheDocument();
+    expect(
+      getAllByTestId("Teaching Resources underline")[0],
+    ).toBeInTheDocument();
   });
 });
