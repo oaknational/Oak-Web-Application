@@ -9,7 +9,6 @@ import SearchForm from "./SearchForm";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-
 const handleSubmit = jest.fn();
 
 const providers = { theme: {} };
