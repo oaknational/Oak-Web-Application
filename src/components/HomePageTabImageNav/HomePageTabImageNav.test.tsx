@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fireEvent} from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 
 import HomePageTabImageNav from "./HomePageTabImageNav";
 
