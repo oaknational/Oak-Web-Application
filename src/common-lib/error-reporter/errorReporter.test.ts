@@ -79,13 +79,24 @@ describe("common-lib/error-reporter", () => {
   });
   describe("matchesIgnoredError", () => {
     it("returns false if the error should not be ignored", () => {
-      const shouldIgnore = matchesIgnoredError(
-        "Proper error that should be reported",
-      );
+      const shouldIgnore = matchesIgnoredError({
+        errorMessage: "Proper error that should be reported",
+        stacktrace: [],
+      });
       expect(shouldIgnore).toBe(false);
     });
-    it("returns true if the error should be ignored", () => {
-      const shouldIgnore = matchesIgnoredError("Test error");
+    it("returns true if the error should be ignored based on message", () => {
+      const shouldIgnore = matchesIgnoredError({
+        errorMessage: "Test error",
+        stacktrace: [],
+      });
+      expect(shouldIgnore).toBe(true);
+    });
+    it("returns true if the error should be ignored based on stacktrace", () => {
+      const shouldIgnore = matchesIgnoredError({
+        errorMessage: "Proper error message",
+        stacktrace: [{ file: "https://OAK_TEST_ERROR_STACKTRACE_FILE.js" }],
+      });
       expect(shouldIgnore).toBe(true);
     });
   });
@@ -96,6 +107,7 @@ describe("common-lib/error-reporter", () => {
         errors: [
           {
             errorMessage: "real error",
+            stacktrace: [{ file: "real file" }],
           },
         ],
       } as BugsnagEvent;
@@ -115,9 +127,10 @@ describe("common-lib/error-reporter", () => {
         errors: [
           {
             errorMessage: "Test error",
+            stacktrace: [],
           },
         ],
-      } as BugsnagEvent;
+      } as unknown as BugsnagEvent;
       const result = getBugsnagOnError({ logger })(event);
       expect(result).toBe(false);
     });

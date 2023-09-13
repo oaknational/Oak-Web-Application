@@ -21,7 +21,16 @@ export const matchesUserAgent = (ua: string) => {
   return userAgentsToMatch.some((regex) => regex.test(ua));
 };
 
-export const matchesIgnoredError = (message: string) => {
+export const matchesIgnoredError = (error: {
+  errorMessage: string;
+  stacktrace: { file: string }[];
+}) => {
+  const filesToMatch = [
+    // Testing
+    /OAK_TEST_ERROR_STACKTRACE_FILE/i,
+    // Don't error external Hubspot script problems
+    /\/\/js\.hubspot\.com/i,
+  ];
   const messagesToMatch = [
     // Testing
     /Test error/i,
@@ -29,8 +38,14 @@ export const matchesIgnoredError = (message: string) => {
     // https://github.com/oaknational/Oak-Web-Application/issues/999
     /Multiple lead flow scripts are trying to run on the current page/i,
     /t.report is not a function/i,
+    /null is not an object (evaluating 'e.portalId')/i,
+    /Hubspot script failed to load/i,
   ];
-  return messagesToMatch.some((regex) => regex.test(message));
+  return (
+    filesToMatch.some((regex) =>
+      error.stacktrace.some((stacktrace) => regex.test(stacktrace.file)),
+    ) || messagesToMatch.some((regex) => regex.test(error.errorMessage))
+  );
 };
 
 export function getBugsnagOnError(
@@ -49,10 +64,9 @@ export function getBugsnagOnError(
     // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
     const firstError = event?.errors[0];
     if (firstError !== undefined) {
-      const errorMessage = firstError.errorMessage;
-      const shouldIgnore = matchesIgnoredError(errorMessage);
+      const shouldIgnore = matchesIgnoredError(firstError);
       if (shouldIgnore) {
-        logger.warn(`Ignoring known issue: ${errorMessage}`);
+        logger.warn(`Ignoring known issue: ${firstError.errorMessage}`);
         return false;
       }
     }
