@@ -27,7 +27,6 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   htmlButtonProps?: HTMLButtonProps;
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
-  title?: string;
   imageSlug: IllustrationSlug;
   isCurrent?: boolean;
   isNew?: boolean;
@@ -85,18 +84,15 @@ const HomePageTabImageButton = forwardRef<
     onClick,
     label,
     labelSuffixA11y,
-    "aria-label": ariaLabel,
     htmlButtonProps = {},
     disabled,
     imageSlug,
     isCurrent,
-    title,
     isNew,
   } = props;
 
-  const defaultTitle =
-    ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
-  const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
+  const defaultTitle = labelSuffixA11y ? labelSuffixA11y : label;
+  const noneNulltitle = defaultTitle;
   const asset = getIllustrationAsset(imageSlug);
   const theme = useTheme();
   const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
@@ -106,7 +102,7 @@ const HomePageTabImageButton = forwardRef<
       ref={ref}
       {...htmlButtonProps}
       title={noneNulltitle}
-      aria-label={ariaLabel}
+      aria-label={defaultTitle}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       aria-disabled={disabled}
       isCurrent={isCurrent}
@@ -127,9 +123,20 @@ const HomePageTabImageButton = forwardRef<
             >
               {label}
             </ButtonLabel>
-            {isNew && <TagPromotional size={"small"} $ml={3} />}
+            {isNew && (
+              <TagPromotional
+                size={"small"}
+                $ml={3}
+                $display={["none", "flex"]}
+              />
+            )}
           </Flex>
-          {isCurrent && <BrushUnderline name="horizontal-rule" />}
+          {isCurrent && (
+            <BrushUnderline
+              name="horizontal-rule"
+              data-testid={`${defaultTitle} underline`}
+            />
+          )}
           <NewIconFocusUnderline $color={underlineColor} />
         </Box>
       </Flex>

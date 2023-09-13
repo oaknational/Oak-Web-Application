@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { fireEvent} from "@testing-library/react";
 
 import HomePageTabImageNav from "./HomePageTabImageNav";
 
@@ -17,5 +18,17 @@ describe("HomePageTabImageNav Component", () => {
       <HomePageTabImageNav current="teachers" setCurrent={setCurrent} />,
     );
     expect(getAllByText("Curriculum plans")[0]).toBeInTheDocument();
+  });
+  it("should receive and correctly use the setCurrent prop", () => {
+    const Wrapper = () => {
+      const [current, setCurrent] = useState("teachers");
+      return <HomePageTabImageNav current={current} setCurrent={setCurrent} />;
+    };
+
+    const { getByTitle, getAllByTestId } = renderWithTheme(<Wrapper />);
+    fireEvent.click(getByTitle("Curriculum plans"));
+    expect(getAllByTestId("Curriculum plans underline")[0]).toBeInTheDocument();
+    fireEvent.click(getByTitle("Pupils"));
+    expect(getAllByTestId("Pupils underline")[0]).toBeInTheDocument();
   });
 });
