@@ -21,7 +21,7 @@ import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
 import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
-import { CurriculumTab } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumTab } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 import TagPromotional from "@/components/TagPromotional";
 
 /**
@@ -215,7 +215,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         subjectPhaseSlug += "-" + selectedExamboard.slug;
       }
       router.push({
-        pathname: `/beta/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
+        pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
       });
     }
   };

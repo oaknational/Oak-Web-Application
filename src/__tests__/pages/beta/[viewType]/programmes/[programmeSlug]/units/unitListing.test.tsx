@@ -4,7 +4,7 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks_
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units";
+} from "../../../../../../../pages/[viewType]/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
@@ -142,7 +142,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
     mockRouter.push({
-      pathname: "/beta/teachers/programmes/art-primary-ks1/units",
+      pathname: "/teachers/programmes/art-primary-ks1/units",
       query: {
         learningTheme: "computer-science-2",
       },
