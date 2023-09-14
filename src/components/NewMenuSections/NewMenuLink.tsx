@@ -22,7 +22,7 @@ const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
           label={link.text}
           $iconPosition="trailing"
           iconBackground="transparent"
-          variant="minimal"
+          variant="buttonStyledAsLink"
           size="large"
           {...link.resolveOakHrefProps}
         />
