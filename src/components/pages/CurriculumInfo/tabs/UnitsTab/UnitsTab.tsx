@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
@@ -166,8 +166,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const [yearSelection, setYearSelection] =
     useState<YearSelection>(initialYearSelection);
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const highlightedUnitSlugsRef = useRef(new Set<string>());
-  const [highlightedUnitCount, setHighlightedUnitCount] = useState(0);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
   const buildProgrammeSlug = (unit: Unit) => {
@@ -230,10 +228,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!selectedThread) {
       return false;
     }
-    if (unit.threads.some((t) => t.slug === selectedThread.slug)) {
-      highlightedUnitSlugsRef.current.add(unit.slug);
-      return true;
-    }
+    return unit.threads.some((t) => t.slug === selectedThread.slug);
   }
 
   function isSelectedThread(thread: Thread) {
@@ -245,10 +240,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     setSelectedThread(thread);
   }
 
-  useEffect(() => {
-    setHighlightedUnitCount(highlightedUnitSlugsRef.current.size);
-    highlightedUnitSlugsRef.current = new Set<string>();
-  }, [selectedThread, selectedYear, yearSelection]);
+  function highlightedUnitCount(): number {
+    let count = 0;
+    Object.keys(yearData).forEach((year) => {
+      const data = yearData[year];
+      if (data && (!selectedYear || selectedYear == year)) {
+        data.units.forEach((unit) => {
+          if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
+            count++;
+          }
+        });
+      }
+    });
+    return count;
+  }
 
   function handleSelectYear(year: string): void {
     setSelectedYear(year);
@@ -317,6 +322,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               </Box>
               {threadOptions.map((threadOption) => {
                 const isSelected = isSelectedThread(threadOption);
+                const highlightedCount = highlightedUnitCount();
                 return (
                   <Box
                     $ba={1}
@@ -341,8 +347,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       {isSelected && (
                         <>
                           <br />
-                          {highlightedUnitCount}
-                          {highlightedUnitCount == 1 ? " unit " : " units "}
+                          {highlightedCount}
+                          {highlightedCount == 1 ? " unit " : " units "}
                           highlighted
                         </>
                       )}
