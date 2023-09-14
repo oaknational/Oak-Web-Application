@@ -1,21 +1,15 @@
-// TODO:
-// displays a link
-// shows new icon
-// shows external icon
-
 import { screen } from "@testing-library/react";
-
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import NewMenuLink from "./NewMenuLink";
 
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 const link = {
   resolveOakHrefProps: {
     page: "home",
     viewType: "teachers-2023",
-  } as ResolveOakHrefProps, // TODO: not as cast
+  } as ResolveOakHrefProps, // TODO: why won't this accept the type
   text: "Home",
   new: true,
   external: true,
