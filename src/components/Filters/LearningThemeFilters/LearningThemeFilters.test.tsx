@@ -36,7 +36,7 @@ describe("PostCategoryList", () => {
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar",
+      "/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar",
     );
   });
 });

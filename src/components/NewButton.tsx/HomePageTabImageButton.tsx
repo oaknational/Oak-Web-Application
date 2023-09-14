@@ -106,7 +106,7 @@ const HomePageTabImageButton = forwardRef<
       ref={ref}
       {...htmlButtonProps}
       title={noneNulltitle}
-      aria-label={ariaLabel}
+      aria-label={defaultTitle}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       aria-disabled={disabled}
       isCurrent={isCurrent}
@@ -122,13 +122,24 @@ const HomePageTabImageButton = forwardRef<
             <ButtonLabel
               $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
+              $whiteSpace={"normal"}
+              $textAlign={"center"}
             >
               {label}
             </ButtonLabel>
-            {isNew && <TagPromotional size={"small"} $ml={3} />}
+            {isNew && (
+              <TagPromotional
+                size={"small"}
+                $ml={3}
+                $display={["none", "flex"]}
+              />
+            )}
           </Flex>
           {isCurrent && <BrushUnderline name="horizontal-rule" />}
-          <NewIconFocusUnderline $color={underlineColor} />
+          <NewIconFocusUnderline
+            $color={underlineColor}
+            data-testid={`${defaultTitle} underline`}
+          />
         </Box>
       </Flex>
     </StyledButton>

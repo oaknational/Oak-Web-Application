@@ -77,11 +77,11 @@ describe("SubjectProgrammeListing", () => {
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-foundation/units",
+      "/teachers/programmes/maths-secondary-ks4-foundation/units",
     );
     expect(getByRole("link", { name: "Higher" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-higher/units",
+      "/teachers/programmes/maths-secondary-ks4-higher/units",
     );
   });
 });
