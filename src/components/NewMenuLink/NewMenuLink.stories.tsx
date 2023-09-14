@@ -6,10 +6,6 @@ import Component from "./NewMenuLink";
 export default {
   title: "Navigation/New Menu Link",
   component: Component,
-  argTypes: {
-    new: { control: "radio", options: [true, false] },
-    external: { control: "radio", options: [true, false] },
-  },
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (

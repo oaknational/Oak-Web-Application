@@ -141,6 +141,7 @@ const Icon: FC<IconProps> = (props) => {
       $minWidth={outerWidth}
       verticalAlign={verticalAlign}
       {...rootProps}
+      data-testid="icon"
     >
       {variant === "brush" && (
         <BackgroundIcon name="icon-background" $color={$background} />

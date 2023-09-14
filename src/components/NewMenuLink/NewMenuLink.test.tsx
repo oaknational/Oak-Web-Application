@@ -11,7 +11,6 @@ import NewMenuLink from "./NewMenuLink";
 
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
-
 const link = {
   resolveOakHrefProps: {
     page: "home",
@@ -28,5 +27,15 @@ describe("NewMenuLink", () => {
 
     const menuLink = screen.getByRole("link");
     expect(menuLink).toBeInTheDocument();
+  });
+  it("displays an icon when the link is external", () => {
+    renderWithTheme(<NewMenuLink link={link} />);
+    const externalIcon = screen.queryByTestId("icon");
+    expect(externalIcon).toBeInTheDocument();
+  });
+  it("displays no icon when the link is internal", () => {
+    renderWithTheme(<NewMenuLink link={{ ...link, external: false }} />);
+    const externalIcon = screen.queryByTestId("icon");
+    expect(externalIcon).not.toBeInTheDocument();
   });
 });

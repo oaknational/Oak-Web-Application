@@ -20,7 +20,7 @@ const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
 
   return (
     <ButtonAsLink
-      icon="external"
+      icon={link.external ? "external" : undefined}
       aria-label={link.text}
       label={link.text}
       $iconPosition="trailing"
