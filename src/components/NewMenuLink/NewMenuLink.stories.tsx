@@ -18,6 +18,6 @@ NewMenuLink.args = {
     resolveOakHrefProps: { page: "home", viewType: "teachers-2023" },
     text: "Home",
     new: true,
-    external: true,
+    external: false,
   },
 };

@@ -38,4 +38,14 @@ describe("NewMenuLink", () => {
     const externalIcon = screen.queryByTestId("icon");
     expect(externalIcon).not.toBeInTheDocument();
   });
+  it("displays new tag when it should", () => {
+    renderWithTheme(<NewMenuLink link={link} />);
+    const newTag = screen.getByText("New");
+    expect(newTag).toBeInTheDocument();
+  });
+  it("does not display new tag when it should not", () => {
+    renderWithTheme(<NewMenuLink link={{ ...link, new: false }} />);
+    const newTag = screen.queryByText("New");
+    expect(newTag).not.toBeInTheDocument();
+  });
 });
