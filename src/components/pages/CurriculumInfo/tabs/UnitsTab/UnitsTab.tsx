@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
@@ -53,7 +53,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
-  const highlightedUnitCountRef = useRef(0);
 
   const yearData: {
     [key: string]: {
@@ -166,6 +165,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const [yearSelection, setYearSelection] =
     useState<YearSelection>(initialYearSelection);
+  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
+  const highlightedUnitSlugsRef = useRef(new Set<string>());
+  const [highlightedUnitCount, setHighlightedUnitCount] = useState(0);
+  const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
   const buildProgrammeSlug = (unit: Unit) => {
     let slug = `${unit.subject_slug}-${unit.phase_slug}-${unit.keystage_slug}`;
@@ -228,7 +231,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       return false;
     }
     if (unit.threads.some((t) => t.slug === selectedThread.slug)) {
-      highlightedUnitCountRef.current++;
+      highlightedUnitSlugsRef.current.add(unit.slug);
       return true;
     }
   }
@@ -237,15 +240,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return selectedThread?.slug === thread.slug;
   }
 
-  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-
   function handleSelectThread(slug: string): void {
-    highlightedUnitCountRef.current = 0;
+    highlightedUnitSlugsRef.current = new Set<string>();
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     setSelectedThread(thread);
   }
 
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  useEffect(() => {
+    setHighlightedUnitCount(highlightedUnitSlugsRef.current.size);
+  }, [selectedThread]);
 
   function handleSelectYear(year: string): void {
     setSelectedYear(year);
@@ -338,7 +341,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       {isSelected && (
                         <>
                           <br />
-                          {highlightedUnitCountRef.current} units highlighted
+                          {highlightedUnitCount} units highlighted
                         </>
                       )}
                     </Radio>
