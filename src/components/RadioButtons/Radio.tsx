@@ -60,12 +60,15 @@ const Radio: FC<AriaRadioProps> = (props) => {
       height: ${(props) => (props.isSelected ? "20px" : "16px")};
       width: ${(props) => (props.isSelected ? "20px" : "16px")};
       background: ${(props) =>
-        props.isSelected
-          ? getColorByName("teachersHighlight")
-          : getColorByName("white")};
+        props.isSelected ? getColorByName("black") : getColorByName("white")};
       display: block;
       position: absolute;
       border-radius: 50%;
+      ${(props) =>
+        props.isSelected &&
+        css`
+          border: 2px solid ${getColorByName("white")};
+        `}
     }
 
     &:active {
@@ -75,7 +78,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
     &:hover {
       &::after {
-        background: ${getColorByName("teachersHighlight")};
+        background: ${getColorByName("black")};
       }
     }
 

@@ -248,9 +248,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   useEffect(() => {
     setHighlightedUnitCount(highlightedUnitSlugsRef.current.size);
-  }, [selectedThread]);
+  }, [selectedThread, selectedYear]);
 
   function handleSelectYear(year: string): void {
+    highlightedUnitSlugsRef.current = new Set<string>();
     setSelectedYear(year);
   }
 
@@ -489,7 +490,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             <BrushBorders
                               color={isHighlighted ? "black" : "white"}
                             />
-                            <OutlineHeading tag={"div"} $fontSize={24} $mb={12}>
+                            <OutlineHeading
+                              tag={"div"}
+                              $font={"heading-5"}
+                              $fontSize={24}
+                              $mb={12}
+                            >
                               {index + 1}
                             </OutlineHeading>
                             <Heading tag={"h3"} $font={"heading-7"}>
