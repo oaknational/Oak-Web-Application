@@ -1,3 +1,10 @@
+## [1.241.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.241.0...v1.241.1) (2023-09-14)
+
+
+### Bug Fixes
+
+* view type ([fa3005f](https://github.com/oaknational/Oak-Web-Application/commit/fa3005fa06132fd8f13b700257bbd1c5d3fed767))
+
 # [1.241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.3...v1.241.0) (2023-09-13)
 
 

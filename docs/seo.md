@@ -8,7 +8,7 @@ We also have server-side generated sitemaps for dynamic routes (routes with slug
 
 The server side sitemaps cannot themselves be under a dynamic path, because that would mean the paths to them
 couldn't be known without making data API calls, and that means we couldn't easily specify the paths to them
-in the next-sitemap.config.js file (not without duplicating some Next routing functionality). Instead we create server side sitemaps on static routes that specify all the dynamic path pages under that route, e.g. [src/pages/beta/teachers/key-stages/sitemap.xml/index.tsx](../src/pages/beta/teachers/key-stages/sitemap.xml/index.tsx).
+in the next-sitemap.config.js file (not without duplicating some Next routing functionality). Instead we create server side sitemaps on static routes that specify all the dynamic path pages under that route, e.g. [src/pages/teachers/key-stages/sitemap.xml/index.tsx](../src/pages/teachers/key-stages/sitemap.xml/index.tsx).
 
 ## Meta tags
 
