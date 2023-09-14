@@ -241,17 +241,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function handleSelectThread(slug: string): void {
-    highlightedUnitSlugsRef.current = new Set<string>();
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     setSelectedThread(thread);
   }
 
   useEffect(() => {
     setHighlightedUnitCount(highlightedUnitSlugsRef.current.size);
-  }, [selectedThread, selectedYear]);
+    highlightedUnitSlugsRef.current = new Set<string>();
+  }, [selectedThread, selectedYear, yearSelection]);
 
   function handleSelectYear(year: string): void {
-    highlightedUnitSlugsRef.current = new Set<string>();
     setSelectedYear(year);
   }
 
@@ -342,7 +341,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       {isSelected && (
                         <>
                           <br />
-                          {highlightedUnitCount} units highlighted
+                          {highlightedUnitCount}
+                          {highlightedUnitCount == 1 ? " unit " : " units "}
+                          highlighted
                         </>
                       )}
                     </Radio>
