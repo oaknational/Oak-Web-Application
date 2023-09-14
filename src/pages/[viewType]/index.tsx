@@ -218,7 +218,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     context,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
-      console.log(context?.params?.viewType);
       const curriculumData =
         context?.params?.viewType === "teachers-2023"
           ? await curriculumApi2023.teachersHomePage()
