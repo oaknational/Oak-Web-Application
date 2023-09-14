@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -18,7 +18,7 @@ import {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
-import Svg from "@/components/Svg";
+// import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
 import { CurriculumTab } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
@@ -100,9 +100,9 @@ const SchoolPhaseDropDownBox = styled(Box)<object>`
   }
 `;
 
-const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-  color: ${(props) => props.$color};
-`;
+// const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+//   color: ${(props) => props.$color};
+// `;
 
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
@@ -141,6 +141,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
   const [showExamboardError, setShowExamboardError] = useState(false);
+  const [showSubjectBackground, setShowSubjectBackground] =
+    useState<OakColorName>("white");
+  const [showPhaseBackground, setShowPhaseBackground] =
+    useState<OakColorName>("white");
 
   const toggleShowSubjects = () => {
     setShowSubjects(!showSubjects);
@@ -243,15 +247,91 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
+  const hideBorder =
+    showPhases ||
+    showSubjects ||
+    selectedPhase !== null ||
+    selectedSubject !== null;
+
+  useEffect(() => {
+    if (showSubjects) {
+      setShowSubjectBackground("white");
+      setShowPhaseBackground("grey1");
+    } else if (selectedSubject) {
+      setShowSubjectBackground("grey1");
+    } else if (showPhases) {
+      setShowSubjectBackground("white");
+    }
+
+    if (showPhases) {
+      setShowPhaseBackground("white");
+    } else if (selectedPhase) {
+      setShowPhaseBackground("grey1");
+    }
+    if (!selectedSubject && !selectedPhase) {
+      setShowSubjectBackground("white");
+      setShowPhaseBackground("white");
+    }
+
+    // showPhases
+    //   ? "white"
+    //   : selectedPhase
+    //   ? "grey1"
+    //   : showSubjects
+    //   ? "grey1"
+    //   : "white"
+
+    // showSubjects
+    //   ? "white"
+    //   : selectedSubject
+    //   ? "grey1"
+    //   : !showPhases
+    //   ? "white"
+    //   : "grey1";
+  }, [
+    selectedSubject,
+    showPhases,
+    showSubjects,
+    showSubjectBackground,
+    selectedPhase,
+    showPhaseBackground,
+  ]);
+
+  /**
+   * ! - TODO LIST
+   * TODO: Refactor to break down into smaller components
+   * TODO: Use state for changing the background colour of the buttons
+   * TODO: Refactor view button on desktop/tablet view
+   *
+   * ? - QUESTIONS
+   * ? Custom hook required for state management?
+   * ?
+   */
+
   return (
     <Box
       $position="relative"
       data-testid="subjectPhasePicker"
       $zIndex={"mobileFilters"}
-      $background="white"
+      $background={
+        showPhases
+          ? "white"
+          : selectedPhase
+          ? "grey1"
+          : showSubjects
+          ? "grey1"
+          : "white"
+      }
       $maxWidth={960}
     >
-      <BoxBorders />
+      <BoxBorders
+        gapPosition="rightTop"
+        $zIndex={"inFront"}
+        hideRight={hideBorder}
+        hideBottom={hideBorder}
+        hideLeft={hideBorder}
+        hideTop={hideBorder}
+      />
       <Flex
         $position="relative"
         $alignItems={"center"}
@@ -266,17 +346,45 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $justifyContent={"flex-start"}
           $width={["100%", "100%", "100%"]}
         >
-          <Box $position={"relative"} $width={"50%"}>
+          <Box
+            $position={"relative"}
+            $width={"50%"}
+            $borderColor={showSubjects ? "lemon" : "transparent"}
+            $ba={3}
+            $background={
+              showSubjects
+                ? "white"
+                : selectedSubject
+                ? "grey1"
+                : !showPhases
+                ? "white"
+                : "grey1"
+            }
+            // $zIndex={"modalCloseButton"}
+          >
+            <BoxBorders
+              $color={showSubjects ? "black" : "transparent"}
+              gapPosition="rightTop"
+            />
+
             <SelectButton
               $ph={24}
               $pv={24}
               onClick={toggleShowSubjects}
               title="Subject"
             >
-              <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
+              <Heading
+                tag={"h3"}
+                $font={"heading-light-7"}
+                $mb={4}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 Subject
               </Heading>
-              <P $font={"body-2"}>
+              <P
+                $font={"body-2"}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 {showSubjectError && (
                   <>
                     <Icon
@@ -290,7 +398,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {selectedSubject && <>{selectedSubject.title}</>}
                 {!showSubjectError && !selectedSubject && "Select"}
               </P>
-              <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
           </Box>
           {showSubjects && (
@@ -306,11 +413,24 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $width={"100%"}
             >
               <BoxBorders />
+
               <FocusOn
                 onClickOutside={() => setShowSubjects(false)}
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
               >
+                {showSubjectError && (
+                  <Flex $flexDirection={"row"} $mb={20}>
+                    <Icon
+                      $color={"failure"}
+                      name="content-guidance"
+                      verticalAlign="bottom"
+                    />
+                    <P $color={"failure"}>
+                      Select a subject to view a curriculum
+                    </P>
+                  </Flex>
+                )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
                   <Heading tag={"h4"} $font={"heading-6"} $mr={12}>
                     Latest resources
@@ -357,25 +477,62 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </FocusOn>
             </Box>
           )}
-          <Box $height={80} $position={"relative"}>
+          <Box
+            $height={80}
+            $position={"relative"}
+            $display={
+              showPhases || showSubjects || selectedPhase || selectedSubject
+                ? "none"
+                : "block"
+            }
+            $zIndex={"inFront"}
+          >
             <BoxBorders
               $color="grey2"
               hideBottom={true}
               hideTop={true}
               hideRight={true}
+              // $zIndex={"inFront"}
             />
           </Box>
-          <Box $position={"relative"} $width={"50%"}>
+          <Box
+            $position={"relative"}
+            $width={"50%"}
+            $borderColor={showPhases ? "lemon" : "transparent"}
+            $ba={3}
+            // $zIndex={"inFront"}
+            $background={
+              showPhases
+                ? "white"
+                : selectedPhase
+                ? "grey1"
+                : showSubjects
+                ? "grey1"
+                : "white"
+            }
+          >
+            <BoxBorders
+              $color={showPhases ? "black" : "transparent"}
+              gapPosition="rightTop"
+            />
             <SelectButton
               $ph={24}
               $pv={24}
               onClick={toggleShowPhases}
               title="Phase"
             >
-              <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
+              <Heading
+                tag={"h3"}
+                $font={"heading-light-7"}
+                $mb={4}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 School phase
               </Heading>
-              <P $font={"body-2"}>
+              <P
+                $font={"body-2"}
+                $color={!showPhaseError ? "black" : "failure"}
+              >
                 {showPhaseError && (
                   <>
                     <Icon
@@ -409,7 +566,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   !showExamboardError &&
                   "Select"}
               </P>
-              <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
 
             {showPhases && (
@@ -428,6 +584,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onEscapeKey={() => setShowPhases(false)}
                   scrollLock={false}
                 >
+                  {showPhaseError && (
+                    <Flex $flexDirection={"row"} $mb={20}>
+                      <Icon
+                        $color={"failure"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <P $color={"failure"}>
+                        Select a phase to view a curriculum
+                      </P>
+                    </Flex>
+                  )}
                   <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
                     Choose a school phase:
                   </Heading>
