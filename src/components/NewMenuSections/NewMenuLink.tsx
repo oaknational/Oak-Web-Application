@@ -5,13 +5,16 @@ import TagPromotional from "../TagPromotional/TagPromotional";
 import Flex from "../Flex/Flex";
 import { LI } from "../Typography";
 
-import { BetaMenuLink } from "./types";
+import { BetaMenuLink, linkIsHref } from "./types";
 
 export type NewMenuLinkProps = {
   link: BetaMenuLink;
 };
 const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
   const { link } = props;
+  const linkTo = linkIsHref(link.linkTo)
+    ? { href: link.linkTo.href, page: null }
+    : link.linkTo;
 
   return (
     <LI listStyle="none">
@@ -24,7 +27,7 @@ const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
           iconBackground="transparent"
           variant="buttonStyledAsLink"
           size="large"
-          {...link.resolveOakHrefProps}
+          {...linkTo}
         />
         {link.new && <TagPromotional size="small" />}
       </Flex>

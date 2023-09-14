@@ -1141,6 +1141,7 @@ export const PageName = {
   'CURRICULUM_OVERVIEW': 'Curriculum Overview',
   'CURRICULUM_UNIT_SEQUENCE': 'Curriculum Unit Sequence',
   'CURRICULUM_DOWNLOADS': 'Curriculum Downloads',
+  'EARLY_RELEASE_UNITS': 'Early Release Units'
 } as const;
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];

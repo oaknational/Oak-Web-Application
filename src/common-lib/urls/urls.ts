@@ -179,6 +179,11 @@ type CurriculumDownloadsLinkProps = {
   subjectPhaseSlug: string;
 };
 
+type EarlyReleaseUnitsProps = {
+  page: "early-release-units";
+  viewType: ViewType;
+};
+
 type OakLinkProps =
   | SubjectListingLinkProps
   | LandingPageLinkProps
@@ -212,7 +217,8 @@ type OakLinkProps =
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
-  | CurriculumDownloadsLinkProps;
+  | CurriculumDownloadsLinkProps
+  | EarlyReleaseUnitsProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -258,6 +264,7 @@ type OakPages = {
   "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
+  "early-release-units": OakPageConfig<EarlyReleaseUnitsProps>;
 };
 
 type OakPageConfig<
@@ -602,6 +609,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
+  }),
+  "early-release-units": createOakPageConfig({
+    pathPattern: "/beta/:viewType/early-release-units",
+    configType: "internal",
+    pageType: "early-release-units",
+    analyticsPageName: "Early Release Units",
   }),
 };
 
