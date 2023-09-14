@@ -58,7 +58,7 @@ export type PostListItemProps = {
   date: string;
   withImage?: boolean;
   firstItemRef?: RefObject<HTMLAnchorElement> | null;
-  isCurriculumPage?: boolean;
+  showImageOnTablet?: boolean;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
   | { contentType: "webinar"; thumbnailUrl?: string | null }
@@ -79,11 +79,11 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     date,
     withImage,
     firstItemRef,
-    isCurriculumPage,
+    showImageOnTablet,
   } = props;
 
   let imageDisplay = ["block", "none", "block"];
-  if (isCurriculumPage) {
+  if (showImageOnTablet) {
     imageDisplay = ["block", "block", "block"];
   }
 

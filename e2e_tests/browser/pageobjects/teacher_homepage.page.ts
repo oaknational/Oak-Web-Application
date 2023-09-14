@@ -1,6 +1,6 @@
 import Page from "./page";
 
-const PAGE_PATH = "/beta/teachers";
+const PAGE_PATH = "/teachers";
 
 const VALID_KEY_STAGE_IDS = ["KS1", "KS2", "KS3", "KS4"];
 
