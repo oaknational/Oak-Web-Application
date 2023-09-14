@@ -15,9 +15,9 @@ import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
-  curriculumOverviewMVSchema,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
+import { curriculumOverviewMVSchema } from "@/node-lib/curriculum-api-2023/queries/curriculumOverview/curriculumOverview.schema";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
   decorateWithIsr,
@@ -45,7 +45,7 @@ export type CurriculumInfoPageProps = {
 };
 
 const VALID_TABS = ["overview", "units"] as const;
-export type CurriculumTab = typeof VALID_TABS[number];
+export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -157,9 +157,8 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
-      const curriculumOverviewTabData = await curriculumApi.curriculumOverview(
-        slugs
-      );
+      const curriculumOverviewTabData =
+        await curriculumApi.curriculumOverview(slugs);
 
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({
