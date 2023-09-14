@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
@@ -19,8 +19,6 @@ import RadioGroup from "@/components/RadioButtons/RadioGroup";
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
-
-let highlightedUnitCount = 0;
 
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   type Unit = CurriculumUnitsTabData["units"][number];
@@ -55,6 +53,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
+  const highlightedUnitCountRef = useRef(0);
 
   const yearData: {
     [key: string]: {
@@ -229,7 +228,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       return false;
     }
     if (unit.threads.some((t) => t.slug === selectedThread.slug)) {
-      highlightedUnitCount++;
+      highlightedUnitCountRef.current++;
       return true;
     }
   }
@@ -241,7 +240,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
 
   function handleSelectThread(slug: string): void {
-    highlightedUnitCount = 0;
+    highlightedUnitCountRef.current = 0;
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     setSelectedThread(thread);
   }
@@ -345,7 +344,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       {isSelected && (
                         <>
                           <br />
-                          {highlightedUnitCount} units highlighted
+                          {highlightedUnitCountRef.current} units highlighted
                         </>
                       )}
                     </Radio>
@@ -479,7 +478,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             $mr={28}
                             $pb={64}
                             $position={"relative"}
-                            $width={["100%", "calc(33% - 26px)"]}
+                            $width={[
+                              "100%",
+                              "calc(50% - 28px)",
+                              "calc(33% - 26px)",
+                            ]}
                             data-testid={
                               isHighlighted
                                 ? "highlighted-unit-card"
@@ -492,12 +495,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             <OutlineHeading tag={"div"} $fontSize={24} $mb={12}>
                               {index + 1}
                             </OutlineHeading>
-                            <Box $font={"heading-7"}>
+                            <Heading tag={"h3"} $font={"heading-7"}>
                               {isHighlighted && (
-                                <VisuallyHidden>Highlighted:</VisuallyHidden>
+                                <VisuallyHidden>
+                                  Highlighted:&nbsp;
+                                </VisuallyHidden>
                               )}
                               {unit.title}
-                            </Box>
+                            </Heading>
                             <Box
                               $position={"absolute"}
                               $bottom={16}
