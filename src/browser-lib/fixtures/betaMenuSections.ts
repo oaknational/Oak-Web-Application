@@ -3,7 +3,7 @@ import { cloneDeep } from "lodash";
 import { menuSections } from "./menuSections";
 
 import { MenuSections } from "@/components/MenuLinks/types";
-import { BetaMenuSections } from "@/components/NewMenuSections/NewMenuSections";
+import { BetaMenuSections } from "@/components/NewMenuSections/types";
 
 // TODO: rename
 export const newBetaMenuSections: BetaMenuSections = [

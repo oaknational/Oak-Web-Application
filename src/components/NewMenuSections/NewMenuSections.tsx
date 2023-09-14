@@ -3,24 +3,17 @@ import { FC } from "react";
 import { Heading, UL } from "../Typography";
 import Flex from "../Flex/Flex";
 
-import NewMenuLink, { BetaMenuLink } from "./NewMenuLink";
+import NewMenuLink from "./NewMenuLink";
+import { BetaMenuSections } from "./types";
 
 /**
- * New menu links to be used in the hamburger menu for the beta site
+ * New menu secionts to be used in the hamburger menu for the beta site
  */
-// TODO: move to types file
-type BetaMenuSection = {
-  header: string;
-  links: Array<BetaMenuLink>;
-};
 
-export type BetaMenuSections = Array<BetaMenuSection>;
-
-export type NewMenuLinksProps = {
+export type NewMenuSectionsProps = {
   menuSections: BetaMenuSections;
 };
-
-const NewMenuLinks: FC<NewMenuLinksProps> = (props) => {
+const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
   const { menuSections } = props;
   return (
     <Flex $flexDirection="column" $gap={32}>
@@ -42,4 +35,4 @@ const NewMenuLinks: FC<NewMenuLinksProps> = (props) => {
   );
 };
 
-export default NewMenuLinks;
+export default NewMenuSections;

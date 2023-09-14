@@ -5,19 +5,11 @@ import TagPromotional from "../TagPromotional/TagPromotional";
 import Flex from "../Flex/Flex";
 import { LI } from "../Typography";
 
-import { ResolveOakHrefProps } from "@/common-lib/urls";
-
-export type BetaMenuLink = {
-  resolveOakHrefProps: ResolveOakHrefProps;
-  text: string;
-  new: boolean;
-  external: boolean;
-};
+import { BetaMenuLink } from "./types";
 
 export type NewMenuLinkProps = {
   link: BetaMenuLink;
 };
-
 const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
   const { link } = props;
 
