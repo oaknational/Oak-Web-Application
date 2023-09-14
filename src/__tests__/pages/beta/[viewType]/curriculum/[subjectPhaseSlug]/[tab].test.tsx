@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { MockedFunction } from "jest-mock";
 
+import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
   parseSubjectPhaseSlug,
@@ -8,7 +9,9 @@ import CurriculumInfoPage, {
   getStaticPaths,
 } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 import { fetchSubjectPhasePickerData } from "@/pages/beta/[viewType]/curriculum";
-import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+import curriculumOverviewTabFixture, {
+  curriculumOverviewCMSFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
@@ -23,6 +26,19 @@ const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
   >;
+
+jest.mock("../../../node-lib/cms");
+
+const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
+jest.mock("next-sanity-image", () => ({
+  ...jest.requireActual("next-sanity-image"),
+  useNextSanityImage: () => ({
+    src: "/test/img/src.png",
+    width: 400,
+    height: 400,
+  }),
+}));
 const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
   typeof curriculumApi.curriculumUnits
 >;
@@ -63,11 +79,13 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
         pathname:
           "/beta/teachers-2023/curriculum/english-secondary-aqa/overview",
       });
+
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const { queryByTestId } = render(
         <CurriculumInfoPage
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
+          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />
@@ -79,14 +97,15 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
       (useRouter as jest.Mock).mockReturnValue({
         query: { tab: "overview" },
         isPreview: false,
-        pathname:
-          "/beta/teachers-2023/curriculum/english-secondary-aqa/overview",
+        pathname: "/beta/teachers-2023/curriculum/maths-secondary/overview",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      mockCMSClient.curriculumOverviewPage.mockResolvedValueOnce(null);
+      const slugs = parseSubjectPhaseSlug("maths-secondary");
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
+          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />
@@ -107,6 +126,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
         <CurriculumInfoPage
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
+          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewTabFixture()}
           curriculumUnitsTabData={curriculumUnitsTabFixture()}
         />
@@ -125,7 +145,7 @@ describe("pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
     it("should return expected props", async () => {
       mockedCurriculumOverview.mockResolvedValue(
-        curriculumOverviewTabFixture()
+        curriculumOverviewTabFixture().curriculumInfo
       );
       mockedCurriculumUnits.mockResolvedValue(curriculumUnitsTabFixture());
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
