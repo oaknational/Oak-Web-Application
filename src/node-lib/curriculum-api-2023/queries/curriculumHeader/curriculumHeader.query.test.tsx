@@ -31,5 +31,5 @@ test("tests if no exam board is passed in, then values are empty", async () => {
     ...sdk,
   })({ slug: "secondary-maths" });
   expect(query).toHaveProperty("examBoard");
-  expect(query.examBoard.title).toBe("");
+  expect(query.examboard).toBe("");
 });

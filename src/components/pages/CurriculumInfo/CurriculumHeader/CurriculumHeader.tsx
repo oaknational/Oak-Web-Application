@@ -104,7 +104,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             <Flex $alignItems={"center"} $justifyContent={"left"}>
               <Box $background={color1} $borderRadius={6} $mr={12}>
                 <SubjectIcon
-                  subjectSlug={subjectSlug}
+                  subjectSlug={subject.slug}
                   $maxHeight={56}
                   $maxWidth={56}
                   $color="white"
@@ -137,8 +137,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Unit sequence",
               page: "curriculum-units",
               viewType: "teachers",
-              subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "units",
+              subjectPhaseSlug: phase.slug,
+              isCurrent: tab == "units",
               currentStyles: ["underline"],
               scroll: false,
             },

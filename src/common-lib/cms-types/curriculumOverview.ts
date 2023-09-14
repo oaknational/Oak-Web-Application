@@ -2,10 +2,10 @@ import * as z from "zod";
 
 import { documentSchema, imageSchema } from "./base";
 
-export const curriculumOverviewSchema = z
+export const curriculumOverviewCMSSchema = z
   .object({
     id: z.string().nullish(),
-    subjectPrinciples: z.array(z.string()),
+    subjectPrinciples: z.string().array(),
     partnerBio: z.string(),
     curriculumPartner: z.object({
       name: z.string(),
@@ -14,4 +14,6 @@ export const curriculumOverviewSchema = z
   })
   .merge(documentSchema);
 
-export type CurriculumOverviewPage = z.infer<typeof curriculumOverviewSchema>;
+export type CurriculumOverviewSanityData = z.infer<
+  typeof curriculumOverviewCMSSchema
+>;

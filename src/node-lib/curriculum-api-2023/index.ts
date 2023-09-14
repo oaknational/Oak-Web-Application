@@ -13,6 +13,7 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
+import curriculumOverviewMVSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -64,15 +65,6 @@ const curriculumHeaderData = z.object({
   examboardSlug: z.string().optional(),
 });
 
-const curriculumOverviewTabData = z.object({
-  curriculaDesc: z.string(),
-  videoGuideDesc: z.string(),
-  subjectSlug: z.string(),
-  subject: z.string(),
-  examboard: z.string().optional(),
-  phase: z.string(),
-});
-
 const curriculumDownloadsTabData = z.object({
   urls: z.array(z.string()),
 });
@@ -84,7 +76,7 @@ export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewTabData = z.infer<
-  typeof curriculumOverviewTabData
+  typeof curriculumOverviewMVSchema
 >;
 export type CurriculumDownloadsTabData = z.infer<
   typeof curriculumDownloadsTabData
@@ -127,7 +119,7 @@ const curriculumApi2023 = {
   programmeListingPage: programmeListingQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  curriculumOverview: curriculumOverviewQuery(),
+  curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),

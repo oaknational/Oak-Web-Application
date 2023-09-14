@@ -7,13 +7,15 @@ import {
 import React from "react";
 import { useRouter } from "next/router";
 
+import CMSClient from "@/node-lib/cms";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
-  CurriculumOverviewTabData,
+  curriculumOverviewMVSchema,
   CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
@@ -37,7 +39,8 @@ export type CurriculumSelectionSlugs = {
 export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   subjectPhaseOptions: SubjectPhasePickerData;
-  curriculumOverviewTabData: CurriculumOverviewTabData;
+  curriculumOverviewTabData: curriculumOverviewMVSchema;
+  curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsTabData: CurriculumUnitsTabData;
 };
 
@@ -49,6 +52,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   subjectPhaseOptions,
   curriculumOverviewTabData,
   curriculumUnitsTabData,
+  curriculumOverviewSanityData,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
@@ -56,7 +60,15 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   let tabContent: JSX.Element;
   switch (tab) {
     case "overview":
-      tabContent = <OverviewTab data={curriculumOverviewTabData} />;
+      tabContent = (
+        <OverviewTab
+          data={{
+            curriculumInfo: curriculumOverviewTabData,
+            curriculumCMSInfo: curriculumOverviewSanityData,
+            curriculumSelectionSlugs,
+          }}
+        />
+      );
       break;
     case "units":
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
@@ -138,6 +150,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Missing params");
       }
       const tab = context.params.tab;
+      const isPreviewMode = context.preview === true;
       if (!VALID_TABS.includes(tab)) {
         throw new OakError({
           code: "curriculum-api/not-found",
@@ -147,6 +160,18 @@ export const getStaticProps: GetStaticProps<
       const curriculumOverviewTabData = await curriculumApi.curriculumOverview(
         slugs
       );
+
+      const curriculumOverviewSanityData =
+        await CMSClient.curriculumOverviewPage({
+          previewMode: isPreviewMode,
+          ...slugs,
+        });
+
+      if (!curriculumOverviewSanityData) {
+        return {
+          notFound: true,
+        };
+      }
       const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
@@ -154,6 +179,7 @@ export const getStaticProps: GetStaticProps<
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
+          curriculumOverviewSanityData,
           curriculumUnitsTabData,
         },
       };

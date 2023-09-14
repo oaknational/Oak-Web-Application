@@ -10,19 +10,24 @@ import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
-import { CurriculumOverviewPage } from "@/common-lib/cms-types";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { CurriculumSelectionSlugs } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
-type OverviewTabProps = {
-  curriculumInfo: CurriculumOverviewTabData;
-  curriculumCMSInfo: CurriculumOverviewPage;
-  slug: string;
+export type OverviewTabProps = {
+  data: {
+    curriculumInfo: CurriculumOverviewTabData;
+    curriculumCMSInfo: CurriculumOverviewSanityData;
+    curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  };
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { curriculumCMSInfo, curriculumInfo } = props;
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
+    props.data;
   const { subjectPrinciples, partnerBio, curriculumPartner } =
     curriculumCMSInfo;
-  const { curriculaDesc, subjectSlug } = curriculumInfo;
+  const { curriculaDesc } = curriculumInfo;
+  const { subjectSlug } = curriculumSelectionSlugs;
   return (
     <Box $width={"80%"} $ma={"auto"} $pb={80}>
       <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>

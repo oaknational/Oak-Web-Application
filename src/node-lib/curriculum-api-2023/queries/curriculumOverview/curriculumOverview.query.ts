@@ -1,18 +1,31 @@
-import OakError from "@/errors/OakError";
-import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
+// import curriculumOverviewSchema from "./curriculumOverview.schema";
+
+// import OakError from "@/errors/OakError";
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 
 const curriculumOverviewQuery =
-  () =>
+  (sdk: Sdk) =>
   async (args: {
-    subjectSlug: string;
     phaseSlug: string;
+    subjectSlug: string;
     examboardSlug: string | null;
   }) => {
-    const { subjectSlug, phaseSlug } = args;
-    if (!subjectSlug || !phaseSlug) {
-      throw new OakError({ code: "curriculum-api/params-incorrect" });
-    }
-    return curriculumOverviewTabFixture();
+    console.log(sdk, args);
+    // const res = await sdk.curriculumOverview({
+    //   subjectSlug: args.subjectSlug,
+    //   examboardSlug: args.examboardSlug,
+    //   phaseSlug: args.phaseSlug,
+    // });
+
+    // const [programmes] = res.programmes;
+
+    // if (!programmes) {
+    //   throw new OakError({ code: "curriculum-api/not-found" });
+    // }
+
+    // return curriculumOverviewMVFixture.parse();
+    return curriculumOverviewMVFixture();
   };
 
 export default curriculumOverviewQuery;
