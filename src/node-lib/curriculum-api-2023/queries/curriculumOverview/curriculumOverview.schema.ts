@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 const curriculumOverviewSchema = z.object({
   curriculaDesc: z.string(),

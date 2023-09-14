@@ -4,10 +4,10 @@ import {
 } from "../queries/curriculumOverview/curriculumOverview.schema";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 export const curriculumOverviewTabFixture = (
-  partial?: Partial<curriculumOverviewTabSchema>
+  partial?: Partial<curriculumOverviewTabSchema>,
 ): curriculumOverviewTabSchema => {
   return {
     curriculumInfo: curriculumOverviewMVFixture(),
@@ -18,7 +18,7 @@ export const curriculumOverviewTabFixture = (
 };
 
 export const curriculumOverviewCMSFixture = (
-  partial?: Partial<CurriculumOverviewSanityData>
+  partial?: Partial<CurriculumOverviewSanityData>,
 ): CurriculumOverviewSanityData => {
   return {
     id: "curriculum.overview",
@@ -45,7 +45,7 @@ export const curriculumOverviewCMSFixture = (
 };
 
 const curriculumOverviewSlugsFixture = (
-  partial?: Partial<CurriculumSelectionSlugs>
+  partial?: Partial<CurriculumSelectionSlugs>,
 ): CurriculumSelectionSlugs => {
   return {
     phaseSlug: "primary",
@@ -56,7 +56,7 @@ const curriculumOverviewSlugsFixture = (
 };
 
 export const curriculumOverviewMVFixture = (
-  partial?: Partial<curriculumOverviewMVSchema>
+  partial?: Partial<curriculumOverviewMVSchema>,
 ): curriculumOverviewMVSchema => {
   return {
     curriculaDesc:
