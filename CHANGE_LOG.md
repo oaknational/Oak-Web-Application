@@ -1,3 +1,72 @@
+# [1.241.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.3...v1.241.0) (2023-09-13)
+
+
+### Features
+
+* **homePageNav:** add test coverage ([393b8e7](https://github.com/oaknational/Oak-Web-Application/commit/393b8e7ff8e3c6881ff24324816aa26d06e15c69))
+* **homePageNav:** add test coverage ([9a667f2](https://github.com/oaknational/Oak-Web-Application/commit/9a667f2d393683fcf9556cb5adb298996e3382fa))
+* **homePageNav:** add test coverage ([0405391](https://github.com/oaknational/Oak-Web-Application/commit/04053914b77a267d2440e87a72c6e5529913bd36))
+* **homePageNav:** copy update ([521cafc](https://github.com/oaknational/Oak-Web-Application/commit/521cafcfc1b744c5c7e90e12e4d79de11da6b8e7))
+* **homePageNav:** create home page nav add to storybook ([9827704](https://github.com/oaknational/Oak-Web-Application/commit/98277049f52f2b85667fcfe9adb7f1d554c67590))
+* **homePageNav:** fix types ([d47ab35](https://github.com/oaknational/Oak-Web-Application/commit/d47ab35861323f12e72fb7ed12735092264c019e))
+* **homePageNav:** merge commit ([c7a9f27](https://github.com/oaknational/Oak-Web-Application/commit/c7a9f27c3fa1c7b25bfce6ed9590c4c2e73c3698))
+* **homePageNav:** merge commit ([061f3a3](https://github.com/oaknational/Oak-Web-Application/commit/061f3a34f1a9bc18285c126e9443cfc89fb5b7b3))
+* **homePageNav:** merge commit ([3d465b2](https://github.com/oaknational/Oak-Web-Application/commit/3d465b2b6265bd38d51b0018e2e798dd9d16328f))
+* **homePageNav:** merge commit ([3190d0a](https://github.com/oaknational/Oak-Web-Application/commit/3190d0ac2ce3a97ecd791879a250a5048af03313))
+* **homePageNav:** merge commit ([ceb0f05](https://github.com/oaknational/Oak-Web-Application/commit/ceb0f050e58213b3306616186d414bfbd61a415a))
+* **homePageNav:** prettier ([027d1dc](https://github.com/oaknational/Oak-Web-Application/commit/027d1dc4bccdae0d23ea33f27211e6e072660ec2))
+* **homePageNav:** prettier ([264caf6](https://github.com/oaknational/Oak-Web-Application/commit/264caf67d258314029c6673937d66ddf3549828d))
+* **homePageNav:** prettier ([bd63940](https://github.com/oaknational/Oak-Web-Application/commit/bd63940e3160c243f70cb56ee3cefccb3ce06cfb))
+* **homePageNav:** prettier ([bb76768](https://github.com/oaknational/Oak-Web-Application/commit/bb76768c98ec834d04c3131ee450dfd0eebee76d))
+* **homePageNav:** remove new tag for small and buttons in nav ([b49556e](https://github.com/oaknational/Oak-Web-Application/commit/b49556e6a9284b7c7a382691ef843c59136a7331))
+* **homePageNav:** tidy up code ([76013b5](https://github.com/oaknational/Oak-Web-Application/commit/76013b53e342e267b2a8922e9cf2010cf8857f1c))
+
+## [1.240.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.2...v1.240.3) (2023-09-13)
+
+
+### Bug Fixes
+
+* landing page header bug fixed ([78f23cb](https://github.com/oaknational/Oak-Web-Application/commit/78f23cbd5c9f7ce93de85e429d8a00f86efcb720))
+
+## [1.240.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.1...v1.240.2) (2023-09-13)
+
+## [1.240.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.240.0...v1.240.1) (2023-09-13)
+
+# [1.240.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.4...v1.240.0) (2023-09-13)
+
+
+### Features
+
+* add placeholder text param to search field ([7dd7c58](https://github.com/oaknational/Oak-Web-Application/commit/7dd7c585b81aab228ba3e3517948ab222333e620))
+* change search icon to search ([fff6ec0](https://github.com/oaknational/Oak-Web-Application/commit/fff6ec0b8dddd72502111a1345bcc2fb0ecb1ea4))
+
+## [1.239.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.3...v1.239.4) (2023-09-13)
+
+## [1.239.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.2...v1.239.3) (2023-09-13)
+
+## [1.239.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.1...v1.239.2) (2023-09-13)
+
+## [1.239.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.239.0...v1.239.1) (2023-09-13)
+
+
+### Bug Fixes
+
+* update curriculum visualiser container width ([2b4a56c](https://github.com/oaknational/Oak-Web-Application/commit/2b4a56c215c0a72ed3022f76fb0a4bbcbdbea56e))
+* update mobile title behavior ([5078549](https://github.com/oaknational/Oak-Web-Application/commit/50785490e5a005daf4e2e5f133035f3bfb08b79e))
+* update tab widths, tweak subject phase picker spacing ([9deaf05](https://github.com/oaknational/Oak-Web-Application/commit/9deaf05c9ad1f48be118028b4d9f8e2936f30b55))
+
+# [1.239.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.2...v1.239.0) (2023-09-13)
+
+
+### Features
+
+* add component for pre alb copyright ([00f1bd2](https://github.com/oaknational/Oak-Web-Application/commit/00f1bd2c4d632abd65c3e9a3987449ed44d07a8a))
+* add post alb copyright component ([03d26c2](https://github.com/oaknational/Oak-Web-Application/commit/03d26c297a6cfddaa80b93df5e043c4e1642c15f))
+* add storybook control to toggle copyright ([3cf3ec6](https://github.com/oaknational/Oak-Web-Application/commit/3cf3ec65572f17e90ab3470d88fbf82213c9a231))
+* downloads page style updates ([c539b33](https://github.com/oaknational/Oak-Web-Application/commit/c539b3356397d887cd0e48a81468ac1a346c287a))
+* give copyright notice a max width the same as the ts and cs checkbox ([f296e34](https://github.com/oaknational/Oak-Web-Application/commit/f296e348087102a118b48782a5bfaeffb193298a))
+* toggle copyright notice on downloads page based on view type ([519a1fb](https://github.com/oaknational/Oak-Web-Application/commit/519a1fbc6834f0e915390f3386fdb1da9714e7fb))
+
 ## [1.238.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.1...v1.238.2) (2023-09-12)
 
 ## [1.238.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.238.0...v1.238.1) (2023-09-11)

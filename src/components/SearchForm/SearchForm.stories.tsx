@@ -17,5 +17,5 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const SearchInput = Template.bind({});
 SearchInput.args = {
-  searchTerm: "Macbeth",
+  placeholderText: "Search by keyword or topic",
 };

@@ -32,14 +32,14 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
-    (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug
-  );
+    (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
+  ) as SubjectPhasePickerData["subjects"][number] | undefined;
   const phase = subject?.phases.find(
-    (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug
+    (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
   const examboard =
     subject?.examboards?.find(
-      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug
+      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug,
     ) ?? null;
 
   if (!subject || !phase) {
@@ -62,8 +62,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
 
   return (
     <Box>
-      <Flex $background={color1} $justifyContent={"center"} $pv={[20]}>
-        <Box $width={"80%"}>
+      <Flex $background={color1} $pv={[20]}>
+        <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -99,29 +99,34 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
         </Box>
       </Flex>
       <Box $background={color2}>
-        <Flex $justifyContent={"center"} $pv={32}>
-          <Box $width={"80%"}>
-            <Flex $alignItems={"center"} $justifyContent={"left"}>
-              <Box $background={color1} $borderRadius={6} $mr={12}>
+        <Flex $pv={32}>
+          <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+            <Flex>
+              <Box
+                $background={color1}
+                $borderRadius={6}
+                $minWidth={56}
+                $mr={12}
+                $mv={"auto"}
+              >
                 <SubjectIcon
                   subjectSlug={subject.slug}
-                  $maxHeight={56}
-                  $maxWidth={56}
                   $color="white"
                   $borderColor="white"
+                  $width={56}
                   data-testid="subjectIcon"
                 />
               </Box>
-
-              <Heading tag={"h1"} $font={"heading-light-3"} $mr={26}>
+              <Heading tag={"h1"} $font={"heading-4"} $mv={"auto"}>
                 {pageTitle}
               </Heading>
             </Flex>
           </Box>
         </Flex>
         <TabularNav
-          $width={"80%"}
-          $ma={"auto"}
+          $maxWidth={1280}
+          $mh={"auto"}
+          $ph={18}
           label="Curriculum Selection"
           links={[
             {

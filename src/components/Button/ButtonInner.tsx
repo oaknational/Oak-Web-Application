@@ -121,7 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    */
   const currentColor: OakColorName = "oakGrey4";
   const displayProperty = shouldHideLabel?.map((hide) =>
-    hide ? "none" : "block"
+    hide ? "none" : "block",
   );
   const textDecoration =
     isCurrent && currentStyles?.includes("text-underline")
@@ -159,12 +159,13 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $position="relative"
           $alignItems="center"
           $color={currentColor}
+          $ml={-8}
         >
           <SubjectIcon
             subjectSlug={subjectIcon}
-            $ml={-8}
             $maxHeight={40}
             $maxWidth={40}
+            $height={iconSize}
           />
         </Flex>
       )}

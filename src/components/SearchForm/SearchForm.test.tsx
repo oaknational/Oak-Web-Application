@@ -3,10 +3,11 @@
  */
 import React from "react";
 import userEvent from "@testing-library/user-event";
-
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import { screen } from "@testing-library/react";
 
 import SearchForm from "./SearchForm";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const handleSubmit = jest.fn();
 
@@ -35,10 +36,11 @@ describe("<SearchForm />", () => {
   it("renders", () => {
     const { getByRole } = render(
       <SearchForm
+        placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const button = getByRole("button");
     expect(button).toBeInTheDocument();
@@ -48,10 +50,11 @@ describe("<SearchForm />", () => {
     const searchTerm = "Macbeth";
     const { getByRole } = render(
       <SearchForm
+        placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -70,10 +73,11 @@ describe("<SearchForm />", () => {
     const addedText = "be";
     const { getByRole } = render(
       <SearchForm
-        searchTerm={initialText}
+        placeholderText=""
         handleSubmit={handleSubmit}
+        searchTerm={initialText}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -92,10 +96,11 @@ describe("<SearchForm />", () => {
   it("{Enter} submits the form if search input has focus", async () => {
     const { getByRole } = render(
       <SearchForm
-        searchTerm={""}
+        placeholderText=""
+        searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     const searchField = getByRole("searchbox");
@@ -108,10 +113,11 @@ describe("<SearchForm />", () => {
   it("{Enter} does not submit the form if search if inputs don't have focus", async () => {
     render(
       <SearchForm
-        searchTerm={""}
+        placeholderText=""
+        searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -122,10 +128,11 @@ describe("<SearchForm />", () => {
   it("search input is first tabbable element", async () => {
     render(
       <SearchForm
-        searchTerm={""}
+        placeholderText=""
+        searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -135,10 +142,11 @@ describe("<SearchForm />", () => {
   it("submit button is second tabbable element", async () => {
     render(
       <SearchForm
-        searchTerm={""}
+        placeholderText=""
+        searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
     await user.keyboard("{Enter}");
@@ -150,10 +158,11 @@ describe("<SearchForm />", () => {
     const addedText = "a";
     const { getByRole } = render(
       <SearchForm
-        searchTerm={initialText}
+        placeholderText=""
         handleSubmit={handleSubmit}
+        searchTerm={initialText}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -172,10 +181,11 @@ describe("<SearchForm />", () => {
 
     const { getByRole } = render(
       <SearchForm
+        placeholderText=""
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
-      />
+      />,
     );
     const user = userEvent.setup();
 
@@ -191,5 +201,19 @@ describe("<SearchForm />", () => {
       searchSource: "homepage search box",
       searchTerm: "search me",
     });
+  });
+  it("search input is populated with placeholder text", () => {
+    const placeholderText = "Search by keyword or topic";
+    render(
+      <SearchForm
+        placeholderText={placeholderText}
+        searchTerm=""
+        handleSubmit={handleSubmit}
+        analyticsSearchSource={"homepage search box"}
+      />,
+    );
+
+    const searchField = screen.getByPlaceholderText(placeholderText);
+    expect(searchField).toBeInTheDocument();
   });
 });

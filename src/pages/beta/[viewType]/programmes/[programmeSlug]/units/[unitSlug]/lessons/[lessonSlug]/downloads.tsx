@@ -15,8 +15,7 @@ import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import TitleCard from "@/components/Card/SubjectUnitLessonTitleCard";
-import { Heading, Hr, P } from "@/components/Typography";
+import { Heading, P } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -57,6 +56,7 @@ import {
 import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -181,7 +181,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         shouldValidate: true,
       });
     },
-    [setValue, schoolNameFromLocalStorage]
+    [setValue, schoolNameFromLocalStorage],
   );
 
   const { errors } = formState;
@@ -193,7 +193,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
 
   const [resourcesToDownload, setResourcesToDownload] =
     useState<ResourcesToDownloadArrayType>(
-      getInitialResourcesToDownloadState()
+      getInitialResourcesToDownloadState(),
     );
 
   const hasResourcesToDownload =
@@ -246,7 +246,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const getFormErrorMessage = () => {
     const errorKeyArray = Object.keys(errors);
     const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[]
+      errorKeyArray as ErrorKeysType[],
     );
 
     return errorMessage;
@@ -263,6 +263,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
   };
+
+  const showPostAlbCopyright = viewType === "teachers-2023";
 
   return (
     <AppLayout
@@ -284,7 +286,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                 programmeSlug,
                 subjectTitle,
                 unitSlug,
-                unitTitle
+                unitTitle,
               ),
               {
                 oakLinkProps: {
@@ -310,16 +312,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
             ]}
           />
         </Box>
-        <Flex $mb={8} $display={"inline-flex"} $mt={0}>
-          <TitleCard
-            page={"lesson"}
-            keyStage={keyStageTitle}
-            keyStageSlug={keyStageSlug}
-            subject={subjectTitle}
-            subjectSlug={subjectSlug}
-            title={`Downloads: ${lessonTitle}`}
-          />
-        </Flex>
 
         {!hasResourcesToDownload ? (
           <NoResourcesToDownload />
@@ -335,7 +327,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     onEditClick={handleEditDetailsCompletedClick}
                   />
                 ) : (
-                  <Box $maxWidth={[null, 420, 420]} $mb={96}>
+                  <Box $maxWidth={[null, 420, 420]}>
                     <SchoolPickerRadio
                       errors={errors}
                       setSchool={setSchool}
@@ -382,7 +374,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                         field: { value, onChange, name, onBlur },
                       }) => {
                         const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>
+                          e: ChangeEvent<HTMLInputElement>,
                         ) => {
                           return onChange(e.target.checked);
                         };
@@ -400,10 +392,12 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     />
                   </Box>
                 )}
+
+                <CopyrightNotice showPostAlbCopyright={showPostAlbCopyright} />
               </>
             )}
 
-            <Grid $mt={32}>
+            <Grid>
               <DownloadCardGroup
                 control={control}
                 downloads={downloads}
@@ -414,7 +408,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               />
 
               <GridArea $colSpan={[12]}>
-                <Hr $color={"oakGrey3"} $mt={48} $mb={[48, 96]} />
                 <Flex
                   $flexDirection={["column", "row"]}
                   $justifyContent={"right"}

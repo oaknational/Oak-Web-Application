@@ -21,7 +21,7 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker
         {...subjectPhaseOptions}
         currentSelection={currentSelection}
-      />
+      />,
     );
     const subjectControl = getByTitle("Subject");
     const phaseControl = getByTitle("Phase");
@@ -32,7 +32,7 @@ describe("Component - subject phase picker", () => {
 
   test("user can see subjects when they click the control", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
     expect(control).toBeTruthy();
@@ -43,7 +43,7 @@ describe("Component - subject phase picker", () => {
 
   test("user selects a subject", async () => {
     const { getByTitle, findAllByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
     userEvent.click(control);
@@ -60,7 +60,7 @@ describe("Component - subject phase picker", () => {
 
   test("user clicks to open phases when they click the control", async () => {
     const { findByTitle, getByTitle } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Phase");
     expect(control).toBeTruthy();
@@ -105,12 +105,12 @@ describe("Component - subject phase picker", () => {
 
   test("user can close selection panels with escape button", async () => {
     const { getByTitle, queryByText } = renderWithTheme(
-      <SubjectPhasePicker {...subjectPhaseOptions} />
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
-    expect(queryByText("Latest Resources")).toBeTruthy();
+    expect(queryByText("Latest resources")).toBeTruthy();
     await userEvent.keyboard("{Escape}");
-    expect(queryByText("Latest Resources")).toBeNull();
+    expect(queryByText("Latest resources")).toBeNull();
     await userEvent.click(getByTitle("Phase"));
     expect(queryByText("Choose a school phase:")).toBeTruthy();
     await userEvent.keyboard("{Escape}");

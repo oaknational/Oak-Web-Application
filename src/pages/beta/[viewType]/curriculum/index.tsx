@@ -72,6 +72,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </Flex>
         </MaxWidth>
       </Flex>
+
       <Flex $background={"white"} $justifyContent={"center"}>
         <MaxWidth>
           <Flex
@@ -139,12 +140,17 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </Flex>
           <Flex
             $background={"grey1"}
-            $position={"relative"}
             $minHeight={812}
             $ml={[0, 12, 0]}
             $mr={[0, 12, 0]}
           >
-            <Box $pl={[24, 48]} $pr={[24, 48]} $pt={48} $mb={[48, 0]}>
+            <Box
+              $pl={[24, 48]}
+              $pr={[24, 48]}
+              $pt={48}
+              $mb={[48, 0]}
+              $position={"relative"}
+            >
               <Heading tag="h2" $font={"heading-4"} $mb={24}>
                 Our blogs on curriculum design
               </Heading>
@@ -159,7 +165,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                         {i !== 0 && <Hr thickness={4} $mv={32} />}
                         <PostListItem
                           {...item}
-                          isCurriculumPage={true}
+                          showImageOnTablet={true}
                           withImage={true}
                           firstItemRef={null}
                         />
@@ -169,8 +175,8 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   {<Hr thickness={4} $mt={32} $mb={0} />}
                 </>
               ) : null}
+              <BrushBorders color="grey1" hideOnMobileH />
             </Box>
-            <BrushBorders color="grey1" />
           </Flex>
         </MaxWidth>
       </Flex>
@@ -205,18 +211,18 @@ export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> 
 export type Client = typeof CMSClient;
 
 export async function fetchCurriculumPageBlogs(
-  CMSClient: Client
+  CMSClient: Client,
 ): Promise<SerializedBlogPostPreview[]> {
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-subject-curriculum"
+    "how-to-design-a-subject-curriculum",
   );
 
   const refreshCurriculumBlog = await CMSClient.blogPostBySlug(
-    "how-to-refresh-your-curriculum-using-oak-units"
+    "how-to-refresh-your-curriculum-using-oak-units",
   );
 
   const designUnitBlog = await CMSClient.blogPostBySlug(
-    "how-to-design-a-unit-of-study"
+    "how-to-design-a-unit-of-study",
   );
 
   const blogs = [];
@@ -228,8 +234,8 @@ export async function fetchCurriculumPageBlogs(
   ) {
     blogs.push(
       [subjectCurriculumBlog, refreshCurriculumBlog, designUnitBlog].map(
-        serializeDate
-      )
+        serializeDate,
+      ),
     );
   } else {
     throw new Error("Missing blog post");

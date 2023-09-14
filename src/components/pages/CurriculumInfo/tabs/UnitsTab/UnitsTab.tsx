@@ -180,21 +180,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   return (
-    <Box $maxWidth={["100%", "80%"]} $ma={"auto"} $pb={80}>
-      <Card
-        $background={"lemon30"}
-        $pa={0}
-        $pl={96}
-        $mv={[16, 48]}
-        $mh={[16, 0]}
-      >
+    <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+      <Card $background={"lemon30"} $pa={0} $pl={96} $mv={[16, 48]}>
         <Box
           $background={"lemon"}
           $height={"100%"}
           $left={0}
           $position={"absolute"}
           $top={0}
-          $width={96}
+          $width={[64, 96]}
           $textAlign={"center"}
         >
           <Icon
@@ -220,12 +214,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </P>
         </Box>
       </Card>
-      <Flex $justifyContent={"space-between"}>
-        <Box>
+      <Flex>
+        <Box $width={"100%"}>
           {Object.keys(yearData).map((year) => {
             const { units, childSubjects, domains, tiers } = yearData[
               year
-            ] as typeof yearData[string];
+            ] as (typeof yearData)[string];
             return (
               <Box
                 key={year}

@@ -38,7 +38,7 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   height: ${(props) => props.theme.input.height};
   border-radius: ${(props) => props.theme.input.borderRadius};
   border-color: ${getColorByLocation(
-    ({ theme }) => theme.input.states.default.border
+    ({ theme }) => theme.input.states.default.border,
   )};
   background: ${(props) => props.theme.input.states.default.background};
   border-width: ${(props) => props.theme.input.borderWidth};
@@ -57,20 +57,20 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   ::placeholder {
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.default.placeholder
+      ({ theme }) => theme.input.states.default.placeholder,
     )};
     opacity: 1;
   }
 
   :valid:not([value=""]) {
     border-color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.valid.border
+      ({ theme }) => theme.input.states.valid.border,
     )};
 
     ::placeholder {
       font-size: 14px;
       color: ${getColorByLocation(
-        ({ theme }) => theme.input.states.valid.placeholder
+        ({ theme }) => theme.input.states.valid.placeholder,
       )};
     }
   }
@@ -80,11 +80,13 @@ const StyledInput = styled(UnstyledInput)<StyledInputProps>`
 
 type SearchFormProps = {
   searchTerm: string;
+  placeholderText: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm, analyticsSearchSource } = props;
+  const { handleSubmit, searchTerm, analyticsSearchSource, placeholderText } =
+    props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
@@ -96,7 +98,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       analyticsUseCase: analyticsUseCase,
       pageName,
       searchFilterOptionSelected: getSortedSearchFiltersSelected(
-        router.query.keyStages
+        router.query.keyStages,
       ),
       searchSource: analyticsSearchSource,
     });
@@ -122,7 +124,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       setValue(e.target.value);
       trackSearchJourneyInitiated();
     },
-    [trackSearchJourneyInitiated]
+    [trackSearchJourneyInitiated],
   );
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
@@ -131,7 +133,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       handleSubmit({ searchTerm: value });
       trackSearchAttempted();
     },
-    [handleSubmit, trackSearchAttempted, value]
+    [handleSubmit, trackSearchAttempted, value],
   );
 
   return (
@@ -149,14 +151,14 @@ const SearchForm: FC<SearchFormProps> = (props) => {
             value={value}
             type="search"
             onChange={onChange}
-            placeholder="Search"
+            placeholder={placeholderText}
           />
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           <ButtonBorders background={"white"} />
         </InputFieldWrap>
       </Flex>
       <IconButton
-        icon="go"
+        icon="search"
         aria-label="Submit"
         htmlButtonProps={{ type: "submit" }}
         size={"large"}
