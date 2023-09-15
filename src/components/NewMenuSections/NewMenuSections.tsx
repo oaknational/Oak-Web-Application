@@ -1,7 +1,8 @@
 import { FC } from "react";
 
-import { Heading, UL } from "../Typography";
+import { Heading, LI } from "../Typography";
 import Flex from "../Flex/Flex";
+import { FlexList } from "../Typography/UL";
 
 import NewMenuLink from "./NewMenuLink";
 import { BetaMenuSections } from "./types";
@@ -13,6 +14,7 @@ import { BetaMenuSections } from "./types";
 export type NewMenuSectionsProps = {
   menuSections: BetaMenuSections;
 };
+
 const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
   const { menuSections } = props;
   return (
@@ -22,13 +24,19 @@ const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
           <Heading tag="h4" $font="heading-4">
             {section.header}
           </Heading>
-          <UL $reset={true} role="list">
-            <Flex $flexDirection="column" $gap={4}>
-              {section.links.map((link) => (
+          <FlexList
+            $reset={true}
+            role="list"
+            $display="flex"
+            $flexDirection="column"
+            $gap={4}
+          >
+            {section.links.map((link, i) => (
+              <LI listStyle="none" key={`${link.text}-${i}`}>
                 <NewMenuLink link={link} />
-              ))}
-            </Flex>
-          </UL>
+              </LI>
+            ))}
+          </FlexList>
         </Flex>
       ))}
     </Flex>
