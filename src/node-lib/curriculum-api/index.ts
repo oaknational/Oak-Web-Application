@@ -12,6 +12,9 @@ import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
 
+import programmeSlugWithL from "@/utils/slugModifiers/programmeSlugWithL";
+import argsWithModifiedProgrammeSlug from "@/utils/slugModifiers/argsWithModifiedProgrammeSlug";
+
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
 const curriculumApiAuthKey = getServerConfig("curriculumApiAuthKey");
@@ -296,7 +299,7 @@ const curriculumApi = {
       return programmes
         ? programmes.map((programme) => {
             return {
-              programmeSlug: programme.programmeSlug,
+              programmeSlug: programmeSlugWithL(programme.programmeSlug),
               subjectSlug: programme.subjectSlug,
               subjectTitle: programme.subjectTitle,
               lessonCount: programme.nonDuplicateSubjectLessonCount,
@@ -320,7 +323,7 @@ const curriculumApi = {
     });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
-    const res = await sdk.unitListing(...args);
+    const res = await sdk.unitListing(...argsWithModifiedProgrammeSlug(args));
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const unitsWithVariants = units.map((unit) => {
@@ -334,6 +337,7 @@ const curriculumApi = {
       return [
         {
           ...unit,
+          programmeSlug: programmeSlugWithL(unit.programmeSlug),
           nullTitle,
           learningThemes,
         },
@@ -361,7 +365,7 @@ const curriculumApi = {
     });
 
     return unitListingData.parse({
-      programmeSlug: programme?.programmeSlug,
+      programmeSlug: programmeSlugWithL(programme?.programmeSlug),
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
       examBoardSlug: null,
@@ -376,7 +380,9 @@ const curriculumApi = {
     });
   },
   lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
-    const res = await sdk.lessonOverview(...args);
+    const res = await sdk.lessonOverview(
+      ...argsWithModifiedProgrammeSlug(args),
+    );
     const { lessons = [] } = transformMVCase(res);
 
     const { introQuiz, exitQuiz } = res;
@@ -415,7 +421,7 @@ const curriculumApi = {
     return lessonOverviewData.parse({
       lessonTitle: lesson.lessonTitle,
       lessonSlug: lesson.lessonSlug,
-      programmeSlug: lesson.programmeSlug,
+      programmeSlug: programmeSlugWithL(lesson.programmeSlug),
       unitSlug: lesson.unitSlug,
       unitTitle: lesson.unitTitle,
       keyStageSlug: lesson.keyStageSlug,
@@ -448,20 +454,30 @@ const curriculumApi = {
     });
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
-    const res = await sdk.lessonListing(...args);
+    const res = await sdk.lessonListing(...argsWithModifiedProgrammeSlug(args));
     const { units = [], lessons = [] } = transformMVCase(res);
 
     const unit = getFirstResultOrWarnOrFail()({
       results: units,
     });
 
+    const lessonsWithModifiedProgrammeSlug = lessons.map((lesson) => {
+      return {
+        ...lesson,
+        programmeSlug: programmeSlugWithL(lesson.programmeSlug),
+      };
+    });
+
     return lessonListingSchema.parse({
       ...unit,
-      lessons,
+      programmeSlug: programmeSlugWithL(unit.programmeSlug),
+      lessons: lessonsWithModifiedProgrammeSlug,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
-    const res = await sdk.lessonDownloads(...args);
+    const res = await sdk.lessonDownloads(
+      ...argsWithModifiedProgrammeSlug(args),
+    );
     const { downloads = [] } = transformMVCase(res);
 
     const download = getFirstResultOrWarnOrFail()({
@@ -487,7 +503,7 @@ const curriculumApi = {
             keyStageTitle: programme.keyStageTitle,
             programmes: programmes.map((programme) => {
               return {
-                programmeSlug: programme.programmeSlug,
+                programmeSlug: programmeSlugWithL(programme.programmeSlug),
                 subjectTitle: programme.subjectTitle,
                 unitCount: programme.totalUnitCount,
                 lessonCount: programme.activeLessonCount,
