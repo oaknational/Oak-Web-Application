@@ -611,7 +611,7 @@ export const OAK_PAGES: {
     pageType: "curriculum-downloads",
   }),
   "early-release-units": createOakPageConfig({
-    pathPattern: "/beta/:viewType/early-release-units",
+    pathPattern: "/:viewType/early-release-units",
     configType: "internal",
     pageType: "early-release-units",
     analyticsPageName: "Early Release Units",
