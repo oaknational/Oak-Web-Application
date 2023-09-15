@@ -146,6 +146,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             name={icon}
             size={iconSize}
             $background={iconBackground ?? defaultIconBackground}
+            data-testid="button-icon"
           />
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />

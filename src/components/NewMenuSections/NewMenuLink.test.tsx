@@ -24,12 +24,12 @@ describe("NewMenuLink", () => {
   });
   it("displays an icon when the link is external", () => {
     renderWithTheme(<NewMenuLink link={link} />);
-    const externalIcon = screen.queryByTestId("icon");
+    const externalIcon = screen.queryByTestId("button-icon");
     expect(externalIcon).toBeInTheDocument();
   });
   it("displays no icon when the link is internal", () => {
     renderWithTheme(<NewMenuLink link={{ ...link, external: false }} />);
-    const externalIcon = screen.queryByTestId("icon");
+    const externalIcon = screen.queryByTestId("button-icon");
     expect(externalIcon).not.toBeInTheDocument();
   });
   it("displays new tag when it should", () => {
