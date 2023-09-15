@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Box from "../../Box";
+import Box from "../../Box/Box";
 
 import Flex from "@/components/Flex/Flex";
 import { Heading } from "@/components/Typography";
@@ -45,7 +45,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               </Typography>
               <Box $mt={16} $width={"90%"}>
                 <SearchForm
-                  placeholder="Search by keyword or topic"
+                  placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {
                     setSearchTerm(value);

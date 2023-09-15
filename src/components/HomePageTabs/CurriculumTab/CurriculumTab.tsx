@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Box from "../../Box";
+import Box from "../../Box/Box";
 
 import Badge from "@/components/Badge/";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
