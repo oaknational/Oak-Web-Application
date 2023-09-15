@@ -33,7 +33,6 @@ import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/Posts/PostList";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
-import OldBetaHomeTab from "@/components/HomePageTabs/OldBetaHomeTab/OldBetaHomeTab";
 import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
 import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
 import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
@@ -61,7 +60,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       )}
       {current === "curriculum" && <CurriculumTab />}
       {current === "pupils" && <PupilTab />}
-      <OldBetaHomeTab curriculumData={curriculumData} />
       <MaxWidth $mv={[24, 56]}>
         <Box $ph={[16, 24]} $height={"100%"}>
           <Flex
