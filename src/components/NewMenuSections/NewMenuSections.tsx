@@ -8,7 +8,7 @@ import NewMenuLink from "./NewMenuLink";
 import { BetaMenuSections } from "./types";
 
 /**
- * New menu secionts to be used in the hamburger menu for the beta site
+ * New menu sections to be used in the hamburger menu for the beta site
  */
 
 export type NewMenuSectionsProps = {

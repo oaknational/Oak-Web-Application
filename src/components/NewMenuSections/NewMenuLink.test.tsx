@@ -6,10 +6,10 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 const link = {
-  resolveOakHrefProps: {
+  linkTo: {
     page: "home",
     viewType: "teachers-2023",
-  } as ResolveOakHrefProps, // TODO: why won't this accept the type
+  } as ResolveOakHrefProps,
   text: "Home",
   new: true,
   external: true,
