@@ -138,7 +138,7 @@ export const betaMenuSections: BetaMenuSections = [
         linkTo: { href: "https://support.thenational.academy/" },
         text: "Help",
         new: false,
-        external: false,
+        external: true,
       },
     ],
   },
