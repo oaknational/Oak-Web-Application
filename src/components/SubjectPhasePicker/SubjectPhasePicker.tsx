@@ -305,7 +305,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
    *
    * ? - QUESTIONS
    * ? Custom hook required for state management?
-   * ?
    */
 
   return (
@@ -314,7 +313,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       data-testid="subjectPhasePicker"
       $zIndex={"mobileFilters"}
       $background={
-        showPhases
+        selectedPhase && selectedSubject
+          ? "white"
+          : showPhases
           ? "white"
           : selectedPhase
           ? "grey1"
@@ -327,10 +328,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       <BoxBorders
         gapPosition="rightTop"
         $zIndex={"inFront"}
-        hideRight={hideBorder}
-        hideBottom={hideBorder}
-        hideLeft={hideBorder}
-        hideTop={hideBorder}
+        hideRight={selectedSubject && selectedPhase ? false : hideBorder}
+        hideBottom={selectedSubject && selectedPhase ? false : hideBorder}
+        hideLeft={selectedSubject && selectedPhase ? false : hideBorder}
+        hideTop={selectedSubject && selectedPhase ? false : hideBorder}
       />
       <Flex
         $position="relative"
@@ -352,7 +353,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $borderColor={showSubjects ? "lemon" : "transparent"}
             $ba={3}
             $background={
-              showSubjects
+              selectedSubject && selectedPhase
+                ? "white"
+                : showSubjects
                 ? "white"
                 : selectedSubject
                 ? "grey1"
@@ -481,7 +484,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $height={80}
             $position={"relative"}
             $display={
-              showPhases || showSubjects || selectedPhase || selectedSubject
+              selectedSubject && selectedPhase
+                ? "block"
+                : showPhases || showSubjects || selectedPhase || selectedSubject
                 ? "none"
                 : "block"
             }
@@ -502,7 +507,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $ba={3}
             // $zIndex={"inFront"}
             $background={
-              showPhases
+              selectedSubject && selectedPhase
+                ? "white"
+                : showPhases
                 ? "white"
                 : selectedPhase
                 ? "grey1"
@@ -668,6 +675,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             hideLeft={true}
           />
         </Box>
+
         <Box
           $pl={18}
           $pr={18}
