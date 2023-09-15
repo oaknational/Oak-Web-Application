@@ -71,7 +71,7 @@ export const betaMenuSections: BetaMenuSections = [
         external: true,
       },
       {
-        linkTo: { page: "home", viewType: "teachers-2023" },
+        linkTo: { page: "curriculum-landing-page", viewType: "teachers-2023" },
         text: "Curriculum plans",
         new: false,
         external: false,
