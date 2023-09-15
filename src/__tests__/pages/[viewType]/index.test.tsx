@@ -130,7 +130,11 @@ describe("pages/beta/[viewType]/index.tsx", () => {
         mockPost,
         mockPost2,
       ]);
-      const result = (await getStaticProps({})) as { props: HomePageProps };
+      const result = (await getStaticProps({
+        params: {
+          viewType: "teachers",
+        },
+      })) as { props: HomePageProps };
 
       expect(result.props?.posts).toHaveLength(4);
     });
@@ -141,7 +145,11 @@ describe("pages/beta/[viewType]/index.tsx", () => {
         { ...mockPost, id: "3", date: new Date("2021-01-01") },
         { ...mockPost, id: "1", date: new Date("2023-01-01") },
       ]);
-      const result = (await getStaticProps({})) as { props: HomePageProps };
+      const result = (await getStaticProps({
+        params: {
+          viewType: "teachers",
+        },
+      })) as { props: HomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id);
       expect(postIds).toEqual(["1", "2", "3"]);
@@ -153,7 +161,11 @@ describe("pages/beta/[viewType]/index.tsx", () => {
         { ...mockPost3, id: "3", date: new Date("2021-01-01") },
         { ...mockPost3, id: "1", date: new Date("4023-01-01") },
       ]);
-      const result = (await getStaticProps({})) as { props: HomePageProps };
+      const result = (await getStaticProps({
+        params: {
+          viewType: "teachers",
+        },
+      })) as { props: HomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id as string);
       expect(postIds).toEqual(["2", "3"]);
@@ -161,7 +173,11 @@ describe("pages/beta/[viewType]/index.tsx", () => {
 
     it("Should not fetch draft content by default", async () => {
       mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
-      await getStaticProps({});
+      await getStaticProps({
+        params: {
+          viewType: "teachers",
+        },
+      });
 
       expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
         expect.objectContaining({
