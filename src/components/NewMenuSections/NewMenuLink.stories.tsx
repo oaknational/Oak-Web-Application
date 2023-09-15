@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const NewMenuLink = Template.bind({});
 NewMenuLink.args = {
   link: {
-    resolveOakHrefProps: { page: "home", viewType: "teachers-2023" },
+    linkTo: { page: "home", viewType: "teachers-2023" },
     text: "Home",
     new: true,
     external: false,

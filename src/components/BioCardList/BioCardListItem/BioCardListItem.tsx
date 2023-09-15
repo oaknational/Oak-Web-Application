@@ -51,7 +51,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
         <SocialButtons
           for={name}
           linkedIn={socials?.linkedinUrl}
-          twitter={socials?.twitterUsername}
+          x={socials?.twitterUsername}
           $display={["none", "flex"]}
         />
         {onClick && (

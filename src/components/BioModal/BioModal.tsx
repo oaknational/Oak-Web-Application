@@ -185,7 +185,7 @@ const BioModal: FC<BioModalProps> = (props) => {
           >
             <SocialButtons
               for={name}
-              twitter={socials?.twitterUsername}
+              x={socials?.twitterUsername}
               linkedIn={socials?.linkedinUrl}
               $position={["absolute", "relative"]}
               $left={[0]}
