@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -166,8 +166,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     ) {
       setSelectedPhase(null);
     }
+    if (selectedPhase) {
+      viewButtonRef.current?.focus();
+    } else {
+      setShowPhases(true);
+    }
     setShowSubjects(false);
-    setShowPhases(true);
   };
 
   const handleSelectPhase = (phase: Phase): void => {
@@ -175,6 +179,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowExamboardError(false);
     setSelectedExamboard(null);
     setSelectedPhase(phase);
+    viewButtonRef.current?.focus();
     if (
       phase.slug === "primary" ||
       !selectedSubject ||
@@ -214,6 +219,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowPhases(true);
     }
     if (canViewCurriculum) {
+      viewButtonRef.current?.blur();
       let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
       if (selectedExamboard) {
         subjectPhaseSlug += "-" + selectedExamboard.slug;
@@ -252,11 +258,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
    * TODO: Refactor to break down into smaller components
    */
 
+  const viewButtonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (selectedSubject && selectedPhase) {
       setDisplayNewBorders(false);
       setPhaseBackground("white");
       setSubjectBackground("white");
+      viewButtonRef.current?.focus();
     }
     if (!showPhases && !showSubjects && !selectedSubject && !selectedPhase) {
       setDisplayNewBorders(false);
@@ -624,6 +633,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             onClick={handleViewCurriculum}
             size="large"
             $fullWidth={true}
+            ref={viewButtonRef}
           />
         </Box>
         <Box
@@ -642,6 +652,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             onClick={handleViewCurriculum}
             size="large"
             $fullWidth={false}
+            ref={viewButtonRef}
           />
         </Box>
       </Flex>
