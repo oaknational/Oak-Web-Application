@@ -48,7 +48,7 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
     icon: "facebook",
   },
   twitter: {
-    label: "twitter",
+    label: "x",
     icon: "twitter",
   },
   linkedIn: {
