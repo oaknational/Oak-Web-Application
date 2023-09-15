@@ -82,9 +82,11 @@ type SearchFormProps = {
   searchTerm: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
+  placeholder?: string;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm, analyticsSearchSource } = props;
+  const { handleSubmit, searchTerm, analyticsSearchSource, placeholder } =
+    props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
@@ -149,7 +151,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
             value={value}
             type="search"
             onChange={onChange}
-            placeholder="Search"
+            placeholder={placeholder ? placeholder : "Search"}
           />
           <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           <ButtonBorders background={"white"} />

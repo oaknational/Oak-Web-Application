@@ -1,13 +1,12 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./TeachersTab";
+import Component from "./ResourceSelectorCard";
 
-import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {
-  title: "HomePage/TeachersTab",
+  title: "HomePage/ResourceSelector",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
@@ -15,7 +14,13 @@ export default {
 
 const Template: ComponentStory<typeof Component> = (args) => (
   //   <div style={{ background: "lightGrey", padding: "100px" }}>
-  <Component {...args} keyStages={keyStageKeypad.keyStages} />
+  <Component
+    {...args}
+    icon={"worksheet"}
+    title="Worksheets"
+    angle={2}
+    $top={96}
+  />
   //   </div>
 );
 
