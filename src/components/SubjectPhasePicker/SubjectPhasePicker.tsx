@@ -141,9 +141,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
   const [showExamboardError, setShowExamboardError] = useState(false);
-  const [showSubjectBackground, setShowSubjectBackground] =
-    useState<OakColorName>("white");
-  const [showPhaseBackground, setShowPhaseBackground] =
+  const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
+  const [phaseBackground, setPhaseBackground] = useState<OakColorName>("white");
+  const [subjectBackground, setSubjectBackground] =
     useState<OakColorName>("white");
 
   const toggleShowSubjects = () => {
@@ -247,91 +247,49 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
-  const hideBorder =
-    showPhases ||
-    showSubjects ||
-    selectedPhase !== null ||
-    selectedSubject !== null;
-
-  useEffect(() => {
-    if (showSubjects) {
-      setShowSubjectBackground("white");
-      setShowPhaseBackground("grey1");
-    } else if (selectedSubject) {
-      setShowSubjectBackground("grey1");
-    } else if (showPhases) {
-      setShowSubjectBackground("white");
-    }
-
-    if (showPhases) {
-      setShowPhaseBackground("white");
-    } else if (selectedPhase) {
-      setShowPhaseBackground("grey1");
-    }
-    if (!selectedSubject && !selectedPhase) {
-      setShowSubjectBackground("white");
-      setShowPhaseBackground("white");
-    }
-
-    // showPhases
-    //   ? "white"
-    //   : selectedPhase
-    //   ? "grey1"
-    //   : showSubjects
-    //   ? "grey1"
-    //   : "white"
-
-    // showSubjects
-    //   ? "white"
-    //   : selectedSubject
-    //   ? "grey1"
-    //   : !showPhases
-    //   ? "white"
-    //   : "grey1";
-  }, [
-    selectedSubject,
-    showPhases,
-    showSubjects,
-    showSubjectBackground,
-    selectedPhase,
-    showPhaseBackground,
-  ]);
-
   /**
    * ! - TODO LIST
    * TODO: Refactor to break down into smaller components
-   * TODO: Use state for changing the background colour of the buttons
-   * TODO: Refactor view button on desktop/tablet view
-   *
-   * ? - QUESTIONS
-   * ? Custom hook required for state management?
    */
+
+  useEffect(() => {
+    if (selectedSubject && selectedPhase) {
+      setDisplayNewBorders(false);
+      setPhaseBackground("white");
+      setSubjectBackground("white");
+    }
+    if (!showPhases && !showSubjects && !selectedSubject && !selectedPhase) {
+      setDisplayNewBorders(false);
+      setPhaseBackground("white");
+      setSubjectBackground("white");
+    }
+    if (showSubjects) {
+      setDisplayNewBorders(true);
+      setPhaseBackground("grey1");
+      setSubjectBackground("white");
+    }
+    if (showPhases) {
+      setDisplayNewBorders(true);
+      setPhaseBackground("white");
+      setSubjectBackground("grey1");
+    }
+  }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
 
   return (
     <Box
       $position="relative"
       data-testid="subjectPhasePicker"
       $zIndex={"mobileFilters"}
-      $background={
-        selectedPhase && selectedSubject
-          ? "white"
-          : showPhases
-          ? "white"
-          : selectedPhase
-          ? "grey1"
-          : showSubjects
-          ? "grey1"
-          : "white"
-      }
+      $background={phaseBackground}
       $maxWidth={960}
     >
       <BoxBorders
         gapPosition="rightTop"
         $zIndex={"inFront"}
-        hideRight={selectedSubject && selectedPhase ? false : hideBorder}
-        hideBottom={selectedSubject && selectedPhase ? false : hideBorder}
-        hideLeft={selectedSubject && selectedPhase ? false : hideBorder}
-        hideTop={selectedSubject && selectedPhase ? false : hideBorder}
+        hideRight={displayNewBorders}
+        hideBottom={displayNewBorders}
+        hideLeft={displayNewBorders}
+        hideTop={displayNewBorders}
       />
       <Flex
         $position="relative"
@@ -352,17 +310,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $width={"50%"}
             $borderColor={showSubjects ? "lemon" : "transparent"}
             $ba={3}
-            $background={
-              selectedSubject && selectedPhase
-                ? "white"
-                : showSubjects
-                ? "white"
-                : selectedSubject
-                ? "grey1"
-                : !showPhases
-                ? "white"
-                : "grey1"
-            }
+            $background={subjectBackground}
             // $zIndex={"modalCloseButton"}
           >
             <BoxBorders
@@ -483,13 +431,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           <Box
             $height={80}
             $position={"relative"}
-            $display={
-              selectedSubject && selectedPhase
-                ? "block"
-                : showPhases || showSubjects || selectedPhase || selectedSubject
-                ? "none"
-                : "block"
-            }
+            $display={displayNewBorders ? "none" : "block"}
             $zIndex={"inFront"}
           >
             <BoxBorders
@@ -506,17 +448,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $borderColor={showPhases ? "lemon" : "transparent"}
             $ba={3}
             // $zIndex={"inFront"}
-            $background={
-              selectedSubject && selectedPhase
-                ? "white"
-                : showPhases
-                ? "white"
-                : selectedPhase
-                ? "grey1"
-                : showSubjects
-                ? "grey1"
-                : "white"
-            }
+            $background={phaseBackground}
           >
             <BoxBorders
               $color={showPhases ? "black" : "transparent"}
