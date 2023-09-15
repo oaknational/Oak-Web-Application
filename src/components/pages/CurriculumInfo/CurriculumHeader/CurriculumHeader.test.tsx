@@ -3,7 +3,7 @@ import CurriculumHeader from "./CurriculumHeader";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
-import { parseSubjectPhaseSlug } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { parseSubjectPhaseSlug } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 describe("Component - Curriculum Header", () => {
   const renderComponent = (overrides = {}) => {
