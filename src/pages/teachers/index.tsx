@@ -1,9 +1,4 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import {
   HomePageProps,
@@ -25,14 +20,9 @@ import SearchForm from "@/components/SearchForm";
 import UnderlinedHeading from "@/components/Typography/UnderlinedHeading";
 import useSearch from "@/context/Search/useSearch";
 import CMSClient from "@/node-lib/cms";
-import curriculumApi, { TeachersHomePageData } from "@/node-lib/curriculum-api";
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
+import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/Posts/PostList";
@@ -105,7 +95,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                 <Span>
                   <OakLink
                     page={"search"}
-                    viewType="teachers"
                     query={{ term: "algebra" }}
                     $color={"black"}
                     $font="heading-7"
@@ -115,7 +104,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
                   </OakLink>
                   <OakLink
                     page={"search"}
-                    viewType="teachers"
                     query={{ term: "computing" }}
                     $color={"black"}
                     $font="heading-7"
@@ -126,7 +114,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
                   <OakLink
                     page={"search"}
-                    viewType="teachers"
                     query={{ term: "a midsummer nights dream" }}
                     $font="heading-7"
                     onClick={() =>
@@ -194,22 +181,6 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   );
 };
 
-type URLParams = {
-  viewType: ViewType;
-};
-
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
-
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
 ) => {
@@ -218,10 +189,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     context,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.teachersHomePage()
-          : await curriculumApi.teachersHomePage();
+      const curriculumData = await curriculumApi2023.teachersHomePage();
 
       const teachersHomepageData = await CMSClient.homepage({
         previewMode: isPreviewMode,

@@ -18,15 +18,14 @@ import {
 } from "@/node-lib/isr";
 import curriculumApi from "@/node-lib/curriculum-api";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
-import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/HeaderListing";
+import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
-  viewType: ViewType;
 };
 
 /**
@@ -47,7 +46,6 @@ function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
   curriculumData,
-  viewType,
 }) => {
   const {
     unitSlug,
@@ -84,14 +82,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {
             oakLinkProps: {
               page: "home",
-              viewType: "teachers",
             },
             label: "Home",
           },
           {
             oakLinkProps: {
               page: "subject-index",
-              viewType: "teachers",
               keyStageSlug,
             },
             label: keyStageTitle,
@@ -99,7 +95,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {
             oakLinkProps: {
               page: "unit-index",
-              viewType: "teachers",
               programmeSlug,
             },
             label: subjectTitle,
@@ -108,7 +103,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {
             oakLinkProps: {
               page: "lesson-index",
-              viewType: "teachers",
               unitSlug,
               programmeSlug: programmeSlug,
             },
@@ -121,7 +115,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={viewType === "teachers-2023"}
+        isNew={!isProgrammeSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -145,7 +139,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 export type URLParams = {
   programmeSlug: string;
   unitSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -176,21 +169,19 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.lessonListing({
-              programmeSlug,
-              unitSlug,
-            })
-          : await curriculumApi.lessonListing({
-              programmeSlug,
-              unitSlug,
-            });
+      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+        ? await curriculumApi.lessonListing({
+            programmeSlug,
+            unitSlug,
+          })
+        : await curriculumApi2023.lessonListing({
+            programmeSlug,
+            unitSlug,
+          });
 
       const results: GetStaticPropsResult<LessonListingPageProps> = {
         props: {
           curriculumData,
-          viewType: context?.params?.viewType,
         },
       };
       return results;

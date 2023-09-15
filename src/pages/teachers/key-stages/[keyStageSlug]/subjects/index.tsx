@@ -10,7 +10,6 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import Box from "@//components/Box";
-import { ViewType } from "@/common-lib/urls";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
@@ -70,7 +69,6 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
 
 type URLParams = {
   keyStageSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -101,12 +99,9 @@ export const getStaticProps: GetStaticProps<
         keyStageSlug: context.params?.keyStageSlug,
       });
 
-      const curriculumData2023 =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.subjectListingPage({
-              keyStageSlug: context.params?.keyStageSlug,
-            })
-          : null;
+      const curriculumData2023 = await curriculumApi2023.subjectListingPage({
+        keyStageSlug: context.params?.keyStageSlug,
+      });
 
       if (!curriculumData && !curriculumData2023) {
         return {
@@ -131,13 +126,11 @@ export const getStaticProps: GetStaticProps<
               curriculumData.subjects.find(
                 (subject) => subject.subjectSlug === subjectSlug,
               ) || null,
-            // Temporarily disable new curriculum (was being leaked to public)
+
             new:
-              context?.params?.viewType === "teachers-2023"
-                ? curriculumData2023?.subjects.find(
-                    (subject) => subject.subjectSlug === subjectSlug,
-                  ) || null
-                : null,
+              curriculumData2023?.subjects.find(
+                (subject) => subject.subjectSlug === subjectSlug,
+              ) || null,
           };
         })
         // Filter out subjects that don't exist in either curriculum

@@ -6,8 +6,8 @@ import CurriculumInfoPage, {
   parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
-} from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
-import { fetchSubjectPhasePickerData } from "@/pages/[viewType]/curriculum";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -31,11 +31,11 @@ const mockedFetchSubjectPhasePickerData =
     typeof fetchSubjectPhasePickerData
   >;
 
-jest.mock("@/pages/[viewType]/curriculum/index", () => ({
+jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 
-describe("pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
+describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {
       const slug = "english-secondary-aqa";
@@ -131,7 +131,6 @@ describe("pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]", () => {
         params: {
           tab: "overview",
           subjectPhaseSlug: "english-secondary-aqa",
-          viewType: "teachers-2023",
         },
       });
       expect(props).toEqual({

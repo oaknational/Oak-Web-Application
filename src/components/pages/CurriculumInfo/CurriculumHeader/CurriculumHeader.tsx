@@ -14,7 +14,7 @@ import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,
   CurriculumTab,
-} from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -69,21 +69,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               {
                 oakLinkProps: {
                   page: "home",
-                  viewType: "teachers",
                 },
                 label: "Home",
               },
               {
                 oakLinkProps: {
                   page: "curriculum-landing-page",
-                  viewType: "teachers",
                 },
                 label: "Curriculum resources",
               },
               {
                 oakLinkProps: {
                   page: "curriculum-overview",
-                  viewType: "teachers",
                   subjectPhaseSlug: subjectPhaseSlug,
                 },
                 label: pageTitle,
@@ -132,7 +129,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             {
               label: "Overview",
               page: "curriculum-overview",
-              viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab === "overview",
               currentStyles: ["underline"],
@@ -140,7 +136,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             {
               label: "Unit sequence",
               page: "curriculum-units",
-              viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab === "units",
               currentStyles: ["underline"],

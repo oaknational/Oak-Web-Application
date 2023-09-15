@@ -15,13 +15,12 @@ import LessonDownloadsPage, {
   getStaticProps,
   LessonDownloadsPageProps,
   URLParams,
-} from "@/pages/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
-  viewType: "teachers",
 };
 
 const getDownloadResourcesExistenceData = {
@@ -362,7 +361,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("renders post-ALB copyright notice on teachers-2023 view type", async () => {
-      render(<LessonDownloadsPage {...props} viewType="teachers-2023" />);
+      render(<LessonDownloadsPage {...props} />);
 
       const copyrightNotice = await screen.findByText(
         "This content is © Oak National Academy (2023), licensed on",
@@ -411,7 +410,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
           lessonSlug: "macbeth-lesson-1",
           programmeSlug: "math-higher-ks4",
           unitSlug: "shakespeare",
-          viewType: "teachers",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {

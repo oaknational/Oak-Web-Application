@@ -11,7 +11,6 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import Box from "../Box";
 
 import { OakColorName } from "@/styles/theme";
-import { ViewType } from "@/common-lib/urls";
 
 export type EarlyReleaseExemplarUnitsProps = {
   quote: {
@@ -24,7 +23,6 @@ export type EarlyReleaseExemplarUnitsProps = {
   units: UnitListItemProps[];
   heading: string;
   subHeading: string;
-  viewType: ViewType;
   subjectIconBackground?: OakColorName;
 };
 
@@ -34,7 +32,6 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
   units,
   heading,
   subHeading,
-  viewType,
   subjectIconBackground,
 }) => {
   return (
@@ -127,7 +124,6 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
             >
               <ButtonAsLink
                 variant={"minimal"}
-                viewType={viewType}
                 page={"curriculum-landing-page"}
                 label={"View new curriculum plans"}
                 icon={"arrow-right"}

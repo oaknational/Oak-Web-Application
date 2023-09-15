@@ -31,17 +31,13 @@ describe("downloadLessonResources", () => {
 
   it("should return when no resource types are passed", async () => {
     console.log = jest.fn();
-    await downloadLessonResources("lesson-slug", [], "teachers");
+    await downloadLessonResources("lesson-slug", [], true);
 
     expect(console.log).toHaveBeenCalledWith("no resources to download");
   });
 
   it("should call createDownloadResourcesLink with correct parameters", async () => {
-    await downloadLessonResources(
-      "lesson-slug",
-      resourcesToDownload,
-      "teachers",
-    );
+    await downloadLessonResources("lesson-slug", resourcesToDownload, true);
 
     expect(createDownloadResourcesLink).toHaveBeenCalledWith(
       "lesson-slug",

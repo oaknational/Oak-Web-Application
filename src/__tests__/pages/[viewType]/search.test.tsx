@@ -1,4 +1,4 @@
-import SearchPage from "@/pages/[viewType]/search";
+import SearchPage from "@/pages/teachers/search";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";

@@ -1,9 +1,4 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout";
@@ -12,12 +7,7 @@ import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import { Heading, UL, LI, P, Hr } from "@/components/Typography";
 import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import {
-  decorateWithIsr,
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
-import { ViewType } from "@/common-lib/urls";
+import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
@@ -53,13 +43,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Breadcrumbs
               breadcrumbs={[
                 {
-                  oakLinkProps: { page: "home", viewType: "teachers-2023" },
+                  oakLinkProps: { page: "home" },
                   label: "Home",
                 },
                 {
                   oakLinkProps: {
                     page: "curriculum-landing-page",
-                    viewType: "teachers-2023",
                   },
                   label: "Curriculum resources",
                 },
@@ -182,22 +171,6 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
       </Flex>
     </AppLayout>
   );
-};
-
-export type URLParams = {
-  viewType: ViewType;
-};
-
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
 };
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =

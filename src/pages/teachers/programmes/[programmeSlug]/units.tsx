@@ -27,20 +27,18 @@ import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/Typography";
 import TabularNav from "@/components/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
-import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
+import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
-  viewType: ViewType;
 };
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
-  viewType,
 }) => {
   const {
     programmeSlug,
@@ -106,13 +104,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home", viewType: "teachers" },
+            oakLinkProps: { page: "home" },
             label: "Home",
           },
           {
             oakLinkProps: {
               page: "subject-index",
-              viewType: "teachers",
+
               keyStageSlug,
             },
             label: keyStageTitle,
@@ -120,7 +118,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {
             oakLinkProps: {
               page: "unit-index",
-              viewType: "teachers",
+
               programmeSlug,
             },
             label: subjectTitle,
@@ -131,7 +129,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
-        isNew={viewType === "teachers-2023"}
+        isNew={!isProgrammeSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -161,7 +159,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "unit-index",
-                      viewType: "teachers",
                       programmeSlug,
                     }}
                     trackingProps={{
@@ -203,7 +200,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       selectedThemeSlug={themeSlug ? themeSlug : "all"}
                       linkProps={{
                         page: "unit-index",
-                        viewType: "teachers",
                         programmeSlug,
                       }}
                       trackingProps={{
@@ -231,7 +227,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         label: title,
                         programmeSlug: tierProgrammeSlug,
                         page: "unit-index",
-                        viewType: "teachers",
                         isCurrent: tierSlug === slug,
                         currentStyles: ["color", "text-underline"],
                       }),
@@ -254,7 +249,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
 export type URLParams = {
   programmeSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -282,14 +276,13 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.unitListing({
-              programmeSlug,
-            })
-          : await curriculumApi.unitListing({
-              programmeSlug,
-            });
+      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+        ? await curriculumApi.unitListing({
+            programmeSlug,
+          })
+        : await curriculumApi2023.unitListing({
+            programmeSlug,
+          });
 
       if (!curriculumData) {
         return {
@@ -300,7 +293,6 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           curriculumData,
-          viewType: context?.params?.viewType,
         },
       };
 

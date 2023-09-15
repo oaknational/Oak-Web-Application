@@ -56,7 +56,6 @@ const CountCard: FC<CountCardProps> = ({
         programmeSlug={programmeSlug}
         keyStageSlug={keyStageSlug}
         subjectSlug={subjectSlug}
-        viewType={isNew ? "teachers-2023" : "teachers"}
         $hideDefaultFocus
         onClick={() => {
           track.subjectSelected({

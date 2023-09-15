@@ -9,7 +9,7 @@ import LessonOverviewPage, {
   getStaticProps,
   LessonOverviewPageProps,
   URLParams,
-} from "@/pages/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -85,7 +85,6 @@ describe("pages/teachers/lessons", () => {
           lessonSlug: "macbeth-lesson-1",
           programmeSlug: "english-primary-ks2",
           unitSlug: "shakespeare",
-          viewType: "teachers",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {

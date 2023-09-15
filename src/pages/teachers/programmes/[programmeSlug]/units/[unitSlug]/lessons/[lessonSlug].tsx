@@ -29,12 +29,12 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
+import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -53,14 +53,12 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "home",
-        viewType: "teachers",
       },
       label: "Home",
     },
     {
       oakLinkProps: {
         page: "subject-index",
-        viewType: "teachers",
         keyStageSlug,
       },
       label: keyStageTitle,
@@ -68,7 +66,6 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "unit-index",
-        viewType: "teachers",
         programmeSlug,
       },
       label: subjectTitle,
@@ -76,7 +73,6 @@ export const lessonBreadcrumbArray = (
     {
       oakLinkProps: {
         page: "lesson-index",
-        viewType: "teachers",
         programmeSlug,
         unitSlug,
       },
@@ -196,7 +192,6 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           {
             oakLinkProps: {
               page: "lesson-overview",
-              viewType: "teachers",
               programmeSlug,
               unitSlug,
               lessonSlug,
@@ -382,7 +377,6 @@ export type URLParams = {
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -410,18 +404,17 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData =
-        context?.params.viewType === "teachers-2023"
-          ? await curriculumApi2023.lessonOverview({
-              programmeSlug,
-              lessonSlug,
-              unitSlug,
-            })
-          : await curriculumApi.lessonOverview({
-              programmeSlug,
-              lessonSlug,
-              unitSlug,
-            });
+      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+        ? await curriculumApi.lessonOverview({
+            programmeSlug,
+            lessonSlug,
+            unitSlug,
+          })
+        : await curriculumApi2023.lessonOverview({
+            programmeSlug,
+            lessonSlug,
+            unitSlug,
+          });
 
       if (!curriculumData) {
         return {

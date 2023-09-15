@@ -30,7 +30,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $alignItems={"center"}
       >
         <Flex $justifyContent={"center"} $alignItems={"center"}>
-          <OakLink page={"home"} viewType={"teachers"}>
+          <OakLink page={"home"}>
             <Logo height={48} width={104} />
           </OakLink>
           <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>

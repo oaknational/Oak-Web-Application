@@ -3,7 +3,7 @@ import { MenuSections } from "../../components/MenuLinks/types";
 export const menuSections: MenuSections = {
   large: [
     {
-      resolveOakHrefProps: { page: "home", viewType: null },
+      resolveOakHrefProps: { page: "home" },
       linkText: "Home",
     },
     {

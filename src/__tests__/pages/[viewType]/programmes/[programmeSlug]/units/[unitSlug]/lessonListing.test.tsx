@@ -5,7 +5,7 @@ import LessonListPage, {
   getStaticProps,
   LessonListingPageProps,
   URLParams,
-} from "@/pages/[viewType]/programmes/[programmeSlug]/units/[unitSlug]/lessons";
+} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -19,10 +19,7 @@ jest.mock("@/utils/resultsPerPage", () => ({
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(
-      <LessonListPage
-        viewType={"teachers"}
-        curriculumData={lessonListingFixture()}
-      />,
+      <LessonListPage curriculumData={lessonListingFixture()} />,
     );
 
     const pageHeading = getByRole("heading", { level: 1 });
@@ -32,10 +29,7 @@ describe("Lesson listing page", () => {
 
   test("it renders the correct number of lessons", () => {
     const { getByText } = render(
-      <LessonListPage
-        viewType={"teachers"}
-        curriculumData={lessonListingFixture()}
-      />,
+      <LessonListPage curriculumData={lessonListingFixture()} />,
     );
 
     const lessonCount = getByText("Lessons (3)");
@@ -45,10 +39,7 @@ describe("Lesson listing page", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <LessonListPage
-          viewType={"teachers"}
-          curriculumData={lessonListingFixture()}
-        />,
+        <LessonListPage curriculumData={lessonListingFixture()} />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -65,10 +56,7 @@ describe("Lesson listing page", () => {
     it("renders the correct SEO details with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
-        <LessonListPage
-          viewType={"teachers"}
-          curriculumData={lessonListingFixture()}
-        />,
+        <LessonListPage curriculumData={lessonListingFixture()} />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -91,7 +79,6 @@ describe("Lesson listing page", () => {
         params: {
           programmeSlug: "maths-secondary-ks4-higher",
           unitSlug: "adding-surds-a57d",
-          viewType: "teachers",
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {

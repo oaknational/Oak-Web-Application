@@ -23,9 +23,8 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import { fetchSubjectPhasePickerData } from "@/pages/[viewType]/curriculum/index";
+import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
-import { ViewType } from "@/common-lib/urls";
 import OakError from "@/errors/OakError";
 
 export type CurriculumSelectionSlugs = {
@@ -85,7 +84,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 
 export type URLParams = {
   tab: "units" | "overview";
-  viewType: ViewType;
   subjectPhaseSlug: string;
 };
 

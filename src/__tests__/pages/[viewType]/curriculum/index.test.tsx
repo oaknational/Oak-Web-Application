@@ -1,11 +1,10 @@
 import { screen } from "@testing-library/react";
 
 import CurriculumHomePage, {
-  getStaticPaths,
   CurriculumHomePageProps,
   fetchCurriculumPageBlogs,
   Client,
-} from "@/pages/[viewType]/curriculum";
+} from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SubjectPhasePicker/SubjectPhasePicker";
@@ -126,13 +125,6 @@ describe("pages/curriculum/index", () => {
           fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client),
         ).rejects.toThrow("Missing blog post");
       });
-    });
-  });
-
-  describe("getStaticPaths", () => {
-    it("Shouldn't return any paths when shouldSkipInitialBuild is true", async () => {
-      const paths = await getStaticPaths();
-      expect(paths).toEqual({ fallback: "blocking", paths: [] });
     });
   });
 });

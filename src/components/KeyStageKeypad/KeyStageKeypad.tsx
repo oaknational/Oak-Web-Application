@@ -33,7 +33,6 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       $display={"flex"}
       keyStageSlug={slug}
       page={"subject-index"}
-      viewType="teachers"
       $isSelected={isCurrent}
       aria-label={title}
       onClick={() => {

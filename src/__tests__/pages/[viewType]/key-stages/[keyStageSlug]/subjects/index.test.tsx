@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import SubjectListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "@/pages/[viewType]/key-stages/[keyStageSlug]/subjects";
+} from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -28,7 +28,6 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<SubjectListingPage {...props} />);
-
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -48,7 +47,6 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
       const res = await getStaticPaths();
-
       expect(res).toEqual({
         fallback: "blocking",
         paths: [],
@@ -61,7 +59,6 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
-          viewType: "teachers",
         },
       });
 
@@ -76,7 +73,6 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       await getStaticProps({
         params: {
           keyStageSlug: "ks123",
-          viewType: "teachers-2023",
         },
       });
 

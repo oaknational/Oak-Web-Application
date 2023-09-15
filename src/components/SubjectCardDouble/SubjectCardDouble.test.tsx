@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Subjects } from "../../pages/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SubjectCardDouble from "./SubjectCardDouble";

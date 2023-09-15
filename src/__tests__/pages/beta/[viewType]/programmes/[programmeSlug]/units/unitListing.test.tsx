@@ -4,7 +4,7 @@ import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks_
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/[viewType]/programmes/[programmeSlug]/units";
+} from "../../../../../../../pages/teachers/programmes/[programmeSlug]/units";
 import { mockSeoResult } from "../../../../../../__helpers__/cms";
 import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
@@ -27,10 +27,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders title from props ", () => {
     const { getByRole } = render(
-      <UnitListingPage
-        viewType={"teachers"}
-        curriculumData={unitListingFixture()}
-      />,
+      <UnitListingPage curriculumData={unitListingFixture()} />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -38,20 +35,14 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("renders nav for tiers for programme that included tiers", () => {
     const { getByTestId } = render(
-      <UnitListingPage
-        viewType={"teachers"}
-        curriculumData={unitListingWithTiersFixture()}
-      />,
+      <UnitListingPage curriculumData={unitListingWithTiersFixture()} />,
     );
 
     expect(getByTestId("tiers-nav")).toBeInTheDocument();
   });
   it("title card render correct title", () => {
     const { getByRole } = render(
-      <UnitListingPage
-        viewType={"teachers"}
-        curriculumData={unitListingFixture()}
-      />,
+      <UnitListingPage curriculumData={unitListingFixture()} />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -59,7 +50,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   it("title card renderd correct title when examboard is present", () => {
     const { getByRole } = render(
       <UnitListingPage
-        viewType={"teachers"}
         curriculumData={{
           ...unitListingFixture(),
           examBoardTitle: "OCR",
@@ -75,10 +65,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   describe("SEO", () => {
     it("renders the correct SEO details for tiered programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage
-          viewType={"teachers"}
-          curriculumData={unitListingWithTiersFixture()}
-        />,
+        <UnitListingPage curriculumData={unitListingWithTiersFixture()} />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -94,10 +81,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     });
     it("renders the correct SEO details for non tiered programme", async () => {
       const { seo } = renderWithSeo()(
-        <UnitListingPage
-          viewType={"teachers"}
-          curriculumData={unitListingFixture()}
-        />,
+        <UnitListingPage curriculumData={unitListingFixture()} />,
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -118,7 +102,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       utilsMock.RESULTS_PER_PAGE = 10;
       const { seo } = renderWithSeo()(
         <UnitListingPage
-          viewType={"teachers"}
           curriculumData={{
             ...unitListingFixture(),
           }}
@@ -148,10 +131,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       },
     });
     const { getByRole } = render(
-      <UnitListingPage
-        viewType={"teachers"}
-        curriculumData={unitListingFixture()}
-      />,
+      <UnitListingPage curriculumData={unitListingFixture()} />,
     );
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
@@ -173,7 +153,6 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       await getStaticProps({
         params: {
           programmeSlug: "art-primary-ks1",
-          viewType: "teachers",
         },
       });
 

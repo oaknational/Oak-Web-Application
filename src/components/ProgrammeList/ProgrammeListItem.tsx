@@ -52,7 +52,6 @@ const ProgrammeListItem: FC<
         <OakLink
           {...primaryTargetProps}
           page={"unit-index"}
-          viewType="teachers"
           programmeSlug={programmeSlug}
           onClick={() => {
             tierTitle !== null &&

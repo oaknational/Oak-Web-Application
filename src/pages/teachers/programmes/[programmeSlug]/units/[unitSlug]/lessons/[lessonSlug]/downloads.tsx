@@ -53,19 +53,17 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
+import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
-  viewType: ViewType;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
-  viewType,
 }) => {
   const {
     lessonTitle,
@@ -83,6 +81,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const isLegacyDownload = isProgrammeSlugLegacy(programmeSlug);
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -205,7 +204,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const { onSubmit } = useDownloadForm({ viewType: viewType });
+  const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     await debouncedSubmit({
@@ -256,7 +255,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
-    viewType,
+    isLegacyDownload,
   });
 
   const handleEditDetailsCompletedClick = () => {
@@ -264,7 +263,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setLocalStorageDetails(false);
   };
 
-  const showPostAlbCopyright = viewType === "teachers-2023";
+  const showPostAlbCopyright = !isProgrammeSlugLegacy(programmeSlug);
 
   return (
     <AppLayout
@@ -291,7 +290,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-overview",
-                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   lessonSlug,
@@ -301,7 +299,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
               {
                 oakLinkProps: {
                   page: "lesson-downloads",
-                  viewType: "teachers",
                   programmeSlug,
                   unitSlug,
                   lessonSlug,
@@ -464,7 +461,6 @@ export type URLParams = {
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -492,18 +488,17 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.lessonDownloads({
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-            })
-          : await curriculumApi.lessonDownloads({
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-            });
+      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+        ? await curriculumApi.lessonDownloads({
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          })
+        : await curriculumApi2023.lessonDownloads({
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          });
 
       if (!curriculumData) {
         return {
@@ -514,7 +509,6 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
         props: {
           curriculumData,
-          viewType: context?.params?.viewType,
         },
       };
       return results;

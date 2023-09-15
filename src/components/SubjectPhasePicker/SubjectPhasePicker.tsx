@@ -21,7 +21,7 @@ import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
 import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
-import { CurriculumTab } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import TagPromotional from "@/components/TagPromotional";
 
 /**

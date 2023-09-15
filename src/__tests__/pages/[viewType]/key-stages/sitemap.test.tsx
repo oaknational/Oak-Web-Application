@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 
-import { getServerSideProps } from "@/pages/[viewType]/key-stages/sitemap.xml";
+import { getServerSideProps } from "@/pages/teachers/key-stages/sitemap.xml";
 import { URLParams } from "@/components/SubjectProgrammeListing/SubjectProgrammeListing";
 
 describe("Sitemap", () => {

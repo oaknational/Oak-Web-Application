@@ -10,11 +10,11 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
+import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
@@ -39,13 +39,12 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
       <HeaderListing
         breadcrumbs={[
           {
-            oakLinkProps: { page: "home", viewType: "teachers" },
+            oakLinkProps: { page: "home" },
             label: "Home",
           },
           {
             oakLinkProps: {
               page: "subject-index",
-              viewType: "teachers",
               keyStageSlug,
             },
             label: keyStageTitle ?? "",
@@ -53,7 +52,6 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
           {
             oakLinkProps: {
               page: "programme-index",
-              viewType: "teachers",
               subjectSlug,
               keyStageSlug,
             },
@@ -76,7 +74,6 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
 export type URLParams = {
   keyStageSlug: string;
   subjectSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -103,16 +100,15 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context params");
       }
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.programmeListingPage({
-              keyStageSlug: context.params?.keyStageSlug,
-              subjectSlug: context.params?.subjectSlug,
-            })
-          : await curriculumApi.tierListing({
-              keyStageSlug: context.params?.keyStageSlug,
-              subjectSlug: context.params?.subjectSlug,
-            });
+      const curriculumData = isProgrammeSlugLegacy(context.params?.subjectSlug)
+        ? await curriculumApi2023.programmeListingPage({
+            keyStageSlug: context.params?.keyStageSlug,
+            subjectSlug: context.params?.subjectSlug,
+          })
+        : await curriculumApi.tierListing({
+            keyStageSlug: context.params?.keyStageSlug,
+            subjectSlug: context.params?.subjectSlug,
+          });
 
       const results = {
         props: {

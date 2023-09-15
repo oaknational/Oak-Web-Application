@@ -3,7 +3,7 @@ import { screen, within, getByRole } from "@testing-library/react";
 import Teachers, {
   getStaticProps,
   TeachersHomePageProps,
-} from "@/pages/[viewType]";
+} from "@/pages/teachers";
 import { HomePageProps, SerializedPost } from "@/pages";
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
@@ -50,7 +50,7 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
-describe("pages/beta/[viewType]/index.tsx", () => {
+describe("pages/beta/teachers/index.tsx", () => {
   it("Renders correct title ", () => {
     render(<Teachers {...props} />);
 

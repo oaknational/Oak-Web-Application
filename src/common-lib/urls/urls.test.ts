@@ -76,7 +76,6 @@ describe("urls.ts", () => {
     it("Unit listing", () => {
       const props: ResolveOakHrefProps = {
         page: "unit-index",
-        viewType: "teachers",
         programmeSlug: "primary-ks2-maths",
       };
       expect(resolveOakHref(props)).toBe(
@@ -86,7 +85,6 @@ describe("urls.ts", () => {
     it("Programme listing", () => {
       const props: ResolveOakHrefProps = {
         page: "programme-index",
-        viewType: "teachers",
         keyStageSlug: "ks2",
         subjectSlug: "maths",
       };
@@ -98,7 +96,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "unit-index",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           search: { "learning-theme": "circls" },
         }),
@@ -110,7 +107,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "lesson-index",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
         }),
@@ -122,7 +118,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "lesson-overview",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           lessonSlug: "semi-circles-48",
@@ -135,7 +130,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "lesson-downloads",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           lessonSlug: "semi-circles-48",
@@ -148,7 +142,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "search",
-          viewType: "teachers",
         }),
       ).toBe("/teachers/search");
     });
@@ -156,7 +149,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "search",
-          viewType: "teachers",
           query: { term: "something", keyStages: ["ks4", "ks2"] },
         }),
       ).toBe("/teachers/search?term=something&keyStages=ks4%2Cks2");
@@ -173,7 +165,6 @@ describe("urls.ts", () => {
       expect(
         resolveOakHref({
           page: "subject-index",
-          viewType: "teachers",
           keyStageSlug: "ks2",
         }),
       ).toBe("/teachers/key-stages/ks2/subjects");
@@ -210,12 +201,10 @@ describe("urls.ts", () => {
       );
     });
     it("Home", () => {
-      expect(resolveOakHref({ page: "home", viewType: null })).toBe("/");
+      expect(resolveOakHref({ page: "home" })).toBe("/");
     });
     it("Home (teachers)", () => {
-      expect(resolveOakHref({ page: "home", viewType: "teachers" })).toBe(
-        "/teachers",
-      );
+      expect(resolveOakHref({ page: "home" })).toBe("/teachers");
     });
     it("Lesson planning", () => {
       expect(resolveOakHref({ page: "lesson-planning" })).toBe(
