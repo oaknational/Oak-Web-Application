@@ -2,15 +2,15 @@ import { ResolveOakHrefProps } from "@/common-lib/urls";
 
 type HrefLink = { href: string };
 
+export const linkIsHref = (input: unknown): input is HrefLink => {
+  return typeof (input as HrefLink).href === "string";
+};
+
 export type BetaMenuLink = {
   text: string;
   new: boolean;
   external: boolean;
   linkTo: ResolveOakHrefProps | HrefLink;
-};
-
-export const linkIsHref = (input: unknown): input is HrefLink => {
-  return typeof (input as HrefLink).href === "string";
 };
 
 export type BetaMenuSection = {

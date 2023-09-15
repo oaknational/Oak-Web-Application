@@ -1,12 +1,6 @@
-import { cloneDeep } from "lodash";
-
-import { menuSections } from "./menuSections";
-
-import { MenuSections } from "@/components/MenuLinks/types";
 import { BetaMenuSections } from "@/components/NewMenuSections/types";
 
-// TODO: rename
-export const newBetaMenuSections: BetaMenuSections = [
+export const betaMenuSections: BetaMenuSections = [
   {
     header: "Teachers",
     links: [
@@ -149,14 +143,3 @@ export const newBetaMenuSections: BetaMenuSections = [
     ],
   },
 ];
-
-export const betaMenuSections: MenuSections = {
-  ...cloneDeep(menuSections),
-};
-if (betaMenuSections.large[0]) {
-  betaMenuSections.large[0].linkText = "Home (early access)";
-  betaMenuSections.large[0].resolveOakHrefProps.page = "home";
-  if ("viewType" in betaMenuSections.large[0].resolveOakHrefProps) {
-    betaMenuSections.large[0].resolveOakHrefProps.viewType = "teachers";
-  }
-}
