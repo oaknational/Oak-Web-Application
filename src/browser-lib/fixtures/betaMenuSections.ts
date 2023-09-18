@@ -1,6 +1,6 @@
-import { BetaMenuSections } from "@/components/BurgerMenuSections/types";
+import { BurgerMenuSections } from "@/components/BurgerMenuSections/types";
 
-export const betaMenuSections: BetaMenuSections = [
+export const betaMenuSections: BurgerMenuSections = [
   {
     header: "Teachers",
     links: [

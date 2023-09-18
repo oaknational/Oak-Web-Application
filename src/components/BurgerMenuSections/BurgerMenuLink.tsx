@@ -4,10 +4,10 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import TagPromotional from "../TagPromotional/TagPromotional";
 import Flex from "../Flex/Flex";
 
-import { BetaMenuLink, linkIsHref } from "./types";
+import { BurgerMenuLink, linkIsHref } from "./types";
 
 export type BurgerMenuLinkProps = {
-  link: BetaMenuLink;
+  link: BurgerMenuLink;
 };
 const BurgerMenuLink: FC<BurgerMenuLinkProps> = (props) => {
   const { link } = props;

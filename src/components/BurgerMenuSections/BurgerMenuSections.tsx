@@ -5,14 +5,14 @@ import Flex from "../Flex/Flex";
 import { FlexList } from "../Typography/UL";
 
 import BurgerMenuLink from "./BurgerMenuLink";
-import { BetaMenuSections } from "./types";
+import { BurgerMenuSections } from "./types";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
  */
 
 export type BurgerMenuSectionsProps = {
-  menuSections: BetaMenuSections;
+  menuSections: BurgerMenuSections;
 };
 
 const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
