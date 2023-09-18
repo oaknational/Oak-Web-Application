@@ -20,7 +20,9 @@ const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
     <Flex $alignItems="center" $gap={10}>
       <ButtonAsLink
         icon={link.external ? "external" : undefined}
-        aria-label={link.text}
+        aria-label={`${link.text}${
+          link.external ? " (opens in a new tab)" : ""
+        }`}
         label={link.text}
         $iconPosition="trailing"
         iconBackground="transparent"
