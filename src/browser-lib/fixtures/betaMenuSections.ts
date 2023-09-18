@@ -1,4 +1,4 @@
-import { BetaMenuSections } from "@/components/NewMenuSections/types";
+import { BetaMenuSections } from "@/components/BurgerMenuSections/types";
 
 export const betaMenuSections: BetaMenuSections = [
   {

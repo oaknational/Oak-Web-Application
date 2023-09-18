@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./NewMenuLink";
+import Component from "./BurgerMenuLink";
 
 export default {
   title: "Navigation/New Menu Link",

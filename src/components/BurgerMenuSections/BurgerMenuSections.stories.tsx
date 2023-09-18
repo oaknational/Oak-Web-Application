@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./NewMenuSections";
+import Component from "./BurgerMenuSections";
 
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 

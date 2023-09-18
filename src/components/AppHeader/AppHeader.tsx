@@ -11,7 +11,7 @@ import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import { P } from "../Typography";
-import NewMenuSections from "../NewMenuSections/NewMenuSections";
+import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 /**
@@ -47,7 +47,7 @@ const AppHeader: FC<HeaderProps> = () => {
           onClick={openMenu}
         />
         <Menu menuButtonRef={menuButtonRef}>
-          <NewMenuSections menuSections={betaMenuSections} />
+          <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
       <Box

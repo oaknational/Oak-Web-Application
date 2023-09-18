@@ -6,10 +6,10 @@ import Flex from "../Flex/Flex";
 
 import { BetaMenuLink, linkIsHref } from "./types";
 
-export type NewMenuLinkProps = {
+export type BurgerMenuLinkProps = {
   link: BetaMenuLink;
 };
-const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
+const BurgerMenuLink: FC<BurgerMenuLinkProps> = (props) => {
   const { link } = props;
 
   const linkTo = linkIsHref(link.linkTo)
@@ -35,4 +35,4 @@ const NewMenuLink: FC<NewMenuLinkProps> = (props) => {
   );
 };
 
-export default NewMenuLink;
+export default BurgerMenuLink;

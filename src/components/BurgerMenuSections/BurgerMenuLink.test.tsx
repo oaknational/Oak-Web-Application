@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import NewMenuLink from "./NewMenuLink";
+import BurgerMenuLink from "./BurgerMenuLink";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
@@ -17,28 +17,28 @@ const link = {
 
 describe("NewMenuLink", () => {
   it("displays a link", () => {
-    renderWithTheme(<NewMenuLink link={link} />);
+    renderWithTheme(<BurgerMenuLink link={link} />);
 
     const menuLink = screen.getByRole("link");
     expect(menuLink).toBeInTheDocument();
   });
   it("displays an icon when the link is external", () => {
-    renderWithTheme(<NewMenuLink link={link} />);
+    renderWithTheme(<BurgerMenuLink link={link} />);
     const externalIcon = screen.queryByTestId("button-icon");
     expect(externalIcon).toBeInTheDocument();
   });
   it("displays no icon when the link is internal", () => {
-    renderWithTheme(<NewMenuLink link={{ ...link, external: false }} />);
+    renderWithTheme(<BurgerMenuLink link={{ ...link, external: false }} />);
     const externalIcon = screen.queryByTestId("button-icon");
     expect(externalIcon).not.toBeInTheDocument();
   });
   it("displays new tag when it should", () => {
-    renderWithTheme(<NewMenuLink link={link} />);
+    renderWithTheme(<BurgerMenuLink link={link} />);
     const newTag = screen.getByText("New");
     expect(newTag).toBeInTheDocument();
   });
   it("does not display new tag when it should not", () => {
-    renderWithTheme(<NewMenuLink link={{ ...link, new: false }} />);
+    renderWithTheme(<BurgerMenuLink link={{ ...link, new: false }} />);
     const newTag = screen.queryByText("New");
     expect(newTag).not.toBeInTheDocument();
   });

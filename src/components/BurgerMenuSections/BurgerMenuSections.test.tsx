@@ -1,6 +1,6 @@
 import { screen, within } from "@testing-library/react";
 
-import NewMenuLinks from "./NewMenuSections";
+import NewMenuLinks from "./BurgerMenuSections";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";

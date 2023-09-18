@@ -4,18 +4,18 @@ import { Heading, LI } from "../Typography";
 import Flex from "../Flex/Flex";
 import { FlexList } from "../Typography/UL";
 
-import NewMenuLink from "./NewMenuLink";
+import BurgerMenuLink from "./BurgerMenuLink";
 import { BetaMenuSections } from "./types";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
  */
 
-export type NewMenuSectionsProps = {
+export type BurgerMenuSectionsProps = {
   menuSections: BetaMenuSections;
 };
 
-const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
+const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
   const { menuSections } = props;
   return (
     <Flex $flexDirection="column" $gap={32}>
@@ -33,7 +33,7 @@ const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
           >
             {section.links.map((link, i) => (
               <LI listStyle="none" key={`${link.text}-${i}`}>
-                <NewMenuLink link={link} />
+                <BurgerMenuLink link={link} />
               </LI>
             ))}
           </FlexList>
@@ -43,4 +43,4 @@ const NewMenuSections: FC<NewMenuSectionsProps> = (props) => {
   );
 };
 
-export default NewMenuSections;
+export default BurgerMenuSections;
