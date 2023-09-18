@@ -142,7 +142,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               label: "Unit sequence",
               page: "curriculum-units",
               viewType: "teachers",
-              subjectPhaseSlug: phase.slug,
+              subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab == "units",
               currentStyles: ["underline"],
               scroll: false,
