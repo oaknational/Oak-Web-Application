@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import OakLink from "../OakLink/OakLink";
+import Svg from "../Svg";
 
 import { Heading, Span } from "@/components/Typography";
 import Box from "@/components/Box";
@@ -250,6 +251,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
+  const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+    color: ${(props) => props.$color};
+  `;
+
   /**
    * ! - TODO LIST
    * TODO: Refactor to break down into smaller components
@@ -357,12 +362,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    <span>Please select a subject</span>
+                    <span>Select a subject</span>
                   </>
                 )}
                 {selectedSubject && <>{selectedSubject.title}</>}
                 {!showSubjectError && !selectedSubject && "Select"}
               </P>
+              <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
           </Box>
           {showSubjects && (
@@ -483,7 +489,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </Heading>
               <P
                 $font={"body-2"}
-                $color={!showPhaseError ? "black" : "failure"}
+                $color={
+                  !showPhaseError && !showExamboardError ? "black" : "failure"
+                }
               >
                 {showPhaseError && (
                   <>
@@ -492,7 +500,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Please select a phase
+                    Select a school phase
                   </>
                 )}
                 {showExamboardError && (
@@ -502,7 +510,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Select an exam board
+                    Select an exam board option
                   </>
                 )}
                 {selectedPhase && !showExamboardError && (
@@ -518,6 +526,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   !showExamboardError &&
                   "Select"}
               </P>
+              <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
 
             {showPhases && (
@@ -544,11 +553,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         verticalAlign="bottom"
                       />
                       <P $color={"failure"}>
-                        Select a phase to view a curriculum
+                        Select a school phase to view the curriculum
                       </P>
                     </Flex>
                   )}
-                  <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
+                  <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
                   </Heading>
                   {(selectedSubject?.phases ?? phases).map((phase, index) => (
@@ -569,7 +578,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <Heading
                           tag={"h4"}
                           $color={labelColor(showExamboardError)}
-                          $font={"heading-light-7"}
+                          $font={"heading-6"}
                           $mb={16}
                           $mt={16}
                         >
@@ -580,7 +589,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 name="content-guidance"
                                 verticalAlign="bottom"
                               />
-                              <span>Please select an exam board</span>
+                              <span>
+                                Select an exam board to view the curriculum
+                              </span>
                             </>
                           ) : (
                             "Exam board"
