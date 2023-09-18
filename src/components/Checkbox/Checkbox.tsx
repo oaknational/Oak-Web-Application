@@ -92,7 +92,6 @@ const checkboxFocusStyles = css`
 const checkboxHoverStyles = css`
   input[type="checkbox"]:hover + span {
     background-color: ${getColorByName("white")};
-    border-color: ${getColorByName("oakGrey3")};
 
     &::after {
       content: "";
@@ -101,7 +100,7 @@ const checkboxHoverStyles = css`
       width: 16px;
       height: 16px;
       border-radius: 2px;
-      background-color: ${getColorByName("teachersHighlight")};
+      background-color: ${getColorByName("black")};
     }
   }
 `;
@@ -125,7 +124,7 @@ const CheckboxLabel = styled.label<CheckboxLabelProps>`
     `}
 
   ${checkboxFocusStyles}
-  ${checkboxHoverStyles}
+  ${(props) => !props.checked && checkboxHoverStyles}
   ${spacing}
 `;
 
