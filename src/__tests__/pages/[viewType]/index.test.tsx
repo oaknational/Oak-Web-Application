@@ -57,7 +57,7 @@ describe("pages/beta/[viewType]/index.tsx", () => {
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Teachers");
   });
-  it.only("Render correct tab after selecting tab", () => {
+  it("Render correct tab after selecting tab", () => {
     const { getByTitle } = render(<Teachers {...props} />);
 
     fireEvent.click(getByTitle("Curriculum plans"));
