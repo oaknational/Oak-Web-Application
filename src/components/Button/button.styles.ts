@@ -189,11 +189,14 @@ const buttonStyles = css<ButtonStylesProps>`
   ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
-      &:hover,
       &:focus {
         & ${ButtonStyledAsLinkFocusUnderline} {
           display: block;
         }
+      }
+
+      :hover:not(:focus) ${ButtonLabel} {
+        text-decoration: underline;
       }
     `}
 
