@@ -6,10 +6,11 @@ export const filterLearningTheme = (
 ): UnitListingData["units"] => {
   if (themeSlug) {
     const filteredUnits = units.filter((unitVariant) =>
-      unitVariant.some((unit) =>
-        unit.learningThemes.some(
-          (learningTheme) => learningTheme.themeSlug === themeSlug,
-        ),
+      unitVariant.some(
+        (unit) =>
+          unit.learningThemes?.some(
+            (learningTheme) => learningTheme.themeSlug === themeSlug,
+          ),
       ),
     );
 

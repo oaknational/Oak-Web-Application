@@ -92,12 +92,14 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
-  learningThemes: z.array(
-    z.object({
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-    }),
-  ),
+  learningThemes: z
+    .array(
+      z.object({
+        themeSlug: z.string().nullable(),
+        themeTitle: z.string().nullable(),
+      }),
+    )
+    .nullable(),
 });
 
 const unitsData = z.array(z.array(unitData));
@@ -179,12 +181,14 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
-  learningThemes: z.array(
-    z.object({
-      themeTitle: z.string().nullable(),
-      themeSlug: z.string().nullable(),
-    }),
-  ),
+  learningThemes: z
+    .array(
+      z.object({
+        themeTitle: z.string().nullable(),
+        themeSlug: z.string().nullable(),
+      }),
+    )
+    .nullable(),
 });
 
 const tierListingData = z.object({
