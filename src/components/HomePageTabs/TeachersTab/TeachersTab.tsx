@@ -1,12 +1,13 @@
 import { FC } from "react";
 
+import ImageContainer from "../ImageContainer/ImageContainer";
+
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import useSearch from "@/context/Search/useSearch";
-import Illustration from "@/components/Illustration/Illustration";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import ResourceSelectorCard from "@/components/ResourceSelectorCard/ResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/KeyStageKeypad/KeyStageKeypad";
@@ -58,26 +59,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
             </Flex>
           </GridArea>
           <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <Flex
-              $pv={64}
-              $flexDirection={"column"}
-              $justifyContent={"space-between"}
-              $alignItems={"flex-end"}
-              $flex={"0 1 auto"}
-              $position={"relative"}
-              $minWidth={[0, 350]}
-              $display={["none", "flex"]}
-              $maxWidth={524}
-            >
-              <Illustration
-                slug={"hero-pupils"}
-                noCrop
-                $objectFit="contain"
-                priority
-                $ba={3}
-                $borderStyle={"solid"}
-                $borderColor={"black"}
-              />
+            <ImageContainer imageSlug={"hero-pupils"}>
               <ResourceSelectorCard
                 icon={"worksheet"}
                 title="Worksheets"
@@ -102,7 +84,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $right={-54}
                 $display={["none", "none", "flex"]}
               />
-            </Flex>
+            </ImageContainer>
           </GridArea>
         </Grid>
       </MaxWidth>

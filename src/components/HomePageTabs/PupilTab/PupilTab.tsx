@@ -1,10 +1,11 @@
 import { FC } from "react";
 
+import ImageContainer from "../ImageContainer/ImageContainer";
+
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Flex from "@/components/Flex";
 import { GridArea } from "@/components/Grid";
 import Grid from "@/components/Grid/Grid";
-import Illustration from "@/components/Illustration/Illustration";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import Svg from "@/components/Svg/Svg";
 import { Heading } from "@/components/Typography";
@@ -48,26 +49,7 @@ const PupilTab: FC = () => {
             </Flex>
           </GridArea>
           <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <Flex
-              $pv={64}
-              $flexDirection={"column"}
-              $justifyContent={"space-between"}
-              $alignItems={"flex-end"}
-              $flex={"0 1 auto"}
-              $position={"relative"}
-              $minWidth={[0, 350]}
-              $display={["none", "flex"]}
-              $maxWidth={524}
-            >
-              <Illustration
-                slug={"pupils-with-worksheet"}
-                noCrop
-                $objectFit="contain"
-                priority
-                $ba={3}
-                $borderStyle={"solid"}
-                $borderColor={"black"}
-              />
+            <ImageContainer imageSlug={"pupils-with-worksheet"}>
               <Svg
                 $position={"absolute"}
                 $top={0}
@@ -76,7 +58,7 @@ const PupilTab: FC = () => {
                 name="burst"
                 $transform={"scale(1.5)"}
               />
-            </Flex>
+            </ImageContainer>
           </GridArea>
         </Grid>
       </MaxWidth>
