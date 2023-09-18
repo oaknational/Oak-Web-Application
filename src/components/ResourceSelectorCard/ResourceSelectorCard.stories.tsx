@@ -13,7 +13,6 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  //   <div style={{ background: "lightGrey", padding: "100px" }}>
   <Component
     {...args}
     icon={"worksheet"}
@@ -21,7 +20,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
     angle={2}
     $top={96}
   />
-  //   </div>
 );
 
 export const TeachersTab = Template.bind({});

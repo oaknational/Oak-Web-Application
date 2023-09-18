@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import Box from "../../Box/Box";
-
+import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";

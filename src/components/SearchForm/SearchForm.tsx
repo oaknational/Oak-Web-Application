@@ -83,7 +83,6 @@ type SearchFormProps = {
   placeholderText: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
-  placeholder?: string;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
   const { handleSubmit, searchTerm, analyticsSearchSource, placeholderText } =

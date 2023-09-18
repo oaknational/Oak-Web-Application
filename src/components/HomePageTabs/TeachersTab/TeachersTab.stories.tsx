@@ -14,9 +14,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  //   <div style={{ background: "lightGrey", padding: "100px" }}>
   <Component {...args} keyStages={keyStageKeypad.keyStages} />
-  //   </div>
 );
 
 export const TeachersTab = Template.bind({});
