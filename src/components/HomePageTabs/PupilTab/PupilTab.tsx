@@ -13,7 +13,7 @@ import Typography from "@/components/Typography/Typography";
 const PupilTab: FC = () => {
   return (
     <Flex $background={"lemon"} $pv={24} $overflow={"hidden"}>
-      <MaxWidth $ph={[16]}>
+      <MaxWidth $ph={[16]} $pb={24}>
         <Grid $cg={16}>
           <GridArea $colSpan={[12, 6]}>
             <Flex
@@ -24,7 +24,7 @@ const PupilTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"}>
+              <Heading $font={"heading-7"} tag={"h1"} $color={"oakGrey5"}>
                 Pupils
               </Heading>
               <Heading $font={"heading-3"} tag={"h2"}>
@@ -37,11 +37,13 @@ const PupilTab: FC = () => {
 
               <ButtonAsLink
                 label={"Learn with Oak"}
+                aria-label="Learn with Oak (this will open in a new tab)"
                 variant={"brushNav"}
                 page={"classroom"}
                 icon={"arrow-right"}
                 $iconPosition={"trailing"}
                 iconBackground="black"
+                $mb={24}
               />
             </Flex>
           </GridArea>

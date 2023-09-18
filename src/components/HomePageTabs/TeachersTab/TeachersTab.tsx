@@ -21,7 +21,7 @@ type TeacherTabProps = {
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { setSearchTerm } = useSearch({});
   return (
-    <Flex $background={"mint"} $pv={24}>
+    <Flex $background={"mint"} $pv={24} $overflow={"hidden"}>
       <MaxWidth $ph={[16]}>
         <Grid $cg={16}>
           <GridArea $colSpan={[12, 6]}>
@@ -33,7 +33,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"}>
+              <Heading $font={"heading-7"} tag={"h1"} $color={"oakGrey5"}>
                 Teachers
               </Heading>
               <Heading $font={"heading-3"} tag={"h2"}>
@@ -83,8 +83,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 icon={"worksheet"}
                 title="Worksheets"
                 angle={-4}
-                $bottom={46}
-                $left={130}
+                $bottom={30}
+                $left={166}
                 $display={["none", "none", "flex"]}
               />
               <ResourceSelectorCard
@@ -99,8 +99,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 icon={"quiz"}
                 title="Quizzes"
                 angle={4}
-                $bottom={58}
-                $left={340}
+                $bottom={60}
+                $right={-54}
                 $display={["none", "none", "flex"]}
               />
             </Flex>

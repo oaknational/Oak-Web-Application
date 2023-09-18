@@ -15,7 +15,7 @@ import Typography from "@/components/Typography/Typography";
 const CurriculumTab: FC = () => {
   return (
     <Flex $background={"aqua"} $pv={24}>
-      <MaxWidth $ph={[16]}>
+      <MaxWidth $ph={[16]} $pb={24}>
         <Grid $cg={16}>
           <GridArea $colSpan={[12, 6]}>
             <Flex
@@ -26,7 +26,7 @@ const CurriculumTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"}>
+              <Heading $font={"heading-7"} tag={"h1"} $color={"oakGrey5"}>
                 Teachers & subject leads
               </Heading>
               <Heading $font={"heading-3"} tag={"h2"}>
@@ -44,7 +44,7 @@ const CurriculumTab: FC = () => {
                 </UL>
               </Flex>
 
-              <Flex $gap={24} $flexWrap={"wrap"}>
+              <Flex $gap={24} $flexWrap={"wrap"} $pb={24}>
                 <ButtonAsLink
                   label={"View curriculum plans"}
                   variant={"brushNav"}
@@ -77,6 +77,7 @@ const CurriculumTab: FC = () => {
               $minWidth={[0, 350]}
               $display={["none", "flex"]}
               $maxWidth={524}
+              $pl={20}
             >
               <Flex $flexDirection={"column"} $gap={10}>
                 <Illustration
@@ -93,7 +94,12 @@ const CurriculumTab: FC = () => {
                 </Typography>
               </Flex>
 
-              <Box $position={"absolute"} $bottom={120} $left={-24}>
+              <Box
+                $position={"absolute"}
+                $bottom={120}
+                $left={-20}
+                aria-hidden={true}
+              >
                 {" "}
                 <Badge icon="bell" />
               </Box>

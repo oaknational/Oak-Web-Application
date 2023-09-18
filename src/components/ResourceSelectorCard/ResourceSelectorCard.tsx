@@ -36,7 +36,14 @@ const ResourceSelectorCard: FC<ResourceSelectorCardProps> = (props) => {
           $pa={8}
         >
           {" "}
-          <Icon name={icon} $objectPosition={"center"} size={50} $pa={3} />
+          <Icon
+            name={icon}
+            $objectPosition={"center"}
+            size={50}
+            $pa={3}
+            $color={"white"}
+            $borderColor={"white"}
+          />
         </Flex>
         <Flex $height={"100%"} $alignItems={"center"}>
           <Typography $font={"heading-light-7"} $color={"black"}>
@@ -45,7 +52,7 @@ const ResourceSelectorCard: FC<ResourceSelectorCardProps> = (props) => {
         </Flex>
       </Flex>
 
-      <BoxBorders $color={"black"} gapPosition="bottomRightCorner" />
+      <BoxBorders $color={"black"} gapPosition={"rightTop"} />
     </Card>
   );
 };
