@@ -24,9 +24,9 @@ const unitSchema = z.array(
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
       yearTitle: z.string().nullable(),
-      learningThemes: z.array(learningThemesSchema),
-    }),
-  ),
+      learningThemes: z.array(learningThemesSchema).nullable(),
+    })
+  )
 );
 const tierSchema = z.array(
   z.object({
@@ -35,7 +35,7 @@ const tierSchema = z.array(
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullable().optional(),
     lessonCount: z.number().nullable().optional(),
-  }),
+  })
 );
 
 const unitListingSchema = z.object({
@@ -50,7 +50,7 @@ const unitListingSchema = z.object({
   totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
-  learningThemes: z.array(learningThemesSchema),
+  learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
 export type unitListingPageData = z.infer<typeof unitListingSchema>;
