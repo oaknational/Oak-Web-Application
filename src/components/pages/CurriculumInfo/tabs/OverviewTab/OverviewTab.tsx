@@ -83,7 +83,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
+          <Heading tag="h2" $font={["heading-6", "heading-5"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
