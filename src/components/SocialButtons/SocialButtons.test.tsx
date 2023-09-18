@@ -10,7 +10,7 @@ describe("SocialButtons", () => {
       "oaknationalacademy",
       "https://facebook.com/oaknationalacademy",
     ],
-    ["x", "oaknational", "https://twitter.com/oaknational"],
+    ["twitter", "oaknational", "https://twitter.com/oaknational"],
     [
       "linkedIn",
       "https://www.linkedin.com/company/oak-national-academy",

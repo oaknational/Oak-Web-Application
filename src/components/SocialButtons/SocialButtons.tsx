@@ -10,7 +10,7 @@ import { IconName } from "../Icon";
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",
   facebook: "oaknationalacademy",
-  x: "oaknational",
+  twitter: "oaknational",
   linkedIn: "https://www.linkedin.com/company/oak-national-academy",
 };
 
@@ -20,14 +20,19 @@ const getSocialUrl = (network: SocialNetwork, usernameOrUrl: string) => {
       return `https://instagram.com/${usernameOrUrl}`;
     case "facebook":
       return `https://facebook.com/${usernameOrUrl}`;
-    case "x":
+    case "twitter":
       return `https://twitter.com/${usernameOrUrl}`;
     case "linkedIn":
       return usernameOrUrl;
   }
 };
 
-const SOCIAL_NETWORKS = ["instagram", "facebook", "x", "linkedIn"] as const;
+const SOCIAL_NETWORKS = [
+  "instagram",
+  "facebook",
+  "twitter",
+  "linkedIn",
+] as const;
 type SocialNetwork = (typeof SOCIAL_NETWORKS)[number];
 type SocialButtonConfig = {
   label: string;
@@ -42,8 +47,8 @@ const SOCIAL_BUTTON_CONFIGS: Record<SocialNetwork, SocialButtonConfig> = {
     label: "facebook",
     icon: "facebook",
   },
-  x: {
-    label: "x",
+  twitter: {
+    label: "twitter",
     icon: "twitter",
   },
   linkedIn: {
