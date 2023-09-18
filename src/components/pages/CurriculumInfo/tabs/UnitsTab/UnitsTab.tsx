@@ -244,7 +244,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     let count = 0;
     Object.keys(yearData).forEach((year) => {
       const data = yearData[year];
-      if (data && (!selectedYear || selectedYear == year)) {
+      if (data && (!selectedYear || selectedYear === year)) {
         data.units.forEach((unit) => {
           if (isVisibleUnit(year, unit) && isHighlightedUnit(unit)) {
             count++;
