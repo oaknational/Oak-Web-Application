@@ -267,6 +267,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     if (
       selectedSubject &&
       selectedPhase &&
+      path &&
       path.startsWith("/teachers/curriculum/")
     ) {
       viewButtonRef.current?.blur();
