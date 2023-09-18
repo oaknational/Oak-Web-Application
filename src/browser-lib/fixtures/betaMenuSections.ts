@@ -82,6 +82,18 @@ export const betaMenuSections: BetaMenuSections = [
         new: false,
         external: true,
       },
+      {
+        linkTo: { page: "lesson-planning" },
+        text: "Plan a lesson",
+        new: false,
+        external: false,
+      },
+      {
+        linkTo: { page: "support-your-team" },
+        text: "Support your team",
+        new: false,
+        external: false,
+      },
     ],
   },
   {
@@ -98,18 +110,6 @@ export const betaMenuSections: BetaMenuSections = [
   {
     header: "Oak",
     links: [
-      {
-        linkTo: { page: "lesson-planning" },
-        text: "Plan a lesson",
-        new: false,
-        external: false,
-      },
-      {
-        linkTo: { page: "support-your-team" },
-        text: "Support your team",
-        new: false,
-        external: false,
-      },
       {
         linkTo: { page: "blog-index" },
         text: "Blogs",
