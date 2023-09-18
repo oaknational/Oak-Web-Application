@@ -348,7 +348,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         <>
                           <br />
                           {highlightedCount}
-                          {highlightedCount == 1 ? " unit " : " units "}
+                          {highlightedCount === 1 ? " unit " : " units "}
                           highlighted
                         </>
                       )}

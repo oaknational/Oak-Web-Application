@@ -51,9 +51,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     tierSlug,
     tiers,
     units,
-    learningThemes,
     examBoardTitle,
   } = curriculumData;
+
+  const learningThemes = curriculumData.learningThemes ?? [];
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
@@ -191,7 +192,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     {`Units (${unitsFilteredByLearningTheme.length})`}
                   </Heading>
                 </Flex>
-                {learningThemes?.length > 1 && (
+                {learningThemes.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
                     label="Threads"

@@ -1,3 +1,16 @@
+# [1.242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.241.2...v1.242.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* lint fixes ([229fb27](https://github.com/oaknational/Oak-Web-Application/commit/229fb27dd58fe77d887e4f17d74ce916c5e3c9b4))
+* type errors ([c3c41a5](https://github.com/oaknational/Oak-Web-Application/commit/c3c41a5a942cb5d2a8ff4d4a0387a0ecd1d9cf44))
+
+
+### Features
+
+* wip updated mv version numbers ([61e0a19](https://github.com/oaknational/Oak-Web-Application/commit/61e0a193cc33bc992b988c8a57c4dcf6e1981e0e))
+
 ## [1.241.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.241.1...v1.241.2) (2023-09-15)
 
 

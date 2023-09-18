@@ -1,11 +1,8 @@
-import { groupBy } from "lodash";
-
-import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
-import subjectListingSchema, {
-  SubjectListingPageData,
-} from "./subjectListing.schema";
+import subjectListingSchema from "./subjectListing.schema";
+
+import OakError from "@/errors/OakError";
 
 const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
@@ -18,24 +15,9 @@ const subjectListingQuery =
 
     const { subjects } = keyStageSubjects;
 
-    const groupedSubjects = Object.values(
-      groupBy(
-        subjects,
-        (subject: SubjectListingPageData["subjects"][number]) =>
-          subject.subjectSlug,
-      ),
-    );
-
-    const subjectsWithProgrammeCount = groupedSubjects.map((subject) => {
-      return {
-        ...subject[0],
-        programmeCount: subject.length,
-      };
-    });
-
     return subjectListingSchema.parse({
       ...keyStageSubjects,
-      subjects: subjectsWithProgrammeCount,
+      subjects,
     });
   };
 
