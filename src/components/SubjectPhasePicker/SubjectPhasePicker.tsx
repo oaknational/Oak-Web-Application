@@ -322,11 +322,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         >
           <Box
             $position={"relative"}
-            $width={"50%"}
+            $width={["50%", "50%"]}
             $borderColor={showSubjects ? "lemon" : "transparent"}
             $ba={3}
             $background={subjectBackground}
-            // $zIndex={"modalCloseButton"}
           >
             <BoxBorders
               $color={showSubjects ? "black" : "transparent"}
@@ -454,16 +453,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               hideBottom={true}
               hideTop={true}
               hideRight={true}
-              // $zIndex={"inFront"}
             />
           </Box>
-          <Box
+          <Flex
             $position={"relative"}
-            $width={"50%"}
+            $width={["50%", "60%"]}
             $borderColor={showPhases ? "lemon" : "transparent"}
             $ba={3}
-            // $zIndex={"inFront"}
             $background={phaseBackground}
+            $flexDirection={"row"}
           >
             <BoxBorders
               $color={showPhases ? "black" : "transparent"}
@@ -607,7 +605,27 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </FocusOn>
               </SchoolPhaseDropDownBox>
             )}
-          </Box>
+            <Box
+              $pl={18}
+              $pr={18}
+              $pt={[18, 0]}
+              $pb={[18, 0]}
+              $width={["100%", "fit-content"]}
+              $display={["none", "block"]}
+              $mt={22}
+            >
+              <Button
+                label="View"
+                icon="arrow-right"
+                $iconPosition="trailing"
+                iconBackground="transparent"
+                onClick={handleViewCurriculum}
+                size="large"
+                $fullWidth={false}
+                ref={viewButtonRef}
+              />
+            </Box>
+          </Flex>
         </Flex>
         <Box
           $width={"90%"}
@@ -639,26 +657,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             onClick={handleViewCurriculum}
             size="large"
             $fullWidth={true}
-            ref={viewButtonRef}
-          />
-        </Box>
-        <Box
-          $pl={18}
-          $pr={18}
-          $pt={[18, 0]}
-          $pb={[18, 0]}
-          $width={["100%", "fit-content"]}
-          $display={["none", "block"]}
-        >
-          <Button
-            label="View"
-            icon="arrow-right"
-            $iconPosition="trailing"
-            iconBackground="transparent"
-            onClick={handleViewCurriculum}
-            size="large"
-            $fullWidth={false}
-            ref={viewButtonRef}
+            // ref={viewButtonRef}
           />
         </Box>
       </Flex>
