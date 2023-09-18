@@ -2,7 +2,7 @@
 
 import curriculumOverviewSchema from "./curriculumOverview.schema";
 
-// import OakError from "@/errors/OakError";
+import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 
 const curriculumOverviewQuery =
