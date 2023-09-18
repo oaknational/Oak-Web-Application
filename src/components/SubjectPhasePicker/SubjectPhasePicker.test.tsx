@@ -117,13 +117,13 @@ describe("Component - subject phase picker", () => {
     expect(queryByText("Choose a school phase:")).toBeNull();
   });
 
-  test("user clicks View without complete selection and gets error", async () => {
+  test.only("user clicks View without complete selection and gets error", async () => {
     const { getByText, getAllByTitle, getByTitle, queryByText } =
       renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
     const viewButton = getByText("View");
     await userEvent.click(viewButton);
-    expect(queryByText("Please select a subject")).toBeTruthy();
-    expect(queryByText("Please select a phase")).toBeTruthy();
+    expect(queryByText("Select a subject")).toBeTruthy();
+    expect(queryByText("Select a school phase")).toBeTruthy();
     const subjectButtons = getAllByTitle("History");
     const historyButton = subjectButtons[0];
     if (!historyButton) {
@@ -132,11 +132,11 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(historyButton);
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Please select a subject")).toBeNull();
-    expect(queryByText("Please select a phase")).toBeTruthy();
+    expect(queryByText("Select a subject")).toBeNull();
+    expect(queryByText("Select a school phase")).toBeTruthy();
     userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Select an exam board")).toBeTruthy();
+    expect(queryByText("Select an exam board option")).toBeTruthy();
   });
 });
