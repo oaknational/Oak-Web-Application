@@ -3,8 +3,6 @@ import { z } from "zod";
 const programmeSchema = z.object({
   programmeSlug: z.string(),
   subjectTitle: z.string(),
-  unitCount: z.number(),
-  lessonCount: z.number(),
   tierSlug: z.string().nullable(),
   tierTitle: z.string().nullable(),
   tierDisplayOrder: z.string().nullable(), // cast to number in datatools

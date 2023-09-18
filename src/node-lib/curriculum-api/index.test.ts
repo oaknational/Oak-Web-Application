@@ -139,9 +139,10 @@ describe("curriculum-api", () => {
     const units = await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4",
     });
-    const hasThemes =
-      units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
-        .length > 0;
+    const hasThemes = units.learningThemes
+      ? units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
+          .length > 0
+      : false;
 
     expect(hasThemes).toBe(true);
   });
@@ -187,7 +188,7 @@ describe("curriculum-api", () => {
       curriculumApi.tierListing({
         keyStageSlug: "ks4",
         subjectSlug: "not-found",
-      })
+      }),
     ).rejects.toThrow("Resource not found");
   });
   test("subjectListing", async () => {
@@ -203,7 +204,7 @@ describe("curriculum-api", () => {
     const unavailableProgrammes = subjectListingFixture().subjectsUnavailable;
     const filteredUnavailableProgrammes = filterOutDuplicateProgrammesOrNull(
       availableProgrammes,
-      unavailableProgrammes
+      unavailableProgrammes,
     );
 
     let unavailableDuplicates = false;

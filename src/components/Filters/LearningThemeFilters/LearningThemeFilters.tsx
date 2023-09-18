@@ -18,13 +18,13 @@ export type LearningTheme = {
 export type LearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
-  learningThemes: LearningTheme[];
+  learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps;
   trackingProps: LearningThemeSelectedTrackingProps;
 };
 const LearningThemeFilters = ({
   labelledBy,
-  learningThemes,
+  learningThemes = [],
   selectedThemeSlug,
   linkProps,
   trackingProps,
@@ -39,32 +39,34 @@ const LearningThemeFilters = ({
   });
 
   const learningThemesMapped = learningThemes
-    .map((learningTheme) => {
-      return {
-        label: learningTheme?.themeTitle,
-        slug: learningTheme?.themeSlug,
-      };
-    })
-    .sort(
-      (
-        a: {
-          label: string | undefined | null;
-          slug: string | undefined | null;
-        },
-        b: {
-          label: string | undefined | null;
-          slug: string | undefined | null;
-        }
-      ) => {
-        if (a?.slug === "no-theme") {
-          return 0;
-        } else if (b?.slug === "no-theme") {
-          return -1;
-        } else {
-          return 0;
-        }
-      }
-    );
+    ? learningThemes
+        .map((learningTheme) => {
+          return {
+            label: learningTheme?.themeTitle,
+            slug: learningTheme?.themeSlug,
+          };
+        })
+        .sort(
+          (
+            a: {
+              label: string | undefined | null;
+              slug: string | undefined | null;
+            },
+            b: {
+              label: string | undefined | null;
+              slug: string | undefined | null;
+            },
+          ) => {
+            if (a?.slug === "no-theme") {
+              return 0;
+            } else if (b?.slug === "no-theme") {
+              return -1;
+            } else {
+              return 0;
+            }
+          },
+        )
+    : [];
 
   return (
     <Flex $flexDirection={"column"}>
