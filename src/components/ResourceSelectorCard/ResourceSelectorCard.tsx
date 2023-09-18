@@ -36,14 +36,7 @@ const ResourceSelectorCard: FC<ResourceSelectorCardProps> = (props) => {
           $pa={8}
         >
           {" "}
-          <Icon
-            name={icon}
-            $objectPosition={"center"}
-            size={50}
-            $pa={3}
-            $color={"white"}
-            $borderColor={"white"}
-          />
+          <Icon name={icon} $objectPosition={"center"} size={50} $pa={3} />
         </Flex>
         <Flex $height={"100%"} $alignItems={"center"}>
           <Typography $font={"heading-light-7"} $color={"black"}>
