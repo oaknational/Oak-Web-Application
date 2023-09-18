@@ -1,8 +1,9 @@
-// import curriculumOverviewSchema from "./curriculumOverview.schema";
+import { curriculumOverviewMVFixture } from "../../fixtures/curriculumOverview.fixture";
 
-import OakError from "@/errors/OakError";
+import curriculumOverviewSchema from "./curriculumOverview.schema";
+
+// import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 
 const curriculumOverviewQuery =
   (sdk: Sdk) =>
@@ -12,11 +13,18 @@ const curriculumOverviewQuery =
     examboardSlug: string | null;
   }) => {
     console.log(sdk, args);
-    if (!args.phaseSlug || !args.subjectSlug) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
+    // if (!args.phaseSlug || !args.subjectSlug) {
+    //   throw new OakError({ code: "curriculum-api/not-found" });
+    // }
+    // const res = await sdk.curriculumOverview(args);
+    // const curriculumOverview = res.curriculumOverview;
 
-    return curriculumOverviewMVFixture();
+    // if (!curriculumOverview) {
+    //   throw new OakError({ code: "curriculum-api/not-found" });
+    // }
+
+    // return curriculumOverviewSchema.parse(curriculumOverview);
+    return curriculumOverviewSchema.parse(curriculumOverviewMVFixture());
   };
 
 export default curriculumOverviewQuery;

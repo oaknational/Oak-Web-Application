@@ -9,13 +9,13 @@ import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushB
 import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
-import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type OverviewTabProps = {
   data: {
-    curriculumInfo: CurriculumOverviewTabData;
+    curriculumInfo: CurriculumOverviewMVData;
     curriculumCMSInfo: CurriculumOverviewSanityData;
     curriculumSelectionSlugs: CurriculumSelectionSlugs;
   };
