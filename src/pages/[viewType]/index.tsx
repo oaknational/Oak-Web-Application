@@ -213,6 +213,15 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
 ) => {
+  if (
+    context?.params?.viewType !== "teachers" &&
+    context?.params?.viewType !== "teachers-2023"
+  ) {
+    return {
+      notFound: true,
+    };
+  }
+
   return getPageProps({
     page: "teachers-home-page::getStaticProps",
     context,
