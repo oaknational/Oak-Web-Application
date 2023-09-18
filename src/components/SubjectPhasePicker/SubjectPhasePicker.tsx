@@ -100,16 +100,13 @@ const SchoolPhaseDropDownBox = styled(Box)<object>`
   }
 `;
 
-// const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-//   color: ${(props) => props.$color};
-// `;
-
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
 }) => {
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "overview";
+  const path = router.asPath;
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -267,6 +264,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setSubjectBackground("white");
       viewButtonRef.current?.focus();
     }
+    if (
+      selectedSubject &&
+      selectedPhase &&
+      path.startsWith("/teachers/curriculum/")
+    ) {
+      viewButtonRef.current?.blur();
+    }
+
     if (!showPhases && !showSubjects && !selectedSubject && !selectedPhase) {
       setDisplayNewBorders(false);
       setPhaseBackground("white");
@@ -282,7 +287,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setPhaseBackground("white");
       setSubjectBackground("grey1");
     }
-  }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
+  }, [selectedSubject, selectedPhase, showPhases, showSubjects, path]);
 
   return (
     <Box
