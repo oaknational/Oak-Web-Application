@@ -8,6 +8,9 @@ import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import MobileFilters from "../MobileFilters";
 import { Heading } from "../Typography";
+import Breadcrumbs, { Breadcrumb } from "../Breadcrumbs/Breadcrumbs";
+import Svg from "../Svg/Svg";
+import Flex from "../Flex/Flex";
 
 import PostCategoryList from "./PostCategoryList";
 import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
@@ -17,10 +20,11 @@ import BlogHeader from "./PostHeader/PostHeader";
 type PostSingleLayoutProps = {
   children?: ReactNode;
   content: BlogSinglePageProps | WebinarSinglePageProps;
+  breadcrumbs: Breadcrumb[];
 };
 
 const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
-  const { content, children } = props;
+  const { content, children, breadcrumbs } = props;
   const { categories } = content;
   const triggerId = useId();
   const post = "blog" in content ? content.blog : content.webinar;
@@ -34,6 +38,15 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   return (
     <>
       <MaxWidth>
+        <Flex
+          $pv={20}
+          $gap={20}
+          $flexDirection="column"
+          $display={["none", "block"]}
+        >
+          <Breadcrumbs breadcrumbs={breadcrumbs} />
+          <Svg name="header-underline" $color="grey3" $height={4} />
+        </Flex>
         <Grid $ph={[12, 0]}>
           <GridArea $colSpan={[12]}>
             <MobileFilters page={page} withBackButton label={"Categories"}>
