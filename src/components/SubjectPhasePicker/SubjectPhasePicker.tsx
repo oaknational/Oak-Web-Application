@@ -228,9 +228,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   };
 
-  const labelColor = (hasError: boolean) => {
-    return hasError ? "failure" : "inherit";
-  };
+  // const labelColor = (hasError: boolean) => {
+  //   return hasError ? "failure" : "inherit";
+  // };
 
   const phaseLabel = (phase: Phase) => {
     switch (phase.slug) {
@@ -557,6 +557,20 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </P>
                     </Flex>
                   )}
+                  {showExamboardError ? (
+                    <Flex $flexDirection={"row"} $mb={20}>
+                      <Icon
+                        $color={"failure"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <P $color={"failure"}>
+                        Select an exam board to view the curriculum
+                      </P>
+                    </Flex>
+                  ) : (
+                    "Exam board"
+                  )}
                   <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
                   </Heading>
@@ -577,25 +591,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       <>
                         <Heading
                           tag={"h4"}
-                          $color={labelColor(showExamboardError)}
                           $font={"heading-6"}
                           $mb={16}
                           $mt={16}
                         >
-                          {showExamboardError ? (
-                            <>
-                              <Icon
-                                $color={"failure"}
-                                name="content-guidance"
-                                verticalAlign="bottom"
-                              />
-                              <span>
-                                Select an exam board to view the curriculum
-                              </span>
-                            </>
-                          ) : (
-                            "Exam board"
-                          )}
+                          Exam board
                         </Heading>
                         {selectedSubject.examboards.map((examboard) => (
                           <ButtonContainer key={examboard.slug}>
