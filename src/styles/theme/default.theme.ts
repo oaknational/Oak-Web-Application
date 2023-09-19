@@ -238,12 +238,12 @@ const theme: OakTheme = {
     width: 720,
   },
   badge: {
-    size: "54px",
+    size: "78px",
     circleSize: "48px",
     fontSize: "16px",
-    iconSize: 20,
-    starColor: "grey6",
-    circleColor: "grey8",
+    iconSize: 48,
+    starColor: "black",
+    circleColor: "black",
     textColor: "white",
   },
   header: {

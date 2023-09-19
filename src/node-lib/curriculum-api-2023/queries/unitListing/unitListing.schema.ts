@@ -24,7 +24,7 @@ const unitSchema = z.array(
       themeSlug: z.string().nullable(),
       themeTitle: z.string().nullable(),
       yearTitle: z.string().nullable(),
-      learningThemes: z.array(learningThemesSchema),
+      learningThemes: z.array(learningThemesSchema).nullable(),
     }),
   ),
 );
@@ -50,7 +50,7 @@ const unitListingSchema = z.object({
   totalUnitCount: z.number(),
   tiers: tierSchema,
   units: unitSchema,
-  learningThemes: z.array(learningThemesSchema),
+  learningThemes: z.array(learningThemesSchema).nullable(),
 });
 
 export type unitListingPageData = z.infer<typeof unitListingSchema>;
