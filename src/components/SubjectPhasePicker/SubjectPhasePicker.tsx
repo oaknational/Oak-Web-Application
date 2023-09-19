@@ -415,22 +415,25 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </Box>
                 </Flex>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>
-                {subjects.map((subject) => (
-                  <ButtonContainer
-                    className={isSelected(subject) ? "selected" : ""}
-                    key={subject.slug}
-                  >
-                    <Button
-                      $mb={24}
-                      $mr={24}
-                      background={isSelected(subject) ? "black" : "oakGrey1"}
-                      subjectIcon={subject.slug}
-                      label={subject.title}
-                      onClick={() => handleSelectSubject(subject)}
-                      title={subject.title}
-                    />
-                  </ButtonContainer>
-                ))}
+                <Box aria-label="Subject">
+                  {subjects.map((subject) => (
+                    <ButtonContainer
+                      className={isSelected(subject) ? "selected" : ""}
+                      key={subject.slug}
+                    >
+                      <Button
+                        $mb={24}
+                        $mr={24}
+                        background={isSelected(subject) ? "black" : "oakGrey1"}
+                        subjectIcon={subject.slug}
+                        label={subject.title}
+                        onClick={() => handleSelectSubject(subject)}
+                        aria-checked={isSelected(subject)}
+                        title={subject.title}
+                      />
+                    </ButtonContainer>
+                  ))}
+                </Box>
                 <Box $mt={24}>
                   <OakLink
                     page={"oak-curriculum"}
@@ -574,18 +577,21 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
                   </Heading>
-                  {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                    <ButtonContainer className="multi-line" key={phase.slug}>
-                      <Button
-                        $mr={index === 0 ? 28 : 0}
-                        $mv={index === 0 ? 12 : 0}
-                        background={isSelected(phase) ? "black" : "oakGrey1"}
-                        label={phaseLabel(phase)}
-                        onClick={() => handleSelectPhase(phase)}
-                        title={phase.title}
-                      />
-                    </ButtonContainer>
-                  ))}
+                  <Box aria-label="School phase">
+                    {(selectedSubject?.phases ?? phases).map((phase, index) => (
+                      <ButtonContainer className="multi-line" key={phase.slug}>
+                        <Button
+                          $mr={index === 0 ? 28 : 0}
+                          $mv={index === 0 ? 12 : 0}
+                          background={isSelected(phase) ? "black" : "oakGrey1"}
+                          label={phaseLabel(phase)}
+                          onClick={() => handleSelectPhase(phase)}
+                          aria-checked={isSelected(phase)}
+                          title={phase.title}
+                        />
+                      </ButtonContainer>
+                    ))}
+                  </Box>
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
@@ -597,20 +603,23 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         >
                           Exam board
                         </Heading>
-                        {selectedSubject.examboards.map((examboard) => (
-                          <ButtonContainer key={examboard.slug}>
-                            <Button
-                              $mr={24}
-                              background={
-                                isSelected(examboard) ? "black" : "oakGrey1"
-                              }
-                              label={examboard.title}
-                              onClick={() => handleSelectExamboard(examboard)}
-                              size="large"
-                              title={examboard.title}
-                            />
-                          </ButtonContainer>
-                        ))}
+                        <Box aria-label="Exam board">
+                          {selectedSubject.examboards.map((examboard) => (
+                            <ButtonContainer key={examboard.slug}>
+                              <Button
+                                $mr={24}
+                                background={
+                                  isSelected(examboard) ? "black" : "oakGrey1"
+                                }
+                                label={examboard.title}
+                                onClick={() => handleSelectExamboard(examboard)}
+                                size="large"
+                                title={examboard.title}
+                                aria-checked={isSelected(examboard)}
+                              />
+                            </ButtonContainer>
+                          ))}
+                        </Box>
                       </>
                     )}
                 </FocusOn>
