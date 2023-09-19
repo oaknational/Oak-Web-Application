@@ -117,7 +117,7 @@ describe("Component - subject phase picker", () => {
     expect(queryByText("Choose a school phase:")).toBeNull();
   });
 
-  test.only("user clicks View without complete selection and gets error", async () => {
+  test("user clicks View without complete selection and gets error", async () => {
     const { getByText, getAllByTitle, getByTitle, queryByText } =
       renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
     const viewButton = getByText("View");
