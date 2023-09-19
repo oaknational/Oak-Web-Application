@@ -19,7 +19,7 @@ describe("curriculum overview query", () => {
     const result = await curriculumOverviewQuery(sdk)({
       subjectSlug: "maths",
       phaseSlug: "secondary",
-      examboardSlug: null,
+      // examboardSlug: null,
     });
     expect(result).toEqual(curriculumOverviewMVFixture());
   });
