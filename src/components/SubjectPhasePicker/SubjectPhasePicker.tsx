@@ -282,6 +282,19 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setPhaseBackground("grey1");
       setSubjectBackground("white");
     }
+
+    if (!showSubjects && selectedSubject && !showPhases) {
+      setDisplayNewBorders(false);
+      setPhaseBackground("white");
+      setSubjectBackground("white");
+    }
+
+    if (!showSubjects && selectedPhase && !showPhases) {
+      setDisplayNewBorders(false);
+      setPhaseBackground("white");
+      setSubjectBackground("white");
+    }
+
     if (showPhases) {
       setDisplayNewBorders(true);
       setPhaseBackground("white");
