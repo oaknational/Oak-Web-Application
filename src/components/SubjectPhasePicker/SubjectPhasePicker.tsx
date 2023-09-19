@@ -416,11 +416,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </Box>
                 </Flex>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>
-                <Box aria-label="Subject">
+                <Box aria-label="Subject" role="radiogroup">
                   {subjects.map((subject) => (
                     <ButtonContainer
                       className={isSelected(subject) ? "selected" : ""}
                       key={subject.slug}
+                      role="radio"
                     >
                       <Button
                         $mb={24}
@@ -579,9 +580,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
                   </Heading>
-                  <Box aria-label="School phase">
+                  <Box aria-label="School phase" radioGroup="radiogroup">
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                      <ButtonContainer className="multi-line" key={phase.slug}>
+                      <ButtonContainer
+                        className="multi-line"
+                        key={phase.slug}
+                        role="radio"
+                      >
                         <Button
                           $mr={index === 0 ? 28 : 0}
                           $mv={index === 0 ? 12 : 0}
@@ -605,9 +610,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         >
                           Exam board
                         </Heading>
-                        <Box aria-label="Exam board">
+                        <Box aria-label="Exam board" role="radiogroup">
                           {selectedSubject.examboards.map((examboard) => (
-                            <ButtonContainer key={examboard.slug}>
+                            <ButtonContainer key={examboard.slug} role="radio">
                               <Button
                                 $mr={24}
                                 background={

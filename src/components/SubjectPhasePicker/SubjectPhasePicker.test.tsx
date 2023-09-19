@@ -86,7 +86,7 @@ describe("Component - subject phase picker", () => {
     expect(control).toHaveTextContent("Select");
   });
 
-  test.only("user clicks English, secondary and an exam board", async () => {
+  test("user clicks English, secondary and an exam board", async () => {
     const { findByText, findByTitle, getByTitle, findAllByTitle } =
       renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
     userEvent.click(getByTitle("Subject"));
