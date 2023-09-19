@@ -10,7 +10,6 @@ describe("curriculum overview query", () => {
       await curriculumOverviewQuery(sdk)({
         subjectSlug: "",
         phaseSlug: "",
-        // examboardSlug: null,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -19,7 +18,6 @@ describe("curriculum overview query", () => {
     const result = await curriculumOverviewQuery(sdk)({
       subjectSlug: "maths",
       phaseSlug: "secondary",
-      // examboardSlug: null,
     });
     expect(result.curriculaDesc).toEqual(
       curriculumOverviewMVFixture().curriculaDesc,
