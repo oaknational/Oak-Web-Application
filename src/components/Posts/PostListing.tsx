@@ -28,6 +28,8 @@ import {
   webinarToPostListItem,
 } from "../pages/WebinarsIndex.page";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import Flex from "../Flex/Flex";
+import Svg from "../Svg/Svg";
 
 import PostCategoryList, {
   PostCategoryPage,
@@ -68,15 +70,25 @@ const PostListing: FC<PostListingProps> = ({
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background="white">
-      <Breadcrumbs
-        breadcrumbs={getBlogWebinarListBreadcrumbs(
-          categories,
-          categorySlug,
-          variant.slug,
-          variant.title,
-        )}
-      />
-      <MaxWidth $pt={[0, 80, 80]}>
+      <MaxWidth>
+        <Flex
+          $pt={20}
+          $gap={20}
+          $flexDirection="column"
+          $display={["none", "block"]}
+        >
+          <Breadcrumbs
+            breadcrumbs={getBlogWebinarListBreadcrumbs(
+              categories,
+              categorySlug,
+              variant.slug,
+              variant.title,
+            )}
+          />
+          <Svg name="header-underline" $color="grey3" $height={4} />
+        </Flex>
+      </MaxWidth>
+      <MaxWidth $pt={[0, 26, 26]}>
         <SummaryCard
           {...pageData}
           heading={categoryHeading || pageData.heading}

@@ -64,7 +64,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
               $display={["none", "block"]}
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
-              $pt={[48, 72]}
+              $pt={[48, 12]}
             >
               <Heading
                 tag="h3"

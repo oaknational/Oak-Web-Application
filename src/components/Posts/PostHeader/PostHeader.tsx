@@ -22,7 +22,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
   return (
     <>
       <Flex
-        $mt={[40, 72]}
+        $mt={[40, 12]}
         $justifyContent="space-between"
         $flexDirection={["column", "row"]}
       >
