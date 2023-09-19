@@ -1,13 +1,15 @@
 import sdk from "../../sdk";
 
-import lessonDownloads from "./downloads.query";
+import lessonDownloadsCanonical from "./lessonDownloadsCanonical.query";
 
-describe("lessonDownloads()", () => {
+describe("lessonDownloadsCanonical()", () => {
   test("throws a not found error if no unit is found", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await lessonDownloadsCanonical({
         ...sdk,
-        lessonDownloads: jest.fn(() => Promise.resolve({ downloads: [] })),
+        lessonDownloadsCanonical: jest.fn(() =>
+          Promise.resolve({ lessonDownloadsCanonical: [] }),
+        ),
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -15,12 +17,12 @@ describe("lessonDownloads()", () => {
       });
     }).rejects.toThrow(`Resource not found`);
   });
-  test("first downloads is returned if multiple lessons in response", async () => {
-    const unit = await lessonDownloads({
+  test("both pathways returned if multiple lessons in response", async () => {
+    const { pathways } = await lessonDownloadsCanonical({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      lessonDownloadsCanonical: jest.fn(() =>
         Promise.resolve({
-          downloads: [
+          lessonDownloadsCanonical: [
             {
               programmeSlug: "programme-slug-0",
               unitSlug: "unit-slug",
@@ -53,17 +55,36 @@ describe("lessonDownloads()", () => {
       unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
     });
-    expect(unit.programmeSlug).toEqual("programme-slug-0");
+    expect(pathways).toEqual([
+      {
+        programmeSlug: "programme-slug-0",
+        unitSlug: "unit-slug",
+        unitTitle: "unit-title",
+        subjectSlug: "subject-slug",
+        subjectTitle: "subject-title",
+        keyStageSlug: "key-stage-slug",
+        keyStageTitle: "key-stage-title",
+      },
+      {
+        programmeSlug: "programme-slug-1",
+        unitSlug: "unit-slug",
+        unitTitle: "unit-title",
+        subjectSlug: "subject-slug",
+        subjectTitle: "subject-title",
+        keyStageSlug: "key-stage-slug",
+        keyStageTitle: "key-stage-title",
+      },
+    ]);
   });
   test("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await lessonDownloadsCanonical({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloads: jest.fn(() =>
+        lessonDownloadsCanonical: jest.fn(() =>
           Promise.resolve({
-            downloads: [
+            lessonDownloadsCanonical: [
               {
                 programmeSlug: "programme-slug",
                 unitTitle: "unit-title",

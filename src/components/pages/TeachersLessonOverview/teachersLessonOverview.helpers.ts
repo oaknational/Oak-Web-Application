@@ -2,10 +2,7 @@ import { LessonBase, LessonPathway } from "./teachersLessonOverview.types";
 
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/Breadcrumbs";
-
-type NullableValues<T> = {
-  [K in keyof T]: T[K] | null;
-};
+import { ShallowNullable } from "@/utils/util.types";
 
 /**
  * Returns the intersection different pathways.
@@ -13,8 +10,8 @@ type NullableValues<T> = {
  */
 export const getCommonPathway = (
   pathways: LessonPathway[],
-): NullableValues<LessonPathway> => {
-  const nullPathway: NullableValues<LessonPathway> = {
+): ShallowNullable<LessonPathway> => {
+  const nullPathway: ShallowNullable<LessonPathway> = {
     keyStageSlug: null,
     keyStageTitle: null,
     programmeSlug: null,
@@ -34,8 +31,83 @@ export const getCommonPathway = (
   return commonPathway;
 };
 
+export const getLessonOverviewBreadCumb = ({
+  lessonSlug,
+  lessonTitle,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  lessonTitle: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-overview",
+        viewType: "teachers",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: lessonTitle,
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-overview-canonical",
+        viewType: "teachers",
+        lessonSlug,
+      },
+      label: lessonTitle,
+      disabled,
+    };
+  }
+};
+export const getLessonDownloadsBreadCumb = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-downloads",
+        viewType: "teachers",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: "Downloads",
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-downloads-canonical",
+        viewType: "teachers",
+        lessonSlug,
+        programmeSlug: null,
+        unitSlug: null,
+      },
+      label: "Downloads",
+      disabled,
+    };
+  }
+};
+
 export const getBreadcrumbsForLessonPathway = (
-  lesson: NullableValues<LessonPathway>,
+  lesson: ShallowNullable<LessonPathway>,
 ): Breadcrumb[] => {
   const {
     keyStageSlug,

@@ -110,11 +110,26 @@ type LessonOverviewLinkProps = {
   unitSlug: string;
   lessonSlug: string;
 };
+type LessonOverviewCanonicalLinkProps = {
+  page: "lesson-overview-canonical";
+  viewType: ViewType;
+  lessonSlug: string;
+};
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
   viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedDownloadType | null;
+  };
+};
+type LessonDownloadsCanonicalLinkProps = {
+  page: "lesson-downloads-canonical";
+  viewType: ViewType;
+  programmeSlug: null;
+  unitSlug: null;
   lessonSlug: string;
   query?: {
     preselected: PreselectedDownloadType | null;
@@ -187,7 +202,9 @@ type OakLinkProps =
   | SubjectListingLinkProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
+  | LessonDownloadsCanonicalLinkProps
   | LessonOverviewLinkProps
+  | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
   | UnitListingLinkProps
   | ProgrammeListingLinkProps
@@ -253,7 +270,9 @@ type OakPages = {
   "unit-index": OakPageConfig<UnitListingLinkProps>;
   "lesson-index": OakPageConfig<LessonListingLinkProps>;
   "lesson-overview": OakPageConfig<LessonOverviewLinkProps>;
+  "lesson-overview-canonical": OakPageConfig<LessonOverviewCanonicalLinkProps>;
   "lesson-downloads": OakPageConfig<LessonDownloadsLinkProps>;
+  "lesson-downloads-canonical": OakPageConfig<LessonDownloadsCanonicalLinkProps>;
   search: OakPageConfig<SearchLinkProps>;
   "landing-page": OakPageConfig<LandingPageLinkProps>;
   "subject-index": OakPageConfig<SubjectListingLinkProps>;
@@ -541,12 +560,24 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "lesson-overview",
   }),
+  "lesson-overview-canonical": createOakPageConfig({
+    pathPattern: "/:viewType/lessons/:lessonSlug",
+    analyticsPageName: "Lesson", // @todo this should be "Lesson (Canonical)"?
+    configType: "internal",
+    pageType: "lesson-overview-canonical",
+  }),
   "lesson-downloads": createOakPageConfig({
     pathPattern:
       "/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
+  }),
+  "lesson-downloads-canonical": createOakPageConfig({
+    pathPattern: "/:viewType/lessons/:lessonSlug/downloads",
+    analyticsPageName: "Lesson Download", // @todo this should be "Lesson Download (Canonical)"?
+    configType: "internal",
+    pageType: "lesson-downloads-canonical",
   }),
   search: createOakPageConfig({
     pathPattern: "/:viewType/search",

@@ -17,14 +17,14 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type HeaderLessonProps = {
   // pathway props
-  subjectSlug: string;
-  yearTitle: string;
-  unitSlug: string;
-  keyStageSlug: string;
-  keyStageTitle: string;
-  unitTitle: string;
-  subjectTitle: string;
-  programmeSlug: string;
+  subjectSlug: string | null;
+  yearTitle: string | null;
+  unitSlug: string | null;
+  keyStageSlug: string | null;
+  keyStageTitle: string | null;
+  unitTitle: string | null;
+  subjectTitle: string | null;
+  programmeSlug: string | null;
   // lesson base props
   lessonTitle: string;
   expired?: boolean | null;

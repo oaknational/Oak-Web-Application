@@ -3,6 +3,7 @@ import React from "react";
 import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
+  getLessonOverviewBreadCumb,
   getPageLinksForLesson,
 } from "./teachersLessonOverview.helpers";
 import {
@@ -65,16 +66,15 @@ export default function TeachersLessonOverviewPage({
     lesson.isCanonical ? lesson.pathways : [lesson],
   );
 
-  /**
-   * HACK ... DO NOT MERGE (need to fix types instead)
-   */
-  const keyStageSlug = commonPathway.keyStageSlug || "";
-  const keyStageTitle = commonPathway.keyStageTitle || "";
-  const subjectTitle = commonPathway.subjectTitle || "";
-  const subjectSlug = commonPathway.subjectSlug || "";
-  const unitTitle = commonPathway.unitTitle || "";
-  const unitSlug = commonPathway.unitSlug || "";
-  const programmeSlug = commonPathway.programmeSlug || "";
+  const {
+    keyStageSlug,
+    keyStageTitle,
+    subjectTitle,
+    subjectSlug,
+    unitTitle,
+    unitSlug,
+    programmeSlug,
+  } = commonPathway;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -114,17 +114,13 @@ export default function TeachersLessonOverviewPage({
         lessonSlug={lessonSlug}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(commonPathway),
-          {
-            oakLinkProps: {
-              page: "lesson-overview",
-              viewType: "teachers",
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-            },
-            label: lessonTitle,
+          getLessonOverviewBreadCumb({
+            lessonTitle,
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
             disabled: true,
-          },
+          }),
         ]}
         background={"pink30"}
         subjectIconBackgroundColor={"pink"}

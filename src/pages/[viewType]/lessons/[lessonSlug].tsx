@@ -28,6 +28,8 @@ type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
 }: PageProps): JSX.Element {
+  console.log(lesson.pathways);
+
   return (
     <AppLayout
       seoProps={{
@@ -38,6 +40,7 @@ export default function LessonOverviewCanonicalPage({
         ...{ noFollow: true, noIndex: true },
       }}
     >
+      <TeachersLessonOverviewPage lesson={{ ...lesson, isCanonical: true }} />
       <MaxWidth $pv={20}>
         <p>This is the canonical page for this lesson.</p>
         <p>
@@ -69,7 +72,6 @@ export default function LessonOverviewCanonicalPage({
           pathway context
         </p>
       </MaxWidth>
-      <TeachersLessonOverviewPage lesson={{ ...lesson, isCanonical: true }} />
     </AppLayout>
   );
 }

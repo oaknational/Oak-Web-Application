@@ -7,9 +7,6 @@ import {
 
 import AppLayout from "@/components/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi, {
-  type LessonDownloadsData,
-} from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -18,29 +15,39 @@ import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import LessonDownloads from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
+import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
+import { getCommonPathway } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
 
-export type LessonDownloadsPageProps = {
-  curriculumData: LessonDownloadsData;
+export type LessonDownloadsCanonicalPageProps = {
+  curriculumData: LessonDownloadsCanonical;
   viewType: ViewType;
 };
 
-const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
-  curriculumData,
-  viewType,
-}) => {
-  const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
+const LessonDownloadsCanonicalPage: NextPage<
+  LessonDownloadsCanonicalPageProps
+> = ({ curriculumData, viewType }) => {
+  const { lessonTitle, pathways } = curriculumData;
+  const commonPathway = getCommonPathway(pathways);
+  const { keyStageSlug, subjectTitle } = commonPathway;
+  const pathwayLabel = [keyStageSlug?.toUpperCase(), subjectTitle]
+    .filter(Boolean)
+    .join(" ");
+  const seoTitle = [`Lesson Download: ${lessonTitle}`, pathwayLabel]
+    .filter(Boolean)
+    .join(" | ");
+
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: seoTitle,
           description: "Lesson downloads",
         }),
         ...{ noFollow: true, noIndex: true },
       }}
     >
       <LessonDownloads
-        isCanonical={false}
+        isCanonical
         lesson={curriculumData}
         viewType={viewType}
       />
@@ -68,30 +75,34 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonDownloadsPageProps,
+  LessonDownloadsCanonicalPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "downloads::getStaticProps",
+    page: "downloads-canonical::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
         throw new Error("No context.params");
       }
-      const { lessonSlug, programmeSlug, unitSlug } = context.params;
+      const { lessonSlug } = context.params;
 
-      const curriculumData =
-        context?.params?.viewType === "teachers-2023"
-          ? await curriculumApi2023.lessonDownloads({
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-            })
-          : await curriculumApi.lessonDownloads({
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-            });
+      const curriculumData = await curriculumApi2023.lessonDownloadsCanonical({
+        lessonSlug,
+      });
+
+      //   const curriculumData =
+      //     context?.params?.viewType === "teachers-2023"
+      //       ? await curriculumApi2023.lessonDownloads({
+      //           programmeSlug,
+      //           unitSlug,
+      //           lessonSlug,
+      //         })
+      //       : await curriculumApi.lessonDownloads({
+      //           programmeSlug,
+      //           unitSlug,
+      //           lessonSlug,
+      //         });
 
       if (!curriculumData) {
         return {
@@ -99,7 +110,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
+      const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {
         props: {
           curriculumData,
           viewType: context?.params?.viewType,
@@ -110,4 +121,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonDownloadsPage;
+export default LessonDownloadsCanonicalPage;
