@@ -29,7 +29,6 @@ import {
   webinarToPostListItem,
 } from "@/components/pages/WebinarsIndex.page";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import Svg from "@/components/Svg/Svg";
 
 type PostListingProps = {
   seo: SeoProps;
@@ -66,12 +65,7 @@ const PostListing: FC<PostListingProps> = ({
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background="white">
-      <MaxWidth
-        $pt={20}
-        $gap={20}
-        $flexDirection="column"
-        $display={["none", "flex"]}
-      >
+      <MaxWidth $pt={20} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(
             categories,
@@ -80,7 +74,6 @@ const PostListing: FC<PostListingProps> = ({
             variant.title,
           )}
         />
-        <Svg name="header-underline" $color="grey3" $height={4} />
       </MaxWidth>
       <MaxWidth $pt={[0, 26, 26]}>
         <SummaryCard
