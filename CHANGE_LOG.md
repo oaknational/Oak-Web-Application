@@ -1,3 +1,26 @@
+# [1.243.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.242.0...v1.243.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **curric:** fix curriculum visualiser UI bugs ([d5bab94](https://github.com/oaknational/Oak-Web-Application/commit/d5bab9400f73ae30cdb10556929d31aac92b81a9))
+* fix merge conflicts ([43e97e7](https://github.com/oaknational/Oak-Web-Application/commit/43e97e7d80a89d39d22daf28f9787b1198ca341b))
+* fix thread count rendering ([e82c227](https://github.com/oaknational/Oak-Web-Application/commit/e82c22753f88e89c60001b1391cdb15371e95ef6))
+* fix thread filter bug, update radio and checkbox styles ([a58275f](https://github.com/oaknational/Oak-Web-Application/commit/a58275f41e9dd64e6cda23cf1844a0ced91d65b4))
+* merge to main ([f7dd84a](https://github.com/oaknational/Oak-Web-Application/commit/f7dd84abccc884099dc7ae0ef674e0d4a82ce85b))
+* merge to main ([10ed827](https://github.com/oaknational/Oak-Web-Application/commit/10ed827229fdec77349baf272b2b6d899dd1f723))
+* merge to main ([d0bbfaf](https://github.com/oaknational/Oak-Web-Application/commit/d0bbfaf4ec2722296a10780bc63a789fcbc75eab))
+* rename aria-label and testid ([0ca865b](https://github.com/oaknational/Oak-Web-Application/commit/0ca865b1e9d0ea0e931b8545d934f3bf77d9fb55))
+* update highlighted unit count ([200600a](https://github.com/oaknational/Oak-Web-Application/commit/200600a1c48eb7116cbde3e2dbda287eb11e0acf))
+* update thread count language, update filtering params ([077f053](https://github.com/oaknational/Oak-Web-Application/commit/077f053446a8f08d70191f49b21f591375f104c9))
+* update visualiser UI and fix highlighted thread count issue ([f9b21ff](https://github.com/oaknational/Oak-Web-Application/commit/f9b21ff98dec10555a92e99cd6ff648accb7893e))
+* updating equality ([c41d132](https://github.com/oaknational/Oak-Web-Application/commit/c41d1320c8bff49e220385e0199053da7590c6a8))
+
+
+### Features
+
+* **curric:** add sidebar to curriculum visualiser ([7532aaf](https://github.com/oaknational/Oak-Web-Application/commit/7532aaffe51c9ba45c0d9ffbb505aa445d359e43))
+
 # [1.242.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.241.2...v1.242.0) (2023-09-18)
 
 
