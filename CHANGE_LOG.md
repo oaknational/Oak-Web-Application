@@ -1,3 +1,33 @@
+# [1.245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.244.0...v1.245.0) (2023-09-19)
+
+
+### Bug Fixes
+
+* accidental spread ([ec2480f](https://github.com/oaknational/Oak-Web-Application/commit/ec2480faed372b0d52b83c3b0fba3c74720ae7b0))
+* duplicate name for types and components ([7f6ebd1](https://github.com/oaknational/Oak-Web-Application/commit/7f6ebd162820e638bf7340e93c66af7bd1605940))
+* imports ([9d23cd9](https://github.com/oaknational/Oak-Web-Application/commit/9d23cd97b5ab14e7280b872c098c9a8a14c77ba5))
+* link to curriculum page from menu ([046cb64](https://github.com/oaknational/Oak-Web-Application/commit/046cb64cd2695ca9a1bc6fe56ec29b8a0b2a1146))
+* more import updates ([a564f2c](https://github.com/oaknational/Oak-Web-Application/commit/a564f2c91edb7513a8ba63ca7a47edb5e0dfa1f2))
+* multiple elements match for test ([a44d9fc](https://github.com/oaknational/Oak-Web-Application/commit/a44d9fc30876a6f3d6bd1bebb24a514ea6fd47e9))
+* remaining references to x changed to twitter ([bee388e](https://github.com/oaknational/Oak-Web-Application/commit/bee388e26219fce2a9f435e6a3c1b69c6904b3bd))
+* show external icon for help page link ([f52b3c4](https://github.com/oaknational/Oak-Web-Application/commit/f52b3c4a202fce4fbb71c8e5078bff312c791817))
+* social buttons tests ([5799ee6](https://github.com/oaknational/Oak-Web-Application/commit/5799ee6458946b8e012848b511d7a2136d32dd2a))
+
+
+### Features
+
+* add correct links for all menu items ([a4cede6](https://github.com/oaknational/Oak-Web-Application/commit/a4cede69348e8bd48435a290f276fda91c1ed2a2))
+* add menu links component ([184826c](https://github.com/oaknational/Oak-Web-Application/commit/184826cc891c20577541f89f650b396ccb098ca8))
+* add new menu link component ([b96243e](https://github.com/oaknational/Oak-Web-Application/commit/b96243ef7d9af386060f90262ed3c5f745282c8b))
+* adjust hover underline for buttonStyledAsLink ([f458bae](https://github.com/oaknational/Oak-Web-Application/commit/f458baebde97a30235e8c73234b8a5322317f854))
+* conditionally show new tag ([a82dc68](https://github.com/oaknational/Oak-Web-Application/commit/a82dc68f9efa53efda201908bc1c3c60b7d62def))
+* enhance aria label for links opening in a new tab ([5b49e1e](https://github.com/oaknational/Oak-Web-Application/commit/5b49e1ea146a739f5cd5441019f89f93e77b5055))
+* remove /beta for early release units ([d8b0d28](https://github.com/oaknational/Oak-Web-Application/commit/d8b0d28a91ff047bfa0b12b2d3211d5a7f1a3ae3))
+* remove underline from buttonStyledAsLink on mobile ([d73a7e1](https://github.com/oaknational/Oak-Web-Application/commit/d73a7e14254565bd9aaf4b1a4812d8b71f7e4aad))
+* replace menu with new one in appheader ([487c2f0](https://github.com/oaknational/Oak-Web-Application/commit/487c2f0482034af9c25e9cf559df7134a618973a))
+* show external icon conditionally ([852fd13](https://github.com/oaknational/Oak-Web-Application/commit/852fd13396c6c9d258c5480215e627ee945c378f))
+* update twitter label to x ([a54392a](https://github.com/oaknational/Oak-Web-Application/commit/a54392a1e309b29d7c869f8ae6c69f28667898b9))
+
 # [1.244.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.243.0...v1.244.0) (2023-09-19)
 
 
