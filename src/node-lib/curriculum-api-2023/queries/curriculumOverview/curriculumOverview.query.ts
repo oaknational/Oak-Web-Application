@@ -10,12 +10,10 @@ const curriculumOverviewQuery =
     subjectSlug: string;
     // examboardSlug?: string;
   }) => {
-    console.log(sdk, args);
     if (!args.phaseSlug || !args.subjectSlug) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
     const res = await sdk.curriculumOverview(args);
-    console.log(res);
     const [curriculumOverview] = res.curriculumOverview;
     console.log(curriculumOverview);
     if (!curriculumOverview) {
