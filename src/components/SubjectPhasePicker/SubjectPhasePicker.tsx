@@ -268,30 +268,34 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setPhaseBackground("white");
       setSubjectBackground("white");
       viewButtonRef.current?.focus();
+      console.log("SELECTED SUBJECT AND PHASE");
     }
-    if (
-      selectedSubject &&
-      selectedPhase &&
-      path &&
-      path.startsWith("/teachers/curriculum/")
-    ) {
-      viewButtonRef.current?.blur();
-    }
+    // if (
+    //   selectedSubject &&
+    //   selectedPhase &&
+    //   path &&
+    //   path.startsWith("/teachers/curriculum/")
+    // ) {
+    //   viewButtonRef.current?.blur();
+    // }
 
     if (!showPhases && !showSubjects && !selectedSubject && !selectedPhase) {
       setDisplayNewBorders(false);
       setPhaseBackground("white");
       setSubjectBackground("white");
+      console.log("ERROR CONSOLE");
     }
     if (showSubjects) {
       setDisplayNewBorders(true);
       setPhaseBackground("grey1");
       setSubjectBackground("white");
+      console.log("SHOW SUBJECTS");
     }
     if (showPhases) {
       setDisplayNewBorders(true);
       setPhaseBackground("white");
       setSubjectBackground("grey1");
+      console.log("SHOW PHASES");
     }
   }, [selectedSubject, selectedPhase, showPhases, showSubjects, path]);
 
