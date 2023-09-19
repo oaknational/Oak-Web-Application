@@ -4,7 +4,6 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
-import { getBreakpoint } from "../../styles/utils/responsive";
 import { BackgroundIcon } from "../Icon/Icon";
 
 import {
@@ -190,17 +189,14 @@ const buttonStyles = css<ButtonStylesProps>`
   ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
-      &:hover,
       &:focus {
         & ${ButtonStyledAsLinkFocusUnderline} {
           display: block;
         }
       }
 
-      @media (max-width: ${getBreakpoint("small")}px) {
-        & ${ButtonStyledAsLinkFocusUnderline} {
-          display: block;
-        }
+      :hover:not(:focus) ${ButtonLabel} {
+        text-decoration: underline;
       }
     `}
 

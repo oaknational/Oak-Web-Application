@@ -1,4 +1,4 @@
-import { screen, within, getByRole } from "@testing-library/react";
+import { screen, within, getByRole, fireEvent } from "@testing-library/react";
 
 import Teachers, {
   getStaticProps,
@@ -55,9 +55,28 @@ describe("pages/beta/[viewType]/index.tsx", () => {
     render(<Teachers {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
-    expect(h1).toHaveTextContent("Your foundation for great lessons");
+    expect(h1).toHaveTextContent("Teachers");
   });
+  it("Render correct tab after selecting tab", () => {
+    const { getByTitle, getAllByTitle } = render(<Teachers {...props} />);
+    const curriculumPlans = getAllByTitle("Curriculum plans");
+    const curriculumPlansButton = curriculumPlans[1];
+    if (curriculumPlansButton) {
+      fireEvent.click(curriculumPlansButton);
+      const curriculumH1 = screen.getByRole("heading", { level: 1 });
+      expect(curriculumH1).toHaveTextContent("Teachers & subject leads");
+    } else {
+      throw new Error("Could not find curriculum plans button element");
+    }
 
+    fireEvent.click(getByTitle("Pupils"));
+    const pupilsH1 = screen.getByRole("heading", { level: 1 });
+    expect(pupilsH1).toHaveTextContent("Pupils");
+
+    fireEvent.click(getByTitle("Teaching resources"));
+    const teachersH1 = screen.getByRole("heading", { level: 1 });
+    expect(teachersH1).toHaveTextContent("Teachers");
+  });
   it("Renders a link to the blog list", () => {
     render(<Teachers {...props} />);
 
