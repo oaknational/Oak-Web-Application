@@ -163,6 +163,10 @@ type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
   viewType: ViewType;
 };
+type EarlyReleaseUnitsPageLinkProps = {
+  page: "early-release-units-page";
+  viewType: ViewType;
+};
 type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
   viewType: ViewType;
@@ -177,11 +181,6 @@ type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
   viewType: ViewType;
   subjectPhaseSlug: string;
-};
-
-type EarlyReleaseUnitsProps = {
-  page: "early-release-units";
-  viewType: ViewType;
 };
 
 type OakLinkProps =
@@ -218,7 +217,7 @@ type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | EarlyReleaseUnitsProps;
+  | EarlyReleaseUnitsPageLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -261,10 +260,10 @@ type OakPages = {
   "webinar-single": OakPageConfig<WebinarSingleLinkProps>;
   "blog-single": OakPageConfig<BlogSingleLinkProps>;
   "curriculum-landing-page": OakPageConfig<CurriculumLandingPageLinkProps>;
+  "early-release-units-page": OakPageConfig<EarlyReleaseUnitsPageLinkProps>;
   "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
-  "early-release-units": OakPageConfig<EarlyReleaseUnitsProps>;
 };
 
 type OakPageConfig<
@@ -592,6 +591,12 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "curriculum-landing-page",
   }),
+  "early-release-units-page": createOakPageConfig({
+    pathPattern: "/:viewType/early-release-units",
+    analyticsPageName: "Early Release Units Page",
+    configType: "internal",
+    pageType: "early-release-units-page",
+  }),
   "curriculum-overview": createOakPageConfig({
     pathPattern: "/:viewType/curriculum/:subjectPhaseSlug/overview",
     analyticsPageName: "Curriculum Overview",
@@ -609,12 +614,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
-  }),
-  "early-release-units": createOakPageConfig({
-    pathPattern: "/:viewType/early-release-units",
-    configType: "internal",
-    pageType: "early-release-units",
-    analyticsPageName: "Early Release Units",
   }),
 };
 

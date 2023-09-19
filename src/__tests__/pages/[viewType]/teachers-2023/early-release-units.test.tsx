@@ -18,7 +18,7 @@ const primaryUnitTitles = earlyReleaseExemplarUnitsFixture().primary.units.map(
   (unit) => unit.title,
 );
 
-describe("pages/teachers-2023/early-release-units", () => {
+describe("pages/teachers/early-release-units", () => {
   test("it renders a page header", () => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
 

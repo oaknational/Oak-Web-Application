@@ -11,7 +11,7 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: { page: "early-release-units", viewType: "teachers-2023" },
+        linkTo: { page: "early-release-units-page", viewType: "teachers" },
         text: "Early release units",
         new: true,
         external: false,
