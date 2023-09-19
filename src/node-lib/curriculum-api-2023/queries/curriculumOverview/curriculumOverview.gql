@@ -1,8 +1,4 @@
-query curriculumOverview(
-  $phaseSlug: String
-  $subjectSlug: String
-  $examboardSlug: String!
-) {
+query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
   curriculumOverview: published_mv_curriculum_overview(
     where: {
       phase_slug: { _eq: $phaseSlug }

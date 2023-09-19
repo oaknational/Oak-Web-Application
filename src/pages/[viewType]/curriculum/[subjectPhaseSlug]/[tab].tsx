@@ -157,8 +157,10 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
-      const curriculumOverviewTabData =
-        await curriculumApi.curriculumOverview(slugs);
+      const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
+        subjectSlug: slugs.subjectSlug,
+        phaseSlug: slugs.phaseSlug,
+      });
 
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({

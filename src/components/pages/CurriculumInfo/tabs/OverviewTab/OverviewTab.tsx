@@ -35,7 +35,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           $pt={20}
           $mr={16}
           $pb={48}
-          $maxWidth={["100%", "65%"]}
+          $maxWidth={["100%", "100%", "65%"]}
           $textAlign={"left"}
         >
           <Heading
@@ -58,11 +58,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         <Card
           $ml={40}
           $maxHeight={200}
-          $maxWidth={["100%", 200]}
+          $maxWidth={["100%", 0, 200]}
           $ma={"auto"}
           $zIndex={"inFront"}
           $transform={["rotate(-2.179deg) scale(1.5, 1.5) translate(15%,40%)"]}
-          $display={["none", "flex"]}
+          $display={["none", "none", "flex"]}
           $background={"lemon50"}
         >
           <BrushBorders color="lemon50" />
