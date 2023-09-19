@@ -1,21 +1,22 @@
 import { FC, ReactNode, useId } from "react";
 
-import { WebinarSinglePageProps } from "../../pages/webinars/[webinarSlug]";
-import { BlogSinglePageProps } from "../../pages/blog/[blogSlug]";
-import theme from "../../styles/theme";
-import Box from "../Box";
-import Grid, { GridArea } from "../Grid";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileFilters from "../MobileFilters";
-import { Heading } from "../Typography";
-import Breadcrumbs, { Breadcrumb } from "../Breadcrumbs/Breadcrumbs";
-import Svg from "../Svg/Svg";
-import Flex from "../Flex/Flex";
-
 import PostCategoryList from "./PostCategoryList";
 import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
 import usePostCategoryList from "./PostCategoryList/usePostCategoryList";
 import BlogHeader from "./PostHeader/PostHeader";
+
+import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
+import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
+import theme from "@/styles/theme";
+import Box from "@/components/Box";
+import Grid, { GridArea } from "@/components/Grid";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MobileFilters from "@/components/MobileFilters";
+import { Heading } from "@/components/Typography";
+import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs/Breadcrumbs";
+import Svg from "@/components/Svg/Svg";
+import Flex from "@/components/Flex/Flex";
+
 
 type PostSingleLayoutProps = {
   children?: ReactNode;

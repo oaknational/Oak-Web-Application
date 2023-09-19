@@ -7,24 +7,24 @@ import {
 import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
 
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import Layout from "../../components/Layout";
-import CMSClient from "../../node-lib/cms";
-import { TeamMemberPreview, Webinar } from "../../common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
-import Box from "../../components/Box";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import Layout from "@/components/Layout";
+import CMSClient from "@/node-lib/cms";
+import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
+import Box from "@/components/Box";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../node-lib/isr";
-import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
-import Flex from "../../components/Flex";
-import WebinarVideo from "../../components/Posts/WebinarVideo";
-import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import PostSingleLayout from "../../components/Posts/PostSingleLayout";
-import getPageProps from "../../node-lib/getPageProps";
+} from "@/node-lib/isr";
+import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
+import Flex from "@/components/Flex";
+import WebinarVideo from "@/components/Posts/WebinarVideo";
+import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
+import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;

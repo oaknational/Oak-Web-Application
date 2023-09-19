@@ -1,39 +1,37 @@
 import { FC, useId } from "react";
 
-import { PostListJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { SeoProps } from "../../browser-lib/seo/Seo";
-import {
-  PostListingPage,
-  BlogWebinarCategory,
-} from "../../common-lib/cms-types";
-import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import PostListAndCategories from "../Posts/PostListAndCategories";
+import PostCategoryList, {
+  PostCategoryPage,
+} from "./PostCategoryList/PostCategoryList";
+
+import { PostListJsonLd } from "@/browser-lib/seo/getJsonLd";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { SeoProps } from "@/browser-lib/seo/Seo";
+import { PostListingPage, BlogWebinarCategory } from "@/common-lib/cms-types";
+import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage";
+import PostListAndCategories from "@/components/Posts/PostListAndCategories";
 import {
   CrumbPageVariant,
   getBlogWebinarListBreadcrumbs,
-} from "../Breadcrumbs/getBreadcrumbs";
-import SummaryCard from "../Card/SummaryCard";
-import Layout from "../Layout";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileFilters from "../MobileFilters";
+} from "@/components/Breadcrumbs/getBreadcrumbs";
+import SummaryCard from "@/components/Card/SummaryCard";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MobileFilters from "@/components/MobileFilters";
 import {
   PostListingPageProps,
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "../pages/BlogIndex.page";
+} from "@/components/pages/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
   webinarToPostListItem,
-} from "../pages/WebinarsIndex.page";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
-import Flex from "../Flex/Flex";
-import Svg from "../Svg/Svg";
+} from "@/components/pages/WebinarsIndex.page";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import Flex from "@/components/Flex/Flex";
+import Svg from "@/components/Svg/Svg";
 
-import PostCategoryList, {
-  PostCategoryPage,
-} from "./PostCategoryList/PostCategoryList";
 
 type PostListingProps = {
   seo: SeoProps;
