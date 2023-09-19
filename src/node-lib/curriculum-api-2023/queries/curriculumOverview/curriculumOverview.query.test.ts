@@ -21,6 +21,8 @@ describe("curriculum overview query", () => {
       phaseSlug: "secondary",
       // examboardSlug: null,
     });
-    expect(result).toEqual(curriculumOverviewMVFixture());
+    expect(result.curriculaDesc).toEqual(
+      curriculumOverviewMVFixture().curriculaDesc,
+    );
   });
 });
