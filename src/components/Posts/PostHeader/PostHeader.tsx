@@ -22,11 +22,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
   const formattedDate = formatDate(post.date);
   return (
     <>
-      <Flex
-        $mt={[40, 12]}
-        $justifyContent="space-between"
-        $flexDirection={["column", "row"]}
-      >
+      <Flex $justifyContent="space-between" $flexDirection={["column", "row"]}>
         <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
           <OakLink page={page} categorySlug={post.category.slug}>
             {post.category.title}

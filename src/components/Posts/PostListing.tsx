@@ -70,7 +70,7 @@ const PostListing: FC<PostListingProps> = ({
         $pt={20}
         $gap={20}
         $flexDirection="column"
-        $display={["none", "block"]}
+        $display={["none", "flex"]}
       >
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(

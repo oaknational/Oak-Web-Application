@@ -8,15 +8,12 @@ import BlogHeader from "./PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
-import Box from "@/components/Box";
 import Grid, { GridArea } from "@/components/Grid";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/Typography";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs/Breadcrumbs";
 import Svg from "@/components/Svg/Svg";
-import Flex from "@/components/Flex/Flex";
-
 
 type PostSingleLayoutProps = {
   children?: ReactNode;
@@ -39,17 +36,8 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
   return (
     <>
       <MaxWidth>
-        <Flex
-          $pv={20}
-          $gap={20}
-          $flexDirection="column"
-          $display={["none", "block"]}
-        >
-          <Breadcrumbs breadcrumbs={breadcrumbs} />
-          <Svg name="header-underline" $color="grey3" $height={4} />
-        </Flex>
         <Grid $ph={[12, 0]}>
-          <GridArea $colSpan={[12]}>
+          <GridArea $colSpan={[12, 0]}>
             <MobileFilters page={page} withBackButton label={"Categories"}>
               <PostCategoryList
                 labelledBy={triggerId}
@@ -60,30 +48,40 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
               />
             </MobileFilters>
           </GridArea>
-          <GridArea $order={[0, 2]} $colSpan={[12, 3]}>
-            <Box
-              $display={["none", "block"]}
-              $position={[null, "sticky"]}
-              $top={[null, HEADER_HEIGHT]}
-              $pt={[48, 12]}
+          <GridArea
+            $colSpan={[0, 12]}
+            $display={["none", "flex"]}
+            $flexDirection="column"
+            $mv={20}
+            $gap={20}
+          >
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <Svg name="header-underline" $color="grey3" $height={4} />
+          </GridArea>
+          <GridArea
+            $order={[0, 2]}
+            $colSpan={[12, 3]}
+            $mt={[48, 12]}
+            $display={["none", "block"]}
+            $position={[null, "sticky"]}
+            $top={[null, HEADER_HEIGHT]}
+          >
+            <Heading
+              tag="h3"
+              $font="body-3"
+              id={postCategoriesListProps.labelId}
             >
-              <Heading
-                tag="h3"
-                $font="body-3"
-                id={postCategoriesListProps.labelId}
-              >
-                Categories
-              </Heading>
-              <PostCategoryList
-                labelledBy={postCategoriesListProps.labelId}
-                $mt={24}
-                categories={categories}
-                page={page}
-              />
-            </Box>
+              Categories
+            </Heading>
+            <PostCategoryList
+              labelledBy={postCategoriesListProps.labelId}
+              $mt={24}
+              categories={categories}
+              page={page}
+            />
           </GridArea>
           <GridArea $order={[0, 1]} $colSpan={[12, 2]} />
-          <GridArea $order={[1, 0]} $colSpan={[12, 7]}>
+          <GridArea $order={[1, 0]} $colSpan={[12, 7]} $mt={[40, 12]}>
             <BlogHeader post={post} page={page} />
             {children}
           </GridArea>
