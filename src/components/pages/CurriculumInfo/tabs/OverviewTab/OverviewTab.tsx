@@ -30,10 +30,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         >
           <Heading
             tag="h2"
-            $font={["heading-5", "heading-6"]}
+            $font={["heading-5", "heading-4"]}
             data-testid="intent-heading"
           >
-            Curriculum intent
+            Curriculum explainer
           </Heading>
           <Typography
             $font={["body-2", "body-1"]}
@@ -73,7 +73,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
+          <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
@@ -107,7 +107,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         <Flex $justifyContent={"center"} $pa={16}>
           <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
           <Box>
-            <Heading tag="h2" $font={"heading-5"}>
+            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
               Our curriculum partner
             </Heading>
             <Typography $font={"body-1"}>{partnerBio}</Typography>
