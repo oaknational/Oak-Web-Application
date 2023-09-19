@@ -10,7 +10,7 @@ describe("curriculum overview query", () => {
       await curriculumOverviewQuery(sdk)({
         subjectSlug: "",
         phaseSlug: "",
-        examboardSlug: null,
+        // examboardSlug: null,
       });
     }).rejects.toThrow(`Resource not found`);
   });
