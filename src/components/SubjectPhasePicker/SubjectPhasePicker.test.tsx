@@ -86,7 +86,7 @@ describe("Component - subject phase picker", () => {
     expect(control).toHaveTextContent("Select");
   });
 
-  test("user clicks English, secondary and an exam board", async () => {
+  test.only("user clicks English, secondary and an exam board", async () => {
     const { findByText, findByTitle, getByTitle, findAllByTitle } =
       renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
     userEvent.click(getByTitle("Subject"));
@@ -99,7 +99,11 @@ describe("Component - subject phase picker", () => {
     userEvent.click(await findByTitle("Secondary"));
     const examboardTitle = await findByText("Exam board");
     expect(examboardTitle).toBeTruthy();
-    await userEvent.click(getByTitle("AQA"));
+    const AQA = (await findAllByTitle("AQA"))[0];
+    if (!AQA) {
+      throw new Error("Could not find button");
+    }
+    await userEvent.click(AQA);
     expect(control).toHaveTextContent("Secondary, AQA");
   });
 
