@@ -27,6 +27,7 @@ import {
   WebinarListingPageProps,
   webinarToPostListItem,
 } from "../pages/WebinarsIndex.page";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 import PostCategoryList, {
   PostCategoryPage,
@@ -66,16 +67,15 @@ const PostListing: FC<PostListingProps> = ({
   );
 
   return (
-    <Layout
-      seoProps={getSeoProps(seo)}
-      $background="white"
-      breadcrumbs={getBlogWebinarListBreadcrumbs(
-        categories,
-        categorySlug,
-        variant.slug,
-        variant.title,
-      )}
-    >
+    <Layout seoProps={getSeoProps(seo)} $background="white">
+      <Breadcrumbs
+        breadcrumbs={getBlogWebinarListBreadcrumbs(
+          categories,
+          categorySlug,
+          variant.slug,
+          variant.title,
+        )}
+      />
       <MaxWidth $pt={[0, 80, 80]}>
         <SummaryCard
           {...pageData}

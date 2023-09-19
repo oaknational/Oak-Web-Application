@@ -26,6 +26,8 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import PostSingleLayout from "../../components/Posts/PostSingleLayout";
 import getPageProps from "../../node-lib/getPageProps";
 
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+
 export type SerializedWebinar = Omit<Webinar, "date"> & {
   date: string;
   author: TeamMemberPreview | undefined;
@@ -60,13 +62,15 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
         }),
       })}
       $background="white"
-      breadcrumbs={getBlogWebinarPostBreadcrumbs(
-        categories,
-        webinar,
-        "webinars",
-        "Webinars",
-      )}
     >
+      <Breadcrumbs
+        breadcrumbs={getBlogWebinarPostBreadcrumbs(
+          categories,
+          webinar,
+          "webinars",
+          "Webinars",
+        )}
+      />
       <PostSingleLayout content={props}>
         <Flex $position={"relative"} $mt={56}>
           <WebinarVideo webinar={webinar} />

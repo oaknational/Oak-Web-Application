@@ -24,6 +24,8 @@ import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getB
 import PostSingleLayout from "../../components/Posts/PostSingleLayout";
 import getPageProps from "../../node-lib/getPageProps";
 
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
 };
@@ -60,13 +62,15 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      breadcrumbs={getBlogWebinarPostBreadcrumbs(
-        categories,
-        blog,
-        "blog",
-        "Blog",
-      )}
     >
+      <Breadcrumbs
+        breadcrumbs={getBlogWebinarPostBreadcrumbs(
+          categories,
+          blog,
+          "blog",
+          "Blog",
+        )}
+      />
       <PostSingleLayout content={props}>
         <Box $mt={[48]}>
           <BlogPortableText portableText={props.blog.contentPortableText} />
