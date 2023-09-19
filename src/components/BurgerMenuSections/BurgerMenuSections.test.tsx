@@ -1,19 +1,19 @@
 import { screen, within } from "@testing-library/react";
 
-import NewMenuLinks from "./BurgerMenuSections";
+import BurgerMenuSections from "./BurgerMenuSections";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 
-describe("NewMenuLinks", () => {
+describe("BurgerMenuSections", () => {
   it("renders 3 menu sections", () => {
-    renderWithTheme(<NewMenuLinks menuSections={betaMenuSections} />);
+    renderWithTheme(<BurgerMenuSections menuSections={betaMenuSections} />);
 
     const menuSection = screen.getAllByTestId("menu-section");
     expect(menuSection).toHaveLength(3);
   });
   it("renders a heading and a list in each section", () => {
-    renderWithTheme(<NewMenuLinks menuSections={betaMenuSections} />);
+    renderWithTheme(<BurgerMenuSections menuSections={betaMenuSections} />);
 
     const menuSections = screen.getAllByTestId("menu-section");
     const firstSection = menuSections[0];

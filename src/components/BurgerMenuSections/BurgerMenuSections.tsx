@@ -4,15 +4,15 @@ import { Heading, LI } from "../Typography";
 import Flex from "../Flex/Flex";
 import { FlexList } from "../Typography/UL";
 
-import BurgerMenuLink from "./BurgerMenuLink";
-import { BurgerMenuSections } from "./types";
+import BurgerMenuLinkButton from "./BurgerMenuLink";
+import { BurgerMenuSection } from "./types";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
  */
 
 export type BurgerMenuSectionsProps = {
-  menuSections: BurgerMenuSections;
+  menuSections: Array<BurgerMenuSection>;
 };
 
 const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
@@ -33,7 +33,7 @@ const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
           >
             {section.links.map((link, i) => (
               <LI listStyle="none" key={`${link.text}-${i}`}>
-                <BurgerMenuLink link={link} />
+                <BurgerMenuLinkButton link={link} />
               </LI>
             ))}
           </FlexList>

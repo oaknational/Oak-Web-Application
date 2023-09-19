@@ -21,5 +21,3 @@ export type BurgerMenuSection = {
   header: string;
   links: Array<BurgerMenuLink>;
 };
-
-export type BurgerMenuSections = Array<BurgerMenuSection>;

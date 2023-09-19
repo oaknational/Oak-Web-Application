@@ -9,7 +9,7 @@ import { BurgerMenuLink, linkIsHref } from "./types";
 export type BurgerMenuLinkProps = {
   link: BurgerMenuLink;
 };
-const BurgerMenuLink: FC<BurgerMenuLinkProps> = (props) => {
+const BurgerMenuLinkButton: FC<BurgerMenuLinkProps> = (props) => {
   const { link } = props;
 
   const linkTo = linkIsHref(link.linkTo)
@@ -35,4 +35,4 @@ const BurgerMenuLink: FC<BurgerMenuLinkProps> = (props) => {
   );
 };
 
-export default BurgerMenuLink;
+export default BurgerMenuLinkButton;
