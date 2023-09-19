@@ -1,6 +1,9 @@
 import styled, { css } from "styled-components";
 
 import { box, BoxProps } from "../Box";
+import { FlexProps } from "../Flex";
+
+import flex from "@/styles/utils/flex";
 
 type ULProps = BoxProps & {
   $reset?: boolean;
@@ -22,6 +25,13 @@ const UL = styled.ul<ULProps>`
     `}
   margin: 0;
   ${box}
+`;
+
+/**
+ * Styled 'ul' extended with properties of Flex
+ */
+export const FlexList = styled(UL)<ULProps & FlexProps>`
+  ${flex}
 `;
 
 export default UL;
