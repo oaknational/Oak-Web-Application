@@ -31,7 +31,7 @@ const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
             $flexDirection="column"
             $gap={4}
           >
-            {section.links.map((link, i) => (
+            {...section.links.map((link, i) => (
               <LI listStyle="none" key={`${link.text}-${i}`}>
                 <BurgerMenuLinkButton link={link} />
               </LI>
