@@ -8,13 +8,13 @@ import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
-import OakLink from "@/components/OakLink/OakLink";
 import Button from "@/components/Button/Button";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
+import TagFunctional from "@/components/TagFunctional";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -34,8 +34,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   interface Domain {
-    title: string;
-    tag_id: number | null;
+    domain: string;
+    domain_slug: string;
   }
 
   interface Tier {
@@ -92,16 +92,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     // Add the current unit
     currentYearData.units.push(unit);
 
-    // Populate list of domain filter values
-    // Replace below with domain / domain_slug from API request when updated
-    const domain = unit.domains[0];
-    if (
-      domain &&
-      currentYearData.domains.every((d) => d.tag_id !== domain.tag_id)
-    ) {
-      currentYearData.domains.push(domain);
-    }
-
     // Populate list of child subject filter values
     if (
       unit.subject_parent &&
@@ -115,8 +105,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         subject_slug: unit.subject_slug,
       });
     }
-
-    // Populate list of tier filter values
+    if (
+      unit.domain &&
+      unit.domain_slug &&
+      currentYearData.domains.every((d) => d.domain_slug !== unit.domain_slug)
+    ) {
+      currentYearData.domains.push({
+        domain: unit.domain,
+        domain_slug: unit.domain_slug,
+      });
+    }
     if (
       unit.tier &&
       unit.tier_slug &&
@@ -147,10 +145,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       }
     });
     if (data.domains.length > 0) {
-      data.domains.sort((a, b) => Number(a.tag_id) - Number(b.tag_id));
       data.domains.unshift({
-        title: "All",
-        tag_id: null,
+        domain: "All",
+        domain_slug: "all",
       });
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
@@ -167,17 +164,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     useState<YearSelection>(initialYearSelection);
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
-
-  const buildProgrammeSlug = (unit: Unit) => {
-    let slug = `${unit.subject_slug}-${unit.phase_slug}-${unit.keystage_slug}`;
-    if (unit.tier_slug) {
-      slug = `${slug}-${unit.tier_slug}`;
-    }
-    if (unit.examboard_slug) {
-      slug = `${slug}-${unit.examboard_slug}`;
-    }
-    return slug;
-  };
 
   function handleSelectSubject(year: string, subject: Subject) {
     const selection = { ...yearSelection[year] };
@@ -198,7 +184,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.tag_id === domain.tag_id;
+    return yearSelection[year]?.domain?.domain_slug === domain.domain_slug;
   }
 
   function isSelectedSubject(year: string, subject: Subject) {
@@ -218,8 +204,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
       !s.domain ||
-      s.domain.tag_id === null ||
-      s.domain.tag_id === unit.domains[0]?.tag_id;
+      s.domain.domain_slug === "all" ||
+      s.domain.domain_slug === unit.domain_slug;
     const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
     return filterBySubject && filterByDomain && filterByTier;
   }
@@ -319,46 +305,45 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                 >
                   None highlighted
                 </Radio>
-              </Box>
-              {threadOptions.map((threadOption) => {
-                const isSelected = isSelectedThread(threadOption);
-                const highlightedCount = highlightedUnitCount();
-                return (
-                  <Box
-                    $ba={1}
-                    $background={isSelected ? "black" : "white"}
-                    $borderColor={isSelected ? "black" : "grey4"}
-                    $borderRadius={4}
-                    $color={isSelected ? "white" : "black"}
-                    $font={isSelected ? "heading-light-7" : "body-2"}
-                    $ph={12}
-                    $pt={12}
-                    $mb={8}
-                    key={threadOption.slug}
-                  >
-                    <Radio
-                      aria-label={threadOption.title}
-                      value={threadOption.slug}
-                      data-testid={
-                        isSelected ? "selected-thread-radio" : "thread-radio"
-                      }
+                {threadOptions.map((threadOption) => {
+                  const isSelected = isSelectedThread(threadOption);
+                  const highlightedCount = highlightedUnitCount();
+                  return (
+                    <Box
+                      $ba={1}
+                      $background={isSelected ? "black" : "white"}
+                      $borderColor={isSelected ? "black" : "grey4"}
+                      $borderRadius={4}
+                      $color={isSelected ? "white" : "black"}
+                      $font={isSelected ? "heading-light-7" : "body-2"}
+                      $ph={12}
+                      $pt={12}
+                      $mb={8}
+                      key={threadOption.slug}
                     >
-                      {threadOption.title}
-                      {isSelected && (
-                        <>
-                          <br />
-                          {highlightedCount}
-                          {highlightedCount === 1 ? " unit " : " units "}
-                          highlighted
-                        </>
-                      )}
-                    </Radio>
-                  </Box>
-                );
-              })}
+                      <Radio
+                        aria-label={threadOption.title}
+                        value={threadOption.slug}
+                        data-testid={
+                          isSelected ? "selected-thread-radio" : "thread-radio"
+                        }
+                      >
+                        {threadOption.title}
+                        {isSelected && (
+                          <>
+                            <br />
+                            {highlightedCount}
+                            {highlightedCount === 1 ? " unit " : " units "}
+                            highlighted
+                          </>
+                        )}
+                      </Radio>
+                    </Box>
+                  );
+                })}
+              </Box>
             </RadioGroup>
           </Box>
-
           <Box $mr={16} $mb={32}>
             <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
               Year Group
@@ -438,12 +423,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       {domains.map((domain) => (
                         <Button
                           $mr={20}
-                          $mb={16}
+                          $mb={32}
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
                           }
-                          key={domain.tag_id}
-                          label={domain.title}
+                          key={domain.domain_slug}
+                          label={domain.domain}
                           onClick={() => handleSelectDomain(year, domain)}
                           size="small"
                           data-testid="domain-button"
@@ -481,7 +466,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             $flexGrow={"unset"}
                             $mb={32}
                             $mr={28}
-                            $pb={64}
                             $position={"relative"}
                             $width={[
                               "100%",
@@ -513,26 +497,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                               )}
                               {unit.title}
                             </Heading>
-                            <Box
-                              $position={"absolute"}
-                              $bottom={16}
-                              $right={16}
-                              $font={"body-2-bold"}
-                            >
-                              <OakLink
-                                page="lesson-index"
-                                viewType="teachers-2023"
-                                programmeSlug={buildProgrammeSlug(unit)}
-                                unitSlug={unit.slug}
-                                data-testid="unit-link"
-                              >
-                                Unit info
-                                <Icon
-                                  name="chevron-right"
-                                  verticalAlign="bottom"
-                                />
-                              </OakLink>
-                            </Box>
+                            {unit.unit_options.length > 1 && (
+                              <Box $mt={12} data-testid="options-tag">
+                                <TagFunctional>
+                                  {unit.unit_options.length} unit options
+                                </TagFunctional>
+                              </Box>
+                            )}
                           </Card>
                         );
                       })}

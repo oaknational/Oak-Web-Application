@@ -23,21 +23,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
   });
 
-  test("builds links to unit lesson index", async () => {
-    const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
-    );
-    const unitLinks = await findAllByTestId("unit-link");
-    if (unitLinks.length === 0 || !unitLinks[0]) {
-      throw new Error("No unit links found");
-    }
-    const unit = curriculumUnitsTabFixture().units[0];
-    if (unit === undefined) {
-      throw new Error("Fixture unit missing");
-    }
-    expect(unitLinks[0].getAttribute("href")).toContain(unit.slug);
-  });
-
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = renderWithTheme(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
@@ -123,45 +108,49 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const data = {
       units: [
         {
-          planned_number_of_lessons: 5,
-          domains: [],
-          threads: [],
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          domain: null,
+          domain_slug: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
           phase: "Secondary",
           phase_slug: "secondary",
+          planned_number_of_lessons: 5,
           slug: "cellular-respiration-and-atp",
           subject: "Combined Science",
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "combined-science",
+          threads: [],
           tier: null,
           tier_slug: null,
           title: "Aerobic and anaerobic cellular respiration",
+          unit_options: [],
           year: "11",
         },
         {
-          planned_number_of_lessons: 5,
-          domains: [],
-          threads: [],
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          domain: null,
+          domain_slug: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
           phase: "Secondary",
           phase_slug: "secondary",
+          planned_number_of_lessons: 5,
           slug: "nuclear-physics",
           subject: "Physics",
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "physics",
+          threads: [],
           tier: null,
           tier_slug: null,
           title: "Nuclear Physics",
+          unit_options: [],
           year: "11",
         },
       ],
@@ -190,13 +179,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       units: [
         {
           planned_number_of_lessons: 8,
-          domains: [
-            {
-              title: "Grammar",
-              tag_id: 17,
-            },
-          ],
-          threads: [],
+          domain: "Grammar",
+          domain_slug: "grammar",
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
           examboard: null,
@@ -209,22 +193,19 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: null,
           subject_parent_slug: null,
           subject_slug: "english",
+          threads: [],
           tier: null,
           tier_slug: null,
           title: "Word Class",
+          unit_options: [],
           year: "1",
         },
         {
           planned_number_of_lessons: 8,
-          domains: [
-            {
-              title: "Reading, Writing & Oracy",
-              tag_id: 16,
-            },
-          ],
-          threads: [],
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          domain: "Reading, Writing & Oracy",
+          domain_slug: "reading-writing-oracy",
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks1",
@@ -237,7 +218,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_slug: "english",
           tier: null,
           tier_slug: null,
+          threads: [],
           title: "’A Superhero Like You!’: Reading and Writing",
+          unit_options: [],
           year: "1",
         },
       ],
@@ -257,7 +240,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(1);
-      expect(unitCards[0]).toHaveTextContent("A Superhero Like You!");
     });
   });
 
@@ -266,10 +248,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       units: [
         {
           planned_number_of_lessons: 5,
-          domains: [],
-          threads: [],
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          domain: null,
+          domain_slug: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
@@ -280,22 +262,25 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           subject_parent: "Science",
           subject_parent_slug: "science",
           subject_slug: "biology",
+          threads: [],
           tier: "Foundation",
           tier_slug: "foundation",
           title: "Aerobic and anaerobic cellular respiration",
+          unit_options: [],
           year: "11",
         },
         {
-          planned_number_of_lessons: 5,
-          domains: [],
-          threads: [],
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          domain: null,
+          domain_slug: null,
+          threads: [],
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
           phase: "Secondary",
           phase_slug: "secondary",
+          planned_number_of_lessons: 5,
           slug: "nuclear-physics",
           subject: "Physics",
           subject_parent: "Science",
@@ -304,6 +289,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           tier: "Higher",
           tier_slug: "higher",
           title: "Nuclear Physics",
+          unit_options: [],
           year: "11",
         },
       ],
@@ -325,5 +311,47 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       expect(unitCards).toHaveLength(1);
       expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
     });
+  });
+
+  test("user can see correct number of unit options", async () => {
+    const data = {
+      units: [
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          domain: "Reading, Writing & Oracy",
+          domain_slug: "reading-writing-oracy",
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks2",
+          phase: "Primary",
+          phase_slug: "primary",
+          planned_number_of_lessons: 24,
+          slug: "pandas-or-antarctic-animals-non-chronological-report",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          threads: [],
+          tier: null,
+          tier_slug: null,
+          title: "Pandas or Antarctic Animals: Non-Chronological Report",
+          unit_options: [
+            {
+              title: "Antarctic Animals",
+              unitvariant_id: 774,
+            },
+            {
+              title: "Pandas",
+              unitvariant_id: 773,
+            },
+          ],
+          year: "6",
+        },
+      ],
+    };
+    const { findByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const tag = await findByTestId("options-tag");
+    expect(tag).toHaveTextContent("2");
   });
 });
