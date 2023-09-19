@@ -421,9 +421,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <ButtonContainer
                       className={isSelected(subject) ? "selected" : ""}
                       key={subject.slug}
-                      role="radio"
                     >
                       <Button
+                        role="radio"
                         $mb={24}
                         $mr={24}
                         background={isSelected(subject) ? "black" : "oakGrey1"}
@@ -582,12 +582,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </Heading>
                   <Box aria-label="School phase" radioGroup="radiogroup">
                     {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                      <ButtonContainer
-                        className="multi-line"
-                        key={phase.slug}
-                        role="radio"
-                      >
+                      <ButtonContainer className="multi-line" key={phase.slug}>
                         <Button
+                          role="radio"
                           $mr={index === 0 ? 28 : 0}
                           $mv={index === 0 ? 12 : 0}
                           background={isSelected(phase) ? "black" : "oakGrey1"}
@@ -612,8 +609,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         </Heading>
                         <Box aria-label="Exam board" role="radiogroup">
                           {selectedSubject.examboards.map((examboard) => (
-                            <ButtonContainer key={examboard.slug} role="radio">
+                            <ButtonContainer key={examboard.slug}>
                               <Button
+                                role="radio"
                                 $mr={24}
                                 background={
                                   isSelected(examboard) ? "black" : "oakGrey1"
@@ -684,7 +682,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             onClick={handleViewCurriculum}
             size="large"
             $fullWidth={true}
-            // ref={viewButtonRef}
           />
         </Box>
       </Flex>
