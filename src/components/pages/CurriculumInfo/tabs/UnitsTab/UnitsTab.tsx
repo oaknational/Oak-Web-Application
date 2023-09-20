@@ -402,7 +402,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     Year {year}
                   </Heading>
                   {childSubjects.length > 0 && (
-                    <Box $mb={16}>
+                    <Box>
                       {childSubjects.map((subject) => (
                         <Button
                           $mr={20}
@@ -420,7 +420,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {domains.length > 0 && (
-                    <Box $mb={16}>
+                    <Box>
                       {domains.map((domain) => (
                         <Button
                           $mr={20}
@@ -438,10 +438,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {tiers.length > 0 && (
-                    <Box $mb={32}>
+                    <Box>
                       {tiers.map((tier) => (
                         <Button
                           $mr={16}
+                          $mb={16}
                           key={tier.tier_slug}
                           label={tier.tier}
                           onClick={() => handleSelectTier(year, tier)}
