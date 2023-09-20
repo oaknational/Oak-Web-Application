@@ -42,7 +42,7 @@ function useLocalStorage<T>(
   initialValue: T,
   // pass an areEqual function to ensure state doesn't get updated too often
   areEqual?: (a: T, b: T) => boolean,
-  schema?: z.ZodSchema<T>,
+  schema?: z.ZodSchema<T>
 ): [T, SetValue<T>] {
   // Get from local storage then
   // parse stored json or return initialValue
@@ -82,7 +82,7 @@ function useLocalStorage<T>(
     // Prevent build error "window is undefined" but keeps working
     if (typeof window === "undefined") {
       console.warn(
-        `Tried setting localStorage key “${key}” even though environment is not a client`,
+        `Tried setting localStorage key “${key}” even though environment is not a client`
       );
     }
 
@@ -111,7 +111,7 @@ function useLocalStorage<T>(
         if (!schemaParseResult.success) {
           console.warn(
             `Error setting localStorage key “${key}”:`,
-            schemaParseResult.error.flatten(),
+            schemaParseResult.error.flatten()
           );
           return;
         }

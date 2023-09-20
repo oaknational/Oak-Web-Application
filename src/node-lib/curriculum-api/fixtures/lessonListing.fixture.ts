@@ -1,7 +1,7 @@
 import { LessonListingPageData } from "../../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 
 const lessonListingFixture = (
-  partial?: Partial<LessonListingPageData>,
+  partial?: Partial<LessonListingPageData>
 ): LessonListingPageData => {
   return {
     programmeSlug: "maths-secondary-ks4-higher",

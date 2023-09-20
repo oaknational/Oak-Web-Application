@@ -11,12 +11,12 @@ describe("CardLinkIcon", () => {
         title={"title"}
         heading={"heading"}
         summaryPortableText={"text"}
-      />,
+      />
     );
 
     await waitFor(() => {
       expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "title",
+        "title"
       );
     });
   });

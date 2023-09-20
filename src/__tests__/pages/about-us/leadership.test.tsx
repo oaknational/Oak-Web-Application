@@ -36,7 +36,7 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
       id: "1",
       image: mockImageAsset(),
       bioPortableText: portableTextFromString(
-        "This somethine else before, now does this",
+        "This somethine else before, now does this"
       ),
     },
   ],
@@ -56,14 +56,14 @@ describe("pages/about/leadership.tsx", () => {
     render(<AboutUsLeadership pageData={testAboutLeadershipPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "About us",
+      "About us"
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutUsLeadership pageData={testAboutLeadershipPageData} />,
+        <AboutUsLeadership pageData={testAboutLeadershipPageData} />
       );
 
       expect(seo).toEqual({

@@ -16,7 +16,7 @@ describe("size", () => {
       ${imageSize}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" {...props} />,
+      <StyledComponent data-testid="test" {...props} />
     );
 
     expect(getByTestId("test")).toHaveStyle(expected);

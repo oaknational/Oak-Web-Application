@@ -159,7 +159,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context,
+  context
 ) => {
   return getPageProps({
     page: "who-are-we::getStaticProps",

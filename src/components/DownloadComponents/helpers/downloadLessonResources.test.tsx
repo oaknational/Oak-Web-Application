@@ -40,13 +40,13 @@ describe("downloadLessonResources", () => {
     await downloadLessonResources(
       "lesson-slug",
       resourcesToDownload,
-      "teachers",
+      "teachers"
     );
 
     expect(createDownloadResourcesLink).toHaveBeenCalledWith(
       "lesson-slug",
       resourcesToDownloadAsSelection,
-      "teachers",
+      "teachers"
     );
   });
 });

@@ -19,7 +19,7 @@ describe("LessonHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const equipmentTitle = getByText("Equipment");
@@ -32,7 +32,7 @@ describe("LessonHelper component", () => {
         equipment={null}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const equipmentTitle = queryByText("Equipment");
@@ -45,7 +45,7 @@ describe("LessonHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
     const contentGuidanceTitle = getByText("Content guidance");
     expect(contentGuidanceTitle).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe("LessonHelper component", () => {
         equipment={equipment}
         contentGuidance={undefined}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const contentGuidanceTitle = queryByText("Content guidance");
@@ -70,7 +70,7 @@ describe("LessonHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
-      />,
+      />
     );
 
     const supervisionLevelTitle = getByText("Supervision");
@@ -82,7 +82,7 @@ describe("LessonHelper component", () => {
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={null}
-      />,
+      />
     );
 
     const supervisionLevelTitle = queryByText("Supervision");

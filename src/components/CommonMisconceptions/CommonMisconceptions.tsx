@@ -42,7 +42,7 @@ const CommonMisconceptions = ({
               <P $font={"body-1"}>{commonMisconception.response}</P>
             </Flex>
           );
-        },
+        }
       )}
     </Flex>
   );

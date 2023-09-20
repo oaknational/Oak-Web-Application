@@ -46,7 +46,7 @@ describe("useGleap", () => {
     test("should refresh page to unload if previously enabled", async () => {
       const { rerender } = renderHook(
         (props: { enabled: boolean }) => useGleap(props),
-        { initialProps: { enabled: true } },
+        { initialProps: { enabled: true } }
       );
       hasLoaded.mockImplementationOnce(() => true);
       rerender({ enabled: false });

@@ -28,7 +28,7 @@ export const AllTheProviders: FC<ProviderProps> = ({ children, theme }) => {
 const renderWithTheme = (
   ui: ReactElement,
   options?: Omit<RenderOptions, "wrapper">,
-  providerProps?: ProviderProps,
+  providerProps?: ProviderProps
 ) => {
   const wrapper: FC = (props) => (
     <AllTheProviders {...props} {...providerProps} />

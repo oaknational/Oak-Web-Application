@@ -186,7 +186,7 @@ export const portableTextReferencedEntrySchema = z.discriminatedUnion(
       .object({ contentType: z.literal("video"), _type: z.literal("video") })
       .merge(videoSchema)
       .merge(documentSchema),
-  ],
+  ]
 );
 
 export type PortableTextReferencedEntry = z.infer<

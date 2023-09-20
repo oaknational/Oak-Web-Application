@@ -62,7 +62,7 @@ describe("useDownloadForm", () => {
   });
   it("should attempt to get the hubspotutk cookie", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
 
@@ -70,20 +70,20 @@ describe("useDownloadForm", () => {
   });
   it("should set email in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
 
     await waitFor(() => {
       expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith(
-        "test@test.com",
+        "test@test.com"
       );
     });
   });
 
   it("should set school in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -104,7 +104,7 @@ describe("useDownloadForm", () => {
     };
 
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -125,7 +125,7 @@ describe("useDownloadForm", () => {
     };
 
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -138,7 +138,7 @@ describe("useDownloadForm", () => {
 
   it("should set terms in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -148,7 +148,7 @@ describe("useDownloadForm", () => {
 
   it("should call downloadLessonResources with correct parameters", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ viewType: "teachers" }),
+      useDownloadForm({ viewType: "teachers" })
     );
     result.current.onSubmit(data, "lesson");
 
@@ -156,7 +156,7 @@ describe("useDownloadForm", () => {
       expect(downloadLessonResources).toHaveBeenCalledWith(
         "lesson",
         ["intro-quiz-questions"],
-        "teachers",
+        "teachers"
       );
     });
   });

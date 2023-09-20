@@ -26,7 +26,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      "teachers"
     );
 
     expect(downloadResourcesExist).toEqual(data);
@@ -34,14 +34,14 @@ describe("checkIfDownloadResourcesExist()", () => {
 
   it("should throw error if fetch throws", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
-      Promise.reject("bad thing"),
+      Promise.reject("bad thing")
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        "teachers"
       );
     } catch (error) {
       expect(error).toEqual("bad thing");
@@ -56,14 +56,14 @@ describe("checkIfDownloadResourcesExist()", () => {
             error: "specific error",
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        "teachers"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("specific error");
@@ -78,14 +78,14 @@ describe("checkIfDownloadResourcesExist()", () => {
             data,
           }),
         ok: false,
-      }),
+      })
     );
 
     try {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        "teachers"
       );
     } catch (error) {
       expect((error as Error).message).toEqual("API error");
@@ -95,22 +95,22 @@ describe("checkIfDownloadResourcesExist()", () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      "teachers"
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://api.thenational.academy/api/downloads/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "https://api.thenational.academy/api/downloads/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
     );
   });
   it("should fetch from download api if viewType is teachers-2023", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers-2023",
+      "teachers-2023"
     );
 
     expect(global.fetch).toBeCalledWith(
-      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
+      "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
@@ -121,13 +121,13 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
+        "teachers-2023"
       );
     } catch (error) {
       expect(error).toEqual(
         new TypeError(
-          "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined",
-        ),
+          "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined"
+        )
       );
     } finally {
       process.env = originalEnv;
@@ -141,11 +141,11 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
+        "teachers-2023"
       );
     } catch (error) {
       expect(error).toEqual(
-        new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"),
+        new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined")
       );
     } finally {
       process.env = originalEnv;

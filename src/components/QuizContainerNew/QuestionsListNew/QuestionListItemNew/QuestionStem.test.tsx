@@ -17,7 +17,7 @@ describe("QuestionListItem", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <QuestionStem questionStem={mcqText.questionStem} index={0} />
     );
     const primaryQuestionText = getByText("What is a main clause?");
 
@@ -28,7 +28,7 @@ describe("QuestionListItem", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <QuestionStem questionStem={mcqText.questionStem} index={0} />
     );
     const numberText = getByText("Q1.");
 
@@ -39,7 +39,7 @@ describe("QuestionListItem", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
     const { getByRole } = renderWithTheme(
-      <QuestionStem questionStem={mcqStemImage.questionStem} index={0} />,
+      <QuestionStem questionStem={mcqStemImage.questionStem} index={0} />
     );
     const image = getByRole("img");
 
@@ -54,7 +54,7 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
+      <QuestionStem questionStem={questionStem} index={0} />
     );
     const numberText = getByText("Q1.");
 
@@ -70,7 +70,7 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
+      <QuestionStem questionStem={questionStem} index={0} />
     );
     const secondaryText = getByText("This is some text");
 

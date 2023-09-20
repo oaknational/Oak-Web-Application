@@ -29,7 +29,7 @@ type Queue = QueueItem[];
 
 const withQueue = <T>(
   service: AnalyticsService<T>,
-  intervalMs = 3000,
+  intervalMs = 3000
 ): AnalyticsService<T> & { queue: Queue } => {
   let intervalId: number;
   const queue: Queue = [];
@@ -107,7 +107,7 @@ const withQueue = <T>(
     }
     intervalId = window.setInterval(
       () => conditionallyProcessQueue(),
-      intervalMs,
+      intervalMs
     );
   };
 

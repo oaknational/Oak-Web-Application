@@ -56,7 +56,7 @@ const BlogIndexPage: NextPage<PostListingPageProps> = (props) => {
 };
 
 export const blogToPostListItem = (
-  blog: SerializedBlogPostPreview,
+  blog: SerializedBlogPostPreview
 ): PostListItemProps => ({
   ...blog,
   summary: blog.summaryPortableText?.trim(),

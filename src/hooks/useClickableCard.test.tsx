@@ -58,7 +58,7 @@ describe("useClickableCard()", () => {
   test("you can pass in an external ref", async () => {
     const ref = { current: "my ref" as unknown as HTMLAnchorElement };
     const { result } = renderHook(() =>
-      useClickableCard(ref as MutableRefObject<HTMLAnchorElement>),
+      useClickableCard(ref as MutableRefObject<HTMLAnchorElement>)
     );
     expect(result.current.primaryTargetProps.ref.current).toBe("my ref");
   });
