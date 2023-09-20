@@ -10,14 +10,24 @@ import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types/curriculumOverview";
 
-type OverviewTabProps = {
-  data: CurriculumOverviewTabData;
+export type OverviewTabProps = {
+  data: {
+    curriculumInfo: CurriculumOverviewTabData;
+    curriculumCMSInfo: CurriculumOverviewSanityData;
+    curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  };
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { data } = props;
-  const { subjectPrinciples, curriculaDesc, partnerBio, subjectSlug } = data;
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
+    props.data;
+  const { subjectPrinciples, partnerBio, curriculumPartner } =
+    curriculumCMSInfo;
+  const { curriculaDesc } = curriculumInfo;
+  const { subjectSlug } = curriculumSelectionSlugs;
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
       <Flex $mv={10}>
@@ -73,7 +83,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
+          <Heading tag="h2" $font={["heading-6", "heading-5"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
@@ -105,7 +115,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       <Card $background={"lemon30"} $width={"100%"}>
         <BrushBorders color="lemon30" />
         <Flex $justifyContent={"center"} $pa={16}>
-          <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
+          <AvatarImage
+            $background={"grey1"}
+            $ma={"auto"}
+            $ml={20}
+            $mr={20}
+            image={curriculumPartner.image}
+          />
           <Box>
             <Heading tag="h2" $font={"heading-5"}>
               Our curriculum partner
