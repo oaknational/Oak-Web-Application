@@ -521,7 +521,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             >
                               <OakLink
                                 page="lesson-index"
-                                viewType="teachers-2023"
                                 programmeSlug={buildProgrammeSlug(unit)}
                                 unitSlug={unit.slug}
                                 data-testid="unit-link"

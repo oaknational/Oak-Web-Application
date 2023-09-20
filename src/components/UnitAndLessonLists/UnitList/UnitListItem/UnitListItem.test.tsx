@@ -1,9 +1,8 @@
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
-
-import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
 
 import UnitListItem from "./UnitListItem";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const props = {
   title: "Numbers and numerals",
@@ -35,7 +34,7 @@ const props = {
 
 const unitSelected = jest.fn();
 const searchResultClicked = jest.fn();
-jest.mock("../../../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -58,9 +57,8 @@ describe("Unit List Item", () => {
     const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
-    act(() => {
-      user.click(unit);
-    });
+
+    await user.click(unit);
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
     expect(searchResultClicked).not.toBeCalled();
@@ -91,7 +89,7 @@ describe("Unit List Item", () => {
     expect(searchResultClicked).toHaveBeenCalledWith({
       keyStageTitle: "Key stage 1",
       keyStageSlug: "ks1",
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
       subjectTitle: "Maths",
       subjectSlug: "maths",
       unitName: "Numbers and numerals",

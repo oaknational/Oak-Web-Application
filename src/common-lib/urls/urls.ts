@@ -153,7 +153,6 @@ type CurriculumLandingPageLinkProps = {
 };
 type EarlyReleaseUnitsPageLinkProps = {
   page: "early-release-units-page";
-  viewType: ViewType;
 };
 type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
@@ -577,7 +576,7 @@ export const OAK_PAGES: {
     pageType: "curriculum-landing-page",
   }),
   "early-release-units-page": createOakPageConfig({
-    pathPattern: "/:viewType/early-release-units",
+    pathPattern: "/teachers/early-release-units",
     analyticsPageName: "Early Release Units Page",
     configType: "internal",
     pageType: "early-release-units-page",

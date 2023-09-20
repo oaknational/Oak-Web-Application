@@ -204,7 +204,7 @@ describe("urls.ts", () => {
       expect(resolveOakHref({ page: "home" })).toBe("/");
     });
     it("Home (teachers)", () => {
-      expect(resolveOakHref({ page: "home" })).toBe("/teachers");
+      expect(resolveOakHref({ page: "home" })).toBe("/");
     });
     it("Lesson planning", () => {
       expect(resolveOakHref({ page: "lesson-planning" })).toBe(

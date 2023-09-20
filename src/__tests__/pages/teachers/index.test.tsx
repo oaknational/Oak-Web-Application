@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
-import Teachers from "@/pages/teachers";
+import Teachers, { TeachersHomePageProps } from "@/pages/teachers";
 
 jest.mock("src/node-lib/cms");
 
@@ -147,9 +147,7 @@ describe("pages/teachers/index.tsx", () => {
         mockPost2,
       ]);
       const result = (await getStaticProps({
-        params: {
-          viewType: "teachers",
-        },
+        params: {},
       })) as { props: HomePageProps };
 
       expect(result.props?.posts).toHaveLength(4);
@@ -162,9 +160,7 @@ describe("pages/teachers/index.tsx", () => {
         { ...mockPost, id: "1", date: new Date("2023-01-01") },
       ]);
       const result = (await getStaticProps({
-        params: {
-          viewType: "teachers",
-        },
+        params: {},
       })) as { props: HomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id);
@@ -178,9 +174,7 @@ describe("pages/teachers/index.tsx", () => {
         { ...mockPost3, id: "1", date: new Date("4023-01-01") },
       ]);
       const result = (await getStaticProps({
-        params: {
-          viewType: "teachers",
-        },
+        params: {},
       })) as { props: HomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id as string);
@@ -190,9 +184,7 @@ describe("pages/teachers/index.tsx", () => {
     it("Should not fetch draft content by default", async () => {
       mockCMSClient.blogPosts.mockResolvedValueOnce([mockPost]);
       await getStaticProps({
-        params: {
-          viewType: "teachers",
-        },
+        params: {},
       });
 
       expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
