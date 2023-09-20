@@ -83,7 +83,7 @@ describe("pages/teachers/lessons", () => {
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
-          programmeSlug: "english-primary-ks2",
+          programmeSlug: "english-primary-ks2-l",
           unitSlug: "shakespeare",
         },
         query: {},

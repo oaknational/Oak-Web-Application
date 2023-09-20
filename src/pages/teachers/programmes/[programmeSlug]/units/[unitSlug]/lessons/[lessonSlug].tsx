@@ -34,7 +34,7 @@ import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
-import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -404,7 +404,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+      const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.lessonOverview({
             programmeSlug,
             lessonSlug,

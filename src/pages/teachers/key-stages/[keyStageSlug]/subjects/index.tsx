@@ -18,6 +18,7 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -110,7 +111,9 @@ export const getStaticProps: GetStaticProps<
       }
 
       const { keyStageSlug, keyStageTitle, keyStages } = curriculumData;
-      const subjectSlugs = curriculumData.subjects.map((s) => s.subjectSlug);
+      const subjectSlugs = curriculumData.subjects.map((s) =>
+        removeLegacySlugSuffix(s.subjectSlug),
+      );
       const subjectSlugs2023 =
         curriculumData2023?.subjects.map((s) => s.subjectSlug) || [];
 
@@ -124,7 +127,8 @@ export const getStaticProps: GetStaticProps<
             subjectSlug,
             old:
               curriculumData.subjects.find(
-                (subject) => subject.subjectSlug === subjectSlug,
+                (subject) =>
+                  removeLegacySlugSuffix(subject.subjectSlug) === subjectSlug,
               ) || null,
 
             new:

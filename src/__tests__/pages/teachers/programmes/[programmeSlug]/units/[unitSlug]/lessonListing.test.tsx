@@ -77,7 +77,7 @@ describe("Lesson listing page", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({
         params: {
-          programmeSlug: "maths-secondary-ks4-higher",
+          programmeSlug: "maths-secondary-ks4-higher-l",
           unitSlug: "adding-surds-a57d",
         },
         query: {},

@@ -156,7 +156,7 @@ describe("useDownloadForm", () => {
       expect(downloadLessonResources).toHaveBeenCalledWith(
         "lesson",
         ["intro-quiz-questions"],
-        "teachers",
+        true,
       );
     });
   });

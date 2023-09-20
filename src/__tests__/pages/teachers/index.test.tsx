@@ -1,14 +1,11 @@
 import { screen, within, getByRole } from "@testing-library/react";
 
-import Teachers, {
-  getStaticProps,
-  TeachersHomePageProps,
-} from "@/pages/teachers";
-import { HomePageProps, SerializedPost } from "@/pages";
+import { HomePageProps, SerializedPost, getStaticProps } from "@/pages";
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
+import Teachers from "@/pages/teachers";
 
 jest.mock("src/node-lib/cms");
 
@@ -50,7 +47,7 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
-describe("pages/beta/teachers/index.tsx", () => {
+describe("pages/teachers/index.tsx", () => {
   it("Renders correct title ", () => {
     render(<Teachers {...props} />);
 

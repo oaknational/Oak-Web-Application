@@ -31,7 +31,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
-import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -129,7 +129,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectIconBackgroundColor={"lavender"}
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
-        isNew={!isProgrammeSlugLegacy(programmeSlug)}
+        isNew={!isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -276,7 +276,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+      const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.unitListing({
             programmeSlug,
           })

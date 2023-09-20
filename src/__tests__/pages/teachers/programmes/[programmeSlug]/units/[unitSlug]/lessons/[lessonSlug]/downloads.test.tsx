@@ -5,19 +5,21 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
+import removeLegacySlugSuffix from "../../../../../../../../../utils/slugModifiers/removeLegacySlugSuffix";
+
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import LessonDownloadsPage, {
-  getStaticPaths,
-  getStaticProps,
-  LessonDownloadsPageProps,
-  URLParams,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
+import LessonDownloadsPage, {
+  LessonDownloadsPageProps,
+  URLParams,
+  getStaticPaths,
+  getStaticProps,
+} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -361,7 +363,19 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("renders post-ALB copyright notice on teachers-2023 view type", async () => {
-      render(<LessonDownloadsPage {...props} />);
+      render(
+        <LessonDownloadsPage
+          {...{
+            ...props,
+            curriculumData: {
+              ...props.curriculumData,
+              programmeSlug: removeLegacySlugSuffix(
+                props.curriculumData.programmeSlug,
+              ),
+            },
+          }}
+        />,
+      );
 
       const copyrightNotice = await screen.findByText(
         "This content is © Oak National Academy (2023), licensed on",
@@ -408,7 +422,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       const propsResult = (await getStaticProps({
         params: {
           lessonSlug: "macbeth-lesson-1",
-          programmeSlug: "math-higher-ks4",
+          programmeSlug: "math-higher-ks4-l",
           unitSlug: "shakespeare",
         },
         query: {},

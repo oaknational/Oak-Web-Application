@@ -65,9 +65,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
       expect(curriculumApi.subjectListing).toHaveBeenCalledWith({
         keyStageSlug: "ks123",
       });
-      expect(
-        curriculumApi2023.default.subjectListingPage,
-      ).not.toHaveBeenCalled();
+      expect(curriculumApi2023.default.subjectListingPage).toHaveBeenCalled();
     });
     it("Should call both API::subjectListing on 'teachers-2023'", async () => {
       await getStaticProps({

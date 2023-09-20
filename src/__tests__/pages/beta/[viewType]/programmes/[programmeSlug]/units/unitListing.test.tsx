@@ -152,13 +152,13 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
         params: {
-          programmeSlug: "art-primary-ks1",
+          programmeSlug: "art-primary-ks1-l",
         },
       });
 
       expect(curriculumApi.unitListing).toHaveBeenCalledTimes(1);
       expect(curriculumApi.unitListing).toHaveBeenCalledWith({
-        programmeSlug: "art-primary-ks1",
+        programmeSlug: "art-primary-ks1-l",
       });
     });
   });

@@ -56,7 +56,7 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
-import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsData;
@@ -81,7 +81,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  const isLegacyDownload = isProgrammeSlugLegacy(programmeSlug);
+  const isLegacyDownload = isSlugLegacy(programmeSlug);
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -263,7 +263,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
     setLocalStorageDetails(false);
   };
 
-  const showPostAlbCopyright = !isProgrammeSlugLegacy(programmeSlug);
+  const showPostAlbCopyright = !isSlugLegacy(programmeSlug);
 
   return (
     <AppLayout
@@ -488,7 +488,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+      const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.lessonDownloads({
             programmeSlug,
             unitSlug,

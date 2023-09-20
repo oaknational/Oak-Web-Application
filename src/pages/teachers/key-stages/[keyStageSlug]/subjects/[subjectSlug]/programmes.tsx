@@ -14,7 +14,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
-import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
@@ -100,12 +100,12 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context params");
       }
 
-      const curriculumData = isProgrammeSlugLegacy(context.params?.subjectSlug)
-        ? await curriculumApi2023.programmeListingPage({
+      const curriculumData = isSlugLegacy(context.params?.subjectSlug)
+        ? await curriculumApi.tierListing({
             keyStageSlug: context.params?.keyStageSlug,
             subjectSlug: context.params?.subjectSlug,
           })
-        : await curriculumApi.tierListing({
+        : await curriculumApi2023.programmeListingPage({
             keyStageSlug: context.params?.keyStageSlug,
             subjectSlug: context.params?.subjectSlug,
           });

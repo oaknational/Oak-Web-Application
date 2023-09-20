@@ -67,7 +67,7 @@ describe("programmes listing page", () => {
       const testRes = (await getStaticProps({
         params: {
           keyStageSlug: "ks4",
-          subjectSlug: "maths",
+          subjectSlug: "maths-l",
         },
       } as GetServerSidePropsContext<URLParams, PreviewData>)) as {
         props: ProgrammeListingPageData;

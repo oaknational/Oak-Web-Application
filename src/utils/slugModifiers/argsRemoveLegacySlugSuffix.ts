@@ -1,10 +1,11 @@
 import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
 
-import programmeSlugWithoutL from "./programmeSlugWithoutL";
+import removeLegacySlugSuffix from "./removeLegacySlugSuffix";
 
 export type VariablesType = {
-  programmeSlug: string;
-  [key: string]: string;
+  programmeSlug?: string;
+  subjectSlug?: string;
+  [key: string]: string | undefined;
 };
 
 export type RequestHeadersType = GraphQLClientRequestHeaders | undefined;
@@ -12,16 +13,22 @@ export type RequestHeadersType = GraphQLClientRequestHeaders | undefined;
 // This function is used in the curriculum api to remove the legacy suffix
 //  from the modified programme slug from the args variables before the request is made.
 
-const argsWithModifiedProgrammeSlug = <T extends VariablesType>(
+const argsRemoveLegacySlugSuffix = <T extends VariablesType>(
   args: [variables: T, requestHeaders?: RequestHeadersType],
 ): [variables: T, requestHeaders?: RequestHeadersType] => {
   const [variables, requestHeaders] = args;
-  const modifiedProgrammeSlug = programmeSlugWithoutL(variables.programmeSlug);
+  const modifiedProgrammeSlug = variables.programmeSlug
+    ? removeLegacySlugSuffix(variables.programmeSlug)
+    : undefined;
+  const modifiedSubjectSlug = variables.subjectSlug
+    ? removeLegacySlugSuffix(variables.subjectSlug)
+    : undefined;
   const variablesWithModifiedProgrammeSlug: T = {
     ...variables,
     programmeSlug: modifiedProgrammeSlug,
+    subjectSlug: modifiedSubjectSlug,
   };
   return [variablesWithModifiedProgrammeSlug, requestHeaders];
 };
 
-export default argsWithModifiedProgrammeSlug;
+export default argsRemoveLegacySlugSuffix;

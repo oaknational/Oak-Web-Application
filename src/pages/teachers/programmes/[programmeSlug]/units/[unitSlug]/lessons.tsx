@@ -22,7 +22,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/HeaderListing";
-import isProgrammeSlugLegacy from "@/utils/slugModifiers/isProgrammeSlugLegacy";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -115,7 +115,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={!isProgrammeSlugLegacy(programmeSlug)}
+        isNew={!isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
@@ -169,7 +169,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = isProgrammeSlugLegacy(programmeSlug)
+      const curriculumData = isSlugLegacy(programmeSlug)
         ? await curriculumApi.lessonListing({
             programmeSlug,
             unitSlug,
