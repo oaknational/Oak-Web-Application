@@ -19,7 +19,6 @@ import {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
-// import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
 import { CurriculumTab } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
@@ -251,11 +250,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     color: ${(props) => props.$color};
   `;
 
-  /**
-   * ! - TODO LIST
-   * TODO: Refactor to break down into smaller components
-   */
-
   const viewButtonRef = useRef<HTMLButtonElement>(null);
   const depsRef = useRef(
     selectedSubject &&
@@ -265,41 +259,27 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   );
 
   useEffect(() => {
+    let hideOuterBorders = false;
+    let phaseBackgroundEnabled = true;
+    let subjectBackgroundEnabled = true;
+
     if (selectedSubject && selectedPhase) {
-      setDisplayNewBorders(false);
-      setPhaseBackground("white");
-      setSubjectBackground("white");
       viewButtonRef.current?.focus();
     }
 
-    if (!showPhases && !showSubjects && !selectedSubject && !selectedPhase) {
-      setDisplayNewBorders(false);
-      setPhaseBackground("white");
-      setSubjectBackground("white");
-    }
     if (showSubjects) {
-      setDisplayNewBorders(true);
-      setPhaseBackground("grey1");
-      setSubjectBackground("white");
-    }
-
-    if (!showSubjects && selectedSubject && !showPhases) {
-      setDisplayNewBorders(false);
-      setPhaseBackground("white");
-      setSubjectBackground("white");
-    }
-
-    if (!showSubjects && selectedPhase && !showPhases) {
-      setDisplayNewBorders(false);
-      setPhaseBackground("white");
-      setSubjectBackground("white");
+      hideOuterBorders = true;
+      phaseBackgroundEnabled = false;
     }
 
     if (showPhases) {
-      setDisplayNewBorders(true);
-      setPhaseBackground("white");
-      setSubjectBackground("grey1");
+      hideOuterBorders = true;
+      subjectBackgroundEnabled = false;
     }
+
+    setDisplayNewBorders(hideOuterBorders);
+    setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey1");
+    setSubjectBackground(subjectBackgroundEnabled ? "white" : "grey1");
   }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
 
   useEffect(() => {

@@ -99,11 +99,11 @@ describe("Component - subject phase picker", () => {
     userEvent.click(await findByTitle("Secondary"));
     const examboardTitle = await findByText("Exam board");
     expect(examboardTitle).toBeTruthy();
-    const AQA = (await findAllByTitle("AQA"))[0];
-    if (!AQA) {
+    const aqa = (await findAllByTitle("AQA"))[0];
+    if (!aqa) {
       throw new Error("Could not find button");
     }
-    await userEvent.click(AQA);
+    await userEvent.click(aqa);
     expect(control).toHaveTextContent("Secondary, AQA");
   });
 
