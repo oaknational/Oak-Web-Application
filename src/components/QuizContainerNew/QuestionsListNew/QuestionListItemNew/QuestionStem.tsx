@@ -3,6 +3,7 @@ import { shortAnswerTitleFormatter, removeMarkdown } from "../../quizUtils";
 import QuizImage from "./QuizImage";
 
 import Flex from "@/components/Flex";
+import MathJaxWrapper from "@/components/MathJaxWrapper/MathJaxWrapper";
 import Typography from "@/components/Typography";
 import {
   StemImageObject,
@@ -32,7 +33,9 @@ export const QuestionStem = ({
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
           >
-            {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+            <MathJaxWrapper>
+              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+            </MathJaxWrapper>
           </Typography>
         )}
       </Flex>
@@ -44,7 +47,9 @@ export const QuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
-              {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+              <MathJaxWrapper>
+                {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
+              </MathJaxWrapper>
             </Typography>
           );
         } else if (stemItem.type === "image") {
