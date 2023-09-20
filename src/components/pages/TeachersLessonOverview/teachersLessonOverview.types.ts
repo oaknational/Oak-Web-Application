@@ -39,6 +39,10 @@ export type LessonPathway = {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
+  tierTitle?: string | null;
+  tierSlug?: string | null;
+  examboardTitle?: string | null;
+  examboardSlug?: string | null;
 };
 
 export type LessonOverviewCanonical = LessonBase & {

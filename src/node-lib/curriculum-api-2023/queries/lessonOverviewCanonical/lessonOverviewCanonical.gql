@@ -1,10 +1,6 @@
-query lessonOverviewCanonical(
-  $lessonSlug: String!
-) {
-  lesson: published_mv_lesson_overview_8(
-    where: {
-      lessonSlug: { _eq: $lessonSlug }
-    }
+query lessonOverviewCanonical($lessonSlug: String!) {
+  lesson: published_mv_lesson_overview_9(
+    where: { lessonSlug: { _eq: $lessonSlug } }
   ) {
     lessonSlug
     lessonTitle
@@ -15,6 +11,10 @@ query lessonOverviewCanonical(
     keyStageTitle
     subjectSlug
     subjectTitle
+    examboardSlug: examBoardSlug
+    examboardTitle: examBoardTitle
+    tierSlug
+    tierTitle
     misconceptionsAndCommonMistakes
     lessonEquipmentAndResources
     teacherTips

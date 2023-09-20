@@ -60,19 +60,19 @@ type LessonDownloadsPageProps =
     }
   | {
       viewType: ViewType;
-      isCanonical: boolean;
+      isCanonical: false;
       lesson: LessonPathway & {
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
       };
     };
-export default function LessonDownloads({
-  lesson,
-  viewType,
-}: LessonDownloadsPageProps) {
-  const { lessonTitle, lessonSlug, downloads, pathways } = lesson;
-  const commonPathway = getCommonPathway(pathways);
+export default function LessonDownloads(props: LessonDownloadsPageProps) {
+  const { lesson, viewType } = props;
+  const { lessonTitle, lessonSlug, downloads } = lesson;
+  const commonPathway = getCommonPathway(
+    props.isCanonical ? props.lesson.pathways : [props.lesson],
+  );
   const {
     programmeSlug,
     keyStageTitle,

@@ -11,8 +11,6 @@ describe("lessonDownloadsCanonical()", () => {
           Promise.resolve({ lessonDownloadsCanonical: [] }),
         ),
       })({
-        programmeSlug: "programme-slug",
-        unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
       });
     }).rejects.toThrow(`Resource not found`);
@@ -51,8 +49,6 @@ describe("lessonDownloadsCanonical()", () => {
         }),
       ),
     })({
-      programmeSlug: "programme-slug",
-      unitSlug: "unit-slug",
       lessonSlug: "lesson-slug",
     });
     expect(pathways).toEqual([
@@ -98,8 +94,6 @@ describe("lessonDownloadsCanonical()", () => {
           }),
         ),
       })({
-        programmeSlug: "programme-slug",
-        unitSlug: "unit-slug",
         lessonSlug: "lesson-slug",
       });
     }).rejects.toThrow(`unitSlug`);

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -14,8 +15,10 @@ import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/
 import AppLayout from "@/components/AppLayout/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import OakLink from "@/components/OakLink/OakLink";
 import TeachersLessonOverviewPage from "@/components/pages/TeachersLessonOverview/TeachersLessonOverview";
+import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppearsIn";
+import Flex from "@/components/Flex";
+import { groupLessonPathways } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -28,7 +31,10 @@ type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
 }: PageProps): JSX.Element {
-  console.log(lesson.pathways);
+  const pathwayGroups = useMemo(
+    () => groupLessonPathways(lesson.pathways),
+    [lesson.pathways],
+  );
 
   return (
     <AppLayout
@@ -41,37 +47,11 @@ export default function LessonOverviewCanonicalPage({
       }}
     >
       <TeachersLessonOverviewPage lesson={{ ...lesson, isCanonical: true }} />
-      <MaxWidth $pv={20}>
-        <p>This is the canonical page for this lesson.</p>
-        <p>
-          It exists in the following learning pathways:
-          <ul>
-            {lesson.pathways.map((pathway) => {
-              return (
-                <li>
-                  <OakLink
-                    page="lesson-overview"
-                    viewType="teachers-2023"
-                    lessonSlug={lesson.lessonSlug}
-                    programmeSlug={pathway.programmeSlug}
-                    unitSlug={pathway.unitSlug}
-                  >
-                    {[
-                      pathway.keyStageTitle,
-                      pathway.subjectTitle,
-                      pathway.unitTitle,
-                    ].join(" => ")}
-                  </OakLink>
-                </li>
-              );
-            })}
-          </ul>
-        </p>
-        <p>
-          This page will mostly be the same as the pages for lessons in their
-          pathway context
-        </p>
-      </MaxWidth>
+      <Flex $background={"pink50"} $width={"100%"}>
+        <MaxWidth $pv={120}>
+          <LessonAppearsIn {...pathwayGroups} />
+        </MaxWidth>
+      </Flex>
     </AppLayout>
   );
 }

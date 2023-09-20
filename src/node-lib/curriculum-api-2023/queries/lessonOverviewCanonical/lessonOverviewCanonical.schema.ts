@@ -131,6 +131,10 @@ export const pathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  examboardSlug: z.string().nullable(),
+  examboardTitle: z.string().nullable(),
+  tierSlug: z.string().nullable(),
+  tierTitle: z.string().nullable(),
 });
 
 const baseLessonOverviewSchema = z.object({

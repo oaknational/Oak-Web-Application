@@ -1,3 +1,5 @@
+import { pick, groupBy } from "lodash";
+
 import { LessonBase, LessonPathway } from "./teachersLessonOverview.types";
 
 import truthy from "@/utils/truthy";
@@ -21,14 +23,20 @@ export const getCommonPathway = (
     subjectSlug: null,
   };
 
-  const commonPathway = Object.entries(nullPathway).reduce((acc, curr) => {
-    const [key, value] = curr as [keyof LessonPathway, string | null];
-    acc[key] = acc[key] === value ? value : null;
-
-    return acc;
-  }, pathways[0] || nullPathway);
-
-  return commonPathway;
+  return pathways.reduce(
+    (acc, pathway) => {
+      Object.keys(acc).forEach((_key) => {
+        const key = _key as keyof LessonPathway;
+        if (acc[key] === null || acc[key] === pathway[key]) {
+          acc[key] = pathway[key] || null;
+        } else {
+          acc[key] = null;
+        }
+      });
+      return acc;
+    },
+    { ...nullPathway },
+  );
 };
 
 export const getLessonOverviewBreadCumb = ({
@@ -210,3 +218,44 @@ const PAGE_LINKS: {
 export const getPageLinksForLesson = (lesson: LessonBase) => {
   return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson));
 };
+
+export function groupLessonPathways(pathways: LessonPathway[]) {
+  const pathwaysByUnit = Object.values(groupBy(pathways, "unitSlug"));
+
+  const units = pathwaysByUnit
+    .map((unitPathways) => {
+      const pathwaysByExamboard = Object.values(
+        groupBy(unitPathways, "examboardSlug"),
+      );
+
+      const examboards = pathwaysByExamboard
+        .map((examboardPathways) => {
+          const [firstPathway] = examboardPathways;
+          if (!firstPathway) return null;
+          return {
+            ...pick(firstPathway, [
+              "examboardTitle",
+              "examboardSlug",
+              "subjectTitle",
+              "subjectSlug",
+            ]),
+            tiers: examboardPathways.map((pathway) =>
+              pick(pathway, ["programmeSlug", "tierTitle", "tierSlug"]),
+            ),
+          };
+        })
+        .filter(truthy);
+
+      const [firstPathway] = unitPathways;
+      if (!firstPathway) return null;
+      return {
+        ...pick(firstPathway, ["unitTitle", "unitSlug"]),
+        examboards,
+      };
+    })
+    .filter(truthy);
+
+  return {
+    units,
+  };
+}
