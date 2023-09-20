@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
@@ -36,11 +37,21 @@ describe("components/AppHeader", () => {
     const { queryByText } = render(<AppHeader />);
 
     const user = userEvent.setup();
-    expect(queryByText("Home (early access)")).not.toBeVisible();
+    expect(queryByText("Teachers")).not.toBeVisible();
 
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
-    expect(queryByText("Home (early access)")).toBeVisible();
+    expect(queryByText("Teachers")).toBeVisible();
+  });
+
+  test("menu does not show old menu sections", async () => {
+    render(<AppHeader />);
+    const user = userEvent.setup();
+    const hamburgerButton = screen.getByLabelText("Menu");
+    await user.click(hamburgerButton);
+
+    const oldMenuLink = screen.queryByText("Classroom");
+    expect(oldMenuLink).not.toBeInTheDocument();
   });
 });

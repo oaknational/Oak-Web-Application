@@ -1,17 +1,15 @@
 import { FC } from "react";
 
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
-import Flex from "../Flex";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading, Span } from "../Typography";
-import OakLink from "../OakLink";
-import Card from "../Card";
-import useClickableCard from "../../hooks/useClickableCard";
-import Box from "../Box";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import Icon from "../Icon/Icon";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import Flex from "@/components/Flex";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import { Heading } from "@/components/Typography";
+import OakLink from "@/components/OakLink";
+import Card from "@/components/Card";
+import useClickableCard from "@/hooks/useClickableCard";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const ProgrammeListItem: FC<
   Pick<
@@ -27,8 +25,6 @@ const ProgrammeListItem: FC<
     examBoardTitle,
     keyStageSlug,
     keyStageTitle,
-    lessonCount,
-    unitCount,
     programmeSlug,
   } = props;
   const { containerProps, isHovered, primaryTargetProps } =
@@ -47,7 +43,7 @@ const ProgrammeListItem: FC<
       <Flex
         $transform={isHovered ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
-        $ph={16}
+        $pa={16}
       >
         <OakLink
           {...primaryTargetProps}
@@ -66,8 +62,6 @@ const ProgrammeListItem: FC<
           }}
         >
           <Heading
-            $mt={8}
-            $mb={2}
             $font={"heading-7"}
             tag="h3"
             ariaLabel={`${tierTitle ? tierTitle : ""} ${
@@ -78,26 +72,7 @@ const ProgrammeListItem: FC<
           </Heading>
         </OakLink>
       </Flex>
-      <Box
-        $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
-        $transition={"all 0.4s ease-out"}
-        $transform={isHovered ? "translateY(-8px)" : null}
-        $ph={16}
-      >
-        <Flex
-          $mt={2}
-          $mb={8}
-          $flexDirection={"row"}
-          $font={"body-3"}
-          $color={"oakGrey4"}
-        >
-          <Span $mb={4}>{`${unitCount} units`}</Span>
-          <Span $mh={4}>
-            <Icon name="dot" size={8} />
-          </Span>
-          <Span $font={"body-3"}>{`${lessonCount} lessons`}</Span>
-        </Flex>
-      </Box>
+
       <BoxBorders gapPosition="rightTop" />
     </Card>
   );

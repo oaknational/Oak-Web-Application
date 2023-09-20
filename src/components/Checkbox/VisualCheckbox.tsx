@@ -23,7 +23,7 @@ const getBorderColor = (props: VisualCheckboxProps) => {
   if (props.hasError) {
     return getColorByName("failure");
   } else if (props.checked) {
-    return getColorByName("teachersHighlight");
+    return getColorByName("oakGrey3");
   } else {
     return getColorByName("oakGrey3");
   }
@@ -45,9 +45,7 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   border-radius: 2px;
   border-color: ${(props) => getBorderColor(props)};
   background-color: ${(props) =>
-    props.checked
-      ? getColorByName("teachersHighlight")
-      : getColorByName("white")};
+    props.checked ? getColorByName("black") : getColorByName("white")};
   ${position}
 `;
 

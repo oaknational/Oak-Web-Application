@@ -10,9 +10,10 @@ import Box from "../Box";
 import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
-import MenuLinks from "../MenuLinks";
-import { betaMenuSections } from "../../browser-lib/fixtures/betaMenuSections";
 import { P } from "../Typography";
+import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
+
+import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -46,7 +47,7 @@ const AppHeader: FC<HeaderProps> = () => {
           onClick={openMenu}
         />
         <Menu menuButtonRef={menuButtonRef}>
-          <MenuLinks menuSections={betaMenuSections} />
+          <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
       <Box
