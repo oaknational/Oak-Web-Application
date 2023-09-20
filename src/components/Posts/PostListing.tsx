@@ -1,36 +1,34 @@
 import { FC, useId } from "react";
 
-import { PostListJsonLd } from "../../browser-lib/seo/getJsonLd";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { SeoProps } from "../../browser-lib/seo/Seo";
-import {
-  PostListingPage,
-  BlogWebinarCategory,
-} from "../../common-lib/cms-types";
-import { WebinarsListingPage } from "../../common-lib/cms-types/webinarsListingPage";
-import PostListAndCategories from "../Posts/PostListAndCategories";
+import PostCategoryList, {
+  PostCategoryPage,
+} from "./PostCategoryList/PostCategoryList";
+
+import { PostListJsonLd } from "@/browser-lib/seo/getJsonLd";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { SeoProps } from "@/browser-lib/seo/Seo";
+import { PostListingPage, BlogWebinarCategory } from "@/common-lib/cms-types";
+import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage";
+import PostListAndCategories from "@/components/Posts/PostListAndCategories";
 import {
   CrumbPageVariant,
   getBlogWebinarListBreadcrumbs,
-} from "../Breadcrumbs/getBreadcrumbs";
-import SummaryCard from "../Card/SummaryCard";
-import Layout from "../Layout";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileFilters from "../MobileFilters";
+} from "@/components/Breadcrumbs/getBreadcrumbs";
+import SummaryCard from "@/components/Card/SummaryCard";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MobileFilters from "@/components/MobileFilters";
 import {
   PostListingPageProps,
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "../pages/BlogIndex.page";
+} from "@/components/pages/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
   webinarToPostListItem,
-} from "../pages/WebinarsIndex.page";
-
-import PostCategoryList, {
-  PostCategoryPage,
-} from "./PostCategoryList/PostCategoryList";
+} from "@/components/pages/WebinarsIndex.page";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 type PostListingProps = {
   seo: SeoProps;
@@ -58,26 +56,26 @@ const PostListing: FC<PostListingProps> = ({
 }) => {
   const triggerId = useId();
 
-  const categoryHeading = categories.find(
-    (cat) => cat.slug === categorySlug
-  )?.title;
+  const categoryHeading = categories.find((cat) => cat.slug === categorySlug)
+    ?.title;
 
   const postListItems = posts.map((post) =>
-    "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post)
+    "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post),
   );
 
   return (
-    <Layout
-      seoProps={getSeoProps(seo)}
-      $background="white"
-      breadcrumbs={getBlogWebinarListBreadcrumbs(
-        categories,
-        categorySlug,
-        variant.slug,
-        variant.title
-      )}
-    >
-      <MaxWidth $pt={[0, 80, 80]}>
+    <Layout seoProps={getSeoProps(seo)} $background="white">
+      <MaxWidth $pt={20} $display={["none", "flex"]}>
+        <Breadcrumbs
+          breadcrumbs={getBlogWebinarListBreadcrumbs(
+            categories,
+            categorySlug,
+            variant.slug,
+            variant.title,
+          )}
+        />
+      </MaxWidth>
+      <MaxWidth $pt={[0, 26, 26]}>
         <SummaryCard
           {...pageData}
           heading={categoryHeading || pageData.heading}

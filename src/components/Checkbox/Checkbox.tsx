@@ -119,7 +119,7 @@ const CheckboxLabel = styled.label<CheckboxLabelProps>`
     props.disabled &&
     css`
       color: ${getColorByLocation(
-        ({ theme }) => theme.checkbox.disabled.color
+        ({ theme }) => theme.checkbox.disabled.color,
       )};
     `}
 

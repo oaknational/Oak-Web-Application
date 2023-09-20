@@ -9,7 +9,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see the content", async () => {
     const { queryAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("number of unit cards matches units", async () => {
     const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
@@ -25,7 +25,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("builds links to unit lesson index", async () => {
     const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const unitLinks = await findAllByTestId("unit-link");
     if (unitLinks.length === 0 || !unitLinks[0]) {

@@ -1,3 +1,13 @@
+# [1.246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.245.0...v1.246.0) (2023-09-20)
+
+
+### Features
+
+* move breadcrumbs into postSingleLayout ([286aa31](https://github.com/oaknational/Oak-Web-Application/commit/286aa31f555f38509915db8aaa852b387525f14e))
+* remove breadcrumbs from navbar for blog and webinar pages and add Breadcrumbs component ([e1e39b7](https://github.com/oaknational/Oak-Web-Application/commit/e1e39b7a03f74542fdb24fb0d7386de910cba0ef))
+* remove grey underline on blog and webinar landing pages ([b729e9c](https://github.com/oaknational/Oak-Web-Application/commit/b729e9c210bf18e8051e691cccd04bcab1b45031))
+* style new breadcrumbs ([979e9c0](https://github.com/oaknational/Oak-Web-Application/commit/979e9c04c40a7bb9e7f0ba36f885221f727a8aa0))
+
 # [1.245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.244.0...v1.245.0) (2023-09-19)
 
 
