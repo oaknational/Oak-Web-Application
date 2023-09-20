@@ -416,11 +416,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     Year {year}
                   </Heading>
                   {childSubjects.length > 0 && (
-                    <Box>
+                    <Box $mb={16}>
                       {childSubjects.map((subject) => (
                         <Button
-                          $mr={20}
                           $mb={16}
+                          $mr={20}
                           background={
                             isSelectedSubject(year, subject) ? "black" : "white"
                           }
@@ -434,11 +434,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {domains.length > 0 && (
-                    <Box>
+                    <Box $mb={16}>
                       {domains.map((domain) => (
                         <Button
-                          $mr={20}
                           $mb={16}
+                          $mr={20}
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
                           }
@@ -452,9 +452,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {tiers.length > 0 && (
-                    <Box $mb={32}>
+                    <Box $mb={16}>
                       {tiers.map((tier) => (
                         <Button
+                          $mb={16}
                           $mr={16}
                           key={tier.tier_slug}
                           label={tier.tier}
