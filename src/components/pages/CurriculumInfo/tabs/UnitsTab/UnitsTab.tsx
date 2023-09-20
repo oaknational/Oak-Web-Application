@@ -419,8 +419,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Box>
                       {childSubjects.map((subject) => (
                         <Button
+                          $mb={20}
                           $mr={20}
-                          $mb={16}
                           background={
                             isSelectedSubject(year, subject) ? "black" : "white"
                           }
@@ -437,8 +437,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Box>
                       {domains.map((domain) => (
                         <Button
+                          $mb={20}
                           $mr={20}
-                          $mb={16}
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
                           }
@@ -452,10 +452,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {tiers.length > 0 && (
-                    <Box $mb={32}>
+                    <Box>
                       {tiers.map((tier) => (
                         <Button
-                          $mr={16}
+                          $font={"heading-6"}
+                          $mb={20}
+                          $mr={24}
                           key={tier.tier_slug}
                           label={tier.tier}
                           onClick={() => handleSelectTier(year, tier)}
@@ -468,7 +470,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       ))}
                     </Box>
                   )}
-                  <Flex $flexWrap={"wrap"} data-testid="unit-cards">
+                  <Flex $flexWrap={"wrap"} $mt={12} data-testid="unit-cards">
                     {units
                       .filter((unit) => isVisibleUnit(year, unit))
                       .map((unit, index) => {
