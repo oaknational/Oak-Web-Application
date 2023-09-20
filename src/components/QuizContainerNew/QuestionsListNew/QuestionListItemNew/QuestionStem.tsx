@@ -1,9 +1,10 @@
+import { MathJax } from "better-react-mathjax";
+
 import { shortAnswerTitleFormatter, removeMarkdown } from "../../quizUtils";
 
 import QuizImage from "./QuizImage";
 
 import Flex from "@/components/Flex";
-import MathJaxWrapper from "@/components/MathJaxWrapper/MathJaxWrapper";
 import Typography from "@/components/Typography";
 import {
   StemImageObject,
@@ -33,9 +34,9 @@ export const QuestionStem = ({
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
           >
-            <MathJaxWrapper>
+            <MathJax>
               {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-            </MathJaxWrapper>
+            </MathJax>
           </Typography>
         )}
       </Flex>
@@ -47,9 +48,9 @@ export const QuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
-              <MathJaxWrapper>
+              <MathJax>
                 {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-              </MathJaxWrapper>
+              </MathJax>
             </Typography>
           );
         } else if (stemItem.type === "image") {
