@@ -34,8 +34,8 @@ describe("Component - Curriculum Header", () => {
 
   test("user can see the page title", async () => {
     const { findByRole } = renderComponent();
-    const pageTitle = `${curriculumHeaderFixture().phase.title} ${
-      curriculumHeaderFixture().subject.title
+    const pageTitle = `${curriculumHeaderFixture().phase} ${
+      curriculumHeaderFixture().subject
     }`;
     expect(await findByRole("heading", { level: 1 })).toHaveTextContent(
       pageTitle,

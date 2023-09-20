@@ -6,7 +6,7 @@ describe("handleFetchError()", () => {
   });
   it("should throw with the statustext", () => {
     expect(() =>
-      handleFetchError({ ok: false, statusText: "Bad thing" } as Response),
+      handleFetchError({ ok: false, statusText: "Bad thing" } as Response)
     ).toThrow("Bad thing");
   });
 });

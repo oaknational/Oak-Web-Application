@@ -34,7 +34,7 @@ export type GridAreaProps = {
 
 const combineSpanStart = (
   start: ColSpan | undefined | null | RowSpan,
-  span: ColSpan | undefined | null | RowSpan,
+  span: ColSpan | undefined | null | RowSpan
 ) => {
   return start ? `${start}/${span}` : `${span}`;
 };
@@ -59,17 +59,17 @@ const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
               Array.isArray(props.$colStart)
                 ? props.$colStart[index]
                 : props.$colStart,
-              span,
-            ),
+              span
+            )
           )
         : combineSpanStart(
             Array.isArray(props.$colStart)
               ? props.$colStart[0]
               : props.$colStart,
-            props.$colSpan,
+            props.$colSpan
           );
     },
-    (value) => parseSpanStart(value),
+    (value) => parseSpanStart(value)
   )};
   ${responsive(
     "grid-row",
@@ -80,25 +80,25 @@ const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
               Array.isArray(props.$rowStart)
                 ? props.$rowStart[index]
                 : props.$rowStart,
-              span,
-            ),
+              span
+            )
           )
         : combineSpanStart(
             Array.isArray(props.$rowStart)
               ? props.$rowStart[0]
               : props.$rowStart,
-            props.$rowSpan,
+            props.$rowSpan
           );
     },
-    (value) => parseSpanStart(value),
+    (value) => parseSpanStart(value)
   )};
   ${responsive(
     "order",
     (props) => props.$order,
-    (value) => value && `${value}`,
+    (value) => value && `${value}`
   )};
   ${responsive("grid-row", (props) =>
-    props.$rowSpan ? `span ${props.$rowSpan}` : "span 1",
+    props.$rowSpan ? `span ${props.$rowSpan}` : "span 1"
   )};
   ${responsive("grid-column-start", (props) => props.$colStart)}
   ${responsive("grid-column-end", (props) => props.$colEnd)}

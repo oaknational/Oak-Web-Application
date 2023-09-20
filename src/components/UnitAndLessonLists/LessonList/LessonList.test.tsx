@@ -23,7 +23,7 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={lessons.length}
-      />,
+      />
     );
 
     const listHeading = getByRole("heading", { level: 2 });

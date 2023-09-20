@@ -18,7 +18,7 @@ export const getBlogWebinarListBreadcrumbs = (
   categories: BlogWebinarCategory[],
   currentCategorySlug: string | null,
   page: CrumbPageVariant,
-  label: string,
+  label: string
 ): Breadcrumb[] => [
   { label, oakLinkProps: { href: `/${page}`, page: null } },
   {
@@ -34,7 +34,7 @@ export const getBlogWebinarPostBreadcrumbs = (
   categories: BlogWebinarCategory[],
   blog: SerializedBlog | SerializedWebinar,
   page: CrumbPageVariant,
-  label: string,
+  label: string
 ): Breadcrumb[] => {
   const { title, slug, category } = blog;
   return [

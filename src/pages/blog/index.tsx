@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<
 
       const blogCategories = uniqBy(
         "title",
-        blogResults.map((blogResult) => blogResult.category),
+        blogResults.map((blogResult) => blogResult.category)
       ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
       const categorySlug = context.params?.categorySlug || null;

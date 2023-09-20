@@ -5,7 +5,7 @@ import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 
 export const ASPECT_RATIOS = ["7:8", "2:3", "1:1", "3:2", "16:9"] as const;
 // Constraining ratio for 1 consistency and 2 option to move to static css
-export type Ratio = (typeof ASPECT_RATIOS)[number];
+export type Ratio = typeof ASPECT_RATIOS[number];
 export type AspectRatios = ResponsiveValues<Ratio>;
 const ratioPercentageMap: Record<Ratio, number> = {
   "16:9": 56.25,

@@ -1,7 +1,7 @@
 import { CurriculumUnitsTabData } from "..";
 
 const curriculumUnitsTabFixture = (
-  partial?: Partial<CurriculumUnitsTabData>,
+  partial?: Partial<CurriculumUnitsTabData>
 ): CurriculumUnitsTabData => ({
   ...{
     units: [

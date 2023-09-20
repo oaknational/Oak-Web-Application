@@ -36,7 +36,7 @@ const SwitchSlider = styled.span<Pick<ToggleProps, "disabled">>`
   right: 0;
   bottom: 0;
   background-color: ${getColorByLocation(
-    ({ theme }) => theme.toggle.off.background,
+    ({ theme }) => theme.toggle.off.background
   )};
   transition: 0.4s;
   border-radius: 16px;
@@ -66,7 +66,7 @@ const ToggleSwitch = styled.div`
 
   ${SwitchInput}:checked + ${SwitchSlider} {
     background-color: ${getColorByLocation(
-      ({ theme }) => theme.toggle.on.background,
+      ({ theme }) => theme.toggle.on.background
     )};
   }
 

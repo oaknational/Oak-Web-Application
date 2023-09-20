@@ -10,7 +10,7 @@ const hubspot = new HubspotClient({
 });
 
 export const getHubspotFormById = async (
-  formId: string,
+  formId: string
 ): Promise<FormDefinition> => {
   const formResponse = await hubspot.apiRequest({
     method: "get",

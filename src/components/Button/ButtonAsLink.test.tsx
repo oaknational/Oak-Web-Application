@@ -11,7 +11,7 @@ describe("ButtonAsLink", () => {
         icon="arrow-right"
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -20,7 +20,7 @@ describe("ButtonAsLink", () => {
 
   it("renders the label", () => {
     const { getByText } = renderWithTheme(
-      <ButtonAsLink label="Click me" variant="minimal" />,
+      <ButtonAsLink label="Click me" variant="minimal" />
     );
 
     const button = getByText("Click me");
@@ -29,7 +29,7 @@ describe("ButtonAsLink", () => {
 
   it("uses the label as the default link title", () => {
     const { getByRole } = renderWithTheme(
-      <ButtonAsLink label="Click me" variant="minimal" />,
+      <ButtonAsLink label="Click me" variant="minimal" />
     );
 
     const button = getByRole("button");
@@ -42,7 +42,7 @@ describe("ButtonAsLink", () => {
         label="Click me"
         variant="minimal"
         aria-label="Click me to do something"
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -55,7 +55,7 @@ describe("ButtonAsLink", () => {
         label="Click me"
         labelSuffixA11y="to do something"
         variant="minimal"
-      />,
+      />
     );
     const button = getByRole("button");
     expect(button).toHaveAttribute("title", "Click me to do something");

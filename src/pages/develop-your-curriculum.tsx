@@ -211,7 +211,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<CurriculumPageProps> = async (
-  context,
+  context
 ) => {
   return getPageProps({
     page: "develop-your-curriculum::getStaticProps",

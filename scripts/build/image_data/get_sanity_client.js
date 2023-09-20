@@ -14,7 +14,7 @@ function getSanityClient() {
 
   const envPresent = Object.values(sanityConfig).reduce(
     (acc, cur) => acc && typeof cur !== "undefined",
-    true,
+    true
   );
 
   if (!envPresent) {
@@ -23,7 +23,7 @@ function getSanityClient() {
         NEXT_PUBLIC_SANITY_PROJECT_ID
         NEXT_PUBLIC_SANITY_DATASET
         SANITY_AUTH_SECRET
-        `,
+        `
     );
   }
   const client = sanityClient(sanityConfig);
