@@ -11,7 +11,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In prior learning, pupils will have explored the composition of numbers to 10 and be able to subitise up to 5. In this unit pupils will represent numbers 6 to 10 by partitioning in different ways and learn what odd and even numbers are and how they can be partitioned.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks1",
@@ -45,7 +45,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "Pupils learned about differences in the cell structures of eukaryotic and prokaryotic organisms.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks4",
@@ -74,7 +74,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In the prior unit, pupils learnt how to round to a given number of decimal places or significant figures and explored the effect of using rounded numbers for calculations. In this unit, pupils will investigate the bounds and perform calculations to determine a best/worst case scenario.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks4",
@@ -104,7 +104,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "Pupils learned about photosynthesis in producers, including a two-stage model of the process and the requirements and products of each stage.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks4",
@@ -134,7 +134,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "Unit 9 links to work done in and around the school ground on weather and develops the idea of temperature variations and extreme cold on a global scale. ",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks1",
@@ -172,7 +172,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In the prior unit pupils identified whether something had or had not been split into equal parts. They named fractions one-half one-quarter and one-third in relation to a fraction of a length, shape or set of objects. In this unit pupils will represent unit fractions in different ways, identifying the whole, the number of equal parts and the size of each part as a unit fraction, including tenths.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks2",
@@ -206,7 +206,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In the prior unit pupils explained the relationship between multiplying and dividing a number by 10 and multiples of 10.  In this unit pupils will describe, represent and order tenths as a decimal fraction. They will round a decimal number with tenths to the nearest whole number.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks2",
@@ -249,7 +249,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In 'Shakespeare's Macbeth’: Narrative and Soliloquy Writing', pupils learnt about character, plot and theme in a Shakespearean play for the first time. In this unit, pupils will learn how Shakespeare explores multiple key themes throughout a single play.’",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks2",
@@ -283,7 +283,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "In the Solutions unit, pupils learnt about mixtures, solutions and dissolving in terms of the particle model.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks3",
@@ -313,7 +313,7 @@ const curriculumUnitsTabFixture = (
         connection_prior_unit_description:
           "Pupils learned about heredity as the process of organisms passing on genetic material to their offspring during reproduction, and about DNA, genes and chromosomes.",
         domain: null,
-        domain_slug: null,
+        domain_id: null,
         examboard: null,
         examboard_slug: null,
         keystage_slug: "ks3",

@@ -35,7 +35,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   interface Domain {
     domain: string;
-    domain_slug: string;
+    domain_id: number;
   }
 
   interface Tier {
@@ -105,16 +105,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         subject_slug: unit.subject_slug,
       });
     }
+
+    // Populate list of domain filter values
     if (
       unit.domain &&
-      unit.domain_slug &&
-      currentYearData.domains.every((d) => d.domain_slug !== unit.domain_slug)
+      unit.domain_id &&
+      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
     ) {
       currentYearData.domains.push({
         domain: unit.domain,
-        domain_slug: unit.domain_slug,
+        domain_id: unit.domain_id,
       });
     }
+
+    // Populate list of tier filter values
     if (
       unit.tier &&
       unit.tier_slug &&
@@ -145,10 +149,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       }
     });
     if (data.domains.length > 0) {
-      data.domains.reverse();
+      data.domains.sort((a, b) => a.domain_id - b.domain_id);
       data.domains.unshift({
         domain: "All",
-        domain_slug: "all",
+        domain_id: 0,
       });
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
@@ -185,7 +189,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.domain_slug === domain.domain_slug;
+    return yearSelection[year]?.domain?.domain_id === domain.domain_id;
   }
 
   function isSelectedSubject(year: string, subject: Subject) {
@@ -205,8 +209,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
       !s.domain ||
-      s.domain.domain_slug === "all" ||
-      s.domain.domain_slug === unit.domain_slug;
+      s.domain.domain_id === 0 ||
+      s.domain.domain_id === unit.domain_id;
     const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
     return filterBySubject && filterByDomain && filterByTier;
   }
@@ -428,7 +432,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
                           }
-                          key={domain.domain_slug}
+                          key={domain.domain_id}
                           label={domain.domain}
                           onClick={() => handleSelectDomain(year, domain)}
                           size="small"

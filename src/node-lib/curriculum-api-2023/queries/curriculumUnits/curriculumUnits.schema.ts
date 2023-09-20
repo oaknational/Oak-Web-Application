@@ -6,7 +6,7 @@ const curriculumUnitsSchema = z.object({
       connection_prior_unit_description: z.string().nullable(),
       connection_future_unit_description: z.string().nullable(),
       domain: z.string().nullable(),
-      domain_slug: z.string().nullable(),
+      domain_id: z.number().nullable(),
       examboard: z.string().nullable(),
       examboard_slug: z.string().nullable(),
       planned_number_of_lessons: z.number().nullable(),
