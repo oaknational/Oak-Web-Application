@@ -32,6 +32,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             tag="h2"
             $font={["heading-5", "heading-4"]}
             data-testid="intent-heading"
+            $mb={20}
+            line-height={48}
           >
             Curriculum explainer
           </Heading>
@@ -107,7 +109,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         <Flex $justifyContent={"center"} $pa={16}>
           <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
           <Box>
-            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+            <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={20}>
               Our curriculum partner
             </Heading>
             <Typography $font={"body-1"}>{partnerBio}</Typography>
