@@ -12,14 +12,14 @@ module.exports = function validateConfig(configKeys, config) {
   const checkedConfig = {};
   const missingValueLabel = "<-- MISSING VALUE";
   configKeys.forEach(
-    (key) => (checkedConfig[key] = config[key] ?? missingValueLabel),
+    (key) => (checkedConfig[key] = config[key] ?? missingValueLabel)
   );
   if (Object.values(checkedConfig).includes(missingValueLabel)) {
     throw new TypeError(
       `Please specify the following message config values:\n${configKeys.join(
-        "\n",
+        "\n"
       )}
-      \nreceived:\n${JSON.stringify(checkedConfig, undefined, 2)}`,
+      \nreceived:\n${JSON.stringify(checkedConfig, undefined, 2)}`
     );
   }
 };

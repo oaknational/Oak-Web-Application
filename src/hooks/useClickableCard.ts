@@ -7,7 +7,7 @@ import OakError from "../errors/OakError";
 const reportError = errorReporter("useClickableCard");
 
 const getInteractiveAncestor = (
-  target: Element | ParentNode,
+  target: Element | ParentNode
 ): Element | ParentNode | undefined => {
   if (["BUTTON", "A"].includes(target.nodeName)) {
     return target;
@@ -32,7 +32,7 @@ const getInteractiveAncestor = (
  */
 
 const useClickableCard = <T extends HTMLAnchorElement | HTMLButtonElement>(
-  externalRef?: MutableRefObject<T | null> | null | undefined,
+  externalRef?: MutableRefObject<T | null> | null | undefined
 ) => {
   const internalRef = useRef<T | null>(null);
   const ref = externalRef || internalRef;

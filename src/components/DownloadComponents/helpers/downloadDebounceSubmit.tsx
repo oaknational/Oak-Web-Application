@@ -13,12 +13,12 @@ export type DownloadDebouncedSubmitProps = {
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmit: (
     data: DownloadFormProps,
-    lessonSlug: string,
+    lessonSlug: string
   ) => Promise<string | undefined>;
 };
 
 const downloadDebouncedSubmit = async (
-  downloadDebouncedSubmitProps: DownloadDebouncedSubmitProps,
+  downloadDebouncedSubmitProps: DownloadDebouncedSubmitProps
 ): Promise<void> => {
   const {
     data,
@@ -36,7 +36,7 @@ const downloadDebouncedSubmit = async (
         setEditDetailsClicked(false);
       },
       4000,
-      { leading: true },
+      { leading: true }
     );
     await debouncedFunction();
   } catch (error) {

@@ -37,7 +37,7 @@ describe.skip("SEO", () => {
       <SEO {...mockSeoProps} canonicalURL={"https://thenational.academy/"} />,
       {
         container: document.head,
-      },
+      }
     );
 
     const canonical = document

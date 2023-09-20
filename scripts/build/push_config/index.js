@@ -38,7 +38,7 @@ const getFileName = (environment) => {
   }
 
   throw new Error(
-    "Environment must be either 'development' or 'production' or 'test'",
+    "Environment must be either 'development' or 'production' or 'test'"
   );
 };
 const getLocalPath = (fileName) => path.join(OAK_CONFIG_PATH, fileName);
@@ -104,7 +104,7 @@ async function run() {
         ]);
 
         return cleanUpAndExit();
-      },
+      }
     );
   } catch (error) {
     cleanUpAndExit(error);

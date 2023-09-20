@@ -21,7 +21,7 @@ describe("useWebinarRegistration", () => {
   });
   test("calling onSubmit should set oak-past-webinars-unlocked local storage to true", () => {
     expect(window.localStorage.getItem("oak-past-webinars-unlocked")).toBe(
-      null,
+      null
     );
     const { result } = renderHook(useWebinarRegistration);
 
@@ -30,7 +30,7 @@ describe("useWebinarRegistration", () => {
     });
 
     expect(window.localStorage.getItem("oak-past-webinars-unlocked")).toBe(
-      JSON.stringify(true),
+      JSON.stringify(true)
     );
   });
 });

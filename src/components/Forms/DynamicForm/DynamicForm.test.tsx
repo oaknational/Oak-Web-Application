@@ -31,7 +31,7 @@ describe("DynamicForm", () => {
       } as FormField;
 
       const { getByPlaceholderText } = renderWithTheme(
-        <DynamicFormField field={field} register={jest.fn()} />,
+        <DynamicFormField field={field} register={jest.fn()} />
       );
 
       const input = getByPlaceholderText("Anna Smith");
@@ -53,7 +53,7 @@ describe("DynamicForm", () => {
     } as FormDefinition;
 
     const { getByRole } = renderWithTheme(
-      <DynamicForm form={form} onSubmit={onSubmit} />,
+      <DynamicForm form={form} onSubmit={onSubmit} />
     );
 
     const submitButton = getByRole("button");
@@ -83,7 +83,7 @@ describe("DynamicForm", () => {
     } as FormDefinition;
 
     const { getAllByRole, getByLabelText } = renderWithTheme(
-      <DynamicForm form={form} onSubmit={onSubmit} />,
+      <DynamicForm form={form} onSubmit={onSubmit} />
     );
     const inputs = getAllByRole("textbox");
     const nameField = getByLabelText("Name");
@@ -121,7 +121,7 @@ describe("DynamicForm", () => {
 
     it("should not render a conditional field when the condition is not met", () => {
       const { queryByLabelText } = renderWithTheme(
-        <DynamicForm form={form} onSubmit={onSubmit} />,
+        <DynamicForm form={form} onSubmit={onSubmit} />
       );
 
       const nameField = queryByLabelText("Name");
@@ -133,7 +133,7 @@ describe("DynamicForm", () => {
 
     it("should render a conditional field when the condition is met", async () => {
       const { queryByLabelText } = renderWithTheme(
-        <DynamicForm form={form} onSubmit={onSubmit} />,
+        <DynamicForm form={form} onSubmit={onSubmit} />
       );
 
       const nameField = queryByLabelText("Name");
@@ -186,7 +186,7 @@ describe("DynamicForm", () => {
 
   test("user can fill out and submit form with keyboard", async () => {
     renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const user = userEvent.setup();
@@ -224,7 +224,7 @@ describe("DynamicForm", () => {
 
   test("should display error hint on blur if no name is entered", async () => {
     const { getByPlaceholderText } = renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const nameInput = getByPlaceholderText("Anna Smith");
@@ -240,7 +240,7 @@ describe("DynamicForm", () => {
 
   test("should display all error hints on submit", async () => {
     const { getByRole, getByPlaceholderText } = renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const nameInput = getByPlaceholderText("Anna Smith");
@@ -260,7 +260,7 @@ describe("DynamicForm", () => {
 
   test("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const submit = getByRole("button", { name: "Sign up" });
@@ -278,7 +278,7 @@ describe("DynamicForm", () => {
     const onSubmit = () =>
       Promise.reject(new OakError({ code: "hubspot/invalid-email" }));
     const { getByRole, getByPlaceholderText } = renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const user = userEvent.setup();
@@ -291,14 +291,14 @@ describe("DynamicForm", () => {
 
     const error = getByRole("alert");
     expect(error).toHaveTextContent(
-      "Thank you, that's been received, but please check as your email doesn't look quite right.",
+      "Thank you, that's been received, but please check as your email doesn't look quite right."
     );
   });
 
   test.skip("should display default message if no OakError", async () => {
     const onSubmit = () => Promise.reject();
     const { getByRole, getByPlaceholderText } = renderWithTheme(
-      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />,
+      <DynamicForm form={newsletterFormDef} onSubmit={onSubmit} />
     );
 
     const user = userEvent.setup();

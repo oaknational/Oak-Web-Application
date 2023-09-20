@@ -17,13 +17,13 @@ describe("MenuLinks", () => {
       section.forEach(({ linkText, resolveOakHrefProps }) => {
         const href = resolveOakHref(resolveOakHrefProps);
         expect(getByText(linkText).closest("a")).toHaveAttribute("href", href);
-      }),
+      })
     );
   });
   test("will position the arrow at home", () => {
     mockRouter.setCurrentUrl("http://localhost:3000/");
     const { getByRole, container } = render(
-      <MenuLinks menuSections={menuSections} />,
+      <MenuLinks menuSections={menuSections} />
     );
     const link = getByRole("link", { name: /Home/i });
     const li = link.closest("li");
@@ -39,7 +39,7 @@ describe("MenuLinks", () => {
   test("should position the arrow based on the current path", () => {
     mockRouter.setCurrentUrl("http://localhost:3000/about-us/board");
     const { getByRole, container } = render(
-      <MenuLinks menuSections={menuSections} />,
+      <MenuLinks menuSections={menuSections} />
     );
     const link = getByRole("link", { name: /About us/i });
     const li = link.closest("li");

@@ -55,7 +55,7 @@ describe("programmeListing()", () => {
                 ],
               },
             ],
-          }),
+          })
         ),
       })({
         keyStageSlug: "key-stage-slug",

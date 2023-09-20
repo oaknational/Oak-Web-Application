@@ -57,7 +57,7 @@ describe("useAnalytics", () => {
   });
   test("service.identify() should be called if service included in array", () => {
     callWithArgs.mockImplementation((identify) =>
-      identify("someone", {}, ["posthog"]),
+      identify("someone", {}, ["posthog"])
     );
 
     render(<CallIdentify />);
@@ -66,7 +66,7 @@ describe("useAnalytics", () => {
   });
   test("service.identify() should not be called if service not included in array", () => {
     callWithArgs.mockImplementation((identify) =>
-      identify("someone", {}, ["hubspot"]),
+      identify("someone", {}, ["hubspot"])
     );
 
     render(<CallIdentify />);

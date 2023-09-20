@@ -36,9 +36,9 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
   const removedGuidanceDuplicates = Array.from(
     new Set(
       contentGuidance?.map(
-        (guidance: ContentGuidance) => guidance.contentGuidanceLabel,
-      ),
-    ),
+        (guidance: ContentGuidance) => guidance.contentGuidanceLabel
+      )
+    )
   );
 
   return (

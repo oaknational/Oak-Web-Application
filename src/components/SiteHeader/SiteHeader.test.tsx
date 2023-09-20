@@ -27,7 +27,7 @@ describe("components/SiteHeader", () => {
 
     expect(getByTestId("SiteHeaderClassroomLink").closest("a")).toHaveAttribute(
       "href",
-      "https://classroom.thenational.academy",
+      "https://classroom.thenational.academy"
     );
   });
 
@@ -36,7 +36,7 @@ describe("components/SiteHeader", () => {
 
     expect(getByText("Teacher Hub").closest("a")).toHaveAttribute(
       "href",
-      "https://teachers.thenational.academy",
+      "https://teachers.thenational.academy"
     );
   });
 

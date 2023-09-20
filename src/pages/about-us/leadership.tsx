@@ -58,7 +58,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context,
+  context
 ) => {
   return getPageProps({
     page: "leadership::getStaticProps",

@@ -21,14 +21,14 @@ describe("PreviewControls", () => {
     const { getByRole } = renderWithTheme(
       <ToastProvider>
         <PreviewControls />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     const link = getByRole("link");
     expect(link).toHaveAccessibleName("Exit preview");
     expect(link).toHaveAttribute(
       "href",
-      "/api/exit-preview/blog/some-blog-post",
+      "/api/exit-preview/blog/some-blog-post"
     );
   });
 });

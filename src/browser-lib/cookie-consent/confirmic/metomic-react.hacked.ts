@@ -120,7 +120,7 @@ function s(e, r) {
     f(e, r) ||
     (function () {
       throw new TypeError(
-        "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.",
+        "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
       );
     })()
   );
@@ -138,7 +138,7 @@ function p(e) {
     f(e) ||
     (function () {
       throw new TypeError(
-        "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.",
+        "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
       );
     })()
   );
@@ -177,7 +177,7 @@ var m = function () {},
       return u(
         {},
         e,
-        i({}, r.policySlug, [].concat(p(e[r.policySlug] || []), [r])),
+        i({}, r.policySlug, [].concat(p(e[r.policySlug] || []), [r]))
       );
     }, {});
   },
@@ -230,7 +230,7 @@ var m = function () {},
           return (
             (e.src = "https://config.thenational.academy/config.js".concat(
               "?id=",
-              c,
+              c
             )),
             (e.crossorigin = !0),
             (e.defer = !0),
@@ -244,7 +244,7 @@ var m = function () {},
             }
           );
         },
-        [a, c],
+        [a, c]
       ),
       t(
         function () {
@@ -254,7 +254,7 @@ var m = function () {},
               projectId: c,
             });
         },
-        [a, j, c],
+        [a, j, c]
       ),
       e.createElement(
         e.Fragment,
@@ -278,12 +278,12 @@ var m = function () {},
               autoblockingRules: g(
                 null == v || null === (o = v.configAutoblocking) || void 0 === o
                   ? void 0
-                  : o.rules,
+                  : o.rules
               ),
             },
           },
-          d,
-        ),
+          d
+        )
       )
     );
   };
@@ -330,8 +330,8 @@ var O = function (c) {
       k(
         'An autoblocking rule for the "'.concat(
           l,
-          '" micropolicy exists. Make sure to use either autoblocking or manual blocking but not both.',
-        ),
+          '" micropolicy exists. Make sure to use either autoblocking or manual blocking but not both.'
+        )
       ),
     t(
       function () {
@@ -348,7 +348,7 @@ var O = function (c) {
               function (e) {
                 var r = e.enabled;
                 return O(r);
-              },
+              }
             ),
           null === (t = (n = window).Metomic) ||
             void 0 === t ||
@@ -357,7 +357,7 @@ var O = function (c) {
               "CONSENTED" === e.state && r === l && O(!0);
             }));
       },
-      [w, l],
+      [w, l]
     ),
     null !== h &&
       e.createElement(
@@ -393,11 +393,11 @@ var O = function (c) {
                   width: f.props.width,
                   height: f.props.height,
                 },
-                b,
+                b
               ),
-              "string" == typeof (null == f ? void 0 : f.type) && v(f),
+              "string" == typeof (null == f ? void 0 : f.type) && v(f)
             ),
-        "",
+        ""
       )
   );
 };

@@ -23,7 +23,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: {} });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current.totalPages).toBe(5);
@@ -32,7 +32,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: {} });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current.currentPage).toBe(1);
@@ -41,7 +41,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -53,7 +53,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: { page: 5 } });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -65,7 +65,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: { page: -5 } });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -78,7 +78,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: { page: 500 } });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -93,7 +93,7 @@ describe("usePagination()", () => {
       query: { categorySlug: "updates", page: 1 },
     });
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -112,7 +112,7 @@ describe("usePagination()", () => {
     useRouter.mockReturnValueOnce({ pathname, query: { page: 1 } });
 
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toMatchObject({
@@ -122,7 +122,7 @@ describe("usePagination()", () => {
   test("returns firstItemRef with a valid ref", () => {
     useRouter.mockReturnValueOnce({ pathname, query: {} });
     const { result } = renderHook(() =>
-      usePagination({ totalResults, pageSize, items }),
+      usePagination({ totalResults, pageSize, items })
     );
 
     expect(result.current).toHaveProperty("firstItemRef");

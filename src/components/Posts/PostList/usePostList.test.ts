@@ -52,11 +52,11 @@ describe("usePostList.ts", () => {
   });
   test("handles single upcoming post", () => {
     const upcomingPost = webinarToPostListItem(
-      mockWebinar({ date: "2052-04-14" }),
+      mockWebinar({ date: "2052-04-14" })
     );
     const pastPost = webinarToPostListItem(mockWebinar());
     const { result } = renderHook(() =>
-      usePostList({ items: [pastPost, upcomingPost] }),
+      usePostList({ items: [pastPost, upcomingPost] })
     );
 
     expect(result.current).toEqual({
@@ -79,10 +79,10 @@ describe("usePostList.ts", () => {
   });
   test("handles multiple upcoming posts (returning the soonest)", () => {
     const firstUpcomingPost = webinarToPostListItem(
-      mockWebinar({ date: "2033-04-14" }),
+      mockWebinar({ date: "2033-04-14" })
     );
     const secondUpcomingPost = webinarToPostListItem(
-      mockWebinar({ date: "2052-04-14" }),
+      mockWebinar({ date: "2052-04-14" })
     );
     const pastPost = webinarToPostListItem(mockWebinar());
     const items = [secondUpcomingPost, firstUpcomingPost, pastPost];
@@ -108,7 +108,7 @@ describe("usePostList.ts", () => {
   });
   test("pagination: returns correct 'paginationProps'", () => {
     const upcomingPost = webinarToPostListItem(
-      mockWebinar({ date: "2033-04-14" }),
+      mockWebinar({ date: "2033-04-14" })
     );
     const pastPosts = new Array(30)
       .fill(null)

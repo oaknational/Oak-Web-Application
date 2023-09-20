@@ -1,7 +1,7 @@
 import { UnitListingData } from "..";
 
 const unitListingFixture = (
-  partial?: Partial<UnitListingData>,
+  partial?: Partial<UnitListingData>
 ): UnitListingData => {
   return {
     programmeSlug: "computing-secondary-ks4",

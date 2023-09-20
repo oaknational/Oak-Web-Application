@@ -30,13 +30,13 @@ describe("useAnalyticsService", () => {
   });
   test("should not call service.init() if consentState:disabled", () => {
     renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "disabled" }),
+      useAnalyticsService({ service, config: null, consentState: "disabled" })
     );
     expect(service.init).not.toHaveBeenCalled();
   });
   test("should not call service.init() if consentState:pending", () => {
     renderHook(() =>
-      useAnalyticsService({ service, config: null, consentState: "pending" }),
+      useAnalyticsService({ service, config: null, consentState: "pending" })
     );
     expect(service.init).not.toHaveBeenCalled();
   });
@@ -46,7 +46,7 @@ describe("useAnalyticsService", () => {
         service,
         config: { foo: "bar" },
         consentState: "enabled",
-      }),
+      })
     );
     expect(service.init).toHaveBeenCalledWith({ foo: "bar" });
   });
@@ -57,11 +57,11 @@ describe("useAnalyticsService", () => {
         config: { foo: "bar" },
         consentState: "enabled",
         setPosthogDistinctId,
-      }),
+      })
     );
     await waitFor(() => {
       expect(setPosthogDistinctId).toHaveBeenCalledWith(
-        "test-posthog-distinct-id",
+        "test-posthog-distinct-id"
       );
     });
   });

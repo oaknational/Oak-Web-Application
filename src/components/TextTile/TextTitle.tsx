@@ -31,7 +31,7 @@ const TextTileWrap = styled(Flex)`
 
 const TextTile: FC<TextTileProps> = (
   { children, $background = "white" },
-  flexProps,
+  flexProps
 ) => {
   return (
     <TextTileWrap

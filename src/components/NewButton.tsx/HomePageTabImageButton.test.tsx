@@ -12,7 +12,7 @@ describe("Button", () => {
         onClick={spy}
         title={""}
         imageSlug={"magic-carpet"}
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -28,7 +28,7 @@ describe("Button", () => {
         onClick={spy}
         title={""}
         imageSlug={"magic-carpet"}
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -47,7 +47,7 @@ describe("Button", () => {
         onClick={spy}
         title={""}
         imageSlug={"magic-carpet"}
-      />,
+      />
     );
 
     const button = getByRole("button");

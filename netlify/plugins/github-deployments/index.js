@@ -60,7 +60,7 @@ module.exports = function githubDeploymentPlugin() {
         // Else use the branch or preview URL.
         deploymentUrl = originalDeploymentUrl.replace(
           "netlify.app",
-          "netlify.thenational.academy",
+          "netlify.thenational.academy"
         );
       }
       if (!deploymentUrl) {
@@ -72,7 +72,7 @@ module.exports = function githubDeploymentPlugin() {
       const githubToken = process.env.GITHUB_DEPLOYMENT_TOKEN;
       if (!githubToken) {
         throw new TypeError(
-          "Please supply a GitHub access token in GITHUB_DEPLOYMENT_TOKEN",
+          "Please supply a GitHub access token in GITHUB_DEPLOYMENT_TOKEN"
         );
       }
 

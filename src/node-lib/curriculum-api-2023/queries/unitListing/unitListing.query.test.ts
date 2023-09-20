@@ -50,7 +50,7 @@ describe("unitListing()", () => {
               learningThemes: [],
             },
           ],
-        }),
+        })
       ),
     })({
       programmeSlug: "programme-slug",
@@ -74,7 +74,7 @@ describe("unitListing()", () => {
                 units: [],
               },
             ],
-          }),
+          })
         ),
       })({
         programmeSlug: "programme-slug",

@@ -5,7 +5,7 @@ import useIconAnimation from "./useIconAnimation";
 describe("useIconAnimation", () => {
   test("returns correct initial value", () => {
     const { result } = renderHook(() =>
-      useIconAnimation({ shouldAnimate: false }),
+      useIconAnimation({ shouldAnimate: false })
     );
     expect(result.current).toMatchObject({
       rotate: "rotate(0)",
@@ -16,7 +16,7 @@ describe("useIconAnimation", () => {
 
   test("returns correct value at 'in' stage", () => {
     const { result } = renderHook(() =>
-      useIconAnimation({ shouldAnimate: true }),
+      useIconAnimation({ shouldAnimate: true })
     );
     expect(result.current).toMatchObject({
       rotate: "rotate(720deg)",
@@ -26,7 +26,7 @@ describe("useIconAnimation", () => {
   });
   test("returns correct value at 'out' stage", async () => {
     const { result } = renderHook(() =>
-      useIconAnimation({ shouldAnimate: true, timeIn: 5 }),
+      useIconAnimation({ shouldAnimate: true, timeIn: 5 })
     );
     await waitFor(() => {
       expect(result.current).toMatchObject({
@@ -43,7 +43,7 @@ describe("useIconAnimation", () => {
         timeIn: 5,
         timeOut: 5,
         timeBack: 5,
-      }),
+      })
     );
     await waitFor(() => {
       expect(result.current).toMatchObject({
