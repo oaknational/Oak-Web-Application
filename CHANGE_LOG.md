@@ -1,3 +1,11 @@
+## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update filter spacing ([3fd8405](https://github.com/oaknational/Oak-Web-Application/commit/3fd84056fae56bfe7c71ed83afc9ba777949d9da))
+* **curric:** update filter spacingand tier filter font ([5c25454](https://github.com/oaknational/Oak-Web-Application/commit/5c25454c9e04be355d229d1c6049338342619b9d))
+
 # [1.247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.246.0...v1.247.0) (2023-09-20)
 
 
