@@ -418,7 +418,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
                   <Heading tag={"h4"} $font={"heading-6"} $mr={12}>
-                    Latest resources
+                    New curriculum plans
                   </Heading>
                   <Box $pt={6}>
                     <TagPromotional
@@ -455,7 +455,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $textDecoration={"underline"}
                     $font={"heading-7"}
                   >
-                    See curricula from previous academic years
+                    Previously released plans
                     <Icon
                       $color={"black"}
                       name="external"
