@@ -1,5 +1,3 @@
-import { MathJax } from "better-react-mathjax";
-
 import { shortAnswerTitleFormatter, removeMarkdown } from "../../quizUtils";
 
 import QuizImage from "./QuizImage";
@@ -34,9 +32,7 @@ export const QuestionStem = ({
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
           >
-            <MathJax>
-              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-            </MathJax>
+            {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
           </Typography>
         )}
       </Flex>
@@ -48,9 +44,7 @@ export const QuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
-              <MathJax>
-                {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-              </MathJax>
+              {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
             </Typography>
           );
         } else if (stemItem.type === "image") {
