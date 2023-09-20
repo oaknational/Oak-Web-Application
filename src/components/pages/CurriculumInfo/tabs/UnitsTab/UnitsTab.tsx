@@ -145,6 +145,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       }
     });
     if (data.domains.length > 0) {
+      data.domains.reverse();
       data.domains.unshift({
         domain: "All",
         domain_slug: "all",
@@ -401,7 +402,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     Year {year}
                   </Heading>
                   {childSubjects.length > 0 && (
-                    <Box>
+                    <Box $mb={16}>
                       {childSubjects.map((subject) => (
                         <Button
                           $mr={20}
@@ -419,11 +420,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {domains.length > 0 && (
-                    <Box>
+                    <Box $mb={16}>
                       {domains.map((domain) => (
                         <Button
                           $mr={20}
-                          $mb={32}
+                          $mb={16}
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
                           }
