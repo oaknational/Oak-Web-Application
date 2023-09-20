@@ -5,7 +5,6 @@ import { SSRProvider } from "@react-aria/ssr";
 import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
-import { MathJaxContext } from "better-react-mathjax";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -49,9 +48,7 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
                   <OverlayProvider>
                     <MenuProvider>
                       <ToastProvider>
-                        <MathJaxContext>
-                          <Component {...pageProps} />
-                        </MathJaxContext>
+                        <Component {...pageProps} />
                         <AppHooks />
                       </ToastProvider>
                     </MenuProvider>

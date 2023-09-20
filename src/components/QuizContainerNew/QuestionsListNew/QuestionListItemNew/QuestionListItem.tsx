@@ -20,8 +20,8 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { questionStem, answers } = question;
 
   return (
-    <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
-      <MathJax hideUntilTypeset="every">
+    <MathJax hideUntilTypeset="every">
+      <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
         <QuestionStem
           questionStem={questionStem}
           index={index}
@@ -51,8 +51,8 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
             )}
           </>
         )}
-      </MathJax>
-    </Flex>
+      </Flex>
+    </MathJax>
   );
 };
 
