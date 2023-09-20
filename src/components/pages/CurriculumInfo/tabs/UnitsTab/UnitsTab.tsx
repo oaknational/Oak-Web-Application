@@ -416,10 +416,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     Year {year}
                   </Heading>
                   {childSubjects.length > 0 && (
-                    <Box $mb={16}>
+                    <Box>
                       {childSubjects.map((subject) => (
                         <Button
-                          $mb={16}
+                          $mb={20}
                           $mr={20}
                           background={
                             isSelectedSubject(year, subject) ? "black" : "white"
@@ -434,10 +434,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {domains.length > 0 && (
-                    <Box $mb={16}>
+                    <Box>
                       {domains.map((domain) => (
                         <Button
-                          $mb={16}
+                          $mb={20}
                           $mr={20}
                           background={
                             isSelectedDomain(year, domain) ? "black" : "white"
@@ -452,11 +452,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     </Box>
                   )}
                   {tiers.length > 0 && (
-                    <Box $mb={16}>
+                    <Box>
                       {tiers.map((tier) => (
                         <Button
-                          $mb={16}
-                          $mr={16}
+                          $font={"heading-6"}
+                          $mb={20}
+                          $mr={24}
                           key={tier.tier_slug}
                           label={tier.tier}
                           onClick={() => handleSelectTier(year, tier)}
@@ -469,7 +470,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                       ))}
                     </Box>
                   )}
-                  <Flex $flexWrap={"wrap"} data-testid="unit-cards">
+                  <Flex $flexWrap={"wrap"} $mt={12} data-testid="unit-cards">
                     {units
                       .filter((unit) => isVisibleUnit(year, unit))
                       .map((unit, index) => {
