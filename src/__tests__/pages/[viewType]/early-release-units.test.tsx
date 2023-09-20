@@ -1,6 +1,6 @@
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
-import EarlyReleaseUnits from "@/pages/beta/teachers-2023/early-release-units";
+import EarlyReleaseUnits from "@/pages/[viewType]/early-release-units";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import earlyReleaseExemplarUnitsFixture from "@/node-lib/curriculum-api/fixtures/earlyReleaseExemplarUnits.fixture";
 
@@ -18,7 +18,7 @@ const primaryUnitTitles = earlyReleaseExemplarUnitsFixture().primary.units.map(
   (unit) => unit.title,
 );
 
-describe("pages/teachers-2023/early-release-units", () => {
+describe("pages/teachers/early-release-units", () => {
   test("it renders a page header", () => {
     const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
 

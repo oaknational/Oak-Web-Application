@@ -10,6 +10,7 @@ import Box from "../Box/Box";
 import TagPromotional from "../TagPromotional/TagPromotional";
 import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
 import { CommonButtonProps, HTMLButtonProps } from "../Button/common";
+import Illustration from "../Illustration/Illustration";
 
 import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
 import {
@@ -17,7 +18,7 @@ import {
   NewIconFocusUnderline,
 } from "./NewFocusUndeline";
 
-import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
+import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
@@ -97,7 +98,6 @@ const HomePageTabImageButton = forwardRef<
   const defaultTitle =
     ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
   const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
-  const asset = getIllustrationAsset(imageSlug);
   const theme = useTheme();
   const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
 
@@ -113,9 +113,14 @@ const HomePageTabImageButton = forwardRef<
       disabled={disabled}
     >
       <Flex $flexDirection={"column"} $alignItems={"center"}>
-        <Flex $width={96} $height={96}>
+        <Flex $width={96} $height={96} $justifyContent={"center"}>
           {" "}
-          <StyledCMSImage image={{ asset }} noCrop />
+          <Illustration
+            slug={imageSlug}
+            noCrop
+            $height={"100%"}
+            $width={"auto"}
+          />
         </Flex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>
           <Flex $alignItems={"center"} $minHeight={44}>

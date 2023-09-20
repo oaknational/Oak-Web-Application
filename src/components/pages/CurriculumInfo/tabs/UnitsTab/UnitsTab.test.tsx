@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab from "./UnitsTab";
 
@@ -8,7 +9,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("user can see the content", async () => {
     const { queryAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
@@ -16,7 +17,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("number of unit cards matches units", async () => {
     const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
@@ -24,7 +25,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("builds links to unit lesson index", async () => {
     const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const unitLinks = await findAllByTestId("unit-link");
     if (unitLinks.length === 0 || !unitLinks[0]) {
@@ -35,6 +36,87 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       throw new Error("Fixture unit missing");
     }
     expect(unitLinks[0].getAttribute("href")).toContain(unit.slug);
+  });
+
+  test("user can see all the thread choices", async () => {
+    const { findByTestId, findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
+    const threads = await findAllByTestId("thread-radio");
+    const threadSet = new Set();
+    curriculumUnitsTabFixture().units.forEach((unit) => {
+      unit.threads.forEach((thread) => {
+        threadSet.add(thread.slug);
+      });
+    });
+    expect(threads).toHaveLength(threadSet.size);
+  });
+
+  test("user can highlight units by threads", async () => {
+    const { queryByTestId, queryAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const threads = queryAllByTestId("thread-radio");
+    await act(async () => {
+      if (!threads[0]) {
+        throw new Error("No thread option found");
+      }
+      await userEvent.click(threads[0]);
+    });
+    const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
+      return unit.threads.some(
+        (thread) => thread.slug === threads[0]?.getAttribute("value"),
+      );
+    });
+    const highlightedUnits = queryAllByTestId("highlighted-unit-card");
+    expect(threadUnits).toHaveLength(highlightedUnits.length);
+    const selectedThread = queryByTestId("selected-thread-radio");
+    expect(selectedThread).toBeInTheDocument();
+  });
+
+  test("user can see all the year group choices", async () => {
+    const { findByTestId, findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    expect(await findByTestId("all-years-radio")).toBeInTheDocument();
+    const yearOptions = await findAllByTestId("year-radio");
+    const yearSet = new Set(
+      curriculumUnitsTabFixture().units.map((unit) => unit.year),
+    );
+    expect(yearOptions).toHaveLength(yearSet.size);
+  });
+
+  test("Year group choices are properly sorted", async () => {
+    const { findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const yearOptions = await findAllByTestId("year-radio");
+    const extractedYears = yearOptions.map((option) =>
+      parseInt(option.attributes.getNamedItem("value")?.value || "0"),
+    );
+    const isSorted = extractedYears.every((year, index, array) => {
+      return index === 0 || Number(array[index - 1]) <= year;
+    });
+    expect(isSorted).toBe(true);
+  });
+
+  test("user can filter by year group", async () => {
+    const { queryAllByTestId, findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const yearOptions = queryAllByTestId("year-radio");
+    await act(async () => {
+      if (!yearOptions[0]) {
+        throw new Error("No year option found");
+      }
+      await userEvent.click(yearOptions[0]);
+    });
+    const headings = await findAllByTestId("year-heading");
+    expect(headings).toHaveLength(1);
+    expect(headings[0]).toHaveTextContent(
+      String(yearOptions[0]?.getAttribute("value")),
+    );
   });
 
   test("user can filter units by parent subject", async () => {
@@ -90,13 +172,17 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(1);
     const subjectButtons = await findAllByTestId("subject-button");
     expect(subjectButtons).toHaveLength(2);
-    if (!subjectButtons[1]) {
-      throw new Error("Missing second subject button");
-    }
-    await userEvent.click(subjectButtons[1]);
-    unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(1);
-    expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
+    await act(async () => {
+      if (!subjectButtons[1]) {
+        throw new Error("Missing second subject button");
+      }
+      userEvent.click(subjectButtons[1]);
+    });
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+      expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
+    });
   });
 
   test("user can filter units by domain", async () => {
@@ -162,13 +248,17 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const domainButtons = await findAllByTestId("domain-button");
     // When there are tiers, "All" button is added, so 3 expected
     expect(domainButtons).toHaveLength(3);
-    if (!domainButtons[1]) {
-      throw new Error("Missing second domain button");
-    }
-    await userEvent.click(domainButtons[1]);
-    unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(1);
-    expect(unitCards[0]).toHaveTextContent("A Superhero Like You!");
+    await act(async () => {
+      if (!domainButtons[1]) {
+        throw new Error("Missing second domain button");
+      }
+      userEvent.click(domainButtons[1]);
+    });
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+      expect(unitCards[0]).toHaveTextContent("A Superhero Like You!");
+    });
   });
 
   test("user can filter units by tier", async () => {
@@ -224,12 +314,16 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(1);
     const tierButtons = await findAllByTestId("tier-button");
     expect(tierButtons).toHaveLength(2);
-    if (!tierButtons[1]) {
-      throw new Error("Missing second subject button");
-    }
-    await userEvent.click(tierButtons[1]);
-    unitCards = await findAllByTestId("unit-card");
-    expect(unitCards).toHaveLength(1);
-    expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
+    await act(async () => {
+      if (!tierButtons[1]) {
+        throw new Error("Missing second subject button");
+      }
+      userEvent.click(tierButtons[1]);
+    });
+    await waitFor(async () => {
+      unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(1);
+      expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
+    });
   });
 });

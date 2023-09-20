@@ -48,7 +48,9 @@ export type PixelSpacing =
   | 50
   | 56
   | 58
+  | 60
   | 64
+  | 66
   | 72
   | 80
   | 92
@@ -61,6 +63,7 @@ export type PixelSpacing =
   | 160
   | 166
   | 172
+  | 195
   | 200
   | 220
   | 240
@@ -92,6 +95,8 @@ export type PixelSpacing =
   | 9600;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing =
+  | -72
+  | -54
   | -36
   | -32
   | -28

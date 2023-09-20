@@ -12,6 +12,14 @@ const HomePageTabImageNav = ({
   current: string;
   setCurrent: Dispatch<SetStateAction<string>>;
 }) => {
+  const backgroundColor =
+    current === "teachers"
+      ? "mint"
+      : current === "curriculum"
+      ? "aqua"
+      : current === "pupils"
+      ? "lemon"
+      : "white";
   return (
     <Flex $flexDirection={"column"}>
       <Flex
@@ -20,9 +28,10 @@ const HomePageTabImageNav = ({
         $pt={[40, 32]}
         $flexDirection={"row"}
         $ph={[12, 0]}
+        $pb={2}
         $gap={[16, 32]}
         $justifyContent={"center"}
-        $background={"mint"}
+        $background={backgroundColor}
         {...flexProps}
       >
         <HomePageTabImageButton
@@ -48,7 +57,7 @@ const HomePageTabImageNav = ({
           onClick={() => setCurrent("pupils")}
         />
       </Flex>
-      <Hr $mt={0} $mb={0} $color={"white"} />
+      <Hr $mt={0} $mb={0} $color={"white"} thickness={2} />
     </Flex>
   );
 };

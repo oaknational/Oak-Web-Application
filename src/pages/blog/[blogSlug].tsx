@@ -8,21 +8,21 @@ import {
 import { useNextSanityImage } from "next-sanity-image";
 import { uniqBy } from "lodash/fp";
 
-import Layout from "../../components/Layout";
-import CMSClient from "../../node-lib/cms";
-import { BlogPost } from "../../common-lib/cms-types";
+import Layout from "@/components/Layout";
+import CMSClient from "@/node-lib/cms";
+import { BlogPost } from "@/common-lib/cms-types";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
-} from "../../node-lib/isr";
-import Box from "../../components/Box";
-import { BlogJsonLd } from "../../browser-lib/seo/getJsonLd";
-import BlogPortableText from "../../components/Posts/PostPortableText/PostPortableText";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { sanityClientLike } from "../../components/CMSImage";
-import { getBlogWebinarPostBreadcrumbs } from "../../components/Breadcrumbs/getBreadcrumbs";
-import PostSingleLayout from "../../components/Posts/PostSingleLayout";
-import getPageProps from "../../node-lib/getPageProps";
+} from "@/node-lib/isr";
+import Box from "@/components/Box";
+import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
+import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { sanityClientLike } from "@/components/CMSImage";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
+import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {
   date: string;
@@ -47,7 +47,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
     {
       imageBuilder: (imageUrlBuilder) =>
         imageUrlBuilder.width(1400).height(700).fit("crop").crop("center"),
-    }
+    },
   );
 
   return (
@@ -60,14 +60,16 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
         imageUrl: sharingImage.src,
       })}
       $background="white"
-      breadcrumbs={getBlogWebinarPostBreadcrumbs(
-        categories,
-        blog,
-        "blog",
-        "Blog"
-      )}
     >
-      <PostSingleLayout content={props}>
+      <PostSingleLayout
+        content={props}
+        breadcrumbs={getBlogWebinarPostBreadcrumbs(
+          categories,
+          blog,
+          "blog",
+          "Blog",
+        )}
+      >
         <Box $mt={[48]}>
           <BlogPortableText portableText={props.blog.contentPortableText} />
         </Box>
@@ -115,7 +117,7 @@ export const getStaticProps: GetStaticProps<
       const blogResults = await CMSClient.blogPosts();
       const categories = uniqBy(
         "title",
-        blogResults.map((blogResult) => blogResult.category)
+        blogResults.map((blogResult) => blogResult.category),
       ).sort((a, b) => (a.title < b.title ? -1 : 1));
 
       if (!blogResult) {
