@@ -1,9 +1,7 @@
-import { ViewType } from "@/common-lib/urls";
-
 const createDownloadResourcesLink = async (
   lessonSlug: string,
   selection: string,
-  viewType: ViewType,
+  isLegacyDownload: boolean,
 ) => {
   if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
     throw new TypeError(
@@ -16,10 +14,9 @@ const createDownloadResourcesLink = async (
     );
   }
 
-  const downloadEnpoint =
-    viewType === "teachers"
-      ? `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`
-      : `${process.env.NEXT_PUBLIC_DOWNLOAD_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
+  const downloadEnpoint = isLegacyDownload
+    ? `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`
+    : `${process.env.NEXT_PUBLIC_DOWNLOAD_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
 
   const res = await fetch(downloadEnpoint);
   const { data, error } = await res.json();

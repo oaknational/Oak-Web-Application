@@ -33,7 +33,6 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
           iconBackground="black"
           label="Download all resources"
           page={"lesson-downloads"}
-          viewType="teachers"
           size={"large"}
           variant="brush"
           $iconPosition={"trailing"}

@@ -32,7 +32,6 @@ const exemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
     occupation: "Class Teacher, St Agnes Academy",
   },
   units: units,
-  viewType: "teachers-2023",
   subjectIconBackground: "lavender",
 };
 

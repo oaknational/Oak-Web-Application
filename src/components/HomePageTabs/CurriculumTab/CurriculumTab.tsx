@@ -49,7 +49,6 @@ const CurriculumTab: FC = () => {
                   label={"View curriculum plans"}
                   variant={"brushNav"}
                   page={"curriculum-landing-page"}
-                  viewType={"teachers-2023"}
                   icon={"arrow-right"}
                   $iconPosition={"trailing"}
                   iconBackground="black"
@@ -58,7 +57,6 @@ const CurriculumTab: FC = () => {
                   label={"Early-release units"}
                   variant={"brushNav"}
                   page={"early-release-units-page"}
-                  viewType={"teachers-2023"}
                   icon={"arrow-right"}
                   $iconPosition={"trailing"}
                   iconBackground="black"
