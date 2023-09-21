@@ -67,12 +67,15 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
         )}
         {tiers.length > 1 && examboards.length > 1 && (
           <>
-            {examboards.map((examboard) => {
+            {examboards.map((examboard, index) => {
               const programmeOfExamboard = tierProgrammes.filter(
                 (programme) => programme.examBoardTitle == examboard,
               );
               return (
-                <ProgrammeListContainer $colSpan={[12, 4]}>
+                <ProgrammeListContainer
+                  key={`${examboard}-${index}`}
+                  $colSpan={[12, 4]}
+                >
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examboard}
                   </Heading>

@@ -6,7 +6,6 @@ import type {
 } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
-import { ViewType } from "@/common-lib/urls";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
 
@@ -16,12 +15,12 @@ type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
   resourcesToCheck: ResourcesToDownloadArrayType;
   onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
-  viewType: ViewType;
+  isLegacyDownload: boolean;
 };
 
 const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
   const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
-  const { resourcesToCheck, onComplete, lessonSlug, viewType } = props;
+  const { resourcesToCheck, onComplete, lessonSlug, isLegacyDownload } = props;
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
@@ -37,7 +36,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
-            viewType,
+            isLegacyDownload,
           );
 
         const resourcesExistenceAsArray = resourceExistence
@@ -65,7 +64,13 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
         reportError(oakError);
       }
     })();
-  }, [lessonSlug, hasCheckedFiles, resourcesToCheck, onComplete, viewType]);
+  }, [
+    lessonSlug,
+    hasCheckedFiles,
+    resourcesToCheck,
+    onComplete,
+    isLegacyDownload,
+  ]);
 };
 
 export default useDownloadExistenceCheck;

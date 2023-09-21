@@ -74,7 +74,6 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
             data-testid={"download-button"}
             variant={"minimal"}
             page={"lesson-downloads"}
-            viewType="teachers"
             iconBackground="black"
             icon="arrow-right"
             $iconPosition="trailing"
