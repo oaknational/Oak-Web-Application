@@ -1,3 +1,17 @@
+# [1.249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.248.0...v1.249.0) (2023-09-21)
+
+
+### Bug Fixes
+
+* add dynamic flag to mathjax ([05a937b](https://github.com/oaknational/Oak-Web-Application/commit/05a937bc46de6c99558630793e31d0a126a80e92))
+
+
+### Features
+
+* add mathjax component to storybook ([20ce367](https://github.com/oaknational/Oak-Web-Application/commit/20ce3670d128cd9b528b2865b9ac5ff1c9a09baf))
+* remove extra margin around mathjax segments ([91d6068](https://github.com/oaknational/Oak-Web-Application/commit/91d60681abdbbe41bc098c115135da8b15950e4a))
+* style the equations inline ([5108232](https://github.com/oaknational/Oak-Web-Application/commit/51082325402f118f90088b3315a413c40bed4e29))
+
 # [1.248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.5...v1.248.0) (2023-09-21)
 
 
