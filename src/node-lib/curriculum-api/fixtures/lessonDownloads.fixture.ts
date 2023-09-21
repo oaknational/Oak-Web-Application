@@ -1,7 +1,7 @@
 import { LessonDownloadsData } from "..";
 
 const lessonDownloadsFixtures = (
-  partial?: Partial<LessonDownloadsData>
+  partial?: Partial<LessonDownloadsData>,
 ): LessonDownloadsData => {
   return {
     lessonSlug: "macbeth-lesson-1",

@@ -53,7 +53,7 @@ export async function fetchResults(query: SearchQuery) {
               slug,
             },
           };
-        }
+        },
       ),
     },
   };

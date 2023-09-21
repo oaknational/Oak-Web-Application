@@ -24,7 +24,7 @@ describe("resolveInternalHref()", () => {
     (contentType, additionalParams, expectedHref) => {
       const entry = { contentType, ...additionalParams };
       expect(resolveInternalHref(entry as never)).toBe(expectedHref);
-    }
+    },
   );
 
   it("throws when encountering an unknown contentType", () => {

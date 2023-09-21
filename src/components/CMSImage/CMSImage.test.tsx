@@ -20,7 +20,7 @@ describe("CMSImage", () => {
         }
       >
         <CMSImage image={mockImage} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const img = getByRole("img");
@@ -43,7 +43,7 @@ describe("CMSImage", () => {
     const mockImage = { ...mockImageAsset(), altText: altString };
 
     const { getByRole } = render(
-      <CMSImage image={mockImage} alt={altStringOverride} />
+      <CMSImage image={mockImage} alt={altStringOverride} />,
     );
 
     const img = getByRole("img");
@@ -83,7 +83,7 @@ describe("CMSImage", () => {
 
     const img = getByRole("img");
     expect(img.getAttribute("src")).toBe(
-      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format"
+      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/abcdef-300x300.png?w=640&h=640&fm=webp&q=80&fit=clip&auto=format",
     );
   });
 

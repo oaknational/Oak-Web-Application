@@ -137,7 +137,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<SupportPageProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "support-your-team::getStaticProps",

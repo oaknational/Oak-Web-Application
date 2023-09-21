@@ -22,9 +22,9 @@ const referencedDocumentsSchema = z.array(portableTextReferencedEntrySchema);
  * with their expanded forms. (e.g. slugs for pages so we can construct links)
  */
 export const resolveSanityReferences = async <
-  T extends Record<string, unknown> | Record<string, unknown>[]
+  T extends Record<string, unknown> | Record<string, unknown>[],
 >(
-  portableText: T
+  portableText: T,
 ): Promise<T> => {
   /**
    * Find all paths to embedded references within the portable text, e.g.
@@ -46,7 +46,7 @@ export const resolveSanityReferences = async <
   });
 
   const parsedResults = referencedDocumentsSchema.parse(
-    queryResults.allDocument
+    queryResults.allDocument,
   );
 
   /**
