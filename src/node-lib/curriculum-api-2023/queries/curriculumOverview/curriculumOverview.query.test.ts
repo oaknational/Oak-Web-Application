@@ -11,9 +11,14 @@ describe("curriculum overview query", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("throws resource not found error if no rows are returned", async () => {
+  test("throws a not found error if no valid subject phase is found", async () => {
     await expect(async () => {
-      await curriculumOverviewQuery(sdk)({
+      await curriculumOverviewQuery({
+        ...sdk,
+        curriculumOverview: jest.fn(() =>
+          Promise.resolve({ curriculumOverview: [] }),
+        ),
+      })({
         subjectSlug: "alchemy",
         phaseSlug: "secondary",
       });
