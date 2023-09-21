@@ -16,7 +16,7 @@ export type SearchQuery = {
 };
 
 export type SetSearchQuery = (
-  arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>)
+  arg: Partial<SearchQuery> | ((oldQuery: SearchQuery) => Partial<SearchQuery>),
 ) => void;
 
 export type KeyStage = SearchPageData["keyStages"][number];

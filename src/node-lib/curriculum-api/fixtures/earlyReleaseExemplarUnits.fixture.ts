@@ -6,7 +6,7 @@ type earlyReleaseExemplarUnitsFixtureProps = {
 };
 
 const earlyReleaseExemplarUnitsFixture = (
-  partial?: Partial<earlyReleaseExemplarUnitsFixtureProps>
+  partial?: Partial<earlyReleaseExemplarUnitsFixtureProps>,
 ): earlyReleaseExemplarUnitsFixtureProps => {
   return {
     primary: {

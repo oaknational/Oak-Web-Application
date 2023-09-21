@@ -13,7 +13,7 @@ const paramNames = [
   "utm_content",
 ] as const;
 
-type UtmParamName = typeof paramNames[number];
+type UtmParamName = (typeof paramNames)[number];
 
 export type UtmParams = Partial<Record<UtmParamName, string>>;
 /**
@@ -28,7 +28,7 @@ const useUtmParams = (): UtmParams => {
 
   const [utmParams, setUtmParams] = useLocalStorage<UtmParams>(
     LS_KEY_UTM_PARAMS,
-    {}
+    {},
   );
 
   const utmParamsFromQuery = useMemo(
@@ -45,7 +45,7 @@ const useUtmParams = (): UtmParams => {
 
         return accum;
       }, {}),
-    [router.query]
+    [router.query],
   );
 
   useEffect(() => {
