@@ -13,10 +13,7 @@ describe("curriculum overview query", () => {
 
   test("throws resource not found error if no rows are returned", async () => {
     await expect(async () => {
-      await curriculumOverviewQuery({
-        ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
-      })({
+      await curriculumOverviewQuery(sdk)({
         subjectSlug: "alchemy",
         phaseSlug: "secondary",
       });
