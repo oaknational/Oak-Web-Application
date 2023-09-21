@@ -19,7 +19,6 @@ export const LearningThemeFilters: Story = {
     learningThemes: [],
     linkProps: {
       page: "unit-index",
-      viewType: "teachers",
       programmeSlug: "some-programme",
     },
   },

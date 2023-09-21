@@ -10,7 +10,6 @@ const earlyReleaseExemplarUnitsFixture = (
 ): earlyReleaseExemplarUnitsFixtureProps => {
   return {
     primary: {
-      viewType: "teachers-2023",
       subjectIconBackground: "lavender",
       heading: "Primary units",
       subHeading: "View and download our early-release units.",
@@ -215,7 +214,6 @@ const earlyReleaseExemplarUnitsFixture = (
       ],
     },
     secondary: {
-      viewType: "teachers-2023",
       subjectIconBackground: "pink",
       heading: "Secondary units",
       subHeading: "View and download our early-release units.",

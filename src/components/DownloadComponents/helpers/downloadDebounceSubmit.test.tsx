@@ -29,6 +29,7 @@ describe("downloadDebounceSubmit", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
   test("should report an error if failed to fetch downloads and throws on error", async () => {
     onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
 

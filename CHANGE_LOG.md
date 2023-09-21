@@ -1,3 +1,64 @@
+# [1.249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.248.0...v1.249.0) (2023-09-21)
+
+
+### Bug Fixes
+
+* add dynamic flag to mathjax ([05a937b](https://github.com/oaknational/Oak-Web-Application/commit/05a937bc46de6c99558630793e31d0a126a80e92))
+
+
+### Features
+
+* add mathjax component to storybook ([20ce367](https://github.com/oaknational/Oak-Web-Application/commit/20ce3670d128cd9b528b2865b9ac5ff1c9a09baf))
+* remove extra margin around mathjax segments ([91d6068](https://github.com/oaknational/Oak-Web-Application/commit/91d60681abdbbe41bc098c115135da8b15950e4a))
+* style the equations inline ([5108232](https://github.com/oaknational/Oak-Web-Application/commit/51082325402f118f90088b3315a413c40bed4e29))
+
+# [1.248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.5...v1.248.0) (2023-09-21)
+
+
+### Bug Fixes
+
+*  sonar cloud bug ([186d603](https://github.com/oaknational/Oak-Web-Application/commit/186d60392a4ea6b48e021d443066ed70fa36cde1))
+* pa11y url for legacy ([7c39903](https://github.com/oaknational/Oak-Web-Application/commit/7c3990378eefee07efaeb34ed1941e9602552978))
+* types ([9789c7d](https://github.com/oaknational/Oak-Web-Application/commit/9789c7d58500419e62ab66597e85ae073fda984c))
+
+
+### Features
+
+* legacy suffix added to programme slugs ([4f43620](https://github.com/oaknational/Oak-Web-Application/commit/4f4362069911c6f725c0f359d7ca293a2a9eadd3))
+
+## [1.247.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.4...v1.247.5) (2023-09-21)
+
+
+### Bug Fixes
+
+* turns background white once both are selected ([191b7c3](https://github.com/oaknational/Oak-Web-Application/commit/191b7c349aec45c251cdf9c6ce5779a252979138))
+
+## [1.247.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.3...v1.247.4) (2023-09-21)
+
+## [1.247.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.2...v1.247.3) (2023-09-21)
+
+
+### Bug Fixes
+
+* increase spacing under h2 headers ([4901c43](https://github.com/oaknational/Oak-Web-Application/commit/4901c4341cfc3498b7196d650509932f6e754309))
+* update header title font size ([86fffc7](https://github.com/oaknational/Oak-Web-Application/commit/86fffc70a3bb11d00fb90aa9af1341ec226d31bb))
+* updated h2 sizes and title ([bc0a586](https://github.com/oaknational/Oak-Web-Application/commit/bc0a586514bb9ae5f51cb17e968c0650b9feb86f))
+
+## [1.247.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.1...v1.247.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **curric:** remove unit links from visualiser ([f1783ab](https://github.com/oaknational/Oak-Web-Application/commit/f1783ab3278d5679983da101be5aa17a65c55487))
+
+## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update filter spacing ([3fd8405](https://github.com/oaknational/Oak-Web-Application/commit/3fd84056fae56bfe7c71ed83afc9ba777949d9da))
+* **curric:** update filter spacingand tier filter font ([5c25454](https://github.com/oaknational/Oak-Web-Application/commit/5c25454c9e04be355d229d1c6049338342619b9d))
+
 # [1.247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.246.0...v1.247.0) (2023-09-20)
 
 

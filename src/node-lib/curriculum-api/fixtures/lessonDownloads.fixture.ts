@@ -6,7 +6,7 @@ const lessonDownloadsFixtures = (
   return {
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
-    programmeSlug: "maths-higher-ks4",
+    programmeSlug: "maths-higher-ks4-l",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",

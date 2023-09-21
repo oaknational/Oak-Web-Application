@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Subjects } from "../../pages/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import SubjectCardDouble from "./SubjectCardDouble";
@@ -87,7 +87,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/teachers-2023/key-stages/ks4/subjects/biology/programmes",
+      "/teachers/key-stages/ks4/subjects/biology/programmes",
     );
   });
   test("new units with more than one programme take you to 'teachers' view programme listing page", () => {
@@ -105,7 +105,7 @@ describe("SubjectCardDouble", () => {
     expect(cardClickTarget).toBeInTheDocument();
     expect(cardClickTarget).toHaveAttribute(
       "href",
-      "/teachers-2023/programmes/biology-secondary-ks4/units",
+      "/teachers/programmes/biology-secondary-ks4/units",
     );
   });
   test("new units are labeled as 'new'", () => {

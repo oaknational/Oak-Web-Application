@@ -14,7 +14,7 @@ const isSubPath = ({
     return currentPath === "/";
   }
 
-  const betaHomeHref = resolveOakHref({ page: "home", viewType: "teachers" });
+  const betaHomeHref = resolveOakHref({ page: "home" });
 
   if (currentPath.startsWith(betaHomeHref + "/")) {
     return false;

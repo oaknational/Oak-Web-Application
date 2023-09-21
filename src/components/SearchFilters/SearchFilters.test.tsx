@@ -1,7 +1,7 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import { mockOnChange, searchFilters } from "./ActiveFilters.test";
 import SearchFilters from "./SearchFilters";
+import { searchFilters, mockOnChange } from "./test-helpers";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 

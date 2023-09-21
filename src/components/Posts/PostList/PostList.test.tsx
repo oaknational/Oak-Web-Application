@@ -1,7 +1,7 @@
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-import { mockPaginationProps } from "../../Pagination/Pagination.test";
-
 import PostList from ".";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
 
 const render = renderWithProviders();
 

@@ -71,6 +71,7 @@
     "@storybook/cli": "^7.4.1",
     "@svgr/webpack": "^8.1.0",
     "@types/uuid": "^9.0.3",
+    "better-react-mathjax": "^2.0.2",
     "buffer": "^6.0.3",
     "change-case": "^4.1.2",
     "crypto-browserify": "^3.12.0",
