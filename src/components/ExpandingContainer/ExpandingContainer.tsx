@@ -105,7 +105,6 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     data-testid={"download-button"}
                     variant={"minimal"}
                     page={"lesson-downloads"}
-                    viewType="teachers"
                     aria-label={`download ${lowerCaseTitle}`}
                     iconBackground="teachersHighlight"
                     icon="download"
@@ -126,7 +125,6 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                   <IconButtonAsLink
                     data-testid={"download-button-mobile"}
                     page={"lesson-downloads"}
-                    viewType="teachers"
                     aria-label={`download ${lowerCaseTitle}`}
                     background={"teachersHighlight"}
                     icon="download"

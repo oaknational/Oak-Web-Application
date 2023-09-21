@@ -41,8 +41,6 @@ const CountCard: FC<CountCardProps> = ({
     isNew ? "- new content" : ""
   }`;
 
-  const viewType = isNew ? "teachers-2023" : "teachers";
-
   const oakLinkProps: ProgrammeListingLinkProps | UnitListingLinkProps =
     programmeCount > 1
       ? // If there are multiple programmes, link to the programme listing page
@@ -50,13 +48,11 @@ const CountCard: FC<CountCardProps> = ({
           page: "programme-index",
           subjectSlug,
           keyStageSlug,
-          viewType,
         }
       : // If there is only one programme, link to the unit listing page for that programme
         {
           page: "unit-index",
           programmeSlug,
-          viewType,
         };
 
   return (
@@ -75,7 +71,6 @@ const CountCard: FC<CountCardProps> = ({
       <OakLink
         {...oakLinkProps}
         aria-label={ariaLabel}
-        viewType={isNew ? "teachers-2023" : "teachers"}
         $hideDefaultFocus
         onClick={() => {
           track.subjectSelected({

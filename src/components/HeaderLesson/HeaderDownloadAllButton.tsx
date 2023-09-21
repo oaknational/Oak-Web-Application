@@ -74,7 +74,6 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         unitSlug={unitSlug}
         programmeSlug={programmeSlug}
         query={{ preselected }}
-        viewType="teachers"
       />
     );
   }
@@ -89,7 +88,6 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
       programmeSlug={null}
       lessonSlug={lessonSlug}
       query={{ preselected }}
-      viewType="teachers"
     />
   );
 };

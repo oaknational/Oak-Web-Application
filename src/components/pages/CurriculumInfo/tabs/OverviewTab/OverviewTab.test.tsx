@@ -10,7 +10,7 @@ describe("Component - Overview Tab", () => {
     );
     const subjectPrinciples = await getAllByTestId("subject-principles");
     expect(subjectPrinciples).toHaveLength(
-      curriculumOverviewTabFixture().subjectPrinciples.length,
+      curriculumOverviewTabFixture().curriculumCMSInfo.subjectPrinciples.length,
     );
   });
 });

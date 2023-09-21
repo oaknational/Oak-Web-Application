@@ -24,7 +24,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <OakLink page="home" viewType={null}>
+      <OakLink page="home">
         <Logo height={48} width={104} />
       </OakLink>
       <Flex

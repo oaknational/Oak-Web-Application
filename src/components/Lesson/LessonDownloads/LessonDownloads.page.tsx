@@ -37,7 +37,6 @@ import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { ViewType } from "@/common-lib/urls";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
   getBreadcrumbsForLessonPathway,
@@ -49,7 +48,7 @@ import { LessonPathway } from "@/components/pages/TeachersLessonOverview/teacher
 
 type LessonDownloadsPageProps =
   | {
-      viewType: ViewType;
+      isLegacy: boolean;
       isCanonical: true;
       lesson: {
         lessonTitle: string;
@@ -59,7 +58,7 @@ type LessonDownloadsPageProps =
       };
     }
   | {
-      viewType: ViewType;
+      isLegacy: boolean;
       isCanonical: false;
       lesson: LessonPathway & {
         lessonTitle: string;
@@ -68,7 +67,7 @@ type LessonDownloadsPageProps =
       };
     };
 export default function LessonDownloads(props: LessonDownloadsPageProps) {
-  const { lesson, viewType } = props;
+  const { lesson, isLegacy } = props;
   const { lessonTitle, lessonSlug, downloads } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -208,7 +207,9 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const { onSubmit } = useDownloadForm({ viewType: viewType });
+  const { onSubmit } = useDownloadForm({
+    isLegacyDownload: isLegacy,
+  });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     await debouncedSubmit({
@@ -259,7 +260,7 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
     onComplete: setResourcesToDownload,
-    viewType,
+    isLegacyDownload: isLegacy,
   });
 
   const handleEditDetailsCompletedClick = () => {
@@ -267,7 +268,7 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
     setLocalStorageDetails(false);
   };
 
-  const showPostAlbCopyright = viewType === "teachers-2023";
+  const showPostAlbCopyright = !isLegacy;
 
   return (
     <>

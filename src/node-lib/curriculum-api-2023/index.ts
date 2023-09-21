@@ -13,6 +13,7 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
+import curriculumOverviewMVSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
 import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 
@@ -58,17 +59,12 @@ export const subjectPhaseOptionSchema = subjectSchema.extend({
 });
 
 const curriculumHeaderData = z.object({
-  subject: subjectSchema,
-  phase: phaseSchema,
-  examBoard: examboardSchema,
-});
-
-const curriculumOverviewTabData = z.object({
-  subjectPrinciples: z.array(z.string()),
-  curriculaDesc: z.string(),
-  partnerBio: z.string(),
-  videoGuideDesc: z.string(),
+  subject: z.string(),
   subjectSlug: z.string(),
+  phase: z.string(),
+  phaseSlug: z.string(),
+  examboard: z.string().optional(),
+  examboardSlug: z.string().optional(),
 });
 
 const curriculumDownloadsTabData = z.object({
@@ -82,7 +78,7 @@ export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewTabData = z.infer<
-  typeof curriculumOverviewTabData
+  typeof curriculumOverviewMVSchema
 >;
 export type CurriculumDownloadsTabData = z.infer<
   typeof curriculumDownloadsTabData
@@ -106,7 +102,7 @@ export const getFirstResultOrNull =
   };
 
 const curriculumApi2023 = {
-  curriculumOverview: curriculumOverviewQuery(),
+  curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),

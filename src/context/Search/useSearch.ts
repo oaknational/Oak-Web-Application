@@ -85,7 +85,6 @@ const useSearchQuery = ({
 
     const url = resolveOakHref({
       page: "search",
-      viewType: "teachers",
       query: newQuery,
     });
     push(url, undefined, { shallow: true });

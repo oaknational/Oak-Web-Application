@@ -53,7 +53,6 @@ function DownloadLink({
         unitSlug={unitSlug}
         programmeSlug={programmeSlug}
         query={{ preselected }}
-        viewType="teachers"
       />
     );
   } else {
@@ -67,7 +66,6 @@ function DownloadLink({
         programmeSlug={null}
         lessonSlug={lessonSlug}
         query={{ preselected }}
-        viewType="teachers"
       />
     );
   }

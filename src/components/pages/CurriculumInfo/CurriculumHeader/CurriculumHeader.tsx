@@ -14,7 +14,7 @@ import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,
   CurriculumTab,
-} from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -69,21 +69,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               {
                 oakLinkProps: {
                   page: "home",
-                  viewType: "teachers",
                 },
                 label: "Home",
               },
               {
                 oakLinkProps: {
                   page: "curriculum-landing-page",
-                  viewType: "teachers",
                 },
                 label: "Curriculum resources",
               },
               {
                 oakLinkProps: {
                   page: "curriculum-overview",
-                  viewType: "teachers",
                   subjectPhaseSlug: subjectPhaseSlug,
                 },
                 label: pageTitle,
@@ -117,7 +114,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Heading tag={"h1"} $font={"heading-4"} $mv={"auto"}>
+              <Heading
+                tag={"h1"}
+                $font={["heading-4", "heading-3"]}
+                $mv={"auto"}
+              >
                 {pageTitle}
               </Heading>
             </Flex>
@@ -132,18 +133,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             {
               label: "Overview",
               page: "curriculum-overview",
-              viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab === "overview",
               currentStyles: ["underline"],
+              scroll: false,
             },
             {
               label: "Unit sequence",
               page: "curriculum-units",
-              viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "units",
+              isCurrent: tab == "units",
               currentStyles: ["underline"],
+              scroll: false,
             },
           ]}
           data-testid="tabularNav"

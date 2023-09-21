@@ -10,6 +10,7 @@ import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/
 import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
+import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 
 const reportError = errorReporter("search/helpers");
 
@@ -108,7 +109,9 @@ export function getLessonObject(props: {
     allKeyStages,
   });
   const lessonResult = {
-    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+      getProgrammeSlug(hit, allKeyStages),
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
@@ -163,7 +166,9 @@ export function getUnitObject(props: {
   });
 
   const unitResult = {
-    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+      getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     nullTitle: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
