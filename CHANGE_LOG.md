@@ -1,3 +1,12 @@
+## [1.247.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.4...v1.247.5) (2023-09-21)
+
+
+### Bug Fixes
+
+* turns background white once both are selected ([191b7c3](https://github.com/oaknational/Oak-Web-Application/commit/191b7c349aec45c251cdf9c6ce5779a252979138))
+
+## [1.247.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.3...v1.247.4) (2023-09-21)
+
 ## [1.247.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.2...v1.247.3) (2023-09-21)
 
 
