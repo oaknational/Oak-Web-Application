@@ -1,3 +1,10 @@
+## [1.247.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.1...v1.247.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **curric:** remove unit links from visualiser ([f1783ab](https://github.com/oaknational/Oak-Web-Application/commit/f1783ab3278d5679983da101be5aa17a65c55487))
+
 ## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
 
 
