@@ -25,8 +25,8 @@ const unitSchema = z.array(
       themeTitle: z.string().nullable(),
       yearTitle: z.string().nullable(),
       learningThemes: z.array(learningThemesSchema).nullable(),
-    })
-  )
+    }),
+  ),
 );
 const tierSchema = z.array(
   z.object({
@@ -35,7 +35,7 @@ const tierSchema = z.array(
     tierProgrammeSlug: z.string(),
     unitCount: z.number().nullable().optional(),
     lessonCount: z.number().nullable().optional(),
-  })
+  }),
 );
 
 const unitListingSchema = z.object({

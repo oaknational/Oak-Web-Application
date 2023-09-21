@@ -10,7 +10,7 @@ describe("Copy link button", () => {
     const { getByRole } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     expect(getByRole("button")).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe("Copy link button", () => {
     const { getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     const user = userEvent.setup();
@@ -33,7 +33,7 @@ describe("Copy link button", () => {
     rerender(
       <ToastProvider>
         <CopyLinkButton />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     const clickedButton = getByLabelText("Copied to clipboard");
@@ -44,7 +44,7 @@ describe("Copy link button", () => {
     const { getByLabelText } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     const user = userEvent.setup();
@@ -60,7 +60,7 @@ describe("Copy link button", () => {
     const { getByLabelText } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton href="https://example.com" />
-      </ToastProvider>,
+      </ToastProvider>
     );
 
     const user = userEvent.setup();

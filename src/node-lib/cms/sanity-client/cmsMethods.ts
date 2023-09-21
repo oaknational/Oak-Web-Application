@@ -6,7 +6,7 @@ import { parseResults } from "./parseResults";
 import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 import { resolveSanityReferences } from "./resolveSanityReferences";
 
-type GQLMethod = (typeof sanityGraphqlApi)[keyof typeof sanityGraphqlApi];
+type GQLMethod = typeof sanityGraphqlApi[keyof typeof sanityGraphqlApi];
 
 export type Params = {
   previewMode?: boolean;
@@ -29,11 +29,11 @@ export const getBySlug = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Record<string, unknown> | undefined,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodTypeAny
 >(
   graphqlMethod: Method,
   schema: Schema,
-  getResultValue: (res: Response) => Data,
+  getResultValue: (res: Response) => Data
 ) => {
   return async (slug: string, { previewMode, ...params }: Params = {}) => {
     const response = await graphqlMethod({
@@ -70,11 +70,11 @@ export const getSingleton = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Record<string, unknown> | undefined,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodTypeAny
 >(
   graphqlMethod: Method,
   schema: Schema,
-  getResultValue: (res: Response) => Data,
+  getResultValue: (res: Response) => Data
 ) => {
   return async ({ previewMode, ...params }: Params = {}) => {
     const response = await graphqlMethod({
@@ -99,11 +99,11 @@ export const getList = <
   Method extends GQLMethod,
   Response extends Awaited<ReturnType<Method>>,
   Data extends Array<Record<string, unknown>>,
-  Schema extends z.ZodTypeAny,
+  Schema extends z.ZodTypeAny
 >(
   graphqlMethod: Method,
   schema: Schema,
-  getPageData: (res: Response) => Data,
+  getPageData: (res: Response) => Data
 ) => {
   return async ({ previewMode, ...params }: ListParams = {}) => {
     const response = await graphqlMethod({
@@ -129,13 +129,13 @@ export const getList = <
  * sanity documents and "resolve" them to their actual values
  */
 export const resolveEmbeddedReferences = async <
-  T extends Record<string, unknown> | Record<string, unknown>[],
+  T extends Record<string, unknown> | Record<string, unknown>[]
 >(
-  document: T,
+  document: T
 ): Promise<T> => {
   const withPortableTextReferences = await resolveSanityReferences(document);
   const withForms = await resolveHubspotFromReferences(
-    withPortableTextReferences,
+    withPortableTextReferences
   );
 
   return withForms;
@@ -150,6 +150,6 @@ export const resolveEmbeddedReferences = async <
  * param is passed to queries
  */
 export const getDraftFilterParam = (
-  isPreviewMode: boolean | undefined,
+  isPreviewMode: boolean | undefined
 ): { is_draft: boolean | undefined } =>
   isPreviewMode ? { is_draft: undefined } : { is_draft: false };

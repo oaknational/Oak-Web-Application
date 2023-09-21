@@ -93,7 +93,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
       await waitFor(() => {
         expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
-          "A blog",
+          "A blog"
         );
       });
     });
@@ -101,7 +101,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     describe.skip("SEO", () => {
       it("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
-          <BlogSinglePage blog={testSerializedBlog} categories={[]} />,
+          <BlogSinglePage blog={testSerializedBlog} categories={[]} />
         );
 
         expect(seo).toEqual({});
@@ -131,7 +131,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
 
       expect(blogPostBySlug).toHaveBeenCalledWith(
         "another-blog",
-        expect.any(Object),
+        expect.any(Object)
       );
     });
 

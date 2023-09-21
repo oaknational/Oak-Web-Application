@@ -20,7 +20,7 @@ const wrapValue: WrapValue = (item: unknown) =>
 
 // @ts-ignore
 export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
-  arraySchema: S,
+  arraySchema: S
 ) {
   const validate = (item: unknown) => {
     // @ts-ignore - `element` does exist on all ZodArrays, my attempt at the generic type is just wrong
@@ -30,7 +30,7 @@ export function createInvalidRejectingSchema<E, S extends ZodArray<E, "many">>(
 }
 
 const isZodArraySchema = <T extends ZodTypeAny>(
-  schema: unknown,
+  schema: unknown
 ): schema is ZodArray<T> => {
   return typeof schema === "object" && schema !== null && "element" in schema;
 };
@@ -54,11 +54,11 @@ const isZodArraySchema = <T extends ZodTypeAny>(
 export const uniqBy = <T>(
   data: T[],
   getProp: (el: T) => unknown,
-  onConflict: (prev: T, current: T) => T,
+  onConflict: (prev: T, current: T) => T
 ): T[] => {
   return data.reduce<T[]>((acc, item) => {
     const alreadyExistsIdx = acc.findIndex(
-      (el) => getProp(el) === getProp(item),
+      (el) => getProp(el) === getProp(item)
     );
     const alreadyExists = alreadyExistsIdx >= 0;
     const prevItem = acc[alreadyExistsIdx];
@@ -86,8 +86,8 @@ const trimDraftsPrefix = (id: string) => id.replace(draftPrefixRegex, "");
 export const parseResults = <S extends ZodSchema, D>(
   schema: S,
   data: D,
-  isPreviewMode?: boolean,
-): ReturnType<(typeof schema)["parse"]> => {
+  isPreviewMode?: boolean
+): ReturnType<typeof schema["parse"]> => {
   if (isPreviewMode) {
     if (isZodArraySchema(schema)) {
       /**
@@ -110,7 +110,7 @@ export const parseResults = <S extends ZodSchema, D>(
         // @ts-ignore
         (item) => trimDraftsPrefix(item.id),
         // @ts-ignore
-        (prev, current) => (isDraft(prev.id) ? prev : current),
+        (prev, current) => (isDraft(prev.id) ? prev : current)
       );
 
       // Explicitly cast the erroneous unknown[] to the right type

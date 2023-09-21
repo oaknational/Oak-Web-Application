@@ -61,7 +61,7 @@ const WebinarListingPage: NextPage<WebinarListingPageProps> = (props) => {
 };
 
 export const webinarToPostListItem = (
-  webinar: SerializedWebinarPreview,
+  webinar: SerializedWebinarPreview
 ): PostListItemProps => ({
   ...webinar,
   contentType: "webinar",

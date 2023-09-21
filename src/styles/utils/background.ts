@@ -13,12 +13,12 @@ const background = css<BackgroundProps>`
   ${responsive(
     "background-color",
     (props) => props.$background,
-    getColorByName,
+    getColorByName
   )}
   ${responsive(
     "color",
     (props) => props.$background,
-    getTextColorForBackground,
+    getTextColorForBackground
   )}
 `;
 

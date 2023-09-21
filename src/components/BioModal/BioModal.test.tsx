@@ -9,7 +9,7 @@ import BioModal from "./BioModal";
 const bio = {
   name: "Ramender Crompton",
   bioPortableText: portableTextFromString(
-    "Ramender is an assistant principal and head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English teacher. In addition to her teaching commitments, Ramender is also an assistant lead examiner for AQA, CPD author and virtual community trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North.",
+    "Ramender is an assistant principal and head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English teacher. In addition to her teaching commitments, Ramender is also an assistant lead examiner for AQA, CPD author and virtual community trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North."
   ),
   image: {
     asset: {
@@ -39,7 +39,7 @@ describe("BioModal", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} isOpen={false} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
 
     expect(container).toHaveTextContent("");
@@ -48,7 +48,7 @@ describe("BioModal", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} bio={undefined} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
 
     expect(container).toHaveTextContent("");
@@ -57,7 +57,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const dialog = getByRole("dialog");
 
@@ -67,7 +67,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
 
     const closeButton = getByRole("button", { name: "close modal" });
@@ -89,7 +89,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} nextBio={nextBio} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const nextButton = getByRole("button", { name: "next board member" });
 
@@ -101,7 +101,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} prevBio={prevBio} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const prevButton = getByRole("button", { name: "previous board member" });
 
@@ -113,7 +113,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} closeModal={closeModal} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const closeButton = getByRole("button", { name: "close modal" });
 
@@ -125,7 +125,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} closeModal={closeModal} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const closeButton = getByRole("button", { name: "close modal" });
 
@@ -137,7 +137,7 @@ describe("BioModal", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioModal {...defaultProps} prevBio={undefined} />
-      </OverlayProvider>,
+      </OverlayProvider>
     );
     const prevButton = getByRole("button", { name: "previous board member" });
 

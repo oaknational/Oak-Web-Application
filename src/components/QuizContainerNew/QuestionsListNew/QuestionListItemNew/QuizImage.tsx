@@ -50,8 +50,8 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
             setDims(
               calcDims(
                 e.currentTarget.naturalWidth,
-                e.currentTarget.naturalHeight,
-              ),
+                e.currentTarget.naturalHeight
+              )
             );
           }}
         />

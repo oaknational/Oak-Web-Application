@@ -32,7 +32,7 @@ export type EventName = string;
 export type EventProperties = Record<string, unknown>;
 export type EventFn = (
   eventName: EventName,
-  properties: EventProperties,
+  properties: EventProperties
 ) => void;
 export type PageProperties = {
   path: string;
@@ -45,7 +45,7 @@ export type IdentifyFn = (
   /**
    * if services not specifed, then all services called
    */
-  services?: ServiceType[],
+  services?: ServiceType[]
 ) => void;
 
 export type TrackEventName = Extract<
@@ -107,12 +107,12 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   const posthogClient = usePostHog();
   if (!posthogClient) {
     throw new Error(
-      "AnalyticsProvider should be contained within PostHogProvider",
+      "AnalyticsProvider should be contained within PostHogProvider"
     );
   }
 
   const posthogService = useRef(
-    posthogToAnalyticsService(posthogClient),
+    posthogToAnalyticsService(posthogClient)
   ).current;
   const posthogConsent = useHasConsentedTo("posthog");
   const posthog = useAnalyticsService({
@@ -149,7 +149,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   initAvo(
     { env: getAvoEnv(), webDebugger: false, ...avoOptions },
     {},
-    getAvoBridge({ posthog }),
+    getAvoBridge({ posthog })
   );
 
   /**
@@ -200,7 +200,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
         posthog.identify(id, props);
       }
     },
-    [hubspot, posthog],
+    [hubspot, posthog]
   );
   /**
    * Event tracking

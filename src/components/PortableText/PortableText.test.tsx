@@ -46,7 +46,7 @@ describe("PortableText", () => {
           markType="link"
           value={{ _type: "link", href: "https://example.com" }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       const link = getByRole("link");
@@ -68,7 +68,7 @@ describe("PortableText", () => {
             reference: { contentType: "policyPage", slug: "some-policy" },
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       const link = getByRole("link");
@@ -84,7 +84,7 @@ describe("PortableText", () => {
           markType="internalLink"
           value={{ _type: "internalLink", reference: undefined }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       expect(container).toBeEmptyDOMElement();
@@ -102,7 +102,7 @@ describe("PortableText", () => {
             reference: { _type: "reference", _ref: "abcdef" },
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
       expect(container).toBeEmptyDOMElement();
 
@@ -111,7 +111,7 @@ describe("PortableText", () => {
         expect.any(Error),
         expect.objectContaining({
           internalReference: { _ref: "abcdef", _type: "reference" },
-        }),
+        })
       );
     });
 
@@ -126,7 +126,7 @@ describe("PortableText", () => {
             reference: { contentType: "does-not-exist" as never },
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       expect(container).toBeEmptyDOMElement();
@@ -136,7 +136,7 @@ describe("PortableText", () => {
         expect.any(Error),
         expect.objectContaining({
           internalReference: { contentType: "does-not-exist" },
-        }),
+        })
       );
     });
   });
@@ -159,7 +159,7 @@ describe("PortableText", () => {
             actionType: "OPEN_COOKIE_SETTINGS" as never,
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       const button = getByRole("button");
@@ -185,7 +185,7 @@ describe("PortableText", () => {
             anchor: "a-section-of-the-page",
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       const link = getByRole("link");
@@ -200,7 +200,7 @@ describe("PortableText", () => {
           text="An anchor link"
           markType="anchor"
           renderNode={() => undefined}
-        />,
+        />
       );
 
       expect(container).toBeEmptyDOMElement();
@@ -219,12 +219,12 @@ describe("PortableText", () => {
             anchor: "a-section-of-the-page",
           }}
           renderNode={() => undefined}
-        />,
+        />
       );
 
       const tag = getByText("An anchor target");
       const anchorTarget = container.querySelector(
-        "#a-section-of-the-page",
+        "#a-section-of-the-page"
       ) as HTMLElement;
 
       expect(tag).toContainElement(anchorTarget);
@@ -237,7 +237,7 @@ describe("PortableText", () => {
           text="An anchor target"
           markType="anchorTarget"
           renderNode={() => undefined}
-        />,
+        />
       );
 
       expect(container).toBeEmptyDOMElement();
@@ -249,7 +249,7 @@ describe("PortableText", () => {
       const { getAllByRole, container } = renderWithTheme(
         <BasePortableTextProvider>
           <PortableText value={portableTextFixture} />
-        </BasePortableTextProvider>,
+        </BasePortableTextProvider>
       );
 
       const lists = getAllByRole("list");

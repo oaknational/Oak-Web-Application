@@ -29,7 +29,7 @@ describe("SearchFilterCheckbox", () => {
   });
   test("respects checked value: false", () => {
     const { getByRole } = renderWithTheme(
-      <SearchFilterCheckbox {...props} checked={true} />,
+      <SearchFilterCheckbox {...props} checked={true} />
     );
     const checkbox = getByRole("checkbox");
     expect(checkbox).toBeChecked();

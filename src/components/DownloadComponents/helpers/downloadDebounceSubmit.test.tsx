@@ -33,13 +33,13 @@ describe("downloadDebounceSubmit", () => {
   });
   test("should report an error if failed to fetch downloads ", async () => {
     await downloadDebounceSubmit(
-      props as unknown as DownloadDebouncedSubmitProps,
+      props as unknown as DownloadDebouncedSubmitProps
     );
     expect(reportError).toBeCalled();
   });
   test("should update state for attempting to download ", async () => {
     await downloadDebounceSubmit(
-      props as unknown as DownloadDebouncedSubmitProps,
+      props as unknown as DownloadDebouncedSubmitProps
     );
     expect(setIsAttemptingDownload).toHaveBeenCalledTimes(2);
     expect(setEditDetailsClicked).toBeCalledWith(false);

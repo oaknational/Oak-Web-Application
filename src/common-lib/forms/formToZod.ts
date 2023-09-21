@@ -32,13 +32,13 @@ export const fieldToZod = (formField: FormField) => {
     case "booleancheckbox":
       // Casting required because zod can't infer values coming through at runtime
       schema = z.enum(
-        formField.options.map((s) => s.value) as [string, ...string[]],
+        formField.options.map((s) => s.value) as [string, ...string[]]
       );
       break;
     default:
       assertUnreachable(
         formField,
-        new Error("Encountered unknown form field type"),
+        new Error("Encountered unknown form field type")
       );
   }
 

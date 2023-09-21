@@ -9,7 +9,7 @@ const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects" | "contentTypes",
+  name: "keyStages" | "subjects" | "contentTypes"
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
@@ -30,7 +30,7 @@ const getCheckboxFilters = <T extends { slug: string }>(
 };
 
 const useSearchFilters = (
-  props: UseSearchFiltersProps,
+  props: UseSearchFiltersProps
 ): UseSearchFiltersReturnType => {
   const { allKeyStages, allSubjects, allContentTypes, query, setQuery } = props;
 
@@ -39,7 +39,7 @@ const useSearchFilters = (
       keyStage,
       query.keyStages || [],
       setQuery,
-      "keyStages",
+      "keyStages"
     );
     return filters;
   });
@@ -49,7 +49,7 @@ const useSearchFilters = (
       subject,
       query.subjects || [],
       setQuery,
-      "subjects",
+      "subjects"
     );
     return filters;
   });
@@ -59,7 +59,7 @@ const useSearchFilters = (
       ContentType,
       query.contentTypes || [],
       setQuery,
-      "contentTypes",
+      "contentTypes"
     );
     return filters;
   });
