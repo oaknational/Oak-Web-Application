@@ -1,3 +1,17 @@
+# [1.250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.249.0...v1.250.0) (2023-09-21)
+
+
+### Features
+
+* **lessonOverview:** add hasDownloadable onto 2023 query ([3d2bb86](https://github.com/oaknational/Oak-Web-Application/commit/3d2bb8602f12cd8c06f12d9fb64d601308d08e67))
+* **lessonOverview:** exclude genrated file from sonar ([521f520](https://github.com/oaknational/Oak-Web-Application/commit/521f5200d9ed7b1436d4ba554e9c4885cdef9268))
+* **lessonOverview:** merge ([b7c83f5](https://github.com/oaknational/Oak-Web-Application/commit/b7c83f5092e28df4f97e396b30afe343ff583c3d))
+* **lessonOverview:** sonar exclusion ([50a2b95](https://github.com/oaknational/Oak-Web-Application/commit/50a2b950f008303ee2dc8999808b6e2e3945cda9))
+* **lessonOverview:** sonar exclusion ([f4c7dc1](https://github.com/oaknational/Oak-Web-Application/commit/f4c7dc1c682642e90040f34a12749736d2658770))
+* **lessonOverview:** sonar exclusion ([d623886](https://github.com/oaknational/Oak-Web-Application/commit/d6238867b8b561cb2e88e104bd0e9dd2e441c158))
+* **lessonOverview:** test fix ([d00537d](https://github.com/oaknational/Oak-Web-Application/commit/d00537dcccae7b91303735eb511cc88fd635cdaf))
+* **lessonOverview:** update has resource type ([eaf959c](https://github.com/oaknational/Oak-Web-Application/commit/eaf959c9101ecbf134dea062af7f69c9ee254856))
+
 # [1.249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.248.0...v1.249.0) (2023-09-21)
 
 
