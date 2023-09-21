@@ -8,7 +8,6 @@ import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
-import OakLink from "@/components/OakLink/OakLink";
 import Button from "@/components/Button/Button";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import GridArea from "@/components/Grid/GridArea";
@@ -167,17 +166,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     useState<YearSelection>(initialYearSelection);
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
-
-  const buildProgrammeSlug = (unit: Unit) => {
-    let slug = `${unit.subject_slug}-${unit.phase_slug}-${unit.keystage_slug}`;
-    if (unit.tier_slug) {
-      slug = `${slug}-${unit.tier_slug}`;
-    }
-    if (unit.examboard_slug) {
-      slug = `${slug}-${unit.examboard_slug}`;
-    }
-    return slug;
-  };
 
   function handleSelectSubject(year: string, subject: Subject) {
     const selection = { ...yearSelection[year] };
@@ -483,7 +471,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             $flexGrow={"unset"}
                             $mb={32}
                             $mr={28}
-                            $pb={64}
                             $position={"relative"}
                             $width={[
                               "100%",
@@ -515,26 +502,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                               )}
                               {unit.title}
                             </Heading>
-                            <Box
-                              $position={"absolute"}
-                              $bottom={16}
-                              $right={16}
-                              $font={"body-2-bold"}
-                            >
-                              <OakLink
-                                page="lesson-index"
-                                viewType="teachers-2023"
-                                programmeSlug={buildProgrammeSlug(unit)}
-                                unitSlug={unit.slug}
-                                data-testid="unit-link"
-                              >
-                                Unit info
-                                <Icon
-                                  name="chevron-right"
-                                  verticalAlign="bottom"
-                                />
-                              </OakLink>
-                            </Box>
                           </Card>
                         );
                       })}
