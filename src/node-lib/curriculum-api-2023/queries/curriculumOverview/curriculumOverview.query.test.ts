@@ -1,9 +1,6 @@
 import sdk from "../../sdk";
 
 import curriculumOverviewQuery from "./curriculumOverview.query";
-
-import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
-
 describe("curriculum overview query", () => {
   test("throws params incorrect error if slugs are blank", async () => {
     expect(async () => {
@@ -14,13 +11,15 @@ describe("curriculum overview query", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("matches fixture", async () => {
-    const result = await curriculumOverviewQuery(sdk)({
-      subjectSlug: "maths",
-      phaseSlug: "secondary",
-    });
-    expect(result.curriculaDesc).toEqual(
-      curriculumOverviewMVFixture().curriculaDesc,
-    );
+  test("throws resource not found error if no rows are returned", async () => {
+    await expect(async () => {
+      await curriculumOverviewQuery({
+        ...sdk,
+        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+      })({
+        subjectSlug: "alchemy",
+        phaseSlug: "secondary",
+      });
+    }).rejects.toThrow(`Resource not found`);
   });
 });
