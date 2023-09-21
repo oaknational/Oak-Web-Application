@@ -1,21 +1,12 @@
 import { waitFor } from "@testing-library/react";
 import { RefObject } from "react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import Pagination from "./Pagination";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
-export const mockPaginationProps = {
-  totalResults: 1,
-  totalPages: 25,
-  currentPage: 1,
-  pageSize: 20,
-  nextPageHref: "/prev",
-  prevPageHref: "/next",
-};
 
 describe("Pagination", () => {
   jest.mock("next/dist/client/router", () => require("next-router-mock"));

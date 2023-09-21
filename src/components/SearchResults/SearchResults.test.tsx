@@ -12,9 +12,7 @@ import SearchResults from "./SearchResults";
 
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
-export const hits = searchResultsHitsSchema.parse(
-  elasticResponseFixture.hits.hits,
-);
+const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
 
 const getNHits = (n: number) => {
   const [hit] = hits;
