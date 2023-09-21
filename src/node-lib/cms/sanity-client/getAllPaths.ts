@@ -16,7 +16,7 @@ export const isRecord = (value: unknown): value is Record<string, unknown> => {
 export const getAllPaths = (
   obj: Record<string, unknown> | Record<string, unknown>[],
   pred: (v: unknown) => boolean,
-  prev: ObjectPath = []
+  prev: ObjectPath = [],
 ): ObjectPath[] => {
   const result = [];
 

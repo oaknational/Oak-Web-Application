@@ -24,7 +24,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
                     return "4";
                   default: {
                     const error = new Error(
-                      "Key-stage slug could not be mapped to elastic query"
+                      "Key-stage slug could not be mapped to elastic query",
                     );
                     errorReporter("constructElasticQuery")(error, {
                       severity: "warning",

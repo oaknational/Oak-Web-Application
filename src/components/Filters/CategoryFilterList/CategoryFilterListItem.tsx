@@ -22,7 +22,7 @@ interface CategoryFilterListItemProps<T extends CategoryLinkProps>
   trackingProps?: LearningThemeSelectedTrackingProps;
 }
 const CategoryFilterListItem = <T extends CategoryLinkProps>(
-  props: CategoryFilterListItemProps<T>
+  props: CategoryFilterListItemProps<T>,
 ) => {
   const { label, linkProps, isSelected, setSelected, trackingProps } = props;
   const arrowHidden = !isSelected;

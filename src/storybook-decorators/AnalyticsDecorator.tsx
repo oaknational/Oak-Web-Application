@@ -14,7 +14,7 @@ const noopTrackingFns = Object.entries(trackingFns).reduce(
     acc[key] = value;
     return acc;
   },
-  {} as unknown as TrackingFns
+  {} as unknown as TrackingFns,
 );
 export default function AnalyticsDecorator(Story: Story) {
   const value = {

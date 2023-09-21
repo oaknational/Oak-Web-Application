@@ -12,7 +12,7 @@ describe("components/UnitList", () => {
         {...unitListingFixture()}
         paginationProps={mockPaginationProps}
         currentPageItems={[]}
-      />
+      />,
     );
   });
   test("renders the optionality list card when data has optional units", () => {
@@ -21,7 +21,7 @@ describe("components/UnitList", () => {
         {...unitListingFixture()}
         paginationProps={mockPaginationProps}
         currentPageItems={optionalityProps.units}
-      />
+      />,
     );
     const optionalityCard = getByTestId("unit-optionality-card");
     expect(optionalityCard).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("components/UnitList", () => {
         {...unitListingFixture()}
         paginationProps={mockPaginationProps}
         currentPageItems={unitListingFixture().units}
-      />
+      />,
     );
     const optionalityCard = queryByTestId("unit-optionality-card");
     expect(optionalityCard).not.toBeInTheDocument();

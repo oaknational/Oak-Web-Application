@@ -10,7 +10,7 @@ import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/
 describe("MCAnswers", () => {
   it("renders the correct number of answers", () => {
     const { getAllByRole } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />
+      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
     const answers = getAllByRole("listitem");
 
@@ -19,7 +19,7 @@ describe("MCAnswers", () => {
 
   it("renders the answer text", () => {
     const { getByText } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />
+      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
 
     for (const answer of mcqTextAnswers) {
@@ -37,11 +37,11 @@ describe("MCAnswers", () => {
 
   it("highlights the correct answer", () => {
     const { getByText } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />
+      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
 
     const correctAnswer: MCAnswer | undefined = mcqTextAnswers.find(
-      (a) => a.answer_is_correct
+      (a) => a.answer_is_correct,
     );
 
     if (!correctAnswer) throw new Error("correctAnswer is null");
@@ -57,7 +57,7 @@ describe("MCAnswers", () => {
 
   it("renders the image answers", () => {
     const { getAllByRole } = renderWithTheme(
-      <MCAnswers answers={mcqImageAnswers} questionNumber={0} />
+      <MCAnswers answers={mcqImageAnswers} questionNumber={0} />,
     );
 
     expect(getAllByRole("img").length).toBe(3);

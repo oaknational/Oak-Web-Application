@@ -37,14 +37,14 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
-            viewType
+            viewType,
           );
 
         const resourcesExistenceAsArray = resourceExistence
           ? Object.entries(
               resourceExistence as Partial<
                 Record<DownloadResourceType, boolean>
-              >
+              >,
             )
           : [];
 
@@ -55,7 +55,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           .filter((resource) => resource !== undefined);
 
         onComplete(
-          filteredResourcesExistenceAsArray as ResourcesToDownloadArrayType
+          filteredResourcesExistenceAsArray as ResourcesToDownloadArrayType,
         );
       } catch (error) {
         const oakError = new OakError({

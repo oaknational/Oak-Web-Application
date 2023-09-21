@@ -23,7 +23,7 @@ const questionTypeMap = (questionType?: string | null) => {
 };
 
 const transformImageData = (
-  imageData: string | { title: string | null; images: string[] }
+  imageData: string | { title: string | null; images: string[] },
 ) => {
   if (typeof imageData === "string") {
     const image: StemImageObject = {
@@ -171,7 +171,7 @@ export const transformQuiz = (quizQuestions: LegacyQuizData[]) => {
         active: quizQuestion.active ?? false,
       };
       return transformedQuestion;
-    }
+    },
   );
 
   return transformedQuestions;

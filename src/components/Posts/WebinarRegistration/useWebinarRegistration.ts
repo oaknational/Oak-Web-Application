@@ -6,7 +6,7 @@ import useLocalStorage from "../../../hooks/useLocalStorage";
 const useWebinarRegistration = () => {
   const [webinarsUnlocked, setWebinarsUnlocked] = useLocalStorage(
     LS_KEY_PAST_WEBINARS_UNLOCKED,
-    false
+    false,
   );
   const [webinarLockState, setWebinarLockState] = useState<
     "pending" | "locked" | "unlocked"

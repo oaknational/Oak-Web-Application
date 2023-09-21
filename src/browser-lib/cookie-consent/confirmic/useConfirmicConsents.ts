@@ -115,7 +115,7 @@ export const getConsentsFromLocalStorage = () => {
       strictlyNecessary: defaultConsent,
       embeddedContent: defaultConsent,
       statistics: defaultConsent,
-    }
+    },
   );
 };
 
@@ -133,7 +133,7 @@ export const toTuples = (consents: ConfirmicConsents): ConsentTuple[] => {
     .map((entry) => {
       const [policyName, policyId] = entry as [
         CookiePolicyName,
-        ConfirmicPolicyId
+        ConfirmicPolicyId,
       ];
       return [
         policyId,
@@ -145,18 +145,18 @@ export const toTuples = (consents: ConfirmicConsents): ConsentTuple[] => {
     });
 };
 export const fromTuples = (
-  tuples: ConsentTuple[] | unknown
+  tuples: ConsentTuple[] | unknown,
 ): ConfirmicConsents | undefined => {
   if (!Array.isArray(tuples)) {
     return;
   }
   const fromTuplesByName = (
-    name: CookiePolicyName
+    name: CookiePolicyName,
   ): CookieConsent | undefined => {
     try {
       const policyId = consentPolicyMap[name];
       const detailStr = tuples.find(
-        ([_policyId]) => _policyId === policyId
+        ([_policyId]) => _policyId === policyId,
       )?.[1];
       if (!detailStr) {
         return;
@@ -202,7 +202,7 @@ const useConfirmicConsents = () => {
   const consentTupleFromCookie = consentCookie[CONFIRMIC_COOKIE_NAME];
   const consentsFromCookie = fromTuples(consentTupleFromCookie);
   const [consents, setConsents] = useState<ConfirmicConsents>(
-    consentsFromCookie || getConsentsFromLocalStorage()
+    consentsFromCookie || getConsentsFromLocalStorage(),
   );
 
   const tuples = toTuples(consents);
@@ -224,7 +224,7 @@ const useConfirmicConsents = () => {
 
       const consentsFromLocalStorage = getConsentsFromLocalStorage();
       const tuplesStringFromLocalStorage = safeStringify(
-        toTuples(consentsFromLocalStorage)
+        toTuples(consentsFromLocalStorage),
       );
       if (tuplesStringFromLocalStorage !== tuplesString) {
         setConsentsInLocalStorage(consents);

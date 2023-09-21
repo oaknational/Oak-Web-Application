@@ -41,7 +41,7 @@ const testAboutBoardPageData: AboutBoardPage = {
         hotspot: null,
       },
       bioPortableText: portableTextFromString(
-        "This person started out here, ended up there."
+        "This person started out here, ended up there.",
       ),
     },
   ],
@@ -99,14 +99,14 @@ describe("pages/about-us/board.tsx", () => {
     render(<AboutBoard pageData={testAboutBoardPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "About us"
+      "About us",
     );
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
-        <AboutBoard pageData={testAboutBoardPageData} />
+        <AboutBoard pageData={testAboutBoardPageData} />,
       );
 
       expect(seo).toEqual({

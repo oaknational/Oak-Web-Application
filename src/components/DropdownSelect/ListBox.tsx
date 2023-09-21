@@ -42,7 +42,7 @@ const List = styled.ul`
 
 const ListItem = styled.li<ListItemProps>`
   color: ${getColorByLocation(
-    ({ theme }) => theme.selectListBox.states.default.color
+    ({ theme }) => theme.selectListBox.states.default.color,
   )};
   font-size: 14px;
   font-weight: ${(props) =>
@@ -107,7 +107,7 @@ function Option({ item, state }: OptionProps) {
         key: item.key,
       },
       state,
-      ref
+      ref,
     );
 
   return (

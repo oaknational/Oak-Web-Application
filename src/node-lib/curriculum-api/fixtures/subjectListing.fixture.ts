@@ -3,7 +3,7 @@ import { SubjectListingData } from "..";
 import { SubjectListingPageData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
 export const subjectListingFixture2023 = (
-  partial?: Partial<SubjectListingPageData>
+  partial?: Partial<SubjectListingPageData>,
 ): SubjectListingPageData => {
   return {
     keyStageSlug: "ks4",
@@ -37,7 +37,7 @@ export const subjectListingFixture2023 = (
 };
 
 const subjectListingFixture = (
-  partial?: Partial<SubjectListingData>
+  partial?: Partial<SubjectListingData>,
 ): SubjectListingData => {
   return {
     keyStageSlug: "ks4",
