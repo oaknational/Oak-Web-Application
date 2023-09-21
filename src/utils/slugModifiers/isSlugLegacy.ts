@@ -1,7 +1,7 @@
-export const LEGACY_PROGRAMME_SUFFIX = "-l";
+export const LEGACY_SLUG_SUFFIX = "-l";
 
 const isSlugLegacy = (slug: string) => {
-  return slug.slice(-2) === LEGACY_PROGRAMME_SUFFIX;
+  return slug.slice(-LEGACY_SLUG_SUFFIX.length) === LEGACY_SLUG_SUFFIX;
 };
 
 export default isSlugLegacy;

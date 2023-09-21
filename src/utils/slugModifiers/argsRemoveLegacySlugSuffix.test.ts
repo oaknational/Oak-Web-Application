@@ -2,7 +2,7 @@ import argsRemoveLegacySlugSuffix, {
   RequestHeadersType,
   VariablesType,
 } from "./argsRemoveLegacySlugSuffix";
-import { LEGACY_PROGRAMME_SUFFIX } from "./isSlugLegacy";
+import { LEGACY_SLUG_SUFFIX } from "./isSlugLegacy";
 
 let sampleVariables: VariablesType;
 let sampleHeaders: RequestHeadersType;
@@ -10,8 +10,8 @@ let sampleHeaders: RequestHeadersType;
 describe("argsRemoveLegacySlugSuffix", () => {
   beforeEach(() => {
     sampleVariables = {
-      programmeSlug: `a-legacy-programme-slug${LEGACY_PROGRAMME_SUFFIX}`,
-      subjectSlug: `a-legacy-subject-slug${LEGACY_PROGRAMME_SUFFIX}`,
+      programmeSlug: `a-legacy-programme-slug${LEGACY_SLUG_SUFFIX}`,
+      subjectSlug: `a-legacy-subject-slug${LEGACY_SLUG_SUFFIX}`,
       unitSlug: "a-unit-slug",
       anyOtherKey: "a-value",
     };
@@ -20,7 +20,7 @@ describe("argsRemoveLegacySlugSuffix", () => {
       Authorization: "Bearer your-token",
     };
   });
-  it(`returns args with programme slug without ${LEGACY_PROGRAMME_SUFFIX} suffix`, () => {
+  it(`returns args with programme slug without ${LEGACY_SLUG_SUFFIX} suffix`, () => {
     const modifiedArgs = argsRemoveLegacySlugSuffix([
       sampleVariables,
       sampleHeaders,
