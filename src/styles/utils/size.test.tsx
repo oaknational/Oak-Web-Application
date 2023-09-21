@@ -20,7 +20,7 @@ describe("size", () => {
       ${size}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" {...props} />
+      <StyledComponent data-testid="test" {...props} />,
     );
 
     expect(getByTestId("test")).toHaveStyle(expected);

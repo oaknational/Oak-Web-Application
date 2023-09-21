@@ -36,7 +36,7 @@ function continueBuild() {
 const commitMessage = process.env.VERCEL_GIT_COMMIT_MESSAGE;
 if (!commitMessage) {
   const err = new TypeError(
-    "VERCEL_GIT_COMMIT_MESSAGE was not defined, exiting."
+    "VERCEL_GIT_COMMIT_MESSAGE was not defined, exiting.",
   );
   cancelBuild(err);
 }

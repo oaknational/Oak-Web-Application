@@ -55,7 +55,7 @@ describe("posthog.ts", () => {
   });
   test("init calls register() with legacy anonymous id", async () => {
     getLegacyAnonymousId.mockImplementationOnce(
-      () => "test legacy anonymous id"
+      () => "test legacy anonymous id",
     );
     const config = { apiKey: "12", apiHost: "https://..." };
     const distinctId = await posthog.init(config);

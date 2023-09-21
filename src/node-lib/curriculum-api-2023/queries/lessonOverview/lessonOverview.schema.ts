@@ -116,7 +116,7 @@ export const lessonOverviewQuizData = z
       feedback: z.string(),
       hint: z.string(),
       active: z.boolean(),
-    })
+    }),
   )
   .nullable()
   .optional();

@@ -22,7 +22,7 @@ function createBuildStartedSlackMessage(config) {
   // Throw if any config values are missing.
   validateConfig(
     ["siteName", "environmentType", "infoUrl", "repoUrlString", "appVersion"],
-    config
+    config,
   );
 
   let versionString;

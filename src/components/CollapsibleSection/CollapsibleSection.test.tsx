@@ -26,7 +26,7 @@ describe("CollapsibleSection", () => {
             ariaLabel: "Share button",
           },
         ]}
-      />
+      />,
     );
 
     const heading = screen.getByRole("heading", { level: 2 });
@@ -44,7 +44,7 @@ describe("CollapsibleSection", () => {
         <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
-      </CollapsibleSection>
+      </CollapsibleSection>,
     );
 
     const user = userEvent.setup();
@@ -77,7 +77,7 @@ describe("CollapsibleSection", () => {
         <Heading $font={"heading-6"} tag={"h2"}>
           Use Oak in Beta
         </Heading>
-      </CollapsibleSection>
+      </CollapsibleSection>,
     );
 
     fireEvent.click(screen.getByTitle(/Download button/i));
