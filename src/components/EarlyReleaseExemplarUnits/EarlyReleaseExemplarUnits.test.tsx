@@ -13,7 +13,7 @@ const units = unitListingFixture()
   .units.slice(0, 10)
   .map((unit) => unit[0]) as unknown as UnitListItemProps[];
 
-export const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
+const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
   heading: "Secondary units",
   subHeading: "View and download our early-release units.",
   color: "lavender50",
@@ -33,25 +33,25 @@ describe("components/AppHeader", () => {
     render(<ExemplarUnits {...earlyReleaseExemplarUnitsProps} />);
 
     expect(
-      screen.getByText("View and download our early-release units.")
+      screen.getByText("View and download our early-release units."),
     ).toBeInTheDocument();
     expect(screen.getByText("Secondary units")).toBeInTheDocument();
     expect(
       screen.getByText(
-        "“A life saver… I didn’t think you could beat the previous Oak resources.”"
-      )
+        "“A life saver… I didn’t think you could beat the previous Oak resources.”",
+      ),
     ).toBeInTheDocument();
   });
   test("renders a list of units", () => {
     const { getByRole, getAllByRole } = render(
-      <ExemplarUnits {...earlyReleaseExemplarUnitsProps} />
+      <ExemplarUnits {...earlyReleaseExemplarUnitsProps} />,
     );
 
     const list = getByRole("list");
     expect(list).toBeInTheDocument();
     const item = getAllByRole("listitem");
     expect(item[0]).toHaveTextContent(
-      "Key stage 4 Year 10 ComputingData Representation9 lessons"
+      "Key stage 4 Year 10 ComputingData Representation9 lessons",
     );
   });
 });

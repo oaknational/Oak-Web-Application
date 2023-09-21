@@ -42,7 +42,7 @@ const validQuery: SearchQuery = {
 
 const setSearchStartTime = jest.fn();
 
-export const props: SearchProps = {
+const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
   setSearchStartTime: setSearchStartTime,
