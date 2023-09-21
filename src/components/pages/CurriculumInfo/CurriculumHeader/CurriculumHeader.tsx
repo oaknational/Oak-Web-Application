@@ -114,7 +114,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Heading tag={"h1"} $font={"heading-4"} $mv={"auto"}>
+              <Heading
+                tag={"h1"}
+                $font={["heading-4", "heading-3"]}
+                $mv={"auto"}
+              >
                 {pageTitle}
               </Heading>
             </Flex>
