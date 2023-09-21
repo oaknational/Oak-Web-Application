@@ -1,10 +1,10 @@
 import lessonOverviewCanonicalSchema, {
   LessonOverviewCanonical,
-  pathwaySchema,
 } from "./lessonOverviewCanonical.schema";
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const lessonOverviewCanonicalQuery =
   (sdk: Sdk) => async (args: { lessonSlug: string }) => {
@@ -16,7 +16,7 @@ const lessonOverviewCanonicalQuery =
 
     const lessonWithPathways = lessons.reduce(
       (acc, lesson) => {
-        const pathway = pathwaySchema.parse(lesson);
+        const pathway = lessonPathwaySchema.parse(lesson);
         return {
           ...acc,
           pathways: [...acc.pathways, pathway],

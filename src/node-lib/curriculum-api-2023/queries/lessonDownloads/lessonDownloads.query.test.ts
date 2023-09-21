@@ -1,6 +1,6 @@
 import sdk from "../../sdk";
 
-import lessonDownloads from "./downloads.query";
+import lessonDownloads from "./lessonDownloads.query";
 
 describe("lessonDownloads()", () => {
   test("throws a not found error if no unit is found", async () => {

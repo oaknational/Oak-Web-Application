@@ -6,7 +6,7 @@ import {
   Equipment,
 } from "@/components/LessonRequirements/LessonRequirements";
 import { TeacherTip } from "@/components/TeacherTips/TeacherTips";
-import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonBase = {
   lessonTitle: string;

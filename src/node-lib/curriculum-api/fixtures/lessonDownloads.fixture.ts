@@ -13,6 +13,10 @@ const lessonDownloadsFixtures = (
     subjectTitle: "Maths",
     unitSlug: "geometry",
     unitTitle: "Geometry",
+    tierSlug: null,
+    tierTitle: null,
+    examboardSlug: null,
+    examboardTitle: null,
     downloads: [
       {
         type: "exit-quiz-questions",

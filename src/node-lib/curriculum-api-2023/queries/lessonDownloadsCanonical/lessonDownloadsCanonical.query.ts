@@ -1,6 +1,6 @@
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
-import { pathwaySchema } from "../lessonOverviewCanonical/lessonOverviewCanonical.schema";
+import { lessonPathwaySchema } from "../../shared.schema";
 
 import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
@@ -16,7 +16,7 @@ const lessonDownloadsCanonicalQuery =
 
     const lessonDownloadsWithPathways = res.lessonDownloadsCanonical.reduce(
       (acc, lesson) => {
-        const pathway = pathwaySchema.parse(lesson);
+        const pathway = lessonPathwaySchema.parse(lesson);
         return {
           ...acc,
           pathways: [...acc.pathways, pathway],
