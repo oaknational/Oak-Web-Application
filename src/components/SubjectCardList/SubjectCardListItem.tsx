@@ -83,7 +83,6 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="unit-index"
-                  viewType="teachers"
                   programmeSlug={programmeSlug}
                 >
                   {subjectTitle}
@@ -92,7 +91,6 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
                 <OakLink
                   {...primaryTargetProps}
                   page="programme-index"
-                  viewType="teachers"
                   keyStageSlug={keyStageSlug}
                   subjectSlug={subjectSlug}
                   onClick={() => {

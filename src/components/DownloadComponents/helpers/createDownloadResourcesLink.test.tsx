@@ -23,7 +23,7 @@ describe("createDownloadResourcesLink()", () => {
     downloadResourcesLink = await createDownloadResourcesLink(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      true,
     );
 
     expect(downloadResourcesLink).toEqual(data.url);
@@ -38,7 +38,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     } catch (error) {
       expect(error).toEqual("bad thing");
@@ -60,7 +60,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     } catch (error) {
       expect((error as Error).message).toEqual("specific error");
@@ -82,28 +82,28 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     } catch (error) {
       expect((error as Error).message).toEqual("API error");
     }
   });
-  it("should fetch from legacy vercel legacy vercel api if viewType is teachers", async () => {
+  it("should fetch from legacy vercel legacy vercel api if isLegacyDownloads = true", async () => {
     await createDownloadResourcesLink(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      true,
     );
 
     expect(global.fetch).toBeCalledWith(
       "https://api.thenational.academy/api/downloads/lesson/lesson-slug?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
-  it("should fetch from download api if viewType is teachers-2023", async () => {
+  it("should fetch from download api if isLegacyDownloads = false", async () => {
     await createDownloadResourcesLink(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers-2023",
+      false,
     );
 
     expect(global.fetch).toBeCalledWith(
@@ -118,7 +118,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
+        false,
       );
     } catch (error) {
       expect(error).toEqual(
@@ -138,7 +138,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
+        false,
       );
     } catch (error) {
       expect(error).toEqual(

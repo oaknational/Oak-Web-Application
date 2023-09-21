@@ -72,7 +72,6 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
               <Span>
                 <OakLink
                   page={"search"}
-                  viewType="teachers"
                   query={{ term: "algebra" }}
                   $color={"black"}
                   $font="heading-7"
@@ -82,7 +81,6 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
                 </OakLink>
                 <OakLink
                   page={"search"}
-                  viewType="teachers"
                   query={{ term: "computing" }}
                   $color={"black"}
                   $font="heading-7"
@@ -93,7 +91,6 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
 
                 <OakLink
                   page={"search"}
-                  viewType="teachers"
                   query={{ term: "a midsummer nights dream" }}
                   $font="heading-7"
                   onClick={() =>

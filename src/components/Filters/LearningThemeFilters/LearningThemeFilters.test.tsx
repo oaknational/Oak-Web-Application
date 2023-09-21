@@ -23,7 +23,6 @@ describe("PostCategoryList", () => {
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
-          viewType: "teachers",
           programmeSlug: "maths-secondary-ks3",
         }}
         trackingProps={{

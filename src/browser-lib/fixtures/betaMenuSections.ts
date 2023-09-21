@@ -5,13 +5,13 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
     header: "Teachers",
     links: [
       {
-        linkTo: { page: "home", viewType: "teachers-2023" },
+        linkTo: { page: "home" },
         text: "Home",
         new: false,
         external: false,
       },
       {
-        linkTo: { page: "early-release-units-page", viewType: "teachers" },
+        linkTo: { page: "early-release-units-page" },
         text: "Early release units",
         new: true,
         external: false,
@@ -20,7 +20,6 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         linkTo: {
           page: "subject-index",
           keyStageSlug: "ks1",
-          viewType: "teachers-2023",
         },
         text: "Key stage 1",
         new: false,
@@ -30,7 +29,6 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         linkTo: {
           page: "subject-index",
           keyStageSlug: "ks2",
-          viewType: "teachers-2023",
         },
         text: "Key stage 2",
         new: false,
@@ -40,7 +38,6 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         linkTo: {
           page: "subject-index",
           keyStageSlug: "ks3",
-          viewType: "teachers-2023",
         },
         text: "Key stage 3",
         new: false,
@@ -50,7 +47,6 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         linkTo: {
           page: "subject-index",
           keyStageSlug: "ks4",
-          viewType: "teachers-2023",
         },
         text: "Key stage 4",
         new: false,
@@ -71,7 +67,7 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         external: true,
       },
       {
-        linkTo: { page: "curriculum-landing-page", viewType: "teachers-2023" },
+        linkTo: { page: "curriculum-landing-page" },
         text: "Curriculum plans",
         new: false,
         external: false,
