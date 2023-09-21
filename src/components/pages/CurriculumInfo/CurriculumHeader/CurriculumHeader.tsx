@@ -140,14 +140,16 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab === "overview",
               currentStyles: ["underline"],
+              scroll: false,
             },
             {
               label: "Unit sequence",
               page: "curriculum-units",
               viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "units",
+              isCurrent: tab == "units",
               currentStyles: ["underline"],
+              scroll: false,
             },
           ]}
           data-testid="tabularNav"

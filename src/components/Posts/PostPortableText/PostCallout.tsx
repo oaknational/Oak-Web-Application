@@ -5,7 +5,7 @@ import Flex from "../../Flex";
 import { P } from "../../Typography";
 
 const PostCallout = (
-  props: PortableTextComponentProps<{ body: PortableTextJSON }>,
+  props: PortableTextComponentProps<{ body: PortableTextJSON }>
 ) => {
   if (!props.value?.body) {
     return null;

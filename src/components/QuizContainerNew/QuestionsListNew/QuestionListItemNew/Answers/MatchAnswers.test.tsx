@@ -6,14 +6,14 @@ import { matchAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElemen
 describe("Match Answers", () => {
   it("renders all the answers and options", () => {
     const { getAllByRole } = renderWithTheme(
-      <MatchAnswers answers={matchAnswers} questionNumber={1} />,
+      <MatchAnswers answers={matchAnswers} questionNumber={1} />
     );
     expect(getAllByRole("listitem")).toHaveLength(3);
   });
 
   it("renders the correct matches", () => {
     const { getAllByRole } = renderWithTheme(
-      <MatchAnswers answers={matchAnswers} questionNumber={1} />,
+      <MatchAnswers answers={matchAnswers} questionNumber={1} />
     );
 
     const items = getAllByRole("listitem");

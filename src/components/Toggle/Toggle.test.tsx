@@ -13,7 +13,7 @@ describe("Toggle", () => {
         labelOn="label"
         labelOff="label"
         onChange={jest.fn()}
-      />,
+      />
     );
 
     const input = screen.getByRole("checkbox");
@@ -28,7 +28,7 @@ describe("Toggle", () => {
         labelOn="label on"
         labelOff="label"
         onChange={jest.fn()}
-      />,
+      />
     );
 
     const label = screen.getByText("label on");
@@ -49,7 +49,7 @@ describe("Toggle", () => {
         labelOff="label"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     const user = userEvent.setup();
@@ -66,7 +66,7 @@ describe("Toggle", () => {
         labelOff="label"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     expect(input).toBeChecked();
@@ -85,7 +85,7 @@ describe("Toggle", () => {
         checked={value}
         disabled={true}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     const input = screen.getByRole("checkbox");
@@ -98,7 +98,7 @@ describe("Toggle", () => {
         checked={value}
         disabled={false}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     expect(input).toHaveProperty("disabled", false);

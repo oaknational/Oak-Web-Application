@@ -19,7 +19,7 @@ function fetchSecrets(oakConfig) {
     const { projectId } = oakConfig.googleSecretManager;
 
     console.log(
-      `Fetching secrets from Google Secret Manager project: ${projectId}`,
+      `Fetching secrets from Google Secret Manager project: ${projectId}`
     );
     /**
      * @todo currently this will throw if a secret is not found in the secret manager.
@@ -33,7 +33,7 @@ function fetchSecrets(oakConfig) {
   }
 
   console.warn(
-    "Secrets have been specified in Oak config but no secret manager config found, eg. config.googleSecretManager.projectId",
+    "Secrets have been specified in Oak config but no secret manager config found, eg. config.googleSecretManager.projectId"
   );
 
   return {};

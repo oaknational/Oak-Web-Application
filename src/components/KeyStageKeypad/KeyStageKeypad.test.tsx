@@ -28,17 +28,17 @@ describe("components/Key Stage keypad", () => {
     "renders a key stage and year button with %p text",
     (keyStage) => {
       const { getAllByText } = renderWithTheme(
-        <KeyStageKeypad {...keyStageKeypad} />,
+        <KeyStageKeypad {...keyStageKeypad} />
       );
       const keyStageButton = getAllByText(keyStage);
 
       expect(keyStageButton[0]).toBeInTheDocument();
-    },
+    }
   );
 
   test("calls tracking.keyStageSelected once, with correct props", async () => {
     const { getByText } = renderWithTheme(
-      <KeyStageKeypad {...keyStageKeypad} />,
+      <KeyStageKeypad {...keyStageKeypad} />
     );
     const keyStageButton = getByText("KS1");
 
@@ -56,7 +56,7 @@ describe("components/Key Stage keypad", () => {
 
   test.skip.each(years)("renders a year link with %p text", (year) => {
     const { getByText } = renderWithTheme(
-      <KeyStageKeypad {...keyStageKeypad} />,
+      <KeyStageKeypad {...keyStageKeypad} />
     );
     const keyStageLink = getByText(year);
 

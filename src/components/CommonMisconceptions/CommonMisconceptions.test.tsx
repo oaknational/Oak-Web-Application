@@ -8,7 +8,7 @@ describe("CommonMisconceptions component", () => {
       { misconception: "test misconception", response: "test response" },
     ];
     const { getByTestId, getByText } = renderWithTheme(
-      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />,
+      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
     );
     const componentTitle = getByText("Common misconceptions");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe("CommonMisconceptions component", () => {
       { misconception: "test misconception", response: "test response" },
     ];
     const { getByText } = renderWithTheme(
-      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />,
+      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
     );
     const misconception = getByText("test misconception");
     const response = getByText("test response");
@@ -34,7 +34,7 @@ describe("CommonMisconceptions component", () => {
       { misconception: "test misconception", response: null },
     ];
     const { queryByText } = renderWithTheme(
-      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />,
+      <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
     );
 
     const misconception = queryByText("test misconception");

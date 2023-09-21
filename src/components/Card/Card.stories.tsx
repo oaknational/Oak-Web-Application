@@ -82,7 +82,7 @@ CardImageButton.args = {
 };
 
 export const CardLargeIconCentered: ComponentStory<typeof Component> = (
-  args,
+  args
 ) => (
   <div style={{ width: "300px", height: "336px" }}>
     <Component {...args}>

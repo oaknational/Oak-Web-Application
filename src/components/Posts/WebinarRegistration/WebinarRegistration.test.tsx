@@ -29,7 +29,7 @@ describe("WebinarRegistration", () => {
   test("clicking button does not call onSubmit() if form not filled out", async () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithTheme(
-      <WebinarRegistration {...props} onSubmit={onSubmit} />,
+      <WebinarRegistration {...props} onSubmit={onSubmit} />
     );
 
     const button = getByRole("button", { name: "Sign up" });
@@ -40,7 +40,7 @@ describe("WebinarRegistration", () => {
   test("clicking button calls onSubmit() if form filled out", async () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithTheme(
-      <WebinarRegistration {...props} onSubmit={onSubmit} />,
+      <WebinarRegistration {...props} onSubmit={onSubmit} />
     );
 
     const user = userEvent.setup();
@@ -55,7 +55,7 @@ describe("WebinarRegistration", () => {
     // visible label is just "Register", which on its own lacks context
     const onSubmit = jest.fn();
     const { getByRole } = renderWithTheme(
-      <WebinarRegistration {...props} onSubmit={onSubmit} />,
+      <WebinarRegistration {...props} onSubmit={onSubmit} />
     );
 
     const button = getByRole("button", { name: "Sign up" });

@@ -23,7 +23,7 @@ const UnstyledInput = styled.input`
 
   ::placeholder {
     color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.default.placeholder,
+      ({ theme }) => theme.input.states.default.placeholder
     )};
   }
 

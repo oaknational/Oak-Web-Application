@@ -14,7 +14,7 @@ describe("Checkbox", () => {
         checked
         labelText="Agree to terms"
         onChange={jest.fn()}
-      />,
+      />
     );
 
     const checkbox = screen.getByRole("checkbox");
@@ -33,7 +33,7 @@ describe("Checkbox", () => {
         checked
         labelText="Agree to terms"
         onChange={jest.fn()}
-      />,
+      />
     );
 
     const label = screen.getByText("Agree to terms");
@@ -55,7 +55,7 @@ describe("Checkbox", () => {
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     const user = userEvent.setup();
@@ -74,7 +74,7 @@ describe("Checkbox", () => {
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     expect(input).toBeChecked();
@@ -95,7 +95,7 @@ describe("Checkbox", () => {
         checked={value}
         onChange={() => toggleValue()}
         disabled
-      />,
+      />
     );
 
     const user = userEvent.setup();
@@ -114,7 +114,7 @@ describe("Checkbox", () => {
         checked={value}
         onChange={() => toggleValue()}
         disabled
-      />,
+      />
     );
 
     expect(input).not.toBeChecked();
@@ -134,7 +134,7 @@ describe("Checkbox", () => {
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     const user = userEvent.setup();
@@ -152,7 +152,7 @@ describe("Checkbox", () => {
         labelText="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
-      />,
+      />
     );
 
     expect(input).toBeChecked();
@@ -166,7 +166,7 @@ describe("Checkbox", () => {
         checked
         labelText="Agree to terms"
         onChange={jest.fn()}
-      />,
+      />
     );
 
     const checkboxElement = screen.getByLabelText("Agree to terms");
@@ -184,7 +184,7 @@ describe("Checkbox", () => {
         variant="cardCheckbox"
       >
         <p>Test download resource</p>
-      </Checkbox>,
+      </Checkbox>
     );
 
     const label = screen.getByText("Test download resource");

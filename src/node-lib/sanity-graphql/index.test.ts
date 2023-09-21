@@ -44,7 +44,7 @@ describe("node-lib/sanity-graphql/index.ts", () => {
     await import(".");
     expect(GraphQLClientSpy).toHaveBeenCalledWith(
       "https://the-project.api.sanity.io/v1/graphql/the-dataset/the-tag",
-      expect.any(Object),
+      expect.any(Object)
     );
   });
 

@@ -6,7 +6,7 @@ const { PropertiesEditor } = require("properties-file/editor");
 
 const SONAR_PROJECT_PROPERTIES_FILE = path.join(
   __dirname,
-  "../../sonar-project.properties",
+  "../../sonar-project.properties"
 );
 
 const newVersion = process.argv[2];
@@ -21,7 +21,7 @@ if (!versionRegex.test(newVersion)) {
 
 // Update the version in memory.
 const properties = new PropertiesEditor(
-  readFileSync(SONAR_PROJECT_PROPERTIES_FILE, "utf8"),
+  readFileSync(SONAR_PROJECT_PROPERTIES_FILE, "utf8")
 );
 properties.update("sonar.projectVersion", {
   newValue: newVersion,
@@ -31,7 +31,7 @@ properties.update("sonar.projectVersion", {
 try {
   writeFileSync(SONAR_PROJECT_PROPERTIES_FILE, properties.format());
   console.log(
-    `Updating ${SONAR_PROJECT_PROPERTIES_FILE} to version: ${newVersion}`,
+    `Updating ${SONAR_PROJECT_PROPERTIES_FILE} to version: ${newVersion}`
   );
 } catch (error) {
   console.error(error);

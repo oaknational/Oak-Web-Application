@@ -46,7 +46,7 @@ describe("lessonDownloads()", () => {
               downloads: [],
             },
           ],
-        }),
+        })
       ),
     })({
       programmeSlug: "programme-slug",
@@ -74,7 +74,7 @@ describe("lessonDownloads()", () => {
                 downloads: [],
               },
             ],
-          }),
+          })
         ),
       })({
         programmeSlug: "programme-slug",

@@ -1,3 +1,30 @@
+## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update filter spacing ([3fd8405](https://github.com/oaknational/Oak-Web-Application/commit/3fd84056fae56bfe7c71ed83afc9ba777949d9da))
+* **curric:** update filter spacingand tier filter font ([5c25454](https://github.com/oaknational/Oak-Web-Application/commit/5c25454c9e04be355d229d1c6049338342619b9d))
+
+# [1.247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.246.0...v1.247.0) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update curriculum header query ([e7ea1a0](https://github.com/oaknational/Oak-Web-Application/commit/e7ea1a0dd77b1218ab3c846a26f110c8301bfbc0))
+* **curric:** update merge conflicts ([ab9f696](https://github.com/oaknational/Oak-Web-Application/commit/ab9f6962309d672b3e76f31c7d463ca5e339d242))
+* **curric:** update slug to curriculum header ([c64c1e6](https://github.com/oaknational/Oak-Web-Application/commit/c64c1e6420811e194ff71af0603f6f8b4bda8a46))
+* **curric:** updated fixture and removed old tests ([e91d685](https://github.com/oaknational/Oak-Web-Application/commit/e91d685230d8aab287267ee917c55a6e2ad2ce00))
+* updated heading sizes ([8683456](https://github.com/oaknational/Oak-Web-Application/commit/8683456fd360edb2490143921a316e5269a7986d))
+* updated icons ([5f9d237](https://github.com/oaknational/Oak-Web-Application/commit/5f9d237e606daf139092f90f9c21aeafe89a26b5))
+* updated schemas to include sanity data separately ([af0e2aa](https://github.com/oaknational/Oak-Web-Application/commit/af0e2aa6a2805ca54c42eb8741348fb6f2523e53))
+* updated urls to remove beta ([4cf4935](https://github.com/oaknational/Oak-Web-Application/commit/4cf4935d5be88fa15c69eddb4a2e824488b9275f))
+
+
+### Features
+
+* **curric:** added sanity to overview page ([8384992](https://github.com/oaknational/Oak-Web-Application/commit/8384992c2a1ecf75266e71c65381bd787efb7b9f))
+
 # [1.246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.245.0...v1.246.0) (2023-09-20)
 
 

@@ -8,7 +8,7 @@ import { ViewType } from "@/common-lib/urls";
 const downloadLessonResources = async (
   lessonSlug: string,
   selectedResourceTypes: ResourcesToDownloadArrayType,
-  viewType: ViewType,
+  viewType: ViewType
 ) => {
   if (selectedResourceTypes?.length === 0) {
     console.log("no resources to download");
@@ -20,7 +20,7 @@ const downloadLessonResources = async (
   const downloadResourcesLink = await createDownloadResourcesLink(
     lessonSlug,
     selection,
-    viewType,
+    viewType
   );
 
   if (downloadResourcesLink) {
