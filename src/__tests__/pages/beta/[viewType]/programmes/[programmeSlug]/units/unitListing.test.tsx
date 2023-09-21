@@ -1,20 +1,20 @@
 import mockRouter from "next-router-mock";
 
-import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
+import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/teachers/programmes/[programmeSlug]/units";
-import { mockSeoResult } from "../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
-import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
-import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+} from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-const utilsMock = jest.requireMock("../../../../../../../utils/resultsPerPage");
-jest.mock("../../../../../../../utils/resultsPerPage", () => ({
+const utilsMock = jest.requireMock("@/utils/resultsPerPage");
+jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 

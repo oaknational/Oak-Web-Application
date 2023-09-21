@@ -5,8 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import removeLegacySlugSuffix from "../../../../../../../../../utils/slugModifiers/removeLegacySlugSuffix";
-
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
