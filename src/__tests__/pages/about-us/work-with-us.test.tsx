@@ -15,7 +15,7 @@ jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-export const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
+const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
   ...testAboutPageBaseData,
   heading: "Work with us",
   introPortableText: [
