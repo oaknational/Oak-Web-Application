@@ -31,6 +31,7 @@ export type ButtonProps = CommonButtonProps & {
   title?: string;
   isCurrent?: boolean;
   currentStyles?: ButtonCurrentStyles;
+  role?: string;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
