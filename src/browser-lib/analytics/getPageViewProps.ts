@@ -38,7 +38,9 @@ export const getPageViewProps = (href: string): PageViewProps => {
       const viewTypeFromPath = path.split("/")[1];
 
       const viewType =
-        viewTypeFromPath === ("teachers" || "pupils") ? viewTypeFromPath : null;
+        viewTypeFromPath === "teachers" || viewTypeFromPath === "pupils"
+          ? viewTypeFromPath
+          : null;
 
       if (viewType === "teachers" || viewType === "pupils") {
         const analyticsUseCase = getAnalyticsUseCase(viewType);
