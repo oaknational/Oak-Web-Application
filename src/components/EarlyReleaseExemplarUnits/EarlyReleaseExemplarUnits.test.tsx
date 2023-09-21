@@ -13,7 +13,7 @@ const units = unitListingFixture()
   .units.slice(0, 10)
   .map((unit) => unit[0]) as unknown as UnitListItemProps[];
 
-export const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
+const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
   heading: "Secondary units",
   subHeading: "View and download our early-release units.",
   color: "lavender50",
