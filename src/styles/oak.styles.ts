@@ -56,6 +56,7 @@ const oakStyles = css`
   */
   mjx-container {
     display: inline-grid !important;
+    margin: 0 !important;
   }
 `;
 
