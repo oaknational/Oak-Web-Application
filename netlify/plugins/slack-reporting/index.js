@@ -53,7 +53,7 @@ module.exports = function slackBuildReporterPlugin() {
         ? originalDeploymentUrl
         : originalDeploymentUrl.replace(
             "netlify.app",
-            "netlify.thenational.academy",
+            "netlify.thenational.academy"
           );
 
       // Custom plugin config

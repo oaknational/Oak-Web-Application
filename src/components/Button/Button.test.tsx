@@ -14,7 +14,7 @@ describe("Button", () => {
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         onClick={spy}
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -32,7 +32,7 @@ describe("Button", () => {
         $iconPosition="trailing"
         iconBackground="teachersHighlight"
         onClick={spy}
-      />,
+      />
     );
 
     const button = getByRole("button");
@@ -53,7 +53,7 @@ describe("Button", () => {
         iconBackground="teachersHighlight"
         disabled={true}
         onClick={spy}
-      />,
+      />
     );
 
     const button = getByRole("button");

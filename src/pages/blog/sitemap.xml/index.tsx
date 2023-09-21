@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context,
     sitemapBaseUrl,
     "/blog/",
-    blogSlugs,
+    blogSlugs
   );
 
   return getServerSideSitemap(context, fields);

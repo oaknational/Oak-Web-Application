@@ -1,15 +1,16 @@
 import { FC } from "react";
 
-import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
-import { SerializedBlog } from "../../../pages/blog/[blogSlug]";
-import formatDate from "../../../utils/formatDate";
-import AvatarImage from "../../AvatarImage";
-import Box from "../../Box";
-import CopyLinkButton from "../../Button/CopyLinkButton";
-import Flex from "../../Flex";
-import OakLink from "../../OakLink";
-import { Heading, P, Span } from "../../Typography";
 import { PostCategoryPage } from "../PostCategoryList/PostCategoryList";
+
+import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
+import { SerializedBlog } from "@/pages/blog/[blogSlug]";
+import formatDate from "@/utils/formatDate";
+import AvatarImage from "@/components/AvatarImage";
+import Box from "@/components/Box";
+import CopyLinkButton from "@/components/Button/CopyLinkButton";
+import Flex from "@/components/Flex";
+import OakLink from "@/components/OakLink";
+import { Heading, P, Span } from "@/components/Typography";
 
 type PostHeaderProps = {
   post: SerializedBlog | SerializedWebinar;
@@ -21,11 +22,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
   const formattedDate = formatDate(post.date);
   return (
     <>
-      <Flex
-        $mt={[40, 72]}
-        $justifyContent="space-between"
-        $flexDirection={["column", "row"]}
-      >
+      <Flex $justifyContent="space-between" $flexDirection={["column", "row"]}>
         <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
           <OakLink page={page} categorySlug={post.category.slug}>
             {post.category.title}

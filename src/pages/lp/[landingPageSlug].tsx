@@ -90,7 +90,7 @@ export const getServerSideProps: GetServerSideProps<
       const abTestedPage = await getABTestedLandingPage(
         landingPageSlug,
         context,
-        isPreviewMode,
+        isPreviewMode
       );
 
       if (abTestedPage) {
@@ -113,7 +113,7 @@ export const getServerSideProps: GetServerSideProps<
         landingPageSlug,
         {
           previewMode: isPreviewMode,
-        },
+        }
       );
 
       if (!landingPageResult) {

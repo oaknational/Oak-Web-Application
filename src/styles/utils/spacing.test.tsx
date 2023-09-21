@@ -9,7 +9,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $ma={12} />,
+      <StyledComponent data-testid="test" $ma={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-left: 0.75rem");
@@ -22,7 +22,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $mv={12} />,
+      <StyledComponent data-testid="test" $mv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-top: 0.75rem");
@@ -33,7 +33,7 @@ describe("spacing", () => {
       ${margin}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $mh={12} />,
+      <StyledComponent data-testid="test" $mh={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("margin-left: 0.75rem");
@@ -44,7 +44,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $pv={12} />,
+      <StyledComponent data-testid="test" $pv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-top: 0.75rem");
@@ -55,7 +55,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $ph={12} />,
+      <StyledComponent data-testid="test" $ph={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 0.75rem");
@@ -66,7 +66,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $pa={12} />,
+      <StyledComponent data-testid="test" $pa={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("padding-left: 0.75rem");
@@ -93,7 +93,7 @@ describe("spacing", () => {
       ${padding}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" {...props} />,
+      <StyledComponent data-testid="test" {...props} />
     );
 
     expect(getByTestId("test")).toHaveStyle(expected);

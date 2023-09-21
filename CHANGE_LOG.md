@@ -1,3 +1,56 @@
+## [1.247.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.2...v1.247.3) (2023-09-21)
+
+
+### Bug Fixes
+
+* increase spacing under h2 headers ([4901c43](https://github.com/oaknational/Oak-Web-Application/commit/4901c4341cfc3498b7196d650509932f6e754309))
+* update header title font size ([86fffc7](https://github.com/oaknational/Oak-Web-Application/commit/86fffc70a3bb11d00fb90aa9af1341ec226d31bb))
+* updated h2 sizes and title ([bc0a586](https://github.com/oaknational/Oak-Web-Application/commit/bc0a586514bb9ae5f51cb17e968c0650b9feb86f))
+
+## [1.247.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.1...v1.247.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **curric:** remove unit links from visualiser ([f1783ab](https://github.com/oaknational/Oak-Web-Application/commit/f1783ab3278d5679983da101be5aa17a65c55487))
+
+## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update filter spacing ([3fd8405](https://github.com/oaknational/Oak-Web-Application/commit/3fd84056fae56bfe7c71ed83afc9ba777949d9da))
+* **curric:** update filter spacingand tier filter font ([5c25454](https://github.com/oaknational/Oak-Web-Application/commit/5c25454c9e04be355d229d1c6049338342619b9d))
+
+# [1.247.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.246.0...v1.247.0) (2023-09-20)
+
+
+### Bug Fixes
+
+* **curric:** update curriculum header query ([e7ea1a0](https://github.com/oaknational/Oak-Web-Application/commit/e7ea1a0dd77b1218ab3c846a26f110c8301bfbc0))
+* **curric:** update merge conflicts ([ab9f696](https://github.com/oaknational/Oak-Web-Application/commit/ab9f6962309d672b3e76f31c7d463ca5e339d242))
+* **curric:** update slug to curriculum header ([c64c1e6](https://github.com/oaknational/Oak-Web-Application/commit/c64c1e6420811e194ff71af0603f6f8b4bda8a46))
+* **curric:** updated fixture and removed old tests ([e91d685](https://github.com/oaknational/Oak-Web-Application/commit/e91d685230d8aab287267ee917c55a6e2ad2ce00))
+* updated heading sizes ([8683456](https://github.com/oaknational/Oak-Web-Application/commit/8683456fd360edb2490143921a316e5269a7986d))
+* updated icons ([5f9d237](https://github.com/oaknational/Oak-Web-Application/commit/5f9d237e606daf139092f90f9c21aeafe89a26b5))
+* updated schemas to include sanity data separately ([af0e2aa](https://github.com/oaknational/Oak-Web-Application/commit/af0e2aa6a2805ca54c42eb8741348fb6f2523e53))
+* updated urls to remove beta ([4cf4935](https://github.com/oaknational/Oak-Web-Application/commit/4cf4935d5be88fa15c69eddb4a2e824488b9275f))
+
+
+### Features
+
+* **curric:** added sanity to overview page ([8384992](https://github.com/oaknational/Oak-Web-Application/commit/8384992c2a1ecf75266e71c65381bd787efb7b9f))
+
+# [1.246.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.245.0...v1.246.0) (2023-09-20)
+
+
+### Features
+
+* move breadcrumbs into postSingleLayout ([286aa31](https://github.com/oaknational/Oak-Web-Application/commit/286aa31f555f38509915db8aaa852b387525f14e))
+* remove breadcrumbs from navbar for blog and webinar pages and add Breadcrumbs component ([e1e39b7](https://github.com/oaknational/Oak-Web-Application/commit/e1e39b7a03f74542fdb24fb0d7386de910cba0ef))
+* remove grey underline on blog and webinar landing pages ([b729e9c](https://github.com/oaknational/Oak-Web-Application/commit/b729e9c210bf18e8051e691cccd04bcab1b45031))
+* style new breadcrumbs ([979e9c0](https://github.com/oaknational/Oak-Web-Application/commit/979e9c04c40a7bb9e7f0ba36f885221f727a8aa0))
+
 # [1.245.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.244.0...v1.245.0) (2023-09-19)
 
 

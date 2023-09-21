@@ -78,7 +78,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         {children}
       </StyledButton>
     );
-  },
+  }
 );
 
 export default IconButton;

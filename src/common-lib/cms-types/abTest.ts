@@ -13,7 +13,7 @@ import { landingPageSchema } from "./landingPage";
  *   getABTestSchema(landingPageSchema)
  */
 export function getABTestSchema<PageSchema extends z.ZodTypeAny>(
-  pageSchema: PageSchema,
+  pageSchema: PageSchema
 ) {
   return z
     .object({
@@ -24,7 +24,7 @@ export function getABTestSchema<PageSchema extends z.ZodTypeAny>(
         z.object({
           posthogVariant: z.string(),
           page: pageSchema,
-        }),
+        })
       ),
     })
     .merge(documentSchema);

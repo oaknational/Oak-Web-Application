@@ -11,7 +11,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $ba={12} />,
+      <StyledComponent data-testid="test" $ba={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-left: 0.75rem solid");
@@ -24,7 +24,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $bv={12} />,
+      <StyledComponent data-testid="test" $bv={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-top: 0.75rem solid");
@@ -35,7 +35,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $bh={12} />,
+      <StyledComponent data-testid="test" $bh={12} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-left: 0.75rem solid");
@@ -56,7 +56,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" {...props} />,
+      <StyledComponent data-testid="test" {...props} />
     );
 
     expect(getByTestId("test")).toHaveStyle(expected);
@@ -66,7 +66,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $borderColor={"grey3"} />,
+      <StyledComponent data-testid="test" $borderColor={"grey3"} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-color: #ccc");
@@ -76,7 +76,7 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $borderRadius={32} />,
+      <StyledComponent data-testid="test" $borderRadius={32} />
     );
 
     expect(getByTestId("test")).toHaveStyle("border-radius: 2rem");

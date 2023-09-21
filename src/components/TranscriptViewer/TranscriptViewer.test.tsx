@@ -11,7 +11,7 @@ const transcriptSentences = [
 describe("TranscriptViewer", () => {
   test("it renders all the sentences", () => {
     const { getByText, getAllByRole } = renderWithTheme(
-      <TranscriptViewer transcriptSentences={transcriptSentences} />,
+      <TranscriptViewer transcriptSentences={transcriptSentences} />
     );
 
     for (const s of transcriptSentences) {

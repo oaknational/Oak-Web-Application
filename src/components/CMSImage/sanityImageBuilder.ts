@@ -41,7 +41,7 @@ export function getSanityRefId(imageSource: SanityImageSource): string {
 
 export function getImageDimensions(
   id: string | undefined,
-  { fill }: { fill?: boolean },
+  { fill }: { fill?: boolean }
 ) {
   if (fill) {
     return { width: undefined, height: undefined, aspectRatio: undefined };

@@ -135,7 +135,7 @@ describe("addHubspotForms", () => {
     expect(reportError).toHaveBeenCalledWith(
       new OakError({
         code: "cms/invalid-hubspot-form",
-      }),
+      })
     );
 
     // toHaveBeenCalledWith doesn't match properly on a new OakError

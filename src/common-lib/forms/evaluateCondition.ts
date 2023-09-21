@@ -12,7 +12,7 @@ import { FieldRenderCondition, FieldValue } from "./FormDefinition";
  */
 const evaluateCondition = (
   condition: FieldRenderCondition,
-  context: Record<string, unknown>,
+  context: Record<string, unknown>
 ): boolean => {
   const contextVar = context[condition.field];
 
@@ -26,7 +26,7 @@ const evaluateCondition = (
     default:
       assertUnreachable(
         condition,
-        new Error("Encountered unknown field render condition"),
+        new Error("Encountered unknown field render condition")
       );
   }
 };

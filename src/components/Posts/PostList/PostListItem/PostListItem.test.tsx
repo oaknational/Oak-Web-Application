@@ -28,7 +28,7 @@ const testPropsWebinar: PostListItemProps = {
 describe("components/PostListItem", () => {
   test("renders the correct heading tag", () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testProps} titleTag="h6" />,
+      <PostListItem {...testProps} titleTag="h6" />
     );
     const listHeading = getByRole("heading", { level: 6 });
 
@@ -37,7 +37,7 @@ describe("components/PostListItem", () => {
 
   test("blog-post: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testProps} contentType="blog-post" />,
+      <PostListItem {...testProps} contentType="blog-post" />
     );
     const button = getByRole("link", { name: testProps.title });
     expect(button).toHaveAttribute("href", `/blog/${testProps.slug}`);
@@ -45,17 +45,17 @@ describe("components/PostListItem", () => {
 
   test("blog-post: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testProps} contentType="blog-post" />,
+      <PostListItem {...testProps} contentType="blog-post" />
     );
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(
       "href",
-      `/blog/categories/${testProps.category.slug}`,
+      `/blog/categories/${testProps.category.slug}`
     );
   });
   test("webinar: button should have the correct href", async () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testPropsWebinar} />,
+      <PostListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.title });
     expect(button).toHaveAttribute("href", `/webinars/${testProps.slug}`);
@@ -63,18 +63,18 @@ describe("components/PostListItem", () => {
 
   test("webinar: should contain link to category", async () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testPropsWebinar} />,
+      <PostListItem {...testPropsWebinar} />
     );
     const button = getByRole("link", { name: testProps.category.title });
     expect(button).toHaveAttribute(
       "href",
-      `/webinars/categories/${testProps.category.slug}`,
+      `/webinars/categories/${testProps.category.slug}`
     );
   });
 
   test("renders the provided image", () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testProps} withImage />,
+      <PostListItem {...testProps} withImage />
     );
 
     const image = getByRole("img");
@@ -88,7 +88,7 @@ describe("components/PostListItem", () => {
 
   test("doesn't render an image without withImage=true", () => {
     const { queryByRole } = renderWithTheme(
-      <PostListItem {...testProps} withImage={false} />,
+      <PostListItem {...testProps} withImage={false} />
     );
 
     const image = queryByRole("img");
@@ -97,7 +97,7 @@ describe("components/PostListItem", () => {
 
   test("sets the image alt text to be empty when not provided", () => {
     const { getByRole } = renderWithTheme(
-      <PostListItem {...testProps} withImage />,
+      <PostListItem {...testProps} withImage />
     );
 
     const image = getByRole("img");

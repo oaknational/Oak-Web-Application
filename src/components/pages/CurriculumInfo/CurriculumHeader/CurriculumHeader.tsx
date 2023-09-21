@@ -117,7 +117,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Heading tag={"h1"} $font={"heading-4"} $mv={"auto"}>
+              <Heading
+                tag={"h1"}
+                $font={["heading-4", "heading-3"]}
+                $mv={"auto"}
+              >
                 {pageTitle}
               </Heading>
             </Flex>
@@ -136,14 +140,16 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab === "overview",
               currentStyles: ["underline"],
+              scroll: false,
             },
             {
               label: "Unit sequence",
               page: "curriculum-units",
               viewType: "teachers",
               subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "units",
+              isCurrent: tab == "units",
               currentStyles: ["underline"],
+              scroll: false,
             },
           ]}
           data-testid="tabularNav"

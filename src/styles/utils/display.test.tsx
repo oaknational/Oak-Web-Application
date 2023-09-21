@@ -9,7 +9,7 @@ describe("display", () => {
       ${display}
     `;
     const { getByTestId } = render(
-      <StyledComponent data-testid="test" $display="block" />,
+      <StyledComponent data-testid="test" $display="block" />
     );
 
     expect(getByTestId("test")).toHaveStyle("display: block");
@@ -21,7 +21,7 @@ describe("display", () => {
     const { getByTestId } = render(
       // eslint-disable-next-line
       // @ts-ignore
-      <StyledComponent data-testid="test" $display={["inline", "block"]} />,
+      <StyledComponent data-testid="test" $display={["inline", "block"]} />
     );
 
     expect(getByTestId("test")).toHaveStyle("display: inline");

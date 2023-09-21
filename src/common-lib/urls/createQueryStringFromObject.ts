@@ -4,18 +4,15 @@ export type UrlQueryObject = Record<
 >;
 
 function removeNullOrUndefinedQueryParams<T extends string | string[]>(
-  search: Record<string, T | null | undefined>,
+  search: Record<string, T | null | undefined>
 ): Record<string, T> {
-  const transformed = Object.entries(search).reduce(
-    (acc, [key, value]) => {
-      if (value !== null && value !== undefined) {
-        acc[key] = value;
-      }
+  const transformed = Object.entries(search).reduce((acc, [key, value]) => {
+    if (value !== null && value !== undefined) {
+      acc[key] = value;
+    }
 
-      return acc;
-    },
-    {} as Record<string, T>,
-  );
+    return acc;
+  }, {} as Record<string, T>);
 
   return transformed;
 }
@@ -31,15 +28,12 @@ export default function createQueryStringFromObject(search?: UrlQueryObject) {
   }
   const searchWithoutNullOrUndefined = removeNullOrUndefinedQueryParams(search);
   return new URLSearchParams(
-    Object.entries(searchWithoutNullOrUndefined).reduce(
-      (acc, [key, value]) => {
-        const valueStr = Array.isArray(value) ? value.toString() : value;
-        if (valueStr) {
-          acc.push([key, valueStr]);
-        }
-        return acc;
-      },
-      [] as [string, string][],
-    ),
+    Object.entries(searchWithoutNullOrUndefined).reduce((acc, [key, value]) => {
+      const valueStr = Array.isArray(value) ? value.toString() : value;
+      if (valueStr) {
+        acc.push([key, valueStr]);
+      }
+      return acc;
+    }, [] as [string, string][])
   ).toString();
 }

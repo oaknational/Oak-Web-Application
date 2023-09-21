@@ -30,6 +30,6 @@ test("tests if no exam board is passed in, then values are empty", async () => {
   const query = await curriculumHeaderQuery({
     ...sdk,
   })({ slug: "secondary-maths" });
-  expect(query).toHaveProperty("examBoard");
-  expect(query.examBoard.title).toBe("");
+  expect(query).toHaveProperty("examboard");
+  expect(query.examboard).toBe("");
 });
