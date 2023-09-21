@@ -1,9 +1,10 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import OakLink from "../OakLink/OakLink";
+import Svg from "../Svg";
 
 import { Heading, Span } from "@/components/Typography";
 import Box from "@/components/Box";
@@ -18,10 +19,9 @@ import {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
-import Svg from "@/components/Svg";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
-import { CurriculumTab } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import TagPromotional from "@/components/TagPromotional";
 
 /**
@@ -100,16 +100,13 @@ const SchoolPhaseDropDownBox = styled(Box)<object>`
   }
 `;
 
-const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-  color: ${(props) => props.$color};
-`;
-
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
 }) => {
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "overview";
+  const path = router.asPath;
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -141,6 +138,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
   const [showExamboardError, setShowExamboardError] = useState(false);
+  const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
+  const [phaseBackground, setPhaseBackground] = useState<OakColorName>("white");
+  const [subjectBackground, setSubjectBackground] =
+    useState<OakColorName>("white");
 
   const toggleShowSubjects = () => {
     setShowSubjects(!showSubjects);
@@ -162,8 +163,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     ) {
       setSelectedPhase(null);
     }
+    if (selectedPhase) {
+      viewButtonRef.current?.focus();
+    } else {
+      setShowPhases(true);
+    }
     setShowSubjects(false);
-    setShowPhases(true);
   };
 
   const handleSelectPhase = (phase: Phase): void => {
@@ -171,6 +176,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowExamboardError(false);
     setSelectedExamboard(null);
     setSelectedPhase(phase);
+    viewButtonRef.current?.focus();
     if (
       phase.slug === "primary" ||
       !selectedSubject ||
@@ -210,6 +216,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowPhases(true);
     }
     if (canViewCurriculum) {
+      viewButtonRef.current?.blur();
       let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
       if (selectedExamboard) {
         subjectPhaseSlug += "-" + selectedExamboard.slug;
@@ -218,10 +225,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
       });
     }
-  };
-
-  const labelColor = (hasError: boolean) => {
-    return hasError ? "failure" : "inherit";
   };
 
   const phaseLabel = (phase: Phase) => {
@@ -243,15 +246,64 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
+  const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+    color: ${(props) => props.$color};
+  `;
+
+  const viewButtonRef = useRef<HTMLButtonElement>(null);
+  const depsRef = useRef(
+    selectedSubject &&
+      selectedPhase &&
+      path &&
+      path.startsWith("/teachers/curriculum/"),
+  );
+
+  useEffect(() => {
+    let hideOuterBorders = false;
+    let phaseBackgroundEnabled = true;
+    let subjectBackgroundEnabled = true;
+
+    if (selectedSubject && selectedPhase) {
+      viewButtonRef.current?.focus();
+    }
+
+    if (showSubjects) {
+      hideOuterBorders = true;
+      phaseBackgroundEnabled = false;
+    }
+
+    if (showPhases) {
+      hideOuterBorders = true;
+      subjectBackgroundEnabled = false;
+    }
+
+    setDisplayNewBorders(hideOuterBorders);
+    setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey1");
+    setSubjectBackground(subjectBackgroundEnabled ? "white" : "grey1");
+  }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
+
+  useEffect(() => {
+    if (depsRef) {
+      viewButtonRef.current?.blur();
+    }
+  }, []);
+
   return (
     <Box
       $position="relative"
       data-testid="subjectPhasePicker"
       $zIndex={"mobileFilters"}
-      $background="white"
+      $background={phaseBackground}
       $maxWidth={960}
     >
-      <BoxBorders />
+      <BoxBorders
+        gapPosition="rightTop"
+        $zIndex={"inFront"}
+        hideRight={displayNewBorders}
+        hideBottom={displayNewBorders}
+        hideLeft={displayNewBorders}
+        hideTop={displayNewBorders}
+      />
       <Flex
         $position="relative"
         $alignItems={"center"}
@@ -266,17 +318,36 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $justifyContent={"flex-start"}
           $width={["100%", "100%", "100%"]}
         >
-          <Box $position={"relative"} $width={"50%"}>
+          <Box
+            $position={"relative"}
+            $width={["50%", "50%"]}
+            $borderColor={showSubjects ? "lemon" : "transparent"}
+            $ba={3}
+            $background={subjectBackground}
+          >
+            <BoxBorders
+              $color={showSubjects ? "black" : "transparent"}
+              gapPosition="rightTop"
+            />
+
             <SelectButton
               $ph={24}
               $pv={24}
               onClick={toggleShowSubjects}
               title="Subject"
             >
-              <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
+              <Heading
+                tag={"h3"}
+                $font={"heading-light-7"}
+                $mb={4}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 Subject
               </Heading>
-              <P $font={"body-2"}>
+              <P
+                $font={"body-2"}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 {showSubjectError && (
                   <>
                     <Icon
@@ -284,7 +355,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    <span>Please select a subject</span>
+                    <span>Select a subject</span>
                   </>
                 )}
                 {selectedSubject && <>{selectedSubject.title}</>}
@@ -306,14 +377,28 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $width={"100%"}
             >
               <BoxBorders />
+
               <FocusOn
                 onClickOutside={() => setShowSubjects(false)}
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
+                returnFocus={false}
               >
+                {showSubjectError && (
+                  <Flex $flexDirection={"row"} $mb={20}>
+                    <Icon
+                      $color={"failure"}
+                      name="content-guidance"
+                      verticalAlign="bottom"
+                    />
+                    <P $color={"failure"}>
+                      Select a subject to view a curriculum
+                    </P>
+                  </Flex>
+                )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
                   <Heading tag={"h4"} $font={"heading-6"} $mr={12}>
-                    Latest resources
+                    New curriculum plans
                   </Heading>
                   <Box $pt={6}>
                     <TagPromotional
@@ -324,29 +409,33 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </Box>
                 </Flex>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>
-                {subjects.map((subject) => (
-                  <ButtonContainer
-                    className={isSelected(subject) ? "selected" : ""}
-                    key={subject.slug}
-                  >
-                    <Button
-                      $mb={24}
-                      $mr={24}
-                      background={isSelected(subject) ? "black" : "oakGrey1"}
-                      subjectIcon={subject.slug}
-                      label={subject.title}
-                      onClick={() => handleSelectSubject(subject)}
-                      title={subject.title}
-                    />
-                  </ButtonContainer>
-                ))}
+                <Box aria-label="Subject" role="radiogroup">
+                  {subjects.map((subject) => (
+                    <ButtonContainer
+                      className={isSelected(subject) ? "selected" : ""}
+                      key={subject.slug}
+                    >
+                      <Button
+                        role="radio"
+                        $mb={24}
+                        $mr={24}
+                        background={isSelected(subject) ? "black" : "oakGrey1"}
+                        subjectIcon={subject.slug}
+                        label={subject.title}
+                        onClick={() => handleSelectSubject(subject)}
+                        aria-checked={isSelected(subject)}
+                        title={subject.title}
+                      />
+                    </ButtonContainer>
+                  ))}
+                </Box>
                 <Box $mt={24}>
                   <OakLink
                     page={"oak-curriculum"}
                     $textDecoration={"underline"}
                     $font={"heading-7"}
                   >
-                    See curricula from previous academic years
+                    Previously released plans
                     <Icon
                       $color={"black"}
                       name="external"
@@ -357,7 +446,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </FocusOn>
             </Box>
           )}
-          <Box $height={80} $position={"relative"}>
+          <Box
+            $height={80}
+            $position={"relative"}
+            $display={displayNewBorders ? "none" : "block"}
+            $zIndex={"inFront"}
+          >
             <BoxBorders
               $color="grey2"
               hideBottom={true}
@@ -365,17 +459,38 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               hideRight={true}
             />
           </Box>
-          <Box $position={"relative"} $width={"50%"}>
+          <Flex
+            $position={"relative"}
+            $width={["50%", "60%"]}
+            $borderColor={showPhases ? "lemon" : "transparent"}
+            $ba={3}
+            $background={phaseBackground}
+            $flexDirection={"row"}
+          >
+            <BoxBorders
+              $color={showPhases ? "black" : "transparent"}
+              gapPosition="rightTop"
+            />
             <SelectButton
               $ph={24}
               $pv={24}
               onClick={toggleShowPhases}
               title="Phase"
             >
-              <Heading tag={"h3"} $font={"heading-light-7"} $mb={4}>
+              <Heading
+                tag={"h3"}
+                $font={"heading-light-7"}
+                $mb={4}
+                $color={!showSubjectError ? "black" : "failure"}
+              >
                 School phase
               </Heading>
-              <P $font={"body-2"}>
+              <P
+                $font={"body-2"}
+                $color={
+                  !showPhaseError && !showExamboardError ? "black" : "failure"
+                }
+              >
                 {showPhaseError && (
                   <>
                     <Icon
@@ -383,7 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Please select a phase
+                    Select a school phase
                   </>
                 )}
                 {showExamboardError && (
@@ -393,7 +508,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Select an exam board
+                    Select an exam board option
                   </>
                 )}
                 {selectedPhase && !showExamboardError && (
@@ -427,65 +542,108 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onClickOutside={() => setShowPhases(false)}
                   onEscapeKey={() => setShowPhases(false)}
                   scrollLock={false}
+                  returnFocus={false}
                 >
-                  <Heading tag={"h4"} $font={"heading-light-7"} $mb={16}>
+                  {showPhaseError && (
+                    <Flex $flexDirection={"row"} $mb={20}>
+                      <Icon
+                        $color={"failure"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <P $color={"failure"}>
+                        Select a school phase to view the curriculum
+                      </P>
+                    </Flex>
+                  )}
+                  {showExamboardError ? (
+                    <Flex $flexDirection={"row"} $mb={20}>
+                      <Icon
+                        $color={"failure"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <P $color={"failure"}>
+                        Select an exam board to view the curriculum
+                      </P>
+                    </Flex>
+                  ) : (
+                    "Exam board"
+                  )}
+                  <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
                   </Heading>
-                  {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                    <ButtonContainer className="multi-line" key={phase.slug}>
-                      <Button
-                        $mr={index === 0 ? 28 : 0}
-                        $mv={index === 0 ? 12 : 0}
-                        background={isSelected(phase) ? "black" : "oakGrey1"}
-                        label={phaseLabel(phase)}
-                        onClick={() => handleSelectPhase(phase)}
-                        title={phase.title}
-                      />
-                    </ButtonContainer>
-                  ))}
+                  <Box aria-label="School phase" radioGroup="radiogroup">
+                    {(selectedSubject?.phases ?? phases).map((phase, index) => (
+                      <ButtonContainer className="multi-line" key={phase.slug}>
+                        <Button
+                          role="radio"
+                          $mr={index === 0 ? 28 : 0}
+                          $mv={index === 0 ? 12 : 0}
+                          background={isSelected(phase) ? "black" : "oakGrey1"}
+                          label={phaseLabel(phase)}
+                          onClick={() => handleSelectPhase(phase)}
+                          aria-checked={isSelected(phase)}
+                          title={phase.title}
+                        />
+                      </ButtonContainer>
+                    ))}
+                  </Box>
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
                         <Heading
                           tag={"h4"}
-                          $color={labelColor(showExamboardError)}
-                          $font={"heading-light-7"}
+                          $font={"heading-6"}
                           $mb={16}
                           $mt={16}
                         >
-                          {showExamboardError ? (
-                            <>
-                              <Icon
-                                $color={"failure"}
-                                name="content-guidance"
-                                verticalAlign="bottom"
-                              />
-                              <span>Please select an exam board</span>
-                            </>
-                          ) : (
-                            "Exam board"
-                          )}
+                          Exam board
                         </Heading>
-                        {selectedSubject.examboards.map((examboard) => (
-                          <ButtonContainer key={examboard.slug}>
-                            <Button
-                              $mr={24}
-                              background={
-                                isSelected(examboard) ? "black" : "oakGrey1"
-                              }
-                              label={examboard.title}
-                              onClick={() => handleSelectExamboard(examboard)}
-                              size="large"
-                              title={examboard.title}
-                            />
-                          </ButtonContainer>
-                        ))}
+                        <Box aria-label="Exam board" role="radiogroup">
+                          {selectedSubject.examboards.map((examboard) => (
+                            <ButtonContainer key={examboard.slug}>
+                              <Button
+                                role="radio"
+                                $mr={24}
+                                background={
+                                  isSelected(examboard) ? "black" : "oakGrey1"
+                                }
+                                label={examboard.title}
+                                onClick={() => handleSelectExamboard(examboard)}
+                                size="large"
+                                title={examboard.title}
+                                aria-checked={isSelected(examboard)}
+                              />
+                            </ButtonContainer>
+                          ))}
+                        </Box>
                       </>
                     )}
                 </FocusOn>
               </SchoolPhaseDropDownBox>
             )}
-          </Box>
+            <Box
+              $pl={18}
+              $pr={18}
+              $pt={[18, 0]}
+              $pb={[18, 0]}
+              $width={["100%", "fit-content"]}
+              $display={["none", "block"]}
+              $mt={22}
+            >
+              <Button
+                label="View"
+                icon="arrow-right"
+                $iconPosition="trailing"
+                iconBackground="transparent"
+                onClick={handleViewCurriculum}
+                size="large"
+                $fullWidth={false}
+                ref={viewButtonRef}
+              />
+            </Box>
+          </Flex>
         </Flex>
         <Box
           $width={"90%"}
@@ -500,6 +658,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             hideLeft={true}
           />
         </Box>
+
         <Box
           $pl={18}
           $pr={18}
@@ -516,24 +675,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             onClick={handleViewCurriculum}
             size="large"
             $fullWidth={true}
-          />
-        </Box>
-        <Box
-          $pl={18}
-          $pr={18}
-          $pt={[18, 0]}
-          $pb={[18, 0]}
-          $width={["100%", "fit-content"]}
-          $display={["none", "block"]}
-        >
-          <Button
-            label="View"
-            icon="arrow-right"
-            $iconPosition="trailing"
-            iconBackground="transparent"
-            onClick={handleViewCurriculum}
-            size="large"
-            $fullWidth={false}
           />
         </Box>
       </Flex>

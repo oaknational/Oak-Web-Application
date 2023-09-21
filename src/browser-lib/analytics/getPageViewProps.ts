@@ -35,9 +35,12 @@ export const getPageViewProps = (href: string): PageViewProps => {
         analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
       };
 
-      const params = matchResult.params;
+      const viewTypeFromPath = path.split("/")[1];
 
-      const viewType = "viewType" in params ? params.viewType : null;
+      const viewType =
+        viewTypeFromPath === "teachers" || viewTypeFromPath === "pupils"
+          ? viewTypeFromPath
+          : null;
 
       if (viewType === "teachers" || viewType === "pupils") {
         const analyticsUseCase = getAnalyticsUseCase(viewType);
@@ -49,7 +52,7 @@ export const getPageViewProps = (href: string): PageViewProps => {
     {
       pageName: null as unknown as PageNameValueType,
       analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
-    }
+    },
   );
 
   return pageViewProps;

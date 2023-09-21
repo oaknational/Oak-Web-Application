@@ -3,8 +3,8 @@ import {
   curriculumOverviewMVSchema,
 } from "../queries/curriculumOverview/curriculumOverview.schema";
 
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types/curriculumOverview";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export const curriculumOverviewTabFixture = (
   partial?: Partial<curriculumOverviewTabSchema>,

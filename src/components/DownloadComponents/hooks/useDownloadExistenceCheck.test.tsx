@@ -17,7 +17,7 @@ const getDownloadResourcesExistenceData = {
 };
 
 const getDownloadResourcesExistenceMock = jest.fn(
-  () => getDownloadResourcesExistenceData
+  () => getDownloadResourcesExistenceData,
 );
 
 jest.mock("../helpers/getDownloadResourcesExistence", () => ({
@@ -37,15 +37,15 @@ describe("useDownloadExistenceCheck", () => {
       "worksheet-pdf",
     ];
     const onComplete = jest.fn();
-    const viewType = "teachers";
+    const isLegacyDownload = true;
 
     renderHook(() =>
       useDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
-        viewType,
-      })
+        isLegacyDownload,
+      }),
     );
 
     await waitFor(() => {
@@ -53,7 +53,7 @@ describe("useDownloadExistenceCheck", () => {
       expect(getDownloadResourcesExistenceMock).toBeCalledWith(
         lessonSlug,
         "exit-quiz-answers,worksheet-pdf",
-        "teachers"
+        true,
       );
     });
 
@@ -75,15 +75,15 @@ describe("useDownloadExistenceCheck", () => {
         "worksheet-pdf": true,
       },
     }));
-    const viewType = "teachers";
+    const isLegacyDownload = true;
 
     renderHook(() =>
       useDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
-        viewType,
-      })
+        isLegacyDownload,
+      }),
     );
 
     await waitFor(() => {

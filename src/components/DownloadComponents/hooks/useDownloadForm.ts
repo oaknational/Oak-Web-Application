@@ -12,13 +12,11 @@ import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-import { ViewType } from "@/common-lib/urls";
-
 const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
-  viewType: ViewType;
+  isLegacyDownload: boolean;
 };
 
 const useDownloadForm = (props: UseDownloadFormProps) => {
@@ -83,7 +81,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
     await downloadLessonResources(
       slug,
       downloads as DownloadResourceType[],
-      props.viewType
+      props.isLegacyDownload,
     );
     return hubspotFormResponse;
   };

@@ -14,7 +14,7 @@ async function main() {
 
   if (!socialSharingImage) {
     throw new Error(
-      "socialSharingImage not found in Sanity, this is likely a schema issue"
+      "socialSharingImage not found in Sanity, this is likely a schema issue",
     );
   }
 
@@ -22,7 +22,7 @@ async function main() {
 
   if (!asset) {
     throw new Error(
-      "socialSharingImage.asset not found in Sanity, this is likely because the image hasn't been uploaded/published yet"
+      "socialSharingImage.asset not found in Sanity, this is likely because the image hasn't been uploaded/published yet",
     );
   }
 

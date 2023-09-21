@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const NewMenuLink = Template.bind({});
 NewMenuLink.args = {
   link: {
-    linkTo: { page: "home", viewType: "teachers-2023" },
+    linkTo: { page: "home" },
     text: "Home",
     new: true,
     external: false,

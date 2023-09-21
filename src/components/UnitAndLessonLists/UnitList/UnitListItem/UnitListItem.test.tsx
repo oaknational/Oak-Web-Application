@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
-
 import UnitListItem from "./UnitListItem";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const props = {
   title: "Numbers and numerals",
@@ -19,7 +19,7 @@ const props = {
   keyStageSlug: "ks1",
   keyStageTitle: "Key stage 1",
   quizCount: 3,
-  programmeSlug: "maths--primary-ks1",
+  programmeSlug: "maths--primary-ks1-l",
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
@@ -34,7 +34,7 @@ const props = {
 
 const unitSelected = jest.fn();
 const searchResultClicked = jest.fn();
-jest.mock("../../../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -57,6 +57,7 @@ describe("Unit List Item", () => {
     const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
+
     await user.click(unit);
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
@@ -74,12 +75,13 @@ describe("Unit List Item", () => {
 
   test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
     const { getByText } = render(
-      <UnitListItem {...{ ...props, fromSearchPage: true }} />
+      <UnitListItem {...{ ...props, fromSearchPage: true }} />,
     );
 
     const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
+
     await user.click(unit);
 
     expect(searchResultClicked).toHaveBeenCalledTimes(1);

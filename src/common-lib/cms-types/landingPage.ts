@@ -42,7 +42,7 @@ export const landingPageSchema = z
           type: z.literal("LandingPageQuoteBlock"),
           quote: quoteSchema,
         }),
-      ])
+      ]),
     ),
     seo: seoSchema.nullish(),
   })

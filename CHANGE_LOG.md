@@ -1,3 +1,42 @@
+# [1.248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.5...v1.248.0) (2023-09-21)
+
+
+### Bug Fixes
+
+*  sonar cloud bug ([186d603](https://github.com/oaknational/Oak-Web-Application/commit/186d60392a4ea6b48e021d443066ed70fa36cde1))
+* pa11y url for legacy ([7c39903](https://github.com/oaknational/Oak-Web-Application/commit/7c3990378eefee07efaeb34ed1941e9602552978))
+* types ([9789c7d](https://github.com/oaknational/Oak-Web-Application/commit/9789c7d58500419e62ab66597e85ae073fda984c))
+
+
+### Features
+
+* legacy suffix added to programme slugs ([4f43620](https://github.com/oaknational/Oak-Web-Application/commit/4f4362069911c6f725c0f359d7ca293a2a9eadd3))
+
+## [1.247.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.4...v1.247.5) (2023-09-21)
+
+
+### Bug Fixes
+
+* turns background white once both are selected ([191b7c3](https://github.com/oaknational/Oak-Web-Application/commit/191b7c349aec45c251cdf9c6ce5779a252979138))
+
+## [1.247.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.3...v1.247.4) (2023-09-21)
+
+## [1.247.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.2...v1.247.3) (2023-09-21)
+
+
+### Bug Fixes
+
+* increase spacing under h2 headers ([4901c43](https://github.com/oaknational/Oak-Web-Application/commit/4901c4341cfc3498b7196d650509932f6e754309))
+* update header title font size ([86fffc7](https://github.com/oaknational/Oak-Web-Application/commit/86fffc70a3bb11d00fb90aa9af1341ec226d31bb))
+* updated h2 sizes and title ([bc0a586](https://github.com/oaknational/Oak-Web-Application/commit/bc0a586514bb9ae5f51cb17e968c0650b9feb86f))
+
+## [1.247.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.1...v1.247.2) (2023-09-21)
+
+
+### Bug Fixes
+
+* **curric:** remove unit links from visualiser ([f1783ab](https://github.com/oaknational/Oak-Web-Application/commit/f1783ab3278d5679983da101be5aa17a65c55487))
+
 ## [1.247.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.0...v1.247.1) (2023-09-20)
 
 

@@ -10,8 +10,8 @@ import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types/curriculumOverview";
 
 export type OverviewTabProps = {
   data: {
@@ -40,10 +40,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         >
           <Heading
             tag="h2"
-            $font={["heading-5", "heading-6"]}
+            $font={["heading-5", "heading-4"]}
             data-testid="intent-heading"
+            $mb={20}
+            line-height={48}
           >
-            Curriculum intent
+            Curriculum explainer
           </Heading>
           <Typography
             $font={["body-2", "body-1"]}
@@ -83,7 +85,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"aqua30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-6", "heading-5"]}>
+          <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
@@ -123,7 +125,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             image={curriculumPartner.image}
           />
           <Box>
-            <Heading tag="h2" $font={"heading-5"}>
+            <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={20}>
               Our curriculum partner
             </Heading>
             <Typography $font={"body-1"}>{partnerBio}</Typography>

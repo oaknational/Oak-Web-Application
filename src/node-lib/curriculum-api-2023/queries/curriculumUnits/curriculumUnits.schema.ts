@@ -24,13 +24,13 @@ const curriculumUnitsSchema = z.object({
         z.object({
           title: z.string(),
           slug: z.string(),
-        })
+        }),
       ),
       domains: z.array(
         z.object({
           title: z.string(),
           tag_id: z.number(),
-        })
+        }),
       ),
     })
     .strict()
