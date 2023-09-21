@@ -199,6 +199,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const hasResourcesToDownload =
     getInitialResourcesToDownloadState().length > 0;
 
+  const [apiError, setApiError] = useState<string | undefined>(undefined);
+
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
 
@@ -208,39 +210,48 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   const { onSubmit } = useDownloadForm({ viewType: viewType });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
-    await debouncedSubmit({
-      data,
-      lessonSlug,
-      setIsAttemptingDownload,
-      setEditDetailsClicked,
-      onSubmit,
-    });
-    const {
-      schoolOption,
-      schoolName,
-      schoolUrn,
-      selectedResourcesForTracking,
-    } = getFormattedDetailsForTracking({
-      school: data.school,
-      selectedResources,
-    });
+    try {
+      await debouncedSubmit({
+        data,
+        lessonSlug,
+        setIsAttemptingDownload,
+        setEditDetailsClicked,
+        setApiError,
+        onSubmit,
+      });
+      const {
+        schoolOption,
+        schoolName,
+        schoolUrn,
+        selectedResourcesForTracking,
+      } = getFormattedDetailsForTracking({
+        school: data.school,
+        selectedResources,
+      });
 
-    track.lessonResourcesDownloaded({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      unitName: unitTitle,
-      unitSlug,
-      subjectTitle,
-      subjectSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      resourceType: selectedResourcesForTracking,
-      analyticsUseCase,
-      schoolUrn,
-      schoolName,
-      schoolOption,
-      emailSupplied: data?.email ? true : false,
-    });
+      track.lessonResourcesDownloaded({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        unitName: unitTitle,
+        unitSlug,
+        subjectTitle,
+        subjectSlug,
+        lessonName: lessonTitle,
+        lessonSlug,
+        resourceType: selectedResourcesForTracking,
+        analyticsUseCase,
+        schoolUrn,
+        schoolName,
+        schoolOption,
+        emailSupplied: data?.email ? true : false,
+      });
+    } catch (error) {
+      // TODO: handle error with some UI feedback
+      setIsAttemptingDownload(false);
+      setApiError(
+        "There was an error downloading your files. Please try again.",
+      );
+    }
   };
 
   const getFormErrorMessage = () => {
@@ -421,6 +432,17 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                         withoutMarginBottom
                       >
                         {getFormErrorMessage()}
+                      </FieldError>
+                    </Box>
+                  )}
+                  {apiError && !hasFormErrors && (
+                    <Box $mr={24} $textAlign={"left"}>
+                      <FieldError
+                        id="download-form-error"
+                        variant={"large"}
+                        withoutMarginBottom
+                      >
+                        {apiError}
                       </FieldError>
                     </Box>
                   )}

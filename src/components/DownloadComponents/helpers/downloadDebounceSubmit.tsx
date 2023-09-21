@@ -11,32 +11,35 @@ export type DownloadDebouncedSubmitProps = {
   lessonSlug: string;
   setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setApiError: React.Dispatch<React.SetStateAction<string | undefined>>;
   onSubmit: (
     data: DownloadFormProps,
-    lessonSlug: string
+    lessonSlug: string,
   ) => Promise<string | undefined>;
 };
 
 const downloadDebouncedSubmit = async (
-  downloadDebouncedSubmitProps: DownloadDebouncedSubmitProps
+  downloadDebouncedSubmitProps: DownloadDebouncedSubmitProps,
 ): Promise<void> => {
   const {
     data,
     lessonSlug,
     setIsAttemptingDownload,
+    setApiError,
     setEditDetailsClicked,
     onSubmit,
   } = downloadDebouncedSubmitProps;
   try {
     const debouncedFunction = debounce(
       async () => {
+        setApiError(undefined);
         setIsAttemptingDownload(true);
         await onSubmit(data, lessonSlug);
         setIsAttemptingDownload(false);
         setEditDetailsClicked(false);
       },
       4000,
-      { leading: true }
+      { leading: true },
     );
     await debouncedFunction();
   } catch (error) {
@@ -45,6 +48,7 @@ const downloadDebouncedSubmit = async (
       originalError: error,
     });
     await reportError(oakError);
+    throw oakError;
   }
 };
 
