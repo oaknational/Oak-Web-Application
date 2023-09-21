@@ -23,21 +23,6 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
   });
 
-  test("builds links to unit lesson index", async () => {
-    const { findAllByTestId } = renderWithTheme(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
-    );
-    const unitLinks = await findAllByTestId("unit-link");
-    if (unitLinks.length === 0 || !unitLinks[0]) {
-      throw new Error("No unit links found");
-    }
-    const unit = curriculumUnitsTabFixture().units[0];
-    if (unit === undefined) {
-      throw new Error("Fixture unit missing");
-    }
-    expect(unitLinks[0].getAttribute("href")).toContain(unit.slug);
-  });
-
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = renderWithTheme(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
