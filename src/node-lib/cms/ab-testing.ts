@@ -41,7 +41,7 @@ export async function getABTestedLandingPage(
 
   if (posthogUserId) {
     const variantName = await posthogClient.getFeatureFlag(
-      "cms_ab_spike_dev",
+      abTest.posthogFeatureFlagKey,
       posthogUserId,
     );
 
