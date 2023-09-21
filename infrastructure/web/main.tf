@@ -1,5 +1,9 @@
 terraform {
   required_providers {
+    datadog = {
+      source  = "DataDog/datadog"
+      version = "~> 3.30.0"
+    }
     google = {
       source  = "hashicorp/google"
       version = "4.50.0"
@@ -22,6 +26,10 @@ data "terraform_remote_state" "google_cloud" {
       name = "google-cloud-core"
     }
   }
+}
+
+provider "datadog" {
+  api_url = "https://api.datadoghq.eu/"
 }
 
 provider "google" {
