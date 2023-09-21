@@ -24,9 +24,7 @@ export const CardLink: Story = {
         tag={"h5"}
         $color={"grey8"}
       >
-        <Component page="home" viewType={"teachers"}>
-          Card link
-        </Component>
+        <Component page="home">Card link</Component>
       </Heading>
       <P>
         Drop a CardLink component into a Card, pass in an href and the whole

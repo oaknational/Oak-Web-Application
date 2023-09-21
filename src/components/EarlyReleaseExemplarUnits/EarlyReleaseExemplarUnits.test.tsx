@@ -23,7 +23,6 @@ const earlyReleaseExemplarUnitsProps: EarlyReleaseExemplarUnitsProps = {
     occupation: "Class Teacher, St Agnes Academy",
   },
   units: units,
-  viewType: "teachers-2023",
 };
 
 const render = renderWithProviders();

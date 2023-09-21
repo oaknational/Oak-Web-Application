@@ -10,8 +10,8 @@ import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types/curriculumOverview";
 
 export type OverviewTabProps = {
   data: {
