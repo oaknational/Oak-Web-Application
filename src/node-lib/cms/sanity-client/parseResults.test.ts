@@ -8,7 +8,7 @@ describe("cms/sanity-client/parseResults", () => {
       const filtered = uniqBy(
         [1, 2, 3, 2],
         (x) => x,
-        (_prev, current) => current
+        (_prev, current) => current,
       );
       /**
        * Surprising result here - because the values being compared
@@ -25,7 +25,7 @@ describe("cms/sanity-client/parseResults", () => {
       const filtered = uniqBy(
         [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 2 }],
         (x) => x.id,
-        (_prev, current) => current
+        (_prev, current) => current,
       );
 
       expect(filtered).toEqual([{ id: 1 }, { id: 3 }, { id: 2 }]);
@@ -36,7 +36,7 @@ describe("cms/sanity-client/parseResults", () => {
         [{ id: 1 }, { id: 2, keepMe: true }, { id: 3 }, { id: 2 }],
         (x) => x.id,
         (prev, current) =>
-          current.keepMe ? current : prev.keepMe ? prev : current
+          current.keepMe ? current : prev.keepMe ? prev : current,
       );
 
       expect(filtered).toEqual([{ id: 1 }, { id: 2, keepMe: true }, { id: 3 }]);

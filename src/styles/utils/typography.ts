@@ -71,13 +71,13 @@ const getFontSize = (font?: FontVariant | null): string | null | undefined => {
   return getRemUnits(fontSizePx);
 };
 const getLineHeight = (
-  font?: FontVariant | null
+  font?: FontVariant | null,
 ): string | null | undefined => {
   if (!font) return;
   return getRemUnits(FONT_VARIANTS[font][1]);
 };
 const getLetterSpacing = (
-  font?: FontVariant | null
+  font?: FontVariant | null,
 ): LetterSpacing | undefined => {
   if (!font) return;
   return FONT_VARIANTS[font][3];

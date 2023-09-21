@@ -95,7 +95,7 @@ const fieldDependencyObject = z.object({
       z.object({
         dependentFormField: fieldWithType,
         filters: z.array(dependentFieldFilterObject),
-      })
+      }),
     )
     .nullish(),
 });
@@ -116,7 +116,7 @@ export const hubspotFormDefinitionSchema = z.object({
   formFieldGroups: z.array(
     z.object({
       fields: z.array(hubspotFormFieldSchema),
-    })
+    }),
   ),
 });
 

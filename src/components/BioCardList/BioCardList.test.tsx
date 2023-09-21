@@ -22,7 +22,7 @@ describe("BioCardList", () => {
             },
           ]}
         />
-      </OverlayProvider>
+      </OverlayProvider>,
     );
 
     const headings = getAllByRole("heading", { level: 3 });
@@ -49,7 +49,7 @@ describe("BioCardList", () => {
           ]}
           withModals
         />
-      </OverlayProvider>
+      </OverlayProvider>,
     );
 
     const cardClickTarget = getByRole("button", {
@@ -74,7 +74,7 @@ describe("BioCardList", () => {
             },
           ]}
         />
-      </OverlayProvider>
+      </OverlayProvider>,
     );
 
     const cardClickTarget = queryByText("See bio");
@@ -93,7 +93,7 @@ describe("BioCardList", () => {
           ]}
           withModals={true}
         />
-      </OverlayProvider>
+      </OverlayProvider>,
     );
 
     const button = getByTitle("See bio for Crayon Person");

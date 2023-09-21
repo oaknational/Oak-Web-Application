@@ -63,7 +63,7 @@ describe("lessonOverview()", () => {
                 "video-with-sign-language-mux-playback-id",
             },
           ],
-        })
+        }),
       ),
     })({
       lessonSlug: "lesson-slug",
@@ -105,7 +105,7 @@ describe("lessonOverview()", () => {
                 expired: false,
               },
             ],
-          })
+          }),
         ),
       })({
         lessonSlug: "lesson-slug",

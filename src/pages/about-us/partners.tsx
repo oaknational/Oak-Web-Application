@@ -25,7 +25,7 @@ export type AboutPageProps = {
 };
 
 const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
-  props
+  props,
 ) => {
   return (
     <Flex $mb={32} $minWidth={"20%"}>
@@ -109,7 +109,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<AboutPageProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "partners::getStaticProps",

@@ -108,14 +108,14 @@ describe("pages/index.tsx", () => {
     expect(
       getByRole(items[0] as HTMLElement, "link", {
         name: "Some blog post",
-      })
+      }),
     ).toHaveAttribute("href", "/blog/some-blog-post");
   });
 
   describe.skip("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />
+        <Home pageData={{ ...pageData, seo: undefined }} posts={[]} />,
       );
 
       expect(seo).toEqual({});
@@ -123,7 +123,7 @@ describe("pages/index.tsx", () => {
 
     it("renders the correct SEO details from the CMS", () => {
       const { seo } = renderWithSeo()(
-        <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />
+        <Home pageData={{ ...pageData, seo: mockSeo() }} posts={[]} />,
       );
 
       expect(seo).toEqual({});
@@ -209,7 +209,7 @@ describe("pages/index.tsx", () => {
       expect(mockCMSClient.blogPosts).toHaveBeenCalledWith(
         expect.objectContaining({
           previewMode: false,
-        })
+        }),
       );
     });
 

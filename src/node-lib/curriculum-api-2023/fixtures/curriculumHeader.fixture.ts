@@ -1,7 +1,7 @@
 import { CurriculumHeaderData } from "..";
 
 const curriculumHeaderFixture = (
-  partial?: Partial<CurriculumHeaderData>
+  partial?: Partial<CurriculumHeaderData>,
 ): CurriculumHeaderData => {
   return {
     subject: "Maths",
