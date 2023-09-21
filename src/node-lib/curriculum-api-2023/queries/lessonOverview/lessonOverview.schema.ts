@@ -155,7 +155,7 @@ const baseLessonOverviewSchema = z.object({
   videoWithSignLanguageMuxPlaybackId: z.string().nullable(),
   transcriptSentences: z.array(z.string()).nullable(),
   isWorksheetLandscape: z.boolean().optional().nullable(),
-  hasDownloadableResources: z.boolean().optional().nullable(),
+  hasDownloadableResources: z.boolean(),
   hasCopyrightMaterial: z.boolean().optional().nullable(),
   yearTitle: z.string().nullable().optional(),
   expired: z.boolean().optional().nullable(),
