@@ -1,5 +1,6 @@
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Flex from "@/components/Flex";
+import { TagFunctional } from "@/components/TagFunctional";
 import { Heading, Span } from "@/components/Typography";
 
 type LessonPathwayCardProps = {
@@ -21,18 +22,7 @@ export function LessonPathwayCard(props: LessonPathwayCardProps) {
     <Flex $flexDirection={["column"]} $background="white" $borderRadius={4}>
       <Heading tag="h5">
         <Flex $flexDirection={["row"]} $pa={16}>
-          {examboardTitle && (
-            <Span
-              $background="aqua30"
-              $borderRadius={4}
-              $borderColor="aqua50"
-              $pa={8}
-              $font="heading-light-7"
-              $mr={10}
-            >
-              {examboardTitle}
-            </Span>
-          )}
+          {examboardTitle && <TagFunctional text={examboardTitle} $mr={10} />}
           <Span $font="heading-5">{subjectTitle}</Span>
         </Flex>
       </Heading>
