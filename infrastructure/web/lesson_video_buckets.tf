@@ -12,8 +12,12 @@ resource "google_storage_bucket" "lesson_videos" {
   }
 
   cors {
-    origin          = [var.retool_origin]
-    method          = ["GET", "HEAD", "PUT", "POST"]
+    origin = [
+      "https://creator.thenational.academy",
+      "https://creator-staging.thenational.academy",
+      "https://creator-demo.thenational.academy",
+    ]
+    method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
     response_header = ["Content-Type", "x-goog-acl"]
     max_age_seconds = 3600
   }

@@ -3,11 +3,6 @@ variable "region" {
   default = "europe-west2"
 }
 
-variable "retool_origin" {
-  type    = string
-  default = "https://creator.thenational.academy"
-}
-
 variable "env" {
   description = "The name of the environment"
   type        = string
