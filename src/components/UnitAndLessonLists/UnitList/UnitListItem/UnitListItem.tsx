@@ -67,7 +67,6 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackUnitSelected = () => {
-    console.log("THIS IS TRACKED", fromSearchPage, hitCount, currentPage);
     if (fromSearchPage && hitCount && currentPage) {
       track.searchResultClicked({
         keyStageSlug: keyStageSlug,
