@@ -1,3 +1,17 @@
+# [1.248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.5...v1.248.0) (2023-09-21)
+
+
+### Bug Fixes
+
+*  sonar cloud bug ([186d603](https://github.com/oaknational/Oak-Web-Application/commit/186d60392a4ea6b48e021d443066ed70fa36cde1))
+* pa11y url for legacy ([7c39903](https://github.com/oaknational/Oak-Web-Application/commit/7c3990378eefee07efaeb34ed1941e9602552978))
+* types ([9789c7d](https://github.com/oaknational/Oak-Web-Application/commit/9789c7d58500419e62ab66597e85ae073fda984c))
+
+
+### Features
+
+* legacy suffix added to programme slugs ([4f43620](https://github.com/oaknational/Oak-Web-Application/commit/4f4362069911c6f725c0f359d7ca293a2a9eadd3))
+
 ## [1.247.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.4...v1.247.5) (2023-09-21)
 
 
