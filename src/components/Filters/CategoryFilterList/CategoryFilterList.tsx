@@ -16,7 +16,7 @@ export interface CategoryFilterListProps<T extends CategoryLinkProps>
   trackingProps?: LearningThemeSelectedTrackingProps;
 }
 const CategoryFilterList = <T extends CategoryLinkProps>(
-  props: CategoryFilterListProps<T>,
+  props: CategoryFilterListProps<T>
 ) => {
   const {
     categories,

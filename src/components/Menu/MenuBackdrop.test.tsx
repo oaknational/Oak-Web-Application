@@ -16,7 +16,7 @@ describe("menu backdrop", () => {
     const { getByTestId } = renderWithTheme(
       <MenuProvider>
         <MenuBackdrop state="exited" />
-      </MenuProvider>,
+      </MenuProvider>
     );
 
     expect(getByTestId("menu-backdrop")).not.toBeVisible();
@@ -26,7 +26,7 @@ describe("menu backdrop", () => {
     const { getByTestId } = renderWithTheme(
       <MenuProvider>
         <MenuBackdrop state="entering" />
-      </MenuProvider>,
+      </MenuProvider>
     );
 
     expect(getByTestId("menu-backdrop")).toBeVisible();

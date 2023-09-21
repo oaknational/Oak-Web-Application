@@ -41,7 +41,7 @@ describe("ab-testing", () => {
   describe("getABTestedLandingPage", () => {
     beforeEach(() => {
       mockCMSClient.landingPageABTestBySlug.mockResolvedValue(
-        testABTestedLandingPage,
+        testABTestedLandingPage
       );
     });
 
@@ -55,13 +55,13 @@ describe("ab-testing", () => {
 
       const posthogInstance = (PostHog as jest.Mock<PostHog>).mock.instances[0];
       (posthogInstance?.getFeatureFlag as jest.Mock).mockResolvedValue(
-        "variant-b",
+        "variant-b"
       );
 
       const pageVariant = await getABTestedLandingPage(
         "ab-tested-page",
         context,
-        false,
+        false
       );
 
       expect(pageVariant).toBe(variantB);
@@ -75,7 +75,7 @@ describe("ab-testing", () => {
       const pageVariant = await getABTestedLandingPage(
         "ab-tested-page",
         context,
-        false,
+        false
       );
 
       expect(sample).toBeCalledWith([control, variantA, variantB]);

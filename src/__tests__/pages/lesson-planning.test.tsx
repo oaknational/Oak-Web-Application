@@ -96,14 +96,14 @@ describe("pages/lesson-planning.tsx", () => {
     render(<PlanALesson pageData={testPlanningPageData} />);
 
     expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-      "Planning title",
+      "Planning title"
     );
   });
 
   describe.skip("SEO", () => {
     it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} />,
+        <PlanALesson pageData={testPlanningPageData} />
       );
 
       expect(seo).toEqual({});

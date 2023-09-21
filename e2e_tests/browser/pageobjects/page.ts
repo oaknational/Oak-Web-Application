@@ -40,7 +40,7 @@ export default class Page {
         {
           timeout: 5000,
           timeoutMsg: "Confirmic overlay did not display.",
-        },
+        }
       );
     } catch (error) {
       console.log("Confirmic overlay message: ", error.message);
@@ -71,7 +71,7 @@ export default class Page {
         {
           timeout: 5000,
           timeoutMsg: "Expected Confirmic overlay to go away.",
-        },
+        }
       );
     } catch (error) {
       // The overlay is gone, nothing to do.

@@ -1,7 +1,7 @@
 import { LessonOverviewData } from "..";
 
 const lessonOverviewFixture = (
-  partial?: Partial<LessonOverviewData>,
+  partial?: Partial<LessonOverviewData>
 ): LessonOverviewData => {
   return {
     lessonSlug: "macbeth-lesson-1",

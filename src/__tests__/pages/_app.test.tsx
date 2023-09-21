@@ -36,7 +36,7 @@ describe("<MyApp>", () => {
         // @ts-ignore
         router={mockRouter}
         analyticsOptions={{ avoOptions: { avoLogger: noopAvoLogger } }}
-      />,
+      />
     );
 
     expect(screen.getByText(/^Test:/).textContent).toBe("Test: value");

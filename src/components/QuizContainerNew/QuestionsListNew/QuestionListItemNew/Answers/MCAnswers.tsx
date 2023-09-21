@@ -19,7 +19,7 @@ export const MCAnswers = (props: {
     answers.filter(
       (choice) =>
         choice.answer.filter((answerItem) => answerItem.type === "image")
-          .length > 0,
+          .length > 0
     ).length > 0;
 
   return (

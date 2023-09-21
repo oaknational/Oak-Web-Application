@@ -34,7 +34,7 @@ ButtonWithIcon.args = {
 };
 
 const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
-  args,
+  args
 ) => (
   <>
     <Component iconBackground="black" $mr={24} {...args} />

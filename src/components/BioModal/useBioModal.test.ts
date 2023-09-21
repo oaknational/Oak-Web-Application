@@ -8,7 +8,7 @@ import { useBioModal } from "./useBioModal";
 const bios = ["Ramender Crompton", "Matt Hood"].map((name, i) => ({
   name,
   bioPortableText: portableTextFromString(
-    "Ramender is an assistant principal and head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English teacher. In addition to her teaching commitments, Ramender is also an assistant lead examiner for AQA, CPD author and virtual community trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North.",
+    "Ramender is an assistant principal and head of English at Dixons City Academy. She previously worked for the NHS Trust in Bradford before embarking on her PGCSE and taking up a role as English teacher. In addition to her teaching commitments, Ramender is also an assistant lead examiner for AQA, CPD author and virtual community trainer. She was also one of the original 40 teachers who created resources for Oak. Throughout her career, Ramender has remained committed to challenging disadvantage in the North."
   ),
   image: {
     asset: {

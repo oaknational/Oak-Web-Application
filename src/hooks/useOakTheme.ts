@@ -34,7 +34,7 @@ const useOakTheme = (props?: UseOakThemeProps) => {
       setTheme: (themeName: ThemeName) => {
         if (!THEME_NAMES.includes(themeName)) {
           return console.error(
-            `Theme name must be one of: ${THEME_NAMES.join(", ")}`,
+            `Theme name must be one of: ${THEME_NAMES.join(", ")}`
           );
         }
 
@@ -49,7 +49,7 @@ const useOakTheme = (props?: UseOakThemeProps) => {
   useEffect(() => {
     if (!activeTheme) {
       return console.error(
-        `No theme found for theme name: ${selectedTheme}, falling back to default.`,
+        `No theme found for theme name: ${selectedTheme}, falling back to default.`
       );
     }
   }, [selectedTheme, activeTheme]);

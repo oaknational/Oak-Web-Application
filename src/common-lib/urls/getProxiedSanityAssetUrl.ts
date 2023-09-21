@@ -12,7 +12,7 @@ function getProxiedSanityAssetUrl(url: null): null;
 function getProxiedSanityAssetUrl(url: undefined): undefined;
 function getProxiedSanityAssetUrl(url: string): string;
 function getProxiedSanityAssetUrl(
-  url: string | null | undefined,
+  url: string | null | undefined
 ): string | null | undefined;
 function getProxiedSanityAssetUrl(url: string | null | undefined) {
   const assetPath = url ? tryGetAssetPath(url) : null;

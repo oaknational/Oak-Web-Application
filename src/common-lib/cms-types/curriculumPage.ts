@@ -22,7 +22,7 @@ export const curriculumPageSchema = z
             title: true,
             slug: true,
           }),
-        }),
+        })
       ),
     }),
     ourApproach: textBlockSchema,

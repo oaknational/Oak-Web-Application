@@ -24,14 +24,14 @@ async function run() {
     const octokit = github.getOctokit(githubToken);
 
     core.info(
-      `Creating commit status "${description}" with state "${statusValue}"`,
+      `Creating commit status "${description}" with state "${statusValue}"`
     );
 
     const owner = github.context.payload.repository.owner.login;
     const repo = github.context.payload.repository.name;
     if (!owner || !repo) {
       throw new Error(
-        `Could not determine repo details, got: owner "${owner} and repo "${repo}".`,
+        `Could not determine repo details, got: owner "${owner} and repo "${repo}".`
       );
     }
 

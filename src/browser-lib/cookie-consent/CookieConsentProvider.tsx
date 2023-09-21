@@ -21,7 +21,7 @@ import {
 export type CookieConsents = Record<CookiePolicyName, CookieConsent>;
 export type HasConsentedTo = (serviceType: ServiceType) => CookieConsentState;
 export type HasConsentedToPolicy = (
-  policyName: CookiePolicyName,
+  policyName: CookiePolicyName
 ) => CookieConsentState;
 
 export type CookieConsentContext = {
@@ -34,14 +34,14 @@ export type CookieConsentContext = {
 };
 
 export const cookieConsentContext = createContext<CookieConsentContext | null>(
-  null,
+  null
 );
 
 export const useCookieConsent = () => {
   const cookieConsentsContext = useContext(cookieConsentContext);
   if (!cookieConsentsContext) {
     throw new Error(
-      "useCookieConsent() called outside of cookieConsentContext provider",
+      "useCookieConsent() called outside of cookieConsentContext provider"
     );
   }
   return cookieConsentsContext;

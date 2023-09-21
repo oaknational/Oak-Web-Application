@@ -64,9 +64,9 @@ describe("useSchoolPicker", () => {
       statusText: "Not Found",
     });
     await expect(
-      async () => await fetcher("https://school-picker/value"),
+      async () => await fetcher("https://school-picker/value")
     ).rejects.toThrowError(
-      new OakError({ code: "school-picker/fetch-suggestions" }),
+      new OakError({ code: "school-picker/fetch-suggestions" })
     );
     expect(reportError).toBeCalled();
   });
