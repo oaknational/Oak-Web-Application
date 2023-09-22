@@ -27,10 +27,12 @@ const curriculumUnitsTabFixture = (
           {
             slug: "number-addition-and-subtraction",
             title: "Number: Addition and Subtraction",
+            order: 2,
           },
           {
             slug: "number",
             title: "Number",
+            order: 1,
           },
         ],
         tier: null,
@@ -61,6 +63,7 @@ const curriculumUnitsTabFixture = (
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
             title: "BQ01: What are living things and what are they made of?",
+            order: 1,
           },
         ],
         tier: null,
@@ -90,6 +93,7 @@ const curriculumUnitsTabFixture = (
           {
             slug: "number",
             title: "Number",
+            order: 1,
           },
         ],
         tier: null,
@@ -120,6 +124,7 @@ const curriculumUnitsTabFixture = (
           {
             slug: "bq01-what-are-living-things-and-what-are-they-made-of",
             title: "BQ01: What are living things and what are they made of?",
+            order: 1,
           },
         ],
         tier: null,
@@ -150,14 +155,17 @@ const curriculumUnitsTabFixture = (
           {
             slug: "human-and-physical-processes-climate-and-weather",
             title: "Human and physical processes: climate and weather",
+            order: 1,
           },
           {
             slug: "earth-geometry",
             title: "Earth geometry",
+            order: 2,
           },
           {
             slug: "human-and-physical-processes-land-use-and-settlement",
             title: "Human and physical processes: land use and settlement",
+            order: 3,
           },
         ],
         tier: null,
@@ -188,10 +196,12 @@ const curriculumUnitsTabFixture = (
           {
             slug: "number-fractions",
             title: "Number: Fractions",
+            order: 2,
           },
           {
             slug: "number",
             title: "Number",
+            order: 1,
           },
         ],
         tier: null,
@@ -222,18 +232,22 @@ const curriculumUnitsTabFixture = (
           {
             slug: "statistics",
             title: "Statistics",
+            order: 4,
           },
           {
             slug: "number-fractions",
             title: "Number: Fractions",
+            order: 2,
           },
           {
             slug: "number-place-value",
             title: "Number: Place value",
+            order: 3,
           },
           {
             slug: "number",
             title: "Number",
+            order: 1,
           },
         ],
         tier: null,
@@ -265,10 +279,12 @@ const curriculumUnitsTabFixture = (
           {
             slug: "preparing-for-analytical-writing",
             title: "Preparing for analytical writing",
+            order: 6,
           },
           {
             slug: "aspects-of-narrative",
             title: "Aspects of narrative",
+            order: 5,
           },
         ],
         tier: null,
@@ -299,6 +315,7 @@ const curriculumUnitsTabFixture = (
           {
             slug: "bq07-what-are-things-made-of",
             title: "BQ07: What are things made of?",
+            order: 7,
           },
         ],
         tier: null,
@@ -329,6 +346,7 @@ const curriculumUnitsTabFixture = (
           {
             slug: "bq2-how-do-living-things-grow-and-reproduce",
             title: "BQ2: How do living things grow and reproduce?",
+            order: 2,
           },
         ],
         tier: null,

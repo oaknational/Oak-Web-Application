@@ -24,6 +24,7 @@ const curriculumUnitsSchema = z.object({
         z.object({
           title: z.string(),
           slug: z.string(),
+          order: z.number(),
         }),
       ),
       title: z.string(),

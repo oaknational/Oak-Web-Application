@@ -26,6 +26,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   interface Thread {
     title: string;
     slug: string;
+    order: number;
   }
 
   interface Subject {
@@ -131,7 +132,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
   });
 
+  // Sort year data
   yearOptions.sort((a, b) => Number(a) - Number(b));
+
+  // Sort threads
+  const threadOrders = new Set(threadOptions.map((to) => to.order));
+  if (threadOptions.length > threadOrders.size) {
+    // In secondary science multiple threads can have the same order due to
+    // multiple subjects (eg biology, chemistry, physics) being shown, so
+    // if orders are not unique, sort alphabetically by slug
+    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
+  } else {
+    // If orders are unique, use them to sort
+    threadOptions.sort((a, b) => a.order - b.order);
+  }
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -139,15 +153,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!data) {
       throw new Error("year data missing");
     }
-    data.childSubjects.sort((a, b) => {
-      if (a.subject_slug === "combined-science") {
-        return -1;
-      } else if (b.subject_slug === "combined-science") {
-        return 1;
-      } else {
-        return a.subject_slug.localeCompare(b.subject_slug);
-      }
-    });
     if (data.domains.length > 0) {
       data.domains.sort((a, b) => a.domain_id - b.domain_id);
       data.domains.unshift({

@@ -23,6 +23,101 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
   });
 
+  test("threads with duplicate orders sort alphabetically", async () => {
+    // Some duplicate thread orders, expect sorting alphabetically by slug
+    const { findAllByTestId } = renderWithTheme(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const threadOptions = await findAllByTestId("thread-radio");
+    const isSorted = threadOptions
+      .map((option) => String(option.getAttribute("value")))
+      .every(
+        (key, index, array) =>
+          index === 0 || String(array[index - 1]).localeCompare(key) <= 0,
+      );
+    expect(isSorted).toBe(true);
+  });
+
+  test("threads with unique orders sort by order", async () => {
+    const data = {
+      units: [
+        {
+          planned_number_of_lessons: 8,
+          domain: "Grammar",
+          domain_id: 17,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks1",
+          phase: "Primary",
+          phase_slug: "primary",
+          slug: "word-class",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          threads: [
+            {
+              title: "Developing grammatical knowledge",
+              slug: "developing-grammatical-knowledge",
+              order: 10,
+            },
+          ],
+          tier: null,
+          tier_slug: null,
+          title: "Word Class",
+          unit_options: [],
+          year: "1",
+        },
+        {
+          planned_number_of_lessons: 8,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          domain: "Reading, Writing & Oracy",
+          domain_id: 16,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks1",
+          phase: "Primary",
+          phase_slug: "primary",
+          slug: "a-superhero-like-you-reading-and-writing",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          tier: null,
+          tier_slug: null,
+          threads: [
+            {
+              title: "Aspiration",
+              slug: "aspiration",
+              order: 8,
+            },
+            {
+              title: "Aspects of narrative",
+              slug: "aspects-of-narrative",
+              order: 2,
+            },
+          ],
+          title: "’A Superhero Like You!’: Reading and Writing",
+          unit_options: [],
+          year: "1",
+        },
+      ],
+    };
+    const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const threadOptions = await findAllByTestId("thread-radio");
+    expect(threadOptions).toHaveLength(3);
+    expect(threadOptions.map((option) => option.getAttribute("value"))).toEqual(
+      [
+        "aspects-of-narrative",
+        "aspiration",
+        "developing-grammatical-knowledge",
+      ],
+    );
+  });
+
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = renderWithTheme(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
@@ -78,7 +173,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
     const yearOptions = await findAllByTestId("year-radio");
     const extractedYears = yearOptions.map((option) =>
-      parseInt(option.attributes.getNamedItem("value")?.value || "0"),
+      parseInt(option.getAttribute("value") || "0"),
     );
     const isSorted = extractedYears.every((year, index, array) => {
       return index === 0 || Number(array[index - 1]) <= year;
