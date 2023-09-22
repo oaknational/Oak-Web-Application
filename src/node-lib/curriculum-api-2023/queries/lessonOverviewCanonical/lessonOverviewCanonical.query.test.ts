@@ -16,6 +16,7 @@ describe("lessonOverviewCanonical()", () => {
 
   test("should combine lessons to create pathways list as a property", async () => {
     const originalLessonBase = {
+      isLegacy: false,
       lessonSlug: "lesson-slug",
       lessonTitle: "lesson-title",
       additionalMaterialUrl: "supplementary-assets-url",
