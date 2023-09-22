@@ -25,6 +25,7 @@ const lessonOverviewCanonicalQuery =
       {
         ...lessons[0],
         pathways: [],
+        isLegacy: false,
       } as LessonOverviewCanonical,
     );
 

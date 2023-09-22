@@ -8,6 +8,13 @@ import { programmeListingSchema } from "../curriculum-api-2023/queries/programme
 import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import lessonOverviewCanonicalSchema, {
+  LessonOverviewCanonical,
+} from "../curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
+import { lessonPathwaySchema } from "../curriculum-api-2023/shared.schema";
+import lessonDownloadsCanonicalSchema, {
+  LessonDownloadsCanonical,
+} from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
@@ -421,15 +428,8 @@ const curriculumApi = {
       : null;
 
     return lessonOverviewData.parse({
-      lessonTitle: lesson.lessonTitle,
-      lessonSlug: lesson.lessonSlug,
+      ...lesson,
       programmeSlug: addLegacySlugSuffix(lesson.programmeSlug),
-      unitSlug: lesson.unitSlug,
-      unitTitle: lesson.unitTitle,
-      keyStageSlug: lesson.keyStageSlug,
-      keyStageTitle: lesson.keyStageTitle,
-      subjectSlug: lesson.subjectSlug,
-      subjectTitle: lesson.subjectTitle,
       misconceptionAndCommonMistakes: null,
       lessonEquipmentAndResources: lessonEquipmentAndResources,
       teacherTips: null,
@@ -439,21 +439,83 @@ const curriculumApi = {
       copyRightContent: null,
       additionalMaterialUrl: null,
       contentGuidance: lessonContentGuidance,
-      supervisionLevel: lesson.supervisionLevel,
-      worksheetUrl: lesson.worksheetUrl,
-      isWorksheetLandscape: lesson.isWorksheetLandscape,
-      presentationUrl: lesson.presentationUrl,
-      hasCopyrightMaterial: lesson.hasCopyrightMaterial,
-      videoMuxPlaybackId: lesson.videoMuxPlaybackId,
-      videoWithSignLanguageMuxPlaybackId:
-        lesson.videoWithSignLanguageMuxPlaybackId,
-      transcriptSentences: lesson.transcriptSentences,
-      hasDownloadableResources: lesson.hasDownloadableResources,
-      expired: lesson.expired,
       yearTitle: "",
       starterQuiz: introQuizTransformed,
       exitQuiz: exitQuizTransformed,
+      isLegacy: true,
     });
+  },
+  lessonOverviewCanonical: async (
+    ...args: Parameters<typeof sdk.lessonOverviewCanonical>
+  ) => {
+    const res = await sdk.lessonOverviewCanonical(...args);
+    const { lessons = [] } = transformMVCase(res);
+
+    const { introQuiz, exitQuiz } = res;
+
+    // Transform quizzes here because the schema is not the same as the one returned by the API
+    const introQuizTransformed =
+      introQuiz && introQuiz.length > 0 ? transformQuiz(introQuiz) : null;
+
+    const exitQuizTransformed =
+      exitQuiz && exitQuiz.length > 0 ? transformQuiz(exitQuiz) : null;
+
+    const transformedLessons = lessons.map((lesson) => {
+      const lessonKeyLearningPoints = lesson.coreContent?.map(
+        (content: string) => {
+          return { keyLearningPoint: content };
+        },
+      );
+
+      const lessonEquipmentAndResources = lesson.equipmentRequired
+        ? [{ equipment: lesson.equipmentRequired }]
+        : null;
+
+      const lessonContentGuidance = lesson.contentGuidance
+        ? [
+            {
+              contentGuidanceLabel: lesson.contentGuidance,
+              contentGuidanceDescription: lesson.contentGuidance,
+              contentGuidanceArea: "contentGuidanceArea",
+            },
+          ]
+        : null;
+
+      return {
+        ...lesson,
+        programmeSlug: addLegacySlugSuffix(lesson.programmeSlug),
+        misconceptionAndCommonMistakes: null,
+        lessonEquipmentAndResources: lessonEquipmentAndResources,
+        teacherTips: null,
+        keyLearningPoints: lessonKeyLearningPoints,
+        pupilLessonOutcome: null,
+        lessonKeywords: null,
+        copyRightContent: null,
+        additionalMaterialUrl: null,
+        contentGuidance: lessonContentGuidance,
+        yearTitle: "",
+        starterQuiz: introQuizTransformed,
+        exitQuiz: exitQuizTransformed,
+        isLegacy: true,
+      };
+    });
+
+    const lessonWithPathways = transformedLessons.reduce(
+      (acc, lesson) => {
+        const pathway = lessonPathwaySchema.parse(lesson);
+        return {
+          ...acc,
+          pathways: [...acc.pathways, pathway],
+        };
+      },
+      {
+        ...transformedLessons[0],
+        pathways: [],
+        isLegacy: true,
+      } as LessonOverviewCanonical,
+    );
+
+    return lessonOverviewCanonicalSchema.parse(lessonWithPathways);
   },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
     const res = await sdk.lessonListing(...argsRemoveLegacySlugSuffix(args));
@@ -487,7 +549,31 @@ const curriculumApi = {
     return lessonDownloadsSchema.parse({
       ...download,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
+      isLegacy: true,
     });
+  },
+  lessonDownloadsCanonical: async (
+    ...args: Parameters<typeof sdk.lessonDownloadsCanonical>
+  ) => {
+    const res = await sdk.lessonDownloadsCanonical(...args);
+    const { downloads = [] } = transformMVCase(res);
+
+    const lessonDownloadsWithPathways = downloads.reduce(
+      (acc, lesson) => {
+        const pathway = lessonPathwaySchema.parse(lesson);
+        return {
+          ...acc,
+          pathways: [...acc.pathways, pathway],
+        };
+      },
+      {
+        ...downloads[0],
+        pathways: [],
+        isLegacy: true,
+      } as LessonDownloadsCanonical,
+    );
+
+    return lessonDownloadsCanonicalSchema.parse(lessonDownloadsWithPathways);
   },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
     const res = await sdk.tierListing(...argsRemoveLegacySlugSuffix(args));

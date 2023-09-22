@@ -25,6 +25,7 @@ const lessonDownloadsCanonicalQuery =
       {
         ...res.lessonDownloadsCanonical[0],
         pathways: [],
+        isLegacy: false,
       } as LessonDownloadsCanonical,
     );
 

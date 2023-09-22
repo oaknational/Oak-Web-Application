@@ -136,6 +136,7 @@ export const lessonOverviewQuizData = z
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
 export const baseLessonOverviewSchema = z.object({
+  isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
@@ -191,6 +192,7 @@ const lessonDownloadsListSchema = z.array(
 );
 
 export const baseLessonDownloadsSchema = z.object({
+  isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,

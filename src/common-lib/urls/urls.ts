@@ -543,7 +543,7 @@ export const OAK_PAGES: {
     pageType: "lesson-overview",
   }),
   "lesson-overview-canonical": createOakPageConfig({
-    pathPattern: "/:viewType/lessons/:lessonSlug",
+    pathPattern: "/teachers/lessons/:lessonSlug",
     analyticsPageName: "Lesson", // @todo this should be "Lesson (Canonical)"?
     configType: "internal",
     pageType: "lesson-overview-canonical",
@@ -556,7 +556,7 @@ export const OAK_PAGES: {
     pageType: "lesson-downloads",
   }),
   "lesson-downloads-canonical": createOakPageConfig({
-    pathPattern: "/:viewType/lessons/:lessonSlug/downloads",
+    pathPattern: "/teachers/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download", // @todo this should be "Lesson Download (Canonical)"?
     configType: "internal",
     pageType: "lesson-downloads-canonical",

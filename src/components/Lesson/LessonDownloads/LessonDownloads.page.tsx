@@ -48,9 +48,9 @@ import { LessonPathway } from "@/components/pages/TeachersLessonOverview/teacher
 
 type LessonDownloadsPageProps =
   | {
-      isLegacy: boolean;
       isCanonical: true;
       lesson: {
+        isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
@@ -58,17 +58,17 @@ type LessonDownloadsPageProps =
       };
     }
   | {
-      isLegacy: boolean;
       isCanonical: false;
       lesson: LessonPathway & {
+        isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
       };
     };
 export default function LessonDownloads(props: LessonDownloadsPageProps) {
-  const { lesson, isLegacy } = props;
-  const { lessonTitle, lessonSlug, downloads } = lesson;
+  const { lesson } = props;
+  const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );

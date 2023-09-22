@@ -11,21 +11,21 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { ViewType } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import LessonDownloads from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
+import curriculumApi from "@/node-lib/curriculum-api";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
-  viewType: ViewType;
 };
 
 const LessonDownloadsCanonicalPage: NextPage<
   LessonDownloadsCanonicalPageProps
-> = ({ curriculumData, viewType }) => {
+> = (props) => {
+  const { curriculumData } = props;
   const { lessonTitle, pathways } = curriculumData;
   const commonPathway = getCommonPathway(pathways);
   const { keyStageSlug, subjectTitle } = commonPathway;
@@ -46,11 +46,7 @@ const LessonDownloadsCanonicalPage: NextPage<
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <LessonDownloads
-        isCanonical
-        lesson={curriculumData}
-        viewType={viewType}
-      />
+      <LessonDownloads isCanonical lesson={curriculumData} />
     </AppLayout>
   );
 };
@@ -59,7 +55,6 @@ export type URLParams = {
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
-  viewType: ViewType;
 };
 
 export const getStaticPaths = async () => {
@@ -87,22 +82,13 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonDownloadsCanonical({
-        lessonSlug,
-      });
-
-      //   const curriculumData =
-      //     context?.params?.viewType === "teachers-2023"
-      //       ? await curriculumApi2023.lessonDownloads({
-      //           programmeSlug,
-      //           unitSlug,
-      //           lessonSlug,
-      //         })
-      //       : await curriculumApi.lessonDownloads({
-      //           programmeSlug,
-      //           unitSlug,
-      //           lessonSlug,
-      //         });
+      const curriculumData =
+        (await curriculumApi2023.lessonDownloadsCanonical({
+          lessonSlug,
+        })) ||
+        (await curriculumApi.lessonDownloadsCanonical({
+          lessonSlug,
+        }));
 
       if (!curriculumData) {
         return {
@@ -113,7 +99,6 @@ export const getStaticProps: GetStaticProps<
       const results: GetStaticPropsResult<LessonDownloadsCanonicalPageProps> = {
         props: {
           curriculumData,
-          viewType: context?.params?.viewType,
         },
       };
       return results;

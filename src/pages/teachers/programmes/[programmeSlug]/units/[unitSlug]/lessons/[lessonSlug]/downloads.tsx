@@ -20,14 +20,14 @@ import LessonDownloads from "@/components/Lesson/LessonDownloads/LessonDownloads
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonDownloadsPageProps = {
-  isLegacy: boolean;
   curriculumData: LessonDownloadsData;
 };
 
 const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, keyStageSlug, subjectTitle, isLegacy } = curriculumData;
+  const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
+
   return (
     <AppLayout
       seoProps={{
@@ -38,11 +38,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <LessonDownloads
-        isCanonical={false}
-        isLegacy={isLegacy}
-        lesson={curriculumData}
-      />
+      <LessonDownloads isCanonical={false} lesson={curriculumData} />
     </AppLayout>
   );
 };
@@ -78,7 +74,9 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = isSlugLegacy(programmeSlug)
+      const isLegacy = isSlugLegacy(programmeSlug);
+
+      const curriculumData = isLegacy
         ? await curriculumApi.lessonDownloads({
             programmeSlug,
             unitSlug,

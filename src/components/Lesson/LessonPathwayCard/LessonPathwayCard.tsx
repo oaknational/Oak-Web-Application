@@ -35,7 +35,6 @@ export function LessonPathwayCard(props: LessonPathwayCardProps) {
               size="small"
               label={label}
               page="lesson-index"
-              viewType="teachers-2023"
               programmeSlug={programmeSlug}
               unitSlug={unitSlug}
               icon="chevron-right"

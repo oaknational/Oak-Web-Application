@@ -4,6 +4,7 @@ const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsData>,
 ): LessonDownloadsData => {
   return {
+    isLegacy: true,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
     programmeSlug: "maths-higher-ks4-l",

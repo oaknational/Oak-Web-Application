@@ -56,7 +56,6 @@ export const getLessonOverviewBreadCumb = ({
     return {
       oakLinkProps: {
         page: "lesson-overview",
-        viewType: "teachers",
         programmeSlug,
         unitSlug,
         lessonSlug,
@@ -68,7 +67,6 @@ export const getLessonOverviewBreadCumb = ({
     return {
       oakLinkProps: {
         page: "lesson-overview-canonical",
-        viewType: "teachers",
         lessonSlug,
       },
       label: lessonTitle,
@@ -91,7 +89,6 @@ export const getLessonDownloadsBreadCumb = ({
     return {
       oakLinkProps: {
         page: "lesson-downloads",
-        viewType: "teachers",
         programmeSlug,
         unitSlug,
         lessonSlug,
@@ -103,7 +100,6 @@ export const getLessonDownloadsBreadCumb = ({
     return {
       oakLinkProps: {
         page: "lesson-downloads-canonical",
-        viewType: "teachers",
         lessonSlug,
         programmeSlug: null,
         unitSlug: null,
@@ -130,7 +126,6 @@ export const getBreadcrumbsForLessonPathway = (
     {
       oakLinkProps: {
         page: "home",
-        viewType: "teachers",
       },
       label: "Home",
     },
@@ -138,7 +133,6 @@ export const getBreadcrumbsForLessonPathway = (
       ? {
           oakLinkProps: {
             page: "subject-index",
-            viewType: "teachers",
             keyStageSlug,
           },
           label: keyStageTitle,
@@ -148,7 +142,6 @@ export const getBreadcrumbsForLessonPathway = (
       ? {
           oakLinkProps: {
             page: "unit-index",
-            viewType: "teachers",
             programmeSlug,
           },
           label: subjectTitle,
@@ -158,7 +151,6 @@ export const getBreadcrumbsForLessonPathway = (
       ? {
           oakLinkProps: {
             page: "lesson-index",
-            viewType: "teachers",
             programmeSlug,
             unitSlug,
           },

@@ -29,7 +29,10 @@ const lessonDownloadsQuery =
       });
     }
 
-    return lessonDownloadsSchema.parse(downloads);
+    return lessonDownloadsSchema.parse({
+      ...downloads,
+      isLegacy: false,
+    });
   };
 
 export default lessonDownloadsQuery;
