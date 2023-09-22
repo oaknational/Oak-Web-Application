@@ -41,6 +41,7 @@ describe("lessonOverview()", () => {
               videoMuxPlaybackId: "video-mux-playback-id",
               videoWithSignLanguageMuxPlaybackId:
                 "video-with-sign-language-mux-playback-id",
+              hasDownloadableResources: false,
             },
             {
               programmeSlug: "programme-slug-1",
@@ -61,6 +62,7 @@ describe("lessonOverview()", () => {
               videoMuxPlaybackId: "video-mux-playback-id",
               videoWithSignLanguageMuxPlaybackId:
                 "video-with-sign-language-mux-playback-id",
+              hasDownloadableResources: false,
             },
           ],
         }),
