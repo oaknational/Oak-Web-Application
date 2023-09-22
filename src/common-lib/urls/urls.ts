@@ -106,7 +106,7 @@ type LessonOverviewCanonicalLinkProps = {
   page: "lesson-overview-canonical";
   lessonSlug: string;
 };
-type LessonDownloadsLinkProps = {
+export type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
   programmeSlug: string;
   unitSlug: string;
@@ -115,7 +115,7 @@ type LessonDownloadsLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
-type LessonDownloadsCanonicalLinkProps = {
+export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
   programmeSlug: null;
   unitSlug: null;

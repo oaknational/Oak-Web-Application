@@ -18,7 +18,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 export type HeaderLessonProps = {
   // pathway props
   subjectSlug: string | null;
-  yearTitle: string | null;
+  yearTitle?: string | null;
   unitSlug: string | null;
   keyStageSlug: string | null;
   keyStageTitle: string | null;

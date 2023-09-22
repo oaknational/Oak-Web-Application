@@ -20,6 +20,8 @@ export const getCommonPathway = (
     subjectTitle: null,
     unitSlug: null,
     unitTitle: null,
+    yearSlug: null,
+    yearTitle: null,
     subjectSlug: null,
   };
 

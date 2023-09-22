@@ -39,6 +39,8 @@ export type LessonPathway = {
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
+  yearSlug?: string | null;
+  yearTitle?: string | null;
   tierTitle?: string | null;
   tierSlug?: string | null;
   examboardTitle?: string | null;

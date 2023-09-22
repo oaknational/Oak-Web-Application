@@ -101,17 +101,8 @@ export default function TeachersLessonOverviewPage({
   return (
     <>
       <HeaderLesson
-        lessonTitle={lessonTitle}
-        subjectSlug={subjectSlug}
-        yearTitle={keyStageTitle}
-        unitSlug={unitSlug}
-        keyStageSlug={keyStageSlug}
-        keyStageTitle={keyStageTitle}
-        unitTitle={unitTitle}
-        subjectTitle={subjectTitle}
-        programmeSlug={programmeSlug}
-        expired={expired}
-        lessonSlug={lessonSlug}
+        {...lesson}
+        {...commonPathway}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(commonPathway),
           getLessonOverviewBreadCumb({
