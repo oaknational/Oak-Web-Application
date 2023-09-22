@@ -33,7 +33,6 @@ const lessonOverviewQuery =
       isLegacy: false,
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
-      hasDownloadableResources: null,
       expired: false,
     });
   };

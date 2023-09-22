@@ -1,8 +1,8 @@
-import { mockPaginationProps } from "../../Pagination/Pagination.test";
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-import lessonListingFixture from "../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
-
 import LessonList from ".";
+
+import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 
 const render = renderWithProviders();
 
