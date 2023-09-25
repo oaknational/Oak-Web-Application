@@ -16,9 +16,10 @@ const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseDownloadFormProps = {
   onSubmit?: () => void;
+  isLegacyDownload: boolean;
 };
 
-const useDownloadForm = (props: UseDownloadFormProps = {}) => {
+const useDownloadForm = (props: UseDownloadFormProps) => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,
@@ -77,7 +78,12 @@ const useDownloadForm = (props: UseDownloadFormProps = {}) => {
       setTermsInLocalStorage(terms);
     }
 
-    await downloadLessonResources(slug, downloads as DownloadResourceType[]);
+    await downloadLessonResources(
+      slug,
+      downloads as DownloadResourceType[],
+
+      props.isLegacyDownload,
+    );
     return hubspotFormResponse;
   };
 

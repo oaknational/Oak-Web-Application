@@ -8,6 +8,8 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
+import Grid from "../Grid/Grid";
+import { GridArea } from "../Grid";
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -33,7 +35,6 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       $display={"flex"}
       keyStageSlug={slug}
       page={"subject-index"}
-      viewType="teachers"
       $isSelected={isCurrent}
       aria-label={title}
       onClick={() => {
@@ -62,13 +63,13 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       <P $color={"black"} $mb={16} $font={"heading-7"}>
         Select key stage
       </P>
-      <UL $reset $display={"flex"} $mb={years ? 48 : 24} $ph={8} $gap={24}>
+      <Grid $mb={years ? 48 : 24} $ph={8} $gap={24} $maxWidth={580}>
         {keyStages.map((keyStage) => (
-          <LI $width={[64, 96]} key={`key-stage:${keyStage.title}`}>
+          <GridArea $colSpan={[3]} key={`key-stage:${keyStage.title}`}>
             <KeypadLink {...keyStage} />
-          </LI>
+          </GridArea>
         ))}
-      </UL>
+      </Grid>
 
       {years && (
         <>

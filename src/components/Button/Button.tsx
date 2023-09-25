@@ -9,7 +9,7 @@ import button, {
   ButtonStylesProps,
   getButtonStylesProps,
 } from "./button.styles";
-import ButtonInner from "./ButtonInner";
+import ButtonInner, { ButtonCurrentStyles } from "./ButtonInner";
 import {
   CommonButtonProps,
   defaultButtonProps,
@@ -29,6 +29,9 @@ export type ButtonProps = CommonButtonProps & {
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
   title?: string;
+  isCurrent?: boolean;
+  currentStyles?: ButtonCurrentStyles;
+  role?: string;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -45,6 +48,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     $font,
     disabled,
     title,
+    isCurrent,
+    currentStyles,
     ...spacingProps
   } = props;
 
@@ -81,6 +86,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         background={background}
         $font={$font}
         disabled={disabled}
+        isCurrent={isCurrent}
+        currentStyles={currentStyles}
       />
     </StyledButton>
   );

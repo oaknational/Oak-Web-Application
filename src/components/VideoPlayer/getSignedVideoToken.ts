@@ -7,7 +7,7 @@ const reportError = errorReporter("useSignedPlaybackId");
 const getSignedVideoToken = async (
   url: string,
   playbackId: string,
-  playbackPolicy: PlaybackPolicy
+  playbackPolicy: PlaybackPolicy,
 ) => {
   const res = await fetch(url);
 

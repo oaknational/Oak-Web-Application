@@ -30,10 +30,6 @@ export type MaybeOakPageType = OrString<OakPageType>;
 
 export type AnalyticsPageName = PageNameValueType | ExternalPageName;
 
-// /teachers/ or /pupils/
-export const VIEW_TYPES = ["teachers", "teachers-2023"] as const;
-export type ViewType = typeof VIEW_TYPES[number];
-
 const getCurrentHostname = () => {
   if (isBrowser) {
     return window.location.hostname;
@@ -80,13 +76,11 @@ export type WebinarListingLinkProps = {
 };
 export type ProgrammeListingLinkProps = {
   page: "programme-index";
-  viewType: ViewType;
   keyStageSlug: string;
   subjectSlug: string;
 };
 export type UnitListingLinkProps = {
   page: "unit-index";
-  viewType: ViewType;
   programmeSlug: string;
   search?: {
     ["learning-theme"]?: string | null;
@@ -99,20 +93,17 @@ export type KeyStageSubjectProgrammesLinkProps = {
 };
 type LessonListingLinkProps = {
   page: "lesson-index";
-  viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
 };
 type LessonOverviewLinkProps = {
   page: "lesson-overview";
-  viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
 };
 type LessonDownloadsLinkProps = {
   page: "lesson-downloads";
-  viewType: ViewType;
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
@@ -122,13 +113,11 @@ type LessonDownloadsLinkProps = {
 };
 type SearchLinkProps = {
   page: "search";
-  viewType: ViewType;
   query?: Partial<SearchQuery>;
 };
 type LandingPageLinkProps = { page: "landing-page"; lpSlug: string };
 type SubjectListingLinkProps = {
   page: "subject-index";
-  viewType: ViewType;
   keyStageSlug: string;
 };
 type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
@@ -143,7 +132,7 @@ type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
 type DevelopYourCurriculumLinkProps = { page: "develop-your-curriculum" };
 type HelpLinkProps = { page: "help" };
-type HomeLinkProps = { page: "home"; viewType: ViewType | null };
+type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
 type LegalLinkProps = {
   page: "legal";
@@ -161,21 +150,21 @@ type ClassroomLinkProps = { page: "classroom" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
-  viewType: ViewType;
+};
+type EarlyReleaseUnitsPageLinkProps = {
+  page: "early-release-units-page";
 };
 type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
-  viewType: ViewType;
   subjectPhaseSlug: string;
 };
 type CurriculumUnitsLinkProps = {
   page: "curriculum-units";
-  viewType: ViewType;
   subjectPhaseSlug: string;
 };
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
-  viewType: ViewType;
+
   subjectPhaseSlug: string;
 };
 
@@ -212,7 +201,8 @@ type OakLinkProps =
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
-  | CurriculumDownloadsLinkProps;
+  | CurriculumDownloadsLinkProps
+  | EarlyReleaseUnitsPageLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -222,7 +212,7 @@ const EXTERNAL_PAGE_NAMES = [
   "[external] Teacher hub",
   "[external] Our curriculum",
 ] as const;
-type ExternalPageName = typeof EXTERNAL_PAGE_NAMES[number];
+type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
 
 type OakPages = {
   classroom: OakPageConfig<ClassroomLinkProps>;
@@ -255,6 +245,7 @@ type OakPages = {
   "webinar-single": OakPageConfig<WebinarSingleLinkProps>;
   "blog-single": OakPageConfig<BlogSingleLinkProps>;
   "curriculum-landing-page": OakPageConfig<CurriculumLandingPageLinkProps>;
+  "early-release-units-page": OakPageConfig<EarlyReleaseUnitsPageLinkProps>;
   "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
@@ -264,7 +255,7 @@ type OakPageConfig<
   ResolveHrefProps extends {
     page: string;
     query?: UrlQueryObject;
-  }
+  },
 > =
   | {
       analyticsPageName: PageNameValueType;
@@ -300,7 +291,7 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         url: string;
         analyticsPageName: ExternalPageName;
         pageType: ResolveHrefProps["page"];
-      }
+      },
 ): OakPageConfig<ResolveHrefProps> {
   switch (props.configType) {
     case "external":
@@ -318,19 +309,19 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
         resolveHref: (resolveHrefProps: ResolveHrefProps) => {
           const path = compile<Omit<ResolveHrefProps, "page">>(
             props.pathPattern,
-            { encode: encodeURIComponent }
+            { encode: encodeURIComponent },
           )(resolveHrefProps);
           /**
            * @todo consolidate these -> query
            */
           if ("search" in resolveHrefProps) {
             return `${path}?${createQueryStringFromObject(
-              resolveHrefProps.search
+              resolveHrefProps.search,
             )}`;
           }
           if ("query" in resolveHrefProps) {
             return `${path}?${createQueryStringFromObject(
-              resolveHrefProps.query
+              resolveHrefProps.query,
             )}`;
           }
           return path;
@@ -345,7 +336,7 @@ export function createOakPageConfig<ResolveHrefProps extends OakLinkProps>(
 
 const postMatchHref =
   <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
-    postType: PostListingLinkProps["page"]
+    postType: PostListingLinkProps["page"],
   ) =>
   (href: string) => {
     const path = postType === "blog-index" ? "/blog" : "/webinars";
@@ -359,7 +350,7 @@ const postMatchHref =
   };
 const postResolveHref =
   <PostListingLinkProps extends BlogListingLinkProps | WebinarListingLinkProps>(
-    postType: PostListingLinkProps["page"]
+    postType: PostListingLinkProps["page"],
   ) =>
   (props: PostListingLinkProps) => {
     let path = postType === "blog-index" ? "/blog" : "/webinars";
@@ -445,20 +436,19 @@ export const OAK_PAGES: {
           return {
             path: "/",
             index: 0,
-            params: { viewType: null },
+            params: {},
           };
-        case "/beta/teachers":
+        case "/teachers":
           return {
-            path: "/beta/teachers",
+            path: "/teachers",
             index: 0,
-            params: { viewType: "teachers" },
+            params: {},
           };
         default:
           return false;
       }
     },
-    resolveHref: (props) =>
-      props.viewType === null ? "/" : `/beta/${props.viewType}`,
+    resolveHref: () => "/",
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -517,34 +507,33 @@ export const OAK_PAGES: {
     resolveHref: postResolveHref("webinar-index"),
   }),
   "unit-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/programmes/:programmeSlug/units",
+    pathPattern: "/teachers/programmes/:programmeSlug/units",
     analyticsPageName: "Unit Listing",
     configType: "internal",
     pageType: "unit-index",
   }),
   "lesson-index": createOakPageConfig({
-    pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons",
+    pathPattern: "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
     configType: "internal",
     pageType: "lesson-index",
   }),
   "lesson-overview": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview",
   }),
   "lesson-downloads": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
   }),
   search: createOakPageConfig({
-    pathPattern: "/beta/:viewType/search",
+    pathPattern: "/teachers/search",
     analyticsPageName: "Search",
     configType: "internal",
     pageType: "search",
@@ -568,38 +557,44 @@ export const OAK_PAGES: {
     pageType: "landing-page",
   }),
   "subject-index": createOakPageConfig({
-    pathPattern: "/beta/:viewType/key-stages/:keyStageSlug/subjects",
+    pathPattern: "/teachers/key-stages/:keyStageSlug/subjects",
     analyticsPageName: "Subject Listing",
     configType: "internal",
     pageType: "subject-index",
   }),
   "programme-index": createOakPageConfig({
     pathPattern:
-      "/beta/:viewType/key-stages/:keyStageSlug/subjects/:subjectSlug/programmes",
+      "/teachers/key-stages/:keyStageSlug/subjects/:subjectSlug/programmes",
     analyticsPageName: "Programme Listing",
     configType: "internal",
     pageType: "programme-index",
   }),
   "curriculum-landing-page": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum",
+    pathPattern: "/teachers/curriculum",
     analyticsPageName: "Curriculum Landing Page",
     configType: "internal",
     pageType: "curriculum-landing-page",
   }),
+  "early-release-units-page": createOakPageConfig({
+    pathPattern: "/teachers/early-release-units",
+    analyticsPageName: "Early Release Units Page",
+    configType: "internal",
+    pageType: "early-release-units-page",
+  }),
   "curriculum-overview": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/overview",
+    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/overview",
     analyticsPageName: "Curriculum Overview",
     configType: "internal",
     pageType: "curriculum-overview",
   }),
   "curriculum-units": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/units",
+    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/units",
     analyticsPageName: "Curriculum Unit Sequence",
     configType: "internal",
     pageType: "curriculum-units",
   }),
   "curriculum-downloads": createOakPageConfig({
-    pathPattern: "/beta/:viewType/curriculum/:subjectPhaseSlug/downloads",
+    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/downloads",
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
@@ -610,28 +605,6 @@ export type ResolveOakHrefProps = Exclude<
   Parameters<OakPages[keyof OakPages]["resolveHref"]>[number],
   void
 >;
-
-/**
- * This function will replace the :viewType param with "teachers-2023" if the
- * viewType from window.location.path is "teachers".
- */
-function replaceViewType2023(path: string): string {
-  if (typeof window === "undefined") {
-    return path;
-  }
-  const pathParts = path.split("/");
-  const currentPathParts = window.location.pathname.split("/");
-  const isIn2023Experience =
-    currentPathParts[1] === "beta" && currentPathParts[2] === "teachers-2023";
-  const [, beta, viewType] = pathParts;
-  const linkIsBetaTeachers = beta === "beta" && viewType === "teachers";
-
-  if (isIn2023Experience && linkIsBetaTeachers) {
-    return ["/beta", "teachers-2023", ...pathParts.slice(3)].join("/");
-  }
-
-  return path;
-}
 
 /**
  * Pass readable props which are unlikely to need to change, and return an href.
@@ -645,8 +618,7 @@ export const resolveOakHref = (props: ResolveOakHrefProps): string => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const path = OAK_PAGES[props.page].resolveHref(props);
-    const pathWithCorrectViewType = replaceViewType2023(path);
-    return pathWithCorrectViewType;
+    return path;
   } catch (error) {
     const err = new OakError({
       code: "urls/failed-to-resolve",

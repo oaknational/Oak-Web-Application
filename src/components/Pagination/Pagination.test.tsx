@@ -1,21 +1,12 @@
 import { waitFor } from "@testing-library/react";
 import { RefObject } from "react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import Pagination from "./Pagination";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
-export const mockPaginationProps = {
-  totalResults: 1,
-  totalPages: 25,
-  currentPage: 1,
-  pageSize: 20,
-  nextPageHref: "/prev",
-  prevPageHref: "/next",
-};
 
 describe("Pagination", () => {
   jest.mock("next/dist/client/router", () => require("next-router-mock"));
@@ -36,7 +27,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
-      />
+      />,
     );
 
     getByRole("navigation");
@@ -53,7 +44,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
-      />
+      />,
     );
 
     getByText("page 15 / 17");
@@ -72,7 +63,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
-      />
+      />,
     );
 
     const link = getByRole("link", { name: "next page" });
@@ -92,7 +83,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
-      />
+      />,
     );
 
     const link = getByRole("link", { name: "previous page" });
@@ -110,7 +101,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
-      />
+      />,
     );
 
     const nextLink = getByLabelText("next page");
@@ -131,7 +122,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
-      />
+      />,
     );
     const previousLink = getByLabelText("previous page");
 
@@ -151,7 +142,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
-      />
+      />,
     );
 
     expect(queryByRole("navigation")).toBeNull();
@@ -182,7 +173,7 @@ describe("Pagination", () => {
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
         firstItemRef={firstItemRef}
-      />
+      />,
     );
 
     await waitFor(() => {

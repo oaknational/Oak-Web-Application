@@ -1,19 +1,20 @@
 import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
-import { LessonDownloadsData } from "../../../node-lib/curriculum-api";
 import type {
   DownloadResourceType,
   DownloadFormProps,
 } from "../downloads.types";
-import { GridArea } from "../../Grid";
-import Flex from "../../Flex";
-import { Heading, Hr } from "../../Typography";
-import Box from "../../Box";
-import Button from "../../Button";
-import FieldError from "../../FormFields/FieldError";
 
 import DownloadCard from "./DownloadCard";
+
+import { LessonDownloadsData } from "@/node-lib/curriculum-api";
+import { GridArea } from "@/components/Grid";
+import Flex from "@/components/Flex";
+import { Heading } from "@/components/Typography";
+import Box from "@/components/Box";
+import Button from "@/components/Button";
+import FieldError from "@/components/FormFields/FieldError";
 
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -38,6 +39,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
         <Flex
           $alignItems={["left", "center"]}
           $flexDirection={["column", "row"]}
+          $mb={28}
         >
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
@@ -57,7 +59,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           </Box>
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
-        <Hr $color={"oakGrey3"} $mt={0} $mb={48} />
       </GridArea>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
@@ -75,7 +76,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                   field: { value: fieldValue, onChange, name, onBlur },
                 }) => {
                   const onChangeHandler = (
-                    e: ChangeEvent<HTMLInputElement>
+                    e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     if (e.target.checked) {
                       onChange([...fieldValue, download.type]);
@@ -83,8 +84,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                       onChange(
                         fieldValue.filter(
                           (val: DownloadResourceType | string) =>
-                            val !== download.type
-                        )
+                            val !== download.type,
+                        ),
                       );
                     }
                   };

@@ -89,14 +89,14 @@ const updateDeployment = async (token, options) => {
 
   if (!deploymentId) {
     throw new TypeError(
-      `deploymentId must be passed to update a deployment status`
+      `deploymentId must be passed to update a deployment status`,
     );
   }
   if (!DEPLOYMENT_STATES[state]) {
     throw new TypeError(
       `Deployment state: "${state}" not supported, allowed values are:\n${Object.values(
-        DEPLOYMENT_STATES
-      )}`
+        DEPLOYMENT_STATES,
+      )}`,
     );
   }
 
@@ -131,7 +131,7 @@ const createComment = async (token, options) => {
 
   if (!issue_number) {
     throw new TypeError(
-      `issue_number must be passed to update a deployment status`
+      `issue_number must be passed to update a deployment status`,
     );
   }
 

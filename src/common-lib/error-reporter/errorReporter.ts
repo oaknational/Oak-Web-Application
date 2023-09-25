@@ -10,7 +10,6 @@ import {
   PosthogDistinctId,
 } from "../../browser-lib/posthog/posthog";
 
-import { consoleError, consoleLog } from "./logging";
 import bugsnagNotify, { BugsnagConfig } from "./bugsnagNotify";
 
 /**
@@ -22,7 +21,17 @@ export const matchesUserAgent = (ua: string) => {
   return userAgentsToMatch.some((regex) => regex.test(ua));
 };
 
-export const matchesIgnoredError = (message: string) => {
+export const matchesIgnoredError = (error: {
+  errorMessage: string;
+  stacktrace: { file: string }[];
+}) => {
+  const filesToMatch = [
+    // Testing
+    /OAK_TEST_ERROR_STACKTRACE_FILE/i,
+    // Don't error external Hubspot script problems
+    /\/\/js\.hubspot\.com/i,
+    /\/\/js\.hsleadflows\.net/i,
+  ];
   const messagesToMatch = [
     // Testing
     /Test error/i,
@@ -30,30 +39,39 @@ export const matchesIgnoredError = (message: string) => {
     // https://github.com/oaknational/Oak-Web-Application/issues/999
     /Multiple lead flow scripts are trying to run on the current page/i,
     /t.report is not a function/i,
+    /null is not an object (evaluating 'e.portalId')/i,
+    /Hubspot script failed to load/i,
   ];
-  return messagesToMatch.some((regex) => regex.test(message));
+  return (
+    filesToMatch.some((regex) =>
+      error.stacktrace.some((stacktrace) => regex.test(stacktrace.file)),
+    ) || messagesToMatch.some((regex) => regex.test(error.errorMessage))
+  );
 };
 
-export function bugsnagOnError(event: Event) {
-  const { userAgent } = event.device;
-  // Ignore errors for some user agents.
-  if (userAgent) {
-    // If the user agent is in the ignore list then return false.
-    const shouldIgnore = matchesUserAgent(userAgent);
-    if (shouldIgnore) {
-      return false;
+export function getBugsnagOnError(
+  { logger }: { logger: Logger } = { logger: console },
+) {
+  return function bugsnagOnError(event: Event) {
+    const { userAgent } = event.device;
+    // Ignore errors for some user agents.
+    if (userAgent) {
+      // If the user agent is in the ignore list then return false.
+      const shouldIgnore = matchesUserAgent(userAgent);
+      if (shouldIgnore) {
+        return false;
+      }
     }
-  }
-  // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
-  const firstError = event?.errors[0];
-  if (firstError !== undefined) {
-    const errorMessage = firstError.errorMessage;
-    const shouldIgnore = matchesIgnoredError(errorMessage);
-    if (shouldIgnore) {
-      console.warn(`Ignoring known issue: ${errorMessage}`);
-      return false;
+    // Ignore some known errors that aren't user impacting but do mess up the stability metrics.
+    const firstError = event?.errors[0];
+    if (firstError !== undefined) {
+      const shouldIgnore = matchesIgnoredError(firstError);
+      if (shouldIgnore) {
+        logger.warn(`Ignoring known issue: ${firstError.errorMessage}`);
+        return false;
+      }
     }
-  }
+  };
 }
 
 /**
@@ -98,7 +116,7 @@ const getBugsnagConfig = ({
      * We are using it here to prevent errors triggered by Detectify and Percy
      * from being sent to Bugsnag.
      */
-    onError: bugsnagOnError,
+    onError: getBugsnagOnError(),
   };
 };
 
@@ -135,19 +153,60 @@ const errorify = (maybeError: unknown): Error => {
     return new Error(message);
   } catch (jsonStringifyError) {
     return new Error(
-      `Failed to stringify maybeError, type: ${typeof maybeError}`
+      `Failed to stringify maybeError, type: ${typeof maybeError}`,
     );
   }
 };
 
-const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
-  const reportError = async (
-    maybeError: OakError | Error | unknown,
-    data?: ErrorData
-  ) => {
+/**
+ * Checks to see if the error has already been reported
+ */
+function getHasBeenReported(maybeError: unknown, depth = 0) {
+  if (depth > 9) {
+    return false;
+  }
+  depth = depth + 1;
+  if (typeof maybeError === "object" && maybeError !== null) {
+    if ("hasBeenReported" in maybeError) {
+      return Boolean(maybeError.hasBeenReported);
+    } else if ("originalError" in maybeError) {
+      return getHasBeenReported(maybeError.originalError, depth);
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+/**
+ * Set hasBeenReported = true to prevent reporting the same error twice
+ */
+function setHasBeenReported(maybeError: unknown) {
+  if (typeof maybeError === "object" && maybeError !== null) {
+    if ("hasBeenReported" in maybeError) {
+      maybeError.hasBeenReported = true;
+    }
+  }
+}
+
+type MaybeError = OakError | Error | unknown;
+
+type Logger = Pick<typeof console, "log" | "warn" | "error">;
+const errorReporter = (
+  context: string,
+  metadata?: Record<string, unknown>,
+  { logger }: { logger: Logger } = { logger: console },
+) => {
+  const reportError = async (maybeError: MaybeError, data?: ErrorData) => {
     try {
-      consoleError(maybeError);
-      consoleLog(context, metadata, data);
+      logger.error(maybeError);
+      logger.log(context, metadata, data);
+
+      if (getHasBeenReported(maybeError)) {
+        logger.warn("Error already reported, aborting reportError()");
+        return;
+      }
 
       if (isBrowser) {
         const bugsnagAllowed = getHasConsentedTo("bugsnag");
@@ -161,6 +220,8 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
       const err = errorify(maybeError);
 
       await bugsnagNotify(err, (event: Event) => {
+        setHasBeenReported(maybeError);
+
         event.context = context;
 
         const originalError =
@@ -188,10 +249,10 @@ const errorReporter = (context: string, metadata?: Record<string, unknown>) => {
         event.addMetadata("Meta", metaFields);
       });
     } catch (bugsnagErr) {
-      consoleLog("Failed to send error to bugsnag:");
-      consoleError(bugsnagErr);
-      consoleLog("Original error:");
-      consoleError(maybeError);
+      logger.log("Failed to send error to bugsnag:");
+      logger.error(bugsnagErr);
+      logger.log("Original error:");
+      logger.error(maybeError);
     }
   };
 

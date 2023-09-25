@@ -1,7 +1,7 @@
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import { mockOnChange, searchFilters } from "./ActiveFilters.test";
 import SearchFilters from "./SearchFilters";
+import { searchFilters, mockOnChange } from "./test-helpers";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
@@ -17,13 +17,13 @@ describe("SearchFilters", () => {
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
-      />
+      />,
     );
     const searchFilters = getAllByRole("checkbox");
     expect(searchFilters).toHaveLength(
       props.keyStageFilters.length +
         props.subjectFilters.length +
-        props.contentTypeFilters.length
+        props.contentTypeFilters.length,
     );
   });
   test("have correct a11y label", () => {
@@ -32,7 +32,7 @@ describe("SearchFilters", () => {
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
-      />
+      />,
     );
     const ks2Filter = getByRole("checkbox", {
       name: "KS2 filter",
@@ -58,7 +58,7 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
-      />
+      />,
     );
     const ks2Filter = getByRole("checkbox", {
       name: "KS2 filter",
@@ -88,7 +88,7 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
-      />
+      />,
     );
     const ks2Filter = getByRole("checkbox", {
       name: "KS2 filter",
@@ -118,7 +118,7 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
-      />
+      />,
     );
     const ks2Filter = getByRole("checkbox", {
       name: "KS2 filter",
@@ -133,13 +133,13 @@ describe("SearchFilters", () => {
     mathsFilter.click();
     unitFilter.click();
     expect(mockOnChange).toHaveBeenCalledWith(
-      expect.objectContaining({ target: ks2Filter })
+      expect.objectContaining({ target: ks2Filter }),
     );
     expect(mockOnChange).toHaveBeenCalledWith(
-      expect.objectContaining({ target: mathsFilter })
+      expect.objectContaining({ target: mathsFilter }),
     );
     expect(mockOnChange).toHaveBeenCalledWith(
-      expect.objectContaining({ target: unitFilter })
+      expect.objectContaining({ target: unitFilter }),
     );
   });
 });

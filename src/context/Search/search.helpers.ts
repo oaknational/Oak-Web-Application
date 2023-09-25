@@ -10,29 +10,30 @@ import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/
 import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
+import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
 
 const reportError = errorReporter("search/helpers");
 
 export const isFilterItem = <T extends { slug: string }>(
   slug: string,
-  allFilterItems: T[]
+  allFilterItems: T[],
 ) => {
   return allFilterItems.some((item) => item.slug === slug);
 };
 
 export const getFilterForQuery = <T extends { slug: string }>(
   queryFilterItems: string | string[],
-  allFilterItems: T[]
+  allFilterItems: T[],
 ) => {
   const queryFilterArray = queryFilterItems.toString().split(",");
   return queryFilterArray.filter((querySlug) =>
-    isFilterItem(querySlug, allFilterItems)
+    isFilterItem(querySlug, allFilterItems),
   );
 };
 
 // Analytics
 export const getSortedSearchFiltersSelected = (
-  filterOptions: string | string[] | undefined
+  filterOptions: string | string[] | undefined,
 ): [] | string[] => {
   if (typeof filterOptions === "string") {
     return filterOptions.split(",").sort((a, b) => (a < b ? -1 : 1));
@@ -53,7 +54,7 @@ export function elasticKeyStageSlugToKeyStage({
     return str.charAt(str.length - 1);
   }
   const keyStage = allKeyStages.find(
-    (keyStage) => lastChar(keyStage.slug) === lastChar(elasticKeyStageSlug)
+    (keyStage) => lastChar(keyStage.slug) === lastChar(elasticKeyStageSlug),
   );
 
   if (!keyStage) {
@@ -74,7 +75,7 @@ export function elasticKeyStageSlugToKeyStage({
 
 const getProgrammeSlug = (
   hit: LessonSearchHit | UnitSearchHit,
-  allKeyStages: KeyStage[]
+  allKeyStages: KeyStage[],
 ) => {
   if (hit._source.programme_slug) {
     return hit._source.programme_slug;
@@ -108,7 +109,9 @@ export function getLessonObject(props: {
     allKeyStages,
   });
   const lessonResult = {
-    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+      getProgrammeSlug(hit, allKeyStages),
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
@@ -163,7 +166,9 @@ export function getUnitObject(props: {
   });
 
   const unitResult = {
-    programmeSlug: getProgrammeSlug(hit, allKeyStages),
+    programmeSlug:
+      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+      getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     nullTitle: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),

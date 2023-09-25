@@ -24,10 +24,10 @@ describe("SubjectProgrammeListing", () => {
         {...{
           ...curriculumData,
           programmes: curriculumData.programmes.filter(
-            (programme) => !programme.tierSlug
+            (programme) => !programme.tierSlug,
           ),
         }}
-      />
+      />,
     );
 
     const tiersTitle = queryByText("Learning tiers");
@@ -46,10 +46,10 @@ describe("SubjectProgrammeListing", () => {
         {...{
           ...curriculumData,
           programmes: curriculumData.programmes.filter(
-            (programme) => !programme.examBoardSlug
+            (programme) => !programme.examBoardSlug,
           ),
         }}
-      />
+      />,
     );
 
     const examsTitle = queryByText("Exam boards");
@@ -59,29 +59,29 @@ describe("SubjectProgrammeListing", () => {
 
   test("render a list of card items with the name of the programmes ", () => {
     const { getAllByRole } = render(
-      <SubjectProgrammeListing {...curriculumData} />
+      <SubjectProgrammeListing {...curriculumData} />,
     );
 
     expect(getAllByRole("heading", { level: 3 })[1]?.textContent).toBe(
-      "Higher"
+      "Higher",
     );
     expect(getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(
-      "Foundation"
+      "Foundation",
     );
   });
 
   test("each card items will link have a link to a different query ", () => {
     const { getByRole } = render(
-      <SubjectProgrammeListing {...curriculumData} />
+      <SubjectProgrammeListing {...curriculumData} />,
     );
 
     expect(getByRole("link", { name: "Foundation" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-foundation/units"
+      "/teachers/programmes/maths-secondary-ks4-foundation/units",
     );
     expect(getByRole("link", { name: "Higher" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-higher/units"
+      "/teachers/programmes/maths-secondary-ks4-higher/units",
     );
   });
 });

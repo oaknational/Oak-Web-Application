@@ -30,7 +30,7 @@ const useStableCallback = <T,>(handler: T): T => {
   return useCallback((...args) => {
     if (typeof handlerRef.current !== "function") {
       return console.warn(
-        `useStableCallback handlerRef.current should be type function but is of type ${typeof handlerRef.current}`
+        `useStableCallback handlerRef.current should be type function but is of type ${typeof handlerRef.current}`,
       );
     }
     return handlerRef.current(...args);

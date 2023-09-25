@@ -30,17 +30,17 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
   const { programmes } = props;
 
   const examboards = Array.from(
-    new Set(programmes.map((programme) => programme.examBoardTitle))
+    new Set(programmes.map((programme) => programme.examBoardTitle)),
   ).filter((examboard) => examboard !== null);
   const tiers = Array.from(
-    new Set(programmes.map((programme) => programme.tierTitle))
+    new Set(programmes.map((programme) => programme.tierTitle)),
   ).filter((tier) => tier !== null);
 
   const tierProgrammes = programmes.filter(
-    (programme) => programme.tierSlug !== null
+    (programme) => programme.tierSlug !== null,
   );
   const examBoardProgrammes = programmes.filter(
-    (programme) => programme.examBoardSlug !== null
+    (programme) => programme.examBoardSlug !== null,
   );
 
   const tierColSpan = tierProgrammes.length === 2 ? 6 : 9;
@@ -67,12 +67,15 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
         )}
         {tiers.length > 1 && examboards.length > 1 && (
           <>
-            {examboards.map((examboard) => {
+            {examboards.map((examboard, index) => {
               const programmeOfExamboard = tierProgrammes.filter(
-                (programme) => programme.examBoardTitle == examboard
+                (programme) => programme.examBoardTitle == examboard,
               );
               return (
-                <ProgrammeListContainer $colSpan={[12, 4]}>
+                <ProgrammeListContainer
+                  key={`${examboard}-${index}`}
+                  $colSpan={[12, 4]}
+                >
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examboard}
                   </Heading>

@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
@@ -15,7 +15,7 @@ jest.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-export const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
+const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
   ...testAboutPageBaseData,
   heading: "Work with us",
   introPortableText: [
@@ -121,20 +121,18 @@ export const testAboutWorkWithUsPageData: AboutWorkWithUsPage = {
 describe("pages/about-us/work-with-us.tsx", () => {
   it("Renders correct title ", async () => {
     renderWithProviders()(
-      <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
+      <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />,
     );
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "About us"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "About us",
+    );
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />
+        <AboutWorkWithUs pageData={testAboutWorkWithUsPageData} />,
       );
 
       expect(seo).toEqual({

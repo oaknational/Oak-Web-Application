@@ -22,11 +22,12 @@ const ERROR_CODES = [
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
+  "curriculum-api/params-incorrect",
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
 ] as const;
-export type ErrorCode = typeof ERROR_CODES[number];
+export type ErrorCode = (typeof ERROR_CODES)[number];
 
 type ErrorConfig = {
   // Message intended for developer's convenience. Human error messages should probably be handled in the view layer
@@ -121,6 +122,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Multiple resources were found when maximum 1 was expected",
     shouldNotify: true,
   },
+  "curriculum-api/params-incorrect": {
+    message: "The params provided are incorrect",
+    shouldNotify: true,
+    responseStatusCode: 404,
+  },
   "school-picker/fetch-suggestions": {
     message: "Error fetching suggested schools list",
     shouldNotify: true,
@@ -162,10 +168,17 @@ export interface ErrorInfo {
  */
 class OakError extends Error {
   private errorInfo;
+  private _hasBeenReported = false;
 
   constructor(errorInfo: ErrorInfo) {
     super(getErrorMessage(errorInfo));
     this.errorInfo = errorInfo;
+    if (
+      errorInfo.originalError instanceof OakError &&
+      errorInfo.originalError.hasBeenReported
+    ) {
+      this.hasBeenReported = true;
+    }
   }
 
   /** @returns The error code. */
@@ -191,6 +204,14 @@ class OakError extends Error {
   /** @returns The error config (all details for this code, which will include the above, which are left in for convenience). */
   public get config(): ErrorConfig {
     return getErrorConfig(this.code);
+  }
+
+  public set hasBeenReported(x: boolean) {
+    this._hasBeenReported = x;
+  }
+
+  public get hasBeenReported() {
+    return this._hasBeenReported;
   }
 
   /** @returns The object representation of the error. */

@@ -25,9 +25,9 @@ const usePostList = (props: UsePostListProps): PostListProps => {
     () =>
       items.filter((item) =>
         // @todo isPast and isFuture can throw
-        isPast(new Date(item.date))
+        isPast(new Date(item.date)),
       ),
-    [items]
+    [items],
   );
 
   const paginationProps = usePagination({

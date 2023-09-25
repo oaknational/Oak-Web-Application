@@ -30,7 +30,7 @@ export type ContactPageProps = {
 // @TODO: extract
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,
-  options
+  options,
 ) => {
   console.log(message, {
     type: options.type,
@@ -112,7 +112,7 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
 };
 
 export const getStaticProps: GetStaticProps<ContactPageProps> = async (
-  context
+  context,
 ) => {
   return getPageProps({
     page: "contact-us::getStaticProps",

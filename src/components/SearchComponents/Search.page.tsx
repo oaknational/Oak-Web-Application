@@ -60,7 +60,7 @@ const Search: FC<SearchProps> = (props) => {
 
       track.searchCompleted({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages
+          router.query.keyStages,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
@@ -116,6 +116,7 @@ const Search: FC<SearchProps> = (props) => {
               >
                 <SearchForm
                   searchTerm={query.term}
+                  placeholderText="Search by keyword or topic"
                   handleSubmit={(value) => {
                     setSearchTerm(value);
                   }}

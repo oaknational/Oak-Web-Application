@@ -32,7 +32,7 @@ const getItemLinkProps = (props: PostListItemProps): ResolveOakHrefProps => {
   }
 };
 const getItemCategoryLinkProps = (
-  props: PostListItemProps
+  props: PostListItemProps,
 ): ResolveOakHrefProps => {
   switch (props.contentType) {
     case "blog-post":
@@ -58,6 +58,7 @@ export type PostListItemProps = {
   date: string;
   withImage?: boolean;
   firstItemRef?: RefObject<HTMLAnchorElement> | null;
+  showImageOnTablet?: boolean;
 } & (
   | { contentType: "blog-post"; mainImage?: Image | null }
   | { contentType: "webinar"; thumbnailUrl?: string | null }
@@ -70,8 +71,21 @@ export type PostListItemProps = {
  * The title tag (h1, h2, ...) is passed as a prop.
  */
 const PostListItem: FC<PostListItemProps> = (props) => {
-  const { titleTag, title, summary, category, date, withImage, firstItemRef } =
-    props;
+  const {
+    titleTag,
+    title,
+    summary,
+    category,
+    date,
+    withImage,
+    firstItemRef,
+    showImageOnTablet,
+  } = props;
+
+  let imageDisplay = ["block", "none", "block"];
+  if (showImageOnTablet) {
+    imageDisplay = ["block", "block", "block"];
+  }
 
   const {
     containerProps,
@@ -93,7 +107,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
     >
       {withImage && (
         <Box
-          $display={["block", "none", "block"]}
+          $display={imageDisplay}
           $position={"relative"}
           $minWidth={240}
           $maxWidth={[160, "none"]}

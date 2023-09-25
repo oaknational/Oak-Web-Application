@@ -1,7 +1,7 @@
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 export const examboardProgrammeListingFixture = (
-  partial?: Partial<ProgrammeListingPageData>
+  partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks3",
@@ -12,8 +12,6 @@ export const examboardProgrammeListingFixture = (
       {
         programmeSlug: "history-secondary-ks4-aqa",
         subjectTitle: "History",
-        unitCount: 21,
-        lessonCount: 180,
         tierSlug: null,
         tierTitle: null,
         tierDisplayOrder: null,
@@ -24,8 +22,6 @@ export const examboardProgrammeListingFixture = (
       {
         programmeSlug: "history-secondary-ks4-edexcel",
         subjectTitle: "History",
-        unitCount: 19,
-        lessonCount: 120,
         tierSlug: null,
         tierTitle: null,
         tierDisplayOrder: null,

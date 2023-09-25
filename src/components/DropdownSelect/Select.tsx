@@ -76,7 +76,7 @@ const selectButtonStyles = css<SelectButtonProps>`
     css`
       font-size: 14px;
       color: ${getColorByLocation(
-        ({ theme }) => theme.input.states.default.placeholder
+        ({ theme }) => theme.input.states.default.placeholder,
       )};
     `}
 `;
@@ -96,7 +96,7 @@ const SelectSpan = styled.span`
 `;
 
 export function Select<T extends object>(
-  props: AriaSelectProps<T> & SelectProps
+  props: AriaSelectProps<T> & SelectProps,
 ) {
   const { myRef, containerProps } = props;
 
@@ -136,7 +136,7 @@ export function Select<T extends object>(
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
-          background={props.onFocus ? "teachersPastelBlue" : "pastelTurquoise"}
+          background={props.onFocus ? "teachersPastelBlue" : "teachersYellow"}
           color={"black"}
           $font={"body-3"}
           {...labelProps}

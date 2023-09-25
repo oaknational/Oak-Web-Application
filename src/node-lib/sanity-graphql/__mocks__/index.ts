@@ -17,7 +17,7 @@ import policyPageBySlugFixture from "../fixtures/policyPageBySlug.json";
 import landingPageBySlugFixture from "../fixtures/landingPageBySlug.json";
 import portableTextReferences from "../fixtures/portableTextReferences.json";
 import allNewsListingPageFixture from "../fixtures/newsListingPage.json";
-
+import curriculumOverviewPageFixture from "../fixtures/curriculumOverviewPage.json";
 /**
  * See sanity-graphql/index.ts for instructions on generating these
  * fixture files programmatically
@@ -42,4 +42,5 @@ export default {
   allLandingPages: jest.fn(() => allLandingPagesFixture),
   landingPageBySlug: jest.fn(() => landingPageBySlugFixture),
   newsListingPage: jest.fn(() => allNewsListingPageFixture),
+  curriculumOverviewPage: jest.fn(() => curriculumOverviewPageFixture),
 };

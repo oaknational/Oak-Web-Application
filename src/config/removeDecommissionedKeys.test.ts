@@ -20,7 +20,7 @@ describe("removeDecommissionedKeys", () => {
   test("removes the first key", () => {
     removeDecommissionedKeys();
     expect(localStorage.removeItem).toHaveBeenCalledWith(
-      "some-old-feature-key"
+      "some-old-feature-key",
     );
   });
   test("removes the correct number of keys", () => {

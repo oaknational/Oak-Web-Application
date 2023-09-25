@@ -44,9 +44,7 @@ describe("getPageViewProps()", () => {
     });
   });
   it("Unit listing", () => {
-    expect(
-      getPageViewProps("/beta/teachers/programmes/ks2-maths/units")
-    ).toEqual({
+    expect(getPageViewProps("/teachers/programmes/ks2-maths/units")).toEqual({
       pageName: "Unit Listing",
       analyticsUseCase: "Teacher",
     });
@@ -54,8 +52,8 @@ describe("getPageViewProps()", () => {
   it("Unit listing with query", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/programmes/primary-ks2-maths/units?learning-theme=circls"
-      )
+        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
+      ),
     ).toEqual({
       pageName: "Unit Listing",
       analyticsUseCase: "Teacher",
@@ -64,8 +62,8 @@ describe("getPageViewProps()", () => {
   it("Lesson listing", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons"
-      )
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
+      ),
     ).toEqual({
       pageName: "Lesson Listing",
       analyticsUseCase: "Teacher",
@@ -74,8 +72,8 @@ describe("getPageViewProps()", () => {
   it("Lesson overview", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123"
-      )
+        "/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123",
+      ),
     ).toEqual({
       pageName: "Lesson",
       analyticsUseCase: "Teacher",
@@ -84,21 +82,21 @@ describe("getPageViewProps()", () => {
   it("Lesson downloads", () => {
     expect(
       getPageViewProps(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123/downloads"
-      )
+        "/teachers/programmes/primary-ks2-maths/units/geometry-123/lessons/angles-123/downloads",
+      ),
     ).toEqual({
       pageName: "Lesson Download",
       analyticsUseCase: "Teacher",
     });
   });
   it("Search", () => {
-    expect(getPageViewProps("/beta/teachers/search")).toEqual({
+    expect(getPageViewProps("/teachers/search")).toEqual({
       pageName: "Search",
       analyticsUseCase: "Teacher",
     });
   });
   it("Search with query", () => {
-    expect(getPageViewProps("/beta/teachers/search?term=macb")).toEqual({
+    expect(getPageViewProps("/teachers/search?term=macb")).toEqual({
       pageName: "Search",
       analyticsUseCase: "Teacher",
     });
@@ -110,7 +108,7 @@ describe("getPageViewProps()", () => {
     });
   });
   it("Subject listing", () => {
-    expect(getPageViewProps("/beta/teachers/key-stages/ks2/subjects")).toEqual({
+    expect(getPageViewProps("/teachers/key-stages/ks2/subjects")).toEqual({
       pageName: "Subject Listing",
       analyticsUseCase: "Teacher",
     });
@@ -170,7 +168,7 @@ describe("getPageViewProps()", () => {
     });
   });
   it("Home (teachers)", () => {
-    expect(getPageViewProps("/beta/teachers")).toEqual({
+    expect(getPageViewProps("/teachers")).toEqual({
       pageName: "Homepage",
       analyticsUseCase: "Teacher",
     });
@@ -199,7 +197,7 @@ describe("getPageViewProps()", () => {
    */
   it("Our teachers", () => {
     expect(
-      getPageViewProps("https://classroom.thenational.academy/teachers")
+      getPageViewProps("https://classroom.thenational.academy/teachers"),
     ).toEqual({
       analyticsUseCase: null,
       pageName: null,
@@ -213,7 +211,7 @@ describe("getPageViewProps()", () => {
   });
   it("Our curriculum", () => {
     expect(
-      getPageViewProps("https://teachers.thenational.academy/oaks-curricula")
+      getPageViewProps("https://teachers.thenational.academy/oaks-curricula"),
     ).toEqual({
       analyticsUseCase: null,
       pageName: null,

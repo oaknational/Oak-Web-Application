@@ -4,7 +4,7 @@ import { Image } from "../../../common-lib/cms-types";
 import CMSImage from "../../CMSImage";
 
 const PostImageWithAltText = (
-  props: PortableTextComponentProps<{ asset: Image["asset"] }>
+  props: PortableTextComponentProps<{ asset: Image["asset"] }>,
 ) => {
   if (!props.value) {
     return null;

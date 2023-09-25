@@ -13,7 +13,7 @@ describe("urls.ts", () => {
       "'%s' is not external",
       (href) => {
         expect(isExternalHref(href)).toBe(false);
-      }
+      },
     );
   });
 
@@ -21,7 +21,7 @@ describe("urls.ts", () => {
     it("Our teachers", () => {
       const props: ResolveOakHrefProps = { page: "our-teachers" };
       expect(resolveOakHref(props)).toBe(
-        "https://classroom.thenational.academy/teachers"
+        "https://classroom.thenational.academy/teachers",
       );
     });
     it("Blog single", () => {
@@ -76,129 +76,120 @@ describe("urls.ts", () => {
     it("Unit listing", () => {
       const props: ResolveOakHrefProps = {
         page: "unit-index",
-        viewType: "teachers",
         programmeSlug: "primary-ks2-maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units"
+        "/teachers/programmes/primary-ks2-maths/units",
       );
     });
     it("Programme listing", () => {
       const props: ResolveOakHrefProps = {
         page: "programme-index",
-        viewType: "teachers",
         keyStageSlug: "ks2",
         subjectSlug: "maths",
       };
       expect(resolveOakHref(props)).toBe(
-        "/beta/teachers/key-stages/ks2/subjects/maths/programmes"
+        "/teachers/key-stages/ks2/subjects/maths/programmes",
       );
     });
     it("Unit listing with query", () => {
       expect(
         resolveOakHref({
           page: "unit-index",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           search: { "learning-theme": "circls" },
-        })
+        }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units?learning-theme=circls"
+        "/teachers/programmes/primary-ks2-maths/units?learning-theme=circls",
       );
     });
     it("Lesson listing", () => {
       expect(
         resolveOakHref({
           page: "lesson-index",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
-        })
+        }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons"
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons",
       );
     });
     it("Lesson overview", () => {
       expect(
         resolveOakHref({
           page: "lesson-overview",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           lessonSlug: "semi-circles-48",
-        })
+        }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48"
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48",
       );
     });
     it("Lesson downloads", () => {
       expect(
         resolveOakHref({
           page: "lesson-downloads",
-          viewType: "teachers",
           programmeSlug: "primary-ks2-maths",
           unitSlug: "geometry-349",
           lessonSlug: "semi-circles-48",
-        })
+        }),
       ).toBe(
-        "/beta/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads"
+        "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads",
       );
     });
     it("Search", () => {
       expect(
         resolveOakHref({
           page: "search",
-          viewType: "teachers",
-        })
-      ).toBe("/beta/teachers/search");
+        }),
+      ).toBe("/teachers/search");
     });
     it("Search with query", () => {
       expect(
         resolveOakHref({
           page: "search",
-          viewType: "teachers",
           query: { term: "something", keyStages: ["ks4", "ks2"] },
-        })
-      ).toBe("/beta/teachers/search?term=something&keyStages=ks4%2Cks2");
+        }),
+      ).toBe("/teachers/search?term=something&keyStages=ks4%2Cks2");
     });
     it("Landing page", () => {
       expect(
         resolveOakHref({
           page: "landing-page",
           lpSlug: "lp-slug-123",
-        })
+        }),
       ).toBe("/lp/lp-slug-123");
     });
     it("Subject listing", () => {
       expect(
         resolveOakHref({
           page: "subject-index",
-          viewType: "teachers",
           keyStageSlug: "ks2",
-        })
-      ).toBe("/beta/teachers/key-stages/ks2/subjects");
+        }),
+      ).toBe("/teachers/key-stages/ks2/subjects");
     });
     it("About us: Board", () => {
       expect(resolveOakHref({ page: "about-board" })).toBe("/about-us/board");
     });
     it("About us: Who we are", () => {
       expect(resolveOakHref({ page: "about-who-we-are" })).toBe(
-        "/about-us/who-we-are"
+        "/about-us/who-we-are",
       );
     });
     it("About us: Leadership", () => {
       expect(resolveOakHref({ page: "about-leadership" })).toBe(
-        "/about-us/leadership"
+        "/about-us/leadership",
       );
     });
     it("About us: Partners", () => {
       expect(resolveOakHref({ page: "about-partners" })).toBe(
-        "/about-us/partners"
+        "/about-us/partners",
       );
     });
     it("About us: Work with us", () => {
       expect(resolveOakHref({ page: "about-work-with-us" })).toBe(
-        "/about-us/work-with-us"
+        "/about-us/work-with-us",
       );
     });
     it("Contact us", () => {
@@ -206,55 +197,53 @@ describe("urls.ts", () => {
     });
     it("Develop your curriculum", () => {
       expect(resolveOakHref({ page: "develop-your-curriculum" })).toBe(
-        "/develop-your-curriculum"
+        "/develop-your-curriculum",
       );
     });
     it("Home", () => {
-      expect(resolveOakHref({ page: "home", viewType: null })).toBe("/");
+      expect(resolveOakHref({ page: "home" })).toBe("/");
     });
     it("Home (teachers)", () => {
-      expect(resolveOakHref({ page: "home", viewType: "teachers" })).toBe(
-        "/beta/teachers"
-      );
+      expect(resolveOakHref({ page: "home" })).toBe("/");
     });
     it("Lesson planning", () => {
       expect(resolveOakHref({ page: "lesson-planning" })).toBe(
-        "/lesson-planning"
+        "/lesson-planning",
       );
     });
     it("Legal", () => {
       expect(
-        resolveOakHref({ page: "legal", legalSlug: "legal-page-123" })
+        resolveOakHref({ page: "legal", legalSlug: "legal-page-123" }),
       ).toBe("/legal/legal-page-123");
     });
     it("Support your team", () => {
       expect(resolveOakHref({ page: "support-your-team" })).toBe(
-        "/support-your-team"
+        "/support-your-team",
       );
     });
     it("Help", () => {
       expect(resolveOakHref({ page: "help" })).toBe(
-        "https://support.thenational.academy"
+        "https://support.thenational.academy",
       );
     });
     it("Careers", () => {
       expect(resolveOakHref({ page: "careers" })).toBe(
-        "https://app.beapplied.com/org/1574/oak-national-academy"
+        "https://app.beapplied.com/org/1574/oak-national-academy",
       );
     });
     it("Our curriculum", () => {
       expect(resolveOakHref({ page: "oak-curriculum" })).toBe(
-        "https://teachers.thenational.academy/oaks-curricula"
+        "https://teachers.thenational.academy/oaks-curricula",
       );
     });
     it("Classroom", () => {
       expect(resolveOakHref({ page: "classroom" })).toBe(
-        "https://classroom.thenational.academy"
+        "https://classroom.thenational.academy",
       );
     });
     it("Teacher hub", () => {
       expect(resolveOakHref({ page: "teacher-hub" })).toBe(
-        "https://teachers.thenational.academy"
+        "https://teachers.thenational.academy",
       );
     });
   });

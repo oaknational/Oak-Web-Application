@@ -10,9 +10,10 @@ import Box from "../Box";
 import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
-import MenuLinks from "../MenuLinks";
-import { betaMenuSections } from "../../browser-lib/fixtures/betaMenuSections";
 import { P } from "../Typography";
+import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
+
+import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -30,7 +31,7 @@ const AppHeader: FC<HeaderProps> = () => {
         $alignItems={"center"}
       >
         <Flex $justifyContent={"center"} $alignItems={"center"}>
-          <OakLink page={"home"} viewType={"teachers"}>
+          <OakLink page={"home"}>
             <Logo height={48} width={104} />
           </OakLink>
           <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>
@@ -46,7 +47,7 @@ const AppHeader: FC<HeaderProps> = () => {
           onClick={openMenu}
         />
         <Menu menuButtonRef={menuButtonRef}>
-          <MenuLinks menuSections={betaMenuSections} />
+          <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
       <Box

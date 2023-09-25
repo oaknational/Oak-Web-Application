@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import PlanALesson from "../../pages/lesson-planning";
 import { PlanningPage } from "../../common-lib/cms-types";
@@ -92,20 +92,18 @@ describe("pages/lesson-planning.tsx", () => {
     }));
   });
 
-  it("Renders correct title ", async () => {
+  it("Renders correct title ", () => {
     render(<PlanALesson pageData={testPlanningPageData} />);
 
-    await waitFor(() => {
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
-        "Planning title"
-      );
-    });
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(
+      "Planning title",
+    );
   });
 
   describe.skip("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
-        <PlanALesson pageData={testPlanningPageData} />
+        <PlanALesson pageData={testPlanningPageData} />,
       );
 
       expect(seo).toEqual({});

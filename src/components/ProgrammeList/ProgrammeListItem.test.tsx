@@ -29,15 +29,13 @@ describe("ProgrammeListItem", () => {
         keyStageTitle="Key stage 4"
         tierTitle="Higher"
         tierSlug="higher"
-        unitCount={3}
-        lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         // background="grey2"
         tierDisplayOrder={null}
         examBoardSlug={null}
         examBoardTitle={null}
         examBoardDisplayOrder={null}
-      />
+      />,
     );
 
     expect(screen.getByText("Higher")).toBeInTheDocument();
@@ -52,15 +50,13 @@ describe("ProgrammeListItem", () => {
         keyStageTitle="Key Stage 4"
         tierTitle="Higher"
         tierSlug="higher"
-        unitCount={3}
-        lessonCount={4}
         programmeSlug="maths-secondary-ks4-higher"
         // background="grey2"
         tierDisplayOrder={null}
         examBoardSlug={null}
         examBoardTitle={null}
         examBoardDisplayOrder={null}
-      />
+      />,
     );
 
     const trier = screen.getByText("Higher");
