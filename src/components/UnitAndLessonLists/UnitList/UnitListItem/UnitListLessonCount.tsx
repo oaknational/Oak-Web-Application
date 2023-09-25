@@ -1,6 +1,6 @@
-import Flex from "../../../Flex";
-import Icon from "../../../Icon";
-import { Span } from "../../../Typography";
+import Flex from "@/components/Flex";
+import Icon from "@/components/Icon";
+import { Span } from "@/components/Typography";
 
 export interface IUnitListLessonCountProps {
   lessonCount: number | null;
