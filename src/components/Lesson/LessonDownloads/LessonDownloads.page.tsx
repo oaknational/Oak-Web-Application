@@ -69,6 +69,7 @@ type LessonDownloadsPageProps =
 export default function LessonDownloads(props: LessonDownloadsPageProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
+
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -85,6 +86,7 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
   const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const isLegacyDownload = isLegacy;
 
   const { register, formState, control, watch, setValue, handleSubmit } =
     useForm<DownloadFormProps>({
@@ -201,50 +203,57 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
   const hasResourcesToDownload =
     getInitialResourcesToDownloadState().length > 0;
 
+  const [apiError, setApiError] = useState<string | undefined>(undefined);
+
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
 
   const allResourcesToDownloadCount = resourcesToDownload.length;
   const selectedResourcesToDownloadCount = selectedResources?.length;
 
-  const { onSubmit } = useDownloadForm({
-    isLegacyDownload: isLegacy,
-  });
+  const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
-    await debouncedSubmit({
-      data,
-      lessonSlug,
-      setIsAttemptingDownload,
-      setEditDetailsClicked,
-      onSubmit,
-    });
-    const {
-      schoolOption,
-      schoolName,
-      schoolUrn,
-      selectedResourcesForTracking,
-    } = getFormattedDetailsForTracking({
-      school: data.school,
-      selectedResources,
-    });
+    try {
+      await debouncedSubmit({
+        data,
+        lessonSlug,
+        setIsAttemptingDownload,
+        setEditDetailsClicked,
+        onSubmit,
+      });
+      const {
+        schoolOption,
+        schoolName,
+        schoolUrn,
+        selectedResourcesForTracking,
+      } = getFormattedDetailsForTracking({
+        school: data.school,
+        selectedResources,
+      });
 
-    track.lessonResourcesDownloaded({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      unitName: unitTitle,
-      unitSlug,
-      subjectTitle,
-      subjectSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
-      resourceType: selectedResourcesForTracking,
-      analyticsUseCase,
-      schoolUrn,
-      schoolName,
-      schoolOption,
-      emailSupplied: data?.email ? true : false,
-    });
+      track.lessonResourcesDownloaded({
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        unitName: unitTitle,
+        unitSlug,
+        subjectTitle,
+        subjectSlug,
+        lessonName: lessonTitle,
+        lessonSlug,
+        resourceType: selectedResourcesForTracking,
+        analyticsUseCase,
+        schoolUrn,
+        schoolName,
+        schoolOption,
+        emailSupplied: data?.email ? true : false,
+      });
+    } catch (error) {
+      setIsAttemptingDownload(false);
+      setApiError(
+        "There was an error downloading your files. Please try again.",
+      );
+    }
   };
 
   const getFormErrorMessage = () => {
@@ -397,10 +406,23 @@ export default function LessonDownloads(props: LessonDownloadsPageProps) {
                     <Box $mr={24} $textAlign={"left"}>
                       <FieldError
                         id="download-form-error"
+                        data-testid="download-form-error"
                         variant={"large"}
                         withoutMarginBottom
                       >
                         {getFormErrorMessage()}
+                      </FieldError>
+                    </Box>
+                  )}
+                  {apiError && !hasFormErrors && (
+                    <Box $mr={24} $textAlign={"left"}>
+                      <FieldError
+                        id="download-error"
+                        data-testid="download-error"
+                        variant={"large"}
+                        withoutMarginBottom
+                      >
+                        {apiError}
                       </FieldError>
                     </Box>
                   )}

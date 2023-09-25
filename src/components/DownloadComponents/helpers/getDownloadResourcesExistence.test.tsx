@@ -26,6 +26,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
+
       true,
     );
 
@@ -63,6 +64,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
+
         true,
       );
     } catch (error) {
@@ -106,6 +108,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
+
       false,
     );
 
@@ -141,6 +144,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
+
         false,
       );
     } catch (error) {

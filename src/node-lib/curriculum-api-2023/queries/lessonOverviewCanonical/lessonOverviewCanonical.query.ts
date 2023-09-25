@@ -14,6 +14,11 @@ const lessonOverviewCanonicalQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    /**
+     * When a lesson appears in multiple pathways, the query returns multiple
+     * results. We need to merge these results into a single object, with the
+     * pathways array containing all the pathways that the lesson appears in.
+     */
     const lessonWithPathways = lessons.reduce(
       (acc, lesson) => {
         const pathway = lessonPathwaySchema.parse(lesson);

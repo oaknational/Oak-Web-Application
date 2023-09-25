@@ -60,6 +60,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
+
         true,
       );
     } catch (error) {
@@ -118,6 +119,7 @@ describe("createDownloadResourcesLink()", () => {
       await createDownloadResourcesLink(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
+
         false,
       );
     } catch (error) {

@@ -12,25 +12,27 @@ const lessonDownloadsQuery =
     lessonSlug: string;
   }) => {
     const res = await sdk.lessonDownloads(args);
-    const [downloads] = res.downloads;
+    const pages = res.downloads;
 
-    if (!downloads) {
+    if (!pages || pages.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (res.downloads.length > 1) {
+    if (pages.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
-      errorReporter("curriculum-api-2023::lessonListing")(error, {
+      errorReporter("curriculum-api-2023::lessonDownloads")(error, {
         severity: "warning",
         ...args,
         res,
       });
     }
 
+    const page = pages[0];
+
     return lessonDownloadsSchema.parse({
-      ...downloads,
+      ...page,
       isLegacy: false,
     });
   };
