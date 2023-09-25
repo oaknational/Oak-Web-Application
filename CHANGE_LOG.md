@@ -1,3 +1,15 @@
+# [1.251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.1...v1.251.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* check number of lessons and use singular or plural appropriately ([d2476fa](https://github.com/oaknational/Oak-Web-Application/commit/d2476fa60342db816bf907c222205b10a55cdb03))
+
+
+### Features
+
+* test for plurality ([5e74cc5](https://github.com/oaknational/Oak-Web-Application/commit/5e74cc58e12191fff187b87ea9e25ff01aa0045d))
+
 ## [1.250.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.0...v1.250.1) (2023-09-25)
 
 
