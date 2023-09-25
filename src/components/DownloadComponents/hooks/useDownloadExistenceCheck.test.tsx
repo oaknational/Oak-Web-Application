@@ -44,6 +44,7 @@ describe("useDownloadExistenceCheck", () => {
         lessonSlug,
         resourcesToCheck,
         onComplete,
+
         isLegacyDownload,
       }),
     );
@@ -82,6 +83,7 @@ describe("useDownloadExistenceCheck", () => {
         lessonSlug,
         resourcesToCheck,
         onComplete,
+
         isLegacyDownload,
       }),
     );

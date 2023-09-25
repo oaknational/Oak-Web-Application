@@ -19,6 +19,7 @@ import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import OakError from "@/errors/OakError";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -41,6 +42,16 @@ jest.mock(
 );
 
 jest.mock(
+  "@/components/DownloadComponents/helpers/downloadDebounceSubmit",
+  () => ({
+    __esModule: true,
+    default: () => {
+      throw new OakError({ code: "downloads/failed-to-fetch" });
+    },
+  }),
+);
+
+jest.mock(
   "@/components/DownloadComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
@@ -55,6 +66,37 @@ beforeEach(() => {
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
+  it("should display an error if the download fails", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    act(() => {
+      result.current.setSchoolInLocalStorage({
+        schoolName: "Primary School",
+        schoolId: "222-Primary School",
+      });
+      result.current.setEmailInLocalStorage("test@test.com");
+      result.current.setTermsInLocalStorage(true);
+    });
+
+    const { getByText } = render(<LessonDownloadsPage {...props} />);
+
+    await act(async () => {
+      const selectAllButton = getByText("Select all");
+      const downloadButton = getByText("Download .zip");
+      const user = userEvent.setup();
+      await user.click(selectAllButton);
+      await waitForNextTick();
+
+      console.log(downloadButton);
+      await user.click(downloadButton);
+      await waitForNextTick();
+    });
+
+    expect(
+      getByText("There was an error downloading your files. Please try again."),
+    ).toBeInTheDocument();
+  });
+
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage

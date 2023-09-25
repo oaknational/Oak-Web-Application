@@ -45,6 +45,7 @@ const downloadDebouncedSubmit = async (
       originalError: error,
     });
     await reportError(oakError);
+    throw oakError;
   }
 };
 
