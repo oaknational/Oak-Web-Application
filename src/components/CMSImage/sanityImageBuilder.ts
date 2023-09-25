@@ -1,6 +1,6 @@
 import sanityImage from "@sanity/image-url";
 import {
-  SanityClientLike,
+  SanityModernClientLike,
   SanityImageSource,
 } from "@sanity/image-url/lib/types/types";
 
@@ -10,11 +10,13 @@ import getBrowserConfig from "../../browser-lib/getBrowserConfig";
  * Provide a "client like" object instead of using the
  * actual sanity client to cut down on dependency size
  */
-export const sanityClientLike: SanityClientLike = {
-  clientConfig: {
-    projectId: getBrowserConfig("sanityProjectId"),
-    dataset: getBrowserConfig("sanityDataset"),
-    apiHost: `https://${getBrowserConfig("sanityAssetCDNHost")}`,
+export const sanityClientLike: SanityModernClientLike = {
+  config: () => {
+    return {
+      projectId: getBrowserConfig("sanityProjectId"),
+      dataset: getBrowserConfig("sanityDataset"),
+      apiHost: `https://${getBrowserConfig("sanityAssetCDNHost")}`,
+    };
   },
 };
 export const imageBuilder = sanityImage(sanityClientLike);
