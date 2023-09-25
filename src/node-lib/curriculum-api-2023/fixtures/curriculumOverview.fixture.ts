@@ -1,10 +1,12 @@
-import {
-  curriculumOverviewTabSchema,
-  curriculumOverviewMVSchema,
-} from "../queries/curriculumOverview/curriculumOverview.schema";
-
-import { CurriculumOverviewSanityData } from "@/common-lib/cms-types/curriculumOverview";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+
+export type curriculumOverviewTabSchema = {
+  curriculumInfo: CurriculumOverviewMVData;
+  curriculumCMSInfo: CurriculumOverviewSanityData;
+  curriculumSelectionSlugs: CurriculumSelectionSlugs;
+};
 
 export const curriculumOverviewTabFixture = (
   partial?: Partial<curriculumOverviewTabSchema>,
@@ -55,16 +57,18 @@ const curriculumOverviewSlugsFixture = (
   };
 };
 
+const curriculaDesc =
+  "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools.\n" +
+  "Central to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills.\n" +
+  "Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.";
 export const curriculumOverviewMVFixture = (
-  partial?: Partial<curriculumOverviewMVSchema>,
-): curriculumOverviewMVSchema => {
+  partial?: Partial<CurriculumOverviewMVData>,
+): CurriculumOverviewMVData => {
   return {
-    curriculaDesc:
-      "Our curriculum provides adaptable, coherently sequenced units to allow students to develop a deep, sustained understanding of mathematics at Key Stages 1-4. Evidence informed approaches including variation and the development of core sets of models and representations to build pupil knowledge and conceptual understanding. Lessons are designed to be flexible, accessible and to acknowledge the diversity in our schools. Central to the design of our curriculum is coherence in the development of key threads in mathematics. These threads reflect the structure of the National Curriculum, allowing teachers to track the development of key knowledge and skills. Reasoning and problem solving are integral. Resources promote the use of vocabulary allowing pupils to articulate their thinking and strengthen both their procedural knowledge and conceptual understanding. Use of talk allows pupils to explore mathematical connections and use key vocabulary accurately when presenting their reasoning.",
+    curriculaDesc,
     subjectTitle: "Maths",
     phaseTitle: "Secondary",
-    videoGuideDesc:
-      "Our new curriculum sequence has recently launched. For additional support, watch this video guide by {videoGuideAuthor} from our educational team, as they talk you through how to use this new tool.",
+    examboardTitle: null,
     ...partial,
   };
 };
