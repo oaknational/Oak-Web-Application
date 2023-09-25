@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -15,10 +14,10 @@ import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/
 import AppLayout from "@/components/AppLayout/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import TeachersLessonOverviewPage from "@/components/pages/TeachersLessonOverview/TeachersLessonOverview";
 import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppearsIn";
 import Flex from "@/components/Flex";
-import { groupLessonPathways } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
+import { groupLessonPathways } from "@/components/Lesson/lesson.helpers";
+import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -31,10 +30,7 @@ type URLParams = {
 export default function LessonOverviewCanonicalPage({
   lesson,
 }: PageProps): JSX.Element {
-  const pathwayGroups = useMemo(
-    () => groupLessonPathways(lesson.pathways),
-    [lesson.pathways],
-  );
+  const pathwayGroups = groupLessonPathways(lesson.pathways);
 
   return (
     <AppLayout
@@ -46,7 +42,7 @@ export default function LessonOverviewCanonicalPage({
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <TeachersLessonOverviewPage lesson={{ ...lesson, isCanonical: true }} />
+      <LessonOverview lesson={{ ...lesson, isCanonical: true }} />
       <Flex $background={"pink50"} $width={"100%"}>
         <MaxWidth $pv={120}>
           <LessonAppearsIn {...pathwayGroups} />

@@ -1,4 +1,4 @@
-import { groupLessonPathways } from "./teachersLessonOverview.helpers"; // Replace with the actual import path
+import { groupLessonPathways } from "./lesson.helpers"; // Replace with the actual import path
 
 describe("groupLessonPathways()", () => {
   it("transforms a single LessonPathway correctly", () => {
@@ -21,21 +21,26 @@ describe("groupLessonPathways()", () => {
     const result = groupLessonPathways(lessonPathways);
 
     const expected = {
-      units: [
+      subjects: [
         {
-          unitTitle: "Unit 1",
-          unitSlug: "unit-1",
-          examboards: [
+          subjectTitle: "Math",
+          units: [
             {
-              examboardTitle: "ExamBoard 1",
-              examboardSlug: "examboard-1",
-              subjectTitle: "Math",
-              subjectSlug: "math",
-              tiers: [
+              unitTitle: "Unit 1",
+              unitSlug: "unit-1",
+              examboards: [
                 {
-                  programmeSlug: "programme-1",
-                  tierTitle: "Tier A",
-                  tierSlug: "tier-a",
+                  examboardTitle: "ExamBoard 1",
+                  examboardSlug: "examboard-1",
+                  subjectTitle: "Math",
+                  subjectSlug: "math",
+                  tiers: [
+                    {
+                      programmeSlug: "programme-1",
+                      tierTitle: "Tier A",
+                      tierSlug: "tier-a",
+                    },
+                  ],
                 },
               ],
             },
@@ -80,40 +85,50 @@ describe("groupLessonPathways()", () => {
     const result = groupLessonPathways(lessonPathways);
 
     const expected = {
-      units: [
+      subjects: [
         {
-          unitTitle: "Unit 1",
-          unitSlug: "unit-1",
-          examboards: [
+          subjectTitle: "Math",
+          units: [
             {
-              examboardTitle: "ExamBoard 1",
-              examboardSlug: "examboard-1",
-              subjectTitle: "Math",
-              subjectSlug: "math",
-              tiers: [
+              unitTitle: "Unit 1",
+              unitSlug: "unit-1",
+              examboards: [
                 {
-                  programmeSlug: "programme-1",
-                  tierTitle: "Tier A",
-                  tierSlug: "tier-a",
+                  examboardTitle: "ExamBoard 1",
+                  examboardSlug: "examboard-1",
+                  subjectTitle: "Math",
+                  subjectSlug: "math",
+                  tiers: [
+                    {
+                      programmeSlug: "programme-1",
+                      tierTitle: "Tier A",
+                      tierSlug: "tier-a",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
         {
-          unitTitle: "Unit 2",
-          unitSlug: "unit-2",
-          examboards: [
+          subjectTitle: "Science",
+          units: [
             {
-              examboardTitle: "ExamBoard 2",
-              examboardSlug: "examboard-2",
-              subjectTitle: "Science",
-              subjectSlug: "science",
-              tiers: [
+              unitTitle: "Unit 2",
+              unitSlug: "unit-2",
+              examboards: [
                 {
-                  programmeSlug: "programme-2",
-                  tierTitle: "Tier B",
-                  tierSlug: "tier-b",
+                  examboardTitle: "ExamBoard 2",
+                  examboardSlug: "examboard-2",
+                  subjectTitle: "Science",
+                  subjectSlug: "science",
+                  tiers: [
+                    {
+                      programmeSlug: "programme-2",
+                      tierTitle: "Tier B",
+                      tierSlug: "tier-b",
+                    },
+                  ],
                 },
               ],
             },
@@ -197,85 +212,101 @@ describe("groupLessonPathways()", () => {
     const result = groupLessonPathways(lessonPathways);
 
     const expected = {
-      units: [
+      subjects: [
         {
-          unitTitle: "Unit 1",
-          unitSlug: "unit-1",
-          examboards: [
+          subjectTitle: "Math",
+          units: [
             {
-              examboardTitle: "ExamBoard 1",
-              examboardSlug: "examboard-1",
-              subjectTitle: "Math",
-              subjectSlug: "math",
-              tiers: [
+              unitTitle: "Unit 1",
+              unitSlug: "unit-1",
+              examboards: [
                 {
-                  programmeSlug: "math--examboard-1--tier-a",
-                  tierTitle: "Tier A",
-                  tierSlug: "tier-a",
+                  examboardTitle: "ExamBoard 1",
+                  examboardSlug: "examboard-1",
+                  subjectTitle: "Math",
+                  subjectSlug: "math",
+                  tiers: [
+                    {
+                      programmeSlug: "math--examboard-1--tier-a",
+                      tierTitle: "Tier A",
+                      tierSlug: "tier-a",
+                    },
+                  ],
                 },
               ],
             },
             {
-              examboardTitle: "ExamBoard 2",
-              examboardSlug: "examboard-2",
-              subjectTitle: "Science",
-              subjectSlug: "science",
-              tiers: [
+              unitTitle: "Unit 2",
+              unitSlug: "unit-2",
+              examboards: [
                 {
-                  programmeSlug: "science--examboard-2--tier-b",
-                  tierTitle: "Tier B",
-                  tierSlug: "tier-b",
+                  examboardTitle: "ExamBoard 1",
+                  examboardSlug: "examboard-1",
+                  subjectTitle: "Math",
+                  subjectSlug: "math",
+                  tiers: [
+                    {
+                      programmeSlug: "math--examboard-1--tier-a",
+                      tierTitle: "Tier A",
+                      tierSlug: "tier-a",
+                    },
+                  ],
+                },
+                {
+                  examboardTitle: "ExamBoard 2",
+                  examboardSlug: "examboard-2",
+                  subjectTitle: "Math",
+                  subjectSlug: "math",
+                  tiers: [
+                    {
+                      programmeSlug: "math--examboard-2--tier-c",
+                      tierTitle: "Tier C",
+                      tierSlug: "tier-c",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
         {
-          unitTitle: "Unit 2",
-          unitSlug: "unit-2",
-          examboards: [
+          subjectTitle: "Science",
+          units: [
             {
-              examboardTitle: "ExamBoard 1",
-              examboardSlug: "examboard-1",
-              subjectTitle: "Math",
-              subjectSlug: "math",
-              tiers: [
+              unitTitle: "Unit 1",
+              unitSlug: "unit-1",
+              examboards: [
                 {
-                  programmeSlug: "math--examboard-1--tier-a",
-                  tierTitle: "Tier A",
-                  tierSlug: "tier-a",
+                  examboardTitle: "ExamBoard 2",
+                  examboardSlug: "examboard-2",
+                  subjectTitle: "Science",
+                  subjectSlug: "science",
+                  tiers: [
+                    {
+                      programmeSlug: "science--examboard-2--tier-b",
+                      tierTitle: "Tier B",
+                      tierSlug: "tier-b",
+                    },
+                  ],
                 },
               ],
             },
             {
-              examboardTitle: "ExamBoard 2",
-              examboardSlug: "examboard-2",
-              subjectTitle: "Math",
-              subjectSlug: "math",
-              tiers: [
+              unitTitle: "Unit 3",
+              unitSlug: "unit-3",
+              examboards: [
                 {
-                  programmeSlug: "math--examboard-2--tier-c",
-                  tierTitle: "Tier C",
-                  tierSlug: "tier-c",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          unitTitle: "Unit 3",
-          unitSlug: "unit-3",
-          examboards: [
-            {
-              examboardTitle: "ExamBoard 3",
-              examboardSlug: "examboard-3",
-              subjectTitle: "Science",
-              subjectSlug: "science",
-              tiers: [
-                {
-                  programmeSlug: "science--examboard-3--tier-d",
-                  tierTitle: "Tier D",
-                  tierSlug: "tier-d",
+                  examboardTitle: "ExamBoard 3",
+                  examboardSlug: "examboard-3",
+                  subjectTitle: "Science",
+                  subjectSlug: "science",
+                  tiers: [
+                    {
+                      programmeSlug: "science--examboard-3--tier-d",
+                      tierTitle: "Tier D",
+                      tierSlug: "tier-d",
+                    },
+                  ],
                 },
               ],
             },

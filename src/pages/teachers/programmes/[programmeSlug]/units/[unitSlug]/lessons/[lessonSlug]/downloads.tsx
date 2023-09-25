@@ -16,7 +16,7 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import LessonDownloads from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
+import { LessonDownloads } from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonDownloadsPageProps = {

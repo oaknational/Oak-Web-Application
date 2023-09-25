@@ -1,6 +1,6 @@
 import { pick, groupBy } from "lodash";
 
-import { LessonBase, LessonPathway } from "./teachersLessonOverview.types";
+import { LessonBase, LessonPathway } from "./lesson.types";
 
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/Breadcrumbs";
@@ -214,42 +214,57 @@ export const getPageLinksForLesson = (lesson: LessonBase) => {
 };
 
 export function groupLessonPathways(pathways: LessonPathway[]) {
-  const pathwaysByUnit = Object.values(groupBy(pathways, "unitSlug"));
+  const pathwaysBySubject = Object.values(groupBy(pathways, "subjectSlug"));
 
-  const units = pathwaysByUnit
-    .map((unitPathways) => {
-      const pathwaysByExamboard = Object.values(
-        groupBy(unitPathways, "examboardSlug"),
+  const subjects = pathwaysBySubject
+    .map((subjectPathways) => {
+      const pathwaysByUnit = Object.values(
+        groupBy(subjectPathways, "unitSlug"),
       );
 
-      const examboards = pathwaysByExamboard
-        .map((examboardPathways) => {
-          const [firstPathway] = examboardPathways;
+      const units = pathwaysByUnit
+        .map((unitPathways) => {
+          const pathwaysByExamboard = Object.values(
+            groupBy(unitPathways, "examboardSlug"),
+          );
+
+          const examboards = pathwaysByExamboard
+            .map((examboardPathways) => {
+              const [firstPathway] = examboardPathways;
+              if (!firstPathway) return null;
+              return {
+                ...pick(firstPathway, [
+                  "examboardTitle",
+                  "examboardSlug",
+                  "subjectTitle",
+                  "subjectSlug",
+                ]),
+                tiers: examboardPathways.map((pathway) =>
+                  pick(pathway, ["programmeSlug", "tierTitle", "tierSlug"]),
+                ),
+              };
+            })
+            .filter(truthy);
+
+          const [firstPathway] = unitPathways;
           if (!firstPathway) return null;
           return {
-            ...pick(firstPathway, [
-              "examboardTitle",
-              "examboardSlug",
-              "subjectTitle",
-              "subjectSlug",
-            ]),
-            tiers: examboardPathways.map((pathway) =>
-              pick(pathway, ["programmeSlug", "tierTitle", "tierSlug"]),
-            ),
+            ...pick(firstPathway, ["unitTitle", "unitSlug"]),
+            examboards,
           };
         })
         .filter(truthy);
 
-      const [firstPathway] = unitPathways;
+      const [firstPathway] = subjectPathways;
       if (!firstPathway) return null;
       return {
-        ...pick(firstPathway, ["unitTitle", "unitSlug"]),
-        examboards,
+        ...pick(firstPathway, ["subjectTitle", "subjectSlug"]),
+        units,
       };
     })
     .filter(truthy);
 
   return {
-    units,
+    subjects,
   };
 }

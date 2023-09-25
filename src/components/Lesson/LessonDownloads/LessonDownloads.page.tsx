@@ -39,14 +39,14 @@ import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDeb
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
+  getLessonOverviewBreadCumb,
+  getLessonDownloadsBreadCumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
-  getLessonDownloadsBreadCumb,
-  getLessonOverviewBreadCumb,
-} from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
-import { LessonPathway } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.types";
+} from "@/components/Lesson/lesson.helpers";
+import { LessonPathway } from "@/components/Lesson/lesson.types";
 
-type LessonDownloadsPageProps =
+type LessonDownloadsProps =
   | {
       isCanonical: true;
       lesson: {
@@ -66,7 +66,8 @@ type LessonDownloadsPageProps =
         downloads: LessonDownloadsData["downloads"];
       };
     };
-export default function LessonDownloads(props: LessonDownloadsPageProps) {
+
+export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
 

@@ -29,6 +29,7 @@ export type LessonBase = {
   additionalMaterialUrl: string | null;
   hasCopyrightMaterial?: boolean | null;
   keyLearningPoints?: KeyLearningPoint[] | null;
+  hasDownloadableResources: boolean;
 };
 
 export type LessonPathway = {

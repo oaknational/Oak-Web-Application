@@ -1,22 +1,22 @@
 import React from "react";
 
 import {
-  getBreadcrumbsForLessonPathway,
   getCommonPathway,
-  getLessonOverviewBreadCumb,
   getPageLinksForLesson,
-} from "./teachersLessonOverview.helpers";
+  getBreadcrumbsForLessonPathway,
+  getLessonOverviewBreadCumb,
+} from "../lesson.helpers";
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
-} from "./teachersLessonOverview.types";
+} from "../lesson.types";
 
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import Typography, { Heading, Hr } from "@/components/Typography";
 import Grid, { GridArea } from "@/components/Grid";
-import OverviewPresentation from "@/components/pages/TeachersLessonOverview/OverviewPresentation";
-import OverviewVideo from "@/components/pages/TeachersLessonOverview/OverviewVideo";
+import OverviewPresentation from "@/components/Lesson/LessonOverview/OverviewPresentation";
+import OverviewVideo from "@/components/Lesson/LessonOverview/OverviewVideo";
 import QuizContainerNew from "@/components/QuizContainerNew";
 import Box from "@/components/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -30,13 +30,11 @@ import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItem
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
 
-export type TeachersLessonOverviewPageProps = {
+export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
 };
 
-export default function TeachersLessonOverviewPage({
-  lesson,
-}: TeachersLessonOverviewPageProps) {
+export function LessonOverview({ lesson }: LessonOverviewProps) {
   const {
     lessonTitle,
     lessonSlug,

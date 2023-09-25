@@ -22,73 +22,138 @@ const Template: StoryFn<typeof Component> = (args) => (
 
 export const LessonAppearsIn = Template.bind({});
 LessonAppearsIn.args = {
-  units: [
+  subjects: [
     {
-      unitTitle: "Unit 1",
-      unitSlug: "unit-slug",
-      examboards: [
+      subjectTitle: "Combined Science",
+      subjectSlug: "combined-science",
+      units: [
         {
-          examboardTitle: "Edexcel",
-          examboardSlug: "edexcel",
-          subjectTitle: "Maths",
-          subjectSlug: "maths",
-          tiers: [
+          unitTitle: "Measuring waves",
+          unitSlug: "measuring-waves",
+          examboards: [
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Foundation",
-              tierSlug: "foundation",
+              examboardTitle: "AQA",
+              examboardSlug: "aqa",
+              subjectTitle: "Combined Science",
+              subjectSlug: "combined-science",
+              tiers: [
+                {
+                  programmeSlug:
+                    "combined-science-secondary-ks4-foundation-aqa",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug: "combined-science-secondary-ks4-higher-aqa",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Higher",
-              tierSlug: "higher",
+              examboardTitle: "Edexcel",
+              examboardSlug: "edexcel",
+              subjectTitle: "Combined Science",
+              subjectSlug: "combined-science",
+              tiers: [
+                {
+                  programmeSlug:
+                    "combined-science-secondary-ks4-foundation-edexcel",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug:
+                    "combined-science-secondary-ks4-higher-edexcel",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
-          ],
-        },
-        {
-          examboardTitle: "AQA",
-          examboardSlug: "aqa",
-          subjectTitle: "Maths",
-          subjectSlug: "maths",
-          tiers: [
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Foundation",
-              tierSlug: "foundation",
-            },
-            {
-              programmeSlug: "programme-slug",
-              tierTitle: "Higher",
-              tierSlug: "higher",
+              examboardTitle: "OCR",
+              examboardSlug: "ocr",
+              subjectTitle: "Combined Science",
+              subjectSlug: "combined-science",
+              tiers: [
+                {
+                  programmeSlug:
+                    "combined-science-secondary-ks4-foundation-ocr",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug: "combined-science-secondary-ks4-higher-ocr",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
           ],
         },
       ],
     },
     {
-      unitTitle: "Unit 2",
-      unitSlug: "unit-slug",
-      examboards: [
+      subjectTitle: "Physics",
+      subjectSlug: "physics",
+      units: [
         {
-          examboardTitle: "AQA",
-          examboardSlug: "aqa",
-          subjectTitle: "Maths",
-          subjectSlug: "maths",
-          tiers: [
+          unitTitle: "Measuring waves",
+          unitSlug: "measuring-waves",
+          examboards: [
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Foundation",
-              tierSlug: "foundation",
+              examboardTitle: "AQA",
+              examboardSlug: "aqa",
+              subjectTitle: "Physics",
+              subjectSlug: "physics",
+              tiers: [
+                {
+                  programmeSlug: "physics-secondary-ks4-foundation-aqa",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug: "physics-secondary-ks4-higher-aqa",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Core",
-              tierSlug: "core",
+              examboardTitle: "Edexcel",
+              examboardSlug: "edexcel",
+              subjectTitle: "Physics",
+              subjectSlug: "physics",
+              tiers: [
+                {
+                  programmeSlug: "physics-secondary-ks4-foundation-edexcel",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug: "physics-secondary-ks4-higher-edexcel",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
             {
-              programmeSlug: "programme-slug",
-              tierTitle: "Higher",
-              tierSlug: "higher",
+              examboardTitle: "OCR",
+              examboardSlug: "ocr",
+              subjectTitle: "Physics",
+              subjectSlug: "physics",
+              tiers: [
+                {
+                  programmeSlug: "physics-secondary-ks4-foundation-ocr",
+                  tierTitle: "foundation",
+                  tierSlug: null,
+                },
+                {
+                  programmeSlug: "physics-secondary-ks4-higher-ocr",
+                  tierTitle: "higher",
+                  tierSlug: null,
+                },
+              ],
             },
           ],
         },
@@ -96,21 +161,3 @@ LessonAppearsIn.args = {
     },
   ],
 };
-// LessonAppearsIn.parameters = {
-//   backgrounds: {
-//     default: "dark",
-//   },
-// };
-
-// {
-//     unitSlug: string;
-//     examboardTitle?: string | null;
-//     examboardSlug?: string | null;
-//     subjectTitle: string;
-//     subjectSlug: string;
-//     tiers: {
-//       programmeSlug: string;
-//       tierTitle?: string | null;
-//       tierSlug?: string | null;
-//     }[];
-//   }

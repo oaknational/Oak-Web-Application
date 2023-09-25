@@ -28,7 +28,7 @@ export type HeaderLessonProps = {
   // lesson base props
   lessonTitle: string;
   expired?: boolean | null;
-  hasDownloadableResources?: boolean;
+  hasDownloadableResources: boolean;
   lessonSlug: string;
   lessonDescription?: string;
   // other props

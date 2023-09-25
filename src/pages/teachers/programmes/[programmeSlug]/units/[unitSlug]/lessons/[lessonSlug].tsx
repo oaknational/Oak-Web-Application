@@ -15,8 +15,8 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
-import TeachersLessonOverviewPage from "@/components/pages/TeachersLessonOverview/TeachersLessonOverview";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -37,9 +37,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
         ...{ noFollow: true, noIndex: true },
       }}
     >
-      <TeachersLessonOverviewPage
-        lesson={{ ...curriculumData, isCanonical: false }}
-      />
+      <LessonOverview lesson={{ ...curriculumData, isCanonical: false }} />
     </AppLayout>
   );
 };

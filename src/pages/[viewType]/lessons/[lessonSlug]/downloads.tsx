@@ -13,10 +13,10 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import LessonDownloads from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
+import { LessonDownloads } from "@/components/Lesson/LessonDownloads/LessonDownloads.page";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
-import { getCommonPathway } from "@/components/pages/TeachersLessonOverview/teachersLessonOverview.helpers";
 import curriculumApi from "@/node-lib/curriculum-api";
+import { getCommonPathway } from "@/components/Lesson/lesson.helpers";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;

@@ -33,5 +33,6 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     starterQuiz
     exitQuiz
     yearTitle
+    hasDownloadableResources
   }
 }
