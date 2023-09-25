@@ -19,8 +19,13 @@ const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
   const { menuSections } = props;
   return (
     <Flex $flexDirection="column" $gap={32}>
-      {menuSections.map((section) => (
-        <Flex $flexDirection="column" $gap={12} data-testid="menu-section">
+      {menuSections.map((section, i) => (
+        <Flex
+          $flexDirection="column"
+          $gap={12}
+          data-testid="menu-section"
+          key={`menu-item-${i}`}
+        >
           <Heading tag="h4" $font="heading-4">
             {section.header}
           </Heading>
