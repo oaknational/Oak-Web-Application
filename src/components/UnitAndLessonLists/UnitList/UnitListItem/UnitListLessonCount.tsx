@@ -24,7 +24,8 @@ export const UnitListLessonCount = ({
           </Span>
         ) : (
           <Span $font={["body-3", "heading-light-7"]} $color={textColor}>
-            {!!lessonCount && `${lessonCount} lessons`}
+            {!!lessonCount &&
+              `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
             {expired && ` Coming soon`}
           </Span>
         )}
