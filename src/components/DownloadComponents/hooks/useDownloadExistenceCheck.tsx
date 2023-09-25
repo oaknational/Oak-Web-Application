@@ -36,6 +36,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
+
             isLegacyDownload,
           );
 
