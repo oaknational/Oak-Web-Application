@@ -1,6 +1,6 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export type curriculumOverviewTabSchema = {
   curriculumInfo: CurriculumOverviewMVData;
