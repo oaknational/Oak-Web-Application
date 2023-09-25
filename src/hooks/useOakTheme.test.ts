@@ -62,7 +62,7 @@ describe("useOakTheme()", () => {
 
       await waitFor(() => {
         expect(consoleErrorSpy).toHaveBeenCalledWith(
-          `Theme name must be one of: ${THEME_NAMES.join(", ")}`
+          `Theme name must be one of: ${THEME_NAMES.join(", ")}`,
         );
       });
     });
@@ -70,7 +70,7 @@ describe("useOakTheme()", () => {
       renderHook(() => useOakTheme());
       const invalidTheme = "not a theme";
       const { result } = renderHook(() =>
-        useLocalStorage(LS_KEY_THEME, "default")
+        useLocalStorage(LS_KEY_THEME, "default"),
       );
       act(() => {
         const setTheme = result.current[1];
@@ -78,7 +78,7 @@ describe("useOakTheme()", () => {
       });
 
       expect(consoleErrorSpy).toHaveBeenCalledWith(
-        `No theme found for theme name: ${invalidTheme}, falling back to default.`
+        `No theme found for theme name: ${invalidTheme}, falling back to default.`,
       );
     });
     it("setTheme() should change the theme if valid", async () => {

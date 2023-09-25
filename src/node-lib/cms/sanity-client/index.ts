@@ -33,42 +33,42 @@ const getSanityClient = () => ({
   webinarsListingPage: getSingleton(
     sanityGraphqlApi.webinarsListingPage,
     webinarsListingPageSchema,
-    (result) => result?.allWebinarListingPage?.[0]
+    (result) => result?.allWebinarListingPage?.[0],
   ),
   blogListingPage: getSingleton(
     sanityGraphqlApi.newsListingPage,
     blogListingPageSchema,
-    (result) => result?.allNewsListingPage?.[0]
+    (result) => result?.allNewsListingPage?.[0],
   ),
   webinars: getList(
     sanityGraphqlApi.allWebinars,
     z.array(webinarPreviewSchema),
-    (results) => results.allWebinar
+    (results) => results.allWebinar,
   ),
   webinarBySlug: getBySlug(
     sanityGraphqlApi.webinarBySlug,
     webinarSchema,
-    (result) => result?.allWebinar?.[0]
+    (result) => result?.allWebinar?.[0],
   ),
   blogPosts: getList(
     sanityGraphqlApi.allBlogPosts,
     z.array(blogPostPreviewSchema),
-    (result) => result.allNewsPost
+    (result) => result.allNewsPost,
   ),
   blogPostBySlug: getBySlug(
     sanityGraphqlApi.blogPostBySlug,
     blogPostSchema,
-    (result) => result?.allNewsPost?.[0]
+    (result) => result?.allNewsPost?.[0],
   ),
   homepage: getSingleton(
     sanityGraphqlApi.homepage,
     homePageSchema,
-    (result) => result?.allHomepage?.[0]
+    (result) => result?.allHomepage?.[0],
   ),
   planningPage: getSingleton(
     sanityGraphqlApi.planningCorePage,
     planningPageSchema,
-    (result) => result?.allPlanningCorePage?.[0]
+    (result) => result?.allPlanningCorePage?.[0],
   ),
   aboutWhoWeArePage: getSingleton(
     sanityGraphqlApi.aboutWhoWeArePage,
@@ -83,7 +83,7 @@ const getSanityClient = () => ({
             ...whoWeArePageData,
           }
         : undefined;
-    }
+    },
   ),
   aboutLeadershipPage: getSingleton(
     sanityGraphqlApi.aboutLeadershipPage,
@@ -98,7 +98,7 @@ const getSanityClient = () => ({
             ...leadershipPageData,
           }
         : undefined;
-    }
+    },
   ),
   aboutBoardPage: getSingleton(
     sanityGraphqlApi.aboutBoardPage,
@@ -124,7 +124,7 @@ const getSanityClient = () => ({
             ...boardPageData,
           }
         : undefined;
-    }
+    },
   ),
   aboutPartnersPage: getSingleton(
     sanityGraphqlApi.aboutPartnersPage,
@@ -139,7 +139,7 @@ const getSanityClient = () => ({
             ...partnersPageData,
           }
         : undefined;
-    }
+    },
   ),
   aboutWorkWithUsPage: getSingleton(
     sanityGraphqlApi.aboutWorkWithUsPage,
@@ -154,52 +154,52 @@ const getSanityClient = () => ({
             ...workWithUsPage,
           }
         : undefined;
-    }
+    },
   ),
   curriculumPage: getSingleton(
     sanityGraphqlApi.curriculumCorePage,
     curriculumPageSchema,
-    (result) => result?.allCurriculumCorePage?.[0]
+    (result) => result?.allCurriculumCorePage?.[0],
   ),
   supportPage: getSingleton(
     sanityGraphqlApi.supportCorePage,
     supportPageSchema,
-    (result) => result?.allSupportCorePage?.[0]
+    (result) => result?.allSupportCorePage?.[0],
   ),
   contactPage: getSingleton(
     sanityGraphqlApi.contactCorePage,
     contactPageSchema,
-    (result) => result?.allContactCorePage?.[0]
+    (result) => result?.allContactCorePage?.[0],
   ),
   policyPages: getList(
     sanityGraphqlApi.allPolicyPages,
     z.array(policyPagePreviewSchema),
-    (results) => results.allPolicyPage
+    (results) => results.allPolicyPage,
   ),
   policyPageBySlug: getBySlug(
     sanityGraphqlApi.policyPageBySlug,
     policyPageSchema,
-    (result) => result?.allPolicyPage?.[0]
+    (result) => result?.allPolicyPage?.[0],
   ),
   landingPages: getList(
     sanityGraphqlApi.allLandingPages,
     z.array(landingPagePreviewSchema),
-    (results) => results.allLandingPage
+    (results) => results.allLandingPage,
   ),
   landingPageBySlug: getBySlug(
     sanityGraphqlApi.landingPageBySlug,
     landingPageSchema,
-    (result) => result?.allLandingPage?.[0]
+    (result) => result?.allLandingPage?.[0],
   ),
   landingPageABTestBySlug: getBySlug(
     sanityGraphqlApi.abTestedPageBySlug,
     getABTestSchema(landingPageSchema),
-    (result) => result?.allAbTest?.[0]
+    (result) => result?.allAbTest?.[0],
   ),
   curriculumOverviewPage: getSingleton(
     sanityGraphqlApi.curriculumOverview,
     curriculumOverviewCMSSchema,
-    (result) => result?.allCurriculumInfoPageOverview?.[0]
+    (result) => result?.allCurriculumInfoPageOverview?.[0],
   ),
 });
 

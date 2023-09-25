@@ -8,7 +8,6 @@ import { ResolveOakHrefProps } from "@/common-lib/urls";
 const link = {
   linkTo: {
     page: "home",
-    viewType: "teachers-2023",
   } as ResolveOakHrefProps,
   text: "Home",
   new: true,

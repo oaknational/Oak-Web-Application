@@ -10,22 +10,22 @@ import elasticResponseFixture from "./elasticResponse.2020.fixture.json";
 import { lessonSearchHitSchema, unitSearchHitSchema } from "./search.schema";
 
 const lessonHit = lessonSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson")
+  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "lesson"),
 );
 const unitHit = unitSearchHitSchema.parse(
-  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "unit")
+  elasticResponseFixture.hits.hits.find((hit) => hit._source.type === "unit"),
 );
 
 const unitHitTier = unitSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find(
-    (hit) => hit._source.slug === "macbeth-narrative-writing-core"
-  )
+    (hit) => hit._source.slug === "macbeth-narrative-writing-core",
+  ),
 );
 const lessonHitTier = lessonSearchHitSchema.parse(
   elasticResponseFixture.hits.hits.find(
     (hit) =>
-      hit._source.slug === "to-analyse-the-opening-of-the-play-macbeth-c9h3cd"
-  )
+      hit._source.slug === "to-analyse-the-opening-of-the-play-macbeth-c9h3cd",
+  ),
 );
 
 const allKeyStages = searchPageFixture().keyStages;
@@ -49,8 +49,8 @@ describe("search helpers", () => {
   test("getProgrammeSlug returns a correct slug", () => {
     const unitListObject = getUnitObject({ hit: unitHit, allKeyStages });
     const lessonListObject = getLessonObject({ hit: lessonHit, allKeyStages });
-    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2");
-    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2");
+    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2-l");
+    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2-l");
   });
   test("getProgrammeSlug returns a correct slug with tier", () => {
     const unitListObject = getUnitObject({ hit: unitHitTier, allKeyStages });
@@ -58,9 +58,11 @@ describe("search helpers", () => {
       hit: lessonHitTier,
       allKeyStages,
     });
-    expect(unitListObject?.programmeSlug).toEqual("english-secondary-ks4-core");
+    expect(unitListObject?.programmeSlug).toEqual(
+      "english-secondary-ks4-core-l",
+    );
     expect(lessonListObject?.programmeSlug).toEqual(
-      "english-secondary-ks4-higher"
+      "english-secondary-ks4-higher-l",
     );
   });
   test("isFilterItem returns true if slug is a filter item", () => {

@@ -1,3 +1,78 @@
+# [1.251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.1...v1.251.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* check number of lessons and use singular or plural appropriately ([d2476fa](https://github.com/oaknational/Oak-Web-Application/commit/d2476fa60342db816bf907c222205b10a55cdb03))
+
+
+### Features
+
+* test for plurality ([5e74cc5](https://github.com/oaknational/Oak-Web-Application/commit/5e74cc58e12191fff187b87ea9e25ff01aa0045d))
+
+## [1.250.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.0...v1.250.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* addded test logic for download error ([e024525](https://github.com/oaknational/Oak-Web-Application/commit/e024525eeddc716b1fe43cd88838e5fad71a129d))
+* error reporting for failed download ([4655842](https://github.com/oaknational/Oak-Web-Application/commit/4655842bf70591e8da917deac24152aa9d5c3e48))
+* ran format ([34cb21d](https://github.com/oaknational/Oak-Web-Application/commit/34cb21d23a05cfc5dbe2bea706b9888b14a1a437))
+* regenerate sdk ([5f27299](https://github.com/oaknational/Oak-Web-Application/commit/5f27299c4946a5f2cb223bf8667a45ef2a4e9c1b))
+* resolve conflicts ([9bb251a](https://github.com/oaknational/Oak-Web-Application/commit/9bb251aa605cb7056e056f76fb810e380bcaa174))
+* updated tests for new functionality ([6c95e6b](https://github.com/oaknational/Oak-Web-Application/commit/6c95e6b713fc43c3c3cd1532b0966c10112f2228))
+
+# [1.250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.249.0...v1.250.0) (2023-09-21)
+
+
+### Features
+
+* **lessonOverview:** add hasDownloadable onto 2023 query ([3d2bb86](https://github.com/oaknational/Oak-Web-Application/commit/3d2bb8602f12cd8c06f12d9fb64d601308d08e67))
+* **lessonOverview:** exclude genrated file from sonar ([521f520](https://github.com/oaknational/Oak-Web-Application/commit/521f5200d9ed7b1436d4ba554e9c4885cdef9268))
+* **lessonOverview:** merge ([b7c83f5](https://github.com/oaknational/Oak-Web-Application/commit/b7c83f5092e28df4f97e396b30afe343ff583c3d))
+* **lessonOverview:** sonar exclusion ([50a2b95](https://github.com/oaknational/Oak-Web-Application/commit/50a2b950f008303ee2dc8999808b6e2e3945cda9))
+* **lessonOverview:** sonar exclusion ([f4c7dc1](https://github.com/oaknational/Oak-Web-Application/commit/f4c7dc1c682642e90040f34a12749736d2658770))
+* **lessonOverview:** sonar exclusion ([d623886](https://github.com/oaknational/Oak-Web-Application/commit/d6238867b8b561cb2e88e104bd0e9dd2e441c158))
+* **lessonOverview:** test fix ([d00537d](https://github.com/oaknational/Oak-Web-Application/commit/d00537dcccae7b91303735eb511cc88fd635cdaf))
+* **lessonOverview:** update has resource type ([eaf959c](https://github.com/oaknational/Oak-Web-Application/commit/eaf959c9101ecbf134dea062af7f69c9ee254856))
+
+# [1.249.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.248.0...v1.249.0) (2023-09-21)
+
+
+### Bug Fixes
+
+* add dynamic flag to mathjax ([05a937b](https://github.com/oaknational/Oak-Web-Application/commit/05a937bc46de6c99558630793e31d0a126a80e92))
+
+
+### Features
+
+* add mathjax component to storybook ([20ce367](https://github.com/oaknational/Oak-Web-Application/commit/20ce3670d128cd9b528b2865b9ac5ff1c9a09baf))
+* remove extra margin around mathjax segments ([91d6068](https://github.com/oaknational/Oak-Web-Application/commit/91d60681abdbbe41bc098c115135da8b15950e4a))
+* style the equations inline ([5108232](https://github.com/oaknational/Oak-Web-Application/commit/51082325402f118f90088b3315a413c40bed4e29))
+
+# [1.248.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.5...v1.248.0) (2023-09-21)
+
+
+### Bug Fixes
+
+*  sonar cloud bug ([186d603](https://github.com/oaknational/Oak-Web-Application/commit/186d60392a4ea6b48e021d443066ed70fa36cde1))
+* pa11y url for legacy ([7c39903](https://github.com/oaknational/Oak-Web-Application/commit/7c3990378eefee07efaeb34ed1941e9602552978))
+* types ([9789c7d](https://github.com/oaknational/Oak-Web-Application/commit/9789c7d58500419e62ab66597e85ae073fda984c))
+
+
+### Features
+
+* legacy suffix added to programme slugs ([4f43620](https://github.com/oaknational/Oak-Web-Application/commit/4f4362069911c6f725c0f359d7ca293a2a9eadd3))
+
+## [1.247.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.4...v1.247.5) (2023-09-21)
+
+
+### Bug Fixes
+
+* turns background white once both are selected ([191b7c3](https://github.com/oaknational/Oak-Web-Application/commit/191b7c349aec45c251cdf9c6ce5779a252979138))
+
+## [1.247.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.3...v1.247.4) (2023-09-21)
+
 ## [1.247.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.247.2...v1.247.3) (2023-09-21)
 
 

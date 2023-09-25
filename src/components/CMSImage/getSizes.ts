@@ -9,7 +9,7 @@ type Width = number | string;
  * getSizes([200, 500, 700]) // "(min-width: 1280px) 700px, (min-width: 750px) 500px, 200px"
  */
 export function getSizes(
-  widths: [Width] | [Width, Width] | [Width, Width, Width]
+  widths: [Width] | [Width, Width] | [Width, Width, Width],
 ) {
   if (!widths.length) {
     return "";

@@ -21,15 +21,15 @@ describe("PostCategoryList", () => {
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
         ]}
-      />
+      />,
     );
     expect(getByRole("link", { name: "Oak Updates" })).toHaveAttribute(
       "href",
-      "/blog/categories/oak-updates"
+      "/blog/categories/oak-updates",
     );
     expect(getByRole("link", { name: "Lesson Planning" })).toHaveAttribute(
       "href",
-      "/blog/categories/lesson-planning"
+      "/blog/categories/lesson-planning",
     );
   });
   test("should work with webinars", () => {
@@ -41,15 +41,15 @@ describe("PostCategoryList", () => {
           { title: "Oak Updates", slug: "oak-updates" },
           { title: "Lesson Planning", slug: "lesson-planning" },
         ]}
-      />
+      />,
     );
     expect(getByRole("link", { name: "Oak Updates" })).toHaveAttribute(
       "href",
-      "/webinars/categories/oak-updates"
+      "/webinars/categories/oak-updates",
     );
     expect(getByRole("link", { name: "Lesson Planning" })).toHaveAttribute(
       "href",
-      "/webinars/categories/lesson-planning"
+      "/webinars/categories/lesson-planning",
     );
   });
   test("current link should be signposted with aria-current='page'", () => {
@@ -62,7 +62,7 @@ describe("PostCategoryList", () => {
           { title: "Lesson Planning", slug: "lesson-planning" },
         ]}
         selectedCategorySlug="lesson-planning"
-      />
+      />,
     );
     const currentLink = getByRole("link", { current: "page" });
     expect(currentLink).toHaveAccessibleName("Lesson Planning");
@@ -77,7 +77,7 @@ describe("PostCategoryList", () => {
           { title: "Lesson Planning", slug: "lesson-planning" },
         ]}
         selectedCategorySlug={null}
-      />
+      />,
     );
     const currentLink = getByRole("link", { current: "page" });
     expect(currentLink).toHaveAccessibleName("All");
@@ -92,7 +92,7 @@ describe("PostCategoryList", () => {
           { title: "Lesson Planning", slug: "lesson-planning" },
         ]}
         selectedCategorySlug="lesson-planning"
-      />
+      />,
     );
     const nonCurrentLink = getByRole("link", { name: "Oak Updates" });
     expect(nonCurrentLink).not.toHaveAttribute("aria-current");
@@ -110,7 +110,7 @@ describe("PostCategoryList", () => {
           ]}
           selectedCategorySlug="lesson-planning"
         />
-      </>
+      </>,
     );
     const nav = getByRole("navigation");
     expect(nav).toHaveAccessibleName("Test Categories");

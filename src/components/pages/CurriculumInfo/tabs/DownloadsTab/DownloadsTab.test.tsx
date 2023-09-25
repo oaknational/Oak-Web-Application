@@ -6,7 +6,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("Component - Download Tab", () => {
   test("user can see see the heading", async () => {
     const { getByTestId } = renderWithTheme(
-      <DownloadsTab data={curriculumDownloadsFixture()} />
+      <DownloadsTab data={curriculumDownloadsFixture()} />,
     );
     expect(getByTestId("downloads-heading")).toBeInTheDocument;
   });

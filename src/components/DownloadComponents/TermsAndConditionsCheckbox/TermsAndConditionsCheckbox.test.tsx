@@ -12,7 +12,7 @@ describe("TermsAndConditionsCheckbox", () => {
         onChange={jest.fn()}
         id={"123"}
         name={"terms"}
-      />
+      />,
     );
 
     const termsCheckbox = screen.getByTestId("termsCheckbox");
@@ -27,7 +27,7 @@ describe("TermsAndConditionsCheckbox", () => {
         errorMessage="Please select the checkbox"
         id={"123"}
         name={"terms"}
-      />
+      />,
     );
 
     const termsError = screen.getByText("Please select the checkbox");
