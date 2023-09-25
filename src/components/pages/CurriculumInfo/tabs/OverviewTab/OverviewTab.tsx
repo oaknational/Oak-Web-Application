@@ -60,7 +60,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         <Card
           $ml={40}
           $maxHeight={200}
-          $maxWidth={["100%", 0, 200]}
+          $maxWidth={[0, 0, 200]}
           $ma={"auto"}
           $zIndex={"inFront"}
           $transform={["rotate(-2.179deg) scale(1.5, 1.5) translate(15%,40%)"]}
