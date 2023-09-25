@@ -32,7 +32,6 @@ const lessonOverviewQuery =
       ...lesson,
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
-      hasDownloadableResources: null,
       expired: false,
     });
   };
