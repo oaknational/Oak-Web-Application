@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 import UnitListItem from "./UnitListItem";
 
@@ -49,6 +50,25 @@ const render = renderWithProviders();
 describe("Unit List Item", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  test("It uses singular  form of lesson", () => {
+    const singular = Object.assign({}, props);
+    singular.lessonCount = 1;
+    singular.expiredLessonCount = 0;
+    render(<UnitListItem {...singular} />);
+
+    const lessonCountText = screen.getByText("1 lesson");
+    expect(lessonCountText).toBeInTheDocument();
+  });
+
+  test("It uses plural form of lessons", () => {
+    const plural = Object.assign({}, props);
+    plural.expiredLessonCount = 0;
+    render(<UnitListItem {...plural} />);
+
+    const lessonCountText = screen.getByText("5 lessons");
+    expect(lessonCountText).toBeInTheDocument();
   });
 
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
