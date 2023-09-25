@@ -11,7 +11,6 @@ export type DownloadDebouncedSubmitProps = {
   lessonSlug: string;
   setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
-  setApiError: React.Dispatch<React.SetStateAction<string | undefined>>;
   onSubmit: (
     data: DownloadFormProps,
     lessonSlug: string,
@@ -25,14 +24,12 @@ const downloadDebouncedSubmit = async (
     data,
     lessonSlug,
     setIsAttemptingDownload,
-    setApiError,
     setEditDetailsClicked,
     onSubmit,
   } = downloadDebouncedSubmitProps;
   try {
     const debouncedFunction = debounce(
       async () => {
-        setApiError(undefined);
         setIsAttemptingDownload(true);
         await onSubmit(data, lessonSlug);
         setIsAttemptingDownload(false);

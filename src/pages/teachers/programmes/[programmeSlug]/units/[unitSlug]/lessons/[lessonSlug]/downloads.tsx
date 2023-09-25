@@ -215,7 +215,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         lessonSlug,
         setIsAttemptingDownload,
         setEditDetailsClicked,
-        setApiError,
         onSubmit,
       });
       const {
@@ -245,7 +244,6 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
         emailSupplied: data?.email ? true : false,
       });
     } catch (error) {
-      // TODO: handle error with some UI feedback
       setIsAttemptingDownload(false);
       setApiError(
         "There was an error downloading your files. Please try again.",
@@ -425,6 +423,7 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                     <Box $mr={24} $textAlign={"left"}>
                       <FieldError
                         id="download-form-error"
+                        data-testid="download-form-error"
                         variant={"large"}
                         withoutMarginBottom
                       >
@@ -435,7 +434,8 @@ const LessonDownloadsPage: NextPage<LessonDownloadsPageProps> = ({
                   {apiError && !hasFormErrors && (
                     <Box $mr={24} $textAlign={"left"}>
                       <FieldError
-                        id="download-form-error"
+                        id="download-error"
+                        data-testid="download-error"
                         variant={"large"}
                         withoutMarginBottom
                       >
