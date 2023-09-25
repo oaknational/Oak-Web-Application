@@ -324,7 +324,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     let unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(2);
     const domainButtons = await findAllByTestId("domain-button");
-    // When there are tiers, "All" button is added, so 3 expected
+    // When there are domains, "All" button is added, so 3 expected
     expect(domainButtons).toHaveLength(3);
     await act(async () => {
       if (!domainButtons[1]) {
@@ -353,10 +353,10 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           phase: "Secondary",
           phase_slug: "secondary",
           slug: "cellular-respiration-and-atp",
-          subject: "Biology",
+          subject: "Combined Science",
           subject_parent: "Science",
           subject_parent_slug: "science",
-          subject_slug: "biology",
+          subject_slug: "combined-science",
           threads: [],
           tier: "Foundation",
           tier_slug: "foundation",
@@ -377,13 +377,36 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
           slug: "nuclear-physics",
-          subject: "Physics",
+          subject: "Combined Science",
           subject_parent: "Science",
           subject_parent_slug: "science",
-          subject_slug: "physics",
+          subject_slug: "combined-science",
           tier: "Higher",
           tier_slug: "higher",
           title: "Nuclear Physics",
+          unit_options: [],
+          year: "11",
+        },
+        {
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          domain: null,
+          domain_id: null,
+          threads: [],
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks4",
+          phase: "Secondary",
+          phase_slug: "secondary",
+          planned_number_of_lessons: 5,
+          slug: "industrial-chemistry",
+          subject: "Combined Science",
+          subject_parent: "Science",
+          subject_parent_slug: "science",
+          subject_slug: "combined-science",
+          tier: null,
+          tier_slug: null,
+          title: "Industrial Chemistry",
           unit_options: [],
           year: "11",
         },
@@ -391,8 +414,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     };
     const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
     let unitCards = await findAllByTestId("unit-card");
-    // Foundation selected by default, so only 1 expected
-    expect(unitCards).toHaveLength(1);
+    // Foundation selected by default, so only 2 (including blank) expected
+    expect(unitCards).toHaveLength(2);
     const tierButtons = await findAllByTestId("tier-button");
     expect(tierButtons).toHaveLength(2);
     await act(async () => {
@@ -403,7 +426,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
-      expect(unitCards).toHaveLength(1);
+      expect(unitCards).toHaveLength(2);
       expect(unitCards[0]).toHaveTextContent("Nuclear Physics");
     });
   });

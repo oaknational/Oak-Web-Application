@@ -138,8 +138,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   // Sort threads
   const threadOrders = new Set(threadOptions.map((to) => to.order));
   if (threadOptions.length > threadOrders.size) {
-    // In secondary science multiple threads can have the same order due to
-    // multiple subjects (eg biology, chemistry, physics) being shown, so
+    // In secondary science multiple threads can have the same order value due
+    // to multiple subjects (eg biology, chemistry, physics) being shown, so
     // if orders are not unique, sort alphabetically by slug
     threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
   } else {
@@ -216,7 +216,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       !s.domain ||
       s.domain.domain_id === 0 ||
       s.domain.domain_id === unit.domain_id;
-    const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
+    const filterByTier =
+      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
     return filterBySubject && filterByDomain && filterByTier;
   }
 
