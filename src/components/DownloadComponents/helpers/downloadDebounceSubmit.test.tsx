@@ -2,11 +2,6 @@ import downloadDebounceSubmit, {
   DownloadDebouncedSubmitProps,
 } from "./downloadDebounceSubmit";
 
-const onSubmit = jest.fn();
-onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
-
-onSubmit.mockImplementationOnce(() => Promise.resolve("Download successful!"));
-
 const reportError = jest.fn();
 jest.mock("../../../common-lib/error-reporter/", () => ({
   __esModule: true,
@@ -18,26 +13,38 @@ jest.mock("../../../common-lib/error-reporter/", () => ({
 
 const setIsAttemptingDownload = jest.fn();
 const setEditDetailsClicked = jest.fn();
+const setApiError = jest.fn();
+const onSubmit = jest.fn();
 
 const props = {
   data: {},
   lessonSlug: "123",
   setIsAttemptingDownload,
   setEditDetailsClicked,
-  onSubmit: onSubmit,
+  setApiError,
+  onSubmit,
 };
 
 describe("downloadDebounceSubmit", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  test("should report an error if failed to fetch downloads ", async () => {
-    await downloadDebounceSubmit(
+
+  test("should report an error if failed to fetch downloads and throws on error", async () => {
+    onSubmit.mockImplementationOnce(() => Promise.reject("Download failed!"));
+
+    downloadDebounceSubmit(
       props as unknown as DownloadDebouncedSubmitProps,
-    );
-    expect(reportError).toBeCalled();
+    ).catch((error) => {
+      expect(reportError).toBeCalled();
+      expect(error.code).toEqual("downloads/failed-to-fetch");
+    });
   });
   test("should update state for attempting to download ", async () => {
+    onSubmit.mockImplementationOnce(() =>
+      Promise.resolve("Download successful!"),
+    );
+
     await downloadDebounceSubmit(
       props as unknown as DownloadDebouncedSubmitProps,
     );
