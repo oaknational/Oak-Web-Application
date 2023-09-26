@@ -53,12 +53,12 @@ const AppHeader: FC<HeaderProps> = () => {
       <Box
         $position="absolute"
         $zIndex={"behind"}
-        $height={[8, 12]}
-        $bottom={[4, -4]}
+        $height={4}
+        $bottom={12}
         $right={0}
         $left={0}
       >
-        <Svg name="header-underline" $color="teachersHighlight" />
+        <Svg name="header-underline" $color="black" />
       </Box>
     </FixedHeader>
   );
