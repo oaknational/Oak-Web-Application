@@ -473,7 +473,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         const isHighlighted = isHighlightedUnit(unit);
                         return (
                           <Card
-                            key={unit.slug}
+                            key={unit.slug + index}
                             $background={isHighlighted ? "black" : "white"}
                             $color={isHighlighted ? "white" : "black"}
                             $flexGrow={"unset"}
