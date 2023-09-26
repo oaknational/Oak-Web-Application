@@ -30,10 +30,10 @@ LessonAppearsIn.args = {
         {
           unitTitle: "Measuring waves",
           unitSlug: "measuring-waves",
-          examboards: [
+          examBoards: [
             {
-              examboardTitle: "AQA",
-              examboardSlug: "aqa",
+              examBoardTitle: "AQA",
+              examBoardSlug: "aqa",
               subjectTitle: "Combined Science",
               subjectSlug: "combined-science",
               tiers: [
@@ -51,8 +51,8 @@ LessonAppearsIn.args = {
               ],
             },
             {
-              examboardTitle: "Edexcel",
-              examboardSlug: "edexcel",
+              examBoardTitle: "Edexcel",
+              examBoardSlug: "edexcel",
               subjectTitle: "Combined Science",
               subjectSlug: "combined-science",
               tiers: [
@@ -71,8 +71,8 @@ LessonAppearsIn.args = {
               ],
             },
             {
-              examboardTitle: "OCR",
-              examboardSlug: "ocr",
+              examBoardTitle: "OCR",
+              examBoardSlug: "ocr",
               subjectTitle: "Combined Science",
               subjectSlug: "combined-science",
               tiers: [
@@ -100,10 +100,10 @@ LessonAppearsIn.args = {
         {
           unitTitle: "Measuring waves",
           unitSlug: "measuring-waves",
-          examboards: [
+          examBoards: [
             {
-              examboardTitle: "AQA",
-              examboardSlug: "aqa",
+              examBoardTitle: "AQA",
+              examBoardSlug: "aqa",
               subjectTitle: "Physics",
               subjectSlug: "physics",
               tiers: [
@@ -120,8 +120,8 @@ LessonAppearsIn.args = {
               ],
             },
             {
-              examboardTitle: "Edexcel",
-              examboardSlug: "edexcel",
+              examBoardTitle: "Edexcel",
+              examBoardSlug: "edexcel",
               subjectTitle: "Physics",
               subjectSlug: "physics",
               tiers: [
@@ -138,8 +138,8 @@ LessonAppearsIn.args = {
               ],
             },
             {
-              examboardTitle: "OCR",
-              examboardSlug: "ocr",
+              examBoardTitle: "OCR",
+              examBoardSlug: "ocr",
               subjectTitle: "Physics",
               subjectSlug: "physics",
               tiers: [

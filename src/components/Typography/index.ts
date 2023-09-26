@@ -1,4 +1,4 @@
-export { default as Heading } from "./Heading";
+export { default as Heading, getNextHeadingTag } from "./Heading";
 export type { HeadingTag } from "./Heading";
 export { default } from "./Typography";
 export { default as Span } from "./Span";

@@ -4,7 +4,7 @@ import {
   getCommonPathway,
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
-  getLessonOverviewBreadCumb,
+  getLessonOverviewBreadCrumb,
 } from "../lesson.helpers";
 import {
   LessonOverviewCanonical,
@@ -103,7 +103,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         {...commonPathway}
         breadcrumbs={[
           ...getBreadcrumbsForLessonPathway(commonPathway),
-          getLessonOverviewBreadCumb({
+          getLessonOverviewBreadCrumb({
             lessonTitle,
             lessonSlug,
             unitSlug,

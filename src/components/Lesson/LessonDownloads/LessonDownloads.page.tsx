@@ -39,8 +39,8 @@ import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDeb
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
-  getLessonOverviewBreadCumb,
-  getLessonDownloadsBreadCumb,
+  getLessonOverviewBreadCrumb,
+  getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
@@ -287,13 +287,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCumb({
+              getLessonOverviewBreadCrumb({
                 lessonTitle,
                 lessonSlug,
                 programmeSlug,
                 unitSlug,
               }),
-              getLessonDownloadsBreadCumb({
+              getLessonDownloadsBreadCrumb({
                 lessonSlug,
                 programmeSlug,
                 unitSlug,

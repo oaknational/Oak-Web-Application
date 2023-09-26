@@ -62,8 +62,6 @@ function DownloadLink({
         {...props}
         data-testid="download-button"
         page="lesson-downloads-canonical"
-        unitSlug={null}
-        programmeSlug={null}
         lessonSlug={lessonSlug}
         query={{ preselected }}
       />

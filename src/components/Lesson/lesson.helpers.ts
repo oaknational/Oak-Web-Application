@@ -41,7 +41,7 @@ export const getCommonPathway = (
   );
 };
 
-export const getLessonOverviewBreadCumb = ({
+export const getLessonOverviewBreadCrumb = ({
   lessonSlug,
   lessonTitle,
   programmeSlug,
@@ -76,7 +76,7 @@ export const getLessonOverviewBreadCumb = ({
     };
   }
 };
-export const getLessonDownloadsBreadCumb = ({
+export const getLessonDownloadsBreadCrumb = ({
   lessonSlug,
   programmeSlug,
   unitSlug,
@@ -103,8 +103,6 @@ export const getLessonDownloadsBreadCumb = ({
       oakLinkProps: {
         page: "lesson-downloads-canonical",
         lessonSlug,
-        programmeSlug: null,
-        unitSlug: null,
       },
       label: "Downloads",
       disabled,
@@ -225,21 +223,21 @@ export function groupLessonPathways(pathways: LessonPathway[]) {
       const units = pathwaysByUnit
         .map((unitPathways) => {
           const pathwaysByExamboard = Object.values(
-            groupBy(unitPathways, "examboardSlug"),
+            groupBy(unitPathways, "examBoardSlug"),
           );
 
-          const examboards = pathwaysByExamboard
-            .map((examboardPathways) => {
-              const [firstPathway] = examboardPathways;
+          const examBoards = pathwaysByExamboard
+            .map((examBoardPathways) => {
+              const [firstPathway] = examBoardPathways;
               if (!firstPathway) return null;
               return {
                 ...pick(firstPathway, [
-                  "examboardTitle",
-                  "examboardSlug",
+                  "examBoardTitle",
+                  "examBoardSlug",
                   "subjectTitle",
                   "subjectSlug",
                 ]),
-                tiers: examboardPathways.map((pathway) =>
+                tiers: examBoardPathways.map((pathway) =>
                   pick(pathway, ["programmeSlug", "tierTitle", "tierSlug"]),
                 ),
               };
@@ -250,7 +248,7 @@ export function groupLessonPathways(pathways: LessonPathway[]) {
           if (!firstPathway) return null;
           return {
             ...pick(firstPathway, ["unitTitle", "unitSlug"]),
-            examboards,
+            examBoards,
           };
         })
         .filter(truthy);

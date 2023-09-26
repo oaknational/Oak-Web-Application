@@ -1,12 +1,13 @@
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Flex from "@/components/Flex";
 import { TagFunctional } from "@/components/TagFunctional";
-import { Heading, Span } from "@/components/Typography";
+import { Heading, HeadingTag, Span } from "@/components/Typography";
 
 type LessonPathwayCardProps = {
+  headingTag: HeadingTag;
   unitSlug: string;
-  examboardTitle?: string | null;
-  examboardSlug?: string | null;
+  examBoardTitle?: string | null;
+  examBoardSlug?: string | null;
   subjectTitle: string;
   subjectSlug: string;
   tiers: {
@@ -16,13 +17,13 @@ type LessonPathwayCardProps = {
   }[];
 };
 export function LessonPathwayCard(props: LessonPathwayCardProps) {
-  const { examboardTitle, subjectTitle, unitSlug, tiers } = props;
+  const { headingTag, examBoardTitle, subjectTitle, unitSlug, tiers } = props;
 
   return (
     <Flex $flexDirection={["column"]} $background="white" $borderRadius={4}>
-      <Heading tag="h5">
+      <Heading tag={headingTag}>
         <Flex $flexDirection={["row"]} $pa={16}>
-          {examboardTitle && <TagFunctional text={examboardTitle} $mr={10} />}
+          {examBoardTitle && <TagFunctional text={examBoardTitle} $mr={10} />}
           <Span $font="heading-5">{subjectTitle}</Span>
         </Flex>
       </Heading>

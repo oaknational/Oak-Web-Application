@@ -117,8 +117,6 @@ export type LessonDownloadsLinkProps = {
 };
 export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
-  programmeSlug: null;
-  unitSlug: null;
   lessonSlug: string;
   query?: {
     preselected: PreselectedDownloadType | null;
@@ -544,7 +542,7 @@ export const OAK_PAGES: {
   }),
   "lesson-overview-canonical": createOakPageConfig({
     pathPattern: "/teachers/lessons/:lessonSlug",
-    analyticsPageName: "Lesson", // @todo this should be "Lesson (Canonical)"?
+    analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "lesson-overview-canonical",
   }),
@@ -557,7 +555,7 @@ export const OAK_PAGES: {
   }),
   "lesson-downloads-canonical": createOakPageConfig({
     pathPattern: "/teachers/lessons/:lessonSlug/downloads",
-    analyticsPageName: "Lesson Download", // @todo this should be "Lesson Download (Canonical)"?
+    analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",
   }),

@@ -12,8 +12,8 @@ query lessonListing($programmeSlug: String!, $unitSlug: String!) {
     keyStageTitle
     subjectSlug
     subjectTitle
-    examBoardSlug: examboardSlug
-    examBoardTitle: examboardTitle
+    examBoardSlug
+    examBoardTitle
     lessons
   }
 }

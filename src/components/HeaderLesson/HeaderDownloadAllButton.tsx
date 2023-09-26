@@ -45,8 +45,6 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         }
       : {
           page: "lesson-downloads-canonical",
-          unitSlug: null,
-          programmeSlug: null,
           lessonSlug,
           query: { preselected },
         };

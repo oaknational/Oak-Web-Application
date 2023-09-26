@@ -103,8 +103,8 @@ export const lessonPathwaySchema = z.object({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  examboardSlug: z.string().nullish(),
-  examboardTitle: z.string().nullish(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
 });
@@ -167,6 +167,7 @@ export const baseLessonOverviewSchema = z.object({
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
 });
+export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
 const lessonDownloadsListSchema = z.array(
   z.object({

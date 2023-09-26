@@ -14,8 +14,8 @@ const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
 export const LessonPathwayCard = Template.bind({});
 LessonPathwayCard.args = {
   unitSlug: "unit-slug",
-  examboardTitle: "AQA",
-  examboardSlug: "aqa",
+  examBoardTitle: "AQA",
+  examBoardSlug: "aqa",
   subjectTitle: "Maths",
   subjectSlug: "maths",
   tiers: [
@@ -41,16 +41,3 @@ LessonPathwayCard.parameters = {
     default: "dark",
   },
 };
-
-// {
-//     unitSlug: string;
-//     examboardTitle?: string | null;
-//     examboardSlug?: string | null;
-//     subjectTitle: string;
-//     subjectSlug: string;
-//     tiers: {
-//       programmeSlug: string;
-//       tierTitle?: string | null;
-//       tierSlug?: string | null;
-//     }[];
-//   }

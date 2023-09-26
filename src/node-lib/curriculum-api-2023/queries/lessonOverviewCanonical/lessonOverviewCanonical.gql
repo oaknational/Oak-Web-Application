@@ -11,8 +11,8 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     keyStageTitle
     subjectSlug
     subjectTitle
-    examboardSlug: examBoardSlug
-    examboardTitle: examBoardTitle
+    examBoardSlug
+    examBoardTitle
     tierSlug
     tierTitle
     misconceptionsAndCommonMistakes
