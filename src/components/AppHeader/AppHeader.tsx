@@ -7,7 +7,6 @@ import OakLink from "../OakLink";
 import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
-import { P } from "../Typography";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 
 import { StyledHeader, HeaderUnderline } from "@/components/Header";
@@ -39,9 +38,6 @@ const AppHeader: FC<HeaderProps> = () => {
           <OakLink page={"home"}>
             <Logo height={48} width={104} />
           </OakLink>
-          <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>
-            Teachers - early access
-          </P>
         </Flex>
         <IconButton
           aria-label="Menu"
