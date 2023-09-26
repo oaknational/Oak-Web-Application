@@ -131,6 +131,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
         programmeFactor={keyStageTitle}
         isNew={!isSlugLegacy(programmeSlug)}
+        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>
