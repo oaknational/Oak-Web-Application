@@ -1,3 +1,55 @@
+## [1.252.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.0...v1.252.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* sort subjects by slug on subject page ([c3c3784](https://github.com/oaknational/Oak-Web-Application/commit/c3c378475d48d0873b235e64f46a2a22a43c98ec))
+
+# [1.252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.251.0...v1.252.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* added error import ([e5eb7b8](https://github.com/oaknational/Oak-Web-Application/commit/e5eb7b81f914604cef67d88e2c2174478e0aa691))
+* update fixture ([bdaa59c](https://github.com/oaknational/Oak-Web-Application/commit/bdaa59c411acc75bbaabd702095200566e08cdba))
+* update path to selection slugs ([758ba8a](https://github.com/oaknational/Oak-Web-Application/commit/758ba8a2ec26037378654fffbd915efb0b67c7ad))
+* update sdk ([85339ea](https://github.com/oaknational/Oak-Web-Application/commit/85339ea4d7739a6be2f45a60e08caf00d7fb0d6c))
+* update styling for overview ([b771cf0](https://github.com/oaknational/Oak-Web-Application/commit/b771cf0af644709f0523f0d507f3a27495ff8435))
+* updated fixture ([0445b19](https://github.com/oaknational/Oak-Web-Application/commit/0445b19b985e7350a184f305ee197a816f7e698d))
+* updated query for overview ([387c15a](https://github.com/oaknational/Oak-Web-Application/commit/387c15a4ac6f3b578c7309da16de2c9cdca7d821))
+* updated test ([d7ad2b9](https://github.com/oaknational/Oak-Web-Application/commit/d7ad2b9b7bd44111b6e1e286cc58e8288df262ba))
+* updated test ([3a5aacf](https://github.com/oaknational/Oak-Web-Application/commit/3a5aacf40615ae97d15092ce04e244a3b5f0abb4))
+* updated test query params ([bc45ecd](https://github.com/oaknational/Oak-Web-Application/commit/bc45ecd5b5cca1babbbd280f95f144428a62c2ca))
+
+
+### Features
+
+* added curric overview gql query + minor name changes ([c0a6198](https://github.com/oaknational/Oak-Web-Application/commit/c0a619871e1110c0bd1f2365d4c3e2c68003cc13))
+
+# [1.251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.1...v1.251.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* check number of lessons and use singular or plural appropriately ([d2476fa](https://github.com/oaknational/Oak-Web-Application/commit/d2476fa60342db816bf907c222205b10a55cdb03))
+
+
+### Features
+
+* test for plurality ([5e74cc5](https://github.com/oaknational/Oak-Web-Application/commit/5e74cc58e12191fff187b87ea9e25ff01aa0045d))
+
+## [1.250.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.0...v1.250.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* addded test logic for download error ([e024525](https://github.com/oaknational/Oak-Web-Application/commit/e024525eeddc716b1fe43cd88838e5fad71a129d))
+* error reporting for failed download ([4655842](https://github.com/oaknational/Oak-Web-Application/commit/4655842bf70591e8da917deac24152aa9d5c3e48))
+* ran format ([34cb21d](https://github.com/oaknational/Oak-Web-Application/commit/34cb21d23a05cfc5dbe2bea706b9888b14a1a437))
+* regenerate sdk ([5f27299](https://github.com/oaknational/Oak-Web-Application/commit/5f27299c4946a5f2cb223bf8667a45ef2a4e9c1b))
+* resolve conflicts ([9bb251a](https://github.com/oaknational/Oak-Web-Application/commit/9bb251aa605cb7056e056f76fb810e380bcaa174))
+* updated tests for new functionality ([6c95e6b](https://github.com/oaknational/Oak-Web-Application/commit/6c95e6b713fc43c3c3cd1532b0966c10112f2228))
+
 # [1.250.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.249.0...v1.250.0) (2023-09-21)
 
 
