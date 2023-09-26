@@ -26,7 +26,12 @@ async function main() {
   }`);
 
   function getSlugs({ assets }) {
-    return assets.map((asset) => asset.slug.current);
+    return (
+      assets
+        // filter to only have assets with an image url and a slug
+        .filter((asset) => asset.image?.asset?.url && asset.slug?.current)
+        .map((asset) => asset.slug.current)
+    );
   }
 
   /**
