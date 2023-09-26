@@ -1,3 +1,10 @@
+## [1.252.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.1...v1.252.2) (2023-09-26)
+
+
+### Bug Fixes
+
+* **headerListing:** remove curriculum map link from new content ([269a6a7](https://github.com/oaknational/Oak-Web-Application/commit/269a6a75fefd28f7ad24ca9f6d62eb3387670d33))
+
 ## [1.252.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.0...v1.252.1) (2023-09-26)
 
 
