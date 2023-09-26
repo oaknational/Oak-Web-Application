@@ -1,5 +1,5 @@
 /* SITE */
-             
+
 Oak National Academy’s tech platform has been created by a team of human developers supporting a committed team of teachers and volunteers.
 
 /* TEAM */
@@ -27,6 +27,11 @@ Oak National Academy’s tech platform has been created by a team of human devel
   LinkedIn: https://www.linkedin.com/in/dorothyyau/
   From: London, UK
 
+  Ewan Wakeman (Senior Data Analyst)
+  LinkedIn: https://www.linkedin.com/in/ewanwakeman/
+  Twitter: https://twitter.com/ewan_wakeman
+  From: London, UK
+
   Helen Harlow (Product Designer)
   LinkedIn: https://www.linkedin.com/in/helen-harlow/
   From: Norwich, UK
@@ -40,7 +45,7 @@ Oak National Academy’s tech platform has been created by a team of human devel
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
   Twitter: https://twitter.com/kpopper
   From: London, UK
-  
+
   Jack Skerrett (Quality Assurance Analyst)
   LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
   From: Cornwall, UK
@@ -76,7 +81,7 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Monika Koziol (Principal Product Designer)
   Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
   From: Poland, lives in London
-  
+
   Natassja Blore (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
@@ -106,7 +111,7 @@ Oak National Academy’s tech platform has been created by a team of human devel
   From: Guildford, UK
 
   Verity Roberts (Product Manager)
-  From: Cambridge, UK  
+  From: Cambridge, UK
 
   Will Gayne (Head of Product Strategy)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
@@ -143,7 +148,7 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Remy Sharp (Software Engineer)
   Site: https://remysharp.com
   Twitter: @rem
-  From: Brighton, UK    
+  From: Brighton, UK
 
   Shaun Orpen (Software Engineer)
   Site: https://shaunorpen.com/
