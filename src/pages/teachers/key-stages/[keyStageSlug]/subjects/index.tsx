@@ -138,13 +138,15 @@ export const getStaticProps: GetStaticProps<
           };
         })
         // Filter out subjects that don't exist in either curriculum
-        .filter((subject) => subject.old || subject.new);
+        .filter((subject) => subject.old || subject.new)
+        // sort by slug so the old and new subjects are intermingled
+        .sort((a, b) => (a.subjectSlug > b.subjectSlug ? 1 : -1));
 
       const results = {
         props: {
           keyStageSlug,
           keyStageTitle,
-          subjects: subjects,
+          subjects,
           keyStages,
         },
       };
