@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
+import styled from "styled-components";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
 import Logo from "../Logo";
 import { HeaderProps } from "../Layout/Layout";
 import OakLink from "../OakLink";
@@ -14,6 +14,19 @@ import { P } from "../Typography";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
+import background from "@/styles/utils/background";
+import { OakTheme, PropsWithTheme } from "@/styles/theme";
+
+// TODO: pull out into generic header components
+const headerConfig = (theme: OakTheme) => theme.header;
+const headerHeight = ({ theme }: PropsWithTheme) => headerConfig(theme).height;
+const StyledHeader = styled(Flex)`
+  ${background}
+  padding: 12px 16px;
+  width: 100%;
+  min-height: ${headerHeight}px;
+`;
+
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -24,7 +37,12 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu } = useMenuContext();
 
   return (
-    <FixedHeader $background="white">
+    <StyledHeader
+      $background="white"
+      as="header"
+      $justifyContent={["space-between"]}
+      $alignItems={["center"]}
+    >
       <Flex
         $justifyContent={"space-between"}
         $flexGrow={1}
@@ -50,17 +68,10 @@ const AppHeader: FC<HeaderProps> = () => {
           <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
-      <Box
-        $position="absolute"
-        $zIndex={"behind"}
-        $height={4}
-        $bottom={12}
-        $right={0}
-        $left={0}
-      >
+      <Box $position="absolute" $height={4} $top={56} $right={0} $left={0}>
         <Svg name="header-underline" $color="black" />
       </Box>
-    </FixedHeader>
+    </StyledHeader>
   );
 };
 
