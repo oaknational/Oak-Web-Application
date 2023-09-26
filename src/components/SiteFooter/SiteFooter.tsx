@@ -66,6 +66,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
         $font={"body-2"}
         label={props.text}
         onClick={showConsentManager}
+        $hoverStyles={["underline-link-text"]}
       >
         {props.text}
       </Button>
