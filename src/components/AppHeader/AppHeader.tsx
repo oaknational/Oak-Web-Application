@@ -1,5 +1,4 @@
 import { FC, useRef } from "react";
-import styled from "styled-components";
 
 import Flex from "../Flex";
 import Logo from "../Logo";
@@ -12,20 +11,9 @@ import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import { P } from "../Typography";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
+import { StyledHeader } from "../Header";
 
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
-import background from "@/styles/utils/background";
-import { OakTheme, PropsWithTheme } from "@/styles/theme";
-
-// TODO: pull out into generic header components
-const headerConfig = (theme: OakTheme) => theme.header;
-const headerHeight = ({ theme }: PropsWithTheme) => headerConfig(theme).height;
-const StyledHeader = styled(Flex)`
-  ${background}
-  padding: 12px 16px;
-  width: 100%;
-  min-height: ${headerHeight}px;
-`;
 
 /**
  * Header for logging in and using search -

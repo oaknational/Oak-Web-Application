@@ -2,7 +2,7 @@ import { FC, useRef } from "react";
 import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
+import FixedHeader from "../Header";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
 import MenuLinks from "../MenuLinks";

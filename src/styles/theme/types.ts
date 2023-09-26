@@ -4,7 +4,7 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
-import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
+import { HeaderConfig } from "../../components/Header/FixedHeader";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
