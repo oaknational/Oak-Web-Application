@@ -348,6 +348,13 @@ const curriculumApi = {
       ];
     });
 
+    const legacyTiers = tiers.map((tier) => {
+      return {
+        ...tier,
+        tierProgrammeSlug: addLegacySlugSuffix(tier.tierProgrammeSlug),
+      };
+    });
+
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
     const learningThemes = unitsWithVariants.map((unitWithTheme) => ({
       themeSlug: unitWithTheme[0]?.themeSlug,
@@ -379,7 +386,7 @@ const curriculumApi = {
       totalUnitCount: programme?.totalUnitCount,
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
-      tiers,
+      tiers: legacyTiers,
       units: unitsWithVariants,
     });
   },
@@ -498,7 +505,7 @@ const curriculumApi = {
       .programmes.map((programme) => {
         return {
           programmes: {
-            subjectSlug: programme.subjectSlug,
+            subjectSlug: addLegacySlugSuffix(programme.subjectSlug),
             subjectTitle: programme.subjectTitle,
             keyStageSlug: programme.keyStageSlug,
             keyStageTitle: programme.keyStageTitle,
