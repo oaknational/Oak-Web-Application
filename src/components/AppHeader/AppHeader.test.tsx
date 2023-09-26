@@ -54,4 +54,28 @@ describe("components/AppHeader", () => {
     const oldMenuLink = screen.queryByText("Classroom");
     expect(oldMenuLink).not.toBeInTheDocument();
   });
+
+  test("it should include a link for new teacher experience", () => {
+    render(<AppHeader />);
+    const teacherLink = screen.getAllByRole("link")[1];
+
+    if (!teacherLink) {
+      throw new Error("Failed to find link to teacher experience");
+    }
+
+    expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
+  });
+  test.only("it should include a link for classroom", () => {
+    render(<AppHeader />);
+    const pupilsLink = screen.getAllByRole("link")[2];
+
+    if (!pupilsLink) {
+      throw new Error("Failed to find link to classroom");
+    }
+
+    expect(pupilsLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://classroom.thenational.academy",
+    );
+  });
 });
