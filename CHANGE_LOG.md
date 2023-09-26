@@ -1,3 +1,19 @@
+# [1.253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.2...v1.253.0) (2023-09-26)
+
+
+### Bug Fixes
+
+* update import ([890a194](https://github.com/oaknational/Oak-Web-Application/commit/890a194d9b0789722954fe369ca4fb9c54927376))
+* zindices for navbar ([a41aa81](https://github.com/oaknational/Oak-Web-Application/commit/a41aa817664506c8d4cc2e25a582f2f6d471df48))
+
+
+### Features
+
+* made underline match design ([c976457](https://github.com/oaknational/Oak-Web-Application/commit/c97645753ebaf85c42ae1a45292ba1b977ca2265))
+* make appheader not fixed ([210e947](https://github.com/oaknational/Oak-Web-Application/commit/210e947f2b78f4da057f2adb2beed33d195a90a9))
+* remove early access text from app header ([fa5900d](https://github.com/oaknational/Oak-Web-Application/commit/fa5900da695d74c85374757b54c35e4d46617d26))
+* update SiteHeader to use StyledHeader ([52596e7](https://github.com/oaknational/Oak-Web-Application/commit/52596e79478e5d9856172d1a0700507151bd1fd6))
+
 ## [1.252.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.1...v1.252.2) (2023-09-26)
 
 
