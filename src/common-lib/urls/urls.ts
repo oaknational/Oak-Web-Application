@@ -168,7 +168,7 @@ type CurriculumDownloadsLinkProps = {
   subjectPhaseSlug: string;
 };
 
-type OakLinkProps =
+export type OakLinkProps =
   | SubjectListingLinkProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -250,7 +250,6 @@ type OakPages = {
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
 };
-
 type OakPageConfig<
   ResolveHrefProps extends {
     page: string;
