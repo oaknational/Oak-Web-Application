@@ -41,6 +41,7 @@ export function LessonPathwayCard(props: LessonPathwayCardProps) {
               icon="chevron-right"
               $iconPosition="trailing"
               $mr={i === tiers.length ? 0 : 24}
+              $hoverStyles={["underline-link-text"]}
             />
           );
         })}
