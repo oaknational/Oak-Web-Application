@@ -13,9 +13,9 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
-import curriculumOverviewMVSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
 import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
+import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -77,9 +77,8 @@ export type Examboard = z.infer<typeof examboardSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
-export type CurriculumOverviewTabData = z.infer<
-  typeof curriculumOverviewMVSchema
->;
+export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
+
 export type CurriculumDownloadsTabData = z.infer<
   typeof curriculumDownloadsTabData
 >;

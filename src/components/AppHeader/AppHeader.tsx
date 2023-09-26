@@ -1,19 +1,17 @@
 import { FC, useRef } from "react";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
 import Logo from "../Logo";
 import { HeaderProps } from "../Layout/Layout";
 import OakLink from "../OakLink";
-import Svg from "../Svg";
-import Box from "../Box";
 import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
-import { P } from "../Typography";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 
+import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
+
 /**
  * Header for logging in and using search -
  * header for the app, not a landing page
@@ -24,7 +22,13 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu } = useMenuContext();
 
   return (
-    <FixedHeader $background="white">
+    <StyledHeader
+      $background="white"
+      as="header"
+      $justifyContent={["space-between"]}
+      $alignItems={["center"]}
+      $zIndex="fixedHeader"
+    >
       <Flex
         $justifyContent={"space-between"}
         $flexGrow={1}
@@ -34,9 +38,6 @@ const AppHeader: FC<HeaderProps> = () => {
           <OakLink page={"home"}>
             <Logo height={48} width={104} />
           </OakLink>
-          <P $ml={[6, 40]} $font={["heading-light-7", "heading-light-6"]}>
-            Teachers - early access
-          </P>
         </Flex>
         <IconButton
           aria-label="Menu"
@@ -50,17 +51,8 @@ const AppHeader: FC<HeaderProps> = () => {
           <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
-      <Box
-        $position="absolute"
-        $zIndex={"behind"}
-        $height={[8, 12]}
-        $bottom={[4, -4]}
-        $right={0}
-        $left={0}
-      >
-        <Svg name="header-underline" $color="teachersHighlight" />
-      </Box>
-    </FixedHeader>
+      <HeaderUnderline />
+    </StyledHeader>
   );
 };
 

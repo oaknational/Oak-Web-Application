@@ -1,3 +1,54 @@
+# [1.253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.2...v1.253.0) (2023-09-26)
+
+
+### Bug Fixes
+
+* update import ([890a194](https://github.com/oaknational/Oak-Web-Application/commit/890a194d9b0789722954fe369ca4fb9c54927376))
+* zindices for navbar ([a41aa81](https://github.com/oaknational/Oak-Web-Application/commit/a41aa817664506c8d4cc2e25a582f2f6d471df48))
+
+
+### Features
+
+* made underline match design ([c976457](https://github.com/oaknational/Oak-Web-Application/commit/c97645753ebaf85c42ae1a45292ba1b977ca2265))
+* make appheader not fixed ([210e947](https://github.com/oaknational/Oak-Web-Application/commit/210e947f2b78f4da057f2adb2beed33d195a90a9))
+* remove early access text from app header ([fa5900d](https://github.com/oaknational/Oak-Web-Application/commit/fa5900da695d74c85374757b54c35e4d46617d26))
+* update SiteHeader to use StyledHeader ([52596e7](https://github.com/oaknational/Oak-Web-Application/commit/52596e79478e5d9856172d1a0700507151bd1fd6))
+
+## [1.252.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.1...v1.252.2) (2023-09-26)
+
+
+### Bug Fixes
+
+* **headerListing:** remove curriculum map link from new content ([269a6a7](https://github.com/oaknational/Oak-Web-Application/commit/269a6a75fefd28f7ad24ca9f6d62eb3387670d33))
+
+## [1.252.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.0...v1.252.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* sort subjects by slug on subject page ([c3c3784](https://github.com/oaknational/Oak-Web-Application/commit/c3c378475d48d0873b235e64f46a2a22a43c98ec))
+
+# [1.252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.251.0...v1.252.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* added error import ([e5eb7b8](https://github.com/oaknational/Oak-Web-Application/commit/e5eb7b81f914604cef67d88e2c2174478e0aa691))
+* update fixture ([bdaa59c](https://github.com/oaknational/Oak-Web-Application/commit/bdaa59c411acc75bbaabd702095200566e08cdba))
+* update path to selection slugs ([758ba8a](https://github.com/oaknational/Oak-Web-Application/commit/758ba8a2ec26037378654fffbd915efb0b67c7ad))
+* update sdk ([85339ea](https://github.com/oaknational/Oak-Web-Application/commit/85339ea4d7739a6be2f45a60e08caf00d7fb0d6c))
+* update styling for overview ([b771cf0](https://github.com/oaknational/Oak-Web-Application/commit/b771cf0af644709f0523f0d507f3a27495ff8435))
+* updated fixture ([0445b19](https://github.com/oaknational/Oak-Web-Application/commit/0445b19b985e7350a184f305ee197a816f7e698d))
+* updated query for overview ([387c15a](https://github.com/oaknational/Oak-Web-Application/commit/387c15a4ac6f3b578c7309da16de2c9cdca7d821))
+* updated test ([d7ad2b9](https://github.com/oaknational/Oak-Web-Application/commit/d7ad2b9b7bd44111b6e1e286cc58e8288df262ba))
+* updated test ([3a5aacf](https://github.com/oaknational/Oak-Web-Application/commit/3a5aacf40615ae97d15092ce04e244a3b5f0abb4))
+* updated test query params ([bc45ecd](https://github.com/oaknational/Oak-Web-Application/commit/bc45ecd5b5cca1babbbd280f95f144428a62c2ca))
+
+
+### Features
+
+* added curric overview gql query + minor name changes ([c0a6198](https://github.com/oaknational/Oak-Web-Application/commit/c0a619871e1110c0bd1f2365d4c3e2c68003cc13))
+
 # [1.251.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.250.1...v1.251.0) (2023-09-25)
 
 

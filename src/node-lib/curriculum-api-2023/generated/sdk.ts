@@ -24690,6 +24690,14 @@ export type Videos_Variance_Order_By = {
   video_id?: InputMaybe<Order_By>;
 };
 
+export type CurriculumOverviewQueryVariables = Exact<{
+  phaseSlug?: InputMaybe<Scalars['String']['input']>;
+  subjectSlug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
+
 export type CurriculumUnitsQueryVariables = Exact<{
   where?: InputMaybe<Published_Mv_Curriculum_Units_Bool_Exp>;
 }>;
@@ -24775,6 +24783,19 @@ export type UnitListingQueryVariables = Exact<{
 export type UnitListingQuery = { __typename?: 'query_root', programme: Array<{ __typename?: 'published_mv_unit_listing_page_13', programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, tierSlug?: string | null, tiers?: any | null, units?: any | null, examBoardTitle?: string | null, examBoardSlug?: string | null, learningThemes?: any | null, totalUnitCount?: any | null }> };
 
 
+export const CurriculumOverviewDocument = gql`
+    query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
+  curriculumOverview: published_mv_curriculum_overview(
+    where: {phase_slug: {_eq: $phaseSlug}, subject_slug: {_eq: $subjectSlug}}
+    limit: 1
+  ) {
+    curriculaDesc: curriculum_intent
+    subjectTitle: subject
+    phaseTitle: phase
+    examboardTitle: examboard
+  }
+}
+    `;
 export const CurriculumUnitsDocument = gql`
     query curriculumUnits($where: published_mv_curriculum_units_bool_exp) {
   units: published_mv_curriculum_units(where: $where) {
@@ -25008,6 +25029,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    curriculumOverview(variables?: CurriculumOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CurriculumOverviewQuery>(CurriculumOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumOverview', 'query');
+    },
     curriculumUnits(variables?: CurriculumUnitsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsQuery>(CurriculumUnitsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnits', 'query');
     },

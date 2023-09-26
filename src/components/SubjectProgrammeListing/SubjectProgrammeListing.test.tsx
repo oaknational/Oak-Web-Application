@@ -5,7 +5,7 @@ import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fix
 
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
-import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examBoardListing.fixture";
+import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
 
 const curriculumData = tieredProgrammeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
