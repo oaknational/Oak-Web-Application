@@ -42,6 +42,7 @@ const AppHeader: FC<HeaderProps> = () => {
       as="header"
       $justifyContent={["space-between"]}
       $alignItems={["center"]}
+      $zIndex="fixedHeader"
     >
       <Flex
         $justifyContent={"space-between"}
@@ -68,7 +69,14 @@ const AppHeader: FC<HeaderProps> = () => {
           <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
-      <Box $position="absolute" $height={4} $top={56} $right={0} $left={0}>
+      <Box
+        $position="absolute"
+        $zIndex="behind"
+        $height={4}
+        $top={56}
+        $right={0}
+        $left={0}
+      >
         <Svg name="header-underline" $color="black" />
       </Box>
     </StyledHeader>
