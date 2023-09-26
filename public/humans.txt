@@ -4,6 +4,9 @@ Oak National Academy’s tech platform has been created by a team of human devel
 
 /* TEAM */
 
+  Aakesh Pattani (Principal Product Manager)
+  LinkedIn: https://www.linkedin.com/in/aakeshpattani/
+  From: London, UK
 
   Amy Matthews (Infrastructure Engineer)
   From: Kent, UK
@@ -42,6 +45,12 @@ Oak National Academy’s tech platform has been created by a team of human devel
   LinkedIn: https://www.linkedin.com/in/jack-skerrett-73769417a/
   From: Cornwall, UK
 
+  James Sheasby Thomas (Quality Assurance Analyst)
+  Site: https://rightsaidjames.com/
+  Twitter: https://twitter.com/rightsaidjames
+  LinkedIn: https://www.linkedin.com/in/rightsaidjames/
+  From: Vale of Glamorgan, lives in Leeds, UK
+
   Jim Cresswell (Principal Software Engineer)
   Site: https://jimcresswell.net/
   LinkedIn: https://uk.linkedin.com/in/jimcresswell/
@@ -68,6 +77,10 @@ Oak National Academy’s tech platform has been created by a team of human devel
   Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
   From: Poland, lives in London
   
+  Natassja Blore (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
+  From: Manchester, UK
+
   Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
   Twitter: @r_mcky
@@ -78,6 +91,10 @@ Oak National Academy’s tech platform has been created by a team of human devel
 
   Shaquille Hobbs-Daley (Software Engineer)
   LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
+  From: London, UK
+
+  Simon Katan (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/simonkatan/
   From: London, UK
 
   Sonali Singh (Software Engineer)
