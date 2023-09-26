@@ -1,6 +1,8 @@
 import Flex from "@/components/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import { LessonPathwayCard } from "@/components/Lesson/LessonPathwayCard/LessonPathwayCard";
+import { TagFunctional } from "@/components/TagFunctional";
+import { TagColor } from "@/components/TagFunctional/TagFunctional";
 import {
   Heading,
   HeadingTag,
@@ -35,31 +37,44 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
   const { headingTag, subjects } = props;
   const unitHeadingTag = getNextHeadingTag(headingTag);
   const examBoardHeadingTag = getNextHeadingTag(unitHeadingTag);
+
   return (
     <Flex $flexDirection={["column"]}>
-      <Heading tag={headingTag}>Lesson appears in</Heading>
-      {subjects.map(({ subjectTitle, units }) => {
+      <Heading $font={"heading-5"} tag={headingTag}>
+        Lesson appears in
+      </Heading>
+      {subjects.map(({ subjectTitle, subjectSlug, units }) => {
         return units.map(({ unitTitle, unitSlug, examBoards }) => {
           return (
-            <Flex $flexDirection={["column"]} $mt={48}>
-              <Heading tag={"h4"} $mb={16}>
+            <Flex
+              key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}`}
+              $flexDirection={["column"]}
+              $mt={48}
+            >
+              <Heading tag={unitHeadingTag} $mb={16}>
                 <Flex $flexDirection={["row"]} $alignItems="baseline">
-                  <Span $font="body-3-bold" $color="grey6" $mr={4}>
-                    UNIT{" "}
-                  </Span>
-                  <Span>
+                  <TagFunctional text="Unit" color="grey" $mr={12} />
+                  <Span $font="heading-light-6">
                     {subjectTitle} / {unitTitle}
                   </Span>
                 </Flex>
               </Heading>
               <Grid $rg={16} $cg={16}>
-                {examBoards.map((examBoard) => {
+                {examBoards.map((examBoard, index) => {
+                  const tagColors: TagColor[] = ["aqua", "pink", "yellow"];
+                  const tagColor =
+                    tagColors[index % tagColors.length] || "aqua";
+
                   return (
-                    <GridArea $colSpan={[12, 6, 4]}>
+                    <GridArea
+                      key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}-e-${examBoard.examBoardSlug}`}
+                      $colSpan={[12, 6, 4]}
+                    >
                       <LessonPathwayCard
                         {...examBoard}
                         unitSlug={unitSlug}
                         headingTag={examBoardHeadingTag}
+                        examBoardTagColor={tagColor}
                       />
                     </GridArea>
                   );

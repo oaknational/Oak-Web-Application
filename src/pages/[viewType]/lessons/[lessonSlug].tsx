@@ -44,7 +44,7 @@ export default function LessonOverviewCanonicalPage({
     >
       <LessonOverview lesson={{ ...lesson, isCanonical: true }} />
       <Flex $background={"pink50"} $width={"100%"}>
-        <MaxWidth $pv={120}>
+        <MaxWidth $pv={96}>
           <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
         </MaxWidth>
       </Flex>
