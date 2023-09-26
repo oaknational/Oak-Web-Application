@@ -1,3 +1,10 @@
+## [1.252.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.0...v1.252.1) (2023-09-26)
+
+
+### Bug Fixes
+
+* sort subjects by slug on subject page ([c3c3784](https://github.com/oaknational/Oak-Web-Application/commit/c3c378475d48d0873b235e64f46a2a22a43c98ec))
+
 # [1.252.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.251.0...v1.252.0) (2023-09-25)
 
 
