@@ -27,6 +27,7 @@ describe("lessonOverviewCanonical()", () => {
       videoMuxPlaybackId: "video-mux-playback-id",
       videoWithSignLanguageMuxPlaybackId:
         "video-with-sign-language-mux-playback-id",
+      hasDownloadableResources: false,
     };
     const lesson = await lessonOverviewCanonical({
       ...sdk,
