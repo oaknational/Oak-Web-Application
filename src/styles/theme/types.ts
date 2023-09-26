@@ -4,10 +4,11 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
-import { HeaderConfig } from "../../components/Header/FixedHeader";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
+
+import { HeaderConfig } from "@/components/Header/StyledHeader";
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the
