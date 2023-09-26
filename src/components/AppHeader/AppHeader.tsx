@@ -4,15 +4,13 @@ import Flex from "../Flex";
 import Logo from "../Logo";
 import { HeaderProps } from "../Layout/Layout";
 import OakLink from "../OakLink";
-import Svg from "../Svg";
-import Box from "../Box";
 import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import { P } from "../Typography";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
-import { StyledHeader } from "../Header";
 
+import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 
 /**
@@ -57,16 +55,7 @@ const AppHeader: FC<HeaderProps> = () => {
           <BurgerMenuSections menuSections={betaMenuSections} />
         </Menu>
       </Flex>
-      <Box
-        $position="absolute"
-        $zIndex="behind"
-        $height={4}
-        $top={56}
-        $right={0}
-        $left={0}
-      >
-        <Svg name="header-underline" $color="black" />
-      </Box>
+      <HeaderUnderline />
     </StyledHeader>
   );
 };
