@@ -20,6 +20,8 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
     props;
 
+  const firstProgrammeSlug = programmes[0]?.programmeSlug ?? "";
+
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
@@ -62,6 +64,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         subjectIconBackgroundColor={"lavender"}
         title={subjectTitle}
         programmeFactor={keyStageTitle}
+        hasCurriculumDownload={isSlugLegacy(firstProgrammeSlug)}
         {...props}
       />
       <MaxWidth $mt={[56, 72]} $ph={16}>
