@@ -1,6 +1,6 @@
 import { ProgrammeListingPageData } from "../../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-export const examboardProgrammeListingFixture = (
+export const examBoardProgrammeListingFixture = (
   partial?: Partial<ProgrammeListingPageData>,
 ): ProgrammeListingPageData => {
   return {

@@ -47,7 +47,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
   });
-  it("title card renderd correct title when examboard is present", () => {
+  it("title card renderd correct title when exam board is present", () => {
     const { getByRole } = render(
       <UnitListingPage
         curriculumData={{
