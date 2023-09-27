@@ -40,7 +40,7 @@ export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
 };
 
-// Array to be used in downloads as well to avoid duplication
+// Array to be used in downloads as well to avoid duplications
 export const lessonBreadcrumbArray = (
   keyStageTitle: string,
   keyStageSlug: string,
