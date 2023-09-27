@@ -524,7 +524,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         >
           <Flex $alignItems={"flex-start"}>
             <Icon
-              name="books"
+              name="magic-carpet"
               size={96}
               height={96}
               width={96}
