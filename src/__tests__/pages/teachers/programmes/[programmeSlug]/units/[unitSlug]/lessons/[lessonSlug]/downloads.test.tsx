@@ -5,7 +5,6 @@ import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 import React from "react";
 
-import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
@@ -392,8 +391,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("Copyright notice", () => {
-    it("renders pre-ALB copyright notice on teachers view type", async () => {
-      render(<LessonDownloadsPage {...props} />);
+    it("renders pre-ALB copyright notice on legacy lessons", async () => {
+      render(
+        <LessonDownloadsPage
+          curriculumData={lessonDownloadsFixtures({ isLegacy: true })}
+        />,
+      );
 
       const copyrightNotice = await screen.findByText(
         "This content is made available by Oak and its partners",
@@ -403,18 +406,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(copyrightNotice).toBeInTheDocument();
     });
 
-    it("renders post-ALB copyright notice on teachers-2023 view type", async () => {
+    it("renders post-ALB copyright notice on non legacy lessons", async () => {
       render(
         <LessonDownloadsPage
-          {...{
-            ...props,
-            curriculumData: {
-              ...props.curriculumData,
-              programmeSlug: removeLegacySlugSuffix(
-                props.curriculumData.programmeSlug,
-              ),
-            },
-          }}
+          curriculumData={lessonDownloadsFixtures({ isLegacy: false })}
         />,
       );
 

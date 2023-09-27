@@ -116,6 +116,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
         isNew={!isSlugLegacy(programmeSlug)}
+        hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />
       <MaxWidth $ph={16}>

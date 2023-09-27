@@ -6,7 +6,7 @@ import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import Icon from "@/components/Icon";
 import Typography from "@/components/Typography";
-import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const OrderAnswers = ({
   answers,

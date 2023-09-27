@@ -36,7 +36,11 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
             />
           </Flex>
         </GridArea>
-        <GridArea $justifyContent={"center"} $colSpan={[12, 9]}>
+        <GridArea
+          $justifyContent={"center"}
+          $colSpan={[12, 9]}
+          $alignItems={"flex-start"}
+        >
           <Box>
             {yearTitle && (
               <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
