@@ -1,3 +1,11 @@
+## [1.253.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.1...v1.253.2) (2023-09-27)
+
+
+### Bug Fixes
+
+* **generate-sprite:** filter only icons which have both slug and image url ([09d5749](https://github.com/oaknational/Oak-Web-Application/commit/09d5749440b71dcc17a3d59ca99bb13f43cd4dc4))
+* svg sprites ([941afa0](https://github.com/oaknational/Oak-Web-Application/commit/941afa00af88a9d20c70971ba3385cddbb786c5f))
+
 ## [1.253.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.0...v1.253.1) (2023-09-27)
 
 
