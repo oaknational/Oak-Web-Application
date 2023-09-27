@@ -544,9 +544,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </Flex>
           <ButtonAsLink
             label="Go to help centre"
-            variant="brush"
-            page="help"
-            icon="arrow-right"
+            variant={"brush"}
+            size={"large"}
+            page={"help"}
+            icon={"arrow-right"}
             iconBackground="black"
             $iconPosition="trailing"
           />
