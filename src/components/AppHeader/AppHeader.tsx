@@ -56,7 +56,7 @@ const AppHeader: FC<HeaderProps> = () => {
         <Flex $justifyContent={"center"} $alignItems={"center"}>
           <OakLink page={"home"}>
             <MobileWrapper>
-              <Logo height={41} width={31} variant="without text" />
+              <Logo height={48} width={31} variant="without text" />
             </MobileWrapper>
             <DesktopWrapper>
               <Logo variant="with text" height={48} width={104} />
