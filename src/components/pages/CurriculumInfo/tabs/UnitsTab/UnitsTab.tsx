@@ -542,7 +542,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             />
 
             <Flex
-              $width={"70%"}
+              $width={["100%", "70%"]}
               $gap={16}
               $flexDirection={"column"}
               $alignItems={"flex-start"}
