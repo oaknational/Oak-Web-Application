@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import QuestionsListNew from "./QuestionsListNew";
 
-import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
