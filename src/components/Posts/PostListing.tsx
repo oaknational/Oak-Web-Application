@@ -75,7 +75,7 @@ const PostListing: FC<PostListingProps> = ({
           )}
         />
       </MaxWidth>
-      <MaxWidth $pt={[0, 26, 26]}>
+      <MaxWidth $mb={[56, 80]} $pt={[0, 26, 26]}>
         <SummaryCard
           {...pageData}
           heading={categoryHeading || pageData.heading}
