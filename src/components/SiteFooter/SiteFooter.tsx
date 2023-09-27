@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Flex from "../Flex";
@@ -7,18 +7,24 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Box from "../Box";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import UnstyledButton from "../UnstyledButton";
-import footerSections from "../../browser-lib/fixtures/footerSections";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
+import { IconName } from "../Icon";
+import Icon from "../Icon/Icon";
+import Button from "../Button";
+
+import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import footerSections from "@/browser-lib/fixtures/footerSections";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { OakLinkProps } from "@/common-lib/urls";
+import useClickableCard from "@/hooks/useClickableCard";
 
 type FooterLinkProps = {
   text: string;
+  icon?: IconName;
 } & (
   | {
       href: string;
@@ -27,55 +33,107 @@ type FooterLinkProps = {
   | {
       type: "consent-manager-toggle";
     }
-  | {
-      type: "pupils-link";
-    }
-  | {
-      type: "teachers-link";
-    }
+  | ({
+      type: "page";
+    } & OakLinkProps)
 );
+
+type FooterLinkIconWrapperProps = {
+  children: ReactNode;
+  containerProps: ReturnType<typeof useClickableCard>["containerProps"];
+} & FooterLinkProps;
+
+const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
+  const { containerProps, icon, children } = props;
+  return (
+    <Flex $display={"inline-flex"} {...containerProps}>
+      {children}
+      {icon && <Icon name={icon} $ml={8} />}
+    </Flex>
+  );
+};
 
 const FooterLink: FC<FooterLinkProps> = (props) => {
   const { track } = useAnalytics();
   const { showConsentManager } = useCookieConsent();
+  const { containerProps, primaryTargetProps } =
+    useClickableCard<HTMLAnchorElement>();
 
   if (props.type === "consent-manager-toggle") {
     return (
-      <UnstyledButton onClick={showConsentManager}>{props.text}</UnstyledButton>
+      <Button
+        variant="minimal"
+        $font={"body-2"}
+        label={props.text}
+        onClick={showConsentManager}
+        $hoverStyles={["underline-link-text"]}
+      >
+        {props.text}
+      </Button>
     );
   }
 
-  if (props.type === "pupils-link") {
+  if (props.type === "page" && props.page == "classroom") {
     return (
-      <OakLink
-        page="classroom"
-        htmlAnchorProps={{
-          onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
-        }}
-      >
-        {props.text}
-      </OakLink>
+      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
+        <OakLink
+          {...props}
+          {...primaryTargetProps}
+          $focusStyles={["underline"]}
+          htmlAnchorProps={{
+            onClick: () => track.classroomSelected({ navigatedFrom: "footer" }),
+          }}
+        >
+          {props.text}
+        </OakLink>
+      </FooterLinkIconWrapper>
     );
   }
 
-  if (props.type === "teachers-link") {
+  if (props.type === "page" && props.page == "teacher-hub") {
     return (
-      <OakLink
-        page="teacher-hub"
-        htmlAnchorProps={{
-          onClick: () => track.teacherHubSelected({ navigatedFrom: "footer" }),
-        }}
-      >
-        {props.text}
-      </OakLink>
+      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
+        <OakLink
+          {...props}
+          {...primaryTargetProps}
+          $focusStyles={["underline"]}
+          htmlAnchorProps={{
+            onClick: () =>
+              track.teacherHubSelected({ navigatedFrom: "footer" }),
+          }}
+        >
+          {props.text}
+        </OakLink>
+      </FooterLinkIconWrapper>
     );
   }
-  // TODO: change data to have "page"
-  return (
-    <OakLink page={null} href={props.href}>
-      {props.text}
-    </OakLink>
-  );
+  if (props.type === "page") {
+    return (
+      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
+        <OakLink
+          {...primaryTargetProps}
+          $focusStyles={["underline"]}
+          {...props}
+        >
+          {props.text}
+        </OakLink>
+      </FooterLinkIconWrapper>
+    );
+  }
+  if (props.href) {
+    return (
+      <FooterLinkIconWrapper containerProps={containerProps} {...props}>
+        <OakLink
+          {...primaryTargetProps}
+          $focusStyles={["underline"]}
+          page={null}
+          href={props.href}
+        >
+          {props.text}
+        </OakLink>
+      </FooterLinkIconWrapper>
+    );
+  }
 };
 
 export type FooterSection = {
@@ -85,10 +143,10 @@ export type FooterSection = {
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
     <Flex $flexDirection="column" $mt={[32, 0]}>
-      <Heading $mb={8} $font="body-2" $color="grey9" tag="h2">
+      <Heading $mb={8} $font="heading-7" $color="black" tag="h2">
         {title}
       </Heading>
-      <Typography $font={"heading-7"}>
+      <Typography $color={"black"} $font={"body-2"}>
         <ul role="list">
           {links.map((link) => (
             <LI key={link.text} $mt={12}>
@@ -116,13 +174,16 @@ const SiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $pt={[48, 80]}
       $background="white"
       $position={"relative"}
       $overflow={"hidden"}
     >
+      <Flex $height={4} $position="relative">
+        <Svg name="header-underline" $color="black" />
+      </Flex>
       <nav>
         <MaxWidth
+          $pt={[48, 80]}
           $justifyContent={"center"}
           $flexDirection={"column"}
           $ph={16}
@@ -141,7 +202,7 @@ const SiteFooter: FC = () => {
           <Grid>
             <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
-              <Box $mt={[0, 24]} />
+              <Box $mt={[0, 32]} />
               <FooterSectionLinks {...sections.teachers} />
             </GridArea>
             <GridArea $colSpan={[12, 3]}>
@@ -168,7 +229,7 @@ const SiteFooter: FC = () => {
       </nav>
       <Svg
         name="looping-line-3"
-        $color={"pupilsPink"}
+        $color={"pupilsLimeGreen"}
         $zIndex={"behind"}
         $display={["none", "block"]}
         $transform={[
