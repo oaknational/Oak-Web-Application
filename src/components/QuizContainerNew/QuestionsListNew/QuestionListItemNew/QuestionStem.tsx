@@ -7,7 +7,7 @@ import Typography from "@/components/Typography";
 import {
   StemImageObject,
   StemTextObject,
-} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuestionStem = ({
   questionStem,

@@ -2,7 +2,7 @@ import errorReporter from "../../../../common-lib/error-reporter";
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
-import lessonDownloadsSchema from "./downloads.schema";
+import lessonDownloadsSchema from "./lessonDownloads.schema";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -29,7 +29,12 @@ const lessonDownloadsQuery =
       });
     }
 
-    return lessonDownloadsSchema.parse(pages[0]);
+    const page = pages[0];
+
+    return lessonDownloadsSchema.parse({
+      ...page,
+      isLegacy: false,
+    });
   };
 
 export default lessonDownloadsQuery;
