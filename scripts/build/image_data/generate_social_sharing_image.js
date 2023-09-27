@@ -4,10 +4,13 @@ const { downloadFile, writeJson } = require("./helpers");
 async function main() {
   const client = getSanityClient();
 
-  const [socialSharingImageRes] = await client.fetch(`*[_type == "brandAsset"] {
+  const [socialSharingImageRes] =
+    await client.fetch(`*[_type == "brandAsset" && defined(socialSharingImage.asset) && socialSharingImage.asset->.url != null] {
     socialSharingImage {
-        asset->
-    },
+      asset-> {
+        url
+      }
+    }
   }`);
 
   const { socialSharingImage } = socialSharingImageRes;

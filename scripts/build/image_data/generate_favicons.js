@@ -8,10 +8,13 @@ const { writeJson } = require("./helpers");
 
 async function main() {
   const client = getSanityClient();
-  const brandAssetRes = await client.fetch(`*[_type == "brandAsset"] {
+  const brandAssetRes =
+    await client.fetch(`*[_type == "brandAsset" && defined(faviconImage.image.asset) && faviconImage.image.asset->.url != null] {
     faviconImage {
       image {
-        asset->
+        asset-> {
+          url
+        }
       }
     }
   }`);

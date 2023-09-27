@@ -26,10 +26,11 @@ async function writeAsset({ fileName, assetData }) {
 async function main() {
   const client = getSanityClient();
 
-  const subjectIconsRes = await client.fetch(`*[_type == "subjectIcon"] {
+  const subjectIconsRes =
+    await client.fetch(`*[_type == "subjectIcon" && defined(slug) && defined(image.asset) && defined(image.asset->_id) && defined(image.asset->url)] {
     slug,
     image {
-      asset->{
+      asset-> {
         _id,
         url
       }
@@ -41,10 +42,11 @@ async function main() {
     assetData: subjectIconsRes,
   });
 
-  const illustrationsRes = await client.fetch(`*[_type == "illustration"] {
+  const illustrationsRes =
+    await client.fetch(`*[_type == "illustration" && defined(slug) && defined(image.asset) && defined(image.asset->_id) && defined(image.asset->url)] {
     slug,
     image {
-      asset->{
+      asset-> {
         _id,
         url
       }
@@ -56,15 +58,16 @@ async function main() {
     assetData: illustrationsRes,
   });
 
-  const brandAssetRes = await client.fetch(`*[_type == "brandAsset"] {
+  const brandAssetRes =
+    await client.fetch(`*[_type == "brandAsset" && defined(logoWithText.image.asset) && defined(logoWithText.image.asset->_id) && defined(logoWithText.image.asset->url)] {
     logoWithText {
       image {
-        asset->{
+        asset-> {
           _id,
           url
         }
       }
-    },
+    }
   }`);
 
   await writeAsset({

@@ -10,18 +10,25 @@ const {
 async function main() {
   const client = getSanityClient();
 
-  const uiIconsRes = await client.fetch(`*[_type == "uiIcon"] {
+  const uiIconsRes =
+    await client.fetch(`*[_type == "uiIcon" && _id in *[_type == "uiIcon" && defined(image.asset) && defined(title) && defined(slug) && image.asset->.url != null]._id] {
     title,
     slug,
     image {
-      asset->
+      asset-> {
+        url
+      }
     }
   }`);
-  const uiGraphicsRes = await client.fetch(`*[_type == "uiGraphic"] {
+
+  const uiGraphicsRes =
+    await client.fetch(`*[_type == "uiGraphic" && _id in *[_type == "uiGraphic" && defined(image.asset) && defined(title) && defined(slug) && image.asset->.url != null]._id] {
     title,
     slug,
     image {
-      asset->
+      asset-> {
+        url
+      }
     }
   }`);
 
