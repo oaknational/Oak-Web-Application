@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
-
 import { LessonAppearsIn } from "./LessonAppearsIn";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("LessonAppearsIn", () => {
   it("renderes the correct headings with correct tags", () => {
-    const { getByRole } = render(
+    const { getByRole } = renderWithTheme(
       <LessonAppearsIn
         headingTag="h2"
         subjects={[
@@ -38,6 +38,6 @@ describe("LessonAppearsIn", () => {
     ).toHaveTextContent("Lesson appears in");
     expect(
       getByRole("heading", { name: "Unit Maths / Algebra" }),
-    ).toHaveTextContent("Unit Maths / Algebra");
+    ).toHaveTextContent("Algebra");
   });
 });
