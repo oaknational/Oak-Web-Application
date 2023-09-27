@@ -152,7 +152,7 @@ const SiteFooter: FC = () => {
             </GridArea>
             <GridArea $colSpan={[12, 3]}>
               <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
-                <Logo height={66} width={150} />
+                <Logo variant="with text" height={66} width={150} />
               </Flex>
             </GridArea>
           </Grid>
