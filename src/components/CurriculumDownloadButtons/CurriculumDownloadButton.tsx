@@ -17,7 +17,6 @@ type CurriculumDownloadProps = {
   subjectSlug: string;
   subjectTitle: string;
   tier?: string | null;
-  lessonPage?: boolean;
 };
 
 const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
@@ -26,7 +25,6 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   subjectSlug,
   subjectTitle,
   tier,
-  lessonPage,
 }) => {
   const [downloadResourceError, setDownloadResourceError] =
     useState<boolean>(false);
@@ -72,7 +70,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
 
   return (
     <Flex>
-      {lessonPage && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
+      {!tier && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
         <Flex $flexDirection={"column"}>
           <Button
             icon={"download"}
@@ -90,17 +88,24 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
           )}
         </Flex>
       ) : (
-        <ButtonAsLink
-          icon={"download"}
-          iconBackground="black"
-          label={downloadLabel}
-          href={downloadLink}
-          onClick={() => trackCurriculumMapDownloaded()}
-          page={null}
-          size="large"
-          variant="minimal"
-          $iconPosition={"trailing"}
-        />
+        <Flex $flexDirection={"column"}>
+          <ButtonAsLink
+            icon={"download"}
+            iconBackground="black"
+            label={downloadLabel}
+            href={downloadLink}
+            onClick={() => trackCurriculumMapDownloaded()}
+            page={null}
+            size="large"
+            variant="minimal"
+            $iconPosition={"trailing"}
+          />
+          {downloadResourceError && (
+            <FieldError id={"download-resource-error"}>
+              Sorry, we're having technical problems. Please try again later.
+            </FieldError>
+          )}
+        </Flex>
       )}
     </Flex>
   );
