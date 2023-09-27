@@ -1,3 +1,11 @@
+## [1.254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.0...v1.254.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* maths ks4 curriculum map download ([67b8c17](https://github.com/oaknational/Oak-Web-Application/commit/67b8c172affcd6886c5eca8fc405be202ad4ca66))
+* mobile foundation text overflow ([1f9385f](https://github.com/oaknational/Oak-Web-Application/commit/1f9385fae1af2cb4026445db695e19b01cb477a4))
+
 # [1.254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.2...v1.254.0) (2023-09-27)
 
 
