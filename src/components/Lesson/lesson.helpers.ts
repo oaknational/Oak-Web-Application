@@ -23,6 +23,10 @@ export const getCommonPathway = (
     yearSlug: null,
     yearTitle: null,
     subjectSlug: null,
+    examBoardSlug: null,
+    examBoardTitle: null,
+    tierSlug: null,
+    tierTitle: null,
   };
 
   return pathways.reduce(
@@ -162,53 +166,65 @@ export const getBreadcrumbsForLessonPathway = (
   return nullableBreadcrumbs.filter(truthy);
 };
 
-const PAGE_LINKS: {
-  label: string;
-  href: string;
-  condition: (lesson: LessonBase) => boolean;
-}[] = [
-  {
-    label: "Slide deck",
-    href: "#slideDeck",
-    condition: (lesson) =>
-      Boolean(lesson.presentationUrl && !lesson.hasCopyrightMaterial),
-  },
-  {
-    label: "Lesson details",
-    href: "#lessonDetails",
-    condition: () => true,
-  },
-  {
-    label: "Video",
-    href: "#video",
-    condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
-  },
-  {
-    label: "Worksheet",
-    href: "#worksheet",
-    condition: (lesson) => Boolean(lesson.worksheetUrl),
-  },
-  {
-    label: "Additional material",
-    href: "#additionalMaterial",
-    condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
-  },
-  {
-    label: "Starter quiz",
-    href: "#starterQuiz",
-    condition: (lesson) =>
-      Boolean(lesson.starterQuiz && lesson.starterQuiz.length > 0),
-  },
-  {
-    label: "Exit quiz",
-    href: "#exitQuiz",
-    condition: (lesson) =>
-      Boolean(lesson.exitQuiz && lesson.exitQuiz.length > 0),
-  },
-];
+type GetPageLinksForLessonProps = Pick<
+  LessonBase,
+  | "presentationUrl"
+  | "videoMuxPlaybackId"
+  | "worksheetUrl"
+  | "additionalMaterialUrl"
+  | "starterQuiz"
+  | "exitQuiz"
+  | "hasCopyrightMaterial"
+>;
+export const getPageLinksForLesson = (lesson: GetPageLinksForLessonProps) => {
+  const PAGE_LINKS: {
+    label: string;
+    href: string;
+    condition: (lesson: GetPageLinksForLessonProps) => boolean;
+  }[] = [
+    {
+      label: "Slide deck",
+      href: "#slideDeck",
+      condition: (lesson) =>
+        Boolean(lesson.presentationUrl && !lesson.hasCopyrightMaterial),
+    },
+    {
+      label: "Lesson details",
+      href: "#lessonDetails",
+      condition: () => true,
+    },
+    {
+      label: "Video",
+      href: "#video",
+      condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
+    },
+    {
+      label: "Worksheet",
+      href: "#worksheet",
+      condition: (lesson) => Boolean(lesson.worksheetUrl),
+    },
+    {
+      label: "Additional material",
+      href: "#additionalMaterial",
+      condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
+    },
+    {
+      label: "Starter quiz",
+      href: "#starterQuiz",
+      condition: (lesson) =>
+        Boolean(lesson.starterQuiz && lesson.starterQuiz.length > 0),
+    },
+    {
+      label: "Exit quiz",
+      href: "#exitQuiz",
+      condition: (lesson) =>
+        Boolean(lesson.exitQuiz && lesson.exitQuiz.length > 0),
+    },
+  ];
 
-export const getPageLinksForLesson = (lesson: LessonBase) => {
-  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson));
+  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
+    (lesson) => pick(lesson, ["label", "href"]),
+  );
 };
 
 export function groupLessonPathways(pathways: LessonPathway[]) {
