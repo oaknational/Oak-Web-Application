@@ -15,6 +15,7 @@ import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Typography from "@/components/Typography";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -516,7 +517,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
-      <Box $background={"mint"} $ma={"auto"} $pa={48}>
+      <Box $background={"mint"} $mt={48} $pa={48}>
         <Flex
           $alignItems={"flex-end"}
           $ma={"auto"}
@@ -524,23 +525,27 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         >
           <Flex $alignItems={"flex-start"}>
             <Icon
-              name="magic-carpet"
-              size={96}
-              height={96}
-              width={96}
+              name="books"
+              size={92}
               $background={"teachersRed"}
+              $mr={40}
               $color={"black"}
             />
 
-            <Box $width={"70%"} $ml={40}>
-              <Heading tag="h3" $font={["heading-5", "heading-4"]}>
+            <Flex
+              $width={"70%"}
+              $gap={16}
+              $flexDirection={"column"}
+              $alignItems={"flex-start"}
+            >
+              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
                 Need help with our new curriculum?
               </Heading>
-              <P>
+              <Typography $font={["body-2", "body-1"]}>
                 Visit our help centre for technical support as well as tips and
                 ideas to help you make the most of Oak.
-              </P>
-            </Box>
+              </Typography>
+            </Flex>
           </Flex>
           <ButtonAsLink
             label="Go to help centre"
