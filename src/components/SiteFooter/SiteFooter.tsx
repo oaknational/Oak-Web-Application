@@ -199,7 +199,7 @@ const SiteFooter: FC = () => {
           <Grid>
             <GridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
-              <Box $mt={[0, 24]} />
+              <Box $mt={[0, 32]} />
               <FooterSectionLinks {...sections.teachers} />
             </GridArea>
             <GridArea $colSpan={[12, 3]}>
