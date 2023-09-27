@@ -1,3 +1,10 @@
+## [1.253.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.0...v1.253.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **unit listing:** legacy tier links take you to correct legacy page ([d6fa385](https://github.com/oaknational/Oak-Web-Application/commit/d6fa3851f7dc9d076b90d22a96f12629cc4e321c))
+
 # [1.253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.2...v1.253.0) (2023-09-26)
 
 
