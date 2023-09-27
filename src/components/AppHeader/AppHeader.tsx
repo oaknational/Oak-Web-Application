@@ -82,7 +82,7 @@ const AppHeader: FC<HeaderProps> = () => {
                   track.classroomSelected({ navigatedFrom: "header" }),
               }}
             >
-              Classroom
+              Pupils
             </OakLink>
             <Icon name="external" />
           </Flex>
