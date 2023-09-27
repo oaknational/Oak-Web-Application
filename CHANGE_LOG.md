@@ -1,3 +1,34 @@
+## [1.253.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.1...v1.253.2) (2023-09-27)
+
+
+### Bug Fixes
+
+* **generate-sprite:** filter only icons which have both slug and image url ([09d5749](https://github.com/oaknational/Oak-Web-Application/commit/09d5749440b71dcc17a3d59ca99bb13f43cd4dc4))
+* svg sprites ([941afa0](https://github.com/oaknational/Oak-Web-Application/commit/941afa00af88a9d20c70971ba3385cddbb786c5f))
+
+## [1.253.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.0...v1.253.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **unit listing:** legacy tier links take you to correct legacy page ([d6fa385](https://github.com/oaknational/Oak-Web-Application/commit/d6fa3851f7dc9d076b90d22a96f12629cc4e321c))
+
+# [1.253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.2...v1.253.0) (2023-09-26)
+
+
+### Bug Fixes
+
+* update import ([890a194](https://github.com/oaknational/Oak-Web-Application/commit/890a194d9b0789722954fe369ca4fb9c54927376))
+* zindices for navbar ([a41aa81](https://github.com/oaknational/Oak-Web-Application/commit/a41aa817664506c8d4cc2e25a582f2f6d471df48))
+
+
+### Features
+
+* made underline match design ([c976457](https://github.com/oaknational/Oak-Web-Application/commit/c97645753ebaf85c42ae1a45292ba1b977ca2265))
+* make appheader not fixed ([210e947](https://github.com/oaknational/Oak-Web-Application/commit/210e947f2b78f4da057f2adb2beed33d195a90a9))
+* remove early access text from app header ([fa5900d](https://github.com/oaknational/Oak-Web-Application/commit/fa5900da695d74c85374757b54c35e4d46617d26))
+* update SiteHeader to use StyledHeader ([52596e7](https://github.com/oaknational/Oak-Web-Application/commit/52596e79478e5d9856172d1a0700507151bd1fd6))
+
 ## [1.252.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.1...v1.252.2) (2023-09-26)
 
 
