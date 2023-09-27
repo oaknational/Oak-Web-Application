@@ -65,7 +65,7 @@ describe("components/AppHeader", () => {
 
     expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
   });
-  test.only("it should include a link for classroom", () => {
+  test("it should include a link for classroom", () => {
     render(<AppHeader />);
     const pupilsLink = screen.getAllByRole("link")[2];
 
