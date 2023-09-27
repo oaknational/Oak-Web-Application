@@ -11,14 +11,12 @@ import { useMenuContext } from "../../context/Menu";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 import { ActiveLinkUnderline } from "../OakLink/OakLink";
 import Box from "../Box";
-import LogoSmall from "../Logo/LogoSmall";
 
 import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 import Icon from "@/components/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getBreakpoint } from "@/styles/utils/responsive";
-
 
 const DesktopWrapper = styled(Box)`
   @media (max-width: ${getBreakpoint("small")}px) {
@@ -58,10 +56,10 @@ const AppHeader: FC<HeaderProps> = () => {
         <Flex $justifyContent={"center"} $alignItems={"center"}>
           <OakLink page={"home"}>
             <MobileWrapper>
-              <LogoSmall height={41} width={31} />
+              <Logo height={41} width={31} variant="without text" />
             </MobileWrapper>
             <DesktopWrapper>
-              <Logo height={48} width={104} />
+              <Logo variant="with text" height={48} width={104} />
             </DesktopWrapper>
           </OakLink>
         </Flex>
