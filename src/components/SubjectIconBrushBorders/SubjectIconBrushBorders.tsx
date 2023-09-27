@@ -10,7 +10,7 @@ import { OakColorName } from "../../styles/theme/types";
 import TagPromotional from "../TagPromotional";
 
 type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {
-  subjectSlug: string;
+  subjectSlug: string | null;
   isNew?: boolean;
   color: OakColorName;
 };
@@ -21,7 +21,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   isNew,
   ...cmsImageProps
 }) => {
-  const asset = getSubjectIconAsset(subjectSlug);
+  const asset = subjectSlug ? getSubjectIconAsset(subjectSlug) : null;
 
   if (!asset) {
     return (

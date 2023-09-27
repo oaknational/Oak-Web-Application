@@ -12,6 +12,7 @@ import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
 import { IconName } from "@/components/Icon";
 
+export type ButtonHoverStyle = "underline-link-text" | "drop-shadow";
 export type ButtonVariant =
   | "brush"
   | "brushNav"
@@ -275,7 +276,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     disabled?: boolean;
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {

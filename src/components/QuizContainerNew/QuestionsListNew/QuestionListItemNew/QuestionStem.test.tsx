@@ -5,7 +5,7 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import {
   StemImageObject,
   StemTextObject,
-} from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 const lessonOverview = lessonOverviewFixture();
 const starterQuiz = lessonOverview.starterQuiz;

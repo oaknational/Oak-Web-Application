@@ -15,6 +15,18 @@ type HeadingTagProps = {
   ariaLabel?: string;
   ariaHidden?: boolean;
 };
+export function getNextHeadingTag(tag: HeadingTag): HeadingTag {
+  const index = HEADING_TAGS.findIndex((headingTag) => headingTag === tag);
+
+  const nextTag = HEADING_TAGS[index + 1];
+
+  if (!nextTag) {
+    return tag;
+  }
+
+  return nextTag;
+}
+
 export const HeadingTagComponent: FC<HeadingTagProps> = (props) => {
   const { tag, ariaLabel, ariaHidden, ...otherProps } = props;
   const Tag = tag;

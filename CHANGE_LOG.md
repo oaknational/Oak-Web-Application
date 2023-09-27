@@ -1,3 +1,26 @@
+## [1.254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.0...v1.254.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* maths ks4 curriculum map download ([67b8c17](https://github.com/oaknational/Oak-Web-Application/commit/67b8c172affcd6886c5eca8fc405be202ad4ca66))
+* mobile foundation text overflow ([1f9385f](https://github.com/oaknational/Oak-Web-Application/commit/1f9385fae1af2cb4026445db695e19b01cb477a4))
+
+# [1.254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.2...v1.254.0) (2023-09-27)
+
+
+### Bug Fixes
+
+* add canonical lesson and downloads queries for legacy curriculum api ([42bdbcb](https://github.com/oaknational/Oak-Web-Application/commit/42bdbcba6a2021766433af93264a3657ed47b68f))
+* **canonical lesson page:** styling and types ([3e29195](https://github.com/oaknational/Oak-Web-Application/commit/3e29195756e8c497fa02fc893cc073e3516deda8))
+
+
+### Features
+
+* canonical lesson downloads page ([13eb442](https://github.com/oaknational/Oak-Web-Application/commit/13eb442c4ef1305c918ee4d59de9ad238c6203a8))
+* **canonical lesson:** adds a canonical lesson page ([c75138d](https://github.com/oaknational/Oak-Web-Application/commit/c75138d833ad123735f1f7429c840a96eeff474a))
+* create Tag Functional component ([6f69e95](https://github.com/oaknational/Oak-Web-Application/commit/6f69e95667ed22c403d017c4e7910647f3af73d1))
+
 ## [1.253.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.1...v1.253.2) (2023-09-27)
 
 
