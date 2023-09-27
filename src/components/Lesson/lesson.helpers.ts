@@ -203,7 +203,6 @@ export const getPageLinksForLesson = (lesson: GetPageLinksForLessonProps) => {
       href: "#worksheet",
       condition: (lesson) => Boolean(lesson.worksheetUrl),
     },
-
     {
       label: "Starter quiz",
       href: "#starterQuiz",
