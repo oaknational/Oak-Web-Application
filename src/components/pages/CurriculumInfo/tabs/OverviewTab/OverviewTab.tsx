@@ -6,12 +6,12 @@ import { Heading, UL, LI } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import AvatarImage from "@/components/AvatarImage/AvatarImage";
 import Icon from "@/components/Icon/Icon";
 import Typography from "@/components/Typography/Typography";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import CMSImage from "@/components/CMSImage";
 
 export type OverviewTabProps = {
   data: {
@@ -114,15 +114,25 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
 
-      <Card $background={"lemon30"} $width={"100%"}>
+      <Card $background={"lemon30"} $width={"100%"} $mb={110}>
         <BrushBorders color="lemon30" />
-        <Flex $justifyContent={"center"} $pa={16}>
-          <AvatarImage
+        <Flex
+          $justifyContent={"center"}
+          $pa={16}
+          $flexDirection={["column", "row"]}
+          $gap={[16, 32]}
+        >
+          <CMSImage
             $background={"grey1"}
             $ma={"auto"}
             $ml={20}
-            $mr={20}
-            image={curriculumPartner.image}
+            $mr={32}
+            $height={180}
+            $width={180}
+            image={{
+              ...curriculumPartner.image,
+              altText: `Logo for ${curriculumPartner.name}`,
+            }}
           />
           <Box>
             <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={20}>
