@@ -5,6 +5,7 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
+import Box from "../Box";
 
 import downloadZip from "./helpers/downloadZip";
 
@@ -70,9 +71,9 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   };
 
   return (
-    <Flex>
-      {!tier && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
-        <Flex $flexDirection={"column"}>
+    <>
+      <Flex>
+        {!tier && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
           <Button
             icon={"download"}
             size="large"
@@ -82,33 +83,30 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
             label={downloadLabel}
             onClick={handleZipDownloadClick}
           />
-          {downloadResourceError && (
-            <FieldError id={"download-resource-error"}>
-              Sorry, we're having technical problems. Please try again later.
-            </FieldError>
-          )}
-        </Flex>
-      ) : (
-        <Flex $flexDirection={"column"}>
-          <ButtonAsLink
-            icon={"download"}
-            iconBackground="black"
-            label={downloadLabel}
-            href={downloadLink}
-            onClick={() => trackCurriculumMapDownloaded()}
-            page={null}
-            size="large"
-            variant="minimal"
-            $iconPosition={"trailing"}
-          />
-          {downloadResourceError && (
-            <FieldError id={"download-resource-error"}>
-              Sorry, we're having technical problems. Please try again later.
-            </FieldError>
-          )}
-        </Flex>
-      )}
-    </Flex>
+        ) : (
+          <>
+            <ButtonAsLink
+              icon={"download"}
+              iconBackground="black"
+              label={downloadLabel}
+              href={downloadLink}
+              onClick={() => trackCurriculumMapDownloaded()}
+              page={null}
+              size="large"
+              variant="minimal"
+              $iconPosition={"trailing"}
+            />
+          </>
+        )}
+      </Flex>
+      <Box>
+        {downloadResourceError && (
+          <FieldError id={"download-resource-error"}>
+            Sorry, we're having technical problems. Please try again later.
+          </FieldError>
+        )}
+      </Box>
+    </>
   );
 };
 
