@@ -31,6 +31,9 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   const [downloadResourceError, setDownloadResourceError] =
     useState<boolean>(false);
 
+  const isMathsKs4ProgrammesPage =
+    !tier && keyStageSlug === "ks4" && subjectSlug === "maths";
+
   const keyStageNum = keyStageSlug.slice(-1);
   let downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&extension=pdf`;
   let downloadLabel = `Curriculum download (PDF)`;
@@ -41,7 +44,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
     downloadLabel = capitalize(tier) + ` curriculum download (PDF)`;
   }
 
-  if (keyStageSlug === "ks4" && subjectSlug === "maths" && !tier) {
+  if (isMathsKs4ProgrammesPage) {
     downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&tiers=core,higher,foundation`;
     downloadLabel = `Curriculum download (.zip)`;
   }
@@ -73,7 +76,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   return (
     <>
       <Flex>
-        {!tier && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
+        {isMathsKs4ProgrammesPage ? ( // if on a maths programmes page, we want to download a zip of tier.pdf curriculum maps
           <Button
             icon={"download"}
             size="large"
