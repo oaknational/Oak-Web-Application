@@ -517,18 +517,27 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
-      <Box $background={"mint"} $mt={48} $pa={48}>
+      <Flex
+        $flexDirection={["column", "row"]}
+        $background={"mint"}
+        $mt={48}
+        $pa={48}
+        $gap={24}
+      >
         <Flex
-          $alignItems={"flex-end"}
+          $flexDirection={["column", "row"]}
+          $alignItems={["flex-start", "flex-end"]}
           $ma={"auto"}
-          $justifyContent={"space-evenly"}
+          $justifyContent={["space-evenly"]}
+          $gap={24}
         >
-          <Flex $alignItems={"flex-start"}>
+          <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
             <Icon
               name="books"
               size={92}
               $background={"teachersRed"}
               $mr={40}
+              $mb={[24, 0]}
               $color={"black"}
             />
 
@@ -557,7 +566,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             $iconPosition="trailing"
           />
         </Flex>
-      </Box>
+      </Flex>
     </Box>
   );
 };
