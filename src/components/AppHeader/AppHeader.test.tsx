@@ -1,9 +1,10 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-
 import AppHeader from ".";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
 
 const render = renderWithProviders();
 
@@ -34,15 +35,17 @@ describe("components/AppHeader", () => {
   });
 
   test("menu can be opened from keyboard", async () => {
-    const { queryByText } = render(<AppHeader />);
+    render(<AppHeader />);
 
     const user = userEvent.setup();
-    expect(queryByText("Teachers")).not.toBeVisible();
-
+    expect(screen.getByTestId("menu")).not.toBeVisible();
+    await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
-    expect(queryByText("Teachers")).toBeVisible();
+
+    expect(screen.getByTestId("menu")).toBeVisible();
   });
 
   test("menu does not show old menu sections", async () => {
