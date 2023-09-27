@@ -153,19 +153,19 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     pageLinks.push({ label: "Worksheet", href: "#worksheet" });
   }
 
-  if (additionalMaterialUrl) {
-    pageLinks.push({
-      label: "Additional material",
-      href: "#additionalMaterial",
-    });
-  }
-
   if (starterQuiz && starterQuiz.length > 0) {
     pageLinks.push({ label: "Starter quiz", href: "#starterQuiz" });
   }
 
   if (exitQuiz && exitQuiz.length > 0) {
     pageLinks.push({ label: "Exit quiz", href: "#exitQuiz" });
+  }
+
+  if (additionalMaterialUrl) {
+    pageLinks.push({
+      label: "Additional material",
+      href: "#additionalMaterial",
+    });
   }
 
   return (
