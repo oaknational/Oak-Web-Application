@@ -1,15 +1,15 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-
 import CurriculumDownloadButton from "./CurriculumDownloadButton";
 import downloadZip from "./helpers/downloadZip";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./helpers/downloadZip");
 
 const curriculumMapDownloaded = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

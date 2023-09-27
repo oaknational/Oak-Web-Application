@@ -5,11 +5,12 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 
 import downloadZip from "./helpers/downloadZip";
+
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type CurriculumDownloadProps = {
   keyStageSlug: string;
