@@ -8,6 +8,7 @@ import { Menu } from "../Menu";
 import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
+import { ActiveLinkUnderline } from "../OakLink/OakLink";
 
 import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
@@ -47,11 +48,12 @@ const AppHeader: FC<HeaderProps> = () => {
             page={null}
             href={"/teachers"}
             $focusStyles={["underline"]}
-            isCurrent={true}
+            $isSelected={true}
           >
             Teachers
+            <ActiveLinkUnderline name="horizontal-rule" />
           </OakLink>
-          <Flex $alignItems="center">
+          <Flex $alignItems="center" $gap={4}>
             <OakLink
               page="classroom"
               $focusStyles={["underline"]}
