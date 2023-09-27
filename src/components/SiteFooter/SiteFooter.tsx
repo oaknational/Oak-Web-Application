@@ -7,7 +7,6 @@ import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Box from "../Box";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
@@ -17,6 +16,7 @@ import { IconName } from "../Icon";
 import Icon from "../Icon/Icon";
 import Button from "../Button";
 
+import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
@@ -174,13 +174,16 @@ const SiteFooter: FC = () => {
       as="footer"
       $zIndex="neutral"
       $width="100%"
-      $pt={[48, 80]}
       $background="white"
       $position={"relative"}
       $overflow={"hidden"}
     >
+      <Flex $height={4} $position="relative">
+        <Svg name="header-underline" $color="black" />
+      </Flex>
       <nav>
         <MaxWidth
+          $pt={[48, 80]}
           $justifyContent={"center"}
           $flexDirection={"column"}
           $ph={16}
