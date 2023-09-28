@@ -1,3 +1,74 @@
+## [1.256.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.1...v1.256.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* added spacing to bottom of landing page ([1bda67f](https://github.com/oaknational/Oak-Web-Application/commit/1bda67fc2a291c8479df111f68b3dfa09fb5ec11))
+* aligned partner card divs to center ([1e995ac](https://github.com/oaknational/Oak-Web-Application/commit/1e995ac9fc85148ac663eac54b8530804e57b785))
+* updated partner image to square and added responsive sizing ([ed1557a](https://github.com/oaknational/Oak-Web-Application/commit/ed1557a934ad40a87c49f9bb5133efaf708393ce))
+
+## [1.256.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.0...v1.256.1) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource added to query param when download link is selected ([8307da3](https://github.com/oaknational/Oak-Web-Application/commit/8307da33c7073924615803f81d7abf21a8145335))
+
+# [1.256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.255.0...v1.256.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* change classroom to pupils ([a083042](https://github.com/oaknational/Oak-Web-Application/commit/a083042d7591bda54d8253ea45406dce036518e2))
+* keyboard nav test ([52280d2](https://github.com/oaknational/Oak-Web-Application/commit/52280d2ba3c3ac39619c04944d72cb962eda4f71))
+
+
+### Features
+
+* add aria label to say the Pupils link is external ([48911ca](https://github.com/oaknational/Oak-Web-Application/commit/48911ca13565ad1f6ab055005e46c8b0db637be5))
+* add new logo to brand asset generation ([0439f76](https://github.com/oaknational/Oak-Web-Application/commit/0439f767fe802b12051e347c1d5deac016920188))
+* add small logo on mobile ([206cd63](https://github.com/oaknational/Oak-Web-Application/commit/206cd63f563a15657bee489e886352f77063866c))
+* add teacher and classroom buttons to navbar ([298d3ff](https://github.com/oaknational/Oak-Web-Application/commit/298d3ff2f289862b0df27f810534cae428ca2c62))
+* style navbar links ([9f53e6e](https://github.com/oaknational/Oak-Web-Application/commit/9f53e6e47f17ebb707f69c97a7e5d5544c9b3f29))
+* update generate assets ([fd13536](https://github.com/oaknational/Oak-Web-Application/commit/fd135368e6594701354e238e8fb0b383dc46dc2e))
+
+# [1.255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.4...v1.255.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* **terraform:** full cors access for buckets ([a07d0d0](https://github.com/oaknational/Oak-Web-Application/commit/a07d0d0132eacf1e7618d135860a036fcdffed93))
+
+
+### Features
+
+* **terraform:** add a logging alert for production deploys ([9efdc6d](https://github.com/oaknational/Oak-Web-Application/commit/9efdc6d613327a19397878e7674c8dd76fc83e50))
+* **terraform:** add datadog provider to terraform ([b8496ab](https://github.com/oaknational/Oak-Web-Application/commit/b8496ab379edd07478265f32074d3c23bdb664ef))
+
+## [1.254.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.3...v1.254.4) (2023-09-28)
+
+## [1.254.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.2...v1.254.3) (2023-09-28)
+
+## [1.254.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.1...v1.254.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource the last link in the lesson nav ([e56dbc7](https://github.com/oaknational/Oak-Web-Application/commit/e56dbc729a004946d43a9ea9403ab6f463c2cb0a))
+* **lesson overview:** additional resource the last link in the lesson nav ([3d75776](https://github.com/oaknational/Oak-Web-Application/commit/3d7577664f803a924a3015a8fee959f83b8b3dc5))
+* **lesson overview:** additional resource the last link in the lesson nav ([70175ae](https://github.com/oaknational/Oak-Web-Application/commit/70175ae8ba35c4901c6379fbf4a579c0be785cba))
+* **lesson overview:** additional resource the last link in the lesson nav ([d74671b](https://github.com/oaknational/Oak-Web-Application/commit/d74671b0f9442c023f9e53a93f99561f3a374308))
+* **lesson overview:** fix test ([ea1c9bc](https://github.com/oaknational/Oak-Web-Application/commit/ea1c9bc09016270fc73da6f4e1210d1cd8447427))
+* **lesson overview:** merge commit ([09bf377](https://github.com/oaknational/Oak-Web-Application/commit/09bf37726272096a17a47b592836dce2fb50075a))
+
+## [1.254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.0...v1.254.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* maths ks4 curriculum map download ([67b8c17](https://github.com/oaknational/Oak-Web-Application/commit/67b8c172affcd6886c5eca8fc405be202ad4ca66))
+* mobile foundation text overflow ([1f9385f](https://github.com/oaknational/Oak-Web-Application/commit/1f9385fae1af2cb4026445db695e19b01cb477a4))
+
 # [1.254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.2...v1.254.0) (2023-09-27)
 
 

@@ -29,7 +29,7 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
       $zIndex="fixedHeader"
     >
       <OakLink page="home">
-        <Logo height={48} width={104} />
+        <Logo variant="with text" height={48} width={104} />
       </OakLink>
       <Flex
         $ml={[0, 20, 48]}
