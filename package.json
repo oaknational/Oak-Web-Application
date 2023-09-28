@@ -43,6 +43,7 @@
     "storybook:build": "sb build",
     "storybook:static-serve": "sb build --quiet && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
+    "test:coverage": "jest --watch",
     "test:ci": "jest",
     "test:storybook": "jest --config=jest.storybook.config.js",
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook",
