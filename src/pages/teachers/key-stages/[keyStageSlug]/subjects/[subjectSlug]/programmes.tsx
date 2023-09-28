@@ -67,7 +67,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         {...props}
         subjectSlug={removeLegacySlugSuffix(subjectSlug)}
       />
-      <MaxWidth $mt={[56, 72]} $ph={16}>
+      <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>
