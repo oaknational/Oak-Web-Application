@@ -35,7 +35,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   const bioModalsEnabled = useFeatureFlagEnabled("about-us--board--bio-modals");
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
-      <MaxWidth $pt={[64, 80]}>
+      <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
         <AboutUsSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
