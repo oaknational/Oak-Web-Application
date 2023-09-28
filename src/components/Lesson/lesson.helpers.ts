@@ -204,11 +204,6 @@ export const getPageLinksForLesson = (lesson: GetPageLinksForLessonProps) => {
       condition: (lesson) => Boolean(lesson.worksheetUrl),
     },
     {
-      label: "Additional material",
-      href: "#additionalMaterial",
-      condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
-    },
-    {
       label: "Starter quiz",
       href: "#starterQuiz",
       condition: (lesson) =>
@@ -219,6 +214,11 @@ export const getPageLinksForLesson = (lesson: GetPageLinksForLessonProps) => {
       href: "#exitQuiz",
       condition: (lesson) =>
         Boolean(lesson.exitQuiz && lesson.exitQuiz.length > 0),
+    },
+    {
+      label: "Additional material",
+      href: "#additionalMaterial",
+      condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
     },
   ];
 
