@@ -167,16 +167,16 @@ describe("getPageLinksForLesson()", () => {
         href: "#worksheet",
       },
       {
-        label: "Additional material",
-        href: "#additionalMaterial",
-      },
-      {
         label: "Starter quiz",
         href: "#starterQuiz",
       },
       {
         label: "Exit quiz",
         href: "#exitQuiz",
+      },
+      {
+        label: "Additional material",
+        href: "#additionalMaterial",
       },
     ];
 
