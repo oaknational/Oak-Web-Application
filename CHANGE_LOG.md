@@ -1,3 +1,32 @@
+# [1.255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.4...v1.255.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* **terraform:** full cors access for buckets ([a07d0d0](https://github.com/oaknational/Oak-Web-Application/commit/a07d0d0132eacf1e7618d135860a036fcdffed93))
+
+
+### Features
+
+* **terraform:** add a logging alert for production deploys ([9efdc6d](https://github.com/oaknational/Oak-Web-Application/commit/9efdc6d613327a19397878e7674c8dd76fc83e50))
+* **terraform:** add datadog provider to terraform ([b8496ab](https://github.com/oaknational/Oak-Web-Application/commit/b8496ab379edd07478265f32074d3c23bdb664ef))
+
+## [1.254.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.3...v1.254.4) (2023-09-28)
+
+## [1.254.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.2...v1.254.3) (2023-09-28)
+
+## [1.254.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.1...v1.254.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource the last link in the lesson nav ([e56dbc7](https://github.com/oaknational/Oak-Web-Application/commit/e56dbc729a004946d43a9ea9403ab6f463c2cb0a))
+* **lesson overview:** additional resource the last link in the lesson nav ([3d75776](https://github.com/oaknational/Oak-Web-Application/commit/3d7577664f803a924a3015a8fee959f83b8b3dc5))
+* **lesson overview:** additional resource the last link in the lesson nav ([70175ae](https://github.com/oaknational/Oak-Web-Application/commit/70175ae8ba35c4901c6379fbf4a579c0be785cba))
+* **lesson overview:** additional resource the last link in the lesson nav ([d74671b](https://github.com/oaknational/Oak-Web-Application/commit/d74671b0f9442c023f9e53a93f99561f3a374308))
+* **lesson overview:** fix test ([ea1c9bc](https://github.com/oaknational/Oak-Web-Application/commit/ea1c9bc09016270fc73da6f4e1210d1cd8447427))
+* **lesson overview:** merge commit ([09bf377](https://github.com/oaknational/Oak-Web-Application/commit/09bf37726272096a17a47b592836dce2fb50075a))
+
 ## [1.254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.0...v1.254.1) (2023-09-27)
 
 

@@ -1,6 +1,6 @@
 const nextenv = require("@next/env");
 nextenv.loadEnvConfig(".", process.env.NODE_ENV === "development");
-const sanityClient = require("@sanity/client");
+const { createClient } = require("@sanity/client");
 
 function getSanityClient() {
   const sanityConfig = {
@@ -26,7 +26,7 @@ function getSanityClient() {
         `,
     );
   }
-  const client = sanityClient(sanityConfig);
+  const client = createClient(sanityConfig);
 
   return client;
 }
