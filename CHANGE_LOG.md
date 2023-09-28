@@ -1,3 +1,16 @@
+# [1.255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.4...v1.255.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* **terraform:** full cors access for buckets ([a07d0d0](https://github.com/oaknational/Oak-Web-Application/commit/a07d0d0132eacf1e7618d135860a036fcdffed93))
+
+
+### Features
+
+* **terraform:** add a logging alert for production deploys ([9efdc6d](https://github.com/oaknational/Oak-Web-Application/commit/9efdc6d613327a19397878e7674c8dd76fc83e50))
+* **terraform:** add datadog provider to terraform ([b8496ab](https://github.com/oaknational/Oak-Web-Application/commit/b8496ab379edd07478265f32074d3c23bdb664ef))
+
 ## [1.254.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.3...v1.254.4) (2023-09-28)
 
 ## [1.254.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.2...v1.254.3) (2023-09-28)
