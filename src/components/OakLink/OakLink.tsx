@@ -13,6 +13,7 @@ import { OmitKeepDiscriminated } from "../../utils/generics";
 import { box } from "../Box";
 import { HTMLAnchorProps } from "../Button/common";
 import { FlexProps } from "../Flex";
+import Svg from "../Svg";
 
 import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
 
@@ -69,6 +70,17 @@ const StyledNextLink = styled.a<StyleProps>`
       css`
         outline: none;
       `}
+  }
+`;
+
+export const ActiveLinkUnderline = styled(Svg)`
+  position: absolute;
+  height: 8px;
+  width: 72px;
+  bottom: -26px;
+  left: 0px;
+  ${StyledNextLink}:focus & {
+    display: none;
   }
 `;
 
