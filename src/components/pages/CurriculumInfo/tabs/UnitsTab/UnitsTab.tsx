@@ -15,7 +15,6 @@ import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Typography from "@/components/Typography";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -550,10 +549,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               <Heading tag="h2" $font={["heading-5", "heading-4"]}>
                 Need help with our new curriculum?
               </Heading>
-              <Typography $font={["body-2", "body-1"]}>
+              <P $font={["body-2", "body-1"]}>
                 Visit our help centre for technical support as well as tips and
                 ideas to help you make the most of Oak.
-              </Typography>
+              </P>
             </Flex>
           </Flex>
           <ButtonAsLink
