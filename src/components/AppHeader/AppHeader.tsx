@@ -1,5 +1,4 @@
 import { FC, useRef } from "react";
-import styled from "styled-components";
 
 import Flex from "../Flex";
 import Logo from "../Logo";
@@ -16,19 +15,6 @@ import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 import Icon from "@/components/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getBreakpoint } from "@/styles/utils/responsive";
-
-const DesktopWrapper = styled(Box)`
-  @media (max-width: ${getBreakpoint("small")}px) {
-    display: none;
-  }
-`;
-
-const MobileWrapper = styled(Box)`
-  @media (min-width: ${getBreakpoint("small")}px) {
-    display: none;
-  }
-`;
 
 /**
  * Header for logging in and using search -
@@ -55,12 +41,12 @@ const AppHeader: FC<HeaderProps> = () => {
       >
         <Flex $justifyContent={"center"} $alignItems={"center"}>
           <OakLink page={"home"}>
-            <MobileWrapper>
+            <Box $display={["block", "none"]}>
               <Logo height={48} width={31} variant="without text" />
-            </MobileWrapper>
-            <DesktopWrapper>
+            </Box>
+            <Box $display={["none", "block"]}>
               <Logo variant="with text" height={48} width={104} />
-            </DesktopWrapper>
+            </Box>
           </OakLink>
         </Flex>
         <Flex $alignItems={"center"} $gap={24} $font="heading-7">
