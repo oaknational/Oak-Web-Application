@@ -8,7 +8,7 @@ import { OrderAnswers } from "./Answers/OrderAnswers";
 import { ShortAnswers } from "./Answers/ShortAnswers";
 
 import Flex from "@/components/Flex";
-import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuestionListItemProps = {
   question: NonNullable<LessonOverviewQuizData>[number];

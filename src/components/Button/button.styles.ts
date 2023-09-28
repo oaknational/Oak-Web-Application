@@ -28,6 +28,7 @@ import {
   ButtonBackground,
   getButtonBackground,
   getButtonDropShadowColor,
+  ButtonHoverStyle,
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
 
@@ -40,7 +41,7 @@ export type ButtonStylesProps = OpacityProps &
     $fullWidth?: boolean;
     disabled?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (

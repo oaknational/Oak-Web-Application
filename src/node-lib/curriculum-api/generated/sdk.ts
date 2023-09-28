@@ -51161,6 +51161,13 @@ export type LessonDownloadsQueryVariables = Exact<{
 
 export type LessonDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
 
+export type LessonDownloadsCanonicalQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonDownloadsCanonicalQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
   unitSlug: Scalars['String']['input'];
@@ -51177,6 +51184,13 @@ export type LessonOverviewQueryVariables = Exact<{
 
 
 export type LessonOverviewQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, isWorksheetLandscape?: boolean | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: any | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
+
+export type LessonOverviewCanonicalQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type LessonOverviewCanonicalQuery = { __typename?: 'query_root', mv_lessons: Array<{ __typename?: 'mv_lessons_6', expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, contentGuidance?: string | null, equipmentRequired?: string | null, presentationUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, isWorksheetLandscape?: boolean | null, hasCopyrightMaterial?: boolean | null, coreContent?: any | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: any | null, hasDownloadableResources?: boolean | null }>, exitQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, exitQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }>, introQuizInfo: Array<{ __typename?: 'mv_quizzes', title?: string | null, questionCount?: any | null }>, introQuiz: Array<{ __typename?: 'mv_questions_7', active?: boolean | null, answer?: any | null, images?: any | null, points?: number | null, required?: boolean | null, title?: string | null, type?: string | null, order?: number | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null, choices?: any | null, feedbackCorrect?: string | null, feedbackIncorrect?: string | null, quizType?: string | null, displayNumber?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -51216,6 +51230,24 @@ export const LessonDownloadsDocument = gql`
   mv_downloads: mv_downloads_1(
     where: {lesson_slug: {_eq: $lessonSlug}, programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
   ) {
+    downloads
+    programmeSlug: programme_slug
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    themeSlug: theme_slug
+    themeTitle: theme_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+  }
+}
+    `;
+export const LessonDownloadsCanonicalDocument = gql`
+    query lessonDownloadsCanonical($lessonSlug: String!) {
+  mv_downloads: mv_downloads_1(where: {lesson_slug: {_eq: $lessonSlug}}) {
     downloads
     programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
@@ -51340,6 +51372,98 @@ export const LessonOverviewDocument = gql`
   }
   introQuiz: mv_questions_7(
     where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}, quiz_type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
+    order_by: {order: asc}
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choices: choices_combined
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
+  }
+}
+    `;
+export const LessonOverviewCanonicalDocument = gql`
+    query lessonOverviewCanonical($lessonSlug: String!) {
+  mv_lessons: mv_lessons_6(where: {lesson_slug: {_eq: $lessonSlug}}) {
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    programmeSlug: programme_slug
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    contentGuidance: content_guidance
+    equipmentRequired: equipment_required
+    presentationUrl: presentation_url
+    supervisionLevel: supervision_level
+    worksheetUrl: worksheet_url
+    isWorksheetLandscape: worksheet_is_landscape
+    hasCopyrightMaterial: has_copyright_material
+    coreContent: core_content
+    videoMuxPlaybackId: video_mux_playback_id
+    videoWithSignLanguageMuxPlaybackId: video_with_sign_language_mux_playback_id
+    transcriptSentences: transcript_sentences
+    hasDownloadableResources: has_downloadable_resources
+    expired
+  }
+  exitQuizInfo: mv_quizzes(
+    where: {type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    title
+    questionCount: question_count
+  }
+  exitQuiz: mv_questions_7(
+    where: {quiz_type: {_eq: "exit"}, lesson_slug: {_eq: $lessonSlug}}
+    order_by: {order: asc}
+  ) {
+    keyStageSlug: key_stage_slug
+    keyStageTitle: key_stage_title
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    subjectSlug: subject_slug
+    subjectTitle: subject_title
+    unitSlug: unit_slug
+    unitTitle: unit_title
+    active
+    answer
+    choices: choices_combined
+    feedbackCorrect: feedback_correct
+    feedbackIncorrect: feedback_incorrect
+    images
+    points
+    quizType: quiz_type
+    required
+    title
+    type
+    order
+    displayNumber: display_number
+  }
+  introQuizInfo: mv_quizzes(
+    where: {type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    title
+    questionCount: question_count
+  }
+  introQuiz: mv_questions_7(
+    where: {quiz_type: {_eq: "intro"}, lesson_slug: {_eq: $lessonSlug}}
     order_by: {order: asc}
   ) {
     keyStageSlug: key_stage_slug
@@ -51501,11 +51625,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query');
     },
+    lessonDownloadsCanonical(variables: LessonDownloadsCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsCanonicalQuery>(LessonDownloadsCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloadsCanonical', 'query');
+    },
     lessonListing(variables: LessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonListingQuery>(LessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonListing', 'query');
     },
     lessonOverview(variables: LessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewQuery>(LessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverview', 'query');
+    },
+    lessonOverviewCanonical(variables: LessonOverviewCanonicalQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonOverviewCanonicalQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonOverviewCanonicalQuery>(LessonOverviewCanonicalDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonOverviewCanonical', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

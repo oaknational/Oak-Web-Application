@@ -37,11 +37,43 @@ describe("pages/teachers/lessons", () => {
   });
 
   it("renders Download All button if lesson has downloadable resources", async () => {
-    render(<LessonOverviewPage {...props} />);
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: true,
+        })}
+      />,
+    );
 
     expect(screen.getAllByTestId("download-all-button")[0]).toHaveTextContent(
       "Download all resources",
     );
+  });
+
+  it("does not render Download All button if lesson has no downloadable resources", async () => {
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: false,
+          expired: false,
+        })}
+      />,
+    );
+
+    expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
+  });
+
+  it("does not render Download All button if lesson is expired", async () => {
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: false,
+          expired: true,
+        })}
+      />,
+    );
+
+    expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
   it("sign language button toggles on click", async () => {

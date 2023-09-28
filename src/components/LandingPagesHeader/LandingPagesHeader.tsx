@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
+import FixedHeader from "../Header";
 import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";

@@ -16,8 +16,8 @@ import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
   CurriculumUnitsTabData,
+  CurriculumOverviewMVData,
 } from "@/node-lib/curriculum-api-2023";
-import { curriculumOverviewMVSchema } from "@/node-lib/curriculum-api-2023/queries/curriculumOverview/curriculumOverview.schema";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
   decorateWithIsr,
@@ -38,7 +38,7 @@ export type CurriculumSelectionSlugs = {
 export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   subjectPhaseOptions: SubjectPhasePickerData;
-  curriculumOverviewTabData: curriculumOverviewMVSchema;
+  curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsTabData: CurriculumUnitsTabData;
 };
@@ -155,8 +155,10 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
-      const curriculumOverviewTabData =
-        await curriculumApi.curriculumOverview(slugs);
+      const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
+        subjectSlug: slugs.subjectSlug,
+        phaseSlug: slugs.phaseSlug,
+      });
 
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({

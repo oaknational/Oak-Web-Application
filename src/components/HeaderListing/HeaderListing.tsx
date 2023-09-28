@@ -29,6 +29,7 @@ export type HeaderListingProps = {
   isNew?: boolean;
   title: string;
   programmeFactor: string;
+  hasCurriculumDownload?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -44,6 +45,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     breadcrumbs,
     background,
     tierSlug,
+    hasCurriculumDownload = true,
   } = props;
 
   return (
@@ -69,25 +71,29 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               {title}
             </Heading>
             <Flex $display={["none", "flex"]}>
-              <CurriculumDownloadButton
-                keyStageSlug={keyStageSlug}
-                keyStageTitle={keyStageTitle}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle}
-                tier={tierSlug}
-              />
+              {hasCurriculumDownload && (
+                <CurriculumDownloadButton
+                  keyStageSlug={keyStageSlug}
+                  keyStageTitle={keyStageTitle}
+                  subjectSlug={subjectSlug}
+                  subjectTitle={subjectTitle}
+                  tier={tierSlug}
+                />
+              )}
             </Flex>
           </Flex>
         </Flex>
       </Flex>
       <Flex $background={background} $display={["inline", "none"]}>
-        <CurriculumDownloadButton
-          keyStageSlug={keyStageSlug}
-          keyStageTitle={keyStageTitle}
-          subjectSlug={subjectSlug}
-          subjectTitle={subjectTitle}
-          tier={tierSlug}
-        />
+        {hasCurriculumDownload && (
+          <CurriculumDownloadButton
+            keyStageSlug={keyStageSlug}
+            keyStageTitle={keyStageTitle}
+            subjectSlug={subjectSlug}
+            subjectTitle={subjectTitle}
+            tier={tierSlug}
+          />
+        )}
       </Flex>
     </HeaderWrapper>
   );
