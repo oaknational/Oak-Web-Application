@@ -1,3 +1,21 @@
+# [1.256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.255.0...v1.256.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* change classroom to pupils ([a083042](https://github.com/oaknational/Oak-Web-Application/commit/a083042d7591bda54d8253ea45406dce036518e2))
+* keyboard nav test ([52280d2](https://github.com/oaknational/Oak-Web-Application/commit/52280d2ba3c3ac39619c04944d72cb962eda4f71))
+
+
+### Features
+
+* add aria label to say the Pupils link is external ([48911ca](https://github.com/oaknational/Oak-Web-Application/commit/48911ca13565ad1f6ab055005e46c8b0db637be5))
+* add new logo to brand asset generation ([0439f76](https://github.com/oaknational/Oak-Web-Application/commit/0439f767fe802b12051e347c1d5deac016920188))
+* add small logo on mobile ([206cd63](https://github.com/oaknational/Oak-Web-Application/commit/206cd63f563a15657bee489e886352f77063866c))
+* add teacher and classroom buttons to navbar ([298d3ff](https://github.com/oaknational/Oak-Web-Application/commit/298d3ff2f289862b0df27f810534cae428ca2c62))
+* style navbar links ([9f53e6e](https://github.com/oaknational/Oak-Web-Application/commit/9f53e6e47f17ebb707f69c97a7e5d5544c9b3f29))
+* update generate assets ([fd13536](https://github.com/oaknational/Oak-Web-Application/commit/fd135368e6594701354e238e8fb0b383dc46dc2e))
+
 # [1.255.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.4...v1.255.0) (2023-09-28)
 
 
