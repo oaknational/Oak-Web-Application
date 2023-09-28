@@ -4,7 +4,7 @@ import sdk from "./sdk";
 import lessonOverviewQuery from "./queries/lessonOverview/lessonOverview.query";
 import lessonListingQuery from "./queries/lessonListing/lessonListing.query";
 import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
-import lessonDownloadsQuery from "./queries/downloads/downloads.query";
+import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.query";
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
 import subjectPhaseOptionsQuery from "./queries/subjectPhaseOptions/subjectPhaseOptions.query";
@@ -13,6 +13,8 @@ import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.q
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
 import curriculumUnitsQuery from "./queries/curriculumUnits/curriculumUnits.query";
 import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.schema";
+import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
+import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 
 const keyStageSchema = z.object({
@@ -99,6 +101,23 @@ export const getFirstResultOrNull =
   };
 
 const curriculumApi2023 = {
+  curriculumOverview: curriculumOverviewQuery(sdk),
+  curriculumUnits: curriculumUnitsQuery(sdk),
+  curriculumDownloads: curriculumDownloadsQuery(),
+  curriculumHeader: curriculumHeaderQuery(sdk),
+  lessonListing: lessonListingQuery(sdk),
+  lessonDownloads: lessonDownloadsQuery(sdk),
+  lessonDownloadsCanonical: lessonDownloadsCanonicalQuery(sdk),
+  lessonOverview: lessonOverviewQuery(sdk),
+  lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
+  programmeListingPage: programmeListingQuery(sdk),
+  searchPage: async () => {
+    const res = await sdk.searchPage();
+    const searchPage = getFirstResultOrNull()({ results: res.searchPage });
+    return searchPageSchema.parse(searchPage);
+  },
+  subjectListingPage: subjectListingQuery(sdk),
+  subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();
     const teachersHomePage = getFirstResultOrNull()({
@@ -106,22 +125,7 @@ const curriculumApi2023 = {
     });
     return teachersHomePageData.parse(teachersHomePage);
   },
-  lessonListing: lessonListingQuery(sdk),
-  lessonDownloads: lessonDownloadsQuery(sdk),
   unitListing: unitListingQuery(sdk),
-  searchPage: async () => {
-    const res = await sdk.searchPage();
-    const searchPage = getFirstResultOrNull()({ results: res.searchPage });
-    return searchPageSchema.parse(searchPage);
-  },
-  subjectListingPage: subjectListingQuery(sdk),
-  programmeListingPage: programmeListingQuery(sdk),
-  lessonOverview: lessonOverviewQuery(sdk),
-  subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  curriculumOverview: curriculumOverviewQuery(sdk),
-  curriculumUnits: curriculumUnitsQuery(sdk),
-  curriculumDownloads: curriculumDownloadsQuery(),
-  curriculumHeader: curriculumHeaderQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

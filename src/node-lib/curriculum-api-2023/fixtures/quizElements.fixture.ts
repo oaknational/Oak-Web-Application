@@ -1,12 +1,12 @@
 import {
-  LessonOverviewQuizData,
-  MCAnswer,
-  MatchAnswer,
-  OrderAnswer,
-  ShortAnswer,
   StemImageObject,
   StemTextObject,
-} from "../queries/lessonOverview/lessonOverview.schema";
+  MCAnswer,
+  ShortAnswer,
+  OrderAnswer,
+  MatchAnswer,
+  LessonOverviewQuizData,
+} from "../shared.schema";
 
 export const image_object: StemImageObject["image_object"] = {
   format: "jpg",

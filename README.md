@@ -69,7 +69,8 @@ We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa1
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
-- `npm run test` will run the tests using `--watch`
+- `npm run test` will run the tests using `--watch`, with coverage statistics disabled.
+- `npm run test:coverage` will run tests using `--watch` with coverage statistics enabled.
 - `npm run test:ci` will run the tests once and create a coverage report.
 
 ### End-to-End Browser Tests

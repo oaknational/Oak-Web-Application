@@ -14,7 +14,7 @@ import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
-import TagFunctional from "@/components/TagFunctional";
+import { TagFunctional } from "@/components/TagFunctional/TagFunctional";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -512,9 +512,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             </Heading>
                             {unit.unit_options.length > 1 && (
                               <Box $mt={12} data-testid="options-tag">
-                                <TagFunctional>
-                                  {unit.unit_options.length} unit options
-                                </TagFunctional>
+                                <TagFunctional
+                                  color="lavender"
+                                  text={`${unit.unit_options.length} unit options`}
+                                />
                               </Box>
                             )}
                           </Card>

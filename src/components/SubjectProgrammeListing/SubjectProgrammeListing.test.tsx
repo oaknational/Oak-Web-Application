@@ -5,10 +5,10 @@ import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fix
 
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
-import { examboardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
+import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
 
 const curriculumData = tieredProgrammeListingFixture();
-const examboardCurriculumData = examboardProgrammeListingFixture();
+const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
 
@@ -35,7 +35,7 @@ describe("SubjectProgrammeListing", () => {
     expect(tiersTitle).toBeNull();
   });
   test("render a exam board subject component with heading ", () => {
-    render(<SubjectProgrammeListing {...examboardCurriculumData} />);
+    render(<SubjectProgrammeListing {...examBoardCurriculumData} />);
 
     expect(screen.getByText("Select exam board")).toBeInTheDocument();
   });

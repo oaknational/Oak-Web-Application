@@ -1,51 +1,53 @@
-import { FC } from "react";
+import { MarginProps } from "@/styles/utils/spacing";
+import { Span } from "@/components/Typography";
 
-import Box from "../Box/Box";
+const TAG_COLOR_MAP = {
+  lavender: {
+    background: "lavender30",
+    borderColor: "lavender50",
+  },
+  pink: {
+    background: "pink30",
+    borderColor: "pink50",
+  },
+  aqua: {
+    background: "aqua30",
+    borderColor: "aqua50",
+  },
+  mint: {
+    background: "mint30",
+    borderColor: "mint50",
+  },
+  lemon: {
+    background: "lemon30",
+    borderColor: "lemon50",
+  },
+  grey: {
+    background: "grey2",
+    borderColor: "grey4",
+  },
+} as const;
 
-import { OakColorName } from "@/styles/theme/types";
-
-type ColorPair = [OakColorName, OakColorName];
-
-export const COLOR_OPTIONS: Record<string, ColorPair> = {
-  lavender: ["lavender30", "lavender50"],
-  pink: ["pink30", "pink50"],
-  aqua: ["aqua30", "aqua50"],
-  mint: ["mint30", "mint50"],
-  lemon: ["lemon30", "lemon50"],
-  grey: ["grey2", "grey4"],
+export type TagColor = keyof typeof TAG_COLOR_MAP;
+type TagFunctionalProps = MarginProps & {
+  text: string;
+  color: TagColor;
 };
 
-type ColorOptionKey = keyof typeof COLOR_OPTIONS;
-
-type TagFunctionalProps = {
-  $background?: ColorOptionKey;
-  children?: React.ReactNode;
-};
-
-const TagFunctional: FC<TagFunctionalProps> = ({
-  $background = "lavender",
-  children,
-}) => {
-  const colorPair = COLOR_OPTIONS[$background] as ColorPair;
+export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
+  const { background, borderColor } = TAG_COLOR_MAP[styleProps.color];
   return (
-    <Box
-      $display={"inline-block"}
-      $background={colorPair[0]}
-      $ba={1}
-      $borderColor={colorPair[1]}
+    <Span
+      $background={background}
+      $borderColor={borderColor}
       $borderRadius={4}
-      $borderStyle={"solid"}
-      $color={"oakGrey5"}
-      $font={"heading-light-7"}
-      $ph={8}
+      $ba={1}
       $pv={4}
-      $position={"relative"}
-      $zIndex={"inFront"}
-      $width={"fit-content"}
+      $ph={8}
+      $font="heading-light-7"
+      {...styleProps}
     >
-      {children}
-    </Box>
+      {text}
+    </Span>
   );
-};
-
-export default TagFunctional;
+}
