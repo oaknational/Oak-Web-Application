@@ -1,3 +1,12 @@
+## [1.256.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.1...v1.256.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* added spacing to bottom of landing page ([1bda67f](https://github.com/oaknational/Oak-Web-Application/commit/1bda67fc2a291c8479df111f68b3dfa09fb5ec11))
+* aligned partner card divs to center ([1e995ac](https://github.com/oaknational/Oak-Web-Application/commit/1e995ac9fc85148ac663eac54b8530804e57b785))
+* updated partner image to square and added responsive sizing ([ed1557a](https://github.com/oaknational/Oak-Web-Application/commit/ed1557a934ad40a87c49f9bb5133efaf708393ce))
+
 ## [1.256.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.0...v1.256.1) (2023-09-28)
 
 
