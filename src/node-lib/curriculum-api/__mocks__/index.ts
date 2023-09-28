@@ -18,6 +18,12 @@ const curriculumApi: CurriculumApi = {
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }),
+  lessonDownloadsCanonical: jest.fn(async () => {
+    return {
+      ...lessonDownloadsFixtures(),
+      pathways: [lessonDownloadsFixtures()],
+    };
+  }),
   subjectListing: jest.fn(async () => {
     return subjectListingFixture2023();
   }),
@@ -32,6 +38,12 @@ const curriculumApi: CurriculumApi = {
   }),
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
+  }),
+  lessonOverviewCanonical: jest.fn(async () => {
+    return {
+      ...lessonOverviewFixture(),
+      pathways: [lessonOverviewFixture()],
+    };
   }),
 };
 

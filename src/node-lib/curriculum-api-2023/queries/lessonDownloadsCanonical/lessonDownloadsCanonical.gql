@@ -1,0 +1,16 @@
+query lessonDownloadsCanonical($lessonSlug: String!) {
+  lessonDownloadsCanonical: published_mv_downloads_5(
+    where: { lessonSlug: { _eq: $lessonSlug } }
+  ) {
+    downloads
+    programmeSlug
+    keyStageSlug
+    keyStageTitle
+    lessonSlug
+    lessonTitle
+    subjectSlug
+    subjectTitle
+    unitSlug
+    unitTitle
+  }
+}
