@@ -80,6 +80,7 @@ const AppHeader: FC<HeaderProps> = () => {
               htmlAnchorProps={{
                 onClick: () =>
                   track.classroomSelected({ navigatedFrom: "header" }),
+                "aria-label": "Pupils (opens in a new tab)",
               }}
             >
               Pupils
