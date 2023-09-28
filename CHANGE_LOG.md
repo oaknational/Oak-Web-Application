@@ -1,3 +1,10 @@
+## [1.256.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.0...v1.256.1) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource added to query param when download link is selected ([8307da3](https://github.com/oaknational/Oak-Web-Application/commit/8307da33c7073924615803f81d7abf21a8145335))
+
 # [1.256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.255.0...v1.256.0) (2023-09-28)
 
 
