@@ -15,12 +15,11 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const { programmes, keyStageSlug, subjectSlug, keyStageTitle, subjectTitle } =
     props;
-
-  const firstProgrammeSlug = programmes[0]?.programmeSlug ?? "";
 
   if (!programmes[0]) {
     throw new Error("No programmes");
@@ -54,7 +53,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
           {
             oakLinkProps: {
               page: "programme-index",
-              subjectSlug,
+              subjectSlug: subjectSlug,
               keyStageSlug,
             },
             label: subjectTitle,
@@ -64,10 +63,11 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         subjectIconBackgroundColor={"lavender"}
         title={subjectTitle}
         programmeFactor={keyStageTitle}
-        hasCurriculumDownload={isSlugLegacy(firstProgrammeSlug)}
+        hasCurriculumDownload={isSlugLegacy(subjectSlug)}
         {...props}
+        subjectSlug={removeLegacySlugSuffix(subjectSlug)}
       />
-      <MaxWidth $mt={[56, 72]} $ph={16}>
+      <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectTierListing {...props} />
       </MaxWidth>
     </AppLayout>

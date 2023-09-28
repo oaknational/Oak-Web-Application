@@ -1,5 +1,7 @@
 import * as z from "zod";
 
+import { ShallowNullable } from "@/utils/util.types";
+
 export const legacyQuizData = z.object({
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -36,8 +38,6 @@ export const legacyQuizData = z.object({
   feedbackIncorrect: z.string().nullable(),
   displayNumber: z.string().nullable(),
 });
-
-type ShallowNullable<T> = { [K in keyof T]: T[K] | null };
 
 export type LegacyQuizData = ShallowNullable<
   Partial<z.infer<typeof legacyQuizData>>

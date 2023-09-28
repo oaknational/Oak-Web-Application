@@ -1,3 +1,78 @@
+## [1.254.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.2...v1.254.3) (2023-09-28)
+
+## [1.254.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.1...v1.254.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource the last link in the lesson nav ([e56dbc7](https://github.com/oaknational/Oak-Web-Application/commit/e56dbc729a004946d43a9ea9403ab6f463c2cb0a))
+* **lesson overview:** additional resource the last link in the lesson nav ([3d75776](https://github.com/oaknational/Oak-Web-Application/commit/3d7577664f803a924a3015a8fee959f83b8b3dc5))
+* **lesson overview:** additional resource the last link in the lesson nav ([70175ae](https://github.com/oaknational/Oak-Web-Application/commit/70175ae8ba35c4901c6379fbf4a579c0be785cba))
+* **lesson overview:** additional resource the last link in the lesson nav ([d74671b](https://github.com/oaknational/Oak-Web-Application/commit/d74671b0f9442c023f9e53a93f99561f3a374308))
+* **lesson overview:** fix test ([ea1c9bc](https://github.com/oaknational/Oak-Web-Application/commit/ea1c9bc09016270fc73da6f4e1210d1cd8447427))
+* **lesson overview:** merge commit ([09bf377](https://github.com/oaknational/Oak-Web-Application/commit/09bf37726272096a17a47b592836dce2fb50075a))
+
+## [1.254.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.254.0...v1.254.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* maths ks4 curriculum map download ([67b8c17](https://github.com/oaknational/Oak-Web-Application/commit/67b8c172affcd6886c5eca8fc405be202ad4ca66))
+* mobile foundation text overflow ([1f9385f](https://github.com/oaknational/Oak-Web-Application/commit/1f9385fae1af2cb4026445db695e19b01cb477a4))
+
+# [1.254.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.2...v1.254.0) (2023-09-27)
+
+
+### Bug Fixes
+
+* add canonical lesson and downloads queries for legacy curriculum api ([42bdbcb](https://github.com/oaknational/Oak-Web-Application/commit/42bdbcba6a2021766433af93264a3657ed47b68f))
+* **canonical lesson page:** styling and types ([3e29195](https://github.com/oaknational/Oak-Web-Application/commit/3e29195756e8c497fa02fc893cc073e3516deda8))
+
+
+### Features
+
+* canonical lesson downloads page ([13eb442](https://github.com/oaknational/Oak-Web-Application/commit/13eb442c4ef1305c918ee4d59de9ad238c6203a8))
+* **canonical lesson:** adds a canonical lesson page ([c75138d](https://github.com/oaknational/Oak-Web-Application/commit/c75138d833ad123735f1f7429c840a96eeff474a))
+* create Tag Functional component ([6f69e95](https://github.com/oaknational/Oak-Web-Application/commit/6f69e95667ed22c403d017c4e7910647f3af73d1))
+
+## [1.253.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.1...v1.253.2) (2023-09-27)
+
+
+### Bug Fixes
+
+* **generate-sprite:** filter only icons which have both slug and image url ([09d5749](https://github.com/oaknational/Oak-Web-Application/commit/09d5749440b71dcc17a3d59ca99bb13f43cd4dc4))
+* svg sprites ([941afa0](https://github.com/oaknational/Oak-Web-Application/commit/941afa00af88a9d20c70971ba3385cddbb786c5f))
+
+## [1.253.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.253.0...v1.253.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **unit listing:** legacy tier links take you to correct legacy page ([d6fa385](https://github.com/oaknational/Oak-Web-Application/commit/d6fa3851f7dc9d076b90d22a96f12629cc4e321c))
+
+# [1.253.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.2...v1.253.0) (2023-09-26)
+
+
+### Bug Fixes
+
+* update import ([890a194](https://github.com/oaknational/Oak-Web-Application/commit/890a194d9b0789722954fe369ca4fb9c54927376))
+* zindices for navbar ([a41aa81](https://github.com/oaknational/Oak-Web-Application/commit/a41aa817664506c8d4cc2e25a582f2f6d471df48))
+
+
+### Features
+
+* made underline match design ([c976457](https://github.com/oaknational/Oak-Web-Application/commit/c97645753ebaf85c42ae1a45292ba1b977ca2265))
+* make appheader not fixed ([210e947](https://github.com/oaknational/Oak-Web-Application/commit/210e947f2b78f4da057f2adb2beed33d195a90a9))
+* remove early access text from app header ([fa5900d](https://github.com/oaknational/Oak-Web-Application/commit/fa5900da695d74c85374757b54c35e4d46617d26))
+* update SiteHeader to use StyledHeader ([52596e7](https://github.com/oaknational/Oak-Web-Application/commit/52596e79478e5d9856172d1a0700507151bd1fd6))
+
+## [1.252.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.1...v1.252.2) (2023-09-26)
+
+
+### Bug Fixes
+
+* **headerListing:** remove curriculum map link from new content ([269a6a7](https://github.com/oaknational/Oak-Web-Application/commit/269a6a75fefd28f7ad24ca9f6d62eb3387670d33))
+
 ## [1.252.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.252.0...v1.252.1) (2023-09-26)
 
 
