@@ -183,7 +183,7 @@ const SiteFooter: FC = () => {
       </Flex>
       <nav>
         <MaxWidth
-          $pt={[48, 80]}
+          $pt={[16, 80]}
           $justifyContent={"center"}
           $flexDirection={"column"}
           $ph={16}

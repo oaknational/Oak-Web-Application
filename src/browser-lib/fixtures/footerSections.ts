@@ -40,7 +40,8 @@ const footerSections: FooterSections = {
       { text: "Plan a lesson", type: "page", page: "lesson-planning" },
       { text: "Support your team", type: "page", page: "support-your-team" },
       {
-        text: "Teacher Hub (old)",
+        // text: "Teacher Hub (old)",
+        text: "Teacher Hub",
         type: "page",
         page: "teacher-hub",
         icon: "external",
