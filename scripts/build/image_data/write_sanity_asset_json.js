@@ -65,6 +65,14 @@ async function main() {
         }
       }
     },
+    logo {
+      image {
+        asset->{
+          _id,
+          url
+        }
+      }
+    },
   }`);
 
   await writeAsset({
@@ -73,6 +81,10 @@ async function main() {
       {
         ...brandAssetRes[0].logoWithText,
         slug: { current: "logo-with-text" },
+      },
+      {
+        ...brandAssetRes[0].logo,
+        slug: { current: "logo" },
       },
     ],
   });

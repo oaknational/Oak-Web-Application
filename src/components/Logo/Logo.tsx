@@ -7,6 +7,7 @@ import ScreenReaderOnly from "../ScreenReaderOnly";
 type LogoProps = {
   width: number;
   height: number;
+  variant: "with text" | "without text";
 };
 
 const LogoWrapper = styled.div<LogoProps>`
@@ -18,7 +19,9 @@ const Logo: FC<LogoProps> = (props) => {
   return (
     <LogoWrapper {...props}>
       <ScreenReaderOnly>Oak National Academy</ScreenReaderOnly>
-      <InlineSpriteSvg name="logo-with-text" />
+      <InlineSpriteSvg
+        name={props.variant === "with text" ? "logo-with-text" : "logo"}
+      />
     </LogoWrapper>
   );
 };
