@@ -114,10 +114,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
 
-      <Card $background={"lemon30"} $width={"100%"} $mb={110}>
+      <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
         <Flex
           $justifyContent={"center"}
+          $alignItems={"center"}
           $pa={16}
           $flexDirection={["column", "row"]}
           $gap={[16, 32]}
