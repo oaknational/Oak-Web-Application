@@ -1,3 +1,43 @@
+# [1.258.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.257.0...v1.258.0) (2023-09-29)
+
+
+### Features
+
+* switch db to prod ([1215b36](https://github.com/oaknational/Oak-Web-Application/commit/1215b365d48385033b8159f7092890a421542234))
+
+# [1.257.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.2...v1.257.0) (2023-09-28)
+
+
+### Bug Fixes
+
+* removed books icon from banner ([18a30d9](https://github.com/oaknational/Oak-Web-Application/commit/18a30d9301a99f2fc21aac863fd0738181886c74))
+* update icons and icon size for button ([92134c8](https://github.com/oaknational/Oak-Web-Application/commit/92134c8f26b6f4bbd6df8f2285e55f7db35139ad))
+* update mobile view stretch ([f3bc30e](https://github.com/oaknational/Oak-Web-Application/commit/f3bc30e548694153772df8d4afd964167dd16178))
+* updated banner text to P ([8c5ffe5](https://github.com/oaknational/Oak-Web-Application/commit/8c5ffe5b00ea6fb5ce1926bd1ed7666bb86f2878))
+* updated mobile and tablet spacing ([d9d99c9](https://github.com/oaknational/Oak-Web-Application/commit/d9d99c96ad316aba4406c525d1ef0e90399154e8))
+
+
+### Features
+
+* add book icon and spacing changes ([515a98b](https://github.com/oaknational/Oak-Web-Application/commit/515a98b4cd9b8b5b4297cfe7c8f28bae0f277f19))
+* add help center banner ([3099798](https://github.com/oaknational/Oak-Web-Application/commit/3099798f3aa349a763d489df59f1f3945d422d4c))
+
+## [1.256.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.1...v1.256.2) (2023-09-28)
+
+
+### Bug Fixes
+
+* added spacing to bottom of landing page ([1bda67f](https://github.com/oaknational/Oak-Web-Application/commit/1bda67fc2a291c8479df111f68b3dfa09fb5ec11))
+* aligned partner card divs to center ([1e995ac](https://github.com/oaknational/Oak-Web-Application/commit/1e995ac9fc85148ac663eac54b8530804e57b785))
+* updated partner image to square and added responsive sizing ([ed1557a](https://github.com/oaknational/Oak-Web-Application/commit/ed1557a934ad40a87c49f9bb5133efaf708393ce))
+
+## [1.256.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.256.0...v1.256.1) (2023-09-28)
+
+
+### Bug Fixes
+
+* **lesson overview:** additional resource added to query param when download link is selected ([8307da3](https://github.com/oaknational/Oak-Web-Application/commit/8307da33c7073924615803f81d7abf21a8145335))
+
 # [1.256.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.255.0...v1.256.0) (2023-09-28)
 
 
