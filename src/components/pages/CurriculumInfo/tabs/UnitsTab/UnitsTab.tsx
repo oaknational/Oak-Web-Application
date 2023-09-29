@@ -107,16 +107,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     // Add the current unit
     currentYearData.units.push(unit);
 
-    // Populate list of domain filter values
-    // Replace below with domain / domain_slug from API request when updated
-    // const domain = unit.domains[0];
-    // if (
-    //   domain &&
-    //   currentYearData.domains.every((d) => d.tag_id !== domain.tag_id)
-    // ) {
-    //   currentYearData.domains.push(domain);
-    // }
-
     // Populate list of child subject filter values
     if (
       unit.subject_parent &&
@@ -156,6 +146,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
   });
 
+  // Sort year data
   yearOptions.sort((a, b) => Number(a) - Number(b));
 
   // Sort threads
@@ -176,17 +167,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!data) {
       throw new Error("year data missing");
     }
-    data.childSubjects.sort((a, b) => {
-      if (a.subject_slug === "combined-science") {
-        return -1;
-      } else if (b.subject_slug === "combined-science") {
-        return 1;
-      } else {
-        return a.subject_slug.localeCompare(b.subject_slug);
-      }
-    });
     if (data.domains.length > 0) {
-      data.domains.sort((a, b) => Number(a.domain_id) - Number(b.domain_id));
+      data.domains.sort((a, b) => a.domain_id - b.domain_id);
       data.domains.unshift({
         domain: "All",
         domain_id: 0,
@@ -308,7 +290,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             $top={"50%"}
           />
         </Box>
-
         <Box $pa={20}>
           <Heading
             tag={"h2"}
@@ -387,7 +368,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               })}
             </RadioGroup>
           </Box>
-
           <Box $mr={16} $mb={32}>
             <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
               Year Group
@@ -506,7 +486,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         const isHighlighted = isHighlightedUnit(unit);
                         return (
                           <Card
-                            key={unit.slug}
+                            key={unit.slug + index}
                             $background={isHighlighted ? "black" : "white"}
                             $color={isHighlighted ? "white" : "black"}
                             $flexGrow={"unset"}

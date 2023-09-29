@@ -431,7 +431,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     });
   });
 
-  test.only("user can see correct number of unit options", async () => {
+  test("user can see correct number of unit options", async () => {
     const data = {
       units: [
         {
