@@ -14,7 +14,7 @@ const HomePageBanner: ReactNode = (
     <Flex
       $justifyContent={["center", "space-between"]}
       $alignItems={"center"}
-      $pv={24}
+      $pv={16}
       $ph={16}
     >
       <Flex $alignItems={"center"} $gap={16} $display={["none", "flex"]}>
