@@ -1,3 +1,24 @@
+# [1.259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.258.0...v1.259.0) (2023-09-29)
+
+
+### Bug Fixes
+
+* **curric:** tweak unit filter button spacing ([753c643](https://github.com/oaknational/Oak-Web-Application/commit/753c64305ab0bb6368fe0fe143b8654704015288))
+* **curric:** undoing spacing fixes ([6aa1ced](https://github.com/oaknational/Oak-Web-Application/commit/6aa1ced5bf46aa7fa18e762b9df08432e26be148))
+* **curric:** update visualiser unit thread order, add tests ([6059b0f](https://github.com/oaknational/Oak-Web-Application/commit/6059b0f982840b18bce057b7fc8f9c8c8b7477a9))
+* handle duplicate units ([62792dd](https://github.com/oaknational/Oak-Web-Application/commit/62792ddd330de5a0f33d279839a4ef6784760634))
+* merge main ([7739610](https://github.com/oaknational/Oak-Web-Application/commit/773961047c3820292bf2f6524d63d90455c64803))
+* merge main ([b56b43d](https://github.com/oaknational/Oak-Web-Application/commit/b56b43d58f4cbbbf10449bf5ce536660b3869095))
+* merge to main, resolve conflicts ([77ad2e1](https://github.com/oaknational/Oak-Web-Application/commit/77ad2e1500de1d224cc4be50425a009e4fb46877))
+* merge with main ([3b233cb](https://github.com/oaknational/Oak-Web-Application/commit/3b233cb07296b2b32a31c5a1d3784118f06cd32c))
+* show units with blank tiers ([1b34ad9](https://github.com/oaknational/Oak-Web-Application/commit/1b34ad982728cbbce065831cfbbb83533598f11f))
+* switch domain slug to id ([d519b91](https://github.com/oaknational/Oak-Web-Application/commit/d519b91d458a6c77c4b9631b4c1eef66a21620ff))
+
+
+### Features
+
+* **curric:** update unit visualiser data model, add optionality count tag ([5a29cf4](https://github.com/oaknational/Oak-Web-Application/commit/5a29cf444fe01e394ff4adfbd1eeb47aa0edf06a))
+
 # [1.258.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.257.0...v1.258.0) (2023-09-29)
 
 

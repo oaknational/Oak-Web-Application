@@ -2,7 +2,7 @@ import { MarginProps } from "@/styles/utils/spacing";
 import { Span } from "@/components/Typography";
 
 const TAG_COLOR_MAP = {
-  blue: {
+  lavender: {
     background: "lavender30",
     borderColor: "lavender50",
   },
@@ -14,11 +14,11 @@ const TAG_COLOR_MAP = {
     background: "aqua30",
     borderColor: "aqua50",
   },
-  green: {
+  mint: {
     background: "mint30",
     borderColor: "mint50",
   },
-  yellow: {
+  lemon: {
     background: "lemon30",
     borderColor: "lemon50",
   },
