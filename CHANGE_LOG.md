@@ -1,3 +1,10 @@
+## [1.259.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.259.0...v1.259.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* update subject phase picker options api request ([ef79dd8](https://github.com/oaknational/Oak-Web-Application/commit/ef79dd8df1cbb2969b9680aeeacd89dbfc527482))
+
 # [1.259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.258.0...v1.259.0) (2023-09-29)
 
 
