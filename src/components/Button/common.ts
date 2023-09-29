@@ -45,6 +45,12 @@ type ButtonConfig = {
   iconInnerHeight: PixelSpacing;
   paddingH: PixelSpacing;
 };
+const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
+  height: 0,
+  iconOuterHeight: 0,
+  iconInnerHeight: 0,
+  paddingH: 0,
+};
 
 const BUTTON_CONFIGS: Record<
   `${ButtonSize}-${ButtonVariant}-${"button" | "icon-button"}`,
@@ -170,66 +176,21 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
-  "xs-brush-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-brush-icon-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
+  "xs-brush-button": DEFAULT_BUTTON_CONFIG,
+  "xs-brush-icon-button": DEFAULT_BUTTON_CONFIG,
   "xs-brushNav-button": {
     height: 40,
     iconOuterHeight: 30,
     iconInnerHeight: 20,
     paddingH: 10,
   },
-  "xs-brushNav-icon-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-minimal-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-minimal-icon-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-minimalNav-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-minimalNav-icon-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-buttonStyledAsLink-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
-  "xs-buttonStyledAsLink-icon-button": {
-    height: 0,
-    iconOuterHeight: 0,
-    iconInnerHeight: 0,
-    paddingH: 0,
-  },
+  "xs-brushNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimal-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimal-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimalNav-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimalNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-buttonStyledAsLink-button": DEFAULT_BUTTON_CONFIG,
+  "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
 };
 
 const getButtonConfig = (
