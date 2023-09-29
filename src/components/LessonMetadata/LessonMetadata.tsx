@@ -54,7 +54,7 @@ const LessonMetadata: FC<LessonMetadataProps> = ({
           <DotSeparator />
           <P>Units</P>
           <DotSeparator />
-          <TagFunctional text={"Unit"} color={"blue"} />
+          <TagFunctional text={"Unit"} color={"aqua"} />
         </>
       )}
       {lessons && (
