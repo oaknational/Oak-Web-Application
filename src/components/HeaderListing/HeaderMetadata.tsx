@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
 import Typography from "../Typography";
 import Flex from "../Flex";
@@ -15,10 +15,10 @@ const HeaderMetadata: FC<{
   );
 
   const headerElements = headerValues.map((value, i) => (
-    <>
+    <React.Fragment key={`${value}-${i}`}>
       <Typography>{value}</Typography>
       {i + 1 !== headerValues.length && <Typography>•</Typography>}
-    </>
+    </React.Fragment>
   ));
 
   return <Flex $gap={8}>{headerElements}</Flex>;
