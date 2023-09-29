@@ -45,6 +45,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     keyStageTitle,
     subjectTitle,
     isNew,
+    programmeFactor,
     subjectIconBackgroundColor,
     breadcrumbs,
     background,
@@ -72,11 +73,15 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </Box>
           <Flex $flexDirection={"column"}>
             <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              <HeaderMetadata
-                examBoardTitle={examBoardTitle}
-                yearTitle={yearTitle}
-                tierTitle={tierTitle}
-              />
+              {yearTitle ? (
+                <HeaderMetadata
+                  examBoardTitle={examBoardTitle}
+                  yearTitle={yearTitle}
+                  tierTitle={tierTitle}
+                />
+              ) : (
+                programmeFactor
+              )}
             </Span>
             <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
               {title}
