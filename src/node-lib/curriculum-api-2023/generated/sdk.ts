@@ -24989,7 +24989,7 @@ export type SubjectListingQuery = { __typename?: 'query_root', keyStageSubjects:
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options', title?: string | null, slug?: string | null, phases?: any | null, examboards?: any | null }> };
+export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_1', title?: string | null, slug?: string | null, phases?: any | null, examboards?: any | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -25209,7 +25209,7 @@ export const SubjectListingDocument = gql`
     `;
 export const SubjectPhaseOptionsDocument = gql`
     query subjectPhaseOptions {
-  options: published_mv_subject_phase_options {
+  options: published_mv_subject_phase_options_1 {
     title
     slug
     phases
