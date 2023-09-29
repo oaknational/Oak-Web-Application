@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Box, { BoxProps } from "../Box";
 import Svg from "../Svg";
 
-type Thickness = 1 | 2 | 3 | 4;
+type Thickness = 1 | 2 | 3 | 4 | 8;
 
 const HrLine = styled(Svg)<HrProps>`
   mask-position: center;
