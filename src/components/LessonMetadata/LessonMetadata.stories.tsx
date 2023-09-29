@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./HeaderMetadata";
+import Component from "./LessonMetadata";
 
 const meta: Meta<typeof Component> = {
-  title: "Headers & Footers/HeaderMetadata",
+  title: "LessonMetadata",
   component: Component,
   argTypes: {
     examBoardTitle: {
@@ -20,7 +20,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const HeaderLesson: Story = {
+export const LessonMetadata: Story = {
   args: {
     yearTitle: "Year 5",
   },

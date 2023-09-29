@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 
-import HeaderMetadata from "./HeaderMetadata";
+import HeaderMetadata from "./LessonMetadata";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

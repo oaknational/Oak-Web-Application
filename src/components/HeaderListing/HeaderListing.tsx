@@ -7,8 +7,7 @@ import Box from "../Box";
 import { Heading, Span } from "../Typography";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
-
-import HeaderMetadata from "./HeaderMetadata";
+import LessonMetadata from "../LessonMetadata";
 
 import { OakColorName } from "@/styles/theme";
 
@@ -74,7 +73,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           <Flex $flexDirection={"column"}>
             <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
               {yearTitle ? (
-                <HeaderMetadata
+                <LessonMetadata
                   examBoardTitle={examBoardTitle}
                   yearTitle={yearTitle}
                   tierTitle={tierTitle}

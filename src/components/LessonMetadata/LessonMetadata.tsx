@@ -3,25 +3,25 @@ import React, { FC } from "react";
 import Typography from "../Typography";
 import Flex from "../Flex";
 
-const HeaderMetadata: FC<{
+const LessonMetadata: FC<{
   examBoardTitle?: string | null;
   tierTitle?: string | null;
   yearTitle: string;
 }> = (props) => {
   const { yearTitle, examBoardTitle, tierTitle } = props;
 
-  const headerValues = [yearTitle, examBoardTitle, tierTitle].filter(
+  const metadata = [yearTitle, examBoardTitle, tierTitle].filter(
     (value) => !!value,
   );
 
-  const headerElements = headerValues.map((value, i) => (
+  const metadataElements = metadata.map((value, i) => (
     <React.Fragment key={`${value}-${i}`}>
       <Typography>{value}</Typography>
-      {i + 1 !== headerValues.length && <Typography>•</Typography>}
+      {i + 1 !== metadata.length && <Typography>•</Typography>}
     </React.Fragment>
   ));
 
-  return <Flex $gap={8}>{headerElements}</Flex>;
+  return <Flex $gap={8}>{metadataElements}</Flex>;
 };
 
-export default HeaderMetadata;
+export default LessonMetadata;
