@@ -6,7 +6,7 @@ import Flex from "../Flex";
 const HeaderMetadata: FC<{
   examBoardTitle?: string | null;
   tierTitle?: string | null;
-  yearTitle?: string | null; // TODO: make required
+  yearTitle: string;
 }> = (props) => {
   const { yearTitle, examBoardTitle, tierTitle } = props;
 
