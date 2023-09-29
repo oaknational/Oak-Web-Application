@@ -24,7 +24,7 @@ type LessonDetailsProps = {
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
-  isLegacyLicense: boolean;
+  isLegacyLicense?: boolean;
 };
 
 const LessonDetails: FC<LessonDetailsProps> = ({

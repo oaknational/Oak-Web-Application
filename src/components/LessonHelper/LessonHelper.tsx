@@ -12,7 +12,7 @@ type LessonHelperProps = {
   equipment: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
-  isLegacyLicense: boolean;
+  isLegacyLicense?: boolean;
 };
 
 const LessonHelper: FC<LessonHelperProps> = ({
