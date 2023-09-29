@@ -14,7 +14,7 @@ import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import { TagFunctional } from "@/components/TagFunctional/TagFunctional";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -26,6 +26,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   interface Thread {
     title: string;
     slug: string;
+    order: number;
   }
 
   interface Subject {
@@ -34,8 +35,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   interface Domain {
-    title: string;
-    tag_id: number | null;
+    domain: string;
+    domain_id: number;
   }
 
   interface Tier {
@@ -92,16 +93,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     // Add the current unit
     currentYearData.units.push(unit);
 
-    // Populate list of domain filter values
-    // Replace below with domain / domain_slug from API request when updated
-    const domain = unit.domains[0];
-    if (
-      domain &&
-      currentYearData.domains.every((d) => d.tag_id !== domain.tag_id)
-    ) {
-      currentYearData.domains.push(domain);
-    }
-
     // Populate list of child subject filter values
     if (
       unit.subject_parent &&
@@ -113,6 +104,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       currentYearData.childSubjects.push({
         subject: unit.subject,
         subject_slug: unit.subject_slug,
+      });
+    }
+
+    // Populate list of domain filter values
+    if (
+      unit.domain &&
+      unit.domain_id &&
+      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
+    ) {
+      currentYearData.domains.push({
+        domain: unit.domain,
+        domain_id: unit.domain_id,
       });
     }
 
@@ -129,7 +132,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
   });
 
+  // Sort year data
   yearOptions.sort((a, b) => Number(a) - Number(b));
+
+  // Sort threads
+  const threadOrders = new Set(threadOptions.map((to) => to.order));
+  if (threadOptions.length > threadOrders.size) {
+    // In secondary science multiple threads can have the same order value due
+    // to multiple subjects (eg biology, chemistry, physics) being shown, so
+    // if orders are not unique, sort alphabetically by slug
+    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
+  } else {
+    // If orders are unique, use them to sort
+    threadOptions.sort((a, b) => a.order - b.order);
+  }
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -137,20 +153,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!data) {
       throw new Error("year data missing");
     }
-    data.childSubjects.sort((a, b) => {
-      if (a.subject_slug === "combined-science") {
-        return -1;
-      } else if (b.subject_slug === "combined-science") {
-        return 1;
-      } else {
-        return a.subject_slug.localeCompare(b.subject_slug);
-      }
-    });
     if (data.domains.length > 0) {
-      data.domains.sort((a, b) => Number(a.tag_id) - Number(b.tag_id));
+      data.domains.sort((a, b) => a.domain_id - b.domain_id);
       data.domains.unshift({
-        title: "All",
-        tag_id: null,
+        domain: "All",
+        domain_id: 0,
       });
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
@@ -187,7 +194,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.tag_id === domain.tag_id;
+    return yearSelection[year]?.domain?.domain_id === domain.domain_id;
   }
 
   function isSelectedSubject(year: string, subject: Subject) {
@@ -207,9 +214,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
       !s.domain ||
-      s.domain.tag_id === null ||
-      s.domain.tag_id === unit.domains[0]?.tag_id;
-    const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
+      s.domain.domain_id === 0 ||
+      s.domain.domain_id === unit.domain_id;
+    const filterByTier =
+      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
     return filterBySubject && filterByDomain && filterByTier;
   }
 
@@ -269,7 +277,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               $top={"50%"}
             />
           </Box>
-
           <Box $pa={20}>
             <Heading
               tag={"h2"}
@@ -348,7 +355,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                 })}
               </RadioGroup>
             </Box>
-
             <Box $mr={16} $mb={32}>
               <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
                 Year Group
@@ -434,8 +440,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             background={
                               isSelectedDomain(year, domain) ? "black" : "white"
                             }
-                            key={domain.tag_id}
-                            label={domain.title}
+                            key={domain.domain_id}
+                            label={domain.domain}
                             onClick={() => handleSelectDomain(year, domain)}
                             size="small"
                             data-testid="domain-button"
@@ -469,7 +475,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           const isHighlighted = isHighlightedUnit(unit);
                           return (
                             <Card
-                              key={unit.slug}
+                              key={unit.slug + index}
                               $background={isHighlighted ? "black" : "white"}
                               $color={isHighlighted ? "white" : "black"}
                               $flexGrow={"unset"}
@@ -506,6 +512,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                 )}
                                 {unit.title}
                               </Heading>
+                              {unit.unit_options.length > 1 && (
+                                <Box $mt={12} data-testid="options-tag">
+                                  <TagFunctional
+                                    color="lavender"
+                                    text={`${unit.unit_options.length} unit options`}
+                                  />
+                                </Box>
+                              )}
                             </Card>
                           );
                         })}
@@ -516,56 +530,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
-      <Flex
-        $flexDirection={["column", "row"]}
-        $background={"mint"}
-        $mt={48}
-        $pa={48}
-        $gap={24}
-      >
-        <Flex
-          $flexDirection={["column", "row"]}
-          $alignItems={["flex-start", "flex-end"]}
-          $ma={"auto"}
-          $justifyContent={["space-evenly"]}
-          $gap={24}
-        >
-          <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
-            <Icon
-              name="books"
-              size={92}
-              $background={"teachersRed"}
-              $mr={40}
-              $mb={[24, 0]}
-              $color={"black"}
-            />
-
-            <Flex
-              $width={["100%", "70%"]}
-              $gap={16}
-              $flexDirection={"column"}
-              $alignItems={"flex-start"}
-            >
-              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
-                Need help with our new curriculum?
-              </Heading>
-              <P $font={["body-2", "body-1"]}>
-                Visit our help centre for technical support as well as tips and
-                ideas to help you make the most of Oak.
-              </P>
-            </Flex>
-          </Flex>
-          <ButtonAsLink
-            label="Go to help centre"
-            variant={"brush"}
-            size={"large"}
-            page={"help"}
-            icon={"arrow-right"}
-            iconBackground="black"
-            $iconPosition="trailing"
-          />
-        </Flex>
-      </Flex>
     </Box>
   );
 };

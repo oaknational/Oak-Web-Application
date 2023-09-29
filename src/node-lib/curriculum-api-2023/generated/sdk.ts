@@ -24920,11 +24920,11 @@ export type CurriculumOverviewQueryVariables = Exact<{
 export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
 
 export type CurriculumUnitsQueryVariables = Exact<{
-  where?: InputMaybe<Published_Mv_Curriculum_Units_Bool_Exp>;
+  where?: InputMaybe<Published_Mv_Curriculum_Units_1_Bool_Exp>;
 }>;
 
 
-export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units', title?: string | null, slug?: string | null, connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, planned_number_of_lessons?: number | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, phase?: string | null, phase_slug?: string | null, year?: string | null, keystage_slug?: string | null, tier?: string | null, tier_slug?: string | null, examboard?: string | null, examboard_slug?: string | null, threads?: any | null, domains?: any | null }> };
+export type CurriculumUnitsQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_1', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -25018,27 +25018,29 @@ export const CurriculumOverviewDocument = gql`
 }
     `;
 export const CurriculumUnitsDocument = gql`
-    query curriculumUnits($where: published_mv_curriculum_units_bool_exp) {
-  units: published_mv_curriculum_units(where: $where) {
-    title
-    slug
+    query curriculumUnits($where: published_mv_curriculum_units_1_bool_exp) {
+  units: published_mv_curriculum_units_1(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
+    domain
+    domain_id
+    examboard
+    examboard_slug
+    keystage_slug
     planned_number_of_lessons
+    phase
+    phase_slug
+    slug
     subject
     subject_slug
     subject_parent
     subject_parent_slug
-    phase
-    phase_slug
-    year
-    keystage_slug
     tier
     tier_slug
-    examboard
-    examboard_slug
+    title
+    unit_options
     threads
-    domains
+    year
   }
 }
     `;
