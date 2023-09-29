@@ -32,6 +32,7 @@ const LessonMetadata: FC<LessonMetadataProps> = ({
       $maxHeight={24}
       $alignItems={"center"}
       $mb={8}
+      data-testid="lesson-metadata"
     >
       {keyStageTitle && (
         <>

@@ -59,6 +59,8 @@ const Sidebar: FC<ModalProps> = ({
                     variant={"minimal"}
                     size={"large"}
                     onClick={onClose}
+                    data-testid="close-button"
+                    aria-expanded={displayModal}
                   />
                 </Box>
                 <Flex $overflowY={"auto"} $flexGrow={1}>
@@ -73,6 +75,7 @@ const Sidebar: FC<ModalProps> = ({
                     $pb={16}
                   >
                     <Button
+                      data-testid="close-button"
                       icon="cross"
                       aria-label="Close"
                       size="large"
@@ -89,6 +92,7 @@ const Sidebar: FC<ModalProps> = ({
                       >
                         <TagFunctional text={"Coming soon"} color="grey" />
                         <Button
+                          data-testid="unit-lessons-button"
                           disabled={true}
                           label="See lessons in unit"
                           $font={"heading-7"}
@@ -109,7 +113,6 @@ const Sidebar: FC<ModalProps> = ({
         </Box>
       )}
     </Transition>
-    // </Box>
   );
 };
 

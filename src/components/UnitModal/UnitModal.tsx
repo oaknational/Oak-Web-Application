@@ -28,6 +28,7 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
   /**
    * TODO: UnitModal
    * ! Change color to OakGrey5 TagFunctional?????
+   * ? New colors on OWA
    * ? Rename slugs so they are more specific
    */
 
@@ -48,7 +49,7 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
               year={unitData.year}
             />
             <Heading $mb={40} tag="h2" $font={"heading-5"}>
-              {unitData && unitData.title}
+              {unitData.title}
             </Heading>
             {uniqueThreadsArray.length > 0 && (
               <Box $mb={[24, 40]}>
@@ -62,7 +63,12 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
                   $alignItems={"flex-start"}
                 >
                   {uniqueThreadsArray.map((thread) => (
-                    <TagFunctional key={thread} text={thread} color={"grey"} />
+                    <TagFunctional
+                      key={thread}
+                      text={thread}
+                      color={"grey"}
+                      data-testid="thread-tag"
+                    />
                   ))}
                 </Flex>
               </Box>
@@ -73,6 +79,7 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
                 $background={"pink30"}
                 $pa={12}
                 $mb={40}
+                data-testid="unit-options-card"
               >
                 <Heading
                   tag="h4"
@@ -95,7 +102,7 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
                         $background={"white"}
                         $position={"relative"}
                         $width={["100%", "calc(50% - 28px)"]}
-                        data-testid="unit-option-card"
+                        data-testid="unit-option"
                         $maxHeight={"fit-content"}
                         $justifyContent={"space-between"}
                       >
