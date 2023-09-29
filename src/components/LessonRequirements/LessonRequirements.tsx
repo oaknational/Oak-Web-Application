@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import CopyrightNotice from "../DownloadComponents/CopyrightNotice";
+
 import Icon, { IconName } from "@/components/Icon";
 import Flex from "@/components/Flex";
 import { Heading, P, UL, LI } from "@/components/Typography";
@@ -10,6 +12,7 @@ type LessonRequirementsProps = {
   contentGuidance?: ContentGuidance[] | null | undefined;
   equipment?: Equipment[] | null | undefined;
   supervisionLevel?: string | null | undefined;
+  isLegacyLicense?: boolean;
 };
 
 export type Equipment = {
@@ -28,8 +31,14 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
   contentGuidance,
   equipment,
   supervisionLevel,
+  isLegacyLicense,
 }) => {
-  if (!contentGuidance && !equipment && !supervisionLevel) {
+  if (
+    !contentGuidance &&
+    !equipment &&
+    !supervisionLevel &&
+    isLegacyLicense === undefined
+  ) {
     return null;
   }
 
@@ -69,6 +78,11 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
             </P>
           );
         })}
+
+      <CopyrightNotice
+        $font={"body-2"}
+        showPostAlbCopyright={!isLegacyLicense}
+      />
     </Flex>
   );
 };

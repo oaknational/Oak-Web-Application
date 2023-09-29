@@ -12,17 +12,19 @@ type LessonHelperProps = {
   equipment: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
+  isLegacyLicense: boolean;
 };
 
 const LessonHelper: FC<LessonHelperProps> = ({
   equipment,
   contentGuidance,
   supervisionLevel,
+  isLegacyLicense,
 }) => {
   return (
     <Box $background={"aqua50"} $position={"relative"} $width={320}>
       <Grid $rg={32} $pa={24}>
-        {equipment && (
+        {equipment && equipment?.length > 0 && (
           <GridArea $colStart={1} $colSpan={[12]}>
             <LessonRequirements
               helperIcon={"equipment-required"}
@@ -49,6 +51,13 @@ const LessonHelper: FC<LessonHelperProps> = ({
             />
           </GridArea>
         )}
+        <GridArea $colStart={1} $colSpan={[12]}>
+          <LessonRequirements
+            helperIcon={"copyright"}
+            heading="License"
+            isLegacyLicense={isLegacyLicense}
+          />
+        </GridArea>
       </Grid>
       <BrushBorders color="aqua50" />
     </Box>

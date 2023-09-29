@@ -29,6 +29,7 @@ import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
@@ -95,6 +96,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
   const pageLinks = getPageLinksForLesson(lesson);
+  const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
 
   return (
     <>
@@ -180,6 +182,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
+                    isLegacyLicense={isLegacyLicense}
                   />
                 </LessonItemContainer>
 

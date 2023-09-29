@@ -24,6 +24,7 @@ type LessonDetailsProps = {
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
+  isLegacyLicense: boolean;
 };
 
 const LessonDetails: FC<LessonDetailsProps> = ({
@@ -34,6 +35,7 @@ const LessonDetails: FC<LessonDetailsProps> = ({
   equipmentAndResources,
   contentGuidance,
   supervisionLevel,
+  isLegacyLicense,
 }) => {
   return (
     <Flex
@@ -67,12 +69,14 @@ const LessonDetails: FC<LessonDetailsProps> = ({
         )}
         {(equipmentAndResources && equipmentAndResources.length > 0) ||
         (contentGuidance && contentGuidance.length > 0) ||
-        supervisionLevel ? (
+        supervisionLevel ||
+        isLegacyLicense !== undefined ? (
           <Box>
             <LessonHelper
               equipment={equipmentAndResources}
               contentGuidance={contentGuidance}
               supervisionLevel={supervisionLevel}
+              isLegacyLicense={isLegacyLicense}
             />
           </Box>
         ) : null}

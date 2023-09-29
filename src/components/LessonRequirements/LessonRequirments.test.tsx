@@ -62,4 +62,38 @@ describe("LessonRequirements component", () => {
     expect(contentGuidanceTitle).not.toBeInTheDocument();
     expect(equipmentTitle).not.toBeInTheDocument();
   });
+  it("it should render the correct legacy license", () => {
+    const { getByText, queryByText } = renderWithTheme(
+      <LessonRequirements
+        helperIcon={"supervision-level"}
+        heading="License"
+        isLegacyLicense={true}
+      />,
+    );
+    const preAlbCopyright = getByText(
+      "This content is made available by Oak and its partners",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
+
+    const licenseTitle = queryByText("License");
+    expect(licenseTitle).toBeInTheDocument();
+  });
+  it("it should render the correct license", () => {
+    const { getByText, queryByText } = renderWithTheme(
+      <LessonRequirements
+        helperIcon={"supervision-level"}
+        heading="License"
+        isLegacyLicense={false}
+      />,
+    );
+    const preAlbCopyright = getByText(
+      "This content is © Oak National Academy (2023), licensed on",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
+
+    const licenseTitle = queryByText("License");
+    expect(licenseTitle).toBeInTheDocument();
+  });
 });
