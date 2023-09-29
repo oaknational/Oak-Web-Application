@@ -27,7 +27,7 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-const SideMenu = styled(Flex)<TransitionProps>`
+export const SideMenu = styled(Flex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -79,7 +79,6 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const removeFocus = () => {
     menuButtonRef?.current?.focus();
   };
-
   return (
     <Transition
       nodeRef={ref}
