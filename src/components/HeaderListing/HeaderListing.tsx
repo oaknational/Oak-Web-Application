@@ -8,6 +8,8 @@ import { Heading, Span } from "../Typography";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
 
+import HeaderMetadata from "./HeaderMetadata";
+
 import { OakColorName } from "@/styles/theme";
 
 /**
@@ -25,6 +27,9 @@ export type HeaderListingProps = {
   keyStageSlug: string;
   keyStageTitle: string;
   tierSlug?: string | null;
+  examBoardTitle?: string | null;
+  tierTitle?: string | null;
+  yearTitle?: string | null;
   lessonDescription?: string;
   isNew?: boolean;
   title: string;
@@ -36,7 +41,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   const {
     subjectSlug,
     title,
-    programmeFactor,
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
@@ -46,6 +50,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     background,
     tierSlug,
     hasCurriculumDownload = true,
+    examBoardTitle,
+    tierTitle,
+    yearTitle,
   } = props;
 
   return (
@@ -65,7 +72,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </Box>
           <Flex $flexDirection={"column"}>
             <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              {programmeFactor}
+              <HeaderMetadata
+                examBoardTitle={examBoardTitle}
+                yearTitle={yearTitle}
+                tierTitle={tierTitle}
+              />
             </Span>
             <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
               {title}
