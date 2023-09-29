@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Component from ".";
+import HomePageBanner from "./Banner";
+
+import Component from "@/components/Flex";
 
 const meta: Meta<typeof Component> = {
   title: "Headers & Footers/Banner",
@@ -10,7 +12,9 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const Flex: Story = {
+export const Banner: Story = {
   args: {},
-  render: () => <Component />,
+  render: () => (
+    <Component $flexDirection={"column"}>{HomePageBanner}</Component>
+  ),
 };

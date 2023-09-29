@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { FC } from "react";
+import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
@@ -61,6 +61,7 @@ export type LayoutProps = {
   breadcrumbs?: Breadcrumb[];
   $background?: OakColorName;
   headerCta?: CTA | null;
+  banner?: React.ReactNode;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
@@ -71,6 +72,7 @@ const Layout: FC<LayoutProps> = (props) => {
     breadcrumbs,
     headerVariant = "site",
     footerVariant = "default",
+    banner,
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
@@ -85,6 +87,7 @@ const Layout: FC<LayoutProps> = (props) => {
       </Head>
       <OrganizationJsonLd />
       <Container $background={$background}>
+        {banner}
         <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
         <StyledLayout>{children}</StyledLayout>
         <Footer />

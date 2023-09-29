@@ -44,54 +44,55 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   });
 
   return (
-    <>
-      <HomePageBanner />
-      <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
-        <HomePageTabImageNav current={current} setCurrent={setCurrent} />
-        {current === "teachers" && (
-          <TeachersTab keyStages={curriculumData.keyStages} />
-        )}
-        {current === "curriculum" && <CurriculumTab />}
-        {current === "pupils" && <PupilTab />}
-        <MaxWidth $mv={[24, 56]}>
-          <Box $ph={[16, 24]} $height={"100%"}>
-            <Flex
-              $width={"100%"}
-              $alignItems={["flex-start", "center"]}
-              $justifyContent="space-between"
-              $mb={48}
-              $flexDirection={["column", "row"]}
-            >
-              <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
-                Stay up to date
-              </Heading>
-              <Flex $flexDirection={"row"}>
-                <Typography $mr={16} $font="heading-7">
-                  <OakLink page={"webinar-index"}>All webinars</OakLink>
-                </Typography>
-                <Typography $font="heading-7">
-                  <OakLink page={"blog-index"}>All blogs</OakLink>
-                </Typography>
-              </Flex>
-            </Flex>
-            <PostList showImageOnTablet={true} {...blogListProps} />
-          </Box>
-        </MaxWidth>
-        <Flex $background={"lavender50"} $width={"100%"}>
-          <MaxWidth
-            $alignItems={"center"}
-            $background={"lavender50"}
-            $mt={58}
-            $mb={80}
-            $ph={16}
+    <AppLayout
+      seoProps={BETA_SEO_PROPS}
+      $background={"white"}
+      banner={HomePageBanner}
+    >
+      <HomePageTabImageNav current={current} setCurrent={setCurrent} />
+      {current === "teachers" && (
+        <TeachersTab keyStages={curriculumData.keyStages} />
+      )}
+      {current === "curriculum" && <CurriculumTab />}
+      {current === "pupils" && <PupilTab />}
+      <MaxWidth $mv={[24, 56]}>
+        <Box $ph={[16, 24]} $height={"100%"}>
+          <Flex
+            $width={"100%"}
+            $alignItems={["flex-start", "center"]}
+            $justifyContent="space-between"
+            $mb={48}
+            $flexDirection={["column", "row"]}
           >
-            <Flex $maxWidth={["100%", 870]}>
-              <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+            <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
+              Stay up to date
+            </Heading>
+            <Flex $flexDirection={"row"}>
+              <Typography $mr={16} $font="heading-7">
+                <OakLink page={"webinar-index"}>All webinars</OakLink>
+              </Typography>
+              <Typography $font="heading-7">
+                <OakLink page={"blog-index"}>All blogs</OakLink>
+              </Typography>
             </Flex>
-          </MaxWidth>
-        </Flex>
-      </AppLayout>
-    </>
+          </Flex>
+          <PostList showImageOnTablet={true} {...blogListProps} />
+        </Box>
+      </MaxWidth>
+      <Flex $background={"lavender50"} $width={"100%"}>
+        <MaxWidth
+          $alignItems={"center"}
+          $background={"lavender50"}
+          $mt={58}
+          $mb={80}
+          $ph={16}
+        >
+          <Flex $maxWidth={["100%", 870]}>
+            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          </Flex>
+        </MaxWidth>
+      </Flex>
+    </AppLayout>
   );
 };
 

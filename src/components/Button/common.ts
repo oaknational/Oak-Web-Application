@@ -21,7 +21,7 @@ export type ButtonVariant =
   | "buttonStyledAsLink";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
-export type ButtonSize = "small" | "large";
+export type ButtonSize = "small" | "large" | "xs";
 
 const SMALL_BUTTON_ICON_SIZE = 28;
 const SMALL_BUTTON_HEIGHT = 40;
@@ -170,6 +170,66 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
+  "xs-brush-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-brush-icon-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-brushNav-button": {
+    height: 40,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 10,
+  },
+  "xs-brushNav-icon-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-minimal-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-minimal-icon-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-minimalNav-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-minimalNav-icon-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-buttonStyledAsLink-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "xs-buttonStyledAsLink-icon-button": {
+    height: 0,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
 };
 
 const getButtonConfig = (
@@ -190,6 +250,7 @@ export const getIconButtonHeight = (
 export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_HEIGHT,
   large: LARGE_BUTTON_HEIGHT,
+  xs: SMALL_BUTTON_HEIGHT,
 };
 
 export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
@@ -238,6 +299,7 @@ export const getButtonPadding = (
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,
+  xs: SMALL_BUTTON_ICON_SIZE,
 };
 export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
