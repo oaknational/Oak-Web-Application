@@ -1,3 +1,17 @@
+## [1.260.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.1...v1.260.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* removed header variant from app layout ([819a031](https://github.com/oaknational/Oak-Web-Application/commit/819a0315ccce5324d4b45bf0e5a55ba0669360d8))
+
+## [1.260.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.0...v1.260.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* removed text from school phase picker ([ce5a55e](https://github.com/oaknational/Oak-Web-Application/commit/ce5a55e16803ed076b84767a1d33d0664a6d1dc8))
+
 # [1.260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.259.1...v1.260.0) (2023-09-29)
 
 
