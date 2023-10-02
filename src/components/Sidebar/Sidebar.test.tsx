@@ -6,11 +6,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockUnit,
   mockOptionalityUnit,
-} from "@/components/UnitModal/UnitModal.test";
-
-/**
- * ! Refactor mockUnits into a fixture data
- */
+} from "@/components/UnitModal/UnitModal.fixture";
 
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
@@ -39,23 +35,23 @@ describe("Sidebar component", () => {
     expect(getAllByTestId("close-button")).toHaveLength(2);
   });
 
-  // How do you test if something is not visible?
-  test.skip("aria-expanded should be false when sidebar is closed", async () => {
+  test("onClose state function called when close button selected", async () => {
     const mockClose = jest.fn();
     const { getByLabelText } = renderWithTheme(
       <Sidebar displayModal={true} onClose={mockClose} />,
     );
 
     const user = userEvent.setup();
-    const closeButton = getByLabelText("Close Menu");
+    const closeButton = getByLabelText("Close");
+
+    console.log(closeButton);
 
     await user.click(closeButton);
 
     expect(mockClose).toHaveBeenCalledTimes(1);
-    expect(closeButton).toHaveAttribute("aria-expanded", "false");
   });
 
-  describe.only("Unit lessons button", () => {
+  describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
         <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,

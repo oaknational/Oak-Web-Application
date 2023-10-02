@@ -83,6 +83,7 @@ const Sidebar: FC<ModalProps> = ({
                       $iconPosition={"trailing"}
                       variant="minimal"
                       onClick={onClose}
+                      aria-expanded={displayModal}
                       $hoverStyles={["underline-link-text"]}
                     />
                     {!unitOptionsAvailable && (

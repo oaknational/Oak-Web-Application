@@ -25,13 +25,6 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
 
   const uniqueThreadsArray = Array.from(uniqueThreads);
 
-  /**
-   * TODO: UnitModal
-   * ! Change color to OakGrey5 TagFunctional?????
-   * ? New colors on OWA
-   * ? Rename slugs so they are more specific
-   */
-
   return (
     <>
       {unitData && (
