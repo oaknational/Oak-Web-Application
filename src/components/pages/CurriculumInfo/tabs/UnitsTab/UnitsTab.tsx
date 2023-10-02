@@ -545,7 +545,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                               $justifyContent={"flex-end"}
                             >
                               <Button
-                                aria-label="Unit modal"
                                 icon="chevron-right"
                                 $iconPosition="trailing"
                                 data-testid="unit-modal-button"
