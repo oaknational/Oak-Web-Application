@@ -144,6 +144,10 @@ async function main() {
       process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
     MUX_SIGNING_SECRET:
       process.env.MUX_SIGNING_SECRET || secretsFromNetwork.MUX_SIGNING_SECRET,
+    MUX_SIGNING_KEY_2020:
+      process.env.MUX_SIGNING_KEY_2020 || secretsFromNetwork.MUX_SIGNING_KEY_2020,
+    MUX_SIGNING_SECRET_2020:
+      process.env.MUX_SIGNING_SECRET_2020 || secretsFromNetwork.MUX_SIGNING_SECRET_2020,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
