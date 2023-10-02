@@ -1,3 +1,10 @@
+# [1.262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.261.0...v1.262.0) (2023-10-02)
+
+
+### Features
+
+* point to new curriculum units mv ([22d412f](https://github.com/oaknational/Oak-Web-Application/commit/22d412f8ba9c643cb5da0d05cdac93cff96a43c1))
+
 # [1.261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.2...v1.261.0) (2023-10-02)
 
 
