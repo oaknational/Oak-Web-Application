@@ -1,5 +1,5 @@
-query curriculumUnits($where: published_mv_curriculum_units_1_bool_exp) {
-  units: published_mv_curriculum_units_1(where: $where) {
+query curriculumUnits($where: published_mv_curriculum_units_2_bool_exp) {
+  units: published_mv_curriculum_units_2(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     domain
@@ -7,6 +7,7 @@ query curriculumUnits($where: published_mv_curriculum_units_1_bool_exp) {
     examboard
     examboard_slug
     keystage_slug
+    lessons
     planned_number_of_lessons
     phase
     phase_slug
