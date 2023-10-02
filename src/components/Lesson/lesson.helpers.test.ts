@@ -112,11 +112,11 @@ describe("getPageLinksForLesson()", () => {
     const expected = [
       {
         label: "Slide deck",
-        href: "#slideDeck",
+        href: "#slide-deck",
       },
       {
         label: "Lesson details",
-        href: "#lessonDetails",
+        href: "#lesson-details",
       },
       {
         label: "Video",
@@ -152,11 +152,11 @@ describe("getPageLinksForLesson()", () => {
     const expected = [
       {
         label: "Slide deck",
-        href: "#slideDeck",
+        href: "#slide-deck",
       },
       {
         label: "Lesson details",
-        href: "#lessonDetails",
+        href: "#lesson-details",
       },
       {
         label: "Video",
@@ -168,7 +168,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         label: "Starter quiz",
-        href: "#starterQuiz",
+        href: "#starter-quiz",
       },
       {
         label: "Exit quiz",
@@ -199,7 +199,7 @@ describe("getPageLinksForLesson()", () => {
     const expected = [
       {
         label: "Lesson details",
-        href: "#lessonDetails",
+        href: "#lesson-details",
       },
       {
         label: "Worksheet",

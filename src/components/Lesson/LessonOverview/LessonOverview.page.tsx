@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import {
   getCommonPathway,
@@ -27,9 +27,10 @@ import type {
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
-import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
+import LessonAnchorLinks from "@/components/Lesson/LessonAnchorLinks/LessonAnchorLinks";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
@@ -96,6 +97,44 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
   const pageLinks = getPageLinksForLesson(lesson);
+  const slideDeckSectionRef = useRef<HTMLDivElement>(null);
+  const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
+  const videoSectionRef = useRef<HTMLDivElement>(null);
+  const worksheetSectionRef = useRef<HTMLDivElement>(null);
+  const starterQuizSectionRef = useRef<HTMLDivElement>(null);
+  const exitQuizSectionRef = useRef<HTMLDivElement>(null);
+  const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
+
+  const { currentSection } = useCurrentSection([
+    {
+      id: "slide-deck",
+      ref: slideDeckSectionRef,
+    },
+    {
+      id: "lesson-details",
+      ref: lessonDetailsSectionRef,
+    },
+    {
+      id: "video",
+      ref: videoSectionRef,
+    },
+    {
+      id: "worksheet",
+      ref: worksheetSectionRef,
+    },
+    {
+      id: "starter-quiz",
+      ref: starterQuizSectionRef,
+    },
+    {
+      id: "exit-quiz",
+      ref: exitQuizSectionRef,
+    },
+    {
+      id: "additional-material",
+      ref: additionalMaterialSectionRef,
+    },
+  ]);
 
   return (
     <>
@@ -136,21 +175,32 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
               $display={["none", "block"]}
               $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
-              <ButtonLinkNav
-                ariaLabel="page navigation"
-                buttons={pageLinks}
+              <Flex
+                as="nav"
+                aria-label="page navigation"
                 $flexDirection={"column"}
                 $alignItems={"flex-start"}
                 $gap={[8]}
-                arrowSuffix
-                shallow
                 $pr={[16]}
-              />
+                // arrowSuffix
+                // shallow
+                // ariaLabel="page navigation"
+                // buttons={pageLinks.map((pageLink) => ({
+                //   ...pageLink,
+                //   isCurrentOverride: pageLink.anchorId === currentSection,
+                // }))}
+              >
+                <LessonAnchorLinks
+                  links={pageLinks}
+                  currentSectionId={currentSection}
+                />
+              </Flex>
             </GridArea>
             <GridArea $colSpan={[12, 9]}>
               <Flex $flexDirection={"column"} $position={"relative"}>
                 {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
+                    ref={slideDeckSectionRef}
                     title={"Slide deck"}
                     downloadable={true}
                     onDownloadButtonClick={() => {
@@ -159,7 +209,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       });
                     }}
                     slugs={slugs}
-                    anchorId="slideDeck"
+                    anchorId="slide-deck"
                   >
                     <OverviewPresentation
                       asset={presentationUrl}
@@ -170,8 +220,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
 
                 <LessonItemContainer
+                  ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
-                  anchorId="lessonDetails"
+                  anchorId="lesson-details"
                 >
                   <LessonDetails
                     keyLearningPoints={keyLearningPoints}
@@ -185,7 +236,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 </LessonItemContainer>
 
                 {pageLinks.find((p) => p.label === "Video") && (
-                  <LessonItemContainer title={"Video"} anchorId="video">
+                  <LessonItemContainer
+                    ref={videoSectionRef}
+                    title={"Video"}
+                    anchorId="video"
+                  >
                     <OverviewVideo
                       video={videoMuxPlaybackId}
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
@@ -199,6 +254,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Worksheet") && (
                   <LessonItemContainer
+                    ref={worksheetSectionRef}
                     title={"Worksheet"}
                     anchorId="worksheet"
                     downloadable={true}
@@ -220,8 +276,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
                 {pageLinks.find((p) => p.label === "Starter quiz") && (
                   <LessonItemContainer
+                    ref={starterQuizSectionRef}
                     title={"Starter quiz"}
-                    anchorId="starterQuiz"
+                    anchorId="starter-quiz"
                     downloadable={true}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -237,8 +294,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Exit quiz") && (
                   <LessonItemContainer
+                    ref={exitQuizSectionRef}
                     title={"Exit quiz"}
-                    anchorId="exitQuiz"
+                    anchorId="exit-quiz"
                     downloadable={true}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
@@ -252,8 +310,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 )}
                 {pageLinks.find((p) => p.label === "Additional material") && (
                   <LessonItemContainer
+                    ref={additionalMaterialSectionRef}
                     title={"Additional material"}
-                    anchorId="additionalMaterial"
+                    anchorId="additional-material"
                     downloadable={true}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({

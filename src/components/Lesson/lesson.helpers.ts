@@ -176,55 +176,72 @@ type GetPageLinksForLessonProps = Pick<
   | "exitQuiz"
   | "hasCopyrightMaterial"
 >;
-export const getPageLinksForLesson = (lesson: GetPageLinksForLessonProps) => {
+export type LessonPageLinkAnchorId =
+  | "slide-deck"
+  | "lesson-details"
+  | "video"
+  | "worksheet"
+  | "starter-quiz"
+  | "exit-quiz"
+  | "additional-material";
+export const getPageLinksForLesson = (
+  lesson: GetPageLinksForLessonProps,
+): {
+  label: string;
+  anchorId: LessonPageLinkAnchorId;
+  href: `#${LessonPageLinkAnchorId}`;
+}[] => {
   const PAGE_LINKS: {
     label: string;
-    href: string;
+    anchorId: LessonPageLinkAnchorId;
     condition: (lesson: GetPageLinksForLessonProps) => boolean;
   }[] = [
     {
       label: "Slide deck",
-      href: "#slideDeck",
+      anchorId: "slide-deck",
       condition: (lesson) =>
         Boolean(lesson.presentationUrl && !lesson.hasCopyrightMaterial),
     },
     {
       label: "Lesson details",
-      href: "#lessonDetails",
+      anchorId: "lesson-details",
       condition: () => true,
     },
     {
       label: "Video",
-      href: "#video",
+      anchorId: "video",
       condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
     },
     {
       label: "Worksheet",
-      href: "#worksheet",
+      anchorId: "worksheet",
       condition: (lesson) => Boolean(lesson.worksheetUrl),
     },
     {
       label: "Starter quiz",
-      href: "#starterQuiz",
+      anchorId: "starter-quiz",
       condition: (lesson) =>
         Boolean(lesson.starterQuiz && lesson.starterQuiz.length > 0),
     },
     {
       label: "Exit quiz",
-      href: "#exitQuiz",
+      anchorId: "exit-quiz",
       condition: (lesson) =>
         Boolean(lesson.exitQuiz && lesson.exitQuiz.length > 0),
     },
     {
       label: "Additional material",
-      href: "#additionalMaterial",
+      anchorId: "additional-material",
       condition: (lesson) => Boolean(lesson.additionalMaterialUrl),
     },
   ];
 
-  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
-    (lesson) => pick(lesson, ["label", "href"]),
-  );
+  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson))
+    .map((lesson) => pick(lesson, ["label", "anchorId"]))
+    .map((pageLink) => ({
+      ...pageLink,
+      href: `#${pageLink.anchorId}`,
+    }));
 };
 
 export function groupLessonPathways(pathways: LessonPathway[]) {
