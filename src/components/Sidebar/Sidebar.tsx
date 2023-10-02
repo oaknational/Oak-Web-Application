@@ -74,18 +74,6 @@ const Sidebar: FC<ModalProps> = ({
                     $ph={16}
                     $pb={16}
                   >
-                    <Button
-                      data-testid="close-button"
-                      icon="cross"
-                      aria-label="Close"
-                      size="large"
-                      label={"Close"}
-                      $iconPosition={"trailing"}
-                      variant="minimal"
-                      onClick={onClose}
-                      aria-expanded={displayModal}
-                      $hoverStyles={["underline-link-text"]}
-                    />
                     {!unitOptionsAvailable && (
                       <Flex
                         $flexDirection={["column", "row"]}
