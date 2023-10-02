@@ -15,8 +15,14 @@ import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
-  unitData?: Unit | null;
+  unitData: Unit | null;
+  unitOptionsAvailable?: boolean;
 };
+
+/**
+ * ! speak to someone regarding state management for lesson button
+ * ! Custom Hook to render lesson button will be required for state management
+ */
 
 const Sidebar: FC<ModalProps> = ({
   displayModal,

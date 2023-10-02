@@ -15,7 +15,7 @@ import {
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()} />,
+      <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()}>
+      <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit}>
         <div data-testid="sidebar-children" />
       </Sidebar>,
     );
@@ -33,7 +33,7 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with a close icon and close button", () => {
     const { getAllByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()} />,
+      <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,
     );
 
     expect(getAllByTestId("close-button")).toHaveLength(2);
@@ -43,7 +43,7 @@ describe("Sidebar component", () => {
   test.skip("aria-expanded should be false when sidebar is closed", async () => {
     const mockClose = jest.fn();
     const { getByLabelText } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={mockClose} />,
+      <Sidebar displayModal={true} onClose={mockClose} unitData={mockUnit} />,
     );
 
     const user = userEvent.setup();
@@ -55,7 +55,7 @@ describe("Sidebar component", () => {
     expect(closeButton).toHaveAttribute("aria-expanded", "false");
   });
 
-  describe.only("Unit lessons button", () => {
+  describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
         <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,

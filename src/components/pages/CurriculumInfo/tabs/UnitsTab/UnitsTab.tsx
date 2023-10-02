@@ -24,7 +24,7 @@ type UnitsTabProps = {
 
 export type Unit = CurriculumUnitsTabData["units"][number];
 
-interface Thread {
+export interface Thread {
   title: string;
   slug: string;
   order: number;
@@ -67,6 +67,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   } = {};
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
+  const [unitOptionsAvailable, setUnitOptionsAvailable] = useState(false);
 
   const handleOpenModal = () => {
     setDisplayModal((prev) => !prev);
@@ -74,6 +75,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   const handleCloseModal = () => {
     setDisplayModal(false);
+    // remove
+    setUnitOptionsAvailable(false);
   };
 
   const modalButtonRef = useRef<HTMLButtonElement>(null);
@@ -558,9 +561,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Sidebar
                       displayModal={displayModal}
                       onClose={handleCloseModal}
+                      unitOptionsAvailable={unitOptionsAvailable}
                       unitData={unitData}
                     >
-                      <UnitModal unitData={unitData} />
+                      <UnitModal
+                        unitData={unitData}
+                        displayModal={displayModal}
+                        // unitOptionsAvailable={unitOptionsAvailable}
+                        // setUnitOptionsAvailable={setUnitOptionsAvailable}
+                      />
                     </Sidebar>
                   </Flex>
                 </Box>

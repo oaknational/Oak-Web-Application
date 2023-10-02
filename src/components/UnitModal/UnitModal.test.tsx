@@ -11,14 +11,74 @@ const optionalUnits = [
   {
     title: "Test optional unit 1",
     unitvariant_id: 1,
+    connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_description:
+      "Test connection future unit description",
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
   {
     title: "Test optional unit 2",
     unitvariant_id: 2,
+    connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_description:
+      "Test connection future unit description",
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
   {
     title: "Test optional unit 3",
     unitvariant_id: 3,
+    connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_description:
+      "Test connection future unit description",
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
 ];
 
@@ -33,6 +93,23 @@ export const mockUnit: Unit = {
   phase: "Primary",
   phase_slug: "primary",
   planned_number_of_lessons: 15,
+  lessons: [
+    {
+      slug: "lesson-1",
+      title: "Lesson 1",
+      order: 1,
+    },
+    {
+      slug: "lesson-2",
+      title: "Lesson 2",
+      order: 2,
+    },
+    {
+      slug: "lesson-3",
+      title: "Lesson 3",
+      order: 3,
+    },
+  ],
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,
@@ -66,6 +143,7 @@ export const mockOptionalityUnit: Unit = {
   examboard_slug: null,
   keystage_slug: "ks1",
   phase: "Primary",
+  lessons: [],
   phase_slug: "primary",
   planned_number_of_lessons: 15,
   slug: "composition-of-numbers-6-to-10",
@@ -94,13 +172,15 @@ export const mockOptionalityUnit: Unit = {
 
 describe("Unit modal", () => {
   test("renders with correct heading", () => {
-    const { getByText } = renderWithTheme(<UnitModal unitData={mockUnit} />);
+    const { getByText } = renderWithTheme(
+      <UnitModal unitData={mockUnit} displayModal={true} />,
+    );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
   });
 
   test("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
-      <UnitModal unitData={mockUnit} />,
+      <UnitModal unitData={mockUnit} displayModal={true} />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
     const testThread2 = getByText("Number");
@@ -112,7 +192,7 @@ describe("Unit modal", () => {
 
   test.skip("lesson metadata is correct", () => {
     const { getByTestId, getByText } = renderWithTheme(
-      <UnitModal unitData={mockUnit} />,
+      <UnitModal unitData={mockUnit} displayModal={true} />,
     );
 
     const x = getByTestId("lesson-metadata");
@@ -124,7 +204,7 @@ describe("Unit modal", () => {
   describe("non-optional units", () => {
     test("does not render optionality card", () => {
       const { queryAllByTestId } = renderWithTheme(
-        <UnitModal unitData={mockUnit} />,
+        <UnitModal unitData={mockUnit} displayModal={true} />,
       );
 
       expect(queryAllByTestId("unit-option-card")).toHaveLength(0);
@@ -134,7 +214,7 @@ describe("Unit modal", () => {
   describe("optional units", () => {
     test("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitModal unitData={mockOptionalityUnit} />,
+        <UnitModal unitData={mockOptionalityUnit} displayModal={true} />,
       );
 
       const optionalityCard = getByTestId("unit-options-card");
@@ -143,7 +223,7 @@ describe("Unit modal", () => {
 
     test("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
-        <UnitModal unitData={mockOptionalityUnit} />,
+        <UnitModal unitData={mockOptionalityUnit} displayModal={true} />,
       );
 
       expect(getAllByTestId("unit-option")).toHaveLength(3);
