@@ -64,6 +64,7 @@
     "@bugsnag/plugin-react": "^7.19.0",
     "@hookform/resolvers": "^3.3.1",
     "@hubspot/api-client": "^9.1.1",
+    "@mux/mux-node": "^7.3.2",
     "@mux/mux-player-react": "^1.14.2",
     "@portabletext/react": "^1.0.6",
     "@react-aria/aria-modal-polyfill": "^3.6.0",
