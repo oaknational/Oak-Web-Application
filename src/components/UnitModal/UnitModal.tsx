@@ -70,9 +70,12 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
               <Box
                 $position={"relative"}
                 $background={"pink30"}
-                $pa={12}
+                $pt={12}
+                $pb={24}
+                $ph={18}
                 $mb={40}
                 data-testid="unit-options-card"
+                $borderRadius={4}
               >
                 <Heading
                   tag="h4"
@@ -139,7 +142,6 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
                     );
                   })}
                 </Flex>
-                <BrushBorders color="pink30" />
               </Box>
             )}
           </Box>

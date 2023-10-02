@@ -523,7 +523,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                 {unit.title}
                               </Heading>
                               {unit.unit_options.length > 1 && (
-                                <Box $mt={12} data-testid="options-tag">
+                                <Box
+                                  $mt={12}
+                                  $zIndex={"inFront"}
+                                  data-testid="options-tag"
+                                  $position={"relative"}
+                                >
                                   <TagFunctional
                                     color="lavender"
                                     text={`${unit.unit_options.length} unit options`}
@@ -543,7 +548,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                 icon="chevron-right"
                                 $iconPosition="trailing"
                                 data-testid="unit-modal-button"
-                                variant="minimal"
+                                variant={isHighlighted ? "brush" : "minimal"}
+                                background={isHighlighted ? "black" : undefined}
                                 label="Unit info"
                                 onClick={() => {
                                   handleOpenModal();
