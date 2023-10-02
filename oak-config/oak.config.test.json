@@ -16,6 +16,9 @@
     "fallbackFormId": "uuid-r0439f4fd-f43j04g-d-3r9",
     "requiredSecrets": ["HUBSPOT_FORMS_ACCESS_TOKEN"]
   },
+  "mux": {
+    "requiredSecrets": ["MUX_SIGNING_KEY", "MUX_SIGNING_SECRET"]
+  },
   "oak": {
     "appBaseUrl": "http://localhost:3000",
     "appName": "Oak Web Application",
