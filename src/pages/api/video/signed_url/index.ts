@@ -1,7 +1,9 @@
 /**
- * API route to generate a signed URL for a Mux video or thumbnail.
+ * API route to generate a token for a signed URL for a Mux video or thumbnail.
  *
  * e.g. /api/video/signed_url?id=abc&type=video
+ *
+ * See https://www.npmjs.com/package/@mux/mux-node
  */
 
 import Mux from "@mux/mux-node";
