@@ -77,11 +77,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }
 
   return (
-    <AppLayout
-      seoProps={BETA_SEO_PROPS}
-      $background={"white"}
-      headerVariant="landing-pages"
-    >
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
       <CurriculumHeader
         subjectPhaseOptions={subjectPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
