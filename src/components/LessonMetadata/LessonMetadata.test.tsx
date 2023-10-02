@@ -1,11 +1,11 @@
-import HeaderMetadata from "./LessonMetadata";
+import LessonMetadata from "./LessonMetadata";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("HeaderMetadata", () => {
+describe("LessonMetadata", () => {
   it("renders year and examboard when passed in", () => {
     const { getByText } = renderWithTheme(
-      <HeaderMetadata yearTitle={"Year 5"} examBoardTitle={"AQA"} />,
+      <LessonMetadata yearTitle={"Year 5"} examBoardTitle={"AQA"} />,
     );
     const yearTitle = getByText("Year 5");
     expect(yearTitle).toBeInTheDocument();
@@ -14,7 +14,7 @@ describe("HeaderMetadata", () => {
   });
   it("renders year and tier when passed in", () => {
     const { getByText } = renderWithTheme(
-      <HeaderMetadata yearTitle={"Year 5"} tierTitle={"Foundation"} />,
+      <LessonMetadata yearTitle={"Year 5"} tierTitle={"Foundation"} />,
     );
     const yearTitle = getByText("Year 5");
     expect(yearTitle).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe("HeaderMetadata", () => {
   });
   it("separates year, exam board and tier with a divider only between elements", () => {
     const { getAllByText } = renderWithTheme(
-      <HeaderMetadata
+      <LessonMetadata
         yearTitle={"Year 5"}
         tierTitle={"Foundation"}
         examBoardTitle={"AQA"}
