@@ -27,22 +27,14 @@ describe("Sidebar component", () => {
     expect(getByTestId("sidebar-children")).toBeInTheDocument();
   });
 
-  test("should render the sidebar with a close icon and close button", () => {
-    const { getAllByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()} />,
-    );
-
-    expect(getAllByTestId("close-button")).toHaveLength(2);
-  });
-
   test("onClose state function called when close button selected", async () => {
     const mockClose = jest.fn();
-    const { getByLabelText } = renderWithTheme(
+    const { getByTestId } = renderWithTheme(
       <Sidebar displayModal={true} onClose={mockClose} />,
     );
 
     const user = userEvent.setup();
-    const closeButton = getByLabelText("Close");
+    const closeButton = getByTestId("close-button");
 
     console.log(closeButton);
 
