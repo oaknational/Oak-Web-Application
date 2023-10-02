@@ -1,3 +1,10 @@
+## [1.260.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.1...v1.260.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* removed header variant from app layout ([819a031](https://github.com/oaknational/Oak-Web-Application/commit/819a0315ccce5324d4b45bf0e5a55ba0669360d8))
+
 ## [1.260.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.0...v1.260.1) (2023-10-02)
 
 
