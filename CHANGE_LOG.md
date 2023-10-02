@@ -1,3 +1,11 @@
+## [1.262.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.0...v1.262.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* make new param optional with defaul value ([6caae0f](https://github.com/oaknational/Oak-Web-Application/commit/6caae0fb30ed6742a3fdd2f58359611ecb72ffc6))
+* make new videos play using public playback policy ([21ee1e4](https://github.com/oaknational/Oak-Web-Application/commit/21ee1e46fe7e3d39adb7f5308c6742d2f3f0174f))
+
 # [1.262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.261.0...v1.262.0) (2023-10-02)
 
 
