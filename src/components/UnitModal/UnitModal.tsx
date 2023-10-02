@@ -39,7 +39,7 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
           <Box $ph={[24, 72]}>
             <LessonMetadata
               subjectTitle={unitData.subject}
-              year={unitData.year}
+              yearTitle={`Year ${unitData.year}`}
             />
             <Heading $mb={40} tag="h2" $font={"heading-5"}>
               {unitData.title}
