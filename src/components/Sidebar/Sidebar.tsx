@@ -78,6 +78,7 @@ const Sidebar: FC<ModalProps> = ({
                       <Flex
                         $flexDirection={["column", "row"]}
                         $alignItems={"flex-start"}
+                        $gap={8}
                       >
                         <TagFunctional text={"Coming soon"} color="grey" />
                         <Button
