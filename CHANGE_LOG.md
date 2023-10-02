@@ -1,3 +1,28 @@
+# [1.262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.261.0...v1.262.0) (2023-10-02)
+
+
+### Features
+
+* point to new curriculum units mv ([22d412f](https://github.com/oaknational/Oak-Web-Application/commit/22d412f8ba9c643cb5da0d05cdac93cff96a43c1))
+
+# [1.261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.2...v1.261.0) (2023-10-02)
+
+
+### Bug Fixes
+
+* add key to fragments ([f8fb965](https://github.com/oaknational/Oak-Web-Application/commit/f8fb9654c3614e6f0cdfc22d5a35ae4eea0f6c71))
+* make bullet point element hidden for screen readers ([feb010a](https://github.com/oaknational/Oak-Web-Application/commit/feb010a2d3ee1b27bfee46610ddb82b7132d2c23))
+* make yearTitle nullish so it doesn't break for old lessons ([5f664ce](https://github.com/oaknational/Oak-Web-Application/commit/5f664ce426570493a19847756b8f9d43aa59b5ec))
+* only show headerMetadata when yearTitle is available ([c6f9424](https://github.com/oaknational/Oak-Web-Application/commit/c6f9424f44fbfe0a843a49b221367ac0d231e191))
+
+
+### Features
+
+* add HeaderMetadata component ([8a4d100](https://github.com/oaknational/Oak-Web-Application/commit/8a4d100363974084f03eda2ffdf02a2bc54a5b67))
+* add tierTitle to lesson listing schema ([9fc5612](https://github.com/oaknational/Oak-Web-Application/commit/9fc561251c9cd05f52552d2478815246375e86af))
+* update gql query for lesson listing ([b978194](https://github.com/oaknational/Oak-Web-Application/commit/b978194a782222713e7b57d56279e42624c222ab))
+* use new HeaderMetadata in header listing ([aef6c5c](https://github.com/oaknational/Oak-Web-Application/commit/aef6c5cbaada58243b74ed6a37df9d9eb49179a2))
+
 ## [1.260.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.1...v1.260.2) (2023-10-02)
 
 
