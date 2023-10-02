@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
-import TagPromotional from "../TagPromotional/TagPromotional";
+import TagPromotional from "../TagPromotional";
 import Flex from "../Flex/Flex";
 
 import { BurgerMenuLink, linkIsHref } from "./types";

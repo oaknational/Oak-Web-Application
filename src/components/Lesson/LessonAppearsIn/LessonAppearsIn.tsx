@@ -61,7 +61,7 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
               </Heading>
               <Grid $rg={16} $cg={16}>
                 {examBoards.map((examBoard, index) => {
-                  const tagColors: TagColor[] = ["aqua", "pink", "yellow"];
+                  const tagColors: TagColor[] = ["aqua", "pink", "lemon"];
                   const tagColor =
                     tagColors[index % tagColors.length] || "aqua";
 
