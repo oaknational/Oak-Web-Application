@@ -33,6 +33,7 @@ const AppHeader: FC<HeaderProps> = () => {
       $justifyContent={["space-between"]}
       $alignItems={["center"]}
       $zIndex="fixedHeader"
+      $position={"relative"}
     >
       <Flex
         $justifyContent={"space-between"}

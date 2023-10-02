@@ -1,3 +1,36 @@
+## [1.260.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.1...v1.260.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* removed header variant from app layout ([819a031](https://github.com/oaknational/Oak-Web-Application/commit/819a0315ccce5324d4b45bf0e5a55ba0669360d8))
+
+## [1.260.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.0...v1.260.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* removed text from school phase picker ([ce5a55e](https://github.com/oaknational/Oak-Web-Application/commit/ce5a55e16803ed076b84767a1d33d0664a6d1dc8))
+
+# [1.260.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.259.1...v1.260.0) (2023-09-29)
+
+
+### Features
+
+* **homepage:** homepage banner ([85e40cc](https://github.com/oaknational/Oak-Web-Application/commit/85e40cca9887f40911d6b7e2c536f1337e774a1b))
+* **homepage:** padding ([6e08e5e](https://github.com/oaknational/Oak-Web-Application/commit/6e08e5e8d1a3d112e2a968dc6c84491d25add5a8))
+* **homepage:** padding ([e4fd2c4](https://github.com/oaknational/Oak-Web-Application/commit/e4fd2c4ef1b2dd9605385d7607a76758c549325a))
+* **homepage:** refactor banner ([cf61968](https://github.com/oaknational/Oak-Web-Application/commit/cf6196825d613695d2319297713ee82c4c9f9df8))
+* **homepage:** refactor banner ([96c1062](https://github.com/oaknational/Oak-Web-Application/commit/96c106258a840dc5be2f629fdd43b2d59241c17b))
+* **homepage:** style fixes ([f3c0322](https://github.com/oaknational/Oak-Web-Application/commit/f3c0322700d8bd0137cdf9736d486b482d39a3e5))
+
+## [1.259.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.259.0...v1.259.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* update subject phase picker options api request ([ef79dd8](https://github.com/oaknational/Oak-Web-Application/commit/ef79dd8df1cbb2969b9680aeeacd89dbfc527482))
+
 # [1.259.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.258.0...v1.259.0) (2023-09-29)
 
 
