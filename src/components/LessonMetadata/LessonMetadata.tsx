@@ -24,7 +24,7 @@ const LessonMetadata: FC<{
   const metadataElements = metadata.map((value, i) => (
     <React.Fragment key={`${value}`}>
       <Typography>{value}</Typography>
-      {i + 1 !== metadata.length && <Typography>•</Typography>}
+      {i + 1 < metadata.length && <Typography>•</Typography>}
     </React.Fragment>
   ));
 
