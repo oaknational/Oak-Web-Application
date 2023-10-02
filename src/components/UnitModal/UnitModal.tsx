@@ -17,7 +17,7 @@ type UnitModalProps = {
 const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
   if (!unitData) return null;
   const uniqueThreads = new Set<string>();
-  const unitOptionsAvailable = unitData.unit_options.length > 0 ? true : false;
+  const unitOptionsAvailable = unitData.unit_options.length > 0;
 
   unitData.threads.forEach((thread) => {
     uniqueThreads.add(thread.title);

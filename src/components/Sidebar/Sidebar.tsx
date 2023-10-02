@@ -26,7 +26,7 @@ const Sidebar: FC<ModalProps> = ({
 }) => {
   let unitOptionsAvailable = false;
   if (unitData) {
-    unitOptionsAvailable = unitData.unit_options.length > 0 ? true : false;
+    unitOptionsAvailable = unitData.unit_options.length > 0;
   }
   return (
     <Transition in={displayModal} timeout={300}>
