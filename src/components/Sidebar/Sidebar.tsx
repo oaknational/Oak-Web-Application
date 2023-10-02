@@ -66,15 +66,15 @@ const Sidebar: FC<ModalProps> = ({
                 <Flex $overflowY={"auto"} $flexGrow={1}>
                   {children}
                 </Flex>
-                <Flex $flexDirection={"column"}>
-                  <Hr $color={"oakGrey2"} $mt={0} $mb={24} />
-                  <Flex
-                    $justifyContent={"space-between"}
-                    $alignItems={["flex-end"]}
-                    $ph={16}
-                    $pb={16}
-                  >
-                    {!unitOptionsAvailable && (
+                {!unitOptionsAvailable && (
+                  <Flex $flexDirection={"column"}>
+                    <Hr $color={"oakGrey2"} $mt={0} $mb={24} />
+                    <Flex
+                      $justifyContent={"space-between"}
+                      $alignItems={["flex-end"]}
+                      $ph={16}
+                      $pb={16}
+                    >
                       <Flex
                         $flexDirection={["column", "row"]}
                         $alignItems={"flex-start"}
@@ -94,9 +94,9 @@ const Sidebar: FC<ModalProps> = ({
                           variant="buttonStyledAsLink"
                         />
                       </Flex>
-                    )}
+                    </Flex>
                   </Flex>
-                </Flex>
+                )}
               </Flex>
             </SideMenu>
           </FocusOn>
