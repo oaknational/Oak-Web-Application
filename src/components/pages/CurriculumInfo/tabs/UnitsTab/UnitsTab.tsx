@@ -525,6 +525,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                               {unit.unit_options.length > 1 && (
                                 <Box
                                   $mt={12}
+                                  $mb={20}
                                   $zIndex={"inFront"}
                                   data-testid="options-tag"
                                   $position={"relative"}
