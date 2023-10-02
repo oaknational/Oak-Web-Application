@@ -17,7 +17,9 @@ const LessonMetadata: FC<{
   const metadataElements = metadata.map((value, i) => (
     <React.Fragment key={`${value}-${i}`}>
       <Typography>{value}</Typography>
-      {i + 1 !== metadata.length && <Typography>•</Typography>}
+      {i + 1 !== metadata.length && (
+        <Typography aria-hidden={true}>•</Typography>
+      )}
     </React.Fragment>
   ));
 
