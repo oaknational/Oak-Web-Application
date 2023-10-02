@@ -1,3 +1,10 @@
+## [1.262.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.1...v1.262.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* various tweaks ([ca00561](https://github.com/oaknational/Oak-Web-Application/commit/ca005615335e3320810188080590db2ea29159b5))
+
 ## [1.262.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.0...v1.262.1) (2023-10-02)
 
 
