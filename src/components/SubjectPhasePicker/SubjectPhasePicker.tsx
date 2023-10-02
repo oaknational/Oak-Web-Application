@@ -568,7 +568,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </P>
                     </Flex>
                   ) : (
-                    "Exam board"
+                    ""
                   )}
                   <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:
