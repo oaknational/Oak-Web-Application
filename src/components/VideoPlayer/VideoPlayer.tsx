@@ -40,6 +40,7 @@ export type VideoPlayerProps = {
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
+  temporaryUsePublicVideos: boolean; // TODO: remove this temporary param to display public videos for new content
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -49,6 +50,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
+    temporaryUsePublicVideos,
   } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
@@ -174,9 +176,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        tokens={tokens}
+        tokens={temporaryUsePublicVideos ? undefined : tokens} // TODO: remove this temporary workaround
         thumbnailTime={thumbTime || undefined}
-        customDomain={"video.thenational.academy"}
+        customDomain={
+          temporaryUsePublicVideos ? undefined : "video.thenational.academy"
+        } // TODO: remove this temporary workaround (custom domain doesn't work with public videos)
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}
