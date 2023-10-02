@@ -40,7 +40,7 @@ export type VideoPlayerProps = {
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
-  temporaryUsePublicVideos: boolean; // TODO: remove this temporary param to display public videos for new content
+  temporaryUsePublicVideos?: boolean; // TODO: remove this temporary param to display public videos for new content
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -50,7 +50,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
-    temporaryUsePublicVideos,
+    temporaryUsePublicVideos = false,
   } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
