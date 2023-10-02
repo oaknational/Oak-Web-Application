@@ -139,6 +139,12 @@ async function main() {
     NEXT_PUBLIC_DOWNLOAD_API_URL:
       process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
 
+    // Mux
+    MUX_SIGNING_KEY:
+      process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
+    MUX_SIGNING_SECRET:
+      process.env.MUX_SIGNING_SECRET || secretsFromNetwork.MUX_SIGNING_SECRET,
+
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:
       process.env.NEXT_PUBLIC_POSTHOG_API_HOST || oakConfig.posthog?.apiHost,
