@@ -29,6 +29,7 @@ import LessonDetails from "@/components/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import ButtonLinkNav from "@/components/ButtonLinkNav/ButtonLinkNav";
 import HeaderLesson from "@/components/HeaderLesson";
+import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
@@ -190,6 +191,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                       title={lessonTitle}
                       transcriptSentences={transcriptSentences}
+                      temporaryUsePublicVideos={
+                        !isSlugLegacy(programmeSlug ?? "")
+                      }
                     />
                   </LessonItemContainer>
                 )}
