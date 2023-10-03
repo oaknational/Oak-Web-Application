@@ -1,3 +1,25 @@
+## [1.262.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.1...v1.262.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* various tweaks ([ca00561](https://github.com/oaknational/Oak-Web-Application/commit/ca005615335e3320810188080590db2ea29159b5))
+
+## [1.262.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.0...v1.262.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* make new param optional with defaul value ([6caae0f](https://github.com/oaknational/Oak-Web-Application/commit/6caae0fb30ed6742a3fdd2f58359611ecb72ffc6))
+* make new videos play using public playback policy ([21ee1e4](https://github.com/oaknational/Oak-Web-Application/commit/21ee1e46fe7e3d39adb7f5308c6742d2f3f0174f))
+
+# [1.262.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.261.0...v1.262.0) (2023-10-02)
+
+
+### Features
+
+* point to new curriculum units mv ([22d412f](https://github.com/oaknational/Oak-Web-Application/commit/22d412f8ba9c643cb5da0d05cdac93cff96a43c1))
+
 # [1.261.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.260.2...v1.261.0) (2023-10-02)
 
 
