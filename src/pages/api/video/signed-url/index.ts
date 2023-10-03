@@ -66,7 +66,7 @@ async function handleRequest(
   }
 
   const baseOptions = legacy ? auth2020 : auth2023;
-  console.log("diego key", baseOptions.keyId);
+
   let token;
   try {
     token = Mux.JWT.signPlaybackId(id, {
