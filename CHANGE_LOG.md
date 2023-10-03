@@ -1,3 +1,10 @@
+# [1.264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.1...v1.264.0) (2023-10-03)
+
+
+### Features
+
+* added help centre banner to new units page ([e205ed4](https://github.com/oaknational/Oak-Web-Application/commit/e205ed4a78705fd5c65779926be14481ae04ea11))
+
 ## [1.263.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.0...v1.263.1) (2023-10-03)
 
 
