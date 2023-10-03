@@ -11,6 +11,7 @@ export const mockUnit: Unit = {
   phase: "Primary",
   phase_slug: "primary",
   planned_number_of_lessons: 15,
+  lessons: [],
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,
@@ -39,14 +40,26 @@ const optionalUnits = [
   {
     title: "Test optional unit 1",
     unitvariant_id: 1,
+    connection_future_unit_description:
+      "Test connection future unit description",
+    connection_prior_unit_description: "Test connection prior unit description",
+    lessons: [],
   },
   {
     title: "Test optional unit 2",
     unitvariant_id: 2,
+    connection_future_unit_description:
+      "Test connection future unit description",
+    connection_prior_unit_description: "Test connection prior unit description",
+    lessons: [],
   },
   {
     title: "Test optional unit 3",
     unitvariant_id: 3,
+    connection_future_unit_description:
+      "Test connection future unit description",
+    connection_prior_unit_description: "Test connection prior unit description",
+    lessons: [],
   },
 ];
 
