@@ -37,6 +37,9 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
       $pa={8}
       $background={containerBackgroundColor}
     >
+      {answerIsCorrect && (
+        <VisuallyHidden>Correct Answer: {removeMarkdown(alt)}</VisuallyHidden>
+      )}
       <Flex
         $background={containerBackgroundColor}
         $alignItems={"center"}
@@ -44,7 +47,6 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
         aria-hidden
       >
         {answerIsCorrect && <Icon data-testid={"answer-tick"} name={"tick"} />}
-        <VisuallyHidden>Correct Answer: {removeMarkdown(alt)}</VisuallyHidden>
       </Flex>
       <Flex $ba={1} $background={"white"} $borderRadius={8}>
         <Flex
