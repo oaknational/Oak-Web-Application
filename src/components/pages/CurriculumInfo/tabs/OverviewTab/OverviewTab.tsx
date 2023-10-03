@@ -28,6 +28,51 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
   const { subjectSlug } = curriculumSelectionSlugs;
+
+  const createBullet = (item: string, i: number) => (
+    <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
+      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+        <Flex
+          $background={"mint"}
+          $borderRadius={"50%"}
+          $borderColor="mint"
+          $mr={10}
+        >
+          <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+        </Flex>
+        {item}
+      </Flex>
+    </LI>
+  );
+  const itemiseSubjectPrinciples = (item: string, i: number) => {
+    if (item.includes(" • ")) {
+      const sublist = item.split(" • ");
+      if (sublist.length > 0 && typeof sublist[0] === "string") {
+        const firstItem = sublist[0];
+        const bulletItems = sublist.slice(1);
+        const bullets = bulletItems.map((listItem, li) => (
+          <LI
+            listStyle={"disc"}
+            data-testid="sp-subbullet"
+            key={`${firstItem.split(" ").join("-")}-sb-${li}`}
+            $ml={10}
+            $mt={4}
+            $mb={6}
+          >
+            {listItem}
+          </LI>
+        ));
+        return (
+          <Box $mb={10}>
+            {createBullet(firstItem, i)}
+            <UL>{bullets}</UL>
+          </Box>
+        );
+      }
+    } else {
+      return createBullet(item, i);
+    }
+  };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
       <Flex $mv={10}>
@@ -79,37 +124,19 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       </Flex>
       <Card
         $maxWidth={"100%"}
-        $background={"aqua30"}
+        $background={"mint30"}
         $zIndex={"neutral"}
         $mb={80}
       >
-        <BrushBorders color={"aqua30"} />
+        <BrushBorders color={"mint30"} />
         <Box $ma={16}>
           <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
-            {subjectPrinciples.map((item, i) => (
-              <LI
-                $mb={[12]}
-                key={`principle-${i + 1}`}
-                data-testid="subject-principles"
-              >
-                <Flex $alignItems={"center"}>
-                  <Flex
-                    $background={"aqua"}
-                    $borderRadius={"50%"}
-                    $borderColor="aqua"
-                    $mt={[4]}
-                    $mr={10}
-                    $pa={1}
-                  >
-                    <Icon name="arrow-right" $ma={"auto"} $pa={2} />
-                  </Flex>
-                  {item}
-                </Flex>
-              </LI>
-            ))}
+            {subjectPrinciples.map((item, i) =>
+              itemiseSubjectPrinciples(item, i),
+            )}
           </UL>
         </Box>
       </Card>
