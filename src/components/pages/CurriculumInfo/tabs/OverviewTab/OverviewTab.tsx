@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import { Heading, UL, LI } from "@/components/Typography";
+import { P, Heading, UL, LI } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -12,6 +12,8 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import CMSImage from "@/components/CMSImage";
+import CMSVideo from "@/components/CMSVideo";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 export type OverviewTabProps = {
   data: {
@@ -24,10 +26,18 @@ export type OverviewTabProps = {
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
-  const { subjectPrinciples, partnerBio, curriculumPartner } =
-    curriculumCMSInfo;
+  const {
+    subjectPrinciples,
+    partnerBio,
+    curriculumPartner,
+    video,
+    videoAuthor,
+  } = curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
-  const { subjectSlug } = curriculumSelectionSlugs;
+  const { subjectSlug, phaseSlug, examboardSlug } = curriculumSelectionSlugs;
+  const subjectPhaseSlug = examboardSlug
+    ? `${subjectSlug}-${phaseSlug}-${examboardSlug}`
+    : `${subjectSlug}-${phaseSlug}`;
 
   const createBullet = (item: string, i: number) => (
     <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
@@ -140,7 +150,52 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </UL>
         </Box>
       </Card>
-
+      {video && videoAuthor && (
+        <Flex
+          $mb={80}
+          $alignItems={"center"}
+          $justifyContent={"flex-start"}
+          $gap={120}
+        >
+          <Box $minWidth={["50%"]}>
+            <CMSVideo video={video} location="lesson" />
+          </Box>
+          <Flex
+            $flexDirection={"column"}
+            $width={"30%"}
+            $alignItems={"flex-start"}
+            $gap={16}
+          >
+            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+              Video guide
+            </Heading>
+            <P>
+              Our new curriculum sequence has recently launched. For additional
+              support, watch this video guide by {videoAuthor} from our
+              educational team, as they talk you through how to use this new
+              tool.
+            </P>
+            <ButtonAsLink
+              label="Read more about our new curriculum"
+              page={"develop-your-curriculum"}
+              icon="chevron-right"
+              background={"white"}
+              $iconPosition="trailing"
+              iconBackground="white"
+              $textAlign={"start"}
+            />
+            <ButtonAsLink
+              subjectPhaseSlug={subjectPhaseSlug}
+              label="View unit sequence"
+              page={"curriculum-units"}
+              icon="arrow-right"
+              $iconPosition="trailing"
+              iconBackground="black"
+              $textAlign={"start"}
+            />
+          </Flex>
+        </Flex>
+      )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
         <Flex
