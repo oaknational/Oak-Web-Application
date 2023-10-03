@@ -24,7 +24,7 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
             Oak's curricula
           </Heading>
           <P $font={["body-2", "body-1"]}>
-            Our curricula covers all the national curriculum subjects across
+            Oak's curricula cover all the national curriculum subjects across
             primary and secondary. Use our fully-sequenced units of lessons as
             high-quality models that represent great design from across the
             sector.

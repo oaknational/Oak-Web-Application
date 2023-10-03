@@ -7,9 +7,13 @@ import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
 import CMSImage from "../CMSImage/CMSImage";
 import Flex from "../Flex/Flex";
 import Box from "../Box/Box";
-import TagPromotional from "../TagPromotional/TagPromotional";
+import TagPromotional from "../TagPromotional";
 import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
-import { CommonButtonProps, HTMLButtonProps } from "../Button/common";
+import {
+  ButtonHoverStyle,
+  CommonButtonProps,
+  HTMLButtonProps,
+} from "../Button/common";
 import Illustration from "../Illustration/Illustration";
 
 import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
@@ -38,7 +42,7 @@ export type HomePageNavTabImageButtonStylesProps = OpacityProps &
   MarginProps & {
     disabled?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
     isCurrent?: boolean;
   };

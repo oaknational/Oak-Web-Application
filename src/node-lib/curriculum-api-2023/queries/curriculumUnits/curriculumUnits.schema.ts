@@ -3,35 +3,54 @@ import { z } from "zod";
 const curriculumUnitsSchema = z.object({
   units: z
     .object({
-      title: z.string(),
-      slug: z.string(),
       connection_prior_unit_description: z.string().nullable(),
       connection_future_unit_description: z.string().nullable(),
+      domain: z.string().nullable(),
+      domain_id: z.number().nullable(),
+      examboard: z.string().nullable(),
+      examboard_slug: z.string().nullable(),
       planned_number_of_lessons: z.number().nullable(),
+      phase: z.string(),
+      phase_slug: z.string(),
+      keystage_slug: z.string(),
+      lessons: z
+        .array(
+          z.object({
+            title: z.string(),
+          }),
+        )
+        .nullable(),
+      slug: z.string(),
       subject: z.string(),
       subject_slug: z.string(),
       subject_parent: z.string().nullable(),
       subject_parent_slug: z.string().nullable(),
-      phase: z.string(),
-      phase_slug: z.string(),
-      year: z.string(),
-      keystage_slug: z.string(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
-      examboard: z.string().nullable(),
-      examboard_slug: z.string().nullable(),
       threads: z.array(
         z.object({
           title: z.string(),
           slug: z.string(),
+          order: z.number(),
         }),
       ),
-      domains: z.array(
+      title: z.string(),
+      unit_options: z.array(
         z.object({
+          connection_prior_unit_description: z.string().nullable(),
+          connection_future_unit_description: z.string().nullable(),
           title: z.string(),
-          tag_id: z.number(),
+          unitvariant_id: z.number(),
+          lessons: z.array(
+            z.object({
+              order: z.number(),
+              slug: z.string(),
+              title: z.string(),
+            }),
+          ),
         }),
       ),
+      year: z.string(),
     })
     .strict()
     .array(),

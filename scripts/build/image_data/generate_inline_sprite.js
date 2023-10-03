@@ -18,12 +18,18 @@ async function main() {
         asset->
       }
     },
+    logo {
+      image {
+        asset->
+      }
+    },
   }`);
 
-    const { logoWithText } = inlineSpriteAssetRes;
+    const { logoWithText, logo } = inlineSpriteAssetRes;
 
     const assetsByName = {
       "logo-with-text": logoWithText,
+      logo: logo,
     };
 
     /**

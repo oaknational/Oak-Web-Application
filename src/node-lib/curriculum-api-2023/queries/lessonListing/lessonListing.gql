@@ -1,5 +1,5 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_lesson_listing_13(
+  unit: published_mv_lesson_listing_15(
     where: {
       programmeSlug: { _eq: $programmeSlug }
       unitSlug: { _eq: $unitSlug }
@@ -14,6 +14,8 @@ query lessonListing($programmeSlug: String!, $unitSlug: String!) {
     subjectTitle
     examBoardSlug: examboardSlug
     examBoardTitle: examboardTitle
+    tierTitle
     lessons
+    yearTitle
   }
 }

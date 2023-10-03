@@ -27,7 +27,7 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-const SideMenu = styled(Flex)<TransitionProps>`
+export const SideMenu = styled(Flex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -79,7 +79,6 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const removeFocus = () => {
     menuButtonRef?.current?.focus();
   };
-
   return (
     <Transition
       nodeRef={ref}
@@ -150,7 +149,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   $display={["flex", "none"]}
                   $mb={[36, 0]}
                 >
-                  <Logo height={48} width={104} />
+                  <Logo variant="with text" height={48} width={104} />
                 </Flex>
                 {displaySignpost && (
                   <SideBarSignpost display={["flex", "none"]} />
@@ -165,7 +164,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
                   <Flex $display={["none", "flex"]} $mb={6}>
-                    <Logo width={150} height={63} />
+                    <Logo variant="with text" width={150} height={63} />
                   </Flex>
                 </Flex>
               </Flex>

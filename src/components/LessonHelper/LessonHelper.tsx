@@ -1,5 +1,8 @@
 import React, { FC } from "react";
 
+import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsHeading";
+import CopyrightNotice from "../DownloadComponents/CopyrightNotice";
+
 import Box from "@/components/Box";
 import Grid, { GridArea } from "@/components/Grid";
 import LessonRequirements, {
@@ -12,17 +15,19 @@ type LessonHelperProps = {
   equipment: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
+  isLegacyLicense?: boolean;
 };
 
 const LessonHelper: FC<LessonHelperProps> = ({
   equipment,
   contentGuidance,
   supervisionLevel,
+  isLegacyLicense,
 }) => {
   return (
     <Box $background={"aqua50"} $position={"relative"} $width={320}>
       <Grid $rg={32} $pa={24}>
-        {equipment && (
+        {equipment && equipment?.length > 0 && (
           <GridArea $colStart={1} $colSpan={[12]}>
             <LessonRequirements
               helperIcon={"equipment-required"}
@@ -49,6 +54,18 @@ const LessonHelper: FC<LessonHelperProps> = ({
             />
           </GridArea>
         )}
+        <GridArea $colStart={1} $colSpan={[12]}>
+          <LessonRequirementsHeading
+            helperIcon={"copyright"}
+            heading="License"
+          />
+          <Box $pt={8}>
+            <CopyrightNotice
+              $font={"body-2"}
+              showPostAlbCopyright={!isLegacyLicense}
+            />
+          </Box>
+        </GridArea>
       </Grid>
       <BrushBorders color="aqua50" />
     </Box>

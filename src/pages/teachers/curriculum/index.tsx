@@ -132,6 +132,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             $minHeight={812}
             $ml={[0, 12, 0]}
             $mr={[0, 12, 0]}
+            $mb={[36, 48]}
           >
             <Box
               $pl={[24, 48]}
