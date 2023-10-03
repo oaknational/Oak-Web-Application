@@ -143,6 +143,34 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  muxSigningKey: {
+    value: process.env.MUX_SIGNING_KEY,
+    envName: "MUX_SIGNING_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  muxSigningSecret: {
+    value: process.env.MUX_SIGNING_SECRET,
+    envName: "MUX_SIGNING_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  muxSigningKey2020: {
+    value: process.env.MUX_SIGNING_KEY_2020,
+    envName: "MUX_SIGNING_KEY_2020",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  muxSigningSecret2020: {
+    value: process.env.MUX_SIGNING_SECRET_2020,
+    envName: "MUX_SIGNING_SECRET_2020",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
