@@ -1,3 +1,17 @@
+## [1.265.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.0...v1.265.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* update curriculum units schema, improve units tab parsing ([f64a615](https://github.com/oaknational/Oak-Web-Application/commit/f64a615ba78462a6f792dacac14aca1ff144c525))
+
+# [1.265.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.1...v1.265.0) (2023-10-03)
+
+
+### Features
+
+* **apis:** generate mux tokens ([3316502](https://github.com/oaknational/Oak-Web-Application/commit/33165028d39ac1352f019e1036c9dbdc56cec1e3))
+
 ## [1.264.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.0...v1.264.1) (2023-10-03)
 
 
