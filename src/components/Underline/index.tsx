@@ -11,7 +11,11 @@ const UnderlineSpan = styled.span`
 
 const Underline = () => {
   return (
-    <UnderlineSpan data-testid={"underline"} aria-label={"space for answer"} />
+    <UnderlineSpan
+      data-testid={"underline"}
+      role="presentation"
+      aria-roledescription="An empty space to write an answer in"
+    />
   );
 };
 
