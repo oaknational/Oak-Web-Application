@@ -33,9 +33,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
       <Flex $alignItems={"center"}>
         <Flex
-          $background={"aqua"}
+          $background={"mint"}
           $borderRadius={"50%"}
-          $borderColor="aqua"
+          $borderColor="mint"
           $mt={[4]}
           $mr={10}
           $pa={1}
@@ -53,7 +53,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         const firstItem = sublist[0];
         const bulletItems = sublist.slice(1);
         const bullets = bulletItems.map((listItem) => (
-          <LI $ml={10} $mt={4} $mb={6}>
+          <LI listStyle={"disc"} $ml={10} $mt={4} $mb={6}>
             {listItem}
           </LI>
         ));
@@ -119,11 +119,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       </Flex>
       <Card
         $maxWidth={"100%"}
-        $background={"aqua30"}
+        $background={"mint30"}
         $zIndex={"neutral"}
         $mb={80}
       >
-        <BrushBorders color={"aqua30"} />
+        <BrushBorders color={"mint30"} />
         <Box $ma={16}>
           <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
