@@ -36,13 +36,14 @@ export const useSignedMuxToken = ({
 }: UseSignedPlaybackIdProps & {
   type: string;
 }): UseSignedPlaybackIdReturnProps => {
-  const { data, error } = useSWR(
+  const url =
     playbackPolicy === "signed"
-      ? `${apiEndpoint}?id=${playbackId}&type=${type}&legacy=${isLegacy}`
-      : null,
-    getSignedVideoToken,
-    options,
-  );
+      ? `${apiEndpoint}?id=${playbackId}&type=${type}${
+          isLegacy ? "&isLegacy=true" : ""
+        }`
+      : null;
+
+  const { data, error } = useSWR(url, getSignedVideoToken, options);
 
   const token = data ? JSON.parse(data).token : undefined;
 
