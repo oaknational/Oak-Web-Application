@@ -1,3 +1,18 @@
+# [1.263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.3...v1.263.0) (2023-10-03)
+
+
+### Bug Fixes
+
+* duplicate licence ([811cd28](https://github.com/oaknational/Oak-Web-Application/commit/811cd28c4891cc30004a4d398c371a691c93d99c))
+* types ([a4d2128](https://github.com/oaknational/Oak-Web-Application/commit/a4d21280abee57554a185ccc5cce574d997be852))
+
+
+### Features
+
+* copyright on lesson overview ([c28d7d7](https://github.com/oaknational/Oak-Web-Application/commit/c28d7d7018c7eb9ef077e56b2ed8cdc9da958da6))
+
+## [1.262.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.2...v1.262.3) (2023-10-03)
+
 ## [1.262.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.1...v1.262.2) (2023-10-02)
 
 

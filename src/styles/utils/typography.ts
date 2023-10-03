@@ -83,7 +83,7 @@ const getLetterSpacing = (
   return FONT_VARIANTS[font][3];
 };
 
-type FontProps = {
+export type FontProps = {
   $font?: ResponsiveValues<FontVariant>;
 };
 
