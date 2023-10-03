@@ -193,9 +193,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                       title={lessonTitle}
                       transcriptSentences={transcriptSentences}
-                      temporaryUsePublicVideos={
-                        !isSlugLegacy(programmeSlug ?? "")
-                      }
                       isLegacy={isSlugLegacy(
                         programmeSlug ?? subjectSlug ?? "",
                       )}
