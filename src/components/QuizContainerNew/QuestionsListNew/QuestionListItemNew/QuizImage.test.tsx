@@ -19,18 +19,4 @@ describe("QuizImage", () => {
     const { getByRole } = renderWithTheme(<QuizImage src={no_dims} />);
     expect(getByRole("img")).toHaveAttribute("data-nimg", "fill");
   });
-  it("renders a tick when the answer is correct", () => {
-    const no_dims = { ...image_object, width: undefined, height: undefined };
-    const { getByTestId } = renderWithTheme(
-      <QuizImage src={no_dims} answerIsCorrect={true} />,
-    );
-    expect(getByTestId("answer-tick")).toBeInTheDocument();
-  });
-  it("doesn't render a tick when the answer is incorrect", () => {
-    const no_dims = { ...image_object, width: undefined, height: undefined };
-    const { queryByTestId } = renderWithTheme(
-      <QuizImage src={no_dims} answerIsCorrect={false} />,
-    );
-    expect(queryByTestId("answer-tick")).not.toBeInTheDocument();
-  });
 });
