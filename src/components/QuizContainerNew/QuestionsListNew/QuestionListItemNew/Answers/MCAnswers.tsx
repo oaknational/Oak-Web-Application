@@ -38,11 +38,8 @@ export const MCAnswers = (props: {
             key={`q-${questionNumber}-answer-${i}`}
             $flexDirection={"column"}
             $gap={8}
-            $alignItems={encloseAnswer ? "center" : "flex-start"}
-            $ph={encloseAnswer ? 10 : 0}
-            $pv={encloseAnswer ? 16 : 0}
-            $ba={encloseAnswer ? 1 : 0}
-            $maxWidth={encloseAnswer ? 450 : "100%"}
+            $alignItems={"flex-start"}
+            $maxWidth={encloseAnswer ? 510 : "100%"}
             $borderStyle="solid"
             $borderColor="black"
             $borderRadius={8}
@@ -88,6 +85,7 @@ export const MCAnswers = (props: {
                   <QuizImage
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.image_object}
+                    answerIsCorrect={choice.answer_is_correct}
                   />
                 );
               }
