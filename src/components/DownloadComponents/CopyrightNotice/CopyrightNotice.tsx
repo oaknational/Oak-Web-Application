@@ -49,7 +49,7 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
   ...fontProps
 }) => (
-  <Box $mb={56} $mt={16} $maxWidth={[null, 420, 420]}>
+  <Box $maxWidth={[null, 420, 420]}>
     {showPostAlbCopyright ? (
       <PostAlbCopyright {...fontProps} />
     ) : (

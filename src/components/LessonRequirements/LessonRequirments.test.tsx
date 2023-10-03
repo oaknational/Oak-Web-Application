@@ -64,11 +64,7 @@ describe("LessonRequirements component", () => {
   });
   it("it should render the correct legacy license", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonRequirements
-        helperIcon={"supervision-level"}
-        heading="License"
-        isLegacyLicense={true}
-      />,
+      <LessonRequirements helperIcon={"supervision-level"} heading="License" />,
     );
     const preAlbCopyright = getByText(
       "This content is made available by Oak and its partners",
@@ -81,11 +77,7 @@ describe("LessonRequirements component", () => {
   });
   it("it should render the correct license", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonRequirements
-        helperIcon={"supervision-level"}
-        heading="License"
-        isLegacyLicense={false}
-      />,
+      <LessonRequirements helperIcon={"supervision-level"} heading="License" />,
     );
     const preAlbCopyright = getByText(
       "This content is © Oak National Academy (2023), licensed on",

@@ -59,10 +59,12 @@ const LessonHelper: FC<LessonHelperProps> = ({
             helperIcon={"copyright"}
             heading="License"
           />
-          <CopyrightNotice
-            $font={"body-2"}
-            showPostAlbCopyright={!isLegacyLicense}
-          />
+          <Box $pt={8}>
+            <CopyrightNotice
+              $font={"body-2"}
+              showPostAlbCopyright={!isLegacyLicense}
+            />
+          </Box>
         </GridArea>
       </Grid>
       <BrushBorders color="aqua50" />
