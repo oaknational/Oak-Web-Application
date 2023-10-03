@@ -2,13 +2,14 @@ import { FC } from "react";
 import styled from "styled-components";
 import { usePreventScroll } from "react-aria";
 
-import { OakColorName } from "../../styles/theme";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-
-import { TransitionProps } from "./Menu";
+import { OakColorName } from "@/styles/theme";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { TransitionProps } from "@/components/Menu/Menu";
+import { ZIndex } from "@/styles/utils/zIndex";
 
 type BackdropProps = {
   background: OakColorName;
+  zIndex?: ZIndex;
 };
 
 /**
@@ -24,6 +25,7 @@ const Backdrop = styled.div<BackdropProps & TransitionProps>`
   border: 0;
   width: 100vw;
   height: 100vh;
+  z-index: ${(props) => props.zIndex === "modalDialog" && "300"};
   background: ${(props) => getColorByName(props.background)};
   transition: opacity 250ms ease-in-out;
   opacity: ${(props) => {
@@ -52,10 +54,18 @@ const Backdrop = styled.div<BackdropProps & TransitionProps>`
   }};
 `;
 
-const MenuBackdrop: FC<TransitionProps> = ({ state }) => {
+const MenuBackdrop: FC<TransitionProps & { zIndex?: ZIndex }> = ({
+  state,
+  zIndex,
+}) => {
   usePreventScroll({ isDisabled: state === "exited" });
   return (
-    <Backdrop background="black" state={state} data-testid={"menu-backdrop"} />
+    <Backdrop
+      background="black"
+      state={state}
+      data-testid={"menu-backdrop"}
+      zIndex={zIndex}
+    />
   );
 };
 

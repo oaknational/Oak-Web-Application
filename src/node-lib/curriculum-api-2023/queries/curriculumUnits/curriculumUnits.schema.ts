@@ -13,6 +13,13 @@ const curriculumUnitsSchema = z.object({
       phase: z.string(),
       phase_slug: z.string(),
       keystage_slug: z.string(),
+      lessons: z.array(
+        z.object({
+          order: z.number(),
+          slug: z.string(),
+          title: z.string(),
+        }),
+      ),
       slug: z.string(),
       subject: z.string(),
       subject_slug: z.string(),
@@ -30,8 +37,17 @@ const curriculumUnitsSchema = z.object({
       title: z.string(),
       unit_options: z.array(
         z.object({
+          connection_prior_unit_description: z.string().nullable(),
+          connection_future_unit_description: z.string().nullable(),
           title: z.string(),
           unitvariant_id: z.number(),
+          lessons: z.array(
+            z.object({
+              order: z.number(),
+              slug: z.string(),
+              title: z.string(),
+            }),
+          ),
         }),
       ),
       year: z.string(),
