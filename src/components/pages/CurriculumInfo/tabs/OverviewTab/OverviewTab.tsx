@@ -50,8 +50,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       if (sublist.length > 0 && typeof sublist[0] === "string") {
         const firstItem = sublist[0];
         const bulletItems = sublist.slice(1);
-        const bullets = bulletItems.map((listItem) => (
-          <LI listStyle={"disc"} $ml={10} $mt={4} $mb={6}>
+        const bullets = bulletItems.map((listItem, li) => (
+          <LI
+            listStyle={"disc"}
+            data-testid="sp-subbullet"
+            key={`${firstItem.split(" ").join("-")}-sb-${li}`}
+            $ml={10}
+            $mt={4}
+            $mb={6}
+          >
             {listItem}
           </LI>
         ));
