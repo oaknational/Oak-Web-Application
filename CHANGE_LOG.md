@@ -1,3 +1,12 @@
+## [1.265.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.1...v1.265.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* added sub-bullets for subject principles ([4dda9b0](https://github.com/oaknational/Oak-Web-Application/commit/4dda9b04e856b9f8eb353cbeb1b2bd29eb334f93))
+* updated bullet alignment to text ([1f4f14c](https://github.com/oaknational/Oak-Web-Application/commit/1f4f14ce617d9828bdc83b18a67fe29c938cf362))
+* updated bullet style and principles card colour ([7397190](https://github.com/oaknational/Oak-Web-Application/commit/739719020d8609fdf47b01815e2a312ffa646b2d))
+
 ## [1.265.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.0...v1.265.1) (2023-10-03)
 
 
