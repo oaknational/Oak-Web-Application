@@ -1,3 +1,10 @@
+## [1.264.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.0...v1.264.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **generate sprites:** exit on image data fail ([02e88ee](https://github.com/oaknational/Oak-Web-Application/commit/02e88ee5843cf6f794bda4eb52eee6bd3c307d67))
+
 # [1.264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.1...v1.264.0) (2023-10-03)
 
 
