@@ -1,3 +1,11 @@
+## [1.263.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.0...v1.263.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* adjustments for curric_units_3 ([ee1111f](https://github.com/oaknational/Oak-Web-Application/commit/ee1111fde7a7db5d9c375748b23e8081e387dadd))
+* update mv version number ([fde218e](https://github.com/oaknational/Oak-Web-Application/commit/fde218e8469c9b9ec960b673ad864c570956b648))
+
 # [1.263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.3...v1.263.0) (2023-10-03)
 
 
