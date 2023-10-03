@@ -31,14 +31,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
 
   const createBullet = (item: string, i: number) => (
     <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
-      <Flex $alignItems={"center"}>
+      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
         <Flex
           $background={"mint"}
           $borderRadius={"50%"}
           $borderColor="mint"
-          $mt={[4]}
           $mr={10}
-          $pa={1}
         >
           <Icon name="arrow-right" $ma={"auto"} $pa={2} />
         </Flex>
