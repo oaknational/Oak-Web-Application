@@ -38,22 +38,34 @@ async function handleRequest(
   request: NextApiRequest,
   response: NextApiResponse<Data>,
 ) {
-  const { id, type, twenty_twenty } = request.query;
+  const { id, type, legacy } = request.query;
 
   if (!id || !type) {
-    response.status(400).json("Must provide an id and a type query parameter");
-    return;
+    return response.status(400).json(
+      JSON.stringify({
+        message: "Must provide an 'id' and a 'type' query parameter",
+      }),
+    );
   }
 
   if (Array.isArray(id) || Array.isArray(type)) {
-    response
-      .status(400)
-      .json("Must provide a single id and a single type query parameter");
-    return;
+    return response.status(400).json(
+      JSON.stringify({
+        message:
+          "Must provide a single 'id' and a single 'type' query parameter",
+      }),
+    );
   }
 
-  const use2020 = twenty_twenty === "true";
-  const baseOptions = use2020 ? auth2020 : auth2023;
+  if (typeof legacy === "string" && legacy !== "true") {
+    return response.status(400).json(
+      JSON.stringify({
+        message: "Query parameter 'legacy' must be true or not present",
+      }),
+    );
+  }
+
+  const baseOptions = legacy ? auth2020 : auth2023;
 
   const token = Mux.JWT.signPlaybackId(id, {
     ...baseOptions,
@@ -63,5 +75,5 @@ async function handleRequest(
     params: { time: "1" },
   });
 
-  response.json(JSON.stringify({ token }));
+  return response.json(JSON.stringify({ token }));
 }
