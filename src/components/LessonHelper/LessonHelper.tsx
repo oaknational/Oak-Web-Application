@@ -1,5 +1,8 @@
 import React, { FC } from "react";
 
+import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsHeading";
+import CopyrightNotice from "../DownloadComponents/CopyrightNotice";
+
 import Box from "@/components/Box";
 import Grid, { GridArea } from "@/components/Grid";
 import LessonRequirements, {
@@ -52,10 +55,13 @@ const LessonHelper: FC<LessonHelperProps> = ({
           </GridArea>
         )}
         <GridArea $colStart={1} $colSpan={[12]}>
-          <LessonRequirements
+          <LessonRequirementsHeading
             helperIcon={"copyright"}
             heading="License"
-            isLegacyLicense={isLegacyLicense}
+          />
+          <CopyrightNotice
+            $font={"body-2"}
+            showPostAlbCopyright={!isLegacyLicense}
           />
         </GridArea>
       </Grid>
