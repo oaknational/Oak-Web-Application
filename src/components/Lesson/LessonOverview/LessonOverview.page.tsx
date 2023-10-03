@@ -96,6 +96,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
   const pageLinks = getPageLinksForLesson(lesson);
+  const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
 
   return (
     <>
@@ -181,6 +182,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
+                    isLegacyLicense={isLegacyLicense}
                   />
                 </LessonItemContainer>
 
