@@ -67,13 +67,20 @@ async function handleRequest(
 
   const baseOptions = legacy ? auth2020 : auth2023;
 
-  const token = Mux.JWT.signPlaybackId(id, {
-    ...baseOptions,
-    type,
-    expiration: "6h",
-    // Probably only applies to thumbnails
-    params: { time: "1" },
-  });
+  let token;
+  try {
+    token = Mux.JWT.signPlaybackId(id, {
+      ...baseOptions,
+      type,
+      expiration: "6h",
+      // Probably only applies to thumbnails
+      params: { time: "1" },
+    });
+  } catch (e) {
+    console.error(e);
+    response.status(500).json("Error generating token, see API route logs");
+    return;
+  }
 
   return response.json(JSON.stringify({ token }));
 }
