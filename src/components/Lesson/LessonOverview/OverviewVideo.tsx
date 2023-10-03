@@ -12,6 +12,7 @@ export interface OverviewVideoProps {
   title: string;
   transcriptSentences?: string[] | null;
   temporaryUsePublicVideos?: boolean; // TODO: remove this temporary param to display public videos for new content
+  isLegacy: boolean;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
@@ -20,6 +21,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   title,
   transcriptSentences,
   temporaryUsePublicVideos = false,
+  isLegacy,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -51,6 +53,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           title={title}
           location={"lesson"}
           temporaryUsePublicVideos={temporaryUsePublicVideos}
+          isLegacy={isLegacy}
         />
       )}
 

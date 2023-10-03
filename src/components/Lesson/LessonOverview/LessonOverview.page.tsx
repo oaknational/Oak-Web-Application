@@ -196,6 +196,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       temporaryUsePublicVideos={
                         !isSlugLegacy(programmeSlug ?? "")
                       }
+                      isLegacy={isSlugLegacy(
+                        programmeSlug ?? subjectSlug ?? "",
+                      )}
                     />
                   </LessonItemContainer>
                 )}

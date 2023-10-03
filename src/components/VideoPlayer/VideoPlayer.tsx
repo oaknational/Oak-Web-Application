@@ -41,6 +41,7 @@ export type VideoPlayerProps = {
   title: string;
   location: VideoLocationValueType;
   temporaryUsePublicVideos?: boolean; // TODO: remove this temporary param to display public videos for new content
+  isLegacy: boolean;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -51,6 +52,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     playbackId,
     playbackPolicy,
     temporaryUsePublicVideos = false,
+    isLegacy,
   } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
@@ -79,16 +81,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
     playbackPolicy,
+    isLegacy,
   });
 
   const videoToken = useSignedVideoToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const storyboardToken = useSignedStoryboardToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const metadata = {
