@@ -21,5 +21,9 @@ query curriculumOverview(
         ...Image
       }
     }
+    video {
+      ...Video
+    }
+    videoAuthor
   }
 }
