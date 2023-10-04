@@ -17,7 +17,7 @@ import RadioGroup from "@/components/RadioButtons/RadioGroup";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import UnitTabBanner from "@/components/UnitTabBanner";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -25,7 +25,7 @@ type UnitsTabProps = {
 
 export type Unit = CurriculumUnitsTabData["units"][number];
 
-interface Thread {
+export interface Thread {
   title: string;
   slug: string;
   order: number;
@@ -68,6 +68,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   } = {};
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
+  const [unitOptionsAvailable, setUnitOptionsAvailable] =
+    useState<boolean>(false);
 
   const handleOpenModal = () => {
     setDisplayModal((prev) => !prev);
@@ -307,7 +309,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             </P>
           </Box>
         </Card>
-
         <Grid>
           <GridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
@@ -575,8 +576,14 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         displayModal={displayModal}
                         onClose={handleCloseModal}
                         unitData={unitData}
+                        unitOptionsAvailable={unitOptionsAvailable}
                       >
-                        <UnitModal unitData={unitData} />
+                        <UnitModal
+                          unitData={unitData}
+                          displayModal={displayModal}
+                          setUnitOptionsAvailable={setUnitOptionsAvailable}
+                          unitOptionsAvailable={unitOptionsAvailable}
+                        />
                       </Sidebar>
                     </Flex>
                   </Box>
@@ -585,56 +592,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
-      <Flex
-        $flexDirection={["column", "row"]}
-        $background={"mint"}
-        $mt={48}
-        $pa={48}
-        $gap={24}
-      >
-        <Flex
-          $flexDirection={["column", "row"]}
-          $alignItems={["flex-start", "flex-end"]}
-          $ma={"auto"}
-          $justifyContent={["space-evenly"]}
-          $gap={24}
-        >
-          <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
-            <Icon
-              name="books"
-              size={92}
-              $background={"teachersRed"}
-              $mr={40}
-              $mb={[24, 0]}
-              $color={"black"}
-            />
-
-            <Flex
-              $width={["100%", "70%"]}
-              $gap={16}
-              $flexDirection={"column"}
-              $alignItems={"flex-start"}
-            >
-              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
-                Need help with our new curriculum?
-              </Heading>
-              <P $font={["body-2", "body-1"]}>
-                Visit our help centre for technical support as well as tips and
-                ideas to help you make the most of Oak.
-              </P>
-            </Flex>
-          </Flex>
-          <ButtonAsLink
-            label="Go to help centre"
-            variant={"brush"}
-            size={"large"}
-            page={"help"}
-            icon={"arrow-right"}
-            iconBackground="black"
-            $iconPosition="trailing"
-          />
-        </Flex>
-      </Flex>
+      <UnitTabBanner />
     </Box>
   );
 };
