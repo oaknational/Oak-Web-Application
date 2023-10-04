@@ -3,9 +3,10 @@ import { VisuallyHidden } from "react-aria";
 
 import { calcDims, removeMarkdown } from "../../quizUtils";
 
+import QuizOakImage from "./QuizOakImage";
+
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/Flex";
-import OakImage from "@/components/OakImage";
 import Icon from "@/components/Icon";
 
 type ImageProps = {
@@ -47,32 +48,7 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
           $borderColor={"grey6"}
           $borderRadius={8}
         >
-          {dims.width && dims.height ? (
-            <OakImage
-              $objectPosition={["center", "left"]}
-              width={dims.width}
-              height={dims.height}
-              src={src.secure_url}
-              alt={alt ?? ""}
-              style={{ objectFit: "contain" }}
-            />
-          ) : (
-            <OakImage
-              $objectPosition={["center", "left"]}
-              fill
-              src={src.secure_url}
-              alt={alt ?? ""}
-              style={{ objectFit: "contain" }}
-              onLoad={(e) => {
-                setDims(
-                  calcDims(
-                    e.currentTarget.naturalWidth,
-                    e.currentTarget.naturalHeight,
-                  ),
-                );
-              }}
-            />
-          )}
+          <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />
         </Flex>
       </Flex>
     </Flex>

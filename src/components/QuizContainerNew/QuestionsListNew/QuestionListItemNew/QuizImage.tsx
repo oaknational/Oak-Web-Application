@@ -2,9 +2,10 @@ import { FC, useState } from "react";
 
 import { calcDims } from "../../quizUtils";
 
+import QuizOakImage from "./QuizOakImage";
+
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/Flex";
-import OakImage from "@/components/OakImage";
 
 type ImageProps = { src: StemImageObject["image_object"]; alt?: string };
 
@@ -19,32 +20,7 @@ const QuizImage: FC<ImageProps> = ({ src, alt }) => {
       $minHeight={dims.height ? undefined : 96}
       $justifyContent={"center"}
     >
-      {dims.width && dims.height ? (
-        <OakImage
-          $objectPosition={["center", "left"]}
-          width={dims.width}
-          height={dims.height}
-          src={src.secure_url}
-          alt={alt ?? ""}
-          style={{ objectFit: "contain" }}
-        />
-      ) : (
-        <OakImage
-          $objectPosition={["center", "left"]}
-          fill
-          src={src.secure_url}
-          alt={alt ?? ""}
-          style={{ objectFit: "contain" }}
-          onLoad={(e) => {
-            setDims(
-              calcDims(
-                e.currentTarget.naturalWidth,
-                e.currentTarget.naturalHeight,
-              ),
-            );
-          }}
-        />
-      )}
+      <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />
     </Flex>
   );
 };
