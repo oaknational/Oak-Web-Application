@@ -1,3 +1,10 @@
+## [1.265.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.3...v1.265.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* proxy sanity assets (incl. ctas) ([9c68a9f](https://github.com/oaknational/Oak-Web-Application/commit/9c68a9fc3bd394710198dab8b9a112231115f498))
+
 ## [1.265.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.2...v1.265.3) (2023-10-03)
 
 
