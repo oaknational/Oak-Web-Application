@@ -1,13 +1,14 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
-import { Heading, P, Span } from "../Typography";
-import Grid, { GridArea } from "../Grid";
-
 import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
+
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import { Heading, P, Span } from "@/components/Typography";
+import Grid, { GridArea } from "@/components/Grid";
+import LessonMetadata from "@/components/LessonMetadata";
 
 export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
   const {
@@ -20,10 +21,6 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     subjectIconBackgroundColor,
     pupilLessonOutcome,
   } = props;
-
-  const otherFactors = [yearTitle, examBoardTitle, tierTitle]
-    .filter((elem) => !!elem)
-    .join(" • ");
 
   return (
     <Box $display={["none", "grid"]}>
@@ -48,13 +45,13 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
           $alignItems={"flex-start"}
         >
           <Flex $flexDirection={"column"} $gap={8}>
-            {otherFactors && (
-              <Span
-                data-testid="other-factors"
-                $color={"oakGrey4"}
-                $font={"heading-light-7"}
-              >
-                {otherFactors}
+            {(examBoardTitle || yearTitle || tierTitle) && (
+              <Span $color={"oakGrey4"} $font={"heading-light-7"}>
+                <LessonMetadata
+                  examBoardTitle={examBoardTitle}
+                  yearTitle={yearTitle}
+                  tierTitle={tierTitle}
+                />
               </Span>
             )}
 

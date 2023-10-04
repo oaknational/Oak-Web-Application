@@ -1,12 +1,13 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import { Heading, P, Span } from "../Typography";
-import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
-
 import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
+
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import { Heading, P, Span } from "@/components/Typography";
+import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import LessonMetadata from "@/components/LessonMetadata";
 
 export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
   const {
@@ -19,10 +20,6 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     isNew,
     subjectIconBackgroundColor,
   } = props;
-
-  const otherFactors = [yearTitle, examBoardTitle, tierTitle]
-    .filter((elem) => !!elem)
-    .join(" • ");
 
   return (
     <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
@@ -38,13 +35,13 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
           />
         </Box>
         <Flex $flexDirection={"column"} $gap={8}>
-          {otherFactors && (
-            <Span
-              data-testid="other-factors"
-              $color={"oakGrey4"}
-              $font={"heading-light-7"}
-            >
-              {otherFactors}
+          {(examBoardTitle || yearTitle || tierTitle) && (
+            <Span $color={"oakGrey4"} $font={"heading-light-7"}>
+              <LessonMetadata
+                examBoardTitle={examBoardTitle}
+                yearTitle={yearTitle}
+                tierTitle={tierTitle}
+              />
             </Span>
           )}
 

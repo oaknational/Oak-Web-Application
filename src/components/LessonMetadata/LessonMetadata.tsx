@@ -8,7 +8,7 @@ const LessonMetadata: FC<{
   keyStageTitle?: string | null;
   subjectTitle?: string | null;
   tierTitle?: string | null;
-  yearTitle: string;
+  yearTitle?: string | null;
 }> = (props) => {
   const { yearTitle, examBoardTitle, tierTitle, keyStageTitle, subjectTitle } =
     props;
@@ -24,7 +24,7 @@ const LessonMetadata: FC<{
   const metadataElements = metadata.map((value, i) => (
     <React.Fragment key={`${value}`}>
       <Typography>{value}</Typography>
-      {i + 1 < metadata.length && <Typography>•</Typography>}
+      {i + 1 < metadata.length && <Typography aria-hidden>•</Typography>}
     </React.Fragment>
   ));
 
