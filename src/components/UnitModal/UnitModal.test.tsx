@@ -4,14 +4,31 @@ import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Unit modal", () => {
+  const stateFn = jest.fn();
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   test("renders with correct heading", () => {
-    const { getByText } = renderWithTheme(<UnitModal unitData={mockUnit} />);
+    const { getByText } = renderWithTheme(
+      <UnitModal
+        displayModal={true}
+        unitData={mockUnit}
+        unitOptionsAvailable={false}
+        setUnitOptionsAvailable={stateFn}
+      />,
+    );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
   });
 
   test("renders the correct number of threads", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
-      <UnitModal unitData={mockUnit} />,
+      <UnitModal
+        displayModal={true}
+        unitData={mockUnit}
+        unitOptionsAvailable={false}
+        setUnitOptionsAvailable={stateFn}
+      />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
     const testThread2 = getByText("Number");
@@ -22,7 +39,14 @@ describe("Unit modal", () => {
   });
 
   test("lesson metadata renders correct data", () => {
-    const { getByText } = renderWithTheme(<UnitModal unitData={mockUnit} />);
+    const { getByText } = renderWithTheme(
+      <UnitModal
+        displayModal={true}
+        unitData={mockUnit}
+        unitOptionsAvailable={false}
+        setUnitOptionsAvailable={stateFn}
+      />,
+    );
 
     expect(getByText("Maths")).toBeInTheDocument();
     expect(getByText("Year 1")).toBeInTheDocument();
@@ -31,7 +55,12 @@ describe("Unit modal", () => {
   describe("non-optional units", () => {
     test("does not render optionality card", () => {
       const { queryAllByTestId } = renderWithTheme(
-        <UnitModal unitData={mockUnit} />,
+        <UnitModal
+          displayModal={true}
+          unitData={mockUnit}
+          unitOptionsAvailable={false}
+          setUnitOptionsAvailable={stateFn}
+        />,
       );
 
       expect(queryAllByTestId("unit-option-card")).toHaveLength(0);
@@ -41,7 +70,12 @@ describe("Unit modal", () => {
   describe("optional units", () => {
     test("optionality cards render", () => {
       const { getByTestId } = renderWithTheme(
-        <UnitModal unitData={mockOptionalityUnit} />,
+        <UnitModal
+          displayModal={true}
+          unitData={mockOptionalityUnit}
+          unitOptionsAvailable={true}
+          setUnitOptionsAvailable={stateFn}
+        />,
       );
 
       const optionalityCard = getByTestId("unit-options-card");
@@ -50,7 +84,12 @@ describe("Unit modal", () => {
 
     test("optionality cards render correct number of units", () => {
       const { getAllByTestId } = renderWithTheme(
-        <UnitModal unitData={mockOptionalityUnit} />,
+        <UnitModal
+          displayModal={true}
+          unitData={mockOptionalityUnit}
+          unitOptionsAvailable={true}
+          setUnitOptionsAvailable={stateFn}
+        />,
       );
 
       expect(getAllByTestId("unit-option")).toHaveLength(3);

@@ -1,29 +1,79 @@
-import React, { FC } from "react";
+import { FC, useState, useEffect } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import { Heading } from "@/components/Typography";
 import Button from "@/components/Button";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import { TagFunctional } from "@/components/TagFunctional";
 import LessonMetadata from "@/components/LessonMetadata";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/Card";
+import {
+  CurriculumUnitDetailsProps,
+  CurriculumUnitDetails,
+} from "@/components/CurriculumUnitDetails";
+
+/**
+ * ? TODO:
+ * ! custom hook to render button on menu
+ * ! focus svg line
+ * ! Accordians staying open
+ */
 
 type UnitModalProps = {
   unitData: Unit | null;
+  displayModal: boolean;
+  setUnitOptionsAvailable: (x: boolean) => void;
+  unitOptionsAvailable: boolean;
 };
 
-const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
-  if (!unitData) return null;
-  const uniqueThreads = new Set<string>();
-  const unitOptionsAvailable = unitData.unit_options.length > 0;
+export type Lesson = {
+  title: string;
+  slug?: string;
+};
 
-  unitData.threads.forEach((thread) => {
-    uniqueThreads.add(thread.title);
-  });
+const UnitModal: FC<UnitModalProps> = ({
+  unitData,
+  displayModal,
+  setUnitOptionsAvailable,
+  unitOptionsAvailable,
+}) => {
+  const [optionalityModalOpen, setOptionalityModalOpen] =
+    useState<boolean>(false);
 
-  const uniqueThreadsArray = Array.from(uniqueThreads);
+  const [curriculumUnitDetails, setCurriculumUnitDetails] =
+    useState<CurriculumUnitDetailsProps | null>(null);
+
+  const handleOptionalityModal = () => {
+    setOptionalityModalOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (unitData) {
+      setUnitOptionsAvailable(unitData.unit_options.length > 0);
+    }
+  }, [unitData, setUnitOptionsAvailable]);
+
+  useEffect(() => {
+    if (displayModal === false) {
+      setCurriculumUnitDetails(null);
+      setOptionalityModalOpen(false);
+      setUnitOptionsAvailable(false);
+    }
+    if (optionalityModalOpen) {
+      setUnitOptionsAvailable(false);
+    }
+
+    if (!optionalityModalOpen && unitData) {
+      setUnitOptionsAvailable(unitData.unit_options.length > 0);
+    }
+  }, [
+    displayModal,
+    curriculumUnitDetails,
+    setUnitOptionsAvailable,
+    optionalityModalOpen,
+    unitData,
+  ]);
 
   return (
     <>
@@ -37,111 +87,144 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
           $mt={72}
         >
           <Box $ph={[24, 72]}>
+            <Box $display={optionalityModalOpen ? "block" : "none"} $mb={16}>
+              <Button
+                label="Back to unit options info"
+                $font={"heading-7"}
+                icon="chevron-left"
+                iconBackground="white"
+                variant="minimal"
+                onClick={() => {
+                  handleOptionalityModal();
+                  // setUnitOptionsAvailable(true);
+                  setCurriculumUnitDetails(null);
+                }}
+              />
+            </Box>
             <LessonMetadata
               subjectTitle={unitData.subject}
               yearTitle={`Year ${unitData.year}`}
             />
-            <Heading $mb={40} tag="h2" $font={"heading-5"}>
-              {unitData.title}
+            <Heading tag="h2" $font={"heading-5"}>
+              {!curriculumUnitDetails
+                ? unitData.title
+                : curriculumUnitDetails.unitTitle}
             </Heading>
-            {uniqueThreadsArray.length > 0 && (
-              <Box $mb={[24, 40]}>
-                <Heading tag="h3" $font={"heading-6"} $mb={8}>
-                  Threads
-                </Heading>
-                <Flex
-                  $flexDirection={["column", "row"]}
-                  $flexWrap={"wrap"}
-                  $gap={8}
-                  $alignItems={"flex-start"}
-                >
-                  {uniqueThreadsArray.map((thread) => (
-                    <TagFunctional
-                      key={thread}
-                      text={thread}
-                      color={"grey"}
-                      data-testid="thread-tag"
-                    />
-                  ))}
-                </Flex>
+            {!unitOptionsAvailable && (
+              <Box $display={optionalityModalOpen ? "none" : "block"}>
+                <CurriculumUnitDetails
+                  threads={unitData.threads}
+                  lessons={unitData.lessons}
+                  numberOfLessons={unitData.planned_number_of_lessons}
+                  previousUnitDescription={
+                    unitData.connection_prior_unit_description
+                  }
+                  futureUnitDescription={
+                    unitData.connection_future_unit_description
+                  }
+                />
               </Box>
             )}
-            {unitOptionsAvailable && (
-              <Box
-                $position={"relative"}
-                $background={"pink30"}
-                $pt={12}
-                $pb={24}
-                $ph={18}
-                $mb={40}
-                data-testid="unit-options-card"
-                $borderRadius={4}
-              >
-                <Heading
-                  tag="h4"
-                  $font={"heading-6"}
-                  $mb={24}
-                  data-testid="unit-options-heading"
-                >
-                  Unit options
-                </Heading>
-                <Flex
-                  $flexDirection={["column", "row"]}
-                  $gap={24}
-                  $flexWrap={"wrap"}
-                >
-                  {unitData.unit_options.map((optionalUnit) => {
-                    return (
-                      <Card
-                        $pa={16}
-                        key={optionalUnit.unitvariant_id}
-                        $background={"white"}
-                        $position={"relative"}
-                        $width={["100%", "calc(50% - 28px)"]}
-                        data-testid="unit-option"
-                        $maxHeight={"fit-content"}
-                        $justifyContent={"space-between"}
-                      >
-                        <Box>
-                          <BrushBorders color="white" />
-                          <Heading
-                            tag="h5"
-                            $font={"heading-7"}
-                            $mb={16}
-                            $wordWrap={"normal"}
-                          >
-                            {optionalUnit.title}
-                          </Heading>
-                        </Box>
 
-                        <Flex
-                          $flexDirection={"row"}
-                          $justifyContent={"flex-end"}
+            <Flex
+              $flexDirection={"column"}
+              $display={optionalityModalOpen ? "none" : "flex"}
+            >
+              {unitOptionsAvailable && (
+                <Box
+                  $position={"relative"}
+                  $background={"pink30"}
+                  $pa={12}
+                  $mt={40}
+                  data-testid="unit-options-card"
+                >
+                  <Heading
+                    tag="h4"
+                    $font={"heading-6"}
+                    $mb={24}
+                    data-testid="unit-options-heading"
+                  >
+                    Unit options
+                  </Heading>
+                  <Flex
+                    $flexDirection={["column", "row"]}
+                    $gap={24}
+                    $flexWrap={"wrap"}
+                  >
+                    {unitData.unit_options.map((optionalUnit, index) => {
+                      const optionalUnitLessonCount =
+                        optionalUnit.lessons.length;
+                      return (
+                        <Card
+                          $pa={16}
+                          key={`${optionalUnit.unitvariant_id}-${index}}`}
+                          $background={"white"}
+                          $position={"relative"}
+                          $width={["100%", "calc(50% - 28px)"]}
+                          data-testid="unit-option"
+                          $maxHeight={"fit-content"}
+                          $justifyContent={"space-between"}
                         >
+                          <Box>
+                            <BrushBorders color="white" />
+                            <Heading
+                              tag="h5"
+                              $font={"heading-7"}
+                              $mb={16}
+                              $wordWrap={"normal"}
+                            >
+                              {optionalUnit.title}
+                            </Heading>
+                          </Box>
+
                           <Flex
                             $flexDirection={"row"}
-                            $alignItems={"flex-start"}
-                            $width={"100%"}
-                            $color={"oakGrey5"}
+                            $justifyContent={"flex-end"}
+                            $alignSelf={"flex-end"}
                           >
-                            <TagFunctional text="Coming soon" color="grey" />
-                            <Button
-                              disabled={true}
-                              label="Unit info"
-                              $font={"heading-7"}
-                              isCurrent={true}
-                              currentStyles={["color"]}
-                              icon="chevron-right"
-                              iconBackground="white"
-                              $iconPosition="trailing"
-                              variant="minimal"
-                            />
+                            <Flex
+                              $flexDirection={"row"}
+                              $alignItems={"flex-start"}
+                              $width={"100%"}
+                              $color={"oakGrey5"}
+                            >
+                              <Button
+                                label="Unit info"
+                                $font={"heading-7"}
+                                icon="chevron-right"
+                                iconBackground="white"
+                                $iconPosition="trailing"
+                                variant="minimal"
+                                onClick={() => {
+                                  handleOptionalityModal();
+                                  setUnitOptionsAvailable(false);
+                                  setCurriculumUnitDetails({
+                                    unitTitle: optionalUnit.title,
+                                    threads: unitData.threads,
+                                    lessons: optionalUnit.lessons,
+                                    numberOfLessons: optionalUnitLessonCount,
+                                    previousUnitDescription:
+                                      optionalUnit.connection_prior_unit_description,
+                                    futureUnitDescription:
+                                      optionalUnit.connection_future_unit_description,
+                                  });
+                                }}
+                              />
+                            </Flex>
                           </Flex>
-                        </Flex>
-                      </Card>
-                    );
-                  })}
-                </Flex>
+                        </Card>
+                      );
+                    })}
+                  </Flex>
+
+                  <BrushBorders color="pink30" />
+                </Box>
+              )}
+            </Flex>
+
+            {curriculumUnitDetails && (
+              <Box $display={optionalityModalOpen ? "block" : "none"}>
+                <CurriculumUnitDetails {...curriculumUnitDetails} />
               </Box>
             )}
           </Box>
@@ -150,5 +233,4 @@ const UnitModal: FC<UnitModalProps> = ({ unitData }) => {
     </>
   );
 };
-
 export default UnitModal;
