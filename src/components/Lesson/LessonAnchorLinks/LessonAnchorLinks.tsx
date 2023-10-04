@@ -28,7 +28,6 @@ const LessonAnchorLinks: FC<LessonAnchorLinksProps> = ({
             variant={isCurrent ? "brushNav" : "minimalNav"}
             $hoverStyles={["underline-link-text"]}
             label={label}
-            $mr={[0, 36]}
             disabled={isCurrent}
             isCurrent={isCurrent}
             icon={isCurrent && isCurrent ? "arrow-right" : undefined}

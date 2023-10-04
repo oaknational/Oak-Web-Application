@@ -1,90 +1,105 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 
 import { LessonPageLinkAnchorId } from "./lesson.helpers";
 
-type Section = {
-  id: LessonPageLinkAnchorId;
-  ref: React.RefObject<HTMLElement>;
-};
+type SectionRefs = Record<LessonPageLinkAnchorId, RefObject<HTMLElement>>;
 
 /**
  * Sets the hash in the URL without scrolling the page.
+ * Without this, the browser auto-scrolls the user to the top of the section
+ * they are on, when scrolling stops.
  */
 function safeSetHash(hash: string): void {
   const element = document.getElementById(hash);
 
   if (element) {
-    // Temporarily remove the id
     element.id = "";
   }
 
-  // Update the hash
-  window.location.hash = hash;
+  window.location.replace(`#${hash}`);
 
   if (element) {
-    // Restore the id
     element.id = hash;
   }
 }
 
-export function useCurrentSection(sections: Section[]) {
-  const [currentSection, setCurrentSection] = useState<string | null>(null);
+const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
+  /**
+   * Returns the last section that is above the middle of the screen
+   */
+  const currentSectionId = Object.entries(sectionRefs).reduce(
+    (
+      acc: { id: string; ref: RefObject<HTMLElement>; top: number } | null,
+      [id, ref],
+    ) => {
+      const rect = ref.current?.getBoundingClientRect();
+
+      if (rect) {
+        const isAboveThreshold = rect.top <= window.innerHeight * 0.5;
+        const isBelowPrevSection = acc ? rect.top > acc.top : true;
+        if (isAboveThreshold && isBelowPrevSection) {
+          return { id, ref, top: rect.top };
+        }
+      }
+      return acc;
+    },
+    null,
+  );
+
+  return currentSectionId?.id ?? null;
+};
+
+type UseCurrentSectionProps = {
+  sectionRefs: SectionRefs;
+};
+export function useCurrentSection({ sectionRefs }: UseCurrentSectionProps) {
+  const [currentSectionId, setCurrentSectionId] = useState<string | null>(null);
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
 
   useEffect(() => {
+    /**
+     * Set the current section id on mount
+     */
+    setCurrentSectionId(calculateCurrentSectionId(sectionRefs));
+  }, [sectionRefs]);
+
+  useEffect(() => {
+    /**
+     * In a requestAnimationFrame loop, calculate the current section
+     * and set it in state.
+     */
     let running = false;
 
-    const checkScroll = () => {
+    const onScroll = () => {
       if (running) return;
       running = true;
 
       requestAnimationFrame(() => {
-        const currentScrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        if (currentScrollTop !== lastScrollTop) {
-          setIsScrolling(true);
-          // Your scroll handling logic here
-        } else {
-          setIsScrolling(false);
-        }
-
-        setLastScrollTop(currentScrollTop);
-
-        let activeId: string | null = currentSection;
-
-        sections.forEach((section) => {
-          const rect = section.ref.current?.getBoundingClientRect();
-          if (rect) {
-            // Check if the top of the section is in the viewport
-            if (rect.top >= 0 && rect.top <= window.innerHeight * 0.5) {
-              activeId = section.id || null;
-            }
-          }
-        });
-
-        setCurrentSection(activeId);
+        setCurrentSectionId(calculateCurrentSectionId(sectionRefs));
 
         running = false;
       });
     };
 
-    window.addEventListener("scroll", checkScroll);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("scroll", onScroll);
     };
-  }, [currentSection, lastScrollTop, sections]);
+  }, [currentSectionId, lastScrollTop, sectionRefs]);
 
   useEffect(() => {
-    const checkScroll = () => {
+    /**
+     * Set isScrolling to true when the page is scrolling.
+     * Set isScrolling to false when the page stops scrolling.
+     */
+    const onScroll = () => {
       const currentScrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
 
       if (currentScrollTop !== lastScrollTop) {
         setIsScrolling(true);
-        // Your scroll handling logic here
       } else {
         setIsScrolling(false);
       }
@@ -92,146 +107,21 @@ export function useCurrentSection(sections: Section[]) {
       setLastScrollTop(currentScrollTop);
     };
 
-    const intervalId = setInterval(checkScroll, 50);
+    const intervalId = setInterval(onScroll, 50);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [lastScrollTop, currentSection, sections]);
+  }, [lastScrollTop, currentSectionId, sectionRefs]);
 
   useEffect(() => {
-    if (currentSection && !isScrolling) {
-      safeSetHash(currentSection);
+    /**
+     * Wait for scroll to stop before updating the hash.
+     */
+    if (currentSectionId && !isScrolling) {
+      safeSetHash(currentSectionId);
     }
-  }, [currentSection, isScrolling]);
+  }, [currentSectionId, isScrolling]);
 
-  return { currentSection, isScrolling };
+  return { currentSectionId, isScrolling };
 }
-
-// import { useEffect, useState } from "react";
-
-// import { LessonPageLinkAnchorId } from "./lesson.helpers";
-
-// type Section = {
-//   id: LessonPageLinkAnchorId;
-//   ref: React.RefObject<HTMLElement>;
-// };
-
-// /**
-//  * Sets the hash in the URL without scrolling the page.
-//  * This means that when the user stops scrolling, the browser will not
-//  * scroll to the top of the section.
-//  */
-// function safeSetHash(hash: string): void {
-//   const element = document.getElementById(hash);
-
-//   if (element) {
-//     // Temporarily remove the id
-//     element.id = "";
-//   }
-
-//   // Update the hash
-//   window.location.hash = hash;
-
-//   if (element) {
-//     // Restore the id
-//     element.id = hash;
-//   }
-// }
-
-// export function useCurrentSection(sections: Section[]) {
-//   const [currentSection, setCurrentSection] = useState<string | null>(null);
-//   const [isScrolling, setIsScrolling] = useState<boolean>(false);
-//   const [lastScrollTop, setLastScrollTop] = useState<number>(0);
-
-//   useEffect(() => {
-//     let running = false;
-
-//     const checkScroll = () => {
-//       if (running) return;
-//       running = true;
-
-//       requestAnimationFrame(() => {
-//         const currentScrollTop =
-//           window.pageYOffset || document.documentElement.scrollTop;
-
-//         if (currentScrollTop !== lastScrollTop) {
-//           setIsScrolling(true);
-//           // Your scroll handling logic here
-//         } else {
-//           setIsScrolling(false);
-//         }
-
-//         setLastScrollTop(currentScrollTop);
-
-//         // let activeId: string | null = currentSection;
-
-//         const activeSection = sections.reduce(
-//           (acc: (Section & { top: number }) | null, section) => {
-//             const rect = section.ref.current?.getBoundingClientRect();
-
-//             if (rect) {
-//               const isAboveThreshold = rect.top <= window.innerHeight * 0.5;
-//               const isBelowPrevSection = acc ? rect.top > acc.top : true;
-//               if (isAboveThreshold && isBelowPrevSection) {
-//                 return { ...section, top: rect.top };
-//               }
-//             }
-//             return acc;
-//           },
-//           null,
-//         );
-
-//         // sections.forEach((section) => {
-//         //   const rect = section.ref.current?.getBoundingClientRect();
-//         //   if (rect) {
-//         //     // Check if the top of the section is in the viewport
-//         //     if (rect.top >= 0 && rect.top <= window.innerHeight * 0.5) {
-//         //       activeId = section.id || null;
-//         //     }
-//         //   }
-//         // });
-
-//         setCurrentSection(activeSection?.id || null);
-
-//         running = false;
-//       });
-//     };
-
-//     window.addEventListener("scroll", checkScroll);
-
-//     return () => {
-//       window.removeEventListener("scroll", checkScroll);
-//     };
-//   }, [currentSection, lastScrollTop, sections]);
-
-//   useEffect(() => {
-//     const checkScroll = () => {
-//       const currentScrollTop =
-//         window.pageYOffset || document.documentElement.scrollTop;
-
-//       if (currentScrollTop !== lastScrollTop) {
-//         setIsScrolling(true);
-//         // Your scroll handling logic here
-//       } else {
-//         setIsScrolling(false);
-//       }
-
-//       setLastScrollTop(currentScrollTop);
-//     };
-
-//     const intervalId = setInterval(checkScroll, 100);
-
-//     return () => {
-//       clearInterval(intervalId);
-//     };
-//   }, [lastScrollTop, currentSection, sections]);
-
-//   useEffect(() => {
-//     if (currentSection && !isScrolling) {
-//       safeSetHash(currentSection);
-//     }
-//   }, [currentSection, isScrolling]);
-
-//   return { currentSection, isScrolling };
-// }

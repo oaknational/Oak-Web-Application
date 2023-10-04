@@ -6,24 +6,23 @@ import Flex, { FlexProps } from "../Flex";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
 import { HTMLAnchorProps } from "../Button/common";
 
-type NavLinkProps = {
+type LinkProps = {
   label: string;
   href: string;
   isCurrentOverride?: boolean;
   arrowSuffix?: boolean;
   shallow?: boolean;
 };
-const NavLink = ({
-  label,
-  href,
-  arrowSuffix,
-  shallow,
-  isCurrentOverride,
-}: NavLinkProps) => {
-  let isCurrent = useIsCurrent({ href });
-  if (typeof isCurrentOverride === "boolean") {
-    isCurrent = isCurrentOverride;
-  }
+
+type ButtonLinkNavProps = {
+  ariaLabel: string;
+  buttons: LinkProps[];
+  arrowSuffix?: boolean;
+  shallow?: boolean;
+} & FlexProps;
+
+export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
+  const isCurrent = useIsCurrent({ href });
   const htmlAnchorProps: HTMLAnchorProps = {
     "aria-current": isCurrent ? "page" : undefined,
   };
@@ -68,12 +67,6 @@ const NavLink = ({
   );
 };
 
-type ButtonLinkNavProps = {
-  ariaLabel: string;
-  buttons: NavLinkProps[];
-  arrowSuffix?: boolean;
-  shallow?: boolean;
-} & FlexProps;
 /**
  * Renders a 'nav' element containing a list of links styled as buttons.
  * Stacks vertically and styled differently at mobile.

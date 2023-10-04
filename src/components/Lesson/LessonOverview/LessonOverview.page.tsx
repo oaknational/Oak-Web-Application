@@ -105,36 +105,18 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const exitQuizSectionRef = useRef<HTMLDivElement>(null);
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
 
-  const { currentSection } = useCurrentSection([
-    {
-      id: "slide-deck",
-      ref: slideDeckSectionRef,
-    },
-    {
-      id: "lesson-details",
-      ref: lessonDetailsSectionRef,
-    },
-    {
-      id: "video",
-      ref: videoSectionRef,
-    },
-    {
-      id: "worksheet",
-      ref: worksheetSectionRef,
-    },
-    {
-      id: "starter-quiz",
-      ref: starterQuizSectionRef,
-    },
-    {
-      id: "exit-quiz",
-      ref: exitQuizSectionRef,
-    },
-    {
-      id: "additional-material",
-      ref: additionalMaterialSectionRef,
-    },
-  ]);
+  const sectionRefs = {
+    "slide-deck": slideDeckSectionRef,
+    "lesson-details": lessonDetailsSectionRef,
+    video: videoSectionRef,
+    worksheet: worksheetSectionRef,
+    "starter-quiz": starterQuizSectionRef,
+    "exit-quiz": exitQuizSectionRef,
+    "additional-material": additionalMaterialSectionRef,
+  };
+
+  const { currentSectionId } = useCurrentSection({ sectionRefs });
+
   const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
 
   return (
@@ -183,17 +165,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 $alignItems={"flex-start"}
                 $gap={[8]}
                 $pr={[16]}
-                // arrowSuffix
-                // shallow
-                // ariaLabel="page navigation"
-                // buttons={pageLinks.map((pageLink) => ({
-                //   ...pageLink,
-                //   isCurrentOverride: pageLink.anchorId === currentSection,
-                // }))}
               >
                 <LessonAnchorLinks
                   links={pageLinks}
-                  currentSectionId={currentSection}
+                  currentSectionId={currentSectionId}
                 />
               </Flex>
             </GridArea>
