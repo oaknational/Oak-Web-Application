@@ -16,18 +16,16 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
   unitData?: Unit | null;
+  unitOptionsAvailable?: boolean;
 };
 
 const Sidebar: FC<ModalProps> = ({
   displayModal,
   onClose,
   children,
-  unitData,
+  unitOptionsAvailable,
 }) => {
-  let unitOptionsAvailable = false;
-  if (unitData) {
-    unitOptionsAvailable = unitData.unit_options.length > 0;
-  }
+  // console.log("unitOptionsAvailable", unitOptionsAvailable);
   return (
     <Transition in={displayModal} timeout={300}>
       {(state) => (
