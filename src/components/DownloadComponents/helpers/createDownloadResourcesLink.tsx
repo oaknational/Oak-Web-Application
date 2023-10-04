@@ -1,15 +1,10 @@
 import { z } from "zod";
 
 import OakError from "@/errors/OakError";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-if (!process.env.NEXT_PUBLIC_VERCEL_API_URL) {
-  throw new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined");
-}
-if (!process.env.NEXT_PUBLIC_DOWNLOAD_API_URL) {
-  throw new TypeError(
-    "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined",
-  );
-}
+const LEGACY_DOWNLOADS_API_URL = getBrowserConfig("vercelApiUrl");
+const DOWNLOADS_API_URL = getBrowserConfig("downloadApiUrl");
 
 /**
  * Expected response schema
@@ -34,8 +29,8 @@ const createDownloadResourcesLink = async (
   isLegacyDownload: boolean,
 ) => {
   const downloadEnpoint = isLegacyDownload
-    ? `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`
-    : `${process.env.NEXT_PUBLIC_DOWNLOAD_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
+    ? `${LEGACY_DOWNLOADS_API_URL}/api/downloads/lesson/${lessonSlug}?selection=${selection}`
+    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
 
   const meta = {
     lessonSlug,
