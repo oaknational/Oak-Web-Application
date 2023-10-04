@@ -27,6 +27,20 @@ describe("resolveInternalHref()", () => {
     },
   );
 
+  it("proxies attachments", () => {
+    const entry = {
+      contentType: "attachment",
+      file: {
+        asset: {
+          url: "https://cdn.sanity.io/files/cuvjke51/production/becc1901c9dbacb8889f5952605672be926d5386.pdf",
+        },
+      },
+    };
+    expect(resolveInternalHref(entry as never)).toBe(
+      "https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/files/cuvjke51/production/becc1901c9dbacb8889f5952605672be926d5386.pdf",
+    );
+  });
+
   it("throws when encountering an unknown contentType", () => {
     expect(() => {
       resolveInternalHref({ contentType: "foo" as never });
