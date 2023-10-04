@@ -189,7 +189,6 @@ export const getPageLinksForLesson = (
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
-  href: `#${LessonPageLinkAnchorId}`;
 }[] => {
   const PAGE_LINKS: {
     label: string;
@@ -236,12 +235,9 @@ export const getPageLinksForLesson = (
     },
   ];
 
-  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson))
-    .map((lesson) => pick(lesson, ["label", "anchorId"]))
-    .map((pageLink) => ({
-      ...pageLink,
-      href: `#${pageLink.anchorId}`,
-    }));
+  return PAGE_LINKS.filter((pageLink) => pageLink.condition(lesson)).map(
+    (lesson) => pick(lesson, ["label", "anchorId"]),
+  );
 };
 
 export function groupLessonPathways(pathways: LessonPathway[]) {
