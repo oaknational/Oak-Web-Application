@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/Card";
@@ -29,6 +29,11 @@ const Accordion: FC<AccordionProps> = ({
     useClickableCard<HTMLButtonElement>();
 
   const [toggleOpen, setToggleOpen] = useState<boolean>(toggleClosed);
+
+  useEffect(() => {
+    setToggleOpen(true);
+  }, [toggleClosed]);
+
   return (
     <Card
       $flexDirection={"column"}

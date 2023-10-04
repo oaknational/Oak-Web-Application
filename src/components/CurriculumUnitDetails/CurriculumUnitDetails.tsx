@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
@@ -26,14 +26,6 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   futureUnitDescription,
   toggleClosed,
 }) => {
-  const [closeToggles, setCloseToggles] = useState<boolean>(toggleClosed);
-  console.log(toggleClosed, "<< initial value");
-  useEffect(() => {
-    if (toggleClosed) {
-      setCloseToggles(true);
-    }
-  }, [toggleClosed]);
-
   const uniqueThreads = new Set<string>();
   threads.forEach((thread) => {
     uniqueThreads.add(thread.title);
@@ -80,7 +72,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         <Accordion
           title="Lessons in unit"
           lastAccordion={!previousUnitDescription && !futureUnitDescription}
-          toggleClosed={closeToggles}
+          toggleClosed={toggleClosed}
         >
           <Box>
             {lessons &&
@@ -93,12 +85,17 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           <Accordion
             title="Previous unit description"
             lastAccordion={!futureUnitDescription}
+            toggleClosed={toggleClosed}
           >
             <P>{previousUnitDescription}</P>
           </Accordion>
         )}
         {futureUnitDescription && (
-          <Accordion title="Following unit description" lastAccordion={true}>
+          <Accordion
+            title="Following unit description"
+            lastAccordion={true}
+            toggleClosed={toggleClosed}
+          >
             <P>{futureUnitDescription}</P>
           </Accordion>
         )}

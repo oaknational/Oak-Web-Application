@@ -15,9 +15,7 @@ import {
 
 /**
  * ? TODO:
- * ! custom hook to render button on menu
  * ! focus svg line
- * ! Accordians staying open
  */
 
 type UnitModalProps = {
@@ -57,13 +55,7 @@ const UnitModal: FC<UnitModalProps> = ({
     if (optionalityModalOpen) {
       setUnitOptionsAvailable(false);
     }
-  }, [
-    displayModal,
-    curriculumUnitDetails,
-    setUnitOptionsAvailable,
-    optionalityModalOpen,
-    unitData,
-  ]);
+  }, [displayModal, setUnitOptionsAvailable, optionalityModalOpen]);
 
   return (
     <>
@@ -103,7 +95,7 @@ const UnitModal: FC<UnitModalProps> = ({
             {!unitOptionsAvailable && (
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
-                  toggleClosed={displayModal}
+                  toggleClosed={!displayModal}
                   threads={unitData.threads}
                   lessons={unitData.lessons}
                   numberOfLessons={unitData.planned_number_of_lessons}
@@ -190,6 +182,7 @@ const UnitModal: FC<UnitModalProps> = ({
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
                                   setCurriculumUnitDetails({
+                                    toggleClosed: displayModal,
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
