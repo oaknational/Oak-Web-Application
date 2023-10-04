@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { documentSchema, imageSchema } from "./base";
+import { documentSchema, imageSchema, videoSchema } from "./base";
 
 export const curriculumOverviewCMSSchema = z
   .object({
@@ -11,6 +11,8 @@ export const curriculumOverviewCMSSchema = z
       name: z.string(),
       image: imageSchema.nullish(),
     }),
+    video: videoSchema.nullish(),
+    videoAuthor: z.string().nullish(),
   })
   .merge(documentSchema);
 
