@@ -17,6 +17,7 @@ const curriculumUnitsSchema = z.object({
         .array(
           z.object({
             title: z.string(),
+            slug: z.string().optional(),
           }),
         )
         .nullable(),
@@ -43,8 +44,7 @@ const curriculumUnitsSchema = z.object({
           unitvariant_id: z.number(),
           lessons: z.array(
             z.object({
-              order: z.number(),
-              slug: z.string(),
+              slug: z.string().optional(),
               title: z.string(),
             }),
           ),
