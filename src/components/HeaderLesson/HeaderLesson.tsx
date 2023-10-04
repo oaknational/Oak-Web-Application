@@ -40,6 +40,7 @@ export type HeaderLessonProps = {
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
+  pupilLessonOutcome?: string | null;
 };
 
 const HeaderLesson: FC<HeaderLessonProps> = (props) => {

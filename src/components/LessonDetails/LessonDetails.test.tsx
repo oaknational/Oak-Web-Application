@@ -194,7 +194,7 @@ describe("LessonDetails component", () => {
     );
     expect(preAlbCopyright).toBeInTheDocument();
 
-    const licenseTitle = queryByText("License");
+    const licenseTitle = queryByText("Licence");
     expect(licenseTitle).toBeInTheDocument();
   });
   it("it should render the correct license", () => {
@@ -216,7 +216,7 @@ describe("LessonDetails component", () => {
     );
     expect(preAlbCopyright).toBeInTheDocument();
 
-    const licenseTitle = queryByText("License");
+    const licenseTitle = queryByText("Licence");
     expect(licenseTitle).toBeInTheDocument();
   });
 });

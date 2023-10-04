@@ -13,7 +13,7 @@ import {
 
 import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Typography, { Heading, Hr } from "@/components/Typography";
+import Typography, { Heading } from "@/components/Typography";
 import Grid, { GridArea } from "@/components/Grid";
 import OverviewPresentation from "@/components/Lesson/LessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/Lesson/LessonOverview/OverviewVideo";
@@ -54,7 +54,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     starterQuiz,
     exitQuiz,
     expired,
-    additionalMaterialUrl,
     keyLearningPoints,
   } = lesson;
 
@@ -96,6 +95,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
   const pageLinks = getPageLinksForLesson(lesson);
+
   const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
 
   return (
@@ -119,7 +119,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         analyticsUseCase={analyticsUseCase}
         isNew={!isLegacyLicense}
       />
-      <MaxWidth $ph={16}>
+      <MaxWidth $ph={16} $pb={80}>
         {expired ? (
           <Box $pa={16} $mb={64}>
             <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
@@ -188,7 +188,14 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 </LessonItemContainer>
 
                 {pageLinks.find((p) => p.label === "Video") && (
-                  <LessonItemContainer title={"Video"} anchorId="video">
+                  <LessonItemContainer
+                    title={"Video"}
+                    anchorId="video"
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Video") ===
+                      pageLinks.length - 1
+                    }
+                  >
                     <OverviewVideo
                       video={videoMuxPlaybackId}
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
@@ -211,6 +218,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       });
                     }}
                     slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Worksheet") ===
+                      pageLinks.length - 1
+                    }
                   >
                     <OverviewPresentation
                       asset={worksheetUrl}
@@ -232,6 +243,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       });
                     }}
                     slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Starter quiz") ===
+                      pageLinks.length - 1
+                    }
                   >
                     {starterQuiz && (
                       <QuizContainerNew questions={starterQuiz} />
@@ -249,6 +264,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       });
                     }}
                     slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Exit quiz") ===
+                      pageLinks.length - 1
+                    }
                   >
                     {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
                   </LessonItemContainer>
@@ -264,14 +283,26 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       });
                     }}
                     slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex(
+                        (p) => p.label === "Additional material",
+                      ) ===
+                      pageLinks.length - 1
+                    }
                   >
+                    <Typography $font={"body-1"}>
+                      We're sorry, but preview is not currently available.
+                      Download to see additional material.
+                    </Typography>
+                    {/* 
+                    Temporary fix for additional material due to unexpected poor rendering of google docs
                     <OverviewPresentation
                       asset={additionalMaterialUrl}
                       isAdditionalMaterial={true}
                       title={lessonTitle}
                       isWorksheetLandscape={isWorksheetLandscape}
                       isWorksheet={true}
-                    />
+                    /> */}
                   </LessonItemContainer>
                 )}
               </Flex>
@@ -279,13 +310,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           </Grid>
         )}
       </MaxWidth>
-      {!expired && (
-        <>
-          <MaxWidth $ph={16}>
-            <Hr $color={"oakGrey3"} />
-          </MaxWidth>
-        </>
-      )}
     </>
   );
 }

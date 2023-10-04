@@ -21,7 +21,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     pupilLessonOutcome,
   } = props;
 
-  const otherFactors = [yearTitle, tierTitle, examBoardTitle]
+  const otherFactors = [yearTitle, examBoardTitle, tierTitle]
     .filter((elem) => !!elem)
     .join(" • ");
 

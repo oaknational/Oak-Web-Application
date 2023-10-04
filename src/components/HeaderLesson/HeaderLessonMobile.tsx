@@ -20,7 +20,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     subjectIconBackgroundColor,
   } = props;
 
-  const otherFactors = [yearTitle, tierTitle, examBoardTitle]
+  const otherFactors = [yearTitle, examBoardTitle, tierTitle]
     .filter((elem) => !!elem)
     .join(" • ");
 
