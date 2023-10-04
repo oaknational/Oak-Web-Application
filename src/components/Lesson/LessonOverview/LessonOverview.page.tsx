@@ -117,6 +117,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
+        isNew={!isLegacyLicense}
       />
       <MaxWidth $ph={16}>
         {expired ? (

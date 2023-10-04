@@ -57,7 +57,7 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         data-testid={"download-all-button"}
         variant="brush"
         iconBackground="black"
-        icon="download"
+        icon="arrow-right"
         size="large"
         $iconPosition="trailing"
         label={`Download all resources`}
