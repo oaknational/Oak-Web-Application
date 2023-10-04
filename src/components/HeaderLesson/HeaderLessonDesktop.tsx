@@ -16,9 +16,9 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     tierTitle,
     examBoardTitle,
     lessonTitle,
-    lessonDescription,
     isNew,
     subjectIconBackgroundColor,
+    pupilLessonOutcome,
   } = props;
 
   const otherFactors = [yearTitle, tierTitle, examBoardTitle]
@@ -47,11 +47,10 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
           $colSpan={[12, 9]}
           $alignItems={"flex-start"}
         >
-          <Box>
+          <Flex $flexDirection={"column"} $gap={8}>
             {otherFactors && (
               <Span
                 data-testid="other-factors"
-                $mb={8}
                 $color={"oakGrey4"}
                 $font={"heading-light-7"}
               >
@@ -59,16 +58,18 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
               </Span>
             )}
 
-            <Heading $mb={24} tag={"h1"} $font={"heading-3"}>
-              {lessonTitle}
-            </Heading>
-            {lessonDescription && (
-              <Box $mb={24} $maxWidth={740}>
-                <P $font={"heading-light-7"}>{lessonDescription}</P>
-              </Box>
-            )}
-          </Box>
-          <HeaderDownloadAllButton {...props} />
+            <Flex $flexDirection={"column"} $gap={24}>
+              <Heading tag={"h1"} $font={"heading-3"}>
+                {lessonTitle}
+              </Heading>
+              {pupilLessonOutcome && (
+                <Box $maxWidth={740}>
+                  <P $font={"body-2"}>{pupilLessonOutcome}</P>
+                </Box>
+              )}
+              <HeaderDownloadAllButton {...props} />
+            </Flex>
+          </Flex>
         </GridArea>
       </Grid>
     </Box>

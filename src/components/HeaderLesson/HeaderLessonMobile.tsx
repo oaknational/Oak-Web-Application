@@ -15,7 +15,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     examBoardTitle,
     tierTitle,
     lessonTitle,
-    lessonDescription,
+    pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
   } = props;
@@ -25,8 +25,8 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     .join(" • ");
 
   return (
-    <Flex $flexDirection={"column"} $display={["flex", "none"]}>
-      <Flex $mb={24}>
+    <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
+      <Flex>
         <Box $maxHeight={80} $maxWidth={80} $mr={16}>
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
@@ -37,11 +37,10 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
             color={subjectIconBackgroundColor}
           />
         </Box>
-        <Flex $flexDirection={"column"}>
+        <Flex $flexDirection={"column"} $gap={8}>
           {otherFactors && (
             <Span
               data-testid="other-factors"
-              $mb={8}
               $color={"oakGrey4"}
               $font={"heading-light-7"}
             >
@@ -54,9 +53,9 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
           </Heading>
         </Flex>
       </Flex>
-      {lessonDescription && (
-        <Box $mb={24}>
-          <P $font={"heading-light-7"}>{lessonDescription}</P>
+      {pupilLessonOutcome && (
+        <Box>
+          <P $font={"body-3"}>{pupilLessonOutcome}</P>
         </Box>
       )}
       <HeaderDownloadAllButton {...props} />

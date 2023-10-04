@@ -7,7 +7,6 @@ const props = {
   ...lessonOverviewFixture(),
   breadcrumbs: [],
   background: "pink30",
-  lessonDescription: "A lesson description",
   isNew: true,
   subjectIconBackgroundColor: "pink",
 } as unknown as HeaderLessonProps;
@@ -77,9 +76,13 @@ describe("HeaderLesson", () => {
     expect(elems).toHaveLength(2); // mobile and desktop
   });
 
-  it("renders a lesson description when passed in ", () => {
-    const { getAllByText } = renderWithTheme(<HeaderLesson {...props} />);
-    const description = getAllByText("A lesson description");
+  it("renders a pupil lesson outcome when passed in ", () => {
+    const testProps = {
+      ...props,
+      pupilLessonOutcome: "A pupil lesson outcome",
+    };
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...testProps} />);
+    const description = getAllByText("A pupil lesson outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
 });
