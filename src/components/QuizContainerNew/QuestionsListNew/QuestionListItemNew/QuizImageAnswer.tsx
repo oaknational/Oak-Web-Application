@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { VisuallyHidden } from "react-aria";
 
-import { removeMarkdown } from "../../quizUtils";
+import { calcDims, removeMarkdown } from "../../quizUtils";
 
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/Flex";
@@ -15,19 +15,6 @@ type ImageProps = {
 };
 
 const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
-  const constrainHeight = (h?: number) =>
-    h ? Math.max(Math.min(200, h), 96) : undefined;
-
-  const calcDims = (w?: number, h?: number) => {
-    const constrainedHeight = constrainHeight(h);
-    return w && h && constrainedHeight
-      ? {
-          width: Math.round((w / h) * constrainedHeight),
-          height: constrainedHeight,
-        }
-      : { width: undefined, height: undefined };
-  };
-
   const [dims, setDims] = useState(calcDims(src.width, src.height));
   const containerBackgroundColor = answerIsCorrect ? "lemon50" : "white";
   return (
