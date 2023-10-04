@@ -14,6 +14,7 @@ import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPh
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import OakLink from "@/components/OakLink";
 
 export type OverviewTabProps = {
   data: {
@@ -151,68 +152,49 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
       {video && videoAuthor && (
-        <Flex $flexDirection={"column"} $gap={24} $mb={[0, 80]}>
-          <Flex
-            $alignItems={"center"}
-            $justifyContent={"flex-start"}
-            $flexDirection={["column-reverse", "row"]}
-            $gap={[24, 120]}
-          >
-            <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
-              <CMSVideo video={video} location="lesson" />
-            </Box>
-            <Flex
-              $flexDirection={"column"}
-              $maxWidth={["100%", "30%"]}
-              $alignItems={"flex-start"}
-              $gap={[16, 24]}
-            >
-              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
-                Video guide
-              </Heading>
-              <P>
-                Our new curriculum sequence has recently launched. For
-                additional support, watch this video guide by {videoAuthor} from
-                our educational team, as they talk you through how to use this
-                new tool.
-              </P>
-
-              <ButtonAsLink
-                variant="buttonStyledAsLink"
-                label="Read more about our new curriculum"
-                page={"develop-your-curriculum"}
-                icon="chevron-right"
-                background={"white"}
-                $iconPosition="trailing"
-                iconBackground="white"
-                $textAlign={"start"}
-              />
-              <Box $display={["none", "block"]}>
-                <ButtonAsLink
-                  subjectPhaseSlug={subjectPhaseSlug}
-                  label="View unit sequence"
-                  page={"curriculum-units"}
-                  icon="arrow-right"
-                  $iconPosition="trailing"
-                  iconBackground="black"
-                  $textAlign={"start"}
-                />
-              </Box>
-            </Flex>
-          </Flex>
-          <Box $display={["block", "none"]} $width={"100%"}>
-            <ButtonAsLink
-              $fullWidth={true}
-              subjectPhaseSlug={subjectPhaseSlug}
-              label="View unit sequence"
-              page={"curriculum-units"}
-              $visibility={"hidden"}
-              icon="arrow-right"
-              $iconPosition="trailing"
-              iconBackground="black"
-              $mb={72}
-            />
+        <Flex
+          $alignItems={"center"}
+          $justifyContent={"flex-start"}
+          $flexDirection={["column-reverse", "row"]}
+          $gap={[24, 120]}
+          $mb={[48, 80]}
+        >
+          <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
+            <CMSVideo video={video} location="lesson" />
           </Box>
+          <Flex
+            $flexDirection={"column"}
+            $maxWidth={["100%", "30%"]}
+            $alignItems={"flex-start"}
+            $gap={[16, 24]}
+          >
+            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+              Video guide
+            </Heading>
+            <P $font={"body-1"}>
+              Our
+              <OakLink
+                subjectPhaseSlug={subjectPhaseSlug}
+                page="curriculum-units"
+              >
+                {" "}
+                new curriculum sequence{" "}
+              </OakLink>
+              has recently launched. For additional support, watch this video
+              guide by {videoAuthor} from our educational team, as they talk you
+              through how to use this new tool.
+            </P>
+            <ButtonAsLink
+              variant="buttonStyledAsLink"
+              label="Read more about our new curriculum"
+              page={"develop-your-curriculum"}
+              icon="chevron-right"
+              background={"white"}
+              $iconPosition="trailing"
+              iconBackground="white"
+              $textAlign={"start"}
+            />
+          </Flex>
         </Flex>
       )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
