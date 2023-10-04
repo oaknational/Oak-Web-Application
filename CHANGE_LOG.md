@@ -1,3 +1,93 @@
+# [1.266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.5...v1.266.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* visually hidden correct message ([c9f03a9](https://github.com/oaknational/Oak-Web-Application/commit/c9f03a91dc0973082044a5c4a1d9c4a77874b14a))
+
+
+### Features
+
+* quiz image answer ([35ac070](https://github.com/oaknational/Oak-Web-Application/commit/35ac0702db9af3477c8707c78f22e85a4737e26d))
+* quiz image correct answer ([bbb0aef](https://github.com/oaknational/Oak-Web-Application/commit/bbb0aefa91b322a4686628f0d4ff12d78d72b126))
+
+## [1.265.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.4...v1.265.5) (2023-10-04)
+
+## [1.265.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.3...v1.265.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* proxy sanity assets (incl. ctas) ([9c68a9f](https://github.com/oaknational/Oak-Web-Application/commit/9c68a9fc3bd394710198dab8b9a112231115f498))
+
+## [1.265.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.2...v1.265.3) (2023-10-03)
+
+
+### Bug Fixes
+
+* type errors ([29c3687](https://github.com/oaknational/Oak-Web-Application/commit/29c368755aa9add01fdb67eed6eda92c01988a42))
+* update mv_download to v7 ([aec3aeb](https://github.com/oaknational/Oak-Web-Application/commit/aec3aeb7cecb7de0c8b687d7863c3a1ae1dd7953))
+
+## [1.265.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.1...v1.265.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* added sub-bullets for subject principles ([4dda9b0](https://github.com/oaknational/Oak-Web-Application/commit/4dda9b04e856b9f8eb353cbeb1b2bd29eb334f93))
+* updated bullet alignment to text ([1f4f14c](https://github.com/oaknational/Oak-Web-Application/commit/1f4f14ce617d9828bdc83b18a67fe29c938cf362))
+* updated bullet style and principles card colour ([7397190](https://github.com/oaknational/Oak-Web-Application/commit/739719020d8609fdf47b01815e2a312ffa646b2d))
+
+## [1.265.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.0...v1.265.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* update curriculum units schema, improve units tab parsing ([f64a615](https://github.com/oaknational/Oak-Web-Application/commit/f64a615ba78462a6f792dacac14aca1ff144c525))
+
+# [1.265.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.1...v1.265.0) (2023-10-03)
+
+
+### Features
+
+* **apis:** generate mux tokens ([3316502](https://github.com/oaknational/Oak-Web-Application/commit/33165028d39ac1352f019e1036c9dbdc56cec1e3))
+
+## [1.264.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.0...v1.264.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **generate sprites:** exit on image data fail ([02e88ee](https://github.com/oaknational/Oak-Web-Application/commit/02e88ee5843cf6f794bda4eb52eee6bd3c307d67))
+
+# [1.264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.1...v1.264.0) (2023-10-03)
+
+
+### Features
+
+* added help centre banner to new units page ([e205ed4](https://github.com/oaknational/Oak-Web-Application/commit/e205ed4a78705fd5c65779926be14481ae04ea11))
+
+## [1.263.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.0...v1.263.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* adjustments for curric_units_3 ([ee1111f](https://github.com/oaknational/Oak-Web-Application/commit/ee1111fde7a7db5d9c375748b23e8081e387dadd))
+* update mv version number ([fde218e](https://github.com/oaknational/Oak-Web-Application/commit/fde218e8469c9b9ec960b673ad864c570956b648))
+
+# [1.263.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.3...v1.263.0) (2023-10-03)
+
+
+### Bug Fixes
+
+* duplicate licence ([811cd28](https://github.com/oaknational/Oak-Web-Application/commit/811cd28c4891cc30004a4d398c371a691c93d99c))
+* types ([a4d2128](https://github.com/oaknational/Oak-Web-Application/commit/a4d21280abee57554a185ccc5cce574d997be852))
+
+
+### Features
+
+* copyright on lesson overview ([c28d7d7](https://github.com/oaknational/Oak-Web-Application/commit/c28d7d7018c7eb9ef077e56b2ed8cdc9da958da6))
+
+## [1.262.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.2...v1.262.3) (2023-10-03)
+
 ## [1.262.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.262.1...v1.262.2) (2023-10-02)
 
 

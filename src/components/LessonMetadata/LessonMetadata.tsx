@@ -5,21 +5,26 @@ import Flex from "../Flex";
 
 const LessonMetadata: FC<{
   examBoardTitle?: string | null;
+  keyStageTitle?: string | null;
+  subjectTitle?: string | null;
   tierTitle?: string | null;
   yearTitle: string;
 }> = (props) => {
-  const { yearTitle, examBoardTitle, tierTitle } = props;
+  const { yearTitle, examBoardTitle, tierTitle, keyStageTitle, subjectTitle } =
+    props;
 
-  const metadata = [yearTitle, examBoardTitle, tierTitle].filter(
-    (value) => !!value,
-  );
+  const metadata = [
+    keyStageTitle,
+    yearTitle,
+    subjectTitle,
+    examBoardTitle,
+    tierTitle,
+  ].filter((value) => !!value);
 
   const metadataElements = metadata.map((value, i) => (
-    <React.Fragment key={`${value}-${i}`}>
+    <React.Fragment key={`${value}`}>
       <Typography>{value}</Typography>
-      {i + 1 !== metadata.length && (
-        <Typography aria-hidden={true}>•</Typography>
-      )}
+      {i + 1 < metadata.length && <Typography>•</Typography>}
     </React.Fragment>
   ));
 

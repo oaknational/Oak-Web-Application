@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
@@ -14,44 +14,47 @@ import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
-import { TagFunctional } from "@/components/TagFunctional/TagFunctional";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import UnitModal from "@/components/UnitModal/UnitModal";
+import { TagFunctional } from "@/components/TagFunctional";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
 
+export type Unit = CurriculumUnitsTabData["units"][number];
+
+interface Thread {
+  title: string;
+  slug: string;
+  order: number;
+}
+
+interface Subject {
+  subject: string;
+  subject_slug: string;
+}
+
+interface Domain {
+  domain: string;
+  domain_id: number;
+}
+
+interface Tier {
+  tier: string;
+  tier_slug: string;
+}
+
+interface YearSelection {
+  [key: string]: {
+    subject?: Subject | null;
+    domain?: Domain | null;
+    tier?: Tier | null;
+  };
+}
+
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
-  type Unit = CurriculumUnitsTabData["units"][number];
-
-  interface Thread {
-    title: string;
-    slug: string;
-    order: number;
-  }
-
-  interface Subject {
-    subject: string;
-    subject_slug: string;
-  }
-
-  interface Domain {
-    domain: string;
-    domain_id: number;
-  }
-
-  interface Tier {
-    tier: string;
-    tier_slug: string;
-  }
-
-  interface YearSelection {
-    [key: string]: {
-      subject?: Subject | null;
-      domain?: Domain | null;
-      tier?: Tier | null;
-    };
-  }
-
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
 
@@ -63,6 +66,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       tiers: Tier[];
     };
   } = {};
+  const [displayModal, setDisplayModal] = useState(false);
+  const [unitData, setUnitData] = useState<Unit | null>(null);
+
+  const handleOpenModal = () => {
+    setDisplayModal((prev) => !prev);
+  };
+
+  const handleCloseModal = () => {
+    setDisplayModal(false);
+  };
+
+  const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   data.units.forEach((unit) => {
     // Populate years object
@@ -492,37 +507,77 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   ? "highlighted-unit-card"
                                   : "unit-card"
                               }
+                              $justifyContent={"space-between"}
                             >
-                              <BrushBorders
-                                color={isHighlighted ? "black" : "white"}
-                              />
-                              <OutlineHeading
-                                tag={"div"}
-                                $font={"heading-5"}
-                                $fontSize={24}
-                                $mb={12}
-                              >
-                                {index + 1}
-                              </OutlineHeading>
-                              <Heading tag={"h3"} $font={"heading-7"}>
-                                {isHighlighted && (
-                                  <VisuallyHidden>
-                                    Highlighted:&nbsp;
-                                  </VisuallyHidden>
+                              <Box>
+                                <OutlineHeading
+                                  tag={"div"}
+                                  $font={"heading-5"}
+                                  $fontSize={24}
+                                  $mb={12}
+                                >
+                                  {index + 1}
+                                </OutlineHeading>
+                                <Heading
+                                  tag={"h3"}
+                                  $font={"heading-7"}
+                                  $mb={16}
+                                >
+                                  {isHighlighted && (
+                                    <VisuallyHidden>
+                                      Highlighted:&nbsp;
+                                    </VisuallyHidden>
+                                  )}
+                                  {unit.title}
+                                </Heading>
+                                {unit.unit_options.length > 1 && (
+                                  <Box
+                                    $mt={12}
+                                    $mb={20}
+                                    $zIndex={"inFront"}
+                                    data-testid="options-tag"
+                                    $position={"relative"}
+                                  >
+                                    <TagFunctional
+                                      color="lavender"
+                                      text={`${unit.unit_options.length} unit options`}
+                                    />
+                                  </Box>
                                 )}
-                                {unit.title}
-                              </Heading>
-                              {unit.unit_options.length > 1 && (
-                                <Box $mt={12} data-testid="options-tag">
-                                  <TagFunctional
-                                    color="lavender"
-                                    text={`${unit.unit_options.length} unit options`}
-                                  />
-                                </Box>
-                              )}
+                                <BrushBorders
+                                  color={isHighlighted ? "black" : "white"}
+                                />
+                              </Box>
+                              <Flex
+                                $flexDirection={"row"}
+                                $justifyContent={"flex-end"}
+                              >
+                                <Button
+                                  icon="chevron-right"
+                                  $iconPosition="trailing"
+                                  data-testid="unit-modal-button"
+                                  variant={isHighlighted ? "brush" : "minimal"}
+                                  background={
+                                    isHighlighted ? "black" : undefined
+                                  }
+                                  label="Unit info"
+                                  onClick={() => {
+                                    handleOpenModal();
+                                    setUnitData({ ...unit });
+                                  }}
+                                  ref={modalButtonRef}
+                                />
+                              </Flex>
                             </Card>
                           );
                         })}
+                      <Sidebar
+                        displayModal={displayModal}
+                        onClose={handleCloseModal}
+                        unitData={unitData}
+                      >
+                        <UnitModal unitData={unitData} />
+                      </Sidebar>
                     </Flex>
                   </Box>
                 );
@@ -530,6 +585,56 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
+      <Flex
+        $flexDirection={["column", "row"]}
+        $background={"mint"}
+        $mt={48}
+        $pa={48}
+        $gap={24}
+      >
+        <Flex
+          $flexDirection={["column", "row"]}
+          $alignItems={["flex-start", "flex-end"]}
+          $ma={"auto"}
+          $justifyContent={["space-evenly"]}
+          $gap={24}
+        >
+          <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
+            <Icon
+              name="books"
+              size={92}
+              $background={"teachersRed"}
+              $mr={40}
+              $mb={[24, 0]}
+              $color={"black"}
+            />
+
+            <Flex
+              $width={["100%", "70%"]}
+              $gap={16}
+              $flexDirection={"column"}
+              $alignItems={"flex-start"}
+            >
+              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+                Need help with our new curriculum?
+              </Heading>
+              <P $font={["body-2", "body-1"]}>
+                Visit our help centre for technical support as well as tips and
+                ideas to help you make the most of Oak.
+              </P>
+            </Flex>
+          </Flex>
+          <ButtonAsLink
+            label="Go to help centre"
+            variant={"brush"}
+            size={"large"}
+            page={"help"}
+            icon={"arrow-right"}
+            iconBackground="black"
+            $iconPosition="trailing"
+          />
+        </Flex>
+      </Flex>
     </Box>
   );
 };

@@ -1,5 +1,5 @@
-query curriculumUnits($where: published_mv_curriculum_units_2_bool_exp) {
-  units: published_mv_curriculum_units_2(where: $where) {
+query curriculumUnits($where: published_mv_curriculum_units_3_bool_exp) {
+  units: published_mv_curriculum_units_3(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     domain

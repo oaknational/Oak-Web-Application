@@ -1,5 +1,6 @@
 import { MarginProps } from "@/styles/utils/spacing";
 import { Span } from "@/components/Typography";
+import { ColorProps } from "@/styles/utils/color";
 
 const TAG_COLOR_MAP = {
   lavender: {
@@ -29,10 +30,11 @@ const TAG_COLOR_MAP = {
 } as const;
 
 export type TagColor = keyof typeof TAG_COLOR_MAP;
-type TagFunctionalProps = MarginProps & {
-  text: string;
-  color: TagColor;
-};
+type TagFunctionalProps = MarginProps &
+  ColorProps & {
+    text: string;
+    color: TagColor;
+  };
 
 export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
   const { background, borderColor } = TAG_COLOR_MAP[styleProps.color];
@@ -46,6 +48,7 @@ export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
       $ph={8}
       $font="heading-light-7"
       {...styleProps}
+      $color={"oakGrey5"}
     >
       {text}
     </Span>

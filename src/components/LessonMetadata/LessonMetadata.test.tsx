@@ -1,37 +1,35 @@
-import { screen } from "@testing-library/react";
-
-import HeaderMetadata from "./LessonMetadata";
+import LessonMetadata from "./LessonMetadata";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("HeaderMetadata", () => {
+describe("LessonMetadata", () => {
   it("renders year and examboard when passed in", () => {
-    renderWithTheme(
-      <HeaderMetadata yearTitle={"Year 5"} examBoardTitle={"AQA"} />,
+    const { getByText } = renderWithTheme(
+      <LessonMetadata yearTitle={"Year 5"} examBoardTitle={"AQA"} />,
     );
-    const yearTitle = screen.getByText("Year 5");
+    const yearTitle = getByText("Year 5");
     expect(yearTitle).toBeInTheDocument();
-    const examBoardTitle = screen.getByText("AQA");
+    const examBoardTitle = getByText("AQA");
     expect(examBoardTitle).toBeInTheDocument();
   });
   it("renders year and tier when passed in", () => {
-    renderWithTheme(
-      <HeaderMetadata yearTitle={"Year 5"} tierTitle={"Foundation"} />,
+    const { getByText } = renderWithTheme(
+      <LessonMetadata yearTitle={"Year 5"} tierTitle={"Foundation"} />,
     );
-    const yearTitle = screen.getByText("Year 5");
+    const yearTitle = getByText("Year 5");
     expect(yearTitle).toBeInTheDocument();
-    const tierTitle = screen.getByText("Foundation");
+    const tierTitle = getByText("Foundation");
     expect(tierTitle).toBeInTheDocument();
   });
   it("separates year, exam board and tier with a divider only between elements", () => {
-    renderWithTheme(
-      <HeaderMetadata
+    const { getAllByText } = renderWithTheme(
+      <LessonMetadata
         yearTitle={"Year 5"}
         tierTitle={"Foundation"}
         examBoardTitle={"AQA"}
       />,
     );
-    const dividers = screen.getAllByText("•");
+    const dividers = getAllByText("•");
     expect(dividers).toHaveLength(2);
   });
 });
