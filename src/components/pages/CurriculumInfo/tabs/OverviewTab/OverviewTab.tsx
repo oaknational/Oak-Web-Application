@@ -151,49 +151,68 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         </Box>
       </Card>
       {video && videoAuthor && (
-        <Flex
-          $mb={80}
-          $alignItems={"center"}
-          $justifyContent={"flex-start"}
-          $gap={120}
-        >
-          <Box $minWidth={["50%"]}>
-            <CMSVideo video={video} location="lesson" />
-          </Box>
+        <Flex $flexDirection={"column"} $gap={24} $mb={[0, 80]}>
           <Flex
-            $flexDirection={"column"}
-            $width={"30%"}
-            $alignItems={"flex-start"}
-            $gap={16}
+            $alignItems={"center"}
+            $justifyContent={"flex-start"}
+            $flexDirection={["column-reverse", "row"]}
+            $gap={[24, 120]}
           >
-            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
-              Video guide
-            </Heading>
-            <P>
-              Our new curriculum sequence has recently launched. For additional
-              support, watch this video guide by {videoAuthor} from our
-              educational team, as they talk you through how to use this new
-              tool.
-            </P>
+            <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
+              <CMSVideo video={video} location="lesson" />
+            </Box>
+            <Flex
+              $flexDirection={"column"}
+              $maxWidth={["100%", "30%"]}
+              $alignItems={"flex-start"}
+              $gap={[16, 24]}
+            >
+              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+                Video guide
+              </Heading>
+              <P>
+                Our new curriculum sequence has recently launched. For
+                additional support, watch this video guide by {videoAuthor} from
+                our educational team, as they talk you through how to use this
+                new tool.
+              </P>
+
+              <ButtonAsLink
+                variant="buttonStyledAsLink"
+                label="Read more about our new curriculum"
+                page={"develop-your-curriculum"}
+                icon="chevron-right"
+                background={"white"}
+                $iconPosition="trailing"
+                iconBackground="white"
+                $textAlign={"start"}
+              />
+              <Box $display={["none", "block"]}>
+                <ButtonAsLink
+                  subjectPhaseSlug={subjectPhaseSlug}
+                  label="View unit sequence"
+                  page={"curriculum-units"}
+                  icon="arrow-right"
+                  $iconPosition="trailing"
+                  iconBackground="black"
+                  $textAlign={"start"}
+                />
+              </Box>
+            </Flex>
+          </Flex>
+          <Box $display={["block", "none"]} $width={"100%"}>
             <ButtonAsLink
-              label="Read more about our new curriculum"
-              page={"develop-your-curriculum"}
-              icon="chevron-right"
-              background={"white"}
-              $iconPosition="trailing"
-              iconBackground="white"
-              $textAlign={"start"}
-            />
-            <ButtonAsLink
+              $fullWidth={true}
               subjectPhaseSlug={subjectPhaseSlug}
               label="View unit sequence"
               page={"curriculum-units"}
+              $visibility={"hidden"}
               icon="arrow-right"
               $iconPosition="trailing"
               iconBackground="black"
-              $textAlign={"start"}
+              $mb={72}
             />
-          </Flex>
+          </Box>
         </Flex>
       )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
