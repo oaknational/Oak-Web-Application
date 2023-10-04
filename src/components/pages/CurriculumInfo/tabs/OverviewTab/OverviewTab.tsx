@@ -172,14 +172,14 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               Video guide
             </Heading>
             <P $font={"body-1"}>
-              Our
+              Our{" "}
               <OakLink
                 subjectPhaseSlug={subjectPhaseSlug}
                 page="curriculum-units"
+                $textDecoration={"underline"}
               >
-                {" "}
-                new curriculum sequence{" "}
-              </OakLink>
+                new curriculum sequence
+              </OakLink>{" "}
               has recently launched. For additional support, watch this video
               guide by {videoAuthor} from our educational team, as they talk you
               through how to use this new tool.
