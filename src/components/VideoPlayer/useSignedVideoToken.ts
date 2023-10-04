@@ -39,7 +39,7 @@ export const useSignedMuxToken = ({
   const url =
     playbackPolicy === "signed"
       ? `${apiEndpoint}?id=${playbackId}&type=${type}${
-          isLegacy ? "&isLegacy=true" : ""
+          isLegacy ? "&legacy=true" : ""
         }`
       : null;
 
