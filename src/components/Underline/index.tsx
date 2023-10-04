@@ -13,10 +13,9 @@ const Underline = () => {
   return (
     <UnderlineSpan
       data-testid={"underline"}
-      // This is an empty box with a line under it, to indicate an answer would go here,
-      // but it is never interacted with, so effectively an image.
-      role="img"
-      aria-roledescription="An empty space to write an answer in"
+      // This is an empty box with a line under it, to indicate an answer would go here.
+      role="presentation"
+      title="An empty space to write an answer in"
     />
   );
 };
