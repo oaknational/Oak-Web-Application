@@ -12,11 +12,17 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
   const {
     subjectSlug,
     yearTitle,
+    examBoardTitle,
+    tierTitle,
     lessonTitle,
     lessonDescription,
     isNew,
     subjectIconBackgroundColor,
   } = props;
+
+  const otherFactors = [yearTitle, tierTitle, examBoardTitle]
+    .filter((elem) => !!elem)
+    .join(" • ");
 
   return (
     <Flex $flexDirection={"column"} $display={["flex", "none"]}>
@@ -32,9 +38,14 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
           />
         </Box>
         <Flex $flexDirection={"column"}>
-          {yearTitle && (
-            <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              {yearTitle}
+          {otherFactors && (
+            <Span
+              data-testid="other-factors"
+              $mb={8}
+              $color={"oakGrey4"}
+              $font={"heading-light-7"}
+            >
+              {otherFactors}
             </Span>
           )}
 

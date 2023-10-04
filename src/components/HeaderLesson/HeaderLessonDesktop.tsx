@@ -13,11 +13,17 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
   const {
     subjectSlug,
     yearTitle,
+    tierTitle,
+    examBoardTitle,
     lessonTitle,
     lessonDescription,
     isNew,
     subjectIconBackgroundColor,
   } = props;
+
+  const otherFactors = [yearTitle, tierTitle, examBoardTitle]
+    .filter((elem) => !!elem)
+    .join(" • ");
 
   return (
     <Box $display={["none", "grid"]}>
@@ -42,9 +48,14 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
           $alignItems={"flex-start"}
         >
           <Box>
-            {yearTitle && (
-              <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-                {yearTitle}
+            {otherFactors && (
+              <Span
+                data-testid="other-factors"
+                $mb={8}
+                $color={"oakGrey4"}
+                $font={"heading-light-7"}
+              >
+                {otherFactors}
               </Span>
             )}
 

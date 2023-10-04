@@ -41,10 +41,40 @@ describe("HeaderLesson", () => {
     expect(downloadLink).toBeNull();
   });
 
+  it("renders examboard title when passed in ", () => {
+    const testProps = {
+      ...props,
+      examBoardTitle: "foobar",
+      yearTitle: undefined,
+    };
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...testProps} />);
+    const elems = getAllByText("foobar");
+    expect(elems).toHaveLength(2); // mobile and desktop
+  });
+
+  it("renders tier title when passed in ", () => {
+    const testProps = { ...props, tierTitle: "foobar", yearTitle: undefined };
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...testProps} />);
+    const elems = getAllByText("foobar");
+    expect(elems).toHaveLength(2); // mobile and desktop
+  });
+
+  it("doesn't render without year examboard or tier  ", () => {
+    const testProps = {
+      ...props,
+      examBoardTitle: undefined,
+      yearTitle: undefined,
+      tierTitle: undefined,
+    };
+    const { queryByTestId } = renderWithTheme(<HeaderLesson {...testProps} />);
+    expect(queryByTestId("other-factors")).toBeNull();
+  });
+
   it("renders year title when passed in ", () => {
-    const { getAllByText } = renderWithTheme(<HeaderLesson {...props} />);
-    const year = getAllByText("year 11");
-    expect(year).toHaveLength(2); // mobile and desktop
+    const testProps = { ...props, yearTitle: "foobar" };
+    const { getAllByText } = renderWithTheme(<HeaderLesson {...testProps} />);
+    const elems = getAllByText("foobar");
+    expect(elems).toHaveLength(2); // mobile and desktop
   });
 
   it("renders a lesson description when passed in ", () => {

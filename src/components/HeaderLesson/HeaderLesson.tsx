@@ -19,6 +19,8 @@ export type HeaderLessonProps = {
   // pathway props
   subjectSlug: string | null;
   yearTitle?: string | null;
+  examBoardTitle?: string | null;
+  tierTitle?: string | null;
   unitSlug: string | null;
   keyStageSlug: string | null;
   keyStageTitle: string | null;
