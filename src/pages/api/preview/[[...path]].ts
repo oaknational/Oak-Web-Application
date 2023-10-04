@@ -27,6 +27,10 @@ const preview: NextApiHandler = async (req, res) => {
     if (req.query.secret !== getServerConfig("sanityPreviewSecret")) {
       throw new OakError({
         code: "preview/invalid-token",
+        meta: {
+          badToken: req.query.secret,
+          userAgent: req.headers["user-agent"],
+        },
       });
     }
 
