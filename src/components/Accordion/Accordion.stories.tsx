@@ -9,7 +9,7 @@ const meta: Meta<typeof Component> = {
     title: {
       defaultValue: "Lesson in unit",
     },
-    toggleClosed: {
+    lastAccordion: {
       defaultValue: true,
     },
   },
@@ -21,7 +21,6 @@ type Story = StoryObj<typeof Component>;
 export const Accordion: Story = {
   args: {
     title: "Lessons in unit",
-    toggleClosed: true,
   },
   render: (args) => (
     <Component {...args}>

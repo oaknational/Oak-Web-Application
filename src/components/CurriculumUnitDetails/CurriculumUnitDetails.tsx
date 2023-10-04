@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
-import { Heading, P } from "@/components/Typography";
+import { Heading, LI, P, UL } from "@/components/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Lesson } from "@/components/UnitModal/UnitModal";
 import { Thread } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
@@ -24,7 +24,6 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   lessons,
   previousUnitDescription,
   futureUnitDescription,
-  toggleClosed,
 }) => {
   const uniqueThreads = new Set<string>();
   threads.forEach((thread) => {
@@ -43,7 +42,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   }`;
 
   return (
-    <Flex $flexDirection={"column"} $width={"100%"}>
+    <Flex $flexDirection={"column"} $width={"100%"} $mb={24}>
       <P $mb={32} $font={"body-2"}>
         {lessonsInUnit}
       </P>
@@ -72,30 +71,28 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         <Accordion
           title="Lessons in unit"
           lastAccordion={!previousUnitDescription && !futureUnitDescription}
-          toggleClosed={toggleClosed}
         >
-          <Box>
+          <UL $reset>
             {lessons &&
               uniqueLessonTitlesArray?.map((lesson) => {
-                return <P>{lesson}</P>;
+                return (
+                  <LI>
+                    <P>{lesson}</P>
+                  </LI>
+                );
               })}
-          </Box>
+          </UL>
         </Accordion>
         {previousUnitDescription && (
           <Accordion
             title="Previous unit description"
             lastAccordion={!futureUnitDescription}
-            toggleClosed={toggleClosed}
           >
             <P>{previousUnitDescription}</P>
           </Accordion>
         )}
         {futureUnitDescription && (
-          <Accordion
-            title="Following unit description"
-            lastAccordion={true}
-            toggleClosed={toggleClosed}
-          >
+          <Accordion title="Following unit description" lastAccordion={true}>
             <P>{futureUnitDescription}</P>
           </Accordion>
         )}

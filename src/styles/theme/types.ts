@@ -21,7 +21,6 @@ import { HeaderConfig } from "@/components/Header/StyledHeader";
  * @see https://stackoverflow.com/questions/21224922/is-there-a-way-to-represent-a-non-negative-integer-in-typescript-so-that-the-com
  */
 export type PixelSpacing =
-  | -1
   | 0
   | 1
   | 2

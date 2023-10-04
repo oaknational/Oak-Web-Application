@@ -13,11 +13,6 @@ import {
   CurriculumUnitDetails,
 } from "@/components/CurriculumUnitDetails";
 
-/**
- * ? TODO:
- * ! focus svg line
- */
-
 type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
@@ -71,11 +66,13 @@ const UnitModal: FC<UnitModalProps> = ({
           <Box $ph={[24, 72]}>
             <Box $display={optionalityModalOpen ? "block" : "none"} $mb={16}>
               <Button
-                label="Back to unit options info"
-                $font={"heading-7"}
+                $mt={2}
                 icon="chevron-left"
-                iconBackground="white"
+                label="Back to unit options info"
                 variant="minimal"
+                $font={"heading-7"}
+                iconBackground={undefined}
+                background={undefined}
                 onClick={() => {
                   handleOptionalityModal();
                   setUnitOptionsAvailable(true);
@@ -175,9 +172,10 @@ const UnitModal: FC<UnitModalProps> = ({
                                 label="Unit info"
                                 $font={"heading-7"}
                                 icon="chevron-right"
-                                iconBackground="white"
                                 $iconPosition="trailing"
                                 variant="minimal"
+                                iconBackground={undefined}
+                                background={undefined}
                                 onClick={() => {
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);

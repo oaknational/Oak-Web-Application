@@ -26,7 +26,7 @@ const Sidebar: FC<ModalProps> = ({
   unitOptionsAvailable,
 }) => {
   return (
-    <Transition in={displayModal} timeout={300}>
+    <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
         <Box $position={"absolute"}>
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
@@ -60,9 +60,11 @@ const Sidebar: FC<ModalProps> = ({
                     aria-expanded={displayModal}
                   />
                 </Box>
+
                 <Flex $overflowY={"auto"} $flexGrow={1}>
                   {children}
                 </Flex>
+
                 {!unitOptionsAvailable && (
                   <Flex $flexDirection={"column"}>
                     <Hr $color={"oakGrey2"} $mt={0} $mb={24} />
