@@ -489,6 +489,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         .filter((unit) => isVisibleUnit(year, unit))
                         .map((unit, index) => {
                           const isHighlighted = isHighlightedUnit(unit);
+                          const unitOptions = unit.unit_options.length > 1;
                           return (
                             <Card
                               key={unit.slug + index}
@@ -564,6 +565,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   label="Unit info"
                                   onClick={() => {
                                     handleOpenModal();
+                                    setUnitOptionsAvailable(unitOptions);
                                     setUnitData({ ...unit });
                                   }}
                                   ref={modalButtonRef}

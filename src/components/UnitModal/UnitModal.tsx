@@ -49,12 +49,6 @@ const UnitModal: FC<UnitModalProps> = ({
   };
 
   useEffect(() => {
-    if (unitData) {
-      setUnitOptionsAvailable(unitData.unit_options.length > 0);
-    }
-  }, [unitData, setUnitOptionsAvailable]);
-
-  useEffect(() => {
     if (displayModal === false) {
       setCurriculumUnitDetails(null);
       setOptionalityModalOpen(false);
@@ -62,10 +56,6 @@ const UnitModal: FC<UnitModalProps> = ({
     }
     if (optionalityModalOpen) {
       setUnitOptionsAvailable(false);
-    }
-
-    if (!optionalityModalOpen && unitData) {
-      setUnitOptionsAvailable(unitData.unit_options.length > 0);
     }
   }, [
     displayModal,
@@ -96,7 +86,7 @@ const UnitModal: FC<UnitModalProps> = ({
                 variant="minimal"
                 onClick={() => {
                   handleOptionalityModal();
-                  // setUnitOptionsAvailable(true);
+                  setUnitOptionsAvailable(true);
                   setCurriculumUnitDetails(null);
                 }}
               />
@@ -113,6 +103,7 @@ const UnitModal: FC<UnitModalProps> = ({
             {!unitOptionsAvailable && (
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
+                  toggleClosed={displayModal}
                   threads={unitData.threads}
                   lessons={unitData.lessons}
                   numberOfLessons={unitData.planned_number_of_lessons}

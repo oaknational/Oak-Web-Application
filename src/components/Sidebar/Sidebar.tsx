@@ -25,7 +25,6 @@ const Sidebar: FC<ModalProps> = ({
   children,
   unitOptionsAvailable,
 }) => {
-  // console.log("unitOptionsAvailable", unitOptionsAvailable);
   return (
     <Transition in={displayModal} timeout={300}>
       {(state) => (
