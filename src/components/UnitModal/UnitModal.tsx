@@ -92,7 +92,6 @@ const UnitModal: FC<UnitModalProps> = ({
             {!unitOptionsAvailable && (
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
-                  toggleClosed={!displayModal}
                   threads={unitData.threads}
                   lessons={unitData.lessons}
                   numberOfLessons={unitData.planned_number_of_lessons}
@@ -180,7 +179,6 @@ const UnitModal: FC<UnitModalProps> = ({
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
                                   setCurriculumUnitDetails({
-                                    toggleClosed: displayModal,
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
