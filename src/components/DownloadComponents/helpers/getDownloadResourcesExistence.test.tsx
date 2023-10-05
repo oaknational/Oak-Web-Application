@@ -71,7 +71,9 @@ describe("checkIfDownloadResourcesExist()", () => {
         true,
       );
     } catch (error) {
-      expect((error as OakError).message).toEqual("Failed to fetch downloads");
+      expect((error as OakError).message).toEqual(
+        "Failed to check file existence",
+      );
       expect((error as OakError).meta).toEqual({
         isLegacyDownload: true,
         lessonSlug: "lesson-slug",
@@ -98,7 +100,9 @@ describe("checkIfDownloadResourcesExist()", () => {
         true,
       );
     } catch (error) {
-      expect((error as OakError).message).toEqual("Failed to fetch downloads");
+      expect((error as OakError).message).toEqual(
+        "Failed to check file existence",
+      );
       expect((error as OakError).meta).toEqual({
         isLegacyDownload: true,
         lessonSlug: "lesson-slug",
