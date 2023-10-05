@@ -39,8 +39,6 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
             isLegacyDownload,
           );
 
-        console.log({ resourceExistence });
-
         const resourcesExistenceAsArray: {
           item: DownloadResourceType;
           exists: boolean;
@@ -52,8 +50,6 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
             exists: v.exists as boolean,
           };
         });
-
-        console.log({ resourcesExistenceAsArray });
 
         const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
           .map((r) => {
