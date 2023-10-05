@@ -1,3 +1,11 @@
+## [1.267.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.1...v1.267.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* handle downloads responses with zod and send error data to bugsnag ([dfa07d6](https://github.com/oaknational/Oak-Web-Application/commit/dfa07d689d0bc18797b5e49615a3a268ea5241c7))
+* **lesson downloads error:** reset message on submit ([bb6419a](https://github.com/oaknational/Oak-Web-Application/commit/bb6419a2f6618957fed1a9948b070d75f7691236))
+
 ## [1.267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.0...v1.267.1) (2023-10-05)
 
 # [1.267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.266.0...v1.267.0) (2023-10-04)
