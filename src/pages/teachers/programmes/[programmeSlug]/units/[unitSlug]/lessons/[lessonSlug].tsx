@@ -93,17 +93,13 @@ export const getStaticProps: GetStaticProps<
       }
 
       const { videoTitle } = curriculumData;
-      if (videoTitle) {
+      if (videoTitle && !isSlugLegacy(programmeSlug)) {
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
         const transcript = await getCaptionsFromFile(fileName);
         if (transcript) {
           curriculumData.transcriptSentences = transcript;
-        } else {
-          console.error(
-            `Could not generate transcript from captions file: ${fileName}`,
-          );
         }
       }
 
