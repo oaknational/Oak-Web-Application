@@ -1,3 +1,19 @@
+## [1.267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.0...v1.267.1) (2023-10-05)
+
+# [1.267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.266.0...v1.267.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* added inline link to units, removed units button and updated font size ([19cb61a](https://github.com/oaknational/Oak-Web-Application/commit/19cb61ab61913ccfc5928d3687c627cada91c734))
+* added underline to link ([18db280](https://github.com/oaknational/Oak-Web-Application/commit/18db2801ad9379efdbca8861e90c39a3ca8b3967))
+* updated styling and display order for mobile ([278836f](https://github.com/oaknational/Oak-Web-Application/commit/278836f235fe4418d2ce8c953043d53ec66934c6))
+
+
+### Features
+
+* added video guide if video data is being passed through ([690877b](https://github.com/oaknational/Oak-Web-Application/commit/690877bf4b6feda06cc5b4e614a7c3167a11aabe))
+
 # [1.266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.5...v1.266.0) (2023-10-04)
 
 
