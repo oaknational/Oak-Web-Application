@@ -1,3 +1,20 @@
+# [1.269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.268.0...v1.269.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* add isLegacy prop to other video instances ([fe1417d](https://github.com/oaknational/Oak-Web-Application/commit/fe1417d42c5c2b8815100fac361310d2aa27cbfb))
+* use actual query param legacy not isLegacy ([9c83e8d](https://github.com/oaknational/Oak-Web-Application/commit/9c83e8d55a52c4e226f3440b55585dff66a324af))
+
+
+### Features
+
+* only use isLegacy param when true ([d4d0729](https://github.com/oaknational/Oak-Web-Application/commit/d4d07297bdac007d5ac2d8f8e6937360c761499e))
+* remove temporary public video workaround ([e74e5d7](https://github.com/oaknational/Oak-Web-Application/commit/e74e5d7d62f1307a98b3a636b1c135ccd80f93f6))
+* update query ([c90ef8c](https://github.com/oaknational/Oak-Web-Application/commit/c90ef8cb954e2a1a7700d2ce7c37f804d0623c76))
+* use customDomain for all videos ([7c9719a](https://github.com/oaknational/Oak-Web-Application/commit/7c9719ac20a04dd493b7965da707f56acfb83e59))
+* use new api to generate signed video tokens ([9fe08b8](https://github.com/oaknational/Oak-Web-Application/commit/9fe08b82f3b5a659754c7eec558007b9573da096))
+
 # [1.268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.3...v1.268.0) (2023-10-05)
 
 
