@@ -1,3 +1,18 @@
+# [1.268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.3...v1.268.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* download button icon ([3a05575](https://github.com/oaknational/Oak-Web-Application/commit/3a055752dedd07559e76ea9f9507bf3e3e3adcc1))
+* qa fixes ([f0c1b1b](https://github.com/oaknational/Oak-Web-Application/commit/f0c1b1b1a7a79e01b883b212a8b652a17e26953f))
+* temporarily hide additional material ([069360e](https://github.com/oaknational/Oak-Web-Application/commit/069360e911bdeed8b950da9c5373a0993daa652a))
+
+
+### Features
+
+* add pupil lesson outcome ([87ea8ba](https://github.com/oaknational/Oak-Web-Application/commit/87ea8ba10a522dd10fb467567bef07fb9c3b3ecb))
+* lesson info year tier examboard ([3fe13d1](https://github.com/oaknational/Oak-Web-Application/commit/3fe13d1aaa3773b1574c38814952900c109237c1))
+
 ## [1.267.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.2...v1.267.3) (2023-10-05)
 
 

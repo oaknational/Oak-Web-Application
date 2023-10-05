@@ -8,6 +8,7 @@ import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
 } from "@/common-lib/urls";
+import Box from "@/components/Box";
 
 export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
   const {
@@ -50,30 +51,31 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         };
 
   return (
-    <ButtonAsLink
-      {...linkProps}
-      data-testid={"download-all-button"}
-      variant="brush"
-      iconBackground="black"
-      icon="download"
-      size="large"
-      $iconPosition="trailing"
-      $ml={4}
-      label={`Download all resources`}
-      onClick={() => {
-        track.downloadResourceButtonClicked({
-          keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-          keyStageSlug,
-          subjectTitle,
-          subjectSlug,
-          unitName: unitTitle,
-          unitSlug,
-          lessonName: lessonTitle,
-          lessonSlug,
-          downloadResourceButtonName: "all",
-          analyticsUseCase,
-        });
-      }}
-    />
+    <Box>
+      <ButtonAsLink
+        {...linkProps}
+        data-testid={"download-all-button"}
+        variant="brush"
+        iconBackground="black"
+        icon="arrow-right"
+        size="large"
+        $iconPosition="trailing"
+        label={`Download all resources`}
+        onClick={() => {
+          track.downloadResourceButtonClicked({
+            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+            keyStageSlug,
+            subjectTitle,
+            subjectSlug,
+            unitName: unitTitle,
+            unitSlug,
+            lessonName: lessonTitle,
+            lessonSlug,
+            downloadResourceButtonName: "all",
+            analyticsUseCase,
+          });
+        }}
+      />
+    </Box>
   );
 };
