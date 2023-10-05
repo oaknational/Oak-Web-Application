@@ -44,7 +44,7 @@ const downloadDebouncedSubmit = async (
       code: "downloads/failed-to-fetch",
       originalError: error,
     });
-    await reportError(oakError);
+    reportError(oakError);
     throw oakError;
   }
 };
