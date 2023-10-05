@@ -32,7 +32,13 @@ const Accordion: FC<AccordionProps> = ({ title, children, lastAccordion }) => {
   });
 
   return (
-    <Card $flexDirection={"column"} $pv={0} $ph={0} $position={"relative"}>
+    <Card
+      $flexDirection={"column"}
+      $pv={0}
+      $ph={0}
+      $position={"relative"}
+      data-testid="accordion-component"
+    >
       <Card
         {...containerProps}
         $flexDirection={"row"}
