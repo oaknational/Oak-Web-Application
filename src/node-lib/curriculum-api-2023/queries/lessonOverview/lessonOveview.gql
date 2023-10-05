@@ -19,6 +19,8 @@ query lessonOverview(
     keyStageTitle
     subjectSlug
     subjectTitle
+    examBoardTitle
+    tierTitle
     misconceptionsAndCommonMistakes
     lessonEquipmentAndResources
     teacherTips

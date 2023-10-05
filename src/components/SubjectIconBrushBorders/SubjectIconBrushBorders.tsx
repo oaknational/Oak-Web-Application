@@ -33,7 +33,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   }
 
   return (
-    <Flex $width={"100%"} $position={"relative"}>
+    <Flex $minWidth={[80, 140]} $width={"100%"} $position={"relative"}>
       <Svg
         $color={color}
         $position={"absolute"}

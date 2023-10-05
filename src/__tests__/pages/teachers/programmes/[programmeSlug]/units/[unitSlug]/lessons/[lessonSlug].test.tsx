@@ -86,10 +86,10 @@ describe("pages/teachers/lessons", () => {
     expect(screen.getByText("Hide sign language")).toBeInTheDocument();
   });
 
-  it("renders an iframe for a presentation, worksheet and additional material", async () => {
+  it("renders an iframe for a presentation and worksheet", async () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
     const iframeElement = getAllByTestId("overview-presentation");
-    expect(iframeElement.length).toEqual(3);
+    expect(iframeElement.length).toEqual(2);
   });
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
