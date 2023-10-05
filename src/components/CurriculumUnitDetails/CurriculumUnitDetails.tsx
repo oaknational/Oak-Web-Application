@@ -41,7 +41,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   }`;
 
   return (
-    <Flex $flexDirection={"column"} $width={"100%"} $mb={24}>
+    <Flex
+      $flexDirection={"column"}
+      $width={"100%"}
+      $mb={24}
+      data-testid="curriculum-unit-details"
+    >
       <P $mb={32} $font={"body-2"}>
         {lessonsInUnit}
       </P>

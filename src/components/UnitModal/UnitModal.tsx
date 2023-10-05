@@ -169,6 +169,7 @@ const UnitModal: FC<UnitModalProps> = ({
                             >
                               <Button
                                 label="Unit info"
+                                data-testid="unit-info-button"
                                 $font={"heading-7"}
                                 icon="chevron-right"
                                 $iconPosition="trailing"
