@@ -94,6 +94,8 @@ export const getStaticProps: GetStaticProps<
 
       const { videoTitle } = curriculumData;
       if (videoTitle) {
+        // For new content we need to fetch the captions file from gCloud and parse the result to generate
+        // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
         const transcript = await getCaptionsFile(fileName);
         if (transcript) {
