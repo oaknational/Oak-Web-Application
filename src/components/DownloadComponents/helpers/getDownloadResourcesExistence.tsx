@@ -55,7 +55,7 @@ const getDownloadResourcesExistence = async (
 
   if (!res.ok) {
     throw new OakError({
-      code: "downloads/failed-to-fetch",
+      code: "downloads/check-files-failed",
       meta,
     });
   }
@@ -66,7 +66,7 @@ const getDownloadResourcesExistence = async (
 
   if (!parsedJson.success) {
     throw new OakError({
-      code: "downloads/failed-to-fetch",
+      code: "downloads/check-files-failed",
       originalError: parsedJson.error,
       meta: {
         ...meta,

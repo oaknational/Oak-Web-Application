@@ -65,7 +65,7 @@ const createDownloadResourcesLink = async (
 
   if (!data || error) {
     throw new OakError({
-      code: "downloads/check-files-failed",
+      code: "downloads/failed-to-fetch",
       meta: {
         ...meta,
         error,
