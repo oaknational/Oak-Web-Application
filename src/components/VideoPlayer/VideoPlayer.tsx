@@ -181,7 +181,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         playbackId={playbackId}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
-        customDomain={isLegacy ? "video.thenational.academy" : undefined} // TODO: remove this temporary workaround when custom domain is set up on new mux environment
+        customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}
