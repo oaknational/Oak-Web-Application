@@ -177,9 +177,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
     initialYearSelection[year] = {
-      subject:
-        data.childSubjects.find((s) => s.subject_slug === "combined-science") ??
-        null,
+      subject: data.childSubjects[0] ?? null,
       domain: data.domains.length ? data.domains[0] : null,
       tier: data.tiers.length ? data.tiers[0] : null,
     };
