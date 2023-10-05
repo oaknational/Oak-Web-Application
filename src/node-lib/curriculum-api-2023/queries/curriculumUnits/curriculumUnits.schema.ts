@@ -16,6 +16,7 @@ const curriculumUnitsSchema = z.object({
       lessons: z
         .array(
           z.object({
+            slug: z.string().optional(),
             title: z.string(),
             slug: z.string().optional(),
           }),

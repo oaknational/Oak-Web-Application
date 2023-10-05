@@ -2,6 +2,7 @@ import { VisuallyHidden } from "react-aria";
 
 import QuizImage from "../QuizImage";
 import { removeMarkdown } from "../../../quizUtils";
+import QuizImageAnswer from "../QuizImageAnswer";
 
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
@@ -30,23 +31,27 @@ export const MCAnswers = (props: {
       $gap={8}
     >
       {answers.map((choice, i) => {
-        const encloseAnswer =
-          choice.answer.filter((answerItem) => answerItem.type === "image")
-            .length > 0;
+        const imageAnswers = choice.answer.filter(
+          (answerItem) => answerItem.type === "image",
+        );
+        const encloseAnswer = imageAnswers.length > 0;
+        const imageAnswer =
+          choice.answer.length === 1 && imageAnswers.length === 1;
+
         return (
           <Flex
             key={`q-${questionNumber}-answer-${i}`}
             $flexDirection={"column"}
             $gap={8}
             $alignItems={encloseAnswer ? "center" : "flex-start"}
-            $ph={encloseAnswer ? 10 : 0}
-            $pv={encloseAnswer ? 16 : 0}
-            $ba={encloseAnswer ? 1 : 0}
-            $maxWidth={encloseAnswer ? 450 : "100%"}
             $borderStyle="solid"
             $borderColor="black"
             $borderRadius={8}
             role="listitem"
+            $ph={encloseAnswer && !imageAnswer ? 10 : 0}
+            $pv={encloseAnswer && !imageAnswer ? 16 : 0}
+            $ba={encloseAnswer && !imageAnswer ? 1 : 0}
+            $maxWidth={encloseAnswer ? 450 : "100%"}
           >
             {choice.answer.map((answerItem, j) => {
               if (answerItem.type === "text" && !choice.answer_is_correct) {
@@ -84,7 +89,13 @@ export const MCAnswers = (props: {
                   </Flex>
                 );
               } else if (answerItem.type === "image") {
-                return (
+                return imageAnswer ? (
+                  <QuizImageAnswer
+                    key={`q-${questionNumber}-answer-element-${j}`}
+                    src={answerItem.image_object}
+                    answerIsCorrect={choice.answer_is_correct && imageAnswer}
+                  />
+                ) : (
                   <QuizImage
                     key={`q-${questionNumber}-answer-element-${j}`}
                     src={answerItem.image_object}

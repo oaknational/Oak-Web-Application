@@ -1,3 +1,127 @@
+# [1.269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.268.0...v1.269.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* add isLegacy prop to other video instances ([fe1417d](https://github.com/oaknational/Oak-Web-Application/commit/fe1417d42c5c2b8815100fac361310d2aa27cbfb))
+* use actual query param legacy not isLegacy ([9c83e8d](https://github.com/oaknational/Oak-Web-Application/commit/9c83e8d55a52c4e226f3440b55585dff66a324af))
+
+
+### Features
+
+* only use isLegacy param when true ([d4d0729](https://github.com/oaknational/Oak-Web-Application/commit/d4d07297bdac007d5ac2d8f8e6937360c761499e))
+* remove temporary public video workaround ([e74e5d7](https://github.com/oaknational/Oak-Web-Application/commit/e74e5d7d62f1307a98b3a636b1c135ccd80f93f6))
+* update query ([c90ef8c](https://github.com/oaknational/Oak-Web-Application/commit/c90ef8cb954e2a1a7700d2ce7c37f804d0623c76))
+* use customDomain for all videos ([7c9719a](https://github.com/oaknational/Oak-Web-Application/commit/7c9719ac20a04dd493b7965da707f56acfb83e59))
+* use new api to generate signed video tokens ([9fe08b8](https://github.com/oaknational/Oak-Web-Application/commit/9fe08b82f3b5a659754c7eec558007b9573da096))
+
+# [1.268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.3...v1.268.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* download button icon ([3a05575](https://github.com/oaknational/Oak-Web-Application/commit/3a055752dedd07559e76ea9f9507bf3e3e3adcc1))
+* qa fixes ([f0c1b1b](https://github.com/oaknational/Oak-Web-Application/commit/f0c1b1b1a7a79e01b883b212a8b652a17e26953f))
+* temporarily hide additional material ([069360e](https://github.com/oaknational/Oak-Web-Application/commit/069360e911bdeed8b950da9c5373a0993daa652a))
+
+
+### Features
+
+* add pupil lesson outcome ([87ea8ba](https://github.com/oaknational/Oak-Web-Application/commit/87ea8ba10a522dd10fb467567bef07fb9c3b3ecb))
+* lesson info year tier examboard ([3fe13d1](https://github.com/oaknational/Oak-Web-Application/commit/3fe13d1aaa3773b1574c38814952900c109237c1))
+
+## [1.267.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.2...v1.267.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* min subject icon size ([4e26e77](https://github.com/oaknational/Oak-Web-Application/commit/4e26e7762c17b1b7f3d136edc8e02dbc3a27befb))
+* small icons on lesson listing ([cdef051](https://github.com/oaknational/Oak-Web-Application/commit/cdef051eb460fc176a5df4c7185b594f4df2081b))
+
+## [1.267.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.1...v1.267.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* handle downloads responses with zod and send error data to bugsnag ([dfa07d6](https://github.com/oaknational/Oak-Web-Application/commit/dfa07d689d0bc18797b5e49615a3a268ea5241c7))
+* **lesson downloads error:** reset message on submit ([bb6419a](https://github.com/oaknational/Oak-Web-Application/commit/bb6419a2f6618957fed1a9948b070d75f7691236))
+
+## [1.267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.0...v1.267.1) (2023-10-05)
+
+# [1.267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.266.0...v1.267.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* added inline link to units, removed units button and updated font size ([19cb61a](https://github.com/oaknational/Oak-Web-Application/commit/19cb61ab61913ccfc5928d3687c627cada91c734))
+* added underline to link ([18db280](https://github.com/oaknational/Oak-Web-Application/commit/18db2801ad9379efdbca8861e90c39a3ca8b3967))
+* updated styling and display order for mobile ([278836f](https://github.com/oaknational/Oak-Web-Application/commit/278836f235fe4418d2ce8c953043d53ec66934c6))
+
+
+### Features
+
+* added video guide if video data is being passed through ([690877b](https://github.com/oaknational/Oak-Web-Application/commit/690877bf4b6feda06cc5b4e614a7c3167a11aabe))
+
+# [1.266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.5...v1.266.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* visually hidden correct message ([c9f03a9](https://github.com/oaknational/Oak-Web-Application/commit/c9f03a91dc0973082044a5c4a1d9c4a77874b14a))
+
+
+### Features
+
+* quiz image answer ([35ac070](https://github.com/oaknational/Oak-Web-Application/commit/35ac0702db9af3477c8707c78f22e85a4737e26d))
+* quiz image correct answer ([bbb0aef](https://github.com/oaknational/Oak-Web-Application/commit/bbb0aefa91b322a4686628f0d4ff12d78d72b126))
+
+## [1.265.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.4...v1.265.5) (2023-10-04)
+
+## [1.265.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.3...v1.265.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* proxy sanity assets (incl. ctas) ([9c68a9f](https://github.com/oaknational/Oak-Web-Application/commit/9c68a9fc3bd394710198dab8b9a112231115f498))
+
+## [1.265.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.2...v1.265.3) (2023-10-03)
+
+
+### Bug Fixes
+
+* type errors ([29c3687](https://github.com/oaknational/Oak-Web-Application/commit/29c368755aa9add01fdb67eed6eda92c01988a42))
+* update mv_download to v7 ([aec3aeb](https://github.com/oaknational/Oak-Web-Application/commit/aec3aeb7cecb7de0c8b687d7863c3a1ae1dd7953))
+
+## [1.265.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.1...v1.265.2) (2023-10-03)
+
+
+### Bug Fixes
+
+* added sub-bullets for subject principles ([4dda9b0](https://github.com/oaknational/Oak-Web-Application/commit/4dda9b04e856b9f8eb353cbeb1b2bd29eb334f93))
+* updated bullet alignment to text ([1f4f14c](https://github.com/oaknational/Oak-Web-Application/commit/1f4f14ce617d9828bdc83b18a67fe29c938cf362))
+* updated bullet style and principles card colour ([7397190](https://github.com/oaknational/Oak-Web-Application/commit/739719020d8609fdf47b01815e2a312ffa646b2d))
+
+## [1.265.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.0...v1.265.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* update curriculum units schema, improve units tab parsing ([f64a615](https://github.com/oaknational/Oak-Web-Application/commit/f64a615ba78462a6f792dacac14aca1ff144c525))
+
+# [1.265.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.1...v1.265.0) (2023-10-03)
+
+
+### Features
+
+* **apis:** generate mux tokens ([3316502](https://github.com/oaknational/Oak-Web-Application/commit/33165028d39ac1352f019e1036c9dbdc56cec1e3))
+
+## [1.264.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.264.0...v1.264.1) (2023-10-03)
+
+
+### Bug Fixes
+
+* **generate sprites:** exit on image data fail ([02e88ee](https://github.com/oaknational/Oak-Web-Application/commit/02e88ee5843cf6f794bda4eb52eee6bd3c307d67))
+
 # [1.264.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.263.1...v1.264.0) (2023-10-03)
 
 

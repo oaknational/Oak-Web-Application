@@ -1,5 +1,7 @@
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
+import OakError from "@/errors/OakError";
+
 const data = {
   url: "downloadUrl",
 };
@@ -64,7 +66,12 @@ describe("createDownloadResourcesLink()", () => {
         true,
       );
     } catch (error) {
-      expect((error as Error).message).toEqual("specific error");
+      expect((error as OakError).message).toEqual("Failed to fetch downloads");
+      expect((error as OakError).meta).toEqual({
+        isLegacyDownload: true,
+        lessonSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+      });
     }
   });
 
@@ -86,7 +93,12 @@ describe("createDownloadResourcesLink()", () => {
         true,
       );
     } catch (error) {
-      expect((error as Error).message).toEqual("API error");
+      expect((error as OakError).message).toEqual("Failed to fetch downloads");
+      expect((error as OakError).meta).toEqual({
+        isLegacyDownload: true,
+        lessonSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+      });
     }
   });
   it("should fetch from legacy vercel legacy vercel api if isLegacyDownloads = true", async () => {

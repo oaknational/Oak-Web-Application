@@ -57,7 +57,7 @@ const LessonHelper: FC<LessonHelperProps> = ({
         <GridArea $colStart={1} $colSpan={[12]}>
           <LessonRequirementsHeading
             helperIcon={"copyright"}
-            heading="License"
+            heading="Licence"
           />
           <Box $pt={8}>
             <CopyrightNotice

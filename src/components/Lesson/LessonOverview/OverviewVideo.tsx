@@ -11,7 +11,7 @@ export interface OverviewVideoProps {
   signLanguageVideo: string | null;
   title: string;
   transcriptSentences?: string[] | null;
-  temporaryUsePublicVideos?: boolean; // TODO: remove this temporary param to display public videos for new content
+  isLegacy: boolean;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
@@ -19,7 +19,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   signLanguageVideo,
   title,
   transcriptSentences,
-  temporaryUsePublicVideos = false,
+  isLegacy,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -47,10 +47,10 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           playbackId={
             signLanguageVideo && signLanguageOn ? signLanguageVideo : video
           }
-          playbackPolicy={temporaryUsePublicVideos ? "public" : "signed"}
+          playbackPolicy={"signed"}
           title={title}
           location={"lesson"}
-          temporaryUsePublicVideos={temporaryUsePublicVideos}
+          isLegacy={isLegacy}
         />
       )}
 

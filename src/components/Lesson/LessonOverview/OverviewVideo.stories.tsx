@@ -24,6 +24,7 @@ const props: OverviewVideoProps = {
   title: "title",
   transcriptSentences,
   signLanguageVideo: "signLanguageVideo",
+  isLegacy: true,
 };
 
 const meta: Meta<typeof OverviewVideo> = {

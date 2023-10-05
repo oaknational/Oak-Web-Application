@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import { Heading, UL, LI } from "@/components/Typography";
+import { P, Heading, UL, LI } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
@@ -12,6 +12,9 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import CMSImage from "@/components/CMSImage";
+import CMSVideo from "@/components/CMSVideo";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import OakLink from "@/components/OakLink";
 
 export type OverviewTabProps = {
   data: {
@@ -24,10 +27,63 @@ export type OverviewTabProps = {
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
-  const { subjectPrinciples, partnerBio, curriculumPartner } =
-    curriculumCMSInfo;
+  const {
+    subjectPrinciples,
+    partnerBio,
+    curriculumPartner,
+    video,
+    videoAuthor,
+  } = curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
-  const { subjectSlug } = curriculumSelectionSlugs;
+  const { subjectSlug, phaseSlug, examboardSlug } = curriculumSelectionSlugs;
+  const subjectPhaseSlug = examboardSlug
+    ? `${subjectSlug}-${phaseSlug}-${examboardSlug}`
+    : `${subjectSlug}-${phaseSlug}`;
+
+  const createBullet = (item: string, i: number) => (
+    <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
+      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+        <Flex
+          $background={"mint"}
+          $borderRadius={"50%"}
+          $borderColor="mint"
+          $mr={10}
+        >
+          <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+        </Flex>
+        {item}
+      </Flex>
+    </LI>
+  );
+  const itemiseSubjectPrinciples = (item: string, i: number) => {
+    if (item.includes(" • ")) {
+      const sublist = item.split(" • ");
+      if (sublist.length > 0 && typeof sublist[0] === "string") {
+        const firstItem = sublist[0];
+        const bulletItems = sublist.slice(1);
+        const bullets = bulletItems.map((listItem, li) => (
+          <LI
+            listStyle={"disc"}
+            data-testid="sp-subbullet"
+            key={`${firstItem.split(" ").join("-")}-sb-${li}`}
+            $ml={10}
+            $mt={4}
+            $mb={6}
+          >
+            {listItem}
+          </LI>
+        ));
+        return (
+          <Box $mb={10}>
+            {createBullet(firstItem, i)}
+            <UL>{bullets}</UL>
+          </Box>
+        );
+      }
+    } else {
+      return createBullet(item, i);
+    }
+  };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
       <Flex $mv={10}>
@@ -79,41 +135,68 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       </Flex>
       <Card
         $maxWidth={"100%"}
-        $background={"aqua30"}
+        $background={"mint30"}
         $zIndex={"neutral"}
         $mb={80}
       >
-        <BrushBorders color={"aqua30"} />
+        <BrushBorders color={"mint30"} />
         <Box $ma={16}>
           <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
-            {subjectPrinciples.map((item, i) => (
-              <LI
-                $mb={[12]}
-                key={`principle-${i + 1}`}
-                data-testid="subject-principles"
-              >
-                <Flex $alignItems={"center"}>
-                  <Flex
-                    $background={"aqua"}
-                    $borderRadius={"50%"}
-                    $borderColor="aqua"
-                    $mt={[4]}
-                    $mr={10}
-                    $pa={1}
-                  >
-                    <Icon name="arrow-right" $ma={"auto"} $pa={2} />
-                  </Flex>
-                  {item}
-                </Flex>
-              </LI>
-            ))}
+            {subjectPrinciples.map((item, i) =>
+              itemiseSubjectPrinciples(item, i),
+            )}
           </UL>
         </Box>
       </Card>
-
+      {video && videoAuthor && (
+        <Flex
+          $alignItems={"center"}
+          $justifyContent={"flex-start"}
+          $flexDirection={["column-reverse", "row"]}
+          $gap={[24, 120]}
+          $mb={[48, 80]}
+        >
+          <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
+            <CMSVideo video={video} location="lesson" />
+          </Box>
+          <Flex
+            $flexDirection={"column"}
+            $maxWidth={["100%", "30%"]}
+            $alignItems={"flex-start"}
+            $gap={[16, 24]}
+          >
+            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+              Video guide
+            </Heading>
+            <P $font={"body-1"}>
+              Our{" "}
+              <OakLink
+                subjectPhaseSlug={subjectPhaseSlug}
+                page="curriculum-units"
+                $textDecoration={"underline"}
+              >
+                new curriculum sequence
+              </OakLink>{" "}
+              has recently launched. For additional support, watch this video
+              guide by {videoAuthor} from our educational team, as they talk you
+              through how to use this new tool.
+            </P>
+            <ButtonAsLink
+              variant="buttonStyledAsLink"
+              label="Read more about our new curriculum"
+              page={"develop-your-curriculum"}
+              icon="chevron-right"
+              background={"white"}
+              $iconPosition="trailing"
+              iconBackground="white"
+              $textAlign={"start"}
+            />
+          </Flex>
+        </Flex>
+      )}
       <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
         <Flex

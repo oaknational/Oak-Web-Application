@@ -10,7 +10,7 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number; output: string; }
+  ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
@@ -577,6 +577,7 @@ export type BrandAsset = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   faviconImage?: Maybe<FaviconImage>;
+  logo?: Maybe<SiteLogo>;
   logoWithText?: Maybe<SiteLogo>;
   socialSharingImage?: Maybe<Image>;
 };
@@ -591,6 +592,7 @@ export type BrandAssetFilter = {
   _type?: InputMaybe<StringFilter>;
   _updatedAt?: InputMaybe<DatetimeFilter>;
   faviconImage?: InputMaybe<FaviconImageFilter>;
+  logo?: InputMaybe<SiteLogoFilter>;
   logoWithText?: InputMaybe<SiteLogoFilter>;
   socialSharingImage?: InputMaybe<ImageFilter>;
 };
@@ -603,6 +605,7 @@ export type BrandAssetSorting = {
   _type?: InputMaybe<SortOrder>;
   _updatedAt?: InputMaybe<SortOrder>;
   faviconImage?: InputMaybe<FaviconImageSorting>;
+  logo?: InputMaybe<SiteLogoSorting>;
   logoWithText?: InputMaybe<SiteLogoSorting>;
   socialSharingImage?: InputMaybe<ImageSorting>;
 };
@@ -885,6 +888,8 @@ export type CurriculumInfoPageOverview = Document & {
   phase?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subjectPrinciples?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  video?: Maybe<Video>;
+  videoAuthor?: Maybe<Scalars['String']['output']>;
 };
 
 export type CurriculumInfoPageOverviewFilter = {
@@ -900,6 +905,8 @@ export type CurriculumInfoPageOverviewFilter = {
   partnerBio?: InputMaybe<StringFilter>;
   phase?: InputMaybe<StringFilter>;
   subject?: InputMaybe<StringFilter>;
+  video?: InputMaybe<VideoFilter>;
+  videoAuthor?: InputMaybe<StringFilter>;
 };
 
 export type CurriculumInfoPageOverviewSorting = {
@@ -912,6 +919,8 @@ export type CurriculumInfoPageOverviewSorting = {
   partnerBio?: InputMaybe<SortOrder>;
   phase?: InputMaybe<SortOrder>;
   subject?: InputMaybe<SortOrder>;
+  video?: InputMaybe<VideoSorting>;
+  videoAuthor?: InputMaybe<SortOrder>;
 };
 
 export type CurriculumPartner = Document & {
@@ -3518,7 +3527,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -4409,9 +4418,14 @@ export const CurriculumOverviewDocument = gql`
         ...Image
       }
     }
+    video {
+      ...Video
+    }
+    videoAuthor
   }
 }
-    ${ImageFragmentDoc}`;
+    ${ImageFragmentDoc}
+${VideoFragmentDoc}`;
 export const HomepageDocument = gql`
     query homepage($isDraftFilter: Sanity_DocumentFilter) {
   allHomepage(
