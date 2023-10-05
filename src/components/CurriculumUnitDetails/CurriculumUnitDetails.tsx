@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
-import { Heading, LI, P, UL } from "@/components/Typography";
+import { Heading, LI, P, OL } from "@/components/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Lesson } from "@/components/UnitModal/UnitModal";
 import { Thread } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
@@ -13,16 +13,12 @@ export type CurriculumUnitDetailsProps = {
   threads: Thread[];
   numberOfLessons: number | null;
   lessons: Lesson[] | null | undefined;
-  previousUnitDescription: string | null;
-  futureUnitDescription: string | null;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   threads,
   numberOfLessons,
   lessons,
-  previousUnitDescription,
-  futureUnitDescription,
 }) => {
   const uniqueThreads = new Set<string>();
   threads.forEach((thread) => {
@@ -71,40 +67,15 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           ))}
         </Flex>
       </Box>
-      <Flex $flexDirection={"column"} $gap={0}>
-        <Accordion
-          title="Lessons in unit"
-          lastAccordion={!previousUnitDescription && !futureUnitDescription}
-        >
-          <UL $reset data-testid="lesson-title-list">
+      <Flex $flexDirection={"column"}>
+        <Accordion title="Lessons in unit" lastAccordion={true}>
+          <OL $mt={0} data-testid="lesson-title-list">
             {lessons &&
               uniqueLessonTitlesArray?.map((lesson) => {
-                return (
-                  <LI>
-                    <P>{lesson}</P>
-                  </LI>
-                );
+                return <LI>{lesson}</LI>;
               })}
-          </UL>
+          </OL>
         </Accordion>
-        {previousUnitDescription && (
-          <Accordion
-            title="Previous unit description"
-            data-testid="previous-unit-accordion"
-            lastAccordion={!futureUnitDescription}
-          >
-            <P data-testid="previous-unit-text">{previousUnitDescription}</P>
-          </Accordion>
-        )}
-        {futureUnitDescription && (
-          <Accordion
-            title="Following unit description"
-            data-testid="future-unit-accordion"
-            lastAccordion={true}
-          >
-            <P data-testid="future-unit-text">{futureUnitDescription}</P>
-          </Accordion>
-        )}
       </Flex>
     </Flex>
   );

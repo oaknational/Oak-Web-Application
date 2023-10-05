@@ -71,7 +71,6 @@ const Accordion: FC<AccordionProps> = ({ title, children, lastAccordion }) => {
         $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
         $visibility={isToggleOpen ? "visible" : "hidden"}
-        $mb={isToggleOpen ? 24 : 0}
       >
         {children}
       </Flex>

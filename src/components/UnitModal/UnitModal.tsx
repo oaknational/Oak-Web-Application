@@ -95,12 +95,6 @@ const UnitModal: FC<UnitModalProps> = ({
                   threads={unitData.threads}
                   lessons={unitData.lessons}
                   numberOfLessons={unitData.planned_number_of_lessons}
-                  previousUnitDescription={
-                    unitData.connection_prior_unit_description
-                  }
-                  futureUnitDescription={
-                    unitData.connection_future_unit_description
-                  }
                 />
               </Box>
             )}
@@ -113,9 +107,10 @@ const UnitModal: FC<UnitModalProps> = ({
                 <Box
                   $position={"relative"}
                   $background={"pink30"}
-                  $pa={12}
+                  $pa={24}
                   $mt={40}
                   data-testid="unit-options-card"
+                  $borderRadius={4}
                 >
                   <Heading
                     tag="h4"
@@ -139,7 +134,8 @@ const UnitModal: FC<UnitModalProps> = ({
                           key={`${optionalUnit.unitvariant_id}-${index}}`}
                           $background={"white"}
                           $position={"relative"}
-                          $maxWidth={["100%", "calc(50% - 14px)"]}
+                          $maxWidth={["100%", "calc(50% - 12px)"]}
+                          $minWidth={["100%", "calc(50% - 12px)"]}
                           data-testid="unit-option"
                           $maxHeight={"fit-content"}
                           $justifyContent={"space-between"}
@@ -184,10 +180,6 @@ const UnitModal: FC<UnitModalProps> = ({
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
                                     numberOfLessons: optionalUnitLessonCount,
-                                    previousUnitDescription:
-                                      optionalUnit.connection_prior_unit_description,
-                                    futureUnitDescription:
-                                      optionalUnit.connection_future_unit_description,
                                   });
                                 }}
                               />
@@ -197,8 +189,6 @@ const UnitModal: FC<UnitModalProps> = ({
                       );
                     })}
                   </Flex>
-
-                  <BrushBorders color="pink30" />
                 </Box>
               )}
             </Flex>
