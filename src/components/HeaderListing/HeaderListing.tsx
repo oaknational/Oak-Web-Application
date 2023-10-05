@@ -59,7 +59,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     <HeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <Flex $mb={[12, 0]} $flexDirection={"column"}>
         <Flex>
-          <Box $height={[80, 140]} $width={[80, 140]} $mr={[16, 32]}>
+          <Box $height={[80, 140]} $maxWidth={[80, 140]} $mr={[16, 32]}>
             <SubjectIconBrushBorders
               $pa={8}
               subjectSlug={subjectSlug}
