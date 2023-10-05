@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type {
-  ResourcesToDownloadArrayType,
-  DownloadResourceType,
-} from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
@@ -40,13 +37,13 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           );
 
         const resourcesExistenceAsArray: {
-          item: DownloadResourceType;
+          item: string;
           exists: boolean;
         }[] = resourceExistence.map((r) => {
           const [k, v] = r;
           return {
             item: k,
-            exists: v.exists as boolean,
+            exists: v.exists,
           };
         });
 
