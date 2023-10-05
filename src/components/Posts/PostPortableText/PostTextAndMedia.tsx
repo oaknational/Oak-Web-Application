@@ -62,6 +62,7 @@ const PostTextAndMedia = (
             playbackId={params.video.video.asset.playbackId}
             location="blog"
             playbackPolicy="public"
+            isLegacy={true}
           />
         </Box>
       )}
