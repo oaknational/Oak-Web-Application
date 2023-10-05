@@ -26,6 +26,7 @@ const ERROR_CODES = [
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
+  "downloads/check-files-failed",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -138,6 +139,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/failed-to-fetch": {
     message: "Failed to fetch downloads",
+    shouldNotify: true,
+  },
+  "downloads/check-files-failed": {
+    message: "Failed to check file existence",
     shouldNotify: true,
   },
 };
