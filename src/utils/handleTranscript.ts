@@ -9,9 +9,16 @@ export const getCaptionsFile = async (fileName: string) => {
     const parser = new WebVTTParser();
     const tree = parser.parse(file, "metadata");
 
-    // TODO: handle error
+    if (tree.errors.length) {
+      console.error(
+        `Error parsing captions file: ${fileName}, errors: ${JSON.stringify(
+          tree.errors,
+        )}`,
+      );
+      return;
+    }
+
     const transcript = getTextFromCues(tree.cues);
-    console.log("diego transcript", transcript);
     return transcript;
   }
 };
