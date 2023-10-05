@@ -1,26 +1,29 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import { Heading, P, Span } from "../Typography";
-import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
-
 import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
+
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import { Heading, P, Span } from "@/components/Typography";
+import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import LessonMetadata from "@/components/LessonMetadata";
 
 export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
   const {
     subjectSlug,
     yearTitle,
+    examBoardTitle,
+    tierTitle,
     lessonTitle,
-    lessonDescription,
+    pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
   } = props;
 
   return (
-    <Flex $flexDirection={"column"} $display={["flex", "none"]}>
-      <Flex $mb={24}>
+    <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
+      <Flex>
         <Box $maxHeight={80} $maxWidth={80} $mr={16}>
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
@@ -31,10 +34,14 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
             color={subjectIconBackgroundColor}
           />
         </Box>
-        <Flex $flexDirection={"column"}>
-          {yearTitle && (
-            <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              {yearTitle}
+        <Flex $flexDirection={"column"} $gap={8}>
+          {(examBoardTitle || yearTitle || tierTitle) && (
+            <Span $color={"oakGrey4"} $font={"heading-light-7"}>
+              <LessonMetadata
+                examBoardTitle={examBoardTitle}
+                yearTitle={yearTitle}
+                tierTitle={tierTitle}
+              />
             </Span>
           )}
 
@@ -43,9 +50,9 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
           </Heading>
         </Flex>
       </Flex>
-      {lessonDescription && (
-        <Box $mb={24}>
-          <P $font={"heading-light-7"}>{lessonDescription}</P>
+      {pupilLessonOutcome && (
+        <Box>
+          <P $font={"body-3"}>{pupilLessonOutcome}</P>
         </Box>
       )}
       <HeaderDownloadAllButton {...props} />

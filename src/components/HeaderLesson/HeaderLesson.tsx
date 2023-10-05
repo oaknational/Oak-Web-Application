@@ -19,6 +19,8 @@ export type HeaderLessonProps = {
   // pathway props
   subjectSlug: string | null;
   yearTitle?: string | null;
+  examBoardTitle?: string | null;
+  tierTitle?: string | null;
   unitSlug: string | null;
   keyStageSlug: string | null;
   keyStageTitle: string | null;
@@ -38,6 +40,7 @@ export type HeaderLessonProps = {
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
+  pupilLessonOutcome?: string | null;
 };
 
 const HeaderLesson: FC<HeaderLessonProps> = (props) => {
