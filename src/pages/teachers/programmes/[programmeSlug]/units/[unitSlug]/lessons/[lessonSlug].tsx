@@ -17,7 +17,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
-import { getCaptionsFile } from "@/utils/handleTranscript";
+import { getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -97,7 +97,7 @@ export const getStaticProps: GetStaticProps<
         // For new content we need to fetch the captions file from gCloud and parse the result to generate
         // the transcript sentences.
         const fileName = `${videoTitle}.vtt`;
-        const transcript = await getCaptionsFile(fileName);
+        const transcript = await getCaptionsFromFile(fileName);
         if (transcript) {
           curriculumData.transcriptSentences = transcript;
         } else {
