@@ -1,3 +1,41 @@
+## [1.267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.0...v1.267.1) (2023-10-05)
+
+# [1.267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.266.0...v1.267.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* added inline link to units, removed units button and updated font size ([19cb61a](https://github.com/oaknational/Oak-Web-Application/commit/19cb61ab61913ccfc5928d3687c627cada91c734))
+* added underline to link ([18db280](https://github.com/oaknational/Oak-Web-Application/commit/18db2801ad9379efdbca8861e90c39a3ca8b3967))
+* updated styling and display order for mobile ([278836f](https://github.com/oaknational/Oak-Web-Application/commit/278836f235fe4418d2ce8c953043d53ec66934c6))
+
+
+### Features
+
+* added video guide if video data is being passed through ([690877b](https://github.com/oaknational/Oak-Web-Application/commit/690877bf4b6feda06cc5b4e614a7c3167a11aabe))
+
+# [1.266.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.5...v1.266.0) (2023-10-04)
+
+
+### Bug Fixes
+
+* visually hidden correct message ([c9f03a9](https://github.com/oaknational/Oak-Web-Application/commit/c9f03a91dc0973082044a5c4a1d9c4a77874b14a))
+
+
+### Features
+
+* quiz image answer ([35ac070](https://github.com/oaknational/Oak-Web-Application/commit/35ac0702db9af3477c8707c78f22e85a4737e26d))
+* quiz image correct answer ([bbb0aef](https://github.com/oaknational/Oak-Web-Application/commit/bbb0aefa91b322a4686628f0d4ff12d78d72b126))
+
+## [1.265.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.4...v1.265.5) (2023-10-04)
+
+## [1.265.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.3...v1.265.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* proxy sanity assets (incl. ctas) ([9c68a9f](https://github.com/oaknational/Oak-Web-Application/commit/9c68a9fc3bd394710198dab8b9a112231115f498))
+
 ## [1.265.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.265.2...v1.265.3) (2023-10-03)
 
 
