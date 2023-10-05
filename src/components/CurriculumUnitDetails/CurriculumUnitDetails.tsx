@@ -15,7 +15,6 @@ export type CurriculumUnitDetailsProps = {
   lessons: Lesson[] | null | undefined;
   previousUnitDescription: string | null;
   futureUnitDescription: string | null;
-  toggleClosed: boolean;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
@@ -72,7 +71,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           title="Lessons in unit"
           lastAccordion={!previousUnitDescription && !futureUnitDescription}
         >
-          <UL $reset>
+          <UL $reset data-testid="lesson-title-list">
             {lessons &&
               uniqueLessonTitlesArray?.map((lesson) => {
                 return (
@@ -86,14 +85,19 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         {previousUnitDescription && (
           <Accordion
             title="Previous unit description"
+            data-testid="previous-unit-accordion"
             lastAccordion={!futureUnitDescription}
           >
-            <P>{previousUnitDescription}</P>
+            <P data-testid="previous-unit-text">{previousUnitDescription}</P>
           </Accordion>
         )}
         {futureUnitDescription && (
-          <Accordion title="Following unit description" lastAccordion={true}>
-            <P>{futureUnitDescription}</P>
+          <Accordion
+            title="Following unit description"
+            data-testid="future-unit-accordion"
+            lastAccordion={true}
+          >
+            <P data-testid="future-unit-text">{futureUnitDescription}</P>
           </Accordion>
         )}
       </Flex>
