@@ -1,3 +1,11 @@
+## [1.267.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.2...v1.267.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* min subject icon size ([4e26e77](https://github.com/oaknational/Oak-Web-Application/commit/4e26e7762c17b1b7f3d136edc8e02dbc3a27befb))
+* small icons on lesson listing ([cdef051](https://github.com/oaknational/Oak-Web-Application/commit/cdef051eb460fc176a5df4c7185b594f4df2081b))
+
 ## [1.267.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.1...v1.267.2) (2023-10-05)
 
 
