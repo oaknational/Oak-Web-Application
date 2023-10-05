@@ -40,7 +40,7 @@ export type VideoPlayerProps = {
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
-  temporaryUsePublicVideos?: boolean; // TODO: remove this temporary param to display public videos for new content
+  isLegacy: boolean;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -50,7 +50,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
-    temporaryUsePublicVideos = false,
+    isLegacy,
   } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
@@ -79,16 +79,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
     playbackPolicy,
+    isLegacy,
   });
 
   const videoToken = useSignedVideoToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const storyboardToken = useSignedStoryboardToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const metadata = {
@@ -176,11 +179,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
-        tokens={temporaryUsePublicVideos ? undefined : tokens} // TODO: remove this temporary workaround
+        tokens={tokens}
         thumbnailTime={thumbTime || undefined}
-        customDomain={
-          temporaryUsePublicVideos ? undefined : "video.thenational.academy"
-        } // TODO: remove this temporary workaround (custom domain doesn't work with public videos)
+        customDomain={"video.thenational.academy"}
         beaconCollectionDomain={"mux-litix.thenational.academy"}
         debug={debug}
         primaryColor={theme.colors.white}

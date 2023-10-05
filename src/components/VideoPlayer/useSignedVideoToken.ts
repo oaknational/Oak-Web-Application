@@ -7,8 +7,7 @@ import OakError from "../../errors/OakError";
 import getSignedVideoToken from "./getSignedVideoToken";
 
 const reportError = errorReporter("useSignedPlaybackId");
-export const apiEndpoint =
-  "https://api.thenational.academy/api/signed-video-token";
+export const apiEndpoint = "/api/video/signed-url";
 
 export const options = {
   revalidateOnFocus: false,
@@ -20,6 +19,7 @@ export type PlaybackPolicy = "public" | "signed";
 type UseSignedPlaybackIdProps = {
   playbackId: string;
   playbackPolicy: PlaybackPolicy;
+  isLegacy: boolean;
 };
 
 type UseSignedPlaybackIdReturnProps = {
@@ -32,20 +32,23 @@ export const useSignedMuxToken = ({
   playbackId,
   playbackPolicy,
   type,
+  isLegacy,
 }: UseSignedPlaybackIdProps & {
   type: string;
 }): UseSignedPlaybackIdReturnProps => {
-  const { data, error } = useSWR(
+  const url =
     playbackPolicy === "signed"
-      ? `${apiEndpoint}?id=${playbackId}&type=${type}`
-      : null,
-    getSignedVideoToken,
-    options,
-  );
-  const token = data?.token;
+      ? `${apiEndpoint}?id=${playbackId}&type=${type}${
+          isLegacy ? "&legacy=true" : ""
+        }`
+      : null;
+
+  const { data, error } = useSWR(url, getSignedVideoToken, options);
+
+  const token = data ? JSON.parse(data).token : undefined;
 
   useEffect(() => {
-    if (data && !data.token) {
+    if (data && !token) {
       const error = new OakError({
         code: "video/fetch-signed-token",
         meta: {
@@ -56,7 +59,7 @@ export const useSignedMuxToken = ({
       });
       reportError(error);
     }
-  }, [data, playbackId, playbackPolicy]);
+  }, [data, token, playbackId, playbackPolicy]);
 
   if (playbackPolicy === "public") {
     return {
@@ -92,17 +95,30 @@ export const useSignedMuxToken = ({
 export const useSignedVideoToken = ({
   playbackId,
   playbackPolicy,
+  isLegacy,
 }: UseSignedPlaybackIdProps) =>
-  useSignedMuxToken({ playbackId, playbackPolicy, type: "video" });
+  useSignedMuxToken({ playbackId, playbackPolicy, type: "video", isLegacy });
 
 export const useSignedThumbnailToken = ({
   playbackId,
   playbackPolicy,
+  isLegacy,
 }: UseSignedPlaybackIdProps) =>
-  useSignedMuxToken({ playbackId, playbackPolicy, type: "thumbnail" });
+  useSignedMuxToken({
+    playbackId,
+    playbackPolicy,
+    type: "thumbnail",
+    isLegacy,
+  });
 
 export const useSignedStoryboardToken = ({
   playbackId,
   playbackPolicy,
+  isLegacy,
 }: UseSignedPlaybackIdProps) =>
-  useSignedMuxToken({ playbackId, playbackPolicy, type: "storyboard" });
+  useSignedMuxToken({
+    playbackId,
+    playbackPolicy,
+    type: "storyboard",
+    isLegacy,
+  });
