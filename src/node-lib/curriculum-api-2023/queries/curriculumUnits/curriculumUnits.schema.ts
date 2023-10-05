@@ -18,7 +18,6 @@ const curriculumUnitsSchema = z.object({
           z.object({
             slug: z.string().optional(),
             title: z.string(),
-            slug: z.string().optional(),
           }),
         )
         .nullable(),
