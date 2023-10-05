@@ -17,6 +17,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
+import { getCaptionsFile } from "@/utils/handleTranscript";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewData;
@@ -89,6 +90,19 @@ export const getStaticProps: GetStaticProps<
         return {
           notFound: true,
         };
+      }
+
+      const { videoTitle } = curriculumData;
+      if (videoTitle) {
+        const fileName = `${videoTitle}.vtt`;
+        const transcript = await getCaptionsFile(fileName);
+        if (transcript) {
+          curriculumData.transcriptSentences = transcript;
+        } else {
+          console.error(
+            `Could not generate transcript from captions file: ${fileName}`,
+          );
+        }
       }
 
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
