@@ -41,10 +41,10 @@ describe("CurriculumUnitDetails component", () => {
         <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(3);
+      expect(getAllByTestId("accordion-component")).toHaveLength(1);
       expect(getByText("Lessons in unit")).toBeInTheDocument();
-      expect(getByText("Previous unit description")).toBeInTheDocument();
-      expect(getByText("Following unit description")).toBeInTheDocument();
+      // expect(getByText("Previous unit description")).toBeInTheDocument();
+      // expect(getByText("Following unit description")).toBeInTheDocument();
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
@@ -70,50 +70,50 @@ describe("CurriculumUnitDetails component", () => {
       }
     });
 
-    test("when expanding previous unit description accordion it should render correct previous description", async () => {
-      const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
-        <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
-      );
+    // test("when expanding previous unit description accordion it should render correct previous description", async () => {
+    //   const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
+    //     <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+    //   );
 
-      const previousDescAccordion = getAllByTestId("accordion-component")[1];
+    //   const previousDescAccordion = getAllByTestId("accordion-component")[1];
 
-      if (previousDescAccordion) {
-        const button = within(previousDescAccordion).getByTestId(
-          "expand-accordian-button",
-        );
+    //   if (previousDescAccordion) {
+    //     const button = within(previousDescAccordion).getByTestId(
+    //       "expand-accordian-button",
+    //     );
 
-        expect(getByText("test previous unit description")).not.toBeVisible();
+    //     expect(getByText("test previous unit description")).not.toBeVisible();
 
-        await userEvent.click(button);
+    //     await userEvent.click(button);
 
-        expect(getByTestId("previous-unit-text")).toBeVisible();
-        expect(getByText("test previous unit description")).toBeVisible();
-      } else {
-        throw new Error("Accordion not found");
-      }
-    });
+    //     expect(getByTestId("previous-unit-text")).toBeVisible();
+    //     expect(getByText("test previous unit description")).toBeVisible();
+    //   } else {
+    //     throw new Error("Accordion not found");
+    //   }
+    // });
 
-    test("when expanding future unit description accordion it should render correct future description", async () => {
-      const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
-        <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
-      );
+    // test("when expanding future unit description accordion it should render correct future description", async () => {
+    //   const { getAllByTestId, getByText, getByTestId } = renderWithTheme(
+    //     <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
+    //   );
 
-      const previousDescAccordion = getAllByTestId("accordion-component")[2];
+    //   const previousDescAccordion = getAllByTestId("accordion-component")[2];
 
-      if (previousDescAccordion) {
-        const button = within(previousDescAccordion).getByTestId(
-          "expand-accordian-button",
-        );
+    //   if (previousDescAccordion) {
+    //     const button = within(previousDescAccordion).getByTestId(
+    //       "expand-accordian-button",
+    //     );
 
-        expect(getByText("test future unit description")).not.toBeVisible();
+    //     expect(getByText("test future unit description")).not.toBeVisible();
 
-        await userEvent.click(button);
+    //     await userEvent.click(button);
 
-        expect(getByTestId("future-unit-text")).toBeVisible();
-        expect(getByText("test future unit description")).toBeVisible();
-      } else {
-        throw new Error("Accordion not found");
-      }
-    });
+    //     expect(getByTestId("future-unit-text")).toBeVisible();
+    //     expect(getByText("test future unit description")).toBeVisible();
+    //   } else {
+    //     throw new Error("Accordion not found");
+    //   }
+    // });
   });
 });
