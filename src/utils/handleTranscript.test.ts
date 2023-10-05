@@ -15,7 +15,7 @@ describe("removeWebVttCharacters ", () => {
 
 describe("formatSentences", () => {
   const sentences = [
-    "Hello, Mr. 'Perfectly fine'",
+    "Hello, Mr. 'Perfectly fine',",
     "How's your heart after breaking mine?",
     "Mr. 'Always at the right place at the right time,' baby.",
     "Hello Mr. 'Casually cruel'",
@@ -26,8 +26,12 @@ describe("formatSentences", () => {
   it("doesn't split sentences on a full stop after Mr or Ms", () => {
     const result = formatSentences(sentences);
     expect(result[0]).toBe(
-      "Hello, Mr. 'Perfectly fine' How's your heart after breaking mine? Mr. 'Always at the right place at the right time,' baby.",
+      "Hello, Mr. 'Perfectly fine', How's your heart after breaking mine? Mr. 'Always at the right place at the right time,' baby.",
     );
+    expect(result).toHaveLength(3);
+  });
+  it("splits sentences based on full stops", () => {
+    const result = formatSentences(sentences);
     expect(result).toHaveLength(3);
   });
 });
