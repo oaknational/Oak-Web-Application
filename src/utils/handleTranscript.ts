@@ -28,7 +28,10 @@ export const formatSentences = (sentences: Array<string>): Array<string> => {
   // with a crude hack to ignore full stops following Mr or Mrs
   const joined = sentences.join(" ");
   const splitOnFullStop = joined.split(/(?<!Mr|Mrs|Ms)\./gi);
-  return splitOnFullStop.map((sentence) => `${sentence.trim()}.`);
+
+  return splitOnFullStop
+    .filter((sentence) => sentence.length > 0)
+    .map((sentence) => `${sentence.trim()}.`);
 };
 
 export const removeWebVttCharacters = (

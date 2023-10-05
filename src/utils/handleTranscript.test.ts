@@ -28,5 +28,6 @@ describe("formatSentences", () => {
     expect(result[0]).toBe(
       "Hello, Mr. 'Perfectly fine' How's your heart after breaking mine? Mr. 'Always at the right place at the right time,' baby.",
     );
+    expect(result).toHaveLength(3);
   });
 });
