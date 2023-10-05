@@ -5,7 +5,6 @@ export async function getFileFromBucket(bucketName: string, fileName: string) {
 
   try {
     const contents = await storage.bucket(bucketName).file(fileName).download();
-
     return contents.toString();
   } catch (err) {
     console.error(

@@ -1,4 +1,4 @@
-import { getFileFromBucket } from "@/node-lib/gCloudStorage";
+import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { Cue, WebVTTParser } from "webvtt-parser";
 
 export const getCaptionsFromFile = async (fileName: string) => {
