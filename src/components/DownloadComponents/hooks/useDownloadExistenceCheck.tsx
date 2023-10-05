@@ -42,9 +42,8 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
         const resourcesExistenceAsArray: {
           item: DownloadResourceType;
           exists: boolean;
-        }[] = resourceExistence.map((r: unknown[]) => {
-          const k = r[0] as DownloadResourceType;
-          const v = r[1] as Record<string, unknown>;
+        }[] = resourceExistence.map((r) => {
+          const [k, v] = r;
           return {
             item: k,
             exists: v.exists as boolean,
