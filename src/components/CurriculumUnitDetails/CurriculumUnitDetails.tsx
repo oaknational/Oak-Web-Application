@@ -11,28 +11,24 @@ import Accordion from "@/components/Accordion";
 export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
   threads: Thread[];
-  numberOfLessons: number | null;
   lessons: Lesson[] | null | undefined;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   threads,
-  numberOfLessons,
   lessons,
 }) => {
-  const uniqueThreads = new Set<string>();
-  threads.forEach((thread) => {
-    uniqueThreads.add(thread.title);
-  });
-  const uniqueThreadsArray = Array.from(uniqueThreads);
+  const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
-  const uniqueLessonTitles = new Set<string>();
-  lessons?.forEach((lesson) => {
-    uniqueLessonTitles.add(lesson.title);
-  });
-  const uniqueLessonTitlesArray = Array.from(uniqueLessonTitles);
+  const lessonTitleSet = new Set<string>(
+    lessons?.map((lesson) => lesson.title),
+  );
 
-  const lessonsInUnit = `${numberOfLessons} ${
+  const uniqueThreadsArray = Array.from(threadTitleSet);
+  const uniqueLessonTitlesArray = Array.from(lessonTitleSet);
+  const numberOfLessons = uniqueLessonTitlesArray.length;
+
+  const lessonsInUnit = `${uniqueLessonTitlesArray.length} ${
     numberOfLessons === 1 ? "lesson" : "lessons"
   }`;
 
@@ -68,14 +64,16 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         </Flex>
       </Box>
       <Flex $flexDirection={"column"}>
-        <Accordion title="Lessons in unit" lastAccordion={true}>
-          <OL $mt={0} data-testid="lesson-title-list">
-            {lessons &&
-              uniqueLessonTitlesArray?.map((lesson) => {
-                return <LI>{lesson}</LI>;
-              })}
-          </OL>
-        </Accordion>
+        {numberOfLessons >= 1 && (
+          <Accordion title="Lessons in unit" lastAccordion={true}>
+            <OL $mt={0} data-testid="lesson-title-list">
+              {lessons &&
+                uniqueLessonTitlesArray?.map((lesson) => {
+                  return <LI>{lesson}</LI>;
+                })}
+            </OL>
+          </Accordion>
+        )}
       </Flex>
     </Flex>
   );

@@ -94,7 +94,6 @@ const UnitModal: FC<UnitModalProps> = ({
                 <CurriculumUnitDetails
                   threads={unitData.threads}
                   lessons={unitData.lessons}
-                  numberOfLessons={unitData.planned_number_of_lessons}
                 />
               </Box>
             )}
@@ -126,8 +125,6 @@ const UnitModal: FC<UnitModalProps> = ({
                     $flexWrap={"wrap"}
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
-                      const optionalUnitLessonCount =
-                        optionalUnit.lessons.length;
                       return (
                         <Card
                           $pa={16}
@@ -179,7 +176,6 @@ const UnitModal: FC<UnitModalProps> = ({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
-                                    numberOfLessons: optionalUnitLessonCount,
                                   });
                                 }}
                               />
