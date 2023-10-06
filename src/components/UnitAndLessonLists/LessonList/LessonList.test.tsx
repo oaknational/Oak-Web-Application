@@ -48,7 +48,7 @@ describe("components/ Lesson List", () => {
     expect(pagination).toBeInTheDocument();
   });
   test("it does not renders pagination if lesson count is less than 5 ", () => {
-    const { getByTestId } = render(
+    const { queryByTestId } = render(
       <LessonList
         paginationProps={mockPaginationProps}
         subjectSlug={"computing"}
@@ -60,8 +60,8 @@ describe("components/ Lesson List", () => {
       />,
     );
 
-    const pagination = getByTestId("pagination");
+    const pagination = queryByTestId("pagination");
 
-    expect(pagination).toBeInTheDocument();
+    expect(pagination).not.toBeInTheDocument();
   });
 });
