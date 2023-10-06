@@ -84,7 +84,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        anchorId="slideDeck"
+        anchorId="slide-deck"
         isFinalElement={true}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
@@ -100,7 +100,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
-        anchorId="slideDeck"
+        anchorId="slide-deck"
         isFinalElement={false}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
