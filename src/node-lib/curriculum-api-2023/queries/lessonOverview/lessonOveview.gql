@@ -3,7 +3,7 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  lesson: published_mv_lesson_overview_10(
+  lesson: published_mv_lesson_overview_11(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
@@ -19,6 +19,8 @@ query lessonOverview(
     keyStageTitle
     subjectSlug
     subjectTitle
+    examBoardTitle
+    tierTitle
     misconceptionsAndCommonMistakes
     lessonEquipmentAndResources
     teacherTips

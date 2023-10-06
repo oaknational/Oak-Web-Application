@@ -97,6 +97,7 @@ export interface LessonItemContainerProps {
   downloadable?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
+  isFinalElement?: boolean;
 }
 
 const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
@@ -145,7 +146,9 @@ export const LessonItemContainer = forwardRef<
       </Flex>
 
       <Box>{children}</Box>
-      <Hr $color={"teachersPastelBlue"} $mt={[24, 56]} $mb={[12, 24]} />
+      {!props.isFinalElement && (
+        <Hr $color={"pupilsPink"} $mt={[24, 56]} $mb={[12, 24]} />
+      )}
     </Flex>
   );
 });

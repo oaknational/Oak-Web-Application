@@ -1,3 +1,67 @@
+## [1.269.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.0...v1.269.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* merge with main ([50dcf06](https://github.com/oaknational/Oak-Web-Application/commit/50dcf0681828df6023167478f35869e969bba6b0))
+* remove type assertion ([2b0e70f](https://github.com/oaknational/Oak-Web-Application/commit/2b0e70f7ecfa48af6ac2e5d06aeebf9a88d4f0a8))
+* resourcesExistenceAsArray assumed incorrect type ([37246b3](https://github.com/oaknational/Oak-Web-Application/commit/37246b3e9382b128a4550d0055c957981fc132f8))
+* stray console.logs ([43c1edb](https://github.com/oaknational/Oak-Web-Application/commit/43c1edbcd16e71815d17e68bbea0770656eeb023))
+* type errors ([bc34212](https://github.com/oaknational/Oak-Web-Application/commit/bc34212255929e2692f4af788b3683f0dbf04955))
+* update mv reference and rerun sdk gen ([3ed005a](https://github.com/oaknational/Oak-Web-Application/commit/3ed005a13daf615fad38efa84d1653357dce1cc2))
+* update zod type ([31f1f3e](https://github.com/oaknational/Oak-Web-Application/commit/31f1f3e00a33a614603d6a2fb9264c1a70231c9e))
+* upodated tests to match data type ([18d31b4](https://github.com/oaknational/Oak-Web-Application/commit/18d31b40b5e645f546f374c60ea51b90064d36ab))
+
+# [1.269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.268.0...v1.269.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* add isLegacy prop to other video instances ([fe1417d](https://github.com/oaknational/Oak-Web-Application/commit/fe1417d42c5c2b8815100fac361310d2aa27cbfb))
+* use actual query param legacy not isLegacy ([9c83e8d](https://github.com/oaknational/Oak-Web-Application/commit/9c83e8d55a52c4e226f3440b55585dff66a324af))
+
+
+### Features
+
+* only use isLegacy param when true ([d4d0729](https://github.com/oaknational/Oak-Web-Application/commit/d4d07297bdac007d5ac2d8f8e6937360c761499e))
+* remove temporary public video workaround ([e74e5d7](https://github.com/oaknational/Oak-Web-Application/commit/e74e5d7d62f1307a98b3a636b1c135ccd80f93f6))
+* update query ([c90ef8c](https://github.com/oaknational/Oak-Web-Application/commit/c90ef8cb954e2a1a7700d2ce7c37f804d0623c76))
+* use customDomain for all videos ([7c9719a](https://github.com/oaknational/Oak-Web-Application/commit/7c9719ac20a04dd493b7965da707f56acfb83e59))
+* use new api to generate signed video tokens ([9fe08b8](https://github.com/oaknational/Oak-Web-Application/commit/9fe08b82f3b5a659754c7eec558007b9573da096))
+
+# [1.268.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.3...v1.268.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* download button icon ([3a05575](https://github.com/oaknational/Oak-Web-Application/commit/3a055752dedd07559e76ea9f9507bf3e3e3adcc1))
+* qa fixes ([f0c1b1b](https://github.com/oaknational/Oak-Web-Application/commit/f0c1b1b1a7a79e01b883b212a8b652a17e26953f))
+* temporarily hide additional material ([069360e](https://github.com/oaknational/Oak-Web-Application/commit/069360e911bdeed8b950da9c5373a0993daa652a))
+
+
+### Features
+
+* add pupil lesson outcome ([87ea8ba](https://github.com/oaknational/Oak-Web-Application/commit/87ea8ba10a522dd10fb467567bef07fb9c3b3ecb))
+* lesson info year tier examboard ([3fe13d1](https://github.com/oaknational/Oak-Web-Application/commit/3fe13d1aaa3773b1574c38814952900c109237c1))
+
+## [1.267.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.2...v1.267.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* min subject icon size ([4e26e77](https://github.com/oaknational/Oak-Web-Application/commit/4e26e7762c17b1b7f3d136edc8e02dbc3a27befb))
+* small icons on lesson listing ([cdef051](https://github.com/oaknational/Oak-Web-Application/commit/cdef051eb460fc176a5df4c7185b594f4df2081b))
+
+## [1.267.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.1...v1.267.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* handle downloads responses with zod and send error data to bugsnag ([dfa07d6](https://github.com/oaknational/Oak-Web-Application/commit/dfa07d689d0bc18797b5e49615a3a268ea5241c7))
+* **lesson downloads error:** reset message on submit ([bb6419a](https://github.com/oaknational/Oak-Web-Application/commit/bb6419a2f6618957fed1a9948b070d75f7691236))
+
+## [1.267.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.267.0...v1.267.1) (2023-10-05)
+
 # [1.267.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.266.0...v1.267.0) (2023-10-04)
 
 

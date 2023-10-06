@@ -204,7 +204,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const hasResourcesToDownload =
     getInitialResourcesToDownloadState().length > 0;
 
-  const [apiError, setApiError] = useState<string | undefined>(undefined);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
@@ -215,6 +215,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
+    setApiError(null);
     try {
       await debouncedSubmit({
         data,

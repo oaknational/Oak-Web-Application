@@ -79,6 +79,38 @@ describe("LessonItemContainer", () => {
     expect(() => getAllByRole("link")).toThrow();
   });
 
+  it("doesn't render the seperator when isFinalElement is true", () => {
+    const { getAllByTestId } = renderWithTheme(
+      <LessonItemContainer
+        title={"Slide deck"}
+        downloadable={true}
+        anchorId="slideDeck"
+        isFinalElement={true}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Inner content
+        </Card>
+      </LessonItemContainer>,
+    );
+    expect(() => getAllByTestId("hr")).toThrow();
+  });
+
+  it(" renders the seperator when isFinalElement is false", () => {
+    const { getAllByTestId } = renderWithTheme(
+      <LessonItemContainer
+        title={"Slide deck"}
+        downloadable={true}
+        anchorId="slideDeck"
+        isFinalElement={false}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+          Inner content
+        </Card>
+      </LessonItemContainer>,
+    );
+    expect(getAllByTestId("hr")).toHaveLength(1);
+  });
+
   it("calls trackingCallback on Download Button click if provided in props", async () => {
     const user = userEvent.setup();
     const onDownloadButtonClick = jest.fn();
