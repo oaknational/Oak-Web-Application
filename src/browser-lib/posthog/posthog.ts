@@ -24,6 +24,8 @@ export const posthogToAnalyticsServiceWithoutQueue = (
         api_host: apiHost,
         debug: getBrowserConfig("releaseStage") !== "production",
         loaded: () => {
+          console.log("Posthog loaded");
+
           const legacyAnonymousId = getLegacyAnonymousId();
           if (legacyAnonymousId) {
             client.register({

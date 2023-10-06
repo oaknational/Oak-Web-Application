@@ -125,6 +125,13 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     setPosthogDistinctId,
   });
 
+  console.log(posthogConsent);
+  console.log(posthog);
+  console.log({
+    apiHost: getBrowserConfig("posthogApiHost"),
+    apiKey: getBrowserConfig("posthogApiKey"),
+  });
+
   /**
    * Hubspot
    */
