@@ -30,4 +30,38 @@ describe("components/ Lesson List", () => {
 
     expect(listHeading).toBeInTheDocument();
   });
+  test("it renders pagination if lesson count is greater than 5 ", () => {
+    const { getByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={10}
+      />,
+    );
+
+    const pagination = getByTestId("pagination");
+
+    expect(pagination).toBeInTheDocument();
+  });
+  test("it does not renders pagination if lesson count is less than 5 ", () => {
+    const { getByTestId } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+      />,
+    );
+
+    const pagination = getByTestId("pagination");
+
+    expect(pagination).toBeInTheDocument();
+  });
 });
