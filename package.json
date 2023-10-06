@@ -15,7 +15,6 @@
     "config:pull": "node ./scripts/build/pull_config",
     "config:push:dev": "node ./scripts/build/push_config --environment development",
     "config:push:prod": "node ./scripts/build/push_config --environment production",
-    "config:push:test": "node ./scripts/build/push_config --environment test",
     "predev": "node scripts/build/write_env_file && NODE_ENV=development npm run image-data:all",
     "dev": "next dev",
     "export": "next export",
