@@ -121,7 +121,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       />
       <MaxWidth $ph={16}>
         <Grid>
-          <GridArea $colSpan={[12, 9]} $mt={[16, 56]}>
+          <GridArea $colSpan={[12, 9]} $mt={[16, 32]}>
             <LessonList
               {...curriculumData}
               lessonCount={lessons.length}
