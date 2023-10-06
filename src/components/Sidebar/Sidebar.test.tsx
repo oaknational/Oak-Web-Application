@@ -58,6 +58,7 @@ describe("Sidebar component", () => {
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockOptionalityUnit}
+          unitOptionsAvailable={true}
         />,
       );
 
