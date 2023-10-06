@@ -489,7 +489,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         .filter((unit) => isVisibleUnit(year, unit))
                         .map((unit, index) => {
                           const isHighlighted = isHighlightedUnit(unit);
-                          const unitOptions = unit.unit_options.length > 1;
+                          const unitOptions = unit.unit_options.length >= 1;
+
                           return (
                             <Card
                               key={unit.slug + index}
