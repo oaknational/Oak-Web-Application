@@ -69,12 +69,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       keyStageTitle = "Key stages 3 & 4";
       break;
     default:
-      keyStageTitle = "Unknown Key Stage";
+      keyStageTitle = "";
       break;
   }
-
-  //  keyStagesTitles =
-  //   phase.slug === "secondary" ? "Key stages 3 & 4" : "Key stages 1 & 2";
 
   return (
     <Box>
