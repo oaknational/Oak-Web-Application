@@ -153,7 +153,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     $mb={16}
                   >
                     {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                    Threads
+                    Filter by thread
                   </Heading>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
@@ -175,7 +175,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             </Box>
           </GridArea>
 
-          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={[16, 56]}>
+          <GridArea $order={[1, 0]} $colSpan={[12, 8, 9]} $mt={32}>
             <Flex $flexDirection={["column-reverse", "column"]}>
               <Flex
                 $flexDirection={"row"}
@@ -183,18 +183,21 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $justifyContent={"space-between"}
                 $position={"relative"}
                 $alignItems={"center"}
-                $mb={16}
               >
-                <Flex $position={["absolute", "relative"]}>
-                  <Heading $font={["heading-6", "heading-5"]} tag={"h2"}>
-                    {`Units (${unitsFilteredByLearningTheme.length})`}
-                  </Heading>
-                </Flex>
+                {tiers.length === 0 && (
+                  <Flex $minWidth={300} $mb={16} $position={"relative"}>
+                    <Heading $font={["heading-7", "heading-5"]} tag={"h2"}>
+                      {`Units (${unitsFilteredByLearningTheme.length})`}
+                    </Heading>
+                  </Flex>
+                )}
+
                 {learningThemes.length > 1 && (
                   <MobileFilters
                     providedId={learningThemesFilterId}
                     label="Threads"
                     $mt={0}
+                    $mb={[16, 0]}
                   >
                     <LearningThemeFilters
                       labelledBy={learningThemesFilterId}
@@ -218,7 +221,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               {tiers.length > 0 && (
                 <nav aria-label="tiers" data-testid="tiers-nav">
                   <TabularNav
-                    $mb={[10, 16]}
+                    $mb={[10, 24]}
                     label="tiers"
                     links={tiers.map(
                       ({
@@ -230,7 +233,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         programmeSlug: tierProgrammeSlug,
                         page: "unit-index",
                         isCurrent: tierSlug === slug,
-                        currentStyles: ["color", "text-underline"],
+                        currentStyles: ["underline"],
                       }),
                     )}
                   />

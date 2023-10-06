@@ -28,7 +28,7 @@ const TabularNav = ({
             size="small"
             variant="minimal"
             key={`TabularNav-${link.page}-${i}`}
-            $mr={[12, 32]}
+            $mr={[24, 24]}
           />
         );
       })}
