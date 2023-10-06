@@ -38,7 +38,7 @@ const Pagination: FC<PaginationProps> = ({
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject, true);
 
   return (
-    <nav aria-label="pagination">
+    <nav data-testid={"pagination"} aria-label="pagination">
       <Flex $alignItems={"center"} $justifyContent={"center"}>
         <IconButtonAsLink
           size="small"
