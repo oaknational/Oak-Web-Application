@@ -3,7 +3,7 @@ import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import P, { Heading } from "@/components/Typography";
+import P from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
@@ -18,6 +18,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
+import Heading from "@/components/Typography/Heading";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -276,7 +277,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-        <Card $background={"lemon30"} $pa={0} $pl={96} $mv={[16, 48]}>
+        <Heading tag="h2" $mt={48} $mb={24} $font={"heading-4"}>
+          Unit sequence
+        </Heading>
+        <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
           <Box
             $background={"lemon"}
             $height={"100%"}
@@ -312,7 +316,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         <Grid>
           <GridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
+              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
               </Heading>
               <P $mb={12}>
@@ -372,7 +376,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               </RadioGroup>
             </Box>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
+              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Year Group
               </Heading>
               <RadioGroup
@@ -420,8 +424,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     $borderRadius={4}
                   >
                     <Heading
-                      tag="h2"
-                      $font={"heading-4"}
+                      tag="h3"
+                      $font={"heading-5"}
                       $mb={32}
                       data-testid="year-heading"
                     >

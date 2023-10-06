@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import { Heading, Hr } from "@/components/Typography";
+import { Heading, Hr, P } from "@/components/Typography";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/TabularNav/TabularNav";
@@ -60,6 +60,22 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     examboard ? `-${examboard.slug}` : ""
   }`;
 
+  let keyStageTitle;
+  switch (phase.slug) {
+    case "primary":
+      keyStageTitle = "Key stages 1 & 2";
+      break;
+    case "secondary":
+      keyStageTitle = "Key stages 3 & 4";
+      break;
+    default:
+      keyStageTitle = "Unknown Key Stage";
+      break;
+  }
+
+  //  keyStagesTitles =
+  //   phase.slug === "secondary" ? "Key stages 3 & 4" : "Key stages 1 & 2";
+
   return (
     <Box>
       <Flex $background={color1} $pv={[20]}>
@@ -114,13 +130,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Heading
-                tag={"h1"}
-                $font={["heading-4", "heading-3"]}
-                $mv={"auto"}
-              >
-                {pageTitle}
-              </Heading>
+              <Box>
+                <P $font={"heading-light-7"}>{keyStageTitle}</P>
+                <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
+                  {pageTitle}
+                </Heading>
+              </Box>
             </Flex>
           </Box>
         </Flex>
