@@ -185,8 +185,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $alignItems={"center"}
               >
                 {tiers.length === 0 && (
-                  <Flex $minWidth={300} $mb={16} $position={"relative"}>
-                    <Heading $font={["heading-7", "heading-5"]} tag={"h2"}>
+                  <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                    <Heading $font={"heading-5"} tag={"h2"}>
                       {`Units (${unitsFilteredByLearningTheme.length})`}
                     </Heading>
                   </Flex>
