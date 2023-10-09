@@ -299,14 +299,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             />
           </Box>
           <Box $pa={20}>
-            <Heading
-              tag={"h2"}
-              $font={"heading-7"}
-              $mb={12}
-              data-testid="units-heading"
-            >
+            <P $font={"heading-7"} $mb={12} data-testid="units-heading">
               Introducing our new curriculum sequence for 2023/2024!
-            </Heading>
+            </P>
             <P>
               Units that make up our curricula are fully sequenced, and aligned
               to the national curriculum.
@@ -526,7 +521,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   {index + 1}
                                 </OutlineHeading>
                                 <Heading
-                                  tag={"h3"}
+                                  tag={"h4"}
                                   $font={"heading-7"}
                                   $mb={16}
                                 >
