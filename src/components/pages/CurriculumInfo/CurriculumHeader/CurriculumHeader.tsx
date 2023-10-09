@@ -129,7 +129,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               </Box>
               <Box>
                 {keyStagesMetadata && (
-                  <P $font={"heading-light-7"}>{keyStagesMetadata}</P>
+                  <P
+                    $font={"heading-light-7"}
+                    data-testid={"key-stage-metadata"}
+                  >
+                    {keyStagesMetadata}
+                  </P>
                 )}
                 <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
                   {pageTitle}

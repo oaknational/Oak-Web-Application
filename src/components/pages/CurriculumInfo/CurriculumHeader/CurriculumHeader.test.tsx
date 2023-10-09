@@ -47,4 +47,10 @@ describe("Component - Curriculum Header", () => {
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
   });
+
+  test("keyStage metadata", () => {
+    const { getByTestId } = renderComponent();
+    const keyStageMetadata = getByTestId("key-stage-metadata");
+    expect(keyStageMetadata).toHaveTextContent("Key stages 3 & 4");
+  });
 });
