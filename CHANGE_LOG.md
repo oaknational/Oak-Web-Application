@@ -1,3 +1,15 @@
+# [1.272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.271.0...v1.272.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* strict equality for curric header links ([ba5754b](https://github.com/oaknational/Oak-Web-Application/commit/ba5754b48892c722c7bcccd67efb2c6b48062594))
+
+
+### Features
+
+* update order of tabs and redirect to unit sequence ([5134b56](https://github.com/oaknational/Oak-Web-Application/commit/5134b567425b59a4566dbee197a2d9f9d48a494f))
+
 # [1.271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.270.1...v1.271.0) (2023-10-09)
 
 
