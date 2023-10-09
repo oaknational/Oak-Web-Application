@@ -47,6 +47,7 @@ export function LessonPathwayCard(props: LessonPathwayCardProps) {
           const label = tierTitle ? `Show ${tierTitle} unit` : "Show unit";
           return (
             <ButtonAsLink
+              key={`tier-${programmeSlug}-${unitSlug}`}
               variant="minimal"
               size="small"
               label={label}

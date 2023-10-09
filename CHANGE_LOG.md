@@ -1,3 +1,14 @@
+## [1.270.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.270.0...v1.270.1) (2023-10-09)
+
+# [1.270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.2...v1.270.0) (2023-10-09)
+
+
+### Features
+
+* **lesson:** add current link behaviour as user scrolls ([37938ea](https://github.com/oaknational/Oak-Web-Application/commit/37938ea72358ca76e7986cc2ad224fd8e279d7dd))
+
+## [1.269.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.1...v1.269.2) (2023-10-06)
+
 ## [1.269.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.0...v1.269.1) (2023-10-05)
 
 
