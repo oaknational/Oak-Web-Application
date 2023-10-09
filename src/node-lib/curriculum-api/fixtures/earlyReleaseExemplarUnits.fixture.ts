@@ -321,7 +321,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 7,
-          lessonCount: 6, //holding number
+          lessonCount: 4,
         },
         {
           title: "Perimeter and area",
