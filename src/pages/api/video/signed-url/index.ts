@@ -1,9 +1,9 @@
 /**
  * API route to generate a token for a signed URL for a Mux video or thumbnail.
- * Add key twenty_twenty=true to use the 2020 signing details.
+ * Add key legacy=true to use the 2020 signing details.
  *
- * e.g. /api/video/signed_url?id=abc&type=video
- * e.g. /api/video/signed_url?id=old_video_id&type=video&twenty_twenty=true
+ * e.g. /api/video/signed-url?id=abc&type=video
+ * e.g. /api/video/signed-url?id=old_video_id&type=video&legacy=true
  *
  * See https://www.npmjs.com/package/@mux/mux-node
  */

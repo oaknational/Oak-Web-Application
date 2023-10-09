@@ -23,7 +23,7 @@ describe("Component - Curriculum Header", () => {
     const links = await findAllByRole("link");
     expect(links[0]).toHaveTextContent("Home");
     expect(links[1]).toHaveTextContent("Curriculum resources");
-    expect(links[2]).toHaveTextContent("Overview");
+    expect(links[2]).toHaveTextContent("Unit sequence");
   });
 
   test("user can see the subject icon", async () => {

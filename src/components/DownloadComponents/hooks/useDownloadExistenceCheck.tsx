@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type {
-  ResourcesToDownloadArrayType,
-  DownloadResourceType,
-} from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
@@ -36,21 +33,23 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
-
             isLegacyDownload,
           );
 
-        const resourcesExistenceAsArray = resourceExistence
-          ? Object.entries(
-              resourceExistence as Partial<
-                Record<DownloadResourceType, boolean>
-              >,
-            )
-          : [];
+        const resourcesExistenceAsArray: {
+          item: string;
+          exists: boolean;
+        }[] = resourceExistence.map((r) => {
+          const [k, v] = r;
+          return {
+            item: k,
+            exists: v.exists,
+          };
+        });
 
         const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
-          .map(([key, value]) => {
-            if (value === true) return key;
+          .map((r) => {
+            if (r.exists) return r.item;
           })
           .filter((resource) => resource !== undefined);
 

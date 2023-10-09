@@ -15,8 +15,7 @@ import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import AnchorTarget from "@/components/AnchorTarget";
 
 const EarlyReleaseUnits: NextPage = () => {
-  const primary = earlyReleaseExemplarUnitsFixture().primary;
-  const secondary = earlyReleaseExemplarUnitsFixture().secondary;
+  const exemplarUnitsFixture = earlyReleaseExemplarUnitsFixture();
   return (
     <AppLayout seoProps={BETA_SEO_PROPS}>
       <EarlyReleaseUnitsHeader />
@@ -73,14 +72,14 @@ const EarlyReleaseUnits: NextPage = () => {
       </MaxWidth>
       <Box $position={"relative"}>
         <AnchorTarget id={"primary"} />
-        <EarlyReleaseExemplarUnits {...primary} />
+        <EarlyReleaseExemplarUnits {...exemplarUnitsFixture.primary} />
       </Box>
       <Box $background={"lavender"}>
         <Hr thickness={4} $mt={0} $mb={0} />
       </Box>
       <Box $position={"relative"}>
         <AnchorTarget id={"secondary"} />
-        <EarlyReleaseExemplarUnits {...secondary} />
+        <EarlyReleaseExemplarUnits {...exemplarUnitsFixture.secondary} />
       </Box>
     </AppLayout>
   );
