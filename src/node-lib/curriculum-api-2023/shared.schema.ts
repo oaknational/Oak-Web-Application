@@ -166,6 +166,7 @@ export const baseLessonOverviewSchema = z.object({
   expired: z.boolean().optional().nullable(),
   starterQuiz: lessonOverviewQuizData,
   exitQuiz: lessonOverviewQuizData,
+  videoTitle: z.string().nullish(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
