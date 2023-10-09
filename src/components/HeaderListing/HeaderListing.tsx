@@ -7,6 +7,7 @@ import Box from "../Box";
 import { Heading, Span } from "../Typography";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
+import LessonMetadata from "../LessonMetadata";
 
 import { OakColorName } from "@/styles/theme";
 
@@ -25,6 +26,9 @@ export type HeaderListingProps = {
   keyStageSlug: string;
   keyStageTitle: string;
   tierSlug?: string | null;
+  examBoardTitle?: string | null;
+  tierTitle?: string | null;
+  yearTitle?: string | null;
   lessonDescription?: string;
   isNew?: boolean;
   title: string;
@@ -36,23 +40,26 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   const {
     subjectSlug,
     title,
-    programmeFactor,
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
     isNew,
+    programmeFactor,
     subjectIconBackgroundColor,
     breadcrumbs,
     background,
     tierSlug,
     hasCurriculumDownload = true,
+    examBoardTitle,
+    tierTitle,
+    yearTitle,
   } = props;
 
   return (
     <HeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <Flex $mb={[12, 0]} $flexDirection={"column"}>
         <Flex>
-          <Box $height={[80, 140]} $width={[80, 140]} $mr={[16, 32]}>
+          <Box $height={[80, 140]} $maxWidth={[80, 140]} $mr={[16, 32]}>
             <SubjectIconBrushBorders
               $pa={8}
               subjectSlug={subjectSlug}
@@ -65,7 +72,15 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           </Box>
           <Flex $flexDirection={"column"}>
             <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
-              {programmeFactor}
+              {yearTitle ? (
+                <LessonMetadata
+                  examBoardTitle={examBoardTitle}
+                  yearTitle={yearTitle}
+                  tierTitle={tierTitle}
+                />
+              ) : (
+                programmeFactor
+              )}
             </Span>
             <Heading $mb={24} tag={"h1"} $font={["heading-5", "heading-3"]}>
               {title}

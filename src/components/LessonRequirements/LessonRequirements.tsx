@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 
-import Icon, { IconName } from "@/components/Icon";
+import LessonRequirementsHeading from "./LessonRequirementsHeading";
+
+import { IconName } from "@/components/Icon";
 import Flex from "@/components/Flex";
-import { Heading, P, UL, LI } from "@/components/Typography";
+import { P, UL, LI } from "@/components/Typography";
 
 type LessonRequirementsProps = {
   helperIcon: IconName;
@@ -43,12 +45,7 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
 
   return (
     <Flex $flexDirection={"column"} $justifyContent={"center"} $gap={8}>
-      <Flex $flexDirection={"row"} $alignItems={"center"}>
-        <Icon name={helperIcon} variant="minimal" $mr={8} />
-        <Heading $font={"heading-7"} tag="h3">
-          {heading}
-        </Heading>
-      </Flex>
+      <LessonRequirementsHeading helperIcon={helperIcon} heading={heading} />
       {contentGuidance && (
         <UL $reset>
           {removedGuidanceDuplicates.map((guidance: string) => {

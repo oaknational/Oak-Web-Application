@@ -77,11 +77,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }
 
   return (
-    <AppLayout
-      seoProps={BETA_SEO_PROPS}
-      $background={"white"}
-      headerVariant="landing-pages"
-    >
+    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
       <CurriculumHeader
         subjectPhaseOptions={subjectPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
@@ -115,13 +111,13 @@ export const parseSubjectPhaseSlug = (slug: string) => {
   const parts = slug.split("-");
   const lastSlug = parts.pop() ?? null;
   let phaseSlug: string | null, examboardSlug: string | null;
-  // Hardcoded examboards below - should update to query
-  if (lastSlug && ["aqa", "edexcel", "ocr"].includes(lastSlug)) {
-    examboardSlug = lastSlug;
-    phaseSlug = parts.pop() ?? null;
-  } else {
+  // Use phase to determine if examboard is present
+  if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
     examboardSlug = null;
     phaseSlug = lastSlug;
+  } else {
+    examboardSlug = lastSlug;
+    phaseSlug = parts.pop() ?? null;
   }
   const subjectSlug = parts.join("-");
   if (!subjectSlug || !phaseSlug) {

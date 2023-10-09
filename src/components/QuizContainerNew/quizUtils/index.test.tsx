@@ -1,4 +1,9 @@
-import { removeMarkdown, shortAnswerTitleFormatter } from ".";
+import {
+  calcDims,
+  constrainHeight,
+  removeMarkdown,
+  shortAnswerTitleFormatter,
+} from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -75,5 +80,35 @@ describe("removeMarkdown", () => {
   it("does not remove * on there own", () => {
     const result = removeMarkdown("300 * 100");
     expect(result).toBe("300 * 100");
+  });
+});
+
+describe("constrainHeight", () => {
+  it("when passed above 200 cap at 200", () => {
+    const result = constrainHeight(300);
+    expect(result).toBe(200);
+  });
+  it("when passed below 96 set to 96", () => {
+    const result = constrainHeight(50);
+    expect(result).toBe(96);
+  });
+  it("when passed undefined return undefined ", () => {
+    const result = constrainHeight(undefined);
+    expect(result).toBe(undefined);
+  });
+});
+
+describe("calcDims", () => {
+  it("when passed w and h return dims object", () => {
+    const result = calcDims(300, 50);
+    expect(result).toStrictEqual({ width: 576, height: 96 });
+  });
+  it("returns undefined dims object without width and height", () => {
+    const result = calcDims(300);
+    expect(result).toStrictEqual({ width: undefined, height: undefined });
+  });
+  it("returns undefined dims object when passed undefined ", () => {
+    const result = calcDims();
+    expect(result).toStrictEqual({ width: undefined, height: undefined });
   });
 });

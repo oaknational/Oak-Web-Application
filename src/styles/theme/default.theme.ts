@@ -50,7 +50,7 @@ const theme: OakTheme = {
     // hyperlinks
     hyperlink: "#0D24C4",
     // new design kit colours
-    oakGreen: "#25ab38",
+    oakGreen: "#287C34",
     mint: "#bef2bd",
     mint50: "#d5efd4",
     mint30: "#ebfbeb",

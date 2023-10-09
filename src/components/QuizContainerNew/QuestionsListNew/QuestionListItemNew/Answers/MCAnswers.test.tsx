@@ -5,7 +5,7 @@ import {
   mcqImageAnswers,
   mcqTextAnswers,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("MCAnswers", () => {
   it("renders the correct number of answers", () => {

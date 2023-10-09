@@ -20,6 +20,7 @@ const CMSVideo: FC<CMSVideoProps> = ({ video, ...rest }) => {
       thumbnailTime={video.video.asset.thumbTime}
       playbackId={video.video.asset.playbackId}
       title={video.title}
+      isLegacy={true}
       {...rest}
     />
   );
