@@ -1,0 +1,18 @@
+{
+  "allCurriculumInfoPageOverview": [
+    {
+      "subjectPrinciples": ["test", "test", "test", "test"],
+      "partnerBio": "test",
+      "curriculumPartner": {
+        "name": "test",
+        "image": {
+          "asset": {
+            "_id": "image-3d1738cbaae4f66505df3835adf4097bbb9c3d0c-562x390-png",
+            "url": "https://cdn.sanity.io/images/cuvjke51/curric-sanity-data/3d1738cbaae4f66505df3835adf4097bbb9c3d0c-562x390.png"
+          },
+          "hotspot": null
+        }
+      }
+    }
+  ]
+}

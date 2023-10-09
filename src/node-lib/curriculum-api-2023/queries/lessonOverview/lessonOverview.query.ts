@@ -30,9 +30,9 @@ const lessonOverviewQuery =
 
     return lessonOverviewSchema.parse({
       ...lesson,
+      isLegacy: false,
       isWorksheetLandscape: false,
       hasCopyrightMaterial: false,
-      hasDownloadableResources: null,
       expired: false,
     });
   };

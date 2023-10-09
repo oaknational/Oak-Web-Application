@@ -5,11 +5,13 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
+import Box from "../Box";
 
 import downloadZip from "./helpers/downloadZip";
+
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type CurriculumDownloadProps = {
   keyStageSlug: string;
@@ -17,7 +19,6 @@ type CurriculumDownloadProps = {
   subjectSlug: string;
   subjectTitle: string;
   tier?: string | null;
-  lessonPage?: boolean;
 };
 
 const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
@@ -26,10 +27,12 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   subjectSlug,
   subjectTitle,
   tier,
-  lessonPage,
 }) => {
   const [downloadResourceError, setDownloadResourceError] =
     useState<boolean>(false);
+
+  const isMathsKs4ProgrammesPage =
+    !tier && keyStageSlug === "ks4" && subjectSlug === "maths";
 
   const keyStageNum = keyStageSlug.slice(-1);
   let downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&extension=pdf`;
@@ -41,7 +44,7 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
     downloadLabel = capitalize(tier) + ` curriculum download (PDF)`;
   }
 
-  if (keyStageSlug === "ks4" && subjectSlug === "maths" && !tier) {
+  if (isMathsKs4ProgrammesPage) {
     downloadLink = `${process.env.NEXT_PUBLIC_VERCEL_API_URL}/api/download-asset?type=curriculum-map&id=key-stage-${keyStageNum}-${subjectSlug}&tiers=core,higher,foundation`;
     downloadLabel = `Curriculum download (.zip)`;
   }
@@ -71,9 +74,9 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   };
 
   return (
-    <Flex>
-      {lessonPage && keyStageSlug === "ks4" && subjectSlug === "maths" ? (
-        <Flex $flexDirection={"column"}>
+    <>
+      <Flex>
+        {isMathsKs4ProgrammesPage ? ( // if on a maths programmes page, we want to download a zip of tier.pdf curriculum maps
           <Button
             icon={"download"}
             size="large"
@@ -83,26 +86,30 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
             label={downloadLabel}
             onClick={handleZipDownloadClick}
           />
-          {downloadResourceError && (
-            <FieldError id={"download-resource-error"}>
-              Sorry, we're having technical problems. Please try again later.
-            </FieldError>
-          )}
-        </Flex>
-      ) : (
-        <ButtonAsLink
-          icon={"download"}
-          iconBackground="black"
-          label={downloadLabel}
-          href={downloadLink}
-          onClick={() => trackCurriculumMapDownloaded()}
-          page={null}
-          size="large"
-          variant="minimal"
-          $iconPosition={"trailing"}
-        />
-      )}
-    </Flex>
+        ) : (
+          <>
+            <ButtonAsLink
+              icon={"download"}
+              iconBackground="black"
+              label={downloadLabel}
+              href={downloadLink}
+              onClick={() => trackCurriculumMapDownloaded()}
+              page={null}
+              size="large"
+              variant="minimal"
+              $iconPosition={"trailing"}
+            />
+          </>
+        )}
+      </Flex>
+      <Box>
+        {downloadResourceError && (
+          <FieldError id={"download-resource-error"}>
+            Sorry, we're having technical problems. Please try again later.
+          </FieldError>
+        )}
+      </Box>
+    </>
   );
 };
 

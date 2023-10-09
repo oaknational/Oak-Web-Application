@@ -1,8 +1,9 @@
 import userEvent from "@testing-library/user-event";
-
-import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
+import { screen } from "@testing-library/react";
 
 import UnitListItem from "./UnitListItem";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const props = {
   title: "Numbers and numerals",
@@ -19,7 +20,7 @@ const props = {
   keyStageSlug: "ks1",
   keyStageTitle: "Key stage 1",
   quizCount: 3,
-  programmeSlug: "maths--primary-ks1",
+  programmeSlug: "maths--primary-ks1-l",
   hitCount: 10,
   fromSearchPage: false,
   currentPage: 1,
@@ -34,7 +35,7 @@ const props = {
 
 const unitSelected = jest.fn();
 const searchResultClicked = jest.fn();
-jest.mock("../../../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -51,12 +52,32 @@ describe("Unit List Item", () => {
     jest.clearAllMocks();
   });
 
+  test("It uses singular  form of lesson", () => {
+    const singular = Object.assign({}, props);
+    singular.lessonCount = 1;
+    singular.expiredLessonCount = 0;
+    render(<UnitListItem {...singular} />);
+
+    const lessonCountText = screen.getByText("1 lesson");
+    expect(lessonCountText).toBeInTheDocument();
+  });
+
+  test("It uses plural form of lessons", () => {
+    const plural = Object.assign({}, props);
+    plural.expiredLessonCount = 0;
+    render(<UnitListItem {...plural} />);
+
+    const lessonCountText = screen.getByText("5 lessons");
+    expect(lessonCountText).toBeInTheDocument();
+  });
+
   test("It calls tracking.unitSelected with correct props when clicked", async () => {
     const { getByText } = render(<UnitListItem {...props} />);
 
     const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
+
     await user.click(unit);
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
@@ -80,6 +101,7 @@ describe("Unit List Item", () => {
     const unit = getByText("Numbers and numerals");
 
     const user = userEvent.setup();
+
     await user.click(unit);
 
     expect(searchResultClicked).toHaveBeenCalledTimes(1);

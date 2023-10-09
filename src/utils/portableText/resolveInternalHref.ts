@@ -1,6 +1,7 @@
-import { CTA, CTAInternalLinkEntry, Link } from "../../common-lib/cms-types";
-import { resolveOakHref } from "../../common-lib/urls";
-import { assertUnreachable } from "../assertUnreachable";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
+import { CTA, CTAInternalLinkEntry, Link } from "@/common-lib/cms-types";
+import { resolveOakHref } from "@/common-lib/urls";
+import { assertUnreachable } from "@/utils/assertUnreachable";
 
 /**
  * Mapping of CMS content types to oak pages
@@ -44,7 +45,7 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
     case "policyPage":
       return resolveOakHref({ page: "legal", legalSlug: entry.slug });
     case "attachment":
-      return entry.file.asset.url;
+      return getProxiedSanityAssetUrl(entry.file.asset.url);
     default: {
       const entryJSON = JSON.stringify(entry, null, 2);
 

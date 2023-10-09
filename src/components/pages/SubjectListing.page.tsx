@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { SubjectListingPageProps } from "../../pages/beta/[viewType]/key-stages/[keyStageSlug]/subjects";
+import { SubjectListingPageProps } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
 import MaxWidth from "../MaxWidth/MaxWidth";

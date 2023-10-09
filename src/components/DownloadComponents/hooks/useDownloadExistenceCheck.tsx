@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 
-import type {
-  ResourcesToDownloadArrayType,
-  DownloadResourceType,
-} from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloads.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
-import { ViewType } from "@/common-lib/urls";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
 
@@ -16,12 +12,12 @@ type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
   resourcesToCheck: ResourcesToDownloadArrayType;
   onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
-  viewType: ViewType;
+  isLegacyDownload: boolean;
 };
 
 const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
   const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
-  const { resourcesToCheck, onComplete, lessonSlug, viewType } = props;
+  const { resourcesToCheck, onComplete, lessonSlug, isLegacyDownload } = props;
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
@@ -37,20 +33,23 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
           await getDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
-            viewType,
+            isLegacyDownload,
           );
 
-        const resourcesExistenceAsArray = resourceExistence
-          ? Object.entries(
-              resourceExistence as Partial<
-                Record<DownloadResourceType, boolean>
-              >,
-            )
-          : [];
+        const resourcesExistenceAsArray: {
+          item: string;
+          exists: boolean;
+        }[] = resourceExistence.map((r) => {
+          const [k, v] = r;
+          return {
+            item: k,
+            exists: v.exists,
+          };
+        });
 
         const filteredResourcesExistenceAsArray = resourcesExistenceAsArray
-          .map(([key, value]) => {
-            if (value === true) return key;
+          .map((r) => {
+            if (r.exists) return r.item;
           })
           .filter((resource) => resource !== undefined);
 
@@ -65,7 +64,13 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
         reportError(oakError);
       }
     })();
-  }, [lessonSlug, hasCheckedFiles, resourcesToCheck, onComplete, viewType]);
+  }, [
+    lessonSlug,
+    hasCheckedFiles,
+    resourcesToCheck,
+    onComplete,
+    isLegacyDownload,
+  ]);
 };
 
 export default useDownloadExistenceCheck;

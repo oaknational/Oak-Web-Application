@@ -1,12 +1,10 @@
 import { FC } from "react";
 
-import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import P from "../../Typography/P";
-import Checkbox from "../../Checkbox";
-import Box from "../../Box";
-import OakLink from "../../OakLink";
-import FieldError from "../../FormFields/FieldError";
-import { CheckboxProps } from "../../Checkbox/Checkbox";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Checkbox from "@/components/Checkbox";
+import Box from "@/components/Box";
+import FieldError from "@/components/FormFields/FieldError";
+import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 
 export type TermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
@@ -47,13 +45,6 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         </FieldError>
       </Box>
     )}
-    <P $font="body-3">
-      Read our{" "}
-      <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
-        terms &amp; conditions
-      </OakLink>
-      .
-    </P>
   </>
 );
 

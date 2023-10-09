@@ -3,7 +3,7 @@ import CurriculumHeader from "./CurriculumHeader";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
-import { parseSubjectPhaseSlug } from "@/pages/beta/[viewType]/curriculum/[subjectPhaseSlug]/[tab]";
+import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 describe("Component - Curriculum Header", () => {
   const renderComponent = (overrides = {}) => {
@@ -23,7 +23,7 @@ describe("Component - Curriculum Header", () => {
     const links = await findAllByRole("link");
     expect(links[0]).toHaveTextContent("Home");
     expect(links[1]).toHaveTextContent("Curriculum resources");
-    expect(links[2]).toHaveTextContent("Overview");
+    expect(links[2]).toHaveTextContent("Unit sequence");
   });
 
   test("user can see the subject icon", async () => {
@@ -34,8 +34,8 @@ describe("Component - Curriculum Header", () => {
 
   test("user can see the page title", async () => {
     const { findByRole } = renderComponent();
-    const pageTitle = `${curriculumHeaderFixture().phase.title} ${
-      curriculumHeaderFixture().subject.title
+    const pageTitle = `${curriculumHeaderFixture().phase} ${
+      curriculumHeaderFixture().subject
     }`;
     expect(await findByRole("heading", { level: 1 })).toHaveTextContent(
       pageTitle,

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import FixedHeader from "../FixedHeader";
+import FixedHeader from "../Header";
 import Logo from "../Logo";
 import OakLink from "../OakLink";
 
@@ -14,8 +14,8 @@ const ClientErrorHeader: FC = () => {
 
   return (
     <FixedHeader $background={theme.header.background}>
-      <OakLink page="home" viewType={null}>
-        <Logo height={48} width={104} />
+      <OakLink page="home">
+        <Logo variant="with text" height={48} width={104} />
       </OakLink>
     </FixedHeader>
   );

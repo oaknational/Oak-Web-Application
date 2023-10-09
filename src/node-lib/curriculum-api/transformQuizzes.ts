@@ -1,10 +1,10 @@
 import {
   AnswersSchema,
-  LessonOverviewQuizData,
-  MCAnswer,
   StemImageObject,
+  LessonOverviewQuizData,
   StemTextObject,
-} from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+  MCAnswer,
+} from "../curriculum-api-2023/shared.schema";
 
 import { LegacyQuizData } from "./legacyQuiz.schema";
 

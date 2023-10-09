@@ -146,6 +146,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             name={icon}
             size={iconSize}
             $background={iconBackground ?? defaultIconBackground}
+            data-testid="button-icon"
           />
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
@@ -159,12 +160,13 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $position="relative"
           $alignItems="center"
           $color={currentColor}
+          $ml={-8}
         >
           <SubjectIcon
             subjectSlug={subjectIcon}
-            $ml={-8}
             $maxHeight={40}
             $maxWidth={40}
+            $height={iconSize}
           />
         </Flex>
       )}

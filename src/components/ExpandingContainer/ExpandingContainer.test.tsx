@@ -69,7 +69,7 @@ it.skip("renders top right icons", async () => {
   const downloadLinkButton = screen.getByTestId("download-button");
   expect(downloadLinkButton).toHaveAttribute(
     "href",
-    "/beta/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?",
+    "/teachers/programmes/secondary-ks3-maths/units/unit/lessons/slug-slug-slug/downloads?",
   );
   const projectButton = screen.getByTestId("project-button");
   await user.click(projectButton);
@@ -159,7 +159,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz",
+      "/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=starter+quiz",
     );
     const projectButton = screen.getByTestId("project-button");
     await user.click(projectButton);
@@ -217,7 +217,7 @@ describe("comonents/ExpandingContainer", () => {
     const downloadLinkButton = screen.getByTestId("download-button");
     expect(downloadLinkButton).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet",
+      "/teachers/programmes/programme-slug/units/unit/lessons/slug-slug-slug/downloads?preselected=worksheet",
     );
   });
 

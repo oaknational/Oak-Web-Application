@@ -1,8 +1,9 @@
 import userEvent from "@testing-library/user-event";
-
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import { screen } from "@testing-library/react";
 
 import AppHeader from ".";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
@@ -33,14 +34,50 @@ describe("components/AppHeader", () => {
   });
 
   test("menu can be opened from keyboard", async () => {
-    const { queryByText } = render(<AppHeader />);
+    render(<AppHeader />);
 
     const user = userEvent.setup();
-    expect(queryByText("Home (early access)")).not.toBeVisible();
-
+    expect(screen.getByTestId("menu")).not.toBeVisible();
+    await user.keyboard("{tab}");
+    await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{tab}");
     await user.keyboard("{Enter}");
-    expect(queryByText("Home (early access)")).toBeVisible();
+
+    expect(screen.getByTestId("menu")).toBeVisible();
+  });
+
+  test("menu does not show old menu sections", async () => {
+    render(<AppHeader />);
+    const user = userEvent.setup();
+    const hamburgerButton = screen.getByLabelText("Menu");
+    await user.click(hamburgerButton);
+
+    const oldMenuLink = screen.queryByText("Classroom");
+    expect(oldMenuLink).not.toBeInTheDocument();
+  });
+
+  test("it should include a link for new teacher experience", () => {
+    render(<AppHeader />);
+    const teacherLink = screen.getAllByRole("link")[1];
+
+    if (!teacherLink) {
+      throw new Error("Failed to find link to teacher experience");
+    }
+
+    expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
+  });
+  test("it should include a link for classroom", () => {
+    render(<AppHeader />);
+    const pupilsLink = screen.getAllByRole("link")[2];
+
+    if (!pupilsLink) {
+      throw new Error("Failed to find link to classroom");
+    }
+
+    expect(pupilsLink.closest("a")).toHaveAttribute(
+      "href",
+      "https://classroom.thenational.academy",
+    );
   });
 });

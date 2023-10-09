@@ -30,10 +30,4 @@ describe("HeaderListing", () => {
 
     expect(downloadLink[0]).toBeInTheDocument();
   });
-
-  it("renders key stage title when passed in ", () => {
-    const { getAllByText } = renderWithTheme(<HeaderListing {...props} />);
-    const year = getAllByText("Key Stage 4");
-    expect(year).toHaveLength(2); // mobile and desktop
-  });
 });

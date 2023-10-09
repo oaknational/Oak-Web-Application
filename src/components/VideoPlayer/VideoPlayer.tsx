@@ -40,6 +40,7 @@ export type VideoPlayerProps = {
   thumbnailTime?: number | null;
   title: string;
   location: VideoLocationValueType;
+  isLegacy: boolean;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -49,6 +50,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     location,
     playbackId,
     playbackPolicy,
+    isLegacy,
   } = props;
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
@@ -77,16 +79,19 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
     playbackPolicy,
+    isLegacy,
   });
 
   const videoToken = useSignedVideoToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const storyboardToken = useSignedStoryboardToken({
     playbackId: playbackId,
     playbackPolicy: playbackPolicy,
+    isLegacy,
   });
 
   const metadata = {

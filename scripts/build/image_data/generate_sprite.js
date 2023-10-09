@@ -7,64 +7,75 @@ const {
   getSpriterInstance,
 } = require("./helpers");
 
+function getSlugs({ assets }) {
+  return (
+    assets
+      // filter to only have assets with an image url and a slug
+      .filter((asset) => asset.image?.asset?.url && asset.slug?.current)
+      .map((asset) => asset.slug.current)
+  );
+}
+
 async function main() {
-  const client = getSanityClient();
+  try {
+    const client = getSanityClient();
 
-  const uiIconsRes = await client.fetch(`*[_type == "uiIcon"] {
-    title,
-    slug,
-    image {
-      asset->
-    }
-  }`);
-  const uiGraphicsRes = await client.fetch(`*[_type == "uiGraphic"] {
-    title,
-    slug,
-    image {
-      asset->
-    }
-  }`);
+    const uiIconsRes = await client.fetch(`*[_type == "uiIcon"] {
+      title,
+      slug,
+      image {
+        asset->
+      }
+    }`);
+    const uiGraphicsRes = await client.fetch(`*[_type == "uiGraphic"] {
+      title,
+      slug,
+      image {
+        asset->
+      }
+    }`);
 
-  function getSlugs({ assets }) {
-    return assets.map((asset) => asset.slug.current);
-  }
-
-  /**
-   * uiIconsBySlug -> image-data/ui-icons.json
-   * This will enable static types for ui-icons.
-   */
-  const uiIconNames = getSlugs({ assets: uiIconsRes });
-  const uiIconsPath = await writeJsonForTypes({
-    names: uiIconNames,
-    fileName: "ui-icons.json",
-  });
-  console.log(`✅ UI icon names written to ${uiIconsPath}`);
-
-  /**
-   * uiGraphicsBySlug -> image-data/ui-graphics.json
-   * This will enable static types for ui-graphics.
-   */
-  const uiGraphicNames = getSlugs({ assets: uiGraphicsRes });
-  const uiGraphicsPath = await writeJsonForTypes({
-    names: uiGraphicNames,
-    fileName: "ui-graphics.json",
-  });
-  console.log(`✅ UI graphic names written to ${uiGraphicsPath}`);
-
-  const spriter = getSpriterInstance({ mode: "symbol" });
-
-  for (const spriteIcon of [...uiIconsRes, ...uiGraphicsRes]) {
-    await fetchSvgAndAddToSprite({
-      url: spriteIcon.image.asset.url,
-      name: spriteIcon.slug.current,
-      spriter,
+    /**
+     * uiIconsBySlug -> image-data/ui-icons.json
+     * This will enable static types for ui-icons.
+     */
+    const uiIconNames = getSlugs({ assets: uiIconsRes });
+    const uiIconsPath = await writeJsonForTypes({
+      names: uiIconNames,
+      fileName: "ui-icons.json",
     });
+    console.log(`✅ UI icon names written to ${uiIconsPath}`);
+
+    /**
+     * uiGraphicsBySlug -> image-data/ui-graphics.json
+     * This will enable static types for ui-graphics.
+     */
+    const uiGraphicNames = getSlugs({ assets: uiGraphicsRes });
+    const uiGraphicsPath = await writeJsonForTypes({
+      names: uiGraphicNames,
+      fileName: "ui-graphics.json",
+    });
+    console.log(`✅ UI graphic names written to ${uiGraphicsPath}`);
+
+    const spriter = getSpriterInstance({ mode: "symbol" });
+
+    for (const spriteIcon of [...uiIconsRes, ...uiGraphicsRes]) {
+      await fetchSvgAndAddToSprite({
+        url: spriteIcon.image.asset.url,
+        name: spriteIcon.slug.current,
+        spriter,
+      });
+    }
+    const spritePath = getPublicSpritePath({ fileName: "sprite.svg" });
+
+    compileAndWriteSpriteToFile({ path: spritePath, spriter });
+
+    console.log(`✅ SVG Sprite sheet written to ${spritePath}`);
+  } catch (error) {
+    console.error(error);
+    console.error("An exception occurred, see above for details.");
+    process.exit(1);
   }
-  const spritePath = getPublicSpritePath({ fileName: "sprite.svg" });
-
-  compileAndWriteSpriteToFile({ path: spritePath, spriter });
-
-  console.log(`✅ SVG Sprite sheet written to ${spritePath}`);
 }
 
 main();

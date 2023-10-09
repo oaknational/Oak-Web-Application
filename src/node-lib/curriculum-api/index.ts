@@ -3,14 +3,24 @@ import { z } from "zod";
 
 import OakError from "../../errors/OakError";
 import lessonListingSchema from "../curriculum-api-2023/queries/lessonListing/lessonListing.schema";
-import lessonDownloadsSchema from "../curriculum-api-2023/queries/downloads/downloads.schema";
+import lessonDownloadsSchema from "../curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { programmeListingSchema } from "../curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import lessonOverviewSchema from "../curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import getServerConfig from "../getServerConfig";
 import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/subjectListing.schema";
+import lessonOverviewCanonicalSchema, {
+  LessonOverviewCanonical,
+} from "../curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
+import { lessonPathwaySchema } from "../curriculum-api-2023/shared.schema";
+import lessonDownloadsCanonicalSchema, {
+  LessonDownloadsCanonical,
+} from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
+
+import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
+import argsRemoveLegacySlugSuffix from "@/utils/slugModifiers/argsRemoveLegacySlugSuffix";
 
 const curriculumApiUrl = getServerConfig("curriculumApiUrl");
 const curriculumApiAuthType = getServerConfig("curriculumApiAuthType");
@@ -92,12 +102,14 @@ const unitData = z.object({
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
   yearTitle: z.string().nullable(),
-  learningThemes: z.array(
-    z.object({
-      themeSlug: z.string().nullable(),
-      themeTitle: z.string().nullable(),
-    }),
-  ),
+  learningThemes: z
+    .array(
+      z.object({
+        themeSlug: z.string().nullable(),
+        themeTitle: z.string().nullable(),
+      }),
+    )
+    .nullable(),
 });
 
 const unitsData = z.array(z.array(unitData));
@@ -179,12 +191,14 @@ const unitListingData = z.object({
   totalUnitCount: z.number(),
   tiers: tiersData,
   units: unitsData,
-  learningThemes: z.array(
-    z.object({
-      themeTitle: z.string().nullable(),
-      themeSlug: z.string().nullable(),
-    }),
-  ),
+  learningThemes: z
+    .array(
+      z.object({
+        themeTitle: z.string().nullable(),
+        themeSlug: z.string().nullable(),
+      }),
+    )
+    .nullable(),
 });
 
 const tierListingData = z.object({
@@ -296,8 +310,8 @@ const curriculumApi = {
       return programmes
         ? programmes.map((programme) => {
             return {
-              programmeSlug: programme.programmeSlug,
-              subjectSlug: programme.subjectSlug,
+              programmeSlug: addLegacySlugSuffix(programme.programmeSlug),
+              subjectSlug: addLegacySlugSuffix(programme.subjectSlug),
               subjectTitle: programme.subjectTitle,
               lessonCount: programme.nonDuplicateSubjectLessonCount,
               unitCount: programme.nonDuplicateSubjectUnitCount,
@@ -320,7 +334,7 @@ const curriculumApi = {
     });
   },
   unitListing: async (...args: Parameters<typeof sdk.unitListing>) => {
-    const res = await sdk.unitListing(...args);
+    const res = await sdk.unitListing(...argsRemoveLegacySlugSuffix(args));
     const { units = [], programmes = [], tiers = [] } = transformMVCase(res);
 
     const unitsWithVariants = units.map((unit) => {
@@ -334,10 +348,18 @@ const curriculumApi = {
       return [
         {
           ...unit,
+          programmeSlug: addLegacySlugSuffix(unit.programmeSlug),
           nullTitle,
           learningThemes,
         },
       ];
+    });
+
+    const legacyTiers = tiers.map((tier) => {
+      return {
+        ...tier,
+        tierProgrammeSlug: addLegacySlugSuffix(tier.tierProgrammeSlug),
+      };
     });
 
     const programme = getFirstResultOrWarnOrFail()({ results: programmes });
@@ -361,7 +383,7 @@ const curriculumApi = {
     });
 
     return unitListingData.parse({
-      programmeSlug: programme?.programmeSlug,
+      programmeSlug: addLegacySlugSuffix(programme?.programmeSlug),
       keyStageSlug: programme?.keyStageSlug,
       keyStageTitle: programme?.keyStageTitle,
       examBoardSlug: null,
@@ -371,12 +393,12 @@ const curriculumApi = {
       totalUnitCount: programme?.totalUnitCount,
       tierSlug: programme?.tierSlug || null,
       learningThemes: filteredDuplicatedLearningThemes,
-      tiers,
+      tiers: legacyTiers,
       units: unitsWithVariants,
     });
   },
   lessonOverview: async (...args: Parameters<typeof sdk.lessonOverview>) => {
-    const res = await sdk.lessonOverview(...args);
+    const res = await sdk.lessonOverview(...argsRemoveLegacySlugSuffix(args));
     const { lessons = [] } = transformMVCase(res);
 
     const { introQuiz, exitQuiz } = res;
@@ -413,15 +435,8 @@ const curriculumApi = {
       : null;
 
     return lessonOverviewData.parse({
-      lessonTitle: lesson.lessonTitle,
-      lessonSlug: lesson.lessonSlug,
-      programmeSlug: lesson.programmeSlug,
-      unitSlug: lesson.unitSlug,
-      unitTitle: lesson.unitTitle,
-      keyStageSlug: lesson.keyStageSlug,
-      keyStageTitle: lesson.keyStageTitle,
-      subjectSlug: lesson.subjectSlug,
-      subjectTitle: lesson.subjectTitle,
+      ...lesson,
+      programmeSlug: addLegacySlugSuffix(lesson.programmeSlug),
       misconceptionAndCommonMistakes: null,
       lessonEquipmentAndResources: lessonEquipmentAndResources,
       teacherTips: null,
@@ -431,37 +446,107 @@ const curriculumApi = {
       copyRightContent: null,
       additionalMaterialUrl: null,
       contentGuidance: lessonContentGuidance,
-      supervisionLevel: lesson.supervisionLevel,
-      worksheetUrl: lesson.worksheetUrl,
-      isWorksheetLandscape: lesson.isWorksheetLandscape,
-      presentationUrl: lesson.presentationUrl,
-      hasCopyrightMaterial: lesson.hasCopyrightMaterial,
-      videoMuxPlaybackId: lesson.videoMuxPlaybackId,
-      videoWithSignLanguageMuxPlaybackId:
-        lesson.videoWithSignLanguageMuxPlaybackId,
-      transcriptSentences: lesson.transcriptSentences,
-      hasDownloadableResources: lesson.hasDownloadableResources,
-      expired: lesson.expired,
       yearTitle: "",
       starterQuiz: introQuizTransformed,
       exitQuiz: exitQuizTransformed,
+      isLegacy: true,
     });
   },
+  lessonOverviewCanonical: async (
+    ...args: Parameters<typeof sdk.lessonOverviewCanonical>
+  ) => {
+    const res = await sdk.lessonOverviewCanonical(...args);
+    const { lessons = [] } = transformMVCase(res);
+
+    const { introQuiz, exitQuiz } = res;
+
+    // Transform quizzes here because the schema is not the same as the one returned by the API
+    const introQuizTransformed =
+      introQuiz && introQuiz.length > 0 ? transformQuiz(introQuiz) : null;
+
+    const exitQuizTransformed =
+      exitQuiz && exitQuiz.length > 0 ? transformQuiz(exitQuiz) : null;
+
+    const transformedLessons = lessons.map((lesson) => {
+      const lessonKeyLearningPoints = lesson.coreContent?.map(
+        (content: string) => {
+          return { keyLearningPoint: content };
+        },
+      );
+
+      const lessonEquipmentAndResources = lesson.equipmentRequired
+        ? [{ equipment: lesson.equipmentRequired }]
+        : null;
+
+      const lessonContentGuidance = lesson.contentGuidance
+        ? [
+            {
+              contentGuidanceLabel: lesson.contentGuidance,
+              contentGuidanceDescription: lesson.contentGuidance,
+              contentGuidanceArea: "contentGuidanceArea",
+            },
+          ]
+        : null;
+
+      return {
+        ...lesson,
+        programmeSlug: addLegacySlugSuffix(lesson.programmeSlug),
+        misconceptionAndCommonMistakes: null,
+        lessonEquipmentAndResources: lessonEquipmentAndResources,
+        teacherTips: null,
+        keyLearningPoints: lessonKeyLearningPoints,
+        pupilLessonOutcome: null,
+        lessonKeywords: null,
+        copyRightContent: null,
+        additionalMaterialUrl: null,
+        contentGuidance: lessonContentGuidance,
+        yearTitle: "",
+        starterQuiz: introQuizTransformed,
+        exitQuiz: exitQuizTransformed,
+        isLegacy: true,
+      };
+    });
+
+    const lessonWithPathways = transformedLessons.reduce(
+      (acc, lesson) => {
+        const pathway = lessonPathwaySchema.parse(lesson);
+        return {
+          ...acc,
+          pathways: [...acc.pathways, pathway],
+        };
+      },
+      {
+        ...transformedLessons[0],
+        pathways: [],
+        isLegacy: true,
+      } as LessonOverviewCanonical,
+    );
+
+    return lessonOverviewCanonicalSchema.parse(lessonWithPathways);
+  },
   lessonListing: async (...args: Parameters<typeof sdk.lessonListing>) => {
-    const res = await sdk.lessonListing(...args);
+    const res = await sdk.lessonListing(...argsRemoveLegacySlugSuffix(args));
     const { units = [], lessons = [] } = transformMVCase(res);
 
     const unit = getFirstResultOrWarnOrFail()({
       results: units,
     });
 
+    const lessonsWithModifiedProgrammeSlug = lessons.map((lesson) => {
+      return {
+        ...lesson,
+        programmeSlug: addLegacySlugSuffix(lesson.programmeSlug),
+      };
+    });
+
     return lessonListingSchema.parse({
       ...unit,
-      lessons,
+      programmeSlug: addLegacySlugSuffix(unit.programmeSlug),
+      lessons: lessonsWithModifiedProgrammeSlug,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
-    const res = await sdk.lessonDownloads(...args);
+    const res = await sdk.lessonDownloads(...argsRemoveLegacySlugSuffix(args));
     const { downloads = [] } = transformMVCase(res);
 
     const download = getFirstResultOrWarnOrFail()({
@@ -470,10 +555,35 @@ const curriculumApi = {
 
     return lessonDownloadsSchema.parse({
       ...download,
+      programmeSlug: addLegacySlugSuffix(download.programmeSlug),
+      isLegacy: true,
     });
   },
+  lessonDownloadsCanonical: async (
+    ...args: Parameters<typeof sdk.lessonDownloadsCanonical>
+  ) => {
+    const res = await sdk.lessonDownloadsCanonical(...args);
+    const { downloads = [] } = transformMVCase(res);
+
+    const lessonDownloadsWithPathways = downloads.reduce(
+      (acc, lesson) => {
+        const pathway = lessonPathwaySchema.parse(lesson);
+        return {
+          ...acc,
+          pathways: [...acc.pathways, pathway],
+        };
+      },
+      {
+        ...downloads[0],
+        pathways: [],
+        isLegacy: true,
+      } as LessonDownloadsCanonical,
+    );
+
+    return lessonDownloadsCanonicalSchema.parse(lessonDownloadsWithPathways);
+  },
   tierListing: async (...args: Parameters<typeof sdk.tierListing>) => {
-    const res = await sdk.tierListing(...args);
+    const res = await sdk.tierListing(...argsRemoveLegacySlugSuffix(args));
     const { programmes = [] } = transformMVCase(res);
 
     const tierListingToProgrammeListing2013 = tierListingData
@@ -481,13 +591,13 @@ const curriculumApi = {
       .programmes.map((programme) => {
         return {
           programmes: {
-            subjectSlug: programme.subjectSlug,
+            subjectSlug: addLegacySlugSuffix(programme.subjectSlug),
             subjectTitle: programme.subjectTitle,
             keyStageSlug: programme.keyStageSlug,
             keyStageTitle: programme.keyStageTitle,
             programmes: programmes.map((programme) => {
               return {
-                programmeSlug: programme.programmeSlug,
+                programmeSlug: addLegacySlugSuffix(programme.programmeSlug),
                 subjectTitle: programme.subjectTitle,
                 unitCount: programme.totalUnitCount,
                 lessonCount: programme.activeLessonCount,

@@ -12,9 +12,7 @@ import SearchResults from "./SearchResults";
 
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
-export const hits = searchResultsHitsSchema.parse(
-  elasticResponseFixture.hits.hits,
-);
+const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
 
 const getNHits = (n: number) => {
   const [hit] = hits;
@@ -47,7 +45,7 @@ describe("<SearchResults />", () => {
       getByRole("link", { name: "To write the setting description" }),
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
+      "/teachers/programmes/english-primary-ks2-l/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
     );
   });
   // @todo when we have programme_slug in search index
@@ -57,7 +55,7 @@ describe("<SearchResults />", () => {
       getByRole("link", { name: "Macbeth - Narrative writing" }),
     ).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons",
+      "/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons",
     );
   });
 

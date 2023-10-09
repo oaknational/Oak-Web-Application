@@ -47,12 +47,12 @@ type TagWithMap = keyof typeof tagDimMap;
 type TagPromotionalProps = FlexProps & {
   $color?: OakColorName;
   size?: TagWithMap;
-};
+} & FlexProps;
 
 const TagPromotional: FC<TagPromotionalProps> = ({
   $color = "white",
   size = "large",
-  ...props
+  ...flexProps
 }) => {
   return (
     <Flex
@@ -60,7 +60,7 @@ const TagPromotional: FC<TagPromotionalProps> = ({
       $width={tagDimMap[size].width}
       $height={tagDimMap[size].height}
       $position={"relative"}
-      {...props}
+      {...flexProps}
     >
       <Svg
         $color={"oakGrey6"}
