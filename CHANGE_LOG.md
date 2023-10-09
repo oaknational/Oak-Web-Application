@@ -1,3 +1,10 @@
+## [1.272.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.0...v1.272.1) (2023-10-09)
+
+
+### Bug Fixes
+
+* **lesson scroll behaviour:** check previous section not completely in view ([85dfcd1](https://github.com/oaknational/Oak-Web-Application/commit/85dfcd1507549d9f329bf7700c2b0ed9724bb114))
+
 # [1.272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.271.0...v1.272.0) (2023-10-09)
 
 
