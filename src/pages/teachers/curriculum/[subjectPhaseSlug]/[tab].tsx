@@ -4,8 +4,9 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { capitalize } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -18,7 +19,8 @@ import curriculumApi, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
 } from "@/node-lib/curriculum-api-2023";
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+// import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -56,6 +58,32 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
 
+  const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+
+  let keyStagesData: string;
+  switch (phaseSlug) {
+    case "primary":
+      keyStagesData = `KS1-2`;
+      break;
+    case "secondary":
+      keyStagesData = `KS3-4`;
+      break;
+    default:
+      keyStagesData = "";
+      break;
+  }
+
+  const pageTitleData = `${keyStagesData} ${capitalize(subjectSlug)} ${
+    examboardSlug ? capitalize(examboardSlug) : ""
+  } Curriculum Plans | Oak National Academy`;
+
+  const pageDescriptionData = `Looking for ${keyStagesData} ${subjectSlug} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
+
+  const [curriculumTabTitleData, setCurriculumTabTitleData] =
+    useState<string>(pageTitleData);
+  const [curriculumTabDescriptionData, setCurriculumTabDescriptionData] =
+    useState<string>(pageDescriptionData);
+
   let tabContent: JSX.Element;
   switch (tab) {
     case "overview":
@@ -68,16 +96,40 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           }}
         />
       );
+      setCurriculumTabTitleData(
+        `${keyStagesData} ${capitalize(subjectSlug)} ${
+          examboardSlug ? capitalize(examboardSlug) : ""
+        } Curriculum Plans | Oak National Academy`,
+      );
+      setCurriculumTabDescriptionData(
+        `Looking for ${keyStagesData} ${subjectSlug} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`,
+      );
       break;
     case "units":
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
+      setCurriculumTabTitleData(
+        `${keyStagesData} ${capitalize(subjectSlug)} ${
+          examboardSlug ? capitalize(examboardSlug) : ""
+        } Curriculum Unit Sequences | Oak National Academy`,
+      );
+      setCurriculumTabDescriptionData(
+        `Explore our free ${keyStagesData} ${subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now`,
+      );
       break;
     default:
       throw new Error("Not a valid tab");
   }
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: curriculumTabTitleData,
+          description: curriculumTabDescriptionData,
+        }),
+      }}
+      $background={"white"}
+    >
       <CurriculumHeader
         subjectPhaseOptions={subjectPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}
