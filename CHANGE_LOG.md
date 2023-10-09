@@ -1,3 +1,28 @@
+## [1.270.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.270.0...v1.270.1) (2023-10-09)
+
+# [1.270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.2...v1.270.0) (2023-10-09)
+
+
+### Features
+
+* **lesson:** add current link behaviour as user scrolls ([37938ea](https://github.com/oaknational/Oak-Web-Application/commit/37938ea72358ca76e7986cc2ad224fd8e279d7dd))
+
+## [1.269.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.1...v1.269.2) (2023-10-06)
+
+## [1.269.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.0...v1.269.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* merge with main ([50dcf06](https://github.com/oaknational/Oak-Web-Application/commit/50dcf0681828df6023167478f35869e969bba6b0))
+* remove type assertion ([2b0e70f](https://github.com/oaknational/Oak-Web-Application/commit/2b0e70f7ecfa48af6ac2e5d06aeebf9a88d4f0a8))
+* resourcesExistenceAsArray assumed incorrect type ([37246b3](https://github.com/oaknational/Oak-Web-Application/commit/37246b3e9382b128a4550d0055c957981fc132f8))
+* stray console.logs ([43c1edb](https://github.com/oaknational/Oak-Web-Application/commit/43c1edbcd16e71815d17e68bbea0770656eeb023))
+* type errors ([bc34212](https://github.com/oaknational/Oak-Web-Application/commit/bc34212255929e2692f4af788b3683f0dbf04955))
+* update mv reference and rerun sdk gen ([3ed005a](https://github.com/oaknational/Oak-Web-Application/commit/3ed005a13daf615fad38efa84d1653357dce1cc2))
+* update zod type ([31f1f3e](https://github.com/oaknational/Oak-Web-Application/commit/31f1f3e00a33a614603d6a2fb9264c1a70231c9e))
+* upodated tests to match data type ([18d31b4](https://github.com/oaknational/Oak-Web-Application/commit/18d31b40b5e645f546f374c60ea51b90064d36ab))
+
 # [1.269.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.268.0...v1.269.0) (2023-10-05)
 
 

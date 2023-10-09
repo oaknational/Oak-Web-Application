@@ -43,7 +43,23 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
-    lessons: [],
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
   {
     title: "Test optional unit 2",
@@ -51,7 +67,23 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
-    lessons: [],
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
   {
     title: "Test optional unit 3",
@@ -59,7 +91,23 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
-    lessons: [],
+    lessons: [
+      {
+        slug: "lesson-1",
+        title: "Lesson 1",
+        order: 1,
+      },
+      {
+        slug: "lesson-2",
+        title: "Lesson 2",
+        order: 2,
+      },
+      {
+        slug: "lesson-3",
+        title: "Lesson 3",
+        order: 3,
+      },
+    ],
   },
 ];
 
