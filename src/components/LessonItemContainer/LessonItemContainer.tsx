@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 
 import Box from "../Box";
 import Flex from "../Flex";
@@ -9,6 +9,7 @@ import {
   containerTitleToPreselectMap,
 } from "../DownloadComponents/downloads.types";
 import AnchorTarget from "../AnchorTarget";
+import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
 
 function DownloadLink({
   resourceTitle,
@@ -92,17 +93,21 @@ type Slugs = {
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
   title: LessonItemTitle;
-  anchorId: string;
+  anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
+  isFinalElement?: boolean;
 }
 
 const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
   return containerTitleToPreselectMap[title];
 };
 
-export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
+export const LessonItemContainer = forwardRef<
+  HTMLDivElement,
+  LessonItemContainerProps
+>((props, ref) => {
   const {
     children,
     title,
@@ -117,7 +122,7 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
 
   return (
     <Flex $flexDirection="column" $position={"relative"}>
-      <AnchorTarget id={anchorId} $paddingTop={24} />
+      <AnchorTarget id={anchorId} $paddingTop={24} ref={ref} />
       <Flex
         $flexDirection={["column", "row"]}
         $alignItems={["start", "end"]}
@@ -141,7 +146,9 @@ export const LessonItemContainer: FC<LessonItemContainerProps> = (props) => {
       </Flex>
 
       <Box>{children}</Box>
-      <Hr $color={"teachersPastelBlue"} $mt={[24, 56]} $mb={[12, 24]} />
+      {!props.isFinalElement && (
+        <Hr $color={"pupilsPink"} $mt={[24, 56]} $mb={[12, 24]} />
+      )}
     </Flex>
   );
-};
+});

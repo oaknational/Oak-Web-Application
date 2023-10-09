@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
@@ -14,43 +14,47 @@ import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import UnitModal from "@/components/UnitModal/UnitModal";
+import { TagFunctional } from "@/components/TagFunctional";
+import UnitTabBanner from "@/components/UnitTabBanner";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
 
+export type Unit = CurriculumUnitsTabData["units"][number];
+
+export interface Thread {
+  title: string;
+  slug: string;
+  order: number;
+}
+
+interface Subject {
+  subject: string;
+  subject_slug: string;
+}
+
+interface Domain {
+  domain: string;
+  domain_id: number;
+}
+
+interface Tier {
+  tier: string;
+  tier_slug: string;
+}
+
+interface YearSelection {
+  [key: string]: {
+    subject?: Subject | null;
+    domain?: Domain | null;
+    tier?: Tier | null;
+  };
+}
+
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
-  type Unit = CurriculumUnitsTabData["units"][number];
-
-  interface Thread {
-    title: string;
-    slug: string;
-  }
-
-  interface Subject {
-    subject: string;
-    subject_slug: string;
-  }
-
-  interface Domain {
-    title: string;
-    tag_id: number | null;
-  }
-
-  interface Tier {
-    tier: string;
-    tier_slug: string;
-  }
-
-  interface YearSelection {
-    [key: string]: {
-      subject?: Subject | null;
-      domain?: Domain | null;
-      tier?: Tier | null;
-    };
-  }
-
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
 
@@ -62,6 +66,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       tiers: Tier[];
     };
   } = {};
+  const [displayModal, setDisplayModal] = useState(false);
+  const [unitData, setUnitData] = useState<Unit | null>(null);
+  const [unitOptionsAvailable, setUnitOptionsAvailable] =
+    useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setDisplayModal((prev) => !prev);
+  };
+
+  const handleCloseModal = () => {
+    setDisplayModal(false);
+  };
+
+  const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   data.units.forEach((unit) => {
     // Populate years object
@@ -92,16 +110,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     // Add the current unit
     currentYearData.units.push(unit);
 
-    // Populate list of domain filter values
-    // Replace below with domain / domain_slug from API request when updated
-    const domain = unit.domains[0];
-    if (
-      domain &&
-      currentYearData.domains.every((d) => d.tag_id !== domain.tag_id)
-    ) {
-      currentYearData.domains.push(domain);
-    }
-
     // Populate list of child subject filter values
     if (
       unit.subject_parent &&
@@ -113,6 +121,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       currentYearData.childSubjects.push({
         subject: unit.subject,
         subject_slug: unit.subject_slug,
+      });
+    }
+
+    // Populate list of domain filter values
+    if (
+      unit.domain &&
+      unit.domain_id &&
+      currentYearData.domains.every((d) => d.domain_id !== unit.domain_id)
+    ) {
+      currentYearData.domains.push({
+        domain: unit.domain,
+        domain_id: unit.domain_id,
       });
     }
 
@@ -129,7 +149,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
   });
 
+  // Sort year data
   yearOptions.sort((a, b) => Number(a) - Number(b));
+
+  // Sort threads
+  const threadOrders = new Set(threadOptions.map((to) => to.order));
+  if (threadOptions.length > threadOrders.size) {
+    // In secondary science multiple threads can have the same order value due
+    // to multiple subjects (eg biology, chemistry, physics) being shown, so
+    // if orders are not unique, sort alphabetically by slug
+    threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
+  } else {
+    // If orders are unique, use them to sort
+    threadOptions.sort((a, b) => a.order - b.order);
+  }
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -137,20 +170,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (!data) {
       throw new Error("year data missing");
     }
-    data.childSubjects.sort((a, b) => {
-      if (a.subject_slug === "combined-science") {
-        return -1;
-      } else if (b.subject_slug === "combined-science") {
-        return 1;
-      } else {
-        return a.subject_slug.localeCompare(b.subject_slug);
-      }
-    });
     if (data.domains.length > 0) {
-      data.domains.sort((a, b) => Number(a.tag_id) - Number(b.tag_id));
+      data.domains.sort((a, b) => a.domain_id - b.domain_id);
       data.domains.unshift({
-        title: "All",
-        tag_id: null,
+        domain: "All",
+        domain_id: 0,
       });
     }
     data.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
@@ -187,7 +211,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function isSelectedDomain(year: string, domain: Domain) {
-    return yearSelection[year]?.domain?.tag_id === domain.tag_id;
+    return yearSelection[year]?.domain?.domain_id === domain.domain_id;
   }
 
   function isSelectedSubject(year: string, subject: Subject) {
@@ -207,9 +231,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       !s.subject || s.subject.subject_slug === unit.subject_slug;
     const filterByDomain =
       !s.domain ||
-      s.domain.tag_id === null ||
-      s.domain.tag_id === unit.domains[0]?.tag_id;
-    const filterByTier = !s.tier || s.tier?.tier_slug === unit.tier_slug;
+      s.domain.domain_id === 0 ||
+      s.domain.domain_id === unit.domain_id;
+    const filterByTier =
+      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
     return filterBySubject && filterByDomain && filterByTier;
   }
 
@@ -269,7 +294,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               $top={"50%"}
             />
           </Box>
-
           <Box $pa={20}>
             <Heading
               tag={"h2"}
@@ -285,7 +309,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             </P>
           </Box>
         </Card>
-
         <Grid>
           <GridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
@@ -348,7 +371,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                 })}
               </RadioGroup>
             </Box>
-
             <Box $mr={16} $mb={32}>
               <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
                 Year Group
@@ -434,8 +456,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             background={
                               isSelectedDomain(year, domain) ? "black" : "white"
                             }
-                            key={domain.tag_id}
-                            label={domain.title}
+                            key={domain.domain_id}
+                            label={domain.domain}
                             onClick={() => handleSelectDomain(year, domain)}
                             size="small"
                             data-testid="domain-button"
@@ -467,9 +489,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         .filter((unit) => isVisibleUnit(year, unit))
                         .map((unit, index) => {
                           const isHighlighted = isHighlightedUnit(unit);
+                          const unitOptions = unit.unit_options.length >= 1;
+
                           return (
                             <Card
-                              key={unit.slug}
+                              key={unit.slug + index}
                               $background={isHighlighted ? "black" : "white"}
                               $color={isHighlighted ? "white" : "black"}
                               $flexGrow={"unset"}
@@ -486,29 +510,84 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   ? "highlighted-unit-card"
                                   : "unit-card"
                               }
+                              $justifyContent={"space-between"}
                             >
-                              <BrushBorders
-                                color={isHighlighted ? "black" : "white"}
-                              />
-                              <OutlineHeading
-                                tag={"div"}
-                                $font={"heading-5"}
-                                $fontSize={24}
-                                $mb={12}
-                              >
-                                {index + 1}
-                              </OutlineHeading>
-                              <Heading tag={"h3"} $font={"heading-7"}>
-                                {isHighlighted && (
-                                  <VisuallyHidden>
-                                    Highlighted:&nbsp;
-                                  </VisuallyHidden>
+                              <Box>
+                                <OutlineHeading
+                                  tag={"div"}
+                                  $font={"heading-5"}
+                                  $fontSize={24}
+                                  $mb={12}
+                                >
+                                  {index + 1}
+                                </OutlineHeading>
+                                <Heading
+                                  tag={"h3"}
+                                  $font={"heading-7"}
+                                  $mb={16}
+                                >
+                                  {isHighlighted && (
+                                    <VisuallyHidden>
+                                      Highlighted:&nbsp;
+                                    </VisuallyHidden>
+                                  )}
+                                  {unit.title}
+                                </Heading>
+                                {unit.unit_options.length > 1 && (
+                                  <Box
+                                    $mt={12}
+                                    $mb={20}
+                                    $zIndex={"inFront"}
+                                    data-testid="options-tag"
+                                    $position={"relative"}
+                                  >
+                                    <TagFunctional
+                                      color="lavender"
+                                      text={`${unit.unit_options.length} unit options`}
+                                    />
+                                  </Box>
                                 )}
-                                {unit.title}
-                              </Heading>
+                                <BrushBorders
+                                  color={isHighlighted ? "black" : "white"}
+                                />
+                              </Box>
+                              <Flex
+                                $flexDirection={"row"}
+                                $justifyContent={"flex-end"}
+                              >
+                                <Button
+                                  icon="chevron-right"
+                                  $iconPosition="trailing"
+                                  data-testid="unit-modal-button"
+                                  variant={isHighlighted ? "brush" : "minimal"}
+                                  background={
+                                    isHighlighted ? "black" : undefined
+                                  }
+                                  label="Unit info"
+                                  onClick={() => {
+                                    handleOpenModal();
+                                    setUnitOptionsAvailable(unitOptions);
+                                    setUnitData({ ...unit });
+                                  }}
+                                  ref={modalButtonRef}
+                                />
+                              </Flex>
                             </Card>
                           );
                         })}
+                      <Sidebar
+                        displayModal={displayModal}
+                        onClose={handleCloseModal}
+                        unitData={unitData}
+                        unitOptionsAvailable={unitOptionsAvailable}
+                      >
+                        <UnitModal
+                          unitData={unitData}
+                          displayModal={displayModal}
+                          setUnitOptionsAvailable={setUnitOptionsAvailable}
+                          unitOptionsAvailable={unitOptionsAvailable}
+                        />
+                      </Sidebar>
                     </Flex>
                   </Box>
                 );
@@ -516,56 +595,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </GridArea>
         </Grid>
       </Box>
-      <Flex
-        $flexDirection={["column", "row"]}
-        $background={"mint"}
-        $mt={48}
-        $pa={48}
-        $gap={24}
-      >
-        <Flex
-          $flexDirection={["column", "row"]}
-          $alignItems={["flex-start", "flex-end"]}
-          $ma={"auto"}
-          $justifyContent={["space-evenly"]}
-          $gap={24}
-        >
-          <Flex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
-            <Icon
-              name="books"
-              size={92}
-              $background={"teachersRed"}
-              $mr={40}
-              $mb={[24, 0]}
-              $color={"black"}
-            />
-
-            <Flex
-              $width={["100%", "70%"]}
-              $gap={16}
-              $flexDirection={"column"}
-              $alignItems={"flex-start"}
-            >
-              <Heading tag="h2" $font={["heading-5", "heading-4"]}>
-                Need help with our new curriculum?
-              </Heading>
-              <P $font={["body-2", "body-1"]}>
-                Visit our help centre for technical support as well as tips and
-                ideas to help you make the most of Oak.
-              </P>
-            </Flex>
-          </Flex>
-          <ButtonAsLink
-            label="Go to help centre"
-            variant={"brush"}
-            size={"large"}
-            page={"help"}
-            icon={"arrow-right"}
-            iconBackground="black"
-            $iconPosition="trailing"
-          />
-        </Flex>
-      </Flex>
+      <UnitTabBanner />
     </Box>
   );
 };

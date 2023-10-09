@@ -105,7 +105,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   currentSelection,
 }) => {
   const router = useRouter();
-  const tab = (router.query.tab as CurriculumTab) ?? "overview";
+  const tab = (router.query.tab as CurriculumTab) ?? "units";
   const path = router.asPath;
 
   const phases = [
@@ -568,7 +568,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </P>
                     </Flex>
                   ) : (
-                    "Exam board"
+                    ""
                   )}
                   <Heading tag={"h4"} $font={"heading-6"} $mb={16}>
                     Choose a school phase:

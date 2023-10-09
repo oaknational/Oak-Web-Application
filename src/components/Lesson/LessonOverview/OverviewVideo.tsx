@@ -11,6 +11,7 @@ export interface OverviewVideoProps {
   signLanguageVideo: string | null;
   title: string;
   transcriptSentences?: string[] | null;
+  isLegacy: boolean;
 }
 
 export const OverviewVideo: FC<OverviewVideoProps> = ({
@@ -18,6 +19,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   signLanguageVideo,
   title,
   transcriptSentences,
+  isLegacy,
 }) => {
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const [transcriptOn, setTranscriptOn] = useState(false);
@@ -48,6 +50,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           playbackPolicy={"signed"}
           title={title}
           location={"lesson"}
+          isLegacy={isLegacy}
         />
       )}
 

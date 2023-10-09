@@ -27,6 +27,7 @@ import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabIma
 import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
 import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
 import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
+import HomePageBanner from "@/components/Banner/Banner";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -43,7 +44,11 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   });
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
+    <AppLayout
+      seoProps={BETA_SEO_PROPS}
+      $background={"white"}
+      banner={HomePageBanner}
+    >
       <HomePageTabImageNav current={current} setCurrent={setCurrent} />
       {current === "teachers" && (
         <TeachersTab keyStages={curriculumData.keyStages} />

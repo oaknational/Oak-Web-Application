@@ -4,13 +4,14 @@ import styled from "styled-components";
 import P from "@/components/Typography/P";
 import OakLink from "@/components/OakLink";
 import Box from "@/components/Box/Box";
+import { FontProps } from "@/styles/utils/typography";
 
-type CopyrightNoticeProps = {
+type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
 };
 
-const PreAlbCopyright = () => (
-  <P $font="body-3">
+const PreAlbCopyright = (props: FontProps) => (
+  <P $font="body-3" {...props}>
     This content is made available by Oak and its partners and licensed under
     Oak’s{" "}
     <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
@@ -26,8 +27,8 @@ const StyledLink = styled.a`
   color: ${(props) => props.theme.colors.hyperlink};
 `;
 
-const PostAlbCopyright = () => (
-  <P $font="body-3">
+const PostAlbCopyright = (props: FontProps) => (
+  <P $font="body-3" {...props}>
     This content is © Oak National Academy (2023), licensed on{" "}
     <StyledLink
       aria-label={"Open Government License version 3.0"}
@@ -46,9 +47,14 @@ const PostAlbCopyright = () => (
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
+  ...fontProps
 }) => (
-  <Box $mb={56} $mt={16} $maxWidth={[null, 420, 420]}>
-    {showPostAlbCopyright ? <PostAlbCopyright /> : <PreAlbCopyright />}
+  <Box $maxWidth={[null, 420, 420]}>
+    {showPostAlbCopyright ? (
+      <PostAlbCopyright {...fontProps} />
+    ) : (
+      <PreAlbCopyright {...fontProps} />
+    )}
   </Box>
 );
 

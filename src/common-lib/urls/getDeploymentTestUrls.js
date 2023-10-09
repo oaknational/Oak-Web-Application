@@ -40,6 +40,9 @@ function getDeploymentTestUrls() {
     "teachers/programmes/design-technology-secondary-ks3-l/units/packaging-pop-outs-bc35/lessons/designing-for-others-6mtk2t", // all yellow boxes
     "/teachers/programmes/maths-secondary-ks4-foundation-l/units/directed-numbers-fe66/lessons/adding-directed-numbers-chjk4t/downloads?preselected=slide+deck",
     // "/teachers/search?term=computing&keyStages=ks4&subjects=computing&contentTypes=unit",
+    // Canonical lesson pages
+    "/teachers/lessons/transverse-waves",
+    "/teachers/lessons/transverse-waves/downloads",
   ];
 }
 
