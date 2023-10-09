@@ -127,7 +127,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 {examboard?.title && (
                   <P
                     $font={"heading-light-7"}
-                    data-testid={"key-stage-metadata"}
+                    data-testid={"examboard-metadata"}
                   >
                     {`${examboard.title} (KS4)`}
                   </P>

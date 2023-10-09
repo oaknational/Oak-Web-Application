@@ -8,7 +8,7 @@ import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhase
 describe("Component - Curriculum Header", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
-      curriculumSelectionSlugs: parseSubjectPhaseSlug("maths-secondary"),
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
@@ -34,11 +34,17 @@ describe("Component - Curriculum Header", () => {
 
   test("user can see the page title", async () => {
     const { findByRole } = renderComponent();
-    const pageTitle = `${curriculumHeaderFixture().phase} ${
-      curriculumHeaderFixture().subject
-    }`;
+    let keyStages: string;
+    if (curriculumHeaderFixture().phase === "primary") {
+      keyStages = "KS1 & KS2";
+    } else if (curriculumHeaderFixture().phase === "secondary") {
+      keyStages = "KS3 & KS4";
+    } else {
+      keyStages = "";
+    }
+
     expect(await findByRole("heading", { level: 1 })).toHaveTextContent(
-      pageTitle,
+      `${keyStages} ${curriculumHeaderFixture().subject}`,
     );
   });
 
@@ -50,7 +56,7 @@ describe("Component - Curriculum Header", () => {
 
   test("keyStage metadata", () => {
     const { getByTestId } = renderComponent();
-    const keyStageMetadata = getByTestId("key-stage-metadata");
-    expect(keyStageMetadata).toHaveTextContent("Key stages 3 & 4");
+    const examboardMetadata = getByTestId("examboard-metadata");
+    expect(examboardMetadata).toHaveTextContent("AQA (KS4)");
   });
 });
