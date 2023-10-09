@@ -21,7 +21,10 @@ const HomeHelpCard: FC<HomeSidebarTextCard> = (props) => {
       </CardTitle>
 
       <Typography $font={"body-2"} $mb={24}>
-        <PortableTextWithDefaults value={props.bodyPortableText} />
+        <PortableTextWithDefaults
+          value={props.bodyPortableText}
+          withoutDefaultComponents
+        />
       </Typography>
 
       {props.cta && (

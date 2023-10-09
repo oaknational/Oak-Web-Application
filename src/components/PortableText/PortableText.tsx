@@ -184,13 +184,30 @@ export const basePortableTextComponents: PortableTextComponents = {
   },
 };
 
+/**
+ * After the update for @portabletext/react from 1 to 3, it no lnoger uses
+ * react context to inject components, instead we wrap the PortableText
+ * component with a component that has the components prop set to the
+ * default components plus any overrides passed in via props.
+ * However, previously there were cases where PortableText was used outside
+ * context, so the prop withoutDefaultComponents is added here for us to replicate
+ * the that behaviour.
+ */
 export function PortableTextWithDefaults<
   B extends TypedObject = PortableTextBlock,
->(props: PortableTextProps<B>): React.JSX.Element {
+>(
+  props: PortableTextProps<B> & {
+    withoutDefaultComponents?: boolean;
+  },
+): React.JSX.Element {
+  const { withoutDefaultComponents, components, ...portableTextProps } = props;
   return (
     <PortableText
-      {...props}
-      components={merge(basePortableTextComponents, props.components)}
+      {...portableTextProps}
+      components={merge(
+        withoutDefaultComponents ? {} : basePortableTextComponents,
+        components,
+      )}
     />
   );
 }

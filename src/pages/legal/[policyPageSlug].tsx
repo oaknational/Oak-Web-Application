@@ -101,6 +101,7 @@ const Policies: NextPage<PolicyPageProps> = ({ policy }) => {
               <PortableTextWithDefaults
                 value={policy.bodyPortableText}
                 components={customPolicyComponent}
+                withoutDefaultComponents
               />
             </Typography>
           </GridArea>

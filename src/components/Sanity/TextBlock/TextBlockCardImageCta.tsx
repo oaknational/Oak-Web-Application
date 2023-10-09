@@ -53,7 +53,10 @@ const TextBlockCardImageCta: FC<
         <Heading $mb={32} $font={["heading-5", "heading-4"]} tag={"h2"}>
           {title}
         </Heading>
-        <PortableTextWithDefaults value={bodyPortableText} />
+        <PortableTextWithDefaults
+          value={bodyPortableText}
+          withoutDefaultComponents
+        />
         {cta && (
           <Flex>
             <ButtonAsLink

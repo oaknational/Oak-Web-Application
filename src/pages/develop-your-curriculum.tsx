@@ -91,6 +91,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             </Heading>
             <PortableTextWithDefaults
               value={pageData.gettingStarted.bodyPortableText}
+              withoutDefaultComponents
             />
           </Card>
         </Flex>

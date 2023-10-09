@@ -221,7 +221,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                       {title}
                     </CardTitle>
                     <Typography $font="body-1">
-                      <PortableTextWithDefaults value={portableText} />
+                      <PortableTextWithDefaults
+                        value={portableText}
+                        withoutDefaultComponents
+                      />
                     </Typography>
                   </LessonElementsCard>
                 </GridArea>

@@ -121,12 +121,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
             Governance
           </Heading>
-
           <Typography $font={["body-1", "body-2"]}>
-            <PortableTextWithDefaults value={governancePortableText} />
+            <PortableTextWithDefaults
+              value={governancePortableText}
+              withoutDefaultComponents
+            />
           </Typography>
         </Card>
-
         <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
