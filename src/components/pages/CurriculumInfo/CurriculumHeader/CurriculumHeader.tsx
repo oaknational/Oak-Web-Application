@@ -131,18 +131,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           label="Curriculum Selection"
           links={[
             {
-              label: "Overview",
-              page: "curriculum-overview",
-              subjectPhaseSlug: subjectPhaseSlug,
-              isCurrent: tab === "overview",
-              currentStyles: ["underline"],
-              scroll: false,
-            },
-            {
               label: "Unit sequence",
               page: "curriculum-units",
               subjectPhaseSlug: subjectPhaseSlug,
               isCurrent: tab == "units",
+              currentStyles: ["underline"],
+              scroll: false,
+            },
+            {
+              label: "Overview",
+              page: "curriculum-overview",
+              subjectPhaseSlug: subjectPhaseSlug,
+              isCurrent: tab === "overview",
               currentStyles: ["underline"],
               scroll: false,
             },
