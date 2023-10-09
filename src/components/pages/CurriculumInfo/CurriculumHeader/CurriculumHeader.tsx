@@ -70,7 +70,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   }
 
   return (
-    <Box>
+    <Box $mb={40}>
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
           <Breadcrumbs
@@ -119,7 +119,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   subjectSlug={subject.slug}
                   $color="white"
                   $borderColor="white"
-                  $width={56}
+                  $width={64}
                   data-testid="subjectIcon"
                 />
               </Box>

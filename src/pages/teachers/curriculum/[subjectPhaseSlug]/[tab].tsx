@@ -4,9 +4,8 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { capitalize } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -30,6 +29,7 @@ import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectP
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
+import { buildCurriculumMetadata } from "@/components/pages/CurriculumInfo/helpers/curriculumMetadata";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -73,17 +73,6 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       break;
   }
 
-  const pageTitleData = `${keyStagesData} ${capitalize(subjectSlug)} ${
-    examboardSlug ? capitalize(examboardSlug) : ""
-  } Curriculum Plans | Oak National Academy`;
-
-  const pageDescriptionData = `Looking for ${keyStagesData} ${subjectSlug} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
-
-  const [curriculumTabTitleData, setCurriculumTabTitleData] =
-    useState<string>(pageTitleData);
-  const [curriculumTabDescriptionData, setCurriculumTabDescriptionData] =
-    useState<string>(pageDescriptionData);
-
   let tabContent: JSX.Element;
   switch (tab) {
     case "overview":
@@ -96,25 +85,10 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           }}
         />
       );
-      setCurriculumTabTitleData(
-        `${keyStagesData} ${capitalize(subjectSlug)} ${
-          examboardSlug ? capitalize(examboardSlug) : ""
-        } Curriculum Plans | Oak National Academy`,
-      );
-      setCurriculumTabDescriptionData(
-        `Looking for ${keyStagesData} ${subjectSlug} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`,
-      );
+
       break;
     case "units":
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
-      setCurriculumTabTitleData(
-        `${keyStagesData} ${capitalize(subjectSlug)} ${
-          examboardSlug ? capitalize(examboardSlug) : ""
-        } Curriculum Unit Sequences | Oak National Academy`,
-      );
-      setCurriculumTabDescriptionData(
-        `Explore our free ${keyStagesData} ${subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now`,
-      );
       break;
     default:
       throw new Error("Not a valid tab");
@@ -124,8 +98,38 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: curriculumTabTitleData,
-          description: curriculumTabDescriptionData,
+          title:
+            tab === "overview"
+              ? buildCurriculumMetadata({
+                  identifier: "title",
+                  subjectSlug: subjectSlug,
+                  examboardSlug: examboardSlug,
+                  keyStagesData: keyStagesData,
+                  tab: tab,
+                })
+              : buildCurriculumMetadata({
+                  identifier: "title",
+                  subjectSlug: subjectSlug,
+                  examboardSlug: examboardSlug,
+                  keyStagesData: keyStagesData,
+                  tab: tab,
+                }),
+          description:
+            tab === "overview"
+              ? buildCurriculumMetadata({
+                  identifier: "description",
+                  subjectSlug: subjectSlug,
+                  examboardSlug: examboardSlug,
+                  keyStagesData: keyStagesData,
+                  tab: tab,
+                })
+              : buildCurriculumMetadata({
+                  identifier: "description",
+                  subjectSlug: subjectSlug,
+                  examboardSlug: examboardSlug,
+                  keyStagesData: keyStagesData,
+                  tab: tab,
+                }),
         }),
       }}
       $background={"white"}

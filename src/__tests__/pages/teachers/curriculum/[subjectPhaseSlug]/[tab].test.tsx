@@ -73,7 +73,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   });
 
   describe("components rendering on page", () => {
-    it("renders the Curriculum Header", () => {
+    it.only("renders the Curriculum Header", () => {
       (useRouter as jest.Mock).mockReturnValue({
         query: { tab: "overview" },
         isPreview: false,

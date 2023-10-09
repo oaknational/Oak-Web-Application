@@ -277,7 +277,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-        <Heading tag="h2" $mt={48} $mb={24} $font={"heading-4"}>
+        <Heading tag="h2" $mb={24} $font={"heading-4"}>
           Unit sequence
         </Heading>
         <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
@@ -377,7 +377,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
             </Box>
             <Box $mr={16} $mb={32}>
               <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
-                Year Group
+                Year group
               </Heading>
               <RadioGroup
                 aria-label="Select a year group"

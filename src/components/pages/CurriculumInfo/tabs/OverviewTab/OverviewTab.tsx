@@ -86,9 +86,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Flex $mv={10}>
+      <Flex $mb={10}>
         <Box
-          $pt={20}
           $mr={16}
           $pb={48}
           $maxWidth={["100%", "100%", "65%"]}
