@@ -15,28 +15,28 @@ const footerSections: FooterSections = {
   teachers: {
     title: "Teachers",
     links: [
-      // {  // Commented out until launch
-      //   text: "Key stage 1",
-      //   href: "/teachers/key-stages/ks1/subjects",
-      // },
-      // {
-      //   text: "Key stage 2",
-      //   href: "/teachers/key-stages/ks2/subjects",
-      // },
-      // {
-      //   text: "Key stage 3",
-      //   href: "/teachers/key-stages/ks3/subjects",
-      // },
-      // {
-      //   text: "Key stage 4",
-      //   href: "/teachers/key-stages/ks4/subjects",
-      // },
+      {
+        text: "Key stage 1",
+        href: "/teachers/key-stages/ks1/subjects",
+      },
+      {
+        text: "Key stage 2",
+        href: "/teachers/key-stages/ks2/subjects",
+      },
+      {
+        text: "Key stage 3",
+        href: "/teachers/key-stages/ks3/subjects",
+      },
+      {
+        text: "Key stage 4",
+        href: "/teachers/key-stages/ks4/subjects",
+      },
 
-      // {
-      //   text: "Curriculum plans",
-      //   type: "page",
-      //   page: "curriculum-landing-page",
-      // },
+      {
+        text: "Curriculum plans",
+        type: "page",
+        page: "curriculum-landing-page",
+      },
       { text: "Plan a lesson", type: "page", page: "lesson-planning" },
       { text: "Support your team", type: "page", page: "support-your-team" },
       {
