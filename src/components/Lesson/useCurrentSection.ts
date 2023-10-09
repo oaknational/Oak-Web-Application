@@ -35,9 +35,27 @@ const calculateCurrentSectionId = (sectionRefs: SectionRefs): string | null => {
       const rect = ref.current?.getBoundingClientRect();
 
       if (rect) {
+        /**
+         * Is this section above the middle of the screen?
+         */
         const isAboveThreshold = rect.top <= window.innerHeight * 0.5;
+        /**
+         * Is this section below the previous section? We include this so that
+         * the order of the sections in the sidebar doesn't have to match the
+         * array passed to this function.
+         */
         const isBelowPrevSection = acc ? rect.top > acc.top : true;
-        if (isAboveThreshold && isBelowPrevSection) {
+        /**
+         * If the previous section is still completely in the view, don't
+         * update the current section.
+         */
+        const isPrevSectionStillInView =
+          typeof acc?.top === "number" ? acc?.top > 0 : false;
+        if (
+          isAboveThreshold &&
+          isBelowPrevSection &&
+          !isPrevSectionStillInView
+        ) {
           return { id, ref, top: rect.top };
         }
       }

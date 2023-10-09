@@ -1,3 +1,59 @@
+# [1.273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.2...v1.273.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* remove capitalisation of why ([c62cb93](https://github.com/oaknational/Oak-Web-Application/commit/c62cb9333bf3172c85ee5fb14b6638334e3899d5))
+
+
+### Features
+
+* update number of lessons for music unit ([567ed67](https://github.com/oaknational/Oak-Web-Application/commit/567ed67ce0d72e5085caba0e8c2366f3131b5c53))
+
+## [1.272.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.1...v1.272.2) (2023-10-09)
+
+
+### Bug Fixes
+
+* update to mv_curriculum_units_5 ([d7266d4](https://github.com/oaknational/Oak-Web-Application/commit/d7266d4d5df3e80456a6590c111f8d9fd2829e79))
+
+## [1.272.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.0...v1.272.1) (2023-10-09)
+
+
+### Bug Fixes
+
+* **lesson scroll behaviour:** check previous section not completely in view ([85dfcd1](https://github.com/oaknational/Oak-Web-Application/commit/85dfcd1507549d9f329bf7700c2b0ed9724bb114))
+
+# [1.272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.271.0...v1.272.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* strict equality for curric header links ([ba5754b](https://github.com/oaknational/Oak-Web-Application/commit/ba5754b48892c722c7bcccd67efb2c6b48062594))
+
+
+### Features
+
+* update order of tabs and redirect to unit sequence ([5134b56](https://github.com/oaknational/Oak-Web-Application/commit/5134b567425b59a4566dbee197a2d9f9d48a494f))
+
+# [1.271.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.270.1...v1.271.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* missing comma ([ced6ae0](https://github.com/oaknational/Oak-Web-Application/commit/ced6ae015bc8692a0c4cc4bcdf77abde57b043c5))
+* remove empty sentences ([ab3853e](https://github.com/oaknational/Oak-Web-Application/commit/ab3853ec5ef7653c728a627e4609ca620bf7799a))
+* update handle transcript tests ([440e30a](https://github.com/oaknational/Oak-Web-Application/commit/440e30abdbdd31081f752155577b7b1a4327d230))
+
+
+### Features
+
+* add formatting methods for vtt transcript text ([6ffcc8a](https://github.com/oaknational/Oak-Web-Application/commit/6ffcc8a03de1a72ebe20ec64deee549cde19215c))
+* add methods to fetch and transform captions file ([40b6627](https://github.com/oaknational/Oak-Web-Application/commit/40b6627b27dc797f25582245e6a42afed6f9a179))
+* **transcripts:** increase test coverage and remove quotation bug ([09cce53](https://github.com/oaknational/Oak-Web-Application/commit/09cce53a2c9eb42fb325037c7e9c02abae31527f))
+* **transcript:** test suit prettier fix ([b8ac9be](https://github.com/oaknational/Oak-Web-Application/commit/b8ac9bef178d05b185ab2e3c03a59cb8e3e85911))
+* update lesson overview schema ([dd00a0f](https://github.com/oaknational/Oak-Web-Application/commit/dd00a0fccbfe0ecd774be4d952033d2ed4eda372))
+
 ## [1.270.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.270.0...v1.270.1) (2023-10-09)
 
 # [1.270.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.269.2...v1.270.0) (2023-10-09)
