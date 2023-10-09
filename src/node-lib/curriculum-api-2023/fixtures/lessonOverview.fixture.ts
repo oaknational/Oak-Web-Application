@@ -6,6 +6,7 @@ const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewPageData>,
 ): LessonOverviewPageData => {
   return {
+    isLegacy: true,
     unitTitle: "Simple, Compound and Adverbial Complex Sentences",
     programmeSlug: "english-primary-ks2",
     unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
@@ -81,6 +82,7 @@ const lessonOverviewFixture = (
     transcriptSentences: null,
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
+    hasDownloadableResources: false,
     ...partial,
   };
 };

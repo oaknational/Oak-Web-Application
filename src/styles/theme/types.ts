@@ -4,10 +4,11 @@ import { z } from "zod";
 import { BadgeConfig } from "../../components/Badge";
 import { CheckboxConfig } from "../../components/Checkbox";
 import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
-import { HeaderConfig } from "../../components/FixedHeader/FixedHeader";
 import { MenuConfig } from "../../components/Menu/Menu";
 import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
 import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
+
+import { HeaderConfig } from "@/components/Header/StyledHeader";
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the
@@ -48,7 +49,9 @@ export type PixelSpacing =
   | 50
   | 56
   | 58
+  | 60
   | 64
+  | 66
   | 72
   | 80
   | 92
@@ -61,6 +64,8 @@ export type PixelSpacing =
   | 160
   | 166
   | 172
+  | 180
+  | 195
   | 200
   | 220
   | 240
@@ -75,6 +80,7 @@ export type PixelSpacing =
   | 420
   | 450
   | 480
+  | 510
   | 524
   | 580
   | 600
@@ -83,6 +89,7 @@ export type PixelSpacing =
   | 740
   | 812
   | 840
+  | 870
   | 900
   | 960
   | 1280
@@ -91,6 +98,8 @@ export type PixelSpacing =
   | 9600;
 export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing =
+  | -72
+  | -54
   | -36
   | -32
   | -28

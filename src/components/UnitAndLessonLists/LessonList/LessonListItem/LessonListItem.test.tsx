@@ -72,7 +72,7 @@ describe("Lesson List Item", () => {
 
     expect(getByText("Add two surds").closest("a")).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c",
+      "/teachers/programmes/maths-secondary-ks4-higher/units/adding-surds-a57d/lessons/add-two-surds-6wwk0c",
     );
   });
   test("It renders expired message is expired lesson", () => {

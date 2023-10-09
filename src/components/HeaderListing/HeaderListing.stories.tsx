@@ -11,14 +11,12 @@ export const headerListingProps = {
     {
       oakLinkProps: {
         page: "home",
-        viewType: "teachers",
       },
       label: "Home",
     },
     {
       oakLinkProps: {
         page: "subject-index",
-        viewType: "teachers",
         keyStageSlug: "ks4",
       },
       label: "Key Stage 4",
@@ -26,7 +24,6 @@ export const headerListingProps = {
     {
       oakLinkProps: {
         page: "programme-index",
-        viewType: "teachers",
         subjectSlug: "english",
         keyStageSlug: "ks4",
       },

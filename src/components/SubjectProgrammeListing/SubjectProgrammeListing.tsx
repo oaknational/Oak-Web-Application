@@ -29,9 +29,9 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
 }) => {
   const { programmes } = props;
 
-  const examboards = Array.from(
+  const examBoards = Array.from(
     new Set(programmes.map((programme) => programme.examBoardTitle)),
-  ).filter((examboard) => examboard !== null);
+  ).filter((examBoard) => examBoard !== null);
   const tiers = Array.from(
     new Set(programmes.map((programme) => programme.tierTitle)),
   ).filter((tier) => tier !== null);
@@ -44,12 +44,12 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
   );
 
   const tierColSpan = tierProgrammes.length === 2 ? 6 : 9;
-  const examboardColSpan = examBoardProgrammes.length === 2 ? 6 : 9;
+  const examBoardColSpan = examBoardProgrammes.length === 2 ? 6 : 9;
 
   return (
     <>
       <Grid $cg={16} $rg={16}>
-        {examboards.length < 2 && (
+        {examBoards.length < 2 && (
           <ProgrammeListContainer $colSpan={[12, 6, tierColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select tier of learning
@@ -58,25 +58,28 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
           </ProgrammeListContainer>
         )}
         {tiers.length < 2 && (
-          <ProgrammeListContainer $colSpan={[12, 6, examboardColSpan]}>
+          <ProgrammeListContainer $colSpan={[12, 6, examBoardColSpan]}>
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select exam board
             </Heading>
             <ProgrammeList {...props} programmes={examBoardProgrammes} />
           </ProgrammeListContainer>
         )}
-        {tiers.length > 1 && examboards.length > 1 && (
+        {tiers.length > 1 && examBoards.length > 1 && (
           <>
-            {examboards.map((examboard) => {
-              const programmeOfExamboard = tierProgrammes.filter(
-                (programme) => programme.examBoardTitle == examboard,
+            {examBoards.map((examBoard, index) => {
+              const programmeOfexamBoard = tierProgrammes.filter(
+                (programme) => programme.examBoardTitle == examBoard,
               );
               return (
-                <ProgrammeListContainer $colSpan={[12, 4]}>
+                <ProgrammeListContainer
+                  key={`${examBoard}-${index}`}
+                  $colSpan={[12, 4]}
+                >
                   <Heading tag="h2" $font="heading-5" $mb={30}>
-                    {examboard}
+                    {examBoard}
                   </Heading>
-                  <ProgrammeList {...props} programmes={programmeOfExamboard} />
+                  <ProgrammeList {...props} programmes={programmeOfexamBoard} />
                 </ProgrammeListContainer>
               );
             })}

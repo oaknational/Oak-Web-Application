@@ -4,15 +4,20 @@ const lessonDownloadsFixtures = (
   partial?: Partial<LessonDownloadsData>,
 ): LessonDownloadsData => {
   return {
+    isLegacy: true,
     lessonSlug: "macbeth-lesson-1",
     lessonTitle: "Islamic Geometry",
-    programmeSlug: "maths-higher-ks4",
+    programmeSlug: "maths-higher-ks4-l",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     unitSlug: "geometry",
     unitTitle: "Geometry",
+    tierSlug: null,
+    tierTitle: null,
+    examBoardSlug: null,
+    examBoardTitle: null,
     downloads: [
       {
         type: "exit-quiz-questions",

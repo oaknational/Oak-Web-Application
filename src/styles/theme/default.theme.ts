@@ -50,7 +50,7 @@ const theme: OakTheme = {
     // hyperlinks
     hyperlink: "#0D24C4",
     // new design kit colours
-    oakGreen: "#25ab38",
+    oakGreen: "#287C34",
     mint: "#bef2bd",
     mint50: "#d5efd4",
     mint30: "#ebfbeb",
@@ -238,12 +238,12 @@ const theme: OakTheme = {
     width: 720,
   },
   badge: {
-    size: "54px",
+    size: "78px",
     circleSize: "48px",
     fontSize: "16px",
-    iconSize: 20,
-    starColor: "grey6",
-    circleColor: "grey8",
+    iconSize: 48,
+    starColor: "black",
+    circleColor: "black",
     textColor: "white",
   },
   header: {

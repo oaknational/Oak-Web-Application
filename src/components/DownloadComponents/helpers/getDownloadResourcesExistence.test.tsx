@@ -1,10 +1,14 @@
-import getDownloadResourcesExistence from "./getDownloadResourcesExistence";
+import getDownloadResourcesExistence, {
+  DownloadsApiCheckFilesResponseSchema,
+} from "./getDownloadResourcesExistence";
 
-const data = {
-  resources: {
-    "exit-quiz-answers": true,
-    "worksheet-pdf": true,
-  },
+import OakError from "@/errors/OakError";
+
+const data: DownloadsApiCheckFilesResponseSchema["data"] = {
+  resources: [
+    ["exit-quiz-answers", { exists: true }],
+    ["worksheet-pdf", { exists: true }],
+  ],
 };
 
 const successResponse = {
@@ -26,7 +30,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      true,
     );
 
     expect(downloadResourcesExist).toEqual(data);
@@ -41,7 +45,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     } catch (error) {
       expect(error).toEqual("bad thing");
@@ -63,10 +67,18 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+
+        true,
       );
     } catch (error) {
-      expect((error as Error).message).toEqual("specific error");
+      expect((error as OakError).message).toEqual(
+        "Failed to check file existence",
+      );
+      expect((error as OakError).meta).toEqual({
+        isLegacyDownload: true,
+        lessonSlug: "lesson-slug",
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+      });
     }
   });
 
@@ -85,70 +97,40 @@ describe("checkIfDownloadResourcesExist()", () => {
       await getDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     } catch (error) {
-      expect((error as Error).message).toEqual("API error");
+      expect((error as OakError).message).toEqual(
+        "Failed to check file existence",
+      );
+      expect((error as OakError).meta).toEqual({
+        isLegacyDownload: true,
+        lessonSlug: "lesson-slug",
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+      });
     }
   });
-  it("should fetch from legacy vercel legacy vercel api if viewType is teachers", async () => {
+  it("should fetch from legacy vercel legacy vercel api if isLegacyDownload = true", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers",
+      true,
     );
 
     expect(global.fetch).toBeCalledWith(
       "https://api.thenational.academy/api/downloads/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
-  it("should fetch from download api if viewType is teachers-2023", async () => {
+  it("should fetch from download api if isLegacyDownload = false", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
-      "teachers-2023",
+
+      false,
     );
 
     expect(global.fetch).toBeCalledWith(
       "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
-  });
-  it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
-    const originalEnv = process.env;
-    delete process.env.NEXT_PUBLIC_DOWNLOAD_API_URL;
-
-    try {
-      await getDownloadResourcesExistence(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
-      );
-    } catch (error) {
-      expect(error).toEqual(
-        new TypeError(
-          "process.env.NEXT_PUBLIC_DOWNLOAD_API_URL must be defined",
-        ),
-      );
-    } finally {
-      process.env = originalEnv;
-    }
-  });
-  it("should throw an error when NEXT_PUBLIC_VERCEL_API_URL is not defined", async () => {
-    const originalEnv = process.env;
-    delete process.env.NEXT_PUBLIC_VERCEL_API_URL;
-
-    try {
-      await getDownloadResourcesExistence(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        "teachers-2023",
-      );
-    } catch (error) {
-      expect(error).toEqual(
-        new TypeError("process.env.NEXT_PUBLIC_VERCEL_API_URL must be defined"),
-      );
-    } finally {
-      process.env = originalEnv;
-    }
   });
 });

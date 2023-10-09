@@ -21,10 +21,13 @@ jobs:
       # Install.
       - run: npm ci
 
+      # Check formatting adheres to our config.
+      - run: npm run format:check
+
       # Lint.
       - run: npm run lint
 
-      # Lint.
+      # Check types.
       - run: npm run check-types
 
       # Unit tests, no integration tests.

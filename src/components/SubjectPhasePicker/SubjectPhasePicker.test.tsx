@@ -99,7 +99,11 @@ describe("Component - subject phase picker", () => {
     userEvent.click(await findByTitle("Secondary"));
     const examboardTitle = await findByText("Exam board");
     expect(examboardTitle).toBeTruthy();
-    await userEvent.click(getByTitle("AQA"));
+    const aqa = (await findAllByTitle("AQA"))[0];
+    if (!aqa) {
+      throw new Error("Could not find button");
+    }
+    await userEvent.click(aqa);
     expect(control).toHaveTextContent("Secondary, AQA");
   });
 
@@ -108,9 +112,9 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
-    expect(queryByText("Latest Resources")).toBeTruthy();
+    expect(queryByText("New curriculum plans")).toBeTruthy();
     await userEvent.keyboard("{Escape}");
-    expect(queryByText("Latest Resources")).toBeNull();
+    expect(queryByText("New curriculum plans")).toBeNull();
     await userEvent.click(getByTitle("Phase"));
     expect(queryByText("Choose a school phase:")).toBeTruthy();
     await userEvent.keyboard("{Escape}");
@@ -122,8 +126,8 @@ describe("Component - subject phase picker", () => {
       renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
     const viewButton = getByText("View");
     await userEvent.click(viewButton);
-    expect(queryByText("Please select a subject")).toBeTruthy();
-    expect(queryByText("Please select a phase")).toBeTruthy();
+    expect(queryByText("Select a subject")).toBeTruthy();
+    expect(queryByText("Select a school phase")).toBeTruthy();
     const subjectButtons = getAllByTitle("History");
     const historyButton = subjectButtons[0];
     if (!historyButton) {
@@ -132,11 +136,11 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(historyButton);
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Please select a subject")).toBeNull();
-    expect(queryByText("Please select a phase")).toBeTruthy();
+    expect(queryByText("Select a subject")).toBeNull();
+    expect(queryByText("Select a school phase")).toBeTruthy();
     userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Select an exam board")).toBeTruthy();
+    expect(queryByText("Select an exam board option")).toBeTruthy();
   });
 });

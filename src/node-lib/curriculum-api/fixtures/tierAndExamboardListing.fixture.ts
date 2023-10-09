@@ -12,8 +12,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-foundation-aqa",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 115,
         tierSlug: "foundation",
         tierTitle: "Foundation",
         tierDisplayOrder: "1",
@@ -24,8 +22,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-foundation-edexcel",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 115,
         tierSlug: "foundation",
         tierTitle: "Foundation",
         tierDisplayOrder: "1",
@@ -36,8 +32,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-foundation-ocr",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 115,
         tierSlug: "foundation",
         tierTitle: "Foundation",
         tierDisplayOrder: "1",
@@ -48,8 +42,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-foundation",
         subjectTitle: "Physics",
-        unitCount: 17,
-        lessonCount: 195,
         tierSlug: "foundation",
         tierTitle: "Foundation",
         tierDisplayOrder: "1",
@@ -60,8 +52,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-higher-aqa",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 122,
         tierSlug: "higher",
         tierTitle: "Higher",
         tierDisplayOrder: "3",
@@ -72,8 +62,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-higher-edexcel",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 122,
         tierSlug: "higher",
         tierTitle: "Higher",
         tierDisplayOrder: "3",
@@ -84,8 +72,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-higher-ocr",
         subjectTitle: "Physics",
-        unitCount: 10,
-        lessonCount: 122,
         tierSlug: "higher",
         tierTitle: "Higher",
         tierDisplayOrder: "3",
@@ -96,8 +82,6 @@ export const programmeListingFixture = (
       {
         programmeSlug: "physics-secondary-ks4-higher",
         subjectTitle: "Physics",
-        unitCount: 17,
-        lessonCount: 204,
         tierSlug: "higher",
         tierTitle: "Higher",
         tierDisplayOrder: "3",

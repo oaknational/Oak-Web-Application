@@ -7,9 +7,14 @@ import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
 import CMSImage from "../CMSImage/CMSImage";
 import Flex from "../Flex/Flex";
 import Box from "../Box/Box";
-import TagPromotional from "../TagPromotional/TagPromotional";
+import TagPromotional from "../TagPromotional";
 import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
-import { CommonButtonProps, HTMLButtonProps } from "../Button/common";
+import {
+  ButtonHoverStyle,
+  CommonButtonProps,
+  HTMLButtonProps,
+} from "../Button/common";
+import Illustration from "../Illustration/Illustration";
 
 import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
 import {
@@ -17,7 +22,7 @@ import {
   NewIconFocusUnderline,
 } from "./NewFocusUndeline";
 
-import { getIllustrationAsset, IllustrationSlug } from "@/image-data";
+import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
@@ -37,7 +42,7 @@ export type HomePageNavTabImageButtonStylesProps = OpacityProps &
   MarginProps & {
     disabled?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
     isCurrent?: boolean;
   };
@@ -97,7 +102,6 @@ const HomePageTabImageButton = forwardRef<
   const defaultTitle =
     ariaLabel ?? (labelSuffixA11y && `${label} ${labelSuffixA11y}`) ?? label;
   const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
-  const asset = getIllustrationAsset(imageSlug);
   const theme = useTheme();
   const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
 
@@ -106,29 +110,45 @@ const HomePageTabImageButton = forwardRef<
       ref={ref}
       {...htmlButtonProps}
       title={noneNulltitle}
-      aria-label={ariaLabel}
+      aria-label={defaultTitle}
       onClick={disabled ? (e) => e.preventDefault() : onClick}
       aria-disabled={disabled}
       isCurrent={isCurrent}
       disabled={disabled}
     >
       <Flex $flexDirection={"column"} $alignItems={"center"}>
-        <Flex $width={96} $height={96}>
+        <Flex $width={96} $height={96} $justifyContent={"center"}>
           {" "}
-          <StyledCMSImage image={{ asset }} noCrop />
+          <Illustration
+            slug={imageSlug}
+            noCrop
+            $height={"100%"}
+            $width={"auto"}
+          />
         </Flex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>
           <Flex $alignItems={"center"} $minHeight={44}>
             <ButtonLabel
               $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
+              $whiteSpace={"normal"}
+              $textAlign={"center"}
             >
               {label}
             </ButtonLabel>
-            {isNew && <TagPromotional size={"small"} $ml={3} />}
+            {isNew && (
+              <TagPromotional
+                size={"small"}
+                $ml={3}
+                $display={["none", "flex"]}
+              />
+            )}
           </Flex>
           {isCurrent && <BrushUnderline name="horizontal-rule" />}
-          <NewIconFocusUnderline $color={underlineColor} />
+          <NewIconFocusUnderline
+            $color={underlineColor}
+            data-testid={`${defaultTitle} underline`}
+          />
         </Box>
       </Flex>
     </StyledButton>

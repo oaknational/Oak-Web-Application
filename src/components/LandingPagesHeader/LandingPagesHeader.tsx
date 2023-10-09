@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
+import FixedHeader from "../Header";
 import Logo from "../Logo";
 import Typography from "../Typography";
 import Icon from "../Icon";
@@ -25,8 +25,8 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
         $width={"100%"}
         $justifyContent={"space-between"}
       >
-        <OakLink page={"home"} viewType={null}>
-          <Logo height={48} width={104} />
+        <OakLink page={"home"}>
+          <Logo variant="with text" height={48} width={104} />
         </OakLink>
         {props.headerCta?.linkType && (
           <OakLink page={null} href={getLinkHref(props.headerCta)}>

@@ -50,6 +50,14 @@ const oakStyles = css`
      */
     -webkit-tap-highlight-color: transparent;
   }
+
+  /*
+  * Inline styling for mathjax equations
+  */
+  mjx-container {
+    display: inline-grid !important;
+    margin: 0 !important;
+  }
 `;
 
 export default oakStyles;

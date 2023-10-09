@@ -1,0 +1,14 @@
+query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
+  curriculumOverview: published_mv_curriculum_overview(
+    where: {
+      phase_slug: { _eq: $phaseSlug }
+      subject_slug: { _eq: $subjectSlug }
+    }
+    limit: 1
+  ) {
+    curriculaDesc: curriculum_intent
+    subjectTitle: subject
+    phaseTitle: phase
+    examboardTitle: examboard
+  }
+}

@@ -41,6 +41,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "public",
         type: "video",
+        isLegacy: true,
       }),
     );
     const { loading } = result.current;
@@ -54,6 +55,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "public",
         type: "video",
+        isLegacy: true,
       }),
     );
     const { playbackToken } = result.current;
@@ -66,6 +68,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
+        isLegacy: true,
       }),
     );
     const { loading } = result.current;
@@ -79,6 +82,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
+        isLegacy: true,
       }),
     );
 
@@ -90,7 +94,7 @@ describe("useSignedMuxToken", () => {
   });
   test("should return correct signed playback token ", () => {
     mockUseSWR.mockImplementationOnce(() => ({
-      data: { token: "1234" },
+      data: JSON.stringify({ token: "1234" }),
       error: null,
     }));
     const { result } = renderHook(() =>
@@ -98,6 +102,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
+        isLegacy: true,
       }),
     );
 
@@ -118,6 +123,7 @@ describe("useSignedMuxToken", () => {
         playbackId: "123",
         playbackPolicy: "signed",
         type: "video",
+        isLegacy: true,
       }),
     );
 

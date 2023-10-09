@@ -12,13 +12,14 @@ const resources: Partial<Record<DownloadResourceType, boolean>> = {
   "worksheet-pdf": true,
 };
 
-const getDownloadResourcesExistenceData = {
-  resources,
-};
+const getDownloadResourcesExistenceData = Object.entries(resources).map((v) => [
+  v[0],
+  { exists: v[1] },
+]);
 
-const getDownloadResourcesExistenceMock = jest.fn(
-  () => getDownloadResourcesExistenceData,
-);
+const getDownloadResourcesExistenceMock = jest.fn(() => ({
+  resources: getDownloadResourcesExistenceData,
+}));
 
 jest.mock("../helpers/getDownloadResourcesExistence", () => ({
   __esModule: true,
@@ -37,14 +38,15 @@ describe("useDownloadExistenceCheck", () => {
       "worksheet-pdf",
     ];
     const onComplete = jest.fn();
-    const viewType = "teachers";
+    const isLegacyDownload = true;
 
     renderHook(() =>
       useDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
-        viewType,
+
+        isLegacyDownload,
       }),
     );
 
@@ -53,7 +55,7 @@ describe("useDownloadExistenceCheck", () => {
       expect(getDownloadResourcesExistenceMock).toBeCalledWith(
         lessonSlug,
         "exit-quiz-answers,worksheet-pdf",
-        "teachers",
+        true,
       );
     });
 
@@ -70,19 +72,19 @@ describe("useDownloadExistenceCheck", () => {
     const onComplete = jest.fn();
 
     getDownloadResourcesExistenceMock.mockImplementationOnce(() => ({
-      resources: {
-        "exit-quiz-answers": false,
-        "worksheet-pdf": true,
-      },
+      resources: [
+        ["exit-quiz-answers", { exists: false }],
+        ["worksheet-pdf", { exists: true }],
+      ],
     }));
-    const viewType = "teachers";
+    const isLegacyDownload = true;
 
     renderHook(() =>
       useDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
-        viewType,
+        isLegacyDownload,
       }),
     );
 

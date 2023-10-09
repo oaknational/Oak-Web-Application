@@ -121,27 +121,35 @@ describe("curriculum-api", () => {
       lessonSlug: "islamic-geometry",
       unitSlug: "islamic-geometry-maths-unit-76",
     });
-    expect(lessonDownloads).toHaveBeenCalledWith({
-      programmeSlug: "math-higher-ks4",
-      lessonSlug: "islamic-geometry",
-      unitSlug: "islamic-geometry-maths-unit-76",
-    });
+    expect(lessonDownloads).toHaveBeenCalledWith(
+      {
+        programmeSlug: "math-higher-ks4",
+        lessonSlug: "islamic-geometry",
+        unitSlug: "islamic-geometry-maths-unit-76",
+      },
+      undefined,
+    );
   });
   test("unitListing", async () => {
     await curriculumApi.unitListing({
-      programmeSlug: "maths-secondary-ks4",
+      programmeSlug: "maths-secondary-ks4-l",
     });
-    expect(unitListing).toHaveBeenCalledWith({
-      programmeSlug: "maths-secondary-ks4",
-    });
+    expect(unitListing).toHaveBeenCalledWith(
+      {
+        programmeSlug: "maths-secondary-ks4",
+        subjectSlug: undefined,
+      },
+      undefined,
+    );
   });
   test("unitListing learningThemes contains 'no themes'", async () => {
     const units = await curriculumApi.unitListing({
       programmeSlug: "maths-secondary-ks4",
     });
-    const hasThemes =
-      units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
-        .length > 0;
+    const hasThemes = units.learningThemes
+      ? units.learningThemes?.filter((theme) => theme.themeSlug === "no-theme")
+          .length > 0
+      : false;
 
     expect(hasThemes).toBe(true);
   });
@@ -150,10 +158,14 @@ describe("curriculum-api", () => {
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
     });
-    expect(lessonListing).toHaveBeenCalledWith({
-      unitSlug: "geometry",
-      programmeSlug: "maths-secondary-ks4",
-    });
+    expect(lessonListing).toHaveBeenCalledWith(
+      {
+        unitSlug: "geometry",
+        programmeSlug: "maths-secondary-ks4",
+        subjectSlug: undefined,
+      },
+      undefined,
+    );
   });
   test("lessonOverview", async () => {
     await curriculumApi.lessonOverview({
@@ -161,21 +173,27 @@ describe("curriculum-api", () => {
       unitSlug: "geometry",
       programmeSlug: "maths-secondary-ks4",
     });
-    expect(lessonOverview).toHaveBeenCalledWith({
-      lessonSlug: "Geometry fundamentals",
-      unitSlug: "geometry",
-      programmeSlug: "maths-secondary-ks4",
-    });
+    expect(lessonOverview).toHaveBeenCalledWith(
+      {
+        lessonSlug: "Geometry fundamentals",
+        unitSlug: "geometry",
+        programmeSlug: "maths-secondary-ks4",
+      },
+      undefined,
+    );
   });
   test("tierListing", async () => {
     await curriculumApi.tierListing({
       keyStageSlug: "ks4",
-      subjectSlug: "higher",
+      subjectSlug: "higher-l",
     });
-    expect(tierListing).toHaveBeenCalledWith({
-      keyStageSlug: "ks4",
-      subjectSlug: "higher",
-    });
+    expect(tierListing).toHaveBeenCalledWith(
+      {
+        keyStageSlug: "ks4",
+        subjectSlug: "higher",
+      },
+      undefined,
+    );
   });
   test("tierListing: not found", async () => {
     tierListing.mockImplementationOnce(() => {

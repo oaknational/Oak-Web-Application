@@ -1,0 +1,1 @@
+export { TagFunctional } from "./TagFunctional";

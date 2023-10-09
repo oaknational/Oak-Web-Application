@@ -57,7 +57,7 @@ const SearchComboBox = <T extends School>(
   } else if (hasError) {
     labelBackground = "failure";
   } else {
-    labelBackground = "pastelTurquoise";
+    labelBackground = "teachersYellow";
   }
 
   return (

@@ -3,36 +3,74 @@ import { FooterSections } from "../../components/SiteFooter/SiteFooter";
 const footerSections: FooterSections = {
   pupils: {
     title: "Pupils",
-    links: [{ text: "Classroom", type: "pupils-link" }],
+    links: [
+      {
+        text: "Learn online",
+        type: "page",
+        page: "classroom",
+        icon: "external",
+      },
+    ],
   },
   teachers: {
     title: "Teachers",
     links: [
-      { text: "Teacher Hub", type: "teachers-link" },
-      { text: "Plan a lesson", href: "/lesson-planning" },
-      { text: "Develop your curriculum", href: "/develop-your-curriculum" },
-      { text: "Support your team", href: "/support-your-team" },
+      // {  // Commented out until launch
+      //   text: "Key stage 1",
+      //   href: "/teachers/key-stages/ks1/subjects",
+      // },
+      // {
+      //   text: "Key stage 2",
+      //   href: "/teachers/key-stages/ks2/subjects",
+      // },
+      // {
+      //   text: "Key stage 3",
+      //   href: "/teachers/key-stages/ks3/subjects",
+      // },
+      // {
+      //   text: "Key stage 4",
+      //   href: "/teachers/key-stages/ks4/subjects",
+      // },
+
+      // {
+      //   text: "Curriculum plans",
+      //   type: "page",
+      //   page: "curriculum-landing-page",
+      // },
+      { text: "Plan a lesson", type: "page", page: "lesson-planning" },
+      { text: "Support your team", type: "page", page: "support-your-team" },
+      {
+        // text: "Teacher Hub (old)",
+        text: "Teacher Hub",
+        type: "page",
+        page: "teacher-hub",
+        icon: "external",
+      },
     ],
   },
   oak: {
     title: "Oak",
     links: [
-      { text: "Home", href: "/" },
-      { text: "About us", href: "/about-us/who-we-are" },
+      { text: "Home", type: "page", page: "home" },
+      { text: "About us", type: "page", page: "about-who-we-are" },
       {
         text: "Careers",
         href: "https://jobs.thenational.academy",
+        icon: "external",
       },
-      { text: "Contact us", href: "/contact-us" },
+      { text: "Contact us", type: "page", page: "contact" },
       {
         text: "Help",
-        href: "https://support.thenational.academy",
+        type: "page",
+        page: "help",
+        icon: "external",
       },
-      { text: "Blog", href: "/blog" },
-      { text: "Webinars", href: "/webinars" },
+      { text: "Blog", type: "page", page: "blog-index" },
+      { text: "Webinars", type: "page", page: "webinar-index" },
       {
         text: "Status",
         href: "https://status.thenational.academy",
+        icon: "external",
       },
     ],
   },

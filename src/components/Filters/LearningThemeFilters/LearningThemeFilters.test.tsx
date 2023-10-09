@@ -23,7 +23,6 @@ describe("PostCategoryList", () => {
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
-          viewType: "teachers",
           programmeSlug: "maths-secondary-ks3",
         }}
         trackingProps={{
@@ -36,7 +35,7 @@ describe("PostCategoryList", () => {
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar",
+      "/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar",
     );
   });
 });

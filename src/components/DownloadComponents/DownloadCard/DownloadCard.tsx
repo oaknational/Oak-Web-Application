@@ -31,7 +31,7 @@ export const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
   "worksheet-pdf": "worksheet",
   "worksheet-pptx": "worksheet",
   "supplementary-pdf": "additional-material",
-  "supplementary-pptx": "additional-material",
+  "supplementary-docx": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`

@@ -23,10 +23,16 @@ const preview: NextApiHandler = async (req, res) => {
    *
    * [1]: https://github.com/vercel/next.js/blob/canary/examples/cms-sanity/pages/api/preview.js
    */
+  const userAgent = req.headers["user-agent"];
+  const isDetectify = userAgent?.toLocaleLowerCase().includes("detectify");
   try {
     if (req.query.secret !== getServerConfig("sanityPreviewSecret")) {
       throw new OakError({
         code: "preview/invalid-token",
+        meta: {
+          badToken: `${req.query.secret}`,
+          userAgent,
+        },
       });
     }
 
@@ -44,7 +50,10 @@ const preview: NextApiHandler = async (req, res) => {
     // from the original request on to the redirect URL
     res.redirect(307, `${redirectLocation}?`);
   } catch (error) {
-    reportError(error);
+    // Don't report errors caused by Detectify scans.
+    if (!isDetectify) {
+      reportError(error);
+    }
 
     if (error instanceof OakError) {
       return res.status(error.config.responseStatusCode || 500).json({
