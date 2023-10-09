@@ -1,6 +1,13 @@
 import reactStringReplace from "react-string-replace";
+import styled from "styled-components";
 
-import Underline from "../../Underline";
+const UnderlineSpan = styled.span`
+  display: inline-block;
+  border-bottom: 2px solid black;
+  padding-bottom: 2px;
+  min-width: 48px;
+  position: relative;
+`;
 
 export const shortAnswerTitleFormatter = (
   title: string | null | undefined,
@@ -11,7 +18,14 @@ export const shortAnswerTitleFormatter = (
     return reactStringReplace(title, shortAnswerRegex, (match, i) => (
       <>
         {" "}
-        <Underline key={i} /> {match}
+        <UnderlineSpan
+          key={i}
+          // This is an empty box with a line under it, to indicate an answer would go here.
+          role="presentation"
+          title="An empty space to write an answer in"
+          data-testid="underline"
+        />{" "}
+        {match}
       </>
     ));
   } else {
