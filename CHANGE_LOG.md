@@ -1,3 +1,10 @@
+## [1.272.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.1...v1.272.2) (2023-10-09)
+
+
+### Bug Fixes
+
+* update to mv_curriculum_units_5 ([d7266d4](https://github.com/oaknational/Oak-Web-Application/commit/d7266d4d5df3e80456a6590c111f8d9fd2829e79))
+
 ## [1.272.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.0...v1.272.1) (2023-10-09)
 
 
