@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { MathJaxContext } from "better-react-mathjax";
 
 import { QuizProps } from "../QuizContainerNew";
 
@@ -19,17 +20,19 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
       <Heading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
       </Heading>
-      <Flex $flexDirection={"column"} $gap={56} role="list">
-        {questions.map((question, i) => {
-          return (
-            <QuestionListItem
-              key={`QuestionsList-UL-QuestionListItem-${i}`}
-              question={question}
-              index={i}
-            />
-          );
-        })}
-      </Flex>
+      <MathJaxContext>
+        <Flex $flexDirection={"column"} $gap={56} role="list">
+          {questions.map((question, i) => {
+            return (
+              <QuestionListItem
+                key={`QuestionsList-UL-QuestionListItem-${i}`}
+                question={question}
+                index={i}
+              />
+            );
+          })}
+        </Flex>
+      </MathJaxContext>
     </MaxWidth>
   );
 };

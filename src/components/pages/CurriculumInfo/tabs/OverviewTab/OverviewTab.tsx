@@ -2,47 +2,106 @@ import { FC } from "react";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import { Heading, UL, LI } from "@/components/Typography";
+import { P, Heading, UL, LI } from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import AvatarImage from "@/components/AvatarImage/AvatarImage";
-import OakLink from "@/components/OakLink/OakLink";
 import Icon from "@/components/Icon/Icon";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Typography from "@/components/Typography/Typography";
-import { CurriculumOverviewTabData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
+import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
+import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import CMSImage from "@/components/CMSImage";
+import CMSVideo from "@/components/CMSVideo";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import OakLink from "@/components/OakLink";
 
-type OverviewTabProps = {
-  data: CurriculumOverviewTabData;
-  slug: string;
+export type OverviewTabProps = {
+  data: {
+    curriculumInfo: CurriculumOverviewMVData;
+    curriculumCMSInfo: CurriculumOverviewSanityData;
+    curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  };
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
-  const { data, slug } = props;
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
+    props.data;
   const {
     subjectPrinciples,
-    curriculaDesc,
     partnerBio,
-    videoGuideDesc,
-    subjectSlug,
-  } = data;
+    curriculumPartner,
+    video,
+    videoAuthor,
+  } = curriculumCMSInfo;
+  const { curriculaDesc } = curriculumInfo;
+  const { subjectSlug, phaseSlug, examboardSlug } = curriculumSelectionSlugs;
+  const subjectPhaseSlug = examboardSlug
+    ? `${subjectSlug}-${phaseSlug}-${examboardSlug}`
+    : `${subjectSlug}-${phaseSlug}`;
+
+  const createBullet = (item: string, i: number) => (
+    <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
+      <Flex $alignItems={"flex-start"} $justifyContent={"flex-start"}>
+        <Flex
+          $background={"mint"}
+          $borderRadius={"50%"}
+          $borderColor="mint"
+          $mr={10}
+        >
+          <Icon name="arrow-right" $ma={"auto"} $pa={2} />
+        </Flex>
+        {item}
+      </Flex>
+    </LI>
+  );
+  const itemiseSubjectPrinciples = (item: string, i: number) => {
+    if (item.includes(" • ")) {
+      const sublist = item.split(" • ");
+      if (sublist.length > 0 && typeof sublist[0] === "string") {
+        const firstItem = sublist[0];
+        const bulletItems = sublist.slice(1);
+        const bullets = bulletItems.map((listItem, li) => (
+          <LI
+            listStyle={"disc"}
+            data-testid="sp-subbullet"
+            key={`${firstItem.split(" ").join("-")}-sb-${li}`}
+            $ml={10}
+            $mt={4}
+            $mb={6}
+          >
+            {listItem}
+          </LI>
+        ));
+        return (
+          <Box $mb={10}>
+            {createBullet(firstItem, i)}
+            <UL>{bullets}</UL>
+          </Box>
+        );
+      }
+    } else {
+      return createBullet(item, i);
+    }
+  };
   return (
-    <Box $width={"80%"} $ma={"auto"} $pb={80}>
-      <Flex $width={"100%"} $mv={10} $justifyContent={"space-around"}>
+    <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+      <Flex $mv={10}>
         <Box
           $pt={20}
           $mr={16}
           $pb={48}
-          $maxWidth={["100%", "65%"]}
+          $maxWidth={["100%", "100%", "65%"]}
           $textAlign={"left"}
         >
           <Heading
             tag="h2"
-            $font={["heading-5", "heading-6"]}
+            $font={["heading-5", "heading-4"]}
             data-testid="intent-heading"
+            $mb={20}
+            line-height={48}
           >
-            Curriculum intent
+            Curriculum explainer
           </Heading>
           <Typography
             $font={["body-2", "body-1"]}
@@ -57,11 +116,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         <Card
           $ml={40}
           $maxHeight={200}
-          $maxWidth={["100%", 200]}
+          $maxWidth={[0, 0, 200]}
           $ma={"auto"}
           $zIndex={"inFront"}
           $transform={["rotate(-2.179deg) scale(1.5, 1.5) translate(15%,40%)"]}
-          $display={["none", "flex"]}
+          $display={["none", "none", "flex"]}
           $background={"lemon50"}
         >
           <BrushBorders color="lemon50" />
@@ -74,85 +133,93 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           />
         </Card>
       </Flex>
-
-      <Card $maxWidth={"100%"} $background={"aqua30"} $zIndex={"neutral"}>
-        <BrushBorders color={"aqua30"} />
+      <Card
+        $maxWidth={"100%"}
+        $background={"mint30"}
+        $zIndex={"neutral"}
+        $mb={80}
+      >
+        <BrushBorders color={"mint30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-5", "heading-6"]}>
+          <Heading tag="h2" $font={["heading-5", "heading-4"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
-            {subjectPrinciples.map((item, i) => (
-              <LI
-                $mb={[12]}
-                key={`principle-${i + 1}`}
-                data-testid="subjectPrinciples"
-              >
-                <Flex $alignItems={"center"}>
-                  <Flex
-                    $background={"aqua"}
-                    $borderRadius={"50%"}
-                    $borderColor="aqua"
-                    $mt={[4]}
-                    $mr={10}
-                    $pa={1}
-                  >
-                    <Icon name="arrow-right" $ma={"auto"} $pa={2} />
-                  </Flex>
-                  {item}
-                </Flex>
-              </LI>
-            ))}
+            {subjectPrinciples.map((item, i) =>
+              itemiseSubjectPrinciples(item, i),
+            )}
           </UL>
         </Box>
       </Card>
-
-      <Box $maxWidth={"100%"} $pt={80} $pb={80}>
-        <Flex $justifyContent={"space-around"}>
-          <Box $mh={6} $height={300} $width={"100%"} $background={"grey1"}>
-            Video here
+      {video && videoAuthor && (
+        <Flex
+          $alignItems={"center"}
+          $justifyContent={"flex-start"}
+          $flexDirection={["column-reverse", "row"]}
+          $gap={[24, 120]}
+          $mb={[48, 80]}
+        >
+          <Box $minWidth={["100%", "50%"]} $maxWidth={["100%", "50%"]}>
+            <CMSVideo video={video} location="lesson" />
           </Box>
-
           <Flex
-            $mh={50}
-            $ph={50}
             $flexDirection={"column"}
-            $justifyContent={"space-between"}
+            $maxWidth={["100%", "30%"]}
+            $alignItems={"flex-start"}
+            $gap={[16, 24]}
           >
-            <Heading $mv={6} tag="h2" $font={["heading-5", "heading-6"]}>
+            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
               Video guide
             </Heading>
-            <Typography $mv={6} $font={"body-1"}>
-              {videoGuideDesc}
-            </Typography>
-            <OakLink $color={"black"} $font="heading-7" page={"help"} $mv={6}>
-              <Flex>
-                Read more about our new curriculum
-                <Icon name={"chevron-right"} $ml={0} $ma={"auto"} />
-              </Flex>
-            </OakLink>
+            <P $font={"body-1"}>
+              Our{" "}
+              <OakLink
+                subjectPhaseSlug={subjectPhaseSlug}
+                page="curriculum-units"
+                $textDecoration={"underline"}
+              >
+                new curriculum sequence
+              </OakLink>{" "}
+              has recently launched. For additional support, watch this video
+              guide by {videoAuthor} from our educational team, as they talk you
+              through how to use this new tool.
+            </P>
             <ButtonAsLink
-              variant="brush"
-              label="View unit sequence"
-              page={null}
-              href={`/beta/teachers/curriculum/${slug}/units`}
-              $mv={10}
-              icon="arrow-right"
-              iconBackground="transparent"
+              variant="buttonStyledAsLink"
+              label="Read more about our new curriculum"
+              page={"develop-your-curriculum"}
+              icon="chevron-right"
+              background={"white"}
               $iconPosition="trailing"
-              size="large"
-              $maxWidth={"20%"}
+              iconBackground="white"
+              $textAlign={"start"}
             />
           </Flex>
         </Flex>
-      </Box>
-
-      <Card $background={"lemon30"} $width={"100%"}>
+      )}
+      <Card $background={"lemon30"} $width={"100%"} $mb={[36, 48]}>
         <BrushBorders color="lemon30" />
-        <Flex $justifyContent={"center"} $pa={16}>
-          <AvatarImage $background={"grey1"} $ma={"auto"} $ml={20} $mr={20} />
+        <Flex
+          $justifyContent={"center"}
+          $alignItems={"center"}
+          $pa={16}
+          $flexDirection={["column", "row"]}
+          $gap={[16, 32]}
+        >
+          <CMSImage
+            $background={"grey1"}
+            $ma={"auto"}
+            $ml={20}
+            $mr={32}
+            $height={180}
+            $width={180}
+            image={{
+              ...curriculumPartner.image,
+              altText: `Logo for ${curriculumPartner.name}`,
+            }}
+          />
           <Box>
-            <Heading tag="h2" $font={"heading-5"}>
+            <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={20}>
               Our curriculum partner
             </Heading>
             <Typography $font={"body-1"}>{partnerBio}</Typography>

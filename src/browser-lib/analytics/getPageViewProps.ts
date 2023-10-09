@@ -35,10 +35,12 @@ export const getPageViewProps = (href: string): PageViewProps => {
         analyticsUseCase: null as unknown as AnalyticsUseCaseValueType,
       };
 
-      const params = matchResult.params;
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const viewType = "viewType" in params ? params.viewType : null;
+      const viewTypeFromPath = path.split("/")[1];
+
+      const viewType =
+        viewTypeFromPath === "teachers" || viewTypeFromPath === "pupils"
+          ? viewTypeFromPath
+          : null;
 
       if (viewType === "teachers" || viewType === "pupils") {
         const analyticsUseCase = getAnalyticsUseCase(viewType);

@@ -5,11 +5,11 @@ on:
 
 jobs:
   lint_test_sonar:
-    name: lint, test, Sonar
+    name: lint, check types, test, Sonar
     runs-on: ubuntu-latest
     steps:
       # Check out full history so Sonar can identify PR changes.
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Use Node.js
@@ -21,8 +21,14 @@ jobs:
       # Install.
       - run: npm ci
 
+      # Check formatting adheres to our config.
+      - run: npm run format:check
+
       # Lint.
       - run: npm run lint
+
+      # Check types.
+      - run: npm run check-types
 
       # Unit tests, no integration tests.
       - run: npm run test:ci

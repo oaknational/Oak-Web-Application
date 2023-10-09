@@ -69,7 +69,8 @@ We run Pa11yCI in CI to check for deterministic accessibility issues. To run Pa1
 
 Unit tests live next to the code they are testing wherever possible. Next does not allow any files under the `src/pages/` directory other than routes, so those test file are under the `src/__tests_/pages/` directory, mirroring the `src/pages` file structure.
 
-- `npm run test` will run the tests using `--watch`
+- `npm run test` will run the tests using `--watch`, with coverage statistics disabled.
+- `npm run test:coverage` will run tests using `--watch` with coverage statistics enabled.
 - `npm run test:ci` will run the tests once and create a coverage report.
 
 ### End-to-End Browser Tests
@@ -138,7 +139,7 @@ We don't currently accept external contributions to the code base, but this is u
 
 As will all web projects we are dependent on open source libraries maintained by others. While it is not practical to acknowledge them all, we would nevertheless like to express our gratitude for the contributions and efforts of the OSS community. Our dependency list can be found in our [package.json](package.json) file.
 
-## Licence
+## License
 
 Unless stated otherwise, the codebase is released under the [MIT License][mit]. This covers both the codebase and any sample code in the documentation. Where any Oak National Academy trademarks or logos are included, these are not released under the [MIT License][mit], and should be used in line with Oak National Academy brand guidelines.
 

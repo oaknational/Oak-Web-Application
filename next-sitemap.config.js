@@ -43,7 +43,14 @@ module.exports = {
         userAgent: "*",
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
         allow: ["/"],
-        disallow: ["/beta/", "/beta"],
+        disallow: [
+          "/beta/",
+          "/beta",
+          "/teachers/",
+          "/teachers",
+          "/teachers-2023/",
+          "/teachers-2023",
+        ],
       },
     ],
   },
@@ -51,11 +58,15 @@ module.exports = {
     // Don't add beta pages to the sitemap for now.
     "/beta",
     "/beta/*",
+    "/teachers",
+    "/teachers/*",
+    "/teachers-2023",
+    "/teachers-2023/*",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
     // Don't list the files that generate sitemaps for the dynamic pages.
-    "/beta/teachers/key-stages/sitemap.xml",
+    "/teachers/key-stages/sitemap.xml",
     // Pointer exclusions
     "/webinars/using-oak-to-support-during-covid-disruption-and-setting-cover-2",
     "/webinars/boosting-motivation-in-the-classroom",

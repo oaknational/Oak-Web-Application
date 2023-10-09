@@ -12,6 +12,7 @@ import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
 import { IconName } from "@/components/Icon";
 
+export type ButtonHoverStyle = "underline-link-text" | "drop-shadow";
 export type ButtonVariant =
   | "brush"
   | "brushNav"
@@ -20,7 +21,7 @@ export type ButtonVariant =
   | "buttonStyledAsLink";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
-export type ButtonSize = "small" | "large";
+export type ButtonSize = "small" | "large" | "xs";
 
 const SMALL_BUTTON_ICON_SIZE = 28;
 const SMALL_BUTTON_HEIGHT = 40;
@@ -43,6 +44,12 @@ type ButtonConfig = {
   iconOuterHeight: PixelSpacing;
   iconInnerHeight: PixelSpacing;
   paddingH: PixelSpacing;
+};
+const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
+  height: 0,
+  iconOuterHeight: 0,
+  iconInnerHeight: 0,
+  paddingH: 0,
 };
 
 const BUTTON_CONFIGS: Record<
@@ -169,6 +176,21 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
+  "xs-brush-button": DEFAULT_BUTTON_CONFIG,
+  "xs-brush-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-brushNav-button": {
+    height: 40,
+    iconOuterHeight: 30,
+    iconInnerHeight: 20,
+    paddingH: 10,
+  },
+  "xs-brushNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimal-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimal-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimalNav-button": DEFAULT_BUTTON_CONFIG,
+  "xs-minimalNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-buttonStyledAsLink-button": DEFAULT_BUTTON_CONFIG,
+  "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
 };
 
 const getButtonConfig = (
@@ -189,6 +211,7 @@ export const getIconButtonHeight = (
 export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_HEIGHT,
   large: LARGE_BUTTON_HEIGHT,
+  xs: SMALL_BUTTON_HEIGHT,
 };
 
 export const getButtonHeight = (size: ButtonSize, variant: ButtonVariant) => {
@@ -237,6 +260,7 @@ export const getButtonPadding = (
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,
+  xs: SMALL_BUTTON_ICON_SIZE,
 };
 export const DEFAULT_BUTTON_SIZE: ButtonSize = "small";
 export const DEFAULT_BUTTON_VARIANT: ButtonVariant = "brush";
@@ -275,7 +299,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     disabled?: boolean;
   };
 export const defaultButtonProps: Partial<CommonButtonProps> = {

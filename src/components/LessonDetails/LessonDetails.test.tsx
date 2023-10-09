@@ -99,7 +99,7 @@ describe("LessonDetails component", () => {
       />,
     );
 
-    const keyWordsComponent = getByText("Key words");
+    const keyWordsComponent = getByText("Keywords");
     expect(keyWordsComponent).toBeInTheDocument();
   });
 
@@ -116,7 +116,7 @@ describe("LessonDetails component", () => {
       />,
     );
 
-    const componentTitle = queryByText("Key words");
+    const componentTitle = queryByText("Keywords");
     expect(componentTitle).not.toBeInTheDocument();
   });
 
@@ -174,5 +174,49 @@ describe("LessonDetails component", () => {
     expect(equipmentTitle).not.toBeInTheDocument();
     expect(contentGuidanceTitle).not.toBeInTheDocument();
     expect(supervisionLevelTitle).not.toBeInTheDocument();
+  });
+  it("it should render the correct legacy license", () => {
+    const { getByText, queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={null}
+        contentGuidance={null}
+        supervisionLevel={undefined}
+        isLegacyLicense={true}
+      />,
+    );
+    const preAlbCopyright = getByText(
+      "This content is made available by Oak and its partners",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
+
+    const licenseTitle = queryByText("Licence");
+    expect(licenseTitle).toBeInTheDocument();
+  });
+  it("it should render the correct license", () => {
+    const { getByText, queryByText } = renderWithTheme(
+      <LessonDetails
+        keyLearningPoints={keyLearningPoints}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={null}
+        contentGuidance={null}
+        supervisionLevel={undefined}
+        isLegacyLicense={false}
+      />,
+    );
+    const preAlbCopyright = getByText(
+      "This content is © Oak National Academy (2023), licensed on",
+      { exact: false },
+    );
+    expect(preAlbCopyright).toBeInTheDocument();
+
+    const licenseTitle = queryByText("Licence");
+    expect(licenseTitle).toBeInTheDocument();
   });
 });

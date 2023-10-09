@@ -1,15 +1,15 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-
 import CurriculumDownloadButton from "./CurriculumDownloadButton";
 import downloadZip from "./helpers/downloadZip";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("./helpers/downloadZip");
 
 const curriculumMapDownloaded = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -100,14 +100,46 @@ describe("CurriculumDownloadButton", () => {
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
         subjectSlug={"maths"}
-        lessonPage={true}
       />,
     );
 
     const buttonTitle = screen.getByText("Curriculum download (.zip)");
     expect(buttonTitle).toBeInTheDocument();
   });
+  test("it downloads a zip when there are no tiers, ks4 and maths", async () => {
+    render(
+      <CurriculumDownloadButton
+        keyStageTitle={"Key stage 4"}
+        subjectTitle={"Maths"}
+        keyStageSlug={"ks4"}
+        subjectSlug={"maths"}
+      />,
+    );
 
+    const buttonTitle = screen.getByText("Curriculum download (.zip)");
+
+    const user = userEvent.setup();
+    await user.click(buttonTitle);
+
+    expect(downloadZip).toHaveBeenCalledTimes(1);
+    expect(downloadZip).toHaveBeenCalledWith("4", "maths");
+  });
+  test("it downloads a pdf when there are tiers, ks4 and maths", async () => {
+    render(
+      <CurriculumDownloadButton
+        keyStageTitle={"Key stage 4"}
+        subjectTitle={"Maths"}
+        keyStageSlug={"ks4"}
+        subjectSlug={"maths"}
+        tier={"core"}
+      />,
+    );
+
+    const linkTitle = screen.getByText("Core curriculum download (PDF)");
+
+    expect(linkTitle).toBeInTheDocument();
+    expect(downloadZip).toHaveBeenCalledTimes(0);
+  });
   test("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
     render(
       <CurriculumDownloadButton
@@ -115,7 +147,6 @@ describe("CurriculumDownloadButton", () => {
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
         subjectSlug={"maths"}
-        lessonPage={true}
       />,
     );
 

@@ -25,6 +25,7 @@ export type FontVariant =
   | "body-2"
   | "body-2-bold"
   | "body-3"
+  | "body-3-bold"
   | "body-4"
   | "list-item-1"
   | "list-item-2";
@@ -55,6 +56,7 @@ export const FONT_VARIANTS: Record<FontVariant, Font> = {
   "body-4": [12, 16, 300, "-0.005em"],
   "body-1-bold": [18, 28, 700, "-0.005em"],
   "body-2-bold": [16, 24, 700, "-0.005em"],
+  "body-3-bold": [14, 20, 700, "-0.005em"],
   "list-item-1": [18, 32, 300, "-0.005em"],
   "list-item-2": [16, 24, 300, "-0.005em"],
 } as const;
@@ -81,7 +83,7 @@ const getLetterSpacing = (
   return FONT_VARIANTS[font][3];
 };
 
-type FontProps = {
+export type FontProps = {
   $font?: ResponsiveValues<FontVariant>;
 };
 

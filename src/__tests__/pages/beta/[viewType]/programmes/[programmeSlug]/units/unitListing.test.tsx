@@ -1,20 +1,20 @@
 import mockRouter from "next-router-mock";
 
-import curriculumApi from "../../../../../../../node-lib/curriculum-api/__mocks__";
+import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
-} from "../../../../../../../pages/beta/[viewType]/programmes/[programmeSlug]/units";
-import { mockSeoResult } from "../../../../../../__helpers__/cms";
-import renderWithProviders from "../../../../../../__helpers__/renderWithProviders";
-import renderWithSeo from "../../../../../../__helpers__/renderWithSeo";
-import unitListingFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
-import unitListingWithTiersFixture from "../../../../../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+} from "@/pages/teachers/programmes/[programmeSlug]/units";
+import { mockSeoResult } from "@/__tests__/__helpers__/cms";
+import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
+import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-const utilsMock = jest.requireMock("../../../../../../../utils/resultsPerPage");
-jest.mock("../../../../../../../utils/resultsPerPage", () => ({
+const utilsMock = jest.requireMock("@/utils/resultsPerPage");
+jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
@@ -47,7 +47,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
     expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
   });
-  it("title card renderd correct title when examboard is present", () => {
+  it("title card renderd correct title when exam board is present", () => {
     const { getByRole } = render(
       <UnitListingPage
         curriculumData={{
@@ -125,7 +125,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 
   it("runitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
     mockRouter.push({
-      pathname: "/beta/teachers/programmes/art-primary-ks1/units",
+      pathname: "/teachers/programmes/art-primary-ks1/units",
       query: {
         learningTheme: "computer-science-2",
       },
@@ -152,14 +152,13 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     it("Should fetch the correct data", async () => {
       await getStaticProps({
         params: {
-          programmeSlug: "art-primary-ks1",
-          viewType: "teachers",
+          programmeSlug: "art-primary-ks1-l",
         },
       });
 
       expect(curriculumApi.unitListing).toHaveBeenCalledTimes(1);
       expect(curriculumApi.unitListing).toHaveBeenCalledWith({
-        programmeSlug: "art-primary-ks1",
+        programmeSlug: "art-primary-ks1-l",
       });
     });
   });

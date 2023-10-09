@@ -1,6 +1,6 @@
-import Flex from "../../../Flex";
-import Icon from "../../../Icon";
-import { Span } from "../../../Typography";
+import Flex from "@/components/Flex";
+import Icon from "@/components/Icon";
+import { Span } from "@/components/Typography";
 
 export interface IUnitListLessonCountProps {
   lessonCount: number | null;
@@ -24,7 +24,8 @@ export const UnitListLessonCount = ({
           </Span>
         ) : (
           <Span $font={["body-3", "heading-light-7"]} $color={textColor}>
-            {!!lessonCount && `${lessonCount} lessons`}
+            {!!lessonCount &&
+              `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
             {expired && ` Coming soon`}
           </Span>
         )}

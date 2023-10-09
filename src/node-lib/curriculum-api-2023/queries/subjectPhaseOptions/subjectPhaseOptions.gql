@@ -1,5 +1,5 @@
 query subjectPhaseOptions {
-  options: published_mv_subject_phase_options {
+  options: published_mv_subject_phase_options_1 {
     title
     slug
     phases

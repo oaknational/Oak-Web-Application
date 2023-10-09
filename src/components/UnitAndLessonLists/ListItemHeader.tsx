@@ -5,6 +5,7 @@ import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
 import CategoryHeading from "./CategoryHeading";
+import ExemplarCategoryHeading from "./ExemplarCategoryHeading";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
@@ -27,6 +28,8 @@ type ListItemHeadingProps = CommonProps &
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
     expired: boolean | null;
     index?: number;
+    isExemplarUnit?: boolean;
+    yearTitle?: string | null;
   };
 
 export const ListTitle: FC<{
@@ -60,6 +63,8 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     programmeSlug,
     fromSearchPage,
     index,
+    isExemplarUnit,
+    yearTitle,
   } = props;
 
   const itemTitle = title;
@@ -76,12 +81,19 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
 
   return (
     <Flex>
-      <Flex $flexDirection={"column"}>
-        {!hideTopHeading && (
+      <Flex $mb={2} $flexDirection={"column"}>
+        {!hideTopHeading && !isExemplarUnit && (
           <CategoryHeading
             keyStageTitle={keyStageTitle}
             subjectTitle={subjectTitle}
             page={page}
+          />
+        )}
+        {!hideTopHeading && isExemplarUnit && (
+          <ExemplarCategoryHeading
+            keyStageTitle={keyStageTitle}
+            subjectTitle={subjectTitle}
+            yearTitle={yearTitle}
           />
         )}
         {"unitSlug" in props ? (
@@ -91,7 +103,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             unitSlug={props.unitSlug}
             page={"lesson-overview"}
-            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >
@@ -105,7 +116,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             programmeSlug={programmeSlug}
             unitSlug={slug}
             page={"lesson-index"}
-            viewType="teachers"
             onClick={onClick}
             {...primaryTargetProps}
           >

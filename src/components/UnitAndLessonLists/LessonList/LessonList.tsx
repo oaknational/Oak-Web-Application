@@ -61,10 +61,12 @@ const LessonList: FC<LessonListProps> = (props) => {
           </UL>
         </>
       ) : null}
-      {lessonCount > LESSONS_PER_PAGE && (
-        <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
+      {lessonCount > LESSONS_PER_PAGE ? (
+        <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
           <Pagination {...paginationProps} />
         </Box>
+      ) : (
+        <Box $pb={32} />
       )}
     </Flex>
   );

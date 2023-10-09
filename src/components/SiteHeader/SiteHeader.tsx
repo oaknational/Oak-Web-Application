@@ -1,8 +1,7 @@
 import { FC, useRef } from "react";
-import { useTheme } from "styled-components";
 
 import Flex from "../Flex";
-import FixedHeader from "../FixedHeader";
+import { HeaderUnderline, StyledHeader } from "../Header";
 import { Menu } from "../Menu";
 import Logo from "../Logo";
 import MenuLinks from "../MenuLinks";
@@ -17,15 +16,20 @@ import { HeaderProps } from "../Layout/Layout";
 import Breadcrumbs from "../Breadcrumbs";
 
 const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
-  const theme = useTheme();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
-    <FixedHeader $background={theme.header.background}>
-      <OakLink page="home" viewType={null}>
-        <Logo height={48} width={104} />
+    <StyledHeader
+      $background="white"
+      as="header"
+      $justifyContent={["space-between"]}
+      $alignItems={["center"]}
+      $zIndex="fixedHeader"
+    >
+      <OakLink page="home">
+        <Logo variant="with text" height={48} width={104} />
       </OakLink>
       <Flex
         $ml={[0, 20, 48]}
@@ -75,7 +79,8 @@ const SiteHeader: FC<HeaderProps> = ({ breadcrumbs }) => {
         <MenuLinks menuSections={menuSections} />
       </Menu>
       <Toast />
-    </FixedHeader>
+      <HeaderUnderline />
+    </StyledHeader>
   );
 };
 

@@ -136,7 +136,7 @@ export function Select<T extends object>(
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
-          background={props.onFocus ? "teachersPastelBlue" : "pastelTurquoise"}
+          background={props.onFocus ? "teachersPastelBlue" : "teachersYellow"}
           color={"black"}
           $font={"body-3"}
           {...labelProps}

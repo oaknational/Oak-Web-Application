@@ -136,6 +136,20 @@ async function main() {
       secretsFromNetwork.CURRICULUM_API_2023_AUTH_KEY,
     NEXT_PUBLIC_VERCEL_API_URL:
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
+    NEXT_PUBLIC_DOWNLOAD_API_URL:
+      process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
+
+    // Mux
+    MUX_SIGNING_KEY:
+      process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
+    MUX_SIGNING_SECRET:
+      process.env.MUX_SIGNING_SECRET || secretsFromNetwork.MUX_SIGNING_SECRET,
+    MUX_SIGNING_KEY_2020:
+      process.env.MUX_SIGNING_KEY_2020 ||
+      secretsFromNetwork.MUX_SIGNING_KEY_2020,
+    MUX_SIGNING_SECRET_2020:
+      process.env.MUX_SIGNING_SECRET_2020 ||
+      secretsFromNetwork.MUX_SIGNING_SECRET_2020,
 
     // Posthog
     NEXT_PUBLIC_POSTHOG_API_HOST:

@@ -4,7 +4,6 @@ import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "../../styles/transitions";
 import opacity, { OpacityProps } from "../../styles/utils/opacity";
 import margin, { MarginProps } from "../../styles/utils/spacing";
-import { getBreakpoint } from "../../styles/utils/responsive";
 import { BackgroundIcon } from "../Icon/Icon";
 
 import {
@@ -29,6 +28,7 @@ import {
   ButtonBackground,
   getButtonBackground,
   getButtonDropShadowColor,
+  ButtonHoverStyle,
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
 
@@ -41,7 +41,7 @@ export type ButtonStylesProps = OpacityProps &
     $fullWidth?: boolean;
     disabled?: boolean;
     $focusStyles?: [];
-    $hoverStyles?: string[];
+    $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
   };
 export const getButtonStylesProps = (
@@ -123,7 +123,7 @@ const buttonStyles = css<ButtonStylesProps>`
   }
 
   ${(props) =>
-    (props.variant === "brush" || props.variant == "brushNav") &&
+    (props.variant === "brush" || props.variant === "brushNav") &&
     css`
       :hover {
         box-shadow: ${props["aria-disabled"]
@@ -190,17 +190,14 @@ const buttonStyles = css<ButtonStylesProps>`
   ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
-      &:hover,
       &:focus {
         & ${ButtonStyledAsLinkFocusUnderline} {
           display: block;
         }
       }
 
-      @media (max-width: ${getBreakpoint("small")}px) {
-        & ${ButtonStyledAsLinkFocusUnderline} {
-          display: block;
-        }
+      :hover:not(:focus) ${ButtonLabel} {
+        text-decoration: underline;
       }
     `}
 

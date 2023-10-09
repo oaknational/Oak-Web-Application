@@ -12,6 +12,10 @@ import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subj
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import {
+  ProgrammeListingLinkProps,
+  UnitListingLinkProps,
+} from "@/common-lib/urls";
 
 export type CountCardProps = KeyStageSubjectData &
   Pick<SubjectCardDoubleProps, "keyStageSlug" | "keyStageTitle"> & {
@@ -37,6 +41,20 @@ const CountCard: FC<CountCardProps> = ({
     isNew ? "- new content" : ""
   }`;
 
+  const oakLinkProps: ProgrammeListingLinkProps | UnitListingLinkProps =
+    programmeCount > 1
+      ? // If there are multiple programmes, link to the programme listing page
+        {
+          page: "programme-index",
+          subjectSlug,
+          keyStageSlug,
+        }
+      : // If there is only one programme, link to the unit listing page for that programme
+        {
+          page: "unit-index",
+          programmeSlug,
+        };
+
   return (
     <TextTile
       $background={"white"}
@@ -46,17 +64,13 @@ const CountCard: FC<CountCardProps> = ({
       $borderRadius={4}
     >
       {isNew && (
-        <Flex $right={46} $top={[10, 3]} $position={"absolute"}>
+        <Flex $right={2} $top={20} $position={"absolute"}>
           <TagPromotional size={"small"} $color="mint" />
         </Flex>
       )}
       <OakLink
+        {...oakLinkProps}
         aria-label={ariaLabel}
-        page={programmeCount > 1 ? "programme-index" : "unit-index"}
-        programmeSlug={programmeSlug}
-        keyStageSlug={keyStageSlug}
-        subjectSlug={subjectSlug}
-        viewType={isNew ? "teachers-2023" : "teachers"}
         $hideDefaultFocus
         onClick={() => {
           track.subjectSelected({

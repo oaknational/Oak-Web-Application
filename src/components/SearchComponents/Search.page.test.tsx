@@ -42,7 +42,7 @@ const validQuery: SearchQuery = {
 
 const setSearchStartTime = jest.fn();
 
-export const props: SearchProps = {
+const props: SearchProps = {
   status: "not-asked",
   searchStartTime: 1,
   setSearchStartTime: setSearchStartTime,
@@ -184,7 +184,7 @@ describe("Search.page.tsx", () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
     expect(getByRole("link", { name: "lesson title" })).toHaveAttribute(
       "href",
-      "/beta/teachers/programmes/subject-slug-ks1/units/topic-slug/lessons/lesson-slug",
+      "/teachers/programmes/subject-slug-ks1-l/units/topic-slug/lessons/lesson-slug",
     );
   });
   test("search term is set on enter", async () => {
