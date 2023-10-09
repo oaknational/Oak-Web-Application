@@ -1,3 +1,15 @@
+# [1.273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.2...v1.273.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* remove capitalisation of why ([c62cb93](https://github.com/oaknational/Oak-Web-Application/commit/c62cb9333bf3172c85ee5fb14b6638334e3899d5))
+
+
+### Features
+
+* update number of lessons for music unit ([567ed67](https://github.com/oaknational/Oak-Web-Application/commit/567ed67ce0d72e5085caba0e8c2366f3131b5c53))
+
 ## [1.272.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.1...v1.272.2) (2023-10-09)
 
 
