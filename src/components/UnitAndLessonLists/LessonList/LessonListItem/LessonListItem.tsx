@@ -177,7 +177,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         $width={"100%"}
         $gap={[4, 12]}
         $pt={[0, 20]}
-        $pb={20}
+        $pb={[0, 20]}
       >
         {fromSearchPage ? (
           <Flex $pl={[16, 0]} $pt={[20, 0]} $alignItems={"center"}>
@@ -215,7 +215,14 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           </Flex>
         )}
 
-        <Flex $flexDirection={"column"} $gap={[12]} $ml={[16, 0]}>
+        <Flex
+          $flexDirection={"column"}
+          $gap={[12]}
+          $pl={[16, 0]}
+          $pr={[16, 0]}
+          $pt={[12, 0]}
+          $pb={[12, 0]}
+        >
           <Flex $mt={[8, 0]} $mr={[16, 0]}>
             {expired ? (
               <P $mt={8} $font={["body-3", "body-2"]}>
