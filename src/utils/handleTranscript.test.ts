@@ -1,4 +1,8 @@
-import { getCaptionsFromFile , formatSentences, removeWebVttCharacters } from "./handleTranscript";
+import {
+  getCaptionsFromFile,
+  formatSentences,
+  removeWebVttCharacters,
+} from "./handleTranscript";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -42,39 +46,30 @@ describe("formatSentences", () => {
 jest.mock("@/utils/gCloudStorage", () => ({
   getFileFromBucket: jest.fn(() =>
     Promise.resolve(`WEBVTT
-
     1
     00:00:06.180 --> 00:00:10.680
     <v ->Hi, welcome to today's lesson on the area of a triangle.</v>
-    
     2
     00:00:10.680 --> 00:00:12.750
     By the end of today's lesson, you'll be able
-    
     3
     00:00:12.750 --> 00:00:15.753
     to derive the formula for the area of a triangle.
-    
     4
     00:00:17.340 --> 00:00:19.050
     Now, in our lesson today,
-    
     5
     00:00:19.050 --> 00:00:20.370
     we're going to be using
-    
     6
     00:00:20.370 --> 00:00:23.223
     some specific mathematical terminology.
-    
     7
     00:00:24.090 --> 00:00:26.452
     For two words that we're going to be using today,
-    
     8
     00:00:26.452 --> 00:00:29.310
     in particular, our base
-    
     9
     00:00:29.310 --> 00:00:32.310
     and the phrase perpendicular height.`),
