@@ -62,10 +62,12 @@ const UnitList: FC<UnitListProps> = (props) => {
           </UL>
         </>
       ) : null}
-      {units.length > 5 && (
-        <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
+      {units.length > 5 ? (
+        <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
           <Pagination {...paginationProps} firstItemRef={firstItemRef} />
         </Box>
+      ) : (
+        <Box $pb={32} />
       )}
     </Flex>
   );

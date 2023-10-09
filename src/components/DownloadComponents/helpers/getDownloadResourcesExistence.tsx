@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { DownloadResourceType } from "../downloads.types";
+
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
@@ -14,7 +16,7 @@ const schema = z.object({
     .object({
       resources: z.array(
         z.tuple([
-          z.string(),
+          z.custom<DownloadResourceType>(),
           z.object({
             exists: z.boolean(),
             errors: z
