@@ -60,16 +60,16 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     examboard ? `-${examboard.slug}` : ""
   }`;
 
-  let keyStageTitle;
+  let keyStagesMetadata;
   switch (phase.slug) {
     case "primary":
-      keyStageTitle = "Key stages 1 & 2";
+      keyStagesMetadata = "Key stages 1 & 2";
       break;
     case "secondary":
-      keyStageTitle = "Key stages 3 & 4";
+      keyStagesMetadata = "Key stages 3 & 4";
       break;
     default:
-      keyStageTitle = "";
+      keyStagesMetadata = null;
       break;
   }
 
@@ -128,7 +128,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <Box>
-                <P $font={"heading-light-7"}>{keyStageTitle}</P>
+                {keyStagesMetadata && (
+                  <P $font={"heading-light-7"}>{keyStagesMetadata}</P>
+                )}
                 <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
                   {pageTitle}
                 </Heading>
