@@ -7,7 +7,7 @@ import UnitListItem from "@/components/UnitAndLessonLists/UnitList/UnitListItem/
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
 
-type UnitOption = Omit<UnitData, "unitStudyOrder">;
+export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 
 type OptionalityCardProps = {
   unitOptions: UnitOption[];

@@ -32,7 +32,7 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
       $display={"flex"}
       $alignItems={"center"}
       $flexDirection={["column", "row"]}
-      $mr={[32, 28]}
+      $mr={[0, 24]}
     >
       <Icon size={32} name={icon} $mr={[0, 6]} $mb={[8, 0]} />
       <Flex $display={["flex", "flex"]}>

@@ -401,11 +401,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     New curriculum plans
                   </Heading>
                   <Box $pt={6}>
-                    <TagPromotional
-                      size={"medium"}
-                      $color="mint"
-                      $alignSelf={"flex-end"}
-                    />
+                    <TagPromotional size={"medium"} $alignSelf={"flex-end"} />
                   </Box>
                 </Flex>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>
@@ -592,14 +588,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
-                        <Heading
-                          tag={"h4"}
-                          $font={"heading-6"}
-                          $mb={16}
-                          $mt={16}
-                        >
-                          Exam board
+                        <Heading $mv={16} tag={"h4"} $font={"heading-6"}>
+                          Choose an exam board for KS4:
                         </Heading>
+
                         <Box aria-label="Exam board" role="radiogroup">
                           {selectedSubject.examboards.map((examboard) => (
                             <ButtonContainer key={examboard.slug}>
