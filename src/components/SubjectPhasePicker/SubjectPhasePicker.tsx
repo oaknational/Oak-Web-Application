@@ -592,14 +592,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
-                        <Heading
-                          tag={"h4"}
-                          $font={"heading-6"}
-                          $mb={16}
-                          $mt={16}
-                        >
-                          Exam board
+                        <Heading $mv={16} tag={"h4"} $font={"heading-6"}>
+                          Choose an exam board for KS4:
                         </Heading>
+
                         <Box aria-label="Exam board" role="radiogroup">
                           {selectedSubject.examboards.map((examboard) => (
                             <ButtonContainer key={examboard.slug}>

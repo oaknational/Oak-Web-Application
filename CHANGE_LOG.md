@@ -1,3 +1,17 @@
+# [1.274.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.3...v1.274.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* reinstate home route to allow list ([bdafb71](https://github.com/oaknational/Oak-Web-Application/commit/bdafb71a9a9356190ba10c44130667a4f4a004af))
+
+
+### Features
+
+* update robots.txt with allowed and disallowed routes ([9093886](https://github.com/oaknational/Oak-Web-Application/commit/9093886f8563813b3f1d6a1426cd81c8f9a82545))
+
+## [1.273.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.2...v1.273.3) (2023-10-10)
+
 ## [1.273.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.1...v1.273.2) (2023-10-10)
 
 
