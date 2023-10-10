@@ -25,7 +25,6 @@ const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
       $background={background}
       $position={"relative"}
       $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
-      $transform={isHovered ? "translateY(-4px)" : null}
       $transition={"all 0.4s ease-out"}
     >
       <SubjectIcon
