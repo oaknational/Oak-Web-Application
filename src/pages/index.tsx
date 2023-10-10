@@ -87,7 +87,6 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
 
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
-  console.log("curriculumData", curriculumData);
   const posts = props.posts.map(postToPostListItem);
   const [current, setCurrent] = useState("teachers");
   const blogListProps = usePostList({ items: posts, withImage: true });
