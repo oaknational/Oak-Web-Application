@@ -401,11 +401,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     New curriculum plans
                   </Heading>
                   <Box $pt={6}>
-                    <TagPromotional
-                      size={"medium"}
-                      $color="mint"
-                      $alignSelf={"flex-end"}
-                    />
+                    <TagPromotional size={"medium"} $alignSelf={"flex-end"} />
                   </Box>
                 </Flex>
                 <P $mb={16}>Explore our new curricula for 2023/2024.</P>

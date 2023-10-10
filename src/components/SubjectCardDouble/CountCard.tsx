@@ -64,8 +64,8 @@ const CountCard: FC<CountCardProps> = ({
       $borderRadius={4}
     >
       {isNew && (
-        <Flex $right={2} $top={20} $position={"absolute"}>
-          <TagPromotional size={"small"} $color="mint" />
+        <Flex $right={2} $top={16} $position={"absolute"}>
+          <TagPromotional size={"small"} />
         </Flex>
       )}
       <OakLink
