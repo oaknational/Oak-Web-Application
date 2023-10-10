@@ -29,8 +29,8 @@ export const matchesIgnoredError = (error: {
     // Testing
     /OAK_TEST_ERROR_STACKTRACE_FILE/i,
     // Don't error external Hubspot script problems
-    /\/\/js\.hubspot\.com/i,
-    /\/\/js\.hsleadflows\.net/i,
+    /\/\/[a-zA-Z0-9-]+\.hubspot\.com/i,
+    /\/\/[a-zA-Z0-9-]+\.hsleadflows\.net/i,
   ];
   const messagesToMatch = [
     // Testing

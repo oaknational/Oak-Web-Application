@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import { Heading, Hr } from "@/components/Typography";
+import { Heading, Hr, P } from "@/components/Typography";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/TabularNav/TabularNav";
@@ -52,16 +52,25 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     examboard: examboard,
   };
 
-  const pageTitle = `${phase.title} ${subject.title}${
-    examboard ? ` ${examboard.title}` : ""
-  }`;
-
   const subjectPhaseSlug = `${subject.slug}-${phase.slug}${
     examboard ? `-${examboard.slug}` : ""
   }`;
 
+  let pageTitle: string;
+  switch (phase.slug) {
+    case "primary":
+      pageTitle = `KS1 & KS2 ${subject.title}`;
+      break;
+    case "secondary":
+      pageTitle = `KS3 & KS4 ${subject.title}`;
+      break;
+    default:
+      pageTitle = "";
+      break;
+  }
+
   return (
-    <Box>
+    <Box $mb={40}>
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
           <Breadcrumbs
@@ -110,17 +119,27 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   subjectSlug={subject.slug}
                   $color="white"
                   $borderColor="white"
-                  $width={56}
+                  $width={64}
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Heading
-                tag={"h1"}
-                $font={["heading-4", "heading-3"]}
-                $mv={"auto"}
-              >
-                {pageTitle}
-              </Heading>
+              <Flex $justifyContent={"center"} $flexDirection={"column"}>
+                {examboard?.title && (
+                  <P
+                    $font={"heading-light-7"}
+                    data-testid={"examboard-metadata"}
+                  >
+                    {`${examboard.title} (KS4)`}
+                  </P>
+                )}
+                <Heading
+                  tag={"h1"}
+                  $font={["heading-4", "heading-3"]}
+                  data-testid="curriculum-heading"
+                >
+                  {pageTitle}
+                </Heading>
+              </Flex>
             </Flex>
           </Box>
         </Flex>
