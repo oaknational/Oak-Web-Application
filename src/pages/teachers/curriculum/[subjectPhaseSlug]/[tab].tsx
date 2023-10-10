@@ -112,6 +112,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             keyStagesData: keyStagesData,
             tab: tab,
           }),
+          ...{ noFollow: false, noIndex: false },
         }),
       }}
       $background={"white"}

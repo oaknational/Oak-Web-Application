@@ -44,6 +44,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           description:
             "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
         }),
+        ...{ noFollow: false, noIndex: false },
       }}
       $background={"grey1"}
     >
