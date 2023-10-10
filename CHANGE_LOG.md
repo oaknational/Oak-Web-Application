@@ -1,3 +1,50 @@
+## [1.273.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.1...v1.273.2) (2023-10-10)
+
+
+### Bug Fixes
+
+* **listing card:** add optionality card to storybook ([1a3bc25](https://github.com/oaknational/Oak-Web-Application/commit/1a3bc25f29a1987c9b7166712418160d8e95eb65))
+* **listing card:** fix padding ([b56fbb9](https://github.com/oaknational/Oak-Web-Application/commit/b56fbb92900cf58ed9cfb984c5124b03b9ebb2bb))
+* **listing card:** fix padding ([7336483](https://github.com/oaknational/Oak-Web-Application/commit/7336483b98e06eb360cdd9ff68883aab8457f61b))
+* **listing card:** lesson padding ([b35779f](https://github.com/oaknational/Oak-Web-Application/commit/b35779f3fd2ba73035d5f0dedb873e57f2c5ab41))
+* **listing card:** lesson padding ([5b9ad5b](https://github.com/oaknational/Oak-Web-Application/commit/5b9ad5bec7c48e8428c55a109a4bae859bc7f7f7))
+* **listing card:** maintanability storybook fix ([16fdb09](https://github.com/oaknational/Oak-Web-Application/commit/16fdb09ad01e0def1edfb07aa9cf84060227559d))
+* **listing card:** merge ([991e84a](https://github.com/oaknational/Oak-Web-Application/commit/991e84afc83e7901660a434e016834663727a750))
+* **listing card:** padding ([7e76473](https://github.com/oaknational/Oak-Web-Application/commit/7e7647393badae8bbbf507799a09c41a0165d409))
+
+## [1.273.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.0...v1.273.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* **error-reporter:** ignore errors on scripts from all subdomains of hubspot ([a386387](https://github.com/oaknational/Oak-Web-Application/commit/a3863877ea10ad19969ce572df998f5831d3514b))
+
+# [1.273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.2...v1.273.0) (2023-10-09)
+
+
+### Bug Fixes
+
+* remove capitalisation of why ([c62cb93](https://github.com/oaknational/Oak-Web-Application/commit/c62cb9333bf3172c85ee5fb14b6638334e3899d5))
+
+
+### Features
+
+* update number of lessons for music unit ([567ed67](https://github.com/oaknational/Oak-Web-Application/commit/567ed67ce0d72e5085caba0e8c2366f3131b5c53))
+
+## [1.272.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.1...v1.272.2) (2023-10-09)
+
+
+### Bug Fixes
+
+* update to mv_curriculum_units_5 ([d7266d4](https://github.com/oaknational/Oak-Web-Application/commit/d7266d4d5df3e80456a6590c111f8d9fd2829e79))
+
+## [1.272.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.0...v1.272.1) (2023-10-09)
+
+
+### Bug Fixes
+
+* **lesson scroll behaviour:** check previous section not completely in view ([85dfcd1](https://github.com/oaknational/Oak-Web-Application/commit/85dfcd1507549d9f329bf7700c2b0ed9724bb114))
+
 # [1.272.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.271.0...v1.272.0) (2023-10-09)
 
 
