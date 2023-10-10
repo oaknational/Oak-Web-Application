@@ -123,7 +123,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <Box>
+              <Flex $justifyContent={"center"} $flexDirection={"column"}>
                 {examboard?.title && (
                   <P
                     $font={"heading-light-7"}
@@ -139,7 +139,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 >
                   {pageTitle}
                 </Heading>
-              </Box>
+              </Flex>
             </Flex>
           </Box>
         </Flex>
