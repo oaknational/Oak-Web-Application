@@ -8,37 +8,37 @@ import { OakColorName } from "@/styles/theme/types";
 
 const tagDimMap = {
   small: {
-    width: 44,
-    height: 20,
-  },
-  medium: {
-    width: 46,
+    width: 48,
     height: 22,
   },
+  medium: {
+    width: 52,
+    height: 26,
+  },
   large: {
-    width: 58,
+    width: 60,
     height: 34,
   },
 } as const;
 
 const textPosMap = {
   small: {
-    left: 8,
-    bottom: 4,
+    left: 7,
+    bottom: 2,
   },
   medium: {
-    left: 6,
-    bottom: 3,
+    left: 9,
+    bottom: 5,
   },
   large: {
     left: 10,
-    bottom: 10,
+    bottom: 9,
   },
 } as const;
 
 const tagFontMap = {
-  small: "body-4",
-  medium: "body-3",
+  small: "body-3-bold",
+  medium: "body-3-bold",
   large: "heading-7",
 } as const;
 
@@ -50,7 +50,7 @@ type TagPromotionalProps = FlexProps & {
 } & FlexProps;
 
 const TagPromotional: FC<TagPromotionalProps> = ({
-  $color = "white",
+  $color = "lemon",
   size = "large",
   ...flexProps
 }) => {
@@ -64,11 +64,9 @@ const TagPromotional: FC<TagPromotionalProps> = ({
     >
       <Svg
         $color={"oakGrey6"}
-        $position={"absolute"}
         name={"tag-promotional"}
-        $bottom={1}
-        $objectFit={"contain"}
         filter={"drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"}
+        $objectFit={"contain"}
       />
       <Flex
         $left={textPosMap[size].left}
