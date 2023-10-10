@@ -97,7 +97,7 @@ describe("Component - subject phase picker", () => {
     userEvent.click(button);
     const control = getByTitle("Phase");
     userEvent.click(await findByTitle("Secondary"));
-    const examboardTitle = await findByText("Exam board");
+    const examboardTitle = await findByText("Choose an exam board for KS4:");
     expect(examboardTitle).toBeTruthy();
     const aqa = (await findAllByTitle("AQA"))[0];
     if (!aqa) {
