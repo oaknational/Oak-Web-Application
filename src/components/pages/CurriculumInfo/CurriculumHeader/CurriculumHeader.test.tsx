@@ -48,7 +48,7 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
-  test("should return correct page title for primary phase", () => {
+  test("should return correct page title for primary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
     });
@@ -58,7 +58,7 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
-  test("should return correct page title for secondary phase", () => {
+  test("should return correct page title for secondary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary"),
     });
