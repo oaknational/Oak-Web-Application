@@ -192,7 +192,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         ) : (
           <Flex $alignItems={"flex-start"}>
             <ListItemIndexMobile background={background} index={index + 1} />
-            <Flex $flexDirection={"column"} $height={"100%"} $pa={16}>
+            <Flex $flexDirection={"column"} $height={"100%"} $pa={[16, 0]}>
               <ListItemHeader
                 {...props}
                 primaryTargetProps={primaryTargetProps}
