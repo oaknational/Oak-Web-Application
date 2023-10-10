@@ -9,10 +9,10 @@ export const buildCurriculumMetadata = (props: {
 }) => {
   if (props.tab === "overview" && props.metadataType === "title") {
     const examboard =
-      props.examboardSlug && props.examboardSlug !== "aqa"
-        ? ` ${capitalize(props.examboardSlug)}`
-        : props.examboardSlug && props.examboardSlug === "aqa"
+      props.examboardSlug && props.examboardSlug === "aqa"
         ? "AQA"
+        : props.examboardSlug
+        ? ` ${capitalize(props.examboardSlug)}`
         : "";
 
     return `${props.keyStagesData} ${capitalize(
@@ -24,10 +24,10 @@ export const buildCurriculumMetadata = (props: {
     )} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
   } else if (props.tab === "units" && props.metadataType === "title") {
     const examboard =
-      props.examboardSlug && props.examboardSlug !== "aqa"
-        ? `${capitalize(props.examboardSlug)}`
-        : props.examboardSlug && props.examboardSlug === "aqa"
+      props.examboardSlug && props.examboardSlug === "aqa"
         ? "AQA"
+        : props.examboardSlug
+        ? ` ${capitalize(props.examboardSlug)}`
         : "";
     return `${props.keyStagesData} ${capitalize(
       props.subjectSlug,
