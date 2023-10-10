@@ -111,24 +111,24 @@ describe("getPageLinksForLesson()", () => {
 
     const expected = [
       {
+        anchorId: "slide-deck",
         label: "Slide deck",
-        href: "#slideDeck",
       },
       {
+        anchorId: "lesson-details",
         label: "Lesson details",
-        href: "#lessonDetails",
       },
       {
+        anchorId: "video",
         label: "Video",
-        href: "#video",
       },
       {
+        anchorId: "worksheet",
         label: "Worksheet",
-        href: "#worksheet",
       },
       {
+        anchorId: "additional-material",
         label: "Additional material",
-        href: "#additionalMaterial",
       },
     ];
 
@@ -151,32 +151,32 @@ describe("getPageLinksForLesson()", () => {
 
     const expected = [
       {
+        anchorId: "slide-deck",
         label: "Slide deck",
-        href: "#slideDeck",
       },
       {
+        anchorId: "lesson-details",
         label: "Lesson details",
-        href: "#lessonDetails",
       },
       {
+        anchorId: "video",
         label: "Video",
-        href: "#video",
       },
       {
+        anchorId: "worksheet",
         label: "Worksheet",
-        href: "#worksheet",
       },
       {
+        anchorId: "starter-quiz",
         label: "Starter quiz",
-        href: "#starterQuiz",
       },
       {
+        anchorId: "exit-quiz",
         label: "Exit quiz",
-        href: "#exitQuiz",
       },
       {
+        anchorId: "additional-material",
         label: "Additional material",
-        href: "#additionalMaterial",
       },
     ];
 
@@ -198,12 +198,12 @@ describe("getPageLinksForLesson()", () => {
 
     const expected = [
       {
+        anchorId: "lesson-details",
         label: "Lesson details",
-        href: "#lessonDetails",
       },
       {
+        anchorId: "worksheet",
         label: "Worksheet",
-        href: "#worksheet",
       },
     ];
 
