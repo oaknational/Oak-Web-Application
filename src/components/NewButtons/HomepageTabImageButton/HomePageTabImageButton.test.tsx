@@ -1,8 +1,8 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import Button from "./HomePageTabImageButton";
 
-describe("Button", () => {
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
+describe("HomePageTabImageButton", () => {
   it("renders a button", () => {
     const spy = jest.fn();
 
@@ -34,7 +34,7 @@ describe("Button", () => {
     expect(getByTestId("magic-carpet")).toBeInTheDocument();
   });
 
-  it("renders active image when isCurrent is false", () => {
+  it("renders passive image when isCurrent is false", () => {
     const { getByTestId } = renderWithTheme(
       <Button
         label="Click me"
