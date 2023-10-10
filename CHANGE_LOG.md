@@ -1,3 +1,10 @@
+## [1.273.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.0...v1.273.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* **error-reporter:** ignore errors on scripts from all subdomains of hubspot ([a386387](https://github.com/oaknational/Oak-Web-Application/commit/a3863877ea10ad19969ce572df998f5831d3514b))
+
 # [1.273.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.272.2...v1.273.0) (2023-10-09)
 
 
