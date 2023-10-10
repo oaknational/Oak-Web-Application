@@ -61,7 +61,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
           <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"hero-pupils"}>
               <ResourceSelectorCard
-                icon={"worksheet"}
+                icon={"worksheet-3"}
                 title="Worksheets"
                 angle={-4}
                 $bottom={30}
@@ -69,7 +69,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $display={["none", "none", "flex"]}
               />
               <ResourceSelectorCard
-                icon={"slide-deck"}
+                icon={"slide-deck-3"}
                 title="Slide decks"
                 angle={2}
                 $bottom={110}
@@ -77,7 +77,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $display={["none", "none", "flex"]}
               />
               <ResourceSelectorCard
-                icon={"quiz-white"}
+                icon={"quiz-3"}
                 title="Quizzes"
                 angle={4}
                 $bottom={60}
