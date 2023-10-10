@@ -99,6 +99,13 @@ describe("common-lib/error-reporter", () => {
       });
       expect(shouldIgnore).toBe(true);
     });
+    it("returns true if the error should be ignored based on subdomains", () => {
+      const shouldIgnore = matchesIgnoredError({
+        errorMessage: "Proper error message",
+        stacktrace: [{ file: "https://something.hubspot.com/foo.js" }],
+      });
+      expect(shouldIgnore).toBe(true);
+    });
   });
   describe("Bugsnag onError handler", () => {
     it("Returns undefined for non-ignored error", () => {
