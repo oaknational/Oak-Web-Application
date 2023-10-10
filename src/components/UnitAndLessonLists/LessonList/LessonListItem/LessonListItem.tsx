@@ -171,13 +171,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       )}
 
       <Flex
-        $ml={[0, 24]}
-        $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
         $gap={[4, 12]}
-        $pt={[0, 20]}
-        $pb={20}
+        $pa={[0, 24]}
       >
         {fromSearchPage ? (
           <Flex $pl={[16, 0]} $pt={[20, 0]} $alignItems={"center"}>
@@ -193,9 +190,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             />
           </Flex>
         ) : (
-          <Flex $gap={[10]} $alignItems={"center"}>
+          <Flex $alignItems={"flex-start"}>
             <ListItemIndexMobile background={background} index={index + 1} />
-            <Flex $flexDirection={"column"} $height={"100%"}>
+            <Flex $flexDirection={"column"} $height={"100%"} $pa={[16, 0]}>
               <ListItemHeader
                 {...props}
                 primaryTargetProps={primaryTargetProps}
@@ -215,7 +212,14 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           </Flex>
         )}
 
-        <Flex $flexDirection={"column"} $gap={[12]} $ml={[16, 0]}>
+        <Flex
+          $flexDirection={"column"}
+          $gap={[12]}
+          $pl={[16, 0]}
+          $pr={[16, 0]}
+          $pt={[12, 0]}
+          $pb={[12, 0]}
+        >
           <Flex $mt={[8, 0]} $mr={[16, 0]}>
             {expired ? (
               <P $mt={8} $font={["body-3", "body-2"]}>
