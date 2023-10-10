@@ -1,31 +1,32 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled, { css, useTheme } from "styled-components";
 
-import { ResponsiveValues } from "../../styles/utils/responsive";
-import typography, { FontVariant } from "../../styles/utils/typography";
-import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
-import CMSImage from "../CMSImage/CMSImage";
-import Flex from "../Flex/Flex";
-import Box from "../Box/Box";
-import TagPromotional from "../TagPromotional";
-import BrushUnderline from "../NewButton.tsx/NewBrushUndeline";
-import {
-  ButtonHoverStyle,
-  CommonButtonProps,
-  HTMLButtonProps,
-} from "../Button/common";
-import Illustration from "../Illustration/Illustration";
-
-import ButtonLabel from "./NewButtonLabelWithScreenReaderTitle";
+import ButtonLabel from "../NewButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
-} from "./NewFocusUndeline";
+} from "../NewFocusUndeline";
+import BrushUnderline from "../NewBrushUndeline";
 
 import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
+import { ResponsiveValues } from "@/styles/utils/responsive";
+import typography, { FontVariant } from "@/styles/utils/typography";
+import UnstyledButton, {
+  UnstyledButtonProps,
+} from "@/components/UnstyledButton";
+import CMSImage from "@/components/CMSImage/CMSImage";
+import Flex from "@/components/Flex/Flex";
+import Box from "@/components/Box/Box";
+import TagPromotional from "@/components/TagPromotional";
+import {
+  ButtonHoverStyle,
+  CommonButtonProps,
+  HTMLButtonProps,
+} from "@/components/Button/common";
+import Illustration from "@/components/Illustration/Illustration";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -33,7 +34,8 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   $font?: ResponsiveValues<FontVariant>;
   disabled?: boolean;
   title?: string;
-  imageSlug: IllustrationSlug;
+  activeImageSlug: IllustrationSlug;
+  passiveImageSlug: IllustrationSlug;
   isCurrent?: boolean;
   isNew?: boolean;
 };
@@ -93,7 +95,8 @@ const HomePageTabImageButton = forwardRef<
     "aria-label": ariaLabel,
     htmlButtonProps = {},
     disabled,
-    imageSlug,
+    activeImageSlug,
+    passiveImageSlug,
     isCurrent,
     title,
     isNew,
@@ -118,9 +121,8 @@ const HomePageTabImageButton = forwardRef<
     >
       <Flex $flexDirection={"column"} $alignItems={"center"}>
         <Flex $width={96} $height={96} $justifyContent={"center"}>
-          {" "}
           <Illustration
-            slug={imageSlug}
+            slug={isCurrent ? activeImageSlug : passiveImageSlug}
             noCrop
             $height={"100%"}
             $width={"auto"}

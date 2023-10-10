@@ -1,4 +1,4 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import Button from "./HomePageTabImageButton";
 
