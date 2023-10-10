@@ -136,14 +136,12 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         </>
       )}
       <Flex
-        $ml={[16, 24]}
-        $mr={[0, 24]}
         $flexDirection={"column"}
         $justifyContent={"space-between"}
         $width={"100%"}
         $height={"100%"}
         $gap={[8]}
-        $pv={[8, 12]}
+        $pa={16}
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
           <Span $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
