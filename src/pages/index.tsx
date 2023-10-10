@@ -1,36 +1,42 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { toPlainText } from "@portabletext/react";
+import { useState } from "react";
 
-import CMSClient from "../node-lib/cms";
-import { HomePage } from "../common-lib/cms-types";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
-import Card from "../components/Card";
-import { Heading } from "../components/Typography";
-import CardLink from "../components/Card/CardLink";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import Box from "../components/Box";
-import Layout from "../components/Layout";
-import Flex from "../components/Flex";
-import Svg from "../components/Svg";
-import useAnalytics from "../context/Analytics/useAnalytics";
-import { PostListItemProps } from "../components/Posts/PostList/PostListItem";
+import Typography, { Heading } from "@/components/Typography";
+import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import AppLayout from "@/components/AppLayout";
+import Box from "@/components/Box";
+import Flex from "@/components/Flex";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import OakLink from "@/components/OakLink";
+import usePostList from "@/components/Posts/PostList/usePostList";
+import CMSClient from "@/node-lib/cms";
+import { TeachersHomePageData } from "@/node-lib/curriculum-api";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import getPageProps from "@/node-lib/getPageProps";
+import PostList from "@/components/Posts/PostList";
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
+import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
+import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
+import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
+import HomePageBanner from "@/components/Banner/Banner";
 import {
-  blogToPostListItem,
   SerializedBlogPostPreview,
-} from "../components/pages/BlogIndex.page";
+  blogToPostListItem,
+} from "@/components/pages/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   webinarToPostListItem,
-} from "../components/pages/WebinarsIndex.page";
-import { serializeDate } from "../utils/serializeDate";
-import usePostList from "../components/Posts/PostList/usePostList";
-import { HomeSiteCards, SharedHomeContent } from "../components/pages/Home";
-import Illustration from "../components/Illustration";
-import { getSizes } from "../components/CMSImage/getSizes";
-import HomeNotification from "../components/pages/Home/HomeNotification";
-import getPageProps from "../node-lib/getPageProps";
+} from "@/components/pages/WebinarsIndex.page";
+import { HomePage } from "@/common-lib/cms-types";
+import { serializeDate } from "@/utils/serializeDate";
+import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
+
+export type TeachersHomePageProps = HomePageProps & {
+  curriculumData: TeachersHomePageData;
+};
 
 export type SerializedPost =
   | ({ type: "blog-post" } & SerializedBlogPostPreview)
@@ -39,203 +45,6 @@ export type SerializedPost =
 export type HomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
-};
-
-const Home: NextPage<HomePageProps> = (props) => {
-  const { track } = useAnalytics();
-  const posts = props.posts.map(postToPostListItem);
-  const blogListProps = usePostList({ items: posts, withImage: true });
-
-  return (
-    <Layout
-      seoProps={getSeoProps(props.pageData.seo, { addTitleSuffix: false })}
-    >
-      <Flex $flexDirection={"column"} $position="relative">
-        <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
-          <MaxWidth $ph={[0, 12]}>
-            <Flex
-              $width={"100%"}
-              $pt={[40, 32]}
-              $pb={[32, 40]}
-              $flexDirection={["column", "row"]}
-              $ph={[12, 0]}
-            >
-              <Flex
-                $mr="auto"
-                $pr={[0, 16]}
-                $pb={[32, 0]}
-                $flexDirection={"column"}
-                $justifyContent="center"
-              >
-                <Heading
-                  $font={["heading-5", "heading-4"]}
-                  tag={"h1"}
-                  $mb={8}
-                  data-testid="home-page-title"
-                  $color={"black"}
-                >
-                  {props.pageData.heading}
-                </Heading>
-                <Heading
-                  tag={"h2"}
-                  $font={["heading-light-7", "heading-light-6"]}
-                >
-                  {/* @TODO: The portable text in the CMS allows more features
-                             than just plain text. We should decide if we want
-                             to lock that down, or handle more cases here */}
-                  {toPlainText(props.pageData.summaryPortableText)}
-                </Heading>
-              </Flex>
-              {props.pageData.notification?.enabled && (
-                <Box $ph={[16, 0]}>
-                  <HomeNotification
-                    notification={props.pageData.notification}
-                  />
-                </Box>
-              )}
-            </Flex>
-            <Grid $cg={[8, 16]}>
-              <GridArea $colSpan={[6, 6]}>
-                <Card
-                  $background="white"
-                  $justifyContent="center"
-                  $alignItems="center"
-                  $borderRadius={4}
-                  $pa={0}
-                  $pt={[16, 92]}
-                  $pb={[120, 92]}
-                  $pr={[null, 56]}
-                >
-                  <Box
-                    $position="absolute"
-                    $top={0}
-                    $bottom={0}
-                    $left={0}
-                    $right={[0, "60%", "50%"]}
-                    $overflow="hidden"
-                  >
-                    <Box
-                      $position="relative"
-                      $height={["90%", "100%"]}
-                      $transform={[
-                        "translate(-30%,30%)",
-                        "translate(0,0)",
-                        "translate(0,0)",
-                      ]}
-                    >
-                      <Illustration
-                        slug="magic-carpet"
-                        sizes={getSizes([300, 500])}
-                        width={500}
-                        height={274}
-                        priority
-                        $position={["absolute"]}
-                        $objectFit="cover"
-                        $objectPosition="right"
-                        $cover
-                      />
-                    </Box>
-                  </Box>
-                  <Heading
-                    $ml={[0, "auto"]}
-                    $font={["heading-6", "heading-4"]}
-                    tag={"h2"}
-                  >
-                    <CardLink
-                      page="classroom"
-                      onClick={() =>
-                        track.classroomSelected({ navigatedFrom: "card" })
-                      }
-                    >
-                      Classroom
-                    </CardLink>
-                  </Heading>
-                  <Box
-                    $position="absolute"
-                    $height={[8, 12]}
-                    $bottom={[4, 0]}
-                    $right={0}
-                    $left={0}
-                  >
-                    <Svg name="underline-2" $color="pupilsHighlight" />
-                  </Box>
-                </Card>
-              </GridArea>
-              <GridArea $colSpan={[6, 6]}>
-                <Card
-                  $background="white"
-                  $justifyContent="center"
-                  $alignItems="center"
-                  $borderRadius={4}
-                  $pa={0}
-                  $pt={[16, 92]}
-                  $pb={[120, 92]}
-                  $pr={[null, 56]}
-                >
-                  <Box
-                    $position="absolute"
-                    $top={0}
-                    $bottom={0}
-                    $left={0}
-                    $right={[0, "50%"]}
-                    $overflow="hidden"
-                  >
-                    <Box
-                      $position="relative"
-                      $height={["90%"]}
-                      $transform={[
-                        "translate(0,40%)",
-                        "translate(-20%,30%)",
-                        "translate(-10%,30%)",
-                      ]}
-                    >
-                      <Illustration
-                        slug="teacher-carrying-stuff"
-                        sizes={getSizes([110, 180])}
-                        $objectFit="contain"
-                        $cover
-                        priority
-                        noCrop
-                      />
-                    </Box>
-                  </Box>
-                  <Heading
-                    $ml={[0, "auto"]}
-                    $font={["heading-6", "heading-4"]}
-                    tag={"h2"}
-                  >
-                    <CardLink
-                      page="teacher-hub"
-                      htmlAnchorProps={{
-                        onClick: () =>
-                          track.teacherHubSelected({ navigatedFrom: "card" }),
-                      }}
-                    >
-                      Teacher Hub
-                    </CardLink>
-                  </Heading>
-                  <Box
-                    $position="absolute"
-                    $height={[8, 12]}
-                    $bottom={[4, 0]}
-                    $right={0}
-                    $left={0}
-                  >
-                    <Svg name="underline-2" $color="teachersHighlight" />
-                  </Box>
-                </Card>
-              </GridArea>
-            </Grid>
-            <HomeSiteCards />
-          </MaxWidth>
-        </Flex>
-      </Flex>
-      <SharedHomeContent
-        blogListProps={blogListProps}
-        pageData={props.pageData}
-      />
-    </Layout>
-  );
 };
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
@@ -276,20 +85,85 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
     .map(serializeDate);
 };
 
+const Teachers: NextPage<TeachersHomePageProps> = (props) => {
+  const { curriculumData } = props;
+  console.log("curriculumData", curriculumData);
+  const posts = props.posts.map(postToPostListItem);
+  const [current, setCurrent] = useState("teachers");
+  const blogListProps = usePostList({ items: posts, withImage: true });
+  const { track } = useAnalytics();
+  const newsletterFormProps = useNewsletterForm({
+    onSubmit: track.newsletterSignUpCompleted,
+  });
+
+  return (
+    <AppLayout
+      seoProps={BETA_SEO_PROPS}
+      $background={"white"}
+      banner={HomePageBanner}
+    >
+      <HomePageTabImageNav current={current} setCurrent={setCurrent} />
+      {current === "teachers" && (
+        <TeachersTab keyStages={curriculumData.keyStages} />
+      )}
+      {current === "curriculum" && <CurriculumTab />}
+      {current === "pupils" && <PupilTab />}
+      <MaxWidth $mv={[24, 56]}>
+        <Box $ph={[16, 24]} $height={"100%"}>
+          <Flex
+            $width={"100%"}
+            $alignItems={["flex-start", "center"]}
+            $justifyContent="space-between"
+            $mb={48}
+            $flexDirection={["column", "row"]}
+          >
+            <Heading $mb={[24, 0]} tag={"h2"} $font={"heading-5"}>
+              Stay up to date
+            </Heading>
+            <Flex $flexDirection={"row"}>
+              <Typography $mr={16} $font="heading-7">
+                <OakLink page={"webinar-index"}>All webinars</OakLink>
+              </Typography>
+              <Typography $font="heading-7">
+                <OakLink page={"blog-index"}>All blogs</OakLink>
+              </Typography>
+            </Flex>
+          </Flex>
+          <PostList showImageOnTablet={true} {...blogListProps} />
+        </Box>
+      </MaxWidth>
+      <Flex $background={"lavender50"} $width={"100%"}>
+        <MaxWidth
+          $alignItems={"center"}
+          $background={"lavender50"}
+          $mt={58}
+          $mb={80}
+          $ph={16}
+        >
+          <Flex $maxWidth={["100%", 870]}>
+            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
+          </Flex>
+        </MaxWidth>
+      </Flex>
+    </AppLayout>
+  );
+};
+
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
 ) => {
   return getPageProps({
-    page: "contact-us::getStaticProps",
+    page: "teachers-home-page::getStaticProps",
     context,
     getProps: async () => {
       const isPreviewMode = context.preview === true;
+      const curriculumData = await curriculumApi2023.teachersHomePage();
 
-      const homepageData = await CMSClient.homepage({
+      const teachersHomepageData = await CMSClient.homepage({
         previewMode: isPreviewMode,
       });
 
-      if (!homepageData) {
+      if (!teachersHomepageData) {
         return {
           notFound: true,
         };
@@ -297,9 +171,10 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
 
       const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode);
 
-      const results: GetStaticPropsResult<HomePageProps> = {
+      const results: GetStaticPropsResult<TeachersHomePageProps> = {
         props: {
-          pageData: homepageData,
+          pageData: teachersHomepageData,
+          curriculumData,
           posts,
         },
       };
@@ -308,4 +183,4 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
   });
 };
 
-export default Home;
+export default Teachers;
