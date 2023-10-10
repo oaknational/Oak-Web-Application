@@ -197,7 +197,7 @@ const earlyReleaseExemplarUnitsFixture = (
           title: "The Romans: what impact did the Romans have on Britain?",
           lessonCount: 6,
           keyStageSlug: "ks2",
-          yearTitle: "Year 5",
+          yearTitle: "Year 4",
           keyStageTitle: "Key stage 2",
           subjectTitle: "History",
           subjectSlug: "history",
