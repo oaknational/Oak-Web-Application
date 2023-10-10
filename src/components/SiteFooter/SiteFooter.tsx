@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Flex from "../Flex";
-import Typography, { Heading, LI, P } from "../Typography";
+import Typography, { Heading, LI } from "../Typography";
 import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
@@ -219,11 +219,6 @@ const SiteFooter: FC = () => {
           </Grid>
           <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
             <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-            <Flex $alignItems={"center"} $ml={[16]}>
-              <P $textAlign="center" $font={["body-4", "body-2"]}>
-                © Oak National Academy
-              </P>
-            </Flex>
           </Flex>
         </MaxWidth>
       </nav>
