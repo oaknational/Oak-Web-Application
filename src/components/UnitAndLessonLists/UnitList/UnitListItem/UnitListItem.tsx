@@ -102,6 +102,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
   let background: OakColorName = "teachersLilac";
+  const backgroundOnHover: OakColorName = "teachersPastelBlue";
 
   if (expired) {
     background = "oakGrey2";
@@ -125,7 +126,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         <>
           <ListItemIndexDesktop
             index={index + 1}
-            background={background}
+            background={isHovered ? backgroundOnHover : background}
             expired={expired}
           />
           <ListItemIndexMobile
@@ -170,7 +171,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         <>
           <ListItemIconDesktop
             title={title}
-            background={background}
+            background={isHovered ? backgroundOnHover : background}
             isHovered={isHovered}
             subjectSlug={subjectSlug}
           />

@@ -19,6 +19,8 @@ import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIconDesktop from "../../ListItemIconDesktop";
 import ListItemIconMobile from "../../ListItemIconMobile";
 
+import { OakColorName } from "@/styles/theme";
+
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
   subjectSlug: string;
@@ -150,6 +152,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
   const resources = getAvailableResourceList(props);
 
   const background = expired ? "oakGrey2" : "pupilsPink";
+  const backgroundOnHover: OakColorName = "pink60";
 
   return (
     <ListItemCard
@@ -165,7 +168,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       {!fromSearchPage && (
         <ListItemIndexDesktop
           index={index + 1}
-          background={background}
+          background={isHovered && !expired ? backgroundOnHover : background}
           expired={expired}
         />
       )}
@@ -254,7 +257,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         <>
           <ListItemIconDesktop
             title={lessonTitle}
-            background={background}
+            background={isHovered && !expired ? backgroundOnHover : background}
             isHovered={isHovered}
             subjectSlug={subjectSlug}
           />
