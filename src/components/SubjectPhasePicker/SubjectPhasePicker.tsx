@@ -105,7 +105,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   currentSelection,
 }) => {
   const router = useRouter();
-  const tab = (router.query.tab as CurriculumTab) ?? "overview";
+  const tab = (router.query.tab as CurriculumTab) ?? "units";
   const path = router.asPath;
 
   const phases = [
