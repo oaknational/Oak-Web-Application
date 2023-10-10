@@ -56,7 +56,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     examboard ? `-${examboard.slug}` : ""
   }`;
 
-  let pageTitle;
+  let pageTitle: string;
   switch (phase.slug) {
     case "primary":
       pageTitle = `KS1 & KS2 ${subject.title}`;
@@ -132,7 +132,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                     {`${examboard.title} (KS4)`}
                   </P>
                 )}
-                <Heading tag={"h1"} $font={["heading-4", "heading-3"]}>
+                <Heading
+                  tag={"h1"}
+                  $font={["heading-4", "heading-3"]}
+                  data-testid="curriculum-heading"
+                >
                   {pageTitle}
                 </Heading>
               </Box>

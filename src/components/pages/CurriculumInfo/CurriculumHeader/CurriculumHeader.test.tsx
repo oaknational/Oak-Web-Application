@@ -48,6 +48,26 @@ describe("Component - Curriculum Header", () => {
     );
   });
 
+  test("should return correct page title for primary phase", () => {
+    const { getByTestId } = renderComponent({
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
+    });
+
+    expect(getByTestId("curriculum-heading")).toHaveTextContent(
+      "KS1 & KS2 English",
+    );
+  });
+
+  test("should return correct page title for secondary phase", () => {
+    const { getByTestId } = renderComponent({
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary"),
+    });
+
+    expect(getByTestId("curriculum-heading")).toHaveTextContent(
+      "KS3 & KS4 English",
+    );
+  });
+
   test("user can see the tabular navigation", async () => {
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");

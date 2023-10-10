@@ -98,38 +98,20 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title:
-            tab === "overview"
-              ? buildCurriculumMetadata({
-                  identifier: "title",
-                  subjectSlug: subjectSlug,
-                  examboardSlug: examboardSlug,
-                  keyStagesData: keyStagesData,
-                  tab: tab,
-                })
-              : buildCurriculumMetadata({
-                  identifier: "title",
-                  subjectSlug: subjectSlug,
-                  examboardSlug: examboardSlug,
-                  keyStagesData: keyStagesData,
-                  tab: tab,
-                }),
-          description:
-            tab === "overview"
-              ? buildCurriculumMetadata({
-                  identifier: "description",
-                  subjectSlug: subjectSlug,
-                  examboardSlug: examboardSlug,
-                  keyStagesData: keyStagesData,
-                  tab: tab,
-                })
-              : buildCurriculumMetadata({
-                  identifier: "description",
-                  subjectSlug: subjectSlug,
-                  examboardSlug: examboardSlug,
-                  keyStagesData: keyStagesData,
-                  tab: tab,
-                }),
+          title: buildCurriculumMetadata({
+            metadataType: "title",
+            subjectSlug: subjectSlug,
+            examboardSlug: examboardSlug,
+            keyStagesData: keyStagesData,
+            tab: tab,
+          }),
+          description: buildCurriculumMetadata({
+            metadataType: "description",
+            subjectSlug: subjectSlug,
+            examboardSlug: examboardSlug,
+            keyStagesData: keyStagesData,
+            tab: tab,
+          }),
         }),
       }}
       $background={"white"}

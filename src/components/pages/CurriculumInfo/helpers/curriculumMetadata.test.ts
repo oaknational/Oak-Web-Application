@@ -1,22 +1,20 @@
 import { buildCurriculumMetadata } from "./curriculumMetadata";
 
 describe("buildCurriculumMetadata", () => {
-  it('should return the title string for "overview" tab and "title" identifier', () => {
+  it('should return the title string for "overview" tab and "title" metadataType', () => {
     const result = buildCurriculumMetadata({
-      identifier: "title",
+      metadataType: "title",
       tab: "overview",
       keyStagesData: "KS3-4",
       subjectSlug: "Math",
       examboardSlug: "aqa",
     });
-    expect(result).toBe(
-      "KS3-4 Math AQA Curriculum Plans | Oak National Academy",
-    );
+    expect(result).toBe("KS3-4 Math AQA Curriculum Plans");
   });
 
-  it('should return the description string for "overview" tab and "description" identifier', () => {
+  it('should return the description string for "overview" tab and "description" metadataType', () => {
     const result = buildCurriculumMetadata({
-      identifier: "description",
+      metadataType: "description",
       tab: "overview",
       keyStagesData: "KS1-2",
       subjectSlug: "Science",
@@ -26,22 +24,20 @@ describe("buildCurriculumMetadata", () => {
     );
   });
 
-  it('should return the title string for "units" tab and "title" identifier', () => {
+  it('should return the title string for "units" tab and "title" metadataType', () => {
     const result = buildCurriculumMetadata({
-      identifier: "title",
+      metadataType: "title",
       tab: "units",
       keyStagesData: "KS3-4",
       subjectSlug: "English",
       examboardSlug: "edexcel",
     });
-    expect(result).toBe(
-      "KS3-4 English Edexcel Curriculum Unit Sequence | Oak National Academy",
-    );
+    expect(result).toBe("KS3-4 English Edexcel Curriculum Unit Sequence");
   });
 
-  it('should return the description string for "units" tab and "description" identifier', () => {
+  it('should return the description string for "units" tab and "description" metadataType', () => {
     const result = buildCurriculumMetadata({
-      identifier: "description",
+      metadataType: "description",
       tab: "units",
       keyStagesData: "KS3-4",
       subjectSlug: "History",
