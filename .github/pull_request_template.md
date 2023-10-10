@@ -27,3 +27,4 @@ How it should now look:
 - [ ] Considered impact on accessibility
 - [ ] Design sign-off
 - [ ] Approved by product owner
+- [ ] Does this PR update a package with a breaking change
