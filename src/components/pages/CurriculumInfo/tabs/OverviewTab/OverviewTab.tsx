@@ -86,17 +86,19 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <Flex $mv={10}>
+      <Flex $mb={10}>
         <Box
-          $pt={20}
           $mr={16}
           $pb={48}
           $maxWidth={["100%", "100%", "65%"]}
           $textAlign={"left"}
         >
+          <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={24}>
+            Overview
+          </Heading>
           <Heading
-            tag="h2"
-            $font={["heading-5", "heading-4"]}
+            tag="h3"
+            $font={["heading-6", "heading-5"]}
             data-testid="intent-heading"
             $mb={20}
             line-height={48}
@@ -141,7 +143,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       >
         <BrushBorders color={"mint30"} />
         <Box $ma={16}>
-          <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+          <Heading tag="h3" $font={["heading-6", "heading-5"]}>
             Subject principles
           </Heading>
           <UL $reset={true} $mt={24}>
@@ -168,7 +170,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             $alignItems={"flex-start"}
             $gap={[16, 24]}
           >
-            <Heading tag="h2" $font={["heading-5", "heading-4"]}>
+            <Heading tag="h3" $font={["heading-6", "heading-5"]}>
               Video guide
             </Heading>
             <P $font={"body-1"}>
@@ -219,7 +221,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             }}
           />
           <Box>
-            <Heading tag="h2" $font={["heading-5", "heading-4"]} $mb={20}>
+            <Heading tag="h3" $font={["heading-6", "heading-5"]} $mb={20}>
               Our curriculum partner
             </Heading>
             <Typography $font={"body-1"}>{partnerBio}</Typography>

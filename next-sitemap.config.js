@@ -42,26 +42,14 @@ module.exports = {
       {
         userAgent: "*",
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
-        allow: ["/"],
-        disallow: [
-          "/beta/",
-          "/beta",
-          "/teachers/",
-          "/teachers",
-          "/teachers-2023/",
-          "/teachers-2023",
-        ],
+        allow: ["/", "/teachers/curriculum", "teachers/curriculum/"],
+        disallow: ["/teachers/", "/teachers/key-stages/"],
       },
     ],
   },
   exclude: [
     // Don't add beta pages to the sitemap for now.
-    "/beta",
-    "/beta/*",
-    "/teachers",
     "/teachers/*",
-    "/teachers-2023",
-    "/teachers-2023/*",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
