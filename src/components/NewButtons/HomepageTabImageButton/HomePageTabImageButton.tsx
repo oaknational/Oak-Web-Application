@@ -107,6 +107,7 @@ const HomePageTabImageButton = forwardRef<
   const noneNulltitle = title ?? htmlButtonProps.title ?? defaultTitle;
   const theme = useTheme();
   const underlineColor = theme.buttonFocusUnderlineColors["black"] || "black";
+  const imageSlug = isCurrent ? activeImageSlug : passiveImageSlug;
 
   return (
     <StyledButton
@@ -122,10 +123,11 @@ const HomePageTabImageButton = forwardRef<
       <Flex $flexDirection={"column"} $alignItems={"center"}>
         <Flex $width={96} $height={96} $justifyContent={"center"}>
           <Illustration
-            slug={isCurrent ? activeImageSlug : passiveImageSlug}
+            slug={imageSlug}
             noCrop
             $height={"100%"}
             $width={"auto"}
+            data-testid={imageSlug}
           />
         </Flex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>

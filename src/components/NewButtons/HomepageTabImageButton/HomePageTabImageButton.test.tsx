@@ -11,12 +11,41 @@ describe("Button", () => {
         label="Click me"
         onClick={spy}
         title={""}
-        imageSlug={"magic-carpet"}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
       />,
     );
 
     const button = getByRole("button");
     expect(button).toBeInTheDocument();
+  });
+
+  it("renders active image when isCurrent is true", () => {
+    const { getByTestId } = renderWithTheme(
+      <Button
+        label="Click me"
+        title={""}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug={"atoms"}
+        isCurrent={true}
+      />,
+    );
+
+    expect(getByTestId("magic-carpet")).toBeInTheDocument();
+  });
+
+  it("renders active image when isCurrent is false", () => {
+    const { getByTestId } = renderWithTheme(
+      <Button
+        label="Click me"
+        title={""}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug={"atoms"}
+        isCurrent={false}
+      />,
+    );
+
+    expect(getByTestId("atoms")).toBeInTheDocument();
   });
 
   it("calls onClick function when button is clicked", () => {
@@ -27,7 +56,8 @@ describe("Button", () => {
         label="Click me"
         onClick={spy}
         title={""}
-        imageSlug={"magic-carpet"}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
       />,
     );
 
@@ -46,7 +76,8 @@ describe("Button", () => {
         disabled={true}
         onClick={spy}
         title={""}
-        imageSlug={"magic-carpet"}
+        activeImageSlug={"magic-carpet"}
+        passiveImageSlug="magic-carpet"
       />,
     );
 
