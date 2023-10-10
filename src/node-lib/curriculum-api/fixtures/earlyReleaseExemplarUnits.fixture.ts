@@ -78,7 +78,7 @@ const earlyReleaseExemplarUnitsFixture = (
           index: 2,
         },
         {
-          title: "South America: Why does the Amazon matter?",
+          title: "South America: why does the Amazon matter?",
           lessonCount: 8,
           keyStageSlug: "ks2",
           yearTitle: "Year 5",
@@ -321,7 +321,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 7,
-          lessonCount: 6, //holding number
+          lessonCount: 4,
         },
         {
           title: "Perimeter and area",
