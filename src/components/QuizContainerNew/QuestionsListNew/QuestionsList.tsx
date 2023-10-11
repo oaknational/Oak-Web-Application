@@ -20,7 +20,7 @@ const QuestionsList: FC<QuizQuestionListProps> = (props) => {
       <Heading $font={"heading-5"} tag={"h3"}>
         {questionCount} Questions
       </Heading>
-      <MathJaxContext>
+      <MathJaxContext version={3} src={"/mathjax/tex-mml-chtml.js"}>
         <Flex $flexDirection={"column"} $gap={56} role="list">
           {questions.map((question, i) => {
             return (
