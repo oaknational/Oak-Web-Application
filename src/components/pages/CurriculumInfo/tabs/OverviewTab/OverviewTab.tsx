@@ -173,7 +173,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             <ButtonAsLink
               variant="buttonStyledAsLink"
               label="Read more about our new curriculum"
-              page={"develop-your-curriculum"}
+              page={"blog-single"}
+              blogSlug="our-approach-to-curriculum"
               icon="chevron-right"
               background={"white"}
               $iconPosition="trailing"
