@@ -26,6 +26,7 @@ const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
       $position={"relative"}
       $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
       $transition={"all 0.4s ease-out"}
+      data-testid="list-item-icon"
     >
       <SubjectIcon
         subjectSlug={subjectSlug}

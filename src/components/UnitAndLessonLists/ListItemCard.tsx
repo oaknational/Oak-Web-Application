@@ -50,6 +50,7 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
         $alignItems={"start"}
         $background={applyHoverStyles ? "grey1" : background}
+        data-testid="list-item-card-container"
       >
         {children}
       </Flex>
