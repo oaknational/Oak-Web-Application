@@ -48,7 +48,7 @@ module.exports = {
     ],
   },
   exclude: [
-    //Exclude lesson journey pages to the sitemap.
+    //Exclude lesson journey pages from the sitemap.
     "/teachers/key-stages",
     "/teachers/key-stages/*",
     "/teachers/lessons",
