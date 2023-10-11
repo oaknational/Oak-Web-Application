@@ -40,9 +40,8 @@ const ProgrammeListItem: FC<
       data-testid={"programme-list-item"}
       $background={isHovered ? "grey1" : "white"}
       $transition={"all 0.4s ease-out"}
-      $pa={16}
     >
-      <Flex>
+      <Flex $pa={16}>
         <OakLink
           {...primaryTargetProps}
           page={"unit-index"}
