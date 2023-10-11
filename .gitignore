@@ -89,3 +89,6 @@ src/image-data/generated/*.svg
 
 # Madge generated graph files
 madge
+
+# mathjax
+public/mathjax/**/*
