@@ -974,8 +974,8 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "hfOk7Yr7dBSV2ewBPtfG",
-          "br": "master",
+          "ac": "kZdQqTAcDVGa1Sy6gyeh",
+          "br": "CF1C4JuaI",
           "en": env,
           "ev": eventId,
           "ha": hash,
@@ -1001,8 +1001,8 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "hfOk7Yr7dBSV2ewBPtfG",
-          "br": "master",
+          "ac": "kZdQqTAcDVGa1Sy6gyeh",
+          "br": "CF1C4JuaI",
           "en": env,
           "ty": type,
           "sc": "5PhajbVijwhXVKIJtGMT",
@@ -1159,6 +1159,13 @@ export const PageName = {
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];
 
+export const Phase = {
+  'PRIMARY': 'primary',
+  'SECONDARY': 'secondary',
+} as const;
+export type PhaseType = typeof Phase;
+export type PhaseValueType = PhaseType[keyof PhaseType];
+
 export const SearchSource = {
   'HOMEPAGE_SEARCH_BOX': 'homepage search box',
   'SEARCH_PAGE_SEARCH_BOX': 'search page search box',
@@ -1300,9 +1307,9 @@ export function setAvoLogger(avoLogger: AvoLogger | null) {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6FJxOlnzBp/trigger/Hgd_u_6rr
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6FJxOlnzBp/trigger/Hgd_u_6rr
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6FJxOlnzBp}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6FJxOlnzBp}
  */
 export function planALessonSelected() {
   // @ts-ignore
@@ -1341,9 +1348,9 @@ export function planALessonSelected() {
  *
  * When to trigger this event:
  * 1. User has completed the newsletter fields and pressed the Sign Up button
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt/trigger/_MC_apwfp
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/sLqKBjU-Wt/trigger/_MC_apwfp
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/sLqKBjU-Wt}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/sLqKBjU-Wt}
  */
 export function newsletterSignUpCompleted() {
   // @ts-ignore
@@ -1385,14 +1392,14 @@ export interface ClassroomSelectedProperties {
  *
  * When to trigger this event:
  * 1. Classroom app selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/d46nqqMBY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/esgLdNSBsj/trigger/d46nqqMBY
  * 2. Classroom app selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj/trigger/M_vqoTLFQ
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/esgLdNSBsj/trigger/M_vqoTLFQ
  *
  * @param properties the properties associatied with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/esgLdNSBsj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/esgLdNSBsj}
  */
 export function classroomSelected(properties: ClassroomSelectedProperties) {
   // @ts-ignore
@@ -1435,14 +1442,14 @@ export interface TeacherHubSelectedProperties {
  *
  * When to trigger this event:
  * 1. Teacher Hub selected from homepage card
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3/trigger/8sYQASFRC
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/kp-dTd4WU3/trigger/8sYQASFRC
  * 2. Teacher Hub selected from menu
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3/trigger/_JhfvPPiP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/kp-dTd4WU3/trigger/_JhfvPPiP
  *
  * @param properties the properties associatied with this event
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/kp-dTd4WU3}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/kp-dTd4WU3}
  */
 export function teacherHubSelected(properties: TeacherHubSelectedProperties) {
   // @ts-ignore
@@ -1482,9 +1489,9 @@ export function teacherHubSelected(properties: TeacherHubSelectedProperties) {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/pI9xLEeG6a/trigger/dRt9RWsfe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/pI9xLEeG6a/trigger/dRt9RWsfe
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/pI9xLEeG6a}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/pI9xLEeG6a}
  */
 export function developYourCurriculumSelected() {
   // @ts-ignore
@@ -1523,9 +1530,9 @@ export function developYourCurriculumSelected() {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/LqBk-euseD/trigger/F9AZuqUAA
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/LqBk-euseD/trigger/F9AZuqUAA
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/LqBk-euseD}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/LqBk-euseD}
  */
 export function supportYourTeamSelected() {
   // @ts-ignore
@@ -1568,13 +1575,13 @@ export interface NotificationSelectedProperties {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/M_zZRmq4zA/trigger/8JSZfjNwi
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/M_zZRmq4zA/trigger/8JSZfjNwi
  *
  * @param properties the properties associatied with this event
  * @param properties.linkUrl: The href of a link
  * @param properties.notificationHeadline: The heading/link text in a notification card
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/M_zZRmq4zA}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/M_zZRmq4zA}
  */
 export function notificationSelected(
   properties: NotificationSelectedProperties) {
@@ -1614,7 +1621,7 @@ export function notificationSelected(
 /**
  * About Selected: About us is selected from the Launch homepage
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Aj3imCEK7t}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Aj3imCEK7t}
  */
 export function aboutSelected() {
   // @ts-ignore
@@ -1669,7 +1676,7 @@ export interface VideoStartedProperties {
  * @param properties.isMuted: Indicates whether video was muted when the event was triggered
  * @param properties.videoLocation: Where is the video on the site (eg. webinar, marketing, lesson, blog, etc)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/G0I28K0B2f}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/G0I28K0B2f}
  */
 export function videoStarted(properties: VideoStartedProperties) {
   // @ts-ignore
@@ -1735,7 +1742,7 @@ export interface VideoPausedProperties {
  * @param properties.isMuted: Indicates whether video was muted when the event was triggered
  * @param properties.videoLocation: Where is the video on the site (eg. webinar, marketing, lesson, blog, etc)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/z91WauKeVB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/z91WauKeVB}
  */
 export function videoPaused(properties: VideoPausedProperties) {
   // @ts-ignore
@@ -1801,7 +1808,7 @@ export interface VideoPlayedProperties {
  * @param properties.isMuted: Indicates whether video was muted when the event was triggered
  * @param properties.videoLocation: Where is the video on the site (eg. webinar, marketing, lesson, blog, etc)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/r4DFADUHFh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/r4DFADUHFh}
  */
 export function videoPlayed(properties: VideoPlayedProperties) {
   // @ts-ignore
@@ -1867,7 +1874,7 @@ export interface VideoFinishedProperties {
  * @param properties.isMuted: Indicates whether video was muted when the event was triggered
  * @param properties.videoLocation: Where is the video on the site (eg. webinar, marketing, lesson, blog, etc)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/NP9klWkaki}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/NP9klWkaki}
  */
 export function videoFinished(properties: VideoFinishedProperties) {
   // @ts-ignore
@@ -1933,7 +1940,7 @@ export interface LessonResourcesDownloadedProperties {
  *
  * When to trigger this event:
  * 1. The download .zip button is clicked on the lesson download page and submission passes validation checks
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws/trigger/sAqordxVG
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/k9ZQJai7ws/trigger/sAqordxVG
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -1951,7 +1958,7 @@ export interface LessonResourcesDownloadedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.emailSupplied: A user has signed up for updates on the downloads page
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/k9ZQJai7ws}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/k9ZQJai7ws}
  */
 export function lessonResourcesDownloaded(
   properties: LessonResourcesDownloadedProperties) {
@@ -2023,7 +2030,7 @@ export interface KeyStageSelectedProperties {
  *
  * When to trigger this event:
  * 1.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ONADbQPez/trigger/bkIRr49k7
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/7ONADbQPez/trigger/bkIRr49k7
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2031,7 +2038,7 @@ export interface KeyStageSelectedProperties {
  * @param properties.navigatedFrom: The location of the link used to navigate to the current page
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/7ONADbQPez}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/7ONADbQPez}
  */
 export function keyStageSelected(properties: KeyStageSelectedProperties) {
   // @ts-ignore
@@ -2081,7 +2088,7 @@ export interface SubjectSelectedProperties {
  *
  * When to trigger this event:
  * 1. One of the yellow subject cards is selected
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ufkcMq0HT4/trigger/Pl87P0XPk
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/ufkcMq0HT4/trigger/Pl87P0XPk
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2090,7 +2097,7 @@ export interface SubjectSelectedProperties {
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/ufkcMq0HT4}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/ufkcMq0HT4}
  */
 export function subjectSelected(properties: SubjectSelectedProperties) {
   // @ts-ignore
@@ -2143,7 +2150,7 @@ export interface UnitSelectedProperties {
  *
  * When to trigger this event:
  * 1. A unit card is selected from the unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh/trigger/t8lbfIsGe
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Me4ouIgPxh/trigger/t8lbfIsGe
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2154,7 +2161,7 @@ export interface UnitSelectedProperties {
  * @param properties.unitSlug: Human-readable unique ID of the current unit.
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Me4ouIgPxh}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Me4ouIgPxh}
  */
 export function unitSelected(properties: UnitSelectedProperties) {
   // @ts-ignore
@@ -2211,7 +2218,7 @@ export interface LessonSelectedProperties {
  *
  * When to trigger this event:
  * 1. Lesson is selected from listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/iUvld79OSb/trigger/TnGi5eBdB
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/iUvld79OSb/trigger/TnGi5eBdB
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2224,7 +2231,7 @@ export interface LessonSelectedProperties {
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/iUvld79OSb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/iUvld79OSb}
  */
 export function lessonSelected(properties: LessonSelectedProperties) {
   // @ts-ignore
@@ -2280,7 +2287,7 @@ export interface WebinarPageViewedProperties {
  * @param properties.webinarCategory: Category of the webinar
  * @param properties.videoAvailable: Watchable video is available on page (eg. not 'upcoming' or 'processing' status
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/-9FHudlATb}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/-9FHudlATb}
  */
 export function webinarPageViewed(properties: WebinarPageViewedProperties) {
   // @ts-ignore
@@ -2322,9 +2329,9 @@ export function webinarPageViewed(properties: WebinarPageViewedProperties) {
  *
  * When to trigger this event:
  * 1. Visit help centre button clicked
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Ls0Ou1w7qK/trigger/RAhU-otN8
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Ls0Ou1w7qK/trigger/RAhU-otN8
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Ls0Ou1w7qK}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Ls0Ou1w7qK}
  */
 export function helpCentreSelected() {
   // @ts-ignore
@@ -2371,7 +2378,7 @@ export interface LearningThemeSelectedProperties {
  *
  * When to trigger this event:
  * 1. A learning theme is selected on a unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Vg3AmapucP/trigger/ssM2tCEE3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Vg3AmapucP/trigger/ssM2tCEE3
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2381,7 +2388,7 @@ export interface LearningThemeSelectedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.learningThemeName: Name of the learning theme used to group units
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/Vg3AmapucP}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/Vg3AmapucP}
  */
 export function learningThemeSelected(
   properties: LearningThemeSelectedProperties) {
@@ -2437,7 +2444,7 @@ export interface TierSelectedProperties {
  * 1. On the unit page a Learning tier is selected
 
 NB. This currently only impacts KS4 Maths, but is expected to also impact KS4 Sciences once the new content is introduced
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6lyU_rQz42/trigger/HHKzuwVa4
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6lyU_rQz42/trigger/HHKzuwVa4
  *
  * @param properties the properties associatied with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -2447,7 +2454,7 @@ NB. This currently only impacts KS4 Maths, but is expected to also impact KS4 Sc
  * @param properties.tierName: Name of the learning tier
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/6lyU_rQz42}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6lyU_rQz42}
  */
 export function tierSelected(properties: TierSelectedProperties) {
   // @ts-ignore
@@ -2500,7 +2507,7 @@ export interface PageviewProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.pageName: The main pages of a user journey eg. subject listing, unit listing, etc
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/iYVEEwNT0q}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/iYVEEwNT0q}
  */
 export function pageview(properties: PageviewProperties) {
   // @ts-ignore
@@ -2551,7 +2558,7 @@ export interface ResourceContainerExpandedProperties {
  * 1. A container chevron is expanded to allow a view of the resource.
 
 NB. resource could be attached at a lesson or unit level.
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/B-ti6Ajp8/trigger/57LUx8uOY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/B-ti6Ajp8/trigger/57LUx8uOY
  *
  * @param properties the properties associatied with this event
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
@@ -2559,7 +2566,7 @@ NB. resource could be attached at a lesson or unit level.
  * @param properties.containerTitle: The title of the container bar.
 eg. Slide deck, Worksheet, Video, Starter quiz, Exit quiz, Unit quiz, Transcript, Lesson overview
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/B-ti6Ajp8}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/B-ti6Ajp8}
  */
 export function resourceContainerExpanded(
   properties: ResourceContainerExpandedProperties) {
@@ -2610,9 +2617,9 @@ export interface CurriculumMapDownloadedProperties {
  *
  * When to trigger this event:
  * 1. User clicks the Curriculum download (PDF) button on a unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/W9R2vOSii_/trigger/l30pZnEW3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/W9R2vOSii_/trigger/l30pZnEW3
  * 2. User clicks the Curriculum download (PDF) button on a lesson listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/W9R2vOSii_/trigger/0LJTo1tA3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/W9R2vOSii_/trigger/0LJTo1tA3
  *
  * @param properties the properties associatied with this event
  * @param properties.subjectTitle: Title of the current subject.
@@ -2622,7 +2629,7 @@ export interface CurriculumMapDownloadedProperties {
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.pageName: The main pages of a user journey eg. subject listing, unit listing, etc
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/W9R2vOSii_}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/W9R2vOSii_}
  */
 export function curriculumMapDownloaded(
   properties: CurriculumMapDownloadedProperties) {
@@ -2680,9 +2687,9 @@ export interface DownloadResourceButtonClickedProperties {
  *
  * When to trigger this event:
  * 1. Download all resources button is clicked on the lesson overview page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/w2ACuk2F3
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/0n50tfMg2N/trigger/w2ACuk2F3
  * 2. An individual resource download button on an expandable container is clicked (eg. slide deck, starter quiz, worksheet, etc)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N/trigger/5PBz6j66G
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/0n50tfMg2N/trigger/5PBz6j66G
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2696,7 +2703,7 @@ export interface DownloadResourceButtonClickedProperties {
  * @param properties.downloadResourceButtonName: The name of the button to download the resource (all, or individual resources)
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/0n50tfMg2N}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/0n50tfMg2N}
  */
 export function downloadResourceButtonClicked(
   properties: DownloadResourceButtonClickedProperties) {
@@ -2767,13 +2774,13 @@ export interface SearchAttemptedProperties {
  * 1. A user initiates a search from the homepage by
 entering the search term and clicking "Go"
 entering the search term and pressing ENTER on the keyboard
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/GRZ05_zLD
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/I_dSzYI2PB/trigger/GRZ05_zLD
  * 2. A user initiates a search from the search page (eg. they refine their search term or try looking for something else) by entering the search term and
 clicking "Go", or
 pressing ENTER
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/SG8O6HFoP
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/I_dSzYI2PB/trigger/SG8O6HFoP
  * 3. A search is initiated from the homepage by clicking on one of the search suggestion option beneath the search box
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB/trigger/5gULgsDoY
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/I_dSzYI2PB/trigger/5gULgsDoY
  *
  * @param properties the properties associatied with this event
  * @param properties.searchTerm: What the user has types in the search box
@@ -2784,7 +2791,7 @@ NB. ensure filters are sent in a consistent order
  * @param properties.searchSource: The location of the search box/entry point.
 eg. homepage search box, search page search box, hamburger menu search box (future)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/I_dSzYI2PB}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/I_dSzYI2PB}
  */
 export function searchAttempted(properties: SearchAttemptedProperties) {
   // @ts-ignore
@@ -2843,7 +2850,7 @@ export interface SearchResultClickedProperties {
  *
  * When to trigger this event:
  * 1. A search result card (could be unit or lesson) is clicked
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj/trigger/ZezXTZ0ri
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/_TD-gtSgIj/trigger/ZezXTZ0ri
  *
  * @param properties the properties associatied with this event
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -2861,7 +2868,7 @@ NB. ensure filters are sent in a consistent order
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.searchResultType: The type of result returned (eg. unit or lesson)
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/_TD-gtSgIj}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/_TD-gtSgIj}
  */
 export function searchResultClicked(properties: SearchResultClickedProperties
   ) {
@@ -2937,7 +2944,7 @@ export interface SearchCompletedProperties {
  *
  * When to trigger this event:
  * 1. The results are displayed on the search page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/QI7bIsW3os/trigger/IQb7tOYbR
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/QI7bIsW3os/trigger/IQb7tOYbR
  *
  * @param properties the properties associatied with this event
  * @param properties.searchFilterOptionSelected: The specific search filter option that has been selected (eg. 'ks2,ks3')
@@ -2948,7 +2955,7 @@ NB. ensure filters are sent in a consistent order
 NB. this is NOT returning 0 results, but an error displayed due to something like a network failure, etc
  * @param properties.searchResultsLoadTime: Amount of time taken to fetch and load the search results
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/QI7bIsW3os}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/QI7bIsW3os}
  */
 export function searchCompleted(properties: SearchCompletedProperties) {
   // @ts-ignore
@@ -2996,16 +3003,16 @@ export interface SearchJourneyInitiatedProperties {
  *
  * When to trigger this event:
  * 1. A user types in the search bar on the homepage (first letter is typed).
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/aeEheVqLW
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/rYxJBK8Kpm/trigger/aeEheVqLW
  * 2. A user types in the search bar on the search page (first letter is typed)
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm/trigger/5OM1jFoWf
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/rYxJBK8Kpm/trigger/5OM1jFoWf
  *
  * @param properties the properties associatied with this event
  * @param properties.searchSource: The location of the search box/entry point.
 eg. homepage search box, search page search box, hamburger menu search box (future)
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/events/rYxJBK8Kpm}
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/rYxJBK8Kpm}
  */
 export function searchJourneyInitiated(
   properties: SearchJourneyInitiatedProperties) {
@@ -3042,6 +3049,64 @@ export function searchJourneyInitiated(
   }
 }
 
+export interface CurriculumVisualiserAccessedProperties {
+  subjectTitle: string;
+  subjectSlug: string;
+  phase: PhaseValueType;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+}
+/**
+ * Curriculum Visualiser Accessed: A user opening the curriculum visualiser tool for use having select a subject and phase.
+ *
+ * When to trigger this event:
+ * 1. A user has clicked view after successfully completing the "Subject" and "School phase" fields.
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/_ImUDkApb7/trigger/R19ayisHj
+ * 2. Illustration of same component with would trigger this event but this time from the curriculum visualiser itself where this event could also be triggered
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/_ImUDkApb7/trigger/LFOFUdkpr
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.phase: School phase related to key stage and age of audience
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/_ImUDkApb7}
+ */
+export function curriculumVisualiserAccessed(
+  properties: CurriculumVisualiserAccessedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+  eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "_ImUDkApb7", "dd13d3ec7e874896ac77a4a52c8f6d44df6a394d02f2b5ed7022be1114cd3c01", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Curriculum Visualiser Accessed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("_ImUDkApb7", "Curriculum Visualiser Accessed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Accessed", eventProperties, "_ImUDkApb7", "dd13d3ec7e874896ac77a4a52c8f6d44df6a394d02f2b5ed7022be1114cd3c01");
+    }
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -3052,6 +3117,7 @@ export default {
   DownloadResourceButtonName,
   ResourceType,
   PageName,
+  Phase,
   SearchSource,
   NavigatedFrom,
   KeyStageTitle,
@@ -3086,7 +3152,8 @@ export default {
   searchResultClicked,
   searchCompleted,
   searchJourneyInitiated,
+  curriculumVisualiserAccessed,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultClicked","searchCompleted","searchJourneyInitiated"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultClicked","searchCompleted","searchJourneyInitiated","curriculumVisualiserAccessed"]
