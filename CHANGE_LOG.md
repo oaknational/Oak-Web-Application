@@ -1,3 +1,10 @@
+## [1.275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.0...v1.275.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* show line breaks in curriculum explainer ([4035682](https://github.com/oaknational/Oak-Web-Application/commit/40356828c96e3e9c856a873616008537ba77ced3))
+
 # [1.275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.2...v1.275.0) (2023-10-11)
 
 
