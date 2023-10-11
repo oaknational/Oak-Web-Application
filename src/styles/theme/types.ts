@@ -26,8 +26,11 @@ export type PixelSpacing =
   | 2
   | 3
   | 4
+  | 5
   | 6
+  | 7
   | 8
+  | 9
   | 10
   | 12
   | 14
@@ -47,6 +50,7 @@ export type PixelSpacing =
   | 46
   | 48
   | 50
+  | 52
   | 56
   | 58
   | 60
@@ -192,9 +196,11 @@ const OakColorNameZod = z.union([
   z.literal("lavender"),
   z.literal("lavender50"),
   z.literal("lavender30"),
+  z.literal("lavender60"),
   z.literal("pink"),
   z.literal("pink50"),
   z.literal("pink30"),
+  z.literal("pink60"),
   z.literal("amber"),
   z.literal("amber50"),
   z.literal("amber30"),

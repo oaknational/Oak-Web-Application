@@ -101,7 +101,7 @@ export type TypographyProps = FontProps & {
   >;
   $textAlign?: ResponsiveValues<CSSProperties["textAlign"]>;
   $whiteSpace?: ResponsiveValues<
-    "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-space"
+    "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-spaces"
   >;
   $wordWrap?: ResponsiveValues<"normal" | "break-word" | "initial" | "inherit">;
 };

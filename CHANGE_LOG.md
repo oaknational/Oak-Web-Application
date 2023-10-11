@@ -1,3 +1,75 @@
+# [1.279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.278.0...v1.279.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* move padding back to whence it came ([361b178](https://github.com/oaknational/Oak-Web-Application/commit/361b1787cdbd441e3bfd6b15ee3383e942258cc0))
+
+
+### Features
+
+* make early release units behave sensibly on hover ([1d96086](https://github.com/oaknational/Oak-Web-Application/commit/1d960868b3b8fddfbf026c32402a85baad41fe54))
+* remove subject icon transition on hover ([28c43d9](https://github.com/oaknational/Oak-Web-Application/commit/28c43d98064fa3bb31b13c91bbe49bc78534d1bb))
+* remove transform and change bg colour on listing card hover ([3f170a7](https://github.com/oaknational/Oak-Web-Application/commit/3f170a729400837334fd72b31c1f127d2a36b221))
+* remove unused drop shadow on hover ([3f025a4](https://github.com/oaknational/Oak-Web-Application/commit/3f025a4d8ae7cb01d6e99c8d9bce1af97f07f0e2))
+* test color changes on hover ([c337429](https://github.com/oaknational/Oak-Web-Application/commit/c3374293505bc563e0aea035f79646fe75f34bc2))
+* update colour of list item index on hover ([bc96895](https://github.com/oaknational/Oak-Web-Application/commit/bc968955baf2e04e616f0bd7014b67b0af80d374))
+* update early release units icon background colour on hover ([be2e78b](https://github.com/oaknational/Oak-Web-Application/commit/be2e78b1476930e7b2aaf3e0c9730e589797bcce))
+* update hover state for programme list item ([b9cc01b](https://github.com/oaknational/Oak-Web-Application/commit/b9cc01be23484e896fc0ab818f22429b2b6f7104))
+
+# [1.278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.277.0...v1.278.0) (2023-10-11)
+
+
+### Features
+
+* mathjax from package json ([7aeebcd](https://github.com/oaknational/Oak-Web-Application/commit/7aeebcdaf532e3db02bfe4acd8ede7f191e2cb30))
+* self host mathjax ([50e9347](https://github.com/oaknational/Oak-Web-Application/commit/50e9347bcb52977308d2048f9f35254beac14beb))
+
+# [1.277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.276.0...v1.277.0) (2023-10-11)
+
+
+### Features
+
+* **avo:** switch to posthog eu ([e0d3c97](https://github.com/oaknational/Oak-Web-Application/commit/e0d3c977fdb7dea4a528e7bad4c420e109852b88))
+
+# [1.276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.1...v1.276.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* updated link below video explainer ([6d3de41](https://github.com/oaknational/Oak-Web-Application/commit/6d3de41a77d5f8f9f47b1f1095f0c0ca11770dec))
+
+
+### Features
+
+* added videoExplainer to gql/types ([8fb3c68](https://github.com/oaknational/Oak-Web-Application/commit/8fb3c68b41c5a424350932fbd87b1e3872cf296c))
+* updated video text to come from sanity ([8fe0448](https://github.com/oaknational/Oak-Web-Application/commit/8fe044833435524833532977fea294c31d4bfb5f))
+
+## [1.275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.0...v1.275.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* show line breaks in curriculum explainer ([4035682](https://github.com/oaknational/Oak-Web-Application/commit/40356828c96e3e9c856a873616008537ba77ced3))
+
+# [1.275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.2...v1.275.0) (2023-10-11)
+
+
+### Features
+
+* **early-release:** change year for early release units ([882c6bb](https://github.com/oaknational/Oak-Web-Application/commit/882c6bb8a99568cc76dd6ba8ee5e38804565aa4a))
+
+## [1.274.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.1...v1.274.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* added tests for logic ([96b149b](https://github.com/oaknational/Oak-Web-Application/commit/96b149bcff82deb61346443f17df0fa1b23e23c4))
+* tab button selected state ([25aabd9](https://github.com/oaknational/Oak-Web-Application/commit/25aabd909ac94ee3136fd2be060f74c9b5613201))
+* update test name and import statement ([d25949b](https://github.com/oaknational/Oak-Web-Application/commit/d25949bd6fd68f90744acf4876470049d7d1f2f9))
+
+## [1.274.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.0...v1.274.1) (2023-10-10)
+
 # [1.274.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.3...v1.274.0) (2023-10-10)
 
 
