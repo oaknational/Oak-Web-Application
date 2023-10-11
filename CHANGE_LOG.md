@@ -1,3 +1,26 @@
+## [1.275.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.0...v1.275.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* show line breaks in curriculum explainer ([4035682](https://github.com/oaknational/Oak-Web-Application/commit/40356828c96e3e9c856a873616008537ba77ced3))
+
+# [1.275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.2...v1.275.0) (2023-10-11)
+
+
+### Features
+
+* **early-release:** change year for early release units ([882c6bb](https://github.com/oaknational/Oak-Web-Application/commit/882c6bb8a99568cc76dd6ba8ee5e38804565aa4a))
+
+## [1.274.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.1...v1.274.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* added tests for logic ([96b149b](https://github.com/oaknational/Oak-Web-Application/commit/96b149bcff82deb61346443f17df0fa1b23e23c4))
+* tab button selected state ([25aabd9](https://github.com/oaknational/Oak-Web-Application/commit/25aabd909ac94ee3136fd2be060f74c9b5613201))
+* update test name and import statement ([d25949b](https://github.com/oaknational/Oak-Web-Application/commit/d25949bd6fd68f90744acf4876470049d7d1f2f9))
+
 ## [1.274.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.0...v1.274.1) (2023-10-10)
 
 # [1.274.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.273.3...v1.274.0) (2023-10-10)
