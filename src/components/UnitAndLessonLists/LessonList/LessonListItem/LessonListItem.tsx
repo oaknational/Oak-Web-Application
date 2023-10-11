@@ -258,7 +258,6 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           <ListItemIconDesktop
             title={lessonTitle}
             background={isHovered && !expired ? backgroundOnHover : background}
-            isHovered={isHovered}
             subjectSlug={subjectSlug}
           />
           <ListItemIconMobile

@@ -8,11 +8,10 @@ export type ListItemIconDesktopProps = {
   title: string;
   subjectSlug: string;
   background: OakColorName;
-  isHovered: boolean;
 };
 
 const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
-  const { background, isHovered, subjectSlug } = props;
+  const { background, subjectSlug } = props;
 
   return (
     <Flex
@@ -24,7 +23,7 @@ const ListItemIconDesktop: FC<ListItemIconDesktopProps> = (props) => {
       $height={"100%"}
       $background={background}
       $position={"relative"}
-      $dropShadow={isHovered ? "subjectCardHover" : "subjectCard"}
+      $dropShadow={"subjectCard"}
       $transition={"all 0.4s ease-out"}
       data-testid="list-item-icon"
     >

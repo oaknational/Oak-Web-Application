@@ -172,7 +172,6 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
           <ListItemIconDesktop
             title={title}
             background={isHovered ? backgroundOnHover : background}
-            isHovered={isHovered}
             subjectSlug={subjectSlug}
           />
           <ListItemIconMobile
