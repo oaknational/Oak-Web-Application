@@ -1,3 +1,22 @@
+# [1.279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.278.0...v1.279.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* move padding back to whence it came ([361b178](https://github.com/oaknational/Oak-Web-Application/commit/361b1787cdbd441e3bfd6b15ee3383e942258cc0))
+
+
+### Features
+
+* make early release units behave sensibly on hover ([1d96086](https://github.com/oaknational/Oak-Web-Application/commit/1d960868b3b8fddfbf026c32402a85baad41fe54))
+* remove subject icon transition on hover ([28c43d9](https://github.com/oaknational/Oak-Web-Application/commit/28c43d98064fa3bb31b13c91bbe49bc78534d1bb))
+* remove transform and change bg colour on listing card hover ([3f170a7](https://github.com/oaknational/Oak-Web-Application/commit/3f170a729400837334fd72b31c1f127d2a36b221))
+* remove unused drop shadow on hover ([3f025a4](https://github.com/oaknational/Oak-Web-Application/commit/3f025a4d8ae7cb01d6e99c8d9bce1af97f07f0e2))
+* test color changes on hover ([c337429](https://github.com/oaknational/Oak-Web-Application/commit/c3374293505bc563e0aea035f79646fe75f34bc2))
+* update colour of list item index on hover ([bc96895](https://github.com/oaknational/Oak-Web-Application/commit/bc968955baf2e04e616f0bd7014b67b0af80d374))
+* update early release units icon background colour on hover ([be2e78b](https://github.com/oaknational/Oak-Web-Application/commit/be2e78b1476930e7b2aaf3e0c9730e589797bcce))
+* update hover state for programme list item ([b9cc01b](https://github.com/oaknational/Oak-Web-Application/commit/b9cc01be23484e896fc0ab818f22429b2b6f7104))
+
 # [1.278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.277.0...v1.278.0) (2023-10-11)
 
 
