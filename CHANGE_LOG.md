@@ -1,3 +1,10 @@
+# [1.277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.276.0...v1.277.0) (2023-10-11)
+
+
+### Features
+
+* **avo:** switch to posthog eu ([e0d3c97](https://github.com/oaknational/Oak-Web-Application/commit/e0d3c977fdb7dea4a528e7bad4c420e109852b88))
+
 # [1.276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.1...v1.276.0) (2023-10-11)
 
 
