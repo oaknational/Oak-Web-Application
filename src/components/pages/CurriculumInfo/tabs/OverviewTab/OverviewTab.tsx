@@ -110,6 +110,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             style={{ fontWeight: "light" }}
             $mt={10}
             $mr={12}
+            $whiteSpace={"break-spaces"}
           >
             {curriculaDesc}
           </Typography>
