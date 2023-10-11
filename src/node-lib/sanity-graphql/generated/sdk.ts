@@ -559,6 +559,8 @@ export type BlogWebinarCategorySorting = {
 export type BooleanFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is not equal to the given input. */
   neq?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -977,6 +979,8 @@ export type DateFilter = {
   gt?: InputMaybe<Scalars['Date']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Date']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Date']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -992,6 +996,8 @@ export type DatetimeFilter = {
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -1076,6 +1082,8 @@ export type FloatFilter = {
   gt?: InputMaybe<Scalars['Float']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Float']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Float']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -1356,6 +1364,8 @@ export type IntFilter = {
   gt?: InputMaybe<Scalars['Int']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Int']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Int']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -2913,6 +2923,8 @@ export type StringFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['String']['input']>;
   in?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value matches the given word/words. */
   matches?: InputMaybe<Scalars['String']['input']>;
   /** Checks if the value is not equal to the given input. */

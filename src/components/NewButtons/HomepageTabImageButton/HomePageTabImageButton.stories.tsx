@@ -20,7 +20,8 @@ type Story = StoryObj<typeof Component>;
 
 export const HomePageTabImageButton: Story = {
   args: {
-    imageSlug: "teacher-carrying-stuff",
+    activeImageSlug: "teacher-carrying-stuff-1023-black",
+    passiveImageSlug: "teacher-carrying-stuff-1023-oakgrey4",
     label: "Teaching Resources",
     isCurrent: false,
     isNew: true,
