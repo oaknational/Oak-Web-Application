@@ -14,7 +14,6 @@ import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPh
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import OakLink from "@/components/OakLink";
 
 export type OverviewTabProps = {
   data: {
@@ -32,13 +31,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     partnerBio,
     curriculumPartner,
     video,
-    videoAuthor,
+    videoExplainer,
   } = curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
-  const { subjectSlug, phaseSlug, examboardSlug } = curriculumSelectionSlugs;
-  const subjectPhaseSlug = examboardSlug
-    ? `${subjectSlug}-${phaseSlug}-${examboardSlug}`
-    : `${subjectSlug}-${phaseSlug}`;
+  const { subjectSlug } = curriculumSelectionSlugs;
 
   const createBullet = (item: string, i: number) => (
     <LI $mb={[12]} key={`principle-${i + 1}`} data-testid="subject-principles">
@@ -110,6 +106,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             style={{ fontWeight: "light" }}
             $mt={10}
             $mr={12}
+            $whiteSpace={"break-spaces"}
           >
             {curriculaDesc}
           </Typography>
@@ -153,7 +150,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </UL>
         </Box>
       </Card>
-      {video && videoAuthor && (
+      {video && videoExplainer && (
         <Flex
           $alignItems={"center"}
           $justifyContent={"flex-start"}
@@ -173,23 +170,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             <Heading tag="h3" $font={["heading-6", "heading-5"]}>
               Video guide
             </Heading>
-            <P $font={"body-1"}>
-              Our{" "}
-              <OakLink
-                subjectPhaseSlug={subjectPhaseSlug}
-                page="curriculum-units"
-                $textDecoration={"underline"}
-              >
-                new curriculum sequence
-              </OakLink>{" "}
-              has recently launched. For additional support, watch this video
-              guide by {videoAuthor} from our educational team, as they talk you
-              through how to use this new tool.
-            </P>
+            <P $font={"body-1"}>{videoExplainer}</P>
             <ButtonAsLink
               variant="buttonStyledAsLink"
               label="Read more about our new curriculum"
-              page={"develop-your-curriculum"}
+              page={"blog-single"}
+              blogSlug="our-approach-to-curriculum"
               icon="chevron-right"
               background={"white"}
               $iconPosition="trailing"
