@@ -1,5 +1,7 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
+const path = require("path");
 
+const CopyPlugin = require("copy-webpack-plugin");
 const {
   BugsnagBuildReporterPlugin,
   BugsnagSourceMapUploaderPlugin,
@@ -125,6 +127,17 @@ module.exports = async (phase) => {
       );
       // Modify the file loader rule to ignore *.svg, since we have it handled now.
       fileLoaderRule.exclude = /\.svg$/i;
+
+      config.plugins.push(
+        new CopyPlugin({
+          patterns: [
+            {
+              from: path.join(__dirname, "node_modules/mathjax/es5"),
+              to: path.join(__dirname, "public/mathjax"),
+            },
+          ],
+        }),
+      );
 
       // Production and preview builds
       if (!dev && !isTestBuild) {
