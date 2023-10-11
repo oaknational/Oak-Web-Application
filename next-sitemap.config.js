@@ -48,8 +48,13 @@ module.exports = {
     ],
   },
   exclude: [
-    // Don't add beta pages to the sitemap for now.
-    "/teachers/*",
+    //Exclude lesson journey pages to the sitemap.
+    "/teachers/key-stages",
+    "/teachers/key-stages/*",
+    "/teachers/lessons",
+    "/teachers/lessons/*",
+    "/teachers/programmes",
+    "/teachers/programmes/*",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
