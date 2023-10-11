@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-// import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
@@ -44,7 +43,6 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           description:
             "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
         }),
-        ...{ noFollow: false, noIndex: false },
       }}
       $background={"grey1"}
     >
