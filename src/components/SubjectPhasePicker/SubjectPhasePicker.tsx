@@ -23,6 +23,8 @@ import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import TagPromotional from "@/components/TagPromotional";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -107,6 +109,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "units";
   const path = router.asPath;
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -220,6 +225,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
       if (selectedExamboard) {
         subjectPhaseSlug += "-" + selectedExamboard.slug;
+      }
+      if (selectedPhase && selectedSubject) {
+        track.curriculumVisualiserAccessed({
+          subjectTitle: selectedSubject.title /* string */,
+          subjectSlug: selectedSubject.slug /* string */,
+          phase:
+            selectedPhase.slug === "primary"
+              ? "primary"
+              : "secondary" /* (restricted to : "primary", "secondary") */,
+          analyticsUseCase:
+            analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+        });
       }
       router.push({
         pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
