@@ -1,3 +1,18 @@
+# [1.278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.277.0...v1.278.0) (2023-10-11)
+
+
+### Features
+
+* mathjax from package json ([7aeebcd](https://github.com/oaknational/Oak-Web-Application/commit/7aeebcdaf532e3db02bfe4acd8ede7f191e2cb30))
+* self host mathjax ([50e9347](https://github.com/oaknational/Oak-Web-Application/commit/50e9347bcb52977308d2048f9f35254beac14beb))
+
+# [1.277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.276.0...v1.277.0) (2023-10-11)
+
+
+### Features
+
+* **avo:** switch to posthog eu ([e0d3c97](https://github.com/oaknational/Oak-Web-Application/commit/e0d3c977fdb7dea4a528e7bad4c420e109852b88))
+
 # [1.276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.1...v1.276.0) (2023-10-11)
 
 
