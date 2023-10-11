@@ -81,7 +81,6 @@ const footerSections: FooterSections = {
       { text: "Privacy policy", href: "/legal/privacy-policy" },
       { text: "Cookie policy", href: "/legal/cookie-policy" },
       { text: "Manage cookie settings", type: "consent-manager-toggle" },
-      { text: "Copyright notice", href: "/legal/copyright-notice" },
       { text: "Terms & conditions", href: "/legal/terms-and-conditions" },
       {
         text: "Accessibility statement",
