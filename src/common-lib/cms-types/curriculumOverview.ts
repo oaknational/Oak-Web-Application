@@ -13,6 +13,7 @@ export const curriculumOverviewCMSSchema = z
     }),
     video: videoSchema.nullish(),
     videoAuthor: z.string().nullish(),
+    videoExplainer: z.string().nullish(),
   })
   .merge(documentSchema);
 
