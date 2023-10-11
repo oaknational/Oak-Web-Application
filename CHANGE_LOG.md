@@ -1,3 +1,10 @@
+# [1.275.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.2...v1.275.0) (2023-10-11)
+
+
+### Features
+
+* **early-release:** change year for early release units ([882c6bb](https://github.com/oaknational/Oak-Web-Application/commit/882c6bb8a99568cc76dd6ba8ee5e38804565aa4a))
+
 ## [1.274.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.274.1...v1.274.2) (2023-10-11)
 
 
