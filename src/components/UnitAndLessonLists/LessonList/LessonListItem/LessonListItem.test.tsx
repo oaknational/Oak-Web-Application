@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { screen } from "@testing-library/react";
 
 import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
 
@@ -133,5 +134,34 @@ describe("Lesson List Item", () => {
       lessonName: "Add two surds",
       lessonSlug: "add-two-surds-6wwk0c",
     });
+  });
+  test("it changes the card background colour on hover", async () => {
+    render(<LessonListItem {...props} />);
+    const cardContainer = screen.getByTestId("list-item-card-container");
+    expect(cardContainer).toHaveStyle("background-color: #ffffff");
+
+    const user = userEvent.setup();
+    await user.hover(cardContainer);
+    expect(cardContainer).toHaveStyle("background-color: #f2f2f2");
+  });
+  test("it changes the index background on hover", async () => {
+    render(<LessonListItem {...props} />);
+
+    const indexContainer = screen.getByTestId("list-item-index-container");
+    expect(indexContainer).toHaveStyle("background-color: #deb7d5");
+
+    const user = userEvent.setup();
+    await user.hover(indexContainer);
+    expect(indexContainer).toHaveStyle("background-color: #cF9cc3");
+  });
+  test("it changes the list icon background on hover", async () => {
+    render(<LessonListItem {...{ ...props, fromSearchPage: true }} />);
+
+    const listIconContainer = screen.getByTestId("list-item-icon");
+    expect(listIconContainer).toHaveStyle("background-color: #deb7d5");
+
+    const user = userEvent.setup();
+    await user.hover(listIconContainer);
+    expect(listIconContainer).toHaveStyle("background-color: #cF9cc3");
   });
 });
