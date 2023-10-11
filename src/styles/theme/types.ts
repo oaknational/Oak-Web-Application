@@ -196,6 +196,7 @@ const OakColorNameZod = z.union([
   z.literal("lavender"),
   z.literal("lavender50"),
   z.literal("lavender30"),
+  z.literal("lavender60"),
   z.literal("pink"),
   z.literal("pink50"),
   z.literal("pink30"),

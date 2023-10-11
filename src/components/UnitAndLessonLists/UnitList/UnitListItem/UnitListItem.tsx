@@ -104,10 +104,15 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   let background: OakColorName = expired ? "oakGreen" : "teachersLilac";
   let backgroundOnHover: OakColorName = "teachersPastelBlue";
 
-  // This override is for the units on the early-release units page
+  // This override is for the units on the early-release units page which use different shades of pink/blue
   if (subjectIconBackground) {
     background = subjectIconBackground;
-    backgroundOnHover = subjectIconBackground;
+    backgroundOnHover =
+      subjectIconBackground === "pink"
+        ? "pink60"
+        : subjectIconBackground === "lavender"
+        ? "lavender60"
+        : subjectIconBackground;
   }
 
   return (
