@@ -56,6 +56,7 @@ module.exports = {
     "/teachers/programmes",
     "/teachers/programmes/*",
     "/teachers/early-release-units",
+    "/teachers/search",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",
