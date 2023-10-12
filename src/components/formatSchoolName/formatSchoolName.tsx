@@ -7,15 +7,14 @@ export const formatSchoolName = (
   const schoolNameString = `${schoolName}`;
   const inputValueString = inputValue || "";
   const regexPattern = new RegExp(inputValueString, "i");
+  const firstIndexOfPattern = schoolNameString.search(regexPattern);
+  const sliceToMakeBold = schoolNameString.slice(
+    firstIndexOfPattern,
+    firstIndexOfPattern + (inputValueString.length || 0),
+  );
   const schoolNameWithBoldInput = schoolNameString.replace(
-    schoolNameString.slice(
-      schoolNameString.search(regexPattern),
-      schoolNameString.search(regexPattern) + (inputValueString.length || 0),
-    ),
-    `<strong>${schoolNameString.slice(
-      schoolNameString.search(regexPattern),
-      schoolNameString.search(regexPattern) + (inputValueString.length || 0),
-    )}</strong>`,
+    sliceToMakeBold,
+    `<strong>${sliceToMakeBold}</strong>`,
   );
 
   return (
