@@ -1,6 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-// import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
