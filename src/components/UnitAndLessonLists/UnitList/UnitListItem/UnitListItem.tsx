@@ -101,7 +101,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  let background: OakColorName = expired ? "oakGreen" : "teachersLilac";
+  let background: OakColorName = expired ? "oakGrey2" : "teachersLilac";
   let backgroundOnHover: OakColorName = "teachersPastelBlue";
 
   // This override is for the units on the early-release units page which use different shades of pink/blue
