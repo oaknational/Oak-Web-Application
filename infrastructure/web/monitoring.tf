@@ -18,6 +18,16 @@ locals {
       warning_threshold  = 0
       critical_threshold = 10
     },
+    {
+      name    = "OWA page timeouts"
+      type    = "log alert"
+      message = "Netlify has several process that are timing out @slack-Oak_National_Academy-dev-general-alerts"
+      query   = "logs(\"source:netlify service:oak-web-application @branch:main @duration:>3s\").index(\"*\").rollup(\"count\")"
+
+      evaluate_period    = "5m"
+      warning_threshold  = 3
+      critical_threshold = 10
+    }
   ] : []
 }
 
