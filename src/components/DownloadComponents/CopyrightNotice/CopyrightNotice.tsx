@@ -5,11 +5,22 @@ import P from "@/components/Typography/P";
 import OakLink from "@/components/OakLink";
 import Box from "@/components/Box/Box";
 import { FontProps } from "@/styles/utils/typography";
+import Icon from "@/components/Icon";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
 };
+
+const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
+  props.openLinksExternally ? (
+    <Icon
+      name="external"
+      verticalAlign="bottom"
+      size={20}
+      data-testid="external-link-icon"
+    />
+  ) : null;
 
 const PreAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
@@ -25,7 +36,8 @@ const PreAlbCopyright = (
         target: props.openLinksExternally ? "_blank" : "_self",
       }}
     >
-      terms &amp; conditions
+      terms &amp; conditions{" "}
+      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OakLink>
     , except where otherwise stated.
   </P>
@@ -48,7 +60,8 @@ const PostAlbCopyright = (
       href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
       target={props.openLinksExternally ? "_blank" : "_self"}
     >
-      Open Government Licence version 3.0
+      Open Government Licence version 3.0{" "}
+      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </StyledLink>{" "}
     except where otherwise stated. See{" "}
     <OakLink
@@ -59,7 +72,8 @@ const PostAlbCopyright = (
         target: props.openLinksExternally ? "_blank" : "_self",
       }}
     >
-      Oak's terms &amp; conditions
+      Oak's terms &amp; conditions{" "}
+      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OakLink>
     .
   </P>

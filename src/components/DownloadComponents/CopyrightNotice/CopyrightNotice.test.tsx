@@ -63,5 +63,27 @@ describe("CopyrightNotice", () => {
     }
     expect(firstLink).not.toHaveAttribute("target", "_blank");
   });
-  it.todo("links that will open in a new tab should be tagged with an icon");
+  it("links that will open in a new tab should be tagged with an icon", () => {
+    renderWithTheme(
+      <CopyrightNotice
+        showPostAlbCopyright={true}
+        openLinksExternally={true}
+      />,
+    );
+    const links = screen.getAllByRole("link");
+    const externalLinkIcons = screen.getAllByTestId("external-link-icon");
+    expect(links).toHaveLength(externalLinkIcons.length);
+  });
+  it("links that do not open in a new tab should not be tagged with an icon", () => {
+    renderWithTheme(
+      <CopyrightNotice
+        showPostAlbCopyright={true}
+        openLinksExternally={false}
+      />,
+    );
+    const links = screen.getAllByRole("link");
+    expect(links).toHaveLength(2);
+    const externalLinkIcons = screen.queryAllByTestId("external-link-icon");
+    expect(externalLinkIcons).toHaveLength(0);
+  });
 });
