@@ -1,3 +1,56 @@
+# [1.280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.279.0...v1.280.0) (2023-10-12)
+
+
+### Bug Fixes
+
+* add hyphen to early-release units ([fa85557](https://github.com/oaknational/Oak-Web-Application/commit/fa855574a4eccfb50b3460f818c2a0e711c3c6ab))
+* remove /teachers from deployment test urls ([71732dc](https://github.com/oaknational/Oak-Web-Application/commit/71732dc4959b99b63f195e3245ac634b8c3498c3))
+* remove link to copyright notice page in footer ([de66622](https://github.com/oaknational/Oak-Web-Application/commit/de6662265ff25b478cadd01a3254d2f3bb1ff1e7))
+* update tests ([8262b25](https://github.com/oaknational/Oak-Web-Application/commit/8262b25c11ac17c2dd1885abb22a1e37c131535f))
+
+
+### Features
+
+* enable extra footer links ([959b225](https://github.com/oaknational/Oak-Web-Application/commit/959b2255c0db443575a01faf2a03bfdaded41dbe))
+* **homepage:** move teacher homepage to root url ([3945576](https://github.com/oaknational/Oak-Web-Application/commit/39455761b34172769e01c604eda085fabb020034))
+* make app header the default ([f2ed3ec](https://github.com/oaknational/Oak-Web-Application/commit/f2ed3ec55bfad89d54bed34bffcb45403e29637e))
+* remove copyright notice from footer ([212fa47](https://github.com/oaknational/Oak-Web-Application/commit/212fa47ea1e4ef85cf3aa40d79dcf098d0c849b2))
+* update home link so we don't route to /teachers ([27d4bd3](https://github.com/oaknational/Oak-Web-Application/commit/27d4bd3c7d6fde9a340b6a1e181510d24e15cc53))
+
+# [1.279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.278.0...v1.279.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* move padding back to whence it came ([361b178](https://github.com/oaknational/Oak-Web-Application/commit/361b1787cdbd441e3bfd6b15ee3383e942258cc0))
+
+
+### Features
+
+* make early release units behave sensibly on hover ([1d96086](https://github.com/oaknational/Oak-Web-Application/commit/1d960868b3b8fddfbf026c32402a85baad41fe54))
+* remove subject icon transition on hover ([28c43d9](https://github.com/oaknational/Oak-Web-Application/commit/28c43d98064fa3bb31b13c91bbe49bc78534d1bb))
+* remove transform and change bg colour on listing card hover ([3f170a7](https://github.com/oaknational/Oak-Web-Application/commit/3f170a729400837334fd72b31c1f127d2a36b221))
+* remove unused drop shadow on hover ([3f025a4](https://github.com/oaknational/Oak-Web-Application/commit/3f025a4d8ae7cb01d6e99c8d9bce1af97f07f0e2))
+* test color changes on hover ([c337429](https://github.com/oaknational/Oak-Web-Application/commit/c3374293505bc563e0aea035f79646fe75f34bc2))
+* update colour of list item index on hover ([bc96895](https://github.com/oaknational/Oak-Web-Application/commit/bc968955baf2e04e616f0bd7014b67b0af80d374))
+* update early release units icon background colour on hover ([be2e78b](https://github.com/oaknational/Oak-Web-Application/commit/be2e78b1476930e7b2aaf3e0c9730e589797bcce))
+* update hover state for programme list item ([b9cc01b](https://github.com/oaknational/Oak-Web-Application/commit/b9cc01be23484e896fc0ab818f22429b2b6f7104))
+
+# [1.278.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.277.0...v1.278.0) (2023-10-11)
+
+
+### Features
+
+* mathjax from package json ([7aeebcd](https://github.com/oaknational/Oak-Web-Application/commit/7aeebcdaf532e3db02bfe4acd8ede7f191e2cb30))
+* self host mathjax ([50e9347](https://github.com/oaknational/Oak-Web-Application/commit/50e9347bcb52977308d2048f9f35254beac14beb))
+
+# [1.277.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.276.0...v1.277.0) (2023-10-11)
+
+
+### Features
+
+* **avo:** switch to posthog eu ([e0d3c97](https://github.com/oaknational/Oak-Web-Application/commit/e0d3c977fdb7dea4a528e7bad4c420e109852b88))
+
 # [1.276.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.275.1...v1.276.0) (2023-10-11)
 
 

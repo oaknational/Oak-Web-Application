@@ -23,6 +23,7 @@ const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
       $background={background}
       $position={"relative"}
       $transition={"all 0.4s ease-out"}
+      data-testid="list-item-index-container"
     >
       <OutlineHeading
         tag={"div"}
