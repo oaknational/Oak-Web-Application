@@ -18,6 +18,8 @@ import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppea
 import Flex from "@/components/Flex";
 import { groupLessonPathways } from "@/components/Lesson/lesson.helpers";
 import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
+import curriculumApi from "@/node-lib/curriculum-api";
+import OakError from "@/errors/OakError";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -76,9 +78,29 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       }
       const { lessonSlug } = context.params;
 
-      const lesson = await curriculumApi2023.lessonOverviewCanonical({
-        lessonSlug,
-      });
+      let lesson;
+
+      try {
+        lesson = await curriculumApi2023.lessonOverviewCanonical({
+          lessonSlug,
+        });
+      } catch (error) {
+        /**
+         * If the lesson is not found in the 2023 curriculum, try the 2020 api
+         * instead. Otherwise rethrow the error.
+         * This is temporary logic until the migration.
+         */
+        if (
+          error instanceof OakError &&
+          error.code === "curriculum-api/not-found"
+        ) {
+          lesson = await curriculumApi.lessonOverviewCanonical({
+            lessonSlug,
+          });
+        } else {
+          throw error;
+        }
+      }
 
       if (!lesson) {
         return {
