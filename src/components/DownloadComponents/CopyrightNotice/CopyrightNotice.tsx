@@ -34,6 +34,9 @@ const PreAlbCopyright = (
       $isInline
       htmlAnchorProps={{
         target: props.openLinksExternally ? "_blank" : "_self",
+        "aria-label": `Terms and conditions${
+          props.openLinksExternally ? " (opens in a new tab)" : ""
+        }`,
       }}
     >
       terms &amp; conditions{" "}
@@ -55,7 +58,9 @@ const PostAlbCopyright = (
   <P $font="body-3" {...props}>
     This content is © Oak National Academy (2023), licensed on{" "}
     <StyledLink
-      aria-label={"Open Government License version 3.0"}
+      aria-label={`Open Government License version 3.0${
+        props.openLinksExternally ? " (opens in a new tab)" : ""
+      }`}
       role="link"
       href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
       target={props.openLinksExternally ? "_blank" : "_self"}
@@ -70,6 +75,9 @@ const PostAlbCopyright = (
       $isInline
       htmlAnchorProps={{
         target: props.openLinksExternally ? "_blank" : "_self",
+        "aria-label": `Terms and conditions${
+          props.openLinksExternally ? " (opens in a new tab)" : ""
+        }`,
       }}
     >
       Oak's terms &amp; conditions{" "}

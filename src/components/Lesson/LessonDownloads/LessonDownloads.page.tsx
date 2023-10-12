@@ -45,6 +45,7 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
+import Icon from "@/components/Icon";
 
 type LessonDownloadsProps =
   | {
@@ -353,8 +354,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         page="legal"
                         legalSlug="privacy-policy"
                         $isInline
+                        htmlAnchorProps={{
+                          target: "_blank",
+                          "aria-label": "Privacy policy (opens in a new tab)",
+                        }}
                       >
-                        privacy policy
+                        privacy policy{" "}
+                        <Icon
+                          name="external"
+                          verticalAlign="bottom"
+                          size={20}
+                          data-testid="external-link-icon"
+                        />
                       </OakLink>
                       .
                     </P>
