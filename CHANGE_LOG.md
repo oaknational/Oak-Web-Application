@@ -1,3 +1,24 @@
+## [1.280.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.0...v1.280.1) (2023-10-12)
+
+# [1.280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.279.0...v1.280.0) (2023-10-12)
+
+
+### Bug Fixes
+
+* add hyphen to early-release units ([fa85557](https://github.com/oaknational/Oak-Web-Application/commit/fa855574a4eccfb50b3460f818c2a0e711c3c6ab))
+* remove /teachers from deployment test urls ([71732dc](https://github.com/oaknational/Oak-Web-Application/commit/71732dc4959b99b63f195e3245ac634b8c3498c3))
+* remove link to copyright notice page in footer ([de66622](https://github.com/oaknational/Oak-Web-Application/commit/de6662265ff25b478cadd01a3254d2f3bb1ff1e7))
+* update tests ([8262b25](https://github.com/oaknational/Oak-Web-Application/commit/8262b25c11ac17c2dd1885abb22a1e37c131535f))
+
+
+### Features
+
+* enable extra footer links ([959b225](https://github.com/oaknational/Oak-Web-Application/commit/959b2255c0db443575a01faf2a03bfdaded41dbe))
+* **homepage:** move teacher homepage to root url ([3945576](https://github.com/oaknational/Oak-Web-Application/commit/39455761b34172769e01c604eda085fabb020034))
+* make app header the default ([f2ed3ec](https://github.com/oaknational/Oak-Web-Application/commit/f2ed3ec55bfad89d54bed34bffcb45403e29637e))
+* remove copyright notice from footer ([212fa47](https://github.com/oaknational/Oak-Web-Application/commit/212fa47ea1e4ef85cf3aa40d79dcf098d0c849b2))
+* update home link so we don't route to /teachers ([27d4bd3](https://github.com/oaknational/Oak-Web-Application/commit/27d4bd3c7d6fde9a340b6a1e181510d24e15cc53))
+
 # [1.279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.278.0...v1.279.0) (2023-10-11)
 
 

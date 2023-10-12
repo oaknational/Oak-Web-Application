@@ -30,7 +30,6 @@ function getDeploymentTestUrls() {
     "/lp/help-shape-oak",
     // "/lp/oak-calendar",
     // Beta pages
-    "/teachers",
     "/teachers/key-stages/ks1/subjects",
     "/teachers/key-stages/ks4/subjects/maths-l/programmes",
     "/teachers/programmes/maths-secondary-ks4-foundation-l/units",

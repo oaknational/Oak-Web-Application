@@ -27,7 +27,7 @@ export const OrderAnswers = ({
               $background={"teachersPastelYellow"}
               $borderRadius={8}
               $ph={8}
-              $alignItems={"center"}
+              $alignItems={"flex-start"}
               $gap={8}
               role="listitem"
             >
