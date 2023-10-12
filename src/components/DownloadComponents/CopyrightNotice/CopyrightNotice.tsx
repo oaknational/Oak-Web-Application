@@ -8,13 +8,23 @@ import { FontProps } from "@/styles/utils/typography";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
+  openLinksExternally: boolean;
 };
 
-const PreAlbCopyright = (props: FontProps) => (
+const PreAlbCopyright = (
+  props: FontProps & { openLinksExternally: boolean },
+) => (
   <P $font="body-3" {...props}>
     This content is made available by Oak and its partners and licensed under
     Oak’s{" "}
-    <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
+    <OakLink
+      page={"legal"}
+      legalSlug="terms-and-conditions"
+      $isInline
+      htmlAnchorProps={{
+        target: props.openLinksExternally ? "_blank" : "_self",
+      }}
+    >
       terms &amp; conditions
     </OakLink>
     , except where otherwise stated.
@@ -27,18 +37,28 @@ const StyledLink = styled.a`
   color: ${(props) => props.theme.colors.hyperlink};
 `;
 
-const PostAlbCopyright = (props: FontProps) => (
+const PostAlbCopyright = (
+  props: FontProps & { openLinksExternally: boolean },
+) => (
   <P $font="body-3" {...props}>
     This content is © Oak National Academy (2023), licensed on{" "}
     <StyledLink
       aria-label={"Open Government License version 3.0"}
       role="link"
       href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+      target={props.openLinksExternally ? "_blank" : "_self"}
     >
       Open Government Licence version 3.0
     </StyledLink>{" "}
     except where otherwise stated. See{" "}
-    <OakLink page={"legal"} legalSlug="terms-and-conditions" $isInline>
+    <OakLink
+      page={"legal"}
+      legalSlug="terms-and-conditions"
+      $isInline
+      htmlAnchorProps={{
+        target: props.openLinksExternally ? "_blank" : "_self",
+      }}
+    >
       Oak's terms &amp; conditions
     </OakLink>
     .
@@ -47,13 +67,20 @@ const PostAlbCopyright = (props: FontProps) => (
 
 const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
+  openLinksExternally,
   ...fontProps
 }) => (
   <Box $maxWidth={[null, 420, 420]}>
     {showPostAlbCopyright ? (
-      <PostAlbCopyright {...fontProps} />
+      <PostAlbCopyright
+        {...fontProps}
+        openLinksExternally={openLinksExternally}
+      />
     ) : (
-      <PreAlbCopyright {...fontProps} />
+      <PreAlbCopyright
+        {...fontProps}
+        openLinksExternally={openLinksExternally}
+      />
     )}
   </Box>
 );

@@ -386,6 +386,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 <Box $mb={56} $mt={16}>
                   <CopyrightNotice
                     showPostAlbCopyright={showPostAlbCopyright}
+                    openLinksExternally={true}
                   />
                 </Box>
               </>
