@@ -3,27 +3,43 @@ locals {
     "www.thenational.academy",
     "owa.thenational.academy"
   ]
-  evaluate_period    = "5m"
-  warning_threshold  = 0
-  critical_threshold = 10
-}
-
-locals {
   url_string = join(" OR ", [for host in local.hosts : "\\\"https://${host}/\\\""])
 }
 
-resource "datadog_monitor" "log_errors" {
-  count = var.env == "prod" ? 1 : 0
+locals {
+  monitors = var.env == "prod" ? [
+    {
+      name    = "OWA log errors"
+      type    = "log alert"
+      message = "Errors detected in the OWA logs @slack-Oak_National_Academy-dev-general-alerts"
+      query   = "logs(\"source:netlify @http.url:(${local.url_string}) status:error\").index(\"*\").rollup(\"count\")"
 
-  name    = "${title(var.env)} OWA log errors"
-  type    = "log alert"
-  message = "Errors detected in the OWA logs @slack-Oak_National_Academy-dev-general-alerts"
+      evaluate_period    = "5m"
+      warning_threshold  = 0
+      critical_threshold = 10
+    },
+  ] : []
+}
 
-  query = "logs(\"source:netlify @http.url:(${local.url_string}) status:error\").index(\"*\").rollup(\"count\").last(\"${local.evaluate_period}\") > ${local.critical_threshold}"
+
+locals {
+  monitor_records = {
+    for m in local.monitors : m.name => m
+  }
+}
+
+resource "datadog_monitor" "this" {
+  for_each = local.monitor_records
+
+  name    = "${title(var.env)} ${each.value.name}"
+  type    = each.value.type
+  message = each.value.message
+
+  query = "${each.value.query}.last(\"${each.value.evaluate_period}\") > ${each.value.critical_threshold}"
 
   monitor_thresholds {
-    warning  = local.warning_threshold
-    critical = local.critical_threshold
+    warning  = each.value.warning_threshold
+    critical = each.value.critical_threshold
   }
 
   tags = [
