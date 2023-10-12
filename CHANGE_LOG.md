@@ -1,3 +1,10 @@
+## [1.280.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.1...v1.280.2) (2023-10-12)
+
+
+### Bug Fixes
+
+* change oakGreen to oakGrey2 ([9c1628c](https://github.com/oaknational/Oak-Web-Application/commit/9c1628c1701876fa412e09bee1486b55fc434ea9))
+
 ## [1.280.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.0...v1.280.1) (2023-10-12)
 
 # [1.280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.279.0...v1.280.0) (2023-10-12)
