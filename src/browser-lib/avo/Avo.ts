@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "kZdQqTAcDVGa1Sy6gyeh",
+          "ac": "xXTepVhqXuK8ER5bflLr",
           "br": "CF1C4JuaI",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "kZdQqTAcDVGa1Sy6gyeh",
+          "ac": "xXTepVhqXuK8ER5bflLr",
           "br": "CF1C4JuaI",
           "en": env,
           "ty": type,
@@ -1296,6 +1296,13 @@ export function initAvo(options: {env: AvoEnv; webDebugger?: boolean;
       _avo_invoke_meta(__AVO_ENV__, 'init', [], 'init');
     }
   }
+}
+
+function assertOrder(order: number, _label?: string) {
+  let messages: AvoAssertMessage[] = [];
+  messages = messages.concat(AvoAssert.assertInt("uLWinAUS-T", _label ? "Order" + ': ' + _label : "Order", order));
+  messages = messages.concat(AvoAssert.assertMin("uLWinAUS-T", _label ? "Order" + ": " + _label : "Order", 0, order));
+  return messages;
 }
 
 export function setAvoLogger(avoLogger: AvoLogger | null) {
@@ -2274,6 +2281,66 @@ export function lessonSelected(properties: LessonSelectedProperties) {
   }
 }
 
+export interface YearGroupSelectedProperties {
+  yearGroupName: string;
+  yearGroupSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+}
+/**
+ * Year Group Selected: A student chooses the year group they want to view.
+ *
+ * When to trigger this event:
+ * 1. An example of year group being selected from within the curriculum visualiser tool
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6DwKZEuYUk/trigger/Y36tMwp1l
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.yearGroupName: Name of the current year group.
+ * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/6DwKZEuYUk}
+ */
+export function yearGroupSelected(properties: YearGroupSelectedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
+  eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
+  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "6DwKZEuYUk", "48cee6d7b7a4856ca32cb98a2026de24fca8527930317811f28e6352aa396334", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Year Group Selected", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("6DwKZEuYUk", "Year Group Selected", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Year Group Selected", eventProperties, "6DwKZEuYUk", "48cee6d7b7a4856ca32cb98a2026de24fca8527930317811f28e6352aa396334");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Year Group Selected", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export interface WebinarPageViewedProperties {
   webinarTitle: string;
   webinarCategory: string;
@@ -3107,6 +3174,155 @@ export function curriculumVisualiserAccessed(
   }
 }
 
+export interface CurriculumThreadHighlightedProperties {
+  subjectTitle: string;
+  subjectSlug: string;
+  threadTitle: string;
+  threadSlug: string;
+  phase: PhaseValueType;
+  order: number;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+}
+/**
+ * Curriculum Thread Highlighted: A unit thread is highlighted using the curriculum visualiser
+ *
+ * When to trigger this event:
+ * 1. item div is clicked whilst curriculum visualiser is open
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/sR1S6swOBk/trigger/0ajfpuq__
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.threadTitle: The title (in plain English including spaces) of a thread corresponding to a sequence of lessons across units
+ * @param properties.threadSlug: The human readable identifier (n-kebab-case) for a sequence of lessons
+ * @param properties.phase: School phase related to key stage and age of audience
+ * @param properties.order: The position of the item within a list
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/sR1S6swOBk}
+ */
+export function curriculumThreadHighlighted(
+  properties: CurriculumThreadHighlightedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+  eventPropertiesArray.push({id: "5vqHiL5Sh", name: "Thread Title", value: properties.threadTitle});
+  eventPropertiesArray.push({id: "E1mlACg_OT", name: "Thread Slug", value: properties.threadSlug});
+  eventPropertiesArray.push({id: "SsbNnb9vD", name: "Phase", value: properties.phase});
+  eventPropertiesArray.push({id: "uLWinAUS-T", name: "Order", value: properties.order});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    messages = messages.concat(assertOrder(properties.order));
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "sR1S6swOBk", "c9bff1f666c945345e39a1e240c0c834acef12e1059765f5e130972a60cee6d0", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Curriculum Thread Highlighted", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("sR1S6swOBk", "Curriculum Thread Highlighted", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+    // @ts-ignore
+    if (__AVO_ENV__ !== AvoEnv.Prod && (__STRICT__ === null || __STRICT__)) {
+      // throw exception if messages is not empty
+      if (messages.length !== 0) {
+        throw new Error("Error sending event 'Curriculum Thread Highlighted': " + messages[0]!.message)
+      }
+    } else {
+      messages.forEach(function(m) {
+        console[__REPORT_FAILURE_AS__ || 'error']("[avo] " + m.message);
+      });
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Thread Highlighted", eventProperties, "sR1S6swOBk", "c9bff1f666c945345e39a1e240c0c834acef12e1059765f5e130972a60cee6d0");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Curriculum Thread Highlighted", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
+export interface UnitInformationViewedProperties {
+  unitName: string;
+  unitSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
+  unitHighlighted: boolean;
+  analyticsUseCase: AnalyticsUseCaseValueType;
+}
+/**
+ * Unit Information Viewed: A user of the curriculum visualiser views information relating to a highlighted (or non-highlighted) unit
+ *
+ * When to trigger this event:
+ * 1. Unit info div is selected on div corresponding to a particular unit (in this case one that is highlighted a resulted of the selected thread)
+ * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/OnjKTo8kYs/trigger/I6HnzeUNk
+ *
+ * @param properties the properties associatied with this event
+ * @param properties.unitName: Title of the current unit.
+ * @param properties.unitSlug: Human-readable unique ID of the current unit.
+ * @param properties.subjectTitle: Title of the current subject.
+ * @param properties.subjectSlug: Human-readable unique ID of the current subject.
+ * @param properties.yearGroupName: Name of the current year group.
+ * @param properties.yearGroupSlug: Human-readable unique ID of the current year group.
+ * @param properties.unitHighlighted: A boolean describing whether a given unit is highlighted when unit information is viewed
+ * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
+ *
+ * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/CF1C4JuaI/events/OnjKTo8kYs}
+ */
+export function unitInformationViewed(
+  properties: UnitInformationViewedProperties) {
+  // @ts-ignore
+  let eventPropertiesArray: array = [];
+  eventPropertiesArray.push({id: "YfsvSpyEEd", name: "Unit Name", value: properties.unitName});
+  eventPropertiesArray.push({id: "r4GW5No741", name: "Unit Slug", value: properties.unitSlug});
+  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
+  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
+  eventPropertiesArray.push({id: "mIpfmyUTSY", name: "Year Group Name", value: properties.yearGroupName});
+  eventPropertiesArray.push({id: "ySTg1Sz9in", name: "Year Group Slug", value: properties.yearGroupSlug});
+  eventPropertiesArray.push({id: "WIkFSM1sX", name: "Unit Highlighted", value: properties.unitHighlighted});
+  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
+  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
+  // @ts-ignore
+  let userPropertiesArray: array = [];
+  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
+  // assert properties
+  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
+    let messages: AvoAssertMessage[] = [];
+    // debug console in Avo
+    if (!__AVO_NOOP__) {
+      _avo_invoke(__AVO_ENV__, "OnjKTo8kYs", "8e3d585247764895b07e99b44fe627b2287abc26af8a815b36219687644dc798", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+    }
+    InternalAvoLogger.logEventSent("Unit Information Viewed", eventProperties, userProperties);
+    if (__WEB_DEBUGGER__) {
+      // Avo web debugger
+      _avo_debugger_log("OnjKTo8kYs", "Unit Information Viewed", messages, eventPropertiesArray, userPropertiesArray, []);
+    }
+  }
+  if (!__AVO_NOOP__) {
+    if (__INSPECTOR__ != null) {
+      // @ts-ignore
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Unit Information Viewed", eventProperties, "OnjKTo8kYs", "8e3d585247764895b07e99b44fe627b2287abc26af8a815b36219687644dc798");
+    }
+    // destination PostHogEU
+    PostHogEU.logEvent("Unit Information Viewed", (Object as any).assign({}, eventProperties));
+  } else {
+    // do nothing
+  }
+}
+
 export default {
   AvoEnv,
   initAvo,
@@ -3140,6 +3356,7 @@ export default {
   subjectSelected,
   unitSelected,
   lessonSelected,
+  yearGroupSelected,
   webinarPageViewed,
   helpCentreSelected,
   learningThemeSelected,
@@ -3153,7 +3370,9 @@ export default {
   searchCompleted,
   searchJourneyInitiated,
   curriculumVisualiserAccessed,
+  curriculumThreadHighlighted,
+  unitInformationViewed,
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultClicked","searchCompleted","searchJourneyInitiated","curriculumVisualiserAccessed"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitSelected","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","downloadResourceButtonClicked","searchAttempted","searchResultClicked","searchCompleted","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed"]
