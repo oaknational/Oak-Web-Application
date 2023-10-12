@@ -144,13 +144,14 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Privacy policy link
       const privacyPolicyLink = screen.getByRole("link", {
-        name: "privacy policy",
+        name: "Privacy policy (opens in a new tab)",
       });
       expect(privacyPolicyLink).toBeInTheDocument();
       expect(privacyPolicyLink).toHaveAttribute(
         "href",
         "/legal/privacy-policy",
       );
+      expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
       expect(
