@@ -24,7 +24,9 @@ const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
   initialSchoolName,
   errors,
 }) => {
-  const [checkboxValue, setCheckboxValue] = useState(false);
+  const [checkboxValue, setCheckboxValue] = useState(
+    initialValue === "notListed" ? true : false,
+  );
   const {
     selectedSchool,
     setSelectedSchool,
@@ -58,11 +60,9 @@ const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
 
   const onCheckboxChange = () => {
     setCheckboxValue(!checkboxValue);
+    setSelectedSchool("");
+    setSchool(checkboxValue ? "" : "notListed");
     setSchoolPickerInputValue("");
-    if (checkboxValue) {
-      setSelectedSchool("");
-      setSchool("notListed");
-    }
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
@@ -85,20 +85,21 @@ const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}
         schools={schools}
-        label={"School"}
+        label={"Name of school"}
         setSelectedSchool={setSelectedSchool}
         required={true}
       />
       <Flex $mt={12} $mb={32}>
         <Checkbox
           checked={checkboxValue}
-          onChange={() => onCheckboxChange()}
+          onChange={onCheckboxChange}
           aria-label={"my school isn't listed"}
           id={`checkbox-not-listed`}
           name={"checkbox-not-listed"}
-          labelText="My school isn't listed"
+          labelText={"my school isn't listed"}
           data-testid={"checkbox-download"}
         />
+        <p>{checkboxValue}</p>
       </Flex>
     </>
   );

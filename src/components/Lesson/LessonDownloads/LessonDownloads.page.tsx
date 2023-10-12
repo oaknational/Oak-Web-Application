@@ -32,7 +32,7 @@ import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAnd
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
+import SchoolPickerCheckbox from "@/components/DownloadComponents/SchoolpickerRadio";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
@@ -267,6 +267,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     return errorMessage;
   };
 
+  console.log("LessonDownloads", lessonSlug, resourcesToDownload);
+
   useDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
@@ -319,7 +321,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   />
                 ) : (
                   <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolPickerRadio
+                    <SchoolPickerCheckbox
                       errors={errors}
                       setSchool={setSchool}
                       initialValue={

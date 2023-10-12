@@ -14,7 +14,7 @@ const getFormattedDetailsForTracking = ({
   const getSchoolOption = () => {
     if (school === "notListed") {
       return "Not listed";
-    } else if (school === "homeschool") {
+    } else if (school === "home-school-Homeschool") {
       return "Homeschool";
     } else {
       return "Selected school";
