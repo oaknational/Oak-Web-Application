@@ -1,7 +1,7 @@
 import { formatSchoolName } from "./formatSchoolName";
 
 describe("formatSchoolName", () => {
-  it("should return a string", () => {
+  it("should return the expected div with input value in bold", () => {
     expect(
       formatSchoolName(
         "Macaulay Church of England Primary School, Lambeth, SW4 0NU",

@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+import { Span } from "../Typography";
+
 export const formatSchoolName = (
   schoolName: ReactNode,
   inputValue: string | undefined,
@@ -8,20 +10,24 @@ export const formatSchoolName = (
   const inputValueString = inputValue || "";
   const regexPattern = new RegExp(inputValueString, "i");
   const firstIndexOfPattern = schoolNameString.search(regexPattern);
+  const splitSchoolName = schoolNameString.split(regexPattern);
   const sliceToMakeBold = schoolNameString.slice(
     firstIndexOfPattern,
     firstIndexOfPattern + (inputValueString.length || 0),
   );
-  const schoolNameWithBoldInput = schoolNameString.replace(
-    sliceToMakeBold,
-    `<strong>${sliceToMakeBold}</strong>`,
-  );
 
   return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html: schoolNameWithBoldInput,
-      }}
-    />
+    <Span>
+      {splitSchoolName.map((splitSchoolNameItem: string, index: number) => {
+        return (
+          <Span>
+            {`${splitSchoolNameItem}`}
+            {index < splitSchoolName.length - 1 && (
+              <strong>{sliceToMakeBold}</strong>
+            )}
+          </Span>
+        );
+      })}
+    </Span>
   );
 };
