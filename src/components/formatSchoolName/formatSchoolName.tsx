@@ -23,7 +23,7 @@ export const formatSchoolName = (
           <Span>
             {`${splitSchoolNameItem}`}
             {index < splitSchoolName.length - 1 && (
-              <strong>{sliceToMakeBold}</strong>
+              <strong data-testid="strong-element">{sliceToMakeBold}</strong>
             )}
           </Span>
         );
