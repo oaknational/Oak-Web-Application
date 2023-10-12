@@ -46,14 +46,20 @@ describe("useSchoolPicker", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  test("Schools should be returned if fetch succeeds", async () => {
+  test("Schools should be returned if fetch succeeds with added home school option", async () => {
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
       error: null,
     }));
     const { result } = renderHook(() => useSchoolPicker());
 
-    expect(result.current.schools).toEqual(data);
+    expect(result.current.schools).toEqual([
+      ...data,
+      {
+        name: "Homeschool",
+        urn: "home-school",
+      },
+    ]);
   });
 
   test("should throw an error if failed to fetch school ", async () => {

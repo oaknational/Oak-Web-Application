@@ -1,15 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
 
-import Box from "@/components/Box";
 import Flex from "@/components/Flex";
-import Radio from "@/components/RadioButtons/Radio";
-import RadioGroup from "@/components/RadioButtons/RadioGroup";
 import SchoolPicker from "@/components/SchoolPicker";
 import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
-import { Heading, P } from "@/components/Typography";
+import { Heading } from "@/components/Typography";
+import Checkbox from "@/components/Checkbox";
 
-export type SchoolPickerRadioProps = {
+export type SchoolPickerCheckboxProps = {
   setSchool: (value: string, name?: string) => void;
   initialValue?: string;
   initialSchoolName?: string;
@@ -20,13 +18,13 @@ export type SchoolPickerRadioProps = {
   >;
 };
 
-const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
+const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
   setSchool,
   initialValue,
   initialSchoolName,
   errors,
 }) => {
-  const [selectedRadio, setSelectedRadio] = useState("");
+  const [checkboxValue, setCheckboxValue] = useState(false);
   const {
     selectedSchool,
     setSelectedSchool,
@@ -38,12 +36,12 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
   // initial values
   useEffect(() => {
     if (initialValue) {
-      if (initialValue === "homeschool" || initialValue === "notListed") {
-        setSelectedRadio(initialValue);
+      if (initialValue === "notListed") {
+        setCheckboxValue(true);
         setSchool(initialValue);
         setSchoolPickerInputValue("");
       } else {
-        setSelectedRadio("");
+        setCheckboxValue(false);
         setSchool(initialValue);
         if (initialSchoolName) {
           setSchoolPickerInputValue(initialSchoolName);
@@ -56,20 +54,22 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchool(selectedSchool.toString(), schoolPickerInputValue);
     }
-  }, [selectedSchool, setSchool, schoolPickerInputValue, selectedRadio]);
+  }, [selectedSchool, setSchool, schoolPickerInputValue]);
 
-  const onRadioChange = (value: string) => {
-    setSelectedRadio(value);
-    setSelectedSchool("");
+  const onCheckboxChange = () => {
+    setCheckboxValue(!checkboxValue);
     setSchoolPickerInputValue("");
-    setSchool(value);
+    if (checkboxValue) {
+      setSelectedSchool("");
+      setSchool("notListed");
+    }
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (value === "" && !selectedRadio) {
+    if (value === "" && !value) {
       setSchool("");
     }
-    setSelectedRadio("");
+    setCheckboxValue(false);
     setSchoolPickerInputValue(value);
   };
   return (
@@ -85,32 +85,23 @@ const SchoolPickerRadio: FC<SchoolPickerRadioProps> = ({
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}
         schools={schools}
-        label={"Name of school"}
+        label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
       />
-      <Box $mt={12} $ml={24} $mb={32}>
-        <P $mb={12} $font={"body-2"}>
-          Or select one of the following:
-        </P>
-        <Flex>
-          <RadioGroup
-            validationState={"valid"}
-            errorMessage={errors?.school?.message}
-            aria-label={"home school or my school isn't listed"}
-            value={selectedRadio}
-            onChange={onRadioChange}
-            hasError={errors?.school !== undefined}
-          >
-            <Radio data-testid={"radio-download"} value={"homeschool"}>
-              Homeschool
-            </Radio>
-            <Radio value={"notListed"}>My school isn’t listed</Radio>
-          </RadioGroup>
-        </Flex>
-      </Box>
+      <Flex $mt={12} $mb={32}>
+        <Checkbox
+          checked={checkboxValue}
+          onChange={() => onCheckboxChange()}
+          aria-label={"my school isn't listed"}
+          id={`checkbox-not-listed`}
+          name={"checkbox-not-listed"}
+          labelText="My school isn't listed"
+          data-testid={"checkbox-download"}
+        />
+      </Flex>
     </>
   );
 };
 
-export default SchoolPickerRadio;
+export default SchoolPickerCheckbox;

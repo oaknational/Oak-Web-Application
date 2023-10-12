@@ -3,7 +3,7 @@ import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
 
-import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
+import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
 type SchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
@@ -45,9 +45,11 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       required={props.required}
     >
       {(item) => (
-        <Item
-          key={`${item.urn}-${item.name}`}
-        >{`${item.name}, ${item.la}, ${item.postcode}`}</Item>
+        <Item key={`${item.urn}-${item.name}`}>
+          {item.urn === HOMESCHOOL_URN
+            ? item.name
+            : `${item.name}, ${item.la}, ${item.postcode}`}
+        </Item>
       )}
     </SearchComboBox>
   );

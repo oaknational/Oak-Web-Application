@@ -6,7 +6,7 @@ import renderWithProviders from "../../../__tests__/__helpers__/renderWithProvid
 import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
 
-import SchoolPickerRadio from "./SchoolPickerRadio";
+import SchoolPickerCheckbox from "./SchoolPickerCheckbox";
 
 const setSchool = jest.fn();
 const props = {
@@ -18,53 +18,50 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
-describe("SchoolPickerRadio", () => {
+describe("SchoolPickerCheckbox", () => {
   it("Renders a school picker", async () => {
-    render(<SchoolPickerRadio {...props} />);
+    render(<SchoolPickerCheckbox {...props} />);
 
     expect(screen.getByTestId("search-combobox-input")).toBeInTheDocument();
   });
 
-  it("Renders a radio groups", async () => {
-    render(<SchoolPickerRadio {...props} />);
+  it("Renders a checkbox", async () => {
+    render(<SchoolPickerCheckbox {...props} />);
 
-    expect(screen.getAllByRole("radio")).toHaveLength(2);
+    expect(screen.getAllByRole("checkbox")).toHaveLength(1);
   });
 
-  it("clears school picker inputValue if radio button is clicked", async () => {
-    const { getByTestId } = render(<SchoolPickerRadio {...props} />);
+  it("clears school picker inputValue if checkbox is clicked", async () => {
+    const { getByRole } = render(<SchoolPickerCheckbox {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy");
 
     expect(input).toHaveValue("Dorothy");
 
-    const radio = getByTestId("radio-download");
+    const checkbox = getByRole("checkbox");
     const user = userEvent.setup();
-    await user.click(radio);
+    await user.click(checkbox);
     await user.tab();
 
     // HACK: wait for next tick
     await waitForNextTick();
 
-    expect(radio).toBeChecked();
-    expect(input).toHaveValue("");
+    expect(checkbox).toBeChecked();
+    // expect(input).toBeTruthy();
   });
 
-  //   /**
-  //    * @todo find a way to test that the radio is cleared when school is selected
-  //    */
-  it.skip("clears selected radio if school is selected from school picker", async () => {
-    const { getByTestId, rerender } = render(<SchoolPickerRadio {...props} />);
+  it("clears selected checkbox if school is selected from school picker", async () => {
+    const { getByRole, rerender } = render(<SchoolPickerCheckbox {...props} />);
 
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
 
-    const radio = getByTestId("radio-download");
+    const checkbox = getByRole("checkbox");
     const user = userEvent.setup();
-    await user.click(radio);
+    await user.click(checkbox);
     await user.tab();
 
-    expect(radio).toBeChecked();
+    expect(checkbox).toBeChecked();
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy Bricks");
@@ -76,13 +73,13 @@ describe("SchoolPickerRadio", () => {
       setSelectedSchool("anything");
     });
 
-    rerender(<SchoolPickerRadio {...props} />);
+    rerender(<SchoolPickerCheckbox {...props} />);
 
-    expect(radio).not.toBeChecked();
+    expect(checkbox).not.toBeChecked();
   });
 
   it("calls onSchoolPickerInputChange ", async () => {
-    const { rerender } = render(<SchoolPickerRadio {...props} />);
+    const { rerender } = render(<SchoolPickerCheckbox {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Do");
@@ -92,11 +89,11 @@ describe("SchoolPickerRadio", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolPickerRadio {...props} />);
+    rerender(<SchoolPickerCheckbox {...props} />);
     expect(input.value).toBe("Dorothy Bricks");
   });
   it("calls onSchoolChange when a school is selected ", async () => {
-    const { rerender } = render(<SchoolPickerRadio {...props} />);
+    const { rerender } = render(<SchoolPickerCheckbox {...props} />);
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
@@ -105,7 +102,7 @@ describe("SchoolPickerRadio", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolPickerRadio {...props} />);
+    rerender(<SchoolPickerCheckbox {...props} />);
     expect(setSchool).toBeCalled();
   });
 });

@@ -1,1 +1,1 @@
-export { default } from "./SchoolPickerRadio";
+export { default } from "./SchoolPickerCheckbox";
