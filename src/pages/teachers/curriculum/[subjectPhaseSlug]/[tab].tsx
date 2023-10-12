@@ -18,7 +18,6 @@ import curriculumApi, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
 } from "@/node-lib/curriculum-api-2023";
-// import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   decorateWithIsr,
