@@ -9,7 +9,6 @@ import { OrganizationJsonLd } from "../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../browser-lib/seo/Seo";
 import background, { BackgroundProps } from "../../styles/utils/background";
 import { OakColorName } from "../../styles/theme";
-import SiteHeader from "../SiteHeader";
 import PreviewControls from "../PreviewControls";
 import ClientErrorHeader from "../ClientErrorHeader";
 import ClientErrorFooter from "../ClientErrorFooter";
@@ -36,13 +35,12 @@ export type HeaderProps = {
   breadcrumbs?: Breadcrumb[];
 };
 
-export type HeaderVariant = "app" | "site" | "landing-pages" | "client-error";
+export type HeaderVariant = "app" | "landing-pages" | "client-error";
 const headers: Record<
   HeaderVariant,
   FC | FC<LandingPagesHeaderProps> | FC<HeaderProps>
 > = {
   app: AppHeader,
-  site: SiteHeader,
   "landing-pages": LandingPagesHeader,
   "client-error": ClientErrorHeader,
 };
@@ -70,7 +68,7 @@ const Layout: FC<LayoutProps> = (props) => {
     seoProps,
     $background,
     breadcrumbs,
-    headerVariant = "site",
+    headerVariant = "app",
     footerVariant = "default",
     banner,
   } = props;

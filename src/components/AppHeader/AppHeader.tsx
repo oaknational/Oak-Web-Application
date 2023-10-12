@@ -52,8 +52,7 @@ const AppHeader: FC<HeaderProps> = () => {
         </Flex>
         <Flex $alignItems={"center"} $gap={24} $font="heading-7">
           <OakLink
-            page={null}
-            href={"/teachers"}
+            page={"home"}
             $focusStyles={["underline"]}
             $isSelected={true}
           >
