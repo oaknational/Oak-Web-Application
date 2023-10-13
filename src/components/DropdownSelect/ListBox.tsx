@@ -10,7 +10,6 @@ import Flex from "../Flex";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline } from "../Input/Input";
-import { formatSchoolName } from "../formatSchoolName";
 
 export type SelectListBoxConfig = {
   states: {
@@ -107,7 +106,7 @@ const OptionContext = createContext<OptionContextValue>({
   descriptionProps: {},
 });
 
-function Option({ item, state, inputValue }: OptionProps) {
+function Option({ item, state }: OptionProps) {
   const ref = useRef<HTMLLIElement>(null);
   const { optionProps, labelProps, descriptionProps, isSelected, isFocused } =
     useOption(
@@ -127,7 +126,7 @@ function Option({ item, state, inputValue }: OptionProps) {
     >
       <Flex $position={"relative"} $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
-          {formatSchoolName(item.rendered, inputValue)}
+          {item.rendered}
         </OptionContext.Provider>
         <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
       </Flex>
