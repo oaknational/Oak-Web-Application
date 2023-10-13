@@ -127,7 +127,9 @@ function Option({ item, state, inputValue }: OptionProps) {
     >
       <Flex $position={"relative"} $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
-          {formatSchoolName(item.rendered, inputValue)}
+          {inputValue
+            ? formatSchoolName(item.rendered, inputValue)
+            : item.rendered}
         </OptionContext.Provider>
         <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
       </Flex>
