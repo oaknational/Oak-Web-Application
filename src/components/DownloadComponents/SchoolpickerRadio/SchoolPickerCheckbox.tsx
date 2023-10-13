@@ -96,7 +96,7 @@ const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
           aria-label={"my school isn't listed"}
           id={`checkbox-not-listed`}
           name={"checkbox-not-listed"}
-          labelText={"my school isn't listed"}
+          labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
         />
         <p>{checkboxValue}</p>
