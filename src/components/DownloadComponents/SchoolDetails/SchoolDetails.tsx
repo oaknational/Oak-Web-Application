@@ -66,7 +66,7 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
   };
 
   const onSchoolPickerInputChange = (value: React.SetStateAction<string>) => {
-    if (value === "" && !value) {
+    if (value === "" && !checkboxValue) {
       setSchool("");
     }
     setCheckboxValue(false);
