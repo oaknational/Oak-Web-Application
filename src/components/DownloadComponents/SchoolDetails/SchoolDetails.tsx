@@ -25,7 +25,7 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
   errors,
 }) => {
   const [checkboxValue, setCheckboxValue] = useState(
-    initialValue === "notListed" ? true : false,
+    initialValue === "notListed",
   );
   const {
     selectedSchool,

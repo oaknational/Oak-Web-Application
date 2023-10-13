@@ -3,7 +3,7 @@ import getFormattedDetailsForTracking from "./getFormattedDetailsForTracking";
 describe("getFormattedDetailsForTracking", () => {
   it("should return correct school details for homeschool option", () => {
     const schoolDetailsForTracking = getFormattedDetailsForTracking({
-      school: "home-school-Homeschool",
+      school: "homeschool",
       selectedResources: ["presentation", "intro-quiz-questions"],
     });
 
@@ -45,7 +45,7 @@ describe("getFormattedDetailsForTracking", () => {
 
   it("should return correctly mapped selected resources", () => {
     const schoolDetailsForTracking = getFormattedDetailsForTracking({
-      school: "home-school-Homeschool",
+      school: "homeschool",
       selectedResources: [
         "presentation",
         "intro-quiz-questions",

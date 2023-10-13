@@ -58,7 +58,7 @@ describe("useSchoolPicker", () => {
       ...data,
       {
         name: "Homeschool",
-        urn: "home-school",
+        urn: "homeschool",
       },
     ]);
   });

@@ -27,7 +27,7 @@ export const fetcher = (queryUrl: string) =>
     }
   });
 
-export const HOMESCHOOL_URN = "home-school";
+export const HOMESCHOOL_URN = "homeschool";
 
 export type UseSchoolPickerReturnProps = {
   schools: School[];

@@ -88,7 +88,7 @@ const SearchComboBox = <T extends School>(
           id={id}
           aria-labelledby={labelId}
           data-testid={"search-combobox-input"}
-          placeholder={"Type school name, postcode, or 'homeschool'"}
+          placeholder={"Type school name, postcode, or ‘homeschool’"}
           aria-describedby={undefined}
           required={required}
         />

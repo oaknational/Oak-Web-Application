@@ -44,13 +44,16 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       onSelectionChange={(value) => props.setSelectedSchool(value)}
       required={props.required}
     >
-      {(item) => (
-        <Item key={`${item.urn}-${item.name}`}>
-          {item.urn === HOMESCHOOL_URN
+      {(item) => {
+        const comboItemKey = HOMESCHOOL_URN
+          ? item.urn
+          : `${item.urn}-${item.name}`;
+        const comboItem =
+          item.urn === HOMESCHOOL_URN
             ? item.name
-            : `${item.name}, ${item.la}, ${item.postcode}`}
-        </Item>
-      )}
+            : `${item.name}, ${item.la}, ${item.postcode}`;
+        return <Item key={comboItemKey}>{comboItem}</Item>;
+      }}
     </SearchComboBox>
   );
 };
