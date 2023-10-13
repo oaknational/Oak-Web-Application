@@ -45,7 +45,7 @@ export default function useSchoolPicker(): UseSchoolPickerReturnProps {
   const { data, error } = useSWR(queryUrl, fetcher);
 
   return {
-    schools: data || [],
+    schools: schoolPickerInputValue.length > 2 ? data : [],
     error,
     setSchoolPickerInputValue,
     schoolPickerInputValue,
