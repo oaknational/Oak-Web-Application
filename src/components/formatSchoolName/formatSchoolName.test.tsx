@@ -13,9 +13,8 @@ describe("formatSchoolName", () => {
 
     const divWithText = getByText("ry School, Lambeth, SW4 0NU");
     expect(divWithText).toBeInTheDocument();
-    const stronElement = getByText("ima");
-    expect(stronElement).toBeInTheDocument();
     const strongElement = getByTestId("strong-element");
     expect(strongElement.tagName).toBe("STRONG");
+    expect(strongElement).toHaveTextContent("ima");
   });
 });
