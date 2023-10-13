@@ -1,3 +1,10 @@
+## [1.282.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.1...v1.282.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* dropdown roles ([0a27162](https://github.com/oaknational/Oak-Web-Application/commit/0a2716208b87dba8e2c83b47257240a7cebf4026))
+
 ## [1.282.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.0...v1.282.1) (2023-10-13)
 
 
