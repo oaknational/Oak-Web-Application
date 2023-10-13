@@ -159,7 +159,7 @@ const earlyReleaseExemplarUnitsFixture = (
           title: "Growing plants",
           lessonCount: 7,
           keyStageSlug: "ks1",
-          yearTitle: "Year 1",
+          yearTitle: "Year 2",
           keyStageTitle: "Key stage 1",
           subjectTitle: "Science",
           subjectSlug: "science",
