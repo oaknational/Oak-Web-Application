@@ -6,7 +6,7 @@ import renderWithProviders from "../../../__tests__/__helpers__/renderWithProvid
 import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
 
-import SchoolPickerCheckbox from "./SchoolPickerCheckbox";
+import SchoolDetails from "./SchoolDetails";
 
 const setSchool = jest.fn();
 const props = {
@@ -18,21 +18,21 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
-describe("SchoolPickerCheckbox", () => {
+describe("SchoolDetails", () => {
   it("Renders a school picker", async () => {
-    render(<SchoolPickerCheckbox {...props} />);
+    render(<SchoolDetails {...props} />);
 
     expect(screen.getByTestId("search-combobox-input")).toBeInTheDocument();
   });
 
   it("Renders a checkbox", async () => {
-    render(<SchoolPickerCheckbox {...props} />);
+    render(<SchoolDetails {...props} />);
 
     expect(screen.getAllByRole("checkbox")).toHaveLength(1);
   });
 
   it("clears school picker inputValue if checkbox is clicked", async () => {
-    const { getByRole } = render(<SchoolPickerCheckbox {...props} />);
+    const { getByRole } = render(<SchoolDetails {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy");
@@ -52,7 +52,7 @@ describe("SchoolPickerCheckbox", () => {
   });
 
   it("clears selected checkbox if school is selected from school picker", async () => {
-    const { getByRole, rerender } = render(<SchoolPickerCheckbox {...props} />);
+    const { getByRole, rerender } = render(<SchoolDetails {...props} />);
 
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
 
@@ -73,13 +73,13 @@ describe("SchoolPickerCheckbox", () => {
       setSelectedSchool("anything");
     });
 
-    rerender(<SchoolPickerCheckbox {...props} />);
+    rerender(<SchoolDetails {...props} />);
 
     expect(checkbox).not.toBeChecked();
   });
 
   it("calls onSchoolPickerInputChange ", async () => {
-    const { rerender } = render(<SchoolPickerCheckbox {...props} />);
+    const { rerender } = render(<SchoolDetails {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Do");
@@ -89,11 +89,11 @@ describe("SchoolPickerCheckbox", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolPickerCheckbox {...props} />);
+    rerender(<SchoolDetails {...props} />);
     expect(input.value).toBe("Dorothy Bricks");
   });
   it("calls onSchoolChange when a school is selected ", async () => {
-    const { rerender } = render(<SchoolPickerCheckbox {...props} />);
+    const { rerender } = render(<SchoolDetails {...props} />);
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
@@ -102,7 +102,7 @@ describe("SchoolPickerCheckbox", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolPickerCheckbox {...props} />);
+    rerender(<SchoolDetails {...props} />);
     expect(setSchool).toBeCalled();
   });
 });

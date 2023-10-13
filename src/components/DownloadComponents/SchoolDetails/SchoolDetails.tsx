@@ -7,7 +7,7 @@ import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
 import { Heading } from "@/components/Typography";
 import Checkbox from "@/components/Checkbox";
 
-export type SchoolPickerCheckboxProps = {
+export type SchoolDetailsProps = {
   setSchool: (value: string, name?: string) => void;
   initialValue?: string;
   initialSchoolName?: string;
@@ -18,7 +18,7 @@ export type SchoolPickerCheckboxProps = {
   >;
 };
 
-const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
+const SchoolDetails: FC<SchoolDetailsProps> = ({
   setSchool,
   initialValue,
   initialSchoolName,
@@ -105,4 +105,4 @@ const SchoolPickerCheckbox: FC<SchoolPickerCheckboxProps> = ({
   );
 };
 
-export default SchoolPickerCheckbox;
+export default SchoolDetails;
