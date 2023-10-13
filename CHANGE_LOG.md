@@ -1,3 +1,16 @@
+# [1.281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.2...v1.281.0) (2023-10-13)
+
+
+### Features
+
+* **schoolpicker:** extra test case ([c46b8b8](https://github.com/oaknational/Oak-Web-Application/commit/c46b8b8cf1bdd9e917058e4a11c60d49e75e08a6))
+* **schoolpicker:** highlight bold search term ([9c0184e](https://github.com/oaknational/Oak-Web-Application/commit/9c0184e5b23f807874d28ccb207e6b3acbab6644))
+* **schoolpicker:** merge ([c095a8a](https://github.com/oaknational/Oak-Web-Application/commit/c095a8aaedfdb6f74d3ec96966ab1ee40c02eca2))
+* **schoolpicker:** refactor formatter ([5601c91](https://github.com/oaknational/Oak-Web-Application/commit/5601c91801441938f601aeea434a738cdf44cf68))
+* **schoolpicker:** review changes ([c3a0f31](https://github.com/oaknational/Oak-Web-Application/commit/c3a0f31d4044086ad1209cfcadc3e6e8f7fa9a2e))
+* **schoolpicker:** review changes ([5081c00](https://github.com/oaknational/Oak-Web-Application/commit/5081c00a72968667393a78360f33f9212b9e8ab2))
+* **schoolpicker:** test fix ([87e37f7](https://github.com/oaknational/Oak-Web-Application/commit/87e37f7ebdfb05b88500dfcef61a6510e6421995))
+
 ## [1.280.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.1...v1.280.2) (2023-10-12)
 
 

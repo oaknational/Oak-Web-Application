@@ -10,6 +10,7 @@ import Flex from "../Flex";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline } from "../Input/Input";
+import { formatSchoolName } from "../formatSchoolName";
 
 export type SelectListBoxConfig = {
   states: {
@@ -63,11 +64,13 @@ const ListItem = styled.li<ListItemProps>`
 interface ListBoxProps extends AriaListBoxOptions<unknown> {
   listBoxRef?: React.RefObject<HTMLUListElement>;
   state: ListState<unknown>;
+  inputValue?: string;
 }
 
 interface OptionProps {
   item: Node<unknown>;
   state: ListState<unknown>;
+  inputValue?: string;
 }
 
 interface ListItemProps {
@@ -77,13 +80,18 @@ interface ListItemProps {
 
 export function ListBox(props: ListBoxProps) {
   const ref = useRef<HTMLUListElement>(null);
-  const { listBoxRef = ref, state } = props;
+  const { listBoxRef = ref, state, inputValue } = props;
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
     <List {...listBoxProps} ref={listBoxRef}>
       {[...state.collection].map((item) => (
-        <Option key={item.key} item={item} state={state} />
+        <Option
+          key={item.key}
+          item={item}
+          state={state}
+          inputValue={inputValue}
+        />
       ))}
     </List>
   );
@@ -99,7 +107,7 @@ const OptionContext = createContext<OptionContextValue>({
   descriptionProps: {},
 });
 
-function Option({ item, state }: OptionProps) {
+function Option({ item, state, inputValue }: OptionProps) {
   const ref = useRef<HTMLLIElement>(null);
   const { optionProps, labelProps, descriptionProps, isSelected, isFocused } =
     useOption(
@@ -119,7 +127,7 @@ function Option({ item, state }: OptionProps) {
     >
       <Flex $position={"relative"} $alignItems={"center"}>
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
-          {item.rendered}
+          {formatSchoolName(item.rendered, inputValue)}
         </OptionContext.Provider>
         <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
       </Flex>

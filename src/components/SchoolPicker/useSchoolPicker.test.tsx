@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 import OakError from "../../errors/OakError";
 
@@ -46,13 +46,14 @@ describe("useSchoolPicker", () => {
     jest.clearAllMocks();
     jest.resetModules();
   });
-  test("Schools should be returned if fetch succeeds with added home school option", async () => {
+  test("Schools should be returned with homeschool option if fetch succeeds", async () => {
+    const { result, rerender } = renderHook(useSchoolPicker);
+    act(() => result.current.setSchoolPickerInputValue("wes"));
     mockUseSWR.mockImplementationOnce(() => ({
       data: data,
       error: null,
     }));
-    const { result } = renderHook(() => useSchoolPicker());
-
+    rerender();
     expect(result.current.schools).toEqual([
       ...data,
       {
@@ -61,7 +62,15 @@ describe("useSchoolPicker", () => {
       },
     ]);
   });
+  test("Schools not returned if fetch succeeds but searchterm.length < 2", async () => {
+    mockUseSWR.mockImplementationOnce(() => ({
+      data: data,
+      error: null,
+    }));
+    const { result } = renderHook(() => useSchoolPicker());
 
+    expect(result.current.schools).toEqual([]);
+  });
   test("should throw an error if failed to fetch school ", async () => {
     fetch.mockResolvedValue({
       json: jest.fn().mockResolvedValue({ res: "this" }),

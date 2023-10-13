@@ -50,7 +50,7 @@ export default function useSchoolPicker(): UseSchoolPickerReturnProps {
     : [];
 
   return {
-    schools: dataWithHomeschoolOption,
+    schools: schoolPickerInputValue.length > 2 ? dataWithHomeschoolOption : [],
     error,
     setSchoolPickerInputValue,
     schoolPickerInputValue,
