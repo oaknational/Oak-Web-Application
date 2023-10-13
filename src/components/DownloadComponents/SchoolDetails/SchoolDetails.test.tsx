@@ -48,7 +48,7 @@ describe("SchoolDetails", () => {
     await waitForNextTick();
 
     expect(checkbox).toBeChecked();
-    // expect(input).toBeTruthy();
+    expect(input).toHaveValue("");
   });
 
   it("clears selected checkbox if school is selected from school picker", async () => {
