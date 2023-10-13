@@ -99,7 +99,6 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
         />
-        <p>{checkboxValue}</p>
       </Flex>
     </>
   );
