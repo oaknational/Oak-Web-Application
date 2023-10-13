@@ -1,3 +1,18 @@
+# [1.282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.281.0...v1.282.0) (2023-10-13)
+
+
+### Bug Fixes
+
+* incorrect casing in link name ([20084e7](https://github.com/oaknational/Oak-Web-Application/commit/20084e782c75666077ca202ba834f1737c7282d4))
+* update test for privacy policy link ([d5cce05](https://github.com/oaknational/Oak-Web-Application/commit/d5cce05e0942c4bb9bd2805c7708250168f5ba62))
+
+
+### Features
+
+* add an external icon to links opening in a new tab ([14071d5](https://github.com/oaknational/Oak-Web-Application/commit/14071d53f32499389b775b5b64fdecc1f3a10370))
+* add external icon and open privacy policy in a new tab on downloads page ([ea19ced](https://github.com/oaknational/Oak-Web-Application/commit/ea19ced0e03bbed5be730dc2417e4faaa05464f0))
+* enable copyright notice links opening in a new tab ([33d7e03](https://github.com/oaknational/Oak-Web-Application/commit/33d7e03128b1d357e6c4d3dd0fd975ded0e2029f))
+
 # [1.281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.2...v1.281.0) (2023-10-13)
 
 
