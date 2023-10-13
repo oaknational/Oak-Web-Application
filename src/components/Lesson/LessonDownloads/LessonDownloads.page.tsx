@@ -267,8 +267,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     return errorMessage;
   };
 
-  console.log("LessonDownloads", lessonSlug, resourcesToDownload);
-
   useDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
