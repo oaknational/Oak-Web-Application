@@ -1,3 +1,10 @@
+## [1.282.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.0...v1.282.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* update year for primary science exemplar unit ([f5ab341](https://github.com/oaknational/Oak-Web-Application/commit/f5ab34166cdf7e5318629c93dec8f28c53935195))
+
 # [1.282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.281.0...v1.282.0) (2023-10-13)
 
 
