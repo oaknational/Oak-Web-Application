@@ -6,6 +6,10 @@ on:
 
 jobs:
   add_music_year:
+    permissions:
+      issues: write
+      pull-requests: write
+
     name: add music year
     runs-on: ubuntu-latest
     steps:
