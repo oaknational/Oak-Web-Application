@@ -3,7 +3,7 @@ query lessonDownloads(
   $programmeSlug: String!
   $unitSlug: String!
 ) {
-  downloads: published_mv_downloads_7(
+  downloads: published_mv_downloads_3_0_0(
     where: {
       lessonSlug: { _eq: $lessonSlug }
       programmeSlug: { _eq: $programmeSlug }
