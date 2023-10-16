@@ -1,3 +1,10 @@
+## [1.282.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.2...v1.282.3) (2023-10-16)
+
+
+### Bug Fixes
+
+* **school-name:** refactor the format school name so it doesnt live in generic listbox ([6a531dc](https://github.com/oaknational/Oak-Web-Application/commit/6a531dcf08e198e1fc7527f944ddc7ce9e868561))
+
 ## [1.282.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.1...v1.282.2) (2023-10-13)
 
 
