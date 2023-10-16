@@ -78,10 +78,6 @@ const getDownloadResourcesExistence = async (
     isLegacyDownload,
   };
 
-  console.log(
-    "checkWhichResourcesExistEndpoint",
-    checkWhichResourcesExistEndpoint,
-  );
   const res = await fetch(checkWhichResourcesExistEndpoint);
 
   if (!res.ok) {
