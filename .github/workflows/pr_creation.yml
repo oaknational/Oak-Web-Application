@@ -1,0 +1,25 @@
+name: On PR Creation
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  add_music_year:
+    name: add music year
+    runs-on: ubuntu-latest
+    steps:
+      - name: choose year
+        id: choose_year
+        run: |
+          # Pick a random year between 1960 and 2023
+          year=$(( ( RANDOM % 63 )  + 1960 ))
+          echo "::set-output name=year::$year"
+
+      - name: add year to PR body
+        uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          prNumber: ${{ github.event.pull_request.number }}
+          find: "{owa_music_year}"
+          replace: ${{ steps.choose_year.outputs.year }}
