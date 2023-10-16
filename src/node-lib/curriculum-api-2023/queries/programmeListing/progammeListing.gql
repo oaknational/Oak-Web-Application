@@ -1,5 +1,5 @@
 query programmeListing($keyStageSlug: String, $subjectSlug: String) {
-  programmes: published_mv_programme_listing_3_0_0(
+  programmes: published_mv_programme_listing_3(
     where: {
       keyStageSlug: { _eq: $keyStageSlug }
       subjectSlug: { _eq: $subjectSlug }

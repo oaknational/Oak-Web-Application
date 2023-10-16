@@ -1,5 +1,5 @@
 query searchPage {
-  searchPage: published_mv_search_page_1 {
+  searchPage: published_mv_search_page {
     contentTypes: content_type
     keyStages: key_stages
     subjects
