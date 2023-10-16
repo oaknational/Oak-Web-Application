@@ -42,13 +42,13 @@ const legacySchema = z.object({
   data: z
     .object({
       resources: z.object({
-        "exit-quiz-answers": z.boolean(),
-        "exit-quiz-questions": z.boolean(),
-        "intro-quiz-answers": z.boolean(),
-        "intro-quiz-questions": z.boolean(),
-        presentation: z.boolean(),
-        "worksheet-pdf": z.boolean(),
-        "worksheet-pptx": z.boolean(),
+        "exit-quiz-answers": z.boolean().optional(),
+        "exit-quiz-questions": z.boolean().optional(),
+        "intro-quiz-answers": z.boolean().optional(),
+        "intro-quiz-questions": z.boolean().optional(),
+        presentation: z.boolean().optional(),
+        "worksheet-pdf": z.boolean().optional(),
+        "worksheet-pptx": z.boolean().optional(),
       }),
     })
     .optional(),
@@ -77,6 +77,11 @@ const getDownloadResourcesExistence = async (
     resourceTypesString,
     isLegacyDownload,
   };
+
+  console.log(
+    "checkWhichResourcesExistEndpoint",
+    checkWhichResourcesExistEndpoint,
+  );
   const res = await fetch(checkWhichResourcesExistEndpoint);
 
   if (!res.ok) {
