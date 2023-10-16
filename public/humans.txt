@@ -1,6 +1,6 @@
 /* SITE */
 
-Oak National Academy’s tech platform has been created by a team of human developers supporting a committed team of teachers and volunteers.
+Oak National Academy’s tech platform has been created by a team of humans supporting a committed team of teachers and volunteers.
 
 /* TEAM */
 
