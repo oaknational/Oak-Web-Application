@@ -1,3 +1,16 @@
+# [1.283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.6...v1.283.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* reinstate pointing to new mv versions ([d499780](https://github.com/oaknational/Oak-Web-Application/commit/d4997801877badf9c23ab2257d691be661e612d0))
+
+
+### Features
+
+* add more canoncical pages ([57a8d2d](https://github.com/oaknational/Oak-Web-Application/commit/57a8d2dadd1952236f6e4dca18ef41571f6992a7))
+* test new content in percy ([a170c26](https://github.com/oaknational/Oak-Web-Application/commit/a170c26e26f4bc29583b2cdafd33c33330c29bcd))
+
 ## [1.282.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.5...v1.282.6) (2023-10-17)
 
 
