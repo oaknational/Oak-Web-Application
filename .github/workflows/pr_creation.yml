@@ -2,7 +2,7 @@ name: On PR Creation
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize]
 
 jobs:
   add_music_year:
@@ -26,6 +26,5 @@ jobs:
         uses: mcky/find-and-replace-pull-request-body@v1.1.6-mcky
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          prNumber: ${{ github.event.pull_request.number }}
           find: "{owa_music_year}"
           replace: ${{ steps.choose_year.outputs.year }}
