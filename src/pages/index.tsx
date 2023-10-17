@@ -105,9 +105,9 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
     if (isHomePageTab(tabName) && current !== tabName) {
       setCurrent(tabName as HomePageTab);
-    } else if (tabName === "") {
-      // default value when first loading the page
-      setCurrent("teachers");
+    } else {
+      // default value when first loading the page or invalid hash
+      setActiveTab("teachers");
     }
   }, [current]);
 
