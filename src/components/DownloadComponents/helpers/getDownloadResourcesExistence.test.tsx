@@ -1,14 +1,19 @@
 import getDownloadResourcesExistence, {
   DownloadsApiCheckFilesResponseSchema,
+  LegacyDownloadsApiCheckFilesResponseSchema,
 } from "./getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
 
 const data: DownloadsApiCheckFilesResponseSchema["data"] = {
   resources: [
-    ["exit-quiz-answers", { exists: true }],
-    ["worksheet-pdf", { exists: true }],
+    ["exit-quiz-answers", { exists: true, errors: [] }],
+    ["worksheet-pdf", { exists: true, errors: [] }],
   ],
+};
+
+const legacyData: LegacyDownloadsApiCheckFilesResponseSchema["data"] = {
+  resources: { "exit-quiz-answers": true, "worksheet-pdf": true },
 };
 
 const successResponse = {
@@ -23,16 +28,39 @@ describe("checkIfDownloadResourcesExist()", () => {
   let downloadResourcesExist;
 
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = jest.fn((url) => {
+      if (
+        url ===
+        "https://downloads-api.thenational.academy/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"
+      ) {
+        return Promise.resolve(successResponse);
+      } else {
+        return Promise.resolve({
+          json: () =>
+            Promise.resolve({
+              data: legacyData,
+            }),
+          ok: true,
+        });
+      }
+    }) as jest.Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
+      false,
+    );
+    expect(downloadResourcesExist).toEqual(data);
+  });
+
+  it("should return correct data if legacy fetch is successful", async () => {
+    downloadResourcesExist = await getDownloadResourcesExistence(
+      "lesson-slug",
+      "exit-quiz-answers,worksheet-pdf",
       true,
     );
-
     expect(downloadResourcesExist).toEqual(data);
   });
 
@@ -110,6 +138,7 @@ describe("checkIfDownloadResourcesExist()", () => {
       });
     }
   });
+
   it("should fetch from legacy vercel legacy vercel api if isLegacyDownload = true", async () => {
     downloadResourcesExist = await getDownloadResourcesExistence(
       "lesson-slug",
