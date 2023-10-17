@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
+import { formatSchoolName } from "../formatSchoolName";
 
 import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
@@ -33,6 +34,7 @@ export type School = {
  * ## Usage
  * Used on downloads page
  */
+
 const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
     <SearchComboBox
@@ -47,7 +49,13 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       {(item) => (
         <Item
           key={`${item.urn}-${item.name}`}
-        >{`${item.name}, ${item.la}, ${item.postcode}`}</Item>
+          textValue={`${item.name}, ${item.la}, ${item.postcode}`}
+        >
+          {formatSchoolName(
+            `${item.name}, ${item.la}, ${item.postcode}`,
+            props.schoolPickerInputValue,
+          )}
+        </Item>
       )}
     </SearchComboBox>
   );
