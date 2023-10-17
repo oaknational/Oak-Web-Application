@@ -1,3 +1,56 @@
+## [1.283.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.0...v1.283.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* **download-existence:** merge ([1612aa5](https://github.com/oaknational/Oak-Web-Application/commit/1612aa5e04723797d8cb6cd6409cd1dd9421e630))
+* **download-existence:** remove console log ([9f93b18](https://github.com/oaknational/Oak-Web-Application/commit/9f93b18001695762079826d7a9042abfc424fee6))
+* **download-existence:** test fix and coverage increase ([1785606](https://github.com/oaknational/Oak-Web-Application/commit/1785606fe822118fd692f6b13deba3d607dc55c5))
+* **download-existence:** transform legacy download response to match new dta schema ([db5d4fb](https://github.com/oaknational/Oak-Web-Application/commit/db5d4fb0fddb9987f1573ab31ffda21e87120b5a))
+
+# [1.283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.6...v1.283.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* reinstate pointing to new mv versions ([d499780](https://github.com/oaknational/Oak-Web-Application/commit/d4997801877badf9c23ab2257d691be661e612d0))
+
+
+### Features
+
+* add more canoncical pages ([57a8d2d](https://github.com/oaknational/Oak-Web-Application/commit/57a8d2dadd1952236f6e4dca18ef41571f6992a7))
+* test new content in percy ([a170c26](https://github.com/oaknational/Oak-Web-Application/commit/a170c26e26f4bc29583b2cdafd33c33330c29bcd))
+
+## [1.282.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.5...v1.282.6) (2023-10-17)
+
+
+### Bug Fixes
+
+* incorrect asset schema plan a lesson ([3e98b36](https://github.com/oaknational/Oak-Web-Application/commit/3e98b3698c0adbe487ad374a60ac35c4ea5b51ec))
+
+## [1.282.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.4...v1.282.5) (2023-10-16)
+
+
+### Bug Fixes
+
+* temporary revert ([840167b](https://github.com/oaknational/Oak-Web-Application/commit/840167b4357dab3b08bd2421e1cab6888f112dea))
+
+## [1.282.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.3...v1.282.4) (2023-10-16)
+
+## [1.282.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.2...v1.282.3) (2023-10-16)
+
+
+### Bug Fixes
+
+* **school-name:** refactor the format school name so it doesnt live in generic listbox ([6a531dc](https://github.com/oaknational/Oak-Web-Application/commit/6a531dcf08e198e1fc7527f944ddc7ce9e868561))
+
+## [1.282.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.1...v1.282.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* dropdown roles ([0a27162](https://github.com/oaknational/Oak-Web-Application/commit/0a2716208b87dba8e2c83b47257240a7cebf4026))
+
 ## [1.282.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.0...v1.282.1) (2023-10-13)
 
 
