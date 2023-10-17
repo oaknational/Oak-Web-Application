@@ -328,7 +328,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           ? schoolIdFromLocalStorage
                           : undefined
                       }
-                      initialSchoolName={schoolNameFromLocalStorage}
+                      initialSchoolName={
+                        schoolNameFromLocalStorage.length > 0
+                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
+                            schoolNameFromLocalStorage.slice(1)
+                          : undefined
+                      }
                     />
                     <Heading
                       tag="h3"
