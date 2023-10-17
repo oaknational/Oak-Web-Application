@@ -605,7 +605,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                 <Button
                                   role="radio"
                                   $mr={24}
-                                  $mt={index >= 2 ? [12, 0] : 0}
+                                  $mt={index >= 2 ? [16, 0] : 0}
                                   background={
                                     isSelected(examboard) ? "black" : "oakGrey1"
                                   }
