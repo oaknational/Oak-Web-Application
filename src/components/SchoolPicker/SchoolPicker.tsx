@@ -47,17 +47,24 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       required={props.required}
     >
       {(item) => {
-        const comboItemKey = HOMESCHOOL_URN
-          ? item.urn
-          : `${item.urn}-${item.name}`;
+        const formattedSchool = formatSchoolName(
+          `${item.name}, ${item.la}, ${item.postcode}`,
+          props.schoolPickerInputValue,
+        );
+        const comboItemKey =
+          item.urn === HOMESCHOOL_URN ? item.urn : `${item.urn}-${item.name}`;
         const comboItem =
+          item.urn === HOMESCHOOL_URN ? item.name : formattedSchool;
+        const textValue =
           item.urn === HOMESCHOOL_URN
             ? item.name
-            : formatSchoolName(
-                `${item.name}, ${item.la}, ${item.postcode}`,
-                props.schoolPickerInputValue,
-              );
-        return <Item key={comboItemKey}>{comboItem}</Item>;
+            : `${item.name}, ${item.la}, ${item.postcode}`;
+
+        return (
+          <Item key={comboItemKey} textValue={String(textValue)}>
+            {comboItem}
+          </Item>
+        );
       }}
     </SearchComboBox>
   );
