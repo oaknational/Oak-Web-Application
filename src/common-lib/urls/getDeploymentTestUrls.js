@@ -49,7 +49,9 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
     // Canonical lesson pages
     "/teachers/lessons/transverse-waves",
+    "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/transverse-waves/downloads",
+    "/teachers/lessons/duncan-as-a-father-figure/downloads",
   ];
 }
 
