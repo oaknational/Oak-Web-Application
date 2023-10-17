@@ -509,10 +509,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 )}
                 {selectedPhase && !showExamboardError && (
                   <>
-                    <Span>{selectedPhase.title}</Span>
-                    {selectedExamboard && (
-                      <Span>, {selectedExamboard.title}</Span>
-                    )}
+                    <Box
+                      $textOverflow={"ellipsis"}
+                      $whiteSpace={"nowrap"}
+                      $overflowX={"hidden"}
+                    >
+                      <Span>{selectedPhase.title}</Span>
+                      {selectedExamboard && (
+                        <Span>, {selectedExamboard.title}</Span>
+                      )}
+                    </Box>
                   </>
                 )}
                 {!selectedPhase &&
@@ -593,22 +599,27 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         </Heading>
 
                         <Box aria-label="Exam board" role="radiogroup">
-                          {selectedSubject.examboards.map((examboard) => (
-                            <ButtonContainer key={examboard.slug}>
-                              <Button
-                                role="radio"
-                                $mr={24}
-                                background={
-                                  isSelected(examboard) ? "black" : "oakGrey1"
-                                }
-                                label={examboard.title}
-                                onClick={() => handleSelectExamboard(examboard)}
-                                size="large"
-                                title={examboard.title}
-                                aria-checked={isSelected(examboard)}
-                              />
-                            </ButtonContainer>
-                          ))}
+                          {selectedSubject.examboards.map(
+                            (examboard, index) => (
+                              <ButtonContainer key={examboard.slug}>
+                                <Button
+                                  role="radio"
+                                  $mr={24}
+                                  $mt={index >= 2 ? [12, 0] : 0}
+                                  background={
+                                    isSelected(examboard) ? "black" : "oakGrey1"
+                                  }
+                                  label={examboard.title}
+                                  onClick={() =>
+                                    handleSelectExamboard(examboard)
+                                  }
+                                  size="large"
+                                  title={examboard.title}
+                                  aria-checked={isSelected(examboard)}
+                                />
+                              </ButtonContainer>
+                            ),
+                          )}
                         </Box>
                       </>
                     )}
