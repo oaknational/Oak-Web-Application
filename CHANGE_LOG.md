@@ -1,3 +1,10 @@
+## [1.282.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.5...v1.282.6) (2023-10-17)
+
+
+### Bug Fixes
+
+* incorrect asset schema plan a lesson ([3e98b36](https://github.com/oaknational/Oak-Web-Application/commit/3e98b3698c0adbe487ad374a60ac35c4ea5b51ec))
+
 ## [1.282.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.4...v1.282.5) (2023-10-16)
 
 
