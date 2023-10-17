@@ -1,3 +1,33 @@
+## [1.282.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.4...v1.282.5) (2023-10-16)
+
+
+### Bug Fixes
+
+* temporary revert ([840167b](https://github.com/oaknational/Oak-Web-Application/commit/840167b4357dab3b08bd2421e1cab6888f112dea))
+
+## [1.282.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.3...v1.282.4) (2023-10-16)
+
+## [1.282.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.2...v1.282.3) (2023-10-16)
+
+
+### Bug Fixes
+
+* **school-name:** refactor the format school name so it doesnt live in generic listbox ([6a531dc](https://github.com/oaknational/Oak-Web-Application/commit/6a531dcf08e198e1fc7527f944ddc7ce9e868561))
+
+## [1.282.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.1...v1.282.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* dropdown roles ([0a27162](https://github.com/oaknational/Oak-Web-Application/commit/0a2716208b87dba8e2c83b47257240a7cebf4026))
+
+## [1.282.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.0...v1.282.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* update year for primary science exemplar unit ([f5ab341](https://github.com/oaknational/Oak-Web-Application/commit/f5ab34166cdf7e5318629c93dec8f28c53935195))
+
 # [1.282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.281.0...v1.282.0) (2023-10-13)
 
 

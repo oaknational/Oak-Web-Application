@@ -107,12 +107,7 @@ const SearchComboBox = <T extends School>(
           onClose={() => state.close}
           focusOn={false}
         >
-          <ListBox
-            {...listBoxProps}
-            listBoxRef={listBoxRef}
-            state={state}
-            inputValue={inputValue}
-          />
+          <ListBox {...listBoxProps} listBoxRef={listBoxRef} state={state} />
         </Popover>
       )}
     </Flex>
