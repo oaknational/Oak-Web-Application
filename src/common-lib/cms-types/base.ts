@@ -35,7 +35,7 @@ export const imageAssetSchema = z.object({
 export const imageSchema = z.object({
   altText: z.string().min(1).nullish(),
   isPresentational: z.boolean().nullish(),
-  asset: imageAssetSchema.optional(),
+  asset: imageAssetSchema.nullish(),
   hotspot: z
     .object({
       x: z.number(),

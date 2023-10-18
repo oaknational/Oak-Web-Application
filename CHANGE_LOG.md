@@ -1,3 +1,154 @@
+# [1.285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.284.0...v1.285.0) (2023-10-18)
+
+
+### Bug Fixes
+
+* add types to stories and tests ([23b2fe5](https://github.com/oaknational/Oak-Web-Application/commit/23b2fe537c63864c3c394252c90ade94b45e8ddd))
+* handle invalid hash case ([123d1ab](https://github.com/oaknational/Oak-Web-Application/commit/123d1ab39b3da1b323b842a45c9cbca0730141ae))
+* only update to fallback when current is undefined ([d8f4cae](https://github.com/oaknational/Oak-Web-Application/commit/d8f4cae1d54eefe98701beae5216b056ebc9d2cb))
+
+
+### Features
+
+* use url hash to store active tab ([caaadfc](https://github.com/oaknational/Oak-Web-Application/commit/caaadfcc82bde391dff4ec5ddc4b9892a3ce1c23))
+
+# [1.284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.3...v1.284.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* capitalised homeschool from local storage ([825193e](https://github.com/oaknational/Oak-Web-Application/commit/825193e0e1d50699629dc58d69932e18befb90be))
+* data tracking and local storage ([aefd9ed](https://github.com/oaknational/Oak-Web-Application/commit/aefd9ed7c14a67fb3bc2707cd917ace200f3f9dd))
+* format for tracking test ([5fb05a0](https://github.com/oaknational/Oak-Web-Application/commit/5fb05a0d0dc3a2696e06532bad5cf4f34da9f9c3))
+* formated school ([ec1de5d](https://github.com/oaknational/Oak-Web-Application/commit/ec1de5d0151ccae4bade73544b1b5bb98b0de317))
+* school picker input change logic ([c84e7a6](https://github.com/oaknational/Oak-Web-Application/commit/c84e7a625a81ca5674dcab94e1c4b10f3e58094b))
+* send the correct format to hubspot ([5df202b](https://github.com/oaknational/Oak-Web-Application/commit/5df202b2f5cccbad6e3a8e7a7830a840550f34da))
+
+
+### Features
+
+* add home school option in school picker ([991592f](https://github.com/oaknational/Oak-Web-Application/commit/991592f35471bd064cca2c1bb3c857b3bf47a526))
+
+## [1.283.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.2...v1.283.3) (2023-10-17)
+
+## [1.283.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.1...v1.283.2) (2023-10-17)
+
+## [1.283.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.0...v1.283.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* **download-existence:** merge ([1612aa5](https://github.com/oaknational/Oak-Web-Application/commit/1612aa5e04723797d8cb6cd6409cd1dd9421e630))
+* **download-existence:** remove console log ([9f93b18](https://github.com/oaknational/Oak-Web-Application/commit/9f93b18001695762079826d7a9042abfc424fee6))
+* **download-existence:** test fix and coverage increase ([1785606](https://github.com/oaknational/Oak-Web-Application/commit/1785606fe822118fd692f6b13deba3d607dc55c5))
+* **download-existence:** transform legacy download response to match new dta schema ([db5d4fb](https://github.com/oaknational/Oak-Web-Application/commit/db5d4fb0fddb9987f1573ab31ffda21e87120b5a))
+
+# [1.283.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.6...v1.283.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* reinstate pointing to new mv versions ([d499780](https://github.com/oaknational/Oak-Web-Application/commit/d4997801877badf9c23ab2257d691be661e612d0))
+
+
+### Features
+
+* add more canoncical pages ([57a8d2d](https://github.com/oaknational/Oak-Web-Application/commit/57a8d2dadd1952236f6e4dca18ef41571f6992a7))
+* test new content in percy ([a170c26](https://github.com/oaknational/Oak-Web-Application/commit/a170c26e26f4bc29583b2cdafd33c33330c29bcd))
+
+## [1.282.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.5...v1.282.6) (2023-10-17)
+
+
+### Bug Fixes
+
+* incorrect asset schema plan a lesson ([3e98b36](https://github.com/oaknational/Oak-Web-Application/commit/3e98b3698c0adbe487ad374a60ac35c4ea5b51ec))
+
+## [1.282.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.4...v1.282.5) (2023-10-16)
+
+
+### Bug Fixes
+
+* temporary revert ([840167b](https://github.com/oaknational/Oak-Web-Application/commit/840167b4357dab3b08bd2421e1cab6888f112dea))
+
+## [1.282.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.3...v1.282.4) (2023-10-16)
+
+## [1.282.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.2...v1.282.3) (2023-10-16)
+
+
+### Bug Fixes
+
+* **school-name:** refactor the format school name so it doesnt live in generic listbox ([6a531dc](https://github.com/oaknational/Oak-Web-Application/commit/6a531dcf08e198e1fc7527f944ddc7ce9e868561))
+
+## [1.282.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.1...v1.282.2) (2023-10-13)
+
+
+### Bug Fixes
+
+* dropdown roles ([0a27162](https://github.com/oaknational/Oak-Web-Application/commit/0a2716208b87dba8e2c83b47257240a7cebf4026))
+
+## [1.282.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.282.0...v1.282.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* update year for primary science exemplar unit ([f5ab341](https://github.com/oaknational/Oak-Web-Application/commit/f5ab34166cdf7e5318629c93dec8f28c53935195))
+
+# [1.282.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.281.0...v1.282.0) (2023-10-13)
+
+
+### Bug Fixes
+
+* incorrect casing in link name ([20084e7](https://github.com/oaknational/Oak-Web-Application/commit/20084e782c75666077ca202ba834f1737c7282d4))
+* update test for privacy policy link ([d5cce05](https://github.com/oaknational/Oak-Web-Application/commit/d5cce05e0942c4bb9bd2805c7708250168f5ba62))
+
+
+### Features
+
+* add an external icon to links opening in a new tab ([14071d5](https://github.com/oaknational/Oak-Web-Application/commit/14071d53f32499389b775b5b64fdecc1f3a10370))
+* add external icon and open privacy policy in a new tab on downloads page ([ea19ced](https://github.com/oaknational/Oak-Web-Application/commit/ea19ced0e03bbed5be730dc2417e4faaa05464f0))
+* enable copyright notice links opening in a new tab ([33d7e03](https://github.com/oaknational/Oak-Web-Application/commit/33d7e03128b1d357e6c4d3dd0fd975ded0e2029f))
+
+# [1.281.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.2...v1.281.0) (2023-10-13)
+
+
+### Features
+
+* **schoolpicker:** extra test case ([c46b8b8](https://github.com/oaknational/Oak-Web-Application/commit/c46b8b8cf1bdd9e917058e4a11c60d49e75e08a6))
+* **schoolpicker:** highlight bold search term ([9c0184e](https://github.com/oaknational/Oak-Web-Application/commit/9c0184e5b23f807874d28ccb207e6b3acbab6644))
+* **schoolpicker:** merge ([c095a8a](https://github.com/oaknational/Oak-Web-Application/commit/c095a8aaedfdb6f74d3ec96966ab1ee40c02eca2))
+* **schoolpicker:** refactor formatter ([5601c91](https://github.com/oaknational/Oak-Web-Application/commit/5601c91801441938f601aeea434a738cdf44cf68))
+* **schoolpicker:** review changes ([c3a0f31](https://github.com/oaknational/Oak-Web-Application/commit/c3a0f31d4044086ad1209cfcadc3e6e8f7fa9a2e))
+* **schoolpicker:** review changes ([5081c00](https://github.com/oaknational/Oak-Web-Application/commit/5081c00a72968667393a78360f33f9212b9e8ab2))
+* **schoolpicker:** test fix ([87e37f7](https://github.com/oaknational/Oak-Web-Application/commit/87e37f7ebdfb05b88500dfcef61a6510e6421995))
+
+## [1.280.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.1...v1.280.2) (2023-10-12)
+
+
+### Bug Fixes
+
+* change oakGreen to oakGrey2 ([9c1628c](https://github.com/oaknational/Oak-Web-Application/commit/9c1628c1701876fa412e09bee1486b55fc434ea9))
+
+## [1.280.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.280.0...v1.280.1) (2023-10-12)
+
+# [1.280.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.279.0...v1.280.0) (2023-10-12)
+
+
+### Bug Fixes
+
+* add hyphen to early-release units ([fa85557](https://github.com/oaknational/Oak-Web-Application/commit/fa855574a4eccfb50b3460f818c2a0e711c3c6ab))
+* remove /teachers from deployment test urls ([71732dc](https://github.com/oaknational/Oak-Web-Application/commit/71732dc4959b99b63f195e3245ac634b8c3498c3))
+* remove link to copyright notice page in footer ([de66622](https://github.com/oaknational/Oak-Web-Application/commit/de6662265ff25b478cadd01a3254d2f3bb1ff1e7))
+* update tests ([8262b25](https://github.com/oaknational/Oak-Web-Application/commit/8262b25c11ac17c2dd1885abb22a1e37c131535f))
+
+
+### Features
+
+* enable extra footer links ([959b225](https://github.com/oaknational/Oak-Web-Application/commit/959b2255c0db443575a01faf2a03bfdaded41dbe))
+* **homepage:** move teacher homepage to root url ([3945576](https://github.com/oaknational/Oak-Web-Application/commit/39455761b34172769e01c604eda085fabb020034))
+* make app header the default ([f2ed3ec](https://github.com/oaknational/Oak-Web-Application/commit/f2ed3ec55bfad89d54bed34bffcb45403e29637e))
+* remove copyright notice from footer ([212fa47](https://github.com/oaknational/Oak-Web-Application/commit/212fa47ea1e4ef85cf3aa40d79dcf098d0c849b2))
+* update home link so we don't route to /teachers ([27d4bd3](https://github.com/oaknational/Oak-Web-Application/commit/27d4bd3c7d6fde9a340b6a1e181510d24e15cc53))
+
 # [1.279.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.278.0...v1.279.0) (2023-10-11)
 
 

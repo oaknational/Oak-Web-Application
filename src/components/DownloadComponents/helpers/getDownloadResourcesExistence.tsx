@@ -37,7 +37,31 @@ const schema = z.object({
     })
     .optional(),
 });
+
+const legacySchema = z.object({
+  data: z
+    .object({
+      resources: z.object({
+        "exit-quiz-answers": z.boolean().optional(),
+        "exit-quiz-questions": z.boolean().optional(),
+        "intro-quiz-answers": z.boolean().optional(),
+        "intro-quiz-questions": z.boolean().optional(),
+        presentation: z.boolean().optional(),
+        "worksheet-pdf": z.boolean().optional(),
+        "worksheet-pptx": z.boolean().optional(),
+      }),
+    })
+    .optional(),
+  error: z
+    .object({
+      message: z.string(),
+    })
+    .optional(),
+});
 export type DownloadsApiCheckFilesResponseSchema = z.infer<typeof schema>;
+export type LegacyDownloadsApiCheckFilesResponseSchema = z.infer<
+  typeof legacySchema
+>;
 
 const getDownloadResourcesExistence = async (
   lessonSlug: string,
@@ -53,6 +77,7 @@ const getDownloadResourcesExistence = async (
     resourceTypesString,
     isLegacyDownload,
   };
+
   const res = await fetch(checkWhichResourcesExistEndpoint);
 
   if (!res.ok) {
@@ -64,7 +89,23 @@ const getDownloadResourcesExistence = async (
 
   const json = await res.json();
 
-  const parsedJson = schema.safeParse(json);
+  const transformLegacyDownloadResponse = (
+    json: LegacyDownloadsApiCheckFilesResponseSchema,
+  ) => {
+    const transformedJson = json.data && {
+      data: {
+        resources: Object.entries(json.data.resources).map(([k, v]) => {
+          return [k, { exists: v, errors: [] }];
+        }),
+      },
+      error: json.error,
+    };
+    return transformedJson;
+  };
+
+  const parsedJson = isLegacyDownload
+    ? schema.safeParse(transformLegacyDownloadResponse(json))
+    : schema.safeParse(json);
 
   if (!parsedJson.success) {
     throw new OakError({
