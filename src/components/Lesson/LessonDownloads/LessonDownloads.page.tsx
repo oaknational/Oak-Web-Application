@@ -32,7 +32,7 @@ import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAnd
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
+import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
@@ -320,7 +320,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   />
                 ) : (
                   <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolPickerRadio
+                    <SchoolDetails
                       errors={errors}
                       setSchool={setSchool}
                       initialValue={
@@ -328,7 +328,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           ? schoolIdFromLocalStorage
                           : undefined
                       }
-                      initialSchoolName={schoolNameFromLocalStorage}
+                      initialSchoolName={
+                        schoolNameFromLocalStorage.length > 0
+                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
+                            schoolNameFromLocalStorage.slice(1)
+                          : undefined
+                      }
                     />
                     <Heading
                       tag="h3"

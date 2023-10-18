@@ -1,3 +1,22 @@
+# [1.284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.3...v1.284.0) (2023-10-17)
+
+
+### Bug Fixes
+
+* capitalised homeschool from local storage ([825193e](https://github.com/oaknational/Oak-Web-Application/commit/825193e0e1d50699629dc58d69932e18befb90be))
+* data tracking and local storage ([aefd9ed](https://github.com/oaknational/Oak-Web-Application/commit/aefd9ed7c14a67fb3bc2707cd917ace200f3f9dd))
+* format for tracking test ([5fb05a0](https://github.com/oaknational/Oak-Web-Application/commit/5fb05a0d0dc3a2696e06532bad5cf4f34da9f9c3))
+* formated school ([ec1de5d](https://github.com/oaknational/Oak-Web-Application/commit/ec1de5d0151ccae4bade73544b1b5bb98b0de317))
+* school picker input change logic ([c84e7a6](https://github.com/oaknational/Oak-Web-Application/commit/c84e7a625a81ca5674dcab94e1c4b10f3e58094b))
+* send the correct format to hubspot ([5df202b](https://github.com/oaknational/Oak-Web-Application/commit/5df202b2f5cccbad6e3a8e7a7830a840550f34da))
+
+
+### Features
+
+* add home school option in school picker ([991592f](https://github.com/oaknational/Oak-Web-Application/commit/991592f35471bd064cca2c1bb3c857b3bf47a526))
+
+## [1.283.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.2...v1.283.3) (2023-10-17)
+
 ## [1.283.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.1...v1.283.2) (2023-10-17)
 
 ## [1.283.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.0...v1.283.1) (2023-10-17)
