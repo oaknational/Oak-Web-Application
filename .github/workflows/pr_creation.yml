@@ -19,7 +19,7 @@ jobs:
         id: choose_year
         run: |
           # Pick a random year between 1960 and 2023
-          year=$(( ( RANDOM % 63 )  + 1960 ))
+          year=$(( ( RANDOM % 73 )  + 1950 ))
           echo "::set-output name=year::$year"
 
       - name: add year to PR body
