@@ -19,45 +19,39 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const curriculumPathSlugs: string[] = [];
 
   for (const curriculum of curriculumResult) {
-    curriculumPathSlugs.push(`${curriculum.slug}-primary`);
-    if (curriculum.examboards) {
-      const examboardSlugs = curriculum.examboards.map(
-        (examboard) => examboard.slug,
-      );
-      for (const examboardSlug of examboardSlugs) {
-        curriculumPathSlugs.push(
-          `${curriculum.slug}-secondary-${examboardSlug}`,
+    for (const curriculumPhase of curriculum.phases) {
+      if (curriculumPhase.slug === "primary") {
+        curriculumPathSlugs.push(`${curriculum.slug}-primary`);
+      } else if (
+        curriculumPhase.slug === "secondary" &&
+        !curriculum.examboards
+      ) {
+        curriculumPathSlugs.push(`${curriculum.slug}-secondary`);
+      } else if (
+        curriculumPhase.slug === "secondary" &&
+        curriculum.examboards
+      ) {
+        const examboardSlugs = curriculum.examboards.map(
+          (examboard) => examboard.slug,
         );
+        for (const examboardSlug of examboardSlugs) {
+          curriculumPathSlugs.push(
+            `${curriculum.slug}-secondary-${examboardSlug}`,
+          );
+        }
       }
     }
   }
 
-  const curriculumUnitsPaths = curriculumPathSlugs.map((curriculumPath) => {
-    return path.join(sitemapBaseUrl, basePath, curriculumPath, "units");
-  });
-  const curriculumOverviewPaths = curriculumPathSlugs.map((curriculumPath) => {
-    return path.join(sitemapBaseUrl, basePath, curriculumPath, "overview");
-  });
-
-  const curriculumUnitsFields = curriculumUnitsPaths.map(
-    (curriculumUnitPath) => {
-      return {
-        loc: new URL(curriculumUnitPath).href,
-        lastmod: new Date().toISOString(),
-      };
-    },
-  );
-
-  const curriculumOverviewFields = curriculumOverviewPaths.map(
-    (curriculumOverviewPath) => {
-      return {
-        loc: new URL(curriculumOverviewPath).href,
-        lastmod: new Date().toISOString(),
-      };
-    },
-  );
-
-  const fields = curriculumUnitsFields.concat(curriculumOverviewFields);
+  const fields = [];
+  for (const tab of ["overview", "units"]) {
+    for (const slug of curriculumPathSlugs) {
+      fields.push({
+        loc: path.join(sitemapBaseUrl, basePath, slug, tab),
+        lastmid: new Date().toISOString(),
+      });
+    }
+  }
 
   return getServerSideSitemap(context, fields);
 };
