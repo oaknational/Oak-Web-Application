@@ -32,7 +32,7 @@ import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAnd
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
+import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
@@ -45,6 +45,7 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
+import Icon from "@/components/Icon";
 
 type LessonDownloadsProps =
   | {
@@ -319,7 +320,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   />
                 ) : (
                   <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolPickerRadio
+                    <SchoolDetails
                       errors={errors}
                       setSchool={setSchool}
                       initialValue={
@@ -327,7 +328,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           ? schoolIdFromLocalStorage
                           : undefined
                       }
-                      initialSchoolName={schoolNameFromLocalStorage}
+                      initialSchoolName={
+                        schoolNameFromLocalStorage.length > 0
+                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
+                            schoolNameFromLocalStorage.slice(1)
+                          : undefined
+                      }
                     />
                     <Heading
                       tag="h3"
@@ -353,8 +359,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         page="legal"
                         legalSlug="privacy-policy"
                         $isInline
+                        htmlAnchorProps={{
+                          target: "_blank",
+                          "aria-label": "Privacy policy (opens in a new tab)",
+                        }}
                       >
-                        privacy policy
+                        privacy policy{" "}
+                        <Icon
+                          name="external"
+                          verticalAlign="bottom"
+                          size={20}
+                          data-testid="external-link-icon"
+                        />
                       </OakLink>
                       .
                     </P>
@@ -386,6 +402,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 <Box $mb={56} $mt={16}>
                   <CopyrightNotice
                     showPostAlbCopyright={showPostAlbCopyright}
+                    openLinksExternally={true}
                   />
                 </Box>
               </>
