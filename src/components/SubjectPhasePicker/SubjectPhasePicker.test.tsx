@@ -7,6 +7,7 @@ import SubjectPhasePicker from "@/components/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
+
 const curriculumVisualiserAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,

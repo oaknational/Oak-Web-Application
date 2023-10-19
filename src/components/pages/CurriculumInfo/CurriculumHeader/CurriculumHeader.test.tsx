@@ -7,12 +7,6 @@ import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhase
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: jest.fn(),
-  }),
-}));
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {

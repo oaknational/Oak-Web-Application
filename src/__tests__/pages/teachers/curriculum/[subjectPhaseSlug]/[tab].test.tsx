@@ -17,7 +17,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
-const render = renderWithProviders(providers);
+const render = renderWithProviders();
 
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
@@ -105,7 +105,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId, queryAllByTestId } = render(
+      const { queryByTestId, queryAllByTestId } = renderWithProviders()(
         <CurriculumInfoPage
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
