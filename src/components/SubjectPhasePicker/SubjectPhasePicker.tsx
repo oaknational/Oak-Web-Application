@@ -91,8 +91,8 @@ const ButtonContainer = styled.div`
 `;
 
 const SchoolPhaseDropDownBox = styled(Box)<object>`
-  width: 200%;
-  left: -100%;
+  width: 204%;
+  left: -104%;
 
   @media (min-width: 768px) {
     width: 100%;
@@ -509,10 +509,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 )}
                 {selectedPhase && !showExamboardError && (
                   <>
-                    <Span>{selectedPhase.title}</Span>
-                    {selectedExamboard && (
-                      <Span>, {selectedExamboard.title}</Span>
-                    )}
+                    <Box
+                      $textOverflow={"ellipsis"}
+                      $whiteSpace={"nowrap"}
+                      $overflowX={"hidden"}
+                    >
+                      <Span>{selectedPhase.title}</Span>
+                      {selectedExamboard && (
+                        <Span>, {selectedExamboard.title}</Span>
+                      )}
+                    </Box>
                   </>
                 )}
                 {!selectedPhase &&
@@ -575,7 +581,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <Button
                           role="radio"
                           $mr={index === 0 ? 28 : 0}
-                          $mv={index === 0 ? 12 : 0}
+                          $mb={index === 0 ? 16 : 0}
+                          $mv={8}
                           background={isSelected(phase) ? "black" : "oakGrey1"}
                           label={phaseLabel(phase)}
                           onClick={() => handleSelectPhase(phase)}
@@ -588,27 +595,37 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
-                        <Heading $mv={16} tag={"h4"} $font={"heading-6"}>
+                        <Heading
+                          $mb={16}
+                          $mt={20}
+                          tag={"h4"}
+                          $font={"heading-6"}
+                        >
                           Choose an exam board for KS4:
                         </Heading>
 
                         <Box aria-label="Exam board" role="radiogroup">
-                          {selectedSubject.examboards.map((examboard) => (
-                            <ButtonContainer key={examboard.slug}>
-                              <Button
-                                role="radio"
-                                $mr={24}
-                                background={
-                                  isSelected(examboard) ? "black" : "oakGrey1"
-                                }
-                                label={examboard.title}
-                                onClick={() => handleSelectExamboard(examboard)}
-                                size="large"
-                                title={examboard.title}
-                                aria-checked={isSelected(examboard)}
-                              />
-                            </ButtonContainer>
-                          ))}
+                          {selectedSubject.examboards.map(
+                            (examboard, index) => (
+                              <ButtonContainer key={examboard.slug}>
+                                <Button
+                                  role="radio"
+                                  $mr={24}
+                                  $mt={index >= 2 ? [16, 0] : 0}
+                                  background={
+                                    isSelected(examboard) ? "black" : "oakGrey1"
+                                  }
+                                  label={examboard.title}
+                                  onClick={() =>
+                                    handleSelectExamboard(examboard)
+                                  }
+                                  size="large"
+                                  title={examboard.title}
+                                  aria-checked={isSelected(examboard)}
+                                />
+                              </ButtonContainer>
+                            ),
+                          )}
                         </Box>
                       </>
                     )}
@@ -640,7 +657,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         <Box
           $width={"90%"}
           $position={"relative"}
-          $mt={[18, 0]}
+          $mt={[12, 0]}
           $display={["block", " none"]}
         >
           <BoxBorders
