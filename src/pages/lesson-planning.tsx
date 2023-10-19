@@ -28,7 +28,7 @@ import { IllustrationSlug } from "../image-data";
 import { getSizes } from "../components/CMSImage/getSizes";
 import getPageProps from "../node-lib/getPageProps";
 
-import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -166,21 +166,16 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 );
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const lessonElementsCta =
-    pageData.lessonElementsCTA.linkType === "internal"
-      ? {
-          href: resolveInternalHref(pageData.lessonElementsCTA.internal),
-          page: null,
-        }
-      : pageData.lessonElementsCTA.linkType === "external"
-      ? {
-          page: null,
-          href: pageData.lessonElementsCTA.external,
-          htmlAnchorProps: {
+  const lessonElementsCta = {
+    page: null,
+    href: getLinkHref(pageData.lessonElementsCTA),
+    htmlAnchorProps:
+      pageData.lessonElementsCTA.linkType === "external"
+        ? {
             target: "_blank",
-          },
-        }
-      : { page: "teacher-hub" as const }; // fallback
+          }
+        : undefined,
+  };
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
