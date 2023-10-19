@@ -170,12 +170,9 @@ const generateCtaProps = (cta: CTA) => {
     page: null,
     href: getLinkHref(cta),
     label: cta.label,
-    htmlAnchorProps:
-      cta.linkType === "external"
-        ? {
-            target: "_blank",
-          }
-        : undefined,
+    htmlAnchorProps: {
+      target: "_self",
+    },
   };
 };
 

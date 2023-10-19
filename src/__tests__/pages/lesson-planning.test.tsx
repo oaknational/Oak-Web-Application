@@ -164,20 +164,6 @@ describe("pages/lesson-planning.tsx", () => {
       }
       expect(lessonElementsCta[0]).toHaveAttribute("href", externalLink);
     });
-    it("should open external links in a new tab", () => {
-      render(<PlanALesson pageData={testPlanningPageData} />);
-      const lessonElementsCta = screen.getAllByRole("link", {
-        name: testPlanningPageData.lessonElementsCTA.label,
-      });
-      const externalLink =
-        testPlanningPageData.lessonElementsCTA.linkType === "external"
-          ? testPlanningPageData.lessonElementsCTA.external
-          : null;
-      if (!externalLink) {
-        throw new Error("This should never happen - check the test data");
-      }
-      expect(lessonElementsCta[0]).toHaveAttribute("target", "_blank");
-    });
     it("should link to internal pages", () => {
       render(
         <PlanALesson
@@ -195,7 +181,7 @@ describe("pages/lesson-planning.tsx", () => {
         "/about-us/who-we-are",
       );
     });
-    it("should open internal pages in the same tab", () => {
+    it("should open links in the same tab", () => {
       render(
         <PlanALesson
           pageData={{
