@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
 
 import Typography, { Heading } from "@/components/Typography";
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
@@ -125,7 +125,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
 
   return (
     <AppLayout
-      seoProps={BETA_SEO_PROPS}
+      seoProps={DEFAULT_SEO_PROPS}
       $background={"white"}
       banner={HomePageBanner}
     >
