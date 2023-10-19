@@ -169,6 +169,7 @@ const generateCtaProps = (cta: CTA) => {
   return {
     page: null,
     href: getLinkHref(cta),
+    label: cta.label,
     htmlAnchorProps:
       cta.linkType === "external"
         ? {
@@ -274,7 +275,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 <ButtonAsLink
                   icon="search"
                   $iconPosition="trailing"
-                  label={pageData.lessonElementsCTA.label}
                   {...generateCtaProps(pageData.lessonElementsCTA)}
                 />
               </Card>
@@ -342,7 +342,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               icon="search"
                               $iconPosition="trailing"
                               $mt={24}
-                              label={"Search our lessons"}
                               {...generateCtaProps(pageData.stepsCTA)}
                             />
                           </Flex>
@@ -461,7 +460,6 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <ButtonAsLink
                 icon="search"
                 $iconPosition="trailing"
-                label={pageData.lessonElementsCTA.label}
                 {...generateCtaProps(pageData.lessonElementsCTA)}
               />
             </Card>
