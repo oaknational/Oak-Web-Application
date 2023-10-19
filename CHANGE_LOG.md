@@ -1,3 +1,17 @@
+# [1.285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.284.0...v1.285.0) (2023-10-18)
+
+
+### Bug Fixes
+
+* add types to stories and tests ([23b2fe5](https://github.com/oaknational/Oak-Web-Application/commit/23b2fe537c63864c3c394252c90ade94b45e8ddd))
+* handle invalid hash case ([123d1ab](https://github.com/oaknational/Oak-Web-Application/commit/123d1ab39b3da1b323b842a45c9cbca0730141ae))
+* only update to fallback when current is undefined ([d8f4cae](https://github.com/oaknational/Oak-Web-Application/commit/d8f4cae1d54eefe98701beae5216b056ebc9d2cb))
+
+
+### Features
+
+* use url hash to store active tab ([caaadfc](https://github.com/oaknational/Oak-Web-Application/commit/caaadfcc82bde391dff4ec5ddc4b9892a3ce1c23))
+
 # [1.284.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.283.3...v1.284.0) (2023-10-17)
 
 

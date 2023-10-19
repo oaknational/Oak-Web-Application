@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Typography, { Heading } from "@/components/Typography";
 import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
@@ -47,6 +47,10 @@ export type HomePageProps = {
   posts: SerializedPost[];
 };
 
+export type HomePageTab = "teachers" | "curriculum" | "pupils";
+const isHomePageTab = (u: unknown): u is HomePageTab =>
+  u === "teachers" || u === "curriculum" || u === "pupils";
+
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
     ? blogToPostListItem(post)
@@ -88,12 +92,36 @@ export const getAndMergeWebinarsAndBlogs = async (isPreviewMode: boolean) => {
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData } = props;
   const posts = props.posts.map(postToPostListItem);
-  const [current, setCurrent] = useState("teachers");
+  const [current, setCurrent] = useState<HomePageTab | undefined>();
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { track } = useAnalytics();
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
+
+  useEffect(() => {
+    const tabHash = window.location.hash;
+    const tabName = tabHash.slice(1);
+
+    if (isHomePageTab(tabName) && current !== tabName) {
+      setCurrent(tabName as HomePageTab);
+    } else if (current === undefined) {
+      // default value when first loading the page or invalid hash
+      setActiveTab("teachers");
+    }
+  }, [current]);
+
+  const setActiveTab = (tab: HomePageTab) => {
+    setCurrent(tab);
+    const newUrl = `#${tab}`;
+    // using window history instead of nextjs router to avoid re-rendering the page when the anchor changes
+    // see https://github.com/vercel/next.js/discussions/18072
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      "",
+      newUrl,
+    );
+  };
 
   return (
     <AppLayout
@@ -101,12 +129,13 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       $background={"white"}
       banner={HomePageBanner}
     >
-      <HomePageTabImageNav current={current} setCurrent={setCurrent} />
+      <HomePageTabImageNav current={current} setCurrent={setActiveTab} />
       {current === "teachers" && (
         <TeachersTab keyStages={curriculumData.keyStages} />
       )}
       {current === "curriculum" && <CurriculumTab />}
       {current === "pupils" && <PupilTab />}
+
       <MaxWidth $mv={[24, 56]}>
         <Box $ph={[16, 24]} $height={"100%"}>
           <Flex
