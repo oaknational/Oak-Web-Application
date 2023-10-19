@@ -31,6 +31,11 @@ const mockedCurriculumOverview =
 
 jest.mock("@/node-lib/cms");
 
+jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
+  __esModule: true,
+  default: () => () => null,
+}));
+
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
 jest.mock("next-sanity-image", () => ({

@@ -24,6 +24,7 @@ import Icon from "@/components/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import TagPromotional from "@/components/TagPromotional";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -110,7 +111,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const path = router.asPath;
 
   const { track } = useAnalytics();
-  // const { analyticsUseCase } = useAnalyticsPageProps();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -205,7 +206,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           selectedPhase.slug === "primary"
             ? "primary"
             : "secondary" /* (restricted to : "primary", "secondary") */,
-        analyticsUseCase: "Teacher",
+        analyticsUseCase:
+          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
       });
     }
   };
