@@ -68,9 +68,8 @@ const Accordion: FC<AccordionProps> = ({ title, children, lastAccordion }) => {
       <Flex
         data-testid={"accordion-container"}
         $maxHeight={isToggleOpen ? 9600 : 0}
-        $overflowY={"hidden"}
         $transition={"all 0.3s ease"}
-        $visibility={isToggleOpen ? "visible" : "hidden"}
+        $display={isToggleOpen ? "block" : "none"}
       >
         {children}
       </Flex>

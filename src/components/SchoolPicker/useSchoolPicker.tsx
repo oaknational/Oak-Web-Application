@@ -27,6 +27,8 @@ export const fetcher = (queryUrl: string) =>
     }
   });
 
+export const HOMESCHOOL_URN = "homeschool";
+
 export type UseSchoolPickerReturnProps = {
   schools: School[];
   error: Error | null;
@@ -43,9 +45,12 @@ export default function useSchoolPicker(): UseSchoolPickerReturnProps {
   const queryUrl = `https://school-picker.thenational.academy/${schoolPickerInputValue}`;
 
   const { data, error } = useSWR(queryUrl, fetcher);
+  const dataWithHomeschoolOption = data
+    ? [...data, { name: "Homeschool", urn: HOMESCHOOL_URN }]
+    : [];
 
   return {
-    schools: schoolPickerInputValue.length > 2 ? data : [],
+    schools: schoolPickerInputValue.length > 2 ? dataWithHomeschoolOption : [],
     error,
     setSchoolPickerInputValue,
     schoolPickerInputValue,

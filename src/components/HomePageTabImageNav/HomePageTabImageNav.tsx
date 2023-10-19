@@ -1,16 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
-
 import Flex, { FlexProps } from "@/components/Flex";
 import HomePageTabImageButton from "@/components/NewButtons/HomepageTabImageButton/HomePageTabImageButton";
 import { Hr } from "@/components/Typography";
+import { HomePageTab } from "@/pages";
 
 const HomePageTabImageNav = ({
   current,
   setCurrent,
   ...flexProps
 }: FlexProps & {
-  current: string;
-  setCurrent: Dispatch<SetStateAction<string>>;
+  current: HomePageTab | undefined;
+  setCurrent: (tab: HomePageTab) => void;
 }) => {
   const backgroundColor =
     current === "teachers"
