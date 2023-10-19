@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import EarlyReleaseUnitsHeader from "@/components/EarlyReleaseUnitsHeader";
 import EarlyReleaseExemplarUnits from "@/components/EarlyReleaseExemplarUnits";
@@ -17,7 +17,7 @@ import AnchorTarget from "@/components/AnchorTarget";
 const EarlyReleaseUnits: NextPage = () => {
   const exemplarUnitsFixture = earlyReleaseExemplarUnitsFixture();
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS}>
+    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
       <EarlyReleaseUnitsHeader />
       <MaxWidth>
         <Flex $mb={[24, 92]} $flexDirection={"column"}>
