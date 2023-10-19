@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 
 import { GetStaticPropsContext, GetStaticPropsResult, PreviewData } from "next";
+import { ZodError } from "zod";
 
 import errorReporter, { initialiseBugsnag } from "../common-lib/error-reporter";
 import OakError from "../errors/OakError";
@@ -62,14 +63,30 @@ const getPageProps = async <PageProps>({
         };
       }
     }
+
+    let oakError = error;
+    /**
+     * If preview mode is on, and error is a ZodError, wrap appropriately
+     */
+    if (context.preview && error instanceof ZodError) {
+      oakError = new OakError({
+        code: "preview/zod-error",
+        originalError: error,
+        meta: {
+          errors: error.errors,
+        },
+      });
+    }
+
     /**
      * Report error to error reporting service
      */
-    await errorReporter(page)(error, { ...context });
+    await errorReporter(page)(oakError, { ...context });
+
     /**
      * Rethrow error so that NextJS can handle it
      */
-    throw error;
+    throw oakError;
   }
 };
 

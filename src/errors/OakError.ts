@@ -18,6 +18,7 @@ const ERROR_CODES = [
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
+  "preview/zod-error",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
@@ -98,6 +99,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "video/fetch-signed-token": {
     message: "Failed to fetch signed video token",
     shouldNotify: true,
+  },
+  "preview/zod-error": {
+    message: "Zod error parsing preview data from CMS",
+    responseStatusCode: 500,
+    shouldNotify: false,
   },
   "preview/invalid-token": {
     message: "Invalid CMS preview token provided",

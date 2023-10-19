@@ -198,10 +198,19 @@ const errorReporter = (
   metadata?: Record<string, unknown>,
   { logger }: { logger: Logger } = { logger: console },
 ) => {
+  console.log("help");
+
   const reportError = async (maybeError: MaybeError, data?: ErrorData) => {
+    console.log("help2");
+
     try {
       logger.error(maybeError);
       logger.log(context, metadata, data);
+
+      if (maybeError instanceof OakError && !maybeError.config.shouldNotify) {
+        logger.log("Error should not be reported, aborting reportError()");
+        return;
+      }
 
       if (getHasBeenReported(maybeError)) {
         logger.warn("Error already reported, aborting reportError()");
