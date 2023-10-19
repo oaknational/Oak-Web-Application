@@ -143,7 +143,13 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   describe("CTA links", () => {
-    it.todo("should use pageData for the search CTA");
+    it("should use pageData for the search CTA", () => {
+      render(<PlanALesson pageData={testPlanningPageData} />);
+      const searchCta = screen.getByRole("link", {
+        name: "Search our lessons",
+      });
+      expect(searchCta).toHaveAttribute("href", "/");
+    });
     it("should use pageData for lesson elements CTA", () => {
       render(<PlanALesson pageData={testPlanningPageData} />);
       const lessonElementsCta = screen.getAllByRole("link", {

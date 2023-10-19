@@ -3,7 +3,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import { PortableText } from "@portabletext/react";
 
 import CMSClient from "../node-lib/cms";
-import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
+import { CTA, PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
 import Card, { CardProps } from "../components/Card";
 import Flex from "../components/Flex";
 import Grid, { GridArea } from "../components/Grid";
@@ -165,17 +165,23 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
-const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const lessonElementsCta = {
+const generateCtaProps = (cta: CTA) => {
+  return {
     page: null,
-    href: getLinkHref(pageData.lessonElementsCTA),
+    href: getLinkHref(cta),
     htmlAnchorProps:
-      pageData.lessonElementsCTA.linkType === "external"
+      cta.linkType === "external"
         ? {
             target: "_blank",
           }
         : undefined,
   };
+};
+
+const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+  const lessonElementsCta = generateCtaProps(pageData.lessonElementsCTA);
+
+  const searchCta = generateCtaProps(pageData.stepsCTA);
 
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
@@ -341,10 +347,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              page="teacher-hub" // TODO: integrate sanity link
-                              htmlAnchorProps={{
-                                target: "_blank",
-                              }}
+                              {...searchCta}
                             />
                           </Flex>
                         )}
