@@ -179,10 +179,6 @@ const generateCtaProps = (cta: CTA) => {
 };
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
-  const lessonElementsCta = generateCtaProps(pageData.lessonElementsCTA);
-
-  const searchCta = generateCtaProps(pageData.stepsCTA);
-
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
@@ -279,7 +275,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="search"
                   $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  {...lessonElementsCta}
+                  {...generateCtaProps(pageData.lessonElementsCTA)}
                 />
               </Card>
             </GridArea>
@@ -347,7 +343,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              {...searchCta}
+                              {...generateCtaProps(pageData.stepsCTA)}
                             />
                           </Flex>
                         )}
@@ -466,7 +462,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="search"
                 $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                {...lessonElementsCta}
+                {...generateCtaProps(pageData.lessonElementsCTA)}
               />
             </Card>
           </Card>
