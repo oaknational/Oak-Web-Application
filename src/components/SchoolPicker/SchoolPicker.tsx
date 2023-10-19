@@ -4,7 +4,7 @@ import { Item } from "react-stately";
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
 import { formatSchoolName } from "../formatSchoolName";
 
-import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
+import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
 type SchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
@@ -46,17 +46,26 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       onSelectionChange={(value) => props.setSelectedSchool(value)}
       required={props.required}
     >
-      {(item) => (
-        <Item
-          key={`${item.urn}-${item.name}`}
-          textValue={`${item.name}, ${item.la}, ${item.postcode}`}
-        >
-          {formatSchoolName(
-            `${item.name}, ${item.la}, ${item.postcode}`,
-            props.schoolPickerInputValue,
-          )}
-        </Item>
-      )}
+      {(item) => {
+        const formattedSchool = formatSchoolName(
+          `${item.name}, ${item.la}, ${item.postcode}`,
+          props.schoolPickerInputValue,
+        );
+        const comboItemKey =
+          item.urn === HOMESCHOOL_URN ? item.urn : `${item.urn}-${item.name}`;
+        const comboItem =
+          item.urn === HOMESCHOOL_URN ? item.name : formattedSchool;
+        const textValue =
+          item.urn === HOMESCHOOL_URN
+            ? item.name
+            : `${item.name}, ${item.la}, ${item.postcode}`;
+
+        return (
+          <Item key={comboItemKey} textValue={String(textValue)}>
+            {comboItem}
+          </Item>
+        );
+      }}
     </SearchComboBox>
   );
 };
