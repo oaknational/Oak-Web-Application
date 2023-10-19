@@ -28,6 +28,8 @@ import { IllustrationSlug } from "../image-data";
 import { getSizes } from "../components/CMSImage/getSizes";
 import getPageProps from "../node-lib/getPageProps";
 
+import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
+
 export type PlanALessonProps = {
   pageData: PlanningPage;
 };
@@ -164,6 +166,22 @@ const LessonElementsCard: FC<CardProps> = (props) => (
 );
 
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
+  const lessonElementsCta =
+    pageData.lessonElementsCTA.linkType === "internal"
+      ? {
+          href: resolveInternalHref(pageData.lessonElementsCTA.internal),
+          page: null,
+        }
+      : pageData.lessonElementsCTA.linkType === "external"
+      ? {
+          page: null,
+          href: pageData.lessonElementsCTA.external,
+          htmlAnchorProps: {
+            target: "_blank",
+          },
+        }
+      : { page: "teacher-hub" as const }; // fallback
+
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $pt={[72, 80, 80]}>
@@ -260,10 +278,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   icon="search"
                   $iconPosition="trailing"
                   label={pageData.lessonElementsCTA.label}
-                  page="teacher-hub"
-                  htmlAnchorProps={{
-                    target: "_blank",
-                  }}
+                  {...lessonElementsCta}
                 />
               </Card>
             </GridArea>
@@ -331,7 +346,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               $iconPosition="trailing"
                               $mt={24}
                               label={"Search our lessons"}
-                              page="teacher-hub"
+                              page="teacher-hub" // TODO: integrate sanity link
                               htmlAnchorProps={{
                                 target: "_blank",
                               }}
@@ -453,10 +468,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 icon="search"
                 $iconPosition="trailing"
                 label={pageData.lessonElementsCTA.label}
-                page="teacher-hub"
-                htmlAnchorProps={{
-                  target: "_blank",
-                }}
+                {...lessonElementsCta}
               />
             </Card>
           </Card>
