@@ -1,3 +1,10 @@
+## [1.285.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.3...v1.285.4) (2023-10-19)
+
+
+### Bug Fixes
+
+* only report video error if type is not networkError ([57ad4b7](https://github.com/oaknational/Oak-Web-Application/commit/57ad4b78af253486ba33a2ada0121f902db5c29f))
+
 ## [1.285.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.2...v1.285.3) (2023-10-19)
 
 
