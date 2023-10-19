@@ -1,3 +1,13 @@
+## [1.285.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.2...v1.285.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* **SEO:** allow indexing pages ([fb57dea](https://github.com/oaknational/Oak-Web-Application/commit/fb57deaf93404961875bc19cde8aadc1a57de9e9))
+* **SEO:** correct the test ([77dd102](https://github.com/oaknational/Oak-Web-Application/commit/77dd1021e770527ce0e43bd48c77df1844a1cdfa))
+
+## [1.285.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.1...v1.285.2) (2023-10-19)
+
 ## [1.285.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.0...v1.285.1) (2023-10-19)
 
 # [1.285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.284.0...v1.285.0) (2023-10-18)
