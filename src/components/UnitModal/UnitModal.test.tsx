@@ -5,11 +5,21 @@ import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const unitInformationViewed = jest.fn();
+jest.mock("../../context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitInformationViewed: (...args: unknown[]) =>
+        unitInformationViewed(...args),
+    },
+  }),
+}));
 describe("Unit modal", () => {
-  const stateFn = jest.fn();
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
+  const stateFn = jest.fn();
 
   test("renders with correct heading", () => {
     const { getByText } = renderWithTheme(
@@ -18,7 +28,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
+        // isHighlighted={false}
       />,
     );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
@@ -31,7 +41,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
+        // isHighlighted={false}
       />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
@@ -49,7 +59,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
+        // isHighlighted={false}
       />,
     );
 
@@ -65,7 +75,7 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -79,7 +89,7 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -95,7 +105,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -110,7 +120,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -124,7 +134,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -138,7 +148,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
+          // isHighlighted={false}
         />,
       );
 
@@ -155,7 +165,7 @@ describe("Unit modal", () => {
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
             setUnitOptionsAvailable={stateFn}
-            isHighlighted={false}
+            // isHighlighted={false}
           />,
         );
 

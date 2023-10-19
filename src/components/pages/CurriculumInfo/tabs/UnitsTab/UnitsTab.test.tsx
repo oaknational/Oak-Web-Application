@@ -3,12 +3,31 @@ import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab from "./UnitsTab";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+// import render from "@/__tests__/__helpers__/render";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+const render = renderWithProviders();
+// const curriculumThreadHighlighted = jest.fn();
+// const yearGroupSelected = jest.fn();
+
+// jest.mock("../../context/Analytics/useAnalytics", () => ({
+//   __esModule: true,
+//   default: () => ({
+//     track: {
+//       curriculumThreadHighlighted: (...args: unknown[]) =>
+//         curriculumThreadHighlighted(...args),
+//       yearGroupSelected: (...args: unknown[]) => yearGroupSelected(...args),
+//     },
+//   }),
+// }));
+//
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("user can see the content", async () => {
-    const { queryAllByTestId } = renderWithTheme(
+    const { queryAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
@@ -16,7 +35,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("number of unit cards matches units", async () => {
-    const { findAllByTestId } = renderWithTheme(
+    const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const unitCards = await findAllByTestId("unit-card");
@@ -25,7 +44,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("threads with duplicate orders sort alphabetically", async () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
-    const { findAllByTestId } = renderWithTheme(
+    const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
@@ -126,7 +145,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(<UnitsTab data={data} />);
     const threadOptions = await findAllByTestId("thread-radio");
     expect(threadOptions).toHaveLength(3);
     expect(threadOptions.map((option) => option.getAttribute("value"))).toEqual(
@@ -139,7 +158,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can see all the thread choices", async () => {
-    const { findByTestId, findAllByTestId } = renderWithTheme(
+    const { findByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
@@ -154,7 +173,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can highlight units by threads", async () => {
-    const { queryByTestId, queryAllByTestId } = renderWithTheme(
+    const { queryByTestId, queryAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const threads = queryAllByTestId("thread-radio");
@@ -176,7 +195,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can see all the year group choices", async () => {
-    const { findByTestId, findAllByTestId } = renderWithTheme(
+    const { findByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     expect(await findByTestId("all-years-radio")).toBeInTheDocument();
@@ -188,7 +207,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("Year group choices are properly sorted", async () => {
-    const { findAllByTestId } = renderWithTheme(
+    const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const yearOptions = await findAllByTestId("year-radio");
@@ -202,7 +221,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("user can filter by year group", async () => {
-    const { queryAllByTestId, findAllByTestId } = renderWithTheme(
+    const { queryAllByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
     const yearOptions = queryAllByTestId("year-radio");
@@ -284,7 +303,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(<UnitsTab data={data} />);
     let unitCards = await findAllByTestId("unit-card");
     // Combined science is selected by default, so only 1 expected
     expect(unitCards).toHaveLength(1);
@@ -365,7 +384,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(<UnitsTab data={data} />);
     let unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(2);
     const domainButtons = await findAllByTestId("domain-button");
@@ -478,7 +497,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(<UnitsTab data={data} />);
     let unitCards = await findAllByTestId("unit-card");
     // Foundation selected by default, so only 2 (including blank) expected
     expect(unitCards).toHaveLength(2);
@@ -551,7 +570,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findByTestId } = renderWithTheme(<UnitsTab data={data} />);
+    const { findByTestId } = render(<UnitsTab data={data} />);
     const tag = await findByTestId("options-tag");
     expect(tag).toHaveTextContent("2");
   });

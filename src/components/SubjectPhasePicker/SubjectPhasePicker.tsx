@@ -197,6 +197,23 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowPhases(false);
   };
 
+  const trackViewCurriculum = () => {
+    if (selectedPhase && selectedSubject) {
+      console.log("evt happening");
+      console.log(selectedPhase + " " + selectedSubject);
+      track.curriculumVisualiserAccessed({
+        subjectTitle: selectedSubject.title /* string */,
+        subjectSlug: selectedSubject.slug /* string */,
+        phase:
+          selectedPhase.slug === "primary"
+            ? "primary"
+            : "secondary" /* (restricted to : "primary", "secondary") */,
+        analyticsUseCase:
+          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+      });
+    }
+  };
+
   const handleViewCurriculum = () => {
     let canViewCurriculum = true;
     if (!selectedSubject) {
@@ -226,18 +243,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       if (selectedExamboard) {
         subjectPhaseSlug += "-" + selectedExamboard.slug;
       }
-      if (selectedPhase && selectedSubject) {
-        track.curriculumVisualiserAccessed({
-          subjectTitle: selectedSubject.title /* string */,
-          subjectSlug: selectedSubject.slug /* string */,
-          phase:
-            selectedPhase.slug === "primary"
-              ? "primary"
-              : "secondary" /* (restricted to : "primary", "secondary") */,
-          analyticsUseCase:
-            analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
-        });
-      }
+      trackViewCurriculum();
       router.push({
         pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
       });

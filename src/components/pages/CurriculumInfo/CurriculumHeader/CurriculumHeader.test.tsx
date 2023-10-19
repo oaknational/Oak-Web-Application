@@ -1,11 +1,23 @@
 import CurriculumHeader from "./CurriculumHeader";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+// import render from "@/__tests__/__helpers__/render";
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: jest.fn(),
+  }),
+}));
 
 describe("Component - Curriculum Header", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
@@ -15,7 +27,7 @@ describe("Component - Curriculum Header", () => {
       ...overrides,
     };
 
-    return renderWithTheme(<CurriculumHeader {...defaultProps} />);
+    return render(<CurriculumHeader {...defaultProps} />);
   };
 
   test("user can see the breadcrumbs", async () => {

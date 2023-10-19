@@ -17,7 +17,8 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
-const render = renderWithProviders();
+const render = renderWithProviders(providers);
+
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
@@ -53,6 +54,9 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
 }));
 
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {
       const slug = "english-secondary-aqa";

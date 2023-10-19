@@ -3,9 +3,25 @@ import { waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SubjectPhasePicker";
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+// import render from "@/__tests__/__helpers__/render";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
+const curriculumVisualiserAccessed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumVisualiserAccessed: (...args: unknown[]) =>
+        curriculumVisualiserAccessed(...args),
+    },
+  }),
+}));
 
 describe("Component - subject phase picker", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("populates selection if supplied", () => {
     const currentSelection = {
       subject: {
@@ -17,7 +33,7 @@ describe("Component - subject phase picker", () => {
       phase: { title: "Secondary", slug: "secondary" },
       examboard: { title: "AQA", slug: "aqa" },
     };
-    const { getByTitle } = renderWithTheme(
+    const { getByTitle } = render(
       <SubjectPhasePicker
         {...subjectPhaseOptions}
         currentSelection={currentSelection}
@@ -31,7 +47,7 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can see subjects when they click the control", async () => {
-    const { getByTitle, findAllByTitle } = renderWithTheme(
+    const { getByTitle, findAllByTitle } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
@@ -42,7 +58,7 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user selects a subject", async () => {
-    const { getByTitle, findAllByTitle } = renderWithTheme(
+    const { getByTitle, findAllByTitle } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Subject");
@@ -59,7 +75,7 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks to open phases when they click the control", async () => {
-    const { findByTitle, getByTitle } = renderWithTheme(
+    const { findByTitle, getByTitle } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     const control = getByTitle("Phase");
@@ -70,8 +86,9 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user selects primary and then Music", async () => {
-    const { getByTitle, findByTitle, findAllByTitle, queryByTitle } =
-      renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
+    const { getByTitle, findByTitle, findAllByTitle, queryByTitle } = render(
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
+    );
     const control = getByTitle("Phase");
     userEvent.click(control);
     await userEvent.click(await findByTitle("Primary"));
@@ -87,8 +104,9 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks English, secondary and an exam board", async () => {
-    const { findByText, findByTitle, getByTitle, findAllByTitle } =
-      renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
+    const { findByText, findByTitle, getByTitle, findAllByTitle } = render(
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
+    );
     userEvent.click(getByTitle("Subject"));
     const button = (await findAllByTitle("English"))[0];
     if (!button) {
@@ -108,7 +126,7 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user can close selection panels with escape button", async () => {
-    const { getByTitle, queryByText } = renderWithTheme(
+    const { getByTitle, queryByText } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
@@ -122,8 +140,9 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks View without complete selection and gets error", async () => {
-    const { getByText, getAllByTitle, getByTitle, queryByText } =
-      renderWithTheme(<SubjectPhasePicker {...subjectPhaseOptions} />);
+    const { getByText, getAllByTitle, getByTitle, queryByText } = render(
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
+    );
     const viewButton = getByText("View");
     await userEvent.click(viewButton);
     expect(queryByText("Select a subject")).toBeTruthy();
