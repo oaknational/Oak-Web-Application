@@ -1,5 +1,6 @@
 import { renderHook, screen } from "@testing-library/react";
 import { useForm } from "react-hook-form";
+import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 import { DownloadFormProps } from "../downloads.types";
@@ -8,8 +9,9 @@ import DownloadCardGroup from "./DownloadCardGroup";
 
 const selectAll = jest.fn;
 const deselectAll = jest.fn;
+
 describe("DownloadCardGroup", () => {
-  it("renders a select all checkbox", () => {
+  it("renders a toggleable select all checkbox", async () => {
     const { result } = renderHook(() => useForm<DownloadFormProps>());
     renderWithTheme(
       <DownloadCardGroup
@@ -26,5 +28,9 @@ describe("DownloadCardGroup", () => {
 
     expect(selectAllCheckbox).toBeInTheDocument();
     expect(selectAllCheckbox).toBeChecked();
+
+    const user = userEvent.setup();
+    await user.click(selectAllCheckbox);
+    expect(selectAllCheckbox).not.toBeChecked();
   });
 });
