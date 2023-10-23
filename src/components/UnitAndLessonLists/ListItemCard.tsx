@@ -42,15 +42,15 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
       {...(!expired ? containerProps : null)}
     >
       <Flex
-        $transform={applyHoverStyles ? "translateY(-4px)" : null}
         $transition={"all 0.4s ease-out"}
         $width={"100%"}
         $position={"relative"}
         $flexDirection={"row"}
         $justifyContent={"space-between"}
-        $dropShadow={applyHoverStyles ? "subjectCardHover" : "subjectCard"}
+        $dropShadow={"subjectCard"}
         $alignItems={"start"}
-        $background={background}
+        $background={applyHoverStyles ? "grey1" : background}
+        data-testid="list-item-card-container"
       >
         {children}
       </Flex>

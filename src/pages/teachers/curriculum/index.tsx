@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
@@ -36,7 +36,16 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"grey1"}>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: "Curriculum resources",
+          description:
+            "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
+        }),
+      }}
+      $background={"grey1"}
+    >
       <Flex $justifyContent={"center"} $background={"mint"}>
         <MaxWidth $ph={16}>
           <Box $mt={20}>

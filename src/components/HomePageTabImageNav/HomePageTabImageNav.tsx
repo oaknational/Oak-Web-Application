@@ -1,16 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
-
 import Flex, { FlexProps } from "@/components/Flex";
-import HomePageTabImageButton from "@/components/NewButton.tsx/HomePageTabImageButton";
+import HomePageTabImageButton from "@/components/NewButtons/HomepageTabImageButton/HomePageTabImageButton";
 import { Hr } from "@/components/Typography";
+import { HomePageTab } from "@/pages";
 
 const HomePageTabImageNav = ({
   current,
   setCurrent,
   ...flexProps
 }: FlexProps & {
-  current: string;
-  setCurrent: Dispatch<SetStateAction<string>>;
+  current: HomePageTab | undefined;
+  setCurrent: (tab: HomePageTab) => void;
 }) => {
   const backgroundColor =
     current === "teachers"
@@ -35,14 +34,16 @@ const HomePageTabImageNav = ({
         {...flexProps}
       >
         <HomePageTabImageButton
-          imageSlug={"teacher-carrying-stuff"}
+          activeImageSlug="teacher-carrying-stuff-1023-black"
+          passiveImageSlug="teacher-carrying-stuff-1023-oakgrey4"
           label={"Teaching resources"}
           isCurrent={current === "teachers"}
           isNew={false}
           onClick={() => setCurrent("teachers")}
         />
         <HomePageTabImageButton
-          imageSlug={"teacher-reading-map"}
+          activeImageSlug="teacher-reading-map-1023-black"
+          passiveImageSlug="teacher-reading-map-1023-oakgrey4"
           label={"Curriculum plans"}
           isCurrent={current === "curriculum"}
           isNew={true}
@@ -50,7 +51,8 @@ const HomePageTabImageNav = ({
           data-testid="curriculum-plans-button"
         />
         <HomePageTabImageButton
-          imageSlug={"three-pupils-standing"}
+          activeImageSlug="three-pupils-standing-1023-black"
+          passiveImageSlug="three-pupils-standing-1023-oakgrey4"
           label={"Pupils"}
           isCurrent={current === "pupils"}
           isNew={false}

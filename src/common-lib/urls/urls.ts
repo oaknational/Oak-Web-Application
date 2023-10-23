@@ -441,28 +441,10 @@ export const OAK_PAGES: {
     pageType: "help",
   }),
   home: createOakPageConfig({
+    pathPattern: "/",
     analyticsPageName: "Homepage",
-    configType: "internal-custom-resolve",
+    configType: "internal",
     pageType: "home",
-    matchHref: (href: string) => {
-      switch (href) {
-        case "/":
-          return {
-            path: "/",
-            index: 0,
-            params: {},
-          };
-        case "/teachers":
-          return {
-            path: "/teachers",
-            index: 0,
-            params: {},
-          };
-        default:
-          return false;
-      }
-    },
-    resolveHref: () => "/",
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",

@@ -144,13 +144,14 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Privacy policy link
       const privacyPolicyLink = screen.getByRole("link", {
-        name: "privacy policy",
+        name: "Privacy policy (opens in a new tab)",
       });
       expect(privacyPolicyLink).toBeInTheDocument();
       expect(privacyPolicyLink).toHaveAttribute(
         "href",
         "/legal/privacy-policy",
       );
+      expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
       expect(
@@ -159,7 +160,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
-        name: "terms & conditions",
+        name: "Terms & conditions",
       });
       expect(tcsLink).toBeInTheDocument();
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
