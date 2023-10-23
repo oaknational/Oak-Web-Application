@@ -63,6 +63,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
             name="select-all"
             variant="withLabel"
             labelText="Select all"
+            labelFontWeight={600}
           />
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>

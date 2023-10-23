@@ -38,6 +38,7 @@ export type CheckboxProps = {
   inputRef?: RefCallBack;
   onBlur?: () => void;
   hasError?: boolean;
+  labelFontWeight?: 400 | 600;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -138,10 +139,10 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const CheckboxLabelText = styled.span`
+const CheckboxLabelText = styled.span<{ fontWeight: 400 | 600 }>`
   margin-left: 8px;
   margin-right: 16px;
-  font-weight: 400;
+  font-weight: ${(props) => props.fontWeight};
 `;
 
 const Checkbox: FC<CheckboxProps> = (props) => {
@@ -160,6 +161,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     variant,
     inputRef,
     onBlur,
+    labelFontWeight,
     ...spacingProps
   } = props;
 
@@ -201,7 +203,9 @@ const Checkbox: FC<CheckboxProps> = (props) => {
 
         {labelText && variant !== "withoutLabel" && (
           <>
-            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+            <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
+              {labelText}
+            </CheckboxLabelText>{" "}
             <FocusUnderline $color={"teachersYellow"} />
           </>
         )}
