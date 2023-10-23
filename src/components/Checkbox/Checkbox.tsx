@@ -21,7 +21,7 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox" | "terms";
+export type CheckboxVariant = "withoutLabel" | "withLabel";
 
 export type CheckboxProps = {
   labelText?: string;
@@ -108,7 +108,7 @@ const checkboxHoverStyles = css`
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
   display: ${(props) =>
-    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+    props.variant !== "withoutLabel" ? "flex" : "initial"};
   align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
@@ -196,17 +196,17 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           hasError={hasError}
         />
         {/* card checkbox */}
-        {!labelText && variant === "cardCheckbox" && children}
+        {!labelText && variant === "withoutLabel" && children}
         {/* basic label checkbox */}
 
-        {labelText && variant !== "cardCheckbox" && (
+        {labelText && variant !== "withoutLabel" && (
           <>
             <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
             <FocusUnderline $color={"teachersYellow"} />
           </>
         )}
       </CheckboxLabel>
-      {variant !== "terms" && (
+      {variant !== "withLabel" && (
         <FieldError id={errorId} withoutMarginBottom>
           {error}
         </FieldError>
