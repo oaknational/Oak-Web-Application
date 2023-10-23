@@ -14,6 +14,7 @@ import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Checkbox from "@/components/Checkbox";
+import Box from "@/components/Box";
 
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -55,19 +56,26 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   return (
     <>
       <GridArea $colSpan={[12]}>
-        <Flex $alignItems={"left"} $flexDirection={"column"} $mb={28} $gap={24}>
+        <Flex
+          $alignItems={"flex-start"}
+          $flexDirection={"column"}
+          $mb={28}
+          $gap={24}
+        >
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
           </Heading>
-          <Checkbox
-            checked={selectAllChecked}
-            onChange={handleToggleSelectAll}
-            id="select-all"
-            name="select-all"
-            variant="withLabel"
-            labelText="Select all"
-            labelFontWeight={600}
-          />
+          <Box $maxWidth="max-content">
+            <Checkbox
+              checked={selectAllChecked}
+              onChange={handleToggleSelectAll}
+              id="select-all"
+              name="select-all"
+              variant="withLabel"
+              labelText="Select all"
+              labelFontWeight={600}
+            />
+          </Box>
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
       </GridArea>
