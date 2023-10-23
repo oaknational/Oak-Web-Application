@@ -198,11 +198,7 @@ const errorReporter = (
   metadata?: Record<string, unknown>,
   { logger }: { logger: Logger } = { logger: console },
 ) => {
-  console.log("help");
-
   const reportError = async (maybeError: MaybeError, data?: ErrorData) => {
-    console.log("help2");
-
     try {
       logger.error(maybeError);
       logger.log(context, metadata, data);
