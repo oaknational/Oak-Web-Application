@@ -225,7 +225,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
     });
 
-    it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
+    it("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
       const { getByTestId, getByLabelText } = render(
         <LessonDownloadsPage {...props} />,
       );
