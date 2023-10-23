@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import type {
@@ -34,7 +34,14 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   onDeselectAllClick,
   preselectAll,
 }) => {
-  const [selectAllChecked, setSelectAllChecked] = useState(preselectAll);
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
+
+  useEffect(() => {
+    if (preselectAll) {
+      setSelectAllChecked(true);
+    }
+  }, [preselectAll]);
+
   const handleToggleSelectAll = () => {
     if (selectAllChecked) {
       onDeselectAllClick();

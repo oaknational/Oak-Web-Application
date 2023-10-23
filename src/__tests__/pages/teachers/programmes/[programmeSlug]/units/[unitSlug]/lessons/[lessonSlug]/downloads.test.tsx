@@ -80,13 +80,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     const { getByText } = render(<LessonDownloadsPage {...props} />);
 
     await act(async () => {
-      const selectAllButton = getByText("Select all");
       const downloadButton = getByText("Download .zip");
       const user = userEvent.setup();
-      await user.click(selectAllButton);
       await waitForNextTick();
 
-      console.log(downloadButton);
       await user.click(downloadButton);
       await waitForNextTick();
     });
@@ -244,8 +241,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       );
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      const user = userEvent.setup();
-      await user.click(selectAllCheckbox);
       expect(selectAllCheckbox).toBeChecked();
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
@@ -265,7 +260,6 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
-      await user.click(selectAllCheckbox);
       await user.click(selectAllCheckbox);
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
