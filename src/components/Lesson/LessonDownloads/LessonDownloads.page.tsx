@@ -90,11 +90,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
 
-  const { register, formState, control, watch, setValue, handleSubmit } =
-    useForm<DownloadFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
+  const {
+    register,
+    formState,
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    trigger,
+  } = useForm<DownloadFormProps>({
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+  });
   const [preselectAll, setPreselectAll] = useState(false);
 
   const getInitialResourcesToDownloadState = useCallback(() => {
@@ -419,6 +426,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 onSelectAllClick={() => onSelectAllClick()}
                 onDeselectAllClick={() => onDeselectAllClick()}
                 preselectAll={preselectAll}
+                triggerForm={trigger}
               />
 
               <GridArea $colSpan={[12]}>

@@ -24,6 +24,7 @@ type DownloadCardGroupProps = {
   onSelectAllClick: () => void;
   onDeselectAllClick: () => void;
   preselectAll: boolean;
+  triggerForm: () => void;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
@@ -33,6 +34,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   errorMessage,
   onSelectAllClick,
   onDeselectAllClick,
+  triggerForm,
   preselectAll,
 }) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
@@ -51,6 +53,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       onSelectAllClick();
       setSelectAllChecked(true);
     }
+    // Trigger the form to reevaluate errors
+    triggerForm();
   };
 
   return (

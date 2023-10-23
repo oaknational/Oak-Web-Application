@@ -9,6 +9,7 @@ import DownloadCardGroup from "./DownloadCardGroup";
 
 const selectAll = jest.fn;
 const deselectAll = jest.fn;
+const triggerFn = jest.fn;
 
 describe("DownloadCardGroup", () => {
   it("renders a toggleable select all checkbox", async () => {
@@ -19,6 +20,7 @@ describe("DownloadCardGroup", () => {
         onSelectAllClick={selectAll}
         onDeselectAllClick={deselectAll}
         preselectAll={true}
+        triggerForm={triggerFn}
       />,
     );
 
