@@ -258,14 +258,15 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizAnswers).toBeChecked();
     });
 
-    it.skip("should deselect all resources if user deselects 'Select all'", async () => {
-      const { getByTestId, getByText } = render(
+    it("should deselect all resources if user deselects 'Select all'", async () => {
+      const { getByTestId, getByRole } = render(
         <LessonDownloadsPage {...props} />,
       );
 
-      const deselectAllButton = getByText("Deselect all");
+      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
-      await user.click(deselectAllButton);
+      await user.click(selectAllCheckbox);
+      await user.click(selectAllCheckbox);
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
       expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
