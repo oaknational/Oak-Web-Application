@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import type {
@@ -12,9 +12,8 @@ import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { GridArea } from "@/components/Grid";
 import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
-import Box from "@/components/Box";
-import Button from "@/components/Button";
 import FieldError from "@/components/FormFields/FieldError";
+import Checkbox from "@/components/Checkbox";
 
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -23,6 +22,7 @@ type DownloadCardGroupProps = {
   errorMessage?: string;
   onSelectAllClick: () => void;
   onDeselectAllClick: () => void;
+  preselectAll: boolean;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
@@ -32,7 +32,19 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   errorMessage,
   onSelectAllClick,
   onDeselectAllClick,
+  preselectAll,
 }) => {
+  const [selectAllChecked, setSelectAllChecked] = useState(preselectAll);
+  const handleToggleSelectAll = () => {
+    if (selectAllChecked) {
+      onDeselectAllClick();
+      setSelectAllChecked(false);
+    } else {
+      onSelectAllClick();
+      setSelectAllChecked(true);
+    }
+  };
+
   return (
     <>
       <GridArea $colSpan={[12]}>
@@ -44,19 +56,14 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
           </Heading>
-          <Box $ml={[0, 48]}>
-            <Button
-              label="Select all"
-              variant="minimal"
-              onClick={() => onSelectAllClick()}
-            />
-            <Button
-              label="Deselect all"
-              variant="minimal"
-              onClick={() => onDeselectAllClick()}
-              $ml={24}
-            />
-          </Box>
+          <Checkbox
+            checked={selectAllChecked}
+            onChange={handleToggleSelectAll}
+            id="select-all"
+            name="select-all"
+            variant="withLabel"
+            labelText="Select all"
+          />
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
       </GridArea>

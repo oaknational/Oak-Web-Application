@@ -95,6 +95,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       resolver: zodResolver(schema),
       mode: "onBlur",
     });
+  const [preselectAll, setPreselectAll] = useState(false);
 
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
@@ -115,6 +116,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
 
     if (preselected) {
+      setPreselectAll(preselected === "all");
       preselected === "all"
         ? setValue("downloads", getInitialResourcesToDownloadState())
         : setValue("downloads", preselected);
@@ -416,6 +418,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 errorMessage={errors?.downloads?.message}
                 onSelectAllClick={() => onSelectAllClick()}
                 onDeselectAllClick={() => onDeselectAllClick()}
+                preselectAll={preselectAll}
               />
 
               <GridArea $colSpan={[12]}>
