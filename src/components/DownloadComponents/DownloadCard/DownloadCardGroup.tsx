@@ -55,11 +55,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   return (
     <>
       <GridArea $colSpan={[12]}>
-        <Flex
-          $alignItems={["left", "center"]}
-          $flexDirection={["column", "row"]}
-          $mb={28}
-        >
+        <Flex $alignItems={"left"} $flexDirection={"column"} $mb={28} $gap={24}>
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
           </Heading>
