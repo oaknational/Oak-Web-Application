@@ -1,3 +1,10 @@
+# [1.286.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.4...v1.286.0) (2023-10-23)
+
+
+### Features
+
+* **monitoring:** alert on page timeouts ([83b0c21](https://github.com/oaknational/Oak-Web-Application/commit/83b0c219f4c50f543114d097057c3f6f0f5e6236))
+
 ## [1.285.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.3...v1.285.4) (2023-10-19)
 
 
