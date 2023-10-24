@@ -162,4 +162,28 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(viewButton);
     expect(queryByText("Select an exam board option")).toBeTruthy();
   });
+  test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
+    const { findAllByTitle, getByTitle, findByTitle, getByText } = render(
+      <SubjectPhasePicker {...subjectPhaseOptions} />,
+    );
+    userEvent.click(getByTitle("Subject"));
+    const button = (await findAllByTitle("English"))[0];
+    if (!button) {
+      throw new Error("Could not find button");
+    }
+    await userEvent.click(button);
+
+    await userEvent.click(await findByTitle("Primary"));
+
+    const viewButton = getByText("View");
+    await userEvent.click(viewButton);
+
+    expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
+    expect(curriculumVisualiserAccessed).toHaveBeenCalledWith({
+      subjectTitle: "English",
+      subjectSlug: "english",
+      phase: "primary",
+      analyticsUseCase: null,
+    });
+  });
 });
