@@ -74,9 +74,9 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
       <Button
         label="Edit"
         variant="minimal"
-        icon="chevron-down"
+        icon="edit"
         $iconPosition="trailing"
-        iconBackground="teachersHighlight"
+        iconBackground="black"
         onClick={onEditClick}
         $mt={8}
         aria-label="Edit details"
