@@ -11,12 +11,14 @@ type VisualCheckboxProps = {
   checked: boolean;
   hasError?: boolean;
   variant?: CheckboxVariant;
+  slim?: boolean;
 };
 
 type VisualCheckboxWrapper = {
   checked: boolean;
   hasError?: boolean;
   variant?: CheckboxVariant;
+  slim?: boolean;
 } & PositionProps;
 
 const getBorderColor = (props: VisualCheckboxProps) => {
@@ -31,9 +33,21 @@ const getBorderColor = (props: VisualCheckboxProps) => {
 
 const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   position: ${(props) =>
-    props?.variant === "cardCheckbox" ? "absolute" : "relative"};
-  left: ${(props) => (props?.variant === "cardCheckbox" ? "12px" : "initial")};
-  top: ${(props) => (props?.variant === "cardCheckbox" ? "12px" : "initial")};
+    props?.variant === "cardCheckbox" && !props.slim ? "absolute" : "relative"};
+  left: ${(props) =>
+    props?.variant === "cardCheckbox" && !props.slim
+      ? "12px"
+      : props?.variant === "cardCheckbox" && props.slim
+      ? "85%"
+      : "initial"};
+
+  top: ${(props) =>
+    props?.variant === "cardCheckbox" && !props.slim
+      ? "12px"
+      : props?.variant === "cardCheckbox" && props.slim
+      ? "100%"
+      : "initial"};
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,12 +64,14 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
 `;
 
 const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
+  console.log(props);
   return (
     <VisualCheckboxWrapper
       checked={props.checked}
       variant={props.variant}
       data-testid="visual-checkbox"
       hasError={props.hasError}
+      slim={props.slim}
     >
       {props.checked && (
         <Icon

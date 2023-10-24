@@ -75,6 +75,7 @@ const theme: OakTheme = {
     magenta: "#d02aa7",
     purple: "#845ad9",
     teal: "#037b7d",
+    grey60: "#575757",
   },
   contrastColors: {
     white: "black",
@@ -148,6 +149,7 @@ const theme: OakTheme = {
     magenta: "white",
     purple: "white",
     teal: "white",
+    grey60: "black",
   },
   buttonIconBackgroundColors: {
     teachersHighlight: "teachersYellow",
