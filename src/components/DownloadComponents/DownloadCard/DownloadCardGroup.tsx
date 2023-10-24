@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import type {
@@ -12,9 +12,9 @@ import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { GridArea } from "@/components/Grid";
 import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
-import Box from "@/components/Box";
-import Button from "@/components/Button";
 import FieldError from "@/components/FormFields/FieldError";
+import Checkbox from "@/components/Checkbox";
+import Box from "@/components/Box";
 
 type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -23,6 +23,8 @@ type DownloadCardGroupProps = {
   errorMessage?: string;
   onSelectAllClick: () => void;
   onDeselectAllClick: () => void;
+  preselectAll: boolean;
+  triggerForm: () => void;
 };
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
@@ -32,29 +34,50 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   errorMessage,
   onSelectAllClick,
   onDeselectAllClick,
+  triggerForm,
+  preselectAll,
 }) => {
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
+
+  useEffect(() => {
+    if (preselectAll) {
+      setSelectAllChecked(true);
+    }
+  }, [preselectAll]);
+
+  const handleToggleSelectAll = () => {
+    if (selectAllChecked) {
+      onDeselectAllClick();
+      setSelectAllChecked(false);
+    } else {
+      onSelectAllClick();
+      setSelectAllChecked(true);
+    }
+    // Trigger the form to reevaluate errors
+    triggerForm();
+  };
+
   return (
     <>
       <GridArea $colSpan={[12]}>
         <Flex
-          $alignItems={["left", "center"]}
-          $flexDirection={["column", "row"]}
+          $alignItems={"flex-start"}
+          $flexDirection={"column"}
           $mb={28}
+          $gap={24}
         >
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
           </Heading>
-          <Box $ml={[0, 48]}>
-            <Button
-              label="Select all"
-              variant="minimal"
-              onClick={() => onSelectAllClick()}
-            />
-            <Button
-              label="Deselect all"
-              variant="minimal"
-              onClick={() => onDeselectAllClick()}
-              $ml={24}
+          <Box $maxWidth="max-content">
+            <Checkbox
+              checked={selectAllChecked}
+              onChange={handleToggleSelectAll}
+              id="select-all"
+              name="select-all"
+              variant="withLabel"
+              labelText="Select all"
+              labelFontWeight={600}
             />
           </Box>
         </Flex>
@@ -88,6 +111,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                         ),
                       );
                     }
+                    // Trigger the form to reevaluate errors
+                    triggerForm();
                   };
                   return (
                     <DownloadCard

@@ -1,3 +1,19 @@
+# [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
+
+
+### Bug Fixes
+
+* enable clearing error state when selecting all ([d22d397](https://github.com/oaknational/Oak-Web-Application/commit/d22d39751a0d53922d166dfc98683771fbdb47e7))
+* reduce width of select all component ([1b1057b](https://github.com/oaknational/Oak-Web-Application/commit/1b1057bb3f0322ab8715881b191e733514db0468))
+* reevaluate form error states on (de)selecting card ([f9da164](https://github.com/oaknational/Oak-Web-Application/commit/f9da164c38cfe3e8ff896fc88543780cb65b91fe))
+
+
+### Features
+
+* adjust font weight for select all ([c31b1e9](https://github.com/oaknational/Oak-Web-Application/commit/c31b1e93a54ab019418a3f3189049b754eadadc9))
+* implement a checkbox instead of buttons for select all ([2492453](https://github.com/oaknational/Oak-Web-Application/commit/249245301c97c5e2ff11d7187caaa6b8accb968b))
+* update styling of select all and heading ([6aa712a](https://github.com/oaknational/Oak-Web-Application/commit/6aa712a52c914e02c69eb2c32f7bd5841e664cb0))
+
 # [1.287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.286.0...v1.287.0) (2023-10-23)
 
 
