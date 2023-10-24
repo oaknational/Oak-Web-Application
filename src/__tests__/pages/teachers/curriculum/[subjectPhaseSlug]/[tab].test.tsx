@@ -110,7 +110,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId, queryAllByTestId } = renderWithProviders()(
+      const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}

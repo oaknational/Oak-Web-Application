@@ -200,14 +200,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const trackViewCurriculum = () => {
     if (selectedPhase && selectedSubject) {
       track.curriculumVisualiserAccessed({
-        subjectTitle: selectedSubject.title /* string */,
-        subjectSlug: selectedSubject.slug /* string */,
-        phase:
-          selectedPhase.slug === "primary"
-            ? "primary"
-            : "secondary" /* (restricted to : "primary", "secondary") */,
-        analyticsUseCase:
-          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+        subjectTitle: selectedSubject.title,
+        subjectSlug: selectedSubject.slug,
+        phase: selectedPhase.slug === "primary" ? "primary" : "secondary",
+        analyticsUseCase: analyticsUseCase,
       });
     }
   };

@@ -260,15 +260,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     if (data.units[0]) {
       const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
       track.curriculumThreadHighlighted({
-        subjectTitle: subject /* string */,
-        subjectSlug: subjectSlug /* string */,
-        threadTitle: thread.title /* string */,
-        threadSlug: thread.slug /* string */,
-        phase:
-          phase_slug as PhaseValueType /* (restricted to : "primary", "secondary") */,
-        order: thread.order /* (min 0) */,
-        analyticsUseCase:
-          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+        subjectTitle: subject,
+        subjectSlug: subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phase_slug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
       });
     }
   }
@@ -298,12 +296,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   function trackSelectYear(year: string): void {
     if (data.units[0]) {
       track.yearGroupSelected({
-        yearGroupName: year /* string */,
-        yearGroupSlug: year /* string */,
-        subjectTitle: data.units[0].subject /* string */,
-        subjectSlug: data.units[0].subject_slug /* string */,
-        analyticsUseCase:
-          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle: data.units[0].subject,
+        subjectSlug: data.units[0].subject_slug,
+        analyticsUseCase: analyticsUseCase,
       });
     }
   }
