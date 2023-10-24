@@ -45,9 +45,7 @@ const ListItem = styled.li<ListItemProps>`
     ({ theme }) => theme.selectListBox.states.default.color,
   )};
   font-size: 14px;
-  font-weight: ${(props) =>
-    props.isFocused ? 700 : props.isSelected ? 700 : 300};
-  padding: 8px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,11 +115,16 @@ function Option({ item, state }: OptionProps) {
       isFocused={isFocused}
       isSelected={isSelected}
     >
-      <Flex $position={"relative"} $alignItems={"center"}>
+      <Flex
+        $width={"100%"}
+        $background={isFocused ? "grey1" : "white"}
+        $position={"relative"}
+        $alignItems={"center"}
+        $pa={8}
+      >
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
         </OptionContext.Provider>
-        <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
       </Flex>
       <BoxBorders $color="black" hideTop />
     </ListItem>
