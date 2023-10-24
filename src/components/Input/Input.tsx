@@ -81,7 +81,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 
   ::placeholder {
-    font-size: ${getColorByLocation(({ theme }) => theme.input.fontSize)};
+    font-size: ${(props) => props.theme.input.fontSize};
     font-weight: 300;
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
@@ -96,7 +96,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     )};
 
     ::placeholder {
-      font-size: ${getColorByLocation(({ theme }) => theme.input.fontSize)};
+      font-size: ${(props) => props.theme.input.fontSize};
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.valid.placeholder,
       )};
