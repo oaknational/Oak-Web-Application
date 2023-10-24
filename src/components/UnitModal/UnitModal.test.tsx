@@ -15,6 +15,7 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
     },
   }),
 }));
+
 describe("Unit modal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -28,7 +29,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        // isHighlighted={false}
+        isHighlighted={false}
       />,
     );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
@@ -41,7 +42,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        // isHighlighted={false}
+        isHighlighted={false}
       />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
@@ -59,7 +60,7 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        // isHighlighted={false}
+        isHighlighted={false}
       />,
     );
 
@@ -75,7 +76,7 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -89,7 +90,7 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -105,7 +106,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -120,7 +121,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -134,7 +135,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -148,7 +149,7 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          // isHighlighted={false}
+          isHighlighted={false}
         />,
       );
 
@@ -165,7 +166,7 @@ describe("Unit modal", () => {
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
             setUnitOptionsAvailable={stateFn}
-            // isHighlighted={false}
+            isHighlighted={false}
           />,
         );
 

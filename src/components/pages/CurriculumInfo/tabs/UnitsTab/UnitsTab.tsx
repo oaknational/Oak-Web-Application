@@ -256,30 +256,28 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return selectedThread?.slug === thread.slug;
   }
 
+  function trackSelectThread(thread: Thread): void {
+    if (data.units[0]) {
+      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
+      track.curriculumThreadHighlighted({
+        subjectTitle: subject /* string */,
+        subjectSlug: subjectSlug /* string */,
+        threadTitle: thread.title /* string */,
+        threadSlug: thread.slug /* string */,
+        phase:
+          phase_slug as PhaseValueType /* (restricted to : "primary", "secondary") */,
+        order: thread.order /* (min 0) */,
+        analyticsUseCase:
+          analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+      });
+    }
+  }
   function handleSelectThread(slug: string): void {
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
     if (thread) {
-      if (data.units[0]) {
-        const {
-          subject,
-          phase_slug,
-          subject_slug: subjectSlug,
-        } = data.units[0];
-        track.curriculumThreadHighlighted({
-          subjectTitle: subject /* string */,
-          subjectSlug: subjectSlug /* string */,
-          threadTitle: thread.title /* string */,
-          threadSlug: thread.slug /* string */,
-          phase:
-            phase_slug as PhaseValueType /* (restricted to : "primary", "secondary") */,
-          order: thread.order /* (min 0) */,
-          analyticsUseCase:
-            analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
-        });
-      }
-
-      setSelectedThread(thread);
+      trackSelectThread(thread);
     }
+    setSelectedThread(thread);
   }
 
   function highlightedUnitCount(): number {
@@ -297,7 +295,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return count;
   }
 
-  function handleSelectYear(year: string): void {
+  function trackSelectYear(year: string): void {
     if (data.units[0]) {
       track.yearGroupSelected({
         yearGroupName: year /* string */,
@@ -308,6 +306,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
       });
     }
+  }
+
+  function handleSelectYear(year: string): void {
+    trackSelectYear(year);
     setSelectedYear(year);
   }
 
@@ -627,9 +629,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
                           unitOptionsAvailable={unitOptionsAvailable}
-                          // isHighlighted={
-                          //   unitData ? isHighlightedUnit(unitData) : false
-                          // }
+                          isHighlighted={
+                            unitData ? isHighlightedUnit(unitData) : false
+                          }
                         />
                       </Sidebar>
                     </Flex>

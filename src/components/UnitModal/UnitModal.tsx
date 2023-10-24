@@ -12,15 +12,15 @@ import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumUnitDetails";
-// import useAnalytics from "@/context/Analytics/useAnalytics";
-// import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   unitOptionsAvailable: boolean;
-  // isHighlighted: boolean;
+  isHighlighted: boolean;
 };
 
 export type Lesson = {
@@ -33,10 +33,10 @@ const UnitModal: FC<UnitModalProps> = ({
   displayModal,
   setUnitOptionsAvailable,
   unitOptionsAvailable,
-  // isHighlighted,
+  isHighlighted,
 }) => {
-  // const { track } = useAnalytics();
-  // const { analyticsUseCase } = useAnalyticsPageProps();
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -59,23 +59,25 @@ const UnitModal: FC<UnitModalProps> = ({
     }
   }, [displayModal, setUnitOptionsAvailable, optionalityModalOpen]);
 
-  // useEffect(() => {
-  //   if (displayModal === true) {
-  //     if (unitData) {
-  //       track.unitInformationViewed({
-  //         unitName: unitData.title /* string */,
-  //         unitSlug: unitData.slug /* string */,
-  //         subjectTitle: unitData.subject /* string */,
-  //         subjectSlug: unitData.subject_slug /* string */,
-  //         yearGroupName: unitData.year /* string */,
-  //         yearGroupSlug: unitData.year /* string */,
-  //         unitHighlighted: isHighlighted /* bool */,
-  //         analyticsUseCase:
-  //           analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
-  //       });
-  //     }
-  //   }
-  // });
+  useEffect(() => {
+    // For tracking open model events
+    if (displayModal === true) {
+      if (unitData) {
+        track.unitInformationViewed({
+          unitName: unitData.title /* string */,
+          unitSlug: unitData.slug /* string */,
+          subjectTitle: unitData.subject /* string */,
+          subjectSlug: unitData.subject_slug /* string */,
+          yearGroupName: unitData.year /* string */,
+          yearGroupSlug: unitData.year /* string */,
+          unitHighlighted: isHighlighted /* bool */,
+          analyticsUseCase:
+            analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+        });
+      }
+    }
+  });
+
   return (
     <>
       {unitData && (
