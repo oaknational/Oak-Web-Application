@@ -111,6 +111,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                         ),
                       );
                     }
+                    // Trigger the form to reevaluate errors
+                    triggerForm();
                   };
                   return (
                     <DownloadCard
