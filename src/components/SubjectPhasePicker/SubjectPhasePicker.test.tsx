@@ -3,7 +3,6 @@ import { waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SubjectPhasePicker";
-// import render from "@/__tests__/__helpers__/render";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
