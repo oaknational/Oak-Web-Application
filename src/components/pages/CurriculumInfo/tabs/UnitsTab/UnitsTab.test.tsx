@@ -3,7 +3,6 @@ import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab from "./UnitsTab";
 
-// import render from "@/__tests__/__helpers__/render";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
