@@ -64,15 +64,14 @@ const UnitModal: FC<UnitModalProps> = ({
     if (displayModal === true) {
       if (unitData) {
         track.unitInformationViewed({
-          unitName: unitData.title /* string */,
-          unitSlug: unitData.slug /* string */,
-          subjectTitle: unitData.subject /* string */,
-          subjectSlug: unitData.subject_slug /* string */,
-          yearGroupName: unitData.year /* string */,
-          yearGroupSlug: unitData.year /* string */,
-          unitHighlighted: isHighlighted /* bool */,
-          analyticsUseCase:
-            analyticsUseCase /* (restricted to : "Pupil", "Teacher") */,
+          unitName: unitData.title,
+          unitSlug: unitData.slug,
+          subjectTitle: unitData.subject,
+          subjectSlug: unitData.subject_slug,
+          yearGroupName: unitData.year,
+          yearGroupSlug: unitData.year,
+          unitHighlighted: isHighlighted,
+          analyticsUseCase: analyticsUseCase,
         });
       }
     }

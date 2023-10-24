@@ -185,4 +185,27 @@ describe("Unit modal", () => {
       }
     });
   });
+  test("calls tracking.unitInformationViewed once, with correct props", async () => {
+    renderWithTheme(
+      <UnitModal
+        displayModal={true}
+        unitData={mockOptionalityUnit}
+        unitOptionsAvailable={true}
+        setUnitOptionsAvailable={stateFn}
+        isHighlighted={false}
+      />,
+    );
+
+    expect(unitInformationViewed).toHaveBeenCalledTimes(1);
+    expect(unitInformationViewed).toHaveBeenCalledWith({
+      unitName: "Composition of numbers 6 to 10",
+      unitSlug: "composition-of-numbers-6-to-10",
+      subjectTitle: "Maths",
+      subjectSlug: "maths",
+      yearGroupName: "1",
+      yearGroupSlug: "1",
+      unitHighlighted: false,
+      analyticsUseCase: null,
+    });
+  });
 });
