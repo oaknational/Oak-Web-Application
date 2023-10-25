@@ -101,7 +101,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
   return (
     <>
       {hasError && (
-        <Flex $mb={-24}>
+        <Flex>
           <Icon name="content-guidance" $color={"teachersRed"} $width={24} />
           <P $color={"teachersRed"} $font={"body-2"}>
             error message
