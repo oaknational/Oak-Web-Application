@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { MathJax } from "better-react-mathjax";
 
 import { QuestionStem } from "./QuestionStem";
 import { MCAnswers } from "./Answers/MCAnswers";
@@ -9,6 +8,7 @@ import { ShortAnswers } from "./Answers/ShortAnswers";
 
 import Flex from "@/components/Flex";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuestionListItemProps = {
   question: NonNullable<LessonOverviewQuizData>[number];
@@ -20,7 +20,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
   const { questionStem, answers } = question;
 
   return (
-    <MathJax>
+    <MathJaxWrap>
       <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
         <QuestionStem
           questionStem={questionStem}
@@ -52,7 +52,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
           </>
         )}
       </Flex>
-    </MathJax>
+    </MathJaxWrap>
   );
 };
 
