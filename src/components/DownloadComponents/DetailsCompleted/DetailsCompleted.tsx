@@ -54,11 +54,11 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         <Flex $flexDirection="column" $gap={16}>
           <Flex $flexDirection="column" $gap={4}>
             <Typography $font="heading-7">School</Typography>
-            <P $font={"body-3"}>{getSchoolName(school)}</P>
+            <P $font={"body-2"}>{getSchoolName(school)}</P>
           </Flex>
           <Flex $flexDirection="column" $gap={4}>
             <Typography $font="heading-7">Email</Typography>
-            <P $font={"body-3"} $wordWrap={"break-word"}>
+            <P $font={"body-2"} $wordWrap={"break-word"}>
               {email ? email : "Not provided"}
             </P>
           </Flex>
