@@ -5,11 +5,11 @@ import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
-import { OakColorName } from "../../styles/theme";
+import theme, { OakColorName } from "../../styles/theme";
 import Flex from "../Flex";
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline } from "../Input/Input";
+import { LI, Span } from "../Typography";
 
 export type SelectListBoxConfig = {
   states: {
@@ -40,12 +40,7 @@ const List = styled.ul`
   outline: none;
 `;
 
-const ListItem = styled.li<ListItemProps>`
-  color: ${getColorByLocation(
-    ({ theme }) => theme.selectListBox.states.default.color,
-  )};
-  font-size: 14px;
-
+const ListItem = styled(LI)<ListItemProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -114,6 +109,7 @@ function Option({ item, state }: OptionProps) {
       ref={ref}
       isFocused={isFocused}
       isSelected={isSelected}
+      $font={"heading-light-7"}
     >
       <Flex
         $width={"100%"}
@@ -139,7 +135,11 @@ function Option({ item, state }: OptionProps) {
 
 export function Label({ children }: { children: React.ReactNode }) {
   const { labelProps } = useContext(OptionContext);
-  return <div {...labelProps}>{children}</div>;
+  return (
+    <Span $color={theme.selectListBox.states.default.color} {...labelProps}>
+      {children}
+    </Span>
+  );
 }
 
 const StyledDescription = styled.div`

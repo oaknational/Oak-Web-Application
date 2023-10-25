@@ -41,7 +41,7 @@ export const RotatedInputLabel = styled(Label)<{
 }>`
   position: relative;
   padding: 4px 8px;
-  transform: rotate(-2deg) translateY(-12px) translateX(8px);
+  transform: rotate(-2deg) translateY(-16px) translateX(8px);
   display: block;
   background: ${(props) => getColorByName(props.background)};
   color: ${(props) => getColorByName(props.color)};
@@ -68,7 +68,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   border-width: ${(props) => props.theme.input.borderWidth};
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
   padding: 16px;
-  padding-top: 26px;
+  padding-top: 20px;
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
   font-weight: 300;

@@ -64,10 +64,7 @@ const SearchComboBox = <T extends School>(
   return (
     <Flex $width={"100%"} $position={"relative"} $display={"inline-block"}>
       <Flex $width={"100%"} $position={"relative"}>
-        <BoxBorders
-          hideBottom={state.isOpen ? true : false}
-          gapPosition="rightTop"
-        />
+        <BoxBorders gapPosition="rightTop" />
         <Flex $position={"absolute"}>
           <RotatedInputLabel
             {...labelProps}
