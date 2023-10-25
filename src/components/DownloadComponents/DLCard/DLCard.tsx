@@ -5,11 +5,12 @@ import { capitalize } from "lodash";
 
 import type { DownloadResourceType } from "../downloads.types";
 
+import { RESOURCE_TYPE_ICON_MAP } from "@/components/DownloadComponents/DownloadCard/DownloadCard";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/Typography/P";
 import Flex from "@/components/Flex";
 import Checkbox from "@/components/Checkbox";
-import Icon, { IconName } from "@/components/Icon";
+import Icon from "@/components/Icon";
 import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 
 export type DownloadCardProps = CheckboxProps & {
@@ -23,22 +24,10 @@ type DownloadCardLabelProps = DownloadCardProps & {
   isHovered: boolean;
 };
 
-export const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
-  presentation: "slide-deck",
-  "intro-quiz-questions": "quiz",
-  "intro-quiz-answers": "quiz",
-  "exit-quiz-questions": "quiz",
-  "exit-quiz-answers": "quiz",
-  "worksheet-pdf": "worksheet",
-  "worksheet-pptx": "worksheet",
-  "supplementary-pdf": "additional-material",
-  "supplementary-docx": "additional-material",
-};
-
 const BoxWithFocusState = styled.div`
   position: relative;
   border: solid 4px transparent;
-  cursor: pointer;
+  /* cursor: pointer; */
   display: flex;
   flex-direction: "row";
 `;
