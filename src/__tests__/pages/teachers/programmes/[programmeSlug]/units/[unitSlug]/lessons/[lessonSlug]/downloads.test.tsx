@@ -80,13 +80,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     const { getByText } = render(<LessonDownloadsPage {...props} />);
 
     await act(async () => {
-      const selectAllButton = getByText("Select all");
       const downloadButton = getByText("Download .zip");
       const user = userEvent.setup();
-      await user.click(selectAllButton);
       await waitForNextTick();
 
-      console.log(downloadButton);
       await user.click(downloadButton);
       await waitForNextTick();
     });
@@ -225,7 +222,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
     });
 
-    it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
+    it("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
       const { getByTestId, getByLabelText } = render(
         <LessonDownloadsPage {...props} />,
       );
@@ -238,14 +235,13 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(selectedResourcesCount).toHaveTextContent("1/2 files selected");
     });
 
-    it("should select all resources if user clicks 'Select all'", async () => {
-      const { getByTestId, getByText } = render(
+    it("should select all resources if user checks 'Select all'", async () => {
+      const { getByTestId, getByRole } = render(
         <LessonDownloadsPage {...props} />,
       );
 
-      const selectAllButton = getByText("Select all");
-      const user = userEvent.setup();
-      await user.click(selectAllButton);
+      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      expect(selectAllCheckbox).toBeChecked();
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
       expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
@@ -257,14 +253,14 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizAnswers).toBeChecked();
     });
 
-    it("should deselect all resources if user clicks 'Deselect all'", async () => {
-      const { getByTestId, getByText } = render(
+    it("should deselect all resources if user deselects 'Select all'", async () => {
+      const { getByTestId, getByRole } = render(
         <LessonDownloadsPage {...props} />,
       );
 
-      const deselectAllButton = getByText("Deselect all");
+      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
-      await user.click(deselectAllButton);
+      await user.click(selectAllCheckbox);
 
       const selectedResourcesCount = getByTestId("selectedResourcesCount");
       expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");

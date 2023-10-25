@@ -1,3 +1,58 @@
+# [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
+
+
+### Bug Fixes
+
+* enable clearing error state when selecting all ([d22d397](https://github.com/oaknational/Oak-Web-Application/commit/d22d39751a0d53922d166dfc98683771fbdb47e7))
+* reduce width of select all component ([1b1057b](https://github.com/oaknational/Oak-Web-Application/commit/1b1057bb3f0322ab8715881b191e733514db0468))
+* reevaluate form error states on (de)selecting card ([f9da164](https://github.com/oaknational/Oak-Web-Application/commit/f9da164c38cfe3e8ff896fc88543780cb65b91fe))
+
+
+### Features
+
+* adjust font weight for select all ([c31b1e9](https://github.com/oaknational/Oak-Web-Application/commit/c31b1e93a54ab019418a3f3189049b754eadadc9))
+* implement a checkbox instead of buttons for select all ([2492453](https://github.com/oaknational/Oak-Web-Application/commit/249245301c97c5e2ff11d7187caaa6b8accb968b))
+* update styling of select all and heading ([6aa712a](https://github.com/oaknational/Oak-Web-Application/commit/6aa712a52c914e02c69eb2c32f7bd5841e664cb0))
+
+# [1.287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.286.0...v1.287.0) (2023-10-23)
+
+
+### Bug Fixes
+
+* use test data in lesson planning test ([6e92169](https://github.com/oaknational/Oak-Web-Application/commit/6e921697ea4e3b69b8d5f7010192fa99e0afb0c6))
+
+
+### Features
+
+* open all ctas in the same tab ([9573a66](https://github.com/oaknational/Oak-Web-Application/commit/9573a6636a951ecac12c70ea3f6fc08293f4957f))
+* update search links on support page ([bebff00](https://github.com/oaknational/Oak-Web-Application/commit/bebff000ab5f0e1a7bc8f4e683f5af50a0949364))
+* use data from sanity to create lesson element ctas ([6fa2a9d](https://github.com/oaknational/Oak-Web-Application/commit/6fa2a9dfd4c63c327aacccaffc2d76e3643937c6))
+* use sanity data for search cta ([01b37d5](https://github.com/oaknational/Oak-Web-Application/commit/01b37d5734b331f6f1345dfe4c34bc5401cdc475))
+
+# [1.286.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.4...v1.286.0) (2023-10-23)
+
+
+### Features
+
+* **monitoring:** alert on page timeouts ([83b0c21](https://github.com/oaknational/Oak-Web-Application/commit/83b0c219f4c50f543114d097057c3f6f0f5e6236))
+
+## [1.285.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.3...v1.285.4) (2023-10-19)
+
+
+### Bug Fixes
+
+* only report video error if type is not networkError ([57ad4b7](https://github.com/oaknational/Oak-Web-Application/commit/57ad4b78af253486ba33a2ada0121f902db5c29f))
+
+## [1.285.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.2...v1.285.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* **SEO:** allow indexing pages ([fb57dea](https://github.com/oaknational/Oak-Web-Application/commit/fb57deaf93404961875bc19cde8aadc1a57de9e9))
+* **SEO:** correct the test ([77dd102](https://github.com/oaknational/Oak-Web-Application/commit/77dd1021e770527ce0e43bd48c77df1844a1cdfa))
+
+## [1.285.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.1...v1.285.2) (2023-10-19)
+
 ## [1.285.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.285.0...v1.285.1) (2023-10-19)
 
 # [1.285.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.284.0...v1.285.0) (2023-10-18)

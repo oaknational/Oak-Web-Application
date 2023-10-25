@@ -33,18 +33,18 @@ const getBorderColor = (props: VisualCheckboxProps) => {
 
 const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   position: ${(props) =>
-    props?.variant === "cardCheckbox" && !props.slim ? "absolute" : "relative"};
+    props?.variant === "withoutLabel" && !props.slim ? "absolute" : "relative"};
   left: ${(props) =>
-    props?.variant === "cardCheckbox" && !props.slim
+    props?.variant === "withoutLabel" && !props.slim
       ? "12px"
-      : props?.variant === "cardCheckbox" && props.slim
+      : props?.variant === "withoutLabel" && props.slim
       ? "85%"
       : "initial"};
 
   top: ${(props) =>
-    props?.variant === "cardCheckbox" && !props.slim
+    props?.variant === "withoutLabel" && !props.slim
       ? "12px"
-      : props?.variant === "cardCheckbox" && props.slim
+      : props?.variant === "withoutLabel" && props.slim
       ? "100%"
       : "initial"};
 
