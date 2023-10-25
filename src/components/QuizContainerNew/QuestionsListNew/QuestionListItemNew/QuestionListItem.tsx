@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { MathJax } from "better-react-mathjax";
 
 import { QuestionStem } from "./QuestionStem";
@@ -16,61 +16,42 @@ export type QuestionListItemProps = {
 };
 
 const QuestionListItem: FC<QuestionListItemProps> = (props) => {
-  const [mathjaxTypesetInit, setMathjaxTypesetInit] = useState(false);
   const { question, index } = props;
   const { questionStem, answers } = question;
 
   return (
-    <MathJax
-      onInitTypeset={() => setMathjaxTypesetInit(true)}
-      hideUntilTypeset="every"
-      dynamic
-    >
-      {mathjaxTypesetInit && (
-        <Flex
-          $flexDirection={"column"}
-          $width={"100%"}
-          role="listitem"
-          $gap={8}
-        >
-          <QuestionStem
-            questionStem={questionStem}
-            index={index}
-            showIndex={question.questionType !== "explanatory-text"}
-          />
+    <MathJax>
+      <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
+        <QuestionStem
+          questionStem={questionStem}
+          index={index}
+          showIndex={question.questionType !== "explanatory-text"}
+        />
 
-          {answers && (
-            <>
-              {answers["multiple-choice"] &&
-                answers["multiple-choice"].length > 0 && (
-                  <MCAnswers
-                    answers={answers["multiple-choice"]}
-                    questionNumber={index}
-                  />
-                )}
-
-              {answers["match"] && answers["match"].length > 0 && (
-                <MatchAnswers
-                  answers={answers["match"]}
+        {answers && (
+          <>
+            {answers["multiple-choice"] &&
+              answers["multiple-choice"].length > 0 && (
+                <MCAnswers
+                  answers={answers["multiple-choice"]}
                   questionNumber={index}
                 />
               )}
 
-              {answers["order"] && answers["order"].length > 0 && (
-                <OrderAnswers
-                  answers={answers["order"]}
-                  questionNumber={index}
-                />
-              )}
+            {answers["match"] && answers["match"].length > 0 && (
+              <MatchAnswers answers={answers["match"]} questionNumber={index} />
+            )}
 
-              {answers["short-answer"] &&
-                answers["short-answer"].length > 0 && (
-                  <ShortAnswers answers={answers["short-answer"]} />
-                )}
-            </>
-          )}
-        </Flex>
-      )}
+            {answers["order"] && answers["order"].length > 0 && (
+              <OrderAnswers answers={answers["order"]} questionNumber={index} />
+            )}
+
+            {answers["short-answer"] && answers["short-answer"].length > 0 && (
+              <ShortAnswers answers={answers["short-answer"]} />
+            )}
+          </>
+        )}
+      </Flex>
     </MathJax>
   );
 };
