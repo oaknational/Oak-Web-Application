@@ -23,7 +23,7 @@ describe("DownloadCard", () => {
 
     expect(input).toBeInTheDocument();
     expect(screen.getByText("Worksheet")).toBeInTheDocument();
-    expect(screen.getByText("Pdf")).toBeInTheDocument();
+    expect(screen.getByText("PDF")).toBeInTheDocument();
   });
 
   it("changes on click on label", async () => {
