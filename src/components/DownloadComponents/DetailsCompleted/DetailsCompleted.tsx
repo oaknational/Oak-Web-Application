@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
-import { Heading, P } from "../../Typography";
+import Typography, { P } from "../../Typography";
 import Button from "../../Button";
-import Box from "../../Box";
 import Flex from "../../Flex";
-import Icon from "../../Icon";
+
+import Svg from "@/components/Svg";
 
 export type DetailsCompletedProps = {
   email?: string;
@@ -12,65 +12,52 @@ export type DetailsCompletedProps = {
   onEditClick: () => void;
 };
 
+const getSchoolName = (school: string | undefined) => {
+  if (school === "notListed") {
+    return "My school isn’t listed";
+  } else if (school === "homeschool") {
+    return "Homeschool";
+  } else {
+    return school;
+  }
+};
+
 const DetailsCompleted: FC<DetailsCompletedProps> = ({
   email,
   school,
   onEditClick,
 }) => {
-  const getSchoolName = (school: string | undefined) => {
-    if (school === "notListed") {
-      return "My school isn’t listed";
-    } else if (school === "homeschool") {
-      return "Homeschool";
-    } else {
-      return school;
-    }
-  };
-
-  const [displayEmail, setDisplayEmail] = useState(false);
-  const [displaySchool, setDisplaySchool] = useState(false);
-
-  useEffect(() => {
-    if (email) {
-      setDisplayEmail(true);
-    }
-
-    if (school) {
-      setDisplaySchool(true);
-    }
-  }, [email, school]);
-
   return (
-    <Box $mt={56}>
-      <Flex $mb={12}>
-        <Heading tag="h3" $font={"heading-5"}>
-          Details complete
-        </Heading>
-        <Icon
-          variant="brush"
-          name={"tick"}
-          size={36}
-          $background={"success"}
-          $ml={28}
-        />
+    <Flex
+      $flexDirection="column"
+      $gap={24}
+      $pa={24}
+      $width={420}
+      $height={220}
+      $position="relative"
+      $alignItems="flex-start"
+    >
+      <Svg
+        name="background-shape"
+        $position="absolute"
+        $left={0}
+        $top={0}
+        $zIndex="behind"
+        $width="100%"
+        $height="100%"
+      />
+      <Flex $flexDirection="column" $gap={16}>
+        <Flex $flexDirection="column" $gap={4}>
+          <Typography $font="heading-7">School</Typography>
+          <P $font={"body-3"}>{getSchoolName(school)}</P>
+        </Flex>
+        <Flex $flexDirection="column" $gap={4}>
+          <Typography $font="heading-7">Email</Typography>
+          <P $font={"body-3"} $wordWrap={"break-word"}>
+            {email ?? "Not provided"}
+          </P>
+        </Flex>
       </Flex>
-      <P $mb={8}>We have your details saved already.</P>
-      {displaySchool && (
-        <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="school">
-          school: {getSchoolName(school)}
-        </P>
-      )}
-      {displayEmail && (
-        <P
-          $font={"body-3"}
-          $color={"oakGrey4"}
-          $mb={4}
-          data-testid="email"
-          $wordWrap={"break-word"}
-        >
-          email: {email}
-        </P>
-      )}
       <Button
         label="Edit"
         variant="minimal"
@@ -81,7 +68,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
         $mt={8}
         aria-label="Edit details"
       />
-    </Box>
+    </Flex>
   );
 };
 
