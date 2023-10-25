@@ -13,6 +13,7 @@ import ellipsis from "../../styles/ellipsis";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
+import { Span } from "../Typography";
 
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
@@ -58,7 +59,7 @@ interface SelectButtonProps {
 const selectButtonStyles = css<SelectButtonProps>`
   color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
   height: ${(props) => props.theme.input.height};
-  padding-left: 12px;
+  padding-left: 16px;
   padding-right: 8px;
   display: inline-flex;
   align-items: center;
@@ -68,8 +69,6 @@ const selectButtonStyles = css<SelectButtonProps>`
   font-size: 16px;
   background: transparent;
   border: none;
-  padding-top: 3px;
-  margin-top: 10px;
   outline: none;
   ${(props) =>
     props.isPlaceholder &&
@@ -91,7 +90,7 @@ const SelectInner = styled(Flex)`
  * Contains either the selected value or the placeholder if no value is
  * selected
  */
-const SelectSpan = styled.span`
+const SelectSpan = styled(Span)`
   ${ellipsis}
 `;
 
@@ -138,7 +137,7 @@ export function Select<T extends object>(
         <RotatedInputLabel
           background={props.onFocus ? "teachersPastelBlue" : "teachersYellow"}
           color={"black"}
-          $font={"body-3"}
+          $font={"heading-7"}
           {...labelProps}
         >
           {props.label}
@@ -157,12 +156,13 @@ export function Select<T extends object>(
           isPlaceholder={!state.selectedItem}
           id={buttonId}
         >
-          <SelectInner $alignItems={"center"}>
+          <SelectInner $pt={8} $alignItems={"center"}>
             {props.icon && <Icon $mr={8} name={props.icon} />}
             <SelectSpan
               id={valueId}
               data-testid={"select-span"}
               title={props.placeholder}
+              $font={"body-2"}
             >
               {state.selectedItem
                 ? state.selectedItem.rendered

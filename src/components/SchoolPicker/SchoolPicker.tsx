@@ -51,10 +51,14 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
           `${item.name}, ${item.la}, ${item.postcode}`,
           props.schoolPickerInputValue,
         );
+        const formattedHomeSchool = formatSchoolName(
+          item.name,
+          props.schoolPickerInputValue,
+        );
         const comboItemKey =
           item.urn === HOMESCHOOL_URN ? item.urn : `${item.urn}-${item.name}`;
         const comboItem =
-          item.urn === HOMESCHOOL_URN ? item.name : formattedSchool;
+          item.urn === HOMESCHOOL_URN ? formattedHomeSchool : formattedSchool;
         const textValue =
           item.urn === HOMESCHOOL_URN
             ? item.name
