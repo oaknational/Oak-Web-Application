@@ -116,7 +116,7 @@ function Option({ item, state }: OptionProps) {
         $background={isFocused ? "grey1" : "white"}
         $position={"relative"}
         $alignItems={"center"}
-        $pa={8}
+        $pa={16}
       >
         <OptionContext.Provider value={{ labelProps, descriptionProps }}>
           {item.rendered}
