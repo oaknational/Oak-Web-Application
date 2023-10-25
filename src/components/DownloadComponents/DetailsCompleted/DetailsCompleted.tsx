@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Typography, { P } from "@/components/Typography";
+import { Heading, P } from "@/components/Typography";
 import Button from "@/components/Button";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
@@ -53,11 +53,15 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
       <Flex $flexDirection="column" $gap={24} $pa={24} $alignItems="flex-start">
         <Flex $flexDirection="column" $gap={16}>
           <Flex $flexDirection="column" $gap={4}>
-            <Typography $font="heading-7">School</Typography>
+            <Heading tag="h3" $font="heading-7">
+              School
+            </Heading>
             <P $font={"body-2"}>{getSchoolName(school)}</P>
           </Flex>
           <Flex $flexDirection="column" $gap={4}>
-            <Typography $font="heading-7">Email</Typography>
+            <Heading tag="h3" $font="heading-7">
+              Email
+            </Heading>
             <P $font={"body-2"} $wordWrap={"break-word"}>
               {email ? email : "Not provided"}
             </P>
