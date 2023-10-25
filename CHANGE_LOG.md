@@ -1,3 +1,29 @@
+## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* add client mathjax wrap ([5f3302b](https://github.com/oaknational/Oak-Web-Application/commit/5f3302b5a98330de2bf9559a9d4576c02e999472))
+* add dynamic flag ([7c2e905](https://github.com/oaknational/Oak-Web-Application/commit/7c2e9056343fdcc69d19ab074a057eaff0e71c2a))
+* disable dynamic mathjax and render on typeset init ([57c2d7b](https://github.com/oaknational/Oak-Web-Application/commit/57c2d7b077322259d87e302b86d90734a495a47e))
+* mathjax bug add client provider ([a061a28](https://github.com/oaknational/Oak-Web-Application/commit/a061a286b383e9bf3386d3e77372961a8a6136b7))
+
+# [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
+
+
+### Bug Fixes
+
+* enable clearing error state when selecting all ([d22d397](https://github.com/oaknational/Oak-Web-Application/commit/d22d39751a0d53922d166dfc98683771fbdb47e7))
+* reduce width of select all component ([1b1057b](https://github.com/oaknational/Oak-Web-Application/commit/1b1057bb3f0322ab8715881b191e733514db0468))
+* reevaluate form error states on (de)selecting card ([f9da164](https://github.com/oaknational/Oak-Web-Application/commit/f9da164c38cfe3e8ff896fc88543780cb65b91fe))
+
+
+### Features
+
+* adjust font weight for select all ([c31b1e9](https://github.com/oaknational/Oak-Web-Application/commit/c31b1e93a54ab019418a3f3189049b754eadadc9))
+* implement a checkbox instead of buttons for select all ([2492453](https://github.com/oaknational/Oak-Web-Application/commit/249245301c97c5e2ff11d7187caaa6b8accb968b))
+* update styling of select all and heading ([6aa712a](https://github.com/oaknational/Oak-Web-Application/commit/6aa712a52c914e02c69eb2c32f7bd5841e664cb0))
+
 # [1.287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.286.0...v1.287.0) (2023-10-23)
 
 
