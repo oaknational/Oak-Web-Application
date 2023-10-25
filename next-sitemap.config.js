@@ -19,6 +19,7 @@ const serversideSitemapPaths = [
   "/blog/categories/sitemap.xml",
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
+  "/teachers/curriculum/sitemap.xml",
   // Don't include the beta dynamic sitemaps until the beta goes public.
   /** @todo fix generating this page so it takes under a minute at request time */
   // "/beta/teachers/key-stages/sitemap.xml",
