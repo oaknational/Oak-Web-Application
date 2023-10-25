@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
-import { capitalize } from "lodash";
 
 import type { DownloadResourceType } from "../downloads.types";
 
@@ -62,13 +61,15 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $alignItems="center"
         $width={["100%"]}
         $maxWidth={320}
+        $background={isHovered ? "grey1" : "white"}
+        $zIndex={"behind"}
       >
         <Flex
           $flexDirection="column"
-          $justifyContent={"center"}
+          $justifyContent="center"
           $ph={16}
           $pv={16}
-          $width={"100%"}
+          $width="100%"
         >
           <P
             $font="heading-7"
@@ -77,7 +78,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
           >
             {label}
           </P>
-          <P $color={"oakGrey4"}>{capitalize(extension)}</P>
+          <P $color="oakGrey4">{extension.toUpperCase()}</P>
         </Flex>
       </Flex>
     </BoxWithFocusState>
