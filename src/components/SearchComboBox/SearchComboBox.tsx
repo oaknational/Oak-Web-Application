@@ -14,6 +14,7 @@ import { RotatedInputLabel, StyledInput } from "../Input/Input";
 import { DropdownFocusUnderline } from "../DropdownSelect/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
 import { OakColorName } from "../../styles/theme/types";
+import { Span } from "../Typography";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 
@@ -63,10 +64,7 @@ const SearchComboBox = <T extends School>(
   return (
     <Flex $width={"100%"} $position={"relative"} $display={"inline-block"}>
       <Flex $width={"100%"} $position={"relative"}>
-        <BoxBorders
-          hideBottom={state.isOpen ? true : false}
-          gapPosition="rightTop"
-        />
+        <BoxBorders gapPosition="rightTop" />
         <Flex $position={"absolute"}>
           <RotatedInputLabel
             {...labelProps}
@@ -74,10 +72,16 @@ const SearchComboBox = <T extends School>(
             color={state.isFocused || hasError ? "white" : "black"}
             htmlFor={id}
             id={labelId}
-            $font={"body-3"}
+            $font={"heading-7"}
             background={labelBackground}
           >
-            {required ? `${props.label} *` : props.label}
+            {required ? (
+              <Span>
+                {props.label} <Span $font={"heading-light-7"}>(required)</Span>
+              </Span>
+            ) : (
+              props.label
+            )}
           </RotatedInputLabel>
         </Flex>
 

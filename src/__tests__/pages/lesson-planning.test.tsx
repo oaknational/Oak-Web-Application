@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 
 import PlanALesson from "../../pages/lesson-planning";
-import { PlanningPage } from "../../common-lib/cms-types";
+import { CTA, PlanningPage } from "../../common-lib/cms-types";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import {
   mockImageAsset,
@@ -76,6 +76,12 @@ const testPlanningPageData: PlanningPage = {
   seo: mockSeo(),
 };
 
+const testInternalLessonElementsCta: CTA = {
+  linkType: "internal",
+  label: "internal cta",
+  internal: { contentType: "aboutCorePage.whoWeAre", id: "1" },
+};
+
 const getPageData = jest.fn(() => testPlanningPageData);
 
 const render = renderWithProviders();
@@ -133,6 +139,61 @@ describe("pages/lesson-planning.tsx", () => {
       expect(propsResult).toMatchObject({
         notFound: true,
       });
+    });
+  });
+
+  describe("CTA links", () => {
+    it("should use pageData for the search CTA", () => {
+      render(<PlanALesson pageData={testPlanningPageData} />);
+      const searchCta = screen.getByRole("link", {
+        name: testPlanningPageData.stepsCTA.label,
+      });
+      expect(searchCta).toHaveAttribute("href", "/");
+    });
+    it("should use pageData for lesson elements CTA", () => {
+      render(<PlanALesson pageData={testPlanningPageData} />);
+      const lessonElementsCta = screen.getAllByRole("link", {
+        name: testPlanningPageData.lessonElementsCTA.label,
+      });
+      const externalLink =
+        testPlanningPageData.lessonElementsCTA.linkType === "external"
+          ? testPlanningPageData.lessonElementsCTA.external
+          : null;
+      if (!externalLink) {
+        throw new Error("This should never happen - check the test data");
+      }
+      expect(lessonElementsCta[0]).toHaveAttribute("href", externalLink);
+    });
+    it("should link to internal pages", () => {
+      render(
+        <PlanALesson
+          pageData={{
+            ...testPlanningPageData,
+            lessonElementsCTA: testInternalLessonElementsCta,
+          }}
+        />,
+      );
+      const lessonElementsCta = screen.getAllByRole("link", {
+        name: testInternalLessonElementsCta.label,
+      });
+      expect(lessonElementsCta[0]).toHaveAttribute(
+        "href",
+        "/about-us/who-we-are",
+      );
+    });
+    it("should open links in the same tab", () => {
+      render(
+        <PlanALesson
+          pageData={{
+            ...testPlanningPageData,
+            lessonElementsCTA: testInternalLessonElementsCta,
+          }}
+        />,
+      );
+      const lessonElementsCta = screen.getAllByRole("link", {
+        name: testInternalLessonElementsCta.label,
+      });
+      expect(lessonElementsCta[0]).not.toHaveAttribute("target", "_blank");
     });
   });
 });

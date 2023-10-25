@@ -145,7 +145,7 @@ describe("search autocomplete", () => {
     );
   });
 
-  it("renders a label with '*' if required prop is passed", async () => {
+  it("renders a label with '(required)' if required prop is passed", async () => {
     const Wrapper = () => {
       const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
       const [, setSelectedSchool] = useState<Key | undefined>("");
@@ -165,7 +165,7 @@ describe("search autocomplete", () => {
 
     const { getByText } = renderWithTheme(<Wrapper />);
 
-    expect(getByText("School picker *")).toBeInTheDocument();
+    expect(getByText("(required)")).toBeInTheDocument();
   });
 
   it("renders a listbox of schools", async () => {
