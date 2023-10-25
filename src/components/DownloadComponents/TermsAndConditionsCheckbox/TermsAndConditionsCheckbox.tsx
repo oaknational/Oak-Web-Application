@@ -34,7 +34,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         required
         error={errorMessage}
         hasError={Boolean(errorMessage)}
-        variant="terms"
+        variant="withLabel"
         {...props}
       />
     </Box>

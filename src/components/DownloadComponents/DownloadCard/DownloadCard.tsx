@@ -103,7 +103,7 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         name={name}
         checked={checked}
         onChange={onChange}
-        variant={"cardCheckbox"}
+        variant={"withoutLabel"}
         ariaLabel={label}
         onBlur={onBlur}
         hasError={hasError}
