@@ -24,6 +24,7 @@ const QuestionListItem: FC<QuestionListItemProps> = (props) => {
     <MathJax
       onInitTypeset={() => setMathjaxTypesetInit(true)}
       hideUntilTypeset="every"
+      dynamic
     >
       {mathjaxTypesetInit && (
         <Flex
