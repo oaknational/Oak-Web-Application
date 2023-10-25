@@ -173,7 +173,7 @@ const theme: OakTheme = {
     headingLight: "Lexend, sans-serif",
   },
   input: {
-    height: "40px",
+    height: "60px",
     fontSize: "16px",
     borderRadius: "8px",
     borderWidth: "1px",
