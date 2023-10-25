@@ -99,37 +99,27 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
   const { hoverProps, isHovered } = useHover({});
 
   return (
-    <>
-      {hasError && (
-        <Flex>
-          <Icon name="content-guidance" $color={"teachersRed"} $width={24} />
-          <P $color={"teachersRed"} $font={"body-2"}>
-            error message
-          </P>
-        </Flex>
-      )}
-      <Flex
-        $minWidth={320}
-        $maxHeight={72}
-        $width={"fit-content"}
-        $position={"relative"}
-        {...hoverProps}
+    <Flex
+      $minWidth={320}
+      $maxHeight={72}
+      $width={"fit-content"}
+      $position={"relative"}
+      {...hoverProps}
+    >
+      <Checkbox
+        id={id}
+        name={name}
+        checked={checked}
+        onChange={onChange}
+        variant={"withoutLabel"}
+        slim={true}
+        ariaLabel={label}
+        onBlur={onBlur}
+        hasError={hasError}
       >
-        <Checkbox
-          id={id}
-          name={name}
-          checked={checked}
-          onChange={onChange}
-          variant={"withoutLabel"}
-          slim={true}
-          ariaLabel={label}
-          onBlur={onBlur}
-          hasError={hasError}
-        >
-          <DownloadCardLabel isHovered={isHovered} {...props} />
-        </Checkbox>
-      </Flex>
-    </>
+        <DownloadCardLabel isHovered={isHovered} {...props} />
+      </Checkbox>
+    </Flex>
   );
 };
 
