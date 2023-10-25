@@ -109,8 +109,9 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         </Flex>
       )}
       <Flex
-        $maxWidth={320}
+        $minWidth={320}
         $maxHeight={72}
+        $width={"fit-content"}
         $position={"relative"}
         {...hoverProps}
       >
