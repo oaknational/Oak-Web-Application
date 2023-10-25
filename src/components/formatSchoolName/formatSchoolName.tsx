@@ -17,13 +17,20 @@ export const formatSchoolName = (
   );
 
   return (
-    <Span>
+    <Span $font={"heading-light-7"}>
       {splitSchoolName.map((splitSchoolNameItem: string, index: number) => {
         return (
           <Span>
             {`${splitSchoolNameItem}`}
             {index < splitSchoolName.length - 1 && (
-              <strong data-testid="strong-element">{sliceToMakeBold}</strong>
+              <Span
+                $font={"body-2-bold"}
+                $textDecoration={"underline"}
+                $color={"teachersHighlight"}
+                data-testid="strong-element"
+              >
+                {sliceToMakeBold}
+              </Span>
             )}
           </Span>
         );
