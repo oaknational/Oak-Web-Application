@@ -1,3 +1,13 @@
+## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* add client mathjax wrap ([5f3302b](https://github.com/oaknational/Oak-Web-Application/commit/5f3302b5a98330de2bf9559a9d4576c02e999472))
+* add dynamic flag ([7c2e905](https://github.com/oaknational/Oak-Web-Application/commit/7c2e9056343fdcc69d19ab074a057eaff0e71c2a))
+* disable dynamic mathjax and render on typeset init ([57c2d7b](https://github.com/oaknational/Oak-Web-Application/commit/57c2d7b077322259d87e302b86d90734a495a47e))
+* mathjax bug add client provider ([a061a28](https://github.com/oaknational/Oak-Web-Application/commit/a061a286b383e9bf3386d3e77372961a8a6136b7))
+
 # [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
 
 
