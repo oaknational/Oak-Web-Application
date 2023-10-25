@@ -2,7 +2,7 @@
 import { MathJax } from "better-react-mathjax";
 import React from "react";
 
-const MathJaxWrap = (children: React.ReactNode) => {
+const MathJaxWrap = ({ children }: { children: React.ReactNode }) => {
   return (
     <MathJax hideUntilTypeset="every" dynamic>
       {children}
