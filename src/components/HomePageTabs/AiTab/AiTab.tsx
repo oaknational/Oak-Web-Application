@@ -28,14 +28,12 @@ const AiTab: FC = () => {
               <Heading $font={"heading-3"} tag={"h2"}>
                 AI Tools created for educators
               </Heading>
-
               <Typography $font={"body-1"}>
                 Oak AI Experiments offers a suite of practical AI tools designed
                 for and freely available to teachers. We are actively looking
                 for your feedback to refine and optimise these tools, making
                 them more effective and time-saving.
               </Typography>
-
               <ButtonAsLink
                 label={"Go to labs"}
                 aria-label="Try our ai tools (this will open in a new tab)"
