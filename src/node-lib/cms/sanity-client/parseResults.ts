@@ -8,7 +8,9 @@
  * but alas, I'm having to write this one off for now
  * - Ross, Sep '22
  */
-import { z, ZodArray, ZodSchema, ZodTypeAny } from "zod";
+import { z, ZodArray, ZodError, ZodSchema, ZodTypeAny } from "zod";
+
+import OakError from "@/errors/OakError";
 
 type WrapValue = {
   <D, T extends Array<D>>(item: T): T;
@@ -89,34 +91,54 @@ export const parseResults = <S extends ZodSchema, D>(
   isPreviewMode?: boolean,
 ): ReturnType<(typeof schema)["parse"]> => {
   if (isPreviewMode) {
-    if (isZodArraySchema(schema)) {
-      /**
-       * Take the provided schema and create a version of it that
-       * will silently filter out any items that are invalid
-       */
-      const invalidRejectingSchema = createInvalidRejectingSchema(schema);
-      const parsedItems = invalidRejectingSchema.parse(data);
+    try {
+      if (isZodArraySchema(schema)) {
+        console.log("duh");
+        /**
+         * Take the provided schema and create a version of it that
+         * will silently filter out any items that are invalid
+         */
+        const invalidRejectingSchema = createInvalidRejectingSchema(schema);
+        const parsedItems = invalidRejectingSchema.parse(data);
 
-      /**
-       * Filter out any duplicates, rejecting the non-draft version
-       * when a draft with a matching ID exists
-       *
-       * The ts-ignore comments are needed as uniqBy correctly infers types
-       * (see tests) but `parsedItems` is unknown because of dodgy types
-       * in `createInvalidRejectingSchema`
-       */
-      const uniqueItems = uniqBy(
-        parsedItems,
-        // @ts-ignore
-        (item) => trimDraftsPrefix(item.id),
-        // @ts-ignore
-        (prev, current) => (isDraft(prev.id) ? prev : current),
-      );
+        /**
+         * Filter out any duplicates, rejecting the non-draft version
+         * when a draft with a matching ID exists
+         *
+         * The ts-ignore comments are needed as uniqBy correctly infers types
+         * (see tests) but `parsedItems` is unknown because of dodgy types
+         * in `createInvalidRejectingSchema`
+         */
+        const uniqueItems = uniqBy(
+          parsedItems,
+          // @ts-ignore
+          (item) => trimDraftsPrefix(item.id),
+          // @ts-ignore
+          (prev, current) => (isDraft(prev.id) ? prev : current),
+        );
 
-      // Explicitly cast the erroneous unknown[] to the right type
-      return uniqueItems as ReturnType<S["parse"]>;
-    } else {
-      return schema.parse(data);
+        // Explicitly cast the erroneous unknown[] to the right type
+        return uniqueItems as ReturnType<S["parse"]>;
+      } else {
+        return schema.parse(data);
+      }
+    } catch (error) {
+      let oakError = error;
+      /**
+       * If error is a ZodError, wrap appropriately
+       */
+      if (error instanceof ZodError) {
+        oakError = new OakError({
+          code: "preview/zod-error",
+          originalError: error,
+          meta: {
+            errors: error.errors,
+          },
+        });
+        throw oakError;
+      } else {
+        throw error;
+      }
     }
   }
 
