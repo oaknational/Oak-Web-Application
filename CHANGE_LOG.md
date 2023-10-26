@@ -1,3 +1,19 @@
+# [1.289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.1...v1.289.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* not provided ([d501a60](https://github.com/oaknational/Oak-Web-Application/commit/d501a60a6a3ea14df9a264c85acf8e346e29c18c))
+* use body2 for school and email ([6e949e3](https://github.com/oaknational/Oak-Web-Application/commit/6e949e313c6ebb1d17db992aad43f5560bad0c8e))
+* use heading component ([f14e29c](https://github.com/oaknational/Oak-Web-Application/commit/f14e29cd3331fc855e5745b7dfdb6b427f95af68))
+
+
+### Features
+
+* move your details heading out of school details ([89fb96f](https://github.com/oaknational/Oak-Web-Application/commit/89fb96ff0d6ffeb869c6cf373940a28dd1669aaa))
+* update component layout ([65c8d1e](https://github.com/oaknational/Oak-Web-Application/commit/65c8d1e787af2ed080037c11fb891e14b97b3fdc))
+* update edit icon ([8799d8a](https://github.com/oaknational/Oak-Web-Application/commit/8799d8a81018e69d1df15828c7a6048f09f9ab05))
+
 ## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
 
 
