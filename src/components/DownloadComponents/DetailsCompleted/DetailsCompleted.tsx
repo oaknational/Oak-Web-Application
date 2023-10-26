@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
-import { Heading, P } from "../../Typography";
-import Button from "../../Button";
-import Box from "../../Box";
-import Flex from "../../Flex";
-import Icon from "../../Icon";
+import { Heading, P } from "@/components/Typography";
+import Button from "@/components/Button";
+import Flex from "@/components/Flex";
+import Box from "@/components/Box";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type DetailsCompletedProps = {
   email?: string;
@@ -12,75 +12,57 @@ export type DetailsCompletedProps = {
   onEditClick: () => void;
 };
 
+const getSchoolName = (school: string | undefined) => {
+  if (school === "notListed") {
+    return "My school isn’t listed";
+  } else if (school === "homeschool") {
+    return "Homeschool";
+  } else {
+    return school;
+  }
+};
+
 const DetailsCompleted: FC<DetailsCompletedProps> = ({
   email,
   school,
   onEditClick,
 }) => {
-  const getSchoolName = (school: string | undefined) => {
-    if (school === "notListed") {
-      return "My school isn’t listed";
-    } else if (school === "homeschool") {
-      return "Homeschool";
-    } else {
-      return school;
-    }
-  };
-
-  const [displayEmail, setDisplayEmail] = useState(false);
-  const [displaySchool, setDisplaySchool] = useState(false);
-
-  useEffect(() => {
-    if (email) {
-      setDisplayEmail(true);
-    }
-
-    if (school) {
-      setDisplaySchool(true);
-    }
-  }, [email, school]);
-
   return (
-    <Box $mt={56}>
-      <Flex $mb={12}>
-        <Heading tag="h3" $font={"heading-5"}>
-          Details complete
-        </Heading>
-        <Icon
-          variant="brush"
-          name={"tick"}
-          size={36}
-          $background={"success"}
-          $ml={28}
+    <Box
+      $width={["100%", 420]}
+      $height={"max-content"}
+      $position="relative"
+      $background="grey2"
+    >
+      <BrushBorders color="grey2" />
+      <Flex $flexDirection="column" $gap={24} $pa={24} $alignItems="flex-start">
+        <Flex $flexDirection="column" $gap={16}>
+          <Flex $flexDirection="column" $gap={4}>
+            <Heading tag="h3" $font="heading-7">
+              School
+            </Heading>
+            <P $font={"body-2"}>{getSchoolName(school)}</P>
+          </Flex>
+          <Flex $flexDirection="column" $gap={4}>
+            <Heading tag="h3" $font="heading-7">
+              Email
+            </Heading>
+            <P $font={"body-2"} $wordWrap={"break-word"}>
+              {email ? email : "Not provided"}
+            </P>
+          </Flex>
+        </Flex>
+        <Button
+          label="Edit"
+          variant="minimal"
+          icon="edit"
+          $iconPosition="trailing"
+          iconBackground="black"
+          onClick={onEditClick}
+          $mt={8}
+          aria-label="Edit details"
         />
       </Flex>
-      <P $mb={8}>We have your details saved already.</P>
-      {displaySchool && (
-        <P $font={"body-3"} $color={"oakGrey4"} $mb={4} data-testid="school">
-          school: {getSchoolName(school)}
-        </P>
-      )}
-      {displayEmail && (
-        <P
-          $font={"body-3"}
-          $color={"oakGrey4"}
-          $mb={4}
-          data-testid="email"
-          $wordWrap={"break-word"}
-        >
-          email: {email}
-        </P>
-      )}
-      <Button
-        label="Edit"
-        variant="minimal"
-        icon="chevron-down"
-        $iconPosition="trailing"
-        iconBackground="teachersHighlight"
-        onClick={onEditClick}
-        $mt={8}
-        aria-label="Edit details"
-      />
     </Box>
   );
 };
