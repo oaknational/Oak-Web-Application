@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { MathJaxContext } from "better-react-mathjax";
 
 import {
   getCommonPathway,
@@ -32,6 +31,7 @@ import HeaderLesson from "@/components/HeaderLesson";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
 import LessonAnchorLinks from "@/components/Lesson/LessonAnchorLinks/LessonAnchorLinks";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
@@ -121,146 +121,145 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
 
   return (
     <>
-      <MathJaxContext version={3} src={"/mathjax/tex-mml-chtml.js"}>
-        <HeaderLesson
-          {...lesson}
-          {...commonPathway}
-          breadcrumbs={[
-            ...getBreadcrumbsForLessonPathway(commonPathway),
-            getLessonOverviewBreadCrumb({
-              lessonTitle,
-              lessonSlug,
-              unitSlug,
-              programmeSlug,
-              disabled: true,
-            }),
-          ]}
-          background={"pink30"}
-          subjectIconBackgroundColor={"pink"}
-          track={track}
-          analyticsUseCase={analyticsUseCase}
-          isNew={!isLegacyLicense}
-        />
-        <MaxWidth $ph={16} $pb={80}>
-          {expired ? (
-            <Box $pa={16} $mb={64}>
-              <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
-                No lesson available
-              </Heading>
-              <Typography $font={"body-1"}>
-                Sorry, this lesson no longer exists.
-              </Typography>
-            </Box>
-          ) : (
-            <Grid $mt={[48]}>
-              <GridArea
-                $colSpan={[12, 3]}
-                $alignSelf={"start"}
-                $position={"sticky"}
-                $display={["none", "block"]}
-                $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+      <HeaderLesson
+        {...lesson}
+        {...commonPathway}
+        breadcrumbs={[
+          ...getBreadcrumbsForLessonPathway(commonPathway),
+          getLessonOverviewBreadCrumb({
+            lessonTitle,
+            lessonSlug,
+            unitSlug,
+            programmeSlug,
+            disabled: true,
+          }),
+        ]}
+        background={"pink30"}
+        subjectIconBackgroundColor={"pink"}
+        track={track}
+        analyticsUseCase={analyticsUseCase}
+        isNew={!isLegacyLicense}
+      />
+      <MaxWidth $ph={16} $pb={80}>
+        {expired ? (
+          <Box $pa={16} $mb={64}>
+            <Heading $font={"heading-7"} tag={"h2"} $mb={16}>
+              No lesson available
+            </Heading>
+            <Typography $font={"body-1"}>
+              Sorry, this lesson no longer exists.
+            </Typography>
+          </Box>
+        ) : (
+          <Grid $mt={[48]}>
+            <GridArea
+              $colSpan={[12, 3]}
+              $alignSelf={"start"}
+              $position={"sticky"}
+              $display={["none", "block"]}
+              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+            >
+              <Flex
+                as="nav"
+                aria-label="page navigation"
+                $flexDirection={"column"}
+                $alignItems={"flex-start"}
+                $gap={[8]}
+                $pr={[16]}
               >
-                <Flex
-                  as="nav"
-                  aria-label="page navigation"
-                  $flexDirection={"column"}
-                  $alignItems={"flex-start"}
-                  $gap={[8]}
-                  $pr={[16]}
-                >
-                  <LessonAnchorLinks
-                    links={pageLinks}
-                    currentSectionId={currentSectionId}
-                  />
-                </Flex>
-              </GridArea>
-              <GridArea $colSpan={[12, 9]}>
-                <Flex $flexDirection={"column"} $position={"relative"}>
-                  {pageLinks.find((p) => p.label === "Slide deck") && (
-                    <LessonItemContainer
-                      ref={slideDeckSectionRef}
-                      title={"Slide deck"}
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "slide deck",
-                        });
-                      }}
-                      slugs={slugs}
-                      anchorId="slide-deck"
-                    >
-                      <OverviewPresentation
-                        asset={presentationUrl}
-                        title={lessonTitle}
-                        isWorksheet={false}
-                      />
-                    </LessonItemContainer>
-                  )}
-
+                <LessonAnchorLinks
+                  links={pageLinks}
+                  currentSectionId={currentSectionId}
+                />
+              </Flex>
+            </GridArea>
+            <GridArea $colSpan={[12, 9]}>
+              <Flex $flexDirection={"column"} $position={"relative"}>
+                {pageLinks.find((p) => p.label === "Slide deck") && (
                   <LessonItemContainer
-                    ref={lessonDetailsSectionRef}
-                    title={"Lesson details"}
-                    anchorId="lesson-details"
+                    ref={slideDeckSectionRef}
+                    title={"Slide deck"}
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "slide deck",
+                      });
+                    }}
+                    slugs={slugs}
+                    anchorId="slide-deck"
                   >
-                    <LessonDetails
-                      keyLearningPoints={keyLearningPoints}
-                      commonMisconceptions={misconceptionsAndCommonMistakes}
-                      keyWords={lessonKeywords}
-                      teacherTips={teacherTips}
-                      equipmentAndResources={lessonEquipmentAndResources}
-                      contentGuidance={contentGuidance}
-                      supervisionLevel={supervisionLevel}
-                      isLegacyLicense={isLegacyLicense}
+                    <OverviewPresentation
+                      asset={presentationUrl}
+                      title={lessonTitle}
+                      isWorksheet={false}
                     />
                   </LessonItemContainer>
+                )}
 
-                  {pageLinks.find((p) => p.label === "Video") && (
-                    <LessonItemContainer
-                      ref={videoSectionRef}
-                      title={"Video"}
-                      anchorId="video"
-                      isFinalElement={
-                        pageLinks.findIndex((p) => p.label === "Video") ===
-                        pageLinks.length - 1
-                      }
-                    >
-                      <OverviewVideo
-                        video={videoMuxPlaybackId}
-                        signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
-                        title={lessonTitle}
-                        transcriptSentences={transcriptSentences}
-                        isLegacy={isSlugLegacy(
-                          programmeSlug ?? subjectSlug ?? "",
-                        )}
-                      />
-                    </LessonItemContainer>
-                  )}
-                  {pageLinks.find((p) => p.label === "Worksheet") && (
-                    <LessonItemContainer
-                      ref={worksheetSectionRef}
-                      title={"Worksheet"}
-                      anchorId="worksheet"
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "worksheet",
-                        });
-                      }}
-                      slugs={slugs}
-                      isFinalElement={
-                        pageLinks.findIndex((p) => p.label === "Worksheet") ===
-                        pageLinks.length - 1
-                      }
-                    >
-                      <OverviewPresentation
-                        asset={worksheetUrl}
-                        title={lessonTitle}
-                        isWorksheetLandscape={!!isWorksheetLandscape}
-                        isWorksheet={true}
-                      />
-                    </LessonItemContainer>
-                  )}
+                <LessonItemContainer
+                  ref={lessonDetailsSectionRef}
+                  title={"Lesson details"}
+                  anchorId="lesson-details"
+                >
+                  <LessonDetails
+                    keyLearningPoints={keyLearningPoints}
+                    commonMisconceptions={misconceptionsAndCommonMistakes}
+                    keyWords={lessonKeywords}
+                    teacherTips={teacherTips}
+                    equipmentAndResources={lessonEquipmentAndResources}
+                    contentGuidance={contentGuidance}
+                    supervisionLevel={supervisionLevel}
+                    isLegacyLicense={isLegacyLicense}
+                  />
+                </LessonItemContainer>
 
+                {pageLinks.find((p) => p.label === "Video") && (
+                  <LessonItemContainer
+                    ref={videoSectionRef}
+                    title={"Video"}
+                    anchorId="video"
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Video") ===
+                      pageLinks.length - 1
+                    }
+                  >
+                    <OverviewVideo
+                      video={videoMuxPlaybackId}
+                      signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
+                      title={lessonTitle}
+                      transcriptSentences={transcriptSentences}
+                      isLegacy={isSlugLegacy(
+                        programmeSlug ?? subjectSlug ?? "",
+                      )}
+                    />
+                  </LessonItemContainer>
+                )}
+                {pageLinks.find((p) => p.label === "Worksheet") && (
+                  <LessonItemContainer
+                    ref={worksheetSectionRef}
+                    title={"Worksheet"}
+                    anchorId="worksheet"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "worksheet",
+                      });
+                    }}
+                    slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex((p) => p.label === "Worksheet") ===
+                      pageLinks.length - 1
+                    }
+                  >
+                    <OverviewPresentation
+                      asset={worksheetUrl}
+                      title={lessonTitle}
+                      isWorksheetLandscape={!!isWorksheetLandscape}
+                      isWorksheet={true}
+                    />
+                  </LessonItemContainer>
+                )}
+                <MathJaxProvider>
                   {pageLinks.find((p) => p.label === "Starter quiz") && (
                     <LessonItemContainer
                       ref={starterQuizSectionRef}
@@ -305,30 +304,31 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
                     </LessonItemContainer>
                   )}
-                  {pageLinks.find((p) => p.label === "Additional material") && (
-                    <LessonItemContainer
-                      ref={additionalMaterialSectionRef}
-                      title={"Additional material"}
-                      anchorId="additional-material"
-                      downloadable={true}
-                      onDownloadButtonClick={() => {
-                        trackDownloadResourceButtonClicked({
-                          downloadResourceButtonName: "additional material",
-                        });
-                      }}
-                      slugs={slugs}
-                      isFinalElement={
-                        pageLinks.findIndex(
-                          (p) => p.label === "Additional material",
-                        ) ===
-                        pageLinks.length - 1
-                      }
-                    >
-                      <Typography $font={"body-1"}>
-                        We're sorry, but preview is not currently available.
-                        Download to see additional material.
-                      </Typography>
-                      {/* 
+                </MathJaxProvider>
+                {pageLinks.find((p) => p.label === "Additional material") && (
+                  <LessonItemContainer
+                    ref={additionalMaterialSectionRef}
+                    title={"Additional material"}
+                    anchorId="additional-material"
+                    downloadable={true}
+                    onDownloadButtonClick={() => {
+                      trackDownloadResourceButtonClicked({
+                        downloadResourceButtonName: "additional material",
+                      });
+                    }}
+                    slugs={slugs}
+                    isFinalElement={
+                      pageLinks.findIndex(
+                        (p) => p.label === "Additional material",
+                      ) ===
+                      pageLinks.length - 1
+                    }
+                  >
+                    <Typography $font={"body-1"}>
+                      We're sorry, but preview is not currently available.
+                      Download to see additional material.
+                    </Typography>
+                    {/* 
                     Temporary fix for additional material due to unexpected poor rendering of google docs
                     <OverviewPresentation
                       asset={additionalMaterialUrl}
@@ -337,14 +337,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       isWorksheetLandscape={isWorksheetLandscape}
                       isWorksheet={true}
                     /> */}
-                    </LessonItemContainer>
-                  )}
-                </Flex>
-              </GridArea>
-            </Grid>
-          )}
-        </MaxWidth>
-      </MathJaxContext>
+                  </LessonItemContainer>
+                )}
+              </Flex>
+            </GridArea>
+          </Grid>
+        )}
+      </MaxWidth>
     </>
   );
 }

@@ -1,3 +1,29 @@
+# [1.289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.1...v1.289.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* not provided ([d501a60](https://github.com/oaknational/Oak-Web-Application/commit/d501a60a6a3ea14df9a264c85acf8e346e29c18c))
+* use body2 for school and email ([6e949e3](https://github.com/oaknational/Oak-Web-Application/commit/6e949e313c6ebb1d17db992aad43f5560bad0c8e))
+* use heading component ([f14e29c](https://github.com/oaknational/Oak-Web-Application/commit/f14e29cd3331fc855e5745b7dfdb6b427f95af68))
+
+
+### Features
+
+* move your details heading out of school details ([89fb96f](https://github.com/oaknational/Oak-Web-Application/commit/89fb96ff0d6ffeb869c6cf373940a28dd1669aaa))
+* update component layout ([65c8d1e](https://github.com/oaknational/Oak-Web-Application/commit/65c8d1e787af2ed080037c11fb891e14b97b3fdc))
+* update edit icon ([8799d8a](https://github.com/oaknational/Oak-Web-Application/commit/8799d8a81018e69d1df15828c7a6048f09f9ab05))
+
+## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* add client mathjax wrap ([5f3302b](https://github.com/oaknational/Oak-Web-Application/commit/5f3302b5a98330de2bf9559a9d4576c02e999472))
+* add dynamic flag ([7c2e905](https://github.com/oaknational/Oak-Web-Application/commit/7c2e9056343fdcc69d19ab074a057eaff0e71c2a))
+* disable dynamic mathjax and render on typeset init ([57c2d7b](https://github.com/oaknational/Oak-Web-Application/commit/57c2d7b077322259d87e302b86d90734a495a47e))
+* mathjax bug add client provider ([a061a28](https://github.com/oaknational/Oak-Web-Application/commit/a061a286b383e9bf3386d3e77372961a8a6136b7))
+
 # [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
 
 

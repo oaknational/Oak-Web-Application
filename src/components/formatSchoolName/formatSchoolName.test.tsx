@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
-
 import { formatSchoolName } from "./formatSchoolName";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("formatSchoolName", () => {
   it("should return the expected div with input value in bold", () => {
-    const { getByText, getByTestId } = render(
+    const { getByText, getByTestId } = renderWithTheme(
       formatSchoolName(
         "Macaulay Church of England Primary School, Lambeth, SW4 0NU",
         "ima",
@@ -14,7 +14,8 @@ describe("formatSchoolName", () => {
     const divWithText = getByText("ry School, Lambeth, SW4 0NU");
     expect(divWithText).toBeInTheDocument();
     const strongElement = getByTestId("strong-element");
-    expect(strongElement.tagName).toBe("STRONG");
+    expect(strongElement).toHaveStyle("font-weight: 700");
+    expect(strongElement).toHaveStyle("color: rgb(55, 76, 241)");
     expect(strongElement).toHaveTextContent("ima");
   });
 });
