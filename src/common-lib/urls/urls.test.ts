@@ -241,6 +241,11 @@ describe("urls.ts", () => {
         "https://classroom.thenational.academy",
       );
     });
+    it("Labs", () => {
+      expect(resolveOakHref({ page: "labs" })).toBe(
+        "https://labs.thenational.academy",
+      );
+    });
     it("Teacher hub", () => {
       expect(resolveOakHref({ page: "teacher-hub" })).toBe(
         "https://teachers.thenational.academy",
