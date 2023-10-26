@@ -41,7 +41,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
       <Flex
         $alignItems={"center"}
         $justifyContent={"center"}
-        $pa={8}
+        $pa={6}
         $background={"teachersYellow"}
         $width={66}
       >
