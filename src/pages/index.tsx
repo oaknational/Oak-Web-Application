@@ -33,6 +33,7 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
+import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -47,7 +48,7 @@ export type HomePageProps = {
   posts: SerializedPost[];
 };
 
-export type HomePageTab = "teachers" | "curriculum" | "pupils";
+export type HomePageTab = "teachers" | "curriculum" | "pupils" | "ai";
 const isHomePageTab = (u: unknown): u is HomePageTab =>
   u === "teachers" || u === "curriculum" || u === "pupils";
 
@@ -135,6 +136,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
       )}
       {current === "curriculum" && <CurriculumTab />}
       {current === "pupils" && <PupilTab />}
+      {current === "ai" && <AiTab />}
 
       <MaxWidth $mv={[24, 56]}>
         <Box $ph={[16, 24]} $height={"100%"}>

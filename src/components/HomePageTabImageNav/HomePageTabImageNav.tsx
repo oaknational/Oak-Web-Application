@@ -18,6 +18,8 @@ const HomePageTabImageNav = ({
       ? "aqua"
       : current === "pupils"
       ? "lemon"
+      : current === "ai"
+      ? "pupilsPink"
       : "white";
   return (
     <Flex $flexDirection={"column"}>
@@ -57,6 +59,14 @@ const HomePageTabImageNav = ({
           isCurrent={current === "pupils"}
           isNew={false}
           onClick={() => setCurrent("pupils")}
+        />
+        <HomePageTabImageButton
+          activeImageSlug="three-pupils-standing-1023-black"
+          passiveImageSlug="three-pupils-standing-1023-oakgrey4"
+          label={"AI"}
+          isCurrent={current === "ai"}
+          isNew={false}
+          onClick={() => setCurrent("ai")}
         />
       </Flex>
       <Hr $mt={0} $mb={0} $color={"white"} thickness={2} />
