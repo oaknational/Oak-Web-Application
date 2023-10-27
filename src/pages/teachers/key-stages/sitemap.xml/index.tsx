@@ -27,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const sitemapBaseUrl = process.env.SITEMAP_BASE_URL || "";
 
   const basePath = "teachers/key-stages";
-
   /**
    * Figure out the paths to all the nested dynamic routes under this directory.
    */

@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 
-import Box from "../Box";
-import { Span } from "../Typography";
+import Flex from "@/components/Flex";
+import { Span } from "@/components/Typography";
+import Icon from "@/components/Icon";
 
 type FieldErrorVariant = "large";
 
@@ -21,15 +22,16 @@ const FieldError = (props: FieldErrorProps) => {
     return null;
   }
   return (
-    <Box $mt={4} $mb={withoutMarginBottom ? 0 : 24}>
+    <Flex $mt={4} $alignItems={"center"} $mb={withoutMarginBottom ? 0 : 24}>
+      <Icon name="content-guidance" $color={"red"} />
       <Span
-        $color="failure"
+        $color="red"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-3"}
         id={id}
       >
         {children}
       </Span>
-    </Box>
+    </Flex>
   );
 };
 

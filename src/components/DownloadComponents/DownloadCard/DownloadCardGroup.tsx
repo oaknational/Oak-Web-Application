@@ -5,8 +5,7 @@ import type {
   DownloadResourceType,
   DownloadFormProps,
 } from "../downloads.types";
-
-import DownloadCard from "./DownloadCard";
+import DownloadCard from "../DownloadCard";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { GridArea } from "@/components/Grid";
@@ -69,19 +68,19 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
             Lesson resources
           </Heading>
-          <Box $maxWidth="max-content">
-            <Checkbox
-              checked={selectAllChecked}
-              onChange={handleToggleSelectAll}
-              id="select-all"
-              name="select-all"
-              variant="withLabel"
-              labelText="Select all"
-              labelFontWeight={600}
-            />
-          </Box>
         </Flex>
         <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
+        <Box $maxWidth="max-content">
+          <Checkbox
+            checked={selectAllChecked}
+            onChange={handleToggleSelectAll}
+            id="select-all"
+            name="select-all"
+            variant="withLabel"
+            labelText="Select all"
+            labelFontWeight={600}
+          />
+        </Box>
       </GridArea>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
