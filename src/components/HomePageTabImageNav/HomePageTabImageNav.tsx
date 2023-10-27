@@ -11,16 +11,6 @@ const HomePageTabImageNav = ({
   current: HomePageTab | undefined;
   setCurrent: (tab: HomePageTab) => void;
 }) => {
-  const backgroundColor =
-    current === "teachers"
-      ? "mint"
-      : current === "curriculum"
-      ? "aqua"
-      : current === "pupils"
-      ? "lemon"
-      : current === "ai"
-      ? "pupilsPink"
-      : "white";
   return (
     <Flex $flexDirection={"column"}>
       <Flex
@@ -32,7 +22,7 @@ const HomePageTabImageNav = ({
         $pb={2}
         $gap={[16, 32]}
         $justifyContent={"center"}
-        $background={backgroundColor}
+        $background={getBackgroundColorByHomePageTab(current)}
         {...flexProps}
       >
         <HomePageTabImageButton
@@ -73,5 +63,21 @@ const HomePageTabImageNav = ({
     </Flex>
   );
 };
+
+function getBackgroundColorByHomePageTab(current: HomePageTab | undefined) {
+  if (current === "teachers") {
+    return "mint";
+  }
+  if (current === "curriculum") {
+    return "aqua";
+  }
+  if (current === "pupils") {
+    return "lemon";
+  }
+  if (current === "ai") {
+    return "pupilsPink";
+  }
+  return "white";
+}
 
 export default HomePageTabImageNav;
