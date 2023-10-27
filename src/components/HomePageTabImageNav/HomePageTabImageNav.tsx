@@ -53,8 +53,8 @@ const HomePageTabImageNav = ({
           data-testid="curriculum-plans-button"
         />
         <HomePageTabImageButton
-          activeImageSlug="teacher-reading-map-1023-black"
-          passiveImageSlug="teacher-reading-map-1023-oakgrey4"
+          activeImageSlug="juggling-teacher-1023-black"
+          passiveImageSlug="juggling-teacher-1023-oakgrey4"
           label={"AI Experiments"}
           isCurrent={current === "ai"}
           isNew={true}
