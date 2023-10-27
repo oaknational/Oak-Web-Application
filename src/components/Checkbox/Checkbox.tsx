@@ -21,7 +21,7 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox" | "terms";
+export type CheckboxVariant = "withoutLabel" | "withLabel";
 
 export type CheckboxProps = {
   labelText?: string;
@@ -38,6 +38,8 @@ export type CheckboxProps = {
   inputRef?: RefCallBack;
   onBlur?: () => void;
   hasError?: boolean;
+  labelFontWeight?: 400 | 600;
+  slim?: boolean;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -86,6 +88,8 @@ const checkboxFocusStyles = css`
   input[type="checkbox"]:focus ~ div,
   input[type="checkbox"]:active ~ div {
     border: solid 4px ${getColorByName("teachersYellow")};
+    box-shadow: 0 0 0 3px ${getColorByName("grey6")};
+    border-radius: 4px;
   }
 `;
 
@@ -108,7 +112,7 @@ const checkboxHoverStyles = css`
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
   display: ${(props) =>
-    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+    props.variant !== "withoutLabel" ? "flex" : "initial"};
   align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
@@ -138,10 +142,10 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const CheckboxLabelText = styled.span`
+const CheckboxLabelText = styled.span<{ fontWeight: 400 | 600 }>`
   margin-left: 8px;
   margin-right: 16px;
-  font-weight: 400;
+  font-weight: ${(props) => props.fontWeight};
 `;
 
 const Checkbox: FC<CheckboxProps> = (props) => {
@@ -160,6 +164,8 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     variant,
     inputRef,
     onBlur,
+    slim,
+    labelFontWeight,
     ...spacingProps
   } = props;
 
@@ -194,19 +200,22 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           checked={checked}
           variant={variant}
           hasError={hasError}
+          slim={slim}
         />
         {/* card checkbox */}
-        {!labelText && variant === "cardCheckbox" && children}
+        {!labelText && variant === "withoutLabel" && children}
         {/* basic label checkbox */}
 
-        {labelText && variant !== "cardCheckbox" && (
+        {labelText && variant !== "withoutLabel" && (
           <>
-            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
+            <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
+              {labelText}
+            </CheckboxLabelText>{" "}
             <FocusUnderline $color={"teachersYellow"} />
           </>
         )}
       </CheckboxLabel>
-      {variant !== "terms" && (
+      {variant !== "withLabel" && (
         <FieldError id={errorId} withoutMarginBottom>
           {error}
         </FieldError>

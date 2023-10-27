@@ -63,6 +63,7 @@ const LessonHelper: FC<LessonHelperProps> = ({
             <CopyrightNotice
               $font={"body-2"}
               showPostAlbCopyright={!isLegacyLicense}
+              openLinksExternally={false}
             />
           </Box>
         </GridArea>

@@ -12,12 +12,15 @@ import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumUnitDetails";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 type UnitModalProps = {
   unitData: Unit | null;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   unitOptionsAvailable: boolean;
+  isHighlighted: boolean;
 };
 
 export type Lesson = {
@@ -30,7 +33,10 @@ const UnitModal: FC<UnitModalProps> = ({
   displayModal,
   setUnitOptionsAvailable,
   unitOptionsAvailable,
+  isHighlighted,
 }) => {
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -47,10 +53,29 @@ const UnitModal: FC<UnitModalProps> = ({
       setOptionalityModalOpen(false);
       setUnitOptionsAvailable(false);
     }
+
     if (optionalityModalOpen) {
       setUnitOptionsAvailable(false);
     }
   }, [displayModal, setUnitOptionsAvailable, optionalityModalOpen]);
+
+  useEffect(() => {
+    // For tracking open model events
+    if (displayModal === true) {
+      if (unitData) {
+        track.unitInformationViewed({
+          unitName: unitData.title,
+          unitSlug: unitData.slug,
+          subjectTitle: unitData.subject,
+          subjectSlug: unitData.subject_slug,
+          yearGroupName: unitData.year,
+          yearGroupSlug: unitData.year,
+          unitHighlighted: isHighlighted,
+          analyticsUseCase: analyticsUseCase,
+        });
+      }
+    }
+  });
 
   return (
     <>

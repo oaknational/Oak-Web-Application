@@ -32,7 +32,7 @@ import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAnd
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
+import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
 import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
@@ -45,6 +45,7 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
+import Icon from "@/components/Icon";
 
 type LessonDownloadsProps =
   | {
@@ -89,11 +90,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
 
-  const { register, formState, control, watch, setValue, handleSubmit } =
-    useForm<DownloadFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
+  const {
+    register,
+    formState,
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    trigger,
+  } = useForm<DownloadFormProps>({
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+  });
+  const [preselectAll, setPreselectAll] = useState(false);
 
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
@@ -114,6 +123,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
 
     if (preselected) {
+      setPreselectAll(preselected === "all");
       preselected === "all"
         ? setValue("downloads", getInitialResourcesToDownloadState())
         : setValue("downloads", preselected);
@@ -310,7 +320,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <>
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
             {!isLocalStorageLoading && (
-              <>
+              <Flex $flexDirection="column" $gap={24}>
+                <Heading tag="h2" $font={"heading-5"}>
+                  Your details
+                </Heading>
                 {localStorageDetails ? (
                   <DetailsCompleted
                     email={emailFromLocalStorage}
@@ -319,7 +332,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   />
                 ) : (
                   <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolPickerRadio
+                    <SchoolDetails
                       errors={errors}
                       setSchool={setSchool}
                       initialValue={
@@ -327,7 +340,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           ? schoolIdFromLocalStorage
                           : undefined
                       }
-                      initialSchoolName={schoolNameFromLocalStorage}
+                      initialSchoolName={
+                        schoolNameFromLocalStorage.length > 0
+                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
+                            schoolNameFromLocalStorage.slice(1)
+                          : undefined
+                      }
                     />
                     <Heading
                       tag="h3"
@@ -353,8 +371,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                         page="legal"
                         legalSlug="privacy-policy"
                         $isInline
+                        htmlAnchorProps={{
+                          target: "_blank",
+                          "aria-label": "Privacy policy (opens in a new tab)",
+                        }}
                       >
-                        privacy policy
+                        privacy policy{" "}
+                        <Icon
+                          name="external"
+                          verticalAlign="bottom"
+                          size={20}
+                          data-testid="external-link-icon"
+                        />
                       </OakLink>
                       .
                     </P>
@@ -383,12 +411,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     />
                   </Box>
                 )}
-                <Box $mb={56} $mt={16}>
+                <Box $mb={56}>
                   <CopyrightNotice
                     showPostAlbCopyright={showPostAlbCopyright}
+                    openLinksExternally={true}
                   />
                 </Box>
-              </>
+              </Flex>
             )}
 
             <Grid>
@@ -399,6 +428,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 errorMessage={errors?.downloads?.message}
                 onSelectAllClick={() => onSelectAllClick()}
                 onDeselectAllClick={() => onDeselectAllClick()}
+                preselectAll={preselectAll}
+                triggerForm={trigger}
               />
 
               <GridArea $colSpan={[12]}>

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "@/node-lib/cms";
-import { PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
+import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
 import Card, { CardProps } from "@/components/Card";
 import Flex from "@/components/Flex";
 import Grid, { GridArea } from "@/components/Grid";
@@ -27,6 +27,7 @@ import { IllustrationSlug } from "@/image-data";
 import { getSizes } from "@/components/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -163,6 +164,17 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
+const generateCtaProps = (cta: CTA) => {
+  return {
+    page: null,
+    href: getLinkHref(cta),
+    label: cta.label,
+    htmlAnchorProps: {
+      target: "_self",
+    },
+  };
+};
+
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
@@ -262,11 +274,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 <ButtonAsLink
                   icon="search"
                   $iconPosition="trailing"
-                  label={pageData.lessonElementsCTA.label}
-                  page="teacher-hub"
-                  htmlAnchorProps={{
-                    target: "_blank",
-                  }}
+                  {...generateCtaProps(pageData.lessonElementsCTA)}
                 />
               </Card>
             </GridArea>
@@ -333,11 +341,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               icon="search"
                               $iconPosition="trailing"
                               $mt={24}
-                              label={"Search our lessons"}
-                              page="teacher-hub"
-                              htmlAnchorProps={{
-                                target: "_blank",
-                              }}
+                              {...generateCtaProps(pageData.stepsCTA)}
                             />
                           </Flex>
                         )}
@@ -455,11 +459,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <ButtonAsLink
                 icon="search"
                 $iconPosition="trailing"
-                label={pageData.lessonElementsCTA.label}
-                page="teacher-hub"
-                htmlAnchorProps={{
-                  target: "_blank",
-                }}
+                {...generateCtaProps(pageData.lessonElementsCTA)}
               />
             </Card>
           </Card>

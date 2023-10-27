@@ -31,6 +31,7 @@ import HeaderLesson from "@/components/HeaderLesson";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
 import LessonAnchorLinks from "@/components/Lesson/LessonAnchorLinks/LessonAnchorLinks";
+import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewCanonical | LessonOverviewInPathway;
@@ -258,49 +259,52 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     />
                   </LessonItemContainer>
                 )}
-
-                {pageLinks.find((p) => p.label === "Starter quiz") && (
-                  <LessonItemContainer
-                    ref={starterQuizSectionRef}
-                    title={"Starter quiz"}
-                    anchorId="starter-quiz"
-                    downloadable={true}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "starter quiz",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex((p) => p.label === "Starter quiz") ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    {starterQuiz && (
-                      <QuizContainerNew questions={starterQuiz} />
-                    )}
-                  </LessonItemContainer>
-                )}
-                {pageLinks.find((p) => p.label === "Exit quiz") && (
-                  <LessonItemContainer
-                    ref={exitQuizSectionRef}
-                    title={"Exit quiz"}
-                    anchorId="exit-quiz"
-                    downloadable={true}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "exit quiz",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex((p) => p.label === "Exit quiz") ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
-                  </LessonItemContainer>
-                )}
+                <MathJaxProvider>
+                  {pageLinks.find((p) => p.label === "Starter quiz") && (
+                    <LessonItemContainer
+                      ref={starterQuizSectionRef}
+                      title={"Starter quiz"}
+                      anchorId="starter-quiz"
+                      downloadable={true}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "starter quiz",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === "Starter quiz",
+                        ) ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      {starterQuiz && (
+                        <QuizContainerNew questions={starterQuiz} />
+                      )}
+                    </LessonItemContainer>
+                  )}
+                  {pageLinks.find((p) => p.label === "Exit quiz") && (
+                    <LessonItemContainer
+                      ref={exitQuizSectionRef}
+                      title={"Exit quiz"}
+                      anchorId="exit-quiz"
+                      downloadable={true}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "exit quiz",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex((p) => p.label === "Exit quiz") ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
+                    </LessonItemContainer>
+                  )}
+                </MathJaxProvider>
                 {pageLinks.find((p) => p.label === "Additional material") && (
                   <LessonItemContainer
                     ref={additionalMaterialSectionRef}

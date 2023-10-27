@@ -167,12 +167,6 @@ describe("getPageViewProps()", () => {
       analyticsUseCase: null,
     });
   });
-  it("Home (teachers)", () => {
-    expect(getPageViewProps("/teachers")).toEqual({
-      pageName: "Homepage",
-      analyticsUseCase: "Teacher",
-    });
-  });
   it("Lesson planning", () => {
     expect(getPageViewProps("/lesson-planning")).toEqual({
       pageName: "Plan a Lesson",

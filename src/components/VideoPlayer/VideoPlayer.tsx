@@ -131,7 +131,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       originalError,
       meta: metadata,
     });
-    reportError(error, { ...getState() });
+
+    // Don't report network errors
+    const networkError =
+      (evt as CustomEvent).detail?.data?.type === "networkError";
+    if (!networkError) {
+      reportError(error, { ...getState() });
+    }
   };
 
   if (process.env.NODE_ENV === "test") {

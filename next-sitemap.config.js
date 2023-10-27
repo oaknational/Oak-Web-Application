@@ -19,6 +19,7 @@ const serversideSitemapPaths = [
   "/blog/categories/sitemap.xml",
   "/webinars/sitemap.xml",
   "/webinars/categories/sitemap.xml",
+  "/teachers/curriculum/sitemap.xml",
   // Don't include the beta dynamic sitemaps until the beta goes public.
   /** @todo fix generating this page so it takes under a minute at request time */
   // "/beta/teachers/key-stages/sitemap.xml",
@@ -48,8 +49,15 @@ module.exports = {
     ],
   },
   exclude: [
-    // Don't add beta pages to the sitemap for now.
-    "/teachers/*",
+    //Exclude lesson journey pages from the sitemap.
+    "/teachers/key-stages",
+    "/teachers/key-stages/*",
+    "/teachers/lessons",
+    "/teachers/lessons/*",
+    "/teachers/programmes",
+    "/teachers/programmes/*",
+    "/teachers/early-release-units",
+    "/teachers/search",
     // Exclude WIP webinar pages
     "/webinars",
     "/webinars/*",

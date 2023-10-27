@@ -19,6 +19,9 @@ import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
 import Heading from "@/components/Typography/Heading";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -58,6 +61,8 @@ interface YearSelection {
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const yearData: {
     [key: string]: {
@@ -67,6 +72,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       tiers: Tier[];
     };
   } = {};
+
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
@@ -90,7 +96,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
     // Populate threads object
     unit.threads.forEach((thread) => {
-      if (threadOptions.every((to) => to.slug !== thread.slug)) {
+      if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
         threadOptions.push(thread);
       }
     });
@@ -250,8 +256,25 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return selectedThread?.slug === thread.slug;
   }
 
+  function trackSelectThread(thread: Thread): void {
+    if (data.units[0]) {
+      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
+      track.curriculumThreadHighlighted({
+        subjectTitle: subject,
+        subjectSlug: subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phase_slug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
   function handleSelectThread(slug: string): void {
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
+    if (thread) {
+      trackSelectThread(thread);
+    }
     setSelectedThread(thread);
   }
 
@@ -270,7 +293,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return count;
   }
 
+  function trackSelectYear(year: string): void {
+    if (data.units[0]) {
+      track.yearGroupSelected({
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle: data.units[0].subject,
+        subjectSlug: data.units[0].subject_slug,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
   function handleSelectYear(year: string): void {
+    trackSelectYear(year);
     setSelectedYear(year);
   }
 
@@ -590,6 +626,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
                           unitOptionsAvailable={unitOptionsAvailable}
+                          isHighlighted={
+                            unitData ? isHighlightedUnit(unitData) : false
+                          }
                         />
                       </Sidebar>
                     </Flex>
