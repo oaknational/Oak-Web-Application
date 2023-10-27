@@ -50,7 +50,7 @@ export type HomePageProps = {
 
 export type HomePageTab = "teachers" | "curriculum" | "pupils" | "ai";
 const isHomePageTab = (u: unknown): u is HomePageTab =>
-  u === "teachers" || u === "curriculum" || u === "pupils";
+  u === "teachers" || u === "curriculum" || u === "pupils" || u === "ai";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
