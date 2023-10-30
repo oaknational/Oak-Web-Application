@@ -6,6 +6,7 @@ import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
 import Flex from "../Flex";
 import Icon from "../Icon";
 import Box from "../Box";
+import { DoubleButtonBorders } from "../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
 
 import ButtonLabel from "./ButtonLabel";
 
@@ -13,6 +14,10 @@ type DownloadButtonProps = {
   isLoading: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
+
+const FocusDoubleBorder = styled(DoubleButtonBorders)`
+  display: none;
+`;
 
 const StyledButton = styled(UnstyledButton)`
   height: 56px;
@@ -24,18 +29,20 @@ const StyledButton = styled(UnstyledButton)`
   max-width: 100%;
   position: relative;
   text-decoration: none;
+  &:focus {
+    & ${FocusDoubleBorder} {
+      display: block;
+    }
+  }
+  :hover:not(:focus) ${ButtonLabel} {
+    text-decoration: underline;
+  }
   ${(props) => {
     return css`
       background-color: ${props.disabled ? "#ccc" : "black"};
       cursor: ${props.disabled ? "not-allowed" : "pointer"};
     `;
   }}
-`;
-
-const ButtonLabelWithHover = styled(ButtonLabel)`
-  :hover {
-    text-decoration: underline;
-  }
 `;
 
 const Spinner = styled.span`
@@ -59,6 +66,7 @@ const Spinner = styled.span`
 
 const DownloadButton = (props: DownloadButtonProps) => {
   const disabled = props.isLoading;
+
   return (
     <StyledButton
       disabled={disabled}
@@ -67,9 +75,9 @@ const DownloadButton = (props: DownloadButtonProps) => {
       aria-label={"Download button"}
     >
       <Flex $gap={8} $justifyContent="center">
-        <ButtonLabelWithHover $color="white">
+        <ButtonLabel $color="white">
           {props.isLoading ? "Downloading..." : "Download .zip"}
-        </ButtonLabelWithHover>
+        </ButtonLabel>
         {props.isLoading ? (
           <Box $height={24}>
             <Spinner />
@@ -79,6 +87,7 @@ const DownloadButton = (props: DownloadButtonProps) => {
         )}
       </Flex>
       <ButtonBorders background={disabled ? "grey3" : "black"} />
+      <FocusDoubleBorder background="teachersYellow" />
     </StyledButton>
   );
 };
