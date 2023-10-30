@@ -11,6 +11,7 @@ export default {
     text: "Download .zip",
     loadingText: "Downloading...",
     icon: "download",
+    disabled: false,
   },
 } as ComponentMeta<typeof Component>;
 
