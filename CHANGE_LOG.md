@@ -1,3 +1,12 @@
+# [1.292.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.1...v1.292.0) (2023-10-30)
+
+
+### Features
+
+* **pupils page:** add pupils pathway to owa ([ec737a9](https://github.com/oaknational/Oak-Web-Application/commit/ec737a997e280af6408058c3835a09549c5eda9e))
+
+## [1.291.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.0...v1.291.1) (2023-10-30)
+
 # [1.291.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.290.0...v1.291.0) (2023-10-29)
 
 
