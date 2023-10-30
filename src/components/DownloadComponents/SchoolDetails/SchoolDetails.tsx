@@ -74,15 +74,16 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
   };
   return (
     <>
-      <Heading tag="h3" $font={"heading-7"} $mt={0} $mb={24}>
-        Find your school in the field below (required)
+      <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[24, 32]}>
+        Your details
       </Heading>
+
       <SchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
         setSchoolPickerInputValue={onSchoolPickerInputChange}
         schools={schools}
-        label={"Name of school"}
+        label={"School"}
         setSelectedSchool={setSelectedSchool}
         required={true}
       />
