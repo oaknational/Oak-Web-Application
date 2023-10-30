@@ -207,6 +207,14 @@ describe("common-lib/error-reporter", () => {
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
+
+    test("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
+      const error = new OakError({ code: "preview/zod-error" });
+      error.config.shouldNotify = false;
+      reportError(error);
+      expect(mockNotify).not.toHaveBeenCalled();
+    });
+
     test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
       reportError({
         originalError: {
