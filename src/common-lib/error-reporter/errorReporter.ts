@@ -210,6 +210,7 @@ const errorReporter = (
 
       if (maybeError instanceof OakError && !maybeError.config.shouldNotify) {
         logger.log("Error should not be reported, aborting reportError()");
+        logger.error(maybeError);
         return;
       }
 
