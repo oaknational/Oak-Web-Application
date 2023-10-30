@@ -289,7 +289,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const showPostAlbCopyright = !isLegacy;
 
   return (
-    <Box $background={"oakGrey1"}>
+    <Box $mh={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
