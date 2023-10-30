@@ -9,13 +9,16 @@ const { writeJson } = require("./helpers");
 async function main() {
   try {
     const client = getSanityClient();
-    const brandAssetRes = await client.fetch(`*[_type == "brandAsset"] {
-    faviconImage {
-      image {
-        asset->
-      }
-    }
-  }`);
+    const brandAssetRes =
+      await client.fetch(`*[_type == "brandAsset" && defined(faviconImage.image.asset) && faviconImage.image.asset->.url != null] {
+        faviconImage {
+          image {
+            asset-> {
+              url
+            }
+          }
+        }
+      }`);
     const [{ faviconImage }] = brandAssetRes;
 
     // pupilsLimeGreen

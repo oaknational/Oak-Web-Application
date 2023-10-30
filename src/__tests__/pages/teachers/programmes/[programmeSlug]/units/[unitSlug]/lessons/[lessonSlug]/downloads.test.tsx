@@ -251,7 +251,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("email: test@test.com")).toBeInTheDocument();
+      expect(getByText("test@test.com")).toBeInTheDocument();
     });
 
     it("displays DetailsCompleted component with school name filled from local storage if available", async () => {
@@ -267,7 +267,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("school: Primary School")).toBeInTheDocument();
+      expect(getByText("Primary School")).toBeInTheDocument();
     });
   });
 

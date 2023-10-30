@@ -39,6 +39,7 @@ export type CheckboxProps = {
   onBlur?: () => void;
   hasError?: boolean;
   labelFontWeight?: 400 | 600;
+  slim?: boolean;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -87,6 +88,8 @@ const checkboxFocusStyles = css`
   input[type="checkbox"]:focus ~ div,
   input[type="checkbox"]:active ~ div {
     border: solid 4px ${getColorByName("teachersYellow")};
+    box-shadow: 0 0 0 3px ${getColorByName("grey6")};
+    border-radius: 4px;
   }
 `;
 
@@ -161,6 +164,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     variant,
     inputRef,
     onBlur,
+    slim,
     labelFontWeight,
     ...spacingProps
   } = props;
@@ -196,6 +200,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           checked={checked}
           variant={variant}
           hasError={hasError}
+          slim={slim}
         />
         {/* card checkbox */}
         {!labelText && variant === "withoutLabel" && children}
