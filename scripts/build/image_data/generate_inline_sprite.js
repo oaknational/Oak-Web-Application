@@ -12,18 +12,18 @@ async function main() {
     const client = getSanityClient();
 
     const [inlineSpriteAssetRes] =
-      await client.fetch(`*[_type == "brandAsset"] {
-    logoWithText {
-      image {
-        asset->
-      }
-    },
-    logo {
-      image {
-        asset->
-      }
-    },
-  }`);
+      await client.fetch(`*[_type == "brandAsset" && defined(logoWithText.image.asset) && logoWithText.image.asset->.url != null] {
+        logoWithText {
+          image {
+            asset->
+          }
+        },
+        logo {
+          image {
+            asset->
+          }
+        },
+      }`);
 
     const { logoWithText, logo } = inlineSpriteAssetRes;
 

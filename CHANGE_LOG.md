@@ -1,3 +1,81 @@
+## [1.293.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.1...v1.293.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **portable text:** add withoutDefaultComponents prop ([5e920fd](https://github.com/oaknational/Oak-Web-Application/commit/5e920fdc24bbb7edade1395362aba447db57068d))
+* **portable text:** deep merge base components ([6465b2a](https://github.com/oaknational/Oak-Web-Application/commit/6465b2a80b8032c3b70af54f9a29ed94084a0a57))
+
+## [1.293.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.0...v1.293.1) (2023-10-30)
+
+# [1.293.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.292.0...v1.293.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* ran sanity gql ([d78e3e0](https://github.com/oaknational/Oak-Web-Application/commit/d78e3e0b3e911d8a20f155773d1590d8c0908402))
+
+
+### Features
+
+* catch and log preview zod errors ([1f1be06](https://github.com/oaknational/Oak-Web-Application/commit/1f1be060757f04ba6c0fc463b754a94d3c7152bf))
+
+# [1.292.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.1...v1.292.0) (2023-10-30)
+
+
+### Features
+
+* **pupils page:** add pupils pathway to owa ([ec737a9](https://github.com/oaknational/Oak-Web-Application/commit/ec737a997e280af6408058c3835a09549c5eda9e))
+
+## [1.291.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.0...v1.291.1) (2023-10-30)
+
+# [1.291.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.290.0...v1.291.0) (2023-10-29)
+
+
+### Features
+
+* add labs pathway to urls ([5ed2ec7](https://github.com/oaknational/Oak-Web-Application/commit/5ed2ec7199fb64361835edc1ce039786d885036c))
+* add new tab for ai on home page tabs ([ba7ea28](https://github.com/oaknational/Oak-Web-Application/commit/ba7ea28279722504dd5d342ae5d9323e28ce879d))
+
+# [1.290.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.289.1...v1.290.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* added mock for useAnalyticsPageProps hook ([2e28779](https://github.com/oaknational/Oak-Web-Application/commit/2e2877943388e658db5614f27c05b7b22ba8a592))
+* hard coded Teacher as view type ([d81292b](https://github.com/oaknational/Oak-Web-Application/commit/d81292bcc1248f854b411ccf4593351e410ec01b))
+* removed typing from tracking events ([8ab2b3b](https://github.com/oaknational/Oak-Web-Application/commit/8ab2b3b38c894f446e6924149a1d415065a394ae))
+* update tab file to main ([c09e58a](https://github.com/oaknational/Oak-Web-Application/commit/c09e58a334b3b2e17e88bbedc3d59c94fc8e3d81))
+
+
+### Features
+
+* added tracking events to visualiser and modal ([90b25c1](https://github.com/oaknational/Oak-Web-Application/commit/90b25c1884ff4a3e57ad20d4a7121d8f34381ab2))
+* added tracking for curric visualiser access ([2f4537e](https://github.com/oaknational/Oak-Web-Application/commit/2f4537e90363ca551525cbd4e80000011e3d4f74))
+* added tracking for units tracking ([9b3a9fc](https://github.com/oaknational/Oak-Web-Application/commit/9b3a9fc378c459834eca569c5b3b576549353517))
+* added unit modal tracking event ([edeff75](https://github.com/oaknational/Oak-Web-Application/commit/edeff7534e6e7ae9ceafbd4a57c581dbeaa60a2e))
+* point to avo branch ([2d066b8](https://github.com/oaknational/Oak-Web-Application/commit/2d066b8840b0c6f849a5c3eb948ccbd066cb74ba))
+* update tests for unit modal ([d2b152a](https://github.com/oaknational/Oak-Web-Application/commit/d2b152a2341fb18aca3b3c15c96f7253d0c7190d))
+* updated tests for Avo ([495e28f](https://github.com/oaknational/Oak-Web-Application/commit/495e28fd3c10ecb22bc81a9496a8e6ff819fe103))
+
+## [1.289.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.289.0...v1.289.1) (2023-10-26)
+
+# [1.289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.1...v1.289.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* not provided ([d501a60](https://github.com/oaknational/Oak-Web-Application/commit/d501a60a6a3ea14df9a264c85acf8e346e29c18c))
+* use body2 for school and email ([6e949e3](https://github.com/oaknational/Oak-Web-Application/commit/6e949e313c6ebb1d17db992aad43f5560bad0c8e))
+* use heading component ([f14e29c](https://github.com/oaknational/Oak-Web-Application/commit/f14e29cd3331fc855e5745b7dfdb6b427f95af68))
+
+
+### Features
+
+* move your details heading out of school details ([89fb96f](https://github.com/oaknational/Oak-Web-Application/commit/89fb96ff0d6ffeb869c6cf373940a28dd1669aaa))
+* update component layout ([65c8d1e](https://github.com/oaknational/Oak-Web-Application/commit/65c8d1e787af2ed080037c11fb891e14b97b3fdc))
+* update edit icon ([8799d8a](https://github.com/oaknational/Oak-Web-Application/commit/8799d8a81018e69d1df15828c7a6048f09f9ab05))
+
 ## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
 
 

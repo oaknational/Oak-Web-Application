@@ -24,6 +24,8 @@ const theme: OakTheme = {
     oakGrey4: "#575756",
     oakGrey5: "#2D2D2D",
     oakGrey6: "#1B1B1B",
+    oakGrey30: "#E4E4E4",
+    oakGrey40: "#CACACA",
     pastelTurquoise: "#b0e2de", // TODO: add tints
     // feedback colors
     warning: "#ff7234",
@@ -75,6 +77,7 @@ const theme: OakTheme = {
     magenta: "#d02aa7",
     purple: "#845ad9",
     teal: "#037b7d",
+    grey60: "#575757",
   },
   contrastColors: {
     white: "black",
@@ -98,6 +101,8 @@ const theme: OakTheme = {
     oakGrey4: "white",
     oakGrey5: "white",
     oakGrey6: "white",
+    oakGrey30: "black",
+    oakGrey40: "black",
     pastelTurquoise: "black", // TODO: add tints
     // feedback colors
     warning: "black",
@@ -148,6 +153,7 @@ const theme: OakTheme = {
     magenta: "white",
     purple: "white",
     teal: "white",
+    grey60: "black",
   },
   buttonIconBackgroundColors: {
     teachersHighlight: "teachersYellow",

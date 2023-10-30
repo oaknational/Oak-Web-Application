@@ -132,9 +132,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
         "Your details",
       );
-      expect(screen.getByTestId("email-heading")).toHaveTextContent(
-        "For regular updates from Oak (optional)",
-      );
+
       expect(
         screen.getByPlaceholderText("Enter email address here"),
       ).toBeInTheDocument();
@@ -215,36 +213,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("selected resources count", () => {
-    it("should display correct count of selected and all downloadable resources if no resources are selected", () => {
-      const { getByTestId } = render(<LessonDownloadsPage {...props} />);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
-    });
-
-    it("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
-      const { getByTestId, getByLabelText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
-
-      const exitQuizQuestions = getByLabelText("Exit quiz questions");
-      const user = userEvent.setup();
-      await user.click(exitQuizQuestions);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("1/2 files selected");
-    });
-
     it("should select all resources if user checks 'Select all'", async () => {
-      const { getByTestId, getByRole } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+      const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       expect(selectAllCheckbox).toBeChecked();
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
       const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
@@ -254,16 +227,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should deselect all resources if user deselects 'Select all'", async () => {
-      const { getByTestId, getByRole } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+      const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
       await user.click(selectAllCheckbox);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
       const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
@@ -283,7 +251,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("email: test@test.com")).toBeInTheDocument();
+      expect(getByText("test@test.com")).toBeInTheDocument();
     });
 
     it("displays DetailsCompleted component with school name filled from local storage if available", async () => {
@@ -299,7 +267,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("school: Primary School")).toBeInTheDocument();
+      expect(getByText("Primary School")).toBeInTheDocument();
     });
   });
 
@@ -337,7 +305,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText, getByDisplayValue } = render(
+      const { getByText, getByTestId, getByDisplayValue } = render(
         <LessonDownloadsPage {...props} />,
       );
 
@@ -347,7 +315,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       await user.click(editButton);
 
       const emailAddress = result.current.emailFromLocalStorage;
-      expect(getByLabelText("Email address")).toBeInTheDocument();
+      expect(getByTestId("rotated-input-label")).toBeInTheDocument();
       const emailValue = getByDisplayValue(emailAddress);
       expect(emailValue).toBeInTheDocument();
       expect(emailAddress).toBe("test@test.com");

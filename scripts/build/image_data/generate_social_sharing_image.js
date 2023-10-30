@@ -6,11 +6,11 @@ async function main() {
     const client = getSanityClient();
 
     const [socialSharingImageRes] =
-      await client.fetch(`*[_type == "brandAsset"] {
-    socialSharingImage {
-        asset->
-    },
-  }`);
+      await client.fetch(`*[_type == "brandAsset" && defined(socialSharingImage.asset) && socialSharingImage.asset->.url != null] {
+        socialSharingImage {
+          asset->
+        }
+      }`);
 
     const { socialSharingImage } = socialSharingImageRes;
 

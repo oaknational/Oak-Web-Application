@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, P } from "@/components/Typography";
+import { Heading, Hr, P } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -219,9 +219,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
 
-  const allResourcesToDownloadCount = resourcesToDownload.length;
-  const selectedResourcesToDownloadCount = selectedResources?.length;
-
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
@@ -292,9 +289,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const showPostAlbCopyright = !isLegacy;
 
   return (
-    <>
-      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Box $mv={[24, 48]}>
+    <Box $ph={[16, null]} $background={"oakGrey1"}>
+      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
+        <Box $mb={32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -312,7 +309,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               }),
             ]}
           />
+          <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
+        <Heading $mb={32} tag={"h1"} $font={["heading-5", "heading-4"]}>
+          Download
+        </Heading>
 
         {!hasResourcesToDownload ? (
           <NoResourcesToDownload />
@@ -320,7 +321,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <>
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
             {!isLocalStorageLoading && (
-              <>
+              <Flex $flexDirection="column" $gap={24}>
                 {localStorageDetails ? (
                   <DetailsCompleted
                     email={emailFromLocalStorage}
@@ -344,26 +345,21 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           : undefined
                       }
                     />
-                    <Heading
-                      tag="h3"
-                      $font={"heading-7"}
-                      $mt={16}
-                      $mb={24}
-                      data-testid="email-heading"
-                    >
-                      For regular updates from Oak (optional)
-                    </Heading>
+
                     <Input
                       id={"email"}
-                      label="Email address"
+                      data-testid="input-email"
+                      label="Email"
                       autoComplete="email"
                       placeholder="Enter email address here"
+                      isOptional={true}
                       {...register("email")}
                       error={errors.email?.message}
                     />
-                    <P $font="body-3" $mt={-24} $mb={40}>
-                      Join our community to get free lessons, resources and
-                      other helpful content. Unsubscribe at any time. Our{" "}
+                    <P $font="body-3" $mt={-20} $mb={48}>
+                      Join over 100k teachers and get free resources and other
+                      helpful content by email. Unsubscribe at any time. Read
+                      our{" "}
                       <OakLink
                         page="legal"
                         legalSlug="privacy-policy"
@@ -408,13 +404,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     />
                   </Box>
                 )}
-                <Box $mb={56} $mt={16}>
+                <Box $mb={56}>
                   <CopyrightNotice
                     showPostAlbCopyright={showPostAlbCopyright}
                     openLinksExternally={true}
                   />
                 </Box>
-              </>
+              </Flex>
             )}
 
             <Grid>
@@ -460,15 +456,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     </Box>
                   )}
                   <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <Box $minWidth={130} $mr={24}>
-                      <P
-                        $color={"oakGrey4"}
-                        $font={"body-2"}
-                        data-testid="selectedResourcesCount"
-                      >
-                        {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
-                      </P>
-                    </Box>
                     <Button
                       label={"Download .zip"}
                       onClick={
@@ -491,6 +478,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           </>
         )}
       </MaxWidth>
-    </>
+    </Box>
   );
 }
