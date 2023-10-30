@@ -40,7 +40,7 @@ const StyledButton = styled(UnstyledButton)`
   }
   ${(props) => {
     return css`
-      background-color: ${props.disabled ? "#ccc" : "black"};
+      background-color: ${props.disabled ? "#808080" : "black"};
       cursor: ${props.disabled ? "not-allowed" : "pointer"};
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: ${props.disabled ? "none" : "underline"};
@@ -71,7 +71,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
           <Icon name={props.icon} $color="white" />
         )}
       </Flex>
-      <ButtonBorders background={disabled ? "grey3" : "black"} />
+      <ButtonBorders background={disabled ? "grey6" : "black"} />
       <FocusDoubleBorder background="teachersYellow" />
     </StyledButton>
   );
