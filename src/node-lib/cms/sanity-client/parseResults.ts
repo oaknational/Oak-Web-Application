@@ -93,7 +93,6 @@ export const parseResults = <S extends ZodSchema, D>(
   if (isPreviewMode) {
     try {
       if (isZodArraySchema(schema)) {
-        console.log("duh");
         /**
          * Take the provided schema and create a version of it that
          * will silently filter out any items that are invalid
