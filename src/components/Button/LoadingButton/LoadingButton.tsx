@@ -25,7 +25,8 @@ const FocusDoubleBorder = styled(DoubleButtonBorders)`
 
 const StyledButton = styled(UnstyledButton)`
   height: 56px;
-  width: 204px;
+  min-width: 200px;
+  width: max-content;
   padding: 10px 24px;
   display: inline-flex;
   justify-content: center;
