@@ -83,6 +83,9 @@ const StyledButton = styled(UnstyledButton)<
   ${buttonStyles}
   ${typography}
   ${newIconFocusUnderline}
+  @media(max-width: 750px) {
+    width: 25%;
+  }
 `;
 const HomePageTabImageButton = forwardRef<
   HTMLButtonElement,
@@ -121,7 +124,11 @@ const HomePageTabImageButton = forwardRef<
       disabled={disabled}
     >
       <Flex $flexDirection={"column"} $alignItems={"center"}>
-        <Flex $width={96} $height={96} $justifyContent={"center"}>
+        <Flex
+          $width={[50, 96, 96]}
+          $height={[50, 96, 96]}
+          $justifyContent={"center"}
+        >
           <Illustration
             slug={imageSlug}
             noCrop
