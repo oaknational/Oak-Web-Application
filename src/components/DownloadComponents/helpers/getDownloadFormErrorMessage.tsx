@@ -6,7 +6,7 @@ type ErrorMessagesAndOrderType = {
 };
 
 const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
-  let formErrorMessage = "Please";
+  let formErrorMessage;
 
   const errorMessagesAndOrder: Record<
     ErrorKeysType,
@@ -15,13 +15,13 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     school: {
       order: 1,
       message:
-        "select school, type 'homeschool' or tick 'My school isn't listed'",
+        "Select school, type 'homeschool' or tick 'My school isn't listed'",
     },
-    email: { order: 2, message: "enter a valid email address" },
-    terms: { order: 3, message: "accept terms and conditions to download" },
+    email: { order: 2, message: "Enter a valid email address" },
+    terms: { order: 3, message: "Accept terms and conditions to download" },
     downloads: {
       order: 4,
-      message: "select at least one resource to download",
+      message: "Select at least one resource to download",
     },
     schoolName: { order: 5, message: "" },
   };
@@ -41,9 +41,9 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
   const errorCount = errorMessagesArray?.length;
 
   if (errorCount === 1) {
-    formErrorMessage = `${formErrorMessage} ${errorMessagesArray[0]}`;
+    formErrorMessage = `${errorMessagesArray[0]}`;
   } else if (errorCount === 2) {
-    formErrorMessage = `${formErrorMessage} ${errorMessagesArray[0]} and ${errorMessagesArray[1]}`;
+    formErrorMessage = `${errorMessagesArray[0]} and ${errorMessagesArray[1]}`;
   } else if (errorCount > 2) {
     const allErrors = errorMessagesArray.map((errorMessage, i) => {
       if (i < errorCount - 2) {
