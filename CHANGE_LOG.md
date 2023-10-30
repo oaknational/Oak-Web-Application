@@ -1,3 +1,11 @@
+## [1.293.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.1...v1.293.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **portable text:** add withoutDefaultComponents prop ([5e920fd](https://github.com/oaknational/Oak-Web-Application/commit/5e920fdc24bbb7edade1395362aba447db57068d))
+* **portable text:** deep merge base components ([6465b2a](https://github.com/oaknational/Oak-Web-Application/commit/6465b2a80b8032c3b70af54f9a29ed94084a0a57))
+
 ## [1.293.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.0...v1.293.1) (2023-10-30)
 
 # [1.293.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.292.0...v1.293.0) (2023-10-30)
