@@ -15,12 +15,14 @@ import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import Svg from "../Svg";
 import FieldError from "../FormFields/FieldError";
+import { Span } from "../Typography";
 
 import InputIcon from "./InputIcon";
 
 export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
+  isOptional?: boolean;
 };
 
 export const InputFocusUnderline = styled(Svg)`
@@ -126,7 +128,7 @@ type InputProps = UnstyledInputProps &
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { id, icon, label, error, ...inputProps } = props;
+    const { id, icon, label, error, isOptional, ...inputProps } = props;
     const errorId = `${id}-error`;
     const labelId = `${id}-label`;
 
@@ -147,8 +149,16 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 htmlFor={id}
                 id={labelId}
                 $font={"heading-7"}
+                data-testid="rotated-input-label"
               >
-                {label}
+                {isOptional ? (
+                  <Span>
+                    {props.label}{" "}
+                    <Span $font={"heading-light-7"}>(optional)</Span>
+                  </Span>
+                ) : (
+                  props.label
+                )}
               </RotatedInputLabel>
             </Flex>
 

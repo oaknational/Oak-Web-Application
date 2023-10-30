@@ -1,3 +1,13 @@
+## [1.291.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.0...v1.291.1) (2023-10-30)
+
+# [1.291.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.290.0...v1.291.0) (2023-10-29)
+
+
+### Features
+
+* add labs pathway to urls ([5ed2ec7](https://github.com/oaknational/Oak-Web-Application/commit/5ed2ec7199fb64361835edc1ce039786d885036c))
+* add new tab for ai on home page tabs ([ba7ea28](https://github.com/oaknational/Oak-Web-Application/commit/ba7ea28279722504dd5d342ae5d9323e28ce879d))
+
 # [1.290.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.289.1...v1.290.0) (2023-10-26)
 
 
