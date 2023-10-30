@@ -9,6 +9,7 @@ const buttonBorder = css<{ background: ButtonBackground }>`
   position: absolute;
   color: ${(props) => getColorByName(props.background)};
   mask-position: center;
+  transition: none;
 `;
 
 const focus = css`
