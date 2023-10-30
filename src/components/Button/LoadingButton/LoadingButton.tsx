@@ -38,13 +38,13 @@ const StyledButton = styled(UnstyledButton)`
       display: block;
     }
   }
-  :hover:not(:focus) ${ButtonLabel} {
-    text-decoration: underline;
-  }
   ${(props) => {
     return css`
       background-color: ${props.disabled ? "#ccc" : "black"};
       cursor: ${props.disabled ? "not-allowed" : "pointer"};
+      :hover:not(:focus) ${ButtonLabel} {
+        text-decoration: ${props.disabled ? "none" : "underline"};
+      }
     `;
   }}
 `;
