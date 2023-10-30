@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { MouseEventHandler } from "react";
+import styled, { css } from "styled-components";
 
 import UnstyledButton from "../UnstyledButton";
 import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
@@ -11,10 +11,10 @@ import ButtonLabel from "./ButtonLabel";
 
 type DownloadButtonProps = {
   isLoading: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
 const StyledButton = styled(UnstyledButton)`
-  background-color: black;
   height: 56px;
   width: 204px;
   padding: 10px 24px;
@@ -24,6 +24,11 @@ const StyledButton = styled(UnstyledButton)`
   max-width: 100%;
   position: relative;
   text-decoration: none;
+  ${(props) => {
+    return css`
+      background-color: ${props.disabled ? "#ccc" : "black"};
+    `;
+  }}
 `;
 
 const Spinner = styled.span`
@@ -46,8 +51,14 @@ const Spinner = styled.span`
 `;
 
 const DownloadButton = (props: DownloadButtonProps) => {
+  const disabled = props.isLoading;
   return (
-    <StyledButton>
+    <StyledButton
+      disabled={disabled}
+      onClick={disabled ? (e) => e.preventDefault : props.onClick}
+      aria-disabled={disabled}
+      aria-label={"Download button"}
+    >
       <Flex $gap={8} $justifyContent="center">
         <ButtonLabel $color="white">
           {props.isLoading ? "Downloading..." : "Download .zip"}
@@ -60,7 +71,7 @@ const DownloadButton = (props: DownloadButtonProps) => {
           <Icon name="download" $color="white" />
         )}
       </Flex>
-      <ButtonBorders background="black" />
+      <ButtonBorders background={disabled ? "grey3" : "black"} />
     </StyledButton>
   );
 };
