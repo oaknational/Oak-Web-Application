@@ -20,6 +20,7 @@ import Typography, { Heading, P } from "@/components/Typography";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
+import OakLink from "@/components/OakLink";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {
   lastUpdatedAt: string;
@@ -66,6 +67,15 @@ const customPolicyComponent: PortableTextComponents = {
         {children}
       </P>
     ),
+  },
+  marks: {
+    link: ({ children, value }) => {
+      return (
+        <OakLink href={value?.href} page={null}>
+          {children}
+        </OakLink>
+      );
+    },
   },
 };
 
