@@ -75,7 +75,7 @@ const customPolicyComponent: PortableTextComponents = {
         ariaLabel = children[0];
       }
       return (
-        <OakLink href={value?.href} aria-labelledby={ariaLabel} page={null}>
+        <OakLink href={value?.href} aria-label={ariaLabel} page={null}>
           {children}
         </OakLink>
       );
