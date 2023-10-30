@@ -65,7 +65,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           $mb={28}
           $gap={24}
         >
-          <Heading tag="h2" $font={"heading-5"} $mb={[16, 8]}>
+          <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[16, 8]}>
             Lesson resources
           </Heading>
         </Flex>

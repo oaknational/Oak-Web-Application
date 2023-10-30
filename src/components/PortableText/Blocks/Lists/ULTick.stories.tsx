@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { PortableText } from "@portabletext/react";
 
 import Card from "../../../Card/Card";
 import { Heading, P } from "../../../Typography";
 import { bodyPortableText } from "../../../Sanity/TextBlock/TextBlockCard.stories";
+import { PortableTextWithDefaults } from "../../PortableText";
 
 import { ULTick as Component } from "./ULTick";
 
@@ -34,7 +34,10 @@ const Template: ComponentStory<typeof Card> = (args) => {
         Pass ULTick into the component prop of a PortableText component and
         bullet points become ticks.
       </P>
-      <PortableText value={bodyPortableText} components={Component} />
+      <PortableTextWithDefaults
+        value={bodyPortableText}
+        components={Component}
+      />
     </Card>
   );
 };

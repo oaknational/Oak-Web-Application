@@ -208,6 +208,12 @@ const errorReporter = (
         return;
       }
 
+      if (maybeError instanceof OakError && !maybeError.config.shouldNotify) {
+        logger.log("Error should not be reported, aborting reportError()");
+        logger.error(maybeError);
+        return;
+      }
+
       if (isBrowser) {
         const bugsnagAllowed = getHasConsentedTo("bugsnag");
         if (!bugsnagAllowed) {

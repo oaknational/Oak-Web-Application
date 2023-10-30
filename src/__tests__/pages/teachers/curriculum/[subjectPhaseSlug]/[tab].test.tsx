@@ -18,6 +18,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
+
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
@@ -29,6 +30,11 @@ const mockedCurriculumOverview =
   >;
 
 jest.mock("@/node-lib/cms");
+
+jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
+  __esModule: true,
+  default: () => () => null,
+}));
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -53,6 +59,9 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
 }));
 
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {
       const slug = "english-secondary-aqa";
