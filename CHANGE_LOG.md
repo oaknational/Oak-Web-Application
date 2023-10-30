@@ -1,3 +1,32 @@
+## [1.293.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.1...v1.293.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **portable text:** add withoutDefaultComponents prop ([5e920fd](https://github.com/oaknational/Oak-Web-Application/commit/5e920fdc24bbb7edade1395362aba447db57068d))
+* **portable text:** deep merge base components ([6465b2a](https://github.com/oaknational/Oak-Web-Application/commit/6465b2a80b8032c3b70af54f9a29ed94084a0a57))
+
+## [1.293.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.0...v1.293.1) (2023-10-30)
+
+# [1.293.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.292.0...v1.293.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* ran sanity gql ([d78e3e0](https://github.com/oaknational/Oak-Web-Application/commit/d78e3e0b3e911d8a20f155773d1590d8c0908402))
+
+
+### Features
+
+* catch and log preview zod errors ([1f1be06](https://github.com/oaknational/Oak-Web-Application/commit/1f1be060757f04ba6c0fc463b754a94d3c7152bf))
+
+# [1.292.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.1...v1.292.0) (2023-10-30)
+
+
+### Features
+
+* **pupils page:** add pupils pathway to owa ([ec737a9](https://github.com/oaknational/Oak-Web-Application/commit/ec737a997e280af6408058c3835a09549c5eda9e))
+
 ## [1.291.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.0...v1.291.1) (2023-10-30)
 
 # [1.291.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.290.0...v1.291.0) (2023-10-29)

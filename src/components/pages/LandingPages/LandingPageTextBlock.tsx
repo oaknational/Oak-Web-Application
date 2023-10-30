@@ -1,9 +1,9 @@
-import { PortableText } from "@portabletext/react";
 import { FC } from "react";
 
-import { PortableTextJSON } from "../../../common-lib/cms-types";
-import Flex from "../../Flex";
-import Typography from "../../Typography";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import Flex from "@/components/Flex";
+import Typography from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export const LandingPageTextBlock: FC<{
   bodyPortableText: PortableTextJSON;
@@ -11,7 +11,7 @@ export const LandingPageTextBlock: FC<{
   return (
     <Flex $ph={[16]} $justifyContent={"center"} $mb={[56, 92]}>
       <Typography $maxWidth={720} $font={["body-2", "body-1"]}>
-        <PortableText value={props.bodyPortableText} />
+        <PortableTextWithDefaults value={props.bodyPortableText} />
       </Typography>
     </Flex>
   );

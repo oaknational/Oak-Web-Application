@@ -1,11 +1,11 @@
-import { PortableText } from "@portabletext/react";
 import { FC } from "react";
 
-import { PortableTextJSON } from "../../../common-lib/cms-types";
-import Grid, { GridArea } from "../../Grid";
-import Typography, { Heading } from "../../Typography";
-
 import { SignUpForm } from "./SignUpForm";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import Grid, { GridArea } from "@/components/Grid";
+import Typography, { Heading } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export const SignupPrompt: FC<{
   title: string;
@@ -29,7 +29,7 @@ export const SignupPrompt: FC<{
             {title}
           </Heading>
           <Typography $font={["body-2", "body-1"]}>
-            <PortableText value={bodyPortableText} />
+            <PortableTextWithDefaults value={bodyPortableText} />
           </Typography>
         </GridArea>
         <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
