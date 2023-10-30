@@ -70,8 +70,12 @@ const customPolicyComponent: PortableTextComponents = {
   },
   marks: {
     link: ({ children, value }) => {
+      let ariaLabel = "";
+      if (Array.isArray(children)) {
+        ariaLabel = children[0];
+      }
       return (
-        <OakLink href={value?.href} page={null}>
+        <OakLink href={value?.href} aria-label={ariaLabel} page={null}>
           {children}
         </OakLink>
       );
