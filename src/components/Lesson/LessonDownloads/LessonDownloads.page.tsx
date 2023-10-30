@@ -463,6 +463,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                       text="Download .zip"
                       icon="download"
                       isLoading={isAttemptingDownload}
+                      disabled={false}
                       loadingText="Downloading..."
                     />
                   </Flex>

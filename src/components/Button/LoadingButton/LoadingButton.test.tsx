@@ -18,11 +18,13 @@ describe("Loading button", () => {
         loadingText="Loading..."
         onClick={setLoading}
         icon="bell"
+        disabled={false}
       />,
     );
 
     const user = userEvent.setup();
     const button = screen.getByRole("button", { name: "Click" });
+    expect(button).not.toHaveAttribute("disabled");
 
     await user.click(button);
     rerender(
@@ -32,6 +34,7 @@ describe("Loading button", () => {
         loadingText="Loading..."
         onClick={setLoading}
         icon="bell"
+        disabled={false}
       />,
     );
 

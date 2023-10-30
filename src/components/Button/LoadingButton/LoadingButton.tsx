@@ -16,6 +16,7 @@ type LoadingButtonProps = {
   text: string;
   loadingText: string;
   icon: IconName;
+  disabled: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -51,7 +52,7 @@ const StyledButton = styled(UnstyledButton)`
 `;
 
 const LoadingButton: FC<LoadingButtonProps> = (props) => {
-  const disabled = props.isLoading;
+  const disabled = props.isLoading || props.disabled;
 
   return (
     <StyledButton
