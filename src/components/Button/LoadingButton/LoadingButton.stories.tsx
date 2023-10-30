@@ -1,13 +1,16 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./DownloadButton";
+import Component from "./LoadingButton";
 
 export default {
-  title: "Buttons/Download",
+  title: "Buttons/Loading",
   component: Component,
   args: {
     isLoading: false,
+    text: "Download .zip",
+    loadingText: "Downloading...",
+    icon: "download",
   },
 } as ComponentMeta<typeof Component>;
 

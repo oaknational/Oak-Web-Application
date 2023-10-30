@@ -1,17 +1,21 @@
-import React, { MouseEventHandler } from "react";
+import { FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 
-import UnstyledButton from "../UnstyledButton";
-import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
-import Flex from "../Flex";
-import Icon from "../Icon";
-import Box from "../Box";
-import { DoubleButtonBorders } from "../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
+import UnstyledButton from "../../UnstyledButton";
+import ButtonBorders from "../../SpriteSheet/BrushSvgs/ButtonBorders";
+import Flex from "../../Flex";
+import Icon, { IconName } from "../../Icon";
+import Box from "../../Box";
+import { DoubleButtonBorders } from "../../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
+import ButtonLabel from "../ButtonLabel";
 
-import ButtonLabel from "./ButtonLabel";
+import { Spinner } from "./Spinner";
 
-type DownloadButtonProps = {
+type LoadingButtonProps = {
   isLoading: boolean;
+  text: string;
+  loadingText: string;
+  icon: IconName;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -45,26 +49,7 @@ const StyledButton = styled(UnstyledButton)`
   }}
 `;
 
-const Spinner = styled.span`
-    width: 21px;
-    height: 21px;
-    border: 3px solid #FFF;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    }
-    @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-`;
-
-const DownloadButton = (props: DownloadButtonProps) => {
+const LoadingButton: FC<LoadingButtonProps> = (props) => {
   const disabled = props.isLoading;
 
   return (
@@ -72,18 +57,18 @@ const DownloadButton = (props: DownloadButtonProps) => {
       disabled={disabled}
       onClick={disabled ? (e) => e.preventDefault : props.onClick}
       aria-disabled={disabled}
-      aria-label={"Download button"}
+      aria-label={props.text}
     >
       <Flex $gap={8} $justifyContent="center">
         <ButtonLabel $color="white">
-          {props.isLoading ? "Downloading..." : "Download .zip"}
+          {props.isLoading ? props.loadingText : props.text}
         </ButtonLabel>
         {props.isLoading ? (
           <Box $height={24}>
             <Spinner />
           </Box>
         ) : (
-          <Icon name="download" $color="white" />
+          <Icon name={props.icon} $color="white" />
         )}
       </Flex>
       <ButtonBorders background={disabled ? "grey3" : "black"} />
@@ -92,4 +77,4 @@ const DownloadButton = (props: DownloadButtonProps) => {
   );
 };
 
-export default DownloadButton;
+export default LoadingButton;
