@@ -25,7 +25,7 @@ module.exports = {
     `,
   },
   discovery: {
-    networkIdleTimeout: 750,
+    networkIdleTimeout: 1000,
     allowedHostnames: [],
     userAgent: "Percy",
     requestHeaders: {
