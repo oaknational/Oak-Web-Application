@@ -1,28 +1,28 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import CMSClient from "../node-lib/cms";
-import { CurriculumPage } from "../common-lib/cms-types";
-import Layout from "../components/Layout";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
-import { Heading, P } from "../components/Typography";
-import Flex from "../components/Flex";
-import Typography from "../components/Typography/Typography";
-import Card from "../components/Card";
-import Box from "../components/Box";
-import BoxBorders from "../components/SpriteSheet/BrushSvgs/BoxBorders";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
-import CardLink from "../components/Card/CardLink";
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import Cover from "../components/Cover";
-import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Illustration from "../components/Illustration";
-import { getSizes } from "../components/CMSImage/getSizes";
-import getPageProps from "../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { CurriculumPage } from "@/common-lib/cms-types";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import SummaryCard from "@/components/Card/SummaryCard";
+import { Heading, P } from "@/components/Typography";
+import Flex from "@/components/Flex";
+import Typography from "@/components/Typography/Typography";
+import Card from "@/components/Card";
+import Box from "@/components/Box";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import CardLink from "@/components/Card/CardLink";
+import Grid from "@/components/Grid";
+import GridArea from "@/components/Grid/GridArea";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import Cover from "@/components/Cover";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Illustration from "@/components/Illustration";
+import { getSizes } from "@/components/CMSImage/getSizes";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
@@ -52,7 +52,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           </Heading>
           <Flex $minWidth={"50%"} $flexDirection={["column-reverse", "row"]}>
             <Typography $font={["body-2", "body-1"]}>
-              <PortableText value={pageData.info.bodyPortableText} />
+              <PortableTextWithDefaults
+                value={pageData.info.bodyPortableText}
+              />
             </Typography>
             <Flex
               $position="relative"
@@ -87,7 +89,10 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             <Heading $mb={20} $font={["heading-6", "heading-5"]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
-            <PortableText value={pageData.gettingStarted.bodyPortableText} />
+            <PortableTextWithDefaults
+              value={pageData.gettingStarted.bodyPortableText}
+              withoutDefaultComponents
+            />
           </Card>
         </Flex>
         <Card
@@ -192,7 +197,9 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
               {pageData.ourApproach.title}
             </Heading>
             <Typography $mb={16} $font={"body-1"}>
-              <PortableText value={pageData.ourApproach.bodyPortableText} />
+              <PortableTextWithDefaults
+                value={pageData.ourApproach.bodyPortableText}
+              />
             </Typography>
             {pageData.ourApproach.cta && (
               <Flex $justifyContent={["center", "flex-start"]}>
