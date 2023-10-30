@@ -2,7 +2,6 @@ import { FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 
 import UnstyledButton from "../../UnstyledButton";
-import ButtonBorders from "../../SpriteSheet/BrushSvgs/ButtonBorders";
 import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
 import Box from "../../Box";
@@ -20,9 +19,7 @@ type LoadingButtonProps = {
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
-const FocusDoubleBorder = styled(DoubleButtonBorders)`
-  display: none;
-`;
+const FocusDoubleBorder = styled(DoubleButtonBorders)``;
 
 const StyledButton = styled(UnstyledButton)`
   height: 56px;
@@ -35,6 +32,7 @@ const StyledButton = styled(UnstyledButton)`
   max-width: 100%;
   position: relative;
   text-decoration: none;
+  border-radius: 5px;
   &:focus {
     & ${FocusDoubleBorder} {
       display: block;
@@ -73,8 +71,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
           <Icon name={props.icon} $color="white" />
         )}
       </Flex>
-      <ButtonBorders background={disabled ? "grey6" : "black"} />
-      <FocusDoubleBorder background="teachersYellow" />
+      <FocusDoubleBorder background={disabled ? "grey6" : "black"} />
     </StyledButton>
   );
 };

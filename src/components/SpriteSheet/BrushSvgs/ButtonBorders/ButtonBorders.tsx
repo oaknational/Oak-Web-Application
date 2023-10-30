@@ -24,7 +24,7 @@ const buttonBorderRight = css`
   ${buttonBorder}
   width: 7px;
   top: -2px;
-  left: calc(100% - 2px);
+  left: calc(100% - 1px);
   height: calc(100% + 3px);
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
