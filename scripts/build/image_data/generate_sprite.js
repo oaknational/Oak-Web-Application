@@ -20,20 +20,27 @@ async function main() {
   try {
     const client = getSanityClient();
 
-    const uiIconsRes = await client.fetch(`*[_type == "uiIcon"] {
-      title,
-      slug,
-      image {
-        asset->
+    const uiIconsRes =
+      await client.fetch(`*[_type == "uiIcon" && _id in *[_type == "uiIcon" && defined(image.asset) && defined(title) && defined(slug) && image.asset->.url != null]._id] {
+    title,
+    slug,
+    image {
+      asset-> {
+        url
       }
-    }`);
-    const uiGraphicsRes = await client.fetch(`*[_type == "uiGraphic"] {
-      title,
-      slug,
-      image {
-        asset->
+    }
+  }`);
+
+    const uiGraphicsRes =
+      await client.fetch(`*[_type == "uiGraphic" && _id in *[_type == "uiGraphic" && defined(image.asset) && defined(title) && defined(slug) && image.asset->.url != null]._id] {
+    title,
+    slug,
+    image {
+      asset-> {
+        url
       }
-    }`);
+    }
+  }`);
 
     /**
      * uiIconsBySlug -> image-data/ui-icons.json
