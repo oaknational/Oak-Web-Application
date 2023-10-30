@@ -55,7 +55,7 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
       }
     });
 
-    formErrorMessage = `${formErrorMessage} ${allErrors.join("")}`;
+    formErrorMessage = `${allErrors.join("")}`;
   }
 
   return formErrorMessage;
