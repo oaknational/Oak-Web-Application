@@ -322,9 +322,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
             {!isLocalStorageLoading && (
               <Flex $flexDirection="column" $gap={24}>
-                <Heading tag="h2" $font={"heading-5"}>
-                  Your details
-                </Heading>
                 {localStorageDetails ? (
                   <DetailsCompleted
                     email={emailFromLocalStorage}
