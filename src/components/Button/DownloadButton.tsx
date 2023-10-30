@@ -27,6 +27,7 @@ const StyledButton = styled(UnstyledButton)`
   ${(props) => {
     return css`
       background-color: ${props.disabled ? "#ccc" : "black"};
+      cursor: ${props.disabled ? "not-allowed" : "pointer"};
     `;
   }}
 `;
