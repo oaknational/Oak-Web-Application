@@ -32,6 +32,12 @@ const StyledButton = styled(UnstyledButton)`
   }}
 `;
 
+const ButtonLabelWithHover = styled(ButtonLabel)`
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
 const Spinner = styled.span`
     width: 21px;
     height: 21px;
@@ -61,9 +67,9 @@ const DownloadButton = (props: DownloadButtonProps) => {
       aria-label={"Download button"}
     >
       <Flex $gap={8} $justifyContent="center">
-        <ButtonLabel $color="white">
+        <ButtonLabelWithHover $color="white">
           {props.isLoading ? "Downloading..." : "Download .zip"}
-        </ButtonLabel>
+        </ButtonLabelWithHover>
         {props.isLoading ? (
           <Box $height={24}>
             <Spinner />
