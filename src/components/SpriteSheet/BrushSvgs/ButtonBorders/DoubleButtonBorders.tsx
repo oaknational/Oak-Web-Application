@@ -19,6 +19,7 @@ const focus = css`
   }
 `;
 
+/* TOP */
 const buttonBorderTop = css`
   ${buttonBorder}
   height: 5px;
@@ -42,6 +43,7 @@ const topOuter = css`
   color: ${() => getColorByName("grey60")};
 `;
 
+/* RIGHT */
 const buttonBorderRight = css`
   ${buttonBorder}
   width: 9px;
@@ -71,6 +73,7 @@ const rightOuter = css`
   height: calc(100% + 12px);
 `;
 
+/* BOTTOM */
 const buttonBorderBottom = css`
   ${buttonBorder}
   height: 6px;
@@ -97,6 +100,7 @@ const bottomOuter = css`
   color: ${() => getColorByName("grey60")};
 `;
 
+/* LEFT */
 const buttonBorderLeft = css`
   ${buttonBorder}
   width: 7px;
@@ -168,7 +172,7 @@ type ButtonBordersProps = {
  * Presentational component to be used to create a border with a focus outline
  *
  * ## Usage
- * Use in button components
+ * Use in button components to add an svg border with an additional double border on focus
  *
  * ## Note
  * Importantly, the SVGs for the border should have `preserveAspectRatio="none"`,
