@@ -134,12 +134,8 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
-        <FieldError id={errorId}>{error}</FieldError>
-        <InputFieldWrap
-          $mb={error ? 0 : 32}
-          $alignItems="center"
-          $background="white"
-        >
+        {error && <FieldError id={errorId}>{error}</FieldError>}
+        <InputFieldWrap $mb={32} $alignItems="center" $background="white">
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
