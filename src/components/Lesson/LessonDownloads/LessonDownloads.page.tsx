@@ -463,7 +463,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                       text="Download .zip"
                       icon="download"
                       isLoading={isAttemptingDownload}
-                      disabled={hasFormErrors || !formState.isValid}
+                      disabled={
+                        hasFormErrors ||
+                        (!formState.isValid && !localStorageDetails)
+                      }
                       loadingText="Downloading..."
                     />
                   </Flex>
