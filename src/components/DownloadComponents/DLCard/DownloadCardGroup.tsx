@@ -1,93 +1,47 @@
-import React, { ChangeEvent, FC, useEffect, useState } from "react";
+import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
+import styled from "styled-components";
 
 import type {
   DownloadResourceType,
   DownloadFormProps,
 } from "../downloads.types";
-
-import DownloadCard from "./DownloadCard";
+import DownloadCard from "../DLCard";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
-import { GridArea } from "@/components/Grid";
-import Flex from "@/components/Flex";
-import { Heading } from "@/components/Typography";
-import FieldError from "@/components/FormFields/FieldError";
-import Checkbox from "@/components/Checkbox";
 import Box from "@/components/Box";
 
-type DownloadCardGroupProps = {
+export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
   control: Control<DownloadFormProps>;
   hasError?: boolean;
-  errorMessage?: string;
-  onSelectAllClick: () => void;
-  onDeselectAllClick: () => void;
-  preselectAll: boolean;
   triggerForm: () => void;
 };
+
+const DownloadCardGrid = styled(Box)`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: max-content max-content;
+  grid-template-areas: "presentation . " "worksheet-pptx worksheet-pdf" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
+`;
+
+const DownloadCardArea = styled(Box)<{ area: string }>`
+  grid-area: ${(props) => props.area};
+`;
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
   control,
   hasError = false,
-  errorMessage,
-  onSelectAllClick,
-  onDeselectAllClick,
   triggerForm,
-  preselectAll,
 }) => {
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
-
-  useEffect(() => {
-    if (preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [preselectAll]);
-
-  const handleToggleSelectAll = () => {
-    if (selectAllChecked) {
-      onDeselectAllClick();
-      setSelectAllChecked(false);
-    } else {
-      onSelectAllClick();
-      setSelectAllChecked(true);
-    }
-    // Trigger the form to reevaluate errors
-    triggerForm();
-  };
-
   return (
-    <>
-      <GridArea $colSpan={[12]}>
-        <Flex
-          $alignItems={"flex-start"}
-          $flexDirection={"column"}
-          $mb={28}
-          $gap={24}
-        >
-          <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[16, 8]}>
-            Lesson resources
-          </Heading>
-          <Box $maxWidth="max-content">
-            <Checkbox
-              checked={selectAllChecked}
-              onChange={handleToggleSelectAll}
-              id="select-all"
-              name="select-all"
-              variant="withLabel"
-              labelText="Select all"
-              labelFontWeight={600}
-            />
-          </Box>
-        </Flex>
-        <FieldError id={"downloads-error"}>{errorMessage}</FieldError>
-      </GridArea>
+    <DownloadCardGrid>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
           return (
-            <GridArea
-              $colSpan={[6, 3, 2]}
+            <DownloadCardArea
+              area={download.type}
               key={download.type}
               data-testid={"lessonResourcesToDownload"}
             >
@@ -130,11 +84,11 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                   );
                 }}
               />
-            </GridArea>
+            </DownloadCardArea>
           );
         }
       })}
-    </>
+    </DownloadCardGrid>
   );
 };
 
