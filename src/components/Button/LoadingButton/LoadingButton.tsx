@@ -40,10 +40,10 @@ const StyledButton = styled(UnstyledButton)`
   }
   ${(props) => {
     return css`
-      background-color: ${props.disabled ? "#808080" : "black"};
-      cursor: ${props.disabled ? "not-allowed" : "pointer"};
+      background-color: ${props["aria-disabled"] ? "#808080" : "black"};
+      cursor: ${props["aria-disabled"] ? "not-allowed" : "pointer"};
       :hover:not(:focus) ${ButtonLabel} {
-        text-decoration: ${props.disabled ? "none" : "underline"};
+        text-decoration: ${props["aria-disabled"] ? "none" : "underline"};
       }
     `;
   }}
@@ -54,7 +54,6 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
 
   return (
     <StyledButton
-      disabled={disabled}
       onClick={disabled ? (e) => e.preventDefault : props.onClick}
       aria-disabled={disabled}
       aria-label={props.text}
