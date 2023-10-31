@@ -5,6 +5,8 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     programmeSlug: programme_slug
     unitSlug: unit_slug
     unitTitle: unit_title
+    tierSlug: tier_slug
+    tierTitle: tier_title
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug
@@ -24,10 +26,7 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     expired
   }
   exitQuizInfo: mv_quizzes(
-    where: {
-      type: { _eq: "exit" }
-      lesson_slug: { _eq: $lessonSlug }
-    }
+    where: { type: { _eq: "exit" }, lesson_slug: { _eq: $lessonSlug } }
   ) {
     title
     questionCount: question_count
@@ -59,10 +58,7 @@ query lessonOverviewCanonical($lessonSlug: String!) {
     displayNumber: display_number
   }
   introQuizInfo: mv_quizzes(
-    where: {
-      type: { _eq: "intro" }
-      lesson_slug: { _eq: $lessonSlug }
-    }
+    where: { type: { _eq: "intro" }, lesson_slug: { _eq: $lessonSlug } }
   ) {
     title
     questionCount: question_count
