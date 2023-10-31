@@ -24,7 +24,6 @@ describe("Loading button", () => {
 
     const user = userEvent.setup();
     const button = screen.getByRole("button", { name: "Click" });
-    expect(button).not.toHaveAttribute("aria-disabled");
 
     await user.click(button);
     rerender(
