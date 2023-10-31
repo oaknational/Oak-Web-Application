@@ -210,6 +210,7 @@ const OakColorNameZod = z.union([
   z.literal("magenta"),
   z.literal("purple"),
   z.literal("teal"),
+  z.literal("red"),
   z.literal("grey60"),
 ]);
 
