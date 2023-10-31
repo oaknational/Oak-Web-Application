@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import Component from "./Layout";
+import Component from "./ResourcePageLayout";
 
 const meta: Meta<typeof Component> = {
-  title: "Download Components/Layout",
+  title: "Download Components/Resource Page Layout",
   component: Component,
 };
 

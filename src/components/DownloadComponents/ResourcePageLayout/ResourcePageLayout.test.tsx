@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Layout from "./Layout";
+import ResourcePageLayoutProps from "./ResourcePageLayout";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -9,7 +9,7 @@ describe("Downloads/Share Layout", () => {
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
     const { rerender } = renderWithTheme(
-      <Layout
+      <ResourcePageLayoutProps
         header="Download"
         handleToggle={() => (checked = !checked)}
         selectAllChecked={checked}
@@ -29,7 +29,7 @@ describe("Downloads/Share Layout", () => {
     const user = userEvent.setup();
     await user.click(selectAllCheckbox);
     rerender(
-      <Layout
+      <ResourcePageLayoutProps
         header="Download"
         handleToggle={() => (checked = true)}
         selectAllChecked={false}
@@ -42,7 +42,7 @@ describe("Downloads/Share Layout", () => {
   });
   it("handles download error message ", () => {
     renderWithTheme(
-      <Layout
+      <ResourcePageLayoutProps
         header="Download"
         handleToggle={() => {}}
         selectAllChecked={true}

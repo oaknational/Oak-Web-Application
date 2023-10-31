@@ -11,14 +11,14 @@ import Checkbox from "@/components/Checkbox";
 import Icon, { IconName } from "@/components/Icon";
 import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 
-export type DownloadCardProps = CheckboxProps & {
+export type ResourceCardProps = CheckboxProps & {
   label: string;
   resourceType: DownloadResourceType;
   extension: string;
   hasError?: boolean;
 };
 
-type DownloadCardLabelProps = DownloadCardProps & {
+type ResourceCardLabelProps = ResourceCardProps & {
   isHovered: boolean;
 };
 
@@ -40,7 +40,7 @@ const BoxWithFocusState = styled.div`
   flex-direction: "row";
 `;
 
-const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
+const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   isHovered,
   resourceType,
   label,
@@ -94,7 +94,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   );
 };
 
-const DownloadCard: FC<DownloadCardProps> = (props) => {
+const ResourceCard: FC<ResourceCardProps> = (props) => {
   const {
     checked = false,
     onChange,
@@ -126,10 +126,10 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         onBlur={onBlur}
         hasError={hasError}
       >
-        <DownloadCardLabel isHovered={isHovered} {...props} />
+        <ResourceCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
     </Flex>
   );
 };
 
-export default DownloadCard;
+export default ResourceCard;

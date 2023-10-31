@@ -11,7 +11,7 @@ import Flex from "@/components/Flex";
 
 /** Generic layout component for Downloads and Share page */
 
-type LayoutProps = {
+type ResourcePageLayoutProps = {
   header: string;
   handleToggle: () => void;
   selectAllChecked: boolean;
@@ -21,7 +21,7 @@ type LayoutProps = {
   ctaButton: React.ReactNode;
 };
 
-const Layout: FC<LayoutProps> = (props) => {
+const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
   return (
     <Box $width="100%">
       <Flex $alignItems={"flex-start"} $flexDirection={"column"} $gap={32}>
@@ -64,4 +64,4 @@ const Layout: FC<LayoutProps> = (props) => {
   );
 };
 
-export default Layout;
+export default ResourcePageLayoutProps;

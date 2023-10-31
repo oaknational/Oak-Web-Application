@@ -28,7 +28,7 @@ import {
 } from "@/components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadComponents/DLCard/DownloadCardGroup";
+import DownloadCardGroup from "@/components/DownloadComponents/DownloadCardGroup/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
 import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
@@ -45,7 +45,7 @@ import {
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import Icon from "@/components/Icon";
 import LoadingButton from "@/components/Button/LoadingButton";
-import Layout from "@/components/DownloadComponents/Layout";
+import Layout from "@/components/DownloadComponents/ResourcePageLayout";
 
 type LessonDownloadsProps =
   | {

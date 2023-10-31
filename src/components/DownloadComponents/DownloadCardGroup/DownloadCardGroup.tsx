@@ -6,7 +6,7 @@ import type {
   DownloadResourceType,
   DownloadFormProps,
 } from "../downloads.types";
-import DownloadCard from "../DLCard";
+import ResourceCard from "../ResourceCard";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/Box";
@@ -75,7 +75,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     triggerForm();
                   };
                   return (
-                    <DownloadCard
+                    <ResourceCard
                       id={download.type}
                       name={name}
                       label={download.label}
