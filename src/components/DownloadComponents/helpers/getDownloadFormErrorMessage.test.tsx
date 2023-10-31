@@ -7,7 +7,7 @@ describe("getDownloadFormErrorMessage", () => {
     const errorKeysArray: ErrorKeysType[] = ["terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
-      "Accept terms and conditions to download",
+      "accept terms and conditions to download",
     ]);
   });
 
@@ -15,18 +15,18 @@ describe("getDownloadFormErrorMessage", () => {
     const errorKeysArray: ErrorKeysType[] = ["terms", "email"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
-      "Enter a valid email address",
-      "Accept terms and conditions to download",
+      "enter a valid email address",
+      "accept terms and conditions to download",
     ]);
   });
 
-  it.only("should return correct error message for more than two error messages", () => {
+  it("should return correct error message for more than two error messages", () => {
     const errorKeysArray: ErrorKeysType[] = ["terms", "email", "downloads"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
-      "Enter a valid email address",
-      "Accept terms and conditions to download",
-      "Select at least one resource to download",
+      "enter a valid email address",
+      "accept terms and conditions to download",
+      "select at least one resource to download",
     ]);
   });
 
@@ -34,9 +34,9 @@ describe("getDownloadFormErrorMessage", () => {
     const errorKeysArray: ErrorKeysType[] = ["email", "downloads", "terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
-      "Enter a valid email address",
-      "Accept terms and conditions to download",
-      "Select at least one resource to download",
+      "enter a valid email address",
+      "accept terms and conditions to download",
+      "select at least one resource to download",
     ]);
   });
 });

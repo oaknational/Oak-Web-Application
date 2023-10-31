@@ -331,6 +331,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   />
                 ) : (
                   <Box $maxWidth={[null, 420, 420]}>
+                    {errors?.school && (
+                      <FieldError id="school-error">
+                        {errors?.school?.message}
+                      </FieldError>
+                    )}
                     <SchoolDetails
                       errors={errors}
                       setSchool={setSchool}

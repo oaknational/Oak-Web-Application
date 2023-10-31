@@ -22,8 +22,15 @@ const FieldError = (props: FieldErrorProps) => {
     return null;
   }
   return (
-    <Flex $mt={4} $alignItems={"center"} $mb={withoutMarginBottom ? 0 : 24}>
-      <Icon name="content-guidance" $color={"red"} />
+    <Flex
+      $mt={4}
+      $alignItems={"center"}
+      $flexDirection={"row"}
+      $mb={withoutMarginBottom ? 0 : 24}
+    >
+      <Flex $alignSelf={"flex-start"}>
+        <Icon name="content-guidance" $color={"red"} />
+      </Flex>
       <Span
         $color="red"
         $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-3"}
