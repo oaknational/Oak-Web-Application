@@ -429,7 +429,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         </Box>
 
         <Layout
-          errorMessage={errors?.downloads?.message}
+          errors={errors}
           handleToggle={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
           header="Download"

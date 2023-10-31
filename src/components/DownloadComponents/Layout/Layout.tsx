@@ -1,4 +1,7 @@
 import { FC } from "react";
+import { FieldErrors } from "react-hook-form";
+
+import { DownloadFormProps } from "../downloads.types";
 
 import { Heading } from "@/components/Typography";
 import FieldError from "@/components/FormFields/FieldError";
@@ -12,7 +15,7 @@ type LayoutProps = {
   header: string;
   handleToggle: () => void;
   selectAllChecked: boolean;
-  errorMessage?: string;
+  errors?: FieldErrors<DownloadFormProps>;
   cardGroup: React.ReactNode;
   userDetails: React.ReactNode;
   ctaButton: React.ReactNode;
@@ -46,7 +49,9 @@ const Layout: FC<LayoutProps> = (props) => {
                 labelFontWeight={600}
               />
             </Box>
-            <FieldError id={"downloads-error"}>{props.errorMessage}</FieldError>
+            <FieldError id={"downloads-error"}>
+              {props.errors?.downloads?.message}
+            </FieldError>
             {props.cardGroup}
           </Flex>
           <Flex $flexDirection="column" $alignSelf="center">

@@ -15,6 +15,8 @@ export const Layout: Story = {
   args: {
     header: "Lesson resources",
     cardGroup: <div>Mock Card Group</div>,
+    ctaButton: <button>CTA</button>,
+    userDetails: <div>Mock user details</div>,
   },
   render: (args) => {
     return <Component {...args} />;
