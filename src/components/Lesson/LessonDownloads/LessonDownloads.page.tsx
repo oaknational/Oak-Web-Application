@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, Hr, P } from "@/components/Typography";
+import { Heading, Hr, LI, P, UL } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
 import Input from "@/components/Input";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -265,8 +265,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  const getFormErrorMessage = () => {
+  const getFormErrorMessages = () => {
     const errorKeyArray = Object.keys(errors);
+
     const errorMessage = getDownloadFormErrorMessage(
       errorKeyArray as ErrorKeysType[],
     );
@@ -432,16 +433,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   $alignItems={"center"}
                 >
                   {hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-form-error"
-                        data-testid="download-form-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {getFormErrorMessage()}
-                      </FieldError>
-                    </Box>
+                    <Flex $flexDirection={"row"}>
+                      <Icon name="content-guidance" $color={"red"} />
+                      <Flex $flexDirection={"column"}>
+                        <P $ml={4} $color={"red"}>
+                          To complete correct the following:
+                        </P>
+                        <UL $mr={24}>
+                          {getFormErrorMessages().map((err) => {
+                            return <LI $color={"red"}>{err}</LI>;
+                          })}
+                        </UL>
+                      </Flex>
+                    </Flex>
                   )}
                   {apiError && !hasFormErrors && (
                     <Box $mr={24} $textAlign={"left"}>
