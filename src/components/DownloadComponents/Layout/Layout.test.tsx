@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import Layout from "./Layout";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-console.error = jest.fn;
+
 describe("Downloads/Share Layout", () => {
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
