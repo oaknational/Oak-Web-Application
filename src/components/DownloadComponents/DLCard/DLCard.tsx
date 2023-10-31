@@ -25,7 +25,6 @@ type DownloadCardLabelProps = DownloadCardProps & {
 
 const BoxWithFocusState = styled.div`
   position: relative;
-  border: solid 4px transparent;
   display: flex;
   flex-direction: "row";
 `;
