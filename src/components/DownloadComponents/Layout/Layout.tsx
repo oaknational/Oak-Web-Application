@@ -25,7 +25,12 @@ const Layout: FC<LayoutProps> = (props) => {
         <Heading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
         </Heading>
-        <Flex $justifyContent="space-between" $width="100%">
+        <Flex
+          $justifyContent="space-between"
+          $width="100%"
+          $flexDirection={["column", "column", "row"]}
+          $gap={48}
+        >
           <Flex $flexDirection="column" $gap={24}>
             <Heading tag="h3" $font={["heading-6", "heading-5"]}>
               Lesson Resources
@@ -44,7 +49,7 @@ const Layout: FC<LayoutProps> = (props) => {
             <FieldError id={"downloads-error"}>{props.errorMessage}</FieldError>
             {props.cardGroup}
           </Flex>
-          <Flex $flexDirection="column">
+          <Flex $flexDirection="column" $alignSelf="center">
             {props.userDetails}
             {props.ctaButton}
           </Flex>
