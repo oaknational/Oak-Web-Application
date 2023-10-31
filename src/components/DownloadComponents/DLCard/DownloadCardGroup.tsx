@@ -10,6 +10,7 @@ import DownloadCard from "../DLCard";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/Box";
+import { getBreakpoint } from "@/styles/utils/responsive";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -21,8 +22,12 @@ export type DownloadCardGroupProps = {
 const DownloadCardGrid = styled(Box)`
   display: grid;
   gap: 16px;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: "max-content max-content";
   grid-template-areas: "presentation . " "worksheet-pptx worksheet-pdf" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
+  @media (max-width: ${getBreakpoint("small")}px) {
+    grid-template-columns: "1fr";
+    grid-template-areas: "presentation" "worksheet-pptx" "worksheet-pdf" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx";
+  }
 `;
 
 const DownloadCardArea = styled(Box)<{ area: string }>`
