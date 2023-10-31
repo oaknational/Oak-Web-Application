@@ -11,8 +11,11 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const Checkbox: Story = {
-  args: {},
+export const Layout: Story = {
+  args: {
+    header: "Lesson resources",
+    cardGroup: <div>Mock Card Group</div>,
+  },
   render: (args) => {
     return <Component {...args} />;
   },

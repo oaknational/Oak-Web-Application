@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 
 import { Heading } from "@/components/Typography";
 import FieldError from "@/components/FormFields/FieldError";
@@ -10,34 +10,13 @@ import Flex from "@/components/Flex";
 
 type LayoutProps = {
   header: string;
-  onSelectAllClick: () => void;
-  onDeselectAllClick: () => void;
-  preselectAll: boolean;
+  handleToggle: () => void;
+  selectAllChecked: boolean;
   errorMessage?: string;
   cardGroup: React.ReactNode;
-  triggerForm: () => void;
 };
 
 const Layout: FC<LayoutProps> = (props) => {
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
-  useEffect(() => {
-    if (props.preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [props.preselectAll]);
-
-  const handleToggleSelectAll = () => {
-    if (selectAllChecked) {
-      props.onDeselectAllClick();
-      setSelectAllChecked(false);
-    } else {
-      props.onSelectAllClick();
-      setSelectAllChecked(true);
-    }
-    // Trigger the form to reevaluate errors
-    props.triggerForm();
-  };
-
   return (
     <Box>
       <Flex
@@ -51,8 +30,8 @@ const Layout: FC<LayoutProps> = (props) => {
         </Heading>
         <Box $maxWidth="max-content">
           <Checkbox
-            checked={selectAllChecked}
-            onChange={handleToggleSelectAll}
+            checked={props.selectAllChecked}
+            onChange={props.handleToggle}
             id="select-all"
             name="select-all"
             variant="withLabel"

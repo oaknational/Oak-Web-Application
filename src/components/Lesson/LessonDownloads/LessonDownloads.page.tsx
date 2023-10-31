@@ -103,6 +103,25 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     mode: "onBlur",
   });
   const [preselectAll, setPreselectAll] = useState(false);
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
+
+  useEffect(() => {
+    if (preselectAll) {
+      setSelectAllChecked(true);
+    }
+  }, [preselectAll]);
+
+  const handleToggleSelectAll = () => {
+    if (selectAllChecked) {
+      onDeselectAllClick();
+      setSelectAllChecked(false);
+    } else {
+      onSelectAllClick();
+      setSelectAllChecked(true);
+    }
+    // Trigger the form to reevaluate errors
+    trigger();
+  };
 
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
@@ -289,7 +308,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const showPostAlbCopyright = !isLegacy;
 
   return (
-    <Box $ph={[16, null]} $background={"oakGrey1"} $zIndex="behind">
+    <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
@@ -416,11 +435,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             <Grid>
               <Layout
                 errorMessage={errors?.downloads?.message}
-                onSelectAllClick={() => onSelectAllClick()}
-                onDeselectAllClick={() => onDeselectAllClick()}
-                preselectAll={preselectAll}
+                handleToggle={handleToggleSelectAll}
+                selectAllChecked={selectAllChecked}
                 header="Lesson Resources"
-                triggerForm={trigger}
                 cardGroup={
                   <DownloadCardGroup
                     control={control}
