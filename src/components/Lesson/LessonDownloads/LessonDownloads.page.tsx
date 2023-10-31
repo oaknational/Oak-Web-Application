@@ -436,7 +436,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     <Flex $flexDirection={"row"}>
                       <Icon name="content-guidance" $color={"red"} />
                       <Flex $flexDirection={"column"}>
-                        <P $ml={6} $color={"red"}>
+                        <P $ml={4} $color={"red"}>
                           To complete correct the following:
                         </P>
                         <UL $mr={24}>

@@ -28,12 +28,12 @@ const FieldError = (props: FieldErrorProps) => {
       $flexDirection={"row"}
       $mb={withoutMarginBottom ? 0 : 24}
     >
-      <Flex $alignSelf={"flex-start"}>
+      <Flex $alignSelf={"flex-start"} $mr={4}>
         <Icon name="content-guidance" $color={"red"} />
       </Flex>
       <Span
         $color="red"
-        $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-3"}
+        $font={variant === "large" ? ["body-2-bold", "body-1-bold"] : "body-2"}
         id={id}
       >
         {children}
