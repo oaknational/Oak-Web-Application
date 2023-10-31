@@ -8,7 +8,6 @@ import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import { Heading, Hr, LI, P, UL } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
-import Button from "@/components/Button";
 import Input from "@/components/Input";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Grid, { GridArea } from "@/components/Grid";
@@ -46,6 +45,7 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import Icon from "@/components/Icon";
+import LoadingButton from "@/components/Button/LoadingButton";
 
 type LessonDownloadsProps =
   | {
@@ -460,20 +460,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     </Box>
                   )}
                   <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <Button
-                      label={"Download .zip"}
+                    <LoadingButton
                       onClick={
                         (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
                       }
-                      background={"teachersHighlight"}
+                      text="Download .zip"
                       icon="download"
-                      $iconPosition="trailing"
-                      iconBackground="teachersYellow"
-                      disabled={isAttemptingDownload}
-                      $mt={8}
-                      $mb={16}
-                      $mr={8}
-                      $ml={8}
+                      isLoading={isAttemptingDownload}
+                      disabled={
+                        hasFormErrors ||
+                        (!formState.isValid && !localStorageDetails)
+                      }
+                      loadingText="Downloading..."
                     />
                   </Flex>
                 </Flex>
