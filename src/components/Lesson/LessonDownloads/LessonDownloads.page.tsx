@@ -29,7 +29,7 @@ import {
 } from "@/components/DownloadComponents/downloads.types";
 import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import DownloadCardGroup from "@/components/DownloadComponents/DLCard/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
 import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
 import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
@@ -46,6 +46,7 @@ import {
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import Icon from "@/components/Icon";
 import LoadingButton from "@/components/Button/LoadingButton";
+import Layout from "@/components/DownloadComponents/Layout";
 
 type LessonDownloadsProps =
   | {
@@ -71,7 +72,6 @@ type LessonDownloadsProps =
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
-
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -289,7 +289,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const showPostAlbCopyright = !isLegacy;
 
   return (
-    <Box $ph={[16, null]} $background={"oakGrey1"}>
+    <Box $ph={[16, null]} $background={"oakGrey1"} $zIndex="behind">
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
@@ -414,15 +414,21 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             )}
 
             <Grid>
-              <DownloadCardGroup
-                control={control}
-                downloads={downloads}
-                hasError={errors?.downloads ? true : false}
+              <Layout
                 errorMessage={errors?.downloads?.message}
                 onSelectAllClick={() => onSelectAllClick()}
                 onDeselectAllClick={() => onDeselectAllClick()}
                 preselectAll={preselectAll}
+                header="Lesson Resources"
                 triggerForm={trigger}
+                cardGroup={
+                  <DownloadCardGroup
+                    control={control}
+                    downloads={downloads}
+                    hasError={errors?.downloads ? true : false}
+                    triggerForm={trigger}
+                  />
+                }
               />
 
               <GridArea $colSpan={[12]}>
