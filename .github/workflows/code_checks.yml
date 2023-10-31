@@ -2,6 +2,11 @@ name: Code checks
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  merge_group:
 
 jobs:
   lint_test_sonar:
