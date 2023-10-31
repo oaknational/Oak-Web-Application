@@ -24,7 +24,7 @@ describe("Loading button", () => {
 
     const user = userEvent.setup();
     const button = screen.getByRole("button", { name: "Click" });
-    expect(button).not.toHaveAttribute("disabled");
+    expect(button).not.toHaveAttribute("aria-disabled");
 
     await user.click(button);
     rerender(
@@ -38,7 +38,7 @@ describe("Loading button", () => {
       />,
     );
 
-    expect(button).toHaveAttribute("disabled");
+    expect(button).toHaveAttribute("aria-disabled");
     expect(button).toHaveTextContent("Loading...");
   });
 });
