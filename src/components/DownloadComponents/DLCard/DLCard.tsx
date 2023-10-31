@@ -62,7 +62,6 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $width={["100%"]}
         $maxWidth={320}
         $background={isHovered ? "grey1" : "white"}
-        $zIndex={"behind"}
       >
         <Flex
           $flexDirection="column"

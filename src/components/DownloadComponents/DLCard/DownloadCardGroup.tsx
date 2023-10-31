@@ -21,6 +21,7 @@ export type DownloadCardGroupProps = {
 
 const DownloadCardGrid = styled(Box)`
   display: grid;
+  position: relative;
   gap: 16px;
   grid-template-columns: "max-content max-content";
   grid-template-areas: "presentation . " "worksheet-pptx worksheet-pdf" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
