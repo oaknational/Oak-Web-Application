@@ -134,6 +134,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <>
+        <FieldError id={errorId}>{error}</FieldError>
         <InputFieldWrap
           $mb={error ? 0 : 32}
           $alignItems="center"
@@ -175,7 +176,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           </Flex>
         </InputFieldWrap>
-        <FieldError id={errorId}>{error}</FieldError>
       </>
     );
   },

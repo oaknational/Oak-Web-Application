@@ -439,9 +439,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 >
                   {hasFormErrors && (
                     <Flex $flexDirection={"row"}>
-                      <Icon name="content-guidance" $color={"red"} $mr={4} />
+                      <Icon name="content-guidance" $color={"red"} />
                       <Flex $flexDirection={"column"}>
-                        <P $color={"red"}>To complete correct the following:</P>
+                        <P $ml={6} $color={"red"}>
+                          To complete correct the following:
+                        </P>
                         <UL $mr={24}>
                           {getFormErrorMessages().map((err) => {
                             return <LI $color={"red"}>{err}</LI>;
