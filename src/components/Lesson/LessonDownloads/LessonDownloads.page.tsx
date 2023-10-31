@@ -1,14 +1,12 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Hr, P } from "@/components/Typography";
-import OakLink from "@/components/OakLink";
-import Input from "@/components/Input";
+import { Hr } from "@/components/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -26,16 +24,11 @@ import {
   preselectedDownloadType,
   schema,
 } from "@/components/DownloadComponents/downloads.types";
-import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadComponents/DownloadCardGroup/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
-import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
-import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -43,8 +36,6 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
-import Icon from "@/components/Icon";
-import LoadingButton from "@/components/Button/LoadingButton";
 import Layout from "@/components/DownloadComponents/ResourcePageLayout";
 
 type LessonDownloadsProps =
@@ -188,7 +179,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocalStorage && !editDetailsClicked;
+    !!hasDetailsFromLocalStorage && !editDetailsClicked;
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
@@ -306,104 +297,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const showPostAlbCopyright = !isLegacy;
 
-  const userDetails = () =>
-    !hasResourcesToDownload ? (
-      <NoResourcesToDownload />
-    ) : (
-      <>
-        {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-        {!isLocalStorageLoading && (
-          <Flex $flexDirection="column" $gap={24}>
-            {localStorageDetails ? (
-              <DetailsCompleted
-                email={emailFromLocalStorage}
-                school={schoolNameFromLocalStorage}
-                onEditClick={handleEditDetailsCompletedClick}
-              />
-            ) : (
-              <Box $maxWidth={[null, 420, 420]}>
-                <SchoolDetails
-                  errors={errors}
-                  setSchool={setSchool}
-                  initialValue={
-                    schoolIdFromLocalStorage?.length > 0
-                      ? schoolIdFromLocalStorage
-                      : undefined
-                  }
-                  initialSchoolName={
-                    schoolNameFromLocalStorage.length > 0
-                      ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
-                        schoolNameFromLocalStorage.slice(1)
-                      : undefined
-                  }
-                />
-
-                <Input
-                  id={"email"}
-                  data-testid="input-email"
-                  label="Email"
-                  autoComplete="email"
-                  placeholder="Enter email address here"
-                  isOptional={true}
-                  {...register("email")}
-                  error={errors.email?.message}
-                />
-                <P $font="body-3" $mt={-20} $mb={48}>
-                  Join over 100k teachers and get free resources and other
-                  helpful content by email. Unsubscribe at any time. Read our{" "}
-                  <OakLink
-                    page="legal"
-                    legalSlug="privacy-policy"
-                    $isInline
-                    htmlAnchorProps={{
-                      target: "_blank",
-                      "aria-label": "Privacy policy (opens in a new tab)",
-                    }}
-                  >
-                    privacy policy{" "}
-                    <Icon
-                      name="external"
-                      verticalAlign="bottom"
-                      size={20}
-                      data-testid="external-link-icon"
-                    />
-                  </OakLink>
-                  .
-                </P>
-                <Controller
-                  control={control}
-                  name="terms"
-                  render={({ field: { value, onChange, name, onBlur } }) => {
-                    const onChangeHandler = (
-                      e: ChangeEvent<HTMLInputElement>,
-                    ) => {
-                      return onChange(e.target.checked);
-                    };
-                    return (
-                      <TermsAndConditionsCheckbox
-                        name={name}
-                        checked={value}
-                        onChange={onChangeHandler}
-                        onBlur={onBlur}
-                        id={"terms"}
-                        errorMessage={errors?.terms?.message}
-                      />
-                    );
-                  }}
-                />
-              </Box>
-            )}
-            <Box $mb={56}>
-              <CopyrightNotice
-                showPostAlbCopyright={showPostAlbCopyright}
-                openLinksExternally={true}
-              />
-            </Box>
-          </Flex>
-        )}
-      </>
-    );
-
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
@@ -430,10 +323,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
         <Layout
           errors={errors}
-          handleToggle={handleToggleSelectAll}
+          handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
           header="Download"
-          userDetails={userDetails()}
+          showNoResources={!hasResourcesToDownload}
+          showLoading={isLocalStorageLoading}
+          email={emailFromLocalStorage}
+          school={schoolNameFromLocalStorage}
+          schoolId={schoolIdFromLocalStorage}
+          setSchool={setSchool}
+          showSavedDetails={shouldDisplayDetailsCompleted}
+          onEditClick={handleEditDetailsCompletedClick}
+          register={register}
+          control={control}
+          showPostAlbCopyright={showPostAlbCopyright}
           cardGroup={
             <DownloadCardGroup
               control={control}
@@ -442,20 +345,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               triggerForm={trigger}
             />
           }
-          ctaButton={
-            <LoadingButton
-              onClick={
-                (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
-              }
-              text="Download .zip"
-              icon="download"
-              isLoading={isAttemptingDownload}
-              disabled={
-                hasFormErrors || (!formState.isValid && !localStorageDetails)
-              }
-              loadingText="Downloading..."
-            />
+          onCtaClick={
+            (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
           }
+          ctaText="Download .zip"
+          ctaIcon="download"
+          isLoading={isAttemptingDownload}
+          ctaDisabled={
+            hasFormErrors || (!formState.isValid && !localStorageDetails)
+          }
+          ctaLoadingText="Downloading..."
         />
 
         <Flex

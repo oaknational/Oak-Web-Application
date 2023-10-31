@@ -11,7 +11,7 @@ describe("Downloads/Share Layout", () => {
     const { rerender } = renderWithTheme(
       <ResourcePageLayoutProps
         header="Download"
-        handleToggle={() => (checked = !checked)}
+        handleToggleSelectAll={() => (checked = !checked)}
         selectAllChecked={checked}
         cardGroup={<div>Cards</div>}
         userDetails={<div>Details</div>}
@@ -31,7 +31,7 @@ describe("Downloads/Share Layout", () => {
     rerender(
       <ResourcePageLayoutProps
         header="Download"
-        handleToggle={() => (checked = true)}
+        handleToggleSelectAll={() => (checked = true)}
         selectAllChecked={false}
         cardGroup={<div>Cards</div>}
         userDetails={<div>Details</div>}
@@ -44,7 +44,7 @@ describe("Downloads/Share Layout", () => {
     renderWithTheme(
       <ResourcePageLayoutProps
         header="Download"
-        handleToggle={() => {}}
+        handleToggleSelectAll={() => {}}
         selectAllChecked={true}
         cardGroup={<div>Cards</div>}
         userDetails={<div>Details</div>}
