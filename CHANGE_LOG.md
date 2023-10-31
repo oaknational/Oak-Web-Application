@@ -1,3 +1,31 @@
+# [1.294.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.2...v1.294.0) (2023-10-31)
+
+
+### Bug Fixes
+
+* correct grey for button ([f23ddf9](https://github.com/oaknational/Oak-Web-Application/commit/f23ddf90181bf82d1cb9bb09fab8cc59d9edf488))
+* don't underline on hover when disabled ([41f6047](https://github.com/oaknational/Oak-Web-Application/commit/41f60470f9e2fed9033a4d8511a246c8179e0651))
+* enable download when saved details present ([a298505](https://github.com/oaknational/Oak-Web-Application/commit/a298505376d2f37812a1ce0fb8687429d369bc90))
+* gap between border ([5e362d4](https://github.com/oaknational/Oak-Web-Application/commit/5e362d414d46bd863fe8de30518339da9fa692a0))
+* remove outdated test ([60e6b4a](https://github.com/oaknational/Oak-Web-Application/commit/60e6b4a81b3a6d3046e897adbe4c36b5b532d826))
+* test again ([e97248e](https://github.com/oaknational/Oak-Web-Application/commit/e97248eabdf3c7567e5664b834df224c9e90e62c))
+* update test ([6a1df60](https://github.com/oaknational/Oak-Web-Application/commit/6a1df6059080bed8133580a475e35529d7ffa299))
+
+
+### Features
+
+* add disabled prop to loading button ([da772fe](https://github.com/oaknational/Oak-Web-Application/commit/da772fe13074a06f3a14c368a08123b9245c2f54))
+* add disabled styling ([0fed75d](https://github.com/oaknational/Oak-Web-Application/commit/0fed75d2d63d2fcdbe846fb3ee16498e22532889))
+* add downloadbutton component to storybook ([0057ad7](https://github.com/oaknational/Oak-Web-Application/commit/0057ad7ccb8f32bd3116e87bd5780b6f73d7fabe))
+* add focus state ([3c1137f](https://github.com/oaknational/Oak-Web-Application/commit/3c1137fb09931ad4099aae31f05bf47f6628e6f6))
+* add hover style ([c7ce978](https://github.com/oaknational/Oak-Web-Application/commit/c7ce978ca42c1e74f31dffc6f9f5a430e4f94338))
+* add new loading button to download page ([d4ec184](https://github.com/oaknational/Oak-Web-Application/commit/d4ec1844e94dd930b4348308bac4bc561464c7a5))
+* adjust button width ([883147a](https://github.com/oaknational/Oak-Web-Application/commit/883147af42fa7350f0923cce62a9efa85c76bc91))
+* disable download button when form errors present ([d47b5c9](https://github.com/oaknational/Oak-Web-Application/commit/d47b5c9c869e1c724085ab50fd9dd52feb745020))
+* disabled cursor ([f71093e](https://github.com/oaknational/Oak-Web-Application/commit/f71093ec4aba0672d34d8322683b28da6380a788))
+* enable focussing on disabled button ([cf8048e](https://github.com/oaknational/Oak-Web-Application/commit/cf8048ea9e7379d2b6d08d708f836319a79c11e0))
+* require valid form before allowing download ([9df9e23](https://github.com/oaknational/Oak-Web-Application/commit/9df9e2365b32bb153d446a59512c7bc1d8fd6cbb))
+
 ## [1.293.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.1...v1.293.2) (2023-10-30)
 
 
