@@ -36,7 +36,7 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
-import Layout from "@/components/DownloadComponents/ResourcePageLayout";
+import ResourcePageLayout from "@/components/DownloadComponents/ResourcePageLayout";
 
 type LessonDownloadsProps =
   | {
@@ -295,8 +295,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     setLocalStorageDetails(false);
   };
 
-  const showPostAlbCopyright = !isLegacy;
-
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
@@ -321,7 +319,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
 
-        <Layout
+        <ResourcePageLayout
           errors={errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
@@ -336,7 +334,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           onEditClick={handleEditDetailsCompletedClick}
           register={register}
           control={control}
-          showPostAlbCopyright={showPostAlbCopyright}
+          showPostAlbCopyright={!isLegacy}
           cardGroup={
             <DownloadCardGroup
               control={control}
