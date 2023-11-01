@@ -14,6 +14,12 @@ if (!CfAccessClientId || !CfAccessClientSecret) {
   );
 }
 
+const baseUrl = process.env.PERCY_BASE_URL;
+if (!baseUrl) {
+  throw new TypeError("process.env.PERCY_BASE_URL must be defined");
+}
+const host = new URL(baseUrl).host;
+
 /** @type {import('./node_modules/@percy/core/types').PercyConfigOptions} */
 module.exports = {
   version: 2,
@@ -26,7 +32,10 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    allowedHostnames: [],
+    allowedHostnames: [
+      host,
+      "docs.google.com"
+    ],
     userAgent: "Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
