@@ -234,8 +234,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
-        setIsDownloadSuccessful,
       });
+      setIsDownloadSuccessful(true);
       const {
         schoolOption,
         schoolName,
@@ -264,6 +264,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
     } catch (error) {
       setIsAttemptingDownload(false);
+      setIsDownloadSuccessful(false);
       setApiError(
         "There was an error downloading your files. Please try again.",
       );
