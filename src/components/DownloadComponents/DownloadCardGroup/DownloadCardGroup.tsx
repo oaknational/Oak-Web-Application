@@ -22,18 +22,34 @@ export type DownloadCardGroupProps = {
 const DownloadCardGrid = styled(Box)`
   display: grid;
   position: relative;
-  gap: 16px;
   grid-template-columns: "max-content max-content";
-  grid-template-areas: "presentation . " "worksheet-pptx worksheet-pdf" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
+  grid-template-areas: "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
   @media (max-width: ${getBreakpoint("small")}px) {
     grid-template-columns: "1fr";
-    grid-template-areas: "presentation" "worksheet-pptx" "worksheet-pdf" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx";
+    grid-template-areas: "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx";
   }
 `;
 
 const DownloadCardArea = styled(Box)<{ area: string }>`
   grid-area: ${(props) => props.area};
+  margin-bottom: 16px;
 `;
+
+const getGridArea = (
+  type: DownloadResourceType,
+  presentationExists: boolean,
+  worksheetsLength?: number,
+) => {
+  if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
+    return type;
+  } else {
+    if (worksheetsLength === 2 || !presentationExists) {
+      return type;
+    } else {
+      return "presentationOrWorksheet";
+    }
+  }
+};
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
@@ -41,13 +57,22 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   hasError = false,
   triggerForm,
 }) => {
+  const worksheetsLength = downloads?.filter(
+    (d) => d.type === "worksheet-pdf" || d.type === "worksheet-pptx",
+  )?.length;
+  const presentationExists =
+    downloads?.filter((d) => d.type === "presentation")?.length === 1;
   return (
     <DownloadCardGrid>
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
           return (
             <DownloadCardArea
-              area={download.type}
+              area={getGridArea(
+                download.type,
+                presentationExists,
+                worksheetsLength,
+              )}
               key={download.type}
               data-testid={"lessonResourcesToDownload"}
             >
