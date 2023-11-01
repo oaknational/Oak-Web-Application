@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
 import { DownloadFormProps } from "../downloads.types";
 
-
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
