@@ -72,8 +72,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           $gap={48}
         >
           <Flex $flexDirection="column" $gap={24}>
-            <Heading tag="h3" $font={["heading-6", "heading-5"]}>
-              Lesson Resources
+            <Heading tag="h2" $font={["heading-6", "heading-5"]}>
+              Lesson resources
             </Heading>
             <Box $maxWidth="max-content">
               <Checkbox
