@@ -44,12 +44,10 @@ const getGridArea = (
 ) => {
   if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
     return type;
+  } else if (worksheetsLength === 2 || !presentationExists) {
+    return type;
   } else {
-    if (worksheetsLength === 2 || !presentationExists) {
-      return type;
-    } else {
-      return "presentationOrWorksheet";
-    }
+    return "presentationOrWorksheet";
   }
 };
 
