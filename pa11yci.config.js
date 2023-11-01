@@ -21,6 +21,7 @@ if (!isLocalHost && (!CfAccessClientId || !CfAccessClientSecret)) {
 // https://github.com/pa11y/pa11y-ci#configuration
 const config = {
   defaults: {
+    timeout: 120000,
     runners: ["axe"],
     hideElements:
       /**
