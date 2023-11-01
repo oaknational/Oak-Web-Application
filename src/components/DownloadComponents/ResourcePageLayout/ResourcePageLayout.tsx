@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEventHandler } from "react";
+import { ChangeEvent, FC } from "react";
 import {
   Control,
   Controller,
@@ -23,8 +23,7 @@ import Checkbox from "@/components/Checkbox";
 import Flex from "@/components/Flex";
 import Input from "@/components/Input";
 import OakLink from "@/components/OakLink";
-import Icon, { IconName } from "@/components/Icon";
-import LoadingButton from "@/components/Button/LoadingButton";
+import Icon from "@/components/Icon";
 
 /** Generic layout component for Downloads and Share page */
 
@@ -42,12 +41,7 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     control: Control<DownloadFormProps>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
-    ctaText: string;
-    ctaIcon: IconName;
-    isLoading: boolean;
-    ctaDisabled: boolean;
-    ctaLoadingText: string;
-    onCtaClick: MouseEventHandler<HTMLButtonElement>;
+    cta: React.ReactNode;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -221,15 +215,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 </Flex>
               </Flex>
             )}
-
-            <LoadingButton
-              onClick={props.onCtaClick}
-              text={props.ctaText}
-              icon={props.ctaIcon}
-              isLoading={props.isLoading}
-              disabled={props.ctaDisabled}
-              loadingText={props.ctaLoadingText}
-            />
+            {props.cta}
           </Flex>
         </Flex>
       </Flex>

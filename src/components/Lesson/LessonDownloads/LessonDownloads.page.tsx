@@ -35,6 +35,7 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadComponents/ResourcePageLayout";
+import LoadingButton from "@/components/Button/LoadingButton";
 
 type LessonDownloadsProps =
   | {
@@ -332,16 +333,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               triggerForm={trigger}
             />
           }
-          onCtaClick={
-            (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
+          cta={
+            <LoadingButton
+              onClick={
+                (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+              }
+              text={"Download .zip"}
+              icon={"download"}
+              isLoading={isAttemptingDownload}
+              disabled={
+                hasFormErrors || (!formState.isValid && !localStorageDetails)
+              }
+              loadingText={"Downloading..."}
+            />
           }
-          ctaText="Download .zip"
-          ctaIcon="download"
-          isLoading={isAttemptingDownload}
-          ctaDisabled={
-            hasFormErrors || (!formState.isValid && !localStorageDetails)
-          }
-          ctaLoadingText="Downloading..."
         />
 
         <Flex

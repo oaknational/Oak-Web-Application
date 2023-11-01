@@ -48,14 +48,9 @@ export const Layout: Story = {
     showNoResources: false,
     showPostAlbCopyright: true,
     showSavedDetails: false,
-    ctaText: "Download",
-    ctaIcon: "download",
-    isLoading: false,
-    ctaDisabled: false,
-    ctaLoadingText: "Downloading...",
-    onCtaClick: () => {},
     onEditClick: () => {},
     setSchool: () => {},
+    cta: <button>CTA</button>,
   },
   render: (args) => {
     return <Wrapper {...args} />;

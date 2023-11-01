@@ -20,15 +20,10 @@ const props: PropsWithoutForm = {
   showNoResources: false,
   showPostAlbCopyright: true,
   showSavedDetails: false,
-  ctaText: "Download",
-  ctaIcon: "download",
-  isLoading: false,
-  ctaDisabled: false,
-  ctaLoadingText: "Downloading...",
-  onCtaClick: jest.fn(),
   onEditClick: jest.fn(),
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
+  cta: <button>CTA</button>,
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
