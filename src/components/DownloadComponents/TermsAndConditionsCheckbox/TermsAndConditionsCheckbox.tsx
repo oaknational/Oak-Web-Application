@@ -17,6 +17,13 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   ...props
 }) => (
   <>
+    {!checked && (
+      <Box $mb={16}>
+        <FieldError id={"terms-error"} withoutMarginBottom>
+          {errorMessage}
+        </FieldError>
+      </Box>
+    )}
     <Box
       $position={"relative"}
       $background={"oakGrey30"}
@@ -38,13 +45,6 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         {...props}
       />
     </Box>
-    {errorMessage && (
-      <Box $mb={16}>
-        <FieldError id={"terms-error"} withoutMarginBottom>
-          {errorMessage}
-        </FieldError>
-      </Box>
-    )}
   </>
 );
 
