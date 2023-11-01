@@ -4,12 +4,14 @@ import { useForm } from "react-hook-form";
 
 import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
 import { DownloadFormProps } from "../downloads.types";
-import * as downloads from "../downloadsFixtures";
+
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 import Component from "./ResourcePageLayout";
+
+import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixtures";
 
 const meta: Meta<typeof Component> = {
   title: "Download Components/Resource Page Layout",

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { useForm } from "react-hook-form";
 
 import { DownloadFormProps } from "../downloads.types";
-import * as downloads from "../downloadsFixtures";
+import * as downloads from "../../../node-lib/curriculum-api/fixtures/downloads.fixtures";
 
 import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
