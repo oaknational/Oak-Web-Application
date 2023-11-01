@@ -39,6 +39,28 @@ jobs:
           find: "{owa_deployment_url}"
           replace: ${{ github.event.deployment_status.environment_url }}
 
+  # Warm the caches on the test URLs
+  warm_caches:
+    # Only want to run on success, otherwise it might be "pending", or "failure".
+    # Filter out storybook deployments and temporarily Netlify deployments
+    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+    name: Warm Caches
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      - run: npm ci
+      - name: Warm the Cache
+        run: node ./scripts/build/warm_cache.js
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+
   # Run Pa11yCI against a deployment.
   pa11y:
     # Only want to run on success, otherwise it might be "pending", or "failure".
@@ -49,10 +71,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -95,10 +113,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-      # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-      # branch or pull request.
-      # https://github.com/actions/cache/issues/319
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -119,14 +133,6 @@ jobs:
         run: |
           echo "${{ steps.ref_from_sha.outputs.branch_name }}"
           echo "${{ steps.ref_from_sha.outputs.pr_number }}"
-
-      - name: Warm the Cache
-        id: warm_cache_for_percy
-        run: node ./scripts/build/warm_cache.js
-        env:
-          BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
       - uses: ./.github/actions/percy_snapshots
         name: run percy
@@ -162,10 +168,6 @@ jobs:
 
   #   steps:
   #     - uses: actions/checkout@v4
-  #     # Note we can't use caching here, because caching needs GITHUB_REF to be defined,
-  #     # and Vercel deployment_status events set deployment.ref to the SHA, not the triggering
-  #     # branch or pull request.
-  #     # https://github.com/actions/cache/issues/319
   #     - name: Use Node.js
   #       uses: actions/setup-node@v3
   #       with:

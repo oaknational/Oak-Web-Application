@@ -2,6 +2,8 @@
 
 const fetch = require("node-fetch");
 
+const getDeploymentTestUrls = require("../../src/common-lib/urls/getDeploymentTestUrls");
+
 const baseUrl = process.env.BASE_URL;
 if (!baseUrl) {
   throw new TypeError("Please define env BASE_URL");
@@ -15,24 +17,20 @@ if (CfAccessClientId && !CfAccessClientSecret) {
   );
 }
 
-const relativeUrls = [
-  "/",
-  "/lesson-planning",
-  "/develop-your-curriculum",
-  "/about-us/who-we-are",
-  "/about-us/leadership",
-  "/about-us/board",
-  "/about-us/partners",
-  "/about-us/work-with-us",
-  "/blog",
-  "/blog/how-to-design-a-unit-of-study",
-  "/blog/evolution-of-oak",
-  "/blog/join-the-childrens-mental-health-week-assembly-2022",
-  "/legal/accessibility-statement",
-  "/lp/download-our-lesson-and-resource-directory",
-];
+const relativeUrls = getDeploymentTestUrls();
 
-const urls = relativeUrls.map((relUrl) => new URL(relUrl, baseUrl).href);
+const urls = relativeUrls.map((relUrl) => {
+  try {
+    return new URL(relUrl, baseUrl).href;
+  } catch (e) {
+    console.log({
+      relUrl,
+      baseUrl,
+    });
+    console.error(e);
+    process.exit(1);
+  }
+});
 
 let headers;
 if (CfAccessClientId) {
@@ -41,16 +39,33 @@ if (CfAccessClientId) {
     "CF-Access-Client-Secret": CfAccessClientSecret,
   };
 }
-const eventualResults = urls.map((url) => fetch(url, { headers }));
+
+async function makeRequests() {
+  const eventualResults = [];
+  // Fetch each URL asynchronously, with a delay between each request, and store the eventual results.
+  for await (const url of urls) {
+    eventualResults.push(
+      fetch(url, {
+        headers,
+      }),
+    );
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+  return eventualResults;
+}
 
 async function waitForResults(
   /** @type {Promise<Response>[]} */ _eventualResults,
 ) {
   const results = await Promise.all(_eventualResults);
   console.log(
-    "responses ok: ",
-    results.map((response) => response.ok),
+    results.map((response) => `${response.url}: ${response.status}\n`),
   );
 }
 
-waitForResults(eventualResults);
+async function main() {
+  const eventualResults = await makeRequests();
+  await waitForResults(eventualResults);
+}
+
+main();
