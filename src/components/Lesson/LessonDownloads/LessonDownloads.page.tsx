@@ -11,14 +11,12 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/DownloadComponents/helpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "@/components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "@/components/DownloadComponents/hooks/useDownloadForm";
 import { getPreselectedDownloadResourceTypes } from "@/components/DownloadComponents/helpers/getDownloadResourceType";
 import {
   ResourcesToDownloadArrayType,
-  ErrorKeysType,
   DownloadFormProps,
   DownloadResourceType,
   preselectedDownloadType,
@@ -274,15 +272,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  const getFormErrorMessage = () => {
-    const errorKeyArray = Object.keys(errors);
-    const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[],
-    );
-
-    return errorMessage;
-  };
-
   useDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
@@ -360,18 +349,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           $justifyContent={"right"}
           $alignItems={"center"}
         >
-          {hasFormErrors && (
-            <Box $mr={24} $textAlign={"left"}>
-              <FieldError
-                id="download-form-error"
-                data-testid="download-form-error"
-                variant={"large"}
-                withoutMarginBottom
-              >
-                {getFormErrorMessage()}
-              </FieldError>
-            </Box>
-          )}
           {apiError && !hasFormErrors && (
             <Box $mr={24} $textAlign={"left"}>
               <FieldError

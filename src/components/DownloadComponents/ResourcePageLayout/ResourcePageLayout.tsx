@@ -6,7 +6,7 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 
-import { DownloadFormProps } from "../downloads.types";
+import { DownloadFormProps, ErrorKeysType } from "../downloads.types";
 import NoResourcesToDownload from "../NoResourcesToDownload";
 import DetailsCompleted from "../DetailsCompleted";
 import { DetailsCompletedProps } from "../DetailsCompleted/DetailsCompleted";
@@ -15,7 +15,8 @@ import { SchoolDetailsProps } from "../SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "../TermsAndConditionsCheckbox";
 import CopyrightNotice from "../CopyrightNotice";
 
-import { Heading, P } from "@/components/Typography";
+import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
+import { Heading, LI, P, UL } from "@/components/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/Box";
 import Checkbox from "@/components/Checkbox";
@@ -32,7 +33,7 @@ type ResourcePageLayoutProps = DetailsCompletedProps &
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    errors?: FieldErrors<DownloadFormProps>;
+    errors: FieldErrors<DownloadFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
@@ -50,6 +51,16 @@ type ResourcePageLayoutProps = DetailsCompletedProps &
   };
 
 const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
+  const hasFormErrors = Object.keys(props.errors)?.length > 0;
+  const getFormErrorMessages = () => {
+    const errorKeyArray = Object.keys(props.errors);
+
+    const errorMessage = getDownloadFormErrorMessage(
+      errorKeyArray as ErrorKeysType[],
+    );
+
+    return errorMessage;
+  };
   return (
     <Box $width="100%">
       <Flex $alignItems={"flex-start"} $flexDirection={"column"} $gap={32}>
@@ -82,10 +93,20 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
             </FieldError>
             {props.cardGroup}
           </Flex>
-          <Flex $flexDirection="column" $alignSelf="center">
+          <Flex
+            $flexDirection="column"
+            $alignSelf="center"
+            $gap={16}
+            $maxWidth={420}
+          >
             <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[24, 32]}>
               Your details
             </Heading>
+            {props.errors.school && (
+              <FieldError id="school-error">
+                {props.errors.school?.message}
+              </FieldError>
+            )}
             {props.showNoResources ? (
               <NoResourcesToDownload />
             ) : (
@@ -182,6 +203,21 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
                   </Flex>
                 )}
               </>
+            )}
+            {hasFormErrors && (
+              <Flex $flexDirection={"row"}>
+                <Icon name="content-guidance" $color={"red"} />
+                <Flex $flexDirection={"column"}>
+                  <P $ml={4} $color={"red"}>
+                    To complete correct the following:
+                  </P>
+                  <UL $mr={24}>
+                    {getFormErrorMessages().map((err) => {
+                      return <LI $color={"red"}>{err}</LI>;
+                    })}
+                  </UL>
+                </Flex>
+              </Flex>
             )}
             <LoadingButton
               onClick={props.onCtaClick}
