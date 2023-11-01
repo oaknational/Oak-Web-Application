@@ -17,7 +17,7 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   ...props
 }) => (
   <>
-    {!checked && (
+    {errorMessage && (
       <Box $mb={16}>
         <FieldError id={"terms-error"} withoutMarginBottom>
           {errorMessage}
