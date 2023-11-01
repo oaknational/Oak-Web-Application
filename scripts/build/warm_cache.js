@@ -18,6 +18,8 @@ if (CfAccessClientId && !CfAccessClientSecret) {
 }
 
 const relativeUrls = getDeploymentTestUrls();
+// Specifically request the slow sprite sheet
+relativeUrls.push("/images/sprite/sprite.svg");
 
 const urls = relativeUrls.map((relUrl) => {
   try {
