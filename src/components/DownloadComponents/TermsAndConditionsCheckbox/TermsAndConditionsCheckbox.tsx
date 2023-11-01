@@ -17,15 +17,22 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   ...props
 }) => (
   <>
+    {!checked && (
+      <Box $mb={16}>
+        <FieldError id={"terms-error"} withoutMarginBottom>
+          {errorMessage}
+        </FieldError>
+      </Box>
+    )}
     <Box
       $position={"relative"}
-      $background={"pastelTurquoise"}
+      $background={"oakGrey30"}
       $pv={8}
       $ph={8}
       $mb={24}
       data-testid="termsCheckbox"
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"pastelTurquoise"} />
+      <BrushBorders hideOnMobileH hideOnMobileV color={"oakGrey30"} />
       <Checkbox
         labelText={"I accept terms and conditions (required)"}
         checked={checked}
@@ -34,17 +41,10 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
         required
         error={errorMessage}
         hasError={Boolean(errorMessage)}
-        variant="terms"
+        variant="withLabel"
         {...props}
       />
     </Box>
-    {errorMessage && (
-      <Box $mb={16}>
-        <FieldError id={"terms-error"} withoutMarginBottom>
-          {errorMessage}
-        </FieldError>
-      </Box>
-    )}
   </>
 );
 

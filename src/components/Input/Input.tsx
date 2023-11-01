@@ -15,12 +15,14 @@ import getColorByName from "../../styles/themeHelpers/getColorByName";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import Svg from "../Svg";
 import FieldError from "../FormFields/FieldError";
+import { Span } from "../Typography";
 
 import InputIcon from "./InputIcon";
 
 export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
+  isOptional?: boolean;
 };
 
 export const InputFocusUnderline = styled(Svg)`
@@ -40,8 +42,8 @@ export const RotatedInputLabel = styled(Label)<{
   color: OakColorName;
 }>`
   position: relative;
-  padding: 2px 10px;
-  transform: rotate(-2deg) translateY(-8px) translateX(6px);
+  padding: 4px 8px;
+  transform: rotate(-2deg) translateY(-16px) translateX(8px);
   display: block;
   background: ${(props) => getColorByName(props.background)};
   color: ${(props) => getColorByName(props.color)};
@@ -67,12 +69,12 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   )};
   border-width: ${(props) => props.theme.input.borderWidth};
   padding-left: ${(props) => (props.icon ? "40px" : "12px")};
-  padding-right: 12px;
+  padding: 16px;
+  padding-top: 20px;
   font-size: 16px;
   font-family: ${getFontFamily("ui")};
   font-weight: 300;
   width: 100%;
-  margin-top: 10px;
   outline: none;
 
   @media (max-width: ${getBreakpoint("small")}px) {
@@ -81,7 +83,8 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
   }
 
   ::placeholder {
-    font-size: 14px;
+    font-size: ${(props) => props.theme.input.fontSize};
+    font-weight: 300;
     font-family: ${getFontFamily("ui")};
     color: ${getColorByLocation(
       ({ theme }) => theme.input.states.default.placeholder,
@@ -95,7 +98,7 @@ export const StyledInput = styled(UnstyledInput)<StyledInputProps>`
     )};
 
     ::placeholder {
-      font-size: 14px;
+      font-size: ${(props) => props.theme.input.fontSize};
       color: ${getColorByLocation(
         ({ theme }) => theme.input.states.valid.placeholder,
       )};
@@ -125,17 +128,14 @@ type InputProps = UnstyledInputProps &
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { id, icon, label, error, ...inputProps } = props;
+    const { id, icon, label, error, isOptional, ...inputProps } = props;
     const errorId = `${id}-error`;
     const labelId = `${id}-label`;
 
     return (
       <>
-        <InputFieldWrap
-          $mb={error ? 0 : 32}
-          $alignItems="center"
-          $background="white"
-        >
+        {error && <FieldError id={errorId}>{error}</FieldError>}
+        <InputFieldWrap $mb={32} $alignItems="center" $background="white">
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
@@ -145,9 +145,17 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 color={error ? "white" : "black"}
                 htmlFor={id}
                 id={labelId}
-                $font={"body-3"}
+                $font={"heading-7"}
+                data-testid="rotated-input-label"
               >
-                {label}
+                {isOptional ? (
+                  <Span>
+                    {props.label}{" "}
+                    <Span $font={"heading-light-7"}>(optional)</Span>
+                  </Span>
+                ) : (
+                  props.label
+                )}
               </RotatedInputLabel>
             </Flex>
 
@@ -164,7 +172,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
           </Flex>
         </InputFieldWrap>
-        <FieldError id={errorId}>{error}</FieldError>
       </>
     );
   },

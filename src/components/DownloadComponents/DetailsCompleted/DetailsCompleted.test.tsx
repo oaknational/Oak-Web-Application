@@ -17,39 +17,22 @@ describe("DetailsCompleted", () => {
       />,
     );
 
-    const email = getByText("email: test@test.com");
+    const email = getByText("test@test.com");
     expect(email).toBeInTheDocument();
 
-    const school = getByText("school: sample school");
+    const school = getByText("sample school");
     expect(school).toBeInTheDocument();
-
-    const detailsComplete = getByText("Details complete");
-    expect(detailsComplete).toBeInTheDocument();
-
-    const detailsSaved = getByText("We have your details saved already.");
-    expect(detailsSaved).toBeInTheDocument();
   });
 
-  it("does not render email if not passed", async () => {
+  it("renders 'not provided' message if email if not passed", async () => {
     const spy = jest.fn();
 
-    const { queryByTestId } = renderWithTheme(
+    const { getByText } = renderWithTheme(
       <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />,
     );
 
-    const email = queryByTestId("email");
-    expect(email).toBeNull();
-  });
-
-  it("does not render school if not passed", async () => {
-    const spy = jest.fn();
-
-    const { queryByTestId } = renderWithTheme(
-      <DetailsCompleted email={"test@test.com"} onEditClick={() => spy()} />,
-    );
-
-    const school = queryByTestId("school");
-    expect(school).toBeNull();
+    const notProvided = getByText("Not provided");
+    expect(notProvided).toBeInTheDocument();
   });
 
   it("calls correct function on Edit button click", async () => {
@@ -84,10 +67,10 @@ describe("DetailsCompleted", () => {
         />,
       );
 
-      const email = getByText("email: test@test.com");
+      const email = getByText("test@test.com");
       expect(email).toBeInTheDocument();
 
-      const school = getByText("school: Homeschool");
+      const school = getByText("Homeschool");
       expect(school).toBeInTheDocument();
     });
 
@@ -102,10 +85,10 @@ describe("DetailsCompleted", () => {
         />,
       );
 
-      const email = getByText("email: test@test.com");
+      const email = getByText("test@test.com");
       expect(email).toBeInTheDocument();
 
-      const school = getByText("school: My school isn’t listed");
+      const school = getByText("My school isn’t listed");
       expect(school).toBeInTheDocument();
     });
   });

@@ -1,3 +1,137 @@
+## [1.294.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.294.0...v1.294.1) (2023-10-31)
+
+# [1.294.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.2...v1.294.0) (2023-10-31)
+
+
+### Bug Fixes
+
+* correct grey for button ([f23ddf9](https://github.com/oaknational/Oak-Web-Application/commit/f23ddf90181bf82d1cb9bb09fab8cc59d9edf488))
+* don't underline on hover when disabled ([41f6047](https://github.com/oaknational/Oak-Web-Application/commit/41f60470f9e2fed9033a4d8511a246c8179e0651))
+* enable download when saved details present ([a298505](https://github.com/oaknational/Oak-Web-Application/commit/a298505376d2f37812a1ce0fb8687429d369bc90))
+* gap between border ([5e362d4](https://github.com/oaknational/Oak-Web-Application/commit/5e362d414d46bd863fe8de30518339da9fa692a0))
+* remove outdated test ([60e6b4a](https://github.com/oaknational/Oak-Web-Application/commit/60e6b4a81b3a6d3046e897adbe4c36b5b532d826))
+* test again ([e97248e](https://github.com/oaknational/Oak-Web-Application/commit/e97248eabdf3c7567e5664b834df224c9e90e62c))
+* update test ([6a1df60](https://github.com/oaknational/Oak-Web-Application/commit/6a1df6059080bed8133580a475e35529d7ffa299))
+
+
+### Features
+
+* add disabled prop to loading button ([da772fe](https://github.com/oaknational/Oak-Web-Application/commit/da772fe13074a06f3a14c368a08123b9245c2f54))
+* add disabled styling ([0fed75d](https://github.com/oaknational/Oak-Web-Application/commit/0fed75d2d63d2fcdbe846fb3ee16498e22532889))
+* add downloadbutton component to storybook ([0057ad7](https://github.com/oaknational/Oak-Web-Application/commit/0057ad7ccb8f32bd3116e87bd5780b6f73d7fabe))
+* add focus state ([3c1137f](https://github.com/oaknational/Oak-Web-Application/commit/3c1137fb09931ad4099aae31f05bf47f6628e6f6))
+* add hover style ([c7ce978](https://github.com/oaknational/Oak-Web-Application/commit/c7ce978ca42c1e74f31dffc6f9f5a430e4f94338))
+* add new loading button to download page ([d4ec184](https://github.com/oaknational/Oak-Web-Application/commit/d4ec1844e94dd930b4348308bac4bc561464c7a5))
+* adjust button width ([883147a](https://github.com/oaknational/Oak-Web-Application/commit/883147af42fa7350f0923cce62a9efa85c76bc91))
+* disable download button when form errors present ([d47b5c9](https://github.com/oaknational/Oak-Web-Application/commit/d47b5c9c869e1c724085ab50fd9dd52feb745020))
+* disabled cursor ([f71093e](https://github.com/oaknational/Oak-Web-Application/commit/f71093ec4aba0672d34d8322683b28da6380a788))
+* enable focussing on disabled button ([cf8048e](https://github.com/oaknational/Oak-Web-Application/commit/cf8048ea9e7379d2b6d08d708f836319a79c11e0))
+* require valid form before allowing download ([9df9e23](https://github.com/oaknational/Oak-Web-Application/commit/9df9e2365b32bb153d446a59512c7bc1d8fd6cbb))
+
+## [1.293.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.1...v1.293.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **portable text:** add withoutDefaultComponents prop ([5e920fd](https://github.com/oaknational/Oak-Web-Application/commit/5e920fdc24bbb7edade1395362aba447db57068d))
+* **portable text:** deep merge base components ([6465b2a](https://github.com/oaknational/Oak-Web-Application/commit/6465b2a80b8032c3b70af54f9a29ed94084a0a57))
+
+## [1.293.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.293.0...v1.293.1) (2023-10-30)
+
+# [1.293.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.292.0...v1.293.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* ran sanity gql ([d78e3e0](https://github.com/oaknational/Oak-Web-Application/commit/d78e3e0b3e911d8a20f155773d1590d8c0908402))
+
+
+### Features
+
+* catch and log preview zod errors ([1f1be06](https://github.com/oaknational/Oak-Web-Application/commit/1f1be060757f04ba6c0fc463b754a94d3c7152bf))
+
+# [1.292.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.1...v1.292.0) (2023-10-30)
+
+
+### Features
+
+* **pupils page:** add pupils pathway to owa ([ec737a9](https://github.com/oaknational/Oak-Web-Application/commit/ec737a997e280af6408058c3835a09549c5eda9e))
+
+## [1.291.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.291.0...v1.291.1) (2023-10-30)
+
+# [1.291.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.290.0...v1.291.0) (2023-10-29)
+
+
+### Features
+
+* add labs pathway to urls ([5ed2ec7](https://github.com/oaknational/Oak-Web-Application/commit/5ed2ec7199fb64361835edc1ce039786d885036c))
+* add new tab for ai on home page tabs ([ba7ea28](https://github.com/oaknational/Oak-Web-Application/commit/ba7ea28279722504dd5d342ae5d9323e28ce879d))
+
+# [1.290.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.289.1...v1.290.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* added mock for useAnalyticsPageProps hook ([2e28779](https://github.com/oaknational/Oak-Web-Application/commit/2e2877943388e658db5614f27c05b7b22ba8a592))
+* hard coded Teacher as view type ([d81292b](https://github.com/oaknational/Oak-Web-Application/commit/d81292bcc1248f854b411ccf4593351e410ec01b))
+* removed typing from tracking events ([8ab2b3b](https://github.com/oaknational/Oak-Web-Application/commit/8ab2b3b38c894f446e6924149a1d415065a394ae))
+* update tab file to main ([c09e58a](https://github.com/oaknational/Oak-Web-Application/commit/c09e58a334b3b2e17e88bbedc3d59c94fc8e3d81))
+
+
+### Features
+
+* added tracking events to visualiser and modal ([90b25c1](https://github.com/oaknational/Oak-Web-Application/commit/90b25c1884ff4a3e57ad20d4a7121d8f34381ab2))
+* added tracking for curric visualiser access ([2f4537e](https://github.com/oaknational/Oak-Web-Application/commit/2f4537e90363ca551525cbd4e80000011e3d4f74))
+* added tracking for units tracking ([9b3a9fc](https://github.com/oaknational/Oak-Web-Application/commit/9b3a9fc378c459834eca569c5b3b576549353517))
+* added unit modal tracking event ([edeff75](https://github.com/oaknational/Oak-Web-Application/commit/edeff7534e6e7ae9ceafbd4a57c581dbeaa60a2e))
+* point to avo branch ([2d066b8](https://github.com/oaknational/Oak-Web-Application/commit/2d066b8840b0c6f849a5c3eb948ccbd066cb74ba))
+* update tests for unit modal ([d2b152a](https://github.com/oaknational/Oak-Web-Application/commit/d2b152a2341fb18aca3b3c15c96f7253d0c7190d))
+* updated tests for Avo ([495e28f](https://github.com/oaknational/Oak-Web-Application/commit/495e28fd3c10ecb22bc81a9496a8e6ff819fe103))
+
+## [1.289.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.289.0...v1.289.1) (2023-10-26)
+
+# [1.289.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.1...v1.289.0) (2023-10-26)
+
+
+### Bug Fixes
+
+* not provided ([d501a60](https://github.com/oaknational/Oak-Web-Application/commit/d501a60a6a3ea14df9a264c85acf8e346e29c18c))
+* use body2 for school and email ([6e949e3](https://github.com/oaknational/Oak-Web-Application/commit/6e949e313c6ebb1d17db992aad43f5560bad0c8e))
+* use heading component ([f14e29c](https://github.com/oaknational/Oak-Web-Application/commit/f14e29cd3331fc855e5745b7dfdb6b427f95af68))
+
+
+### Features
+
+* move your details heading out of school details ([89fb96f](https://github.com/oaknational/Oak-Web-Application/commit/89fb96ff0d6ffeb869c6cf373940a28dd1669aaa))
+* update component layout ([65c8d1e](https://github.com/oaknational/Oak-Web-Application/commit/65c8d1e787af2ed080037c11fb891e14b97b3fdc))
+* update edit icon ([8799d8a](https://github.com/oaknational/Oak-Web-Application/commit/8799d8a81018e69d1df15828c7a6048f09f9ab05))
+
+## [1.288.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.288.0...v1.288.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* add client mathjax wrap ([5f3302b](https://github.com/oaknational/Oak-Web-Application/commit/5f3302b5a98330de2bf9559a9d4576c02e999472))
+* add dynamic flag ([7c2e905](https://github.com/oaknational/Oak-Web-Application/commit/7c2e9056343fdcc69d19ab074a057eaff0e71c2a))
+* disable dynamic mathjax and render on typeset init ([57c2d7b](https://github.com/oaknational/Oak-Web-Application/commit/57c2d7b077322259d87e302b86d90734a495a47e))
+* mathjax bug add client provider ([a061a28](https://github.com/oaknational/Oak-Web-Application/commit/a061a286b383e9bf3386d3e77372961a8a6136b7))
+
+# [1.288.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.287.0...v1.288.0) (2023-10-24)
+
+
+### Bug Fixes
+
+* enable clearing error state when selecting all ([d22d397](https://github.com/oaknational/Oak-Web-Application/commit/d22d39751a0d53922d166dfc98683771fbdb47e7))
+* reduce width of select all component ([1b1057b](https://github.com/oaknational/Oak-Web-Application/commit/1b1057bb3f0322ab8715881b191e733514db0468))
+* reevaluate form error states on (de)selecting card ([f9da164](https://github.com/oaknational/Oak-Web-Application/commit/f9da164c38cfe3e8ff896fc88543780cb65b91fe))
+
+
+### Features
+
+* adjust font weight for select all ([c31b1e9](https://github.com/oaknational/Oak-Web-Application/commit/c31b1e93a54ab019418a3f3189049b754eadadc9))
+* implement a checkbox instead of buttons for select all ([2492453](https://github.com/oaknational/Oak-Web-Application/commit/249245301c97c5e2ff11d7187caaa6b8accb968b))
+* update styling of select all and heading ([6aa712a](https://github.com/oaknational/Oak-Web-Application/commit/6aa712a52c914e02c69eb2c32f7bd5841e664cb0))
+
 # [1.287.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.286.0...v1.287.0) (2023-10-23)
 
 

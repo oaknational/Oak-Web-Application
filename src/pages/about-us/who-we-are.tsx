@@ -1,26 +1,26 @@
 import { FC, Fragment } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutWhoWeArePage, TextBlock } from "../../common-lib/cms-types";
-import { decorateWithIsr } from "../../node-lib/isr";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import Flex, { FlexProps } from "../../components/Flex";
-import Card from "../../components/Card";
-import Box from "../../components/Box";
-import Typography, { Heading } from "../../components/Typography";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import OutlineHeading from "../../components/OutlineHeading";
-import Grid, { GridArea } from "../../components/Grid";
-import AboutContactCard from "../../components/AboutContactCard";
-import { getLinkHref } from "../../utils/portableText/resolveInternalHref";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import CMSVideo from "../../components/CMSVideo";
-import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import getPageProps from "../../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
+import { decorateWithIsr } from "@/node-lib/isr";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Flex, { FlexProps } from "@/components/Flex";
+import Card from "@/components/Card";
+import Box from "@/components/Box";
+import Typography, { Heading } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import OutlineHeading from "@/components/OutlineHeading";
+import Grid, { GridArea } from "@/components/Grid";
+import AboutContactCard from "@/components/AboutContactCard";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import CMSVideo from "@/components/CMSVideo";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWhoWeArePage;
@@ -49,7 +49,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
           {title}
         </OutlineHeading>
         <Typography $font={["body-2", "body-1"]}>
-          <PortableText value={bodyPortableText} />
+          <PortableTextWithDefaults value={bodyPortableText} />
         </Typography>
         {cta && (
           <Flex>
@@ -96,7 +96,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           </Flex>
           <Box $minWidth={["50%"]}>
             <Typography $mb={36} $font={["body-2", "body-1"]}>
-              <PortableText value={pageData.intro.bodyPortableText} />
+              <PortableTextWithDefaults
+                value={pageData.intro.bodyPortableText}
+              />
             </Typography>
             <Flex $justifyContent={"flex-start"}>
               {pageData.intro.cta && (
@@ -145,7 +147,9 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                     {principle.title}
                   </Heading>
                   <Typography $font={["body-2", "body-1"]}>
-                    <PortableText value={principle.bodyPortableText} />
+                    <PortableTextWithDefaults
+                      value={principle.bodyPortableText}
+                    />
                   </Typography>
                 </Card>
               </GridArea>

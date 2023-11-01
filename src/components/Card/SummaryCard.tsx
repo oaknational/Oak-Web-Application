@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { PortableText } from "@portabletext/react";
 
 import { PortableTextJSON, Image } from "../../common-lib/cms-types";
 import Flex, { FlexProps } from "../Flex";
@@ -8,6 +7,7 @@ import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import CMSImage from "../CMSImage";
+import { PortableTextWithDefaults } from "../PortableText";
 
 import Card from "./Card";
 
@@ -66,7 +66,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
               {typeof summaryPortableText === "string" ? (
                 <p>{summaryPortableText}</p>
               ) : (
-                <PortableText value={summaryPortableText} />
+                <PortableTextWithDefaults value={summaryPortableText} />
               )}
             </Typography>
           </Flex>

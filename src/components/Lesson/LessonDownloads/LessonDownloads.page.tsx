@@ -6,9 +6,8 @@ import { useRouter } from "next/router";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, P } from "@/components/Typography";
+import { Heading, Hr, LI, P, UL } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
-import Button from "@/components/Button";
 import Input from "@/components/Input";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Grid, { GridArea } from "@/components/Grid";
@@ -46,6 +45,7 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import Icon from "@/components/Icon";
+import LoadingButton from "@/components/Button/LoadingButton";
 
 type LessonDownloadsProps =
   | {
@@ -90,11 +90,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
 
-  const { register, formState, control, watch, setValue, handleSubmit } =
-    useForm<DownloadFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
+  const {
+    register,
+    formState,
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    trigger,
+  } = useForm<DownloadFormProps>({
+    resolver: zodResolver(schema),
+    mode: "onBlur",
+  });
+  const [preselectAll, setPreselectAll] = useState(false);
 
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
@@ -115,6 +123,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
 
     if (preselected) {
+      setPreselectAll(preselected === "all");
       preselected === "all"
         ? setValue("downloads", getInitialResourcesToDownloadState())
         : setValue("downloads", preselected);
@@ -210,9 +219,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
   const onDeselectAllClick = () => setValue("downloads", []);
 
-  const allResourcesToDownloadCount = resourcesToDownload.length;
-  const selectedResourcesToDownloadCount = selectedResources?.length;
-
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
@@ -259,8 +265,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  const getFormErrorMessage = () => {
+  const getFormErrorMessages = () => {
     const errorKeyArray = Object.keys(errors);
+
     const errorMessage = getDownloadFormErrorMessage(
       errorKeyArray as ErrorKeysType[],
     );
@@ -283,9 +290,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const showPostAlbCopyright = !isLegacy;
 
   return (
-    <>
-      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Box $mv={[24, 48]}>
+    <Box $ph={[16, null]} $background={"oakGrey1"}>
+      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
+        <Box $mb={32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -303,7 +310,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               }),
             ]}
           />
+          <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
+        <Heading $mb={32} tag={"h1"} $font={["heading-5", "heading-4"]}>
+          Download
+        </Heading>
 
         {!hasResourcesToDownload ? (
           <NoResourcesToDownload />
@@ -311,7 +322,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <>
             {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
             {!isLocalStorageLoading && (
-              <>
+              <Flex $flexDirection="column" $gap={24}>
                 {localStorageDetails ? (
                   <DetailsCompleted
                     email={emailFromLocalStorage}
@@ -335,26 +346,21 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                           : undefined
                       }
                     />
-                    <Heading
-                      tag="h3"
-                      $font={"heading-7"}
-                      $mt={16}
-                      $mb={24}
-                      data-testid="email-heading"
-                    >
-                      For regular updates from Oak (optional)
-                    </Heading>
+
                     <Input
                       id={"email"}
-                      label="Email address"
+                      data-testid="input-email"
+                      label="Email"
                       autoComplete="email"
                       placeholder="Enter email address here"
+                      isOptional={true}
                       {...register("email")}
                       error={errors.email?.message}
                     />
-                    <P $font="body-3" $mt={-24} $mb={40}>
-                      Join our community to get free lessons, resources and
-                      other helpful content. Unsubscribe at any time. Our{" "}
+                    <P $font="body-3" $mt={-20} $mb={48}>
+                      Join over 100k teachers and get free resources and other
+                      helpful content by email. Unsubscribe at any time. Read
+                      our{" "}
                       <OakLink
                         page="legal"
                         legalSlug="privacy-policy"
@@ -399,13 +405,13 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     />
                   </Box>
                 )}
-                <Box $mb={56} $mt={16}>
+                <Box $mb={56}>
                   <CopyrightNotice
                     showPostAlbCopyright={showPostAlbCopyright}
                     openLinksExternally={true}
                   />
                 </Box>
-              </>
+              </Flex>
             )}
 
             <Grid>
@@ -416,6 +422,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 errorMessage={errors?.downloads?.message}
                 onSelectAllClick={() => onSelectAllClick()}
                 onDeselectAllClick={() => onDeselectAllClick()}
+                preselectAll={preselectAll}
+                triggerForm={trigger}
               />
 
               <GridArea $colSpan={[12]}>
@@ -425,16 +433,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   $alignItems={"center"}
                 >
                   {hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-form-error"
-                        data-testid="download-form-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {getFormErrorMessage()}
-                      </FieldError>
-                    </Box>
+                    <Flex $flexDirection={"row"}>
+                      <Icon name="content-guidance" $color={"red"} />
+                      <Flex $flexDirection={"column"}>
+                        <P $ml={4} $color={"red"}>
+                          To complete correct the following:
+                        </P>
+                        <UL $mr={24}>
+                          {getFormErrorMessages().map((err) => {
+                            return <LI $color={"red"}>{err}</LI>;
+                          })}
+                        </UL>
+                      </Flex>
+                    </Flex>
                   )}
                   {apiError && !hasFormErrors && (
                     <Box $mr={24} $textAlign={"left"}>
@@ -449,29 +460,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     </Box>
                   )}
                   <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <Box $minWidth={130} $mr={24}>
-                      <P
-                        $color={"oakGrey4"}
-                        $font={"body-2"}
-                        data-testid="selectedResourcesCount"
-                      >
-                        {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
-                      </P>
-                    </Box>
-                    <Button
-                      label={"Download .zip"}
+                    <LoadingButton
                       onClick={
                         (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
                       }
-                      background={"teachersHighlight"}
+                      text="Download .zip"
                       icon="download"
-                      $iconPosition="trailing"
-                      iconBackground="teachersYellow"
-                      disabled={isAttemptingDownload}
-                      $mt={8}
-                      $mb={16}
-                      $mr={8}
-                      $ml={8}
+                      isLoading={isAttemptingDownload}
+                      disabled={
+                        hasFormErrors ||
+                        (!formState.isValid && !localStorageDetails)
+                      }
+                      loadingText="Downloading..."
                     />
                   </Flex>
                 </Flex>
@@ -480,6 +480,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           </>
         )}
       </MaxWidth>
-    </>
+    </Box>
   );
 }
