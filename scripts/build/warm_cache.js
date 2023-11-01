@@ -18,11 +18,11 @@ if (CfAccessClientId && !CfAccessClientSecret) {
 }
 
 const relativeUrls = getDeploymentTestUrls();
-// Specifically request the slow sprite sheet, a few times for good luck.
-relativeUrls.push("/images/sprite/sprite.svg");
-relativeUrls.push("/images/sprite/sprite.svg");
-relativeUrls.push("/images/sprite/sprite.svg");
-relativeUrls.push("/images/sprite/sprite.svg");
+// Add a few more instances of particularly slow assets and pages.
+for (let i = 0; i < 5; i++) {
+  relativeUrls.push("/images/sprite/sprite.svg");
+  relativeUrls.push("/teachers/lessons/transverse-waves");
+}
 
 const urls = relativeUrls.map((relUrl) => {
   try {

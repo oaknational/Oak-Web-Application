@@ -32,10 +32,7 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    allowedHostnames: [
-      host,
-      "docs.google.com"
-    ],
+    allowedHostnames: [host, "docs.google.com"],
     userAgent: "Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
