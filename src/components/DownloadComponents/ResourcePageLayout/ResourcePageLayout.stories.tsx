@@ -6,10 +6,10 @@ import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
 import { DownloadFormProps } from "../downloads.types";
 import * as downloads from "../downloadsFixtures";
 
-import ResourcePageLayoutProps from "./ResourcePageLayout";
+import ResourcePageLayout, {
+  ResourcePageLayoutProps,
+} from "./ResourcePageLayout";
 import Component from "./ResourcePageLayout";
-
-import ResourcePageLayout from ".";
 
 const meta: Meta<typeof Component> = {
   title: "Download Components/Resource Page Layout",

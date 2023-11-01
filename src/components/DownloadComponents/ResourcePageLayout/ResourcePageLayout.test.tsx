@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 
 import { DownloadFormProps } from "../downloads.types";
 
-import ResourcePageLayoutProps from "./ResourcePageLayout";
-
-import ResourcePageLayout from ".";
+import ResourcePageLayout, {
+  ResourcePageLayoutProps,
+} from "./ResourcePageLayout";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 

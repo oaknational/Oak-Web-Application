@@ -28,7 +28,7 @@ import LoadingButton from "@/components/Button/LoadingButton";
 
 /** Generic layout component for Downloads and Share page */
 
-type ResourcePageLayoutProps = DetailsCompletedProps &
+export type ResourcePageLayoutProps = DetailsCompletedProps &
   SchoolDetailsProps & {
     header: string;
     handleToggleSelectAll: () => void;
@@ -50,7 +50,7 @@ type ResourcePageLayoutProps = DetailsCompletedProps &
     onCtaClick: MouseEventHandler<HTMLButtonElement>;
   };
 
-const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
+const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   const hasFormErrors = Object.keys(props.errors)?.length > 0;
   const getFormErrorMessages = () => {
     const errorKeyArray = Object.keys(props.errors);
@@ -237,4 +237,4 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
   );
 };
 
-export default ResourcePageLayoutProps;
+export default ResourcePageLayout;
