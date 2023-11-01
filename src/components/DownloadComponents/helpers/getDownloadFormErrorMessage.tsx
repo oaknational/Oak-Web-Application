@@ -11,14 +11,14 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     ErrorMessagesAndOrderType
   > = {
     school: {
-      order: 1,
+      order: 2,
       message:
         "select school, type 'homeschool' or tick 'My school isn't listed'",
     },
-    email: { order: 2, message: "enter a valid email address" },
-    terms: { order: 3, message: "accept terms and conditions to download" },
+    email: { order: 3, message: "enter a valid email address" },
+    terms: { order: 4, message: "accept terms and conditions to download" },
     downloads: {
-      order: 4,
+      order: 1,
       message: "select at least one resource to download",
     },
     schoolName: { order: 5, message: "" },
