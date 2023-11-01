@@ -1,21 +1,52 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useForm } from "react-hook-form";
+
+import { DownloadFormProps } from "../downloads.types";
 
 import ResourcePageLayoutProps from "./ResourcePageLayout";
 
+import ResourcePageLayout from ".";
+
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
+type PropsWithoutForm = Omit<ResourcePageLayoutProps, "control" | "register">;
+const props: PropsWithoutForm = {
+  header: "Downloads",
+  selectAllChecked: true,
+  handleToggleSelectAll: jest.fn(),
+  errors: {},
+  showLoading: false,
+  showNoResources: false,
+  showPostAlbCopyright: true,
+  showSavedDetails: false,
+  ctaText: "Download",
+  ctaIcon: "download",
+  isLoading: false,
+  ctaDisabled: false,
+  ctaLoadingText: "Downloading...",
+  onCtaClick: jest.fn(),
+  onEditClick: jest.fn(),
+  setSchool: jest.fn(),
+  cardGroup: <div>Cards</div>,
+};
+
+const ComponentWrapper = (props: PropsWithoutForm) => {
+  const { control, register } = useForm<DownloadFormProps>();
+
+  return (
+    <ResourcePageLayout {...props} control={control} register={register} />
+  );
+};
 
 describe("Downloads/Share Layout", () => {
   it("renders a toggleable select all checkbox", async () => {
     let checked = true;
     const { rerender } = renderWithTheme(
-      <ResourcePageLayoutProps
-        header="Download"
-        handleToggleSelectAll={() => (checked = !checked)}
+      <ComponentWrapper
+        {...props}
         selectAllChecked={checked}
-        cardGroup={<div>Cards</div>}
-        userDetails={<div>Details</div>}
-        ctaButton={<button>CTA</button>}
+        handleToggleSelectAll={() => (checked = false)}
       />,
     );
 
@@ -29,26 +60,18 @@ describe("Downloads/Share Layout", () => {
     const user = userEvent.setup();
     await user.click(selectAllCheckbox);
     rerender(
-      <ResourcePageLayoutProps
-        header="Download"
-        handleToggleSelectAll={() => (checked = true)}
-        selectAllChecked={false}
-        cardGroup={<div>Cards</div>}
-        userDetails={<div>Details</div>}
-        ctaButton={<button>CTA</button>}
+      <ComponentWrapper
+        {...props}
+        selectAllChecked={checked}
+        handleToggleSelectAll={() => (checked = false)}
       />,
     );
     expect(selectAllCheckbox).not.toBeChecked();
   });
   it("handles download error message ", () => {
     renderWithTheme(
-      <ResourcePageLayoutProps
-        header="Download"
-        handleToggleSelectAll={() => {}}
-        selectAllChecked={true}
-        cardGroup={<div>Cards</div>}
-        userDetails={<div>Details</div>}
-        ctaButton={<button>CTA</button>}
+      <ComponentWrapper
+        {...props}
         errors={{ downloads: { message: "downloads error" } }}
       />,
     );
