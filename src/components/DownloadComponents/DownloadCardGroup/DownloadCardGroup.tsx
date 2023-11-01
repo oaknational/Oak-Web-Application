@@ -10,7 +10,7 @@ import ResourceCard from "../ResourceCard";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/Box";
-import { getBreakpoint } from "@/styles/utils/responsive";
+import Grid from "@/components/Grid";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
@@ -18,19 +18,6 @@ export type DownloadCardGroupProps = {
   hasError?: boolean;
   triggerForm: () => void;
 };
-
-const DownloadCardGrid = styled(Box)`
-  display: grid;
-  position: relative;
-  width: max-content;
-  column-gap: 16px;
-  grid-template-columns: "max-content max-content";
-  grid-template-areas: "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx";
-  @media (max-width: ${getBreakpoint("small")}px) {
-    grid-template-columns: "1fr";
-    grid-template-areas: "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx";
-  }
-`;
 
 const DownloadCardArea = styled(Box)<{ area: string }>`
   grid-area: ${(props) => props.area};
@@ -63,7 +50,16 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   const presentationExists =
     downloads?.filter((d) => d.type === "presentation")?.length === 1;
   return (
-    <DownloadCardGrid>
+    <Grid
+      $position="relative"
+      $width="max-content"
+      $gridTemplateColumns={["1fr", "max-content max-content"]}
+      $cg={16}
+      $gridTemplateAreas={[
+        '"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
+        '"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
+      ]}
+    >
       {downloads?.map((download) => {
         if (download.exists && !download.forbidden) {
           return (
@@ -119,7 +115,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           );
         }
       })}
-    </DownloadCardGrid>
+    </Grid>
   );
 };
 
