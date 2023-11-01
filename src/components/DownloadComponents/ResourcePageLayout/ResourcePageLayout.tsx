@@ -63,7 +63,11 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
   };
   return (
     <Box $width="100%">
-      <Flex $alignItems={"flex-start"} $flexDirection={"column"} $gap={32}>
+      <Flex
+        $alignItems={"flex-start"}
+        $flexDirection={"column"}
+        $gap={[24, 32]}
+      >
         <Heading tag="h1" $font={["heading-5", "heading-4"]}>
           {props.header}
         </Heading>
@@ -194,12 +198,10 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
                         />
                       </Box>
                     )}
-                    <Box $mb={56}>
-                      <CopyrightNotice
-                        showPostAlbCopyright={props.showPostAlbCopyright}
-                        openLinksExternally={true}
-                      />
-                    </Box>
+                    <CopyrightNotice
+                      showPostAlbCopyright={props.showPostAlbCopyright}
+                      openLinksExternally={true}
+                    />
                   </Flex>
                 )}
               </>
@@ -219,6 +221,7 @@ const ResourcePageLayoutProps: FC<ResourcePageLayoutProps> = (props) => {
                 </Flex>
               </Flex>
             )}
+
             <LoadingButton
               onClick={props.onCtaClick}
               text={props.ctaText}
