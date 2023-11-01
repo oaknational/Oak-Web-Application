@@ -46,6 +46,7 @@ import {
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import Icon from "@/components/Icon";
 import LoadingButton from "@/components/Button/LoadingButton";
+import DownloadConfirmation from "@/components/DownloadComponents/DownloadConfirmation";
 
 type LessonDownloadsProps =
   | {
@@ -221,6 +222,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
+  const [isDownloadSuccessful, setIsDownloadSuccessful] =
+    useState<boolean>(false);
+
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     setApiError(null);
     try {
@@ -230,6 +234,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setIsAttemptingDownload,
         setEditDetailsClicked,
         onSubmit,
+        setIsDownloadSuccessful,
       });
       const {
         schoolOption,
@@ -292,7 +297,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={32} $mt={24}>
+        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -312,173 +317,189 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
-        <Heading $mb={32} tag={"h1"} $font={["heading-5", "heading-4"]}>
-          Download
-        </Heading>
 
-        {!hasResourcesToDownload ? (
-          <NoResourcesToDownload />
-        ) : (
-          <>
-            {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-            {!isLocalStorageLoading && (
-              <Flex $flexDirection="column" $gap={24}>
-                {localStorageDetails ? (
-                  <DetailsCompleted
-                    email={emailFromLocalStorage}
-                    school={schoolNameFromLocalStorage}
-                    onEditClick={handleEditDetailsCompletedClick}
-                  />
-                ) : (
-                  <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolDetails
-                      errors={errors}
-                      setSchool={setSchool}
-                      initialValue={
-                        schoolIdFromLocalStorage?.length > 0
-                          ? schoolIdFromLocalStorage
-                          : undefined
-                      }
-                      initialSchoolName={
-                        schoolNameFromLocalStorage.length > 0
-                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
-                            schoolNameFromLocalStorage.slice(1)
-                          : undefined
-                      }
-                    />
+        <>
+          {isDownloadSuccessful ? (
+            <DownloadConfirmation
+              lessonSlug={lessonSlug}
+              programmeSlug={programmeSlug}
+              unitSlug={unitSlug}
+            />
+          ) : (
+            <>
+              <Heading $mb={32} tag={"h1"} $font={["heading-5", "heading-4"]}>
+                Download
+              </Heading>
 
-                    <Input
-                      id={"email"}
-                      data-testid="input-email"
-                      label="Email"
-                      autoComplete="email"
-                      placeholder="Enter email address here"
-                      isOptional={true}
-                      {...register("email")}
-                      error={errors.email?.message}
-                    />
-                    <P $font="body-3" $mt={-20} $mb={48}>
-                      Join over 100k teachers and get free resources and other
-                      helpful content by email. Unsubscribe at any time. Read
-                      our{" "}
-                      <OakLink
-                        page="legal"
-                        legalSlug="privacy-policy"
-                        $isInline
-                        htmlAnchorProps={{
-                          target: "_blank",
-                          "aria-label": "Privacy policy (opens in a new tab)",
-                        }}
-                      >
-                        privacy policy{" "}
-                        <Icon
-                          name="external"
-                          verticalAlign="bottom"
-                          size={20}
-                          data-testid="external-link-icon"
+              {!hasResourcesToDownload ? (
+                <NoResourcesToDownload />
+              ) : (
+                <>
+                  {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
+                  {!isLocalStorageLoading && (
+                    <Flex $flexDirection="column" $gap={24}>
+                      {localStorageDetails ? (
+                        <DetailsCompleted
+                          email={emailFromLocalStorage}
+                          school={schoolNameFromLocalStorage}
+                          onEditClick={handleEditDetailsCompletedClick}
                         />
-                      </OakLink>
-                      .
-                    </P>
-                    <Controller
-                      control={control}
-                      name="terms"
-                      render={({
-                        field: { value, onChange, name, onBlur },
-                      }) => {
-                        const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          return onChange(e.target.checked);
-                        };
-                        return (
-                          <TermsAndConditionsCheckbox
-                            name={name}
-                            checked={value}
-                            onChange={onChangeHandler}
-                            onBlur={onBlur}
-                            id={"terms"}
-                            errorMessage={errors?.terms?.message}
+                      ) : (
+                        <Box $maxWidth={[null, 420, 420]}>
+                          <SchoolDetails
+                            errors={errors}
+                            setSchool={setSchool}
+                            initialValue={
+                              schoolIdFromLocalStorage?.length > 0
+                                ? schoolIdFromLocalStorage
+                                : undefined
+                            }
+                            initialSchoolName={
+                              schoolNameFromLocalStorage.length > 0
+                                ? schoolNameFromLocalStorage
+                                    .charAt(0)
+                                    .toUpperCase() +
+                                  schoolNameFromLocalStorage.slice(1)
+                                : undefined
+                            }
                           />
-                        );
-                      }}
-                    />
-                  </Box>
-                )}
-                <Box $mb={56}>
-                  <CopyrightNotice
-                    showPostAlbCopyright={showPostAlbCopyright}
-                    openLinksExternally={true}
-                  />
-                </Box>
-              </Flex>
-            )}
 
-            <Grid>
-              <DownloadCardGroup
-                control={control}
-                downloads={downloads}
-                hasError={errors?.downloads ? true : false}
-                errorMessage={errors?.downloads?.message}
-                onSelectAllClick={() => onSelectAllClick()}
-                onDeselectAllClick={() => onDeselectAllClick()}
-                preselectAll={preselectAll}
-                triggerForm={trigger}
-              />
-
-              <GridArea $colSpan={[12]}>
-                <Flex
-                  $flexDirection={["column", "row"]}
-                  $justifyContent={"right"}
-                  $alignItems={"center"}
-                >
-                  {hasFormErrors && (
-                    <Flex $flexDirection={"row"}>
-                      <Icon name="content-guidance" $color={"red"} />
-                      <Flex $flexDirection={"column"}>
-                        <P $ml={4} $color={"red"}>
-                          To complete correct the following:
-                        </P>
-                        <UL $mr={24}>
-                          {getFormErrorMessages().map((err) => {
-                            return <LI $color={"red"}>{err}</LI>;
-                          })}
-                        </UL>
-                      </Flex>
+                          <Input
+                            id={"email"}
+                            data-testid="input-email"
+                            label="Email"
+                            autoComplete="email"
+                            placeholder="Enter email address here"
+                            isOptional={true}
+                            {...register("email")}
+                            error={errors.email?.message}
+                          />
+                          <P $font="body-3" $mt={-20} $mb={48}>
+                            Join over 100k teachers and get free resources and
+                            other helpful content by email. Unsubscribe at any
+                            time. Read our{" "}
+                            <OakLink
+                              page="legal"
+                              legalSlug="privacy-policy"
+                              $isInline
+                              htmlAnchorProps={{
+                                target: "_blank",
+                                "aria-label":
+                                  "Privacy policy (opens in a new tab)",
+                              }}
+                            >
+                              privacy policy{" "}
+                              <Icon
+                                name="external"
+                                verticalAlign="bottom"
+                                size={20}
+                                data-testid="external-link-icon"
+                              />
+                            </OakLink>
+                            .
+                          </P>
+                          <Controller
+                            control={control}
+                            name="terms"
+                            render={({
+                              field: { value, onChange, name, onBlur },
+                            }) => {
+                              const onChangeHandler = (
+                                e: ChangeEvent<HTMLInputElement>,
+                              ) => {
+                                return onChange(e.target.checked);
+                              };
+                              return (
+                                <TermsAndConditionsCheckbox
+                                  name={name}
+                                  checked={value}
+                                  onChange={onChangeHandler}
+                                  onBlur={onBlur}
+                                  id={"terms"}
+                                  errorMessage={errors?.terms?.message}
+                                />
+                              );
+                            }}
+                          />
+                        </Box>
+                      )}
+                      <Box $mb={56}>
+                        <CopyrightNotice
+                          showPostAlbCopyright={showPostAlbCopyright}
+                          openLinksExternally={true}
+                        />
+                      </Box>
                     </Flex>
                   )}
-                  {apiError && !hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-error"
-                        data-testid="download-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {apiError}
-                      </FieldError>
-                    </Box>
-                  )}
-                  <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <LoadingButton
-                      onClick={
-                        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
-                      }
-                      text="Download .zip"
-                      icon="download"
-                      isLoading={isAttemptingDownload}
-                      disabled={
-                        hasFormErrors ||
-                        (!formState.isValid && !localStorageDetails)
-                      }
-                      loadingText="Downloading..."
+
+                  <Grid>
+                    <DownloadCardGroup
+                      control={control}
+                      downloads={downloads}
+                      hasError={errors?.downloads ? true : false}
+                      errorMessage={errors?.downloads?.message}
+                      onSelectAllClick={() => onSelectAllClick()}
+                      onDeselectAllClick={() => onDeselectAllClick()}
+                      preselectAll={preselectAll}
+                      triggerForm={trigger}
                     />
-                  </Flex>
-                </Flex>
-              </GridArea>
-            </Grid>
-          </>
-        )}
+
+                    <GridArea $colSpan={[12]}>
+                      <Flex
+                        $flexDirection={["column", "row"]}
+                        $justifyContent={"right"}
+                        $alignItems={"center"}
+                      >
+                        {hasFormErrors && (
+                          <Flex $flexDirection={"row"}>
+                            <Icon name="content-guidance" $color={"red"} />
+                            <Flex $flexDirection={"column"}>
+                              <P $ml={4} $color={"red"}>
+                                To complete correct the following:
+                              </P>
+                              <UL $mr={24}>
+                                {getFormErrorMessages().map((err) => {
+                                  return <LI $color={"red"}>{err}</LI>;
+                                })}
+                              </UL>
+                            </Flex>
+                          </Flex>
+                        )}
+                        {apiError && !hasFormErrors && (
+                          <Box $mr={24} $textAlign={"left"}>
+                            <FieldError
+                              id="download-error"
+                              data-testid="download-error"
+                              variant={"large"}
+                              withoutMarginBottom
+                            >
+                              {apiError}
+                            </FieldError>
+                          </Box>
+                        )}
+                        <Flex $justifyContent={"right"} $alignItems={"center"}>
+                          <LoadingButton
+                            onClick={
+                              (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
+                            }
+                            text="Download .zip"
+                            icon="download"
+                            isLoading={isAttemptingDownload}
+                            disabled={
+                              hasFormErrors ||
+                              (!formState.isValid && !localStorageDetails)
+                            }
+                            loadingText="Downloading..."
+                          />
+                        </Flex>
+                      </Flex>
+                    </GridArea>
+                  </Grid>
+                </>
+              )}
+            </>
+          )}
+        </>
       </MaxWidth>
     </Box>
   );

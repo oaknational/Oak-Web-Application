@@ -11,6 +11,7 @@ export type DownloadDebouncedSubmitProps = {
   lessonSlug: string;
   setIsAttemptingDownload: React.Dispatch<React.SetStateAction<boolean>>;
   setEditDetailsClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDownloadSuccessful: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmit: (
     data: DownloadFormProps,
     lessonSlug: string,
@@ -25,6 +26,7 @@ const downloadDebouncedSubmit = async (
     lessonSlug,
     setIsAttemptingDownload,
     setEditDetailsClicked,
+    setIsDownloadSuccessful,
     onSubmit,
   } = downloadDebouncedSubmitProps;
   try {
@@ -39,6 +41,7 @@ const downloadDebouncedSubmit = async (
       { leading: true },
     );
     await debouncedFunction();
+    setIsDownloadSuccessful(true);
   } catch (error) {
     const oakError = new OakError({
       code: "downloads/failed-to-fetch",
