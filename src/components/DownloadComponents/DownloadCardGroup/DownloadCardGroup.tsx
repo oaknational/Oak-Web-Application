@@ -38,6 +38,18 @@ const getGridArea = (
   }
 };
 
+const sortOrderKey = {
+  presentation: 1,
+  "worksheet-pdf": 2,
+  "worksheet-pptx": 3,
+  "intro-quiz-questions": 4,
+  "intro-quiz-answers": 5,
+  "exit-quiz-questions": 6,
+  "exit-quiz-answers": 7,
+  "supplementary-pdf": 8,
+  "supplementary-docx": 9,
+};
+
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
   control,
@@ -49,6 +61,14 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   )?.length;
   const presentationExists =
     downloads?.filter((d) => d.type === "presentation")?.length === 1;
+
+  // Sort the downloads in display order so tabbing order is correct
+  const sortedDownloads = downloads?.sort((a, b) => {
+    const aSortOrder = sortOrderKey[a.type];
+    const bSortOrder = sortOrderKey[b.type];
+    return aSortOrder - bSortOrder;
+  });
+
   return (
     <Grid
       $position="relative"
@@ -60,7 +80,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
         '"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
       ]}
     >
-      {downloads?.map((download) => {
+      {sortedDownloads?.map((download) => {
         if (download.exists && !download.forbidden) {
           return (
             <DownloadCardArea
