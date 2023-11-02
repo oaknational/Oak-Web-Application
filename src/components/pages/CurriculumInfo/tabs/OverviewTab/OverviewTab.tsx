@@ -143,7 +143,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           <Heading tag="h3" $font={["heading-6", "heading-5"]}>
             Subject principles
           </Heading>
-          <UL $reset={true} $mt={24}>
+          <UL $font={["body-2", "body-1"]} $mt={24} $reset={true}>
             {subjectPrinciples.map((item, i) =>
               itemiseSubjectPrinciples(item, i),
             )}
