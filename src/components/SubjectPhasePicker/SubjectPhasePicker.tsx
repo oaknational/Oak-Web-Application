@@ -396,10 +396,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <BoxBorders />
 
               <FocusOn
+                autoFocus={false}
                 onClickOutside={() => setShowSubjects(false)}
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
-                returnFocus={false}
               >
                 {showSubjectError && (
                   <Flex $flexDirection={"row"} $mb={20}>
@@ -558,10 +558,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 <BoxBorders />
                 <FocusOn
+                  autoFocus={false}
                   onClickOutside={() => setShowPhases(false)}
                   onEscapeKey={() => setShowPhases(false)}
                   scrollLock={false}
-                  returnFocus={false}
                 >
                   {showPhaseError && (
                     <Flex $flexDirection={"row"} $mb={20}>

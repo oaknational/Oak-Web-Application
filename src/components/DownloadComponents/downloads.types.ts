@@ -62,10 +62,14 @@ export const schema = z.object({
   school: z
     .string({
       errorMap: () => ({
-        message: "Please select a school or one of the alternative options",
+        message:
+          "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
       }),
     })
-    .min(1, "Please select a school or one of the alternative options"),
+    .min(
+      1,
+      "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
+    ),
   schoolName: z.string().optional(),
   email: z
     .string()
@@ -76,13 +80,13 @@ export const schema = z.object({
     .or(z.literal("")),
   terms: z.literal(true, {
     errorMap: () => ({
-      message: "You must accept our terms of use to download the content",
+      message: "Accept terms and conditions to continue",
     }),
   }),
   downloads: z
     .array(z.string(), {
       errorMap: () => ({
-        message: "Please select at least one lesson resource to download",
+        message: "Select at least one lesson resource to continue",
       }),
     })
     .min(1),
