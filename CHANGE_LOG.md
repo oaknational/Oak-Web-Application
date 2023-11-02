@@ -1,3 +1,10 @@
+## [1.295.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.1...v1.295.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* address console warnings ([baf9b71](https://github.com/oaknational/Oak-Web-Application/commit/baf9b7193e0873d1b6ef82a78bd54a32e1ca9124))
+
 ## [1.295.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.0...v1.295.1) (2023-11-02)
 
 
