@@ -47,6 +47,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             variant={"buttonStyledAsLink"}
             icon="chevron-left"
             iconBackground="oakGrey1"
+            data-testid="back-to-lesson-link"
           />
         </Box>
         <Box $maxWidth={600}>
