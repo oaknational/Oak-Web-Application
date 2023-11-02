@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import Component from "./DLCard";
+import Component from "./ResourceCard";
 
 const meta: Meta<typeof Component> = {
   component: Component,

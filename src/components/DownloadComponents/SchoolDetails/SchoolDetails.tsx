@@ -4,9 +4,7 @@ import { FieldErrorsImpl } from "react-hook-form";
 import Flex from "@/components/Flex";
 import SchoolPicker from "@/components/SchoolPicker";
 import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
-import { Heading } from "@/components/Typography";
 import Checkbox from "@/components/Checkbox";
-import FieldError from "@/components/FormFields/FieldError";
 
 export type SchoolDetailsProps = {
   setSchool: (value: string, name?: string) => void;
@@ -75,12 +73,6 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
   };
   return (
     <>
-      <Heading tag="h2" $font={["heading-6", "heading-5"]} $mb={[24, 32]}>
-        Your details
-      </Heading>
-      {errors?.school && (
-        <FieldError id="school-error">{errors?.school?.message}</FieldError>
-      )}
       <SchoolPicker
         hasError={errors?.school !== undefined}
         schoolPickerInputValue={schoolPickerInputValue}
