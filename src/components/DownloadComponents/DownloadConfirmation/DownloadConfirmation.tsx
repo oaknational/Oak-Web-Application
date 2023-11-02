@@ -30,7 +30,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         $width={[140, 400]}
         $position={"relative"}
       >
-        <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
+        <Box>
+          <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
+        </Box>
       </Flex>
 
       <Flex
@@ -70,6 +72,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         <Heading tag="h1" $font={["heading-4", "heading-3"]}>
           Thanks for downloading
         </Heading>
+        <Box>
+          <Svg name="content-guidance" color="red" />
+        </Box>
         <Box $maxWidth={[360, 524]}>
           <P $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
