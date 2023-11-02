@@ -72,6 +72,10 @@ const SelectButton = styled(UnstyledButton)<object>`
   }
 `;
 
+const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+  color: ${(props) => props.$color};
+`;
+
 const ButtonContainer = styled.div`
   display: inline-block;
 
@@ -262,10 +266,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       option.slug === selectedExamboard?.slug
     );
   };
-
-  const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-    color: ${(props) => props.$color};
-  `;
 
   const viewButtonRef = useRef<HTMLButtonElement>(null);
   const depsRef = useRef(
