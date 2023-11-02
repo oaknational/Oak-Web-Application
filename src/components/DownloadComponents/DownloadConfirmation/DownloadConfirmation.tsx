@@ -33,7 +33,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         $width={[140, 400]}
         $position={"relative"}
       >
-        <Svg name="confirmation" $height={"100%"} $width={"100%"} />
+        <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
       </Flex>
 
       <Flex $flexDirection={"column"} $gap={24}>
