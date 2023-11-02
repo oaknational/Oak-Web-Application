@@ -1,42 +1,32 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useCallback, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, Hr, LI, P, UL } from "@/components/Typography";
-import OakLink from "@/components/OakLink";
-import Input from "@/components/Input";
+import { Hr } from "@/components/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import Grid, { GridArea } from "@/components/Grid";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/DownloadComponents/helpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
 import useDownloadExistenceCheck from "@/components/DownloadComponents/hooks/useDownloadExistenceCheck";
 import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "@/components/DownloadComponents/hooks/useDownloadForm";
 import { getPreselectedDownloadResourceTypes } from "@/components/DownloadComponents/helpers/getDownloadResourceType";
 import {
   ResourcesToDownloadArrayType,
-  ErrorKeysType,
   DownloadFormProps,
   DownloadResourceType,
   preselectedDownloadType,
   schema,
 } from "@/components/DownloadComponents/downloads.types";
-import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import DownloadCardGroup from "@/components/DownloadComponents/DownloadCardGroup/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolDetails from "@/components/DownloadComponents/SchoolDetails";
-import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
-import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
 import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -44,7 +34,7 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
-import Icon from "@/components/Icon";
+import ResourcePageLayout from "@/components/DownloadComponents/ResourcePageLayout";
 import LoadingButton from "@/components/Button/LoadingButton";
 
 type LessonDownloadsProps =
@@ -71,7 +61,6 @@ type LessonDownloadsProps =
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
-
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -103,6 +92,25 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     mode: "onBlur",
   });
   const [preselectAll, setPreselectAll] = useState(false);
+  const [selectAllChecked, setSelectAllChecked] = useState(false);
+
+  useEffect(() => {
+    if (preselectAll) {
+      setSelectAllChecked(true);
+    }
+  }, [preselectAll]);
+
+  const handleToggleSelectAll = () => {
+    if (selectAllChecked) {
+      onDeselectAllClick();
+      setSelectAllChecked(false);
+    } else {
+      onSelectAllClick();
+      setSelectAllChecked(true);
+    }
+    // Trigger the form to reevaluate errors
+    trigger();
+  };
 
   const getInitialResourcesToDownloadState = useCallback(() => {
     return downloads
@@ -170,7 +178,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocalStorage && !editDetailsClicked;
+    !!hasDetailsFromLocalStorage && !editDetailsClicked;
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
@@ -265,16 +273,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  const getFormErrorMessages = () => {
-    const errorKeyArray = Object.keys(errors);
-
-    const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[],
-    );
-
-    return errorMessage;
-  };
-
   useDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: resourcesToDownload,
@@ -286,8 +284,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
   };
-
-  const showPostAlbCopyright = !isLegacy;
 
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
@@ -312,173 +308,65 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
-        <Heading $mb={32} tag={"h1"} $font={["heading-5", "heading-4"]}>
-          Download
-        </Heading>
 
-        {!hasResourcesToDownload ? (
-          <NoResourcesToDownload />
-        ) : (
-          <>
-            {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-            {!isLocalStorageLoading && (
-              <Flex $flexDirection="column" $gap={24}>
-                {localStorageDetails ? (
-                  <DetailsCompleted
-                    email={emailFromLocalStorage}
-                    school={schoolNameFromLocalStorage}
-                    onEditClick={handleEditDetailsCompletedClick}
-                  />
-                ) : (
-                  <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolDetails
-                      errors={errors}
-                      setSchool={setSchool}
-                      initialValue={
-                        schoolIdFromLocalStorage?.length > 0
-                          ? schoolIdFromLocalStorage
-                          : undefined
-                      }
-                      initialSchoolName={
-                        schoolNameFromLocalStorage.length > 0
-                          ? schoolNameFromLocalStorage.charAt(0).toUpperCase() +
-                            schoolNameFromLocalStorage.slice(1)
-                          : undefined
-                      }
-                    />
+        <ResourcePageLayout
+          errors={errors}
+          handleToggleSelectAll={handleToggleSelectAll}
+          selectAllChecked={selectAllChecked}
+          header="Download"
+          showNoResources={!hasResourcesToDownload}
+          showLoading={isLocalStorageLoading}
+          email={emailFromLocalStorage}
+          school={schoolNameFromLocalStorage}
+          schoolId={schoolIdFromLocalStorage}
+          setSchool={setSchool}
+          showSavedDetails={shouldDisplayDetailsCompleted}
+          onEditClick={handleEditDetailsCompletedClick}
+          register={register}
+          control={control}
+          showPostAlbCopyright={!isLegacy}
+          cardGroup={
+            <DownloadCardGroup
+              control={control}
+              downloads={downloads}
+              hasError={errors?.downloads ? true : false}
+              triggerForm={trigger}
+            />
+          }
+          cta={
+            <LoadingButton
+              onClick={
+                (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+              }
+              text={"Download .zip"}
+              icon={"download"}
+              isLoading={isAttemptingDownload}
+              disabled={
+                hasFormErrors || (!formState.isValid && !localStorageDetails)
+              }
+              loadingText={"Downloading..."}
+            />
+          }
+        />
 
-                    <Input
-                      id={"email"}
-                      data-testid="input-email"
-                      label="Email"
-                      autoComplete="email"
-                      placeholder="Enter email address here"
-                      isOptional={true}
-                      {...register("email")}
-                      error={errors.email?.message}
-                    />
-                    <P $font="body-3" $mt={-20} $mb={48}>
-                      Join over 100k teachers and get free resources and other
-                      helpful content by email. Unsubscribe at any time. Read
-                      our{" "}
-                      <OakLink
-                        page="legal"
-                        legalSlug="privacy-policy"
-                        $isInline
-                        htmlAnchorProps={{
-                          target: "_blank",
-                          "aria-label": "Privacy policy (opens in a new tab)",
-                        }}
-                      >
-                        privacy policy{" "}
-                        <Icon
-                          name="external"
-                          verticalAlign="bottom"
-                          size={20}
-                          data-testid="external-link-icon"
-                        />
-                      </OakLink>
-                      .
-                    </P>
-                    <Controller
-                      control={control}
-                      name="terms"
-                      render={({
-                        field: { value, onChange, name, onBlur },
-                      }) => {
-                        const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          return onChange(e.target.checked);
-                        };
-                        return (
-                          <TermsAndConditionsCheckbox
-                            name={name}
-                            checked={value}
-                            onChange={onChangeHandler}
-                            onBlur={onBlur}
-                            id={"terms"}
-                            errorMessage={errors?.terms?.message}
-                          />
-                        );
-                      }}
-                    />
-                  </Box>
-                )}
-                <Box $mb={56}>
-                  <CopyrightNotice
-                    showPostAlbCopyright={showPostAlbCopyright}
-                    openLinksExternally={true}
-                  />
-                </Box>
-              </Flex>
-            )}
-
-            <Grid>
-              <DownloadCardGroup
-                control={control}
-                downloads={downloads}
-                hasError={errors?.downloads ? true : false}
-                errorMessage={errors?.downloads?.message}
-                onSelectAllClick={() => onSelectAllClick()}
-                onDeselectAllClick={() => onDeselectAllClick()}
-                preselectAll={preselectAll}
-                triggerForm={trigger}
-              />
-
-              <GridArea $colSpan={[12]}>
-                <Flex
-                  $flexDirection={["column", "row"]}
-                  $justifyContent={"right"}
-                  $alignItems={"center"}
-                >
-                  {hasFormErrors && (
-                    <Flex $flexDirection={"row"}>
-                      <Icon name="content-guidance" $color={"red"} />
-                      <Flex $flexDirection={"column"}>
-                        <P $ml={4} $color={"red"}>
-                          To complete correct the following:
-                        </P>
-                        <UL $mr={24}>
-                          {getFormErrorMessages().map((err) => {
-                            return <LI $color={"red"}>{err}</LI>;
-                          })}
-                        </UL>
-                      </Flex>
-                    </Flex>
-                  )}
-                  {apiError && !hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-error"
-                        data-testid="download-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {apiError}
-                      </FieldError>
-                    </Box>
-                  )}
-                  <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <LoadingButton
-                      onClick={
-                        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
-                      }
-                      text="Download .zip"
-                      icon="download"
-                      isLoading={isAttemptingDownload}
-                      disabled={
-                        hasFormErrors ||
-                        (!formState.isValid && !localStorageDetails)
-                      }
-                      loadingText="Downloading..."
-                    />
-                  </Flex>
-                </Flex>
-              </GridArea>
-            </Grid>
-          </>
-        )}
+        <Flex
+          $flexDirection={["column", "row"]}
+          $justifyContent={"right"}
+          $alignItems={"center"}
+        >
+          {apiError && !hasFormErrors && (
+            <Box $mr={24} $textAlign={"left"}>
+              <FieldError
+                id="download-error"
+                data-testid="download-error"
+                variant={"large"}
+                withoutMarginBottom
+              >
+                {apiError}
+              </FieldError>
+            </Box>
+          )}
+        </Flex>
       </MaxWidth>
     </Box>
   );
