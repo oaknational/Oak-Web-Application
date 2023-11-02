@@ -8,8 +8,8 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
+  programmeSlug: string;
+  unitSlug: string;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -17,9 +17,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   programmeSlug,
   unitSlug,
 }) => {
-  if (programmeSlug === null || unitSlug === null) {
-    return null;
-  }
   return (
     <Flex
       $flexDirection={["column", "row"]}

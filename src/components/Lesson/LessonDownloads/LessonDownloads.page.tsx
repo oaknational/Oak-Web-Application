@@ -314,7 +314,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
-        {isDownloadSuccessful ? (
+        {isDownloadSuccessful && unitSlug && programmeSlug ? (
           <DownloadConfirmation
             unitSlug={unitSlug}
             lessonSlug={lessonSlug}
