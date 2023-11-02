@@ -51,6 +51,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             size="small"
           />
         ) : null}
+
         {unitSlug && programmeSlug && (
           <ButtonAsLink
             page={"lesson-overview"}
@@ -65,6 +66,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             size="small"
           />
         )}
+
         <Heading tag="h1" $font={["heading-4", "heading-3"]}>
           Thanks for downloading
         </Heading>
