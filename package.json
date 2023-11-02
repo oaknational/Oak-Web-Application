@@ -196,7 +196,7 @@
     "postcss-scss": "^4.0.7",
     "prettier": "3.0.3",
     "properties-file": "^3.2.20",
-    "puppeteer": "^21.1.1",
+    "puppeteer": "^21.4.1",
     "semantic-release": "^21.1.1",
     "start-server-and-test": "^2.0.0",
     "storybook-addon-themes": "^6.1.0",
