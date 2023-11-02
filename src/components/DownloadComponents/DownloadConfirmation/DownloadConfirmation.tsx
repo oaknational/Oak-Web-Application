@@ -8,8 +8,8 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -33,8 +33,25 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
       </Flex>
 
-      <Flex $flexDirection={"column"} $gap={24}>
-        <Box>
+      <Flex
+        $flexDirection={"column"}
+        $gap={24}
+        $alignItems={"flex-start"}
+        $maxWidth={600}
+      >
+        {!unitSlug || !programmeSlug ? (
+          <ButtonAsLink
+            page={"lesson-overview-canonical"}
+            lessonSlug={lessonSlug}
+            label="Back to lesson"
+            variant={"buttonStyledAsLink"}
+            icon="chevron-left"
+            iconBackground="oakGrey1"
+            data-testid="back-to-lesson-link"
+            size="small"
+          />
+        ) : null}
+        {unitSlug && programmeSlug && (
           <ButtonAsLink
             page={"lesson-overview"}
             lessonSlug={lessonSlug}
@@ -45,18 +62,17 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             icon="chevron-left"
             iconBackground="oakGrey1"
             data-testid="back-to-lesson-link"
+            size="small"
           />
-        </Box>
-        <Box $maxWidth={600}>
-          <Heading tag="h2" $font={["heading-4", "heading-3"]} $mb={24}>
-            Thanks for downloading
-          </Heading>
-          <Box $maxWidth={[360, 524]}>
-            <P $font={"body-1"}>
-              We hope you find the resources useful. Click the question mark in
-              the bottom-right corner to share your feedback.
-            </P>
-          </Box>
+        )}
+        <Heading tag="h1" $font={["heading-4", "heading-3"]}>
+          Thanks for downloading
+        </Heading>
+        <Box $maxWidth={[360, 524]}>
+          <P $font={"body-1"}>
+            We hope you find the resources useful. Click the question mark in
+            the bottom-right corner to share your feedback.
+          </P>
         </Box>
       </Flex>
     </Flex>
