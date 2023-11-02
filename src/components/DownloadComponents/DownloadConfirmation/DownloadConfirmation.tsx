@@ -49,13 +49,17 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             iconBackground="oakGrey1"
           />
         </Box>
-        <Heading tag="h2" $font={["heading-4", "heading-3"]}>
-          Thanks for downloading
-        </Heading>
-        <P $font={"body-1"}>
-          We hope you find the resources useful. Click the question mark in the
-          bottom-right corner to share your feedback.
-        </P>
+        <Box $maxWidth={600}>
+          <Heading tag="h2" $font={["heading-4", "heading-3"]} $mb={24}>
+            Thanks for downloading
+          </Heading>
+          <Box $maxWidth={[360, 524]}>
+            <P $font={"body-1"}>
+              We hope you find the resources useful. Click the question mark in
+              the bottom-right corner to share your feedback.
+            </P>
+          </Box>
+        </Box>
       </Flex>
     </Flex>
   );
