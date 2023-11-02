@@ -15,7 +15,7 @@ describe("DownloadConfirmation component", () => {
     expect(getByText("Thanks for downloading")).toBeInTheDocument();
   });
 
-  it("Back to lesson link", async () => {
+  it("Back to lesson link", () => {
     const { getByTestId } = renderWithTheme(
       <DownloadConfirmation
         lessonSlug="test-lesson"
@@ -30,5 +30,19 @@ describe("DownloadConfirmation component", () => {
       "href",
       "/teachers/programmes/test-programme/units/test-unit/lessons/test-lesson",
     );
+  });
+
+  it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
+    const { getByTestId } = renderWithTheme(
+      <DownloadConfirmation
+        lessonSlug="test-lesson"
+        programmeSlug={null}
+        unitSlug={null}
+      />,
+    );
+
+    const link = getByTestId("back-to-lesson-link");
+
+    expect(link).toHaveAttribute("href", "/teachers/lessons/test-lesson");
   });
 });
