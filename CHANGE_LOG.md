@@ -1,3 +1,10 @@
+## [1.295.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.0...v1.295.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* disabling autofocus for subject phase picker ([4041d77](https://github.com/oaknational/Oak-Web-Application/commit/4041d77c3c29ad7dae67ab027744cd807b83d75e))
+
 # [1.295.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.294.2...v1.295.0) (2023-11-01)
 
 
