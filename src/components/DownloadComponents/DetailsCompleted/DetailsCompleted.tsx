@@ -5,6 +5,7 @@ import Button from "@/components/Button";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Svg from "@/components/Svg";
 
 export type DetailsCompletedProps = {
   email?: string;
@@ -50,6 +51,7 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
             <P $font={"body-2"} $wordWrap={"break-word"}>
               {email ? email : "Not provided"}
             </P>
+            <Svg name="content-guidance" $height={16} $width={16} />
           </Flex>
         </Flex>
         <Button

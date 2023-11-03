@@ -72,9 +72,6 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         <Heading tag="h1" $font={["heading-4", "heading-3"]}>
           Thanks for downloading
         </Heading>
-        <Box>
-          <Svg name="content-guidance" color="red" />
-        </Box>
         <Box $maxWidth={[360, 524]}>
           <P $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
