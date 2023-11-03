@@ -314,23 +314,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
-        <DownloadConfirmation
-          unitSlug={unitSlug}
-          lessonSlug={lessonSlug}
-          programmeSlug={programmeSlug}
-          data-testid="downloads-confirmation"
-        />
-        )
-        {isDownloadSuccessful ? (
-          <Box>
-            <DownloadConfirmation
-              unitSlug={unitSlug}
-              lessonSlug={lessonSlug}
-              programmeSlug={programmeSlug}
-              data-testid="downloads-confirmation"
-            />
-          </Box>
-        ) : (
+
+        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+          <DownloadConfirmation
+            unitSlug={unitSlug}
+            lessonSlug={lessonSlug}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+          />
+        </Box>
+        {!isDownloadSuccessful && (
           <>
             <ResourcePageLayout
               errors={errors}
