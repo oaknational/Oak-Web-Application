@@ -58,7 +58,6 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  z-index: 1;
   border-color: ${(props) => getBorderColor(props)};
   background-color: ${(props) =>
     props.checked ? getColorByName("black") : getColorByName("white")};
