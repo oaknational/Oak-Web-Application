@@ -1,18 +1,57 @@
-// import NextLessonCard from "./NextLessonCard";
+import NextLessonCard from "./NextLessonCard";
 
-// import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("NextLessonCard", () => {
   it("should render component", () => {
-    // const { getByText } = renderWithTheme(
-    //   <NextLessonCard
-    //     lessonTitle="test-lesson"
-    //     programmeSlug="test-programme"
-    //     unitSlug="test-unit"
-    //     lessonSlug="test-slug"
-    //   />,
-    // );
+    const { getByText } = renderWithTheme(
+      <NextLessonCard
+        lessonTitle="test-lesson"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonSlug="test-slug"
+      />,
+    );
 
-    expect(true).toBe(true);
+    const nextLessonCardTitle = getByText("test-lesson");
+
+    expect(nextLessonCardTitle).toBeInTheDocument();
+  });
+  it("should render see lesson link with correct href", () => {
+    const { getByTestId } = renderWithTheme(
+      <NextLessonCard
+        lessonTitle="test-lesson"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonSlug="test-slug"
+      />,
+    );
+
+    const seeLessonLink = getByTestId("see-lesson-link");
+
+    expect(seeLessonLink).toBeInTheDocument();
+    expect(seeLessonLink).toHaveAttribute(
+      "href",
+      "/teachers/programmes/test-programme/units/test-unit/lessons/test-slug",
+    );
+  });
+
+  it("should render download lesson link with correct href", () => {
+    const { getByTestId } = renderWithTheme(
+      <NextLessonCard
+        lessonTitle="test-lesson"
+        programmeSlug="test-programme"
+        unitSlug="test-unit"
+        lessonSlug="test-slug"
+      />,
+    );
+
+    const downloadResourcesLink = getByTestId("download-resources-link");
+
+    expect(downloadResourcesLink).toBeInTheDocument();
+    expect(downloadResourcesLink).toHaveAttribute(
+      "href",
+      "/teachers/programmes/test-programme/units/test-unit/lessons/test-slug/downloads",
+    );
   });
 });
