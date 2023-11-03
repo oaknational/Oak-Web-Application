@@ -89,6 +89,7 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
           aria-label={"my school isn't listed"}
           id={`checkbox-not-listed`}
           name={"checkbox-not-listed"}
+          zIndex={"neutral"}
           labelText={"My school isn't listed"}
           data-testid={"checkbox-download"}
         />

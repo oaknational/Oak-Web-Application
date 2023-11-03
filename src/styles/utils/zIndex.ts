@@ -17,7 +17,7 @@ export type ZIndex = keyof typeof zIndexMap | null;
 export type ZIndexProps = {
   $zIndex?: ResponsiveValues<ZIndex>;
 };
-const parseZIndex = (value?: ZIndex | null) => {
+export const parseZIndex = (value?: ZIndex | null) => {
   return value ? zIndexMap[value] : value;
 };
 const zIndex = css<ZIndexProps>`

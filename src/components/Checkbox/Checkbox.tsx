@@ -2,15 +2,16 @@ import { FC, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 
-import { OakColorName } from "../../styles/theme";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import FocusUnderline from "../OakLink/FocusUnderline";
-import FieldError from "../FormFields/FieldError";
-
 import VisualCheckbox from "./VisualCheckbox";
+
+import { OakColorName } from "@/styles/theme";
+import spacing, { SpacingProps } from "@/styles/utils/spacing";
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import getFontFamily from "@/styles/themeHelpers/getFontFamily";
+import FocusUnderline from "@/components/OakLink/FocusUnderline";
+import FieldError from "@/components/FormFields/FieldError";
+import { ZIndex } from "@/styles/utils/zIndex";
 
 export type CheckboxConfig = {
   default: {
@@ -40,6 +41,7 @@ export type CheckboxProps = {
   hasError?: boolean;
   labelFontWeight?: 400 | 600;
   slim?: boolean;
+  zIndex?: ZIndex;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -165,6 +167,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     inputRef,
     onBlur,
     slim,
+    zIndex,
     labelFontWeight,
     ...spacingProps
   } = props;
@@ -201,6 +204,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           variant={variant}
           hasError={hasError}
           slim={slim}
+          zIndex={zIndex}
         />
         {/* card checkbox */}
         {!labelText && variant === "withoutLabel" && children}
