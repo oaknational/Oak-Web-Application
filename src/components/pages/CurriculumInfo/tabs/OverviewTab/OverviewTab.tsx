@@ -70,10 +70,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </LI>
         ));
         return (
-          <Box $mb={10}>
+          <LI $mb={10} key={`${firstItem.split(" ").join("-")}`}>
             {createBullet(firstItem, i)}
             <UL>{bullets}</UL>
-          </Box>
+          </LI>
         );
       }
     } else {
