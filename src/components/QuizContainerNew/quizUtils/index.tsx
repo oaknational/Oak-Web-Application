@@ -1,3 +1,4 @@
+import React from "react";
 import reactStringReplace from "react-string-replace";
 import styled from "styled-components";
 
@@ -16,17 +17,17 @@ export const shortAnswerTitleFormatter = (
   if (!title) return "";
   if (shortAnswerRegex.test(title)) {
     return reactStringReplace(title, shortAnswerRegex, (match, i) => (
-      <>
+      <React.Fragment key={i}>
         {" "}
         <UnderlineSpan
-          key={i}
+          // key={i}
           // This is an empty box with a line under it, to indicate an answer would go here.
           role="presentation"
           title="An empty space to write an answer in"
           data-testid="underline"
         />{" "}
         {match}
-      </>
+      </React.Fragment>
     ));
   } else {
     return title;
