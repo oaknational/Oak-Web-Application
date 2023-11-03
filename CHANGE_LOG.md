@@ -1,3 +1,11 @@
+## [1.295.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.3...v1.295.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* removed nested div from p ([fedadec](https://github.com/oaknational/Oak-Web-Application/commit/fedadeca59884e8f98185324f430cea703bb40c0))
+* update font size for subject principles ([c519434](https://github.com/oaknational/Oak-Web-Application/commit/c5194340c5ec9249cf391c488c503bfef1fff635))
+
 ## [1.295.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.2...v1.295.3) (2023-11-02)
 
 
