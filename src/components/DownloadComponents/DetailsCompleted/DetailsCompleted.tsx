@@ -52,6 +52,8 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
               {email ? email : "Not provided"}
             </P>
             <Svg name="content-guidance" $height={16} $width={16} />
+            <Svg name="chevron-left" $height={16} $width={16} />
+            <Svg name="tick-mark-happiness" $height={160} $width={160} />
           </Flex>
         </Flex>
         <Button
