@@ -498,7 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 School phase
               </Heading>
-              <P
+              <Box
                 $font={"body-2"}
                 $color={
                   !showPhaseError && !showExamboardError ? "black" : "failure"
@@ -542,7 +542,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   !showPhaseError &&
                   !showExamboardError &&
                   "Select"}
-              </P>
+              </Box>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
 
