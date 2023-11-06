@@ -18,7 +18,7 @@ const snapshotRelativeUrls = getDeploymentTestUrls();
 const urls = snapshotRelativeUrls.map((relUrl) => {
   if (typeof relUrl === "string") {
     const url = new URL(relUrl, baseUrl).href;
-    return { name: relUrl, url, waitForTimeout: 1000 };
+    return { name: relUrl, url };
   } else {
     const url = new URL(relUrl.url, baseUrl).href;
     return {
