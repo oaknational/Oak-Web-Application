@@ -1,3 +1,27 @@
+## [1.295.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.3...v1.295.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* removed nested div from p ([fedadec](https://github.com/oaknational/Oak-Web-Application/commit/fedadeca59884e8f98185324f430cea703bb40c0))
+* update font size for subject principles ([c519434](https://github.com/oaknational/Oak-Web-Application/commit/c5194340c5ec9249cf391c488c503bfef1fff635))
+
+## [1.295.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.2...v1.295.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* redirect to correct branch ([70426e0](https://github.com/oaknational/Oak-Web-Application/commit/70426e0c5ca388f3ace3fe4d401dac52d70c03f2))
+* redirect to main bfanch ([7d3ba14](https://github.com/oaknational/Oak-Web-Application/commit/7d3ba14bbe7f71d13a1d8cb8d1cf2e8e0a818682))
+* update avo source tracking ([2efa34b](https://github.com/oaknational/Oak-Web-Application/commit/2efa34b2ed7406d0154d7a76ebae8204c00e7b88))
+
+## [1.295.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.1...v1.295.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* address console warnings ([baf9b71](https://github.com/oaknational/Oak-Web-Application/commit/baf9b7193e0873d1b6ef82a78bd54a32e1ca9124))
+
 ## [1.295.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.0...v1.295.1) (2023-11-02)
 
 
