@@ -54,7 +54,6 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             label="See lesson"
             size="small"
-            data-testid="see-lesson-link"
           />
 
           <ButtonAsLink
@@ -70,7 +69,6 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             size="small"
             $font={"heading-7"}
-            data-testid="download-resources-link"
           />
         </Flex>
       </Flex>
