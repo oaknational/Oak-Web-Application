@@ -23,15 +23,16 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
       $background={"aqua50"}
       $borderRadius={4}
       $width={[340, 240, 420]}
-      $height={[160, 270, 160]}
+      $minHeight={[160, 270, 160]}
     >
       <Flex
         $pa={24}
         $flexDirection={"column"}
-        $height={"100%"}
+        $minHeight={[160, 270, 160]}
         $position={"relative"}
         $justifyContent={"space-between"}
         $wordWrap={"break-word"}
+        $gap={16}
       >
         <Heading tag="h3" $font={"heading-6"} $mb={[16, "auto"]}>
           {lessonTitle}
