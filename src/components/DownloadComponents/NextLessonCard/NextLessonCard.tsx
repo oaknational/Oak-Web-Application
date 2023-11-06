@@ -26,7 +26,7 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
       $minHeight={[160, 270, 160]}
     >
       <Flex
-        $pa={24}
+        $pa={[16, 16, 24]}
         $flexDirection={"column"}
         $minHeight={[160, 270, 160]}
         $position={"relative"}
