@@ -72,6 +72,10 @@ const SelectButton = styled(UnstyledButton)<object>`
   }
 `;
 
+const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+  color: ${(props) => props.$color};
+`;
+
 const ButtonContainer = styled.div`
   display: inline-block;
 
@@ -263,10 +267,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
-  const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-    color: ${(props) => props.$color};
-  `;
-
   const viewButtonRef = useRef<HTMLButtonElement>(null);
   const depsRef = useRef(
     selectedSubject &&
@@ -396,10 +396,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <BoxBorders />
 
               <FocusOn
+                autoFocus={false}
                 onClickOutside={() => setShowSubjects(false)}
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
-                returnFocus={false}
               >
                 {showSubjectError && (
                   <Flex $flexDirection={"row"} $mb={20}>
@@ -498,7 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 School phase
               </Heading>
-              <P
+              <Box
                 $font={"body-2"}
                 $color={
                   !showPhaseError && !showExamboardError ? "black" : "failure"
@@ -542,7 +542,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   !showPhaseError &&
                   !showExamboardError &&
                   "Select"}
-              </P>
+              </Box>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
 
@@ -558,10 +558,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 <BoxBorders />
                 <FocusOn
+                  autoFocus={false}
                   onClickOutside={() => setShowPhases(false)}
                   onEscapeKey={() => setShowPhases(false)}
                   scrollLock={false}
-                  returnFocus={false}
                 >
                   {showPhaseError && (
                     <Flex $flexDirection={"row"} $mb={20}>

@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "uWjfSeOqKBJjXz3xBg7k",
+          "ac": "kMkPk2p1iQmOb7RZeC7g",
           "br": "master",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "uWjfSeOqKBJjXz3xBg7k",
+          "ac": "kMkPk2p1iQmOb7RZeC7g",
           "br": "master",
           "en": env,
           "ty": type,
@@ -3156,7 +3156,7 @@ export function curriculumVisualiserAccessed(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "_ImUDkApb7", "dd13d3ec7e874896ac77a4a52c8f6d44df6a394d02f2b5ed7022be1114cd3c01", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "_ImUDkApb7", "ec79d5156b9e2e67783e8738fc4f7e8a1a8864b12ed65b1d675166003e318674", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Visualiser Accessed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3167,8 +3167,10 @@ export function curriculumVisualiserAccessed(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Accessed", eventProperties, "_ImUDkApb7", "dd13d3ec7e874896ac77a4a52c8f6d44df6a394d02f2b5ed7022be1114cd3c01");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Visualiser Accessed", eventProperties, "_ImUDkApb7", "ec79d5156b9e2e67783e8738fc4f7e8a1a8864b12ed65b1d675166003e318674");
     }
+    // destination PostHogEU
+    PostHogEU.logEvent("Curriculum Visualiser Accessed", (Object as any).assign({}, eventProperties));
   } else {
     // do nothing
   }
