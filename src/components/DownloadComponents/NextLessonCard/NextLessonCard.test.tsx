@@ -18,7 +18,7 @@ describe("NextLessonCard", () => {
     expect(nextLessonCardTitle).toBeInTheDocument();
   });
   it("should render see lesson link with correct href", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByRole } = renderWithTheme(
       <NextLessonCard
         lessonTitle="test-lesson"
         programmeSlug="test-programme"
@@ -27,7 +27,7 @@ describe("NextLessonCard", () => {
       />,
     );
 
-    const seeLessonLink = getByTestId("see-lesson-link");
+    const seeLessonLink = getByRole("link", { name: "See lesson" });
 
     expect(seeLessonLink).toBeInTheDocument();
     expect(seeLessonLink).toHaveAttribute(
@@ -37,7 +37,7 @@ describe("NextLessonCard", () => {
   });
 
   it("should render download lesson link with correct href", () => {
-    const { getByTestId } = renderWithTheme(
+    const { getByRole } = renderWithTheme(
       <NextLessonCard
         lessonTitle="test-lesson"
         programmeSlug="test-programme"
@@ -46,7 +46,9 @@ describe("NextLessonCard", () => {
       />,
     );
 
-    const downloadResourcesLink = getByTestId("download-resources-link");
+    const downloadResourcesLink = getByRole("link", {
+      name: "Download resources",
+    });
 
     expect(downloadResourcesLink).toBeInTheDocument();
     expect(downloadResourcesLink).toHaveAttribute(
