@@ -31,7 +31,9 @@ module.exports = {
     `,
   },
   discovery: {
-    networkIdleTimeout: 1200,
+    // If we set the network timeout here is will be overridden by the config parsing to 750ms max.
+    // Instead we set it in the percy snapshot command GitHub workflow as an override env.
+    // networkIdleTimeout: ,
     allowedHostnames: [host, "docs.google.com"],
     userAgent: "Percy",
     requestHeaders: {
