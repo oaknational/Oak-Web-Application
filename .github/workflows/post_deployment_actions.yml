@@ -145,6 +145,8 @@ jobs:
         env:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+          # https://github.com/percy/cli/issues/1425
+          PERCY_NETWORK_IDLE_WAIT_TIMEOUT: 1200
 
       # Set custom status so results preserved between multiple
       # deployment events from same commit

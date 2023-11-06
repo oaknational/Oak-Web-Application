@@ -31,7 +31,7 @@ module.exports = {
     `,
   },
   discovery: {
-    networkIdleTimeout: 750,
+    networkIdleTimeout: 1200,
     allowedHostnames: [host, "docs.google.com"],
     userAgent: "Percy",
     requestHeaders: {
