@@ -61,6 +61,15 @@ if (CfAccessClientId) {
   };
 }
 
+async function loadPage(page, url, waitForSelector) {
+  await page.goto(url, { timeout: 60000, waitUntil: "networkidle0" });
+  // Optionally wait for a selector to be visible.
+  if (waitForSelector) {
+    console.log(`Waiting for selector ${waitForSelector}`);
+    await page.waitForSelector(waitForSelector);
+  }
+}
+
 async function main() {
   const browser = await puppeteer.launch({ headless: "new" });
   const ua = await browser.userAgent();
@@ -90,11 +99,15 @@ async function main() {
     try {
       console.log(`(${urlCount} of ${urlTotal}) Warming cache for ${url}`);
       console.time(url);
-      await page.goto(url, { timeout: 60000, waitUntil: "networkidle0" });
-      // Optionally wait for a selector to be visible.
-      if (waitForSelector) {
-        console.log(`Waiting for selector ${waitForSelector}`);
-        await page.waitForSelector(waitForSelector);
+      try {
+        await loadPage(page, url, waitForSelector);
+      } catch (e) {
+        // Retry once
+        console.warn(
+          `Encountered error warming cache for ${url} with following error, retrying once`,
+        );
+        console.warn(e);
+        await loadPage(page, url, waitForSelector);
       }
       console.timeEnd(url);
     } catch (e) {
@@ -105,7 +118,7 @@ async function main() {
   }
   if (errors.length) {
     console.error("Encountered errors warming cache for the following URLs");
-    console.error(Object.keys(errors));
+    console.error(errors.map(({ url }) => url));
     process.exit(1);
   }
   await browser.close();
