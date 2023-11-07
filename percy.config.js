@@ -37,5 +37,7 @@ module.exports = {
       "CF-Access-Client-Id": CfAccessClientId,
       "CF-Access-Client-Secret": CfAccessClientSecret,
     },
+    // Try dropping the concurrency to 1 to see if that affects the network request timeouts.
+    concurrency: 1,
   },
 };
