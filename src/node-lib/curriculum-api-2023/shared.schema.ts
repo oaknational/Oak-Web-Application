@@ -139,6 +139,8 @@ export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
+  tierTitle: z.string().nullable().optional(),
+  tierSlug: z.string().nullable().optional(),
   contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
   misconceptionsAndCommonMistakes: z
     .array(misconceptionsAndCommonMistakesSchema)

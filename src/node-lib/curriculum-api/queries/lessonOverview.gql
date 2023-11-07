@@ -3,7 +3,7 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  mv_lessons: mv_lessons_6(
+  mv_lessons: mv_lessons_7(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }
@@ -19,6 +19,8 @@ query lessonOverview(
     keyStageTitle: key_stage_title
     subjectSlug: subject_slug
     subjectTitle: subject_title
+    tierTitle: tier_title
+    tierSlug: tier_slug
     contentGuidance: content_guidance
     equipmentRequired: equipment_required
     presentationUrl: presentation_url
