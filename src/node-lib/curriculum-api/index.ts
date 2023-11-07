@@ -59,7 +59,7 @@ const graphqlClient = new GraphQLClient(curriculumApiUrl, { headers });
  * transforms just the upper most level (the table/MV names) of the responses
  * from the gql queries.
  */
-const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
+const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P, Q>(res: {
   mv_key_stages?: K;
   mv_subjects?: S;
   mv_tiers?: T;
@@ -70,6 +70,7 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
   mv_programmes_unavailable?: R1;
   mv_programmes_available?: R2;
   mv_programmes?: P;
+  mv_share?: Q;
 }) => {
   return {
     keyStages: res.mv_key_stages,
@@ -82,6 +83,7 @@ const transformMVCase = <K, S, T, U, L, V, W, R1, R2, P>(res: {
     programmesUnavailable: res.mv_programmes_unavailable,
     programmesAvailable: res.mv_programmes_available,
     programmes: res.mv_programmes,
+    shareableResources: res.mv_share,
   };
 };
 
@@ -205,10 +207,33 @@ const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
 
+const lessonShareListSchema = z.array(
+  z.object({
+    exists: z.boolean().nullable(),
+    type: z.enum([
+      "intro-quiz-questions",
+      "exit-quiz-questions",
+      "worksheet-pdf",
+    ]),
+    label: z.string(),
+    metadata: z.string(),
+  }),
+);
+export const lessonShareSchema = z.intersection(
+  lessonPathwaySchema,
+  z.object({
+    isLegacy: z.boolean(),
+    lessonSlug: z.string(),
+    lessonTitle: z.string(),
+    shareResources: lessonShareListSchema,
+  }),
+);
+
 export type SearchPageData = z.infer<typeof searchPageData>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
+export type LessonShareData = z.infer<typeof lessonShareSchema>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
@@ -543,6 +568,20 @@ const curriculumApi = {
       ...unit,
       programmeSlug: addLegacySlugSuffix(unit.programmeSlug),
       lessons: lessonsWithModifiedProgrammeSlug,
+    });
+  },
+  lessonShare: async (...args: Parameters<typeof sdk.lessonShare>) => {
+    const res = await sdk.lessonShare(...argsRemoveLegacySlugSuffix(args));
+    const { shareableResources = [] } = transformMVCase(res);
+
+    const share = getFirstResultOrWarnOrFail()({
+      results: shareableResources,
+    });
+
+    return lessonShareSchema.parse({
+      ...share,
+      programmeSlug: addLegacySlugSuffix(share.programmeSlug),
+      isLegacy: true,
     });
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {

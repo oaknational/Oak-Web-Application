@@ -6,6 +6,7 @@ import lessonOverviewFixture from "./fixtures/lessonOverview.fixture";
 import lessonListingFixture from "./fixtures/lessonListing.fixture";
 import subjectListingFixture from "./fixtures/subjectListing.fixture";
 import unitsFixture from "./fixtures/units.fixture";
+import lessonShareFixtures from "./fixtures/lessonShare.fixture";
 
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
@@ -19,6 +20,9 @@ const teachersHomePage = jest.fn(() => ({
 }));
 const lessonDownloads = jest.fn(() => ({
   mv_downloads: [lessonDownloadsFixtures()],
+}));
+const lessonShares = jest.fn(() => ({
+  mv_share: [lessonShareFixtures()],
 }));
 const unitListing = jest.fn(() => ({
   mv_programmes: [
@@ -122,6 +126,21 @@ describe("curriculum-api", () => {
       unitSlug: "islamic-geometry-maths-unit-76",
     });
     expect(lessonDownloads).toHaveBeenCalledWith(
+      {
+        programmeSlug: "math-higher-ks4",
+        lessonSlug: "islamic-geometry",
+        unitSlug: "islamic-geometry-maths-unit-76",
+      },
+      undefined,
+    );
+  });
+  test("lessonShare", async () => {
+    await curriculumApi.lessonShare({
+      programmeSlug: "math-higher-ks4",
+      lessonSlug: "islamic-geometry",
+      unitSlug: "islamic-geometry-maths-unit-76",
+    });
+    expect(lessonShares).toHaveBeenCalledWith(
       {
         programmeSlug: "math-higher-ks4",
         lessonSlug: "islamic-geometry",
