@@ -4,33 +4,43 @@ import { useHover } from "react-aria";
 
 import type { DownloadResourceType } from "../downloads.types";
 
-import { RESOURCE_TYPE_ICON_MAP } from "@/components/DownloadComponents/DownloadCard/DownloadCard";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/Typography/P";
 import Flex from "@/components/Flex";
 import Checkbox from "@/components/Checkbox";
-import Icon from "@/components/Icon";
+import Icon, { IconName } from "@/components/Icon";
 import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 
-export type DownloadCardProps = CheckboxProps & {
+export type ResourceCardProps = CheckboxProps & {
   label: string;
   resourceType: DownloadResourceType;
   extension: string;
   hasError?: boolean;
 };
 
-type DownloadCardLabelProps = DownloadCardProps & {
+type ResourceCardLabelProps = ResourceCardProps & {
   isHovered: boolean;
+};
+
+const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
+  presentation: "slide-deck",
+  "intro-quiz-questions": "quiz",
+  "intro-quiz-answers": "quiz",
+  "exit-quiz-questions": "quiz",
+  "exit-quiz-answers": "quiz",
+  "worksheet-pdf": "worksheet",
+  "worksheet-pptx": "worksheet",
+  "supplementary-pdf": "additional-material",
+  "supplementary-docx": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`
   position: relative;
-  border: solid 4px transparent;
   display: flex;
   flex-direction: "row";
 `;
 
-const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
+const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   isHovered,
   resourceType,
   label,
@@ -62,7 +72,6 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
         $width={["100%"]}
         $maxWidth={320}
         $background={isHovered ? "grey1" : "white"}
-        $zIndex={"behind"}
       >
         <Flex
           $flexDirection="column"
@@ -85,7 +94,7 @@ const DownloadCardLabel: FC<DownloadCardLabelProps> = ({
   );
 };
 
-const DownloadCard: FC<DownloadCardProps> = (props) => {
+const ResourceCard: FC<ResourceCardProps> = (props) => {
   const {
     checked = false,
     onChange,
@@ -117,10 +126,10 @@ const DownloadCard: FC<DownloadCardProps> = (props) => {
         onBlur={onBlur}
         hasError={hasError}
       >
-        <DownloadCardLabel isHovered={isHovered} {...props} />
+        <ResourceCardLabel isHovered={isHovered} {...props} />
       </Checkbox>
     </Flex>
   );
 };
 
-export default DownloadCard;
+export default ResourceCard;

@@ -24,9 +24,9 @@ describe("getDownloadFormErrorMessage", () => {
     const errorKeysArray: ErrorKeysType[] = ["terms", "email", "downloads"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
+      "select at least one resource to download",
       "enter a valid email address",
       "accept terms and conditions to download",
-      "select at least one resource to download",
     ]);
   });
 
@@ -34,9 +34,9 @@ describe("getDownloadFormErrorMessage", () => {
     const errorKeysArray: ErrorKeysType[] = ["email", "downloads", "terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
+      "select at least one resource to download",
       "enter a valid email address",
       "accept terms and conditions to download",
-      "select at least one resource to download",
     ]);
   });
 });

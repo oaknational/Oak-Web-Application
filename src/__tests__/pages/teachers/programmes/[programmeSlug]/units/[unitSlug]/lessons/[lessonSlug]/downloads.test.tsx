@@ -101,6 +101,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
+        "Lesson resources",
+      );
+      expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
         "Your details",
       );
 

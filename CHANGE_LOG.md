@@ -1,3 +1,80 @@
+## [1.295.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.6...v1.295.7) (2023-11-07)
+
+## [1.295.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.5...v1.295.6) (2023-11-07)
+
+## [1.295.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.4...v1.295.5) (2023-11-07)
+
+
+### Bug Fixes
+
+* **testing:** warm cache ui as string ([9edfbb8](https://github.com/oaknational/Oak-Web-Application/commit/9edfbb80f55c1a37f34b3eb6e1f71d054ba08d27))
+
+## [1.295.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.3...v1.295.4) (2023-11-03)
+
+
+### Bug Fixes
+
+* removed nested div from p ([fedadec](https://github.com/oaknational/Oak-Web-Application/commit/fedadeca59884e8f98185324f430cea703bb40c0))
+* update font size for subject principles ([c519434](https://github.com/oaknational/Oak-Web-Application/commit/c5194340c5ec9249cf391c488c503bfef1fff635))
+
+## [1.295.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.2...v1.295.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* redirect to correct branch ([70426e0](https://github.com/oaknational/Oak-Web-Application/commit/70426e0c5ca388f3ace3fe4d401dac52d70c03f2))
+* redirect to main bfanch ([7d3ba14](https://github.com/oaknational/Oak-Web-Application/commit/7d3ba14bbe7f71d13a1d8cb8d1cf2e8e0a818682))
+* update avo source tracking ([2efa34b](https://github.com/oaknational/Oak-Web-Application/commit/2efa34b2ed7406d0154d7a76ebae8204c00e7b88))
+
+## [1.295.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.1...v1.295.2) (2023-11-02)
+
+
+### Bug Fixes
+
+* address console warnings ([baf9b71](https://github.com/oaknational/Oak-Web-Application/commit/baf9b7193e0873d1b6ef82a78bd54a32e1ca9124))
+
+## [1.295.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.0...v1.295.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* disabling autofocus for subject phase picker ([4041d77](https://github.com/oaknational/Oak-Web-Application/commit/4041d77c3c29ad7dae67ab027744cd807b83d75e))
+
+# [1.295.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.294.2...v1.295.0) (2023-11-01)
+
+
+### Bug Fixes
+
+* checkbox behind card ([4f65abc](https://github.com/oaknational/Oak-Web-Application/commit/4f65abcb85e95b4a3818225a6946ff13b224522a))
+* filename ([b6bcb8e](https://github.com/oaknational/Oak-Web-Application/commit/b6bcb8ee99b14b8537d6f75b777032848b2ba748))
+* filename ([c15c9c0](https://github.com/oaknational/Oak-Web-Application/commit/c15c9c09b097afe60f0fcb53adc8a6227522a9b4))
+* grid sizing ([97557bd](https://github.com/oaknational/Oak-Web-Application/commit/97557bd33aa014fda5375858b096e359b2e09aa3))
+* heading casing and level ([89e83a8](https://github.com/oaknational/Oak-Web-Application/commit/89e83a831bc76da156ffea403cba023dc8e26f60))
+* mobile gap ([78deb67](https://github.com/oaknational/Oak-Web-Application/commit/78deb67cd7a08417f683875173aa0c8016e25e09))
+* move downloads fixtures to fixtures folder ([40e1199](https://github.com/oaknational/Oak-Web-Application/commit/40e1199f16be01c13cb6a651098b4492889a5936))
+* naming issue ([c01be82](https://github.com/oaknational/Oak-Web-Application/commit/c01be820ec222a245aaa8ce2ff7c5659c63398a8))
+* nested if ([5a08ba2](https://github.com/oaknational/Oak-Web-Application/commit/5a08ba2c1f958eadb8cfed610a03b1f8e62f3d2f))
+* presort download resources so tab order is consistent ([05620e9](https://github.com/oaknational/Oak-Web-Application/commit/05620e98a46ea56bdbd65162eaba0ece2d18e313))
+* prettier ([50373ac](https://github.com/oaknational/Oak-Web-Application/commit/50373acb9ee75d796a403bfaec20339c65f4adec))
+* update resource page layout test ([73ab12b](https://github.com/oaknational/Oak-Web-Application/commit/73ab12b1a656e87eb04d55c11c0c7d5adae426f0))
+* update test ([218f218](https://github.com/oaknational/Oak-Web-Application/commit/218f218c905da4dee0f5f614c3de0f3387408ee7))
+* update tests for order of errors ([224d466](https://github.com/oaknational/Oak-Web-Application/commit/224d466df8791e224c02e0f57914647f30728d89))
+* use error message to show error state in t&c checkbox ([a30e19e](https://github.com/oaknational/Oak-Web-Application/commit/a30e19e03bf7d5038e332b4e32c81af2c5950ef5))
+* zindex issue ([078c354](https://github.com/oaknational/Oak-Web-Application/commit/078c354d1c278b995ab0e100fa7c7b6081fe899d))
+
+
+### Features
+
+* change the order of error messages ([c6c3624](https://github.com/oaknational/Oak-Web-Application/commit/c6c36243caef06a9a4b49931fa3b72991c542b97))
+* create a layout component to use on lessondownloads ([f65523b](https://github.com/oaknational/Oak-Web-Application/commit/f65523b628d40afcbc8440a397a3d19ff413df69))
+* download page layout for desktop ([177a8ef](https://github.com/oaknational/Oak-Web-Application/commit/177a8ef7734bc1e2c56053dc10dcc3b524cbe3d7))
+* layout for mobile and tablet ([a22954f](https://github.com/oaknational/Oak-Web-Application/commit/a22954feb0ef86d69ff6db94df406877bd7fd4ea))
+* make card group responsive ([7f070a9](https://github.com/oaknational/Oak-Web-Application/commit/7f070a9362f3627513f15eeb1be14dcbc70d89b5))
+* make order or resources match acs ([77968d8](https://github.com/oaknational/Oak-Web-Application/commit/77968d848e6e438dc828a285a2113bca1205b3b7))
+* merge in main ([70c4065](https://github.com/oaknational/Oak-Web-Application/commit/70c406544ac550edec2bb1aa8000cd79d1d8cbe4))
+* remove old download card ([001258b](https://github.com/oaknational/Oak-Web-Application/commit/001258b1b8954747cd594f306e00f0250bd3c2b3))
+* update download card group component and add story ([659dc09](https://github.com/oaknational/Oak-Web-Application/commit/659dc0906be5019fcb0d6b32279103e4458c7d81))
+
 ## [1.294.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.294.1...v1.294.2) (2023-11-01)
 
 
