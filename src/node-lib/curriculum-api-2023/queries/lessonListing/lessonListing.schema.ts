@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { lessonListSchema } from "../../shared.schema";
+
 const lessonListingSchema = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
@@ -13,21 +15,7 @@ const lessonListingSchema = z.object({
   examBoardSlug: z.string().nullish(),
   examBoardTitle: z.string().nullish(),
   yearTitle: z.string().nullish(),
-  lessons: z.array(
-    z.object({
-      lessonSlug: z.string(),
-      lessonTitle: z.string(),
-      description: z.string(),
-      pupilLessonOutcome: z.string().nullish(),
-      expired: z.boolean(),
-      quizCount: z.number().nullish(),
-      videoCount: z.number().nullish(),
-      presentationCount: z.number().nullish(),
-      worksheetCount: z.number().nullish(),
-      hasCopyrightMaterial: z.boolean().nullish(),
-      orderInUnit: z.number().nullish(),
-    }),
-  ),
+  lessons: lessonListSchema,
 });
 
 export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
