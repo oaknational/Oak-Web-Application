@@ -17,16 +17,31 @@ if (CfAccessClientId && !CfAccessClientSecret) {
   );
 }
 
-const relativeUrls = getDeploymentTestUrls();
+const relativeUrls = getDeploymentTestUrls().map((url) => {
+  return {
+    url,
+    waitForSelector: "#__next",
+  };
+});
 // Add a few more instances of particularly slow assets.
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 15; i++) {
   relativeUrls.push("/images/sprite/sprite.svg");
 }
 
 // Parse URLs to make sure they're valid.
 const urls = relativeUrls.map((relUrl) => {
   try {
-    return new URL(relUrl, baseUrl).href;
+    // Simple URL
+    if (typeof relUrl === "string") {
+      return new URL(relUrl, baseUrl).href;
+    // URL object with config
+    } else {
+      const url = new URL(relUrl.url, baseUrl).href;
+      return {
+        ...relUrl,
+        url
+      };
+    }
   } catch (e) {
     console.log({
       relUrl,
@@ -62,12 +77,25 @@ async function main() {
   const urlTotal = urls.length;
   let urlCount = 0;
   const errors = [];
-  for await (const url of urls) {
+  for await (const urlStringOrObject of urls) {
+    let url;
+    let waitForSelector;
+    if (typeof urlStringOrObject === "string") {
+      url = urlStringOrObject;
+    } else {
+      url = urlStringOrObject.url;
+      waitForSelector = urlStringOrObject.waitForSelector;
+    }
     urlCount++;
     try {
       console.log(`(${urlCount} of ${urlTotal}) Warming cache for ${url}`);
       console.time(url);
       await page.goto(url, { timeout: 60000, waitUntil: "networkidle0" });
+      // Optionally wait for a selector to be visible.
+      if (waitForSelector) {
+        console.log(`Waiting for selector ${waitForSelector}`);
+        await page.waitForSelector(waitForSelector);
+      }
       console.timeEnd(url);
     } catch (e) {
       errors.push({ url, e });
