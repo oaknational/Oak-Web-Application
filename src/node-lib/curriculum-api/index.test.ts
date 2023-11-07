@@ -112,6 +112,7 @@ jest.mock("./generated/sdk", () => ({
     lessonListing: (...args: []) => lessonListing(...args),
     tierListing: (...args: []) => tierListing(...args),
     subjectListing: (...args: []) => subjectListing(...args),
+    lessonShare: (...args: []) => lessonShares(...args),
   }),
 }));
 describe("curriculum-api", () => {
