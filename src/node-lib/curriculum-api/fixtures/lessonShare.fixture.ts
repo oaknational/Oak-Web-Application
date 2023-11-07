@@ -18,7 +18,7 @@ const lessonShareFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
-    shareResources: [
+    shareableResources: [
       {
         type: "exit-quiz-questions",
         exists: true,

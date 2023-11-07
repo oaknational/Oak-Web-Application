@@ -225,7 +225,7 @@ export const lessonShareSchema = z.intersection(
     isLegacy: z.boolean(),
     lessonSlug: z.string(),
     lessonTitle: z.string(),
-    shareResources: lessonShareListSchema,
+    shareableResources: lessonShareListSchema,
   }),
 );
 
