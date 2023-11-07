@@ -36,6 +36,7 @@ import {
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadComponents/ResourcePageLayout";
 import LoadingButton from "@/components/Button/LoadingButton";
+import DownloadConfirmation from "@/components/DownloadComponents/DownloadConfirmation";
 
 type LessonDownloadsProps =
   | {
@@ -229,6 +230,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
+  const [isDownloadSuccessful, setIsDownloadSuccessful] =
+    useState<boolean>(false);
+
   const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
     setApiError(null);
     try {
@@ -239,6 +243,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setEditDetailsClicked,
         onSubmit,
       });
+      setIsDownloadSuccessful(true);
       const {
         schoolOption,
         schoolName,
@@ -267,6 +272,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       });
     } catch (error) {
       setIsAttemptingDownload(false);
+      setIsDownloadSuccessful(false);
       setApiError(
         "There was an error downloading your files. Please try again.",
       );
@@ -288,7 +294,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={32} $mt={24}>
+        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -309,64 +315,77 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
 
-        <ResourcePageLayout
-          errors={errors}
-          handleToggleSelectAll={handleToggleSelectAll}
-          selectAllChecked={selectAllChecked}
-          header="Download"
-          showNoResources={!hasResourcesToDownload}
-          showLoading={isLocalStorageLoading}
-          email={emailFromLocalStorage}
-          school={schoolNameFromLocalStorage}
-          schoolId={schoolIdFromLocalStorage}
-          setSchool={setSchool}
-          showSavedDetails={shouldDisplayDetailsCompleted}
-          onEditClick={handleEditDetailsCompletedClick}
-          register={register}
-          control={control}
-          showPostAlbCopyright={!isLegacy}
-          cardGroup={
-            <DownloadCardGroup
+        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+          <DownloadConfirmation
+            unitSlug={unitSlug}
+            lessonSlug={lessonSlug}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+          />
+        </Box>
+        {!isDownloadSuccessful && (
+          <>
+            <ResourcePageLayout
+              errors={errors}
+              handleToggleSelectAll={handleToggleSelectAll}
+              selectAllChecked={selectAllChecked}
+              header="Download"
+              showNoResources={!hasResourcesToDownload}
+              showLoading={isLocalStorageLoading}
+              email={emailFromLocalStorage}
+              school={schoolNameFromLocalStorage}
+              schoolId={schoolIdFromLocalStorage}
+              setSchool={setSchool}
+              showSavedDetails={shouldDisplayDetailsCompleted}
+              onEditClick={handleEditDetailsCompletedClick}
+              register={register}
               control={control}
-              downloads={downloads}
-              hasError={errors?.downloads ? true : false}
-              triggerForm={trigger}
-            />
-          }
-          cta={
-            <LoadingButton
-              onClick={
-                (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+              showPostAlbCopyright={!isLegacy}
+              cardGroup={
+                <DownloadCardGroup
+                  control={control}
+                  downloads={downloads}
+                  hasError={errors?.downloads ? true : false}
+                  triggerForm={trigger}
+                />
               }
-              text={"Download .zip"}
-              icon={"download"}
-              isLoading={isAttemptingDownload}
-              disabled={
-                hasFormErrors || (!formState.isValid && !localStorageDetails)
+              cta={
+                <LoadingButton
+                  onClick={
+                    (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                  }
+                  text={"Download .zip"}
+                  icon={"download"}
+                  isLoading={isAttemptingDownload}
+                  disabled={
+                    hasFormErrors ||
+                    (!formState.isValid && !localStorageDetails)
+                  }
+                  loadingText={"Downloading..."}
+                />
               }
-              loadingText={"Downloading..."}
             />
-          }
-        />
 
-        <Flex
-          $flexDirection={["column", "row"]}
-          $justifyContent={"right"}
-          $alignItems={"center"}
-        >
-          {apiError && !hasFormErrors && (
-            <Box $mr={24} $textAlign={"left"}>
-              <FieldError
-                id="download-error"
-                data-testid="download-error"
-                variant={"large"}
-                withoutMarginBottom
-              >
-                {apiError}
-              </FieldError>
-            </Box>
-          )}
-        </Flex>
+            <Flex
+              $flexDirection={["column", "row"]}
+              $justifyContent={"right"}
+              $alignItems={"center"}
+            >
+              {apiError && !hasFormErrors && (
+                <Box $mr={24} $textAlign={"left"}>
+                  <FieldError
+                    id="download-error"
+                    data-testid="download-error"
+                    variant={"large"}
+                    withoutMarginBottom
+                  >
+                    {apiError}
+                  </FieldError>
+                </Box>
+              )}
+            </Flex>
+          </>
+        )}
       </MaxWidth>
     </Box>
   );
