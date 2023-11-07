@@ -63,9 +63,9 @@ if (CfAccessClientId) {
 
 async function main() {
   const browser = await puppeteer.launch({ headless: "new" });
-  const ua = browser.userAgent();
+  const ua = await browser.userAgent();
   const page = await browser.newPage();
-  page.setUserAgent(`(oak testing) ${ua}`);
+  page.setUserAgent(`oak testing ${ua}`);
   if (headers) {
     page.setExtraHTTPHeaders(headers);
   }
