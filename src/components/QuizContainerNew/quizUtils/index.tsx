@@ -20,7 +20,6 @@ export const shortAnswerTitleFormatter = (
       <React.Fragment key={i}>
         {" "}
         <UnderlineSpan
-          // key={i}
           // This is an empty box with a line under it, to indicate an answer would go here.
           role="presentation"
           title="An empty space to write an answer in"
