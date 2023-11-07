@@ -16,6 +16,9 @@ console.log("Percy base url:", baseUrl);
 const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
   return {
     url,
+    // Wait for a set time as a form of throttling between snapshot requests.
+    waitForTimeout: 1000,
+    // Wait for the Next app to load.
     waitForSelector: "#__next",
   };
 });
