@@ -81,7 +81,6 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
     await downloadLessonResources(
       slug,
       downloads as DownloadResourceType[],
-
       props.isLegacyDownload,
     );
     return hubspotFormResponse;
