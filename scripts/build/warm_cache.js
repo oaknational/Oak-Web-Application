@@ -1,6 +1,6 @@
 /* eslint-env node, es6 */
 
-const fetch = require("node-fetch");
+const puppeteer = require("puppeteer");
 
 const getDeploymentTestUrls = require("../../src/common-lib/urls/getDeploymentTestUrls");
 
@@ -18,12 +18,12 @@ if (CfAccessClientId && !CfAccessClientSecret) {
 }
 
 const relativeUrls = getDeploymentTestUrls();
-// Add a few more instances of particularly slow assets and pages.
-for (let i = 0; i < 5; i++) {
+// Add a few more instances of particularly slow assets.
+for (let i = 0; i < 10; i++) {
   relativeUrls.push("/images/sprite/sprite.svg");
-  relativeUrls.push("/teachers/lessons/transverse-waves");
 }
 
+// Parse URLs to make sure they're valid.
 const urls = relativeUrls.map((relUrl) => {
   try {
     return new URL(relUrl, baseUrl).href;
@@ -37,6 +37,7 @@ const urls = relativeUrls.map((relUrl) => {
   }
 });
 
+// Optional CF Access headers.
 let headers;
 if (CfAccessClientId) {
   headers = {
@@ -45,32 +46,41 @@ if (CfAccessClientId) {
   };
 }
 
-async function makeRequests() {
-  const eventualResults = [];
-  // Fetch each URL asynchronously, with a delay between each request, and store the eventual results.
-  for await (const url of urls) {
-    eventualResults.push(
-      fetch(url, {
-        headers,
-      }),
-    );
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-  }
-  return eventualResults;
-}
-
-async function waitForResults(
-  /** @type {Promise<Response>[]} */ _eventualResults,
-) {
-  const results = await Promise.all(_eventualResults);
-  console.log(
-    results.map((response) => `${response.url}: ${response.status}\n`),
-  );
-}
-
 async function main() {
-  const eventualResults = await makeRequests();
-  await waitForResults(eventualResults);
+  const browser = await puppeteer.launch({ headless: "new" });
+  const ua = browser.userAgent();
+  const page = await browser.newPage();
+  page.setUserAgent(`(oak testing) ${ua}`);
+  if (headers) {
+    page.setExtraHTTPHeaders(headers);
+  }
+  page.setViewport({
+    width: 1920,
+    height: 1080,
+  });
+
+  const urlTotal = urls.length;
+  let urlCount = 0;
+  const errors = [];
+  for await (const url of urls) {
+    urlCount++;
+    try {
+      console.log(`(${urlCount} of ${urlTotal}) Warming cache for ${url}`);
+      console.time(url);
+      await page.goto(url, { timeout: 60000, waitUntil: "networkidle0" });
+      console.timeEnd(url);
+    } catch (e) {
+      errors.push({ url, e });
+      console.error(`Problem warming cache for ${url}`);
+      console.error(e);
+    }
+  }
+  if (errors.length) {
+    console.error("Encountered errors warming cache for the following URLs");
+    console.error(Object.keys(errors));
+    process.exit(1);
+  }
+  await browser.close();
 }
 
 main();

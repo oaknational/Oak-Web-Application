@@ -31,11 +31,9 @@ module.exports = {
     `,
   },
   discovery: {
-    // If we set the network timeout here is will be overridden by the config parsing to 750ms max.
-    // Instead we set it in the percy snapshot command GitHub workflow as an override env.
-    // networkIdleTimeout: ,
+    networkIdleTimeout: 750,
     allowedHostnames: [host, "docs.google.com"],
-    userAgent: "Percy",
+    userAgent: "oak testing Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
       "CF-Access-Client-Secret": CfAccessClientSecret,
