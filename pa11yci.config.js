@@ -21,6 +21,8 @@ if (!isLocalHost && (!CfAccessClientId || !CfAccessClientSecret)) {
 // https://github.com/pa11y/pa11y-ci#configuration
 const config = {
   defaults: {
+    userAgent: "oak testing Pa11y",
+    timeout: 120000,
     runners: ["axe"],
     hideElements:
       /**
@@ -61,8 +63,15 @@ const relativeUrls = getDeploymentTestUrls();
 
 // Add the base URL to the relative URLs.
 config.urls = relativeUrls.map((relUrl) => {
+  // This is the current default.
   if (typeof relUrl === "string") {
-    return new URL(relUrl, baseUrl).href;
+    const pa11yUrl = new URL(relUrl, baseUrl).href;
+    return {
+      url: pa11yUrl,
+      // Should help detect if we get served, e.g. a Cloudflare error page.
+      actions: ["wait for element #__next to be visible"],
+    };
+    // Return the already created URL config object.
   } else {
     relUrl.url = new URL(relUrl.url, baseUrl).href;
     return relUrl;
