@@ -31,8 +31,7 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    // allowedHostnames: ["docs.google.com"],
-    disableCache: true,
+    allowedHostnames: ["config.thenational.academy", "docs.google.com"],
     userAgent: "oak testing Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
