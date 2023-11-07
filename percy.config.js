@@ -31,13 +31,11 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    allowedHostnames: ["config.thenational.academy", "docs.google.com"],
+    allowedHostnames: ["docs.google.com"],
     userAgent: "oak testing Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
       "CF-Access-Client-Secret": CfAccessClientSecret,
     },
-    // Try dropping the concurrency to 1 to see if that affects the network request timeouts.
-    concurrency: 1,
   },
 };
