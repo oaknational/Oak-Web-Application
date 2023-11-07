@@ -1,3 +1,10 @@
+## [1.295.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.4...v1.295.5) (2023-11-07)
+
+
+### Bug Fixes
+
+* **testing:** warm cache ui as string ([9edfbb8](https://github.com/oaknational/Oak-Web-Application/commit/9edfbb80f55c1a37f34b3eb6e1f71d054ba08d27))
+
 ## [1.295.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.3...v1.295.4) (2023-11-03)
 
 
