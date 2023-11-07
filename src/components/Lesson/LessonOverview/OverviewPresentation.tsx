@@ -24,7 +24,7 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
   const srcUrl =
     isAdditionalMaterial && asset
       ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
-      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp;delayms=3000`;
+      : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp`;
   return (
     <Box $ba={[3]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
