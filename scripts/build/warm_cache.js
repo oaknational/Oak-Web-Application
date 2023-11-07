@@ -34,12 +34,12 @@ const urls = relativeUrls.map((relUrl) => {
     // Simple URL
     if (typeof relUrl === "string") {
       return new URL(relUrl, baseUrl).href;
-    // URL object with config
+      // URL object with config
     } else {
       const url = new URL(relUrl.url, baseUrl).href;
       return {
         ...relUrl,
-        url
+        url,
       };
     }
   } catch (e) {
