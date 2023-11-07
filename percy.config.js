@@ -18,7 +18,6 @@ const baseUrl = process.env.PERCY_BASE_URL;
 if (!baseUrl) {
   throw new TypeError("process.env.PERCY_BASE_URL must be defined");
 }
-const host = new URL(baseUrl).host;
 
 /** @type {import('./node_modules/@percy/core/types').PercyConfigOptions} */
 module.exports = {
@@ -32,7 +31,8 @@ module.exports = {
   },
   discovery: {
     networkIdleTimeout: 750,
-    allowedHostnames: [host, "docs.google.com"],
+    // allowedHostnames: ["docs.google.com"],
+    disableCache: true,
     userAgent: "oak testing Percy",
     requestHeaders: {
       "CF-Access-Client-Id": CfAccessClientId,
