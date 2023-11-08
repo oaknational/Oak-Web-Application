@@ -207,26 +207,25 @@ const tierListingData = z.object({
   programmes: z.array(programmesData),
 });
 
-const lessonShareListSchema = z.array(
-  z.object({
-    exists: z.boolean().nullable(),
-    type: z.enum([
-      "intro-quiz-questions",
-      "exit-quiz-questions",
-      "worksheet-pdf",
-      "video",
-    ]),
-    label: z.string(),
-    metadata: z.string(),
-  }),
-);
+const lessonShareListSchema = z.object({
+  exists: z.boolean().nullable(),
+  type: z.enum([
+    "intro-quiz-questions",
+    "exit-quiz-questions",
+    "worksheet-pdf",
+    "video",
+  ]),
+  label: z.string(),
+  metadata: z.string(),
+});
+
 export const lessonShareSchema = z.intersection(
   lessonPathwaySchema,
   z.object({
     isLegacy: z.boolean(),
     lessonSlug: z.string(),
     lessonTitle: z.string(),
-    shareableResources: lessonShareListSchema,
+    shareableResources: z.array(lessonShareListSchema),
   }),
 );
 
@@ -235,6 +234,7 @@ export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type LessonOverviewData = z.infer<typeof lessonOverviewData>;
 export type LessonDownloadsData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
+export type LessonShareSchema = z.infer<typeof lessonShareListSchema>;
 export type ProgrammesData = z.infer<typeof programmesData>;
 export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
