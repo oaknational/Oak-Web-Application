@@ -37746,7 +37746,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', mv_downloads: Array<{ __typename?: 'mv_downloads_1', downloads?: any | null, programmeSlug?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, lessonSlug?: string | null, lessonTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, themeSlug?: string | null, themeTitle?: string | null, unitSlug?: string | null, unitTitle?: string | null }>, mv_lessons: Array<{ __typename?: 'mv_lessons_6', description?: string | null, expired?: boolean | null, lessonSlug?: string | null, lessonTitle?: string | null, orderInUnit?: number | null }> };
 
 export type LessonDownloadsCanonicalQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -37838,6 +37838,16 @@ export const LessonDownloadsDocument = gql`
     themeTitle: theme_title
     unitSlug: unit_slug
     unitTitle: unit_title
+  }
+  mv_lessons: mv_lessons_6(
+    order_by: {position_in_unit: asc}
+    where: {programme_slug: {_eq: $programmeSlug}, unit_slug: {_eq: $unitSlug}}
+  ) {
+    lessonSlug: lesson_slug
+    lessonTitle: lesson_title
+    description
+    expired
+    orderInUnit: position_in_unit
   }
 }
     `;
