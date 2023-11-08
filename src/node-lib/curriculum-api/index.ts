@@ -11,10 +11,14 @@ import subjectListingSchema from "../curriculum-api-2023/queries/subjectListing/
 import lessonOverviewCanonicalSchema, {
   LessonOverviewCanonical,
 } from "../curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
-import { lessonPathwaySchema } from "../curriculum-api-2023/shared.schema";
+import {
+  lessonListSchema,
+  lessonPathwaySchema,
+} from "../curriculum-api-2023/shared.schema";
 import lessonDownloadsCanonicalSchema, {
   LessonDownloadsCanonical,
 } from "../curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
+import getNextLessonsInUnit from "../curriculum-api-2023/queries/lessonDownloads/getNextLessonsInUnit";
 
 import { transformQuiz } from "./transformQuizzes";
 import { getSdk } from "./generated/sdk";
@@ -547,14 +551,19 @@ const curriculumApi = {
   },
   lessonDownloads: async (...args: Parameters<typeof sdk.lessonDownloads>) => {
     const res = await sdk.lessonDownloads(...argsRemoveLegacySlugSuffix(args));
-    const { downloads = [] } = transformMVCase(res);
+    const { downloads = [], lessons = [] } = transformMVCase(res);
 
     const download = getFirstResultOrWarnOrFail()({
       results: downloads,
     });
 
+    const unit = lessonListSchema.parse(lessons);
+
+    const nextLessons = getNextLessonsInUnit(unit, args[0].lessonSlug);
+
     return lessonDownloadsSchema.parse({
       ...download,
+      nextLessons,
       programmeSlug: addLegacySlugSuffix(download.programmeSlug),
       isLegacy: true,
     });
