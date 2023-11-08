@@ -3,9 +3,8 @@ import { Control, Controller } from "react-hook-form";
 
 import ResourceCard from "../ResourceCard";
 
-import Flex from "@/components/Flex";
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
-
+import Flex from "@/components/Flex";
 
 export type ShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
@@ -14,10 +13,29 @@ export type ShareCardGroupProps = {
   hasError?: boolean;
 };
 
+const sortOrderKey = {
+  "intro-quiz-questions": 1,
+  video: 2,
+  "worksheet-pdf": 3,
+  "intro-quiz-answers": 4,
+  "exit-quiz-questions": 5,
+};
+
 const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
+  // Sort the resources in display order
+  const sortedResources = props.shareableResources?.sort((a, b) => {
+    const aSortOrder = sortOrderKey[a.type];
+    const bSortOrder = sortOrderKey[b.type];
+    return aSortOrder - bSortOrder;
+  });
+
   return (
-    <Flex>
-      {props.shareableResources.map((resource) => (
+    <Flex
+      $gap={16}
+      $flexDirection={["column", "row"]}
+      $flexWrap={["nowrap", "wrap"]}
+    >
+      {sortedResources.map((resource) => (
         <Controller
           control={props.control}
           name="share"
