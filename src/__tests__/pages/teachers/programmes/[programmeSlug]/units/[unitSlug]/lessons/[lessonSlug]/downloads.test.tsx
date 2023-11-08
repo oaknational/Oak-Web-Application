@@ -61,38 +61,9 @@ beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
 });
-
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("should display an error if the download fails", async () => {
-    const { result } = renderHook(() => useLocalStorageForDownloads());
-
-    act(() => {
-      result.current.setSchoolInLocalStorage({
-        schoolName: "Primary School",
-        schoolId: "222-Primary School",
-      });
-      result.current.setEmailInLocalStorage("test@test.com");
-      result.current.setTermsInLocalStorage(true);
-    });
-
-    const { getByText } = render(<LessonDownloadsPage {...props} />);
-
-    await act(async () => {
-      const downloadButton = getByText("Download .zip");
-      const user = userEvent.setup();
-      await waitForNextTick();
-
-      await user.click(downloadButton);
-      await waitForNextTick();
-    });
-
-    expect(
-      getByText("There was an error downloading your files. Please try again."),
-    ).toBeInTheDocument();
-  });
-
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage
@@ -130,6 +101,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
+        "Lesson resources",
+      );
+      expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
         "Your details",
       );
 

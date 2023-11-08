@@ -3,12 +3,12 @@ import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import DownloadCard from "./DownloadCard";
+import ResourceCard from "./ResourceCard";
 
-describe("DownloadCard", () => {
+describe("ResourceCard", () => {
   it("renders a checkbox with an icon, title and resource file type", () => {
     renderWithTheme(
-      <DownloadCard
+      <ResourceCard
         id="unique-123"
         name="downloadResources"
         label="Worksheet"
@@ -34,7 +34,7 @@ describe("DownloadCard", () => {
     };
 
     const { rerender } = renderWithTheme(
-      <DownloadCard
+      <ResourceCard
         id="unique-123"
         checked={value}
         name="downloadResources"
@@ -54,7 +54,7 @@ describe("DownloadCard", () => {
     await user.click(label);
 
     rerender(
-      <DownloadCard
+      <ResourceCard
         id="unique-123"
         checked={value}
         name="downloadResources"
@@ -67,4 +67,6 @@ describe("DownloadCard", () => {
 
     expect(input).toBeChecked();
   });
+
+  it;
 });
