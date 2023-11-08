@@ -6,18 +6,15 @@ function getDeploymentTestUrls() {
   return [
     // Error pages
     "/404",
-    "/500",
     // Public pages
     "/",
     "/lesson-planning",
     "/develop-your-curriculum",
     "/support-your-team",
     "/contact-us",
-    "/about-us/who-we-are",
     "/about-us/leadership",
     "/about-us/board",
     "/about-us/partners",
-    "/about-us/work-with-us",
     "/blog",
     "/blog/how-to-design-a-unit-of-study",
     "/blog/evolution-of-oak",
@@ -25,12 +22,8 @@ function getDeploymentTestUrls() {
     "/webinars/effective-feedback-a-practical-guide-to-using-feedback-to-enhance-student",
     "/legal/accessibility-statement",
     // landing pages
-    // "/lp/shape-your-curriculum-with-oak",
-    // "/lp/trusted-by-teachers",
-    // "/lp/how-to-use-Oak-in-3-easy-steps",
     "/lp/help-shape-oak",
-    // "/lp/oak-calendar",
-    // Beta pages
+    // Old lessons
     "/teachers/key-stages/ks1/subjects",
     "/teachers/key-stages/ks4/subjects/maths-l/programmes",
     "/teachers/programmes/maths-secondary-ks4-foundation-l/units",
@@ -51,8 +44,6 @@ function getDeploymentTestUrls() {
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/duncan-as-a-father-figure/downloads",
-    "/teachers/lessons/transverse-waves",
-    "/teachers/lessons/transverse-waves/downloads",
   ];
 }
 

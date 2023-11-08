@@ -24,9 +24,9 @@ const relativeUrls = getDeploymentTestUrls().map((url) => {
   };
 });
 // Add a few more instances of particularly slow assets.
-for (let i = 0; i < 15; i++) {
-  relativeUrls.push("/images/sprite/sprite.svg");
-}
+// for (let i = 0; i < 15; i++) {
+//   relativeUrls.push("/images/sprite/sprite.svg");
+// }
 
 // Parse URLs to make sure they're valid.
 const urls = relativeUrls.map((relUrl) => {
