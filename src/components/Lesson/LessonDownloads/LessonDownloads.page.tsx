@@ -319,8 +319,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <DownloadConfirmation
             unitSlug={unitSlug}
             lessonSlug={lessonSlug}
+            unitTitle={unitTitle}
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
           />
         </Box>
         {!isDownloadSuccessful && (

@@ -22,7 +22,8 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
     <Box
       $background={"aqua50"}
       $borderRadius={4}
-      $width={[340, 240, 420]}
+      $minWidth={[340, 240, 420]}
+      // $width={"100%"}
       $minHeight={[160, 270, 160]}
     >
       <Flex
@@ -30,7 +31,7 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
         $flexDirection={"column"}
         $minHeight={[160, 270, 160]}
         $position={"relative"}
-        $justifyContent={"space-between"}
+        // $justifyContent={"space-between"}
         $wordWrap={"break-word"}
         $gap={16}
       >
