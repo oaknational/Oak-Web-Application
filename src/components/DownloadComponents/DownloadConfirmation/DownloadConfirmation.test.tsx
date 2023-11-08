@@ -9,6 +9,7 @@ describe("DownloadConfirmation component", () => {
         lessonSlug="test-lesson"
         programmeSlug="test-programme"
         unitSlug="test-unit"
+        isCanonical={false}
       />,
     );
 
@@ -21,6 +22,7 @@ describe("DownloadConfirmation component", () => {
         lessonSlug="test-lesson"
         programmeSlug="test-programme"
         unitSlug="test-unit"
+        isCanonical={false}
       />,
     );
 
@@ -38,6 +40,7 @@ describe("DownloadConfirmation component", () => {
         lessonSlug="test-lesson"
         programmeSlug={null}
         unitSlug={null}
+        isCanonical={false}
       />,
     );
 
