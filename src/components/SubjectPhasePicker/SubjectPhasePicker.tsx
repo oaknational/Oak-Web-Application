@@ -72,6 +72,10 @@ const SelectButton = styled(UnstyledButton)<object>`
   }
 `;
 
+const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
+  color: ${(props) => props.$color};
+`;
+
 const ButtonContainer = styled.div`
   display: inline-block;
 
@@ -262,10 +266,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       option.slug === selectedExamboard?.slug
     );
   };
-
-  const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-    color: ${(props) => props.$color};
-  `;
 
   const viewButtonRef = useRef<HTMLButtonElement>(null);
   const depsRef = useRef(
@@ -498,7 +498,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 School phase
               </Heading>
-              <P
+              <Box
                 $font={"body-2"}
                 $color={
                   !showPhaseError && !showExamboardError ? "black" : "failure"
@@ -542,7 +542,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   !showPhaseError &&
                   !showExamboardError &&
                   "Select"}
-              </P>
+              </Box>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
 
