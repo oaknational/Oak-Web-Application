@@ -5183,6 +5183,7 @@ export type Ingest_Video_Ingest = {
   ingest_provider_caption_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_error?: Maybe<Scalars['String']['output']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']['output']>;
+  ingest_provider_public_playback_id?: Maybe<Scalars['String']['output']>;
   ingest_provider_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']['output']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -5326,6 +5327,7 @@ export type Ingest_Video_Ingest_Bool_Exp = {
   ingest_provider_caption_status?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_error?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_playback_id?: InputMaybe<String_Comparison_Exp>;
+  ingest_provider_public_playback_id?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_status?: InputMaybe<String_Comparison_Exp>;
   ingest_provider_text_track_id?: InputMaybe<String_Comparison_Exp>;
   ingest_submitted_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -5422,6 +5424,7 @@ export type Ingest_Video_Ingest_Insert_Input = {
   ingest_provider_caption_status?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_error?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_playback_id?: InputMaybe<Scalars['String']['input']>;
+  ingest_provider_public_playback_id?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_status?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_text_track_id?: InputMaybe<Scalars['String']['input']>;
   ingest_submitted_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -5480,6 +5483,7 @@ export type Ingest_Video_Ingest_Max_Fields = {
   ingest_provider_caption_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_error?: Maybe<Scalars['String']['output']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']['output']>;
+  ingest_provider_public_playback_id?: Maybe<Scalars['String']['output']>;
   ingest_provider_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']['output']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -5534,6 +5538,7 @@ export type Ingest_Video_Ingest_Max_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
+  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5589,6 +5594,7 @@ export type Ingest_Video_Ingest_Min_Fields = {
   ingest_provider_caption_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_error?: Maybe<Scalars['String']['output']>;
   ingest_provider_playback_id?: Maybe<Scalars['String']['output']>;
+  ingest_provider_public_playback_id?: Maybe<Scalars['String']['output']>;
   ingest_provider_status?: Maybe<Scalars['String']['output']>;
   ingest_provider_text_track_id?: Maybe<Scalars['String']['output']>;
   ingest_submitted_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -5643,6 +5649,7 @@ export type Ingest_Video_Ingest_Min_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
+  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5723,6 +5730,7 @@ export type Ingest_Video_Ingest_Order_By = {
   ingest_provider_caption_status?: InputMaybe<Order_By>;
   ingest_provider_error?: InputMaybe<Order_By>;
   ingest_provider_playback_id?: InputMaybe<Order_By>;
+  ingest_provider_public_playback_id?: InputMaybe<Order_By>;
   ingest_provider_status?: InputMaybe<Order_By>;
   ingest_provider_text_track_id?: InputMaybe<Order_By>;
   ingest_submitted_at?: InputMaybe<Order_By>;
@@ -5829,6 +5837,8 @@ export enum Ingest_Video_Ingest_Select_Column {
   /** column name */
   IngestProviderPlaybackId = 'ingest_provider_playback_id',
   /** column name */
+  IngestProviderPublicPlaybackId = 'ingest_provider_public_playback_id',
+  /** column name */
   IngestProviderStatus = 'ingest_provider_status',
   /** column name */
   IngestProviderTextTrackId = 'ingest_provider_text_track_id',
@@ -5912,6 +5922,7 @@ export type Ingest_Video_Ingest_Set_Input = {
   ingest_provider_caption_status?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_error?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_playback_id?: InputMaybe<Scalars['String']['input']>;
+  ingest_provider_public_playback_id?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_status?: InputMaybe<Scalars['String']['input']>;
   ingest_provider_text_track_id?: InputMaybe<Scalars['String']['input']>;
   ingest_submitted_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -6075,6 +6086,8 @@ export enum Ingest_Video_Ingest_Update_Column {
   IngestProviderError = 'ingest_provider_error',
   /** column name */
   IngestProviderPlaybackId = 'ingest_provider_playback_id',
+  /** column name */
+  IngestProviderPublicPlaybackId = 'ingest_provider_public_playback_id',
   /** column name */
   IngestProviderStatus = 'ingest_provider_status',
   /** column name */
