@@ -1,17 +1,19 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import position, { PositionProps } from "../../styles/utils/position";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import Icon from "../Icon";
-
 import type { CheckboxVariant } from "./Checkbox";
+
+import position, { PositionProps } from "@/styles/utils/position";
+import { ZIndex, parseZIndex } from "@/styles/utils/zIndex";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import Icon from "@/components/Icon";
 
 type VisualCheckboxProps = {
   checked: boolean;
   hasError?: boolean;
   variant?: CheckboxVariant;
   slim?: boolean;
+  zIndex?: ZIndex;
 };
 
 type VisualCheckboxWrapper = {
@@ -19,6 +21,7 @@ type VisualCheckboxWrapper = {
   hasError?: boolean;
   variant?: CheckboxVariant;
   slim?: boolean;
+  zIndex?: ZIndex;
 } & PositionProps;
 
 const getBorderColor = (props: VisualCheckboxProps) => {
@@ -58,11 +61,11 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
   border-style: solid;
   border-width: 2px;
   border-radius: 2px;
-  z-index: 1;
   border-color: ${(props) => getBorderColor(props)};
   background-color: ${(props) =>
     props.checked ? getColorByName("black") : getColorByName("white")};
   ${position}
+  z-index: ${(props) => (props.zIndex ? parseZIndex(props.zIndex) : 1)};
 `;
 
 const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
@@ -73,6 +76,7 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
       data-testid="visual-checkbox"
       hasError={props.hasError}
       slim={props.slim}
+      zIndex={props.zIndex}
     >
       {props.checked && (
         <Icon
