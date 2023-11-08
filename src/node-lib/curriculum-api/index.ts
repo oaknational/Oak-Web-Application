@@ -214,6 +214,7 @@ const lessonShareListSchema = z.array(
       "intro-quiz-questions",
       "exit-quiz-questions",
       "worksheet-pdf",
+      "video",
     ]),
     label: z.string(),
     metadata: z.string(),
