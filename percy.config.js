@@ -30,7 +30,6 @@ module.exports = {
     `,
   },
   discovery: {
-    concurrency: 1,
     networkIdleTimeout: 750,
     allowedHostnames: [
       "docs.google.com",
