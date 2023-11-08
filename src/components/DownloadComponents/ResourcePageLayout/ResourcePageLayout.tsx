@@ -186,6 +186,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                                 onBlur={onBlur}
                                 id={"terms"}
                                 errorMessage={props.errors?.terms?.message}
+                                zIndex={"neutral"}
                               />
                             );
                           }}
