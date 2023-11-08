@@ -38,7 +38,7 @@ describe("getNextLessonsInUnit()", () => {
     expect(nextLessons.length).toEqual(1);
     expect(nextLessons[0]?.lessonSlug).toEqual("subtract-four-surds");
   });
-  test("returns the next lesson when the lesson is the 1nd and there are only 2 lessons in the unit", async () => {
+  test("returns the next lesson when the lesson is the 1st and there are only 2 lessons in the unit", async () => {
     const nextLessons = getNextLessonsInUnit(
       lessons.splice(0, 2),
       "add-two-surds-6wwk0c",
