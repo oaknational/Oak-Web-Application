@@ -40,7 +40,7 @@ function getDeploymentTestUrls() {
     "/teachers/key-stages/ks4/subjects/combined-science/programmes",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons",
-    "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
+    "/teachers/programmes/english-secondary-ks4-edexcel/units/macbeth-and-masculinity-the-struggle-for-power/lessons/banquo-and-the-chivalric-code",
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/duncan-as-a-father-figure/downloads",
