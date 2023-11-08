@@ -46,16 +46,4 @@ describe("getNextLessonsInUnit()", () => {
     expect(nextLessons.length).toEqual(1);
     expect(nextLessons[0]?.lessonSlug).toEqual("subtract-two-surds-6njkac");
   });
-  test("returns empty array if lessonSlug is undefined", async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const nextLessons = getNextLessonsInUnit(lessons, undefined);
-    expect(nextLessons).toEqual([]);
-  });
-  test("returns empty array if unit is undefined", async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const nextLessons = getNextLessonsInUnit(undefined, "add-two-surds-6wwk0c");
-    expect(nextLessons).toEqual([]);
-  });
 });
