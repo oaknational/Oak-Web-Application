@@ -2,6 +2,7 @@ import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import ResourceCard from "../ResourceCard";
+import { sortShareResources } from "../helpers/sortResources";
 
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import Flex from "@/components/Flex";
@@ -13,21 +14,8 @@ export type ShareCardGroupProps = {
   hasError?: boolean;
 };
 
-const sortOrderKey = {
-  "intro-quiz-questions": 1,
-  video: 2,
-  "worksheet-pdf": 3,
-  "intro-quiz-answers": 4,
-  "exit-quiz-questions": 5,
-};
-
 const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
-  // Sort the resources in display order
-  const sortedResources = props.shareableResources?.sort((a, b) => {
-    const aSortOrder = sortOrderKey[a.type];
-    const bSortOrder = sortOrderKey[b.type];
-    return aSortOrder - bSortOrder;
-  });
+  const sortedResources = sortShareResources(props.shareableResources);
 
   return (
     <Flex

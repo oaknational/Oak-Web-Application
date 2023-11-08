@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 
 import Component, { ShareCardGroupProps } from "./ShareCardGroup";
 
+import * as resources from "@/node-lib/curriculum-api/fixtures/shareableResources.fixture";
+
 const meta: Meta<typeof Component> = {
   component: Component,
   title: "Download Components/Share Card Group",
@@ -19,34 +21,9 @@ const Wrapper = (args: ShareCardGroupProps) => {
   return <Component {...args} control={control} />;
 };
 
-const exitQuiz = {
-  type: "exit-quiz-questions" as const,
-  exists: true,
-  label: "Exit quiz",
-  metadata: "6 questions",
-};
-const starterQuiz = {
-  type: "intro-quiz-questions" as const,
-  exists: true,
-  label: "Starter quiz",
-  metadata: "6 questions",
-};
-const video = {
-  type: "video" as const,
-  exists: true,
-  label: "Video",
-  metadata: "57:23",
-};
-const worksheet = {
-  type: "worksheet-pdf" as const,
-  exists: true,
-  label: "Worksheet",
-  metadata: "PDF",
-};
-
 export const AllResources: Story = {
   args: {
-    shareableResources: [video, worksheet, exitQuiz, starterQuiz],
+    shareableResources: resources.allResources,
   },
   render: (args) => {
     return <Wrapper {...args} />;
@@ -55,7 +32,7 @@ export const AllResources: Story = {
 
 export const noVideo: Story = {
   args: {
-    shareableResources: [worksheet, exitQuiz, starterQuiz],
+    shareableResources: resources.noVideo,
   },
   render: (args) => {
     return <Wrapper {...args} />;
@@ -64,7 +41,7 @@ export const noVideo: Story = {
 
 export const noVideoNoExitQuiz: Story = {
   args: {
-    shareableResources: [worksheet, starterQuiz],
+    shareableResources: resources.noVideoNoExitQuiz,
   },
   render: (args) => {
     return <Wrapper {...args} />;
