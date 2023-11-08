@@ -1,3 +1,10 @@
+## [1.295.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.7...v1.295.8) (2023-11-08)
+
+
+### Bug Fixes
+
+* z index for t&c checkbox ([4e23636](https://github.com/oaknational/Oak-Web-Application/commit/4e23636e2de9776804ab69eafbb8b2ab1286f10c))
+
 ## [1.295.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.6...v1.295.7) (2023-11-07)
 
 ## [1.295.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.5...v1.295.6) (2023-11-07)
