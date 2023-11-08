@@ -25,6 +25,7 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
       $minWidth={[340, 240, 420]}
       // $width={"100%"}
       $minHeight={[160, 270, 160]}
+      data-testid={`next-lesson-card`}
     >
       <Flex
         $pa={[16, 16, 24]}
