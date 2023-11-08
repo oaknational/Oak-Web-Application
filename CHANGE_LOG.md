@@ -1,3 +1,10 @@
+# [1.296.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.8...v1.296.0) (2023-11-08)
+
+
+### Features
+
+* next 3 lessons downloads ([2c0a0ec](https://github.com/oaknational/Oak-Web-Application/commit/2c0a0ecb1d7a01e96c61744110d1b428f579d3ee))
+
 ## [1.295.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.7...v1.295.8) (2023-11-08)
 
 
