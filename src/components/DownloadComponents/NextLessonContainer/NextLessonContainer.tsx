@@ -25,11 +25,7 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
         More lessons in: <Span $color={"blue"}>{`${unitTitle}`}</Span>
       </Heading>
       {nextLessons && (
-        <Flex
-          $flexDirection={["column", "row"]}
-          $gap={[8, 12, 16]}
-          $justifyContent={"space-between"}
-        >
+        <Flex $flexDirection={["column", "row"]} $gap={[8, 12, 16]}>
           {nextLessons.map((lesson: NextLesson, i: number) => {
             if (i < 3) {
               return (
