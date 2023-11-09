@@ -1,3 +1,23 @@
+# [1.298.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.297.1...v1.298.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* include key in map and only show resource card when it exists ([8c164ef](https://github.com/oaknational/Oak-Web-Application/commit/8c164ef8e861e4cc03334508973e1a49e8f5040d))
+* mock uses correct folder name ([9a8a163](https://github.com/oaknational/Oak-Web-Application/commit/9a8a163101cd8493089b5caa80ee4fc65b4fa517))
+* more pdfs in tests ([d17a93e](https://github.com/oaknational/Oak-Web-Application/commit/d17a93e0d501be519999caf8106e4c9ae10cb4c2))
+* pdf casing in test ([6013cff](https://github.com/oaknational/Oak-Web-Application/commit/6013cff0901f4973a9fc67a2171704edcf72e564))
+* rename prop ([c88de7d](https://github.com/oaknational/Oak-Web-Application/commit/c88de7dab531b1b1f08295d58494104af3d35045))
+
+
+### Features
+
+* add preview link button ([9fe5e23](https://github.com/oaknational/Oak-Web-Application/commit/9fe5e236af535af4cb50db2a74256f7fcaace1b8))
+* add shareCardGroup component ([317069b](https://github.com/oaknational/Oak-Web-Application/commit/317069b3b2f03c23bfbd2ee38e077426ff1edf24))
+* extract card sorting functionality ([f384fd7](https://github.com/oaknational/Oak-Web-Application/commit/f384fd7be68ddbfbc9541cf4167db46ddfd08f60))
+* sort cards into correct order ([c9c5a4f](https://github.com/oaknational/Oak-Web-Application/commit/c9c5a4f69dcbbd1bf7dc705ad0b3b30e0ca3e985))
+* use decorator in story ([d772f91](https://github.com/oaknational/Oak-Web-Application/commit/d772f915348a396132f59b185770b852548b2dd3))
+
 ## [1.297.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.297.0...v1.297.1) (2023-11-09)
 
 # [1.297.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.296.0...v1.297.0) (2023-11-08)
