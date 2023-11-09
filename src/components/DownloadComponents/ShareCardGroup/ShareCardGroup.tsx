@@ -58,7 +58,6 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
                   checked={fieldValue.includes(resource.type)}
                   onBlur={onBlur}
                   hasError={props.hasError}
-                  data-testid={`share-card-${resource.type}`}
                 />
               );
             }}
