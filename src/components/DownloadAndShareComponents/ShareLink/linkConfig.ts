@@ -20,7 +20,7 @@ export const shareLinkConfig: Record<
   copy: {
     name: "Copy Link",
     medium: "copy-link",
-    icon: "share", // TODO: copy icon
+    icon: "copy",
     url: ({ link }) => {
       return link;
     },
@@ -28,7 +28,7 @@ export const shareLinkConfig: Record<
   email: {
     name: "Email",
     network: "email",
-    icon: "share", // TODO: email icon
+    icon: "send",
     url: ({ urlEncodedPageTitle, urlEncodedShareStr }) => {
       return `mailto:?subject=${urlEncodedPageTitle}&body=${urlEncodedShareStr}`;
     },
@@ -37,7 +37,7 @@ export const shareLinkConfig: Record<
   googleClassroom: {
     name: "Google Classroom",
     network: "google-classroom",
-    icon: "share", // TODO: google classroom icon
+    icon: "google-classroom",
     url: ({ urlEncodedLink }) => {
       return `https://classroom.google.com/u/0/share?url=${urlEncodedLink}`;
     },
@@ -46,7 +46,7 @@ export const shareLinkConfig: Record<
   microsoftTeams: {
     name: "Microsoft Teams",
     network: "microsoft-teams",
-    icon: "share", // TODO: microsoft teams icon
+    icon: "microsoft-teams",
     url: ({ urlEncodedLink, urlEncodedPageTitle }) => {
       return `https://teams.microsoft.com/share?href=${urlEncodedLink}&text=${urlEncodedPageTitle}`;
     },
