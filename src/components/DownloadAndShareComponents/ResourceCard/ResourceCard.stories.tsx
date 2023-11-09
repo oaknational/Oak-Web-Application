@@ -31,7 +31,7 @@ type Story = StoryObj<typeof Component>;
 
 export const DLCard: Story = {
   args: {
-    extension: "pdf",
+    subtitle: "pdf",
     checked: false,
     onChange: action("changed"),
     resourceType: "worksheet-pdf",
