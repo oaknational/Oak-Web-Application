@@ -8,6 +8,16 @@ import * as resources from "@/node-lib/curriculum-api/fixtures/shareableResource
 const meta: Meta<typeof Component> = {
   component: Component,
   title: "Download Components/Share Card Group",
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: "656px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: (args) => {
+    return <Wrapper {...args} />;
+  },
 };
 
 export default meta;
@@ -27,32 +37,16 @@ export const AllResources: Story = {
   args: {
     shareableResources: resources.allResources,
   },
-  render: (args) => {
-    return <Wrapper {...args} />;
-  },
 };
 
 export const noVideo: Story = {
   args: {
     shareableResources: resources.noVideo,
   },
-  render: (args) => {
-    return <Wrapper {...args} />;
-  },
 };
 
 export const noVideoNoExitQuiz: Story = {
   args: {
     shareableResources: resources.noVideoNoExitQuiz,
-  },
-  decorators: [
-    (Story) => (
-      <div style={{ maxWidth: "632px" }}>
-        <Story />
-      </div>
-    ),
-  ],
-  render: (args) => {
-    return <Wrapper {...args} />;
   },
 };
