@@ -12,7 +12,7 @@ describe("ResourceCard", () => {
         id="unique-123"
         name="downloadResources"
         label="Worksheet"
-        subtitle="pdf"
+        subtitle="PDF"
         checked
         onChange={jest.fn()}
         resourceType="worksheet-pdf"
@@ -59,7 +59,7 @@ describe("ResourceCard", () => {
         checked={value}
         name="downloadResources"
         label="Worksheet"
-        subtitle="pdf"
+        subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
       />,
