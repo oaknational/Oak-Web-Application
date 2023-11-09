@@ -18,7 +18,9 @@ const Wrapper = (args: ShareCardGroupProps) => {
   const { control } = useForm({
     mode: "onBlur",
   });
-  return <Component {...args} control={control} />;
+  return (
+    <Component {...args} control={control} shareLink="https://example.com" />
+  );
 };
 
 export const AllResources: Story = {
