@@ -25,4 +25,8 @@ const worksheet = {
 
 export const allResources = [video, worksheet, exitQuiz, starterQuiz];
 export const noVideo = [worksheet, exitQuiz, starterQuiz];
-export const noVideoNoExitQuiz = [worksheet, starterQuiz];
+export const noVideoNoExitQuiz = [
+  worksheet,
+  starterQuiz,
+  { ...exitQuiz, exists: false },
+];

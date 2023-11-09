@@ -26,43 +26,50 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
         $flexDirection={["column", "row"]}
         $flexWrap={["nowrap", "wrap"]}
       >
-        {sortedResources.map((resource) => (
-          <Controller
-            control={props.control}
-            name="share"
-            defaultValue={[]}
-            render={({
-              field: { value: fieldValue, onChange, name, onBlur },
-            }) => {
-              const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                if (e.target.checked) {
-                  onChange([...fieldValue, resource.type]);
-                } else {
-                  onChange(
-                    fieldValue.filter(
-                      (val: LessonShareSchema["type"]) => val !== resource.type,
-                    ),
+        {sortedResources.map(
+          (resource, i) =>
+            resource.exists && (
+              <Controller
+                control={props.control}
+                name="share"
+                defaultValue={[]}
+                key={`${resource.type}-${i}`}
+                render={({
+                  field: { value: fieldValue, onChange, name, onBlur },
+                }) => {
+                  const onChangeHandler = (
+                    e: ChangeEvent<HTMLInputElement>,
+                  ) => {
+                    if (e.target.checked) {
+                      onChange([...fieldValue, resource.type]);
+                    } else {
+                      onChange(
+                        fieldValue.filter(
+                          (val: LessonShareSchema["type"]) =>
+                            val !== resource.type,
+                        ),
+                      );
+                    }
+                    // Trigger the form to reevaluate errors
+                    props.triggerForm();
+                  };
+                  return (
+                    <ResourceCard
+                      id={resource.type}
+                      name={name}
+                      label={resource.label}
+                      subtitle={resource.metadata}
+                      resourceType={resource.type}
+                      onChange={onChangeHandler}
+                      checked={fieldValue.includes(resource.type)}
+                      onBlur={onBlur}
+                      hasError={props.hasError}
+                    />
                   );
-                }
-                // Trigger the form to reevaluate errors
-                props.triggerForm();
-              };
-              return (
-                <ResourceCard
-                  id={resource.type}
-                  name={name}
-                  label={resource.label}
-                  subtitle={resource.metadata}
-                  resourceType={resource.type}
-                  onChange={onChangeHandler}
-                  checked={fieldValue.includes(resource.type)}
-                  onBlur={onBlur}
-                  hasError={props.hasError}
-                />
-              );
-            }}
-          />
-        ))}
+                }}
+              />
+            ),
+        )}
       </Flex>
       <ButtonAsLink
         label="Preview as a pupil"
