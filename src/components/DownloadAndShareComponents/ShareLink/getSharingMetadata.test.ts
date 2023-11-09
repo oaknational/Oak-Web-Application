@@ -12,24 +12,24 @@ describe("getSharingMetadata", () => {
       "https://classroom.thenational.academy/lessons/lesson-slug?utm_campaign=sharing-button&activities=exit-quiz-questions+video&utm_medium=copy-link",
     );
   });
-  it("generates sharing metadata for facebook", () => {
+  it("generates sharing metadata for microsoft teams", () => {
     const result = getSharingMetadata({
       medium: "social",
-      network: "facebook",
+      network: "microsoft-teams",
       lessonSlug: "lesson-slug",
     });
 
     expect(result.link).toBe(
-      "https://classroom.thenational.academy/lessons/lesson-slug?utm_campaign=sharing-button&utm_source=facebook&utm_medium=social",
+      "https://classroom.thenational.academy/lessons/lesson-slug?utm_campaign=sharing-button&utm_source=microsoft-teams&utm_medium=social",
     );
     expect(result.urlEncodedLink).toBe(
-      "https%3A%2F%2Fclassroom.thenational.academy%2Flessons%2Flesson-slug%3Futm_campaign%3Dsharing-button%26utm_source%3Dfacebook%26utm_medium%3Dsocial",
+      "https%3A%2F%2Fclassroom.thenational.academy%2Flessons%2Flesson-slug%3Futm_campaign%3Dsharing-button%26utm_source%3Dmicrosoft-teams%26utm_medium%3Dsocial",
     );
   });
   it("includes activities when provided", () => {
     const result = getSharingMetadata({
       medium: "social",
-      network: "facebook",
+      network: "microsoft-teams",
       lessonSlug: "lesson-slug",
       selectedActivities: ["exit-quiz-questions", "video"],
     });

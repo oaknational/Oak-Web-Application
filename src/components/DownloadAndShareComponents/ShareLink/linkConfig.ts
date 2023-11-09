@@ -1,13 +1,8 @@
 import { IconName } from "@/components/Icon";
 
 export type ShareLinkConfig = {
-  name:
-    | "Facebook"
-    | "Email"
-    | "Google Classroom"
-    | "Microsoft Teams"
-    | "Copy Link";
-  network?: "facebook" | "email" | "google-classroom" | "microsoft-teams";
+  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy Link";
+  network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   icon: IconName;
   url: (params: {
@@ -18,8 +13,11 @@ export type ShareLinkConfig = {
   }) => string;
 };
 
-const config: Array<ShareLinkConfig> = [
-  {
+export const shareLinkConfig: Record<
+  "copy" | "googleClassroom" | "microsoftTeams" | "email",
+  ShareLinkConfig
+> = {
+  copy: {
     name: "Copy Link",
     medium: "copy-link",
     icon: "share", // TODO: copy icon
@@ -27,16 +25,7 @@ const config: Array<ShareLinkConfig> = [
       return link;
     },
   },
-  {
-    name: "Facebook",
-    network: "facebook",
-    icon: "facebook",
-    url: ({ urlEncodedPageTitle, urlEncodedLink }) => {
-      return `https://www.facebook.com/sharer/sharer.php?u=${urlEncodedLink}&t=${urlEncodedPageTitle}`;
-    },
-    medium: "social",
-  },
-  {
+  email: {
     name: "Email",
     network: "email",
     icon: "share", // TODO: email icon
@@ -45,7 +34,7 @@ const config: Array<ShareLinkConfig> = [
     },
     medium: "email",
   },
-  {
+  googleClassroom: {
     name: "Google Classroom",
     network: "google-classroom",
     icon: "share", // TODO: google classroom icon
@@ -54,7 +43,7 @@ const config: Array<ShareLinkConfig> = [
     },
     medium: "lms",
   },
-  {
+  microsoftTeams: {
     name: "Microsoft Teams",
     network: "microsoft-teams",
     icon: "share", // TODO: microsoft teams icon
@@ -63,6 +52,4 @@ const config: Array<ShareLinkConfig> = [
     },
     medium: "lms",
   },
-];
-
-export default config;
+};

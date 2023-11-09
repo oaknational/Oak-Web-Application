@@ -23,7 +23,7 @@ type SharingMetadata = {
 
 const classroomPath = (lessonSlug: string) => `/lessons/${lessonSlug}`;
 
-type GetSharingMetadata = {
+export type GetSharingMetadataParams = {
   network?: ShareLinkConfig["network"];
   lessonSlug: string;
   medium: ShareLinkConfig["medium"];
@@ -37,7 +37,7 @@ export const getSharingMetadata = ({
   medium,
   selectedActivities,
   schoolUrn,
-}: GetSharingMetadata): SharingMetadata => {
+}: GetSharingMetadataParams): SharingMetadata => {
   // Encode which activities the teacher wishes to share.
   const activityQueryString = selectedActivities?.length
     ? getActivityQueryString(selectedActivities)
