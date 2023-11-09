@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import downloadLessonResources from "../helpers/downloadLessonResources";
-import type { DownloadFormProps } from "../../../components/DownloadComponents/downloads.types";
+import type { DownloadFormProps } from "../downloads.types";
 
 import useDownloadForm from "./useDownloadForm";
 
