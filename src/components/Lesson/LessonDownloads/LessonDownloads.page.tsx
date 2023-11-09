@@ -84,6 +84,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
 
+  const onwardContent = lesson.nextLessons
+    ? lesson.nextLessons?.map((nextLesson) => {
+        return nextLesson.lessonSlug;
+      })
+    : [];
+
   const {
     register,
     formState,
@@ -272,6 +278,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolUrn,
         schoolName,
         schoolOption,
+        onwardContent,
         emailSupplied: data?.email ? true : false,
       });
     } catch (error) {
