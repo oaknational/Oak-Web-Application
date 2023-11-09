@@ -69,6 +69,14 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       break;
   }
 
+  const createExamboardLabel = (text: string) => {
+    return (
+      <P $font={"heading-light-7"} data-testid={"examboard-metadata"}>
+        {`${text} (KS4)`}
+      </P>
+    );
+  };
+
   return (
     <Box $mb={40}>
       <Flex $background={color1} $pv={[20]}>
@@ -124,22 +132,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <Flex $justifyContent={"center"} $flexDirection={"column"}>
-                {examboard?.title && (
-                  <P
-                    $font={"heading-light-7"}
-                    data-testid={"examboard-metadata"}
-                  >
-                    {`${examboard.title} (KS4)`}
-                  </P>
-                )}
-                {subjectPhaseSlug === "maths-secondary" && (
-                  <P
-                    $font={"heading-light-7"}
-                    data-testid={"examboard-metadata"}
-                  >
-                    All exam boards (KS4)
-                  </P>
-                )}
+                {examboard?.title && createExamboardLabel(examboard.title)}
+                {subjectPhaseSlug === "maths-secondary" &&
+                  createExamboardLabel("All exam boards")}
                 <Heading
                   tag={"h1"}
                   $font={["heading-4", "heading-3"]}
