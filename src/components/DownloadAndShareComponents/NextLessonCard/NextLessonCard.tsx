@@ -22,16 +22,19 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
     <Box
       $background={"aqua50"}
       $borderRadius={4}
-      $width={[340, 240, 420]}
-      $minHeight={[160, 270, 160]}
+      $width={"100%"}
+      $minWidth={[340, 200, 340]}
+      $maxWidth={["100%", "100%", "50%"]}
+      $minHeight={[160, 200, 160]}
       data-testid={`next-lesson-card`}
     >
       <Flex
         $pa={[16, 16, 24]}
         $flexDirection={"column"}
-        $minHeight={[160, 270, 160]}
+        $minHeight={[160, 200, 160]}
+        $height={"100%"}
         $position={"relative"}
-        $justifyContent={"space-evenly "}
+        $justifyContent={"space-between"}
         $wordWrap={"break-word"}
         $gap={16}
       >
@@ -40,8 +43,10 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
         </Heading>
 
         <Flex
-          $flexDirection={["column", "column", "row"]}
+          $flexDirection={["column", "row", "row"]}
           $alignItems={["flex-start"]}
+          // $justifyContent={"space-between"}
+          $flexWrap={"wrap"}
           $gap={24}
         >
           <ButtonAsLink

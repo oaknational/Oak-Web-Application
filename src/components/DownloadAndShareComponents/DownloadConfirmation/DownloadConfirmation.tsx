@@ -3,7 +3,6 @@ import { FC } from "react";
 import Flex from "@/components/Flex";
 import { Heading, P } from "@/components/Typography";
 import Svg from "@/components/Svg";
-import Box from "@/components/Box";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import NextLessonContainer from "@/components/DownloadComponents/NextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
@@ -82,12 +81,11 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           <Heading tag="h1" $font={["heading-4", "heading-3"]}>
             Thanks for downloading
           </Heading>
-          <Box $maxWidth={[360, 524]}>
-            <P $font={"body-1"}>
-              We hope you find the resources useful. Click the question mark in
-              the bottom-right corner to share your feedback.
-            </P>
-          </Box>
+
+          <P $font={"body-1"}>
+            We hope you find the resources useful. Click the question mark in
+            the bottom-right corner to share your feedback.
+          </P>
         </Flex>
       </Flex>
 
