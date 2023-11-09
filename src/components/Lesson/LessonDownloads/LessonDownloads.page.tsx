@@ -37,6 +37,7 @@ import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadComponents/ResourcePageLayout";
 import LoadingButton from "@/components/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadComponents/DownloadConfirmation";
+import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 type LessonDownloadsProps =
   | {
@@ -47,6 +48,7 @@ type LessonDownloadsProps =
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
         pathways: LessonPathway[];
+        nextLessons?: undefined;
       };
     }
   | {
@@ -56,6 +58,7 @@ type LessonDownloadsProps =
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
+        nextLessons: NextLesson[];
       };
     };
 
@@ -65,6 +68,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
+
   const {
     programmeSlug,
     keyStageTitle,
@@ -323,6 +327,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
             isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
           />
         </Box>
         {!isDownloadSuccessful && (

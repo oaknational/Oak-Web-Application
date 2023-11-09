@@ -23,7 +23,6 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
       $background={"aqua50"}
       $borderRadius={4}
       $minWidth={[340, 240, 420]}
-      // $width={"100%"}
       $minHeight={[160, 270, 160]}
       data-testid={`next-lesson-card`}
     >

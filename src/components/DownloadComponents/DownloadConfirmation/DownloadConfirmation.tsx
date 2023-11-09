@@ -6,6 +6,7 @@ import Svg from "@/components/Svg";
 import Box from "@/components/Box";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import NextLessonContainer from "@/components/DownloadComponents/NextLessonContainer";
+import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
@@ -13,6 +14,7 @@ type DownloadConfirmationProps = {
   unitSlug: string | null;
   isCanonical: boolean;
   unitTitle?: string | null;
+  nextLessons?: NextLesson[];
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -21,6 +23,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   unitSlug,
   isCanonical,
   unitTitle,
+  nextLessons,
 }) => {
   return (
     <>
@@ -89,14 +92,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       {!isCanonical && unitSlug && programmeSlug && unitTitle && (
         <NextLessonContainer
           programmeSlug={programmeSlug}
-          lessonSlug={lessonSlug}
           unitSlug={unitSlug}
           unitTitle={unitTitle}
-          futureLessons={[
-            "future-lesson-1",
-            "future-lesson-2",
-            "future-lesson-3",
-          ]}
+          nextLessons={nextLessons}
         />
       )}
     </>

@@ -8,9 +8,21 @@ const meta: Meta<typeof Component> = {
   argTypes: {
     programmeSlug: { defaultValue: "programme-slug" },
     unitSlug: { defaultValue: "unit-slug" },
-    lessonSlug: { defaultValue: "lesson-slug" },
-    futureLessons: {
-      defaultValue: ["future-lesson-1", "future-lesson-2", "future-lesson-3"],
+    nextLessons: {
+      defaultValue: [
+        {
+          lessonSlug: "test-lesson",
+          lessonTitle: "test-lesson-title",
+        },
+        {
+          lessonSlug: "test-lesson-2",
+          lessonTitle: "test-lesson-title-2",
+        },
+        {
+          lessonSlug: "test-lesson-3",
+          lessonTitle: "test-lesson-title-3",
+        },
+      ],
     },
   },
 };
@@ -23,8 +35,20 @@ export const ConfirmationContainer: Story = {
   args: {
     programmeSlug: "programme-slug",
     unitSlug: "unit-slug",
-    lessonSlug: "lesson-slug",
-    futureLessons: ["future-lesson-1", "future-lesson-2", "future-lesson-3"],
+    nextLessons: [
+      {
+        lessonSlug: "test-lesson",
+        lessonTitle: "test-lesson-title",
+      },
+      {
+        lessonSlug: "test-lesson-2",
+        lessonTitle: "test-lesson-title-2",
+      },
+      {
+        lessonSlug: "test-lesson-3",
+        lessonTitle: "test-lesson-title-3",
+      },
+    ],
   },
   render: (args) => {
     return <Component {...args} />;

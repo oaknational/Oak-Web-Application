@@ -18,6 +18,11 @@ const lessonDownloadsFixtures = (
     tierTitle: null,
     examBoardSlug: null,
     examBoardTitle: null,
+    nextLessons: [
+      { lessonSlug: "macbeth-lesson-2", lessonTitle: "Macbeth" },
+      { lessonSlug: "macbeth-lesson-3", lessonTitle: "Macbeth" },
+      { lessonSlug: "macbeth-lesson-4", lessonTitle: "Macbeth" },
+    ],
     downloads: [
       {
         type: "exit-quiz-questions",

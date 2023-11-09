@@ -4,20 +4,19 @@ import Flex from "@/components/Flex";
 import Heading from "@/components/Typography/Heading";
 import NextLessonCard from "@/components/DownloadComponents/NextLessonCard/NextLessonCard";
 import { Span } from "@/components/Typography";
+import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 type NextLessonContainerProps = {
   programmeSlug: string;
   unitSlug: string;
-  lessonSlug: string;
-  futureLessons: string[];
+  nextLessons?: NextLesson[];
   unitTitle?: string;
 };
 
 const NextLessonContainer: FC<NextLessonContainerProps> = ({
   programmeSlug,
   unitSlug,
-  lessonSlug,
-  futureLessons,
+  nextLessons,
   unitTitle,
 }) => {
   return (
@@ -25,27 +24,29 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
       <Heading tag={"h3"} $font={["heading-6", "heading-5"]} $mb={[32, 48]}>
         More lessons in: <Span $color={"blue"}>{`${unitTitle}`}</Span>
       </Heading>
-      <Flex
-        $flexDirection={["column", "row"]}
-        $gap={[8, 12, 16]}
-        $justifyContent={"space-between"}
-      >
-        {futureLessons.map((lesson, i) => {
-          if (i < 3) {
-            return (
-              <NextLessonCard
-                programmeSlug={programmeSlug}
-                unitSlug={unitSlug}
-                lessonSlug={lessonSlug}
-                lessonTitle={lesson}
-                key={lesson}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </Flex>
+      {nextLessons && (
+        <Flex
+          $flexDirection={["column", "row"]}
+          $gap={[8, 12, 16]}
+          $justifyContent={"space-between"}
+        >
+          {nextLessons.map((lesson: NextLesson, i: number) => {
+            if (i < 3) {
+              return (
+                <NextLessonCard
+                  programmeSlug={programmeSlug}
+                  unitSlug={unitSlug}
+                  lessonSlug={lesson.lessonSlug}
+                  lessonTitle={lesson.lessonTitle}
+                  key={lesson.lessonSlug}
+                />
+              );
+            } else {
+              return null;
+            }
+          })}
+        </Flex>
+      )}
     </Flex>
   );
 };

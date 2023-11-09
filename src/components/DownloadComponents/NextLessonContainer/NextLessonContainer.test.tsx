@@ -2,14 +2,28 @@ import NextLessonContainer from "./NextLessonContainer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const nextLessons = [
+  {
+    lessonSlug: "test-lesson",
+    lessonTitle: "test-lesson-title",
+  },
+  {
+    lessonSlug: "test-lesson-2",
+    lessonTitle: "test-lesson-title-2",
+  },
+  {
+    lessonSlug: "test-lesson-3",
+    lessonTitle: "test-lesson-title-3",
+  },
+];
+
 describe("NextLessonContainer", () => {
   it("should render component", () => {
     const { getByRole } = renderWithTheme(
       <NextLessonContainer
         programmeSlug="test-programme"
         unitSlug="test-unit"
-        lessonSlug="test-slug"
-        futureLessons={["test-lesson", "test-lesson-2", "test-lesson-3"]}
+        nextLessons={nextLessons}
         unitTitle="test-unit-title"
       />,
     );
@@ -25,8 +39,7 @@ describe("NextLessonContainer", () => {
       <NextLessonContainer
         programmeSlug="test-programme"
         unitSlug="test-unit"
-        lessonSlug="test-slug"
-        futureLessons={["test-lesson", "test-lesson-2", "test-lesson-3"]}
+        nextLessons={nextLessons}
         unitTitle="test-unit-title"
       />,
     );
@@ -41,12 +54,9 @@ describe("NextLessonContainer", () => {
       <NextLessonContainer
         programmeSlug="test-programme"
         unitSlug="test-unit"
-        lessonSlug="test-slug"
-        futureLessons={[
-          "test-lesson",
-          "test-lesson-2",
-          "test-lesson-3",
-          "test-lesson-4",
+        nextLessons={[
+          ...nextLessons,
+          { lessonSlug: "test-lesson-4", lessonTitle: "test-lesson-title-4" },
         ]}
         unitTitle="test-unit-title"
       />,
