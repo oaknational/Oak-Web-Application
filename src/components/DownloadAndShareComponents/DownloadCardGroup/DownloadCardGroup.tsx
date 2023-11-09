@@ -7,6 +7,7 @@ import type {
   DownloadFormProps,
 } from "../downloads.types";
 import ResourceCard from "../ResourceCard";
+import { sortDownloadResources } from "../helpers/sortResources";
 
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/Box";
@@ -38,18 +39,6 @@ const getGridArea = (
   }
 };
 
-const sortOrderKey = {
-  presentation: 1,
-  "worksheet-pdf": 2,
-  "worksheet-pptx": 3,
-  "intro-quiz-questions": 4,
-  "intro-quiz-answers": 5,
-  "exit-quiz-questions": 6,
-  "exit-quiz-answers": 7,
-  "supplementary-pdf": 8,
-  "supplementary-docx": 9,
-};
-
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
   control,
@@ -62,12 +51,9 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   const presentationExists =
     downloads?.filter((d) => d.type === "presentation")?.length === 1;
 
-  // Sort the downloads in display order so tabbing order is correct
-  const sortedDownloads = downloads?.sort((a, b) => {
-    const aSortOrder = sortOrderKey[a.type];
-    const bSortOrder = sortOrderKey[b.type];
-    return aSortOrder - bSortOrder;
-  });
+  const sortedDownloads = downloads
+    ? sortDownloadResources(downloads)
+    : undefined;
 
   return (
     <Grid
@@ -120,7 +106,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                       id={download.type}
                       name={name}
                       label={download.label}
-                      extension={download.ext}
+                      subtitle={download.ext.toUpperCase()}
                       resourceType={download.type}
                       onChange={onChangeHandler}
                       checked={fieldValue.includes(download.type)}

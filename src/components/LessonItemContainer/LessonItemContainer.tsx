@@ -7,7 +7,7 @@ import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
 import {
   PreselectedDownloadType,
   containerTitleToPreselectMap,
-} from "../DownloadComponents/downloads.types";
+} from "../DownloadAndShareComponents/downloads.types";
 import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
 

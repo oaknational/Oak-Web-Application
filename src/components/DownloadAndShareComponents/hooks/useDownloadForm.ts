@@ -2,7 +2,7 @@ import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitF
 import type {
   DownloadFormProps,
   DownloadResourceType,
-} from "../../../components/DownloadComponents/downloads.types";
+} from "../downloads.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
 import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";

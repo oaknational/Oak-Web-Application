@@ -10,11 +10,12 @@ import Flex from "@/components/Flex";
 import Checkbox from "@/components/Checkbox";
 import Icon, { IconName } from "@/components/Icon";
 import { CheckboxProps } from "@/components/Checkbox/Checkbox";
+import { LessonShareSchema } from "@/node-lib/curriculum-api";
 
 export type ResourceCardProps = CheckboxProps & {
   label: string;
-  resourceType: DownloadResourceType;
-  extension: string;
+  resourceType: DownloadResourceType | LessonShareSchema["type"];
+  subtitle: string;
   hasError?: boolean;
 };
 
@@ -22,7 +23,10 @@ type ResourceCardLabelProps = ResourceCardProps & {
   isHovered: boolean;
 };
 
-const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
+const RESOURCE_TYPE_ICON_MAP: Record<
+  DownloadResourceType | LessonShareSchema["type"],
+  IconName
+> = {
   presentation: "slide-deck",
   "intro-quiz-questions": "quiz",
   "intro-quiz-answers": "quiz",
@@ -32,6 +36,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<DownloadResourceType, IconName> = {
   "worksheet-pptx": "worksheet",
   "supplementary-pdf": "additional-material",
   "supplementary-docx": "additional-material",
+  video: "video",
 };
 
 const BoxWithFocusState = styled.div`
@@ -44,7 +49,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   isHovered,
   resourceType,
   label,
-  extension,
+  subtitle,
 }) => {
   return (
     <BoxWithFocusState>
@@ -87,7 +92,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           >
             {label}
           </P>
-          <P $color="oakGrey4">{extension.toUpperCase()}</P>
+          <P $color="oakGrey4">{subtitle}</P>
         </Flex>
       </Flex>
     </BoxWithFocusState>
