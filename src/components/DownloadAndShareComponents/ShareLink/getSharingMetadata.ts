@@ -12,7 +12,7 @@ function getActivityQueryString(
   return `&activities=${activities}`;
 }
 
-type SharingMetadata = {
+export type SharingMetadata = {
   link: string;
   urlEncodedLink: string;
   pageTitle: string;

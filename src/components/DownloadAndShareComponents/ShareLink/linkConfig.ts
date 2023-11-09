@@ -1,3 +1,5 @@
+import { SharingMetadata } from "./getSharingMetadata";
+
 import { IconName } from "@/components/Icon";
 
 export type ShareLinkConfig = {
@@ -5,12 +7,7 @@ export type ShareLinkConfig = {
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   icon: IconName;
-  url: (params: {
-    link: string;
-    urlEncodedPageTitle: string;
-    urlEncodedLink: string;
-    urlEncodedShareStr?: string;
-  }) => string;
+  url: (params: SharingMetadata) => string;
 };
 
 export const shareLinkConfig: Record<
