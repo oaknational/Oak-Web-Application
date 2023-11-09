@@ -1,16 +1,16 @@
-query lessonDownloads(
+query lessonShare(
   $lessonSlug: String!
   $programmeSlug: String!
   $unitSlug: String!
 ) {
-  mv_downloads: mv_downloads_1(
+  mv_share: mv_share(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
     }
   ) {
-    downloads
+    shareableResources: shareable_resources
     programmeSlug: programme_slug
     keyStageSlug: key_stage_slug
     keyStageTitle: key_stage_title
@@ -22,18 +22,5 @@ query lessonDownloads(
     themeTitle: theme_title
     unitSlug: unit_slug
     unitTitle: unit_title
-  }
-  mv_lessons: mv_lessons_6(
-    order_by: { position_in_unit: asc }
-    where: {
-      programme_slug: { _eq: $programmeSlug }
-      unit_slug: { _eq: $unitSlug }
-    }
-  ) {
-    lessonSlug: lesson_slug
-    lessonTitle: lesson_title
-    description
-    expired
-    orderInUnit: position_in_unit
   }
 }

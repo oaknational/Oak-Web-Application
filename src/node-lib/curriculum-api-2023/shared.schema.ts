@@ -201,3 +201,19 @@ export const baseLessonDownloadsSchema = z.object({
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
 });
+
+export const lessonListSchema = z.array(
+  z.object({
+    lessonSlug: z.string(),
+    lessonTitle: z.string(),
+    description: z.string(),
+    pupilLessonOutcome: z.string().nullish(),
+    expired: z.boolean(),
+    quizCount: z.number().nullish(),
+    videoCount: z.number().nullish(),
+    presentationCount: z.number().nullish(),
+    worksheetCount: z.number().nullish(),
+    hasCopyrightMaterial: z.boolean().nullish(),
+    orderInUnit: z.number().nullish(),
+  }),
+);
