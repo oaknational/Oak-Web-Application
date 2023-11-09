@@ -45,6 +45,13 @@ export const noVideoNoExitQuiz: Story = {
   args: {
     shareableResources: resources.noVideoNoExitQuiz,
   },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: "632px" }}>
+        <Story />
+      </div>
+    ),
+  ],
   render: (args) => {
     return <Wrapper {...args} />;
   },
