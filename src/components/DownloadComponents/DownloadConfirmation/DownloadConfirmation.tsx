@@ -25,6 +25,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   unitTitle,
   nextLessons,
 }) => {
+  const displayNextLessonContainer =
+    !isCanonical && unitSlug && programmeSlug && unitTitle;
+  const isNextLessons = nextLessons && nextLessons.length > 0;
+
   return (
     <>
       <Flex
@@ -89,7 +93,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         </Flex>
       </Flex>
 
-      {!isCanonical && unitSlug && programmeSlug && unitTitle && (
+      {displayNextLessonContainer && isNextLessons && (
         <NextLessonContainer
           programmeSlug={programmeSlug}
           unitSlug={unitSlug}

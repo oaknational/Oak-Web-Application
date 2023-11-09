@@ -48,7 +48,7 @@ type LessonDownloadsProps =
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
         pathways: LessonPathway[];
-        nextLessons?: undefined;
+        nextLessons?: NextLesson[];
       };
     }
   | {
