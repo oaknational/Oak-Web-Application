@@ -12,13 +12,15 @@ export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
   threads: Thread[];
   lessons: Lesson[] | null | undefined;
-  unitDescriptions: { prior: string | null; future: string | null };
+  previousUnitDescription: string | null;
+  futureUnitDescription: string | null;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   threads,
   lessons,
-  unitDescriptions,
+  previousUnitDescription,
+  futureUnitDescription,
 }) => {
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
@@ -79,24 +81,24 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           </Accordion>
         )}
 
-        {unitDescriptions.prior && (
+        {previousUnitDescription && (
           <Accordion title="Previous unit description">
             <P $mb={6} $font={"body-2-bold"}>
               Title
             </P>
             <P $mb={12} $font={"body-2"}>
-              {unitDescriptions.prior}
+              {previousUnitDescription}
             </P>
           </Accordion>
         )}
 
-        {unitDescriptions.future && (
+        {futureUnitDescription && (
           <Accordion title="Following unit description" lastAccordion={true}>
             <P $mb={6} $font={"body-2-bold"}>
               Title
             </P>
             <P $mb={12} $font={"body-2"}>
-              {unitDescriptions.future}
+              {futureUnitDescription}
             </P>
           </Accordion>
         )}
