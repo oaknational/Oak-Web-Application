@@ -1,7 +1,9 @@
 import { ShareLinkConfig } from "./linkConfig";
 
+import { LessonShareSchema } from "@/node-lib/curriculum-api";
+
 function getActivityQueryString(
-  selectedActivities: Array<string>, // TODO: use share resource type
+  selectedActivities: Array<LessonShareSchema["type"]>,
 ) {
   const activities = selectedActivities
     .map((key) => key.toLowerCase().replace(" ", "_"))
@@ -25,7 +27,7 @@ type GetSharingMetadata = {
   network?: ShareLinkConfig["network"];
   lessonSlug: string;
   medium: ShareLinkConfig["medium"];
-  selectedActivities?: Array<string>; // TODO: use shareing resource type
+  selectedActivities?: Array<LessonShareSchema["type"]>;
   schoolUrn?: string;
 };
 
