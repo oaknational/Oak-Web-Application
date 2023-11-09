@@ -25,7 +25,7 @@ type PageProps = {
   lesson: LessonOverviewCanonical;
 };
 
-type URLParams = {
+export type URLParams = {
   lessonSlug: string;
 };
 
@@ -33,7 +33,6 @@ export default function LessonOverviewCanonicalPage({
   lesson,
 }: PageProps): JSX.Element {
   const pathwayGroups = groupLessonPathways(lesson.pathways);
-
   return (
     <AppLayout
       seoProps={{
