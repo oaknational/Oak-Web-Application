@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsHeading";
-import CopyrightNotice from "../DownloadComponents/CopyrightNotice";
+import CopyrightNotice from "../DownloadAndShareComponents/CopyrightNotice";
 
 import Box from "@/components/Box";
 import Grid, { GridArea } from "@/components/Grid";
