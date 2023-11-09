@@ -12,11 +12,13 @@ export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
   threads: Thread[];
   lessons: Lesson[] | null | undefined;
+  unitDescriptions: { prior: string | null; future: string | null };
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   threads,
   lessons,
+  unitDescriptions,
 }) => {
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
@@ -67,13 +69,35 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
       )}
       <Flex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
-          <Accordion title="Lessons in unit" lastAccordion={true}>
+          <Accordion title="Lessons in unit">
             <OL $mt={0} data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
                   return <LI>{lesson}</LI>;
                 })}
             </OL>
+          </Accordion>
+        )}
+
+        {unitDescriptions.prior && (
+          <Accordion title="Previous unit description">
+            <P $mb={6} $font={"body-2-bold"}>
+              Title
+            </P>
+            <P $mb={12} $font={"body-2"}>
+              {unitDescriptions.prior}
+            </P>
+          </Accordion>
+        )}
+
+        {unitDescriptions.future && (
+          <Accordion title="Following unit description" lastAccordion={true}>
+            <P $mb={6} $font={"body-2-bold"}>
+              Title
+            </P>
+            <P $mb={12} $font={"body-2"}>
+              {unitDescriptions.future}
+            </P>
           </Accordion>
         )}
       </Flex>
