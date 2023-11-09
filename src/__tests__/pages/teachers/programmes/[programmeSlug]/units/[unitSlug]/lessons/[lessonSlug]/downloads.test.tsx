@@ -33,7 +33,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -41,7 +41,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadComponents/helpers/downloadDebounceSubmit",
+  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
     default: () => {
@@ -51,7 +51,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
