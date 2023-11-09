@@ -75,7 +75,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             <OL $mt={0} data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
-                  return <LI>{lesson}</LI>;
+                  return <LI key={lesson}>{lesson}</LI>;
                 })}
             </OL>
           </Accordion>
@@ -83,7 +83,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
 
         {previousUnitDescription && (
           <Accordion title="Previous unit description">
-            <P $mb={6} $font={"body-2-bold"}>
+            <P $mb={12} $font={"body-2-bold"}>
               Title
             </P>
             <P $mb={12} $font={"body-2"}>
@@ -94,7 +94,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
 
         {futureUnitDescription && (
           <Accordion title="Following unit description" lastAccordion={true}>
-            <P $mb={6} $font={"body-2-bold"}>
+            <P $mb={12} $font={"body-2-bold"}>
               Title
             </P>
             <P $mb={12} $font={"body-2"}>

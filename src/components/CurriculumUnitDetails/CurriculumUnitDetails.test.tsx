@@ -41,8 +41,10 @@ describe("CurriculumUnitDetails component", () => {
         <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
       );
 
-      expect(getAllByTestId("accordion-component")).toHaveLength(1);
+      expect(getAllByTestId("accordion-component")).toHaveLength(3);
       expect(getByText("Lessons in unit")).toBeInTheDocument();
+      expect(getByText("Previous unit description")).toBeInTheDocument();
+      expect(getByText("Following unit description")).toBeInTheDocument();
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {
