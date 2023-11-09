@@ -15,7 +15,7 @@ import { SchoolDetailsProps } from "../SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "../TermsAndConditionsCheckbox";
 import CopyrightNotice from "../CopyrightNotice";
 
-import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
+import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/Box";
@@ -186,6 +186,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                                 onBlur={onBlur}
                                 id={"terms"}
                                 errorMessage={props.errors?.terms?.message}
+                                zIndex={"neutral"}
                               />
                             );
                           }}
