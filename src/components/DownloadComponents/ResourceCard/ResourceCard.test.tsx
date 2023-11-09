@@ -39,7 +39,7 @@ describe("ResourceCard", () => {
         checked={value}
         name="downloadResources"
         label="Worksheet"
-        subtitle="pdf"
+        subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
       />,
