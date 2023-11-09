@@ -15,6 +15,7 @@ import {
   CurriculumSelectionSlugs,
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import Label from "@/components/Typography/Label";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -131,6 +132,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   >
                     {`${examboard.title} (KS4)`}
                   </P>
+                )}
+                {subjectPhaseSlug === "maths-secondary" && (
+                  <Label>All exam boards (KS4)</Label>
                 )}
                 <Heading
                   tag={"h1"}
