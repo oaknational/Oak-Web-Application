@@ -9,7 +9,7 @@ import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloa
 type NextLessonContainerProps = {
   programmeSlug: string;
   unitSlug: string;
-  nextLessons?: NextLesson[];
+  nextLessons: NextLesson[];
   unitTitle?: string;
 };
 
@@ -26,20 +26,16 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
       </Heading>
       {nextLessons && (
         <Flex $flexDirection={["column", "row"]} $gap={[8, 12, 16]}>
-          {nextLessons.map((lesson: NextLesson, i: number) => {
-            if (i < 3) {
-              return (
-                <NextLessonCard
-                  programmeSlug={programmeSlug}
-                  unitSlug={unitSlug}
-                  lessonSlug={lesson.lessonSlug}
-                  lessonTitle={lesson.lessonTitle}
-                  key={lesson.lessonSlug}
-                />
-              );
-            } else {
-              return null;
-            }
+          {nextLessons.map((lesson: NextLesson) => {
+            return (
+              <NextLessonCard
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                lessonSlug={lesson.lessonSlug}
+                lessonTitle={lesson.lessonTitle}
+                key={lesson.lessonSlug}
+              />
+            );
           })}
         </Flex>
       )}

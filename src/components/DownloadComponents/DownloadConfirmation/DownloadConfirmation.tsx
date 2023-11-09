@@ -53,10 +53,12 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $alignItems={"flex-start"}
           $maxWidth={600}
         >
-          {!unitSlug || !programmeSlug ? (
+          {unitSlug && programmeSlug ? (
             <ButtonAsLink
-              page={"lesson-overview-canonical"}
+              page={"lesson-overview"}
               lessonSlug={lessonSlug}
+              programmeSlug={programmeSlug}
+              unitSlug={unitSlug}
               label="Back to lesson"
               variant={"buttonStyledAsLink"}
               icon="chevron-left"
@@ -64,14 +66,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               data-testid="back-to-lesson-link"
               size="small"
             />
-          ) : null}
-
-          {unitSlug && programmeSlug && (
+          ) : (
             <ButtonAsLink
-              page={"lesson-overview"}
+              page={"lesson-overview-canonical"}
               lessonSlug={lessonSlug}
-              programmeSlug={programmeSlug}
-              unitSlug={unitSlug}
               label="Back to lesson"
               variant={"buttonStyledAsLink"}
               icon="chevron-left"
