@@ -1,3 +1,15 @@
+# [1.299.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.2...v1.299.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* updated styling for label ([e4dabc1](https://github.com/oaknational/Oak-Web-Application/commit/e4dabc1287beb5c5672da21d1029e4ec7cce6036))
+
+
+### Features
+
+* added all examboards text for maths secondary ([a8e91e6](https://github.com/oaknational/Oak-Web-Application/commit/a8e91e64645c34841a84f78f7052be1e65a0de95))
+
 ## [1.298.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.1...v1.298.2) (2023-11-09)
 
 ## [1.298.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.0...v1.298.1) (2023-11-09)
