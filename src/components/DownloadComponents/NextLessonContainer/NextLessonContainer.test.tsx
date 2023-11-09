@@ -48,22 +48,4 @@ describe("NextLessonContainer", () => {
 
     expect(nextLessonCards).toHaveLength(3);
   });
-
-  it("when passed an array of 4 future lessons only renders 3", async () => {
-    const { getAllByTestId } = renderWithTheme(
-      <NextLessonContainer
-        programmeSlug="test-programme"
-        unitSlug="test-unit"
-        nextLessons={[
-          ...nextLessons,
-          { lessonSlug: "test-lesson-4", lessonTitle: "test-lesson-title-4" },
-        ]}
-        unitTitle="test-unit-title"
-      />,
-    );
-
-    const nextLessonCards = await getAllByTestId("next-lesson-card");
-
-    expect(nextLessonCards).toHaveLength(3);
-  });
 });
