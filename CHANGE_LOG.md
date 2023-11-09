@@ -1,3 +1,17 @@
+# [1.297.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.296.0...v1.297.0) (2023-11-08)
+
+
+### Bug Fixes
+
+* add video to resource type ([a63625e](https://github.com/oaknational/Oak-Web-Application/commit/a63625ebbd4a32c2c0a493fd15e9cdf4f5e6b2f4))
+* make key name consistent ([7977113](https://github.com/oaknational/Oak-Web-Application/commit/7977113e6f1ceb1e7b4db38aca7f77698f4eb08e))
+* update mocks ([2bf4751](https://github.com/oaknational/Oak-Web-Application/commit/2bf47515ea06dec587fe0500e574bebe85ba6375))
+
+
+### Features
+
+* add lesson share mv ([7971786](https://github.com/oaknational/Oak-Web-Application/commit/7971786b7a4cdc62a52576851f796ece2aa491e1))
+
 # [1.296.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.295.8...v1.296.0) (2023-11-08)
 
 
