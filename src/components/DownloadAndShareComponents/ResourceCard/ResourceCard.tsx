@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
-import type { DownloadResourceType } from "../downloads.types";
+import type { DownloadResourceType } from "../downloadsAndShare.types";
 
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/Typography/P";
@@ -119,6 +119,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       $width={"fit-content"}
       $position={"relative"}
       {...hoverProps}
+      data-testid="lessonResourcesCheckbox"
     >
       <Checkbox
         id={id}

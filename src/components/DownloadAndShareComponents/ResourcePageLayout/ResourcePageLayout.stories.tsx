@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
-import { DownloadFormProps } from "../downloads.types";
+import { DownloadFormProps } from "../downloadsAndShare.types";
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,

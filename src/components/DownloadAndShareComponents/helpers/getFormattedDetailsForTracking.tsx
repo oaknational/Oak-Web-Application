@@ -2,7 +2,7 @@ import type {
   SchoolOptionValueType,
   ResourceTypeValueType,
 } from "../../../browser-lib/avo/Avo";
-import type { DownloadResourceType } from "../downloads.types";
+import type { DownloadResourceType } from "../downloadsAndShare.types";
 
 const getFormattedDetailsForTracking = ({
   school,

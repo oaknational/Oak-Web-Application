@@ -1,6 +1,6 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
-import { PreselectedDownloadType } from "../../components/DownloadAndShareComponents/downloads.types";
+import { PreselectedDownloadType } from "../../components/DownloadAndShareComponents/downloadsAndShare.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";

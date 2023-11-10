@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import downloadLessonResources from "../helpers/downloadLessonResources";
-import type { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadsAndShare.types";
 
 import useDownloadForm from "./useDownloadForm";
 
@@ -32,13 +32,13 @@ jest.mock("../../../hooks/useUtmParams", () => ({
   default: () => ({ utm_source: "les_twitz" }),
 }));
 
-const data: DownloadFormProps = {
+const data: ResourceFormProps = {
   onSubmit: jest.fn(),
   email: "test@test.com",
   school: "222-Sample school",
   schoolName: "Sample school",
   terms: true,
-  downloads: ["intro-quiz-questions"],
+  resources: ["intro-quiz-questions"],
 };
 const getHubspotUserToken = jest.fn(() => "hubspotutk value");
 jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
@@ -95,12 +95,12 @@ describe("useDownloadForm", () => {
   });
 
   it("should correctly set school in local storage if 'homeschool' passed in props", async () => {
-    const data: DownloadFormProps = {
+    const data: ResourceFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
       school: "homeschool",
       terms: true,
-      downloads: ["intro-quiz-questions"],
+      resources: ["intro-quiz-questions"],
     };
 
     const { result } = renderHook(() =>
@@ -116,12 +116,12 @@ describe("useDownloadForm", () => {
   });
 
   it("should correctly set school in local storage if 'notListed' passed in props", async () => {
-    const data: DownloadFormProps = {
+    const data: ResourceFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
       school: "notListed",
       terms: true,
-      downloads: ["intro-quiz-questions"],
+      resources: ["intro-quiz-questions"],
     };
 
     const { result } = renderHook(() =>

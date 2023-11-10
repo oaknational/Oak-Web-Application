@@ -6,27 +6,20 @@ import { useRouter } from "next/router";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Hr } from "@/components/Typography";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
-import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
-import useDownloadForm from "@/components/DownloadAndShareComponents/hooks/useDownloadForm";
-import { getPreselectedDownloadResourceTypes } from "@/components/DownloadAndShareComponents/helpers/getDownloadResourceType";
+import { Heading, Hr } from "@/components/Typography";
 import {
-  ResourcesToDownloadArrayType,
-  DownloadResourceType,
-  preselectedDownloadType,
-  schema,
+  LessonShareData,
+  LessonShareListData,
+} from "@/node-lib/curriculum-api";
+import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import { getPreselectedShareResourceTypes } from "@/components/DownloadAndShareComponents/helpers/getDownloadResourceType";
+import {
   ResourceFormProps,
+  preselectedShareType,
+  schema,
 } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -35,17 +28,19 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
-import LoadingButton from "@/components/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
+import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
+import Button from "@/components/Button";
+import { IconName } from "@/components/Icon";
 
-type LessonDownloadsProps =
+type LessonShareProps =
   | {
       isCanonical: true;
       lesson: {
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
+        shareableResources: LessonShareData["shareableResources"];
         pathways: LessonPathway[];
       };
     }
@@ -55,43 +50,39 @@ type LessonDownloadsProps =
         isLegacy: boolean;
         lessonTitle: string;
         lessonSlug: string;
-        downloads: LessonDownloadsData["downloads"];
+        shareableResources: LessonShareData["shareableResources"];
       };
     };
 
-export function LessonDownloads(props: LessonDownloadsProps) {
+export type ShareLinkConfig = {
+  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy Link";
+  network?: "email" | "google-classroom" | "microsoft-teams";
+  icon: IconName;
+  url: string;
+}[];
+
+export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
-  const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
+  const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
-  const {
-    programmeSlug,
-    keyStageTitle,
-    keyStageSlug,
-    subjectSlug,
-    subjectTitle,
-    unitSlug,
-    unitTitle,
-  } = commonPathway;
+  const { programmeSlug, unitSlug } = commonPathway;
 
   const router = useRouter();
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
-  const isLegacyDownload = isLegacy;
 
-  const {
-    register,
-    formState,
-    control,
-    watch,
-    setValue,
-    handleSubmit,
-    trigger,
-  } = useForm<ResourceFormProps>({
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
+  const shareLinks: ShareLinkConfig = [
+    { name: "Copy Link", url: "/", icon: "copy" },
+    { name: "Google Classroom", url: "/", icon: "google-classroom" },
+    { name: "Microsoft Teams", url: "/", icon: "microsoft-teams" },
+    { name: "Email", url: "/", icon: "send" },
+  ];
+
+  const { register, formState, control, setValue, handleSubmit, trigger } =
+    useForm<ResourceFormProps>({
+      resolver: zodResolver(schema),
+      mode: "onBlur",
+    });
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
 
@@ -113,30 +104,33 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     trigger();
   };
 
-  const getInitialResourcesToDownloadState = useCallback(() => {
-    return downloads
-      .filter((download) => download.exists && !download.forbidden)
-      .map((download) => download.type);
-  }, [downloads]);
+  const getInitialResourcesToShareState = useCallback(() => {
+    return shareableResources
+      .filter((resource) => resource.exists)
+      .map((resource) => resource.type);
+  }, [shareableResources]);
 
   useEffect(() => {
     const preselectedQuery = () => {
       const res = router.query.preselected;
-      const result = preselectedDownloadType.safeParse(res);
+
+      const result = preselectedShareType.safeParse(res);
+
       if (!result.success) {
         return "all";
       } else {
         return result.data;
       }
     };
-    const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
+    const preselected = getPreselectedShareResourceTypes(preselectedQuery());
+
     if (preselected) {
       setPreselectAll(preselected === "all");
       preselected === "all"
-        ? setValue("resources", getInitialResourcesToDownloadState())
+        ? setValue("resources", getInitialResourcesToShareState())
         : setValue("resources", preselected);
     }
-  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
+  }, [getInitialResourcesToShareState, router.query.preselected, setValue]);
 
   const {
     schoolFromLocalStorage,
@@ -209,81 +203,37 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().resources || []) as DownloadResourceType[];
+  //   const selectedResources = (watch().resources || []) as ResourceType[]; add back in with tracking
 
-  const [isAttemptingDownload, setIsAttemptingDownload] =
-    useState<boolean>(false);
+  //   const [isAttemptingShare,setIsAttemptingShare] = useState<boolean>(false);
 
-  const [resourcesToDownload, setResourcesToDownload] =
-    useState<ResourcesToDownloadArrayType>(
-      getInitialResourcesToDownloadState(),
-    );
+  const [resourcesToShare, setResourcesToShare] = useState<
+    LessonShareListData["type"][]
+  >(getInitialResourcesToShareState());
 
-  const hasResourcesToDownload =
-    getInitialResourcesToDownloadState().length > 0;
+  useEffect(() => {
+    setResourcesToShare(getInitialResourcesToShareState());
+  }, [getInitialResourcesToShareState, shareableResources]);
+
+  const hasResourcesToShare = getInitialResourcesToShareState().length > 0;
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const onSelectAllClick = () => setValue("resources", resourcesToDownload);
+  const onSelectAllClick = () => setValue("resources", resourcesToShare);
   const onDeselectAllClick = () => setValue("resources", []);
 
-  const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
+  const [isShareSuccessful, setIsShareSuccessful] = useState<boolean>(false);
 
-  const [isDownloadSuccessful, setIsDownloadSuccessful] =
-    useState<boolean>(false);
-
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+  const onFormSubmit = async (): Promise<void> => {
     setApiError(null);
     try {
-      await debouncedSubmit({
-        data,
-        lessonSlug,
-        setIsAttemptingDownload,
-        setEditDetailsClicked,
-        onSubmit,
-      });
-      setIsDownloadSuccessful(true);
-      const {
-        schoolOption,
-        schoolName,
-        schoolUrn,
-        selectedResourcesForTracking,
-      } = getFormattedDetailsForTracking({
-        school: data.school,
-        selectedResources,
-      });
-
-      track.lessonResourcesDownloaded({
-        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        unitName: unitTitle,
-        unitSlug,
-        subjectTitle,
-        subjectSlug,
-        lessonName: lessonTitle,
-        lessonSlug,
-        resourceType: selectedResourcesForTracking,
-        analyticsUseCase,
-        schoolUrn,
-        schoolName,
-        schoolOption,
-        emailSupplied: data?.email ? true : false,
-      });
+      setIsShareSuccessful(true);
     } catch (error) {
-      setIsAttemptingDownload(false);
-      setIsDownloadSuccessful(false);
-      setApiError(
-        "There was an error downloading your files. Please try again.",
-      );
+      //   setIsAttemptingShare(false) // add back in with share link logic
+      setIsShareSuccessful(false);
+      setApiError("There was an error sharing your files. Please try again.");
     }
   };
-
-  useDownloadExistenceCheck({
-    lessonSlug,
-    resourcesToCheck: resourcesToDownload,
-    onComplete: setResourcesToDownload,
-    isLegacyDownload: isLegacy,
-  });
 
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
@@ -293,7 +243,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
+        <Box $mb={isShareSuccessful ? 0 : 32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -314,7 +264,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
 
-        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+        <Box $display={isShareSuccessful ? "block" : "none"}>
           <DownloadConfirmation
             unitSlug={unitSlug}
             lessonSlug={lessonSlug}
@@ -322,15 +272,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             data-testid="downloads-confirmation"
           />
         </Box>
-        {!isDownloadSuccessful && (
+        {!isShareSuccessful && (
           <>
             <ResourcePageLayout
-              page={"download"}
+              page={"share"}
               errors={errors}
               handleToggleSelectAll={handleToggleSelectAll}
               selectAllChecked={selectAllChecked}
-              header="Download"
-              showNoResources={!hasResourcesToDownload}
+              header="Share"
+              showNoResources={!hasResourcesToShare}
               showLoading={isLocalStorageLoading}
               email={emailFromLocalStorage}
               school={schoolNameFromLocalStorage}
@@ -342,27 +292,38 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               control={control}
               showPostAlbCopyright={!isLegacy}
               cardGroup={
-                <DownloadCardGroup
+                <ShareCardGroup
                   control={control}
-                  downloads={downloads}
                   hasError={errors?.resources ? true : false}
                   triggerForm={trigger}
+                  shareableResources={shareableResources}
+                  shareLink={""}
                 />
               }
               cta={
-                <LoadingButton
-                  onClick={
-                    (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                  }
-                  text={"Download .zip"}
-                  icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    (!formState.isValid && !localStorageDetails)
-                  }
-                  loadingText={"Downloading..."}
-                />
+                <>
+                  <Heading $mt={24} $mb={4} tag={"h4"} $font={"heading-7"}>
+                    Share options:
+                  </Heading>
+                  <Flex $flexWrap={"wrap"} $width={"100%"}>
+                    {shareLinks.map((link) => (
+                      <Button
+                        data-testid={`button-${link.name}`}
+                        $mr={24}
+                        $mb={24}
+                        onClick={
+                          (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                        }
+                        label={link.name}
+                        icon={link.icon}
+                        disabled={
+                          hasFormErrors ||
+                          (!formState.isValid && !localStorageDetails)
+                        }
+                      />
+                    ))}
+                  </Flex>
+                </>
               }
             />
 

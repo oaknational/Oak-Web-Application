@@ -6,7 +6,7 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 
-import { DownloadFormProps, ErrorKeysType } from "../downloads.types";
+import { ErrorKeysType, ResourceFormProps } from "../downloadsAndShare.types";
 import NoResourcesToDownload from "../NoResourcesToDownload";
 import DetailsCompleted from "../DetailsCompleted";
 import { DetailsCompletedProps } from "../DetailsCompleted/DetailsCompleted";
@@ -14,6 +14,7 @@ import SchoolDetails from "../SchoolDetails";
 import { SchoolDetailsProps } from "../SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "../TermsAndConditionsCheckbox";
 import CopyrightNotice from "../CopyrightNotice";
+import NoResourcesToShare from "../NoResourcesToShare";
 
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/Typography";
@@ -32,16 +33,17 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    errors: FieldErrors<DownloadFormProps>;
+    errors: FieldErrors<ResourceFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
-    register: UseFormRegister<DownloadFormProps>;
-    control: Control<DownloadFormProps>;
+    register: UseFormRegister<ResourceFormProps>;
+    control: Control<ResourceFormProps>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
+    page: "share" | "download";
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -87,7 +89,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               />
             </Box>
             <FieldError id={"downloads-error"}>
-              {props.errors?.downloads?.message}
+              {props.errors?.resources?.message}
             </FieldError>
             {props.cardGroup}
           </Flex>
@@ -106,7 +108,11 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </FieldError>
             )}
             {props.showNoResources ? (
-              <NoResourcesToDownload />
+              props.page === "download" ? (
+                <NoResourcesToDownload />
+              ) : (
+                <NoResourcesToShare />
+              )
             ) : (
               <>
                 {props.showLoading ? (

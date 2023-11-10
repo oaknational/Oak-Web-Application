@@ -1,4 +1,4 @@
-import type { ErrorKeysType } from "../downloads.types";
+import type { ErrorKeysType } from "../downloadsAndShare.types";
 
 type ErrorMessagesAndOrderType = {
   order: number;

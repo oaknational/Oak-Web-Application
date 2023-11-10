@@ -11,44 +11,19 @@ import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
 import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
-import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
-import LessonDownloadsPage, {
-  LessonDownloadsPageProps,
+import LessonSharePage, {
+  LessonSharePageProps,
   URLParams,
   getStaticPaths,
   getStaticProps,
-} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import OakError from "@/errors/OakError";
+} from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
+import lessonShareFixtures from "@/node-lib/curriculum-api/fixtures/lessonShare.fixture";
 
-const props: LessonDownloadsPageProps = {
-  curriculumData: lessonDownloadsFixtures(),
-};
-
-const getDownloadResourcesExistenceData = {
-  resources: {
-    "exit-quiz-answers": true,
-    "worksheet-pdf": true,
-  },
+const props: LessonSharePageProps = {
+  curriculumData: lessonShareFixtures(),
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
-  () => ({
-    __esModule: true,
-    default: () => getDownloadResourcesExistenceData,
-  }),
-);
-
-jest.mock(
-  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
-  () => ({
-    __esModule: true,
-    default: () => {
-      throw new OakError({ code: "downloads/failed-to-fetch" });
-    },
-  }),
-);
 
 jest.mock(
   "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
@@ -64,41 +39,25 @@ beforeEach(() => {
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("Renders 'no downloads available' message if there is no downloads", () => {
+  it("Renders 'no shared resources available' message if there are no resources to share", () => {
     render(
-      <LessonDownloadsPage
+      <LessonSharePage
         {...{
           ...props,
           curriculumData: {
             ...props.curriculumData,
-            downloads: [],
+            shareableResources: [],
           },
         }}
       />,
     );
 
-    expect(screen.getByText("No downloads available")).toBeInTheDocument();
-  });
-
-  it("Renders 'no downloads available' message if there is no downloads", () => {
-    render(
-      <LessonDownloadsPage
-        {...{
-          ...props,
-          curriculumData: {
-            ...props.curriculumData,
-            downloads: [],
-          },
-        }}
-      />,
-    );
-
-    expect(screen.getByText("No downloads available")).toBeInTheDocument();
+    expect(screen.getByText("No resources to share")).toBeInTheDocument();
   });
 
   describe("download form", () => {
-    it("Renders download form with correct elements", () => {
-      render(<LessonDownloadsPage {...props} />);
+    it("Renders share form with correct elements", () => {
+      render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
         "Lesson resources",
@@ -134,26 +93,32 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(tcsLink).toBeInTheDocument();
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
 
-      // Lesson resources to download
-      const lessonResourcesToDownload = screen.getAllByTestId(
+      // Lesson resources to share
+      const lessonResourcesToShare = screen.getAllByTestId(
         "lessonResourcesCheckbox",
       );
-      expect(lessonResourcesToDownload.length).toEqual(2);
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
+      expect(lessonResourcesToShare.length).toEqual(
+        props.curriculumData.shareableResources.length,
+      );
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
 
       expect(exitQuizQuestions).toBeInTheDocument();
       expect(exitQuizQuestions).toHaveAttribute("name", "resources");
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
-      // Download button
-      const downloadButton = screen.getByText("Download .zip");
-      expect(downloadButton).toBeInTheDocument();
+      // Share buttons
+      const shareButtonCopy = screen.getByText("Copy Link");
+      expect(shareButtonCopy).toBeInTheDocument();
+      const shareButtonGoogle = screen.getByText("Google Classroom");
+      expect(shareButtonGoogle).toBeInTheDocument();
+      const shareButtonMicrosoft = screen.getByText("Microsoft Teams");
+      expect(shareButtonMicrosoft).toBeInTheDocument();
+      const shareButtonEmail = screen.getByTestId("button-Email");
+      expect(shareButtonEmail).toBeInTheDocument();
     });
 
     it("should display error hint on blur email if not formatted correctly", async () => {
-      const { getByPlaceholderText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+      const { getByPlaceholderText } = render(<LessonSharePage {...props} />);
 
       const input = getByPlaceholderText("Enter email address here");
       const user = userEvent.setup();
@@ -169,9 +134,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should not display error hint on blur email if empty", async () => {
-      const { getByPlaceholderText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+      const { getByPlaceholderText } = render(<LessonSharePage {...props} />);
 
       const input = getByPlaceholderText("Enter email address here");
       const user = userEvent.setup();
@@ -188,27 +151,27 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("selected resources count", () => {
     it("should select all resources if user checks 'Select all'", async () => {
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      const { getByRole } = render(<LessonSharePage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       expect(selectAllCheckbox).toBeChecked();
 
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
-      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
+      const exitQuizAnswers = screen.getByLabelText("Video");
 
       expect(exitQuizQuestions).toBeChecked();
       expect(exitQuizAnswers).toBeChecked();
     });
 
     it("should deselect all resources if user deselects 'Select all'", async () => {
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      const { getByRole } = render(<LessonSharePage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
       await user.click(selectAllCheckbox);
 
-      const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
-      const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
+      const exitQuizQuestions = screen.getByLabelText("Exit quiz");
+      const exitQuizAnswers = screen.getByLabelText("Video");
       expect(exitQuizQuestions).not.toBeChecked();
       expect(exitQuizAnswers).not.toBeChecked();
     });
@@ -223,7 +186,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText } = render(<LessonDownloadsPage {...props} />);
+      const { getByText } = render(<LessonSharePage {...props} />);
 
       expect(getByText("test@test.com")).toBeInTheDocument();
     });
@@ -239,7 +202,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText } = render(<LessonDownloadsPage {...props} />);
+      const { getByText } = render(<LessonSharePage {...props} />);
 
       expect(getByText("Primary School")).toBeInTheDocument();
     });
@@ -255,7 +218,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       const { getByText, getByLabelText } = render(
-        <LessonDownloadsPage {...props} />,
+        <LessonSharePage {...props} />,
       );
 
       // user click Edit button
@@ -280,7 +243,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       });
 
       const { getByText, getByTestId, getByDisplayValue } = render(
-        <LessonDownloadsPage {...props} />,
+        <LessonSharePage {...props} />,
       );
 
       // user click Edit button
@@ -306,9 +269,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByTestId } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+      const { getByText, getByTestId } = render(<LessonSharePage {...props} />);
 
       // user click Edit button
       const editButton = getByText("Edit");
@@ -332,8 +293,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   describe("Copyright notice", () => {
     it("renders pre-ALB copyright notice on legacy lessons", async () => {
       render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: true })}
+        <LessonSharePage
+          curriculumData={lessonShareFixtures({ isLegacy: true })}
         />,
       );
 
@@ -344,36 +305,21 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       expect(copyrightNotice).toBeInTheDocument();
     });
-
-    it("renders post-ALB copyright notice on non legacy lessons", async () => {
-      render(
-        <LessonDownloadsPage
-          curriculumData={lessonDownloadsFixtures({ isLegacy: false })}
-        />,
-      );
-
-      const copyrightNotice = await screen.findByText(
-        "This content is © Oak National Academy (2023), licensed on",
-        { exact: false },
-      );
-
-      expect(copyrightNotice).toBeInTheDocument();
-    });
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo()(<LessonDownloadsPage {...props} />);
+      const { seo } = renderWithSeo()(<LessonSharePage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        description: "Lesson downloads",
+          "Lesson Share: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+        description: "Lesson share",
         ogTitle:
-          "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
-        ogDescription: "Lesson downloads",
+          "Lesson Share: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
+        ogDescription: "Lesson share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
@@ -402,7 +348,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: LessonDownloadsPageProps;
+        props: LessonSharePageProps;
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(

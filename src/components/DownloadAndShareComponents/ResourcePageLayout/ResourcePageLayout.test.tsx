@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadsAndShare.types";
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
@@ -12,6 +12,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 type PropsWithoutForm = Omit<ResourcePageLayoutProps, "control" | "register">;
 const props: PropsWithoutForm = {
+  page: "download",
   header: "Downloads",
   selectAllChecked: true,
   handleToggleSelectAll: jest.fn(),
@@ -27,7 +28,7 @@ const props: PropsWithoutForm = {
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register } = useForm<DownloadFormProps>();
+  const { control, register } = useForm<ResourceFormProps>();
 
   return (
     <ResourcePageLayout {...props} control={control} register={register} />
@@ -67,7 +68,7 @@ describe("Downloads/Share Layout", () => {
     renderWithTheme(
       <ComponentWrapper
         {...props}
-        errors={{ downloads: { message: "downloads error" } }}
+        errors={{ resources: { message: "downloads error" } }}
       />,
     );
 

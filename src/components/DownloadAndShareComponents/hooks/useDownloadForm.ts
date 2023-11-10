@@ -1,8 +1,8 @@
 import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import type {
-  DownloadFormProps,
   DownloadResourceType,
-} from "../downloads.types";
+  ResourceFormProps,
+} from "../downloadsAndShare.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
 import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
@@ -28,7 +28,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
 
-  const onSubmit = async (data: DownloadFormProps, slug: string) => {
+  const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
@@ -39,7 +39,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
     const schoolId = data?.school;
     const schoolName = data?.schoolName;
     const terms = data?.terms;
-    const downloads = data?.downloads;
+    const downloads = data?.resources;
 
     if (email) {
       setEmailInLocalStorage(email);
