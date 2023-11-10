@@ -30,13 +30,13 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
       $width={"100%"}
       $minWidth={[340, 200, 340]}
       $maxWidth={["100%", "100%", "50%"]}
-      $minHeight={[160, 200, 160]}
+      $minHeight={[160, 120, 160]}
       data-testid={`next-lesson-card`}
     >
       <Flex
         $pa={[16, 16, 24]}
         $flexDirection={"column"}
-        $minHeight={[160, 200, 160]}
+        $minHeight={[160, 120, 160]}
         $height={"100%"}
         $position={"relative"}
         $justifyContent={"space-between"}
