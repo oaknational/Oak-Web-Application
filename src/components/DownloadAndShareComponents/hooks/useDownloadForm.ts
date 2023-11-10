@@ -14,12 +14,12 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
-type UseDownloadFormProps = {
+type UseResourceFormProps = {
   onSubmit?: () => void;
   isLegacyDownload: boolean;
 };
 
-const useDownloadForm = (props: UseDownloadFormProps) => {
+const useDownloadForm = (props: UseResourceFormProps) => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,

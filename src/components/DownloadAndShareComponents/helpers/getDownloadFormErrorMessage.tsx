@@ -17,7 +17,7 @@ const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
     },
     email: { order: 3, message: "enter a valid email address" },
     terms: { order: 4, message: "accept terms and conditions to download" },
-    downloads: {
+    resources: {
       order: 1,
       message: "select at least one resource to download",
     },

@@ -21,7 +21,7 @@ describe("getDownloadFormErrorMessage", () => {
   });
 
   it("should return correct error message for more than two error messages", () => {
-    const errorKeysArray: ErrorKeysType[] = ["terms", "email", "downloads"];
+    const errorKeysArray: ErrorKeysType[] = ["terms", "email", "resources"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
       "select at least one resource to download",
@@ -31,7 +31,7 @@ describe("getDownloadFormErrorMessage", () => {
   });
 
   it("should return error message in correct order", () => {
-    const errorKeysArray: ErrorKeysType[] = ["email", "downloads", "terms"];
+    const errorKeysArray: ErrorKeysType[] = ["email", "resources", "terms"];
 
     expect(getDownloadFormErrorMessage(errorKeysArray)).toEqual([
       "select at least one resource to download",
