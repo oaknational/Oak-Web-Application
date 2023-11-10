@@ -3,7 +3,7 @@ query lessonOverview(
   $lessonSlug: String!
   $unitSlug: String!
 ) {
-  mv_lessons: mv_lessons_6(
+  mv_lessons: mv_lessons_7(
     where: {
       lesson_slug: { _eq: $lessonSlug }
       programme_slug: { _eq: $programmeSlug }
