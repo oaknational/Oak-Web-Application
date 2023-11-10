@@ -13,8 +13,10 @@ describe("background", () => {
       <StyledComponent data-testid="test" $background="oakGreen" />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("background-color: #85cb6d");
-    expect(getByTestId("test")).toHaveStyle("color: #000");
+    expect(getByTestId("test")).toHaveStyle(
+      "background-color: rgb(40, 124, 52)",
+    );
+    expect(getByTestId("test")).toHaveStyle("color: rgb(255, 255, 255)");
   });
   test("should correctly handle prop 'background' as array", async () => {
     const StyledComponent = styled.div`
@@ -25,6 +27,6 @@ describe("background", () => {
     );
 
     expect(getByTestId("test")).toHaveStyle("background-color: #c6d1ef");
-    expect(getByTestId("test")).toHaveStyle("color: #000");
+    expect(getByTestId("test")).toHaveStyle("color: rgb(34, 34, 34)");
   });
 });

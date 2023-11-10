@@ -25,6 +25,6 @@ describe("color", () => {
       <StyledComponent data-testid="test" $color={["black"]} />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: rgb(0, 0, 0)");
+    expect(getByTestId("test")).toHaveStyle("color: rgb(34, 34, 34)");
   });
 });
