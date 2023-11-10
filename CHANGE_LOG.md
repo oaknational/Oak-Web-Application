@@ -1,3 +1,10 @@
+## [1.300.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.0...v1.300.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* legacy canonical lesson + downloads ([90228b1](https://github.com/oaknational/Oak-Web-Application/commit/90228b16873b8fa96effdcfdc0c5312db1dc49b8))
+
 # [1.300.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.299.0...v1.300.0) (2023-11-10)
 
 
