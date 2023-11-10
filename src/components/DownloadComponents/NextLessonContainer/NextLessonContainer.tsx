@@ -5,12 +5,14 @@ import Heading from "@/components/Typography/Heading";
 import NextLessonCard from "@/components/DownloadAndShareComponents/NextLessonCard";
 import { Span } from "@/components/Typography";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type NextLessonContainerProps = {
   programmeSlug: string;
   unitSlug: string;
   nextLessons: NextLesson[];
-  unitTitle?: string;
+  unitTitle: string;
+  onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
 const NextLessonContainer: FC<NextLessonContainerProps> = ({
@@ -18,6 +20,7 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
   unitSlug,
   nextLessons,
   unitTitle,
+  onwardContentSelected,
 }) => {
   return (
     <Flex $flexDirection={"column"} $width={"100%"}>
@@ -31,9 +34,11 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
               <NextLessonCard
                 programmeSlug={programmeSlug}
                 unitSlug={unitSlug}
+                unitTitle={unitTitle}
                 lessonSlug={lesson.lessonSlug}
                 lessonTitle={lesson.lessonTitle}
                 key={lesson.lessonSlug}
+                onwardContentSelected={onwardContentSelected}
               />
             );
           })}

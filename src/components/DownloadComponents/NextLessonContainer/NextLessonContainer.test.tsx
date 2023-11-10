@@ -1,6 +1,10 @@
 import NextLessonContainer from "./NextLessonContainer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+
+const onwardContentSelected =
+  jest.fn() as unknown as TrackFns["onwardContentSelected"];
 
 const nextLessons = [
   {
@@ -25,6 +29,7 @@ describe("NextLessonContainer", () => {
         unitSlug="test-unit"
         nextLessons={nextLessons}
         unitTitle="test-unit-title"
+        onwardContentSelected={onwardContentSelected}
       />,
     );
 
@@ -41,6 +46,7 @@ describe("NextLessonContainer", () => {
         unitSlug="test-unit"
         nextLessons={nextLessons}
         unitTitle="test-unit-title"
+        onwardContentSelected={onwardContentSelected}
       />,
     );
 

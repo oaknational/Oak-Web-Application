@@ -90,6 +90,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       })
     : [];
 
+  const { onwardContentSelected } = track;
+
   const {
     register,
     formState,
@@ -328,13 +330,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
         <Box $display={isDownloadSuccessful ? "block" : "none"}>
           <DownloadConfirmation
-            unitSlug={unitSlug}
             lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
             unitTitle={unitTitle}
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
             isCanonical={props.isCanonical}
             nextLessons={lesson.nextLessons}
+            onwardContentSelected={onwardContentSelected}
           />
         </Box>
         {!isDownloadSuccessful && (

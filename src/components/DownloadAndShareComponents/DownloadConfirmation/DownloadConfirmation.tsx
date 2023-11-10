@@ -6,27 +6,32 @@ import Svg from "@/components/Svg";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import NextLessonContainer from "@/components/DownloadComponents/NextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
+  lessonTitle: string;
   programmeSlug: string | null;
   unitSlug: string | null;
   isCanonical: boolean;
   unitTitle?: string | null;
   nextLessons?: NextLesson[];
+  onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   lessonSlug,
+  lessonTitle,
   programmeSlug,
   unitSlug,
   isCanonical,
   unitTitle,
   nextLessons,
+  onwardContentSelected,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
-  const isNextLessons = nextLessons && nextLessons.length > 0;
+  const isNextLessonsAvailable = nextLessons && nextLessons.length > 0;
 
   return (
     <>
@@ -52,7 +57,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $alignItems={"flex-start"}
           $maxWidth={600}
         >
-          {unitSlug && programmeSlug ? (
+          {unitSlug && unitTitle && programmeSlug ? (
             <ButtonAsLink
               page={"lesson-overview"}
               lessonSlug={lessonSlug}
@@ -64,6 +69,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               iconBackground="oakGrey1"
               data-testid="back-to-lesson-link"
               size="small"
+              onClick={() => {
+                onwardContentSelected({
+                  lessonName: lessonTitle,
+                  unitName: unitTitle,
+                  unitSlug: unitSlug,
+                  lessonSlug: lessonSlug,
+                  onwardIntent: "view-lesson",
+                });
+              }}
             />
           ) : (
             <ButtonAsLink
@@ -75,6 +89,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               iconBackground="oakGrey1"
               data-testid="back-to-lesson-link"
               size="small"
+              onClick={() => {
+                onwardContentSelected({
+                  lessonName: lessonTitle,
+                  unitName: "",
+                  unitSlug: "",
+                  lessonSlug: lessonSlug,
+                  onwardIntent: "view-lesson",
+                });
+              }}
             />
           )}
 
@@ -89,12 +112,13 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
         </Flex>
       </Flex>
 
-      {displayNextLessonContainer && isNextLessons && (
+      {displayNextLessonContainer && isNextLessonsAvailable && (
         <NextLessonContainer
           programmeSlug={programmeSlug}
           unitSlug={unitSlug}
           unitTitle={unitTitle}
           nextLessons={nextLessons}
+          onwardContentSelected={onwardContentSelected}
         />
       )}
     </>

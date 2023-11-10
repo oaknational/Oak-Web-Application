@@ -4,19 +4,24 @@ import Flex from "@/components/Flex";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Heading from "@/components/Typography/Heading";
 import Box from "@/components/Box";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type NextLessonCardProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
   lessonTitle: string;
+  unitTitle: string;
+  onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
 const NextLessonCard: FC<NextLessonCardProps> = ({
   programmeSlug,
   unitSlug,
+  unitTitle,
   lessonSlug,
   lessonTitle,
+  onwardContentSelected,
 }) => {
   return (
     <Box
@@ -60,6 +65,15 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             label="See lesson"
             size="small"
+            onClick={() => {
+              onwardContentSelected({
+                lessonName: lessonTitle,
+                lessonSlug: lessonSlug,
+                unitSlug: unitSlug,
+                unitName: unitTitle,
+                onwardIntent: "view-lesson",
+              });
+            }}
           />
 
           <ButtonAsLink
@@ -75,6 +89,15 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             size="small"
             $font={"heading-7"}
+            onClick={() => {
+              onwardContentSelected({
+                lessonName: lessonTitle,
+                lessonSlug: lessonSlug,
+                unitSlug: unitSlug,
+                unitName: unitTitle,
+                onwardIntent: "download-lesson-resources",
+              });
+            }}
           />
         </Flex>
       </Flex>
