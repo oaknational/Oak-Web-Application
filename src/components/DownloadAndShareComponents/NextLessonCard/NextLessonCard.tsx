@@ -50,7 +50,6 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
         <Flex
           $flexDirection={["column", "row", "row"]}
           $alignItems={["flex-start"]}
-          // $justifyContent={"space-between"}
           $flexWrap={"wrap"}
           $gap={24}
         >
