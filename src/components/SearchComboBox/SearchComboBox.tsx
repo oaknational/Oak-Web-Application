@@ -54,11 +54,11 @@ const SearchComboBox = <T extends School>(
   let labelBackground: OakColorName;
 
   if (state.isFocused) {
-    labelBackground = "teachersHighlight";
+    labelBackground = "blue";
   } else if (hasError) {
-    labelBackground = "failure";
+    labelBackground = "red";
   } else {
-    labelBackground = "teachersYellow";
+    labelBackground = "lemon";
   }
 
   return (

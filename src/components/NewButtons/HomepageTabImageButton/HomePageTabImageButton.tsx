@@ -57,11 +57,11 @@ const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
   ${(props) =>
     !props.isCurrent &&
     css`
-      color: ${getColorByName("oakGrey4")};
+      color: ${getColorByName("grey60")};
 
       :hover ${ButtonLabel} {
         text-decoration: underline;
-        color: ${getColorByName("oakGrey6")};
+        color: ${getColorByName("black")};
       }
 
       ${StyledCMSImage} {

@@ -8,7 +8,7 @@ const oakBrandTheme: OakTheme = {
     ...defaultTheme.button,
     // Simply altering primary button config as an example
     primary: {
-      background: "pupilsGreen",
+      background: "oakGreen",
       text: "white",
     },
   },

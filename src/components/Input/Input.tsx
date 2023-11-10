@@ -32,7 +32,7 @@ export const InputFocusUnderline = styled(Svg)`
   left: -2px;
   right: 0;
   height: 4px;
-  color: ${getColorByName("teachersYellow")};
+  color: ${getColorByName("lemon")};
   filter: drop-shadow(2px 2px 0 rgb(0 0 0));
   z-index: ${zIndexMap.inFront};
 `;
@@ -51,7 +51,7 @@ export const RotatedInputLabel = styled(Label)<{
 
 export const InputFieldWrap = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
-    background: ${getColorByName("teachersHighlight")};
+    background: ${getColorByName("blue")};
     color: ${getColorByName("white")};
   }
 
@@ -141,7 +141,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <Flex $position={"absolute"}>
               <RotatedInputLabel
                 aria-hidden="true"
-                background={error ? "failure" : "teachersYellow"}
+                background={error ? "red" : "lemon"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
                 id={labelId}

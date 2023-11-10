@@ -31,7 +31,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
                 icon="cross"
                 onClick={() => setIsOpen(false)}
                 aria-label="close modal"
-                background="teachersHighlight"
+                background="blue"
               />
             </Box>
           </Component>

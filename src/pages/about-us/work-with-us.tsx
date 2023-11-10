@@ -47,7 +47,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
                   <Heading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
@@ -61,7 +61,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                   {card.cta?.linkType == "external" && (
                     <Flex>
                       <ButtonAsLink
-                        background="teachersHighlight"
+                        background="blue"
                         label={card.cta.label}
                         page={null}
                         href={card.cta.external}
@@ -72,7 +72,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       </ButtonAsLink>
                     </Flex>
                   )}
-                  <BrushBorders hideOnMobileH color={"videoBlue"} />
+                  <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>
               </GridArea>
             </Fragment>

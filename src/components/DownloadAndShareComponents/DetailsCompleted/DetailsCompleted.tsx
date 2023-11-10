@@ -32,9 +32,9 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
       $width={["100%", 420]}
       $height={"max-content"}
       $position="relative"
-      $background="grey2"
+      $background="grey30"
     >
-      <BrushBorders color="grey2" />
+      <BrushBorders color="grey30" />
       <Flex $flexDirection="column" $gap={24} $pa={24} $alignItems="flex-start">
         <Flex $flexDirection="column" $gap={16}>
           <Flex $flexDirection="column" $gap={4}>

@@ -125,7 +125,7 @@ describe("responsive", () => {
       )}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $color="teachersPurple" />,
+      <StyledComponent data-testid="test" $color="purple" />,
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #845ad9");

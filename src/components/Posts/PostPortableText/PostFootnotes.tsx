@@ -89,7 +89,7 @@ type PostFootnotesSectionProps = {
 const FootnoteLink = styled.a`
   display: inline;
   text-decoration: underline;
-  color: ${(props) => props.theme.colors.hyperlink};
+  color: ${(props) => props.theme.colors.navy};
 `;
 
 export const PostFootnotesSection: FC<PostFootnotesSectionProps> = ({

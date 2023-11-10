@@ -17,7 +17,7 @@ it("component renders with the title", () => {
       unitSlug={"unit"}
       lessonSlug={"slug-slug-slug"}
     >
-      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+      <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
         Grid box
       </Card>
     </ExpandingContainer>,
@@ -37,7 +37,7 @@ it("component renders with the title only", () => {
       unitSlug={"unit"}
       lessonSlug={"slug-slug-slug"}
     >
-      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+      <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
         Grid box
       </Card>
     </ExpandingContainer>,
@@ -60,7 +60,7 @@ it.skip("renders top right icons", async () => {
       lessonSlug={"slug-slug-slug"}
       title={"Video"}
     >
-      <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+      <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
         Grid box
       </Card>
     </ExpandingContainer>,
@@ -107,7 +107,7 @@ describe("comonents/ExpandingContainer", () => {
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -127,7 +127,7 @@ describe("comonents/ExpandingContainer", () => {
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -150,7 +150,7 @@ describe("comonents/ExpandingContainer", () => {
         lessonSlug={"slug-slug-slug"}
         title={"Starter quiz"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -185,7 +185,7 @@ describe("comonents/ExpandingContainer", () => {
         title={"Video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -208,7 +208,7 @@ describe("comonents/ExpandingContainer", () => {
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -233,7 +233,7 @@ describe("comonents/ExpandingContainer", () => {
         lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -256,7 +256,7 @@ describe("comonents/ExpandingContainer", () => {
         lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -278,7 +278,7 @@ describe("comonents/ExpandingContainer", () => {
         lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,
@@ -301,7 +301,7 @@ describe("comonents/ExpandingContainer", () => {
         lessonSlug={"slug-slug-slug"}
         title={"Video"}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </ExpandingContainer>,

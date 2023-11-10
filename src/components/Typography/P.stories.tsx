@@ -30,5 +30,5 @@ const Template: ComponentStory<typeof Component> = (args) => (
 export const P = Template.bind({});
 P.args = {
   fontSize: 16,
-  color: "grey9",
+  color: "grey70",
 };

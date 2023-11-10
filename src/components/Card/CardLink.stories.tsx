@@ -16,13 +16,13 @@ type Story = StoryObj<typeof Component>;
 
 export const CardLink: Story = {
   render: () => (
-    <Card $background={"grey4"}>
+    <Card $background={"grey40"}>
       <Heading
         $mt={24}
         $mb={12}
         $font={"heading-5"}
         tag={"h5"}
-        $color={"grey8"}
+        $color={"grey70"}
       >
         <Component page="home">Card link</Component>
       </Heading>

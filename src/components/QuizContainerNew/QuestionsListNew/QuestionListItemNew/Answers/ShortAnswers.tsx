@@ -22,7 +22,7 @@ export const ShortAnswers = ({ answers }: { answers: ShortAnswer[] }) => {
   return (
     <Flex $flexDirection={"column"} $gap={4} $alignItems={"start"}>
       <Flex
-        $background={"teachersPastelYellow"}
+        $background={"lemon50"}
         $borderRadius={8}
         $ph={8}
         $alignItems={"center"}
