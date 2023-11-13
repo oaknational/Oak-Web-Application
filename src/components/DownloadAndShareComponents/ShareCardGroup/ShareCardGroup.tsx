@@ -85,6 +85,7 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
         href={props.shareLink}
         page={null}
         iconBackground="black"
+        disabled={props.hasError}
       />
     </Flex>
   );
