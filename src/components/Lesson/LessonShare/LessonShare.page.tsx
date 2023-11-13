@@ -30,8 +30,8 @@ import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
-import Button from "@/components/Button";
 import { IconName } from "@/components/Icon";
+import LoadingButton from "@/components/Button/LoadingButton";
 
 type LessonShareProps =
   | {
@@ -305,21 +305,20 @@ export function LessonShare(props: LessonShareProps) {
                   <Heading $mt={24} $mb={4} tag={"h4"} $font={"heading-7"}>
                     Share options:
                   </Heading>
-                  <Flex $flexWrap={"wrap"} $width={"100%"}>
+                  <Flex $flexWrap={"wrap"} $width={"100%"} $gap={12}>
                     {shareLinks.map((link) => (
-                      <Button
-                        data-testid={`button-${link.name}`}
-                        $mr={24}
-                        $mb={24}
+                      <LoadingButton
                         onClick={
                           (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                         }
-                        label={link.name}
+                        text={link.name}
                         icon={link.icon}
+                        isLoading={false}
                         disabled={
                           hasFormErrors ||
                           (!formState.isValid && !localStorageDetails)
                         }
+                        loadingText={"Sharing..."}
                       />
                     ))}
                   </Flex>
