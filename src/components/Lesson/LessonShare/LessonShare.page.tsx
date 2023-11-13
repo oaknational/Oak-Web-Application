@@ -33,6 +33,8 @@ import {
   getSchoolOption,
   getSchoolUrn,
 } from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
+import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
+import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
 
 type LessonShareProps =
   | {
@@ -265,7 +267,15 @@ export function LessonShare(props: LessonShareProps) {
               hasError={errors?.resources ? true : false}
               triggerForm={trigger}
               shareableResources={shareableResources}
-              shareLink={""}
+              shareLink={getHrefForSocialSharing(
+                {
+                  lessonSlug: lessonSlug,
+                  selectedActivities: selectedResources,
+                  medium: shareLinkConfig.copy.medium,
+                  schoolUrn: schoolUrn,
+                },
+                shareLinkConfig.copy,
+              )}
             />
           }
           cta={
