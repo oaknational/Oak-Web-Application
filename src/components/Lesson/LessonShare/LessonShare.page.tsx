@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
-import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import { Hr } from "@/components/Typography";
@@ -19,7 +18,6 @@ import {
   schema,
 } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import FieldError from "@/components/FormFields/FieldError";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
@@ -231,63 +229,42 @@ export function LessonShare(props: LessonShareProps) {
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
 
-        <>
-          <ResourcePageLayout
-            page={"share"}
-            errors={errors}
-            handleToggleSelectAll={handleToggleSelectAll}
-            selectAllChecked={selectAllChecked}
-            header="Share"
-            showNoResources={!hasResourcesToShare}
-            showLoading={isLocalStorageLoading}
-            email={emailFromLocalStorage}
-            school={schoolNameFromLocalStorage}
-            schoolId={schoolIdFromLocalStorage}
-            setSchool={setSchool}
-            showSavedDetails={shouldDisplayDetailsCompleted}
-            onEditClick={handleEditDetailsCompletedClick}
-            register={register}
-            control={control}
-            showPostAlbCopyright={!isLegacy}
-            cardGroup={
-              <ShareCardGroup
-                control={control}
-                hasError={errors?.resources ? true : false}
-                triggerForm={trigger}
-                shareableResources={shareableResources}
-                shareLink={""}
-              />
-            }
-            cta={
-              <ShareLinks
-                disabled={
-                  hasFormErrors || (!formState.isValid && !localStorageDetails)
-                }
-                lessonSlug={lessonSlug}
-                selectedActivities={resourcesToShare}
-              />
-            }
-          />
-
-          <Flex
-            $flexDirection={["column", "row"]}
-            $justifyContent={"right"}
-            $alignItems={"center"}
-          >
-            {apiError && !hasFormErrors && (
-              <Box $mr={24} $textAlign={"left"}>
-                <FieldError
-                  id="download-error"
-                  data-testid="download-error"
-                  variant={"large"}
-                  withoutMarginBottom
-                >
-                  {apiError}
-                </FieldError>
-              </Box>
-            )}
-          </Flex>
-        </>
+        <ResourcePageLayout
+          page={"share"}
+          errors={errors}
+          handleToggleSelectAll={handleToggleSelectAll}
+          selectAllChecked={selectAllChecked}
+          header="Share"
+          showNoResources={!hasResourcesToShare}
+          showLoading={isLocalStorageLoading}
+          email={emailFromLocalStorage}
+          school={schoolNameFromLocalStorage}
+          schoolId={schoolIdFromLocalStorage}
+          setSchool={setSchool}
+          showSavedDetails={shouldDisplayDetailsCompleted}
+          onEditClick={handleEditDetailsCompletedClick}
+          register={register}
+          control={control}
+          showPostAlbCopyright={!isLegacy}
+          cardGroup={
+            <ShareCardGroup
+              control={control}
+              hasError={errors?.resources ? true : false}
+              triggerForm={trigger}
+              shareableResources={shareableResources}
+              shareLink={""}
+            />
+          }
+          cta={
+            <ShareLinks
+              disabled={
+                hasFormErrors || (!formState.isValid && !localStorageDetails)
+              }
+              lessonSlug={lessonSlug}
+              selectedActivities={resourcesToShare}
+            />
+          }
+        />
       </MaxWidth>
     </Box>
   );
