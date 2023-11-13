@@ -1,13 +1,14 @@
 import { FC, useState } from "react";
 import Link from "next/link";
 
+import { ResourceType } from "../downloadsAndShare.types";
+
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
 import LoadingButton from "@/components/Button/LoadingButton";
 import Flex from "@/components/Flex";
 import { Heading, P } from "@/components/Typography";
-import { LessonShareSchema } from "@/node-lib/curriculum-api";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
 import Icon from "@/components/Icon";
 
@@ -45,7 +46,7 @@ const CopySuccess: FC = () => {
 export const ShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
-  selectedActivities?: Array<LessonShareSchema["type"]>;
+  selectedActivities?: Array<ResourceType>;
   schoolUrn?: string; // TODO: schoolurn
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);

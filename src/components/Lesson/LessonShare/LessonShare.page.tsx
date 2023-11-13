@@ -14,6 +14,7 @@ import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents
 import { getPreselectedShareResourceTypes } from "@/components/DownloadAndShareComponents/helpers/getDownloadResourceType";
 import {
   ResourceFormProps,
+  ResourceType,
   preselectedShareType,
   schema,
 } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
@@ -60,7 +61,7 @@ export function LessonShare(props: LessonShareProps) {
 
   const router = useRouter();
 
-  const { register, formState, control, setValue, trigger } =
+  const { register, formState, control, setValue, trigger, watch } =
     useForm<ResourceFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
@@ -185,7 +186,7 @@ export function LessonShare(props: LessonShareProps) {
 
   const { errors } = formState;
   const hasFormErrors = Object.keys(errors)?.length > 0;
-  //   const selectedResources = (watch().resources || []) as ResourceType[]; add back in with tracking
+  const selectedResources = (watch().resources || []) as ResourceType[];
 
   const [resourcesToShare, setResourcesToShare] = useState<
     LessonShareListData["type"][]
@@ -261,7 +262,7 @@ export function LessonShare(props: LessonShareProps) {
                 hasFormErrors || (!formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
-              selectedActivities={resourcesToShare}
+              selectedActivities={selectedResources}
             />
           }
         />
