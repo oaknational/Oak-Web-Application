@@ -67,6 +67,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                         href={card.cta.external}
                         icon={"external"}
                         $iconPosition={"trailing"}
+                        iconBackground="lemon"
                       >
                         {card.cta.label}
                       </ButtonAsLink>
