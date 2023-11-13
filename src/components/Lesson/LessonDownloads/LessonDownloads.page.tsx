@@ -360,6 +360,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               control={control}
               showPostAlbCopyright={!isLegacy}
               resourcesHeader="Lesson resources"
+              triggerForm={trigger}
               cardGroup={
                 <DownloadCardGroup
                   control={control}

@@ -4,6 +4,7 @@ import {
   Controller,
   FieldErrors,
   UseFormRegister,
+  UseFormTrigger,
 } from "react-hook-form";
 
 import { ErrorKeysType, ResourceFormProps } from "../downloadsAndShare.types";
@@ -45,6 +46,7 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     cta: React.ReactNode;
     page: "share" | "download";
     resourcesHeader: string;
+    triggerForm: UseFormTrigger<ResourceFormProps>;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -183,7 +185,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                             const onChangeHandler = (
                               e: ChangeEvent<HTMLInputElement>,
                             ) => {
-                              return onChange(e.target.checked);
+                              onChange(e.target.checked);
+                              props.triggerForm();
                             };
                             return (
                               <TermsAndConditionsCheckbox
