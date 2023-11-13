@@ -10,12 +10,16 @@ import ButtonLabel from "../ButtonLabel";
 
 import { Spinner } from "./Spinner";
 
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { OakColorName } from "@/styles/theme";
+
 type LoadingButtonProps = {
   isLoading: boolean;
   text: string;
   loadingText?: string;
   icon: IconName;
   disabled: boolean;
+  success?: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -39,7 +43,9 @@ const StyledButton = styled(UnstyledButton)`
   }
   ${(props) => {
     return css`
-      background-color: ${props["aria-disabled"] ? "#808080" : "black"};
+      background-color: ${props["aria-disabled"]
+        ? "#808080"
+        : getColorByName(props.color as OakColorName)};
       cursor: ${props["aria-disabled"] ? "not-allowed" : "pointer"};
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: ${props["aria-disabled"] ? "none" : "underline"};
@@ -56,6 +62,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       onClick={disabled ? (e) => e.preventDefault : props.onClick}
       aria-disabled={disabled}
       aria-label={props.text}
+      color={props.success ? "oakGreen" : "black"}
     >
       <Flex $gap={8} $justifyContent="center">
         <ButtonLabel $color="white">
@@ -69,7 +76,9 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
           <Icon name={props.icon} $color="white" />
         )}
       </Flex>
-      <FocusDoubleBorder background={disabled ? "grey6" : "black"} />
+      <FocusDoubleBorder
+        background={disabled ? "grey6" : props.success ? "oakGreen" : "black"}
+      />
     </StyledButton>
   );
 };

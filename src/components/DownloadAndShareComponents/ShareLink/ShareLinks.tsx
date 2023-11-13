@@ -7,9 +7,7 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
 import LoadingButton from "@/components/Button/LoadingButton";
 import Flex from "@/components/Flex";
-import { Heading, P } from "@/components/Typography";
-import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
-import Icon from "@/components/Icon";
+import { Heading } from "@/components/Typography";
 
 const copyToCliboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
@@ -18,26 +16,6 @@ const copyToCliboard = (textToCopy: string, callback: () => void) => {
   } else {
     alert("Please update your browser to support this feature");
   }
-};
-
-const CopySuccess: FC = () => {
-  return (
-    <Flex
-      $background="oakGreen"
-      $width="max-content"
-      $ph={24}
-      $pv={10}
-      $alignItems="center"
-      $gap={8}
-      $position="relative"
-    >
-      <P $font="heading-7" color="white">
-        Link copied to clipboard
-      </P>
-      <Icon name="tick" $color="white" />
-      <ButtonBorders background="oakGreen" />
-    </Flex>
-  );
 };
 
 const ShareLinks: FC<{
@@ -53,28 +31,30 @@ const ShareLinks: FC<{
         Share options:
       </Heading>
       <Flex $flexWrap={"wrap"} $width={"100%"} $gap={12}>
-        {isShareSuccessful ? (
-          <CopySuccess />
-        ) : (
-          <LoadingButton
-            text={shareLinkConfig.copy.name}
-            onClick={() =>
-              copyToCliboard(
-                getHrefForSocialSharing({
-                  lessonSlug: props.lessonSlug,
-                  selectedActivities: props.selectedActivities,
-                  schoolUrn: props.schoolUrn,
-                  linkConfig: shareLinkConfig.copy,
-                }),
-                () => setIsShareSuccessful(true),
-              )
-            }
-            isLoading={false}
-            loadingText="Copying..."
-            icon={shareLinkConfig.copy.icon}
-            disabled={props.disabled}
-          />
-        )}
+        <LoadingButton
+          text={
+            isShareSuccessful
+              ? "Link copied to clipboard"
+              : shareLinkConfig.copy.name
+          }
+          success={isShareSuccessful}
+          onClick={() =>
+            copyToCliboard(
+              getHrefForSocialSharing({
+                lessonSlug: props.lessonSlug,
+                selectedActivities: props.selectedActivities,
+                schoolUrn: props.schoolUrn,
+                linkConfig: shareLinkConfig.copy,
+              }),
+              () => setIsShareSuccessful(true),
+            )
+          }
+          isLoading={false}
+          loadingText="Copying..."
+          icon={isShareSuccessful ? "tick" : shareLinkConfig.copy.icon}
+          disabled={props.disabled}
+        />
+
         {[
           shareLinkConfig.googleClassroom,
           shareLinkConfig.microsoftTeams,
