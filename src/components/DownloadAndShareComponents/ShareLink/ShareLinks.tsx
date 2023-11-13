@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import Link from "next/link";
 
 import { ResourceType } from "../downloadsAndShare.types";
 
@@ -23,23 +22,21 @@ const copyToCliboard = (textToCopy: string, callback: () => void) => {
 
 const CopySuccess: FC = () => {
   return (
-    <>
-      <Flex
-        $background="oakGreen"
-        $width="max-content"
-        $ph={24}
-        $pv={10}
-        $alignItems="center"
-        $gap={8}
-        $position="relative"
-      >
-        <P $font="heading-7" color="white">
-          Link copied to clipboard
-        </P>{" "}
-        <Icon name="tick" $color="white" />
-        <ButtonBorders background="oakGreen" />
-      </Flex>
-    </>
+    <Flex
+      $background="oakGreen"
+      $width="max-content"
+      $ph={24}
+      $pv={10}
+      $alignItems="center"
+      $gap={8}
+      $position="relative"
+    >
+      <P $font="heading-7" color="white">
+        Link copied to clipboard
+      </P>
+      <Icon name="tick" $color="white" />
+      <ButtonBorders background="oakGreen" />
+    </Flex>
   );
 };
 
@@ -86,8 +83,8 @@ export const ShareLinks: FC<{
           shareLinkConfig.microsoftTeams,
           shareLinkConfig.email,
         ].map((link) => (
-          <Link
-            href={getHrefForSocialSharing(
+          <form
+            action={getHrefForSocialSharing(
               {
                 network: link.network,
                 lessonSlug: props.lessonSlug,
@@ -106,7 +103,7 @@ export const ShareLinks: FC<{
               disabled={props.disabled}
               onClick={() => {}}
             />
-          </Link>
+          </form>
         ))}
       </Flex>
     </>
