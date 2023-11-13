@@ -55,12 +55,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     expect(screen.getByText("No resources to share")).toBeInTheDocument();
   });
 
-  describe("download form", () => {
+  describe("Share form", () => {
     it("Renders share form with correct elements", () => {
       render(<LessonSharePage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
-        "Lesson resources",
+        "Select online activities",
       );
       expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
         "Your details",
@@ -107,17 +107,17 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
       // Share buttons
-      const shareButtonCopy = screen.getByRole("button", { name: "Copy Link" });
+      const shareButtonCopy = screen.getByRole("button", { name: "Copy link" });
       expect(shareButtonCopy).toBeInTheDocument();
-      const shareButtonGoogle = screen.getByRole("button", {
+      const shareButtonGoogle = screen.getByRole("link", {
         name: "Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
-      const shareButtonMicrosoft = screen.getByRole("button", {
+      const shareButtonMicrosoft = screen.getByRole("link", {
         name: "Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
-      const shareButtonEmail = screen.getByRole("button", { name: "Email" });
+      const shareButtonEmail = screen.getByRole("link", { name: "Email" });
       expect(shareButtonEmail).toBeInTheDocument();
     });
 

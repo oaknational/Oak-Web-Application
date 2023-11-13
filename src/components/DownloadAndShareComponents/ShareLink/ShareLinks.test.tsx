@@ -18,8 +18,6 @@ describe("ShareLinks", () => {
     expect(copyLinkButton).toBeInTheDocument();
     const user = userEvent.setup();
     await user.click(copyLinkButton);
-    expect(copyLinkButton).not.toBeInTheDocument();
-    const successMessage = screen.getByText("Link copied to clipboard");
-    expect(successMessage).toBeInTheDocument();
+    expect(copyLinkButton).toHaveTextContent("Link copied to clipboard");
   });
 });
