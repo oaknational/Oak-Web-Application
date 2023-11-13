@@ -29,6 +29,10 @@ import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
 import { ShareLinks } from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
+import {
+  getSchoolOption,
+  getSchoolUrn,
+} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 
 type LessonShareProps =
   | {
@@ -68,6 +72,7 @@ export function LessonShare(props: LessonShareProps) {
     });
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [schoolUrn, setSchoolUrn] = useState(0);
 
   useEffect(() => {
     if (preselectAll) {
@@ -144,6 +149,11 @@ export function LessonShare(props: LessonShareProps) {
 
     if (schoolIdFromLocalStorage) {
       setValue("school", schoolIdFromLocalStorage);
+      const schoolUrn = getSchoolUrn(
+        schoolIdFromLocalStorage,
+        getSchoolOption(schoolIdFromLocalStorage),
+      );
+      setSchoolUrn(schoolUrn);
     }
   }, [
     setValue,
@@ -180,6 +190,8 @@ export function LessonShare(props: LessonShareProps) {
       setValue("schoolName", name || schoolNameFromLocalStorage, {
         shouldValidate: true,
       });
+      const schoolUrn = getSchoolUrn(value, getSchoolOption(value));
+      setSchoolUrn(schoolUrn);
     },
     [setValue, schoolNameFromLocalStorage],
   );
@@ -263,6 +275,7 @@ export function LessonShare(props: LessonShareProps) {
               }
               lessonSlug={lessonSlug}
               selectedActivities={selectedResources}
+              schoolUrn={schoolUrn}
             />
           }
         />

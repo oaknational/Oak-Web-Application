@@ -26,7 +26,7 @@ export type GetSharingMetadataParams = {
   lessonSlug: string;
   medium: ShareLinkConfig["medium"];
   selectedActivities?: Array<ResourceType>;
-  schoolUrn?: string;
+  schoolUrn?: number;
 };
 
 export const getSharingMetadata = ({

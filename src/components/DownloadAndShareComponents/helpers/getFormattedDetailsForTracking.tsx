@@ -2,26 +2,38 @@ import type {
   SchoolOptionValueType,
   ResourceTypeValueType,
 } from "../../../browser-lib/avo/Avo";
-import type { DownloadResourceType } from "../downloadsAndShare.types";
+import type { ResourceType } from "../downloadsAndShare.types";
+
+export const getSchoolOption = (school: string) => {
+  if (school === "notListed") {
+    return "Not listed";
+  } else if (school === "homeschool") {
+    return "Homeschool";
+  } else {
+    return "Selected school";
+  }
+};
+
+export const getSchoolUrn = (
+  school: string,
+  schoolOption: SchoolOptionValueType,
+) => {
+  if (schoolOption === "Selected school") {
+    const schoolUrn = Number(school.split("-")[0]) || 0;
+    return schoolUrn;
+  } else {
+    return 0;
+  }
+};
 
 const getFormattedDetailsForTracking = ({
   school,
   selectedResources,
 }: {
   school: string;
-  selectedResources: DownloadResourceType[];
+  selectedResources: ResourceType[];
 }) => {
-  const getSchoolOption = () => {
-    if (school === "notListed") {
-      return "Not listed";
-    } else if (school === "homeschool") {
-      return "Homeschool";
-    } else {
-      return "Selected school";
-    }
-  };
-
-  const schoolOption: SchoolOptionValueType = getSchoolOption();
+  const schoolOption: SchoolOptionValueType = getSchoolOption(school);
 
   const getSchoolName = () => {
     if (schoolOption === "Selected school") {
@@ -29,15 +41,6 @@ const getFormattedDetailsForTracking = ({
       return schoolName;
     } else {
       return "";
-    }
-  };
-
-  const getSchoolUrn = () => {
-    if (schoolOption === "Selected school") {
-      const schoolUrn = Number(school.split("-")[0]) || 0;
-      return schoolUrn;
-    } else {
-      return 0;
     }
   };
 
@@ -57,7 +60,7 @@ const getFormattedDetailsForTracking = ({
   return {
     schoolOption,
     schoolName: getSchoolName(),
-    schoolUrn: getSchoolUrn(),
+    schoolUrn: getSchoolUrn(school, schoolOption),
     selectedResourcesForTracking:
       selectedResourcesForTracking as ResourceTypeValueType[],
   };

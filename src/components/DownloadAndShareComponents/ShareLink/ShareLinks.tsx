@@ -47,7 +47,7 @@ export const ShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
-  schoolUrn?: string; // TODO: schoolurn
+  schoolUrn?: number;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   return (
@@ -68,6 +68,7 @@ export const ShareLinks: FC<{
                     lessonSlug: props.lessonSlug,
                     selectedActivities: props.selectedActivities,
                     medium: shareLinkConfig.copy.medium,
+                    schoolUrn: props.schoolUrn,
                   },
                   shareLinkConfig.copy,
                 ),
