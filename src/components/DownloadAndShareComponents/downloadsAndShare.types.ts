@@ -9,8 +9,9 @@ import {
   LessonShareSchema,
 } from "@/node-lib/curriculum-api";
 
-export type Resources = // remove from sortResources.ts
-  LessonDownloadsData["downloads"] | LessonShareData["shareableResources"];
+export type Resources =
+  | LessonDownloadsData["downloads"]
+  | LessonShareData["shareableResources"];
 
 export type ResourceType = LessonShareSchema["type"] | DownloadResourceType;
 

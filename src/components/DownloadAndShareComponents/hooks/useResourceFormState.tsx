@@ -10,6 +10,7 @@ import {
 import {
   ResourceFormProps,
   ResourceType,
+  Resources,
   preselectedShareType,
   schema,
 } from "../downloadsAndShare.types";
@@ -17,17 +18,10 @@ import { getPreselectedShareResourceTypes } from "../helpers/getDownloadResource
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-import {
-  LessonDownloadsData,
-  LessonShareData,
-} from "@/node-lib/curriculum-api";
-
 export const useResourceFormState = ({
   resources,
 }: {
-  resources:
-    | LessonShareData["shareableResources"]
-    | LessonDownloadsData["downloads"];
+  resources: Resources;
 }) => {
   const {
     register,
