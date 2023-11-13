@@ -262,6 +262,7 @@ export function LessonShare(props: LessonShareProps) {
           control={control}
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
+          triggerForm={trigger}
           cardGroup={
             <ShareCardGroup
               control={control}

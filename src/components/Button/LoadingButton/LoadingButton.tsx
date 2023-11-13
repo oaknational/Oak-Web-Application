@@ -90,6 +90,7 @@ const StyledLink = styled(Link)`
 `;
 
 const ButtonContent: FC<LoadingButtonProps> = (props) => {
+  const disabled = props.isLoading || props.disabled;
   return (
     <>
       <Flex $gap={8} $justifyContent="center">
@@ -105,9 +106,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
         )}
       </Flex>
       <FocusDoubleBorder
-        background={
-          props.disabled ? "grey6" : props.success ? "oakGreen" : "black"
-        }
+        background={disabled ? "grey6" : props.success ? "oakGreen" : "black"}
       />
     </>
   );
