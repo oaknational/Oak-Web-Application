@@ -84,6 +84,7 @@ const ShareLinks: FC<{
           shareLinkConfig.email,
         ].map((link) => (
           <form
+            suppressHydrationWarning
             action={getHrefForSocialSharing(
               {
                 network: link.network,
