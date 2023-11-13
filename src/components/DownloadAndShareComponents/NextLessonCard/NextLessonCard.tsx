@@ -4,31 +4,40 @@ import Flex from "@/components/Flex";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Heading from "@/components/Typography/Heading";
 import Box from "@/components/Box";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type NextLessonCardProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
   lessonTitle: string;
+  unitTitle: string;
+  onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
 const NextLessonCard: FC<NextLessonCardProps> = ({
   programmeSlug,
   unitSlug,
+  unitTitle,
   lessonSlug,
   lessonTitle,
+  onwardContentSelected,
 }) => {
   return (
     <Box
       $background={"aqua50"}
       $borderRadius={4}
-      $width={[340, 240, 420]}
-      $minHeight={[160, 270, 160]}
+      $width={"100%"}
+      $minWidth={[340, 200, 340]}
+      $maxWidth={["100%", "100%", "50%"]}
+      $minHeight={[160, 120, 160]}
+      data-testid={`next-lesson-card`}
     >
       <Flex
         $pa={[16, 16, 24]}
         $flexDirection={"column"}
-        $minHeight={[160, 270, 160]}
+        $minHeight={[160, 120, 160]}
+        $height={"100%"}
         $position={"relative"}
         $justifyContent={"space-between"}
         $wordWrap={"break-word"}
@@ -39,8 +48,9 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
         </Heading>
 
         <Flex
-          $flexDirection={["column", "column", "row"]}
+          $flexDirection={["column", "row", "row"]}
           $alignItems={["flex-start"]}
+          $flexWrap={"wrap"}
           $gap={24}
         >
           <ButtonAsLink
@@ -54,6 +64,15 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             label="See lesson"
             size="small"
+            onClick={() => {
+              onwardContentSelected({
+                lessonName: lessonTitle,
+                lessonSlug: lessonSlug,
+                unitSlug: unitSlug,
+                unitName: unitTitle,
+                onwardIntent: "view-lesson",
+              });
+            }}
           />
 
           <ButtonAsLink
@@ -69,6 +88,15 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
             iconBackground="aqua50"
             size="small"
             $font={"heading-7"}
+            onClick={() => {
+              onwardContentSelected({
+                lessonName: lessonTitle,
+                lessonSlug: lessonSlug,
+                unitSlug: unitSlug,
+                unitName: unitTitle,
+                onwardIntent: "download-lesson-resources",
+              });
+            }}
           />
         </Flex>
       </Flex>

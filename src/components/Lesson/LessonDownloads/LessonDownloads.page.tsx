@@ -37,6 +37,7 @@ import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import LoadingButton from "@/components/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
+import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 type LessonDownloadsProps =
   | {
@@ -47,6 +48,7 @@ type LessonDownloadsProps =
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
         pathways: LessonPathway[];
+        nextLessons?: NextLesson[];
       };
     }
   | {
@@ -56,6 +58,7 @@ type LessonDownloadsProps =
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
+        nextLessons: NextLesson[];
       };
     };
 
@@ -65,6 +68,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
+
   const {
     programmeSlug,
     keyStageTitle,
@@ -79,6 +83,14 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
+
+  const onwardContent = lesson.nextLessons
+    ? lesson.nextLessons?.map((nextLesson) => {
+        return nextLesson.lessonSlug;
+      })
+    : [];
+
+  const { onwardContentSelected } = track;
 
   const {
     register,
@@ -267,6 +279,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolUrn,
         schoolName,
         schoolOption,
+        onwardContent,
         emailSupplied: data?.email ? true : false,
       });
     } catch (error) {
@@ -316,10 +329,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
         <Box $display={isDownloadSuccessful ? "block" : "none"}>
           <DownloadConfirmation
-            unitSlug={unitSlug}
             lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
             programmeSlug={programmeSlug}
             data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
+            onwardContentSelected={onwardContentSelected}
           />
         </Box>
         {!isDownloadSuccessful && (
