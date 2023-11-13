@@ -57,7 +57,6 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
           $iconPosition="trailing"
           iconBackground="black"
           onClick={() => {
-            window.localStorage.removeItem("oak-downloads-email");
             onEditClick();
           }}
           $mt={8}

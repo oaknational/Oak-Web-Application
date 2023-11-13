@@ -182,10 +182,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     if (schoolIdFromLocalStorage) {
       setValue("school", schoolIdFromLocalStorage);
     }
-
-    if (editDetailsClicked) {
-      console.log("EDIT DETAILS CLICKED");
-    }
   }, [
     setValue,
     emailFromLocalStorage,
@@ -194,23 +190,20 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     editDetailsClicked,
   ]);
 
-  // const shouldDisplayDetailsCompleted =
-  // !!hasDetailsFromLocalStorage && !editDetailsClicked;
+  const shouldDisplayDetailsCompleted =
+    !!hasDetailsFromLocalStorage && !editDetailsClicked;
 
-  const [shouldDisplayDetailsCompleted, setShouldDisplayDetailsCompleted] =
-    useState(!!hasDetailsFromLocalStorage && !editDetailsClicked);
+  // const [shouldDisplayDetailsCompleted, setShouldDisplayDetailsCompleted] =
+  //   useState(!!hasDetailsFromLocalStorage && !editDetailsClicked);
 
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
     if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
       setLocalStorageDetails(true);
-      console.log("Is this one running?");
     }
     if (editDetailsClicked) {
       setLocalStorageDetails(false);
-      setShouldDisplayDetailsCompleted(false);
-      console.log("is this one running v2?");
     }
   }, [
     hasDetailsFromLocalStorage,
@@ -267,6 +260,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
       setIsDownloadSuccessful(true);
+
+      if (editDetailsClicked && !data.email) {
+        window.localStorage.removeItem("oak-downloads-email");
+      }
+
       const {
         schoolOption,
         schoolName,
@@ -311,7 +309,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   });
 
   const handleEditDetailsCompletedClick = () => {
-    console.log("INSIDE", emailFromLocalStorage);
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
     setValue("email", emailFromLocalStorage);
