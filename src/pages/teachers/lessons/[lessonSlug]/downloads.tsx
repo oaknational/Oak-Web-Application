@@ -17,6 +17,7 @@ import { LessonDownloads } from "@/components/Lesson/LessonDownloads/LessonDownl
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import curriculumApi from "@/node-lib/curriculum-api";
 import { getCommonPathway } from "@/components/Lesson/lesson.helpers";
+import OakError from "@/errors/OakError";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
@@ -82,14 +83,28 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        (await curriculumApi2023.lessonDownloadsCanonical({
+      let curriculumData;
+      try {
+        curriculumData = await curriculumApi2023.lessonDownloadsCanonical({
           lessonSlug,
-        })) ||
-        (await curriculumApi.lessonDownloadsCanonical({
-          lessonSlug,
-        }));
-
+        });
+      } catch (error) {
+        /**
+         * If the lesson is not found in the 2023 curriculum, try the 2020 api
+         * instead. Otherwise rethrow the error.
+         * This is temporary logic until the migration.
+         */
+        if (
+          error instanceof OakError &&
+          error.code === "curriculum-api/not-found"
+        ) {
+          curriculumData = await curriculumApi.lessonDownloadsCanonical({
+            lessonSlug,
+          });
+        } else {
+          throw error;
+        }
+      }
       if (!curriculumData) {
         return {
           notFound: true,

@@ -1,3 +1,36 @@
+## [1.300.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.0...v1.300.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* legacy canonical lesson + downloads ([90228b1](https://github.com/oaknational/Oak-Web-Application/commit/90228b16873b8fa96effdcfdc0c5312db1dc49b8))
+
+# [1.300.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.299.0...v1.300.0) (2023-11-10)
+
+
+### Features
+
+* add getSharingMetadata methods from acorn ([aaf5c1f](https://github.com/oaknational/Oak-Web-Application/commit/aaf5c1f1ac63434d4265626c817fa1ba4c5ac6ca))
+* add method to get href for sharing ([dfb91cc](https://github.com/oaknational/Oak-Web-Application/commit/dfb91cc5f7d16c3693d987578825761718dd339c))
+* add share icons ([c7dc0ed](https://github.com/oaknational/Oak-Web-Application/commit/c7dc0edee49356b5055615cfbf648a33876b1e22))
+* use lesson share type ([625a0a2](https://github.com/oaknational/Oak-Web-Application/commit/625a0a277a3b2175f63d33fe1becbf23945bf7b1))
+
+# [1.299.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.2...v1.299.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* updated styling for label ([e4dabc1](https://github.com/oaknational/Oak-Web-Application/commit/e4dabc1287beb5c5672da21d1029e4ec7cce6036))
+
+
+### Features
+
+* added all examboards text for maths secondary ([a8e91e6](https://github.com/oaknational/Oak-Web-Application/commit/a8e91e64645c34841a84f78f7052be1e65a0de95))
+
+## [1.298.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.1...v1.298.2) (2023-11-09)
+
+## [1.298.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.0...v1.298.1) (2023-11-09)
+
 # [1.298.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.297.1...v1.298.0) (2023-11-09)
 
 
