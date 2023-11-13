@@ -12,6 +12,7 @@ export default {
     loadingText: "Downloading...",
     icon: "download",
     disabled: false,
+    success: false,
   },
 } as ComponentMeta<typeof Component>;
 
