@@ -261,6 +261,7 @@ export function LessonShare(props: LessonShareProps) {
           register={register}
           control={control}
           showPostAlbCopyright={!isLegacy}
+          resourcesHeader="Select online activities"
           cardGroup={
             <ShareCardGroup
               control={control}

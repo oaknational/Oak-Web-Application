@@ -341,6 +341,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               register={register}
               control={control}
               showPostAlbCopyright={!isLegacy}
+              resourcesHeader="Lesson resources"
               cardGroup={
                 <DownloadCardGroup
                   control={control}

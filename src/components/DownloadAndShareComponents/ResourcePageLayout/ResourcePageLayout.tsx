@@ -44,6 +44,7 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     showSavedDetails: boolean;
     cta: React.ReactNode;
     page: "share" | "download";
+    resourcesHeader: string;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -75,7 +76,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
         >
           <Flex $flexDirection="column" $gap={24}>
             <Heading tag="h2" $font={["heading-6", "heading-5"]}>
-              Lesson resources
+              {props.resourcesHeader}
             </Heading>
             <Box $maxWidth="max-content">
               <Checkbox
