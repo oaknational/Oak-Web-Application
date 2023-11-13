@@ -22,9 +22,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FieldError from "@/components/FormFields/FieldError";
 import {
   getLessonOverviewBreadCrumb,
-  getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
+  getLessonShareBreadCrumb,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
@@ -253,7 +253,7 @@ export function LessonShare(props: LessonShareProps) {
                 programmeSlug,
                 unitSlug,
               }),
-              getLessonDownloadsBreadCrumb({
+              getLessonShareBreadCrumb({
                 lessonSlug,
                 programmeSlug,
                 unitSlug,
