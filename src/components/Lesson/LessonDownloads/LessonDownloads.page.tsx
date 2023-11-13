@@ -163,6 +163,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     schoolId: schoolIdFromLocalStorage,
   } = schoolFromLocalStorage;
 
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   useEffect(() => {
     setIsLocalStorageLoading(false);
@@ -181,25 +182,35 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     if (schoolIdFromLocalStorage) {
       setValue("school", schoolIdFromLocalStorage);
     }
+
+    if (editDetailsClicked) {
+      console.log("EDIT DETAILS CLICKED");
+    }
   }, [
     setValue,
     emailFromLocalStorage,
     termsFromLocalStorage,
     schoolIdFromLocalStorage,
+    editDetailsClicked,
   ]);
 
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
+  // const shouldDisplayDetailsCompleted =
+  // !!hasDetailsFromLocalStorage && !editDetailsClicked;
 
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
+  const [shouldDisplayDetailsCompleted, setShouldDisplayDetailsCompleted] =
+    useState(!!hasDetailsFromLocalStorage && !editDetailsClicked);
+
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
     if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
       setLocalStorageDetails(true);
+      console.log("Is this one running?");
     }
     if (editDetailsClicked) {
       setLocalStorageDetails(false);
+      setShouldDisplayDetailsCompleted(false);
+      console.log("is this one running v2?");
     }
   }, [
     hasDetailsFromLocalStorage,
@@ -300,8 +311,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   });
 
   const handleEditDetailsCompletedClick = () => {
+    console.log("INSIDE", emailFromLocalStorage);
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
+    setValue("email", emailFromLocalStorage);
   };
 
   return (
