@@ -32,6 +32,6 @@ describe("getSharingMetadata", () => {
       selectedActivities: ["exit-quiz-questions", "video"],
       linkConfig: shareLinkConfig.copy,
     });
-    expect(result.link).toContain("activities=exit-quiz-questions+video");
+    expect(result.link).toContain("activities=exit_quiz+video");
   });
 });

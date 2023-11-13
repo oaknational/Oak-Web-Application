@@ -38,6 +38,7 @@ const ShareLinks: FC<{
               : shareLinkConfig.copy.name
           }
           success={isShareSuccessful}
+          type="button"
           onClick={() =>
             copyToCliboard(
               getHrefForSocialSharing({
@@ -60,24 +61,18 @@ const ShareLinks: FC<{
           shareLinkConfig.microsoftTeams,
           shareLinkConfig.email,
         ].map((link) => (
-          <form
-            suppressHydrationWarning
-            action={getHrefForSocialSharing({
+          <LoadingButton
+            text={link.name}
+            icon={link.icon}
+            isLoading={false}
+            disabled={props.disabled}
+            type="link"
+            href={getHrefForSocialSharing({
               lessonSlug: props.lessonSlug,
               selectedActivities: props.selectedActivities,
               linkConfig: link,
             })}
-            target="_blank"
-            key={link.name}
-          >
-            <LoadingButton
-              text={link.name}
-              icon={link.icon}
-              isLoading={false}
-              disabled={props.disabled}
-              onClick={() => {}}
-            />
-          </form>
+          />
         ))}
       </Flex>
     </>

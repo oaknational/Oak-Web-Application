@@ -352,6 +352,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               }
               cta={
                 <LoadingButton
+                  type="button"
                   onClick={
                     (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                   }
