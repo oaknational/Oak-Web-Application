@@ -60,7 +60,11 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
                       id={resource.type}
                       name={name}
                       label={resource.label}
-                      subtitle={resource.metadata}
+                      subtitle={
+                        resource.metadata.toLowerCase() === "pdf"
+                          ? "PDF"
+                          : resource.metadata
+                      }
                       resourceType={resource.type}
                       onChange={onChangeHandler}
                       checked={fieldValue.includes(resource.type)}
