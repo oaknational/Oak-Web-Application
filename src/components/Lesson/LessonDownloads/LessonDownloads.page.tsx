@@ -193,9 +193,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const shouldDisplayDetailsCompleted =
     !!hasDetailsFromLocalStorage && !editDetailsClicked;
 
-  // const [shouldDisplayDetailsCompleted, setShouldDisplayDetailsCompleted] =
-  //   useState(!!hasDetailsFromLocalStorage && !editDetailsClicked);
-
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
