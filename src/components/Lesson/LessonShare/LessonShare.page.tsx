@@ -265,7 +265,7 @@ export function LessonShare(props: LessonShareProps) {
           cardGroup={
             <ShareCardGroup
               control={control}
-              hasError={errors?.resources ? true : false}
+              hasError={errors?.resources !== undefined}
               triggerForm={trigger}
               shareableResources={shareableResources}
               shareLink={getHrefForSocialSharing({
