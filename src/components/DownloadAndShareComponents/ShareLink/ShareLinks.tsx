@@ -52,7 +52,7 @@ const ShareLinks: FC<{
           }
           isLoading={false}
           loadingText="Copying..."
-          icon={isShareSuccessful ? "tick" : shareLinkConfig.copy.icon}
+          icon={shareLinkConfig.copy.icon}
           disabled={props.disabled}
         />
 
@@ -67,6 +67,8 @@ const ShareLinks: FC<{
             isLoading={false}
             disabled={props.disabled}
             type="link"
+            external={true}
+            key={link.name}
             href={getHrefForSocialSharing({
               lessonSlug: props.lessonSlug,
               selectedActivities: props.selectedActivities,

@@ -26,7 +26,7 @@ type LoadingButtonProps = {
       onClick: MouseEventHandler<HTMLButtonElement>;
       type: "button";
     }
-  | { type: "link"; href: string }
+  | { type: "link"; href: string; external: boolean }
 );
 
 const FocusDoubleBorder = styled(DoubleButtonBorders)``;
@@ -101,7 +101,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
             <Spinner />
           </Box>
         ) : (
-          <Icon name={props.icon} $color="white" />
+          <Icon name={props.success ? "tick" : props.icon} $color="white" />
         )}
       </Flex>
       <FocusDoubleBorder
@@ -134,6 +134,8 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
     <StyledLink
       href={props.href}
       aria-disabled={disabled}
+      aria-label={props.text}
+      target={props.external ? "_blank" : undefined}
       color={props.success ? "oakGreen" : "black"}
     >
       <ButtonContent {...props} />
