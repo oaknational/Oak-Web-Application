@@ -10,7 +10,6 @@ import {
 import {
   ResourceFormProps,
   ResourceType,
-  Resources,
   preselectedShareType,
   schema,
 } from "../downloadsAndShare.types";
@@ -18,11 +17,16 @@ import { getPreselectedShareResourceTypes } from "../helpers/getDownloadResource
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
-export const useResourceFormState = ({
-  resources,
-}: {
-  resources: Resources;
-}) => {
+import {
+  LessonDownloadsData,
+  LessonShareData,
+} from "@/node-lib/curriculum-api";
+
+type Props =
+  | { shareResources: LessonShareData["shareableResources"]; type: "share" }
+  | { downloadResources: LessonDownloadsData["downloads"]; type: "download" };
+
+export const useResourceFormState = (props: Props) => {
   const {
     register,
     formState,
@@ -40,11 +44,20 @@ export const useResourceFormState = ({
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState(0);
 
+  const resources =
+    props.type === "share" ? props.shareResources : props.downloadResources;
+
   const getInitialResourcesState = useCallback(() => {
-    return resources
-      .filter((resource) => resource.exists)
-      .map((resource) => resource.type);
-  }, [resources]);
+    if (props.type === "share") {
+      return (resources as LessonShareData["shareableResources"])
+        .filter((resource) => resource.exists)
+        .map((resource) => resource.type);
+    } else {
+      return (resources as LessonDownloadsData["downloads"])
+        .filter((resource) => resource.exists)
+        .map((resource) => resource.type);
+    }
+  }, [resources, props.type]);
 
   const {
     schoolFromLocalStorage,

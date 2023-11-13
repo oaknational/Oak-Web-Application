@@ -62,7 +62,10 @@ export function LessonShare(props: LessonShareProps) {
     localStorageDetails,
     handleToggleSelectAll,
     selectAllChecked,
-  } = useResourceFormState({ resources: shareableResources });
+  } = useResourceFormState({
+    shareResources: shareableResources,
+    type: "share",
+  });
 
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>

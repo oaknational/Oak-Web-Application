@@ -102,7 +102,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hasResources,
     handleToggleSelectAll,
     selectAllChecked,
-  } = useResourceFormState({ resources: downloads });
+  } = useResourceFormState({ downloadResources: downloads, type: "download" });
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
