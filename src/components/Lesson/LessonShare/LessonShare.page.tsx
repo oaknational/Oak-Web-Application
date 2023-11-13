@@ -28,7 +28,7 @@ import {
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
-import { ShareLinks } from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
+import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
 import {
   getSchoolOption,
   getSchoolUrn,

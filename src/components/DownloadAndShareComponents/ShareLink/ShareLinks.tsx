@@ -40,7 +40,7 @@ const CopySuccess: FC = () => {
   );
 };
 
-export const ShareLinks: FC<{
+const ShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
@@ -109,3 +109,5 @@ export const ShareLinks: FC<{
     </>
   );
 };
+
+export default ShareLinks;
