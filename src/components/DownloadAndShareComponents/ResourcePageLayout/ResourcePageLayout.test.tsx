@@ -25,6 +25,7 @@ const props: PropsWithoutForm = {
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
+  resourcesHeader: "Lesson downloads",
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {

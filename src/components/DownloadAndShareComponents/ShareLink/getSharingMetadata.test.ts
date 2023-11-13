@@ -1,11 +1,12 @@
 import { getSharingMetadata } from "./getSharingMetadata";
+import { shareLinkConfig } from "./linkConfig";
 
 describe("getSharingMetadata", () => {
   it("generates sharing metadata for copy", () => {
     const result = getSharingMetadata({
-      medium: "copy-link",
       selectedActivities: ["exit-quiz-questions", "video"],
       lessonSlug: "lesson-slug",
+      linkConfig: shareLinkConfig.copy,
     });
 
     expect(result.link).toBe(
@@ -14,9 +15,8 @@ describe("getSharingMetadata", () => {
   });
   it("generates sharing metadata for microsoft teams", () => {
     const result = getSharingMetadata({
-      medium: "social",
-      network: "microsoft-teams",
       lessonSlug: "lesson-slug",
+      linkConfig: shareLinkConfig.microsoftTeams,
     });
 
     expect(result.link).toBe(
@@ -28,10 +28,9 @@ describe("getSharingMetadata", () => {
   });
   it("includes activities when provided", () => {
     const result = getSharingMetadata({
-      medium: "social",
-      network: "microsoft-teams",
       lessonSlug: "lesson-slug",
       selectedActivities: ["exit-quiz-questions", "video"],
+      linkConfig: shareLinkConfig.copy,
     });
     expect(result.link).toContain("activities=exit-quiz-questions+video");
   });
