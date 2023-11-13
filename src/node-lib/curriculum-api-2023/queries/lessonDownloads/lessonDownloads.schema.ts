@@ -12,13 +12,18 @@ export const nextLessonSchema = z.object({
   ),
 });
 
-export const lessonDownloadsSchema = z.intersection(
-  baseLessonDownloadsSchema,
-  lessonPathwaySchema,
-  nextLessonSchema,
-);
+export const lessonDownloadsSchema = z.object({
+  ...baseLessonDownloadsSchema.shape,
+  ...lessonPathwaySchema.shape,
+  ...nextLessonSchema.shape,
+});
 
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
+export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
+export type NextLesson = {
+  lessonTitle: string;
+  lessonSlug: string;
+};
 
 export default lessonDownloadsSchema;
