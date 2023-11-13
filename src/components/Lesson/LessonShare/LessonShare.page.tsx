@@ -268,15 +268,12 @@ export function LessonShare(props: LessonShareProps) {
               hasError={errors?.resources ? true : false}
               triggerForm={trigger}
               shareableResources={shareableResources}
-              shareLink={getHrefForSocialSharing(
-                {
-                  lessonSlug: lessonSlug,
-                  selectedActivities: selectedResources,
-                  medium: shareLinkConfig.copy.medium,
-                  schoolUrn: schoolUrn,
-                },
-                shareLinkConfig.copy,
-              )}
+              shareLink={getHrefForSocialSharing({
+                lessonSlug: lessonSlug,
+                selectedActivities: selectedResources,
+                schoolUrn: schoolUrn,
+                linkConfig: shareLinkConfig.copy,
+              })}
             />
           }
           cta={

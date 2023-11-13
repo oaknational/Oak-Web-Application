@@ -27,17 +27,15 @@ export type SharingMetadata = {
 const classroomPath = (lessonSlug: string) => `/lessons/${lessonSlug}`;
 
 export type GetSharingMetadataParams = {
-  network?: ShareLinkConfig["network"];
   lessonSlug: string;
-  medium: ShareLinkConfig["medium"];
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: number;
+  linkConfig: ShareLinkConfig;
 };
 
 export const getSharingMetadata = ({
-  network,
   lessonSlug,
-  medium,
+  linkConfig,
   selectedActivities,
   schoolUrn,
 }: GetSharingMetadataParams): SharingMetadata => {
@@ -54,12 +52,12 @@ export const getSharingMetadata = ({
   }
   link = `${link}?utm_campaign=sharing-button${activityQueryString}`;
 
-  if (network) {
-    link = link + `&utm_source=${network}`;
+  if (linkConfig.network) {
+    link = link + `&utm_source=${linkConfig.network}`;
   }
 
-  if (medium) {
-    link = link + `&utm_medium=${medium}`;
+  if (linkConfig.medium) {
+    link = link + `&utm_medium=${linkConfig.medium}`;
   }
 
   if (schoolUrn) {

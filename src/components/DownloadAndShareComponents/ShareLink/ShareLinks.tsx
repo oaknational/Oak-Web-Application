@@ -60,15 +60,12 @@ const ShareLinks: FC<{
             text={shareLinkConfig.copy.name}
             onClick={() =>
               copyToCliboard(
-                getHrefForSocialSharing(
-                  {
-                    lessonSlug: props.lessonSlug,
-                    selectedActivities: props.selectedActivities,
-                    medium: shareLinkConfig.copy.medium,
-                    schoolUrn: props.schoolUrn,
-                  },
-                  shareLinkConfig.copy,
-                ),
+                getHrefForSocialSharing({
+                  lessonSlug: props.lessonSlug,
+                  selectedActivities: props.selectedActivities,
+                  schoolUrn: props.schoolUrn,
+                  linkConfig: shareLinkConfig.copy,
+                }),
                 () => setIsShareSuccessful(true),
               )
             }
@@ -85,15 +82,11 @@ const ShareLinks: FC<{
         ].map((link) => (
           <form
             suppressHydrationWarning
-            action={getHrefForSocialSharing(
-              {
-                network: link.network,
-                lessonSlug: props.lessonSlug,
-                selectedActivities: props.selectedActivities,
-                medium: link.medium,
-              },
-              link,
-            )}
+            action={getHrefForSocialSharing({
+              lessonSlug: props.lessonSlug,
+              selectedActivities: props.selectedActivities,
+              linkConfig: link,
+            })}
             target="_blank"
             key={link.name}
           >
