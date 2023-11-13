@@ -1,23 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
-
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import { Hr } from "@/components/Typography";
-import {
-  LessonShareData,
-  LessonShareListData,
-} from "@/node-lib/curriculum-api";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
-import { getPreselectedShareResourceTypes } from "@/components/DownloadAndShareComponents/helpers/getDownloadResourceType";
-import {
-  ResourceFormProps,
-  ResourceType,
-  preselectedShareType,
-  schema,
-} from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+import { LessonShareData } from "@/node-lib/curriculum-api";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
@@ -29,12 +13,9 @@ import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
 import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
-import {
-  getSchoolOption,
-  getSchoolUrn,
-} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
+import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 
 type LessonShareProps =
   | {
@@ -65,160 +46,23 @@ export function LessonShare(props: LessonShareProps) {
   );
   const { programmeSlug, unitSlug } = commonPathway;
 
-  const router = useRouter();
-
-  const { register, formState, control, setValue, trigger, watch } =
-    useForm<ResourceFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
-  const [preselectAll, setPreselectAll] = useState(false);
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
-  const [schoolUrn, setSchoolUrn] = useState(0);
-
-  useEffect(() => {
-    if (preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [preselectAll]);
-
-  const handleToggleSelectAll = () => {
-    if (selectAllChecked) {
-      onDeselectAllClick();
-      setSelectAllChecked(false);
-    } else {
-      onSelectAllClick();
-      setSelectAllChecked(true);
-    }
-    // Trigger the form to reevaluate errors
-    trigger();
-  };
-
-  const getInitialResourcesToShareState = useCallback(() => {
-    return shareableResources
-      .filter((resource) => resource.exists)
-      .map((resource) => resource.type);
-  }, [shareableResources]);
-
-  useEffect(() => {
-    const preselectedQuery = () => {
-      const res = router.query.preselected;
-
-      const result = preselectedShareType.safeParse(res);
-
-      if (!result.success) {
-        return "all";
-      } else {
-        return result.data;
-      }
-    };
-    const preselected = getPreselectedShareResourceTypes(preselectedQuery());
-
-    if (preselected) {
-      setPreselectAll(preselected === "all");
-      preselected === "all"
-        ? setValue("resources", getInitialResourcesToShareState())
-        : setValue("resources", preselected);
-    }
-  }, [getInitialResourcesToShareState, router.query.preselected, setValue]);
-
   const {
-    schoolFromLocalStorage,
+    form,
+    hasResources,
     emailFromLocalStorage,
-    termsFromLocalStorage,
-    hasDetailsFromLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
-  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  useEffect(() => {
-    setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocalStorage]);
-
-  // use values from local storage if available (initial value on School Picker is set within that component)
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-      const schoolUrn = getSchoolUrn(
-        schoolIdFromLocalStorage,
-        getSchoolOption(schoolIdFromLocalStorage),
-      );
-      setSchoolUrn(schoolUrn);
-    }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
     schoolIdFromLocalStorage,
-  ]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
-    }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-  }, [
-    hasDetailsFromLocalStorage,
-    localStorageDetails,
-    editDetailsClicked,
+    schoolNameFromLocalStorage,
+    isLocalStorageLoading,
+    setSchool,
     shouldDisplayDetailsCompleted,
-  ]);
-
-  const setSchool = useCallback(
-    (value: string, name?: string) => {
-      setValue("school", value, {
-        shouldValidate: true,
-      });
-      setValue("schoolName", name || schoolNameFromLocalStorage, {
-        shouldValidate: true,
-      });
-      const schoolUrn = getSchoolUrn(value, getSchoolOption(value));
-      setSchoolUrn(schoolUrn);
-    },
-    [setValue, schoolNameFromLocalStorage],
-  );
-
-  const { errors } = formState;
-  const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().resources || []) as ResourceType[];
-
-  const [resourcesToShare, setResourcesToShare] = useState<
-    LessonShareListData["type"][]
-  >(getInitialResourcesToShareState());
-
-  useEffect(() => {
-    setResourcesToShare(getInitialResourcesToShareState());
-  }, [getInitialResourcesToShareState, shareableResources]);
-
-  const hasResourcesToShare = getInitialResourcesToShareState().length > 0;
-
-  const onSelectAllClick = () => setValue("resources", resourcesToShare);
-  const onDeselectAllClick = () => setValue("resources", []);
-
-  const handleEditDetailsCompletedClick = () => {
-    setEditDetailsClicked(true);
-    setLocalStorageDetails(false);
-  };
+    handleEditDetailsCompletedClick,
+    schoolUrn,
+    selectedResources,
+    hasFormErrors,
+    localStorageDetails,
+    handleToggleSelectAll,
+    selectAllChecked,
+  } = useResourceFormState({ resources: shareableResources });
 
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
@@ -246,11 +90,11 @@ export function LessonShare(props: LessonShareProps) {
 
         <ResourcePageLayout
           page={"share"}
-          errors={errors}
+          errors={form.errors}
           handleToggleSelectAll={handleToggleSelectAll}
           selectAllChecked={selectAllChecked}
           header="Share"
-          showNoResources={!hasResourcesToShare}
+          showNoResources={!hasResources}
           showLoading={isLocalStorageLoading}
           email={emailFromLocalStorage}
           school={schoolNameFromLocalStorage}
@@ -258,16 +102,16 @@ export function LessonShare(props: LessonShareProps) {
           setSchool={setSchool}
           showSavedDetails={shouldDisplayDetailsCompleted}
           onEditClick={handleEditDetailsCompletedClick}
-          register={register}
-          control={control}
+          register={form.register}
+          control={form.control}
           showPostAlbCopyright={!isLegacy}
           resourcesHeader="Select online activities"
-          triggerForm={trigger}
+          triggerForm={form.trigger}
           cardGroup={
             <ShareCardGroup
-              control={control}
-              hasError={errors?.resources !== undefined}
-              triggerForm={trigger}
+              control={form.control}
+              hasError={form.errors?.resources !== undefined}
+              triggerForm={form.trigger}
               shareableResources={shareableResources}
               shareLink={getHrefForSocialSharing({
                 lessonSlug: lessonSlug,
@@ -280,7 +124,8 @@ export function LessonShare(props: LessonShareProps) {
           cta={
             <ShareLinks
               disabled={
-                hasFormErrors || (!formState.isValid && !localStorageDetails)
+                hasFormErrors ||
+                (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
               selectedActivities={selectedResources}

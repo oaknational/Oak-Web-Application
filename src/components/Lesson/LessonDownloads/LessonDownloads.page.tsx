@@ -1,7 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
@@ -12,15 +9,10 @@ import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
 import useDownloadForm from "@/components/DownloadAndShareComponents/hooks/useDownloadForm";
-import { getPreselectedDownloadResourceTypes } from "@/components/DownloadAndShareComponents/helpers/getDownloadResourceType";
 import {
-  ResourcesToDownloadArrayType,
-  DownloadResourceType,
-  preselectedDownloadType,
-  schema,
   ResourceFormProps,
+  DownloadResourceType,
 } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
@@ -38,6 +30,7 @@ import ResourcePageLayout from "@/components/DownloadAndShareComponents/Resource
 import LoadingButton from "@/components/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 
 type LessonDownloadsProps =
   | {
@@ -79,7 +72,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     unitTitle,
   } = commonPathway;
 
-  const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
@@ -93,151 +85,29 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onwardContentSelected } = track;
 
   const {
-    register,
-    formState,
-    control,
-    watch,
-    setValue,
-    handleSubmit,
-    trigger,
-  } = useForm<ResourceFormProps>({
-    resolver: zodResolver(schema),
-    mode: "onBlur",
-  });
-  const [preselectAll, setPreselectAll] = useState(false);
-  const [selectAllChecked, setSelectAllChecked] = useState(false);
-
-  useEffect(() => {
-    if (preselectAll) {
-      setSelectAllChecked(true);
-    }
-  }, [preselectAll]);
-
-  const handleToggleSelectAll = () => {
-    if (selectAllChecked) {
-      onDeselectAllClick();
-      setSelectAllChecked(false);
-    } else {
-      onSelectAllClick();
-      setSelectAllChecked(true);
-    }
-    // Trigger the form to reevaluate errors
-    trigger();
-  };
-
-  const getInitialResourcesToDownloadState = useCallback(() => {
-    return downloads
-      .filter((download) => download.exists && !download.forbidden)
-      .map((download) => download.type);
-  }, [downloads]);
-
-  useEffect(() => {
-    const preselectedQuery = () => {
-      const res = router.query.preselected;
-      const result = preselectedDownloadType.safeParse(res);
-      if (!result.success) {
-        return "all";
-      } else {
-        return result.data;
-      }
-    };
-    const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
-    if (preselected) {
-      setPreselectAll(preselected === "all");
-      preselected === "all"
-        ? setValue("resources", getInitialResourcesToDownloadState())
-        : setValue("resources", preselected);
-    }
-  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
-
-  const {
-    schoolFromLocalStorage,
+    form,
     emailFromLocalStorage,
-    termsFromLocalStorage,
-    hasDetailsFromLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
-  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  useEffect(() => {
-    setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocalStorage]);
-
-  // use values from local storage if available (initial value on School Picker is set within that component)
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-    }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
     schoolIdFromLocalStorage,
-  ]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const shouldDisplayDetailsCompleted =
-    !!hasDetailsFromLocalStorage && !editDetailsClicked;
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
-    }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-  }, [
-    hasDetailsFromLocalStorage,
-    localStorageDetails,
-    editDetailsClicked,
+    schoolNameFromLocalStorage,
+    isLocalStorageLoading,
+    setSchool,
     shouldDisplayDetailsCompleted,
-  ]);
-
-  const setSchool = useCallback(
-    (value: string, name?: string) => {
-      setValue("school", value, {
-        shouldValidate: true,
-      });
-      setValue("schoolName", name || schoolNameFromLocalStorage, {
-        shouldValidate: true,
-      });
-    },
-    [setValue, schoolNameFromLocalStorage],
-  );
-
-  const { errors } = formState;
-  const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().resources || []) as DownloadResourceType[];
+    handleEditDetailsCompletedClick,
+    setEditDetailsClicked,
+    selectedResources,
+    hasFormErrors,
+    localStorageDetails,
+    activeResources,
+    setActiveResources,
+    hasResources,
+    handleToggleSelectAll,
+    selectAllChecked,
+  } = useResourceFormState({ resources: downloads });
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
-  const [resourcesToDownload, setResourcesToDownload] =
-    useState<ResourcesToDownloadArrayType>(
-      getInitialResourcesToDownloadState(),
-    );
-
-  const hasResourcesToDownload =
-    getInitialResourcesToDownloadState().length > 0;
-
   const [apiError, setApiError] = useState<string | null>(null);
-
-  const onSelectAllClick = () => setValue("resources", resourcesToDownload);
-  const onDeselectAllClick = () => setValue("resources", []);
 
   const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
 
@@ -293,15 +163,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   useDownloadExistenceCheck({
     lessonSlug,
-    resourcesToCheck: resourcesToDownload,
-    onComplete: setResourcesToDownload,
+    resourcesToCheck: activeResources as DownloadResourceType[],
+    onComplete: setActiveResources,
     isLegacyDownload: isLegacy,
   });
-
-  const handleEditDetailsCompletedClick = () => {
-    setEditDetailsClicked(true);
-    setLocalStorageDetails(false);
-  };
 
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
@@ -344,11 +209,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           <>
             <ResourcePageLayout
               page={"download"}
-              errors={errors}
+              errors={form.errors}
               handleToggleSelectAll={handleToggleSelectAll}
               selectAllChecked={selectAllChecked}
               header="Download"
-              showNoResources={!hasResourcesToDownload}
+              showNoResources={!hasResources}
               showLoading={isLocalStorageLoading}
               email={emailFromLocalStorage}
               school={schoolNameFromLocalStorage}
@@ -356,31 +221,31 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               setSchool={setSchool}
               showSavedDetails={shouldDisplayDetailsCompleted}
               onEditClick={handleEditDetailsCompletedClick}
-              register={register}
-              control={control}
+              register={form.register}
+              control={form.control}
               showPostAlbCopyright={!isLegacy}
               resourcesHeader="Lesson resources"
-              triggerForm={trigger}
+              triggerForm={form.trigger}
               cardGroup={
                 <DownloadCardGroup
-                  control={control}
+                  control={form.control}
                   downloads={downloads}
-                  hasError={errors?.resources ? true : false}
-                  triggerForm={trigger}
+                  hasError={form.errors?.resources ? true : false}
+                  triggerForm={form.trigger}
                 />
               }
               cta={
                 <LoadingButton
                   type="button"
                   onClick={
-                    (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                    (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
                   }
                   text={"Download .zip"}
                   icon={"download"}
                   isLoading={isAttemptingDownload}
                   disabled={
                     hasFormErrors ||
-                    (!formState.isValid && !localStorageDetails)
+                    (!form.formState.isValid && !localStorageDetails)
                   }
                   loadingText={"Downloading..."}
                 />
