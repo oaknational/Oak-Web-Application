@@ -156,6 +156,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     emailFromLocalStorage,
     termsFromLocalStorage,
     hasDetailsFromLocalStorage,
+    setEmailInLocalStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -259,7 +260,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
       setIsDownloadSuccessful(true);
 
       if (editDetailsClicked && !data.email) {
-        window.localStorage.removeItem("oak-downloads-email");
+        setEmailInLocalStorage("");
       }
 
       const {
