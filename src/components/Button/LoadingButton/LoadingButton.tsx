@@ -13,7 +13,7 @@ import { Spinner } from "./Spinner";
 type LoadingButtonProps = {
   isLoading: boolean;
   text: string;
-  loadingText: string;
+  loadingText?: string;
   icon: IconName;
   disabled: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -23,7 +23,6 @@ const FocusDoubleBorder = styled(DoubleButtonBorders)``;
 
 const StyledButton = styled(UnstyledButton)`
   height: 56px;
-  min-width: 200px;
   width: max-content;
   padding: 10px 24px;
   display: inline-flex;

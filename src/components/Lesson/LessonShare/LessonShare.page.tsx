@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, Hr } from "@/components/Typography";
+import { Hr } from "@/components/Typography";
 import {
   LessonShareData,
   LessonShareListData,
@@ -28,10 +28,8 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
-import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
-import { IconName } from "@/components/Icon";
-import LoadingButton from "@/components/Button/LoadingButton";
+import { ShareLinks } from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
 
 type LessonShareProps =
   | {
@@ -54,13 +52,6 @@ type LessonShareProps =
       };
     };
 
-export type ShareLinkConfig = {
-  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy Link";
-  network?: "email" | "google-classroom" | "microsoft-teams";
-  icon: IconName;
-  url: string;
-}[];
-
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
@@ -71,14 +62,7 @@ export function LessonShare(props: LessonShareProps) {
 
   const router = useRouter();
 
-  const shareLinks: ShareLinkConfig = [
-    { name: "Copy Link", url: "/", icon: "copy" },
-    { name: "Google Classroom", url: "/", icon: "google-classroom" },
-    { name: "Microsoft Teams", url: "/", icon: "microsoft-teams" },
-    { name: "Email", url: "/", icon: "send" },
-  ];
-
-  const { register, formState, control, setValue, handleSubmit, trigger } =
+  const { register, formState, control, setValue, trigger } =
     useForm<ResourceFormProps>({
       resolver: zodResolver(schema),
       mode: "onBlur",
@@ -205,8 +189,6 @@ export function LessonShare(props: LessonShareProps) {
   const hasFormErrors = Object.keys(errors)?.length > 0;
   //   const selectedResources = (watch().resources || []) as ResourceType[]; add back in with tracking
 
-  //   const [isAttemptingShare,setIsAttemptingShare] = useState<boolean>(false);
-
   const [resourcesToShare, setResourcesToShare] = useState<
     LessonShareListData["type"][]
   >(getInitialResourcesToShareState());
@@ -217,23 +199,8 @@ export function LessonShare(props: LessonShareProps) {
 
   const hasResourcesToShare = getInitialResourcesToShareState().length > 0;
 
-  const [apiError, setApiError] = useState<string | null>(null);
-
   const onSelectAllClick = () => setValue("resources", resourcesToShare);
   const onDeselectAllClick = () => setValue("resources", []);
-
-  const [isShareSuccessful, setIsShareSuccessful] = useState<boolean>(false);
-
-  const onFormSubmit = async (): Promise<void> => {
-    setApiError(null);
-    try {
-      setIsShareSuccessful(true);
-    } catch (error) {
-      //   setIsAttemptingShare(false) // add back in with share link logic
-      setIsShareSuccessful(false);
-      setApiError("There was an error sharing your files. Please try again.");
-    }
-  };
 
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
@@ -243,7 +210,7 @@ export function LessonShare(props: LessonShareProps) {
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={isShareSuccessful ? 0 : 32} $mt={24}>
+        <Box $mb={32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -264,88 +231,63 @@ export function LessonShare(props: LessonShareProps) {
           <Hr $color={"oakGrey40"} $mt={24} />
         </Box>
 
-        <Box $display={isShareSuccessful ? "block" : "none"}>
-          <DownloadConfirmation
-            unitSlug={unitSlug}
-            lessonSlug={lessonSlug}
-            programmeSlug={programmeSlug}
-            data-testid="downloads-confirmation"
+        <>
+          <ResourcePageLayout
+            page={"share"}
+            errors={errors}
+            handleToggleSelectAll={handleToggleSelectAll}
+            selectAllChecked={selectAllChecked}
+            header="Share"
+            showNoResources={!hasResourcesToShare}
+            showLoading={isLocalStorageLoading}
+            email={emailFromLocalStorage}
+            school={schoolNameFromLocalStorage}
+            schoolId={schoolIdFromLocalStorage}
+            setSchool={setSchool}
+            showSavedDetails={shouldDisplayDetailsCompleted}
+            onEditClick={handleEditDetailsCompletedClick}
+            register={register}
+            control={control}
+            showPostAlbCopyright={!isLegacy}
+            cardGroup={
+              <ShareCardGroup
+                control={control}
+                hasError={errors?.resources ? true : false}
+                triggerForm={trigger}
+                shareableResources={shareableResources}
+                shareLink={""}
+              />
+            }
+            cta={
+              <ShareLinks
+                disabled={
+                  hasFormErrors || (!formState.isValid && !localStorageDetails)
+                }
+                lessonSlug={lessonSlug}
+                selectedActivities={resourcesToShare}
+              />
+            }
           />
-        </Box>
-        {!isShareSuccessful && (
-          <>
-            <ResourcePageLayout
-              page={"share"}
-              errors={errors}
-              handleToggleSelectAll={handleToggleSelectAll}
-              selectAllChecked={selectAllChecked}
-              header="Share"
-              showNoResources={!hasResourcesToShare}
-              showLoading={isLocalStorageLoading}
-              email={emailFromLocalStorage}
-              school={schoolNameFromLocalStorage}
-              schoolId={schoolIdFromLocalStorage}
-              setSchool={setSchool}
-              showSavedDetails={shouldDisplayDetailsCompleted}
-              onEditClick={handleEditDetailsCompletedClick}
-              register={register}
-              control={control}
-              showPostAlbCopyright={!isLegacy}
-              cardGroup={
-                <ShareCardGroup
-                  control={control}
-                  hasError={errors?.resources ? true : false}
-                  triggerForm={trigger}
-                  shareableResources={shareableResources}
-                  shareLink={""}
-                />
-              }
-              cta={
-                <>
-                  <Heading $mt={24} $mb={4} tag={"h4"} $font={"heading-7"}>
-                    Share options:
-                  </Heading>
-                  <Flex $flexWrap={"wrap"} $width={"100%"} $gap={12}>
-                    {shareLinks.map((link) => (
-                      <LoadingButton
-                        onClick={
-                          (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                        }
-                        text={link.name}
-                        icon={link.icon}
-                        isLoading={false}
-                        disabled={
-                          hasFormErrors ||
-                          (!formState.isValid && !localStorageDetails)
-                        }
-                        loadingText={"Sharing..."}
-                      />
-                    ))}
-                  </Flex>
-                </>
-              }
-            />
 
-            <Flex
-              $flexDirection={["column", "row"]}
-              $justifyContent={"right"}
-              $alignItems={"center"}
-            >
-              {apiError && !hasFormErrors && (
-                <Box $mr={24} $textAlign={"left"}>
-                  <FieldError
-                    id="download-error"
-                    data-testid="download-error"
-                    variant={"large"}
-                    withoutMarginBottom
-                  >
-                    {apiError}
-                  </FieldError>
-                </Box>
-              )}
-            </Flex>
-          </>
-        )}
+          <Flex
+            $flexDirection={["column", "row"]}
+            $justifyContent={"right"}
+            $alignItems={"center"}
+          >
+            {apiError && !hasFormErrors && (
+              <Box $mr={24} $textAlign={"left"}>
+                <FieldError
+                  id="download-error"
+                  data-testid="download-error"
+                  variant={"large"}
+                  withoutMarginBottom
+                >
+                  {apiError}
+                </FieldError>
+              </Box>
+            )}
+          </Flex>
+        </>
       </MaxWidth>
     </Box>
   );
