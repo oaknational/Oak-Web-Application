@@ -10,7 +10,10 @@ import ResourcePageLayout, {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-type PropsWithoutForm = Omit<ResourcePageLayoutProps, "control" | "register">;
+type PropsWithoutForm = Omit<
+  ResourcePageLayoutProps,
+  "control" | "register" | "triggerForm"
+>;
 const props: PropsWithoutForm = {
   page: "download",
   header: "Downloads",
@@ -29,10 +32,15 @@ const props: PropsWithoutForm = {
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register } = useForm<ResourceFormProps>();
+  const { control, register, trigger } = useForm<ResourceFormProps>();
 
   return (
-    <ResourcePageLayout {...props} control={control} register={register} />
+    <ResourcePageLayout
+      {...props}
+      control={control}
+      register={register}
+      triggerForm={trigger}
+    />
   );
 };
 
