@@ -97,6 +97,7 @@ export const ShareLinks: FC<{
               link,
             )}
             target="_blank"
+            key={link.name}
           >
             <LoadingButton
               text={link.name}

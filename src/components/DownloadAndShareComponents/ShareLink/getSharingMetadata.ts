@@ -3,8 +3,13 @@ import { ResourceType } from "../downloadsAndShare.types";
 import { ShareLinkConfig } from "./linkConfig";
 
 function getActivityQueryString(selectedActivities: Array<ResourceType>) {
+  const classroomActivityMap: Partial<Record<ResourceType, string>> = {
+    "intro-quiz-questions": "intro_quiz",
+    "exit-quiz-questions": "exit_quiz",
+    "worksheet-pdf": "worksheet",
+  };
   const activities = selectedActivities
-    .map((key) => key.toLowerCase().replace(" ", "_"))
+    .map((key) => classroomActivityMap[key] ?? key)
     .join("+");
 
   return `&activities=${activities}`;
