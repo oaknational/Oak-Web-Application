@@ -1,3 +1,22 @@
+## [1.300.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.1...v1.300.2) (2023-11-13)
+
+## [1.300.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.0...v1.300.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* legacy canonical lesson + downloads ([90228b1](https://github.com/oaknational/Oak-Web-Application/commit/90228b16873b8fa96effdcfdc0c5312db1dc49b8))
+
+# [1.300.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.299.0...v1.300.0) (2023-11-10)
+
+
+### Features
+
+* add getSharingMetadata methods from acorn ([aaf5c1f](https://github.com/oaknational/Oak-Web-Application/commit/aaf5c1f1ac63434d4265626c817fa1ba4c5ac6ca))
+* add method to get href for sharing ([dfb91cc](https://github.com/oaknational/Oak-Web-Application/commit/dfb91cc5f7d16c3693d987578825761718dd339c))
+* add share icons ([c7dc0ed](https://github.com/oaknational/Oak-Web-Application/commit/c7dc0edee49356b5055615cfbf648a33876b1e22))
+* use lesson share type ([625a0a2](https://github.com/oaknational/Oak-Web-Application/commit/625a0a277a3b2175f63d33fe1becbf23945bf7b1))
+
 # [1.299.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.2...v1.299.0) (2023-11-09)
 
 

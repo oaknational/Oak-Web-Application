@@ -37,7 +37,7 @@ const lessonDownloadsQuery =
 
     return lessonDownloadsSchema.parse({
       ...page,
-      ...nextLessons,
+      nextLessons,
       isLegacy: false,
     });
   };
