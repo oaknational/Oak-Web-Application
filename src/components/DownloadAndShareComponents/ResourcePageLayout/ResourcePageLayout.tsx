@@ -80,6 +80,9 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
             <Heading tag="h2" $font={["heading-6", "heading-5"]}>
               {props.resourcesHeader}
             </Heading>
+            <FieldError id={"downloads-error"} withoutMarginBottom>
+              {props.errors?.resources?.message}
+            </FieldError>
             <Box $maxWidth="max-content">
               <Checkbox
                 checked={props.selectAllChecked}
@@ -91,9 +94,6 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 labelFontWeight={600}
               />
             </Box>
-            <FieldError id={"downloads-error"}>
-              {props.errors?.resources?.message}
-            </FieldError>
             {props.cardGroup}
           </Flex>
           <Flex
