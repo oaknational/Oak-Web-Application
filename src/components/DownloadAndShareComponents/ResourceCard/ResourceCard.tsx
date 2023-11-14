@@ -57,7 +57,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $alignItems={"center"}
         $justifyContent={"center"}
         $pa={6}
-        $background={"teachersYellow"}
+        $background={"lemon"}
         $width={66}
       >
         <Icon
@@ -76,7 +76,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $alignItems="center"
         $width={["100%"]}
         $maxWidth={320}
-        $background={isHovered ? "grey1" : "white"}
+        $background={isHovered ? "grey20" : "white"}
       >
         <Flex
           $flexDirection="column"
@@ -92,7 +92,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           >
             {label}
           </P>
-          <P $color="oakGrey4">{subtitle}</P>
+          <P $color="grey60">{subtitle}</P>
         </Flex>
       </Flex>
     </BoxWithFocusState>

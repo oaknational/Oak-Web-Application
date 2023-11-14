@@ -66,10 +66,10 @@ describe("border", () => {
       ${border}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $borderColor={"grey3"} />,
+      <StyledComponent data-testid="test" $borderColor={"grey40"} />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("border-color: #ccc");
+    expect(getByTestId("test")).toHaveStyle("border-color: #cacaca");
   });
   test("should correctly handle prop 'borderRadius'", async () => {
     const StyledComponent = styled.div`

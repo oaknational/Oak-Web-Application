@@ -63,7 +63,7 @@ const TagPromotional: FC<TagPromotionalProps> = ({
       {...flexProps}
     >
       <Svg
-        $color={"oakGrey6"}
+        $color={"black"}
         name={"tag-promotional"}
         filter={"drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"}
         $objectFit={"contain"}

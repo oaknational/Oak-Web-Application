@@ -14,7 +14,7 @@ export default {
 
   argTypes: {
     $background: {
-      defaultValue: "teachersPastelYellow",
+      defaultValue: "lemon50",
     },
   },
 } as ComponentMeta<typeof Card>;

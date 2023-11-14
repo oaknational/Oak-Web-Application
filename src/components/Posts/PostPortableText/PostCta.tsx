@@ -16,7 +16,7 @@ const PostCta = (props: PortableTextComponentProps<CTA>) => {
       page={null}
       label={cta.label}
       href={getLinkHref(cta)}
-      background={"teachersHighlight"}
+      background={"blue"}
     />
   );
 };

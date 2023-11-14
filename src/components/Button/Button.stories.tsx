@@ -20,8 +20,8 @@ export default {
 const Template: ComponentStory<typeof Component> = (args) => (
   <>
     <Component background="black" $mr={24} {...args} />
-    <Component background="teachersHighlight" $mr={24} {...args} />
-    <Component background="pupilsHighlight" $mr={24} {...args} />
+    <Component background="blue" $mr={24} {...args} />
+    <Component background="oakGreen" $mr={24} {...args} />
   </>
 );
 
@@ -38,8 +38,8 @@ const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
 ) => (
   <>
     <Component iconBackground="black" $mr={24} {...args} />
-    <Component iconBackground="teachersHighlight" $mr={24} {...args} />
-    <Component iconBackground="pupilsHighlight" $mr={24} {...args} />
+    <Component iconBackground="blue" $mr={24} {...args} />
+    <Component iconBackground="oakGreen" $mr={24} {...args} />
   </>
 );
 

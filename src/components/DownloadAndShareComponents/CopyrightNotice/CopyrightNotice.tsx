@@ -49,7 +49,7 @@ const PreAlbCopyright = (
 const StyledLink = styled.a`
   display: inline;
   text-decoration: underline;
-  color: ${(props) => props.theme.colors.hyperlink};
+  color: ${(props) => props.theme.colors.navy};
 `;
 
 const PostAlbCopyright = (

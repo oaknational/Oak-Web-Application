@@ -40,7 +40,7 @@ type StyleProps = FlexProps &
 const inlineStyles = css`
   display: inline;
   text-decoration: underline;
-  color: ${(props) => props.theme.colors.hyperlink};
+  color: ${(props) => props.theme.colors.navy};
 `;
 const $hoverStyles = css`
   text-decoration: underline;
@@ -179,7 +179,7 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
         <>
           {props.children}
           {props.$focusStyles?.includes("underline") && (
-            <FocusUnderline $color={"teachersYellow"} />
+            <FocusUnderline $color={"lemon"} />
           )}
         </>
       </StyledNextLink>

@@ -41,7 +41,7 @@ const OL = styled.ol<MarginProps>`
   }
 
   a {
-    color: ${(props) => props.theme.colors.hyperlink};
+    color: ${(props) => props.theme.colors.navy};
   }
 `;
 

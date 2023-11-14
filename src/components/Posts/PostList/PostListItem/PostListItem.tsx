@@ -139,7 +139,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
             {...getItemCategoryLinkProps(props)}
             $focusStyles={["underline"]}
             $font="heading-7"
-            $color="hyperlink"
+            $color="navy"
           >
             {category.title}
           </OakLink>

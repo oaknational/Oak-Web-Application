@@ -10,7 +10,7 @@ import Typography from "@/components/Typography/Typography";
 
 const AiTab: FC = () => {
   return (
-    <Flex $background={"pupilsPink"} $pv={24} $overflow={"hidden"}>
+    <Flex $background={"pink"} $pv={24} $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
         <Grid $cg={16}>
           <GridArea $colSpan={[12, 6]}>
@@ -22,7 +22,7 @@ const AiTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"} $color={"oakGrey5"}>
+              <Heading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers
               </Heading>
               <Heading $font={"heading-3"} tag={"h2"}>

@@ -151,7 +151,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const resources = getAvailableResourceList(props);
 
-  const background = expired ? "oakGrey2" : "pupilsPink";
+  const background = expired ? "grey30" : "pink";
   const backgroundOnHover: OakColorName = "pink60";
 
   return (
@@ -161,7 +161,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       index={index}
       fromSearchPage={fromSearchPage}
       isHovered={isHovered}
-      background={expired ? "oakGrey1" : "white"}
+      background={expired ? "grey20" : "white"}
       containerProps={containerProps}
       expired={expired}
     >
@@ -236,10 +236,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                       __html: description,
                     }}
                     $font={["body-3", "body-2"]}
-                    $color={"oakGrey5"}
+                    $color={"grey70"}
                   />
                 ) : (
-                  <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
+                  <P $font={["body-3", "body-2"]} $color={"grey70"}>
                     {pupilLessonOutcome}
                   </P>
                 )}

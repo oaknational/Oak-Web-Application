@@ -70,7 +70,7 @@ const UpcomingWebinarListItem: FC<UpcomingWebinarListItemProps> = (props) => {
         {...buttonHoverProps}
         $mt={[28, 0]}
         $ml={[0, 48]}
-        background="teachersHighlight"
+        background="blue"
         htmlAnchorProps={{ onClick: signUpOnClick, target: "_blank" }}
         page={null}
         href={signUpHref}

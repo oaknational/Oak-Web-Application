@@ -78,11 +78,11 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           $ph={[16, 24]}
           $flexDirection={["column", "column", "row"]}
           $mb={[80, 92]}
-          $background="twilight"
+          $background="pink50"
           $maxWidth={["100%", 812, "100%"]}
           $mt={92}
         >
-          <BrushBorders hideOnMobileH color={"twilight"} />
+          <BrushBorders hideOnMobileH color={"pink50"} />
           <Flex
             $justifyContent={"center"}
             $alignItems={"center"}
@@ -133,12 +133,8 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
           {pageData.principles.map((principle) => (
             <Fragment key={principle.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $ph={[16, 24]} $background={"videoBlue"}>
-                  <BrushBorders
-                    hideOnMobileH
-                    hideOnMobileV
-                    color={"videoBlue"}
-                  />
+                <Card $ph={[16, 24]} $background={"aqua"}>
+                  <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
                   <Heading
                     $font={["heading-5", "heading-4"]}
                     tag={"h2"}

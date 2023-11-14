@@ -70,7 +70,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
           <Icon name={props.icon} $color="white" />
         )}
       </Flex>
-      <FocusDoubleBorder background={disabled ? "grey6" : "black"} />
+      <FocusDoubleBorder background={disabled ? "grey50" : "black"} />
     </StyledButton>
   );
 };

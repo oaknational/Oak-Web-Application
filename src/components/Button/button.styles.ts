@@ -62,7 +62,7 @@ export const getButtonStylesProps = (
     $iconPosition,
     variant,
     $fullWidth,
-    background: disabled && variant !== "brushNav" ? "grey6" : background, // we don't discolor brushNav buttons when disabled
+    background: disabled && variant !== "brushNav" ? "grey50" : background, // we don't discolor brushNav buttons when disabled
     $focusStyles,
     disabled,
   };

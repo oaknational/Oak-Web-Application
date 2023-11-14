@@ -229,7 +229,7 @@ const SiteFooter: FC = () => {
       </nav>
       <Svg
         name="looping-line-3"
-        $color={"pupilsLimeGreen"}
+        $color={"mint"}
         $zIndex={"behind"}
         $display={["none", "block"]}
         $transform={[
@@ -241,7 +241,7 @@ const SiteFooter: FC = () => {
       />
       <Svg
         name="looping-line-4"
-        $color={"twilight"}
+        $color={"pink50"}
         $display={["block", "none"]}
         $zIndex={"behind"}
         $transform={"translate(0%, 32%)"}
