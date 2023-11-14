@@ -43,13 +43,11 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
             </Heading>
             <P $font={"body-2"}>{getSchoolName(school)}</P>
           </Flex>
-          <Flex $flexDirection="column" $gap={4}>
+          <Flex $flexDirection="column" $gap={4} $overflowWrap={"anywhere"}>
             <Heading tag="h3" $font="heading-7">
               Email
             </Heading>
-            <P $font={"body-2"} $wordWrap={"break-word"}>
-              {email ? email : "Not provided"}
-            </P>
+            <P $font={"body-2"}>{email ? email : "Not provided"}</P>
           </Flex>
         </Flex>
         <Button
@@ -58,7 +56,9 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
           icon="edit"
           $iconPosition="trailing"
           iconBackground="black"
-          onClick={onEditClick}
+          onClick={() => {
+            onEditClick();
+          }}
           $mt={8}
           aria-label="Edit details"
         />
