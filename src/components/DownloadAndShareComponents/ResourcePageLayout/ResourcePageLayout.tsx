@@ -74,6 +74,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           $justifyContent="space-between"
           $width="100%"
           $flexDirection={["column", "column", "row"]}
+          $gap={48}
         >
           <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
             <Heading tag="h2" $font={["heading-6", "heading-5"]}>
