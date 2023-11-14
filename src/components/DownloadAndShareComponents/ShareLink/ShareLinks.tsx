@@ -45,6 +45,7 @@ const ShareLinks: FC<{
           }
           success={isShareSuccessful}
           type="button"
+          ariaLabel="Copy link to clipboard"
           onClick={() =>
             copyToCliboard(
               getHrefForSocialSharing({
@@ -84,6 +85,7 @@ const ShareLinks: FC<{
               linkConfig: link,
             })}
             onClick={props.onSubmit}
+            ariaLabel={`Share to ${link.name}`}
           />
         ))}
       </Flex>
