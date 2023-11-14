@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import { ResourceType } from "../downloadsAndShare.types";
 
@@ -26,6 +26,11 @@ const ShareLinks: FC<{
   onSubmit: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
+
+  useEffect(() => {
+    setIsShareSuccessful(false);
+  }, [props.selectedActivities]);
+
   return (
     <>
       <Heading $mt={24} $mb={4} tag={"h4"} $font={"heading-7"}>
