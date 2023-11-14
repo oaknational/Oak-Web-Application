@@ -64,6 +64,7 @@ export const useResourceFormState = (props: Props) => {
     emailFromLocalStorage,
     termsFromLocalStorage,
     hasDetailsFromLocalStorage,
+    setEmailInLocalStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -154,6 +155,7 @@ export const useResourceFormState = (props: Props) => {
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
+    setValue("email", emailFromLocalStorage);
   };
 
   const router = useRouter();
@@ -210,8 +212,11 @@ export const useResourceFormState = (props: Props) => {
     selectedResources,
     schoolUrn,
     hasFormErrors,
+    setEmailInLocalStorage,
     localStorageDetails,
+    editDetailsClicked,
     setEditDetailsClicked,
+
     activeResources,
     setActiveResources,
     handleToggleSelectAll,

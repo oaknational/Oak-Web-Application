@@ -94,6 +94,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     shouldDisplayDetailsCompleted,
     handleEditDetailsCompletedClick,
     setEditDetailsClicked,
+    editDetailsClicked,
     selectedResources,
     hasFormErrors,
     localStorageDetails,
@@ -102,6 +103,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hasResources,
     handleToggleSelectAll,
     selectAllChecked,
+    setEmailInLocalStorage,
   } = useResourceFormState({ downloadResources: downloads, type: "download" });
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
@@ -128,6 +130,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
       setIsDownloadSuccessful(true);
+
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
       const {
         schoolOption,
         schoolName,

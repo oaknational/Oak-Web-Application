@@ -64,6 +64,8 @@ export function LessonShare(props: LessonShareProps) {
     localStorageDetails,
     handleToggleSelectAll,
     selectAllChecked,
+    editDetailsClicked,
+    setEmailInLocalStorage,
   } = useResourceFormState({
     shareResources: shareableResources,
     type: "share",
@@ -75,6 +77,9 @@ export function LessonShare(props: LessonShareProps) {
 
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
+    if (editDetailsClicked && !data.email) {
+      setEmailInLocalStorage("");
+    }
   };
 
   return (
