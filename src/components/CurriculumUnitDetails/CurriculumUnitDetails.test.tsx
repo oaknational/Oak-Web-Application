@@ -12,6 +12,8 @@ const testCurriculumUnitDetails = {
   lessons: [{ title: "test lesson", slug: "test-lesson" }],
   previousUnitDescription: "test previous unit description",
   futureUnitDescription: "test future unit description",
+  previousUnitTitle: "test previous unit title",
+  futureUnitTitle: "test future unit title",
 };
 
 describe("CurriculumUnitDetails component", () => {
