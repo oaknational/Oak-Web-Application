@@ -10,6 +10,8 @@ const curriculumUnitsTabFixture = (
           "In this unit pupils will represent numbers 6 - 10 by partitioning in different ways. They will learn what odd and even numbers are and how they can be partitioned. They will identify a missing part when a whole is partitioned into 2 parts. In the future unit pupils will explain 11-19 cardinally and ordinally. They will double and halve numbers 6-9. They will add and subtract within 20.",
         connection_prior_unit_description:
           "In prior learning, pupils will have explored the composition of numbers to 10 and be able to subitise up to 5. In this unit pupils will represent numbers 6 to 10 by partitioning in different ways and learn what odd and even numbers are and how they can be partitioned.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers 0 to 5",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -47,6 +49,8 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of the human body.",
         connection_prior_unit_description:
           "Pupils learned about differences in the cell structures of eukaryotic and prokaryotic organisms.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -78,6 +82,8 @@ const curriculumUnitsTabFixture = (
         connection_future_unit_description: null,
         connection_prior_unit_description:
           "In the prior unit, pupils learnt how to round to a given number of decimal places or significant figures and explored the effect of using rounded numbers for calculations. In this unit, pupils will investigate the bounds and perform calculations to determine a best/worst case scenario.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -110,6 +116,8 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn how substances essential for chemical reactions, and the products of the reactions, are transported into, around and out of plants, and about factors affecting the rate of water uptake by a plant.",
         connection_prior_unit_description:
           "Pupils learned about photosynthesis in producers, including a two-stage model of the process and the requirements and products of each stage.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers 0 to 5",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -142,6 +150,8 @@ const curriculumUnitsTabFixture = (
           "It then leads on to examine this same scale but by investigating hot places in Unit 10.  This unit also links to future understanding of land use and settlement, and builds on Earth Geometry by establishing familiarity with the Polar Circles here and with the Equator in the next unit.",
         connection_prior_unit_description:
           "Unit 9 links to work done in and around the school ground on weather and develops the idea of temperature variations and extreme cold on a global scale. ",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -184,6 +194,8 @@ const curriculumUnitsTabFixture = (
           "In this unit pupils will represent unit fractions in different ways, identifying the whole, the number of equal parts and the size of each part as a unit fraction including tenths. In the future unit pupils will identify parts and wholes in different contexts.",
         connection_prior_unit_description:
           "In the prior unit pupils identified whether something had or had not been split into equal parts. They named fractions one-half one-quarter and one-third in relation to a fraction of a length, shape or set of objects. In this unit pupils will represent unit fractions in different ways, identifying the whole, the number of equal parts and the size of each part as a unit fraction, including tenths.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -221,6 +233,8 @@ const curriculumUnitsTabFixture = (
           "In this unit pupils will describe represent and order tenths as a decimal fraction. They will round a decimal number with tenths to the nearest whole number. In the future unit pupils will identify hundredths as part of a whole and describe and represent hundredths as a decimal fraction. They will compare and order decimal numbers with hundredths.",
         connection_prior_unit_description:
           "In the prior unit pupils explained the relationship between multiplying and dividing a number by 10 and multiples of 10.  In this unit pupils will describe, represent and order tenths as a decimal fraction. They will round a decimal number with tenths to the nearest whole number.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -269,6 +283,8 @@ const curriculumUnitsTabFixture = (
           "In this unit, pupils learn how Shakespeare explores multiple key themes throughout a single play. In 'The Windrush: Diary Writing', pupils will learn to develop their skills of writing a diary with emotion based on a significant historical event.",
         connection_prior_unit_description:
           "In 'Shakespeare's Macbeth’: Narrative and Soliloquy Writing', pupils learnt about character, plot and theme in a Shakespearean play for the first time. In this unit, pupils will learn how Shakespeare explores multiple key themes throughout a single play.’",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -306,6 +322,8 @@ const curriculumUnitsTabFixture = (
           "In the Patterns in the periodic table unit, pupils will build on this knowledge to learn how the chemical and physical properties of different elements are indicated by their position on the periodic table and about key groups of elements. ",
         connection_prior_unit_description:
           "In the Solutions unit, pupils learnt about mixtures, solutions and dissolving in terms of the particle model.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
@@ -338,6 +356,8 @@ const curriculumUnitsTabFixture = (
           "Pupils will learn about flower structure, wind and insect pollination, fertilisation, seed and fruit formation and dispersal.",
         connection_prior_unit_description:
           "Pupils learned about heredity as the process of organisms passing on genetic material to their offspring during reproduction, and about DNA, genes and chromosomes.",
+        connection_future_unit_title: "Composition of numbers 6 to 10",
+        connection_prior_unit_title: "Composition of numbers",
         domain: null,
         domain_id: null,
         examboard: null,
