@@ -125,6 +125,8 @@ const UnitModal: FC<UnitModalProps> = ({
                   futureUnitDescription={
                     unitData.connection_future_unit_description
                   }
+                  previousUnitTitle={unitData.connection_prior_unit_title}
+                  futureUnitTitle={unitData.connection_future_unit_title}
                 />
               </Box>
             )}
@@ -211,6 +213,10 @@ const UnitModal: FC<UnitModalProps> = ({
                                       unitData.connection_prior_unit_description,
                                     futureUnitDescription:
                                       unitData.connection_future_unit_description,
+                                    previousUnitTitle:
+                                      unitData.connection_prior_unit_title,
+                                    futureUnitTitle:
+                                      unitData.connection_future_unit_title,
                                   });
                                 }}
                               />
