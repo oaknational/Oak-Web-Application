@@ -380,7 +380,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Box
                       $ba={1}
                       $background={isSelected ? "black" : "white"}
-                      $borderColor={isSelected ? "black" : "grey4"}
+                      $borderColor={isSelected ? "black" : "grey40"}
                       $borderRadius={4}
                       $color={isSelected ? "white" : "black"}
                       $font={isSelected ? "heading-light-7" : "body-2"}

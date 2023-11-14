@@ -82,7 +82,7 @@ const BioModal: FC<BioModalProps> = (props) => {
             icon="cross"
             onClick={closeModal}
             aria-label="close modal"
-            background="teachersHighlight"
+            background="blue"
             size="small"
             ref={closeButtonRef}
             aria-expanded={isOpen}
@@ -116,7 +116,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                 </Heading>
                 <P
                   $font={["heading-light-7", "heading-light-6"]}
-                  $color="oakGrey4"
+                  $color="grey60"
                   $mb={[32, 0]}
                   $textAlign={["center", "left"]}
                 >
@@ -142,7 +142,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                     "translate(-57%, 5%)",
                     "translate(-57%, -10%)",
                   ]}
-                  $color="pupilsHighlight"
+                  $color="oakGreen"
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
                   <Box $background="white" $cover />

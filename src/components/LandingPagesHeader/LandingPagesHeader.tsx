@@ -42,7 +42,7 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
                 $ml={12}
                 aria-label={"arrow-right"}
                 name={"arrow-right"}
-                $background={"teachersHighlight"}
+                $background={"blue"}
                 $color={"white"}
                 variant={"brush"}
                 size={28}

@@ -47,7 +47,7 @@ const PostTextAndMedia = (
             label={params.cta.label}
             page={null}
             href={getLinkHref(params.cta)}
-            background={"teachersHighlight"}
+            background={"blue"}
           />
         )}
       </div>

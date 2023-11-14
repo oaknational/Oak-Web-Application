@@ -147,7 +147,7 @@ export const LessonItemContainer = forwardRef<
 
       <Box>{children}</Box>
       {!props.isFinalElement && (
-        <Hr $color={"pupilsPink"} $mt={[24, 56]} $mb={[12, 24]} />
+        <Hr $color={"pink"} $mt={[24, 56]} $mb={[12, 24]} />
       )}
     </Flex>
   );

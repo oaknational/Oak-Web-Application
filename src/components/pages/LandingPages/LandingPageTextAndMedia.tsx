@@ -17,7 +17,7 @@ import { PortableTextWithDefaults } from "@/components/PortableText";
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <OLOutline $color={"teachersPastelYellow"} $mh={0}>
+      <OLOutline $color={"lemon50"} $mh={0}>
         {children}
       </OLOutline>
     ),
@@ -40,13 +40,13 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
   return (
     <Card
       $flexDirection={["column", "row"]}
-      $background={"teachersPastelYellow"}
+      $background={"lemon50"}
       $width={"100%"}
       $mb={[56, 92]}
       $pb={24}
       $ph={[16, 56]}
     >
-      <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+      <BrushBorders hideOnMobileH color={"lemon50"} />
 
       <Flex
         $minHeight={200}

@@ -34,11 +34,11 @@ const Radio: FC<AriaRadioProps> = (props) => {
       ${(props) =>
         props.isFocusVisible
           ? getColorByName("black")
-          : getColorByName("oakGrey3")};
+          : getColorByName("grey50")};
     ${(props) =>
       props.hasError &&
       css`
-        border: 2px solid ${getColorByName("failure")};
+        border: 2px solid ${getColorByName("red")};
       `}
     border-radius: 50%;
     display: flex;
@@ -52,7 +52,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
     ${(props) =>
       props.isFocusVisible &&
       css`
-        box-shadow: 0 0 0 2px ${getColorByName("teachersYellow")};
+        box-shadow: 0 0 0 2px ${getColorByName("lemon")};
       `}
 
     &::after {
@@ -73,7 +73,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
     &:active {
       border: 2px solid ${getColorByName("black")};
-      box-shadow: 0 0 0 3px ${getColorByName("teachersYellow")};
+      box-shadow: 0 0 0 3px ${getColorByName("lemon")};
     }
 
     &:hover {
@@ -84,7 +84,7 @@ const Radio: FC<AriaRadioProps> = (props) => {
 
     &:focus {
       border: 2px solid ${getColorByName("black")};
-      box-shadow: 0 0 0 3px ${getColorByName("teachersYellow")};
+      box-shadow: 0 0 0 3px ${getColorByName("lemon")};
     }
   `;
 

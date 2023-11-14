@@ -16,7 +16,7 @@ const CategoryHeading: FC<CategoryHeadingProps> = ({
   return (
     <Span
       $font={["heading-light-7", "heading-light-6"]}
-      $color={"oakGrey4"}
+      $color={"grey60"}
       $mb={4}
     >{`${keyStageTitle}, ${subjectTitle}, ${page}:`}</Span>
   );

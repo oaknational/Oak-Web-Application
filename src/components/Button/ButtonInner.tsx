@@ -119,7 +119,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorName = "oakGrey4";
+  const currentColor: OakColorName = "grey60";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );

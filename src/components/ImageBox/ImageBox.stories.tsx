@@ -10,7 +10,7 @@ export default {
       defaultValue: "ImageBox",
     },
     background: {
-      defaultValue: "grey3",
+      defaultValue: "grey40",
     },
     minWidth: {
       defaultValue: "50%",

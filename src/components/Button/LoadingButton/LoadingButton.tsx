@@ -107,7 +107,7 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
         )}
       </Flex>
       <FocusDoubleBorder
-        background={disabled ? "grey6" : props.success ? "oakGreen" : "black"}
+        background={disabled ? "grey50" : props.success ? "oakGreen" : "black"}
       />
     </>
   );

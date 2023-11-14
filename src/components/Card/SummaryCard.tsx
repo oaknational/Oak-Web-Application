@@ -55,7 +55,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
               $mb={8}
               tag={"h1"}
               $font={["heading-6", "heading-5"]}
-              $color={"oakGrey4"}
+              $color={"grey60"}
             >
               {title}
             </Heading>
@@ -105,7 +105,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
 };
 
 SummaryCard.defaultProps = {
-  background: "teachersPastelYellow",
+  background: "lemon50",
 };
 
 export default SummaryCard;

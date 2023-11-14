@@ -10,7 +10,7 @@ describe("ButtonAsLink", () => {
         variant="minimal"
         icon="arrow-right"
         $iconPosition="trailing"
-        iconBackground="teachersHighlight"
+        iconBackground="blue"
       />,
     );
 

@@ -10,7 +10,7 @@ describe("CardLinkIcon", () => {
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
-        background="pupilsLimeGreen"
+        background="mint"
         page={null}
         href={"/planning"}
       />,
@@ -23,7 +23,7 @@ describe("CardLinkIcon", () => {
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
-        background="pupilsLimeGreen"
+        background="mint"
         page="about-board"
       />,
     );
@@ -35,7 +35,7 @@ describe("CardLinkIcon", () => {
       <CardLinkIcon
         title={"Plan a lesson"}
         titleTag={"h4"}
-        background="pupilsLimeGreen"
+        background="mint"
         page={"contact"}
       />,
     );

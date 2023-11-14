@@ -35,7 +35,7 @@ const topMiddle = css`
   ${buttonBorderTop}
   ${focus}
   bottom: calc(100% + 1px);
-  color: ${() => getColorByName("teachersYellow")};
+  color: ${() => getColorByName("lemon")};
 `;
 const topOuter = css`
   ${buttonBorderTop} ${focus}
@@ -61,7 +61,7 @@ const rightMiddle = css`
   top: -5px;
   left: calc(100% - 2px);
   height: calc(100% + 7px);
-  color: ${() => getColorByName("teachersYellow")};
+  color: ${() => getColorByName("lemon")};
 `;
 const rightOuter = css`
   ${buttonBorderRight} ${focus}
@@ -91,7 +91,7 @@ const bottomMiddle = css`
   ${buttonBorderBottom} ${focus}
   width: calc(100% + 4px);
   top: calc(100% - 1px);
-  color: ${() => getColorByName("teachersYellow")};
+  color: ${() => getColorByName("lemon")};
 `;
 const bottomOuter = css`
   ${buttonBorderBottom} ${focus}
@@ -117,7 +117,7 @@ const leftMiddle = css`
   top: -4px;
   right: calc(100% - 1px);
   height: calc(100% + 8px);
-  color: ${() => getColorByName("teachersYellow")};
+  color: ${() => getColorByName("lemon")};
 `;
 const leftOuter = css`
   ${buttonBorderLeft} ${focus}

@@ -183,7 +183,7 @@ const UnitModal: FC<UnitModalProps> = ({
                               $flexDirection={"row"}
                               $alignItems={"flex-start"}
                               $width={"100%"}
-                              $color={"oakGrey5"}
+                              $color={"grey70"}
                             >
                               <Button
                                 label="Unit info"

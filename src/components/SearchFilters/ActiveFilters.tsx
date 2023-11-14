@@ -35,7 +35,7 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       $flexDirection={["column", "row"]}
       $minHeight={44}
     >
-      <P $mr={20} $mt={8} $mb={8} $color={["oakGrey4", "black"]}>
+      <P $mr={20} $mt={8} $mb={8} $color={["grey60", "black"]}>
         Active filters: {activeFilters.length === 0 && "no filters set"}
       </P>
       <Flex $flexWrap={"wrap"} $alignItems={"center"}>

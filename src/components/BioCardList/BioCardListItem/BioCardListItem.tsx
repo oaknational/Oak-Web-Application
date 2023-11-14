@@ -37,11 +37,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             {name}
           </Heading>
           {role && (
-            <P
-              $mt={4}
-              $font={["body-3", "heading-light-7"]}
-              $color={"oakGrey4"}
-            >
+            <P $mt={4} $font={["body-3", "heading-light-7"]} $color={"grey60"}>
               {role}
             </P>
           )}
@@ -68,7 +64,7 @@ const BioCardListItem: FC<BioCardListItemProps> = (props) => {
             variant="minimal"
             icon="arrow-right"
             $iconPosition="trailing"
-            iconBackground="teachersHighlight"
+            iconBackground="blue"
             $ml="auto"
             onClick={() => onClick(props)}
             shouldHideLabel={[true, false]}

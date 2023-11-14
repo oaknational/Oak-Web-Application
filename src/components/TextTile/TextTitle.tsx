@@ -44,7 +44,7 @@ const TextTile: FC<TextTileProps> = (
       {...flexProps}
     >
       {children}
-      <TileFocusUnderline name="underline-1" $color={"pupilsLightGreen"} />
+      <TileFocusUnderline name="underline-1" $color={"mint50"} />
     </TextTileWrap>
   );
 };

@@ -26,11 +26,11 @@ type VisualCheckboxWrapper = {
 
 const getBorderColor = (props: VisualCheckboxProps) => {
   if (props.hasError) {
-    return getColorByName("failure");
+    return getColorByName("red");
   } else if (props.checked) {
-    return getColorByName("oakGrey3");
+    return getColorByName("grey50");
   } else {
-    return getColorByName("oakGrey3");
+    return getColorByName("grey50");
   }
 };
 

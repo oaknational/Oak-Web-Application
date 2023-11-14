@@ -71,7 +71,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             />
           </Box>
           <Flex $flexDirection={"column"}>
-            <Span $mb={8} $color={"oakGrey4"} $font={"heading-light-7"}>
+            <Span $mb={8} $color={"grey60"} $font={"heading-light-7"}>
               {yearTitle ? (
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}

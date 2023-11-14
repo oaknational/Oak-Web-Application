@@ -10,7 +10,7 @@ export default {
       defaultValue: 72,
     },
     $background: {
-      defaultValue: "teachersPastelYellow",
+      defaultValue: "lemon50",
     },
   },
 } as ComponentMeta<typeof Component>;
