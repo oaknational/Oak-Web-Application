@@ -18,6 +18,7 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
     disabled === true &&
     `
    pointer-events: none;
+   color: #808080;
   `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps &
@@ -71,7 +72,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           shouldHideLabel={shouldHideLabel}
           icon={icon}
           $iconPosition={$iconPosition}
-          iconBackground={iconBackground}
+          iconBackground={disabled ? "grey6" : iconBackground}
           size={size}
           background={background}
           variant={variant}
