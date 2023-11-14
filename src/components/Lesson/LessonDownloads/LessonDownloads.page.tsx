@@ -156,6 +156,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     emailFromLocalStorage,
     termsFromLocalStorage,
     hasDetailsFromLocalStorage,
+    setEmailInLocalStorage,
   } = useLocalStorageForDownloads();
 
   const {
@@ -163,6 +164,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     schoolId: schoolIdFromLocalStorage,
   } = schoolFromLocalStorage;
 
+  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   useEffect(() => {
     setIsLocalStorageLoading(false);
@@ -186,12 +188,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     emailFromLocalStorage,
     termsFromLocalStorage,
     schoolIdFromLocalStorage,
+    editDetailsClicked,
   ]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
   const shouldDisplayDetailsCompleted =
     !!hasDetailsFromLocalStorage && !editDetailsClicked;
+
   const [localStorageDetails, setLocalStorageDetails] = useState(false);
 
   useEffect(() => {
@@ -256,6 +258,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onSubmit,
       });
       setIsDownloadSuccessful(true);
+
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
       const {
         schoolOption,
         schoolName,
@@ -302,6 +309,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const handleEditDetailsCompletedClick = () => {
     setEditDetailsClicked(true);
     setLocalStorageDetails(false);
+    setValue("email", emailFromLocalStorage);
   };
 
   return (
