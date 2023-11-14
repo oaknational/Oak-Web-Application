@@ -581,8 +581,7 @@ export const OAK_PAGES: {
     pageType: "lesson-share",
   }),
   "lesson-share-canonical": createOakPageConfig({
-    pathPattern:
-      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+    pathPattern: "/teachers/lessons/:lessonSlug/share",
     analyticsPageName: "Lesson Share",
     configType: "internal",
     pageType: "lesson-share-canonical",
