@@ -2,16 +2,12 @@ import {
   GetSharingMetadataParams,
   getSharingMetadata,
 } from "./getSharingMetadata";
-import { ShareLinkConfig } from "./linkConfig";
 
-export const getHrefForSocialSharing = (
-  params: GetSharingMetadataParams,
-  linkConfig: ShareLinkConfig,
-) => {
+export const getHrefForSocialSharing = (params: GetSharingMetadataParams) => {
   const sharingMetadata = getSharingMetadata(params);
-  if (linkConfig.medium === "copy-link") {
+  if (params.linkConfig.medium === "copy-link") {
     return sharingMetadata.link;
   } else {
-    return linkConfig.url(sharingMetadata);
+    return params.linkConfig.url(sharingMetadata);
   }
 };

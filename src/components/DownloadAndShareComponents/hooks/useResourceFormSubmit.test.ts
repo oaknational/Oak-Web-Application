@@ -1,9 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
 import downloadLessonResources from "../helpers/downloadLessonResources";
-import type { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadsAndShare.types";
 
-import useDownloadForm from "./useDownloadForm";
+import useResourceFormSubmit from "./useResourceFormSubmit";
 
 jest.mock("../helpers/downloadLessonResources", () => ({
   __esModule: true,
@@ -32,13 +32,13 @@ jest.mock("../../../hooks/useUtmParams", () => ({
   default: () => ({ utm_source: "les_twitz" }),
 }));
 
-const data: DownloadFormProps = {
+const data: ResourceFormProps = {
   onSubmit: jest.fn(),
   email: "test@test.com",
   school: "222-Sample school",
   schoolName: "Sample school",
   terms: true,
-  downloads: ["intro-quiz-questions"],
+  resources: ["intro-quiz-questions"],
 };
 const getHubspotUserToken = jest.fn(() => "hubspotutk value");
 jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
@@ -54,15 +54,14 @@ jest.mock("../../../context/Analytics/useAnalytics", () => ({
     posthogDistinctId: testPosthogDistinctId,
   }),
 }));
-
-describe("useDownloadForm", () => {
+describe("useResourceFormSubmit", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     window.localStorage.clear();
   });
   it("should attempt to get the hubspotutk cookie", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
 
@@ -70,7 +69,7 @@ describe("useDownloadForm", () => {
   });
   it("should set email in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
 
@@ -83,7 +82,7 @@ describe("useDownloadForm", () => {
 
   it("should set school in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -95,16 +94,16 @@ describe("useDownloadForm", () => {
   });
 
   it("should correctly set school in local storage if 'homeschool' passed in props", async () => {
-    const data: DownloadFormProps = {
+    const data: ResourceFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
       school: "homeschool",
       terms: true,
-      downloads: ["intro-quiz-questions"],
+      resources: ["intro-quiz-questions"],
     };
 
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -116,16 +115,16 @@ describe("useDownloadForm", () => {
   });
 
   it("should correctly set school in local storage if 'notListed' passed in props", async () => {
-    const data: DownloadFormProps = {
+    const data: ResourceFormProps = {
       onSubmit: jest.fn(),
       email: "test@test.com",
       school: "notListed",
       terms: true,
-      downloads: ["intro-quiz-questions"],
+      resources: ["intro-quiz-questions"],
     };
 
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -138,7 +137,7 @@ describe("useDownloadForm", () => {
 
   it("should set terms in local storage if passed in props", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
     await waitFor(() => {
@@ -148,7 +147,7 @@ describe("useDownloadForm", () => {
 
   it("should call downloadLessonResources with correct parameters", async () => {
     const { result } = renderHook(() =>
-      useDownloadForm({ isLegacyDownload: true }),
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
     );
     result.current.onSubmit(data, "lesson");
 

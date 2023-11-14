@@ -1,22 +1,27 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./LoadingButton";
 
-export default {
+const meta: Meta<typeof Component> = {
   title: "Buttons/Loading",
   component: Component,
+};
+
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const Layout: Story = {
   args: {
     isLoading: false,
     text: "Download .zip",
     loadingText: "Downloading...",
     icon: "download",
     disabled: false,
+    success: false,
+    type: "button",
   },
-} as ComponentMeta<typeof Component>;
-
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const Button = Template.bind({});
+  render: (args) => {
+    return <Component {...args} />;
+  },
+};

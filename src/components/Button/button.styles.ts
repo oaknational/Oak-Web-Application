@@ -91,7 +91,7 @@ const buttonStyles = css<ButtonStylesProps>`
         props.variant,
         props["aria-disabled"],
       )};
-      color: ${getButtonColor(props.background, props.variant)};
+      color: ${getButtonColor(props.background, props.variant, props.disabled)};
     `;
   }}
   transition: ${HOVER_SHADOW_TRANSITION};

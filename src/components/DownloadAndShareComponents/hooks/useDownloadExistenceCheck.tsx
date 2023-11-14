@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import type { ResourcesToDownloadArrayType } from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloadsAndShare.types";
 import getDownloadResourcesExistence from "../helpers/getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
