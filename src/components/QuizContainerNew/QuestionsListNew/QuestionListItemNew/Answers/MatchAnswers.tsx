@@ -24,7 +24,7 @@ export const MatchAnswers = ({
           correct_choice && (
             <Flex
               key={`q-${questionNumber}-answer${i}`}
-              $background={"teachersPastelYellow"}
+              $background={"lemon50"}
               $borderRadius={8}
               $ph={8}
               $alignItems={"center"}

@@ -111,14 +111,14 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               <Svg
                 name="looping-line-1"
                 $display={["none", "block"]}
-                $color={"pupilsPink"}
+                $color={"pink"}
                 $zIndex={"behind"}
                 $cover
               />
               <Svg
                 name="looping-line-2"
                 $display={["block", "none"]}
-                $color={"pupilsPink"}
+                $color={"pink"}
                 $zIndex={"behind"}
                 $cover
               />

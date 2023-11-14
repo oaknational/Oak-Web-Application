@@ -101,8 +101,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  let background: OakColorName = expired ? "oakGrey2" : "teachersLilac";
-  let backgroundOnHover: OakColorName = "teachersPastelBlue";
+  let background: OakColorName = expired ? "grey30" : "lavender50";
+  let backgroundOnHover: OakColorName = "lavender";
 
   // This override is for the units on the early-release units page which use different shades of pink/blue
   if (subjectIconBackground) {
@@ -121,7 +121,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
-      background={expired ? "oakGrey1" : "white"}
+      background={expired ? "grey20" : "white"}
       expired={expired}
       index={index}
       fromSearchPage={fromSearchPage}
@@ -150,7 +150,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         $pa={16}
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <Span $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
+          <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
             {yearTitle}
           </Span>
         )}

@@ -81,11 +81,11 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             $zIndex={[null, "inFront"]}
             $pv={24}
             $ph={[16, 24]}
-            $background={"twilight"}
+            $background={"pink50"}
             $maxWidth={["100%", "55%"]}
             $font="list-item-1"
           >
-            <BrushBorders hideOnMobileH color={"twilight"} />
+            <BrushBorders hideOnMobileH color={"pink50"} />
             <Heading $mb={20} $font={["heading-6", "heading-5"]} tag={"h3"}>
               {pageData.gettingStarted.title}
             </Heading>
@@ -95,12 +95,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             />
           </Card>
         </Flex>
-        <Card
-          $mb={[56, 80]}
-          $width={"100%"}
-          $background={"teachersPastelYellow"}
-          $ph={0}
-        >
+        <Card $mb={[56, 80]} $width={"100%"} $background={"lemon50"} $ph={0}>
           <Box $ph={[16, 24]} $width={["100%", "50%"]}>
             <Heading
               $mt={[24, 0]}
@@ -128,7 +123,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             {pageData.elements.posts.map((element, index) => (
               <Fragment key={`${index}-${element.title}`}>
                 <GridArea $colSpan={[12, 4]}>
-                  <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+                  <BrushBorders hideOnMobileH color={"lemon50"} />
                   <Box $display={["block", "none"]} $ph={[16, 0]}>
                     <P $mb={[24, 16]} $font={"heading-light-6"}>
                       {elementsOfCurriculumDesignHeadings[index]}
@@ -138,7 +133,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $flexDirection={"column"}
                     $justifyContent={"center"}
                     $mb={[56, 0]}
-                    $background="pastelTurquoise"
+                    $background="aqua"
                     $pv={[72, 80]}
                     $maxHeight={240}
                     $ph={[16, 24]}

@@ -40,13 +40,13 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
   return (
     <Flex $position={"relative"} $width={"100%"}>
-      <BrushBorders hideOnMobileH hideOnMobileV color={"pupilsLightGreen"} />
+      <BrushBorders hideOnMobileH hideOnMobileV color={"mint50"} />
       <Grid>
         <GridArea $order={[2, 1]} $colSpan={[12, 6, 8]}>
           <Card
             $pa={[16, 24]}
             $justifyContent={["center"]}
-            $background={"pupilsLightGreen"}
+            $background={"mint50"}
             $pt={[32, 0]}
           >
             <PortableTextWithDefaults
@@ -59,7 +59,7 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
           </Card>
         </GridArea>
         <GridArea $mb={[80, 0]} $order={[1, 2]} $colSpan={[12, 6, 4]}>
-          <Flex $background={"pupilsLightGreen"} $pa={[0, 24]}>
+          <Flex $background={"mint50"} $pa={[0, 24]}>
             <NewsletterFormWrap onSubmit={onSubmit} />
           </Flex>
         </GridArea>

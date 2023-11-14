@@ -32,8 +32,8 @@ const EarlyReleaseUnits: NextPage = () => {
           </Heading>
           <Grid $rg={32} $cg={32}>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Fully sequenced
                 </Heading>
@@ -44,8 +44,8 @@ const EarlyReleaseUnits: NextPage = () => {
               </Card>
             </GridArea>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Free to access
                 </Heading>
@@ -56,8 +56,8 @@ const EarlyReleaseUnits: NextPage = () => {
               </Card>
             </GridArea>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Adaptable
                 </Heading>

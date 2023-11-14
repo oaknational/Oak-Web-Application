@@ -7,10 +7,10 @@ import Box from "../Box";
 import SubjectIcon from "../SubjectIcon";
 
 export const titleCardIconBackground = {
-  subject: "teachersPastelYellow",
-  unit: "teachersLilac",
-  lesson: "pupilsPink",
-  lessons: "teachersLilac",
+  subject: "lemon50",
+  unit: "lavender50",
+  lesson: "pink",
+  lessons: "lavender50",
 } as const;
 
 export type TitlePageType =

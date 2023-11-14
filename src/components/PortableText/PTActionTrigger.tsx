@@ -32,12 +32,12 @@ const ConsentManagerTrigger: FC<{ children?: React.ReactNode }> = (props) => {
 
   return (
     <UnstyledButton
-      $color="hyperlink"
+      $color="navy"
       $textDecoration={"underline"}
       $display="inline"
       onClick={showConsentManager}
     >
-      <Span $color="hyperlink">{props.children}</Span>
+      <Span $color="navy">{props.children}</Span>
     </UnstyledButton>
   );
 };

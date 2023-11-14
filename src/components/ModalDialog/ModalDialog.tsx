@@ -30,7 +30,7 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
       $position="fixed"
       $zIndex="modalDialog"
       $cover
-      $background="grey4"
+      $background="grey40"
       $alignItems="center"
       $justifyContent="center"
       {...underlayProps}

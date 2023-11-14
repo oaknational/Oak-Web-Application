@@ -18,7 +18,7 @@ export default {
   ],
   argTypes: {
     children: {
-      defaultValue: <Card $background={"grey2"}>Grid box</Card>,
+      defaultValue: <Card $background={"grey30"}>Grid box</Card>,
     },
     colSpan: { defaultValue: [12, 6, 4] },
     rowSpan: { defaultValue: 1 },

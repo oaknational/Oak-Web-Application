@@ -44,7 +44,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
         }),
       }}
-      $background={"grey1"}
+      $background={"grey20"}
     >
       <Flex $justifyContent={"center"} $background={"mint"}>
         <MaxWidth $ph={16}>
@@ -137,7 +137,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             </Box>
           </Flex>
           <Flex
-            $background={"grey1"}
+            $background={"grey20"}
             $minHeight={812}
             $ml={[0, 12, 0]}
             $mr={[0, 12, 0]}
@@ -174,7 +174,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   {<Hr thickness={4} $mt={32} $mb={0} />}
                 </>
               ) : null}
-              <BrushBorders color="grey1" hideOnMobileH />
+              <BrushBorders color="grey20" hideOnMobileH />
             </Box>
           </Flex>
         </MaxWidth>

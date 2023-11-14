@@ -102,7 +102,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
               <ButtonAsLink
                 variant="minimal"
                 icon="arrow-left"
-                iconBackground="teachersHighlight"
+                iconBackground="blue"
                 size="large"
                 label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
                 page={page}
@@ -114,7 +114,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           $ml="auto"
           variant="minimal"
           icon={isOpen ? iconOpened : iconClosed}
-          iconBackground="teachersHighlight"
+          iconBackground="blue"
           $iconPosition="trailing"
           size="large"
           label={isOpen ? labelOpened : label}

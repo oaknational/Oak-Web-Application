@@ -66,7 +66,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               label="Back to lesson"
               variant={"buttonStyledAsLink"}
               icon="chevron-left"
-              iconBackground="oakGrey1"
+              iconBackground="grey20"
               data-testid="back-to-lesson-link"
               size="small"
               onClick={() => {
@@ -86,7 +86,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
               label="Back to lesson"
               variant={"buttonStyledAsLink"}
               icon="chevron-left"
-              iconBackground="oakGrey1"
+              iconBackground="grey20"
               data-testid="back-to-lesson-link"
               size="small"
               onClick={() => {

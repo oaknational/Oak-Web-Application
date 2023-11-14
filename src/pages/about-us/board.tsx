@@ -68,7 +68,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurquoise"} $mv={32} />
+            <Hr $color={"aqua"} $mv={32} />
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
@@ -98,7 +98,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
                           page={null}
                           href={`${doc.file.asset.url}?dl`}
-                          background={"teachersHighlight"}
+                          background={"blue"}
                         />
                       </Flex>
                     </Flex>
@@ -108,7 +108,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             })}
           </Grid>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurquoise"} $mv={0} $mt={32} />
+            <Hr $color={"aqua"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card

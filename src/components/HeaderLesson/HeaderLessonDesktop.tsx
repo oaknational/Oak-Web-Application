@@ -46,7 +46,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
         >
           <Flex $flexDirection={"column"} $gap={8}>
             {(examBoardTitle || yearTitle || tierTitle) && (
-              <Span $color={"oakGrey4"} $font={"heading-light-7"}>
+              <Span $color={"grey60"} $font={"heading-light-7"}>
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}
                   yearTitle={yearTitle}

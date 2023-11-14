@@ -20,10 +20,10 @@ export const KeyStageKeypad: Story = {
   render: () => {
     return (
       <Flex $flexDirection={"column"} $pa={16}>
-        <Flex $background={"pupilsLightGreen"} $pa={16} $mb={12}>
+        <Flex $background={"mint50"} $pa={16} $mb={12}>
           <Component {...keyStageKeypad} />
         </Flex>
-        <Flex $background={"pupilsLightGreen"} $pa={16} $mb={12}>
+        <Flex $background={"mint50"} $pa={16} $mb={12}>
           <Component keyStages={keyStageKeypad.keyStages} />
         </Flex>
       </Flex>

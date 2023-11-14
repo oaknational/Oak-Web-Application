@@ -9,7 +9,7 @@ export default {
     children: {
       defaultValue: "Fixed Header",
     },
-    background: { defaultValue: "grey3" },
+    background: { defaultValue: "grey40" },
   },
 } as ComponentMeta<typeof Component>;
 

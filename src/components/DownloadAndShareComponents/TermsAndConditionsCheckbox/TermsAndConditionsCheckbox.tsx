@@ -26,13 +26,13 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
     )}
     <Box
       $position={"relative"}
-      $background={"oakGrey30"}
+      $background={"grey30"}
       $pv={8}
       $ph={8}
       $mb={24}
       data-testid="termsCheckbox"
     >
-      <BrushBorders hideOnMobileH hideOnMobileV color={"oakGrey30"} />
+      <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
         labelText={"I accept terms and conditions (required)"}
         checked={checked}

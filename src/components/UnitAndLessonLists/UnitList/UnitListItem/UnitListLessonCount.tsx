@@ -13,7 +13,7 @@ export const UnitListLessonCount = ({
   expiredLessonCount,
   expired,
 }: IUnitListLessonCountProps) => {
-  const textColor = expired ? "oakGrey4" : "black";
+  const textColor = expired ? "grey60" : "black";
 
   return (
     <>

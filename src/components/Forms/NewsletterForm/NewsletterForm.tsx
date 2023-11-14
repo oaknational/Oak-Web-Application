@@ -138,7 +138,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         $font={"body-3"}
         aria-live="assertive"
         role="alert"
-        $color="failure"
+        $color="red"
       >
         {error}
       </P>
