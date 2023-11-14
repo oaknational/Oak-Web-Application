@@ -18,7 +18,9 @@ describe("ShareLinks", () => {
     renderWithTheme(
       <ShareLinks disabled={false} lessonSlug="test-slug" onSubmit={jest.fn} />,
     );
-    const copyLinkButton = screen.getByRole("button", { name: "Copy link" });
+    const copyLinkButton = screen.getByRole("button", {
+      name: "Copy link to clipboard",
+    });
     expect(copyLinkButton).toBeInTheDocument();
     const user = userEvent.setup();
     await user.click(copyLinkButton);

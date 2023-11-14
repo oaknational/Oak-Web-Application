@@ -107,17 +107,21 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
       // Share buttons
-      const shareButtonCopy = screen.getByRole("button", { name: "Copy link" });
+      const shareButtonCopy = screen.getByRole("button", {
+        name: "Copy link to clipboard",
+      });
       expect(shareButtonCopy).toBeInTheDocument();
       const shareButtonGoogle = screen.getByRole("link", {
-        name: "Google Classroom",
+        name: "Share to Google Classroom",
       });
       expect(shareButtonGoogle).toBeInTheDocument();
       const shareButtonMicrosoft = screen.getByRole("link", {
-        name: "Microsoft Teams",
+        name: "Share to Microsoft Teams",
       });
       expect(shareButtonMicrosoft).toBeInTheDocument();
-      const shareButtonEmail = screen.getByRole("link", { name: "Email" });
+      const shareButtonEmail = screen.getByRole("link", {
+        name: "Share to Email",
+      });
       expect(shareButtonEmail).toBeInTheDocument();
     });
 
