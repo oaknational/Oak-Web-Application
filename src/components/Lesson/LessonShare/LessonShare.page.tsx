@@ -83,7 +83,7 @@ export function LessonShare(props: LessonShareProps) {
   };
 
   return (
-    <Box $ph={[16, null]} $background={"oakGrey1"}>
+    <Box $ph={[16, null]} $background={"grey20"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
@@ -103,7 +103,7 @@ export function LessonShare(props: LessonShareProps) {
               }),
             ]}
           />
-          <Hr $color={"oakGrey40"} $mt={24} />
+          <Hr $color={"grey60"} $mt={24} />
         </Box>
 
         <ResourcePageLayout

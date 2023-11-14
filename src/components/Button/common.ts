@@ -243,7 +243,7 @@ export const getButtonColor = (
   variant === "buttonStyledAsLink" ||
   variant === "minimalNav"
     ? disabled
-      ? getColorByName("grey6")
+      ? getColorByName("grey50")
       : "black"
     : getTextColorForBackground(background);
 export const getButtonIconBackground =
