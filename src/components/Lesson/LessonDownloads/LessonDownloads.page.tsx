@@ -9,7 +9,7 @@ import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
-import useDownloadForm from "@/components/DownloadAndShareComponents/hooks/useDownloadForm";
+import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   DownloadResourceType,
@@ -109,7 +109,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
+  const { onSubmit } = useResourceFormSubmit({
+    isLegacyDownload: isLegacyDownload,
+    type: "download",
+  });
 
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);

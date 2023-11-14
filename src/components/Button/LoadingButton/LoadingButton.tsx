@@ -21,9 +21,9 @@ type LoadingButtonProps = {
   icon: IconName;
   disabled: boolean;
   success?: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 } & (
   | {
-      onClick: MouseEventHandler<HTMLButtonElement>;
       type: "button";
     }
   | { type: "link"; href: string; external: boolean }
@@ -120,9 +120,13 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
 const LoadingButton: FC<LoadingButtonProps> = (props) => {
   const disabled = props.isLoading || props.disabled;
 
+  const onClick: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (
+    e,
+  ) => (disabled ? e.preventDefault() : props.onClick(e));
+
   return props.type === "button" ? (
     <StyledButton
-      onClick={disabled ? (e) => e.preventDefault : props.onClick}
+      onClick={props.onClick}
       aria-disabled={disabled}
       aria-label={props.text}
       color={props.success ? "oakGreen" : "black"}
@@ -136,6 +140,7 @@ const LoadingButton: FC<LoadingButtonProps> = (props) => {
       aria-label={props.text}
       target={props.external ? "_blank" : undefined}
       color={props.success ? "oakGreen" : "black"}
+      onClick={onClick}
     >
       <ButtonContent {...props} />
     </StyledLink>

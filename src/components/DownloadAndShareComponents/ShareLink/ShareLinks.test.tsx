@@ -7,13 +7,17 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ShareLinks", () => {
   it("should render", () => {
-    renderWithTheme(<ShareLinks disabled={false} lessonSlug="test-slug" />);
+    renderWithTheme(
+      <ShareLinks disabled={false} lessonSlug="test-slug" onSubmit={jest.fn} />,
+    );
     const shareHeader = screen.getByRole("heading");
     expect(shareHeader).toBeInTheDocument();
     expect(shareHeader).toHaveTextContent("Share options:");
   });
   it("should update copy link button", async () => {
-    renderWithTheme(<ShareLinks disabled={false} lessonSlug="test-slug" />);
+    renderWithTheme(
+      <ShareLinks disabled={false} lessonSlug="test-slug" onSubmit={jest.fn} />,
+    );
     const copyLinkButton = screen.getByRole("button", { name: "Copy link" });
     expect(copyLinkButton).toBeInTheDocument();
     const user = userEvent.setup();

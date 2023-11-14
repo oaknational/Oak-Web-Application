@@ -16,6 +16,8 @@ import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareL
 import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
+import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 
 type LessonShareProps =
   | {
@@ -66,6 +68,14 @@ export function LessonShare(props: LessonShareProps) {
     shareResources: shareableResources,
     type: "share",
   });
+
+  const { onSubmit } = useResourceFormSubmit({
+    type: "share",
+  });
+
+  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+    await onSubmit(data, props.lesson.lessonSlug);
+  };
 
   return (
     <Box $ph={[16, null]} $background={"oakGrey1"}>
@@ -133,6 +143,9 @@ export function LessonShare(props: LessonShareProps) {
               lessonSlug={lessonSlug}
               selectedActivities={selectedResources}
               schoolUrn={schoolUrn}
+              onSubmit={
+                () => void form.handleSubmit(onFormSubmit)() // https://github.com/orgs/react-hook-form/discussions/8622
+              }
             />
           }
         />

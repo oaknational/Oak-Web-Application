@@ -16,10 +16,9 @@ const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
-  isLegacyDownload: boolean;
-};
+} & ({ type: "share" } | { type: "download"; isLegacyDownload: boolean });
 
-const useDownloadForm = (props: UseResourceFormProps) => {
+const useResourceFormSubmit = (props: UseResourceFormProps) => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,
@@ -57,36 +56,37 @@ const useDownloadForm = (props: UseResourceFormProps) => {
         }
       }
     }
-    const downloadsPayload = getHubspotDownloadsFormPayload({
-      hutk,
-      data: {
-        ...data,
-        ...utmParams,
-        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
-        schoolName:
-          schoolId === "homeschool" || schoolId === "notListed"
-            ? schoolId
-            : schoolName,
-      },
-    });
-    const hubspotFormResponse = await hubspotSubmitForm({
-      hubspotFormId: hubspotDownloadsFormId,
-      payload: downloadsPayload,
-    });
-
     if (terms) {
       setTermsInLocalStorage(terms);
     }
+    if (props.type === "download") {
+      const downloadsPayload = getHubspotDownloadsFormPayload({
+        hutk,
+        data: {
+          ...data,
+          ...utmParams,
+          oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+          schoolName:
+            schoolId === "homeschool" || schoolId === "notListed"
+              ? schoolId
+              : schoolName,
+        },
+      });
+      const hubspotFormResponse = await hubspotSubmitForm({
+        hubspotFormId: hubspotDownloadsFormId,
+        payload: downloadsPayload,
+      });
 
-    await downloadLessonResources(
-      slug,
-      downloads as DownloadResourceType[],
-      props.isLegacyDownload,
-    );
-    return hubspotFormResponse;
+      await downloadLessonResources(
+        slug,
+        downloads as DownloadResourceType[],
+        props.isLegacyDownload,
+      );
+      return hubspotFormResponse;
+    }
   };
 
   return { onSubmit };
 };
 
-export default useDownloadForm;
+export default useResourceFormSubmit;

@@ -23,6 +23,7 @@ const ShareLinks: FC<{
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: number;
+  onSubmit: () => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
   return (
@@ -47,7 +48,10 @@ const ShareLinks: FC<{
                 schoolUrn: props.schoolUrn,
                 linkConfig: shareLinkConfig.copy,
               }),
-              () => setIsShareSuccessful(true),
+              () => {
+                setIsShareSuccessful(true);
+                props.onSubmit();
+              },
             )
           }
           isLoading={false}
@@ -74,6 +78,7 @@ const ShareLinks: FC<{
               selectedActivities: props.selectedActivities,
               linkConfig: link,
             })}
+            onClick={props.onSubmit}
           />
         ))}
       </Flex>
