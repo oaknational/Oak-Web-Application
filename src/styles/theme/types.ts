@@ -26,8 +26,11 @@ export type PixelSpacing =
   | 2
   | 3
   | 4
+  | 5
   | 6
+  | 7
   | 8
+  | 9
   | 10
   | 12
   | 14
@@ -47,6 +50,7 @@ export type PixelSpacing =
   | 46
   | 48
   | 50
+  | 52
   | 56
   | 58
   | 60
@@ -142,43 +146,6 @@ const OakColorNameZod = z.union([
   z.literal("black"),
   z.literal("transparent"),
   z.literal("inherit"),
-  z.literal("grey1"),
-  z.literal("grey2"),
-  z.literal("grey3"),
-  z.literal("grey4"),
-  z.literal("grey5"),
-  z.literal("grey6"),
-  z.literal("grey7"),
-  z.literal("grey8"),
-  z.literal("grey9"),
-  z.literal("grey10"),
-  z.literal("oakGrey1"),
-  z.literal("oakGrey2"),
-  z.literal("oakGrey3"),
-  z.literal("oakGrey4"),
-  z.literal("oakGrey5"),
-  z.literal("oakGrey6"),
-  z.literal("pastelTurquoise"),
-  z.literal("warning"),
-  z.literal("failure"),
-  z.literal("success"),
-  z.literal("pupilsHighlight"),
-  z.literal("pupilsAccentPink"),
-  z.literal("pupilsGreen"),
-  z.literal("pupilsLightGreen"),
-  z.literal("pupilsLimeGreen"),
-  z.literal("pupilsPink"),
-  z.literal("teachersGreen"),
-  z.literal("teachersYellow"),
-  z.literal("teachersPastelYellow"),
-  z.literal("teachersPastelBlue"),
-  z.literal("teachersRed"),
-  z.literal("teachersPurple"),
-  z.literal("teachersLilac"),
-  z.literal("teachersHighlight"),
-  z.literal("twilight"),
-  z.literal("videoBlue"),
-  z.literal("hyperlink"),
   z.literal("oakGreen"),
   z.literal("mint"),
   z.literal("mint50"),
@@ -192,9 +159,11 @@ const OakColorNameZod = z.union([
   z.literal("lavender"),
   z.literal("lavender50"),
   z.literal("lavender30"),
+  z.literal("lavender60"),
   z.literal("pink"),
   z.literal("pink50"),
   z.literal("pink30"),
+  z.literal("pink60"),
   z.literal("amber"),
   z.literal("amber50"),
   z.literal("amber30"),
@@ -202,6 +171,17 @@ const OakColorNameZod = z.union([
   z.literal("magenta"),
   z.literal("purple"),
   z.literal("teal"),
+  z.literal("red"),
+  z.literal("grey10"),
+  z.literal("grey20"),
+  z.literal("grey30"),
+  z.literal("grey40"),
+  z.literal("grey50"),
+  z.literal("grey60"),
+  z.literal("grey70"),
+  z.literal("navy"),
+  z.literal("navy110"),
+  z.literal("navy120"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

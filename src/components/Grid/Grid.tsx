@@ -17,6 +17,8 @@ const grid = css<GridProps>`
   ${responsive("grid-row-gap", (props) => props.$rg, parse)}
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
   ${responsive("grid-auto-rows", (props) => props.$gridAutoRows)}
+  ${responsive("grid-template-areas", (props) => props.$gridTemplateAreas)}
+  ${responsive("grid-template-columns", (props) => props.$gridTemplateColumns)}
 `;
 
 export type GridProps = BoxProps & {
@@ -24,6 +26,8 @@ export type GridProps = BoxProps & {
   $cg?: ResponsiveValues<PixelSpacing>;
   // grid-auto-rows: 1fr; ensures all rows are the same height
   $gridAutoRows?: ResponsiveValues<"1fr">;
+  $gridTemplateAreas?: ResponsiveValues<string>;
+  $gridTemplateColumns?: ResponsiveValues<string>;
 };
 const Grid = styled(Box)<GridProps>`
   display: grid;

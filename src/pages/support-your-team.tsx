@@ -46,14 +46,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
             <BubbleMessage
-              background={"pastelTurquoise"}
+              background={"aqua"}
               variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
             />
             <BubbleMessage
-              background={"twilight"}
+              background={"pink50"}
               variant="bubble-2"
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
@@ -66,7 +66,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           <ButtonAsLink
             $mt={32}
             $mb={92}
-            page={"teacher-hub"}
+            page={"home"}
             label={"Search our lessons"}
             icon={"arrow-right"}
             $iconPosition={"trailing"}
@@ -74,21 +74,15 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Flex>
         <Grid $mb={56} $rg={56} $cg={[0, 40]}>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard
-              background={"teachersPastelYellow"}
-              {...pageData.planning}
-            />
+            <TextBlockCard background={"lemon50"} {...pageData.planning} />
           </GridArea>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard
-              background={"teachersPastelYellow"}
-              {...pageData.cover}
-            />
+            <TextBlockCard background={"lemon50"} {...pageData.cover} />
           </GridArea>
         </Grid>
         <TextBlockCardImageCta
           {...pageData.curriculum}
-          background={"pastelTurquoise"}
+          background={"aqua"}
           image={{
             illustration: "jigsaw-desk-with-extra-piece",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -96,7 +90,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         />
         <TextBlockCardImageCta
           {...pageData.development}
-          background={"twilight"}
+          background={"pink50"}
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -124,7 +118,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <ButtonAsLink
               $mt={32}
               $mb={92}
-              page={"teacher-hub"}
+              page={"home"}
               label={"Search our lessons"}
               icon={"arrow-right"}
               $iconPosition={"trailing"}

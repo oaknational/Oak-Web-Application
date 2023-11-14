@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import EarlyReleaseUnitsHeader from "@/components/EarlyReleaseUnitsHeader";
 import EarlyReleaseExemplarUnits from "@/components/EarlyReleaseExemplarUnits";
@@ -17,7 +17,7 @@ import AnchorTarget from "@/components/AnchorTarget";
 const EarlyReleaseUnits: NextPage = () => {
   const exemplarUnitsFixture = earlyReleaseExemplarUnitsFixture();
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS}>
+    <AppLayout seoProps={DEFAULT_SEO_PROPS}>
       <EarlyReleaseUnitsHeader />
       <MaxWidth>
         <Flex $mb={[24, 92]} $flexDirection={"column"}>
@@ -32,8 +32,8 @@ const EarlyReleaseUnits: NextPage = () => {
           </Heading>
           <Grid $rg={32} $cg={32}>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Fully sequenced
                 </Heading>
@@ -44,8 +44,8 @@ const EarlyReleaseUnits: NextPage = () => {
               </Card>
             </GridArea>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Free to access
                 </Heading>
@@ -56,8 +56,8 @@ const EarlyReleaseUnits: NextPage = () => {
               </Card>
             </GridArea>
             <GridArea $mh={[16, 0]} $colSpan={[12, 4]}>
-              <Card $background={"teachersPastelYellow"}>
-                <BrushBorders color={"teachersPastelYellow"} />
+              <Card $background={"lemon50"}>
+                <BrushBorders color={"lemon50"} />
                 <Heading $mb={32} $font={["heading-6", "heading-5"]} tag={"h3"}>
                   Adaptable
                 </Heading>

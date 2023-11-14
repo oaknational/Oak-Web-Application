@@ -1,32 +1,33 @@
 import { FC } from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 
-import CMSClient from "../node-lib/cms";
-import { PlanningPage, PortableTextJSON } from "../common-lib/cms-types";
-import Card, { CardProps } from "../components/Card";
-import Flex from "../components/Flex";
-import Grid, { GridArea } from "../components/Grid";
-import Layout from "../components/Layout";
-import Typography, { Heading } from "../components/Typography";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
-import Icon, { IconName } from "../components/Icon";
-import LessonElementLinks from "../components/LessonElementLinks";
-import { OakColorName } from "../styles/theme";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
-import Circle from "../components/Circle";
-import Box from "../components/Box";
-import CardTitle from "../components/Card/CardComponents/CardTitle";
-import AnchorTarget from "../components/AnchorTarget";
-import Cover from "../components/Cover";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import CMSVideo from "../components/CMSVideo";
-import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
-import Illustration from "../components/Illustration";
-import { IllustrationSlug } from "../image-data";
-import { getSizes } from "../components/CMSImage/getSizes";
-import getPageProps from "../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
+import Card, { CardProps } from "@/components/Card";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import Layout from "@/components/Layout";
+import Typography, { Heading } from "@/components/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Icon, { IconName } from "@/components/Icon";
+import LessonElementLinks from "@/components/LessonElementLinks";
+import { OakColorName } from "@/styles/theme";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import SummaryCard from "@/components/Card/SummaryCard";
+import Circle from "@/components/Circle";
+import Box from "@/components/Box";
+import CardTitle from "@/components/Card/CardComponents/CardTitle";
+import AnchorTarget from "@/components/AnchorTarget";
+import Cover from "@/components/Cover";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import CMSVideo from "@/components/CMSVideo";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Illustration from "@/components/Illustration";
+import { IllustrationSlug } from "@/image-data";
+import { getSizes } from "@/components/CMSImage/getSizes";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -163,6 +164,17 @@ const LessonElementsCard: FC<CardProps> = (props) => (
   />
 );
 
+const generateCtaProps = (cta: CTA) => {
+  return {
+    page: null,
+    href: getLinkHref(cta),
+    label: cta.label,
+    htmlAnchorProps: {
+      target: "_self",
+    },
+  };
+};
+
 const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
@@ -206,13 +218,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   key={`plan-a-lessing--element-card--${id}`}
                   $colSpan={[12, 6]}
                 >
-                  <LessonElementsCard $background={"twilight"}>
-                    <BrushBorders hideOnMobileH color={"twilight"} />
+                  <LessonElementsCard $background={"pink50"}>
+                    <BrushBorders hideOnMobileH color={"pink50"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
                       $mb={40}
-                      $background={"teachersYellow"}
+                      $background={"lemon"}
                       $alignSelf={"center"}
                     >
                       <Icon size={80} name={icon} />
@@ -221,7 +233,10 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                       {title}
                     </CardTitle>
                     <Typography $font="body-1">
-                      <PortableText value={portableText} />
+                      <PortableTextWithDefaults
+                        value={portableText}
+                        withoutDefaultComponents
+                      />
                     </Typography>
                   </LessonElementsCard>
                 </GridArea>
@@ -233,14 +248,14 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $width={["100%", "auto"]}
                 $minWidth={"50%"}
                 $height={[360, 240]}
-                $background="pastelTurquoise"
+                $background="aqua"
                 $justifyContent={"flex-end"}
                 $alignItems={["center", "center", "flex-end"]}
                 $pr={[0, 24]}
                 $pb={24}
                 $pa={0}
               >
-                <BrushBorders hideOnMobileH color={"pastelTurquoise"} />
+                <BrushBorders hideOnMobileH color={"aqua"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -259,11 +274,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 <ButtonAsLink
                   icon="search"
                   $iconPosition="trailing"
-                  label={pageData.lessonElementsCTA.label}
-                  page="teacher-hub"
-                  htmlAnchorProps={{
-                    target: "_blank",
-                  }}
+                  {...generateCtaProps(pageData.lessonElementsCTA)}
                 />
               </Card>
             </GridArea>
@@ -322,7 +333,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                           {title}
                         </Heading>
                         <Typography $font={"body-1"}>
-                          <PortableText value={portableText} />
+                          <PortableTextWithDefaults value={portableText} />
                         </Typography>
                         {withSearchCTA && (
                           <Flex $justifyContent={["center", "flex-start"]}>
@@ -330,11 +341,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                               icon="search"
                               $iconPosition="trailing"
                               $mt={24}
-                              label={"Search our lessons"}
-                              page="teacher-hub"
-                              htmlAnchorProps={{
-                                target: "_blank",
-                              }}
+                              {...generateCtaProps(pageData.stepsCTA)}
                             />
                           </Flex>
                         )}
@@ -357,9 +364,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $flexDirection={["column", "column", "row"]}
             $mt={[56, 80]}
             $mb={32}
-            $background="teachersPastelYellow"
+            $background="lemon50"
           >
-            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+            <BrushBorders hideOnMobileH color={"lemon50"} />
             <Box $minWidth={["50%"]}>
               <Box $display={["block", "block", "none"]}>
                 <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
@@ -391,7 +398,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 </CardTitle>
               </Box>
               <Typography $font={["body-2", "body-1"]}>
-                <PortableText
+                <PortableTextWithDefaults
                   value={pageData.learnMoreBlock1.bodyPortableText}
                 />
               </Typography>
@@ -401,11 +408,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $pv={[24, 24]}
             $ph={[0, 24, 24]}
             $flexDirection={["column", "column", "row"]}
-            $background={"teachersPastelYellow"}
+            $background={"lemon50"}
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
-            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+            <BrushBorders hideOnMobileH color={"lemon50"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}
@@ -416,7 +423,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 {pageData.learnMoreBlock2.title}
               </CardTitle>
               <Typography $font={["body-2", "body-1"]}>
-                <PortableText
+                <PortableTextWithDefaults
                   value={pageData.learnMoreBlock2.bodyPortableText}
                 />
               </Typography>
@@ -426,7 +433,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={["100%", "100%", "auto"]}
               $minWidth={"50%"}
               $height={[360, 240]}
-              $background="pastelTurquoise"
+              $background="aqua"
               $justifyContent={"flex-end"}
               $alignItems={["center", "center", "flex-end"]}
               $pr={[0, 24]}
@@ -452,11 +459,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               <ButtonAsLink
                 icon="search"
                 $iconPosition="trailing"
-                label={pageData.lessonElementsCTA.label}
-                page="teacher-hub"
-                htmlAnchorProps={{
-                  target: "_blank",
-                }}
+                {...generateCtaProps(pageData.lessonElementsCTA)}
               />
             </Card>
           </Card>

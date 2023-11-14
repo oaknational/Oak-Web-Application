@@ -12,7 +12,7 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
       },
       {
         linkTo: { page: "early-release-units-page" },
-        text: "Early release units",
+        text: "Early-release units",
         new: true,
         external: false,
       },

@@ -1,5 +1,5 @@
 query unitListing($programmeSlug: String!) {
-  programme: published_mv_unit_listing_page_13(
+  programme: published_mv_unit_listing_page_3_0_0(
     where: { programmeSlug: { _eq: $programmeSlug } }
   ) {
     programmeSlug

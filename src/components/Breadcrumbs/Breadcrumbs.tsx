@@ -70,7 +70,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                   <Icon
                     name="chevron-right"
                     size={20}
-                    $color={"oakGrey4"}
+                    $color={"grey60"}
                     $mr={12}
                   />
                 )}

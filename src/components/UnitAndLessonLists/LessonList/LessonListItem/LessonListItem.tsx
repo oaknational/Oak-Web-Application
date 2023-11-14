@@ -19,6 +19,8 @@ import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIconDesktop from "../../ListItemIconDesktop";
 import ListItemIconMobile from "../../ListItemIconMobile";
 
+import { OakColorName } from "@/styles/theme";
+
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
   subjectSlug: string;
@@ -149,7 +151,8 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
 
   const resources = getAvailableResourceList(props);
 
-  const background = expired ? "oakGrey2" : "pupilsPink";
+  const background = expired ? "grey30" : "pink";
+  const backgroundOnHover: OakColorName = "pink60";
 
   return (
     <ListItemCard
@@ -158,26 +161,23 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
       index={index}
       fromSearchPage={fromSearchPage}
       isHovered={isHovered}
-      background={expired ? "oakGrey1" : "white"}
+      background={expired ? "grey20" : "white"}
       containerProps={containerProps}
       expired={expired}
     >
       {!fromSearchPage && (
         <ListItemIndexDesktop
           index={index + 1}
-          background={background}
+          background={isHovered && !expired ? backgroundOnHover : background}
           expired={expired}
         />
       )}
 
       <Flex
-        $ml={[0, 24]}
-        $mr={[0, 24]}
         $flexDirection={"column"}
         $width={"100%"}
         $gap={[4, 12]}
-        $pt={[0, 20]}
-        $pb={20}
+        $pa={[0, 24]}
       >
         {fromSearchPage ? (
           <Flex $pl={[16, 0]} $pt={[20, 0]} $alignItems={"center"}>
@@ -193,9 +193,9 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
             />
           </Flex>
         ) : (
-          <Flex $gap={[10]} $alignItems={"center"}>
+          <Flex $alignItems={"flex-start"}>
             <ListItemIndexMobile background={background} index={index + 1} />
-            <Flex $flexDirection={"column"} $height={"100%"}>
+            <Flex $flexDirection={"column"} $height={"100%"} $pa={[16, 0]}>
               <ListItemHeader
                 {...props}
                 primaryTargetProps={primaryTargetProps}
@@ -215,7 +215,14 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
           </Flex>
         )}
 
-        <Flex $flexDirection={"column"} $gap={[12]} $ml={[16, 0]}>
+        <Flex
+          $flexDirection={"column"}
+          $gap={[12]}
+          $pl={[16, 0]}
+          $pr={[16, 0]}
+          $pt={[12, 0]}
+          $pb={[12, 0]}
+        >
           <Flex $mt={[8, 0]} $mr={[16, 0]}>
             {expired ? (
               <P $mt={8} $font={["body-3", "body-2"]}>
@@ -229,10 +236,10 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
                       __html: description,
                     }}
                     $font={["body-3", "body-2"]}
-                    $color={"oakGrey5"}
+                    $color={"grey70"}
                   />
                 ) : (
-                  <P $font={["body-3", "body-2"]} $color={"oakGrey5"}>
+                  <P $font={["body-3", "body-2"]} $color={"grey70"}>
                     {pupilLessonOutcome}
                   </P>
                 )}
@@ -250,8 +257,7 @@ const LessonListItem: FC<LessonListItemProps> = (props) => {
         <>
           <ListItemIconDesktop
             title={lessonTitle}
-            background={background}
-            isHovered={isHovered}
+            background={isHovered && !expired ? backgroundOnHover : background}
             subjectSlug={subjectSlug}
           />
           <ListItemIconMobile

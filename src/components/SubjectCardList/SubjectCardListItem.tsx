@@ -34,7 +34,7 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
   const { subjectSlug, subjectTitle, programmeSlug, unitCount, lessonCount } =
     subject[0];
 
-  const backgroundColor = isAvailable ? "teachersPastelYellow" : "white";
+  const backgroundColor = isAvailable ? "lemon50" : "white";
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -109,11 +109,11 @@ const SubjectCardListItem: FC<SubjectCardListItemProps> = ({
             </Heading>
             <Typography
               $font={"body-2"}
-              $color={"oakGrey4"}
+              $color={"grey60"}
             >{`${unitCount} units`}</Typography>
             <Typography
               $font={"body-2"}
-              $color={"oakGrey4"}
+              $color={"grey60"}
             >{`${lessonCount} lessons`}</Typography>
           </>
         ) : (

@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = () => (
-  <Card $background={"teachersYellow"}>
+  <Card $background={"lemon"}>
     <CardTitle tag="h2">Did you know about our lessons?</CardTitle>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof Component> = () => (
     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    <Component color={"teachersYellow"} />
+    <Component color={"lemon"} />
   </Card>
 );
 

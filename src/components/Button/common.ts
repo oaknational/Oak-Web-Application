@@ -229,7 +229,7 @@ export const getButtonBackground = (
   ) {
     return "transparent";
   } else if (variant === "brush" && disabled) {
-    return getColorByName("grey6");
+    return getColorByName("grey50");
   } else {
     return getColorByName(background);
   }

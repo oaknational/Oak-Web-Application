@@ -66,6 +66,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         hasCurriculumDownload={isSlugLegacy(subjectSlug)}
         {...props}
         subjectSlug={removeLegacySlugSuffix(subjectSlug)}
+        isNew={!isSlugLegacy(subjectSlug)}
       />
       <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
         <SubjectTierListing {...props} />

@@ -1,6 +1,6 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
-import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
+import { PreselectedDownloadType } from "../../components/DownloadAndShareComponents/downloads.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
@@ -158,6 +158,7 @@ type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
+type LabsLinkProps = { page: "labs" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
@@ -180,6 +181,7 @@ type CurriculumDownloadsLinkProps = {
 };
 
 export type OakLinkProps =
+  | LabsLinkProps
   | SubjectListingLinkProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -221,6 +223,7 @@ const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
   "[external] Help",
   "[external] Classroom",
+  "[external] Labs",
   "[external] Our teachers",
   "[external] Teacher hub",
   "[external] Our curriculum",
@@ -228,6 +231,7 @@ const EXTERNAL_PAGE_NAMES = [
 type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
 
 type OakPages = {
+  labs: OakPageConfig<LabsLinkProps>;
   classroom: OakPageConfig<ClassroomLinkProps>;
   "teacher-hub": OakPageConfig<TeacherHubLinkProps>;
   help: OakPageConfig<HelpLinkProps>;
@@ -441,28 +445,10 @@ export const OAK_PAGES: {
     pageType: "help",
   }),
   home: createOakPageConfig({
+    pathPattern: "/",
     analyticsPageName: "Homepage",
-    configType: "internal-custom-resolve",
+    configType: "internal",
     pageType: "home",
-    matchHref: (href: string) => {
-      switch (href) {
-        case "/":
-          return {
-            path: "/",
-            index: 0,
-            params: {},
-          };
-        case "/teachers":
-          return {
-            path: "/teachers",
-            index: 0,
-            params: {},
-          };
-        default:
-          return false;
-      }
-    },
-    resolveHref: () => "/",
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -481,6 +467,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Classroom",
     configType: "external",
     pageType: "classroom",
+  }),
+  labs: createOakPageConfig({
+    url: "https://labs.thenational.academy",
+    analyticsPageName: "[external] Labs",
+    configType: "external",
+    pageType: "labs",
   }),
   "support-your-team": createOakPageConfig({
     pathPattern: "/support-your-team",

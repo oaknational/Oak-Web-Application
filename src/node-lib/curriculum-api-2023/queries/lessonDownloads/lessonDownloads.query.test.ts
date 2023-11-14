@@ -2,12 +2,68 @@ import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
 
+import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+
+const downloads = [
+  {
+    programmeSlug: "programme-slug-0",
+    unitSlug: "unit-slug",
+    lessonSlug: "lesson-slug",
+    lessonTitle: "lesson-title",
+    unitTitle: "unit-title",
+    subjectSlug: "subject-slug",
+    subjectTitle: "subject-title",
+    keyStageSlug: "key-stage-slug",
+    keyStageTitle: "key-stage-title",
+    downloads: [],
+  },
+  {
+    programmeSlug: "programme-slug-1",
+    lessonSlug: "lesson-slug",
+    lessonTitle: "lesson-title",
+    unitSlug: "unit-slug",
+    unitTitle: "unit-title",
+    subjectSlug: "subject-slug",
+    subjectTitle: "subject-title",
+    keyStageSlug: "key-stage-slug",
+    keyStageTitle: "key-stage-title",
+    downloads: [],
+  },
+];
+
 describe("lessonDownloads()", () => {
+  test("throws a not found error if no download is found", async () => {
+    await expect(async () => {
+      await lessonDownloads({
+        ...sdk,
+        lessonDownloads: jest.fn(() =>
+          Promise.resolve({
+            downloads: [],
+            unit: [
+              {
+                __typename: "published_mv_lesson_listing_3_0_0",
+                lessons: lessonListingFixture().lessons,
+              },
+            ],
+          }),
+        ),
+      })({
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        lessonSlug: "lesson-slug",
+      });
+    }).rejects.toThrow(`Resource not found`);
+  });
   test("throws a not found error if no unit is found", async () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
-        lessonDownloads: jest.fn(() => Promise.resolve({ downloads: [] })),
+        lessonDownloads: jest.fn(() =>
+          Promise.resolve({
+            downloads: downloads,
+            unit: [],
+          }),
+        ),
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -20,30 +76,11 @@ describe("lessonDownloads()", () => {
       ...sdk,
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
-          downloads: [
+          downloads: downloads,
+          unit: [
             {
-              programmeSlug: "programme-slug-0",
-              unitSlug: "unit-slug",
-              lessonSlug: "lesson-slug",
-              lessonTitle: "lesson-title",
-              unitTitle: "unit-title",
-              subjectSlug: "subject-slug",
-              subjectTitle: "subject-title",
-              keyStageSlug: "key-stage-slug",
-              keyStageTitle: "key-stage-title",
-              downloads: [],
-            },
-            {
-              programmeSlug: "programme-slug-1",
-              lessonSlug: "lesson-slug",
-              lessonTitle: "lesson-title",
-              unitSlug: "unit-slug",
-              unitTitle: "unit-title",
-              subjectSlug: "subject-slug",
-              subjectTitle: "subject-title",
-              keyStageSlug: "key-stage-slug",
-              keyStageTitle: "key-stage-title",
-              downloads: [],
+              __typename: "published_mv_lesson_listing_3_0_0",
+              lessons: lessonListingFixture().lessons,
             },
           ],
         }),
@@ -72,6 +109,12 @@ describe("lessonDownloads()", () => {
                 keyStageSlug: "key-stage-slug",
                 keyStageTitle: "key-stage-title",
                 downloads: [],
+              },
+            ],
+            unit: [
+              {
+                __typename: "published_mv_lesson_listing_3_0_0",
+                lessons: lessonListingFixture().lessons,
               },
             ],
           }),

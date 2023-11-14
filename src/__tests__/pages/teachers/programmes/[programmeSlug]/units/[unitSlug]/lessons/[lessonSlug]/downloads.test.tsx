@@ -10,7 +10,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
@@ -33,7 +33,7 @@ const getDownloadResourcesExistenceData = {
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 jest.mock(
-  "@/components/DownloadComponents/helpers/getDownloadResourcesExistence",
+  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -41,7 +41,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadComponents/helpers/downloadDebounceSubmit",
+  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
     default: () => {
@@ -51,7 +51,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/DownloadComponents/hooks/useDownloadExistenceCheck",
+  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
@@ -61,41 +61,9 @@ beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
 });
-
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
-  it("should display an error if the download fails", async () => {
-    const { result } = renderHook(() => useLocalStorageForDownloads());
-
-    act(() => {
-      result.current.setSchoolInLocalStorage({
-        schoolName: "Primary School",
-        schoolId: "222-Primary School",
-      });
-      result.current.setEmailInLocalStorage("test@test.com");
-      result.current.setTermsInLocalStorage(true);
-    });
-
-    const { getByText } = render(<LessonDownloadsPage {...props} />);
-
-    await act(async () => {
-      const selectAllButton = getByText("Select all");
-      const downloadButton = getByText("Download .zip");
-      const user = userEvent.setup();
-      await user.click(selectAllButton);
-      await waitForNextTick();
-
-      console.log(downloadButton);
-      await user.click(downloadButton);
-      await waitForNextTick();
-    });
-
-    expect(
-      getByText("There was an error downloading your files. Please try again."),
-    ).toBeInTheDocument();
-  });
-
   it("Renders 'no downloads available' message if there is no downloads", () => {
     render(
       <LessonDownloadsPage
@@ -133,24 +101,26 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       render(<LessonDownloadsPage {...props} />);
 
       expect(screen.getAllByRole("heading", { level: 2 })[0]).toHaveTextContent(
+        "Lesson resources",
+      );
+      expect(screen.getAllByRole("heading", { level: 2 })[1]).toHaveTextContent(
         "Your details",
       );
-      expect(screen.getByTestId("email-heading")).toHaveTextContent(
-        "For regular updates from Oak (optional)",
-      );
+
       expect(
         screen.getByPlaceholderText("Enter email address here"),
       ).toBeInTheDocument();
 
       // Privacy policy link
       const privacyPolicyLink = screen.getByRole("link", {
-        name: "privacy policy",
+        name: "Privacy policy (opens in a new tab)",
       });
       expect(privacyPolicyLink).toBeInTheDocument();
       expect(privacyPolicyLink).toHaveAttribute(
         "href",
         "/legal/privacy-policy",
       );
+      expect(privacyPolicyLink).toHaveAttribute("target", "_blank");
 
       // Terms and conditions checkbox
       expect(
@@ -159,7 +129,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Terms and conditions link
       const tcsLink = screen.getByRole("link", {
-        name: "terms & conditions",
+        name: "Terms & conditions",
       });
       expect(tcsLink).toBeInTheDocument();
       expect(tcsLink).toHaveAttribute("href", "/legal/terms-and-conditions");
@@ -217,37 +187,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("selected resources count", () => {
-    it("should display correct count of selected and all downloadable resources if no resources are selected", () => {
-      const { getByTestId } = render(<LessonDownloadsPage {...props} />);
+    it("should select all resources if user checks 'Select all'", async () => {
+      const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
-    });
-
-    it.skip("should display correct count of selected and all downloadable resources if some resources are selected", async () => {
-      const { getByTestId, getByLabelText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
-
-      const exitQuizQuestions = getByLabelText("Exit quiz questions");
-      const user = userEvent.setup();
-      await user.click(exitQuizQuestions);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("1/2 files selected");
-    });
-
-    it("should select all resources if user clicks 'Select all'", async () => {
-      const { getByTestId, getByText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
-
-      const selectAllButton = getByText("Select all");
-      const user = userEvent.setup();
-      await user.click(selectAllButton);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("2/2 files selected");
+      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      expect(selectAllCheckbox).toBeChecked();
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
       const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
@@ -256,17 +200,12 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       expect(exitQuizAnswers).toBeChecked();
     });
 
-    it("should deselect all resources if user clicks 'Deselect all'", async () => {
-      const { getByTestId, getByText } = render(
-        <LessonDownloadsPage {...props} />,
-      );
+    it("should deselect all resources if user deselects 'Select all'", async () => {
+      const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
-      const deselectAllButton = getByText("Deselect all");
+      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
       const user = userEvent.setup();
-      await user.click(deselectAllButton);
-
-      const selectedResourcesCount = getByTestId("selectedResourcesCount");
-      expect(selectedResourcesCount).toHaveTextContent("0/2 files selected");
+      await user.click(selectAllCheckbox);
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
       const exitQuizAnswers = screen.getByLabelText("Exit quiz answers");
@@ -286,7 +225,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("email: test@test.com")).toBeInTheDocument();
+      expect(getByText("test@test.com")).toBeInTheDocument();
     });
 
     it("displays DetailsCompleted component with school name filled from local storage if available", async () => {
@@ -302,7 +241,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       const { getByText } = render(<LessonDownloadsPage {...props} />);
 
-      expect(getByText("school: Primary School")).toBeInTheDocument();
+      expect(getByText("Primary School")).toBeInTheDocument();
     });
   });
 
@@ -340,7 +279,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         result.current.setTermsInLocalStorage(true);
       });
 
-      const { getByText, getByLabelText, getByDisplayValue } = render(
+      const { getByText, getByTestId, getByDisplayValue } = render(
         <LessonDownloadsPage {...props} />,
       );
 
@@ -350,7 +289,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       await user.click(editButton);
 
       const emailAddress = result.current.emailFromLocalStorage;
-      expect(getByLabelText("Email address")).toBeInTheDocument();
+      expect(getByTestId("rotated-input-label")).toBeInTheDocument();
       const emailValue = getByDisplayValue(emailAddress);
       expect(emailValue).toBeInTheDocument();
       expect(emailAddress).toBe("test@test.com");

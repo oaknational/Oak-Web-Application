@@ -2,8 +2,9 @@ import { FC } from "react";
 import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
+import { formatSchoolName } from "../formatSchoolName";
 
-import { UseSchoolPickerReturnProps } from "./useSchoolPicker";
+import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
 type SchoolPickerProps = Omit<
   UseSchoolPickerReturnProps,
@@ -33,6 +34,7 @@ export type School = {
  * ## Usage
  * Used on downloads page
  */
+
 const SchoolPicker: FC<SchoolPickerProps> = (props) => {
   return (
     <SearchComboBox
@@ -44,11 +46,30 @@ const SchoolPicker: FC<SchoolPickerProps> = (props) => {
       onSelectionChange={(value) => props.setSelectedSchool(value)}
       required={props.required}
     >
-      {(item) => (
-        <Item
-          key={`${item.urn}-${item.name}`}
-        >{`${item.name}, ${item.la}, ${item.postcode}`}</Item>
-      )}
+      {(item) => {
+        const formattedSchool = formatSchoolName(
+          `${item.name}, ${item.la}, ${item.postcode}`,
+          props.schoolPickerInputValue,
+        );
+        const formattedHomeSchool = formatSchoolName(
+          item.name,
+          props.schoolPickerInputValue,
+        );
+        const comboItemKey =
+          item.urn === HOMESCHOOL_URN ? item.urn : `${item.urn}-${item.name}`;
+        const comboItem =
+          item.urn === HOMESCHOOL_URN ? formattedHomeSchool : formattedSchool;
+        const textValue =
+          item.urn === HOMESCHOOL_URN
+            ? item.name
+            : `${item.name}, ${item.la}, ${item.postcode}`;
+
+        return (
+          <Item key={comboItemKey} textValue={String(textValue)}>
+            {comboItem}
+          </Item>
+        );
+      }}
     </SearchComboBox>
   );
 };

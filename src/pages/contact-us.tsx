@@ -3,25 +3,24 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import styled from "styled-components";
 import {
   MissingComponentHandler,
-  PortableText,
   PortableTextComponents,
 } from "@portabletext/react";
 
-import CMSClient from "../node-lib/cms";
-import { ContactPage } from "../common-lib/cms-types";
-import { Heading, P } from "../components/Typography";
-import Layout from "../components/Layout";
-import MaxWidth from "../components/MaxWidth/MaxWidth";
-import Card from "../components/Card";
-import Flex from "../components/Flex";
-import { useNewsletterForm } from "../components/Forms/NewsletterForm";
-import SummaryCard from "../components/Card/SummaryCard";
-import Box from "../components/Box";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import BrushBorders from "../components/SpriteSheet/BrushSvgs/BrushBorders";
-import NewsletterFormWrap from "../components/Forms/NewsletterForm/NewsletterFormWrap";
-import { BasePortableTextProvider } from "../components/PortableText";
-import getPageProps from "../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { ContactPage } from "@/common-lib/cms-types";
+import { Heading, P } from "@/components/Typography";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Card from "@/components/Card";
+import Flex from "@/components/Flex";
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import SummaryCard from "@/components/Card/SummaryCard";
+import Box from "@/components/Box";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type ContactPageProps = {
   pageData: ContactPage;
@@ -72,25 +71,23 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
         <SummaryCard {...pageData} />
         <Card
           $justifyContent={"space-between"}
-          $background={"twilight"}
+          $background={"pink50"}
           $ph={[16, 24]}
           $pv={[24]}
           $mt={[72, 80]}
           $font={["body-2", "body-1"]}
         >
-          <BrushBorders hideOnMobileH color={"twilight"} />
+          <BrushBorders hideOnMobileH color={"pink50"} />
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}
           >
             <Box $maxWidth={720}>
-              <BasePortableTextProvider>
-                <PortableText
-                  components={portableTextComponents}
-                  value={pageData.bodyPortableText}
-                  onMissingComponent={logMissingPortableTextComponents}
-                />
-              </BasePortableTextProvider>
+              <PortableTextWithDefaults
+                components={portableTextComponents}
+                value={pageData.bodyPortableText}
+                onMissingComponent={logMissingPortableTextComponents}
+              />
             </Box>
             <NewsletterFormWrap
               {...newsletterFormProps}

@@ -559,6 +559,8 @@ export type BlogWebinarCategorySorting = {
 export type BooleanFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is not equal to the given input. */
   neq?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -890,6 +892,7 @@ export type CurriculumInfoPageOverview = Document & {
   subjectPrinciples?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   video?: Maybe<Video>;
   videoAuthor?: Maybe<Scalars['String']['output']>;
+  videoExplainer?: Maybe<Scalars['String']['output']>;
 };
 
 export type CurriculumInfoPageOverviewFilter = {
@@ -907,6 +910,7 @@ export type CurriculumInfoPageOverviewFilter = {
   subject?: InputMaybe<StringFilter>;
   video?: InputMaybe<VideoFilter>;
   videoAuthor?: InputMaybe<StringFilter>;
+  videoExplainer?: InputMaybe<StringFilter>;
 };
 
 export type CurriculumInfoPageOverviewSorting = {
@@ -921,6 +925,7 @@ export type CurriculumInfoPageOverviewSorting = {
   subject?: InputMaybe<SortOrder>;
   video?: InputMaybe<VideoSorting>;
   videoAuthor?: InputMaybe<SortOrder>;
+  videoExplainer?: InputMaybe<SortOrder>;
 };
 
 export type CurriculumPartner = Document & {
@@ -974,6 +979,8 @@ export type DateFilter = {
   gt?: InputMaybe<Scalars['Date']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Date']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Date']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -989,6 +996,8 @@ export type DatetimeFilter = {
   gt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -1073,6 +1082,8 @@ export type FloatFilter = {
   gt?: InputMaybe<Scalars['Float']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Float']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Float']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -1353,6 +1364,8 @@ export type IntFilter = {
   gt?: InputMaybe<Scalars['Int']['input']>;
   /** Checks if the value is greater than or equal to the given input. */
   gte?: InputMaybe<Scalars['Int']['input']>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value is lesser than the given input. */
   lt?: InputMaybe<Scalars['Int']['input']>;
   /** Checks if the value is lesser than or equal to the given input. */
@@ -2910,6 +2923,8 @@ export type StringFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['String']['input']>;
   in?: InputMaybe<Array<Scalars['String']['input']>>;
+  /** Checks if the value is defined. */
+  is_defined?: InputMaybe<Scalars['Boolean']['input']>;
   /** Checks if the value matches the given word/words. */
   matches?: InputMaybe<Scalars['String']['input']>;
   /** Checks if the value is not equal to the given input. */
@@ -3527,7 +3542,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -4422,6 +4437,7 @@ export const CurriculumOverviewDocument = gql`
       ...Video
     }
     videoAuthor
+    videoExplainer
   }
 }
     ${ImageFragmentDoc}

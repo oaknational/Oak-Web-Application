@@ -2,15 +2,16 @@ import { FC, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 
-import { OakColorName } from "../../styles/theme";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import FocusUnderline from "../OakLink/FocusUnderline";
-import FieldError from "../FormFields/FieldError";
-
 import VisualCheckbox from "./VisualCheckbox";
+
+import { OakColorName } from "@/styles/theme";
+import spacing, { SpacingProps } from "@/styles/utils/spacing";
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import getFontFamily from "@/styles/themeHelpers/getFontFamily";
+import FocusUnderline from "@/components/OakLink/FocusUnderline";
+import FieldError from "@/components/FormFields/FieldError";
+import { ZIndex } from "@/styles/utils/zIndex";
 
 export type CheckboxConfig = {
   default: {
@@ -21,7 +22,7 @@ export type CheckboxConfig = {
   };
 };
 
-export type CheckboxVariant = "cardCheckbox" | "terms";
+export type CheckboxVariant = "withoutLabel" | "withLabel";
 
 export type CheckboxProps = {
   labelText?: string;
@@ -38,6 +39,9 @@ export type CheckboxProps = {
   inputRef?: RefCallBack;
   onBlur?: () => void;
   hasError?: boolean;
+  labelFontWeight?: 400 | 600;
+  slim?: boolean;
+  zIndex?: ZIndex;
 } & SpacingProps;
 
 type CheckboxLabelProps = {
@@ -59,7 +63,7 @@ const checkboxFocusStyles = css`
       height: 34px;
       left: -5px;
       right: 0;
-      border: solid 3px ${getColorByName("teachersYellow")};
+      border: solid 3px ${getColorByName("lemon")};
       border-radius: 3px;
     }
   }
@@ -85,7 +89,9 @@ const checkboxFocusStyles = css`
 
   input[type="checkbox"]:focus ~ div,
   input[type="checkbox"]:active ~ div {
-    border: solid 4px ${getColorByName("teachersYellow")};
+    border: solid 4px ${getColorByName("lemon")};
+    box-shadow: 0 0 0 3px ${getColorByName("grey50")};
+    border-radius: 4px;
   }
 `;
 
@@ -108,7 +114,7 @@ const checkboxHoverStyles = css`
 const CheckboxLabel = styled.label<CheckboxLabelProps>`
   position: relative;
   display: ${(props) =>
-    props.variant !== "cardCheckbox" ? "flex" : "initial"};
+    props.variant !== "withoutLabel" ? "flex" : "initial"};
   align-items: center;
   margin-bottom: 16px;
   cursor: ${(props) => !props.disabled && "pointer"};
@@ -138,10 +144,10 @@ const ScreenReaderCheckbox = styled.input.attrs({ type: "checkbox" })<{
   opacity: 0;
 `;
 
-const CheckboxLabelText = styled.span`
+const CheckboxLabelText = styled.span<{ fontWeight: 400 | 600 }>`
   margin-left: 8px;
   margin-right: 16px;
-  font-weight: 400;
+  font-weight: ${(props) => props.fontWeight};
 `;
 
 const Checkbox: FC<CheckboxProps> = (props) => {
@@ -160,6 +166,9 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     variant,
     inputRef,
     onBlur,
+    slim,
+    zIndex,
+    labelFontWeight,
     ...spacingProps
   } = props;
 
@@ -194,19 +203,23 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           checked={checked}
           variant={variant}
           hasError={hasError}
+          slim={slim}
+          zIndex={zIndex}
         />
         {/* card checkbox */}
-        {!labelText && variant === "cardCheckbox" && children}
+        {!labelText && variant === "withoutLabel" && children}
         {/* basic label checkbox */}
 
-        {labelText && variant !== "cardCheckbox" && (
+        {labelText && variant !== "withoutLabel" && (
           <>
-            <CheckboxLabelText>{labelText}</CheckboxLabelText>{" "}
-            <FocusUnderline $color={"teachersYellow"} />
+            <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
+              {labelText}
+            </CheckboxLabelText>{" "}
+            <FocusUnderline $color={"lemon"} />
           </>
         )}
       </CheckboxLabel>
-      {variant !== "terms" && (
+      {variant !== "withLabel" && (
         <FieldError id={errorId} withoutMarginBottom>
           {error}
         </FieldError>

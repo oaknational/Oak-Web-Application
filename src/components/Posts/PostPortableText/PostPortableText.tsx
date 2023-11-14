@@ -1,12 +1,8 @@
 import {
   MissingComponentHandler,
-  PortableText,
   PortableTextComponents,
 } from "@portabletext/react";
 import { FC } from "react";
-
-import { PortableTextJSON } from "../../../common-lib/cms-types";
-import { BasePortableTextProvider } from "../../PortableText";
 
 import PostBlockCallout from "./PostBlockCallout";
 import PostCallout from "./PostCallout";
@@ -23,6 +19,9 @@ import {
   PostFootnoteAnnotation,
   PostFootnotesSection,
 } from "./PostFootnotes";
+
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,
@@ -72,14 +71,14 @@ const PostPortableText: FC<PostPortableTextProps> = (props) => {
   const portableTextComponents = postPortableTextComponents({ footnotes });
 
   return (
-    <BasePortableTextProvider>
-      <PortableText
+    <>
+      <PortableTextWithDefaults
         components={portableTextComponents}
         value={portableText}
         onMissingComponent={logMissingPortableTextComponents}
       />
       <PostFootnotesSection footnotes={footnotes} />
-    </BasePortableTextProvider>
+    </>
   );
 };
 

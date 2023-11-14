@@ -34,5 +34,5 @@ const Template: ComponentStory<typeof Component> = (args) => (
 
 export const Typography = Template.bind({});
 Typography.args = {
-  color: "grey9",
+  color: "grey70",
 };

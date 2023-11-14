@@ -3,7 +3,7 @@ import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/Box/Box";
 import Flex from "@/components/Flex/Flex";
-import P, { Heading } from "@/components/Typography";
+import P from "@/components/Typography";
 import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
@@ -18,6 +18,10 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
+import Heading from "@/components/Typography/Heading";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
@@ -57,6 +61,8 @@ interface YearSelection {
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const yearData: {
     [key: string]: {
@@ -66,6 +72,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
       tiers: Tier[];
     };
   } = {};
+
   const [displayModal, setDisplayModal] = useState(false);
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
@@ -89,7 +96,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
     // Populate threads object
     unit.threads.forEach((thread) => {
-      if (threadOptions.every((to) => to.slug !== thread.slug)) {
+      if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
         threadOptions.push(thread);
       }
     });
@@ -249,8 +256,25 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return selectedThread?.slug === thread.slug;
   }
 
+  function trackSelectThread(thread: Thread): void {
+    if (data.units[0]) {
+      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
+      track.curriculumThreadHighlighted({
+        subjectTitle: subject,
+        subjectSlug: subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phase_slug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
   function handleSelectThread(slug: string): void {
     const thread = threadOptions.find((to) => to.slug === slug) ?? null;
+    if (thread) {
+      trackSelectThread(thread);
+    }
     setSelectedThread(thread);
   }
 
@@ -269,14 +293,30 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return count;
   }
 
+  function trackSelectYear(year: string): void {
+    if (data.units[0]) {
+      track.yearGroupSelected({
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle: data.units[0].subject,
+        subjectSlug: data.units[0].subject_slug,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
   function handleSelectYear(year: string): void {
+    trackSelectYear(year);
     setSelectedYear(year);
   }
 
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-        <Card $background={"lemon30"} $pa={0} $pl={96} $mv={[16, 48]}>
+        <Heading tag="h2" $mb={24} $font={["heading-5", "heading-4"]}>
+          Unit sequence
+        </Heading>
+        <Card $background={"lemon30"} $pa={0} $pl={96} $mb={[16, 48]}>
           <Box
             $background={"lemon"}
             $height={"100%"}
@@ -296,7 +336,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
           </Box>
           <Box $pa={20}>
             <Heading
-              tag={"h2"}
+              tag="h3"
               $font={"heading-7"}
               $mb={12}
               data-testid="units-heading"
@@ -312,7 +352,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         <Grid>
           <GridArea $colSpan={[12, 3]}>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
+              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
                 Highlight a thread
               </Heading>
               <P $mb={12}>
@@ -340,7 +380,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     <Box
                       $ba={1}
                       $background={isSelected ? "black" : "white"}
-                      $borderColor={isSelected ? "black" : "grey4"}
+                      $borderColor={isSelected ? "black" : "grey40"}
                       $borderRadius={4}
                       $color={isSelected ? "white" : "black"}
                       $font={isSelected ? "heading-light-7" : "body-2"}
@@ -372,8 +412,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
               </RadioGroup>
             </Box>
             <Box $mr={16} $mb={32}>
-              <Heading tag={"h3"} $font={"heading-7"} $mb={12}>
-                Year Group
+              <Heading tag={"h4"} $font={"heading-7"} $mb={12}>
+                Year group
               </Heading>
               <RadioGroup
                 aria-label="Select a year group"
@@ -420,8 +460,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                     $borderRadius={4}
                   >
                     <Heading
-                      tag="h2"
-                      $font={"heading-4"}
+                      tag="h3"
+                      $font={["heading-6", "heading-5"]}
                       $mb={32}
                       data-testid="year-heading"
                     >
@@ -522,7 +562,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                                   {index + 1}
                                 </OutlineHeading>
                                 <Heading
-                                  tag={"h3"}
+                                  tag={"h4"}
                                   $font={"heading-7"}
                                   $mb={16}
                                 >
@@ -586,6 +626,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                           displayModal={displayModal}
                           setUnitOptionsAvailable={setUnitOptionsAvailable}
                           unitOptionsAvailable={unitOptionsAvailable}
+                          isHighlighted={
+                            unitData ? isHighlightedUnit(unitData) : false
+                          }
                         />
                       </Sidebar>
                     </Flex>

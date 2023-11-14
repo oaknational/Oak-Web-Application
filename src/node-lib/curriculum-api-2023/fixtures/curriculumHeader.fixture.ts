@@ -4,10 +4,12 @@ const curriculumHeaderFixture = (
   partial?: Partial<CurriculumHeaderData>,
 ): CurriculumHeaderData => {
   return {
-    subject: "Maths",
-    subjectSlug: "maths",
+    subject: "English",
+    subjectSlug: "english",
     phase: "Secondary",
     phaseSlug: "secondary",
+    examboard: "AQA",
+    examboardSlug: "aqa",
     ...partial,
   };
 };

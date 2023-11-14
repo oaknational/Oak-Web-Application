@@ -1,21 +1,26 @@
 import CurriculumHeader from "./CurriculumHeader";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
-      curriculumSelectionSlugs: parseSubjectPhaseSlug("maths-secondary"),
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
       ...overrides,
     };
 
-    return renderWithTheme(<CurriculumHeader {...defaultProps} />);
+    return render(<CurriculumHeader {...defaultProps} />);
   };
 
   test("user can see the breadcrumbs", async () => {
@@ -34,11 +39,37 @@ describe("Component - Curriculum Header", () => {
 
   test("user can see the page title", async () => {
     const { findByRole } = renderComponent();
-    const pageTitle = `${curriculumHeaderFixture().phase} ${
-      curriculumHeaderFixture().subject
-    }`;
+    let keyStages: string;
+    if (curriculumHeaderFixture().phase === "primary") {
+      keyStages = "KS1 & KS2";
+    } else if (curriculumHeaderFixture().phase === "secondary") {
+      keyStages = "KS3 & KS4";
+    } else {
+      keyStages = "";
+    }
+
     expect(await findByRole("heading", { level: 1 })).toHaveTextContent(
-      pageTitle,
+      `${keyStages} ${curriculumHeaderFixture().subject}`,
+    );
+  });
+
+  test("should return correct page title for primary phase subject", () => {
+    const { getByTestId } = renderComponent({
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
+    });
+
+    expect(getByTestId("curriculum-heading")).toHaveTextContent(
+      "KS1 & KS2 English",
+    );
+  });
+
+  test("should return correct page title for secondary phase subject", () => {
+    const { getByTestId } = renderComponent({
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary"),
+    });
+
+    expect(getByTestId("curriculum-heading")).toHaveTextContent(
+      "KS3 & KS4 English",
     );
   });
 
@@ -46,5 +77,11 @@ describe("Component - Curriculum Header", () => {
     const { findByTestId } = renderComponent();
     const tabularNav = await findByTestId("tabularNav");
     expect(tabularNav).toBeInTheDocument();
+  });
+
+  test("keyStage metadata", () => {
+    const { getByTestId } = renderComponent();
+    const examboardMetadata = getByTestId("examboard-metadata");
+    expect(examboardMetadata).toHaveTextContent("AQA (KS4)");
   });
 });
