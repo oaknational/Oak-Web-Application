@@ -26,8 +26,8 @@ const PreAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
   <P $font="body-3" {...props}>
-    This content is made available by Oak and its partners and licensed under
-    Oak’s{" "}
+    This content is made available by Oak National Academy Limited and its
+    partners and licensed under Oak’s{" "}
     <OakLink
       page={"legal"}
       legalSlug="terms-and-conditions"
@@ -41,8 +41,8 @@ const PreAlbCopyright = (
     >
       terms &amp; conditions{" "}
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>
-    , except where otherwise stated.
+    </OakLink>{" "}
+    (Collection 1), except where otherwise stated.
   </P>
 );
 
@@ -80,10 +80,10 @@ const PostAlbCopyright = (
         }`,
       }}
     >
-      Oak's terms &amp; conditions{" "}
+      Oak's terms & conditions
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OakLink>
-    .
+    </OakLink>{" "}
+    (Collection 2).
   </P>
 );
 

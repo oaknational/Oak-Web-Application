@@ -14,7 +14,7 @@ describe("CopyrightNotice", () => {
     );
 
     const preAlbCopyright = screen.getByText(
-      "This content is made available by Oak and its partners",
+      "This content is made available by Oak National Academy Limited and its partners",
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();

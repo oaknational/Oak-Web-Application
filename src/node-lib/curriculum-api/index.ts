@@ -244,6 +244,7 @@ export type SubjectListingData = z.infer<typeof subjectListingData>;
 export type UnitListingData = z.infer<typeof unitListingData>;
 export type TierListingData = z.infer<typeof tierListingData>;
 export type UnitData = z.infer<typeof unitData>;
+export type LessonShareListData = z.infer<typeof lessonShareListSchema>;
 
 const sdk = getSdk(graphqlClient);
 

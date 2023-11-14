@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { useForm } from "react-hook-form";
+import { Control, useForm } from "react-hook-form";
+
+import { ResourceFormProps } from "../downloadsAndShare.types";
 
 import Component, { ShareCardGroupProps } from "./ShareCardGroup";
 
@@ -29,7 +31,11 @@ const Wrapper = (args: ShareCardGroupProps) => {
     mode: "onBlur",
   });
   return (
-    <Component {...args} control={control} shareLink="https://example.com" />
+    <Component
+      {...args}
+      control={control as unknown as Control<ResourceFormProps>}
+      shareLink="https://example.com"
+    />
   );
 };
 

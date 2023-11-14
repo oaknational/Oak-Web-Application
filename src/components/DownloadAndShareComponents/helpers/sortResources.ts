@@ -1,16 +1,9 @@
-import { DownloadResourceType } from "../downloads.types";
+import { ResourceType, Resources } from "../downloadsAndShare.types";
 
 import {
   LessonDownloadsData,
   LessonShareData,
-  LessonShareSchema,
 } from "@/node-lib/curriculum-api";
-
-type Resources =
-  | LessonDownloadsData["downloads"]
-  | LessonShareData["shareableResources"];
-
-type ResourceType = LessonShareSchema["type"] | DownloadResourceType;
 
 export const sortDownloadResources = (
   resources: LessonDownloadsData["downloads"],

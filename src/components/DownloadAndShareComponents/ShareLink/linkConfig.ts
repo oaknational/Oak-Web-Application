@@ -3,7 +3,7 @@ import { SharingMetadata } from "./getSharingMetadata";
 import { IconName } from "@/components/Icon";
 
 export type ShareLinkConfig = {
-  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy Link";
+  name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   icon: IconName;
@@ -15,7 +15,7 @@ export const shareLinkConfig: Record<
   ShareLinkConfig
 > = {
   copy: {
-    name: "Copy Link",
+    name: "Copy link",
     medium: "copy-link",
     icon: "copy",
     url: ({ link }) => {
