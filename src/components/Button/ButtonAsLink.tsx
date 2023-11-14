@@ -18,7 +18,6 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
     disabled === true &&
     `
    pointer-events: none;
-   color: #808080;
   `}
 `;
 export type ButtonAsLinkProps = CommonButtonProps &
