@@ -210,13 +210,13 @@ const UnitModal: FC<UnitModalProps> = ({
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
                                     previousUnitDescription:
-                                      unitData.connection_prior_unit_description,
+                                      optionalUnit.connection_prior_unit_description,
                                     futureUnitDescription:
-                                      unitData.connection_future_unit_description,
+                                      optionalUnit.connection_future_unit_description,
                                     previousUnitTitle:
-                                      unitData.connection_prior_unit_title,
+                                      optionalUnit.connection_prior_unit_title,
                                     futureUnitTitle:
-                                      unitData.connection_future_unit_title,
+                                      optionalUnit.connection_future_unit_title,
                                   });
                                 }}
                               />

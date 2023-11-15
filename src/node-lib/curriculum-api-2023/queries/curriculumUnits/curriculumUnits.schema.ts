@@ -42,6 +42,8 @@ const curriculumUnitsSchema = z.object({
         z.object({
           connection_prior_unit_description: z.string().nullable(),
           connection_future_unit_description: z.string().nullable(),
+          connection_prior_unit_title: z.string().nullable(),
+          connection_future_unit_title: z.string().nullable(),
           title: z.string(),
           unitvariant_id: z.number(),
           lessons: z.array(
