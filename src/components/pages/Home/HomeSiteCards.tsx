@@ -12,7 +12,7 @@ const HomeSiteCards = () => {
           page="lesson-planning"
           title={"Plan a lesson"}
           titleTag={"h4"}
-          background="pupilsLimeGreen"
+          background="mint"
           htmlAnchorProps={{ onClick: track.planALessonSelected }}
         />
       </GridArea>
@@ -21,7 +21,7 @@ const HomeSiteCards = () => {
           page="develop-your-curriculum"
           title={"Develop your curriculum"}
           titleTag={"h4"}
-          background={"teachersYellow"}
+          background={"lemon"}
           htmlAnchorProps={{
             onClick: track.developYourCurriculumSelected,
           }}
@@ -32,7 +32,7 @@ const HomeSiteCards = () => {
           page="support-your-team"
           title={"Support your team"}
           titleTag={"h4"}
-          background={"pupilsPink"}
+          background={"pink"}
           htmlAnchorProps={{
             onClick: track.supportYourTeamSelected,
           }}

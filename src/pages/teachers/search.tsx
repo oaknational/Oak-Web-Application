@@ -55,7 +55,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
         }),
         ...{ noFollow: true, noIndex: true },
       }}
-      $background="grey1"
+      $background="grey20"
     >
       <Search
         {...searchProps}

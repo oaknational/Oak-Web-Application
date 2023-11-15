@@ -1,4 +1,3 @@
-import { PortableText } from "@portabletext/react";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -7,11 +6,11 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
 
 import {
-  BasePortableTextProvider,
   PTAnchorLink,
   PTAnchorTarget,
   PTExternalLink,
   PTInternalLink,
+  PortableTextWithDefaults,
 } from "./PortableText";
 import { PTActionTrigger } from "./PTActionTrigger";
 import portableTextFixture from "./portableTextFixture.json";
@@ -244,12 +243,10 @@ describe("PortableText", () => {
     });
   });
 
-  describe("BasePortableTextProvider", () => {
+  describe("PortableTextWithDefaults", () => {
     it("renders basic html", () => {
       const { getAllByRole, container } = renderWithTheme(
-        <BasePortableTextProvider>
-          <PortableText value={portableTextFixture} />
-        </BasePortableTextProvider>,
+        <PortableTextWithDefaults value={portableTextFixture} />,
       );
 
       const lists = getAllByRole("list");

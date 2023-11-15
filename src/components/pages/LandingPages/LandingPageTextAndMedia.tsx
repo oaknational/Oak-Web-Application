@@ -1,22 +1,23 @@
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { TextAndMedia } from "../../../common-lib/cms-types";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-import ButtonAsLink from "../../Button/ButtonAsLink";
-import Card from "../../Card";
-import CMSImage from "../../CMSImage";
-import CMSVideo from "../../CMSVideo";
-import Flex from "../../Flex";
-import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import { LI } from "../../Typography";
-
 import { OLOutline } from "./OLOutline";
+
+import { TextAndMedia } from "@/common-lib/cms-types";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Card from "@/components/Card";
+import CMSImage from "@/components/CMSImage";
+import CMSVideo from "@/components/CMSVideo";
+import Flex from "@/components/Flex";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import { LI } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <OLOutline $color={"teachersPastelYellow"} $mh={0}>
+      <OLOutline $color={"lemon50"} $mh={0}>
         {children}
       </OLOutline>
     ),
@@ -39,13 +40,13 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
   return (
     <Card
       $flexDirection={["column", "row"]}
-      $background={"teachersPastelYellow"}
+      $background={"lemon50"}
       $width={"100%"}
       $mb={[56, 92]}
       $pb={24}
       $ph={[16, 56]}
     >
-      <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+      <BrushBorders hideOnMobileH color={"lemon50"} />
 
       <Flex
         $minHeight={200}
@@ -75,7 +76,7 @@ export const LandingPageTextAndMedia: FC<TextAndMedia> = (props) => {
         $justifyContent={"center"}
         $flexDirection={"column"}
       >
-        <PortableText
+        <PortableTextWithDefaults
           components={landingPortableTextComponent}
           value={props.bodyPortableText}
         />

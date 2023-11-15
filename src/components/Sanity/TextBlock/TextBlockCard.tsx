@@ -1,12 +1,13 @@
-import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { TextBlock } from "../../../common-lib/cms-types";
-import { OakColorName } from "../../../styles/theme";
-import Card from "../../Card";
-import { ULTick } from "../../PortableText/Blocks/Lists/ULTick";
-import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import Typography, { Heading } from "../../Typography";
+import { TextBlock } from "@/common-lib/cms-types";
+import { OakColorName } from "@/styles/theme";
+import Card from "@/components/Card";
+import { ULTick } from "@/components/PortableText/Blocks/Lists/ULTick";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import Typography, { Heading } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const textBlockCardPortableText: PortableTextComponents = {
   ...ULTick,
@@ -35,7 +36,7 @@ export const TextBlockCard: FC<
       <Heading $mb={32} tag="h2" $font={["heading-5", "heading-4"]}>
         {title}
       </Heading>
-      <PortableText
+      <PortableTextWithDefaults
         components={{ ...textBlockCardPortableText, ...portableTextComponents }}
         value={bodyPortableText}
       />

@@ -32,7 +32,7 @@ const SharedHomeContent: FC<SharedHomePageProps> = ({
 
   return (
     <>
-      <Flex $background={"teachersPastelYellow"} $justifyContent={"center"}>
+      <Flex $background={"lemon50"} $justifyContent={"center"}>
         <MaxWidth $ph={[0, 12]} $mt={[80, 32]} $mb={64}>
           <Grid $cg={[16, 32]} $rg={[0, 32]} $mt={[16, 80]}>
             <GridArea $colSpan={[12, 4]} $order={[0, 0]}>

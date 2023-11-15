@@ -99,6 +99,13 @@ describe("common-lib/error-reporter", () => {
       });
       expect(shouldIgnore).toBe(true);
     });
+    it("returns true if the error should be ignored based on subdomains", () => {
+      const shouldIgnore = matchesIgnoredError({
+        errorMessage: "Proper error message",
+        stacktrace: [{ file: "https://something.hubspot.com/foo.js" }],
+      });
+      expect(shouldIgnore).toBe(true);
+    });
   });
   describe("Bugsnag onError handler", () => {
     it("Returns undefined for non-ignored error", () => {
@@ -200,6 +207,14 @@ describe("common-lib/error-reporter", () => {
       reportError(error);
       expect(mockNotify).not.toHaveBeenCalled();
     });
+
+    test("will not call Bugsnag.notify if error.config.shouldNotify is false", () => {
+      const error = new OakError({ code: "preview/zod-error" });
+      error.config.shouldNotify = false;
+      reportError(error);
+      expect(mockNotify).not.toHaveBeenCalled();
+    });
+
     test("will not call Bugsnag.notify if some nested originalError.hasBeenReported is true", () => {
       reportError({
         originalError: {

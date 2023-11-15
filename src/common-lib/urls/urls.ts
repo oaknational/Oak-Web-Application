@@ -1,6 +1,9 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
-import { PreselectedDownloadType } from "../../components/DownloadComponents/downloads.types";
+import {
+  PreselectedDownloadType,
+  PreselectedShareType,
+} from "../../components/DownloadAndShareComponents/downloadsAndShare.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
@@ -122,6 +125,22 @@ export type LessonDownloadsCanonicalLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
+export type LessonShareLinkProps = {
+  page: "lesson-share";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
+export type LessonShareCanonicalLinkProps = {
+  page: "lesson-share-canonical";
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
 type SearchLinkProps = {
   page: "search";
   query?: Partial<SearchQuery>;
@@ -158,6 +177,7 @@ type SupportYourTeamLinkProps = { page: "support-your-team" };
 type OurTeachersLinkProps = { page: "our-teachers" };
 type OakCurriculumLinkProps = { page: "oak-curriculum" };
 type ClassroomLinkProps = { page: "classroom" };
+type LabsLinkProps = { page: "labs" };
 type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
@@ -180,10 +200,13 @@ type CurriculumDownloadsLinkProps = {
 };
 
 export type OakLinkProps =
+  | LabsLinkProps
   | SubjectListingLinkProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
   | LessonDownloadsCanonicalLinkProps
+  | LessonShareLinkProps
+  | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -221,6 +244,7 @@ const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
   "[external] Help",
   "[external] Classroom",
+  "[external] Labs",
   "[external] Our teachers",
   "[external] Teacher hub",
   "[external] Our curriculum",
@@ -228,6 +252,7 @@ const EXTERNAL_PAGE_NAMES = [
 type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
 
 type OakPages = {
+  labs: OakPageConfig<LabsLinkProps>;
   classroom: OakPageConfig<ClassroomLinkProps>;
   "teacher-hub": OakPageConfig<TeacherHubLinkProps>;
   help: OakPageConfig<HelpLinkProps>;
@@ -254,6 +279,8 @@ type OakPages = {
   "lesson-overview-canonical": OakPageConfig<LessonOverviewCanonicalLinkProps>;
   "lesson-downloads": OakPageConfig<LessonDownloadsLinkProps>;
   "lesson-downloads-canonical": OakPageConfig<LessonDownloadsCanonicalLinkProps>;
+  "lesson-share": OakPageConfig<LessonShareLinkProps>;
+  "lesson-share-canonical": OakPageConfig<LessonShareCanonicalLinkProps>;
   search: OakPageConfig<SearchLinkProps>;
   "landing-page": OakPageConfig<LandingPageLinkProps>;
   "subject-index": OakPageConfig<SubjectListingLinkProps>;
@@ -441,28 +468,10 @@ export const OAK_PAGES: {
     pageType: "help",
   }),
   home: createOakPageConfig({
+    pathPattern: "/",
     analyticsPageName: "Homepage",
-    configType: "internal-custom-resolve",
+    configType: "internal",
     pageType: "home",
-    matchHref: (href: string) => {
-      switch (href) {
-        case "/":
-          return {
-            path: "/",
-            index: 0,
-            params: {},
-          };
-        case "/teachers":
-          return {
-            path: "/teachers",
-            index: 0,
-            params: {},
-          };
-        default:
-          return false;
-      }
-    },
-    resolveHref: () => "/",
   }),
   "lesson-planning": createOakPageConfig({
     pathPattern: "/lesson-planning",
@@ -481,6 +490,12 @@ export const OAK_PAGES: {
     analyticsPageName: "[external] Classroom",
     configType: "external",
     pageType: "classroom",
+  }),
+  labs: createOakPageConfig({
+    url: "https://labs.thenational.academy",
+    analyticsPageName: "[external] Labs",
+    configType: "external",
+    pageType: "labs",
   }),
   "support-your-team": createOakPageConfig({
     pathPattern: "/support-your-team",
@@ -557,6 +572,19 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",
+  }),
+  "lesson-share": createOakPageConfig({
+    pathPattern:
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "lesson-share",
+  }),
+  "lesson-share-canonical": createOakPageConfig({
+    pathPattern: "/teachers/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "lesson-share-canonical",
   }),
   search: createOakPageConfig({
     pathPattern: "/teachers/search",

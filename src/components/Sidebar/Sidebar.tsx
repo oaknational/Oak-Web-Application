@@ -67,7 +67,7 @@ const Sidebar: FC<ModalProps> = ({
 
                 {!unitOptionsAvailable && (
                   <Flex $flexDirection={"column"}>
-                    <Hr $color={"oakGrey2"} $mt={0} $mb={24} />
+                    <Hr $color={"grey30"} $mt={0} $mb={24} />
                     <Flex
                       $justifyContent={"space-between"}
                       $alignItems={["flex-end"]}
@@ -88,7 +88,7 @@ const Sidebar: FC<ModalProps> = ({
                           isCurrent={true}
                           currentStyles={["color"]}
                           icon="chevron-right"
-                          iconBackground="oakGrey4"
+                          iconBackground="grey60"
                           $iconPosition="trailing"
                           variant="buttonStyledAsLink"
                         />

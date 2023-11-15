@@ -18,6 +18,7 @@ const ERROR_CODES = [
   "hubspot/lost-information",
   "hubspot/identify-no-email",
   "preview/invalid-token",
+  "preview/zod-error",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
   "curriculum-api/not-found",
@@ -102,6 +103,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "preview/invalid-token": {
     message: "Invalid CMS preview token provided",
     responseStatusCode: 401,
+    shouldNotify: false,
+  },
+  "preview/zod-error": {
+    message: "Zod error parsing preview data from CMS",
+    responseStatusCode: 500,
     shouldNotify: false,
   },
   "cms/invalid-reference-data": {

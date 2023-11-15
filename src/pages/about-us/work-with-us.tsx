@@ -1,23 +1,23 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 import { Fragment } from "react";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutWorkWithUsPage } from "../../common-lib/cms-types";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import Card from "../../components/Card";
-import AboutContactCard from "../../components/AboutContactCard";
-import { Heading } from "../../components/Typography";
-import Typography from "../../components/Typography/Typography";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
-import Flex from "../../components/Flex";
-import Grid, { GridArea } from "../../components/Grid";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
-import BrushBorders from "../../components/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import getPageProps from "../../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Card from "@/components/Card";
+import AboutContactCard from "@/components/AboutContactCard";
+import { Heading } from "@/components/Typography";
+import Typography from "@/components/Typography/Typography";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;
@@ -47,7 +47,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           {getWorkWithUsCards(pageData).map((card) => (
             <Fragment key={card.title}>
               <GridArea $colSpan={[12, 6]}>
-                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"videoBlue"}>
+                <Card $ph={[16, 24]} $pv={[32, 24]} $background={"aqua"}>
                   <Heading
                     $font={["heading-6", "heading-5"]}
                     tag={"h2"}
@@ -56,23 +56,24 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                     {card.title}
                   </Heading>
                   <Typography $mb={32} $font={["body-2", "body-1"]}>
-                    <PortableText value={card.bodyPortableText} />
+                    <PortableTextWithDefaults value={card.bodyPortableText} />
                   </Typography>
                   {card.cta?.linkType == "external" && (
                     <Flex>
                       <ButtonAsLink
-                        background="teachersHighlight"
+                        background="blue"
                         label={card.cta.label}
                         page={null}
                         href={card.cta.external}
                         icon={"external"}
                         $iconPosition={"trailing"}
+                        iconBackground="lemon"
                       >
                         {card.cta.label}
                       </ButtonAsLink>
                     </Flex>
                   )}
-                  <BrushBorders hideOnMobileH color={"videoBlue"} />
+                  <BrushBorders hideOnMobileH color={"aqua"} />
                 </Card>
               </GridArea>
             </Fragment>

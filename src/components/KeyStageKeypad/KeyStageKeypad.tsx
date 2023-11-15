@@ -74,7 +74,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({ keyStages, years }) => {
       {years && (
         <>
           <Heading
-            $color={"oakGrey4"}
+            $color={"grey60"}
             $mb={20}
             tag="h3"
             $font={"heading-light-7"}

@@ -1,27 +1,27 @@
-import { PortableText } from "@portabletext/react";
 import { FC, MutableRefObject, useRef } from "react";
+
+import NavigationButtons from "./NavigationButtons";
+import { ModalControllerRefs } from "./useBioModal";
 
 import {
   Image,
   PortableTextJSON,
   TeamMemberSocials,
-} from "../../common-lib/cms-types";
-import AspectRatio from "../AspectRatio";
-import Box from "../Box";
-import IconButton from "../Button/IconButton";
-import CMSImage from "../CMSImage";
-import Flex from "../Flex";
-import Grid, { GridArea } from "../Grid";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import ModalDialog from "../ModalDialog";
-import useModalDialog from "../ModalDialog/useModalDialog";
-import SocialButtons from "../SocialButtons";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Svg from "../Svg";
-import { Heading, P } from "../Typography";
-
-import NavigationButtons from "./NavigationButtons";
-import { ModalControllerRefs } from "./useBioModal";
+} from "@/common-lib/cms-types";
+import AspectRatio from "@/components/AspectRatio";
+import Box from "@/components/Box";
+import IconButton from "@/components/Button/IconButton";
+import CMSImage from "@/components/CMSImage";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import ModalDialog from "@/components/ModalDialog";
+import useModalDialog from "@/components/ModalDialog/useModalDialog";
+import SocialButtons from "@/components/SocialButtons";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import Svg from "@/components/Svg";
+import { Heading, P } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type BioData = {
   id: string;
@@ -82,7 +82,7 @@ const BioModal: FC<BioModalProps> = (props) => {
             icon="cross"
             onClick={closeModal}
             aria-label="close modal"
-            background="teachersHighlight"
+            background="blue"
             size="small"
             ref={closeButtonRef}
             aria-expanded={isOpen}
@@ -116,7 +116,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                 </Heading>
                 <P
                   $font={["heading-light-7", "heading-light-6"]}
-                  $color="oakGrey4"
+                  $color="grey60"
                   $mb={[32, 0]}
                   $textAlign={["center", "left"]}
                 >
@@ -142,7 +142,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                     "translate(-57%, 5%)",
                     "translate(-57%, -10%)",
                   ]}
-                  $color="pupilsHighlight"
+                  $color="oakGreen"
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
                   <Box $background="white" $cover />
@@ -168,7 +168,7 @@ const BioModal: FC<BioModalProps> = (props) => {
                   $font={["body-2", "body-1"]}
                   $minHeight={["auto", 270]}
                 >
-                  <PortableText value={bioPortableText} />
+                  <PortableTextWithDefaults value={bioPortableText} />
                 </Box>
               )}
             </GridArea>

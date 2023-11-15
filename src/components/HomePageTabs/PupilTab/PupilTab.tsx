@@ -25,7 +25,7 @@ const PupilTab: FC = () => {
               $gap={24}
               $flex={"0 1 auto"}
             >
-              <Heading $font={"heading-7"} tag={"h1"} $color={"oakGrey5"}>
+              <Heading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Pupils
               </Heading>
               <Heading $font={"heading-3"} tag={"h2"}>

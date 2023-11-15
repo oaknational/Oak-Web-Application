@@ -181,7 +181,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         onChange={jest.fn()}
-        variant="cardCheckbox"
+        variant="withoutLabel"
       >
         <p>Test download resource</p>
       </Checkbox>,

@@ -23,7 +23,7 @@ export const LandingPageTitle: FC<{
       <Heading
         $mb={[8]}
         $font={["heading-6", "heading-5"]}
-        $color={"grey6"}
+        $color={"grey50"}
         tag="h1"
       >
         {title}

@@ -1,23 +1,23 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
-import { PortableText } from "@portabletext/react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutBoardPage } from "../../common-lib/cms-types";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
-import Card from "../../components/Card";
-import AboutContactCard from "../../components/AboutContactCard";
-import Typography, { Heading, Hr, P } from "../../components/Typography";
-import Flex from "../../components/Flex";
-import Grid, { GridArea } from "../../components/Grid";
-import BoxBorders from "../../components/SpriteSheet/BrushSvgs/BoxBorders";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
-import IconButtonAsLink from "../../components/Button/IconButtonAsLink";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import BioCardList from "../../components/BioCardList";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import getPageProps from "../../node-lib/getPageProps";
+import CMSClient from "@/node-lib/cms";
+import { AboutBoardPage } from "@/common-lib/cms-types";
+import Layout from "@/components/Layout";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Card from "@/components/Card";
+import AboutContactCard from "@/components/AboutContactCard";
+import Typography, { Heading, Hr, P } from "@/components/Typography";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
+import IconButtonAsLink from "@/components/Button/IconButtonAsLink";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import BioCardList from "@/components/BioCardList";
+import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import getPageProps from "@/node-lib/getPageProps";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -68,7 +68,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <Flex $mh={[16, 0]} $flexDirection={"column"}>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurquoise"} $mv={32} />
+            <Hr $color={"aqua"} $mv={32} />
           </Typography>
 
           <Grid $rg={[16]} $cg={[12, 20]}>
@@ -98,7 +98,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                           aria-label={`Download ${doc.title} as ${fileSizeInMB} megabyte ${doc.file.asset.extension}`}
                           page={null}
                           href={`${doc.file.asset.url}?dl`}
-                          background={"teachersHighlight"}
+                          background={"blue"}
                         />
                       </Flex>
                     </Flex>
@@ -108,7 +108,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             })}
           </Grid>
           <Typography $width={"100%"}>
-            <Hr $color={"pastelTurquoise"} $mv={0} $mt={32} />
+            <Hr $color={"aqua"} $mv={0} $mt={32} />
           </Typography>
         </Flex>
         <Card
@@ -121,12 +121,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           <Heading $mb={20} $font={"heading-5"} tag={"h2"}>
             Governance
           </Heading>
-
           <Typography $font={["body-1", "body-2"]}>
-            <PortableText value={governancePortableText} />
+            <PortableTextWithDefaults
+              value={governancePortableText}
+              withoutDefaultComponents
+            />
           </Typography>
         </Card>
-
         <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>

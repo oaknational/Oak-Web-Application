@@ -12,7 +12,7 @@ const meta: Meta<typeof Component> = {
   argTypes: {
     children: {
       defaultValue: (
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       ),

@@ -50,7 +50,6 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
                 </Heading>
                 <TagPromotional
                   size={"large"}
-                  $color={"mint"}
                   $ml={[16, 16, 24]}
                   $mt={[8, 8, 10]}
                 />

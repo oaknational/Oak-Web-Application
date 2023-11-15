@@ -101,12 +101,18 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  let background: OakColorName = "teachersLilac";
+  let background: OakColorName = expired ? "grey30" : "lavender50";
+  let backgroundOnHover: OakColorName = "lavender";
 
-  if (expired) {
-    background = "oakGrey2";
-  } else if (subjectIconBackground) {
+  // This override is for the units on the early-release units page which use different shades of pink/blue
+  if (subjectIconBackground) {
     background = subjectIconBackground;
+    backgroundOnHover =
+      subjectIconBackground === "pink"
+        ? "pink60"
+        : subjectIconBackground === "lavender"
+        ? "lavender60"
+        : subjectIconBackground;
   }
 
   return (
@@ -115,7 +121,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       subjectSlug={subjectSlug}
       isHovered={isHovered}
       containerProps={containerProps}
-      background={expired ? "oakGrey1" : "white"}
+      background={expired ? "grey20" : "white"}
       expired={expired}
       index={index}
       fromSearchPage={fromSearchPage}
@@ -125,7 +131,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         <>
           <ListItemIndexDesktop
             index={index + 1}
-            background={background}
+            background={isHovered ? backgroundOnHover : background}
             expired={expired}
           />
           <ListItemIndexMobile
@@ -136,17 +142,15 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         </>
       )}
       <Flex
-        $ml={[16, 24]}
-        $mr={[0, 24]}
         $flexDirection={"column"}
         $justifyContent={"space-between"}
         $width={"100%"}
         $height={"100%"}
         $gap={[8]}
-        $pv={[8, 12]}
+        $pa={16}
       >
         {!isUnitOption && yearTitle && !isExemplarUnit && (
-          <Span $font={"heading-light-7"} $color={"oakGrey4"} $mv={0}>
+          <Span $font={"heading-light-7"} $color={"grey60"} $mv={0}>
             {yearTitle}
           </Span>
         )}
@@ -172,8 +176,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         <>
           <ListItemIconDesktop
             title={title}
-            background={background}
-            isHovered={isHovered}
+            background={isHovered ? backgroundOnHover : background}
             subjectSlug={subjectSlug}
           />
           <ListItemIconMobile

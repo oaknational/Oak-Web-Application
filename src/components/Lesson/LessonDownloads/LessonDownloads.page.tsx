@@ -1,43 +1,24 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, P } from "@/components/Typography";
-import OakLink from "@/components/OakLink";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import { Hr } from "@/components/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import Grid, { GridArea } from "@/components/Grid";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "@/components/DownloadComponents/helpers/getFormattedDetailsForTracking";
-import getDownloadFormErrorMessage from "@/components/DownloadComponents/helpers/getDownloadFormErrorMessage";
-import useDownloadExistenceCheck from "@/components/DownloadComponents/hooks/useDownloadExistenceCheck";
-import useLocalStorageForDownloads from "@/components/DownloadComponents/hooks/useLocalStorageForDownloads";
-import useDownloadForm from "@/components/DownloadComponents/hooks/useDownloadForm";
-import { getPreselectedDownloadResourceTypes } from "@/components/DownloadComponents/helpers/getDownloadResourceType";
+import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
+import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
+import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
 import {
-  ResourcesToDownloadArrayType,
-  ErrorKeysType,
-  DownloadFormProps,
+  ResourceFormProps,
   DownloadResourceType,
-  preselectedDownloadType,
-  schema,
-} from "@/components/DownloadComponents/downloads.types";
-import TermsAndConditionsCheckbox from "@/components/DownloadComponents/TermsAndConditionsCheckbox";
+} from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadComponents/DownloadCard/DownloadCardGroup";
+import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
 import FieldError from "@/components/FormFields/FieldError";
-import SchoolPickerRadio from "@/components/DownloadComponents/SchoolpickerRadio";
-import DetailsCompleted from "@/components/DownloadComponents/DetailsCompleted";
-import NoResourcesToDownload from "@/components/DownloadComponents/NoResourcesToDownload";
-import debouncedSubmit from "@/components/DownloadComponents/helpers/downloadDebounceSubmit";
+import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import CopyrightNotice from "@/components/DownloadComponents/CopyrightNotice/CopyrightNotice";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -45,6 +26,11 @@ import {
   getCommonPathway,
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
+import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
+import LoadingButton from "@/components/Button/LoadingButton";
+import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
+import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 
 type LessonDownloadsProps =
   | {
@@ -55,6 +41,7 @@ type LessonDownloadsProps =
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
         pathways: LessonPathway[];
+        nextLessons?: NextLesson[];
       };
     }
   | {
@@ -64,16 +51,17 @@ type LessonDownloadsProps =
         lessonTitle: string;
         lessonSlug: string;
         downloads: LessonDownloadsData["downloads"];
+        nextLessons: NextLesson[];
       };
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, downloads, isLegacy } = lesson;
-
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
+
   const {
     programmeSlug,
     keyStageTitle,
@@ -84,137 +72,54 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     unitTitle,
   } = commonPathway;
 
-  const router = useRouter();
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = isLegacy;
 
-  const { register, formState, control, watch, setValue, handleSubmit } =
-    useForm<DownloadFormProps>({
-      resolver: zodResolver(schema),
-      mode: "onBlur",
-    });
+  const onwardContent = lesson.nextLessons
+    ? lesson.nextLessons?.map((nextLesson) => {
+        return nextLesson.lessonSlug;
+      })
+    : [];
 
-  const getInitialResourcesToDownloadState = useCallback(() => {
-    return downloads
-      .filter((download) => download.exists && !download.forbidden)
-      .map((download) => download.type);
-  }, [downloads]);
-
-  useEffect(() => {
-    const preselectedQuery = () => {
-      const res = router.query.preselected;
-      const result = preselectedDownloadType.safeParse(res);
-      if (!result.success) {
-        return "all";
-      } else {
-        return result.data;
-      }
-    };
-    const preselected = getPreselectedDownloadResourceTypes(preselectedQuery());
-
-    if (preselected) {
-      preselected === "all"
-        ? setValue("downloads", getInitialResourcesToDownloadState())
-        : setValue("downloads", preselected);
-    }
-  }, [getInitialResourcesToDownloadState, router.query.preselected, setValue]);
+  const { onwardContentSelected } = track;
 
   const {
-    schoolFromLocalStorage,
+    form,
     emailFromLocalStorage,
-    termsFromLocalStorage,
-    hasDetailsFromLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
-  const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  useEffect(() => {
-    setIsLocalStorageLoading(false);
-  }, [hasDetailsFromLocalStorage]);
-
-  // use values from local storage if available (initial value on School Picker is set within that component)
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-    }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
     schoolIdFromLocalStorage,
-  ]);
-
-  const [editDetailsClicked, setEditDetailsClicked] = useState(false);
-
-  const shouldDisplayDetailsCompleted =
-    hasDetailsFromLocalStorage && !editDetailsClicked;
-  const [localStorageDetails, setLocalStorageDetails] = useState(false);
-
-  useEffect(() => {
-    if (hasDetailsFromLocalStorage || shouldDisplayDetailsCompleted) {
-      setLocalStorageDetails(true);
-    }
-    if (editDetailsClicked) {
-      setLocalStorageDetails(false);
-    }
-  }, [
-    hasDetailsFromLocalStorage,
-    localStorageDetails,
-    editDetailsClicked,
+    schoolNameFromLocalStorage,
+    isLocalStorageLoading,
+    setSchool,
     shouldDisplayDetailsCompleted,
-  ]);
-
-  const setSchool = useCallback(
-    (value: string, name?: string) => {
-      setValue("school", value, {
-        shouldValidate: true,
-      });
-      setValue("schoolName", name || schoolNameFromLocalStorage, {
-        shouldValidate: true,
-      });
-    },
-    [setValue, schoolNameFromLocalStorage],
-  );
-
-  const { errors } = formState;
-  const hasFormErrors = Object.keys(errors)?.length > 0;
-  const selectedResources = (watch().downloads || []) as DownloadResourceType[];
+    handleEditDetailsCompletedClick,
+    setEditDetailsClicked,
+    editDetailsClicked,
+    selectedResources,
+    hasFormErrors,
+    localStorageDetails,
+    activeResources,
+    setActiveResources,
+    hasResources,
+    handleToggleSelectAll,
+    selectAllChecked,
+    setEmailInLocalStorage,
+  } = useResourceFormState({ downloadResources: downloads, type: "download" });
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
-  const [resourcesToDownload, setResourcesToDownload] =
-    useState<ResourcesToDownloadArrayType>(
-      getInitialResourcesToDownloadState(),
-    );
-
-  const hasResourcesToDownload =
-    getInitialResourcesToDownloadState().length > 0;
-
   const [apiError, setApiError] = useState<string | null>(null);
 
-  const onSelectAllClick = () => setValue("downloads", resourcesToDownload);
-  const onDeselectAllClick = () => setValue("downloads", []);
+  const { onSubmit } = useResourceFormSubmit({
+    isLegacyDownload: isLegacyDownload,
+    type: "download",
+  });
 
-  const allResourcesToDownloadCount = resourcesToDownload.length;
-  const selectedResourcesToDownloadCount = selectedResources?.length;
+  const [isDownloadSuccessful, setIsDownloadSuccessful] =
+    useState<boolean>(false);
 
-  const { onSubmit } = useDownloadForm({ isLegacyDownload: isLegacyDownload });
-
-  const onFormSubmit = async (data: DownloadFormProps): Promise<void> => {
+  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
     try {
       await debouncedSubmit({
@@ -224,6 +129,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         setEditDetailsClicked,
         onSubmit,
       });
+      setIsDownloadSuccessful(true);
+
+      if (editDetailsClicked && !data.email) {
+        setEmailInLocalStorage("");
+      }
+
       const {
         schoolOption,
         schoolName,
@@ -248,43 +159,29 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolUrn,
         schoolName,
         schoolOption,
+        onwardContent,
         emailSupplied: data?.email ? true : false,
       });
     } catch (error) {
       setIsAttemptingDownload(false);
+      setIsDownloadSuccessful(false);
       setApiError(
         "There was an error downloading your files. Please try again.",
       );
     }
   };
 
-  const getFormErrorMessage = () => {
-    const errorKeyArray = Object.keys(errors);
-    const errorMessage = getDownloadFormErrorMessage(
-      errorKeyArray as ErrorKeysType[],
-    );
-
-    return errorMessage;
-  };
-
   useDownloadExistenceCheck({
     lessonSlug,
-    resourcesToCheck: resourcesToDownload,
-    onComplete: setResourcesToDownload,
+    resourcesToCheck: activeResources as DownloadResourceType[],
+    onComplete: setActiveResources,
     isLegacyDownload: isLegacy,
   });
 
-  const handleEditDetailsCompletedClick = () => {
-    setEditDetailsClicked(true);
-    setLocalStorageDetails(false);
-  };
-
-  const showPostAlbCopyright = !isLegacy;
-
   return (
-    <>
-      <MaxWidth $ph={[12]} $maxWidth={[480, 840, 1280]}>
-        <Box $mv={[24, 48]}>
+    <Box $ph={[16, null]} $background={"grey20"}>
+      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
+        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
           <Breadcrumbs
             breadcrumbs={[
               ...getBreadcrumbsForLessonPathway(commonPathway),
@@ -302,167 +199,90 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               }),
             ]}
           />
+          <Hr $color={"grey60"} $mt={24} />
         </Box>
 
-        {!hasResourcesToDownload ? (
-          <NoResourcesToDownload />
-        ) : (
+        <Box $display={isDownloadSuccessful ? "block" : "none"}>
+          <DownloadConfirmation
+            lessonSlug={lessonSlug}
+            lessonTitle={lessonTitle}
+            unitSlug={unitSlug}
+            unitTitle={unitTitle}
+            programmeSlug={programmeSlug}
+            data-testid="downloads-confirmation"
+            isCanonical={props.isCanonical}
+            nextLessons={lesson.nextLessons}
+            onwardContentSelected={onwardContentSelected}
+          />
+        </Box>
+        {!isDownloadSuccessful && (
           <>
-            {isLocalStorageLoading && <P $mt={24}>Loading...</P>}
-            {!isLocalStorageLoading && (
-              <>
-                {localStorageDetails ? (
-                  <DetailsCompleted
-                    email={emailFromLocalStorage}
-                    school={schoolNameFromLocalStorage}
-                    onEditClick={handleEditDetailsCompletedClick}
-                  />
-                ) : (
-                  <Box $maxWidth={[null, 420, 420]}>
-                    <SchoolPickerRadio
-                      errors={errors}
-                      setSchool={setSchool}
-                      initialValue={
-                        schoolIdFromLocalStorage?.length > 0
-                          ? schoolIdFromLocalStorage
-                          : undefined
-                      }
-                      initialSchoolName={schoolNameFromLocalStorage}
-                    />
-                    <Heading
-                      tag="h3"
-                      $font={"heading-7"}
-                      $mt={16}
-                      $mb={24}
-                      data-testid="email-heading"
-                    >
-                      For regular updates from Oak (optional)
-                    </Heading>
-                    <Input
-                      id={"email"}
-                      label="Email address"
-                      autoComplete="email"
-                      placeholder="Enter email address here"
-                      {...register("email")}
-                      error={errors.email?.message}
-                    />
-                    <P $font="body-3" $mt={-24} $mb={40}>
-                      Join our community to get free lessons, resources and
-                      other helpful content. Unsubscribe at any time. Our{" "}
-                      <OakLink
-                        page="legal"
-                        legalSlug="privacy-policy"
-                        $isInline
-                      >
-                        privacy policy
-                      </OakLink>
-                      .
-                    </P>
-                    <Controller
-                      control={control}
-                      name="terms"
-                      render={({
-                        field: { value, onChange, name, onBlur },
-                      }) => {
-                        const onChangeHandler = (
-                          e: ChangeEvent<HTMLInputElement>,
-                        ) => {
-                          return onChange(e.target.checked);
-                        };
-                        return (
-                          <TermsAndConditionsCheckbox
-                            name={name}
-                            checked={value}
-                            onChange={onChangeHandler}
-                            onBlur={onBlur}
-                            id={"terms"}
-                            errorMessage={errors?.terms?.message}
-                          />
-                        );
-                      }}
-                    />
-                  </Box>
-                )}
-                <Box $mb={56} $mt={16}>
-                  <CopyrightNotice
-                    showPostAlbCopyright={showPostAlbCopyright}
-                  />
+            <ResourcePageLayout
+              page={"download"}
+              errors={form.errors}
+              handleToggleSelectAll={handleToggleSelectAll}
+              selectAllChecked={selectAllChecked}
+              header="Download"
+              showNoResources={!hasResources}
+              showLoading={isLocalStorageLoading}
+              email={emailFromLocalStorage}
+              school={schoolNameFromLocalStorage}
+              schoolId={schoolIdFromLocalStorage}
+              setSchool={setSchool}
+              showSavedDetails={shouldDisplayDetailsCompleted}
+              onEditClick={handleEditDetailsCompletedClick}
+              register={form.register}
+              control={form.control}
+              showPostAlbCopyright={!isLegacy}
+              resourcesHeader="Lesson resources"
+              triggerForm={form.trigger}
+              cardGroup={
+                <DownloadCardGroup
+                  control={form.control}
+                  downloads={downloads}
+                  hasError={form.errors?.resources ? true : false}
+                  triggerForm={form.trigger}
+                />
+              }
+              cta={
+                <LoadingButton
+                  type="button"
+                  onClick={
+                    (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                  }
+                  text={"Download .zip"}
+                  icon={"download"}
+                  isLoading={isAttemptingDownload}
+                  disabled={
+                    hasFormErrors ||
+                    (!form.formState.isValid && !localStorageDetails)
+                  }
+                  loadingText={"Downloading..."}
+                />
+              }
+            />
+
+            <Flex
+              $flexDirection={["column", "row"]}
+              $justifyContent={"right"}
+              $alignItems={"center"}
+            >
+              {apiError && !hasFormErrors && (
+                <Box $mr={24} $textAlign={"left"}>
+                  <FieldError
+                    id="download-error"
+                    data-testid="download-error"
+                    variant={"large"}
+                    withoutMarginBottom
+                  >
+                    {apiError}
+                  </FieldError>
                 </Box>
-              </>
-            )}
-
-            <Grid>
-              <DownloadCardGroup
-                control={control}
-                downloads={downloads}
-                hasError={errors?.downloads ? true : false}
-                errorMessage={errors?.downloads?.message}
-                onSelectAllClick={() => onSelectAllClick()}
-                onDeselectAllClick={() => onDeselectAllClick()}
-              />
-
-              <GridArea $colSpan={[12]}>
-                <Flex
-                  $flexDirection={["column", "row"]}
-                  $justifyContent={"right"}
-                  $alignItems={"center"}
-                >
-                  {hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-form-error"
-                        data-testid="download-form-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {getFormErrorMessage()}
-                      </FieldError>
-                    </Box>
-                  )}
-                  {apiError && !hasFormErrors && (
-                    <Box $mr={24} $textAlign={"left"}>
-                      <FieldError
-                        id="download-error"
-                        data-testid="download-error"
-                        variant={"large"}
-                        withoutMarginBottom
-                      >
-                        {apiError}
-                      </FieldError>
-                    </Box>
-                  )}
-                  <Flex $justifyContent={"right"} $alignItems={"center"}>
-                    <Box $minWidth={130} $mr={24}>
-                      <P
-                        $color={"oakGrey4"}
-                        $font={"body-2"}
-                        data-testid="selectedResourcesCount"
-                      >
-                        {`${selectedResourcesToDownloadCount}/${allResourcesToDownloadCount} files selected`}
-                      </P>
-                    </Box>
-                    <Button
-                      label={"Download .zip"}
-                      onClick={
-                        (event) => void handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622
-                      }
-                      background={"teachersHighlight"}
-                      icon="download"
-                      $iconPosition="trailing"
-                      iconBackground="teachersYellow"
-                      disabled={isAttemptingDownload}
-                      $mt={8}
-                      $mb={16}
-                      $mr={8}
-                      $ml={8}
-                    />
-                  </Flex>
-                </Flex>
-              </GridArea>
-            </Grid>
+              )}
+            </Flex>
           </>
         )}
       </MaxWidth>
-    </>
+    </Box>
   );
 }

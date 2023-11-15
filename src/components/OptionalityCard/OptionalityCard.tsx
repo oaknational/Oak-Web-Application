@@ -7,7 +7,7 @@ import UnitListItem from "@/components/UnitAndLessonLists/UnitList/UnitListItem/
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
 
-type UnitOption = Omit<UnitData, "unitStudyOrder">;
+export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 
 type OptionalityCardProps = {
   unitOptions: UnitOption[];
@@ -56,7 +56,7 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
           $width={"100%"}
         >
           <Flex $mb={16} $flexDirection={"column"}>
-            <P $font={"heading-light-7"} $mt={4} $color={"oakGrey4"} $mb={8}>
+            <P $font={"heading-light-7"} $mt={4} $color={"grey60"} $mb={8}>
               {unitYear}
             </P>
             <Heading tag="h6" $font={"heading-6"} $mv={0}>

@@ -1,8 +1,9 @@
-import { PortableText, PortableTextComponentProps } from "@portabletext/react";
+import { PortableTextComponentProps } from "@portabletext/react";
 
-import { PortableTextJSON } from "../../../common-lib/cms-types";
-import Flex from "../../Flex";
-import { P } from "../../Typography";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import Flex from "@/components/Flex";
+import { P } from "@/components/Typography";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const PostCallout = (
   props: PortableTextComponentProps<{ body: PortableTextJSON }>,
@@ -17,9 +18,9 @@ const PostCallout = (
       $mt={56}
       $pv={24}
       $ph={16}
-      $background="teachersPastelYellow"
+      $background="lemon50"
     >
-      <PortableText
+      <PortableTextWithDefaults
         value={props.value.body}
         components={{
           block: {

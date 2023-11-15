@@ -55,7 +55,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
             $position={"absolute"}
             $display={["none", "flex"]}
           >
-            <TagPromotional $color={"mint"} size={"large"} />
+            <TagPromotional size={"large"} />
           </Flex>
           <Flex
             $top={4}
@@ -63,7 +63,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
             $position={"absolute"}
             $display={["flex", "none"]}
           >
-            <TagPromotional $color={"mint"} size={"small"} />
+            <TagPromotional size={"small"} />
           </Flex>
         </>
       )}

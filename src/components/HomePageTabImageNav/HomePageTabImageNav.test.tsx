@@ -4,11 +4,12 @@ import { fireEvent } from "@testing-library/react";
 import HomePageTabImageNav from "./HomePageTabImageNav";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { HomePageTab } from "@/pages";
 
 describe("HomePageTabImageNav Component", () => {
   test("renders without errors", () => {
     const { container } = renderWithTheme(
-      <HomePageTabImageNav current="" setCurrent={() => {}} />,
+      <HomePageTabImageNav current="teachers" setCurrent={() => {}} />,
     );
     expect(container).toBeTruthy();
   });
@@ -21,7 +22,7 @@ describe("HomePageTabImageNav Component", () => {
   });
   it("should receive and correctly use the setCurrent prop", () => {
     const Wrapper = () => {
-      const [current, setCurrent] = useState("teachers");
+      const [current, setCurrent] = useState<HomePageTab>("teachers");
       return <HomePageTabImageNav current={current} setCurrent={setCurrent} />;
     };
 

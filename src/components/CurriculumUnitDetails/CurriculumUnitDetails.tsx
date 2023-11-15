@@ -43,26 +43,28 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         {lessonsInUnit}
       </P>
 
-      <Box $mb={[24, 32]}>
-        <Heading tag="h3" $font={"heading-6"} $mb={8}>
-          Threads
-        </Heading>
-        <Flex
-          $flexDirection={["column", "row"]}
-          $flexWrap={"wrap"}
-          $gap={8}
-          $alignItems={"flex-start"}
-        >
-          {uniqueThreadsArray.map((thread) => (
-            <TagFunctional
-              key={thread}
-              text={thread}
-              color={"grey"}
-              data-testid="thread-tag"
-            />
-          ))}
-        </Flex>
-      </Box>
+      {uniqueThreadsArray.length >= 1 && (
+        <Box $mb={[24, 32]}>
+          <Heading tag="h3" $font={"heading-6"} $mb={8}>
+            Threads
+          </Heading>
+          <Flex
+            $flexDirection={["column", "row"]}
+            $flexWrap={"wrap"}
+            $gap={8}
+            $alignItems={"flex-start"}
+          >
+            {uniqueThreadsArray.map((thread) => (
+              <TagFunctional
+                key={thread}
+                text={thread}
+                color={"grey"}
+                data-testid="thread-tag"
+              />
+            ))}
+          </Flex>
+        </Box>
+      )}
       <Flex $flexDirection={"column"}>
         {numberOfLessons >= 1 && (
           <Accordion title="Lessons in unit" lastAccordion={true}>

@@ -31,8 +31,8 @@ describe("Lesson listing page", () => {
     const { getByText } = render(
       <LessonListPage curriculumData={lessonListingFixture()} />,
     );
-
-    const lessonCount = getByText("Lessons (3)");
+    const lessonCountFixtures = lessonListingFixture().lessons.length;
+    const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
     expect(lessonCount).toBeInTheDocument();
   });
@@ -62,10 +62,10 @@ describe("Lesson listing page", () => {
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
         title:
-          "Unit: Adding surds | KS4 Maths | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Unit: Adding surds | KS4 Maths | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Lessons in Unit",
         ogTitle:
-          "Unit: Adding surds | KS4 Maths | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
+          "Unit: Adding surds | KS4 Maths | Page 1 of 3 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Lessons in Unit",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",

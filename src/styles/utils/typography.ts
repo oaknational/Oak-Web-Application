@@ -101,9 +101,11 @@ export type TypographyProps = FontProps & {
   >;
   $textAlign?: ResponsiveValues<CSSProperties["textAlign"]>;
   $whiteSpace?: ResponsiveValues<
-    "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-space"
+    "normal" | "nowrap" | "pre" | "pre-wrap" | "pre-line" | "break-spaces"
   >;
   $wordWrap?: ResponsiveValues<"normal" | "break-word" | "initial" | "inherit">;
+  $textOverflow?: ResponsiveValues<"clip" | "ellipsis">;
+  $overflowWrap?: ResponsiveValues<"normal" | "break-word" | "anywhere">;
 };
 
 const typography = css<TypographyProps>`
@@ -112,6 +114,8 @@ const typography = css<TypographyProps>`
   ${responsive("text-decoration", (props) => props.$textDecoration)}
   ${responsive("white-space", (props) => props.$whiteSpace)}
   ${responsive("word-wrap", (props) => props.$wordWrap)}
+  ${responsive("text-overflow", (props) => props.$textOverflow)}
+  ${responsive("overflow-wrap", (props) => props.$overflowWrap)}
 `;
 
 export default typography;

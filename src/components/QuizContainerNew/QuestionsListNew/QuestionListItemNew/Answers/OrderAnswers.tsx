@@ -24,10 +24,10 @@ export const OrderAnswers = ({
           orderAnswer && (
             <Flex
               key={`q-${questionNumber}-answer${i}`}
-              $background={"teachersPastelYellow"}
+              $background={"lemon50"}
               $borderRadius={8}
               $ph={8}
-              $alignItems={"center"}
+              $alignItems={"flex-start"}
               $gap={8}
               role="listitem"
             >

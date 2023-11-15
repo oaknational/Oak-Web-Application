@@ -66,19 +66,19 @@ const Toast: FC = () => {
         <ToastCard
           ref={ref}
           state={state}
-          $background="teachersPastelYellow"
+          $background="lemon50"
           $width={["100%", "auto"]}
           $left={[0, "40%", "50%"]}
           role={role}
         >
-          <BrushBorders color="teachersPastelYellow" />
+          <BrushBorders color="lemon50" />
           <Flex $alignItems={"center"}>
             <Icon
               name="tick"
               size={36}
               variant={"brush"}
               $background={"white"}
-              $color={"pupilsHighlight"}
+              $color={"oakGreen"}
             />
             <Typography $color={"black"} $font={"heading-7"} $ml={16}>
               {message}

@@ -24,7 +24,7 @@ const UnitTabBanner = () => {
           <Icon
             name="books"
             size={92}
-            $background={"teachersRed"}
+            $background={"red"}
             $mr={40}
             $mb={[24, 0]}
             $color={"black"}

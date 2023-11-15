@@ -1,5 +1,7 @@
 ## Description
 
+Music year: {owa_music_year}
+
 - List of changes
 
 ## Issue(s)
@@ -9,8 +11,8 @@ Fixes #
 ## How to test
 
 1. Go to {owa_deployment_url}
-2. Click on _______
-3. You should see _______
+2. Click on \_\_\_\_\_\_
+3. You should see \_\_\_\_\_\_
 
 ## Screenshots
 

@@ -18,7 +18,7 @@ import curriculumApi, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
 } from "@/node-lib/curriculum-api-2023";
-import { BETA_SEO_PROPS } from "@/browser-lib/seo/Seo";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   decorateWithIsr,
   getFallbackBlockingConfig,
@@ -28,6 +28,7 @@ import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectP
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
+import { buildCurriculumMetadata } from "@/components/pages/CurriculumInfo/helpers/curriculumMetadata";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -56,6 +57,21 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
 
+  const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+
+  let keyStagesData: string;
+  switch (phaseSlug) {
+    case "primary":
+      keyStagesData = `KS1-2`;
+      break;
+    case "secondary":
+      keyStagesData = `KS3-4`;
+      break;
+    default:
+      keyStagesData = "";
+      break;
+  }
+
   let tabContent: JSX.Element;
   switch (tab) {
     case "overview":
@@ -68,6 +84,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           }}
         />
       );
+
       break;
     case "units":
       tabContent = <UnitsTab data={curriculumUnitsTabData} />;
@@ -77,7 +94,27 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }
 
   return (
-    <AppLayout seoProps={BETA_SEO_PROPS} $background={"white"}>
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: buildCurriculumMetadata({
+            metadataType: "title",
+            subjectSlug: subjectSlug,
+            examboardSlug: examboardSlug,
+            keyStagesData: keyStagesData,
+            tab: tab,
+          }),
+          description: buildCurriculumMetadata({
+            metadataType: "description",
+            subjectSlug: subjectSlug,
+            examboardSlug: examboardSlug,
+            keyStagesData: keyStagesData,
+            tab: tab,
+          }),
+        }),
+      }}
+      $background={"white"}
+    >
       <CurriculumHeader
         subjectPhaseOptions={subjectPhaseOptions}
         curriculumSelectionSlugs={curriculumSelectionSlugs}

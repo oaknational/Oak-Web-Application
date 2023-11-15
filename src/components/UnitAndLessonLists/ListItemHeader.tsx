@@ -39,7 +39,7 @@ export const ListTitle: FC<{
 }> = ({ children, expired, index }) => {
   return (
     <Heading
-      $color={expired ? "oakGrey4" : "black"}
+      $color={expired ? "grey60" : "black"}
       $font={["heading-7", expired ? "heading-light-6" : "heading-6"]}
       tag={"h3"}
       ariaLabel={index !== undefined ? `${index + 1}. ${children}` : undefined}
