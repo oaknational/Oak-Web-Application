@@ -65,8 +65,8 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
                   <P $font={"body-2"}>{pupilLessonOutcome}</P>
                 </Box>
               )}
-              <Flex>
-                <HeaderDownloadAllButton $mr={24} {...props} />
+              <Flex $gap={24}>
+                <HeaderDownloadAllButton {...props} />
                 <HeaderShareAllButton {...props} />
               </Flex>
             </Flex>
