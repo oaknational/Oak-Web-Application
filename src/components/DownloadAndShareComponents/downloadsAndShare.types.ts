@@ -61,6 +61,21 @@ export type PreselectedDownloadType = Exclude<
   "video"
 >;
 
+export const isPreselectedDownloadType = (
+  preselected: PreselectedDownloadType | PreselectedShareType | null,
+): preselected is PreselectedDownloadType => {
+  return (
+    preselectedDownloadType.safeParse(preselected).success &&
+    preselected !== "video"
+  );
+};
+
+export const isPreselectedShareType = (
+  preselected: PreselectedDownloadType | PreselectedShareType | null,
+): preselected is PreselectedShareType => {
+  return preselectedShareType.safeParse(preselected).success;
+};
+
 export type PreselectedShareType = Exclude<
   z.infer<typeof preselectedResourceType>,
   "slide deck" | "additional material"
@@ -68,42 +83,56 @@ export type PreselectedShareType = Exclude<
 
 export type ShareResourceType = LessonShareSchema["type"];
 
-export const preselectedDownloadTypeMap: Record<
-  PreselectedDownloadType,
-  DownloadResourceType[] | "all"
-> = {
-  "slide deck": ["presentation"],
-  "starter quiz": ["intro-quiz-questions", "intro-quiz-answers"],
-  "exit quiz": ["exit-quiz-questions", "exit-quiz-answers"],
-  worksheet: ["worksheet-pdf", "worksheet-pptx"],
-  "additional material": ["supplementary-pdf", "supplementary-docx"],
-  all: "all",
+type CombinedPreselectedTypeMap = Record<
+  PreselectedDownloadType | PreselectedShareType,
+  {
+    downloadType?: DownloadResourceType[] | "all";
+    shareType?: LessonShareSchema["type"][] | "all";
+  }
+>;
+
+export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
+  "slide deck": { downloadType: ["presentation"] },
+  "starter quiz": {
+    downloadType: ["intro-quiz-questions", "intro-quiz-answers"],
+    shareType: ["intro-quiz-questions"],
+  },
+  "exit quiz": {
+    downloadType: ["exit-quiz-questions", "exit-quiz-answers"],
+    shareType: ["exit-quiz-questions"],
+  },
+  worksheet: {
+    downloadType: ["worksheet-pdf", "worksheet-pptx"],
+    shareType: ["worksheet-pdf"],
+  },
+  "additional material": {
+    downloadType: ["supplementary-pdf", "supplementary-docx"],
+  },
+  all: { downloadType: "all", shareType: "all" },
+  video: { shareType: ["video"] },
 };
 
-export const preselectedShareTypeMap: Record<
-  PreselectedShareType,
-  LessonShareSchema["type"][] | "all"
-> = {
-  "starter quiz": ["intro-quiz-questions"],
-  "exit quiz": ["exit-quiz-questions"],
-  worksheet: ["worksheet-pdf"],
-  video: ["video"],
-  all: "all",
-};
-
-export const containerTitleToPreselectMap: Record<
+type CombinedDownloadsShareType = Record<
   ExpandingContainerTitle | LessonItemTitle,
-  PreselectedDownloadType | null
-> = {
-  "Slide deck": "slide deck",
-  "Exit quiz": "exit quiz",
-  "Starter quiz": "starter quiz",
-  "Lesson overview": null,
-  "Lesson details": null,
-  "Additional material": "additional material",
-  Worksheet: "worksheet",
-  Transcript: null,
-  Video: null,
+  {
+    downloadType: PreselectedDownloadType | null;
+    shareType: PreselectedShareType | null;
+  }
+>;
+
+export const containerTitleToPreselectMap: CombinedDownloadsShareType = {
+  "Slide deck": { downloadType: "slide deck", shareType: null },
+  "Exit quiz": { downloadType: "exit quiz", shareType: "exit quiz" },
+  "Starter quiz": { downloadType: "starter quiz", shareType: "starter quiz" },
+  "Lesson overview": { downloadType: null, shareType: null },
+  "Lesson details": { downloadType: null, shareType: null },
+  "Additional material": {
+    downloadType: "additional material",
+    shareType: null,
+  },
+  Worksheet: { downloadType: "worksheet", shareType: "worksheet" },
+  Transcript: { downloadType: null, shareType: null },
+  Video: { downloadType: null, shareType: "video" },
 };
 
 export type DownloadResources = typeof DOWNLOAD_RESOURCE_TYPES;

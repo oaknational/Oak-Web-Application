@@ -36,11 +36,13 @@ export type HeaderLessonProps = {
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
-  isNew?: boolean;
+  isLegacyLesson?: boolean;
   subjectIconBackgroundColor: OakColorName;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
+  onClickDownloadAll: () => void;
+  onClickShareAll: () => void;
 };
 
 const HeaderLesson: FC<HeaderLessonProps> = (props) => {

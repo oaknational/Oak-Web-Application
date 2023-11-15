@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
+import { HeaderShareAllButton } from "./HeaderShareAllButton";
 
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
@@ -17,7 +18,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
     tierTitle,
     examBoardTitle,
     lessonTitle,
-    isNew,
+    isLegacyLesson,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
   } = props;
@@ -35,7 +36,7 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
               $maxWidth={140}
               $ma={"auto"}
               color={subjectIconBackgroundColor}
-              isNew={isNew}
+              isLegacyLesson={isLegacyLesson}
             />
           </Flex>
         </GridArea>
@@ -64,7 +65,10 @@ export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
                   <P $font={"body-2"}>{pupilLessonOutcome}</P>
                 </Box>
               )}
-              <HeaderDownloadAllButton {...props} />
+              <Flex>
+                <HeaderDownloadAllButton $mr={24} {...props} />
+                <HeaderShareAllButton {...props} />
+              </Flex>
             </Flex>
           </Flex>
         </GridArea>

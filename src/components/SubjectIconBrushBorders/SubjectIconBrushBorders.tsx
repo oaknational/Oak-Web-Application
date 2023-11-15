@@ -11,14 +11,14 @@ import TagPromotional from "../TagPromotional";
 
 type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {
   subjectSlug: string | null;
-  isNew?: boolean;
+  isLegacyLesson?: boolean;
   color: OakColorName;
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   subjectSlug,
   color,
-  isNew,
+  isLegacyLesson,
   ...cmsImageProps
 }) => {
   const asset = subjectSlug ? getSubjectIconAsset(subjectSlug) : null;
@@ -46,7 +46,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
         {...cmsImageProps}
         format={null}
       />
-      {isNew && (
+      {!isLegacyLesson && (
         <>
           <Flex
             $left={8}
