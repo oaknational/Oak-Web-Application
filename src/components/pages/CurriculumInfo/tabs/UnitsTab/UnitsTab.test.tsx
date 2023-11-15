@@ -567,6 +567,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
             {
               connection_future_unit_description: null,
               connection_prior_unit_description: null,
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
               lessons: [
                 { title: "Lesson 1", slug: "lesson-1", order: 1 },
                 { title: "Lesson 2", slug: "lesson-2", order: 2 },
