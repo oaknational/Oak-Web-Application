@@ -1,3 +1,10 @@
+## [1.301.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.0...v1.301.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* ensure download is not forbidden ([94a63ea](https://github.com/oaknational/Oak-Web-Application/commit/94a63ea2cdde51a8fbd7e105eaa1de0473f4454a))
+
 # [1.301.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.4...v1.301.0) (2023-11-14)
 
 
