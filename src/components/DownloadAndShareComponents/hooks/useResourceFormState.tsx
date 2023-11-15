@@ -7,13 +7,12 @@ import {
   getSchoolOption,
   getSchoolUrn,
 } from "../helpers/getFormattedDetailsForTracking";
-import {
-  ResourceFormProps,
-  ResourceType,
-  preselectedShareType,
-  schema,
-} from "../downloadAndShare.types";
+import { ResourceFormProps, ResourceType } from "../downloadAndShare.types";
 import { getPreselectedShareResourceTypes } from "../helpers/getDownloadResourceType";
+import {
+  preselectedShareType,
+  resourceFormValuesSchema,
+} from "../downloadAndShare.schema";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -36,7 +35,7 @@ export const useResourceFormState = (props: Props) => {
     watch,
     handleSubmit,
   } = useForm<ResourceFormProps>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
   const [preselectAll, setPreselectAll] = useState(false);

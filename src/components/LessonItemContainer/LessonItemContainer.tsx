@@ -5,7 +5,7 @@ import Flex from "../Flex";
 import { Heading, Hr } from "../Typography";
 import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadAndShareTypeUtilities";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
 import { ContainerLink } from "./ContainerLink";
 

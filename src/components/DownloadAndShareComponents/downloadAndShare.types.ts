@@ -51,6 +51,18 @@ export type CombinedDownloadsShareType = Record<
   }
 >;
 
+export const isPreselectedDownloadType = (
+  preselected: PreselectedDownloadType | PreselectedShareType | null,
+): preselected is PreselectedDownloadType => {
+  return preselectedDownloadType.safeParse(preselected).success;
+};
+
+export const isPreselectedShareType = (
+  preselected: PreselectedDownloadType | PreselectedShareType | null,
+): preselected is PreselectedShareType => {
+  return preselectedShareType.safeParse(preselected).success;
+};
+
 // Form types
 
 export type ResourceFormValues = z.infer<typeof resourceFormValuesSchema>;

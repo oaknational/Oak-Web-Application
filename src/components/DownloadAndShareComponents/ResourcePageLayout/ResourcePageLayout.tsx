@@ -7,7 +7,7 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
-import { ErrorKeysType, ResourceFormProps } from "../downloadsAndShare.types";
+import { ErrorKeysType, ResourceFormProps } from "../downloadAndShare.types";
 import NoResourcesToDownload from "../NoResourcesToDownload";
 import DetailsCompleted from "../DetailsCompleted";
 import { DetailsCompletedProps } from "../DetailsCompleted/DetailsCompleted";
