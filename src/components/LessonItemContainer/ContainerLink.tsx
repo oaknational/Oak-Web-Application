@@ -2,9 +2,11 @@ import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
 import {
   PreselectedDownloadType,
   PreselectedShareType,
+} from "../DownloadAndShareComponents/downloadAndShare.types";
+import {
   isPreselectedDownloadType,
   isPreselectedShareType,
-} from "../DownloadAndShareComponents/downloadsAndShare.types";
+} from "../DownloadAndShareComponents/downloadAndShareTypeUtilities";
 
 import {
   LessonDownloadsCanonicalLinkProps,

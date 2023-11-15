@@ -9,7 +9,7 @@ import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadsAndShare.types";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadAndShare.types";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";

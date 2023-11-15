@@ -3,9 +3,9 @@ import { forwardRef } from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import { Heading, Hr } from "../Typography";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadsAndShare.types";
 import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadAndShareTypeUtilities";
 
 import { ContainerLink } from "./ContainerLink";
 

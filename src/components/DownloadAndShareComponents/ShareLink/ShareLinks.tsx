@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 
-import { ResourceType } from "../downloadsAndShare.types";
+import { ResourceType } from "../downloadAndShare.types";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";

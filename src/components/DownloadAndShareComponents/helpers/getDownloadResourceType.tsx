@@ -4,7 +4,7 @@ import {
   PreselectedShareType,
   ShareResourceType,
   combinedPreselectedTypeMap,
-} from "../downloadsAndShare.types";
+} from "../downloadAndShare.types";
 
 export const getPreselectedDownloadResourceTypes = (
   title: PreselectedDownloadType,

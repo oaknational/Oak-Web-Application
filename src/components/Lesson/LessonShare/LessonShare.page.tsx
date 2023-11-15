@@ -17,7 +17,7 @@ import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 
 type LessonShareProps =
   | {

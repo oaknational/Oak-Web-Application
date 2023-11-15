@@ -12,7 +12,7 @@ import {
   ResourceType,
   preselectedShareType,
   schema,
-} from "../downloadsAndShare.types";
+} from "../downloadAndShare.types";
 import { getPreselectedShareResourceTypes } from "../helpers/getDownloadResourceType";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
