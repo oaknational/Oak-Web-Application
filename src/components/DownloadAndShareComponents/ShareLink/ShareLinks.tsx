@@ -124,7 +124,7 @@ const ShareLinks: FC<{
                 schoolUrn: props?.schoolUrn ?? 0,
                 schoolName: props.schoolName ?? "",
                 schoolOption: getSchoolOption(props.schoolName),
-                shareMedium: link.medium,
+                shareMedium: link.avoMedium,
                 pupilActivityResourceTypes: pupilActivityResource,
                 emailSupplied: props.emailSupplied,
               });
