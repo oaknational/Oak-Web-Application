@@ -102,10 +102,13 @@ describe("pages/teachers/lessons", () => {
 
     const shareButton = screen.queryAllByTestId("share-all-button");
     const shareLabel = screen.queryAllByText("Share activities with pupils");
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    expect(shareButton[0]).toHaveAttribute("disabled");
-    expect(shareLabel[0]).toBeInTheDocument();
+
+    if (shareButton[0] !== undefined && shareButton.length > 0) {
+      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareLabel[0]).toBeInTheDocument();
+    } else {
+      throw new Error("Share all button not found");
+    }
   });
 
   it("sign language button toggles on click", async () => {
@@ -149,9 +152,14 @@ describe("pages/teachers/lessons", () => {
       const downloadAllButton = getAllByTestId("download-all-button");
 
       act(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        downloadAllButton[0].click();
+        if (
+          downloadAllButton[0] !== undefined &&
+          downloadAllButton.length > 0
+        ) {
+          downloadAllButton[0].click();
+        } else {
+          throw new Error("downloads all button not found");
+        }
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
@@ -180,9 +188,11 @@ describe("pages/teachers/lessons", () => {
       );
       const shareAllButton = getAllByTestId("share-all-button");
       act(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        shareAllButton[1].click();
+        if (shareAllButton[0] !== undefined && shareAllButton.length > 0) {
+          shareAllButton[0].click();
+        } else {
+          throw new Error("Share all button not found");
+        }
       });
       expect(lessonShareStarted).toHaveBeenCalledWith({
         keyStageSlug: "ks4",
