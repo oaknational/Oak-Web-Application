@@ -5,7 +5,7 @@ import { IconName } from "@/components/Icon";
 export type ShareLinkConfig = {
   name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
-  medium: "social" | "email" | "lms" | "copy-link";
+  medium: "microsoft-teams" | "email" | "google-classroom" | "copy-link";
   icon: IconName;
   url: (params: SharingMetadata) => string;
 };
@@ -38,7 +38,7 @@ export const shareLinkConfig: Record<
     url: ({ urlEncodedLink }) => {
       return `https://classroom.google.com/u/0/share?url=${urlEncodedLink}`;
     },
-    medium: "lms",
+    medium: "google-classroom",
   },
   microsoftTeams: {
     name: "Microsoft Teams",
@@ -47,6 +47,6 @@ export const shareLinkConfig: Record<
     url: ({ urlEncodedLink, urlEncodedPageTitle }) => {
       return `https://teams.microsoft.com/share?href=${urlEncodedLink}&text=${urlEncodedPageTitle}`;
     },
-    medium: "lms",
+    medium: "microsoft-teams",
   },
 };

@@ -18,6 +18,7 @@ import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLi
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
 import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type LessonShareProps =
   | {
@@ -47,6 +48,9 @@ export function LessonShare(props: LessonShareProps) {
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
   const { programmeSlug, unitSlug } = commonPathway;
+
+  const { track } = useAnalytics();
+  const { lessonShared } = track;
 
   const {
     form,
@@ -146,11 +150,15 @@ export function LessonShare(props: LessonShareProps) {
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
+              lessonTitle={lessonTitle}
               selectedActivities={selectedResources}
               schoolUrn={schoolUrn}
+              schoolName={schoolNameFromLocalStorage}
               onSubmit={
                 () => void form.handleSubmit(onFormSubmit)() // https://github.com/orgs/react-hook-form/discussions/8622
               }
+              emailSupplied={!!emailFromLocalStorage}
+              lessonShared={lessonShared}
             />
           }
         />
