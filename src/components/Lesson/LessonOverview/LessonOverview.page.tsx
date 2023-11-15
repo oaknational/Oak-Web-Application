@@ -235,7 +235,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Video") && (
                   <LessonItemContainer
                     ref={videoSectionRef}
-                    shareable={isLegacyLicense && true}
+                    shareable={isLegacyLicense}
                     slugs={slugs}
                     title={"Video"}
                     anchorId="video"
@@ -261,7 +261,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Worksheet"}
                     anchorId="worksheet"
                     downloadable={true}
-                    shareable={isLegacyLicense && true}
+                    shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "worksheet",
@@ -286,6 +286,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     <LessonItemContainer
                       ref={starterQuizSectionRef}
                       title={"Starter quiz"}
+                      shareable={isLegacyLicense}
                       anchorId="starter-quiz"
                       downloadable={true}
                       onDownloadButtonClick={() => {
@@ -312,7 +313,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       title={"Exit quiz"}
                       anchorId="exit-quiz"
                       downloadable={true}
-                      shareable={isLegacyLicense && true}
+                      shareable={isLegacyLicense}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "exit quiz",
@@ -334,7 +335,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Additional material"}
                     anchorId="additional-material"
                     downloadable={true}
-                    shareable={isLegacyLicense && true}
+                    shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "additional material",
