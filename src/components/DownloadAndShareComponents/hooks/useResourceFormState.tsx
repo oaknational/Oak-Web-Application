@@ -54,7 +54,7 @@ export const useResourceFormState = (props: Props) => {
         .map((resource) => resource.type);
     } else {
       return (resources as LessonDownloadsData["downloads"])
-        .filter((resource) => resource.exists)
+        .filter((resource) => resource.exists && !resource.forbidden)
         .map((resource) => resource.type);
     }
   }, [resources, props.type]);
