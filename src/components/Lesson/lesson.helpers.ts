@@ -113,7 +113,39 @@ export const getLessonDownloadsBreadCrumb = ({
     };
   }
 };
-
+export const getLessonShareBreadCrumb = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-share",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: "Share",
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-share-canonical",
+        lessonSlug,
+      },
+      label: "Downloads",
+      disabled,
+    };
+  }
+};
 export const getBreadcrumbsForLessonPathway = (
   lesson: ShallowNullable<LessonPathway>,
 ): Breadcrumb[] => {

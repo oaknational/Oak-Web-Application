@@ -15,7 +15,7 @@ export const CardLinkIcon: Story = {
   args: {
     title: "Title",
     href: "/",
-    background: "teachersPastelYellow",
+    background: "lemon50",
     titleTag: "h3",
   },
 };

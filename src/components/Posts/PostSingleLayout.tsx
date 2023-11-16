@@ -56,7 +56,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             $gap={20}
           >
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <Svg name="header-underline" $color="grey3" $height={4} />
+            <Svg name="header-underline" $color="grey40" $height={4} />
           </GridArea>
           <GridArea
             $order={[0, 2]}

@@ -71,7 +71,7 @@ export const MCAnswers = (props: {
                 return (
                   <Flex
                     key={`q-${questionNumber}-answer-element-${j}`}
-                    $background={"teachersPastelYellow"}
+                    $background={"lemon50"}
                     $borderRadius={8}
                     $ph={8}
                     $alignItems={"center"}

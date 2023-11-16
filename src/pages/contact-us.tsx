@@ -71,13 +71,13 @@ const ContactUs: NextPage<ContactPageProps> = ({ pageData }) => {
         <SummaryCard {...pageData} />
         <Card
           $justifyContent={"space-between"}
-          $background={"twilight"}
+          $background={"pink50"}
           $ph={[16, 24]}
           $pv={[24]}
           $mt={[72, 80]}
           $font={["body-2", "body-1"]}
         >
-          <BrushBorders hideOnMobileH color={"twilight"} />
+          <BrushBorders hideOnMobileH color={"pink50"} />
           <Flex
             $alignItems={["flex-start", "center"]}
             $flexDirection={["column", "row"]}

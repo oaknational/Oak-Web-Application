@@ -22,7 +22,7 @@ const AvatarImage: FC<AvatarImageProps> = (props) => {
     <Circle
       $overflow={"hidden"}
       size={size}
-      $background="teachersPastelYellow"
+      $background="lemon50"
       $position={"relative"}
       {...flexProps}
     >

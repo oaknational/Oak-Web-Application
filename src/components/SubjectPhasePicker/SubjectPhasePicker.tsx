@@ -295,8 +295,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
 
     setDisplayNewBorders(hideOuterBorders);
-    setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey1");
-    setSubjectBackground(subjectBackgroundEnabled ? "white" : "grey1");
+    setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey20");
+    setSubjectBackground(subjectBackgroundEnabled ? "white" : "grey20");
   }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
 
   useEffect(() => {
@@ -357,18 +357,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 tag={"h3"}
                 $font={"heading-light-7"}
                 $mb={4}
-                $color={!showSubjectError ? "black" : "failure"}
+                $color={!showSubjectError ? "black" : "red"}
               >
                 Subject
               </Heading>
-              <P
-                $font={"body-2"}
-                $color={!showSubjectError ? "black" : "failure"}
-              >
+              <P $font={"body-2"} $color={!showSubjectError ? "black" : "red"}>
                 {showSubjectError && (
                   <>
                     <Icon
-                      $color={"failure"}
+                      $color={"red"}
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
@@ -404,13 +401,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {showSubjectError && (
                   <Flex $flexDirection={"row"} $mb={20}>
                     <Icon
-                      $color={"failure"}
+                      $color={"red"}
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    <P $color={"failure"}>
-                      Select a subject to view a curriculum
-                    </P>
+                    <P $color={"red"}>Select a subject to view a curriculum</P>
                   </Flex>
                 )}
                 <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
@@ -432,7 +427,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         role="radio"
                         $mb={24}
                         $mr={24}
-                        background={isSelected(subject) ? "black" : "oakGrey1"}
+                        background={isSelected(subject) ? "black" : "grey20"}
                         subjectIcon={subject.slug}
                         label={subject.title}
                         onClick={() => handleSelectSubject(subject)}
@@ -466,7 +461,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $zIndex={"inFront"}
           >
             <BoxBorders
-              $color="grey2"
+              $color="grey30"
               hideBottom={true}
               hideTop={true}
               hideRight={true}
@@ -494,20 +489,20 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 tag={"h3"}
                 $font={"heading-light-7"}
                 $mb={4}
-                $color={!showSubjectError ? "black" : "failure"}
+                $color={!showSubjectError ? "black" : "red"}
               >
                 School phase
               </Heading>
               <Box
                 $font={"body-2"}
                 $color={
-                  !showPhaseError && !showExamboardError ? "black" : "failure"
+                  !showPhaseError && !showExamboardError ? "black" : "red"
                 }
               >
                 {showPhaseError && (
                   <>
                     <Icon
-                      $color={"failure"}
+                      $color={"red"}
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
@@ -517,7 +512,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 {showExamboardError && (
                   <>
                     <Icon
-                      $color={"failure"}
+                      $color={"red"}
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
@@ -566,11 +561,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {showPhaseError && (
                     <Flex $flexDirection={"row"} $mb={20}>
                       <Icon
-                        $color={"failure"}
+                        $color={"red"}
                         name="content-guidance"
                         verticalAlign="bottom"
                       />
-                      <P $color={"failure"}>
+                      <P $color={"red"}>
                         Select a school phase to view the curriculum
                       </P>
                     </Flex>
@@ -578,11 +573,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   {showExamboardError ? (
                     <Flex $flexDirection={"row"} $mb={20}>
                       <Icon
-                        $color={"failure"}
+                        $color={"red"}
                         name="content-guidance"
                         verticalAlign="bottom"
                       />
-                      <P $color={"failure"}>
+                      <P $color={"red"}>
                         Select an exam board to view the curriculum
                       </P>
                     </Flex>
@@ -600,7 +595,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $mr={index === 0 ? 28 : 0}
                           $mb={index === 0 ? 16 : 0}
                           $mv={8}
-                          background={isSelected(phase) ? "black" : "oakGrey1"}
+                          background={isSelected(phase) ? "black" : "grey20"}
                           label={phaseLabel(phase)}
                           onClick={() => handleSelectPhase(phase)}
                           aria-checked={isSelected(phase)}
@@ -630,7 +625,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   $mr={24}
                                   $mt={index >= 2 ? [16, 0] : 0}
                                   background={
-                                    isSelected(examboard) ? "black" : "oakGrey1"
+                                    isSelected(examboard) ? "black" : "grey20"
                                   }
                                   label={examboard.title}
                                   onClick={() =>
@@ -678,7 +673,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $display={["block", " none"]}
         >
           <BoxBorders
-            $color="grey2"
+            $color="grey30"
             hideTop={true}
             hideRight={true}
             hideLeft={true}

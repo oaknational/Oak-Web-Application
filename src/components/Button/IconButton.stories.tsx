@@ -25,8 +25,8 @@ export default {
 const Template: ComponentStory<typeof Component> = (args) => (
   <Flex>
     <Component {...args} background="black" $mr={24} />
-    <Component {...args} background="teachersHighlight" $mr={24} />
-    <Component {...args} background="pupilsHighlight" />
+    <Component {...args} background="blue" $mr={24} />
+    <Component {...args} background="oakGreen" />
   </Flex>
 );
 

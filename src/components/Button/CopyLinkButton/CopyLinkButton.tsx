@@ -40,7 +40,7 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
       icon={"share"}
       aria-label={label}
       onClick={copyLink}
-      background={"teachersHighlight"}
+      background={"blue"}
       iconAnimateTo={active ? "tick" : undefined}
     />
   );

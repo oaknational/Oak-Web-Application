@@ -31,6 +31,12 @@ const lessonShareFixtures = (
         label: "Starter quiz",
         metadata: "6 questions",
       },
+      {
+        type: "video",
+        exists: true,
+        label: "Video",
+        metadata: "20:31",
+      },
     ],
     ...partial,
   };

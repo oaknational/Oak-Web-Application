@@ -106,7 +106,7 @@ const Search: FC<SearchProps> = (props) => {
                 with adaptable teaching resources
               </Heading>
               <Card
-                $background={"teachersPastelYellow"}
+                $background={"lemon50"}
                 $width={"100%"}
                 $pv={[24]}
                 $ph={[16, 24]}
@@ -122,7 +122,7 @@ const Search: FC<SearchProps> = (props) => {
                   }}
                   analyticsSearchSource={"search page search box"}
                 />
-                <BrushBorders color={"teachersPastelYellow"} />
+                <BrushBorders color={"lemon50"} />
               </Card>
             </Flex>
             <ActiveFilters searchFilters={searchFilters} />

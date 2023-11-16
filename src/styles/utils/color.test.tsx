@@ -10,7 +10,7 @@ describe("color", () => {
       ${color}
     `;
     const { getByTestId } = renderWithTheme(
-      <StyledComponent data-testid="test" $color="teachersLilac" />,
+      <StyledComponent data-testid="test" $color="lavender50" />,
     );
 
     expect(getByTestId("test")).toHaveStyle("color: #c6d1ef");
@@ -25,6 +25,6 @@ describe("color", () => {
       <StyledComponent data-testid="test" $color={["black"]} />,
     );
 
-    expect(getByTestId("test")).toHaveStyle("color: rgb(0, 0, 0)");
+    expect(getByTestId("test")).toHaveStyle("color: rgb(34, 34, 34)");
   });
 });

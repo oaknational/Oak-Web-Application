@@ -75,7 +75,7 @@ function getBackgroundColorByHomePageTab(current: HomePageTab | undefined) {
     return "lemon";
   }
   if (current === "ai") {
-    return "pupilsPink";
+    return "pink";
   }
   return "white";
 }

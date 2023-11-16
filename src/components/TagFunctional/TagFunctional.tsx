@@ -24,8 +24,8 @@ const TAG_COLOR_MAP = {
     borderColor: "lemon50",
   },
   grey: {
-    background: "grey2",
-    borderColor: "grey4",
+    background: "grey30",
+    borderColor: "grey40",
   },
 } as const;
 
@@ -48,7 +48,7 @@ export function TagFunctional({ text, ...styleProps }: TagFunctionalProps) {
       $ph={8}
       $font="heading-light-7"
       {...styleProps}
-      $color={"oakGrey5"}
+      $color={"grey70"}
     >
       {text}
     </Span>

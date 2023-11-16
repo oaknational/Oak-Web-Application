@@ -17,6 +17,7 @@ describe("Loading button", () => {
         isLoading={loading}
         loadingText="Loading..."
         onClick={setLoading}
+        type="button"
         icon="bell"
         disabled={false}
       />,
@@ -33,6 +34,7 @@ describe("Loading button", () => {
         loadingText="Loading..."
         onClick={setLoading}
         icon="bell"
+        type="button"
         disabled={false}
       />,
     );

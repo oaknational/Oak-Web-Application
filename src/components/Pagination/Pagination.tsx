@@ -46,7 +46,7 @@ const Pagination: FC<PaginationProps> = ({
           page={null}
           href={prevHref}
           icon={"chevron-left"}
-          background={"teachersHighlight"}
+          background={"blue"}
           scroll={false}
           disabled={currentPage === 1}
         />
@@ -59,7 +59,7 @@ const Pagination: FC<PaginationProps> = ({
           page={null}
           href={nextHref}
           icon={"chevron-right"}
-          background={"teachersHighlight"}
+          background={"blue"}
           scroll={false}
           disabled={currentPage >= totalPages}
         />

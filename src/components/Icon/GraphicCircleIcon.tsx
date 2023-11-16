@@ -14,7 +14,7 @@ type GraphicCircleIconProps = FlexProps & {
 
 const GraphicCircleIcon: FC<GraphicCircleIconProps> = ({
   icon,
-  $background = "teachersPastelYellow",
+  $background = "lemon50",
   hasDropShadow = true,
   isHovered,
 }) => (

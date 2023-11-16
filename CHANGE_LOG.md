@@ -1,3 +1,113 @@
+## [1.301.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.0...v1.301.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* ensure download is not forbidden ([94a63ea](https://github.com/oaknational/Oak-Web-Application/commit/94a63ea2cdde51a8fbd7e105eaa1de0473f4454a))
+
+# [1.301.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.4...v1.301.0) (2023-11-14)
+
+
+### Bug Fixes
+
+* appease the types ([d799164](https://github.com/oaknational/Oak-Web-Application/commit/d799164d55d2c9e12b5ebab731beb6cd83021f26))
+* canonical url ([ddf83eb](https://github.com/oaknational/Oak-Web-Application/commit/ddf83ebef0879f362cbb516abd5eacf11c26c00e))
+* disabled button styling ([3ca015a](https://github.com/oaknational/Oak-Web-Application/commit/3ca015a7091854f01a799cc6f418adef3ae3f6d1))
+* download button loading borders ([07ba46c](https://github.com/oaknational/Oak-Web-Application/commit/07ba46cb4aae4ffc76a55977e7310733145ce9ce))
+* move error state ([2e1b94d](https://github.com/oaknational/Oak-Web-Application/commit/2e1b94dac9de3c900612999b00fe1018aaa26a88))
+* old colours ([fb66005](https://github.com/oaknational/Oak-Web-Application/commit/fb66005a922c025c777e4d4a92a04c06b72dd275))
+* remove api error message from share page ([62be8a3](https://github.com/oaknational/Oak-Web-Application/commit/62be8a3bad7feb203e16cf542cc2790c61cd8e29))
+* restore flex gap ([4b0938b](https://github.com/oaknational/Oak-Web-Application/commit/4b0938b06fed8f9bdc951858ecc29da87cffc363))
+* safari column width ([bfd3ace](https://github.com/oaknational/Oak-Web-Application/commit/bfd3acee7395d15ae9f4e0a85303f0cc213ce314))
+* suppress hydration warning ([a9e6fbd](https://github.com/oaknational/Oak-Web-Application/commit/a9e6fbd4bfb4ac6c37ab3ac892a3b2072f498777))
+* tests ([9570426](https://github.com/oaknational/Oak-Web-Application/commit/9570426cf1e802eba50affbc6df578b7759c7296))
+* trigger form on t&c checkbox change ([6ef8d00](https://github.com/oaknational/Oak-Web-Application/commit/6ef8d00cce248894f062b0cf3d0c2f0f20c6ff4d))
+* update story ([f3939cb](https://github.com/oaknational/Oak-Web-Application/commit/f3939cb12920c5f1a1a93b60a240cf198696947f))
+* update tests ([4a9c278](https://github.com/oaknational/Oak-Web-Application/commit/4a9c278cf79afe363cca1afcea09bceea9b76910))
+* update tests with new aria labels ([4e40356](https://github.com/oaknational/Oak-Web-Application/commit/4e40356eb963fda8e1076503ba027f3ff87c39a1))
+* use correct resource names for classroom ([e95449f](https://github.com/oaknational/Oak-Web-Application/commit/e95449f7658d3ca6d87e7d0875d5762aaaf773ac))
+
+
+### Features
+
+* add disabled styling to button as link ([593cc02](https://github.com/oaknational/Oak-Web-Application/commit/593cc02a0255e5489c782b05142a14b3a3d15d50))
+* add story for lesson share page ([02ef529](https://github.com/oaknational/Oak-Web-Application/commit/02ef5294f58a2d24db1ed3ba004abc3c85e707d5))
+* add url mapping and breadcrumbs for share page ([4e4629c](https://github.com/oaknational/Oak-Web-Application/commit/4e4629cb9167c389fb6aa5c12e556609a8559b36))
+* capitalise pdf types ([7dd2b06](https://github.com/oaknational/Oak-Web-Application/commit/7dd2b06e1e0de144607bb712a8e573a5586f011f))
+* create share links component and integrate functionality ([cd8c3c9](https://github.com/oaknational/Oak-Web-Application/commit/cd8c3c9cfebd8b678a648d6aa4a4b6ea22334ce7))
+* customise resources header ([f3d19d3](https://github.com/oaknational/Oak-Web-Application/commit/f3d19d30197789f8d328a4942ccf0aff4755452a))
+* disable preview link when errors present ([36c17e3](https://github.com/oaknational/Oak-Web-Application/commit/36c17e33e17bdcbfc7b97b7b4ed0910dfba34bee))
+* enhance aria labels for share link buttons ([610d00a](https://github.com/oaknational/Oak-Web-Application/commit/610d00ac7abcfac0b2aaed62699760025ca02ee0))
+* hook up preview as pupil button ([1d022a0](https://github.com/oaknational/Oak-Web-Application/commit/1d022a0fddd84de1357874d7e4034131e86f5e98))
+* integrate schoolUrn ([1d00632](https://github.com/oaknational/Oak-Web-Application/commit/1d00632b6d14c053638c346a5da69626729fed6e))
+* merge avo branch ([c462e5c](https://github.com/oaknational/Oak-Web-Application/commit/c462e5c7445058c9dc2881833a8812267e005da2))
+* open links in new tab ([9eb4120](https://github.com/oaknational/Oak-Web-Application/commit/9eb412071f0dbc731cc8e9cb38287890656db556))
+* refresh copy button on resource change ([d851a7a](https://github.com/oaknational/Oak-Web-Application/commit/d851a7a30c703304f46bada663d5f3a757fb0d43))
+* share page ([cfc7a4e](https://github.com/oaknational/Oak-Web-Application/commit/cfc7a4ee678bb55d0b0e6d7243906d75ba4f09bd))
+* use onSubmit event to set school in local storage ([ee61ea3](https://github.com/oaknational/Oak-Web-Application/commit/ee61ea3467d90fe4bed2e434db81963b6915958b))
+* use selected activities when generating share link ([6515de2](https://github.com/oaknational/Oak-Web-Application/commit/6515de20867aeaa2c50578a5be8c330819266f1c))
+
+## [1.300.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.3...v1.300.4) (2023-11-14)
+
+## [1.300.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.2...v1.300.3) (2023-11-14)
+
+## [1.300.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.1...v1.300.2) (2023-11-13)
+
+## [1.300.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.0...v1.300.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* legacy canonical lesson + downloads ([90228b1](https://github.com/oaknational/Oak-Web-Application/commit/90228b16873b8fa96effdcfdc0c5312db1dc49b8))
+
+# [1.300.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.299.0...v1.300.0) (2023-11-10)
+
+
+### Features
+
+* add getSharingMetadata methods from acorn ([aaf5c1f](https://github.com/oaknational/Oak-Web-Application/commit/aaf5c1f1ac63434d4265626c817fa1ba4c5ac6ca))
+* add method to get href for sharing ([dfb91cc](https://github.com/oaknational/Oak-Web-Application/commit/dfb91cc5f7d16c3693d987578825761718dd339c))
+* add share icons ([c7dc0ed](https://github.com/oaknational/Oak-Web-Application/commit/c7dc0edee49356b5055615cfbf648a33876b1e22))
+* use lesson share type ([625a0a2](https://github.com/oaknational/Oak-Web-Application/commit/625a0a277a3b2175f63d33fe1becbf23945bf7b1))
+
+# [1.299.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.2...v1.299.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* updated styling for label ([e4dabc1](https://github.com/oaknational/Oak-Web-Application/commit/e4dabc1287beb5c5672da21d1029e4ec7cce6036))
+
+
+### Features
+
+* added all examboards text for maths secondary ([a8e91e6](https://github.com/oaknational/Oak-Web-Application/commit/a8e91e64645c34841a84f78f7052be1e65a0de95))
+
+## [1.298.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.1...v1.298.2) (2023-11-09)
+
+## [1.298.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.298.0...v1.298.1) (2023-11-09)
+
+# [1.298.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.297.1...v1.298.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* include key in map and only show resource card when it exists ([8c164ef](https://github.com/oaknational/Oak-Web-Application/commit/8c164ef8e861e4cc03334508973e1a49e8f5040d))
+* mock uses correct folder name ([9a8a163](https://github.com/oaknational/Oak-Web-Application/commit/9a8a163101cd8493089b5caa80ee4fc65b4fa517))
+* more pdfs in tests ([d17a93e](https://github.com/oaknational/Oak-Web-Application/commit/d17a93e0d501be519999caf8106e4c9ae10cb4c2))
+* pdf casing in test ([6013cff](https://github.com/oaknational/Oak-Web-Application/commit/6013cff0901f4973a9fc67a2171704edcf72e564))
+* rename prop ([c88de7d](https://github.com/oaknational/Oak-Web-Application/commit/c88de7dab531b1b1f08295d58494104af3d35045))
+
+
+### Features
+
+* add preview link button ([9fe5e23](https://github.com/oaknational/Oak-Web-Application/commit/9fe5e236af535af4cb50db2a74256f7fcaace1b8))
+* add shareCardGroup component ([317069b](https://github.com/oaknational/Oak-Web-Application/commit/317069b3b2f03c23bfbd2ee38e077426ff1edf24))
+* extract card sorting functionality ([f384fd7](https://github.com/oaknational/Oak-Web-Application/commit/f384fd7be68ddbfbc9541cf4167db46ddfd08f60))
+* sort cards into correct order ([c9c5a4f](https://github.com/oaknational/Oak-Web-Application/commit/c9c5a4f69dcbbd1bf7dc705ad0b3b30e0ca3e985))
+* use decorator in story ([d772f91](https://github.com/oaknational/Oak-Web-Application/commit/d772f915348a396132f59b185770b852548b2dd3))
+
+## [1.297.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.297.0...v1.297.1) (2023-11-09)
+
 # [1.297.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.296.0...v1.297.0) (2023-11-08)
 
 

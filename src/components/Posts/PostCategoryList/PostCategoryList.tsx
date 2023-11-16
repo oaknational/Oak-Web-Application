@@ -55,7 +55,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
             $ml={12}
             variant="brush"
             size={30}
-            $background={"teachersHighlight"}
+            $background={"blue"}
             name="arrow-right"
           />
         </OakLink>

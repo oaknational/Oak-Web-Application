@@ -195,7 +195,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           $gap={[16, 32]}
         >
           <CMSImage
-            $background={"grey1"}
+            $background={"grey20"}
             $ma={"auto"}
             $ml={20}
             $mr={32}

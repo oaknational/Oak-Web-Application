@@ -71,7 +71,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           shouldHideLabel={shouldHideLabel}
           icon={icon}
           $iconPosition={$iconPosition}
-          iconBackground={iconBackground}
+          iconBackground={disabled ? "grey50" : iconBackground}
           size={size}
           background={background}
           variant={variant}

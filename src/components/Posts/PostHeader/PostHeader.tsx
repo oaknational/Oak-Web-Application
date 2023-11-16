@@ -23,7 +23,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
   return (
     <>
       <Flex $justifyContent="space-between" $flexDirection={["column", "row"]}>
-        <Heading tag={"h2"} $color="hyperlink" $font={["heading-7"]}>
+        <Heading tag={"h2"} $color="navy" $font={["heading-7"]}>
           <OakLink page={page} categorySlug={post.category.slug}>
             {post.category.title}
           </OakLink>
@@ -49,7 +49,7 @@ const PostHeader: FC<PostHeaderProps> = ({ post, page }) => {
                 {author.name}
               </Heading>
               {author.role && (
-                <P $mt={4} $font={"body-3"} $color={"oakGrey4"}>
+                <P $mt={4} $font={"body-3"} $color={"grey60"}>
                   {author.role}
                 </P>
               )}

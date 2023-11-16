@@ -31,6 +31,6 @@ export const OLOutline = styled(OL)<{ $color: OakColorName }>`
   }
 
   a {
-    color: ${(props) => props.theme.colors.hyperlink};
+    color: ${(props) => props.theme.colors.navy};
   }
 `;

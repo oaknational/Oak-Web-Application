@@ -218,13 +218,13 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                   key={`plan-a-lessing--element-card--${id}`}
                   $colSpan={[12, 6]}
                 >
-                  <LessonElementsCard $background={"twilight"}>
-                    <BrushBorders hideOnMobileH color={"twilight"} />
+                  <LessonElementsCard $background={"pink50"}>
+                    <BrushBorders hideOnMobileH color={"pink50"} />
                     <AnchorTarget id={id} />
                     <Circle
                       size={120}
                       $mb={40}
-                      $background={"teachersYellow"}
+                      $background={"lemon"}
                       $alignSelf={"center"}
                     >
                       <Icon size={80} name={icon} />
@@ -248,14 +248,14 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 $width={["100%", "auto"]}
                 $minWidth={"50%"}
                 $height={[360, 240]}
-                $background="pastelTurquoise"
+                $background="aqua"
                 $justifyContent={"flex-end"}
                 $alignItems={["center", "center", "flex-end"]}
                 $pr={[0, 24]}
                 $pb={24}
                 $pa={0}
               >
-                <BrushBorders hideOnMobileH color={"pastelTurquoise"} />
+                <BrushBorders hideOnMobileH color={"aqua"} />
                 <Cover
                   $right={[0, 0, "50%"]}
                   $left={[0, 0, 32]}
@@ -364,9 +364,9 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $flexDirection={["column", "column", "row"]}
             $mt={[56, 80]}
             $mb={32}
-            $background="teachersPastelYellow"
+            $background="lemon50"
           >
-            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+            <BrushBorders hideOnMobileH color={"lemon50"} />
             <Box $minWidth={["50%"]}>
               <Box $display={["block", "block", "none"]}>
                 <CardTitle $font={["heading-5", "heading-4"]} tag="h2">
@@ -408,11 +408,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
             $pv={[24, 24]}
             $ph={[0, 24, 24]}
             $flexDirection={["column", "column", "row"]}
-            $background={"teachersPastelYellow"}
+            $background={"lemon50"}
             $alignItems="center"
             $maxWidth={["100%", 812, "100%"]}
           >
-            <BrushBorders hideOnMobileH color={"teachersPastelYellow"} />
+            <BrushBorders hideOnMobileH color={"lemon50"} />
             <Box
               $minWidth={"50%"}
               $pr={[null, null, 72]}
@@ -433,7 +433,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={["100%", "100%", "auto"]}
               $minWidth={"50%"}
               $height={[360, 240]}
-              $background="pastelTurquoise"
+              $background="aqua"
               $justifyContent={"flex-end"}
               $alignItems={["center", "center", "flex-end"]}
               $pr={[0, 24]}

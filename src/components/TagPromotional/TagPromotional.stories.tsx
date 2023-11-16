@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Component>;
 export const TagPromotional: Story = {
   render: () => {
     return (
-      <Flex $background={"oakGrey2"} $pa={16}>
+      <Flex $background={"grey30"} $pa={16}>
         <Component size={"small"} />
         <Component size={"medium"} />
         <Component size={"large"} />

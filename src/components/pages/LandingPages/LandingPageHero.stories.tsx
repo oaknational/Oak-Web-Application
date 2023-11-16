@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof Component>;
 
 const Template: ComponentStory<typeof Component> = (args) => (
-  <Flex $background={"teachersLilac"} $justifyContent={"center"} $width="100%">
+  <Flex $background={"lavender50"} $justifyContent={"center"} $width="100%">
     <Component {...args} />
   </Flex>
 );

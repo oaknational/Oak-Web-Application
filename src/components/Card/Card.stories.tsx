@@ -15,7 +15,7 @@ export default {
   component: Component,
   argTypes: {
     background: {
-      defaultValue: "grey1",
+      defaultValue: "grey20",
     },
   },
 } as ComponentMeta<typeof Component>;
@@ -42,7 +42,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
       >
         Title
       </CardTitle>
-      <P $font={"body-2"} $mb={24} $color={"grey6"}>
+      <P $font={"body-2"} $mb={24} $color={"grey50"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink $mt={"auto"} label={"Label"} $fullWidth page="home" />
@@ -56,7 +56,7 @@ export const CardImageButton: ComponentStory<typeof Component> = (args) => (
       <CardImage illustration="magic-carpet" />
       <Flex $pa={24} $flexDirection={"column"}>
         <CardTitle tag={"h4"}>Title</CardTitle>
-        <P $font={"body-2"} $mb={24} $color={"grey6"}>
+        <P $font={"body-2"} $mb={24} $color={"grey50"}>
           Short snappy description of what this card is about.
         </P>
         <ButtonAsLink
@@ -87,7 +87,7 @@ export const CardLargeIconCentered: ComponentStory<typeof Component> = (
       >
         Title
       </CardTitle>
-      <P $textAlign="center" $font={"body-2"} $mb={24} $color={"grey6"}>
+      <P $textAlign="center" $font={"body-2"} $mb={24} $color={"grey50"}>
         Short snappy description of what this card is about.
       </P>
       <ButtonAsLink

@@ -17,7 +17,7 @@ export const SummaryCard = Template.bind({});
 SummaryCard.args = {
   title: "Title",
   summaryPortableText: "A summary section.......",
-  background: "teachersPastelYellow",
+  background: "lemon50",
 };
 
 export const SummaryCardImage = Template.bind({});
@@ -25,7 +25,7 @@ export const SummaryCardImage = Template.bind({});
 SummaryCardImage.args = {
   title: "Title",
   summaryPortableText: "A summary section.......",
-  background: "teachersPastelYellow",
+  background: "lemon50",
 };
 
 export const SummaryCardCustomImageContainer = Template.bind({});
@@ -33,7 +33,7 @@ export const SummaryCardCustomImageContainer = Template.bind({});
 SummaryCardCustomImageContainer.args = {
   title: "Title",
   summaryPortableText: "A summary section.......",
-  background: "teachersGreen",
+  background: "teal",
   imageContainerProps: {
     $minHeight: 160,
   },
