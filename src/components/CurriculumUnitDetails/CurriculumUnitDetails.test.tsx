@@ -10,9 +10,9 @@ const testCurriculumUnitDetails = {
   threads: [{ title: "test thread", slug: "test-thread", order: 1 }],
   numberOfLessons: 1,
   lessons: [{ title: "test lesson", slug: "test-lesson" }],
-  previousUnitDescription: "test previous unit description",
+  priorUnitDescription: "test prior unit description",
   futureUnitDescription: "test future unit description",
-  previousUnitTitle: "test previous unit title",
+  priorUnitTitle: "test prior unit title",
   futureUnitTitle: "test future unit title",
 };
 
@@ -45,7 +45,7 @@ describe("CurriculumUnitDetails component", () => {
 
       expect(getAllByTestId("accordion-component")).toHaveLength(3);
       expect(getByText("Lessons in unit")).toBeInTheDocument();
-      expect(getByText("Previous unit description")).toBeInTheDocument();
+      expect(getByText("prior unit description")).toBeInTheDocument();
       expect(getByText("Following unit description")).toBeInTheDocument();
     });
 
