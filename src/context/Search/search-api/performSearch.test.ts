@@ -17,14 +17,15 @@ jest.mock("./2020/fetchResults", () => ({
 }));
 const fetchResults2020Spy = jest
   .spyOn(fetchResults2020, "fetchResults")
-  .mockResolvedValue([]);
+  .mockResolvedValue([...mockResults2020]);
+
 jest.mock("./2023/fetchResults", () => ({
   __esModule: true,
   ...jest.requireActual("./2023/fetchResults"),
 }));
 const fetchResults2023Spy = jest
   .spyOn(fetchResults2023, "fetchResults")
-  .mockResolvedValue([]);
+  .mockResolvedValue([...mockResults2023]);
 
 const callbacks = {
   onStart: jest.fn(),
@@ -47,7 +48,6 @@ describe("performSearch", () => {
     expect(callbacks.onStart).toHaveBeenCalled();
   });
   test("should call onSuccess with 2020 results on success", async () => {
-    fetchResults2020Spy.mockResolvedValue(mockResults2020);
     await performSearch({
       query: {
         term: "test",
@@ -57,8 +57,7 @@ describe("performSearch", () => {
     });
     expect(callbacks.onSuccess).toHaveBeenCalledWith(mockResults2020);
   });
-  test.skip("should call onSuccess with 2023 results on success", async () => {
-    fetchResults2023Spy.mockResolvedValue(mockResults2023);
+  test("should call onSuccess with 2023 results on success", async () => {
     await performSearch({
       query: {
         term: "test",
@@ -66,7 +65,11 @@ describe("performSearch", () => {
       apiVersion: "2023",
       ...callbacks,
     });
-    expect(callbacks.onSuccess).toHaveBeenCalledWith(mockResults2023);
+
+    expect(callbacks.onSuccess).toHaveBeenCalledWith([
+      ...mockResults2023,
+      ...mockResults2020,
+    ]);
   });
   test("should call onFail on fail", async () => {
     fetchResults2020Spy.mockRejectedValue(new Error("test"));
@@ -79,8 +82,7 @@ describe("performSearch", () => {
     });
     expect(callbacks.onFail).toHaveBeenCalled();
   });
-  test.skip("apiVersion 2020: should call 2020 data sets", async () => {
-    fetchResults2020Spy.mockResolvedValue(mockResults2020);
+  test("apiVersion 2020: should call 2020 data sets", async () => {
     await performSearch({
       query: {
         term: "test",
@@ -92,7 +94,6 @@ describe("performSearch", () => {
     expect(fetchResults2023Spy).not.toHaveBeenCalled();
   });
   test.skip("apiVersion 2023: should call only 2023 data sets", async () => {
-    fetchResults2023Spy.mockResolvedValue(mockResults2023);
     await performSearch({
       query: {
         term: "test",
