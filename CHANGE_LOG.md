@@ -1,3 +1,18 @@
+# [1.302.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.2...v1.302.0) (2023-11-16)
+
+
+### Bug Fixes
+
+* updated fixtures ([1f1d2ba](https://github.com/oaknational/Oak-Web-Application/commit/1f1d2baf6970440b9128f70f3d94f277862ae9f1))
+* updated unit optionality prior/future desc ([9f932bd](https://github.com/oaknational/Oak-Web-Application/commit/9f932bd9e0a74fbcf01d6d048015e38fb5e4dd58))
+
+
+### Features
+
+* added new units endpoint ([5dfde77](https://github.com/oaknational/Oak-Web-Application/commit/5dfde77ca79d514d4a8b10bb8cdae8b815d979bf))
+* added prior/future unit descs to unit modal ([8853be7](https://github.com/oaknational/Oak-Web-Application/commit/8853be7e1cd88d40e2b7dc516ee9aed03cde954a))
+* updated prir/future unit titles in modal ([b8217ea](https://github.com/oaknational/Oak-Web-Application/commit/b8217ea8710b60571be98f9bcaa9919ddbad6188))
+
 ## [1.301.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.1...v1.301.2) (2023-11-16)
 
 
