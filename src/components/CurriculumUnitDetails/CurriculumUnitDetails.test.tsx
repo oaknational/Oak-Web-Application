@@ -45,7 +45,7 @@ describe("CurriculumUnitDetails component", () => {
 
       expect(getAllByTestId("accordion-component")).toHaveLength(3);
       expect(getByText("Lessons in unit")).toBeInTheDocument();
-      expect(getByText("prior unit description")).toBeInTheDocument();
+      expect(getByText("Previous unit description")).toBeInTheDocument();
       expect(getByText("Following unit description")).toBeInTheDocument();
     });
 
