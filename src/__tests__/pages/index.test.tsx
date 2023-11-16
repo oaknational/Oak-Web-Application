@@ -55,7 +55,7 @@ jest.mock("posthog-js/react", () => ({
 const render = renderWithProviders();
 
 describe("pages/index.tsx", () => {
-  it.only("Renders correct title ", () => {
+  it("Renders correct title ", () => {
     render(<Teachers {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
