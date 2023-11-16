@@ -119,13 +119,13 @@ const UnitModal: FC<UnitModalProps> = ({
                 <CurriculumUnitDetails
                   threads={unitData.threads}
                   lessons={unitData.lessons}
-                  previousUnitDescription={
+                  priorUnitDescription={
                     unitData.connection_prior_unit_description
                   }
                   futureUnitDescription={
                     unitData.connection_future_unit_description
                   }
-                  previousUnitTitle={unitData.connection_prior_unit_title}
+                  priorUnitTitle={unitData.connection_prior_unit_title}
                   futureUnitTitle={unitData.connection_future_unit_title}
                 />
               </Box>
@@ -209,11 +209,11 @@ const UnitModal: FC<UnitModalProps> = ({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
-                                    previousUnitDescription:
+                                    priorUnitDescription:
                                       optionalUnit.connection_prior_unit_description,
                                     futureUnitDescription:
                                       optionalUnit.connection_future_unit_description,
-                                    previousUnitTitle:
+                                    priorUnitTitle:
                                       optionalUnit.connection_prior_unit_title,
                                     futureUnitTitle:
                                       optionalUnit.connection_future_unit_title,
