@@ -47,6 +47,7 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     page: "share" | "download";
     resourcesHeader: string;
     triggerForm: UseFormTrigger<ResourceFormProps>;
+    apiError?: string | null;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -227,6 +228,17 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </Flex>
             )}
             {props.cta}
+
+            {props.apiError && !hasFormErrors && (
+              <FieldError
+                id="download-error"
+                data-testid="download-error"
+                variant={"large"}
+                withoutMarginBottom
+              >
+                {props.apiError}
+              </FieldError>
+            )}
           </Flex>
         </Flex>
       </Flex>
