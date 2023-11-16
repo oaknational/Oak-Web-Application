@@ -17,8 +17,19 @@ import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceType,
+} from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  PupilActivityResourceTypesValueType,
+  ShareMediumValueType,
+} from "@/browser-lib/avo/Avo";
+import {
+  getSchoolName,
+  getSchoolOption,
+} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 
 type LessonShareProps =
   | {
@@ -40,6 +51,15 @@ type LessonShareProps =
         shareableResources: LessonShareData["shareableResources"];
       };
     };
+
+const classroomActivityMap: Partial<
+  Record<ResourceType, PupilActivityResourceTypesValueType>
+> = {
+  "intro-quiz-questions": "starter-quiz",
+  "exit-quiz-questions": "exit-quiz",
+  "worksheet-pdf": "worksheet",
+  video: "video",
+};
 
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
@@ -79,12 +99,35 @@ export function LessonShare(props: LessonShareProps) {
     type: "share",
   });
 
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+  const onFormSubmit = async (
+    data: ResourceFormProps,
+    shareMedium: ShareMediumValueType,
+  ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
+    const updatedSchoolName = getSchoolName(
+      data.school,
+      getSchoolOption(data.school),
+    );
+
+    lessonShared({
+      lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
+      schoolUrn: schoolUrn,
+      schoolName: updatedSchoolName,
+      schoolOption: getSchoolOption(data.school),
+      shareMedium: shareMedium,
+      pupilActivityResourceTypes: pupilActivityResource,
+      emailSupplied: !!emailFromLocalStorage,
+    });
+
     if (editDetailsClicked && !data.email) {
       setEmailInLocalStorage("");
     }
   };
+  const pupilActivityResource = selectedResources?.map((r) => {
+    const resource = classroomActivityMap[r];
+    return resource;
+  }) as PupilActivityResourceTypesValueType[];
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -155,10 +198,12 @@ export function LessonShare(props: LessonShareProps) {
               schoolUrn={schoolUrn}
               schoolName={schoolNameFromLocalStorage}
               onSubmit={
-                () => void form.handleSubmit(onFormSubmit)() // https://github.com/orgs/react-hook-form/discussions/8622
+                (shareMedium: ShareMediumValueType) =>
+                  void form.handleSubmit((data) => {
+                    onFormSubmit(data, shareMedium);
+                  })() // https://github.com/orgs/react-hook-form/discussions/8622
               }
               emailSupplied={!!emailFromLocalStorage}
-              lessonShared={lessonShared}
             />
           }
         />
