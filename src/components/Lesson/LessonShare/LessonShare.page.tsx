@@ -117,7 +117,7 @@ export function LessonShare(props: LessonShareProps) {
       schoolOption: getSchoolOption(data.school),
       shareMedium: shareMedium,
       pupilActivityResourceTypes: pupilActivityResource,
-      emailSupplied: !!emailFromLocalStorage,
+      emailSupplied: data.email ? true : false,
     });
 
     if (editDetailsClicked && !data.email) {
