@@ -1,3 +1,10 @@
+## [1.301.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.1...v1.301.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* move api error within flex layout ([515a44e](https://github.com/oaknational/Oak-Web-Application/commit/515a44e1a5f6a184878aefae09e2ea2324468df4))
+
 ## [1.301.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.0...v1.301.1) (2023-11-15)
 
 
