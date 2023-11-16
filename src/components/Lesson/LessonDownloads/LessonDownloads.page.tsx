@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 import { Hr } from "@/components/Typography";
@@ -16,7 +15,6 @@ import {
 } from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
-import FieldError from "@/components/FormFields/FieldError";
 import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
@@ -216,71 +214,51 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
         </Box>
         {!isDownloadSuccessful && (
-          <>
-            <ResourcePageLayout
-              page={"download"}
-              errors={form.errors}
-              handleToggleSelectAll={handleToggleSelectAll}
-              selectAllChecked={selectAllChecked}
-              header="Download"
-              showNoResources={!hasResources}
-              showLoading={isLocalStorageLoading}
-              email={emailFromLocalStorage}
-              school={schoolNameFromLocalStorage}
-              schoolId={schoolIdFromLocalStorage}
-              setSchool={setSchool}
-              showSavedDetails={shouldDisplayDetailsCompleted}
-              onEditClick={handleEditDetailsCompletedClick}
-              register={form.register}
-              control={form.control}
-              showPostAlbCopyright={!isLegacy}
-              resourcesHeader="Lesson resources"
-              triggerForm={form.trigger}
-              cardGroup={
-                <DownloadCardGroup
-                  control={form.control}
-                  downloads={downloads}
-                  hasError={form.errors?.resources ? true : false}
-                  triggerForm={form.trigger}
-                />
-              }
-              cta={
-                <LoadingButton
-                  type="button"
-                  onClick={
-                    (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                  }
-                  text={"Download .zip"}
-                  icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    (!form.formState.isValid && !localStorageDetails)
-                  }
-                  loadingText={"Downloading..."}
-                />
-              }
-            />
-
-            <Flex
-              $flexDirection={["column", "row"]}
-              $justifyContent={"right"}
-              $alignItems={"center"}
-            >
-              {apiError && !hasFormErrors && (
-                <Box $mr={24} $textAlign={"left"}>
-                  <FieldError
-                    id="download-error"
-                    data-testid="download-error"
-                    variant={"large"}
-                    withoutMarginBottom
-                  >
-                    {apiError}
-                  </FieldError>
-                </Box>
-              )}
-            </Flex>
-          </>
+          <ResourcePageLayout
+            page={"download"}
+            errors={form.errors}
+            handleToggleSelectAll={handleToggleSelectAll}
+            selectAllChecked={selectAllChecked}
+            header="Download"
+            showNoResources={!hasResources}
+            showLoading={isLocalStorageLoading}
+            email={emailFromLocalStorage}
+            school={schoolNameFromLocalStorage}
+            schoolId={schoolIdFromLocalStorage}
+            setSchool={setSchool}
+            showSavedDetails={shouldDisplayDetailsCompleted}
+            onEditClick={handleEditDetailsCompletedClick}
+            register={form.register}
+            control={form.control}
+            showPostAlbCopyright={!isLegacy}
+            resourcesHeader="Lesson resources"
+            triggerForm={form.trigger}
+            apiError={apiError}
+            cardGroup={
+              <DownloadCardGroup
+                control={form.control}
+                downloads={downloads}
+                hasError={form.errors?.resources ? true : false}
+                triggerForm={form.trigger}
+              />
+            }
+            cta={
+              <LoadingButton
+                type="button"
+                onClick={
+                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                }
+                text={"Download .zip"}
+                icon={"download"}
+                isLoading={isAttemptingDownload}
+                disabled={
+                  hasFormErrors ||
+                  (!form.formState.isValid && !localStorageDetails)
+                }
+                loadingText={"Downloading..."}
+              />
+            }
+          />
         )}
       </MaxWidth>
     </Box>
