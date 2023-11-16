@@ -24,11 +24,10 @@ export async function performSearch({
   try {
     onStart();
 
-    let results = await fetchResults2020(query);
+    const results = await fetchResults2020(query);
 
     if (apiVersion === "2023") {
-      const newResults = await fetchResults2023(query);
-      results = [...newResults, ...results];
+      results.unshift(...(await fetchResults2023(query)));
     }
 
     onSuccess(results);
