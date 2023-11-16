@@ -51,6 +51,13 @@ export const Layout: Story = {
     onEditClick: () => {},
     setSchool: () => {},
     cta: <button>CTA</button>,
+    apiError: null,
+  },
+  argTypes: {
+    apiError: {
+      control: "radio",
+      options: [null, "error"],
+    },
   },
   render: (args) => {
     return <Wrapper {...args} />;
