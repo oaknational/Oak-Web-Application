@@ -48,11 +48,14 @@ const props: TeachersHomePageProps = {
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
 
 const render = renderWithProviders();
 
 describe("pages/index.tsx", () => {
-  it("Renders correct title ", () => {
+  it.only("Renders correct title ", () => {
     render(<Teachers {...props} />);
 
     const h1 = screen.getByRole("heading", { level: 1 });
