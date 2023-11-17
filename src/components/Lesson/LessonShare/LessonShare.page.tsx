@@ -109,6 +109,10 @@ export function LessonShare(props: LessonShareProps) {
       getSchoolOption(data.school),
     );
 
+    if (editDetailsClicked && !data.email) {
+      setEmailInLocalStorage("");
+    }
+
     lessonShared({
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
@@ -119,10 +123,6 @@ export function LessonShare(props: LessonShareProps) {
       pupilActivityResourceTypes: pupilActivityResource,
       emailSupplied: data.email ? true : false,
     });
-
-    if (editDetailsClicked && !data.email) {
-      setEmailInLocalStorage("");
-    }
   };
   const pupilActivityResource = selectedResources?.map((r) => {
     const resource = classroomActivityMap[r];
