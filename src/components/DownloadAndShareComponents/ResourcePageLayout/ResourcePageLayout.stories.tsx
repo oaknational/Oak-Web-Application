@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
-import { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadsAndShare.types";
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
@@ -21,7 +21,7 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: ResourcePageLayoutProps) => {
-  const { control, register } = useForm<DownloadFormProps>();
+  const { control, register } = useForm<ResourceFormProps>();
   return (
     <ResourcePageLayout
       {...args}
@@ -51,6 +51,13 @@ export const Layout: Story = {
     onEditClick: () => {},
     setSchool: () => {},
     cta: <button>CTA</button>,
+    apiError: null,
+  },
+  argTypes: {
+    apiError: {
+      control: "radio",
+      options: [null, "error"],
+    },
   },
   render: (args) => {
     return <Wrapper {...args} />;

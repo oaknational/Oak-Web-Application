@@ -1,6 +1,9 @@
 import { match, compile, MatchFunction } from "path-to-regexp";
 
-import { PreselectedDownloadType } from "../../components/DownloadAndShareComponents/downloads.types";
+import {
+  PreselectedDownloadType,
+  PreselectedShareType,
+} from "../../components/DownloadAndShareComponents/downloadsAndShare.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";
@@ -122,6 +125,22 @@ export type LessonDownloadsCanonicalLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
+export type LessonShareLinkProps = {
+  page: "lesson-share";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
+export type LessonShareCanonicalLinkProps = {
+  page: "lesson-share-canonical";
+  lessonSlug: string;
+  query?: {
+    preselected: PreselectedShareType | null;
+  };
+};
 type SearchLinkProps = {
   page: "search";
   query?: Partial<SearchQuery>;
@@ -186,6 +205,8 @@ export type OakLinkProps =
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
   | LessonDownloadsCanonicalLinkProps
+  | LessonShareLinkProps
+  | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | LessonOverviewCanonicalLinkProps
   | LessonListingLinkProps
@@ -258,6 +279,8 @@ type OakPages = {
   "lesson-overview-canonical": OakPageConfig<LessonOverviewCanonicalLinkProps>;
   "lesson-downloads": OakPageConfig<LessonDownloadsLinkProps>;
   "lesson-downloads-canonical": OakPageConfig<LessonDownloadsCanonicalLinkProps>;
+  "lesson-share": OakPageConfig<LessonShareLinkProps>;
+  "lesson-share-canonical": OakPageConfig<LessonShareCanonicalLinkProps>;
   search: OakPageConfig<SearchLinkProps>;
   "landing-page": OakPageConfig<LandingPageLinkProps>;
   "subject-index": OakPageConfig<SubjectListingLinkProps>;
@@ -549,6 +572,19 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",
+  }),
+  "lesson-share": createOakPageConfig({
+    pathPattern:
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "lesson-share",
+  }),
+  "lesson-share-canonical": createOakPageConfig({
+    pathPattern: "/teachers/lessons/:lessonSlug/share",
+    analyticsPageName: "Lesson Share",
+    configType: "internal",
+    pageType: "lesson-share-canonical",
   }),
   search: createOakPageConfig({
     pathPattern: "/teachers/search",

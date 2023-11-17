@@ -1,12 +1,15 @@
+import { ResourceType } from "../downloadsAndShare.types";
+
 import { ShareLinkConfig } from "./linkConfig";
 
-import { LessonShareSchema } from "@/node-lib/curriculum-api";
-
-function getActivityQueryString(
-  selectedActivities: Array<LessonShareSchema["type"]>,
-) {
+function getActivityQueryString(selectedActivities: Array<ResourceType>) {
+  const classroomActivityMap: Partial<Record<ResourceType, string>> = {
+    "intro-quiz-questions": "intro_quiz",
+    "exit-quiz-questions": "exit_quiz",
+    "worksheet-pdf": "worksheet",
+  };
   const activities = selectedActivities
-    .map((key) => key.toLowerCase().replace(" ", "_"))
+    .map((key) => classroomActivityMap[key] ?? key)
     .join("+");
 
   return `&activities=${activities}`;
@@ -24,17 +27,15 @@ export type SharingMetadata = {
 const classroomPath = (lessonSlug: string) => `/lessons/${lessonSlug}`;
 
 export type GetSharingMetadataParams = {
-  network?: ShareLinkConfig["network"];
   lessonSlug: string;
-  medium: ShareLinkConfig["medium"];
-  selectedActivities?: Array<LessonShareSchema["type"]>;
-  schoolUrn?: string;
+  selectedActivities?: Array<ResourceType>;
+  schoolUrn?: number;
+  linkConfig: ShareLinkConfig;
 };
 
 export const getSharingMetadata = ({
-  network,
   lessonSlug,
-  medium,
+  linkConfig,
   selectedActivities,
   schoolUrn,
 }: GetSharingMetadataParams): SharingMetadata => {
@@ -51,12 +52,12 @@ export const getSharingMetadata = ({
   }
   link = `${link}?utm_campaign=sharing-button${activityQueryString}`;
 
-  if (network) {
-    link = link + `&utm_source=${network}`;
+  if (linkConfig.network) {
+    link = link + `&utm_source=${linkConfig.network}`;
   }
 
-  if (medium) {
-    link = link + `&utm_medium=${medium}`;
+  if (linkConfig.medium) {
+    link = link + `&utm_medium=${linkConfig.medium}`;
   }
 
   if (schoolUrn) {

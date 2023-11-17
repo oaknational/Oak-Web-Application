@@ -1,8 +1,8 @@
 import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import type {
-  DownloadFormProps,
   DownloadResourceType,
-} from "../downloads.types";
+  ResourceFormProps,
+} from "../downloadsAndShare.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
 import useUtmParams from "../../../hooks/useUtmParams";
 import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
@@ -14,12 +14,11 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
-type UseDownloadFormProps = {
+type UseResourceFormProps = {
   onSubmit?: () => void;
-  isLegacyDownload: boolean;
-};
+} & ({ type: "share" } | { type: "download"; isLegacyDownload: boolean });
 
-const useDownloadForm = (props: UseDownloadFormProps) => {
+const useResourceFormSubmit = (props: UseResourceFormProps) => {
   const {
     setSchoolInLocalStorage,
     setEmailInLocalStorage,
@@ -28,7 +27,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
 
-  const onSubmit = async (data: DownloadFormProps, slug: string) => {
+  const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
@@ -39,7 +38,7 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
     const schoolId = data?.school;
     const schoolName = data?.schoolName;
     const terms = data?.terms;
-    const downloads = data?.downloads;
+    const downloads = data?.resources;
 
     if (email) {
       setEmailInLocalStorage(email);
@@ -57,36 +56,37 @@ const useDownloadForm = (props: UseDownloadFormProps) => {
         }
       }
     }
-    const downloadsPayload = getHubspotDownloadsFormPayload({
-      hutk,
-      data: {
-        ...data,
-        ...utmParams,
-        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
-        schoolName:
-          schoolId === "homeschool" || schoolId === "notListed"
-            ? schoolId
-            : schoolName,
-      },
-    });
-    const hubspotFormResponse = await hubspotSubmitForm({
-      hubspotFormId: hubspotDownloadsFormId,
-      payload: downloadsPayload,
-    });
-
     if (terms) {
       setTermsInLocalStorage(terms);
     }
+    if (props.type === "download") {
+      const downloadsPayload = getHubspotDownloadsFormPayload({
+        hutk,
+        data: {
+          ...data,
+          ...utmParams,
+          oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+          schoolName:
+            schoolId === "homeschool" || schoolId === "notListed"
+              ? schoolId
+              : schoolName,
+        },
+      });
+      const hubspotFormResponse = await hubspotSubmitForm({
+        hubspotFormId: hubspotDownloadsFormId,
+        payload: downloadsPayload,
+      });
 
-    await downloadLessonResources(
-      slug,
-      downloads as DownloadResourceType[],
-      props.isLegacyDownload,
-    );
-    return hubspotFormResponse;
+      await downloadLessonResources(
+        slug,
+        downloads as DownloadResourceType[],
+        props.isLegacyDownload,
+      );
+      return hubspotFormResponse;
+    }
   };
 
   return { onSubmit };
 };
 
-export default useDownloadForm;
+export default useResourceFormSubmit;

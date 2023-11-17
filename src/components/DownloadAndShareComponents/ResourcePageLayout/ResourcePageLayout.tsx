@@ -4,9 +4,10 @@ import {
   Controller,
   FieldErrors,
   UseFormRegister,
+  UseFormTrigger,
 } from "react-hook-form";
 
-import { DownloadFormProps, ErrorKeysType } from "../downloads.types";
+import { ErrorKeysType, ResourceFormProps } from "../downloadsAndShare.types";
 import NoResourcesToDownload from "../NoResourcesToDownload";
 import DetailsCompleted from "../DetailsCompleted";
 import { DetailsCompletedProps } from "../DetailsCompleted/DetailsCompleted";
@@ -14,6 +15,7 @@ import SchoolDetails from "../SchoolDetails";
 import { SchoolDetailsProps } from "../SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "../TermsAndConditionsCheckbox";
 import CopyrightNotice from "../CopyrightNotice";
+import NoResourcesToShare from "../NoResourcesToShare";
 
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/Typography";
@@ -32,16 +34,20 @@ export type ResourcePageLayoutProps = DetailsCompletedProps &
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    errors: FieldErrors<DownloadFormProps>;
+    errors: FieldErrors<ResourceFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     schoolId?: string;
-    register: UseFormRegister<DownloadFormProps>;
-    control: Control<DownloadFormProps>;
+    register: UseFormRegister<ResourceFormProps>;
+    control: Control<ResourceFormProps>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
+    page: "share" | "download";
+    resourcesHeader: string;
+    triggerForm: UseFormTrigger<ResourceFormProps>;
+    apiError?: string | null;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -71,10 +77,13 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           $flexDirection={["column", "column", "row"]}
           $gap={48}
         >
-          <Flex $flexDirection="column" $gap={24}>
+          <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
             <Heading tag="h2" $font={["heading-6", "heading-5"]}>
-              Lesson resources
+              {props.resourcesHeader}
             </Heading>
+            <FieldError id={"downloads-error"} withoutMarginBottom>
+              {props.errors?.resources?.message}
+            </FieldError>
             <Box $maxWidth="max-content">
               <Checkbox
                 checked={props.selectAllChecked}
@@ -86,9 +95,6 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 labelFontWeight={600}
               />
             </Box>
-            <FieldError id={"downloads-error"}>
-              {props.errors?.downloads?.message}
-            </FieldError>
             {props.cardGroup}
           </Flex>
           <Flex
@@ -106,7 +112,11 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </FieldError>
             )}
             {props.showNoResources ? (
-              <NoResourcesToDownload />
+              props.page === "download" ? (
+                <NoResourcesToDownload />
+              ) : (
+                <NoResourcesToShare />
+              )
             ) : (
               <>
                 {props.showLoading ? (
@@ -176,7 +186,8 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                             const onChangeHandler = (
                               e: ChangeEvent<HTMLInputElement>,
                             ) => {
-                              return onChange(e.target.checked);
+                              onChange(e.target.checked);
+                              props.triggerForm();
                             };
                             return (
                               <TermsAndConditionsCheckbox
@@ -217,6 +228,17 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               </Flex>
             )}
             {props.cta}
+
+            {props.apiError && !hasFormErrors && (
+              <FieldError
+                id="download-error"
+                data-testid="download-error"
+                variant={"large"}
+                withoutMarginBottom
+              >
+                {props.apiError}
+              </FieldError>
+            )}
           </Flex>
         </Flex>
       </Flex>

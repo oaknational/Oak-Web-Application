@@ -1,3 +1,74 @@
+# [1.302.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.2...v1.302.0) (2023-11-16)
+
+
+### Bug Fixes
+
+* updated fixtures ([1f1d2ba](https://github.com/oaknational/Oak-Web-Application/commit/1f1d2baf6970440b9128f70f3d94f277862ae9f1))
+* updated unit optionality prior/future desc ([9f932bd](https://github.com/oaknational/Oak-Web-Application/commit/9f932bd9e0a74fbcf01d6d048015e38fb5e4dd58))
+
+
+### Features
+
+* added new units endpoint ([5dfde77](https://github.com/oaknational/Oak-Web-Application/commit/5dfde77ca79d514d4a8b10bb8cdae8b815d979bf))
+* added prior/future unit descs to unit modal ([8853be7](https://github.com/oaknational/Oak-Web-Application/commit/8853be7e1cd88d40e2b7dc516ee9aed03cde954a))
+* updated prir/future unit titles in modal ([b8217ea](https://github.com/oaknational/Oak-Web-Application/commit/b8217ea8710b60571be98f9bcaa9919ddbad6188))
+
+## [1.301.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.1...v1.301.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* move api error within flex layout ([515a44e](https://github.com/oaknational/Oak-Web-Application/commit/515a44e1a5f6a184878aefae09e2ea2324468df4))
+
+## [1.301.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.0...v1.301.1) (2023-11-15)
+
+
+### Bug Fixes
+
+* ensure download is not forbidden ([94a63ea](https://github.com/oaknational/Oak-Web-Application/commit/94a63ea2cdde51a8fbd7e105eaa1de0473f4454a))
+
+# [1.301.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.4...v1.301.0) (2023-11-14)
+
+
+### Bug Fixes
+
+* appease the types ([d799164](https://github.com/oaknational/Oak-Web-Application/commit/d799164d55d2c9e12b5ebab731beb6cd83021f26))
+* canonical url ([ddf83eb](https://github.com/oaknational/Oak-Web-Application/commit/ddf83ebef0879f362cbb516abd5eacf11c26c00e))
+* disabled button styling ([3ca015a](https://github.com/oaknational/Oak-Web-Application/commit/3ca015a7091854f01a799cc6f418adef3ae3f6d1))
+* download button loading borders ([07ba46c](https://github.com/oaknational/Oak-Web-Application/commit/07ba46cb4aae4ffc76a55977e7310733145ce9ce))
+* move error state ([2e1b94d](https://github.com/oaknational/Oak-Web-Application/commit/2e1b94dac9de3c900612999b00fe1018aaa26a88))
+* old colours ([fb66005](https://github.com/oaknational/Oak-Web-Application/commit/fb66005a922c025c777e4d4a92a04c06b72dd275))
+* remove api error message from share page ([62be8a3](https://github.com/oaknational/Oak-Web-Application/commit/62be8a3bad7feb203e16cf542cc2790c61cd8e29))
+* restore flex gap ([4b0938b](https://github.com/oaknational/Oak-Web-Application/commit/4b0938b06fed8f9bdc951858ecc29da87cffc363))
+* safari column width ([bfd3ace](https://github.com/oaknational/Oak-Web-Application/commit/bfd3acee7395d15ae9f4e0a85303f0cc213ce314))
+* suppress hydration warning ([a9e6fbd](https://github.com/oaknational/Oak-Web-Application/commit/a9e6fbd4bfb4ac6c37ab3ac892a3b2072f498777))
+* tests ([9570426](https://github.com/oaknational/Oak-Web-Application/commit/9570426cf1e802eba50affbc6df578b7759c7296))
+* trigger form on t&c checkbox change ([6ef8d00](https://github.com/oaknational/Oak-Web-Application/commit/6ef8d00cce248894f062b0cf3d0c2f0f20c6ff4d))
+* update story ([f3939cb](https://github.com/oaknational/Oak-Web-Application/commit/f3939cb12920c5f1a1a93b60a240cf198696947f))
+* update tests ([4a9c278](https://github.com/oaknational/Oak-Web-Application/commit/4a9c278cf79afe363cca1afcea09bceea9b76910))
+* update tests with new aria labels ([4e40356](https://github.com/oaknational/Oak-Web-Application/commit/4e40356eb963fda8e1076503ba027f3ff87c39a1))
+* use correct resource names for classroom ([e95449f](https://github.com/oaknational/Oak-Web-Application/commit/e95449f7658d3ca6d87e7d0875d5762aaaf773ac))
+
+
+### Features
+
+* add disabled styling to button as link ([593cc02](https://github.com/oaknational/Oak-Web-Application/commit/593cc02a0255e5489c782b05142a14b3a3d15d50))
+* add story for lesson share page ([02ef529](https://github.com/oaknational/Oak-Web-Application/commit/02ef5294f58a2d24db1ed3ba004abc3c85e707d5))
+* add url mapping and breadcrumbs for share page ([4e4629c](https://github.com/oaknational/Oak-Web-Application/commit/4e4629cb9167c389fb6aa5c12e556609a8559b36))
+* capitalise pdf types ([7dd2b06](https://github.com/oaknational/Oak-Web-Application/commit/7dd2b06e1e0de144607bb712a8e573a5586f011f))
+* create share links component and integrate functionality ([cd8c3c9](https://github.com/oaknational/Oak-Web-Application/commit/cd8c3c9cfebd8b678a648d6aa4a4b6ea22334ce7))
+* customise resources header ([f3d19d3](https://github.com/oaknational/Oak-Web-Application/commit/f3d19d30197789f8d328a4942ccf0aff4755452a))
+* disable preview link when errors present ([36c17e3](https://github.com/oaknational/Oak-Web-Application/commit/36c17e33e17bdcbfc7b97b7b4ed0910dfba34bee))
+* enhance aria labels for share link buttons ([610d00a](https://github.com/oaknational/Oak-Web-Application/commit/610d00ac7abcfac0b2aaed62699760025ca02ee0))
+* hook up preview as pupil button ([1d022a0](https://github.com/oaknational/Oak-Web-Application/commit/1d022a0fddd84de1357874d7e4034131e86f5e98))
+* integrate schoolUrn ([1d00632](https://github.com/oaknational/Oak-Web-Application/commit/1d00632b6d14c053638c346a5da69626729fed6e))
+* merge avo branch ([c462e5c](https://github.com/oaknational/Oak-Web-Application/commit/c462e5c7445058c9dc2881833a8812267e005da2))
+* open links in new tab ([9eb4120](https://github.com/oaknational/Oak-Web-Application/commit/9eb412071f0dbc731cc8e9cb38287890656db556))
+* refresh copy button on resource change ([d851a7a](https://github.com/oaknational/Oak-Web-Application/commit/d851a7a30c703304f46bada663d5f3a757fb0d43))
+* share page ([cfc7a4e](https://github.com/oaknational/Oak-Web-Application/commit/cfc7a4ee678bb55d0b0e6d7243906d75ba4f09bd))
+* use onSubmit event to set school in local storage ([ee61ea3](https://github.com/oaknational/Oak-Web-Application/commit/ee61ea3467d90fe4bed2e434db81963b6915958b))
+* use selected activities when generating share link ([6515de2](https://github.com/oaknational/Oak-Web-Application/commit/6515de20867aeaa2c50578a5be8c330819266f1c))
+
 ## [1.300.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.3...v1.300.4) (2023-11-14)
 
 ## [1.300.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.300.2...v1.300.3) (2023-11-14)
