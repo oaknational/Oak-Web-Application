@@ -104,10 +104,6 @@ export function LessonShare(props: LessonShareProps) {
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
-    const updatedSchoolName = getSchoolName(
-      data.school,
-      getSchoolOption(data.school),
-    );
 
     if (editDetailsClicked && !data.email) {
       setEmailInLocalStorage("");
@@ -117,7 +113,7 @@ export function LessonShare(props: LessonShareProps) {
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
       schoolUrn: schoolUrn,
-      schoolName: updatedSchoolName,
+      schoolName: getSchoolName(data.school, getSchoolOption(data.school)),
       schoolOption: getSchoolOption(data.school),
       shareMedium: shareMedium,
       pupilActivityResourceTypes: pupilActivityResource,
