@@ -1,3 +1,10 @@
+## [1.303.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.0...v1.303.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* hide duplicate curriculum units ([e4017f3](https://github.com/oaknational/Oak-Web-Application/commit/e4017f39626f260f9c83fb9b0be47ebc590bd639))
+
 # [1.303.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.302.0...v1.303.0) (2023-11-17)
 
 
