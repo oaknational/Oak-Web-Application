@@ -22,12 +22,9 @@ const copyToCliboard = (textToCopy: string, callback: () => void) => {
 const ShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
-  lessonTitle: string;
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: number;
-  schoolName: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
-  emailSupplied: boolean;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
 

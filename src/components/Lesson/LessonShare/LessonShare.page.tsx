@@ -193,17 +193,14 @@ export function LessonShare(props: LessonShareProps) {
                 (!form.formState.isValid && !localStorageDetails)
               }
               lessonSlug={lessonSlug}
-              lessonTitle={lessonTitle}
               selectedActivities={selectedResources}
               schoolUrn={schoolUrn}
-              schoolName={schoolNameFromLocalStorage}
               onSubmit={
                 (shareMedium: ShareMediumValueType) =>
                   void form.handleSubmit((data) => {
                     onFormSubmit(data, shareMedium);
                   })() // https://github.com/orgs/react-hook-form/discussions/8622
               }
-              emailSupplied={!!emailFromLocalStorage}
             />
           }
         />

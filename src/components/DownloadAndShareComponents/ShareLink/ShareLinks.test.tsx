@@ -14,9 +14,6 @@ describe("ShareLinks", () => {
       <ShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        lessonTitle="Test slug"
-        schoolName="Test school"
-        emailSupplied={true}
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
       />,
@@ -30,9 +27,6 @@ describe("ShareLinks", () => {
       <ShareLinks
         disabled={false}
         lessonSlug="test-slug"
-        lessonTitle="Test slug"
-        schoolName="Test school"
-        emailSupplied={true}
         selectedActivities={["exit-quiz-questions"]}
         onSubmit={jest.fn}
       />,
