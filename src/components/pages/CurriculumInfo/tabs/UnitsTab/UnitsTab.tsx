@@ -23,6 +23,8 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
+// Types and interfaces
+
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
 };
@@ -58,11 +60,24 @@ interface YearSelection {
   };
 }
 
+// Function component
+
 const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
+  // Initialize constants
+
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const [displayModal, setDisplayModal] = useState(false);
+  const [unitData, setUnitData] = useState<Unit | null>(null);
+  const [unitOptionsAvailable, setUnitOptionsAvailable] =
+    useState<boolean>(false);
+  const modalButtonRef = useRef<HTMLButtonElement>(null);
+  const unitSlugs = new Set<string>();
+  const duplicateUnitSlugs = new Set<string>();
+
+  // Initialize data structure for displaying units by year
 
   const yearData: {
     [key: string]: {
@@ -73,28 +88,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     };
   } = {};
 
-  const [displayModal, setDisplayModal] = useState(false);
-  const [unitData, setUnitData] = useState<Unit | null>(null);
-  const [unitOptionsAvailable, setUnitOptionsAvailable] =
-    useState<boolean>(false);
-
-  const handleOpenModal = () => {
-    setDisplayModal((prev) => !prev);
-  };
-
-  const handleCloseModal = () => {
-    setDisplayModal(false);
-  };
-
-  const modalButtonRef = useRef<HTMLButtonElement>(null);
-
   data.units.forEach((unit) => {
     // Populate years object
+
     if (yearOptions.every((yo) => yo !== unit.year)) {
       yearOptions.push(unit.year);
     }
 
     // Populate threads object
+
     unit.threads.forEach((thread) => {
       if (threadOptions.every((to: Thread) => to.slug !== thread.slug)) {
         threadOptions.push(thread);
@@ -103,6 +105,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
+
     let currentYearData = yearData[unit.year];
     if (!currentYearData) {
       currentYearData = {
@@ -115,9 +118,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
 
     // Add the current unit
+
     currentYearData.units.push(unit);
 
     // Populate list of child subject filter values
+
     if (
       unit.subject_parent &&
       unit.subject_parent_slug &&
@@ -132,6 +137,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
 
     // Populate list of domain filter values
+
     if (
       unit.domain &&
       unit.domain_id &&
@@ -144,6 +150,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     }
 
     // Populate list of tier filter values
+
     if (
       unit.tier &&
       unit.tier_slug &&
@@ -154,22 +161,37 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         tier_slug: unit.tier_slug,
       });
     }
+
+    // Check for duplicate unit slugs
+
+    if (unitSlugs.has(unit.slug)) {
+      duplicateUnitSlugs.add(unit.slug);
+    } else {
+      unitSlugs.add(unit.slug);
+    }
   });
 
   // Sort year data
+
   yearOptions.sort((a, b) => Number(a) - Number(b));
 
   // Sort threads
+
   const threadOrders = new Set(threadOptions.map((to) => to.order));
   if (threadOptions.length > threadOrders.size) {
     // In secondary science multiple threads can have the same order value due
     // to multiple subjects (eg biology, chemistry, physics) being shown, so
     // if orders are not unique, sort alphabetically by slug
+
     threadOptions.sort((a, b) => a.slug.localeCompare(b.slug));
   } else {
     // If orders are unique, use them to sort
+
     threadOptions.sort((a, b) => a.order - b.order);
   }
+
+  // Set up year-specific filters (domains, child subjects, tiers):
+  // populate options and select defaults
 
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -199,10 +221,19 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
   const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
-  function handleSelectSubject(year: string, subject: Subject) {
-    const selection = { ...yearSelection[year] };
-    selection.subject = subject;
-    setYearSelection({ ...yearSelection, [year]: selection });
+  // Filter interaction handlers
+
+  function handleSelectThread(slug: string): void {
+    const thread = threadOptions.find((to) => to.slug === slug) ?? null;
+    if (thread) {
+      trackSelectThread(thread);
+    }
+    setSelectedThread(thread);
+  }
+
+  function handleSelectYear(year: string): void {
+    trackSelectYear(year);
+    setSelectedYear(year);
   }
 
   function handleSelectDomain(year: string, domain: Domain) {
@@ -211,11 +242,19 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
+  function handleSelectSubject(year: string, subject: Subject) {
+    const selection = { ...yearSelection[year] };
+    selection.subject = subject;
+    setYearSelection({ ...yearSelection, [year]: selection });
+  }
+
   function handleSelectTier(year: string, tier: Tier) {
     const selection = { ...yearSelection[year] };
     selection.tier = tier;
     setYearSelection({ ...yearSelection, [year]: selection });
   }
+
+  // Selection state helpers
 
   function isSelectedDomain(year: string, domain: Domain) {
     return yearSelection[year]?.domain?.domain_id === domain.domain_id;
@@ -229,54 +268,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
   }
 
-  function isVisibleUnit(year: string, unit: Unit) {
-    const s = yearSelection[year];
-    if (!s) {
-      throw new Error("year selection missing");
-    }
-    const filterBySubject =
-      !s.subject || s.subject.subject_slug === unit.subject_slug;
-    const filterByDomain =
-      !s.domain ||
-      s.domain.domain_id === 0 ||
-      s.domain.domain_id === unit.domain_id;
-    const filterByTier =
-      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-    return filterBySubject && filterByDomain && filterByTier;
-  }
-
-  function isHighlightedUnit(unit: Unit) {
-    if (!selectedThread) {
-      return false;
-    }
-    return unit.threads.some((t) => t.slug === selectedThread.slug);
-  }
-
-  function isSelectedThread(thread: Thread) {
-    return selectedThread?.slug === thread.slug;
-  }
-
-  function trackSelectThread(thread: Thread): void {
-    if (data.units[0]) {
-      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
-      track.curriculumThreadHighlighted({
-        subjectTitle: subject,
-        subjectSlug: subjectSlug,
-        threadTitle: thread.title,
-        threadSlug: thread.slug,
-        phase: phase_slug as PhaseValueType,
-        order: thread.order,
-        analyticsUseCase: analyticsUseCase,
-      });
-    }
-  }
-  function handleSelectThread(slug: string): void {
-    const thread = threadOptions.find((to) => to.slug === slug) ?? null;
-    if (thread) {
-      trackSelectThread(thread);
-    }
-    setSelectedThread(thread);
-  }
+  // Visibility helpers
 
   function highlightedUnitCount(): number {
     let count = 0;
@@ -293,6 +285,69 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
     return count;
   }
 
+  function isHighlightedUnit(unit: Unit) {
+    if (!selectedThread) {
+      return false;
+    }
+    return unit.threads.some((t) => t.slug === selectedThread.slug);
+  }
+
+  function isSelectedThread(thread: Thread) {
+    return selectedThread?.slug === thread.slug;
+  }
+
+  function isVisibleUnit(year: string, unit: Unit) {
+    const s = yearSelection[year];
+    if (!s) {
+      throw new Error("year selection missing");
+    }
+    const filterBySubject =
+      !s.subject || s.subject.subject_slug === unit.subject_slug;
+    const filterByDomain =
+      !s.domain ||
+      s.domain.domain_id === 0 ||
+      s.domain.domain_id === unit.domain_id;
+    const filterByTier =
+      !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
+
+    // Look for duplicates that don't have an examboard, tier or subject parent
+    // (i.e. aren't handled by other filters)
+
+    const isDuplicate =
+      unit.examboard === null &&
+      unit.tier === null &&
+      unit.subject_parent === null &&
+      duplicateUnitSlugs.has(unit.slug);
+    return filterBySubject && filterByDomain && filterByTier && !isDuplicate;
+  }
+
+  // Modal handlers
+
+  const handleOpenModal = () => {
+    setDisplayModal((prev) => !prev);
+  };
+
+  const handleCloseModal = () => {
+    setDisplayModal(false);
+  };
+
+  // Analytics handlers
+
+  function trackSelectThread(thread: Thread): void {
+    if (data.units[0]) {
+      const { subject, phase_slug, subject_slug: subjectSlug } = data.units[0];
+      track.curriculumThreadHighlighted({
+        subjectTitle: subject,
+        subjectSlug: subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phase_slug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
   function trackSelectYear(year: string): void {
     if (data.units[0]) {
       track.yearGroupSelected({
@@ -303,11 +358,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         analyticsUseCase: analyticsUseCase,
       });
     }
-  }
-
-  function handleSelectYear(year: string): void {
-    trackSelectYear(year);
-    setSelectedYear(year);
   }
 
   return (
