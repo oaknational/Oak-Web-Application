@@ -68,4 +68,25 @@ describe("ShareLinks", () => {
     await user.click(copyLinkButton);
     expect(onSubmit).toHaveBeenCalledWith("copy-link");
   });
+
+  it("should call onSubmit with correct avoMedium", async () => {
+    const onSubmit = jest.fn();
+    const { getByRole } = renderWithTheme(
+      <ShareLinks
+        disabled={false}
+        lessonSlug="test-slug"
+        selectedActivities={["exit-quiz-questions"]}
+        onSubmit={onSubmit}
+      />,
+    );
+
+    const copyLinkButton = getByRole("link", {
+      name: "Share to Google Classroom",
+    });
+
+    expect(copyLinkButton).toBeInTheDocument();
+    const user = userEvent.setup();
+    await user.click(copyLinkButton);
+    expect(onSubmit).toHaveBeenCalledWith("google-classroom");
+  });
 });
