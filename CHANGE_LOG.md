@@ -1,3 +1,24 @@
+## [1.303.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.0...v1.303.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* hide duplicate curriculum units ([e4017f3](https://github.com/oaknational/Oak-Web-Application/commit/e4017f39626f260f9c83fb9b0be47ebc590bd639))
+
+# [1.303.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.302.0...v1.303.0) (2023-11-17)
+
+
+### Bug Fixes
+
+* mock posthog hook in tests ([73182b6](https://github.com/oaknational/Oak-Web-Application/commit/73182b630642539b87275f95bfe0ae82b4f2caea))
+* remove .only from test ([3907f79](https://github.com/oaknational/Oak-Web-Application/commit/3907f79dcfca778d88c488b3a9cb7fc8d78788c4))
+
+
+### Features
+
+* add 2023 search query results to search hits ([afe07e7](https://github.com/oaknational/Oak-Web-Application/commit/afe07e7e0eca3b0dbde81f3a7165d40ab5d118d7))
+* add feature flag to control fetching from the new api ([b67cf2d](https://github.com/oaknational/Oak-Web-Application/commit/b67cf2d848bc78f61c7a2be778a583164fa210a8))
+
 # [1.302.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.2...v1.302.0) (2023-11-16)
 
 
