@@ -10,7 +10,7 @@ import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 
-const copyToCliboard = (textToCopy: string, callback: () => void) => {
+const copyToClipboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
     callback();
@@ -48,16 +48,16 @@ const ShareLinks: FC<{
           type="button"
           ariaLabel="Copy link to clipboard"
           onClick={() =>
-            copyToCliboard(
+            copyToClipboard(
               getHrefForSocialSharing({
                 lessonSlug: props.lessonSlug,
                 selectedActivities: props.selectedActivities,
                 schoolUrn: props.schoolUrn,
                 linkConfig: shareLinkConfig.copy,
               }),
-              async () => {
+              () => {
                 setIsShareSuccessful(true);
-                await props.onSubmit("copy-link");
+                props.onSubmit("copy-link");
               },
             )
           }
@@ -85,8 +85,8 @@ const ShareLinks: FC<{
               selectedActivities: props.selectedActivities,
               linkConfig: link,
             })}
-            onClick={async () => {
-              await props.onSubmit(link.avoMedium);
+            onClick={() => {
+              props.onSubmit(link.avoMedium);
             }}
             ariaLabel={`Share to ${link.name}`}
           />
