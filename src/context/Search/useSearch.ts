@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import useStableCallback from "../../hooks/useStableCallback";
 import { resolveOakHref } from "../../common-lib/urls";
@@ -120,16 +121,16 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
-  const viewType = useRouter().query.viewType?.toString() || "teachers";
+  const use2023SearchApi = useFeatureFlagEnabled("use-2023-search-api");
 
-  const fetchResults = useStableCallback(async () => {
+  const fetchResults = useStableCallback(async (useNewApi: boolean) => {
     /**
      * Current this searches the 2023 curriculum.
      * We will want to search both 2020 and 2023, and merge the results.
      */
     performSearch({
       query,
-      apiVersion: viewType === "teachers-2023" ? "2023" : "2020",
+      apiVersion: useNewApi ? "2023" : "2020",
       onStart: () => {
         setStatus("loading");
         setSearchStartTime(performance.now());
@@ -155,11 +156,11 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   );
 
   useEffect(() => {
-    if (!query.term) {
+    if (!query.term || use2023SearchApi === undefined) {
       return;
     }
-    fetchResults();
-  }, [fetchResults, query]);
+    fetchResults(use2023SearchApi);
+  }, [fetchResults, query, use2023SearchApi]);
 
   return {
     status,

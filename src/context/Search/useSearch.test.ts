@@ -72,6 +72,10 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
+
 const allKeyStages = searchPageFixture().keyStages;
 
 const providers = { router: { url: "?term=test-term" } };

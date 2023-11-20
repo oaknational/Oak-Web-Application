@@ -33,7 +33,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
   });
 
-  test("number of unit cards matches units", async () => {
+  test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
@@ -65,19 +65,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           domain_id: 17,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks1",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-            { title: "Lesson 6", slug: "lesson-6", order: 6 },
-            { title: "Lesson 7", slug: "lesson-7", order: 7 },
-            { title: "Lesson 8", slug: "lesson-8", order: 8 },
-          ],
+          lessons: [],
           phase: "Primary",
           phase_slug: "primary",
           slug: "word-class",
@@ -102,21 +95,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           planned_number_of_lessons: 8,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: "Reading, Writing & Oracy",
           domain_id: 16,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks1",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-            { title: "Lesson 6", slug: "lesson-6", order: 6 },
-            { title: "Lesson 7", slug: "lesson-7", order: 7 },
-            { title: "Lesson 8", slug: "lesson-8", order: 8 },
-          ],
+          lessons: [],
           phase: "Primary",
           phase_slug: "primary",
           slug: "a-superhero-like-you-reading-and-writing",
@@ -171,29 +157,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     expect(threads).toHaveLength(threadSet.size);
   });
 
-  test("user can highlight units by threads", async () => {
-    const { queryByTestId, queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
-    );
-    const threads = queryAllByTestId("thread-radio");
-    await act(async () => {
-      if (!threads[0]) {
-        throw new Error("No thread option found");
-      }
-      await userEvent.click(threads[0]);
-    });
-    const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
-      return unit.threads.some(
-        (thread) => thread.slug === threads[0]?.getAttribute("value"),
-      );
-    });
-    const highlightedUnits = queryAllByTestId("highlighted-unit-card");
-    expect(threadUnits).toHaveLength(highlightedUnits.length);
-    const selectedThread = queryByTestId("selected-thread-radio");
-    expect(selectedThread).toBeInTheDocument();
-  });
-
-  test("user can see all the year group choices", async () => {
+  test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
       <UnitsTab data={curriculumUnitsTabFixture()} />,
     );
@@ -217,6 +181,121 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       return index === 0 || Number(array[index - 1]) <= year;
     });
     expect(isSorted).toBe(true);
+  });
+
+  test("duplicate units without examboard are filtered out", async () => {
+    const data = {
+      units: [
+        {
+          planned_number_of_lessons: 8,
+          domain: null,
+          domain_id: null,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          examboard: "AQA",
+          examboard_slug: "aqa",
+          keystage_slug: "ks4",
+          lessons: [],
+          phase: "Secondary",
+          phase_slug: "secondary",
+          slug: "modern-text-first-study",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          threads: [],
+          tier: null,
+          tier_slug: null,
+          title: "Modern text: first study",
+          unit_options: [
+            {
+              connection_future_unit_description: null,
+              connection_prior_unit_description: null,
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
+              lessons: [],
+              title: "Animal Farm: the pigs and power",
+              unitvariant_id: 774,
+            },
+            {
+              connection_future_unit_description: null,
+              connection_prior_unit_description: null,
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
+              lessons: [],
+              title: "Leave Taking: a sense of belonging",
+              unitvariant_id: 773,
+            },
+          ],
+          year: "10",
+        },
+        {
+          planned_number_of_lessons: 8,
+          domain: null,
+          domain_id: null,
+          connection_future_unit_description: null,
+          connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
+          examboard: null,
+          examboard_slug: null,
+          keystage_slug: "ks4",
+          lessons: [],
+          phase: "Secondary",
+          phase_slug: "secondary",
+          slug: "modern-text-first-study",
+          subject: "English",
+          subject_parent: null,
+          subject_parent_slug: null,
+          subject_slug: "english",
+          threads: [],
+          tier: null,
+          tier_slug: null,
+          title: "Modern text: first study",
+          unit_options: [
+            {
+              connection_future_unit_description: null,
+              connection_prior_unit_description: null,
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
+              lessons: [],
+              title: "Animal Farm: the pigs and power",
+              unitvariant_id: 774,
+            },
+          ],
+          year: "10",
+        },
+      ],
+    };
+    const { findByTestId, findAllByTestId } = render(<UnitsTab data={data} />);
+    const unitCards = await findAllByTestId("unit-card");
+    expect(unitCards).toHaveLength(1);
+    const tag = await findByTestId("options-tag");
+    expect(tag).toHaveTextContent("2");
+  });
+
+  test("user can highlight units by threads", async () => {
+    const { queryByTestId, queryAllByTestId } = render(
+      <UnitsTab data={curriculumUnitsTabFixture()} />,
+    );
+    const threads = queryAllByTestId("thread-radio");
+    await act(async () => {
+      if (!threads[0]) {
+        throw new Error("No thread option found");
+      }
+      await userEvent.click(threads[0]);
+    });
+    const threadUnits = curriculumUnitsTabFixture().units.filter((unit) => {
+      return unit.threads.some(
+        (thread) => thread.slug === threads[0]?.getAttribute("value"),
+      );
+    });
+    const highlightedUnits = queryAllByTestId("highlighted-unit-card");
+    expect(threadUnits).toHaveLength(highlightedUnits.length);
+    const selectedThread = queryByTestId("selected-thread-radio");
+    expect(selectedThread).toBeInTheDocument();
   });
 
   test("user can filter by year group", async () => {
@@ -243,18 +322,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         {
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-          ],
+          lessons: [],
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -273,18 +348,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         {
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-          ],
+          lessons: [],
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -330,19 +401,12 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           domain_id: 17,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks1",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-            { title: "Lesson 6", slug: "lesson-6", order: 6 },
-            { title: "Lesson 7", slug: "lesson-7", order: 7 },
-            { title: "Lesson 8", slug: "lesson-8", order: 8 },
-          ],
+          lessons: [],
           phase: "Primary",
           phase_slug: "primary",
           slug: "word-class",
@@ -361,6 +425,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           planned_number_of_lessons: 8,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: "Reading, Writing & Oracy",
           domain_id: 16,
           examboard: null,
@@ -408,18 +474,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           planned_number_of_lessons: 5,
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-          ],
+          lessons: [],
           phase: "Secondary",
           phase_slug: "secondary",
           slug: "cellular-respiration-and-atp",
@@ -437,6 +499,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         {
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
           threads: [],
@@ -467,19 +531,15 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         {
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: null,
           domain_id: null,
           threads: [],
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks4",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-            { title: "Lesson 4", slug: "lesson-4", order: 4 },
-            { title: "Lesson 5", slug: "lesson-5", order: 5 },
-          ],
+          lessons: [],
           phase: "Secondary",
           phase_slug: "secondary",
           planned_number_of_lessons: 5,
@@ -521,16 +581,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         {
           connection_future_unit_description: null,
           connection_prior_unit_description: null,
+          connection_future_unit_title: null,
+          connection_prior_unit_title: null,
           domain: "Reading, Writing & Oracy",
           domain_id: 16,
           examboard: null,
           examboard_slug: null,
           keystage_slug: "ks2",
-          lessons: [
-            { title: "Lesson 1", slug: "lesson-1", order: 1 },
-            { title: "Lesson 2", slug: "lesson-2", order: 2 },
-            { title: "Lesson 3", slug: "lesson-3", order: 3 },
-          ],
+          lessons: [],
           phase: "Primary",
           phase_slug: "primary",
           planned_number_of_lessons: 24,
@@ -547,20 +605,18 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
             {
               connection_future_unit_description: null,
               connection_prior_unit_description: null,
-              lessons: [
-                { title: "Lesson 1", slug: "lesson-1", order: 1 },
-                { title: "Lesson 2", slug: "lesson-2", order: 2 },
-              ],
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
+              lessons: [],
               title: "Antarctic Animals",
               unitvariant_id: 774,
             },
             {
               connection_future_unit_description: null,
               connection_prior_unit_description: null,
-              lessons: [
-                { title: "Lesson 1", slug: "lesson-1", order: 1 },
-                { title: "Lesson 2", slug: "lesson-2", order: 2 },
-              ],
+              connection_future_unit_title: null,
+              connection_prior_unit_title: null,
+              lessons: [],
               title: "Pandas",
               unitvariant_id: 773,
             },
