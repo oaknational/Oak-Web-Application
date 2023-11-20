@@ -1,3 +1,10 @@
+# [1.304.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.2...v1.304.0) (2023-11-20)
+
+
+### Features
+
+* adds avo to share links buttons ([62cea11](https://github.com/oaknational/Oak-Web-Application/commit/62cea11da38234b04949cb684f937190e26a1307))
+
 ## [1.303.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.1...v1.303.2) (2023-11-20)
 
 
