@@ -48,6 +48,9 @@ const props: TeachersHomePageProps = {
 };
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
 
 const render = renderWithProviders();
 

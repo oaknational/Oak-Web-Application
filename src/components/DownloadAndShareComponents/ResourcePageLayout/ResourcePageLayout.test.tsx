@@ -84,4 +84,14 @@ describe("Downloads/Share Layout", () => {
     const errorMessage = screen.getByText("downloads error");
     expect(errorMessage).toBeInTheDocument();
   });
+  it("handles api error", () => {
+    const { rerender } = renderWithTheme(<ComponentWrapper {...props} />);
+
+    const apiError = screen.queryByText("Api Error");
+    expect(apiError).not.toBeInTheDocument();
+
+    rerender(<ComponentWrapper {...props} apiError={"Api Error"} />);
+    const apiErrorAfterRerender = screen.getByText("Api Error");
+    expect(apiErrorAfterRerender).toBeInTheDocument();
+  });
 });

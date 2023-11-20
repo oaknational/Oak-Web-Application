@@ -1,3 +1,53 @@
+## [1.303.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.1...v1.303.2) (2023-11-20)
+
+
+### Bug Fixes
+
+* **web terraform:** use the new project workspaces ([10af6ea](https://github.com/oaknational/Oak-Web-Application/commit/10af6ea08908bd8244ea8907015a323f78a215d4))
+
+## [1.303.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.0...v1.303.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* hide duplicate curriculum units ([e4017f3](https://github.com/oaknational/Oak-Web-Application/commit/e4017f39626f260f9c83fb9b0be47ebc590bd639))
+
+# [1.303.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.302.0...v1.303.0) (2023-11-17)
+
+
+### Bug Fixes
+
+* mock posthog hook in tests ([73182b6](https://github.com/oaknational/Oak-Web-Application/commit/73182b630642539b87275f95bfe0ae82b4f2caea))
+* remove .only from test ([3907f79](https://github.com/oaknational/Oak-Web-Application/commit/3907f79dcfca778d88c488b3a9cb7fc8d78788c4))
+
+
+### Features
+
+* add 2023 search query results to search hits ([afe07e7](https://github.com/oaknational/Oak-Web-Application/commit/afe07e7e0eca3b0dbde81f3a7165d40ab5d118d7))
+* add feature flag to control fetching from the new api ([b67cf2d](https://github.com/oaknational/Oak-Web-Application/commit/b67cf2d848bc78f61c7a2be778a583164fa210a8))
+
+# [1.302.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.2...v1.302.0) (2023-11-16)
+
+
+### Bug Fixes
+
+* updated fixtures ([1f1d2ba](https://github.com/oaknational/Oak-Web-Application/commit/1f1d2baf6970440b9128f70f3d94f277862ae9f1))
+* updated unit optionality prior/future desc ([9f932bd](https://github.com/oaknational/Oak-Web-Application/commit/9f932bd9e0a74fbcf01d6d048015e38fb5e4dd58))
+
+
+### Features
+
+* added new units endpoint ([5dfde77](https://github.com/oaknational/Oak-Web-Application/commit/5dfde77ca79d514d4a8b10bb8cdae8b815d979bf))
+* added prior/future unit descs to unit modal ([8853be7](https://github.com/oaknational/Oak-Web-Application/commit/8853be7e1cd88d40e2b7dc516ee9aed03cde954a))
+* updated prir/future unit titles in modal ([b8217ea](https://github.com/oaknational/Oak-Web-Application/commit/b8217ea8710b60571be98f9bcaa9919ddbad6188))
+
+## [1.301.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.1...v1.301.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* move api error within flex layout ([515a44e](https://github.com/oaknational/Oak-Web-Application/commit/515a44e1a5f6a184878aefae09e2ea2324468df4))
+
 ## [1.301.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.301.0...v1.301.1) (2023-11-15)
 
 

@@ -3,6 +3,8 @@ import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 export const mockUnit: Unit = {
   connection_future_unit_description: "Test connection future unit description",
   connection_prior_unit_description: "Test connection prior unit description",
+  connection_future_unit_title: "Test connection future unit title",
+  connection_prior_unit_title: "Test connection prior unit title",
   domain: null,
   domain_id: null,
   examboard: null,
@@ -43,6 +45,8 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_title: "Test connection future unit title",
+    connection_prior_unit_title: "Test connection prior unit title",
     lessons: [
       {
         slug: "lesson-1",
@@ -67,6 +71,8 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_title: "Test connection future unit title",
+    connection_prior_unit_title: "Test connection prior unit title",
     lessons: [
       {
         slug: "lesson-1",
@@ -91,6 +97,8 @@ const optionalUnits = [
     connection_future_unit_description:
       "Test connection future unit description",
     connection_prior_unit_description: "Test connection prior unit description",
+    connection_future_unit_title: "Test connection future unit title",
+    connection_prior_unit_title: "Test connection prior unit title",
     lessons: [
       {
         slug: "lesson-1",

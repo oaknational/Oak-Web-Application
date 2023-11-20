@@ -14,6 +14,10 @@ const keyStages = searchPageFixture().keyStages;
 const subjects = searchPageFixture().subjects;
 const contentTypes = searchPageFixture().contentTypes;
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
+
 describe("pages/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo(providers)(

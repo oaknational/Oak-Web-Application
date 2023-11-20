@@ -15,7 +15,7 @@ locals {
       query   = "logs(\"source:netlify @http.url:(${local.url_string}) status:error\").index(\"*\").rollup(\"count\")"
 
       evaluate_period    = "5m"
-      warning_threshold  = 0
+      warning_threshold  = 3
       critical_threshold = 10
     },
     {

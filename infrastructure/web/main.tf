@@ -18,12 +18,17 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "google_cloud" {
+locals {
+  project_workspace_prefix = "gcp-project-superuser-"
+  project_env              = "prod" // For now all OWA resources are in the same project
+}
+
+data "terraform_remote_state" "google_project" {
   backend = "remote"
   config = {
     organization = "oak-national-academy"
     workspaces = {
-      name = "google-cloud-core"
+      name = "${local.project_workspace_prefix}${local.project_env}"
     }
   }
 }
@@ -33,7 +38,6 @@ provider "datadog" {
 }
 
 provider "google" {
-  // Currently we use the same project for all environments
-  project = data.terraform_remote_state.google_cloud.outputs.projects["prod"]
+  project = data.terraform_remote_state.google_project.outputs.project_id
   region  = var.region
 }
