@@ -109,6 +109,8 @@ export function LessonShare(props: LessonShareProps) {
       setEmailInLocalStorage("");
     }
 
+    const isEmailSupplied = data.email ? true : false;
+
     lessonShared({
       lessonName: lessonTitle,
       lessonSlug: lessonSlug,
@@ -117,7 +119,7 @@ export function LessonShare(props: LessonShareProps) {
       schoolOption: getSchoolOption(data.school),
       shareMedium: shareMedium,
       pupilActivityResourceTypes: pupilActivityResource,
-      emailSupplied: data.email ? true : false,
+      emailSupplied: isEmailSupplied,
     });
   };
   const pupilActivityResource = selectedResources?.map((r) => {

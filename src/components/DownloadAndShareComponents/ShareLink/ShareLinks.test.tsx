@@ -5,16 +5,6 @@ import ShareLinks from "./ShareLinks";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const x = jest.fn();
-
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  useAnalytics: jest.fn(() => ({
-    track: {
-      lessonShared: x,
-    },
-  })),
-}));
-
 describe("ShareLinks", () => {
   beforeEach(() => {
     jest.clearAllMocks();
