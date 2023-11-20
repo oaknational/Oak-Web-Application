@@ -17,7 +17,19 @@ import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceType,
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  PupilActivityResourceTypesValueType,
+  ShareMediumValueType,
+} from "@/browser-lib/avo/Avo";
+import {
+  getSchoolName,
+  getSchoolOption,
+} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 
 type LessonShareProps =
   | {
@@ -40,6 +52,15 @@ type LessonShareProps =
       };
     };
 
+const classroomActivityMap: Partial<
+  Record<ResourceType, PupilActivityResourceTypesValueType>
+> = {
+  "intro-quiz-questions": "starter-quiz",
+  "exit-quiz-questions": "exit-quiz",
+  "worksheet-pdf": "worksheet",
+  video: "video",
+};
+
 export function LessonShare(props: LessonShareProps) {
   const { lesson } = props;
   const { lessonTitle, lessonSlug, shareableResources, isLegacy } = lesson;
@@ -47,6 +68,9 @@ export function LessonShare(props: LessonShareProps) {
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
   const { programmeSlug, unitSlug } = commonPathway;
+
+  const { track } = useAnalytics();
+  const { lessonShared } = track;
 
   const {
     form,
@@ -75,12 +99,33 @@ export function LessonShare(props: LessonShareProps) {
     type: "share",
   });
 
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+  const onFormSubmit = async (
+    data: ResourceFormProps,
+    shareMedium: ShareMediumValueType,
+  ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
+
     if (editDetailsClicked && !data.email) {
       setEmailInLocalStorage("");
     }
+
+    const isEmailSupplied = data.email ? true : false;
+
+    lessonShared({
+      lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
+      schoolUrn: schoolUrn,
+      schoolName: getSchoolName(data.school, getSchoolOption(data.school)),
+      schoolOption: getSchoolOption(data.school),
+      shareMedium: shareMedium,
+      pupilActivityResourceTypes: pupilActivityResource,
+      emailSupplied: isEmailSupplied,
+    });
   };
+  const pupilActivityResource = selectedResources?.map((r) => {
+    const resource = classroomActivityMap[r];
+    return resource;
+  }) as PupilActivityResourceTypesValueType[];
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -149,7 +194,10 @@ export function LessonShare(props: LessonShareProps) {
               selectedActivities={selectedResources}
               schoolUrn={schoolUrn}
               onSubmit={
-                () => void form.handleSubmit(onFormSubmit)() // https://github.com/orgs/react-hook-form/discussions/8622
+                (shareMedium: ShareMediumValueType) =>
+                  void form.handleSubmit((data) => {
+                    onFormSubmit(data, shareMedium);
+                  })() // https://github.com/orgs/react-hook-form/discussions/8622
               }
             />
           }
