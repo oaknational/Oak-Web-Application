@@ -6,6 +6,7 @@ export type ShareLinkConfig = {
   name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
+  avoMedium: "microsoft-teams" | "google-classroom" | "email" | "copy-link";
   icon: IconName;
   url: (params: SharingMetadata) => string;
 };
@@ -17,6 +18,7 @@ export const shareLinkConfig: Record<
   copy: {
     name: "Copy link",
     medium: "copy-link",
+    avoMedium: "copy-link",
     icon: "copy",
     url: ({ link }) => {
       return link;
@@ -30,6 +32,7 @@ export const shareLinkConfig: Record<
       return `mailto:?subject=${urlEncodedPageTitle}&body=${urlEncodedShareStr}`;
     },
     medium: "email",
+    avoMedium: "email",
   },
   googleClassroom: {
     name: "Google Classroom",
@@ -39,6 +42,7 @@ export const shareLinkConfig: Record<
       return `https://classroom.google.com/u/0/share?url=${urlEncodedLink}`;
     },
     medium: "lms",
+    avoMedium: "google-classroom",
   },
   microsoftTeams: {
     name: "Microsoft Teams",
@@ -48,5 +52,6 @@ export const shareLinkConfig: Record<
       return `https://teams.microsoft.com/share?href=${urlEncodedLink}&text=${urlEncodedPageTitle}`;
     },
     medium: "lms",
+    avoMedium: "microsoft-teams",
   },
 };

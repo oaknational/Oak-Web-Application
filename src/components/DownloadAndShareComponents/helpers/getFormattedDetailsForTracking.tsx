@@ -26,6 +26,18 @@ export const getSchoolUrn = (
   }
 };
 
+export const getSchoolName = (
+  school: string,
+  schoolOption: SchoolOptionValueType,
+) => {
+  if (schoolOption === "Selected school") {
+    const schoolName = school.split("-")[1] || "";
+    return schoolName;
+  } else {
+    return "";
+  }
+};
+
 const getFormattedDetailsForTracking = ({
   school,
   selectedResources,
@@ -34,15 +46,6 @@ const getFormattedDetailsForTracking = ({
   selectedResources: ResourceType[];
 }) => {
   const schoolOption: SchoolOptionValueType = getSchoolOption(school);
-
-  const getSchoolName = () => {
-    if (schoolOption === "Selected school") {
-      const schoolName = school.split("-")[1] || "";
-      return schoolName;
-    } else {
-      return "";
-    }
-  };
 
   const selectedResourcesForTracking = selectedResources.map((resource) => {
     const readableResourceName = resource.split("-").join(" ");
@@ -59,7 +62,7 @@ const getFormattedDetailsForTracking = ({
 
   return {
     schoolOption,
-    schoolName: getSchoolName(),
+    schoolName: getSchoolName(school, schoolOption),
     schoolUrn: getSchoolUrn(school, schoolOption),
     selectedResourcesForTracking:
       selectedResourcesForTracking as ResourceTypeValueType[],
