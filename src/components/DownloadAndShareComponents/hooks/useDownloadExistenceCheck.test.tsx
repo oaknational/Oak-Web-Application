@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import type {
   DownloadResourceType,
   ResourcesToDownloadArrayType,
-} from "../downloadsAndShare.types";
+} from "../downloadAndShare.types";
 
 import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
 

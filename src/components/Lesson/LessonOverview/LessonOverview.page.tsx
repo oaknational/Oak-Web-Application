@@ -95,6 +95,19 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     });
   };
 
+  const trackShareAll = () => {
+    track.lessonShareStarted({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug: keyStageSlug || "",
+      subjectTitle: subjectTitle || "",
+      subjectSlug: subjectSlug || "",
+      unitName: unitTitle || "",
+      unitSlug: unitSlug || "",
+      lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
+    });
+  };
+
   const slugs = { unitSlug, lessonSlug, programmeSlug };
   const pageLinks = getPageLinksForLesson(lesson);
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
@@ -138,7 +151,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         subjectIconBackgroundColor={"pink"}
         track={track}
         analyticsUseCase={analyticsUseCase}
-        isNew={!isLegacyLicense}
+        isLegacyLesson={isLegacyLicense}
+        onClickDownloadAll={() => {
+          trackDownloadResourceButtonClicked({
+            downloadResourceButtonName: "all",
+          });
+        }}
+        onClickShareAll={trackShareAll}
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
@@ -216,6 +235,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 {pageLinks.find((p) => p.label === "Video") && (
                   <LessonItemContainer
                     ref={videoSectionRef}
+                    shareable={isLegacyLicense}
+                    slugs={slugs}
                     title={"Video"}
                     anchorId="video"
                     isFinalElement={
@@ -240,6 +261,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Worksheet"}
                     anchorId="worksheet"
                     downloadable={true}
+                    shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "worksheet",
@@ -264,6 +286,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     <LessonItemContainer
                       ref={starterQuizSectionRef}
                       title={"Starter quiz"}
+                      shareable={isLegacyLicense}
                       anchorId="starter-quiz"
                       downloadable={true}
                       onDownloadButtonClick={() => {
@@ -290,6 +313,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       title={"Exit quiz"}
                       anchorId="exit-quiz"
                       downloadable={true}
+                      shareable={isLegacyLicense}
                       onDownloadButtonClick={() => {
                         trackDownloadResourceButtonClicked({
                           downloadResourceButtonName: "exit quiz",
@@ -311,6 +335,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     title={"Additional material"}
                     anchorId="additional-material"
                     downloadable={true}
+                    shareable={isLegacyLicense}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "additional material",

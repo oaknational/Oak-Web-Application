@@ -20,7 +20,7 @@ import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks
 import {
   ResourceFormProps,
   ResourceType,
-} from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   PupilActivityResourceTypesValueType,

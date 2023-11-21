@@ -1,3 +1,15 @@
+# [1.305.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.304.0...v1.305.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* downloads preselect bug ([a72d7ed](https://github.com/oaknational/Oak-Web-Application/commit/a72d7ed9609f750a27a985122db39865d50b1410))
+
+
+### Features
+
+* connect share from lesson overview ([e9a996b](https://github.com/oaknational/Oak-Web-Application/commit/e9a996b6fc4702896b1e500426ed7bba4e5715ab))
+
 # [1.304.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.2...v1.304.0) (2023-11-20)
 
 

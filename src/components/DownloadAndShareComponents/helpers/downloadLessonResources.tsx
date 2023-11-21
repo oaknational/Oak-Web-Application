@@ -1,4 +1,4 @@
-import type { ResourcesToDownloadArrayType } from "../downloadsAndShare.types";
+import type { ResourcesToDownloadArrayType } from "../downloadAndShare.types";
 
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";

@@ -3,72 +3,11 @@ import { forwardRef } from "react";
 import Box from "../Box";
 import Flex from "../Flex";
 import { Heading, Hr } from "../Typography";
-import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
-import {
-  PreselectedDownloadType,
-  containerTitleToPreselectMap,
-} from "../DownloadAndShareComponents/downloadsAndShare.types";
 import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
-function DownloadLink({
-  resourceTitle,
-  onClick,
-  lessonSlug,
-  unitSlug,
-  programmeSlug,
-  preselected,
-}: {
-  resourceTitle: string;
-  onClick?: () => void;
-  lessonSlug: string;
-  unitSlug: string | null;
-  programmeSlug: string | null;
-  preselected: PreselectedDownloadType | null;
-}) {
-  const props: Pick<
-    ButtonAsLinkProps,
-    | "variant"
-    | "iconBackground"
-    | "icon"
-    | "$iconPosition"
-    | "label"
-    | "onClick"
-  > = {
-    variant: "minimal",
-    iconBackground: "black",
-    icon: "arrow-right",
-    $iconPosition: "trailing",
-    onClick,
-    label: `Download ${resourceTitle}`,
-  };
-
-  if (programmeSlug && unitSlug) {
-    // Return link to lesson download page within its learning pathway
-    return (
-      <ButtonAsLink
-        {...props}
-        data-testid="download-button"
-        page="lesson-downloads"
-        lessonSlug={lessonSlug}
-        unitSlug={unitSlug}
-        programmeSlug={programmeSlug}
-        query={{ preselected }}
-      />
-    );
-  } else {
-    // Return link to canonical lesson download page
-    return (
-      <ButtonAsLink
-        {...props}
-        data-testid="download-button"
-        page="lesson-downloads-canonical"
-        lessonSlug={lessonSlug}
-        query={{ preselected }}
-      />
-    );
-  }
-}
+import { ContainerLink } from "./ContainerLink";
 
 /**
  * This replaces the old ExpandingContainer component on the lesson page. It should wrap each item of lesson content.
@@ -95,13 +34,18 @@ export interface LessonItemContainerProps {
   title: LessonItemTitle;
   anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
+  shareable?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
 }
 
+const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
+  return containerTitleToPreselectMap[title].downloadType;
+};
+
 const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
-  return containerTitleToPreselectMap[title];
+  return containerTitleToPreselectMap[title].shareType;
 };
 
 export const LessonItemContainer = forwardRef<
@@ -115,8 +59,10 @@ export const LessonItemContainer = forwardRef<
     onDownloadButtonClick,
     slugs,
     anchorId,
+    shareable,
   } = props;
-  const preselected = getPreselectedQueryFromTitle(title);
+  const preselectedDownload = getPreselectedDownloadFromTitle(title);
+  const preselectedShare = getPreselectedQueryFromTitle(title);
 
   const lowerCaseTitle = title.toLowerCase();
 
@@ -136,10 +82,20 @@ export const LessonItemContainer = forwardRef<
           </Heading>
         )}
         {downloadable && slugs && (
-          <DownloadLink
+          <ContainerLink
+            page={"download"}
             resourceTitle={lowerCaseTitle}
             onClick={onDownloadButtonClick}
-            preselected={preselected}
+            preselected={preselectedDownload}
+            {...slugs}
+          />
+        )}
+        {shareable && slugs && (
+          <ContainerLink
+            page={"share"}
+            resourceTitle={lowerCaseTitle}
+            onClick={onDownloadButtonClick}
+            preselected={preselectedShare}
             {...slugs}
           />
         )}

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import type {
   DownloadResourceType,
   ResourceFormProps,
-} from "../downloadsAndShare.types";
+} from "../downloadAndShare.types";
 import ResourceCard from "../ResourceCard";
 import { sortDownloadResources } from "../helpers/sortResources";
 
