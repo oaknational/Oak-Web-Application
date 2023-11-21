@@ -3,7 +3,7 @@ import { Control, Controller } from "react-hook-form";
 
 import ResourceCard from "../ResourceCard";
 import { sortShareResources } from "../helpers/sortResources";
-import { ResourceFormProps } from "../downloadsAndShare.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import Flex from "@/components/Flex";

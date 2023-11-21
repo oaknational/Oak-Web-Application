@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Control, useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../downloadsAndShare.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 
 import Component, { ShareCardGroupProps } from "./ShareCardGroup";
 

@@ -9,7 +9,7 @@ import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloadsAndShare.types";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -55,7 +55,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const getPreselectedQueryFromTitle = (title: ExpandingContainerTitle) => {
     return containerTitleToPreselectMap[title];
   };
-  const preselected = getPreselectedQueryFromTitle(title);
+  const preselected = getPreselectedQueryFromTitle(title).downloadType;
 
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();

@@ -30,7 +30,7 @@ export type HeaderListingProps = {
   tierTitle?: string | null;
   yearTitle?: string | null;
   lessonDescription?: string;
-  isNew?: boolean;
+  isLegacyLesson?: boolean;
   title: string;
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
@@ -43,7 +43,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     keyStageSlug,
     keyStageTitle,
     subjectTitle,
-    isNew,
+    isLegacyLesson,
     programmeFactor,
     subjectIconBackgroundColor,
     breadcrumbs,
@@ -66,7 +66,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               height={15}
               width={20}
               $ma={"auto"}
-              isNew={isNew}
+              isLegacyLesson={isLegacyLesson}
               color={subjectIconBackgroundColor}
             />
           </Box>
