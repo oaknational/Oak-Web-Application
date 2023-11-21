@@ -1,4 +1,4 @@
-import { ResourceType, Resources } from "../downloadsAndShare.types";
+import { ResourceType, Resources } from "../downloadAndShare.types";
 
 import {
   LessonDownloadsData,

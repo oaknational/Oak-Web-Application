@@ -1,17 +1,17 @@
 import { FC } from "react";
 
+import Flex from "../Flex";
+import { Span } from "../Typography";
+
 import { HeaderLessonProps } from "./HeaderLesson";
 
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import {
-  LessonDownloadsCanonicalLinkProps,
-  LessonDownloadsLinkProps,
+  LessonShareCanonicalLinkProps,
+  LessonShareLinkProps,
 } from "@/common-lib/urls";
-import Box, { BoxProps } from "@/components/Box";
 
-export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
-  props,
-) => {
+export const HeaderShareAllButton: FC<HeaderLessonProps> = (props) => {
   const {
     subjectSlug,
     lessonTitle,
@@ -26,46 +26,52 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
     subjectTitle,
     track,
     analyticsUseCase,
-    onClickDownloadAll,
+    isLegacyLesson,
+    onClickShareAll,
     ...boxProps
   } = props;
 
   const preselected = "all";
 
-  if (expired || !hasDownloadableResources) {
-    return null;
-  }
-
-  const linkProps:
-    | LessonDownloadsLinkProps
-    | LessonDownloadsCanonicalLinkProps =
+  const linkProps: LessonShareLinkProps | LessonShareCanonicalLinkProps =
     programmeSlug && unitSlug
       ? {
-          page: "lesson-downloads",
+          page: "lesson-share",
           lessonSlug,
           unitSlug,
           programmeSlug,
           query: { preselected },
         }
       : {
-          page: "lesson-downloads-canonical",
+          page: "lesson-share-canonical",
           lessonSlug,
           query: { preselected },
         };
 
   return (
-    <Box {...boxProps}>
+    <Flex
+      $display={["block", "flex"]}
+      $gap={12}
+      $flexDirection={"column"}
+      {...boxProps}
+    >
       <ButtonAsLink
         {...linkProps}
-        data-testid={"download-all-button"}
+        data-testid={"share-all-button"}
         variant="brush"
-        iconBackground="black"
+        iconBackground={isLegacyLesson ? "black" : "grey60"}
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
-        label={`Download all resources`}
-        onClick={onClickDownloadAll}
+        label={`Share activities with pupils`}
+        disabled={!isLegacyLesson}
+        onClick={onClickShareAll}
       />
-    </Box>
+      {!isLegacyLesson && (
+        <Span $color={"grey50"} $font={"body-3"}>
+          Share function coming soon...
+        </Span>
+      )}
+    </Flex>
   );
 };

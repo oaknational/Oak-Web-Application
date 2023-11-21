@@ -12,7 +12,7 @@ import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks
 import {
   ResourceFormProps,
   DownloadResourceType,
-} from "@/components/DownloadAndShareComponents/downloadsAndShare.types";
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
 import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";

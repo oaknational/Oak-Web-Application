@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Component>;
 
 export const SubjectIconBrushBorders: Story = {
   args: {
-    isNew: false,
+    isLegacyLesson: true,
     subjectSlug: "maths",
     color: "lavender",
   },

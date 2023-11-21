@@ -1,4 +1,4 @@
-import type { ErrorKeysType } from "../downloadsAndShare.types";
+import type { ErrorKeysType } from "../downloadAndShare.types";
 
 import getDownloadFormErrorMessage from "./getDownloadFormErrorMessage";
 

@@ -19,7 +19,7 @@ import {
 
 export type CountCardProps = KeyStageSubjectData &
   Pick<SubjectCardDoubleProps, "keyStageSlug" | "keyStageTitle"> & {
-    isNew?: boolean;
+    isLegacyLesson?: boolean;
   };
 
 const CountCard: FC<CountCardProps> = ({
@@ -31,14 +31,14 @@ const CountCard: FC<CountCardProps> = ({
   subjectTitle,
   lessonCount,
   unitCount,
-  isNew,
+  isLegacyLesson,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const ariaLabel = `${subjectTitle}: ${unitCount} ${
     unitCount > 1 ? "units" : "unit"
   }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
-    isNew ? "- new content" : ""
+    !isLegacyLesson ? "- new content" : ""
   }`;
 
   const oakLinkProps: ProgrammeListingLinkProps | UnitListingLinkProps =
@@ -63,7 +63,7 @@ const CountCard: FC<CountCardProps> = ({
       $flex={1}
       $borderRadius={4}
     >
-      {isNew && (
+      {!isLegacyLesson && (
         <TagPromotional
           $right={2}
           $top={16}
