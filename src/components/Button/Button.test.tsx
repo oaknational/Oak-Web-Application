@@ -12,7 +12,7 @@ describe("Button", () => {
         variant="minimal"
         icon="arrow-right"
         $iconPosition="trailing"
-        iconBackground="teachersHighlight"
+        iconBackground="blue"
         onClick={spy}
       />,
     );
@@ -30,7 +30,7 @@ describe("Button", () => {
         variant="minimal"
         icon="arrow-right"
         $iconPosition="trailing"
-        iconBackground="teachersHighlight"
+        iconBackground="blue"
         onClick={spy}
       />,
     );
@@ -50,7 +50,7 @@ describe("Button", () => {
         variant="minimal"
         icon="arrow-right"
         $iconPosition="trailing"
-        iconBackground="teachersHighlight"
+        iconBackground="blue"
         disabled={true}
         onClick={spy}
       />,

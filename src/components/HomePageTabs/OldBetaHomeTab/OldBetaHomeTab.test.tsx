@@ -4,7 +4,9 @@ import OldBetaHomeTab from "./OldBetaHomeTab";
 
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: () => false,
+}));
 describe("TeachersTab", () => {
   it("renders without crashing", () => {
     renderWithProviders()(<OldBetaHomeTab curriculumData={keyStageKeypad} />);

@@ -45,7 +45,7 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
           $minWidth={dims.width ? undefined : 96}
           $minHeight={dims.height ? undefined : 96}
           $justifyContent={"center"}
-          $borderColor={"grey6"}
+          $borderColor={"grey50"}
           $borderRadius={8}
         >
           <QuizOakImage src={src} dims={dims} setDims={setDims} alt={alt} />

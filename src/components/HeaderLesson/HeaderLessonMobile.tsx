@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
+import { HeaderShareAllButton } from "./HeaderShareAllButton";
 
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
@@ -17,7 +18,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
     tierTitle,
     lessonTitle,
     pupilLessonOutcome,
-    isNew,
+    isLegacyLesson,
     subjectIconBackgroundColor,
   } = props;
 
@@ -30,13 +31,13 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
             height={20}
             width={20}
             $ma={"auto"}
-            isNew={isNew}
+            isLegacyLesson={isLegacyLesson}
             color={subjectIconBackgroundColor}
           />
         </Box>
         <Flex $flexDirection={"column"} $gap={8}>
           {(examBoardTitle || yearTitle || tierTitle) && (
-            <Span $color={"oakGrey4"} $font={"heading-light-7"}>
+            <Span $color={"grey60"} $font={"heading-light-7"}>
               <LessonMetadata
                 examBoardTitle={examBoardTitle}
                 yearTitle={yearTitle}
@@ -56,6 +57,7 @@ export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
         </Box>
       )}
       <HeaderDownloadAllButton {...props} />
+      <HeaderShareAllButton {...props} />
     </Flex>
   );
 };

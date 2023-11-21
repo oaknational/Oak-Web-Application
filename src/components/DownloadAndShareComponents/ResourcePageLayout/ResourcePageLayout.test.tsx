@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
@@ -10,8 +10,12 @@ import ResourcePageLayout, {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-type PropsWithoutForm = Omit<ResourcePageLayoutProps, "control" | "register">;
+type PropsWithoutForm = Omit<
+  ResourcePageLayoutProps,
+  "control" | "register" | "triggerForm"
+>;
 const props: PropsWithoutForm = {
+  page: "download",
   header: "Downloads",
   selectAllChecked: true,
   handleToggleSelectAll: jest.fn(),
@@ -24,13 +28,19 @@ const props: PropsWithoutForm = {
   setSchool: jest.fn(),
   cardGroup: <div>Cards</div>,
   cta: <button>CTA</button>,
+  resourcesHeader: "Lesson downloads",
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register } = useForm<DownloadFormProps>();
+  const { control, register, trigger } = useForm<ResourceFormProps>();
 
   return (
-    <ResourcePageLayout {...props} control={control} register={register} />
+    <ResourcePageLayout
+      {...props}
+      control={control}
+      register={register}
+      triggerForm={trigger}
+    />
   );
 };
 
@@ -67,11 +77,21 @@ describe("Downloads/Share Layout", () => {
     renderWithTheme(
       <ComponentWrapper
         {...props}
-        errors={{ downloads: { message: "downloads error" } }}
+        errors={{ resources: { message: "downloads error" } }}
       />,
     );
 
     const errorMessage = screen.getByText("downloads error");
     expect(errorMessage).toBeInTheDocument();
+  });
+  it("handles api error", () => {
+    const { rerender } = renderWithTheme(<ComponentWrapper {...props} />);
+
+    const apiError = screen.queryByText("Api Error");
+    expect(apiError).not.toBeInTheDocument();
+
+    rerender(<ComponentWrapper {...props} apiError={"Api Error"} />);
+    const apiErrorAfterRerender = screen.getByText("Api Error");
+    expect(apiErrorAfterRerender).toBeInTheDocument();
   });
 });

@@ -45,7 +45,7 @@ type SelectProps = {
 
 const SelectContainer = styled(Flex)`
   &:focus-within ${RotatedInputLabel} {
-    background: ${getColorByName("teachersHighlight")};
+    background: ${getColorByName("blue")};
     color: ${getColorByName("white")};
   }
 `;
@@ -135,7 +135,7 @@ export function Select<T extends object>(
       />
       <Flex $position={"absolute"}>
         <RotatedInputLabel
-          background={props.onFocus ? "teachersPastelBlue" : "teachersYellow"}
+          background={props.onFocus ? "lavender" : "lemon"}
           color={"black"}
           $font={"heading-7"}
           {...labelProps}

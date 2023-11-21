@@ -20,7 +20,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
     <Card
       $flexDirection={["column-reverse", "row"]}
       $mv={[80, 92]}
-      $background={"twilight"}
+      $background={"pink50"}
       $ph={[16, 32]}
       $pv={32}
     >
@@ -33,7 +33,7 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
           withoutDefaultComponents
         />
       </Flex>
-      <BrushBorders hideOnMobileH color={"twilight"} />
+      <BrushBorders hideOnMobileH color={"pink50"} />
     </Card>
   );
 };

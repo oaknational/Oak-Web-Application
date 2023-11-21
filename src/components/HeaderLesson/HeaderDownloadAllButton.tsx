@@ -3,14 +3,15 @@ import { FC } from "react";
 import { HeaderLessonProps } from "./HeaderLesson";
 
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
 } from "@/common-lib/urls";
-import Box from "@/components/Box";
+import Box, { BoxProps } from "@/components/Box";
 
-export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
+export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
+  props,
+) => {
   const {
     subjectSlug,
     lessonTitle,
@@ -25,6 +26,8 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
     subjectTitle,
     track,
     analyticsUseCase,
+    onClickDownloadAll,
+    ...boxProps
   } = props;
 
   const preselected = "all";
@@ -51,7 +54,7 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         };
 
   return (
-    <Box>
+    <Box {...boxProps}>
       <ButtonAsLink
         {...linkProps}
         data-testid={"download-all-button"}
@@ -61,20 +64,7 @@ export const HeaderDownloadAllButton: FC<HeaderLessonProps> = (props) => {
         size="large"
         $iconPosition="trailing"
         label={`Download all resources`}
-        onClick={() => {
-          track.downloadResourceButtonClicked({
-            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-            keyStageSlug,
-            subjectTitle,
-            subjectSlug,
-            unitName: unitTitle,
-            unitSlug,
-            lessonName: lessonTitle,
-            lessonSlug,
-            downloadResourceButtonName: "all",
-            analyticsUseCase,
-          });
-        }}
+        onClick={onClickDownloadAll}
       />
     </Box>
   );

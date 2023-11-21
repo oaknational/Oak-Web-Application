@@ -24,7 +24,7 @@ const SubjectErrorCard: FC<SubjectErrorCardProps & SpacingProps> = (props) => {
     <Flex
       $ph={16}
       $pv={12}
-      $background={"pupilsLimeGreen"}
+      $background={"mint"}
       $alignItems={["flex-start", "center"]}
       $borderRadius={3}
       $flexDirection={["column", "row"]}

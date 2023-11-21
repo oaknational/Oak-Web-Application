@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 import type {
   DownloadResourceType,
-  DownloadFormProps,
-} from "../downloads.types";
+  ResourceFormProps,
+} from "../downloadAndShare.types";
 import ResourceCard from "../ResourceCard";
 import { sortDownloadResources } from "../helpers/sortResources";
 
@@ -15,7 +15,7 @@ import Grid from "@/components/Grid";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsData["downloads"];
-  control: Control<DownloadFormProps>;
+  control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
 };
@@ -76,11 +76,10 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                 worksheetsLength,
               )}
               key={download.type}
-              data-testid={"lessonResourcesToDownload"}
             >
               <Controller
                 control={control}
-                name="downloads"
+                name="resources"
                 defaultValue={[]}
                 render={({
                   field: { value: fieldValue, onChange, name, onBlur },

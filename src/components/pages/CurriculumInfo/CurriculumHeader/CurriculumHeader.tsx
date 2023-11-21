@@ -124,12 +124,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <Flex $justifyContent={"center"} $flexDirection={"column"}>
-                {examboard?.title && (
+                {phase.slug === "secondary" && (
                   <P
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
-                    {`${examboard.title} (KS4)`}
+                    {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
                   </P>
                 )}
                 <Heading

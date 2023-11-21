@@ -229,7 +229,7 @@ export const getButtonBackground = (
   ) {
     return "transparent";
   } else if (variant === "brush" && disabled) {
-    return getColorByName("grey6");
+    return getColorByName("grey50");
   } else {
     return getColorByName(background);
   }
@@ -237,11 +237,14 @@ export const getButtonBackground = (
 export const getButtonColor = (
   background: ButtonBackground,
   variant: ButtonVariant,
+  disabled?: boolean,
 ) =>
   variant === "minimal" ||
   variant === "buttonStyledAsLink" ||
   variant === "minimalNav"
-    ? "black"
+    ? disabled
+      ? getColorByName("grey50")
+      : "black"
     : getTextColorForBackground(background);
 export const getButtonIconBackground =
   (background: ButtonBackground) => (props: PropsWithTheme) =>

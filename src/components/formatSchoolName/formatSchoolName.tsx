@@ -26,7 +26,7 @@ export const formatSchoolName = (
               <Span
                 $font={"body-2-bold"}
                 $textDecoration={"underline"}
-                $color={"teachersHighlight"}
+                $color={"blue"}
                 data-testid="strong-element"
               >
                 {sliceToMakeBold}

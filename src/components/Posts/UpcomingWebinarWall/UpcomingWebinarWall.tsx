@@ -51,7 +51,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
         </Heading>
         <ButtonAsLink
           $mt={28}
-          background="teachersHighlight"
+          background="blue"
           htmlAnchorProps={{ onClick: buttonOnClick, target: "_blank" }}
           page={null}
           href={buttonHref}

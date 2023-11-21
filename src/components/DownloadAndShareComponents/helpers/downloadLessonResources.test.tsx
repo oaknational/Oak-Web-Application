@@ -1,4 +1,4 @@
-import type { ResourcesToDownloadArrayType } from "../downloads.types";
+import type { ResourcesToDownloadArrayType } from "../downloadAndShare.types";
 
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";

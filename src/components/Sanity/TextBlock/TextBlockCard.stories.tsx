@@ -41,7 +41,7 @@ export default {
   component: Component,
   argTypes: {
     $background: {
-      defaultValue: "teachersPastelYellow",
+      defaultValue: "lemon50",
     },
   },
 } as ComponentMeta<typeof Component>;
@@ -52,7 +52,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const TextBlockCardULTick = Template.bind({});
 TextBlockCardULTick.args = {
-  background: "teachersPastelYellow",
+  background: "lemon50",
   title: "Card title",
   bodyPortableText: bodyPortableText,
 };

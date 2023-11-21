@@ -119,6 +119,14 @@ const UnitModal: FC<UnitModalProps> = ({
                 <CurriculumUnitDetails
                   threads={unitData.threads}
                   lessons={unitData.lessons}
+                  priorUnitDescription={
+                    unitData.connection_prior_unit_description
+                  }
+                  futureUnitDescription={
+                    unitData.connection_future_unit_description
+                  }
+                  priorUnitTitle={unitData.connection_prior_unit_title}
+                  futureUnitTitle={unitData.connection_future_unit_title}
                 />
               </Box>
             )}
@@ -183,7 +191,7 @@ const UnitModal: FC<UnitModalProps> = ({
                               $flexDirection={"row"}
                               $alignItems={"flex-start"}
                               $width={"100%"}
-                              $color={"oakGrey5"}
+                              $color={"grey70"}
                             >
                               <Button
                                 label="Unit info"
@@ -201,6 +209,14 @@ const UnitModal: FC<UnitModalProps> = ({
                                     unitTitle: optionalUnit.title,
                                     threads: unitData.threads,
                                     lessons: optionalUnit.lessons,
+                                    priorUnitDescription:
+                                      optionalUnit.connection_prior_unit_description,
+                                    futureUnitDescription:
+                                      optionalUnit.connection_future_unit_description,
+                                    priorUnitTitle:
+                                      optionalUnit.connection_prior_unit_title,
+                                    futureUnitTitle:
+                                      optionalUnit.connection_future_unit_title,
                                   });
                                 }}
                               />

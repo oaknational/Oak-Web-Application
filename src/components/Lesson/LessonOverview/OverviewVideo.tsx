@@ -36,7 +36,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   const buttonParams: Partial<ButtonProps> = {
     variant: "minimal",
     background: "white",
-    iconBackground: "teachersHighlight",
+    iconBackground: "blue",
     $iconPosition: "trailing",
   };
 
@@ -89,7 +89,7 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
           {signLanguageVideo && signLanguageOn && (
             <Button
               label="Hide sign language"
-              background="teachersHighlight"
+              background="blue"
               icon={"sign-language"}
               onClick={toggleSignLanguage}
               {...buttonParams}

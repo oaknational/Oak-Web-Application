@@ -67,7 +67,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
                 variant="minimal"
                 icon="arrow-left"
                 $iconPosition="trailing"
-                iconBackground={"teachersHighlight"}
+                iconBackground={"blue"}
                 size="large"
                 label={"Go back"}
               />
@@ -77,7 +77,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
               variant="minimal"
               icon="home"
               $iconPosition="trailing"
-              iconBackground={"teachersHighlight"}
+              iconBackground={"blue"}
               size="large"
               label={"Home"}
               page={"home"}

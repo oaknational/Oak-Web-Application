@@ -63,7 +63,7 @@ const checkboxFocusStyles = css`
       height: 34px;
       left: -5px;
       right: 0;
-      border: solid 3px ${getColorByName("teachersYellow")};
+      border: solid 3px ${getColorByName("lemon")};
       border-radius: 3px;
     }
   }
@@ -89,8 +89,8 @@ const checkboxFocusStyles = css`
 
   input[type="checkbox"]:focus ~ div,
   input[type="checkbox"]:active ~ div {
-    border: solid 4px ${getColorByName("teachersYellow")};
-    box-shadow: 0 0 0 3px ${getColorByName("grey6")};
+    border: solid 4px ${getColorByName("lemon")};
+    box-shadow: 0 0 0 3px ${getColorByName("grey50")};
     border-radius: 4px;
   }
 `;
@@ -215,7 +215,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
             <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
               {labelText}
             </CheckboxLabelText>{" "}
-            <FocusUnderline $color={"teachersYellow"} />
+            <FocusUnderline $color={"lemon"} />
           </>
         )}
       </CheckboxLabel>

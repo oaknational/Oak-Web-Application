@@ -2,44 +2,50 @@ import type {
   SchoolOptionValueType,
   ResourceTypeValueType,
 } from "../../../browser-lib/avo/Avo";
-import type { DownloadResourceType } from "../downloads.types";
+import type { ResourceType } from "../downloadAndShare.types";
+
+export const getSchoolOption = (school: string) => {
+  if (school === "notListed") {
+    return "Not listed";
+  } else if (school === "homeschool") {
+    return "Homeschool";
+  } else {
+    return "Selected school";
+  }
+};
+
+export const getSchoolUrn = (
+  school: string,
+  schoolOption: SchoolOptionValueType,
+) => {
+  if (schoolOption === "Selected school") {
+    const schoolUrn = Number(school.split("-")[0]) || 0;
+    return schoolUrn;
+  } else {
+    return 0;
+  }
+};
+
+export const getSchoolName = (
+  school: string,
+  schoolOption: SchoolOptionValueType,
+) => {
+  if (schoolOption === "Selected school") {
+    const schoolName = school.split("-")[1] || "";
+    return schoolName;
+  } else {
+    return "";
+  }
+};
 
 const getFormattedDetailsForTracking = ({
   school,
   selectedResources,
 }: {
   school: string;
-  selectedResources: DownloadResourceType[];
+  selectedResources: ResourceType[];
 }) => {
-  const getSchoolOption = () => {
-    if (school === "notListed") {
-      return "Not listed";
-    } else if (school === "homeschool") {
-      return "Homeschool";
-    } else {
-      return "Selected school";
-    }
-  };
-
-  const schoolOption: SchoolOptionValueType = getSchoolOption();
-
-  const getSchoolName = () => {
-    if (schoolOption === "Selected school") {
-      const schoolName = school.split("-")[1] || "";
-      return schoolName;
-    } else {
-      return "";
-    }
-  };
-
-  const getSchoolUrn = () => {
-    if (schoolOption === "Selected school") {
-      const schoolUrn = Number(school.split("-")[0]) || 0;
-      return schoolUrn;
-    } else {
-      return 0;
-    }
-  };
+  const schoolOption: SchoolOptionValueType = getSchoolOption(school);
 
   const selectedResourcesForTracking = selectedResources.map((resource) => {
     const readableResourceName = resource.split("-").join(" ");
@@ -56,8 +62,8 @@ const getFormattedDetailsForTracking = ({
 
   return {
     schoolOption,
-    schoolName: getSchoolName(),
-    schoolUrn: getSchoolUrn(),
+    schoolName: getSchoolName(school, schoolOption),
+    schoolUrn: getSchoolUrn(school, schoolOption),
     selectedResourcesForTracking:
       selectedResourcesForTracking as ResourceTypeValueType[],
   };

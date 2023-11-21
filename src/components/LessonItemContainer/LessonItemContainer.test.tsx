@@ -29,7 +29,7 @@ describe("LessonItemContainer", () => {
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(
       <LessonItemContainer title={"Slide deck"} anchorId={"slide-deck"}>
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -40,7 +40,7 @@ describe("LessonItemContainer", () => {
   it("renders the children", () => {
     const { getByText } = renderWithTheme(
       <LessonItemContainer title={"Slide deck"} anchorId="slide-deck">
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -56,7 +56,7 @@ describe("LessonItemContainer", () => {
         anchorId={"slide-deck"}
         slugs={lessonOverview}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -71,7 +71,7 @@ describe("LessonItemContainer", () => {
         downloadable={true}
         anchorId="slide-deck"
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -87,7 +87,7 @@ describe("LessonItemContainer", () => {
         anchorId="slide-deck"
         isFinalElement={true}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -103,7 +103,7 @@ describe("LessonItemContainer", () => {
         anchorId="slide-deck"
         isFinalElement={false}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Inner content
         </Card>
       </LessonItemContainer>,
@@ -123,7 +123,7 @@ describe("LessonItemContainer", () => {
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </LessonItemContainer>,
@@ -143,7 +143,7 @@ describe("LessonItemContainer", () => {
         anchorId="worksheet"
         slugs={lessonOverview}
       >
-        <Card $background={"white"} $ba={3} $borderColor={"grey2"}>
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
         </Card>
       </LessonItemContainer>,

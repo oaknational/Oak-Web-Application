@@ -1,11 +1,20 @@
 import {
   DownloadResourceType,
   PreselectedDownloadType,
-  preselectedDownloadTypeMap,
-} from "../downloads.types";
+  PreselectedShareType,
+  ShareResourceType,
+} from "../downloadAndShare.types";
+
+import { combinedPreselectedTypeMap } from "./combinedPreselectedTypeMap";
 
 export const getPreselectedDownloadResourceTypes = (
   title: PreselectedDownloadType,
 ): DownloadResourceType[] | "all" | undefined => {
-  return preselectedDownloadTypeMap[title];
+  return combinedPreselectedTypeMap[title].downloadType;
+};
+
+export const getPreselectedShareResourceTypes = (
+  title: PreselectedShareType,
+): ShareResourceType[] | "all" | undefined => {
+  return combinedPreselectedTypeMap[title].shareType;
 };

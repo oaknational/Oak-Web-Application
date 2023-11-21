@@ -39,15 +39,10 @@ const HomeNotification: FC<HomeNotificationProps> = ({ notification }) => {
         $left={0}
         $transform="translate(-40%,-40%)"
       >
-        <Icon
-          name="bell"
-          $background="pupilsHighlight"
-          variant="brush"
-          size={30}
-        />
+        <Icon name="bell" $background="oakGreen" variant="brush" size={30} />
       </Box>
 
-      <Span $font={["body-4", "body-3"]} $color="oakGrey4">
+      <Span $font={["body-4", "body-3"]} $color="grey60">
         {notification.label}
       </Span>
       <Heading $font={["heading-7", "heading-6"]} tag="h2" $mt={4}>

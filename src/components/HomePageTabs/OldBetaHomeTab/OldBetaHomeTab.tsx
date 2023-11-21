@@ -33,7 +33,7 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
     });
   };
   return (
-    <Flex $justifyContent={"center"} $background={"pupilsLightGreen"}>
+    <Flex $justifyContent={"center"} $background={"mint50"}>
       <MaxWidth $mb={[48, 24]}>
         <Box $ph={[16, 0]}>
           <Heading

@@ -49,14 +49,14 @@ const ListItemCard: FC<ListItemCardProps> = (props) => {
         $justifyContent={"space-between"}
         $dropShadow={"subjectCard"}
         $alignItems={"start"}
-        $background={applyHoverStyles ? "grey1" : background}
+        $background={applyHoverStyles ? "grey20" : background}
         data-testid="list-item-card-container"
       >
         {children}
       </Flex>
 
       <BoxBorders
-        $color={expired ? "oakGrey2" : "black"}
+        $color={expired ? "grey30" : "black"}
         gapPosition="bottomRightCorner"
       />
     </Card>

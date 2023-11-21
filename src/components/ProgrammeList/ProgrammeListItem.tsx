@@ -38,7 +38,7 @@ const ProgrammeListItem: FC<
       {...containerProps}
       $pa={0}
       data-testid={"programme-list-item"}
-      $background={isHovered ? "grey1" : "white"}
+      $background={isHovered ? "grey20" : "white"}
       $transition={"all 0.4s ease-out"}
     >
       <Flex $pa={16}>

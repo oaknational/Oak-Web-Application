@@ -37,7 +37,7 @@ export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   activeImageSlug: IllustrationSlug;
   passiveImageSlug: IllustrationSlug;
   isCurrent?: boolean;
-  isNew?: boolean;
+  isLegacyLesson?: boolean;
 };
 
 export type HomePageNavTabImageButtonStylesProps = OpacityProps &
@@ -57,11 +57,11 @@ const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
   ${(props) =>
     !props.isCurrent &&
     css`
-      color: ${getColorByName("oakGrey4")};
+      color: ${getColorByName("grey60")};
 
       :hover ${ButtonLabel} {
         text-decoration: underline;
-        color: ${getColorByName("oakGrey6")};
+        color: ${getColorByName("black")};
       }
 
       ${StyledCMSImage} {
@@ -102,7 +102,7 @@ const HomePageTabImageButton = forwardRef<
     passiveImageSlug,
     isCurrent,
     title,
-    isNew,
+    isLegacyLesson,
   } = props;
 
   const defaultTitle =
@@ -147,7 +147,7 @@ const HomePageTabImageButton = forwardRef<
             >
               {label}
             </ButtonLabel>
-            {isNew && (
+            {!isLegacyLesson && (
               <TagPromotional
                 size={"small"}
                 $ml={3}

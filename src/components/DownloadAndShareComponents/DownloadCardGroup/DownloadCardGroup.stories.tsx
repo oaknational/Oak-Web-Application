@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useForm } from "react-hook-form";
 
-import { DownloadFormProps } from "../downloads.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 import * as downloads from "../../../node-lib/curriculum-api/fixtures/downloads.fixture";
 
 import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: DownloadCardGroupProps) => {
-  const { control } = useForm<DownloadFormProps>({
+  const { control } = useForm<ResourceFormProps>({
     mode: "onBlur",
   });
   return <Component {...args} control={control} />;

@@ -113,7 +113,7 @@ function Option({ item, state }: OptionProps) {
     >
       <Flex
         $width={"100%"}
-        $background={isFocused ? "grey1" : "white"}
+        $background={isFocused ? "grey20" : "white"}
         $position={"relative"}
         $alignItems={"center"}
         $pa={8}

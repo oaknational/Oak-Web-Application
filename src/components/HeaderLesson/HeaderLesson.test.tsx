@@ -7,7 +7,7 @@ const props = {
   ...lessonOverviewFixture(),
   breadcrumbs: [],
   background: "pink30",
-  isNew: true,
+  isLegacyLesson: false,
   subjectIconBackgroundColor: "pink",
 } as unknown as HeaderLessonProps;
 
@@ -20,23 +20,28 @@ describe("HeaderLesson", () => {
   });
 
   it("renders the download button when !expired && hasDownloadableResources", () => {
-    const { getAllByRole } = renderWithTheme(<HeaderLesson {...props} />);
-    expect(getAllByRole("link")).toHaveLength(1);
+    const { getAllByTestId } = renderWithTheme(<HeaderLesson {...props} />);
+    expect(getAllByTestId("download-all-button")).toHaveLength(2); // mobile and desktop
+  });
+
+  it("renders the share all button", () => {
+    const { getAllByTestId } = renderWithTheme(<HeaderLesson {...props} />);
+    expect(getAllByTestId("share-all-button")).toHaveLength(2); // mobile and desktop
   });
 
   it("does not render the download button when expired && hasDownloadableResources", () => {
-    const { queryByRole } = renderWithTheme(
+    const { queryByTestId } = renderWithTheme(
       <HeaderLesson {...props} expired={true} />,
     );
-    const downloadLink = queryByRole("link");
+    const downloadLink = queryByTestId("download-all-button");
     expect(downloadLink).toBeNull();
   });
 
   it("does not render the download button when !expired && !hasDownloadableResources", () => {
-    const { queryByRole } = renderWithTheme(
+    const { queryByTestId } = renderWithTheme(
       <HeaderLesson {...props} hasDownloadableResources={false} />,
     );
-    const downloadLink = queryByRole("link");
+    const downloadLink = queryByTestId("download-all-button");
     expect(downloadLink).toBeNull();
   });
 

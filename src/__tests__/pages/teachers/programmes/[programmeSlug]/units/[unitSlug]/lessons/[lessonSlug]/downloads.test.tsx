@@ -136,13 +136,13 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
       // Lesson resources to download
       const lessonResourcesToDownload = screen.getAllByTestId(
-        "lessonResourcesToDownload",
+        "lessonResourcesCheckbox",
       );
       expect(lessonResourcesToDownload.length).toEqual(2);
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions");
 
       expect(exitQuizQuestions).toBeInTheDocument();
-      expect(exitQuizQuestions).toHaveAttribute("name", "downloads");
+      expect(exitQuizQuestions).toHaveAttribute("name", "resources");
       expect(exitQuizQuestions).toHaveAttribute("value", "exit-quiz-questions");
 
       // Download button
@@ -338,7 +338,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       );
 
       const copyrightNotice = await screen.findByText(
-        "This content is made available by Oak and its partners",
+        "This content is made available by Oak National Academy Limited and its partners",
         { exact: false },
       );
 

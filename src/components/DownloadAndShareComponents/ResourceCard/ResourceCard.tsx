@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
-import type { DownloadResourceType } from "../downloads.types";
+import type { DownloadResourceType } from "../downloadAndShare.types";
 
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/Typography/P";
@@ -57,7 +57,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $alignItems={"center"}
         $justifyContent={"center"}
         $pa={6}
-        $background={"teachersYellow"}
+        $background={"lemon"}
         $width={66}
       >
         <Icon
@@ -76,7 +76,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $alignItems="center"
         $width={["100%"]}
         $maxWidth={320}
-        $background={isHovered ? "grey1" : "white"}
+        $background={isHovered ? "grey20" : "white"}
       >
         <Flex
           $flexDirection="column"
@@ -92,7 +92,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           >
             {label}
           </P>
-          <P $color="oakGrey4">{subtitle}</P>
+          <P $color="grey60">{subtitle}</P>
         </Flex>
       </Flex>
     </BoxWithFocusState>
@@ -119,6 +119,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
       $width={"fit-content"}
       $position={"relative"}
       {...hoverProps}
+      data-testid="lessonResourcesCheckbox"
     >
       <Checkbox
         id={id}

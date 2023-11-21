@@ -3,6 +3,7 @@ import { Control, Controller } from "react-hook-form";
 
 import ResourceCard from "../ResourceCard";
 import { sortShareResources } from "../helpers/sortResources";
+import { ResourceFormProps } from "../downloadAndShare.types";
 
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import Flex from "@/components/Flex";
@@ -10,7 +11,7 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 export type ShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
-  control: Control;
+  control: Control<ResourceFormProps>;
   triggerForm: () => void;
   hasError?: boolean;
   shareLink: string;
@@ -30,8 +31,9 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
           (resource, i) =>
             resource.exists && (
               <Controller
+                data-testid="lessonResourcesToShare"
                 control={props.control}
-                name="share"
+                name="resources"
                 defaultValue={[]}
                 key={`${resource.type}-${i}`}
                 render={({
@@ -45,7 +47,7 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
                     } else {
                       onChange(
                         fieldValue.filter(
-                          (val: LessonShareSchema["type"]) =>
+                          (val: LessonShareSchema["type"] | string) =>
                             val !== resource.type,
                         ),
                       );
@@ -58,7 +60,11 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
                       id={resource.type}
                       name={name}
                       label={resource.label}
-                      subtitle={resource.metadata}
+                      subtitle={
+                        resource.metadata.toLowerCase() === "pdf"
+                          ? "PDF"
+                          : resource.metadata
+                      }
                       resourceType={resource.type}
                       onChange={onChangeHandler}
                       checked={fieldValue.includes(resource.type)}
@@ -79,6 +85,7 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
         href={props.shareLink}
         page={null}
         iconBackground="black"
+        disabled={props.hasError}
       />
     </Flex>
   );

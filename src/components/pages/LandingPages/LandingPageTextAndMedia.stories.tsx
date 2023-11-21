@@ -40,7 +40,7 @@ export const LandingPagesTextAndMedia: Story = {
   render: (args) => (
     <Flex
       $pa={32}
-      $background={"teachersLilac"}
+      $background={"lavender50"}
       $justifyContent={"center"}
       $width="100%"
     >

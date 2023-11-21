@@ -9,7 +9,7 @@ import Icon from "../Icon";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Box from "../Box";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/downloads.types";
+import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -55,7 +55,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const getPreselectedQueryFromTitle = (title: ExpandingContainerTitle) => {
     return containerTitleToPreselectMap[title];
   };
-  const preselected = getPreselectedQueryFromTitle(title);
+  const preselected = getPreselectedQueryFromTitle(title).downloadType;
 
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
@@ -106,7 +106,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     variant={"minimal"}
                     page={"lesson-downloads"}
                     aria-label={`download ${lowerCaseTitle}`}
-                    iconBackground="teachersHighlight"
+                    iconBackground="blue"
                     icon="download"
                     $iconPosition="trailing"
                     label={`Download ${lowerCaseTitle}`}
@@ -126,7 +126,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                     data-testid={"download-button-mobile"}
                     page={"lesson-downloads"}
                     aria-label={`download ${lowerCaseTitle}`}
-                    background={"teachersHighlight"}
+                    background={"blue"}
                     icon="download"
                     variant="brush"
                     query={{
@@ -142,7 +142,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 data-testid={"external-button"}
                 $ml={24}
                 aria-label="External click me"
-                background={"teachersPastelBlue"}
+                background={"lavender"}
                 icon="external"
                 onClick={() => {
                   // console.log("External Clicked!");
@@ -155,7 +155,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 $ml={24}
                 data-testid={"project-button"}
                 aria-label="Project Click me"
-                background={"teachersPastelBlue"}
+                background={"lavender"}
                 icon="project"
                 onClick={() => {
                   // console.log("Project Clicked!");
