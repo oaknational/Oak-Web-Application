@@ -10,10 +10,18 @@ import {
 import {
   ResourceFormProps,
   ResourceType,
+  isPreselectedDownloadType,
+  isPreselectedShareType,
+} from "../downloadAndShare.types";
+import {
+  getPreselectedDownloadResourceTypes,
+  getPreselectedShareResourceTypes,
+} from "../helpers/getDownloadResourceType";
+import {
+  preselectedDownloadType,
   preselectedShareType,
-  schema,
-} from "../downloadsAndShare.types";
-import { getPreselectedShareResourceTypes } from "../helpers/getDownloadResourceType";
+  resourceFormValuesSchema,
+} from "../downloadAndShare.schema";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -22,11 +30,11 @@ import {
   LessonShareData,
 } from "@/node-lib/curriculum-api";
 
-type Props =
+export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | { downloadResources: LessonDownloadsData["downloads"]; type: "download" };
 
-export const useResourceFormState = (props: Props) => {
+export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const {
     register,
     formState,
@@ -36,7 +44,7 @@ export const useResourceFormState = (props: Props) => {
     watch,
     handleSubmit,
   } = useForm<ResourceFormProps>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
   const [preselectAll, setPreselectAll] = useState(false);
@@ -164,7 +172,10 @@ export const useResourceFormState = (props: Props) => {
     const preselectedQuery = () => {
       const res = router.query.preselected;
 
-      const result = preselectedShareType.safeParse(res);
+      const result =
+        props.type === "download"
+          ? preselectedDownloadType.safeParse(res)
+          : preselectedShareType.safeParse(res);
 
       if (!result.success) {
         return "all";
@@ -172,7 +183,15 @@ export const useResourceFormState = (props: Props) => {
         return result.data;
       }
     };
-    const preselected = getPreselectedShareResourceTypes(preselectedQuery());
+    const queryResults = preselectedQuery();
+    let preselected: "all" | ResourceType[] | undefined;
+
+    if (isPreselectedShareType(queryResults)) {
+      preselected = getPreselectedShareResourceTypes(queryResults);
+    }
+    if (isPreselectedDownloadType(queryResults)) {
+      preselected = getPreselectedDownloadResourceTypes(queryResults);
+    }
 
     if (preselected) {
       setPreselectAll(preselected === "all");
@@ -180,7 +199,12 @@ export const useResourceFormState = (props: Props) => {
         ? setValue("resources", getInitialResourcesState())
         : setValue("resources", preselected);
     }
-  }, [getInitialResourcesState, router.query.preselected, setValue]);
+  }, [
+    getInitialResourcesState,
+    props.type,
+    router.query.preselected,
+    setValue,
+  ]);
 
   useEffect(() => {
     if (preselectAll) {
@@ -216,7 +240,6 @@ export const useResourceFormState = (props: Props) => {
     localStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
-
     activeResources,
     setActiveResources,
     handleToggleSelectAll,

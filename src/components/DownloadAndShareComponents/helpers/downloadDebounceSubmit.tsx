@@ -1,7 +1,7 @@
 import { debounce } from "lodash";
 
 import OakError from "../../../errors/OakError";
-import { ResourceFormProps } from "../downloadsAndShare.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 import errorReporter from "../../../common-lib/error-reporter";
 
 const reportError = errorReporter("downloadDebouncedSubmit");

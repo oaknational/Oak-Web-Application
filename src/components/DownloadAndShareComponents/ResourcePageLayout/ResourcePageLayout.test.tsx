@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../downloadsAndShare.types";
+import { ResourceFormProps } from "../downloadAndShare.types";
 
 import ResourcePageLayout, {
   ResourcePageLayoutProps,

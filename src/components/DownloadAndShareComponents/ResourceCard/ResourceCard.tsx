@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
-import type { DownloadResourceType } from "../downloadsAndShare.types";
+import type { DownloadResourceType } from "../downloadAndShare.types";
 
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/Typography/P";

@@ -1,3 +1,36 @@
+# [1.305.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.304.0...v1.305.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* downloads preselect bug ([a72d7ed](https://github.com/oaknational/Oak-Web-Application/commit/a72d7ed9609f750a27a985122db39865d50b1410))
+
+
+### Features
+
+* connect share from lesson overview ([e9a996b](https://github.com/oaknational/Oak-Web-Application/commit/e9a996b6fc4702896b1e500426ed7bba4e5715ab))
+
+# [1.304.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.2...v1.304.0) (2023-11-20)
+
+
+### Features
+
+* adds avo to share links buttons ([62cea11](https://github.com/oaknational/Oak-Web-Application/commit/62cea11da38234b04949cb684f937190e26a1307))
+
+## [1.303.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.1...v1.303.2) (2023-11-20)
+
+
+### Bug Fixes
+
+* **web terraform:** use the new project workspaces ([10af6ea](https://github.com/oaknational/Oak-Web-Application/commit/10af6ea08908bd8244ea8907015a323f78a215d4))
+
+## [1.303.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.303.0...v1.303.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* hide duplicate curriculum units ([e4017f3](https://github.com/oaknational/Oak-Web-Application/commit/e4017f39626f260f9c83fb9b0be47ebc590bd639))
+
 # [1.303.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.302.0...v1.303.0) (2023-11-17)
 
 

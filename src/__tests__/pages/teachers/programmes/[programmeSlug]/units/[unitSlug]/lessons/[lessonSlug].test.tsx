@@ -19,6 +19,20 @@ const props = {
   }),
 };
 
+const downloadResourceButtonClicked = jest.fn();
+const lessonShareStarted = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      downloadResourceButtonClicked: (...args: []) =>
+        downloadResourceButtonClicked(...args),
+      lessonShareStarted: (...args: []) => lessonShareStarted(...args),
+    },
+  }),
+}));
+
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons", () => {
@@ -76,6 +90,27 @@ describe("pages/teachers/lessons", () => {
     expect(screen.queryByTestId("download-all-button")).not.toBeInTheDocument();
   });
 
+  it("share button is disabled with non legacy content", async () => {
+    render(
+      <LessonOverviewPage
+        curriculumData={lessonOverviewFixture({
+          hasDownloadableResources: false,
+          expired: true,
+        })}
+      />,
+    );
+
+    const shareButton = screen.queryAllByTestId("share-all-button");
+    const shareLabel = screen.queryAllByText("Share activities with pupils");
+
+    if (shareButton[0] !== undefined && shareButton.length > 0) {
+      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareLabel[0]).toBeInTheDocument();
+    } else {
+      throw new Error("Share all button not found");
+    }
+  });
+
   it("sign language button toggles on click", async () => {
     render(<LessonOverviewPage {...props} />);
 
@@ -91,6 +126,7 @@ describe("pages/teachers/lessons", () => {
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
@@ -107,6 +143,66 @@ describe("pages/teachers/lessons", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
+      });
+    });
+  });
+  describe("tracking events", () => {
+    it("calls track.downloadResourceButtonClicked will 'all' when download all button is pressed", async () => {
+      const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
+      const downloadAllButton = getAllByTestId("download-all-button");
+
+      act(() => {
+        if (
+          downloadAllButton[0] !== undefined &&
+          downloadAllButton.length > 0
+        ) {
+          downloadAllButton[0].click();
+        } else {
+          throw new Error("downloads all button not found");
+        }
+      });
+
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
+        analyticsUseCase: null,
+        downloadResourceButtonName: "all",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
+      });
+    });
+    it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {
+      const legacyProps = {
+        ...props,
+        curriculumData: {
+          ...props.curriculumData,
+          programmeSlug: "legacy-programme-l",
+        },
+      };
+      const { getAllByTestId } = render(
+        <LessonOverviewPage {...legacyProps} />,
+      );
+      const shareAllButton = getAllByTestId("share-all-button");
+      act(() => {
+        if (shareAllButton[0] !== undefined && shareAllButton.length > 0) {
+          shareAllButton[0].click();
+        } else {
+          throw new Error("Share all button not found");
+        }
+      });
+      expect(lessonShareStarted).toHaveBeenCalledWith({
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
       });
     });
   });

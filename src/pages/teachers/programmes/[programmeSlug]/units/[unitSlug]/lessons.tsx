@@ -115,7 +115,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         subjectIconBackgroundColor={"pink"}
         title={unitTitle}
         programmeFactor={keyStageTitle} // this should be changed to year LESQ-242
-        isNew={!isSlugLegacy(programmeSlug)}
+        isLegacyLesson={isSlugLegacy(programmeSlug)}
         hasCurriculumDownload={isSlugLegacy(programmeSlug)}
         {...curriculumData}
       />

@@ -120,7 +120,7 @@ const props = {
   introQuizInfo: null,
   exitQuizInfo: null,
   expired: false,
-  isNew: true,
+  isLegacyLesson: false,
 };
 
 const meta: Meta<typeof Component> = {
