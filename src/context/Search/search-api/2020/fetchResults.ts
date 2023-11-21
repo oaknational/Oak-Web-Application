@@ -1,5 +1,5 @@
 import { searchResultsSchema } from "../../search.schema";
-import { SearchQuery } from "../../search.types";
+import { SearchHit, SearchQuery } from "../../search.types";
 
 import constructElasticQuery from "./constructElasticQuery";
 
@@ -21,8 +21,20 @@ export async function fetchResults(query: SearchQuery) {
   handleFetchError(response);
 
   const unparsedData = await response.json();
+  const unparsedDataWithLegacyFlag = {
+    ...unparsedData,
+    hits: {
+      ...unparsedData.hits,
+      hits: unparsedData.hits.hits.map((hit: SearchHit) => {
+        return {
+          ...hit,
+          legacy: true,
+        };
+      }),
+    },
+  };
 
-  const data = searchResultsSchema.parse(unparsedData);
+  const data = searchResultsSchema.parse(unparsedDataWithLegacyFlag);
 
   const { hits } = data;
   const hitList = hits.hits;
