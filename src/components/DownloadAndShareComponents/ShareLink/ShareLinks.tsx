@@ -8,8 +8,9 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 import LoadingButton from "@/components/Button/LoadingButton";
 import Flex from "@/components/Flex";
 import { Heading } from "@/components/Typography";
+import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 
-const copyToCliboard = (textToCopy: string, callback: () => void) => {
+const copyToClipboard = (textToCopy: string, callback: () => void) => {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(textToCopy);
     callback();
@@ -23,7 +24,7 @@ const ShareLinks: FC<{
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
   schoolUrn?: number;
-  onSubmit: () => void;
+  onSubmit: (shareMedium: ShareMediumValueType) => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);
 
@@ -47,7 +48,7 @@ const ShareLinks: FC<{
           type="button"
           ariaLabel="Copy link to clipboard"
           onClick={() =>
-            copyToCliboard(
+            copyToClipboard(
               getHrefForSocialSharing({
                 lessonSlug: props.lessonSlug,
                 selectedActivities: props.selectedActivities,
@@ -56,7 +57,7 @@ const ShareLinks: FC<{
               }),
               () => {
                 setIsShareSuccessful(true);
-                props.onSubmit();
+                props.onSubmit("copy-link");
               },
             )
           }
@@ -84,7 +85,9 @@ const ShareLinks: FC<{
               selectedActivities: props.selectedActivities,
               linkConfig: link,
             })}
-            onClick={props.onSubmit}
+            onClick={() => {
+              props.onSubmit(link.avoMedium);
+            }}
             ariaLabel={`Share to ${link.name}`}
           />
         ))}
