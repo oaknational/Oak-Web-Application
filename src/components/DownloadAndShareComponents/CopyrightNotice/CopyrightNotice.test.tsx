@@ -28,7 +28,7 @@ describe("CopyrightNotice", () => {
     );
 
     const preAlbCopyright = screen.getByText(
-      "This content is © Oak National Academy (2023), licensed on",
+      "This content is © Oak National Academy Limited (2023), licensed on",
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();
