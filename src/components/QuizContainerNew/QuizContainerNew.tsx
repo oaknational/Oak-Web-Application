@@ -11,11 +11,10 @@ import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders
 
 export type QuizProps = {
   questions: NonNullable<LessonOverviewQuizData>;
+  imageAttribution: { attribution: string; questionNumber: string }[];
 };
 
 const QuizContainerNew: FC<QuizProps> = (props) => {
-  const imageAttribution: { attribution: string; questionNumber: string } | [] =
-    [];
   return props.questions && props.questions.length > 0 ? (
     <>
       <Flex
@@ -27,9 +26,9 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
         <QuestionsListNew {...props} />
         <BoxBorders />
       </Flex>
-      {imageAttribution.length > 0 && (
+      {props.imageAttribution.length > 0 && (
         <Box $mt={24}>
-          {imageAttribution.map(({ attribution, questionNumber }) => (
+          {props.imageAttribution.map(({ attribution, questionNumber }) => (
             <>
               <Span $font={"body-3-bold"}>{`Q${questionNumber} `}</Span>
               <Span $font={"body-3"}>{`${attribution} `}</Span>

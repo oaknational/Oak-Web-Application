@@ -303,7 +303,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                     >
                       {starterQuiz && (
-                        <QuizContainerNew questions={starterQuiz} />
+                        <QuizContainerNew
+                          questions={starterQuiz}
+                          imageAttribution={[]}
+                        />
                       )}
                     </LessonItemContainer>
                   )}
@@ -325,7 +328,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         pageLinks.length - 1
                       }
                     >
-                      {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
+                      {exitQuiz && (
+                        <QuizContainerNew
+                          questions={exitQuiz}
+                          imageAttribution={[]}
+                        />
+                      )}
                     </LessonItemContainer>
                   )}
                 </MathJaxProvider>
