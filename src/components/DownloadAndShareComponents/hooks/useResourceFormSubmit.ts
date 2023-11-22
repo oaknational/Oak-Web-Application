@@ -60,6 +60,13 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       setTermsInLocalStorage(terms);
     }
     if (props.type === "download") {
+      await downloadLessonResources(
+        slug,
+        downloads as DownloadResourceType[],
+        props.isLegacyDownload,
+      );
+    }
+    if (props.type === "share" || props.type === "download") {
       const downloadsPayload = getHubspotDownloadsFormPayload({
         hutk,
         data: {
@@ -77,11 +84,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         payload: downloadsPayload,
       });
 
-      await downloadLessonResources(
-        slug,
-        downloads as DownloadResourceType[],
-        props.isLegacyDownload,
-      );
       return hubspotFormResponse;
     }
   };
