@@ -211,7 +211,7 @@ describe("LessonDetails component", () => {
       />,
     );
     const preAlbCopyright = getByText(
-      "This content is © Oak National Academy (2023), licensed on",
+      "This content is © Oak National Academy Limited (2023), licensed on",
       { exact: false },
     );
     expect(preAlbCopyright).toBeInTheDocument();

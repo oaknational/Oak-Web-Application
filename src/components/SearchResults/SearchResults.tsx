@@ -101,7 +101,9 @@ const SearchResults = (props: SearchResultsProps) => {
           <UL $reset>
             {currentPageItems.map((hit, index) => {
               return (
-                <LI key={`SearchList-SearchListItem-${hit._source.slug}`}>
+                <LI
+                  key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
+                >
                   <SearchResult
                     hit={hit}
                     index={index}
