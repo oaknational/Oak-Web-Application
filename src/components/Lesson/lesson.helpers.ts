@@ -5,6 +5,10 @@ import { LessonBase, LessonPathway } from "./lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
+import {
+  LessonOverviewQuizData,
+  StemObject,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * Returns the intersection different pathways.
@@ -327,3 +331,35 @@ export function groupLessonPathways(pathways: LessonPathway[]) {
     subjects,
   };
 }
+
+type Attribution = {
+  questionNumber: string;
+  attribution: string;
+};
+
+export const createAttributionObject = (
+  questions: LessonOverviewQuizData,
+): Attribution[] | [] => {
+  const attributions: Attribution[] = [];
+  if (questions) {
+    questions.forEach((question, index) => {
+      const questionNumber = `Q${index + 1}`;
+      if (question && question.questionStem) {
+        const { questionStem } = question;
+        questionStem.forEach((stem: StemObject) => {
+          if (
+            stem.type === "image" &&
+            !Array.isArray(stem.image_object.metadata) &&
+            stem.image_object.metadata.attribution
+          ) {
+            attributions.push({
+              questionNumber: questionNumber,
+              attribution: stem.image_object.metadata.attribution,
+            });
+          }
+        });
+      }
+    });
+  }
+  return attributions;
+};

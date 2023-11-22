@@ -1,8 +1,14 @@
 import {
+  createAttributionObject,
   getCommonPathway,
   getPageLinksForLesson,
   groupLessonPathways,
 } from "./lesson.helpers";
+
+import {
+  quizQuestions,
+  quizQuestionsNoImages,
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {
@@ -609,5 +615,19 @@ describe("groupLessonPathways()", () => {
     };
 
     expect(result).toEqual(expected);
+  });
+});
+
+describe("createAttributionObject", () => {
+  it("returns test attribute away with image attribution data", () => {
+    const testAttribution = createAttributionObject(quizQuestions);
+    expect(testAttribution).toEqual([
+      { questionNumber: "Q2", attribution: "test attribution picture" },
+    ]);
+  });
+
+  it("when no image metadata is present function returns an empty array", () => {
+    const testAttribution = createAttributionObject(quizQuestionsNoImages);
+    expect(testAttribution).toEqual([]);
   });
 });

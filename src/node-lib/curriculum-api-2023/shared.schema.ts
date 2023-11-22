@@ -46,7 +46,13 @@ const stemImageObjectSchema = z.object({
     url: z.string().url().optional(),
     height: z.number().optional(),
     width: z.number().optional(),
-    metadata: z.union([z.array(z.any()), z.object({})]),
+    metadata: z.union([
+      z.array(z.any()),
+      z.object({
+        attribution: z.string().optional(),
+        usageRestriction: z.string().optional(),
+      }),
+    ]),
     public_id: z.string().optional(),
     version: z.number().optional(),
   }),
@@ -54,6 +60,8 @@ const stemImageObjectSchema = z.object({
 });
 
 export type StemImageObject = z.infer<typeof stemImageObjectSchema>;
+
+export type StemObject = StemTextObject | StemImageObject;
 
 const mcAnswer = z.object({
   answer: z

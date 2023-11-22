@@ -30,7 +30,7 @@ const QuizContainerNew: FC<QuizProps> = (props) => {
         <Box $mt={24}>
           {props.imageAttribution.map(({ attribution, questionNumber }) => (
             <>
-              <Span $font={"body-3-bold"}>{`Q${questionNumber} `}</Span>
+              <Span $font={"body-3-bold"}>{`${questionNumber} `}</Span>
               <Span $font={"body-3"}>{`${attribution} `}</Span>
             </>
           ))}
