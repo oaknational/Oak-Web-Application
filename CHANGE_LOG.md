@@ -1,3 +1,10 @@
+## [1.305.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.1...v1.305.2) (2023-11-22)
+
+
+### Bug Fixes
+
+* plug in new mv ([869afeb](https://github.com/oaknational/Oak-Web-Application/commit/869afebe0ba4b4e9bb7052c5e3759332609e2da9))
+
 ## [1.305.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.0...v1.305.1) (2023-11-22)
 
 # [1.305.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.304.0...v1.305.0) (2023-11-21)
