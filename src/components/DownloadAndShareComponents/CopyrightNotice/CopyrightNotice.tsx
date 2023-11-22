@@ -56,7 +56,7 @@ const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
   <P $font="body-3" {...props}>
-    This content is © Oak National Academy (2023), licensed on{" "}
+    This content is © Oak National Academy Limited (2023), licensed on{" "}
     <StyledLink
       aria-label={`Open Government License version 3.0${
         props.openLinksExternally ? " (opens in a new tab)" : ""

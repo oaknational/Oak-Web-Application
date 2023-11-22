@@ -14,6 +14,7 @@ const createSearchResult = (): SearchHit => {
     _index: "",
     _score: 54,
     highlight: {},
+    legacy: true,
     _source: {
       type: "lesson",
       lesson_description: "lesson description",
