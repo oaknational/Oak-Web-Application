@@ -102,16 +102,17 @@ export function getLessonObject(props: {
   "hideTopHeading" | "trackSearchListItemSelected" | "index" | "hitCount"
 > | null {
   const { hit, allKeyStages } = props;
-  const { _source, highlight } = hit;
+  const { _source, highlight, legacy } = hit;
   const highlightedHit = { ..._source, ...highlight };
   const keyStage = elasticKeyStageSlugToKeyStage({
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
   const lessonResult = {
-    programmeSlug:
-      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
-      getProgrammeSlug(hit, allKeyStages),
+    programmeSlug: legacy
+      ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+        getProgrammeSlug(hit, allKeyStages)
+      : getProgrammeSlug(hit, allKeyStages),
     lessonTitle: highlightedHit.title?.toString(),
     lessonSlug: highlightedHit.slug?.toString(),
     description: highlightedHit.lesson_description?.toString() || "",
@@ -158,7 +159,7 @@ export function getUnitObject(props: {
   "hideTopHeading" | "index" | "hitCount" | "expiredLessonCount"
 > | null {
   const { hit, allKeyStages } = props;
-  const { _source, highlight } = hit;
+  const { _source, highlight, legacy } = hit;
   const highlightedHit = { ..._source, ...highlight };
   const keyStage = elasticKeyStageSlugToKeyStage({
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
@@ -166,9 +167,10 @@ export function getUnitObject(props: {
   });
 
   const unitResult = {
-    programmeSlug:
-      addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
-      getProgrammeSlug(hit, allKeyStages),
+    programmeSlug: legacy
+      ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
+        getProgrammeSlug(hit, allKeyStages)
+      : getProgrammeSlug(hit, allKeyStages),
     title: highlightedHit.title?.toString(),
     nullTitle: highlightedHit.title?.toString(),
     slug: highlightedHit.slug?.toString(),
