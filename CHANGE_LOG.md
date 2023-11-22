@@ -1,3 +1,11 @@
+## [1.305.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.2...v1.305.3) (2023-11-22)
+
+
+### Bug Fixes
+
+*  unique for key for list item ([22b96cc](https://github.com/oaknational/Oak-Web-Application/commit/22b96cc23b25847142f5c95eba9c38a9f24db284))
+* new search api hits with no legacy suffix ([7528790](https://github.com/oaknational/Oak-Web-Application/commit/7528790a84235c60ad6b9e9f30913a0ac149f09e))
+
 ## [1.305.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.1...v1.305.2) (2023-11-22)
 
 
