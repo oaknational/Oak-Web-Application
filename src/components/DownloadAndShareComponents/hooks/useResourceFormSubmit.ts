@@ -66,26 +66,25 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         props.isLegacyDownload,
       );
     }
-    if (props.type === "share" || props.type === "download") {
-      const downloadsPayload = getHubspotDownloadsFormPayload({
-        hutk,
-        data: {
-          ...data,
-          ...utmParams,
-          oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
-          schoolName:
-            schoolId === "homeschool" || schoolId === "notListed"
-              ? schoolId
-              : schoolName,
-        },
-      });
-      const hubspotFormResponse = await hubspotSubmitForm({
-        hubspotFormId: hubspotDownloadsFormId,
-        payload: downloadsPayload,
-      });
 
-      return hubspotFormResponse;
-    }
+    const downloadsPayload = getHubspotDownloadsFormPayload({
+      hutk,
+      data: {
+        ...data,
+        ...utmParams,
+        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
+        schoolName:
+          schoolId === "homeschool" || schoolId === "notListed"
+            ? schoolId
+            : schoolName,
+      },
+    });
+    const hubspotFormResponse = await hubspotSubmitForm({
+      hubspotFormId: hubspotDownloadsFormId,
+      payload: downloadsPayload,
+    });
+
+    return hubspotFormResponse;
   };
 
   return { onSubmit };
