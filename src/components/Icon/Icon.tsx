@@ -118,8 +118,8 @@ const Icon: FC<IconProps> = (props) => {
     (typeof $background === "string"
       ? theme.contrastColors[$background]
       : Array.isArray($background)
-      ? $background.map(($) => ($ ? theme.contrastColors[$] : null))
-      : undefined);
+        ? $background.map(($) => ($ ? theme.contrastColors[$] : null))
+        : undefined);
 
   const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 

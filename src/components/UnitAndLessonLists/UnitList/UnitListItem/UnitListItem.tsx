@@ -111,8 +111,8 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       subjectIconBackground === "pink"
         ? "pink60"
         : subjectIconBackground === "lavender"
-        ? "lavender60"
-        : subjectIconBackground;
+          ? "lavender60"
+          : subjectIconBackground;
   }
 
   return (
