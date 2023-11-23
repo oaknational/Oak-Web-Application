@@ -1,7 +1,7 @@
 import snakecaseKeys from "snakecase-keys";
 
 import { searchResultsSchema } from "../../search.schema";
-import { SearchQuery } from "../../search.types";
+import { SearchHit, SearchQuery } from "../../search.types";
 
 import { constructElasticQuery } from "./constructElasticQuery";
 
@@ -25,7 +25,7 @@ export async function fetchResults(query: SearchQuery) {
 
   const unparsedData = await response.json();
 
-  const transformedData = {
+  const transformedData: SearchHit = {
     ...unparsedData,
     hits: {
       ...unparsedData.hits,
@@ -47,6 +47,7 @@ export async function fetchResults(query: SearchQuery) {
 
           return {
             ...hit,
+            legacy: false,
             _source: {
               ...source,
               title,

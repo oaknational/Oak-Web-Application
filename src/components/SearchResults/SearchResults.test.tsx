@@ -15,7 +15,11 @@ import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
 
 const getNHits = (n: number) => {
-  const [hit] = hits;
+  const [hit] = hits.map((hit) => {
+    return {
+      ...hit,
+    };
+  });
 
   return new Array(n)
     .fill(1)
@@ -23,6 +27,7 @@ const getNHits = (n: number) => {
       hit
         ? {
             ...hit,
+            legacy: false,
             // appending i to slug to avoid unique key warning
             _source: { ...hit?._source, slug: hit?._source?.slug + i },
           }
@@ -45,7 +50,7 @@ describe("<SearchResults />", () => {
       getByRole("link", { name: "To write the setting description" }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/english-primary-ks2-l/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
+      "/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
     );
   });
   // @todo when we have programme_slug in search index

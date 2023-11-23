@@ -353,7 +353,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       );
 
       const copyrightNotice = await screen.findByText(
-        "This content is © Oak National Academy (2023), licensed on",
+        "This content is © Oak National Academy Limited (2023), licensed on",
         { exact: false },
       );
 

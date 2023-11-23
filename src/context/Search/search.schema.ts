@@ -44,18 +44,21 @@ const searchResultsHighlightUnitSchema = z.object({
   topic_title: z.coerce.string(),
 });
 
-export const lessonSearchHitSchema = z.object({
+const searchHitBaseSchema = z.object({
   _id: z.string(),
   _index: z.string(),
   _score: z.number(),
+  legacy: z.boolean().optional(),
+});
+
+export const lessonSearchHitSchema = z.object({
+  ...searchHitBaseSchema.shape,
   _ignored: z.array(z.string()).nullish(),
   _source: searchResultsSourceLessonSchema,
   highlight: searchResultsHighlightLessonSchema.partial().nullish(),
 });
 export const unitSearchHitSchema = z.object({
-  _id: z.string(),
-  _index: z.string(),
-  _score: z.number(),
+  ...searchHitBaseSchema.shape,
   _source: searchResultsSourceUnitSchema,
   highlight: searchResultsHighlightUnitSchema.partial().nullish(),
 });
