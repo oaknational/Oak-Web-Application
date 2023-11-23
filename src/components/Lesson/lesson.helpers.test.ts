@@ -623,6 +623,18 @@ describe("createAttributionObject", () => {
     const testAttribution = createAttributionObject(quizQuestions);
     expect(testAttribution).toEqual([
       { questionNumber: "Q2", attribution: "test attribution picture" },
+      {
+        questionNumber: "Q3 image 1",
+        attribution: "test attribution picture",
+      },
+      {
+        questionNumber: "Q3 image 2",
+        attribution: "test attribution picture",
+      },
+      {
+        questionNumber: "Q3 image 3",
+        attribution: "test attribution picture",
+      },
     ]);
   });
 

@@ -366,6 +366,28 @@ export const createAttributionObject = (
           }) as Attribution[];
           acc.push(...mappedAttributions);
         }
+        if (question && question.answers) {
+          const { answers } = question;
+          if (answers["multiple-choice"]) {
+            const { "multiple-choice": multipleChoice } = answers;
+            multipleChoice.forEach(({ answer }, index) => {
+              answer.forEach((stem) => {
+                if (
+                  stem.type === "image" &&
+                  !Array.isArray(stem.image_object.metadata) &&
+                  stem.image_object.metadata &&
+                  stem.image_object.metadata.attribution
+                ) {
+                  acc.push({
+                    questionNumber: `${questionNumber} image ${index + 1}`,
+                    attribution: stem.image_object.metadata.attribution,
+                  });
+                }
+              });
+            });
+          }
+        }
+
         return acc;
       },
       [],
