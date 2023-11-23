@@ -1,3 +1,10 @@
+# [1.306.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.3...v1.306.0) (2023-11-23)
+
+
+### Features
+
+* send hubspot share data ([e6c6876](https://github.com/oaknational/Oak-Web-Application/commit/e6c6876c1139e8b7063bba3556bc502ede2192a5))
+
 ## [1.305.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.2...v1.305.3) (2023-11-22)
 
 
