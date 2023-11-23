@@ -7,7 +7,7 @@ import { Breadcrumb } from "@/components/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
 import {
   LessonOverviewQuizData,
-  StemObject,
+  StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
@@ -340,26 +340,37 @@ type Attribution = {
 export const createAttributionObject = (
   questions: LessonOverviewQuizData,
 ): Attribution[] | [] => {
-  const attributions: Attribution[] = [];
   if (questions) {
-    questions.forEach((question, index) => {
-      const questionNumber = `Q${index + 1}`;
-      if (question && question.questionStem) {
-        const { questionStem } = question;
-        questionStem.forEach((stem: StemObject) => {
-          if (
-            stem.type === "image" &&
-            !Array.isArray(stem.image_object.metadata) &&
-            stem.image_object.metadata.attribution
-          ) {
-            attributions.push({
-              questionNumber: questionNumber,
-              attribution: stem.image_object.metadata.attribution,
-            });
-          }
-        });
-      }
-    });
+    const attributions: Attribution[] = questions.reduce(
+      (acc: Attribution[], question, index) => {
+        const questionNumber = `Q${index + 1}`;
+        if (question && question.questionStem) {
+          const { questionStem } = question;
+          const imageStems = questionStem.filter(
+            (stem) =>
+              stem.type === "image" &&
+              !Array.isArray(stem.image_object.metadata) &&
+              stem.image_object.metadata.attribution &&
+              stem.image_object,
+          ) as StemImageObject[];
+          const mappedAttributions: Attribution[] = imageStems.map((stem) => {
+            if (
+              !Array.isArray(stem.image_object.metadata) &&
+              stem.image_object.metadata.attribution
+            ) {
+              return {
+                questionNumber,
+                attribution: stem.image_object.metadata.attribution,
+              };
+            }
+          }) as Attribution[];
+          acc.push(...mappedAttributions);
+        }
+        return acc;
+      },
+      [],
+    );
+    return attributions;
   }
-  return attributions;
+  return [];
 };
