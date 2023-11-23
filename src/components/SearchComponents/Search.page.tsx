@@ -127,6 +127,20 @@ const Search: FC<SearchProps> = (props) => {
             </Flex>
             <ActiveFilters searchFilters={searchFilters} />
           </GridArea>
+          <GridArea $colSpan={[12, 9]} $pr={16}>
+            <div role="status">
+              {shouldShowError && (
+                <p>There was an error fetching search results</p>
+              )}
+              {shouldShowLoading && <p>Loading...</p>}
+              {shouldShowNoResultsMessage && (
+                <NoSearchResults searchTerm={query.term} />
+              )}
+            </div>
+            {shouldShowResults && (
+              <SearchResults hits={results} allKeyStages={allKeyStages} />
+            )}
+          </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
               <SearchFilters {...searchFilters} />
@@ -141,20 +155,6 @@ const Search: FC<SearchProps> = (props) => {
                 <SearchFilters {...searchFilters} />
               </MobileFilters>
             </Box>
-          </GridArea>
-          <GridArea $colSpan={[12, 9]} $pr={16}>
-            <div role="status">
-              {shouldShowError && (
-                <p>There was an error fetching search results</p>
-              )}
-              {shouldShowLoading && <p>Loading...</p>}
-              {shouldShowNoResultsMessage && (
-                <NoSearchResults searchTerm={query.term} />
-              )}
-            </div>
-            {shouldShowResults && (
-              <SearchResults hits={results} allKeyStages={allKeyStages} />
-            )}
           </GridArea>
         </Grid>
       </MaxWidth>
