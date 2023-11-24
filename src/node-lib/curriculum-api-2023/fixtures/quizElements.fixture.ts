@@ -15,7 +15,7 @@ export const image_object: StemImageObject["image_object"] = {
     "https://oaknationalacademy-res.cloudinary.com/image/upload/v1687374653/Trees.jpg",
   width: 1280,
   height: 852,
-  metadata: [],
+  metadata: { attribution: "test attribution picture" },
   public_id: "Trees",
   version: 1687374653,
 };
@@ -283,6 +283,39 @@ export const quizQuestions: LessonOverviewQuizData = [
     questionUid: "QUES-CKPSN-KFF20",
 
     questionType: "order",
+  },
+  {
+    hint: "A Horse chestnut tree grows from a conker.",
+    active: false,
+    answers: {
+      "short-answer": shortAnswers,
+    },
+    feedback: "Correct! Trees do grow from seeds.",
+    questionId: 20,
+    questionUid: "QUES-CKPSN-KFF20",
+    questionStem: [
+      {
+        text: "When the roots push out of the seed, they grow down into the soil 'searching' for {{}}.",
+        type: "text",
+      },
+    ],
+    questionType: "short-answer",
+  },
+];
+
+export const quizQuestionsNoImages: LessonOverviewQuizData = [
+  {
+    hint: "Main clause is the most powerful of the clauses.",
+    active: false,
+    questionStem,
+    answers: {
+      "multiple-choice": mcqTextAnswers,
+    },
+    feedback: "Correct! A main clause can form a simple sentence by itself.",
+    questionId: 985,
+    questionUid: "QUES-EKUYT-EE985",
+
+    questionType: "multiple-choice",
   },
   {
     hint: "A Horse chestnut tree grows from a conker.",
