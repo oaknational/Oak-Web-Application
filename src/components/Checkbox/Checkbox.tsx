@@ -44,7 +44,6 @@ export type CheckboxProps = {
   labelFontWeight?: 400 | 600;
   slim?: boolean;
   zIndex?: ZIndex;
-  // font?: FontVariant;
 } & SpacingProps &
   TypographyProps;
 
