@@ -17,7 +17,6 @@ const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
   return (
     <Box $width={width}>
       <Checkbox
-        // $font={"heading-light-7"}
         labelText={`${label}`}
         ariaLabel={`${label} filter`}
         id={`custom-checkbox-${slug}`}

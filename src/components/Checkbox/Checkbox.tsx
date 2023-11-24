@@ -12,7 +12,6 @@ import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import FocusUnderline from "@/components/OakLink/FocusUnderline";
 import FieldError from "@/components/FormFields/FieldError";
 import { ZIndex } from "@/styles/utils/zIndex";
-// import { TypographyProps } from "@/styles/utils/typography";
 import Span from "@/components/Typography/Span";
 
 export type CheckboxConfig = {
@@ -45,7 +44,6 @@ export type CheckboxProps = {
   slim?: boolean;
   zIndex?: ZIndex;
 } & SpacingProps;
-// TypographyProps;
 
 type CheckboxLabelProps = {
   disabled: boolean;
@@ -174,7 +172,6 @@ const Checkbox: FC<CheckboxProps> = (props) => {
     labelFontWeight,
     ...spacingProps
   } = props;
-  // const { ...typographyProps } = props;
 
   const errorId = `${id}-error`;
 
@@ -216,10 +213,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
 
         {labelText && variant !== "withoutLabel" && (
           <>
-            <CheckboxLabelText
-              // {...typographyProps}
-              fontWeight={labelFontWeight ?? 400}
-            >
+            <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
               {labelText}
             </CheckboxLabelText>{" "}
             <FocusUnderline $color={"lemon"} />
