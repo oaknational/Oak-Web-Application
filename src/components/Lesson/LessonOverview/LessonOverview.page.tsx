@@ -5,6 +5,7 @@ import {
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
+  createAttributionObject,
 } from "../lesson.helpers";
 import {
   LessonOverviewCanonical,
@@ -131,6 +132,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const { currentSectionId } = useCurrentSection({ sectionRefs });
 
   const isLegacyLicense = programmeSlug ? isSlugLegacy(programmeSlug) : false;
+
+  const starterQuizImageAttribution = createAttributionObject(starterQuiz);
+
+  const exitQuizImageAttribution = createAttributionObject(exitQuiz);
 
   return (
     <>
@@ -303,7 +308,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       }
                     >
                       {starterQuiz && (
-                        <QuizContainerNew questions={starterQuiz} />
+                        <QuizContainerNew
+                          questions={starterQuiz}
+                          imageAttribution={starterQuizImageAttribution}
+                        />
                       )}
                     </LessonItemContainer>
                   )}
@@ -325,7 +333,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         pageLinks.length - 1
                       }
                     >
-                      {exitQuiz && <QuizContainerNew questions={exitQuiz} />}
+                      {exitQuiz && (
+                        <QuizContainerNew
+                          questions={exitQuiz}
+                          imageAttribution={exitQuizImageAttribution}
+                        />
+                      )}
                     </LessonItemContainer>
                   )}
                 </MathJaxProvider>
