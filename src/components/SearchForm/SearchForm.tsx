@@ -87,7 +87,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       <Flex $width={"100%"} $flexDirection={"row"} $alignItems={"center"}>
         <Input
           $mb={0}
-          label="search"
+          label="Search"
           id="search-form-search-input"
           value={value}
           type="search"
