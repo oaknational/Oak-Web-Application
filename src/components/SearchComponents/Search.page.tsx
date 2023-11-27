@@ -81,7 +81,7 @@ const Search: FC<SearchProps> = (props) => {
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
           <GridArea $colSpan={[12, 12, 8]} $mt={24} $mb={24}>
-            <Flex $flexDirection={["column"]}>
+            <Flex $flexDirection={["column"]} $mb={[48, 72]}>
               <SearchForm
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
