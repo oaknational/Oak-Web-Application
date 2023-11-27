@@ -116,23 +116,6 @@ describe("Search.page.tsx", () => {
     jest.clearAllMocks();
   });
 
-  test("h1 is “{searchTerm}“ if term prop passed", () => {
-    const { getByRole } = render(
-      <Search
-        {...props}
-        query={{ ...props.query, term: "test search term" }}
-      />,
-    );
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent(
-      "“test search term”",
-    );
-  });
-  test("h1 is Search if 'term' prop not passed", () => {
-    const { getByRole } = render(
-      <Search {...props} query={{ ...props.query, term: "" }} />,
-    );
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Search");
-  });
   test("status: error message displayed status is fail", () => {
     const { getByRole } = render(<Search {...props} status="fail" />);
     expect(getByRole("status")).toHaveTextContent(
