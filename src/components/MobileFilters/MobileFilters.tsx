@@ -85,7 +85,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   return (
     <Flex
-      $mt={24}
+      $mt={props.$mt ?? 24}
       $display={["flex", "none"]}
       $flexDirection={"column"}
       $width={"100%"}

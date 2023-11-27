@@ -80,7 +80,7 @@ const Search: FC<SearchProps> = (props) => {
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
-          <GridArea $colSpan={[12, 12, 8]} $mt={24} $mb={24}>
+          <GridArea $colSpan={[12, 12, 8]} $mt={24}>
             <Flex $flexDirection={["column"]} $mb={[48, 72]}>
               <SearchForm
                 searchTerm={query.term}
@@ -103,16 +103,9 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
             </div>
-            {shouldShowResults && (
-              <SearchResults hits={results} allKeyStages={allKeyStages} />
-            )}
-          </GridArea>
-          <GridArea $colSpan={[12, 3]} $pr={16}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} />
-            </Flex>
             <Flex $mb={32}>
               <MobileFilters
+                $mt={0}
                 label="Filters"
                 labelOpened="Close"
                 iconOpened="cross"
@@ -122,6 +115,14 @@ const Search: FC<SearchProps> = (props) => {
               >
                 <SearchFilters {...searchFilters} />
               </MobileFilters>
+            </Flex>
+            {shouldShowResults && (
+              <SearchResults hits={results} allKeyStages={allKeyStages} />
+            )}
+          </GridArea>
+          <GridArea $colSpan={[12, 3]} $pr={16}>
+            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+              <SearchFilters {...searchFilters} />
             </Flex>
           </GridArea>
         </Grid>
