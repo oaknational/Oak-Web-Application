@@ -1,23 +1,23 @@
 import { FC, forwardRef } from "react";
 import styled from "styled-components";
 
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { getBreakpoint } from "../../styles/utils/responsive";
-import { margin, MarginProps } from "../../styles/utils/spacing";
-import Flex from "../Flex";
-import { IconName } from "../Icon";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Label from "../Typography/Label";
-import UnstyledInput, { UnstyledInputProps } from "../UnstyledInput";
-import { OakColorName } from "../../styles/theme/types";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-import { zIndexMap } from "../../styles/utils/zIndex";
-import Svg from "../Svg";
-import FieldError from "../FormFields/FieldError";
-import { Span } from "../Typography";
-
 import InputIcon from "./InputIcon";
+
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
+import getFontFamily from "@/styles/themeHelpers/getFontFamily";
+import { getBreakpoint } from "@/styles/utils/responsive";
+import { margin, MarginProps } from "@/styles/utils/spacing";
+import Flex from "@/components/Flex";
+import { IconName } from "@/components/Icon";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import Label from "@/components/Typography/Label";
+import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
+import { OakColorName } from "@/styles/theme/types";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { zIndexMap } from "@/styles/utils/zIndex";
+import Svg from "@/components/Svg";
+import FieldError from "@/components/FormFields/FieldError";
+import { Span } from "@/components/Typography";
 
 export type StyledInputProps = MarginProps & {
   value?: string;
@@ -131,11 +131,15 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
     const { id, icon, label, error, isOptional, ...inputProps } = props;
     const errorId = `${id}-error`;
     const labelId = `${id}-label`;
-
     return (
       <>
         {error && <FieldError id={errorId}>{error}</FieldError>}
-        <InputFieldWrap $mb={32} $alignItems="center" $background="white">
+        <InputFieldWrap
+          $mb={props.$mb ?? 32}
+          $alignItems="center"
+          $background="white"
+          $width={"100%"}
+        >
           <Flex $width={"100%"} $position={"relative"}>
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
