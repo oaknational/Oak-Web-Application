@@ -94,7 +94,7 @@ describe("Pagination", () => {
     expect(link).toHaveAttribute("href", "/blog/updates?page=5");
   });
 
-  test.only("the next arrow is disabled when there are no more pages", () => {
+  test("the next arrow is disabled when there are no more pages", () => {
     const totalPages = 25;
     const currentPage = 25;
     const nextPageUrlObject = "next-page";
