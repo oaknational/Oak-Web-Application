@@ -1,3 +1,19 @@
+## [1.307.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.307.0...v1.307.1) (2023-11-24)
+
+# [1.307.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.306.0...v1.307.0) (2023-11-24)
+
+
+### Features
+
+* image attribution below quiz ([308b955](https://github.com/oaknational/Oak-Web-Application/commit/308b955051b8f1bd9f63b420f2c736cf4270418a))
+
+# [1.306.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.3...v1.306.0) (2023-11-23)
+
+
+### Features
+
+* send hubspot share data ([e6c6876](https://github.com/oaknational/Oak-Web-Application/commit/e6c6876c1139e8b7063bba3556bc502ede2192a5))
+
 ## [1.305.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.305.2...v1.305.3) (2023-11-22)
 
 

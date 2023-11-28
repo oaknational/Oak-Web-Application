@@ -160,21 +160,6 @@ const Search: FC<SearchProps> = (props) => {
             </Flex>
             <ActiveFilters searchFilters={searchFilters} />
           </GridArea>
-          <GridArea $colSpan={[12, 3]} $pr={16}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} />
-            </Flex>
-            <Box $mb={32}>
-              <MobileFilters
-                label="Filters"
-                labelOpened="Close"
-                iconOpened="cross"
-                iconClosed="hamburger"
-              >
-                <SearchFilters {...searchFilters} />
-              </MobileFilters>
-            </Box>
-          </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
             <div role="status">
               {shouldShowError && (
@@ -197,6 +182,21 @@ const Search: FC<SearchProps> = (props) => {
                 }
               />
             )}
+          </GridArea>
+          <GridArea $colSpan={[12, 3]} $pr={16}>
+            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+              <SearchFilters {...searchFilters} />
+            </Flex>
+            <Box $mb={32}>
+              <MobileFilters
+                label="Filters"
+                labelOpened="Close"
+                iconOpened="cross"
+                iconClosed="hamburger"
+              >
+                <SearchFilters {...searchFilters} />
+              </MobileFilters>
+            </Box>
           </GridArea>
         </Grid>
       </MaxWidth>
