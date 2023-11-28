@@ -39,7 +39,7 @@ const Pagination: FC<PaginationProps & { pageName: string }> = ({
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject, true);
 
   const previousPageLabel =
-    currentPage === 0
+    currentPage === 1
       ? "No previous pages"
       : `${pageName} page ${currentPage - 1}`;
   const nextPageLabel =

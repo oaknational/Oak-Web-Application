@@ -130,7 +130,7 @@ describe("Pagination", () => {
         pageName={"test"}
       />,
     );
-    const previousLink = getByLabelText("previous page");
+    const previousLink = getByLabelText("No previous pages");
 
     getByText("page 1 / 25");
 

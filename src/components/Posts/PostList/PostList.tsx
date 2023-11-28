@@ -52,7 +52,8 @@ const PostList: FC<PostListProps> = (props) => {
   } = props;
 
   const { firstItemRef } = paginationProps;
-
+  const blogsOrWebinars =
+    currentPageItems[0]?.contentType === "blog-post" ? "Blogs" : "Webinars";
   return (
     <Flex
       $flexDirection="column"
@@ -91,7 +92,7 @@ const PostList: FC<PostListProps> = (props) => {
       ) : null}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination pageName="Blogs" {...paginationProps} />
+          <Pagination pageName={blogsOrWebinars} {...paginationProps} />
         </Box>
       )}
     </Flex>
