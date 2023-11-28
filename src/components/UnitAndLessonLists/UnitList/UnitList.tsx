@@ -27,7 +27,6 @@ export type UnitListProps = UnitListingData & {
 const UnitList: FC<UnitListProps> = (props) => {
   const { units, paginationProps, currentPageItems } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
-
   return (
     <Flex $flexDirection="column">
       {currentPageItems.length ? (
@@ -64,7 +63,11 @@ const UnitList: FC<UnitListProps> = (props) => {
       ) : null}
       {units.length > 5 ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination {...paginationProps} firstItemRef={firstItemRef} />
+          <Pagination
+            pageName={props.subjectTitle}
+            {...paginationProps}
+            firstItemRef={firstItemRef}
+          />
         </Box>
       ) : (
         <Box $pb={32} />

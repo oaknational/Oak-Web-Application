@@ -91,7 +91,7 @@ const PostList: FC<PostListProps> = (props) => {
       ) : null}
       {withPagination && (
         <Box $width="100%" $mt={[0, "auto"]} $pt={48}>
-          <Pagination {...paginationProps} />
+          <Pagination pageName="Blogs" {...paginationProps} />
         </Box>
       )}
     </Flex>

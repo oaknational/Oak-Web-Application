@@ -15,12 +15,13 @@ export type PaginationProps = {
   paginationTitle?: string;
 };
 
-const Pagination: FC<PaginationProps> = ({
+const Pagination: FC<PaginationProps & { pageName: string }> = ({
   totalPages,
   currentPage,
   prevPageUrlObject = "",
   nextPageUrlObject = "",
   firstItemRef,
+  pageName,
 }) => {
   const router = useRouter();
   useEffect(() => {
@@ -37,12 +38,21 @@ const Pagination: FC<PaginationProps> = ({
   const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject, true);
   const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject, true);
 
+  const previousPageLabel =
+    currentPage === 0
+      ? "No previous pages"
+      : `${pageName} page ${currentPage - 1}`;
+  const nextPageLabel =
+    currentPage === totalPages
+      ? "No further pages"
+      : `${pageName} page ${currentPage + 1}`;
+
   return (
     <nav data-testid={"pagination"} aria-label="pagination">
       <Flex $alignItems={"center"} $justifyContent={"center"}>
         <IconButtonAsLink
           size="small"
-          aria-label="previous page"
+          aria-label={previousPageLabel}
           page={null}
           href={prevHref}
           icon={"chevron-left"}
@@ -55,7 +65,7 @@ const Pagination: FC<PaginationProps> = ({
         </Span>
         <IconButtonAsLink
           size="small"
-          aria-label="next page"
+          aria-label={nextPageLabel}
           page={null}
           href={nextHref}
           icon={"chevron-right"}
