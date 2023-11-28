@@ -115,7 +115,7 @@ const Search: FC<SearchProps> = (props) => {
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
-          <GridArea $colSpan={[12, 12, 8]} $mt={24}>
+          <GridArea $colSpan={[12, 12, 7]} $mt={24}>
             <Flex $flexDirection={["column"]} $mb={[48, 72]}>
               <Heading tag="h1" $font={"heading-4"} $mb={32}>
                 Search
