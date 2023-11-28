@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
+import { Heading } from "../Typography";
+
 import { SearchProps } from "./search.page.types";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -82,6 +84,9 @@ const Search: FC<SearchProps> = (props) => {
         <Grid $mt={48} $cg={16}>
           <GridArea $colSpan={[12, 12, 8]} $mt={24}>
             <Flex $flexDirection={["column"]} $mb={[48, 72]}>
+              <Heading tag="h1" $font={"heading-4"} $mb={32}>
+                Search
+              </Heading>
               <SearchForm
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
