@@ -2,6 +2,7 @@ import React, { FC } from "react";
 
 import Typography from "../Typography";
 import Flex from "../Flex";
+import { BoxProps } from "../Box";
 
 import { FontProps } from "@/styles/utils/typography";
 
@@ -13,7 +14,8 @@ const LessonMetadata: FC<
     tierTitle?: string | null;
     yearTitle?: string | null;
     metadataArray?: string[];
-  } & FontProps
+  } & FontProps &
+    BoxProps
 > = (props) => {
   const {
     yearTitle,
