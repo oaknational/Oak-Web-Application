@@ -63,8 +63,8 @@ const SearchResults = (props: SearchResultsProps) => {
       ) : null}
 
       {hits.length > RESULTS_PER_PAGE && (
-        <Box $width="100%" $mt={[0, "auto"]} $pt={48} $pb={72}>
-          <Pagination {...paginationProps} />
+        <Box $width="100%" $mt={[0, "auto"]} $pb={72} $pt={48}>
+          <Pagination pageName="Search" {...paginationProps} />
         </Box>
       )}
     </Flex>
