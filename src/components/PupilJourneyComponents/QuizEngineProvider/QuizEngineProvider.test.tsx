@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { renderHook, act } from "@testing-library/react";
 
-import useQuizEngineContext from "./useQuizEngineContext";
-import { QuizEngineProps, QuizEngineProvider } from "./QuizEngineProvider";
+import {
+  QuizEngineProps,
+  QuizEngineProvider,
+  quizEngineContext,
+} from "./QuizEngineProvider";
 
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
@@ -17,7 +20,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useQuizEngineContext(), {
+    const { result } = renderHook(() => useContext(quizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
@@ -34,7 +37,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useQuizEngineContext(), {
+    const { result } = renderHook(() => useContext(quizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
@@ -51,7 +54,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useQuizEngineContext(), {
+    const { result } = renderHook(() => useContext(quizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
@@ -72,7 +75,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useQuizEngineContext(), {
+    const { result } = renderHook(() => useContext(quizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
@@ -100,7 +103,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useQuizEngineContext(), {
+    const { result } = renderHook(() => useContext(quizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });

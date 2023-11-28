@@ -16,6 +16,8 @@ type QuestionState = {
   mode: "input" | "feedback" | "end";
   answer: undefined | "correct" | "incorrect";
   offerHint: boolean;
+  score: number;
+  maximumScore: number;
 };
 
 type QuizEngineContext = {
@@ -33,6 +35,8 @@ export const quizEngineContext = createContext<QuizEngineContext>({
     mode: "input",
     answer: undefined,
     offerHint: false,
+    score: 0,
+    maximumScore: 0,
   },
   handleSubmitMCAnswer: () => {},
   handleNextQuestion: () => {},
@@ -50,11 +54,13 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
   const [currentQuestionData, setQuestionData] = useState(
     multipleChoiceQuestionsArray[currentQuestionIndex],
   );
-  const [questionState, setQuestionState] = useState({
+  const [questionState, setQuestionState] = useState<QuestionState>({
     mode: "input",
     answer: undefined,
     offerHint: false,
-  } as QuestionState);
+    score: 0,
+    maximumScore: numberOfQuestions,
+  });
 
   useEffect(() => {
     setQuestionData(multipleChoiceQuestionsArray[currentQuestionIndex]);
@@ -65,13 +71,15 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
     const correctAnswerArray = questionAnswers?.["multiple-choice"]?.filter(
       (answer) => answer.answer_is_correct,
     );
+    const isCorrect = answer && correctAnswerArray?.includes(answer);
 
-    if (answer && correctAnswerArray?.includes(answer)) {
-      setQuestionState({
-        ...questionState,
+    if (isCorrect) {
+      setQuestionState((preState) => ({
+        ...preState,
+        score: preState.score + 1,
         mode: "feedback",
         answer: "correct",
-      });
+      }));
     } else {
       setQuestionState({
         ...questionState,
@@ -79,7 +87,6 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
         answer: "incorrect",
       });
     }
-    return;
   };
 
   const handleNextQuestion = () => {
@@ -88,7 +95,6 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
         ...questionState,
         mode: "end",
       });
-      return;
     } else {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setQuestionState({
@@ -96,7 +102,6 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
         mode: "input",
         answer: undefined,
       });
-      return;
     }
   };
 

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Fragment, useContext, useState } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -8,12 +8,18 @@ import {
   OakRadioButton,
 } from "@oak-academy/oak-components";
 
-import useQuizEngineContext from "../QuizEngineProvider/useQuizEngineContext";
+import { quizEngineContext } from "../QuizEngineProvider/QuizEngineProvider";
 
 import { QuestionStem } from "@/components/QuizContainerNew/QuestionsListNew/QuestionListItemNew/QuestionStem";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const QuizRenderer: FC = () => {
-  const quizContext = useQuizEngineContext();
+export const QuizRenderer = () => {
+  const quizContext = useContext(quizEngineContext);
+
+  const [selectedAnswer, setSelectedAnswer] = useState<{
+    answer: MCAnswer | null | undefined;
+    index: number;
+  }>();
 
   const {
     currentQuestionData,
@@ -23,13 +29,18 @@ export const QuizRenderer: FC = () => {
     handleNextQuestion,
   } = quizContext;
 
-  const { questionStem, answers, questionUid } = currentQuestionData || {};
+  if (!currentQuestionData) {
+    return null;
+  }
+
+  const { questionStem, answers, questionUid } = currentQuestionData;
 
   return (
     <OakFlex
       $flexDirection={"column"}
       $color={"text-inverted"}
       $background={"lavender"}
+      $alignItems={["center", "start"]}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
       <OakTypography>mode: {questionState.mode}</OakTypography>
@@ -39,7 +50,10 @@ export const QuizRenderer: FC = () => {
 
       {questionState.mode === "end" ? (
         <OakFlex>
-          <OakTypography>End of quiz</OakTypography>
+          <OakTypography>
+            End of quiz, score: {questionState.score}/
+            {questionState.maximumScore}
+          </OakTypography>
         </OakFlex>
       ) : (
         <OakFlex $flexDirection={"column"}>
@@ -55,17 +69,19 @@ export const QuizRenderer: FC = () => {
               if (
                 answers?.["multiple-choice"]?.[e.target.tabIndex] !==
                   undefined &&
-                answers?.["multiple-choice"]?.[e.target.tabIndex] !== null
+                answers?.["multiple-choice"]?.[e.target.tabIndex] !== null &&
+                questionState.mode === "input"
               ) {
-                handleSubmitMCAnswer(
-                  answers["multiple-choice"][e.target.tabIndex],
-                );
+                setSelectedAnswer({
+                  answer: answers["multiple-choice"][e.target.tabIndex],
+                  index: e.target.tabIndex,
+                });
               }
             }}
           >
             {answers?.["multiple-choice"]?.map((answer, i) => {
               return (
-                <>
+                <Fragment key={i}>
                   {answer.answer.map((answerItem) => {
                     if (answerItem.type === "text") {
                       return (
@@ -73,19 +89,41 @@ export const QuizRenderer: FC = () => {
                           tabIndex={i}
                           value={answerItem.text}
                           label={answerItem.text}
+                          $background={
+                            questionState.mode === "feedback"
+                              ? answer.answer_is_correct === true
+                                ? "oakGreen"
+                                : selectedAnswer?.index === i
+                                ? "red"
+                                : "lavender"
+                              : "lavender"
+                          }
                         />
                       );
                     }
                   })}
-                </>
+                </Fragment>
               );
             })}
           </OakRadioGroup>
           <OakPrimaryButton
-            disabled={questionState.mode === "input"}
-            onClick={handleNextQuestion}
+            disabled={
+              selectedAnswer === undefined || questionState.mode === "feedback"
+            }
+            onClick={() => {
+              handleSubmitMCAnswer(selectedAnswer?.answer);
+            }}
           >
             Submit
+          </OakPrimaryButton>
+          <OakPrimaryButton
+            disabled={questionState.mode !== "feedback"}
+            onClick={() => {
+              handleNextQuestion();
+              setSelectedAnswer(undefined);
+            }}
+          >
+            Next Question
           </OakPrimaryButton>
         </OakFlex>
       )}
