@@ -73,6 +73,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       $flexDirection={"column"}
       {...containerProps}
       $mb={56}
+      $maxWidth={734}
     >
       <Flex $mb={16} $alignItems={"center"}>
         <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
@@ -85,6 +86,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           </Flex>
           <LessonMetadata
             $font={"heading-light-7"}
+            $color={"grey60"}
             metadataArray={metadataArray}
           />
         </Flex>
