@@ -1,5 +1,7 @@
 import { LessonOverviewData } from "..";
 
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+
 const lessonOverviewFixture = (
   partial?: Partial<LessonOverviewData>,
 ): LessonOverviewData => {
@@ -34,8 +36,8 @@ const lessonOverviewFixture = (
     videoWithSignLanguageMuxPlaybackId: null,
     transcriptSentences: ["this is a sentence", "this is another sentence"],
     hasDownloadableResources: true,
-    starterQuiz: [],
-    exitQuiz: [],
+    starterQuiz: quizQuestions,
+    exitQuiz: quizQuestions,
     expired: false,
     ...partial,
   };
