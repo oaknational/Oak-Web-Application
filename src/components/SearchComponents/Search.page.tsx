@@ -16,10 +16,12 @@ import SearchResults from "../SearchResults";
 import NoSearchResults from "../SearchResults/NoSearchResults";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
+import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
 
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -80,6 +82,37 @@ const Search: FC<SearchProps> = (props) => {
     status,
     track,
   ]);
+
+  const searchResultClicked = ({
+    searchHit,
+    searchRank,
+  }: {
+    searchHit: SearchResultsItemProps;
+    searchRank: number;
+  }) => {
+    if (searchHit) {
+      track.searchResultClicked({
+        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: searchHit.subjectTitle,
+        subjectSlug: searchHit.subjectSlug,
+        unitName: searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: searchRank,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages,
+        ),
+        searchResultCount: hitCount,
+        searchResultType: searchHit.type,
+        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonSlug:
+          searchHit.type === "lesson"
+            ? searchHit.buttonLinkProps.lessonSlug
+            : undefined,
+      });
+    }
+  };
 
   return (
     <Flex $background="white" $flexDirection={"column"}>
@@ -153,7 +186,16 @@ const Search: FC<SearchProps> = (props) => {
               )}
             </div>
             {shouldShowResults && (
-              <SearchResults hits={results} allKeyStages={allKeyStages} />
+              <SearchResults
+                hits={results}
+                allKeyStages={allKeyStages}
+                searchResultClicked={(searchHit, searchRank) =>
+                  searchResultClicked({
+                    searchHit,
+                    searchRank,
+                  })
+                }
+              />
             )}
           </GridArea>
         </Grid>
