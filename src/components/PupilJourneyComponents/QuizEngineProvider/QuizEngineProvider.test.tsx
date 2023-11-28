@@ -65,6 +65,8 @@ describe("useQuizEngineContext", () => {
       mode: "input",
       answer: undefined,
       offerHint: false,
+      maximumScore: 3,
+      score: 0,
     });
   });
   it("'handleSubmitMCAnswer' should update the questionState", () => {
@@ -93,6 +95,8 @@ describe("useQuizEngineContext", () => {
       mode: "feedback",
       answer: "correct",
       offerHint: false,
+      maximumScore: 3,
+      score: 1,
     });
   });
   it("'handleNextQuestion' should update the questionState", () => {
@@ -119,6 +123,8 @@ describe("useQuizEngineContext", () => {
       mode: "input",
       answer: undefined,
       offerHint: false,
+      maximumScore: 3,
+      score: 0,
     });
     expect(result.current.currentQuestionIndex).toBe(1);
   });
