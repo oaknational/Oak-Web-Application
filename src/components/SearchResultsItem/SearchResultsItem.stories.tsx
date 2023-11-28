@@ -25,7 +25,7 @@ const hit = searchResultsHitSchema.parse(elasticResponseFixture.hits.hits[0]);
 
 const allKeyStages = teachersHomePageFixture().keyStages;
 const searchHitObject = getSearchHitObject(hit, allKeyStages);
-export const SearchResults = Template.bind({});
-SearchResults.args = {
+export const SearchResultsItem = Template.bind({});
+SearchResultsItem.args = {
   ...searchHitObject,
 };
