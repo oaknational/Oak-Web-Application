@@ -43,8 +43,9 @@ const customJestConfig = {
     "^@/(.*)$": "<rootDir>/src/$1",
     // Force module uuid to resolve with the CJS entry point, because Jest does not support package.json.exports. See https://github.com/uuidjs/uuid/issues/451
     "^uuid$": require.resolve("uuid"),
-    "^@oak-academy/oak-components$":
-      "<rootDir>/node_modules/@oak-academy/oak-components/dist/esm/index.js",
+    "^@oak-academy/oak-components$": require.resolve(
+      "@oak-academy/oak-components",
+    ),
   },
   slowTestThreshold: 2,
 };

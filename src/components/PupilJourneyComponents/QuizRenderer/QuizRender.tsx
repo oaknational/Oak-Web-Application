@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -81,11 +81,12 @@ export const QuizRenderer = () => {
           >
             {answers?.["multiple-choice"]?.map((answer, i) => {
               return (
-                <Fragment key={i}>
+                <OakFlex key={i}>
                   {answer.answer.map((answerItem) => {
                     if (answerItem.type === "text") {
                       return (
                         <OakRadioButton
+                          key={`radio-${i}`}
                           tabIndex={i}
                           value={answerItem.text}
                           label={answerItem.text}
@@ -102,7 +103,7 @@ export const QuizRenderer = () => {
                       );
                     }
                   })}
-                </Fragment>
+                </OakFlex>
               );
             })}
           </OakRadioGroup>
