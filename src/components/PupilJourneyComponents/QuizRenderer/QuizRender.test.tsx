@@ -10,7 +10,6 @@ import { QuizRenderer } from "./QuizRender";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
-
 jest.mock("@oak-academy/oak-components", () => {
   // const oakComponents = jest.requireActual("@oak-academy/oak-components");
   return {
