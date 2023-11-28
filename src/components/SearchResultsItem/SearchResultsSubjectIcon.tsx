@@ -14,7 +14,7 @@ export type SearchResultsSubjectIconProps = {
  */
 const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
   const { type, subjectSlug } = props;
-  return type === "unit" ? (
+  return type === "lesson" ? (
     <Circle $background={"pink"} size={56}>
       <SubjectIcon $height={40} $width={40} subjectSlug={subjectSlug} />
     </Circle>
