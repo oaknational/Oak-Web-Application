@@ -114,6 +114,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           }}
           {...primaryTargetProps}
           $color={"navy"}
+          $focusStyles={"underline"}
         >
           <Flex $justifyContent={"center"} $alignItems={"center"}>
             <Span $font={"heading-7"}>
