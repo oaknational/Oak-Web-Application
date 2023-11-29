@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
 import { Heading } from "../Typography";
+import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
 
@@ -17,6 +18,7 @@ import SearchForm from "@/components/SearchForm";
 import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -78,11 +80,42 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
+  const searchResultClicked = ({
+    searchHit,
+    searchRank,
+  }: {
+    searchHit: SearchResultsItemProps;
+    searchRank: number;
+  }) => {
+    if (searchHit) {
+      track.searchResultClicked({
+        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: searchHit.subjectTitle,
+        subjectSlug: searchHit.subjectSlug,
+        unitName: searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: searchRank,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages,
+        ),
+        searchResultCount: hitCount,
+        searchResultType: searchHit.type,
+        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonSlug:
+          searchHit.type === "lesson"
+            ? searchHit.buttonLinkProps.lessonSlug
+            : undefined,
+      });
+    }
+  };
+
   return (
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
-          <GridArea $colSpan={[12, 12, 8]} $mt={24}>
+          <GridArea $colSpan={[12, 12, 7]} $mt={24}>
             <Flex $flexDirection={["column"]} $mb={[48, 72]}>
               <Heading tag="h1" $font={"heading-4"} $mb={32}>
                 Search
@@ -122,7 +155,16 @@ const Search: FC<SearchProps> = (props) => {
               </MobileFilters>
             </Flex>
             {shouldShowResults && (
-              <SearchResults hits={results} allKeyStages={allKeyStages} />
+              <SearchResults
+                hits={results}
+                allKeyStages={allKeyStages}
+                searchResultClicked={(searchHit, searchRank) =>
+                  searchResultClicked({
+                    searchHit,
+                    searchRank,
+                  })
+                }
+              />
             )}
           </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
