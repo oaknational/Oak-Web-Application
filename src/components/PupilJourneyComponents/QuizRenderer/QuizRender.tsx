@@ -89,7 +89,7 @@ export const QuizRenderer = () => {
                         <OakRadioButton
                           key={`radio-${i}`}
                           tabIndex={i}
-                          value={answerItem.text}
+                          value={`${currentQuestionIndex}${answerItem.text}`}
                           label={answerItem.text}
                           $background={
                             questionState.mode === "feedback"
