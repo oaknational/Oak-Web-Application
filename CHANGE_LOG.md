@@ -1,3 +1,16 @@
+# [1.308.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.307.2...v1.308.0) (2023-11-29)
+
+
+### Bug Fixes
+
+* duplicate storybook name ([47cfe27](https://github.com/oaknational/Oak-Web-Application/commit/47cfe27ec4c0f5a45e7d306ce082b7e65fdc211a))
+* type error focus styles must be array ([0c7ea92](https://github.com/oaknational/Oak-Web-Application/commit/0c7ea92ea98b2ea98209f0d291e05e4f54f6eb30))
+
+
+### Features
+
+* new search hit card ([8e530db](https://github.com/oaknational/Oak-Web-Application/commit/8e530db338823aadc731c92de5f09fa358b056ca))
+
 ## [1.307.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.307.1...v1.307.2) (2023-11-28)
 
 ## [1.307.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.307.0...v1.307.1) (2023-11-24)
