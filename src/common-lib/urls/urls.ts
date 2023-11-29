@@ -195,8 +195,11 @@ type CurriculumUnitsLinkProps = {
 };
 type CurriculumDownloadsLinkProps = {
   page: "curriculum-downloads";
-
   subjectPhaseSlug: string;
+};
+type CurriculumPreviousDownloadsLinkProps = {
+  page: "curriculum-previous-downloads";
+  category: string;
 };
 
 export type OakLinkProps =
@@ -238,6 +241,7 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
+  | CurriculumPreviousDownloadsLinkProps
   | EarlyReleaseUnitsPageLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
@@ -291,6 +295,7 @@ type OakPages = {
   "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
+  "curriculum-previous-downloads": OakPageConfig<CurriculumPreviousDownloadsLinkProps>;
 };
 type OakPageConfig<
   ResolveHrefProps extends {
@@ -652,6 +657,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Downloads",
     configType: "internal",
     pageType: "curriculum-downloads",
+  }),
+  "curriculum-previous-downloads": createOakPageConfig({
+    pathPattern: "/teachers/curriculum/previous-downloads#:category",
+    analyticsPageName: "Curriculum Previous Downloads",
+    configType: "internal",
+    pageType: "curriculum-previous-downloads",
   }),
 };
 

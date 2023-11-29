@@ -10,7 +10,7 @@ import IconButton from "@/components/Button/IconButton";
 import { Hr } from "@/components/Typography";
 import Button from "@/components/Button";
 import { TagFunctional } from "@/components/TagFunctional";
-import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
+import { Unit } from "@/components/pages/Curriculum/CurriculumTabs/UnitsTab/UnitsTab";
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;

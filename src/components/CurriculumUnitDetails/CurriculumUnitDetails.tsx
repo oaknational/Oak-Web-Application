@@ -5,7 +5,7 @@ import Box from "@/components/Box";
 import { Heading, LI, P, OL } from "@/components/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Lesson } from "@/components/UnitModal/UnitModal";
-import { Thread } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
+import { Thread } from "@/components/pages/Curriculum/CurriculumTabs/UnitsTab/UnitsTab";
 import Accordion from "@/components/Accordion";
 
 export type CurriculumUnitDetailsProps = {

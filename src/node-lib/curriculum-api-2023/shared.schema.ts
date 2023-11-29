@@ -193,6 +193,7 @@ const lessonDownloadsListSchema = z.array(
       "worksheet-pptx",
       "supplementary-pdf",
       "supplementary-docx",
+      "curriculum-pdf",
     ]),
     label: z.string(),
     ext: z.string(),

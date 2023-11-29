@@ -1,4 +1,4 @@
-import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
+import { Unit } from "@/components/pages/Curriculum/CurriculumTabs/UnitsTab/UnitsTab";
 
 export const mockUnit: Unit = {
   connection_future_unit_description: "Test connection future unit description",

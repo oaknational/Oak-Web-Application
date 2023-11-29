@@ -9,9 +9,9 @@ import { useRouter } from "next/router";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
-import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
-import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
+import CurriculumHeader from "@/components/pages/Curriculum/CurriculumHeader/CurriculumHeader";
+import OverviewTab from "@/components/pages/Curriculum/CurriculumTabs/OverviewTab/OverviewTab";
+import UnitsTab from "@/components/pages/Curriculum/CurriculumTabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import Box from "@/components/Box/Box";
 import curriculumApi, {
@@ -28,7 +28,7 @@ import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectP
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";
-import { buildCurriculumMetadata } from "@/components/pages/CurriculumInfo/helpers/curriculumMetadata";
+import { buildCurriculumMetadata } from "@/components/pages/Curriculum/helpers/curriculumMetadata";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;

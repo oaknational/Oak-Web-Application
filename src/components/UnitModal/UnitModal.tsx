@@ -4,7 +4,7 @@ import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import { Heading } from "@/components/Typography";
 import Button from "@/components/Button";
-import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
+import { Unit } from "@/components/pages/Curriculum/CurriculumTabs/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/LessonMetadata";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/Card";
