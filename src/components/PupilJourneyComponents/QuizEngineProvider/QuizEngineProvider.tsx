@@ -20,7 +20,7 @@ type QuestionState = {
   maximumScore: number;
 };
 
-type QuizEngineContext = {
+export type QuizEngineContext = {
   currentQuestionData: QuestionsArray[number] | undefined;
   currentQuestionIndex: number;
   questionState: QuestionState;

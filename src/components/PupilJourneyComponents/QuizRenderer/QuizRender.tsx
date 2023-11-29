@@ -9,8 +9,8 @@ import {
 } from "@oak-academy/oak-components";
 
 import { quizEngineContext } from "../QuizEngineProvider/QuizEngineProvider";
+import { QuestionStem } from "../QuestionStem.tsx";
 
-import { QuestionStem } from "@/components/QuizContainerNew/QuestionsListNew/QuestionListItemNew/QuestionStem";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
@@ -61,6 +61,7 @@ export const QuizRenderer = () => {
             questionStem={questionStem || []}
             index={currentQuestionIndex}
             showIndex={true}
+            data-testid="question-stem"
           />
           <OakRadioGroup
             name={questionUid || "quiz"}
@@ -107,25 +108,27 @@ export const QuizRenderer = () => {
               );
             })}
           </OakRadioGroup>
-          <OakPrimaryButton
-            disabled={
-              selectedAnswer === undefined || questionState.mode === "feedback"
-            }
-            onClick={() => {
-              handleSubmitMCAnswer(selectedAnswer?.answer);
-            }}
-          >
-            Submit
-          </OakPrimaryButton>
-          <OakPrimaryButton
-            disabled={questionState.mode !== "feedback"}
-            onClick={() => {
-              handleNextQuestion();
-              setSelectedAnswer(undefined);
-            }}
-          >
-            Next Question
-          </OakPrimaryButton>
+          {questionState.mode !== "feedback" && (
+            <OakPrimaryButton
+              disabled={selectedAnswer === undefined}
+              onClick={() => {
+                handleSubmitMCAnswer(selectedAnswer?.answer);
+              }}
+            >
+              Submit
+            </OakPrimaryButton>
+          )}
+          {questionState.mode === "feedback" && (
+            <OakPrimaryButton
+              disabled={questionState.mode !== "feedback"}
+              onClick={() => {
+                handleNextQuestion();
+                setSelectedAnswer(undefined);
+              }}
+            >
+              Next Question
+            </OakPrimaryButton>
+          )}
         </OakFlex>
       )}
     </OakFlex>
