@@ -24,7 +24,6 @@ const legacyHit = { ...hitLesson, legacy: true };
 const hitObjectLesson = getSearchHitObject(hitLesson, allKeyStages);
 const hitObjectUnit = getSearchHitObject(hitUnit, allKeyStages);
 const legacyHitObject = getSearchHitObject(legacyHit, allKeyStages);
-
 const render = renderWithProviders();
 
 describe("SearchResultsItem", () => {
@@ -160,7 +159,7 @@ describe("SearchResultsItem", () => {
       throw new Error("hitObjectUnit is undefined");
     }
   });
-  test("calls onclick if search hit is clicked", () => {
+  test("calls onclick with correct data if search hit is clicked", () => {
     if (hitObjectLesson) {
       const { getByText } = render(
         <SearchResultsItem
@@ -172,7 +171,24 @@ describe("SearchResultsItem", () => {
       act(() => {
         link.click();
       });
-      expect(searchResultClicked).toHaveBeenCalled();
+      expect(searchResultClicked).toHaveBeenCalledWith({
+        type: "lesson",
+        title: "Dipping into Macbeth - Brave Macbeth (Part 2)\n",
+        description: `In this lesson we are introduced to <mark class="highlighted">Macbeth</mark> and Banquo. We will explore the characters' thoughts and feelings and how they respond when they encounter the witches.`,
+        subjectSlug: "drama",
+        keyStageShortCode: "KS2",
+        keyStageTitle: "Key stage 2",
+        keyStageSlug: "ks2",
+        subjectTitle: "Drama",
+        onClick: searchResultClicked,
+        buttonLinkProps: {
+          page: "lesson-overview",
+          lessonSlug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
+          programmeSlug: "drama-primary-ks2",
+          unitSlug: "dipping-into-shakespeare-da5e",
+        },
+        legacy: undefined,
+      });
     } else {
       throw new Error("hitObjectLesson is undefined");
     }
