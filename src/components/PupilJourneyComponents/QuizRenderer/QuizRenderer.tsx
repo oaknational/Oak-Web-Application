@@ -8,9 +8,8 @@ import {
   OakRadioButton,
 } from "@oak-academy/oak-components";
 
-import { quizEngineContext } from "../QuizEngineProvider/QuizEngineProvider";
-import { QuestionStem } from "../QuestionStem.tsx";
-
+import { quizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
@@ -35,6 +34,11 @@ export const QuizRenderer = () => {
 
   const { questionStem, answers, questionUid } = currentQuestionData;
 
+  const MCAnswers = answers?.["multiple-choice"];
+  const isFeedbackMode = questionState.mode === "feedback";
+  const isEndMode = questionState.mode === "end";
+  const isInputMode = questionState.mode === "input";
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -48,7 +52,7 @@ export const QuizRenderer = () => {
         answer: {questionState.answer || "not answered"}
       </OakTypography>
 
-      {questionState.mode === "end" ? (
+      {isEndMode ? (
         <OakFlex>
           <OakTypography>
             End of quiz, score: {questionState.score}/
@@ -61,30 +65,28 @@ export const QuizRenderer = () => {
             questionStem={questionStem || []}
             index={currentQuestionIndex}
             showIndex={true}
-            data-testid="question-stem"
           />
           <OakRadioGroup
             name={questionUid || "quiz"}
             $flexDirection={"column"}
             onChange={(e) => {
-              if (
-                answers?.["multiple-choice"]?.[e.target.tabIndex] !==
-                  undefined &&
-                answers?.["multiple-choice"]?.[e.target.tabIndex] !== null &&
-                questionState.mode === "input"
-              ) {
-                setSelectedAnswer({
-                  answer: answers["multiple-choice"][e.target.tabIndex],
-                  index: e.target.tabIndex,
-                });
-              }
+              const targetIndex = e.target.tabIndex;
+              const selectedAnswer = MCAnswers?.[targetIndex];
+              setSelectedAnswer({
+                answer: selectedAnswer,
+                index: targetIndex,
+              });
             }}
           >
-            {answers?.["multiple-choice"]?.map((answer, i) => {
+            {MCAnswers?.map((answer, i) => {
               return (
                 <OakFlex key={i}>
                   {answer.answer.map((answerItem) => {
-                    if (answerItem.type === "text") {
+                    const isCorrectAnswer = answer.answer_is_correct === true;
+                    const isIncorrectAndSelected =
+                      selectedAnswer?.index === i && !isCorrectAnswer;
+                    const isTextType = answerItem.type === "text";
+                    if (isTextType) {
                       return (
                         <OakRadioButton
                           key={`radio-${i}`}
@@ -92,10 +94,10 @@ export const QuizRenderer = () => {
                           value={`${currentQuestionIndex}${answerItem.text}`}
                           label={answerItem.text}
                           $background={
-                            questionState.mode === "feedback"
-                              ? answer.answer_is_correct === true
+                            isFeedbackMode
+                              ? isCorrectAnswer
                                 ? "oakGreen"
-                                : selectedAnswer?.index === i
+                                : isIncorrectAndSelected
                                 ? "red"
                                 : "lavender"
                               : "lavender"
@@ -108,7 +110,7 @@ export const QuizRenderer = () => {
               );
             })}
           </OakRadioGroup>
-          {questionState.mode !== "feedback" && (
+          {isInputMode && (
             <OakPrimaryButton
               disabled={selectedAnswer === undefined}
               onClick={() => {
@@ -118,9 +120,8 @@ export const QuizRenderer = () => {
               Submit
             </OakPrimaryButton>
           )}
-          {questionState.mode === "feedback" && (
+          {isFeedbackMode && (
             <OakPrimaryButton
-              disabled={questionState.mode !== "feedback"}
               onClick={() => {
                 handleNextQuestion();
                 setSelectedAnswer(undefined);

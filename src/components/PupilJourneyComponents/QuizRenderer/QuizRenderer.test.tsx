@@ -8,10 +8,8 @@ import {
   QuizEngineContext,
   QuizEngineProvider,
   quizEngineContext,
-} from "../QuizEngineProvider/QuizEngineProvider";
-
-import { QuizRenderer } from "./QuizRender";
-
+} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
