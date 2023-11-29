@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 import React from "react";
+import { act } from "react-dom/test-utils";
 
 import elasticResponseFixture from "../../context/Search/elasticResponse.2020.fixture.json";
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
@@ -41,31 +42,45 @@ const props = {
   allKeyStages: searchPageFixture().keyStages,
 };
 
+const searchResultClicked = jest.fn();
+
 const render = renderWithProviders();
 
 describe("<SearchResults />", () => {
   test("A lesson search result links to the lesson listing page", () => {
-    const { getByRole } = render(<SearchResults {...props} />);
+    const { getByRole } = render(
+      <SearchResults {...props} searchResultClicked={searchResultClicked} />,
+    );
     expect(
-      getByRole("link", { name: "To write the setting description" }),
+      getByRole("link", {
+        name: "English lesson: To write the setting description",
+      }),
     ).toHaveAttribute(
       "href",
       "/teachers/programmes/english-primary-ks2/units/macbeth-narrative-writing-9566/lessons/to-write-the-setting-description-c8u34r",
     );
   });
   // @todo when we have programme_slug in search index
-  test.skip("A unit search result links to the unit listing page", () => {
-    const { getByRole } = render(<SearchResults {...props} />);
+  test("A unit search result links to the unit listing page", () => {
+    const { getByRole } = render(
+      <SearchResults
+        searchResultClicked={searchResultClicked}
+        {...props}
+        hits={props.hits.filter((hit) => hit._source.type === "unit")}
+      />,
+    );
     expect(
-      getByRole("link", { name: "Macbeth - Narrative writing" }),
+      getByRole("link", { name: "English unit: Macbeth - unit" }),
     ).toHaveAttribute(
       "href",
-      "/teachers/programmes/undefined/units/macbeth-narrative-writing-9566/lessons",
+      "/teachers/programmes/english-secondary-ks4-core/units/macbeth-narrative-writing-core/lessons",
     );
   });
 
   test("it renders the search results", () => {
-    const { getAllByRole } = render(<SearchResults {...props} />);
+    const { getAllByRole } = render(
+      <SearchResults searchResultClicked={searchResultClicked} {...props} />,
+    );
 
     const searchElement = getAllByRole("listitem");
 
@@ -74,7 +89,13 @@ describe("<SearchResults />", () => {
 
   test("it renders pagination if there are more results than 20 results", () => {
     const hits = getNHits(21);
-    const { getByRole } = render(<SearchResults {...props} hits={hits} />);
+    const { getByRole } = render(
+      <SearchResults
+        searchResultClicked={searchResultClicked}
+        {...props}
+        hits={hits}
+      />,
+    );
 
     const pagination = getByRole("navigation", { hidden: true });
 
@@ -82,10 +103,34 @@ describe("<SearchResults />", () => {
   });
   test("it does not render pagination if there are 20 results", () => {
     const hits = getNHits(20);
-    const { queryByRole } = render(<SearchResults {...props} hits={hits} />);
+    const { queryByRole } = render(
+      <SearchResults
+        searchResultClicked={searchResultClicked}
+        {...props}
+        hits={hits}
+      />,
+    );
 
     const pagination = queryByRole("navigation", { hidden: true });
 
     expect(pagination).not.toBeInTheDocument();
+  });
+  test("search results clicked is called when a search result is clicked", () => {
+    const hits = getNHits(1);
+    const { getByRole } = render(
+      <SearchResults
+        searchResultClicked={searchResultClicked}
+        {...props}
+        hits={hits}
+      />,
+    );
+    const searchHit = getByRole("link", {
+      name: "Drama lesson: Dipping into Macbeth - Brave Macbeth (Part 2)",
+    });
+    act(() => {
+      searchHit.click();
+    });
+
+    expect(searchResultClicked).toHaveBeenCalled();
   });
 });
