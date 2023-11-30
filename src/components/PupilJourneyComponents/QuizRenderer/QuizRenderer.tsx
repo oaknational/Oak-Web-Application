@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useState } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -14,11 +14,9 @@ import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
   const quizContext = useContext(quizEngineContext);
-  const processedQuizContext = useMemo(() => {
-    return quizContext;
-  }, [quizContext]);
+
   const [selectedAnswer, setSelectedAnswer] = useState<{
-    answer: MCAnswer | null | undefined;
+    answer?: MCAnswer | null;
     index: number;
   }>();
   const {
@@ -27,7 +25,7 @@ export const QuizRenderer = () => {
     questionState,
     handleSubmitMCAnswer,
     handleNextQuestion,
-  } = processedQuizContext;
+  } = quizContext;
 
   if (!currentQuestionData) {
     return null;
@@ -63,7 +61,7 @@ export const QuizRenderer = () => {
       {(isInputMode || isFeedbackMode) && (
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuestionStem
-            questionStem={questionStem || []}
+            questionStem={questionStem}
             index={currentQuestionIndex}
             showIndex={true}
           />
@@ -84,9 +82,15 @@ export const QuizRenderer = () => {
                 <OakFlex key={i}>
                   {answer.answer.map((answerItem) => {
                     const isCorrectAnswer = answer.answer_is_correct === true;
-                    const isIncorrectAndSelected =
-                      selectedAnswer?.index === i && !isCorrectAnswer;
+                    const isSelected = selectedAnswer?.index === i;
+                    const incorrectColor = isSelected ? "red" : "lavender";
+                    const feedbackModeColor = isCorrectAnswer
+                      ? "oakGreen"
+                      : incorrectColor;
                     const isTextType = answerItem.type === "text";
+                    const backgroundColor = isFeedbackMode
+                      ? feedbackModeColor
+                      : "lavender";
                     if (isTextType) {
                       return (
                         <OakRadioButton
@@ -95,15 +99,7 @@ export const QuizRenderer = () => {
                           tabIndex={i}
                           value={`${currentQuestionIndex}${answerItem.text}`}
                           label={answerItem.text}
-                          $background={
-                            isFeedbackMode
-                              ? isCorrectAnswer
-                                ? "oakGreen"
-                                : isIncorrectAndSelected
-                                ? "red"
-                                : "lavender"
-                              : "lavender"
-                          }
+                          $background={backgroundColor}
                         />
                       );
                     }
