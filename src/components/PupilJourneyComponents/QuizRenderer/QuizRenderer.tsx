@@ -46,6 +46,8 @@ export const QuizRenderer = () => {
       $color={"text-inverted"}
       $background={"lavender"}
       $alignItems={["center", "start"]}
+      $gap={"all-spacing-5"}
+      $pa={"inner-padding-m"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
       <OakSpan>mode: {questionState.mode}</OakSpan>
@@ -59,7 +61,7 @@ export const QuizRenderer = () => {
         </OakFlex>
       )}
       {(isInputMode || isFeedbackMode) && (
-        <OakFlex $flexDirection={"column"}>
+        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuestionStem
             questionStem={questionStem || []}
             index={currentQuestionIndex}
