@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import {
   OakFlex,
   OakHeading,
   OakPrimaryButton,
-  OakTypography,
   OakRadioGroup,
   OakRadioButton,
+  OakSpan,
 } from "@oak-academy/oak-components";
 
 import { quizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
@@ -14,19 +14,20 @@ import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
   const quizContext = useContext(quizEngineContext);
-
+  const processedQuizContext = useMemo(() => {
+    return quizContext;
+  }, [quizContext]);
   const [selectedAnswer, setSelectedAnswer] = useState<{
     answer: MCAnswer | null | undefined;
     index: number;
   }>();
-
   const {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
     handleSubmitMCAnswer,
     handleNextQuestion,
-  } = quizContext;
+  } = processedQuizContext;
 
   if (!currentQuestionData) {
     return null;
@@ -47,19 +48,17 @@ export const QuizRenderer = () => {
       $alignItems={["center", "start"]}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
-      <OakTypography>mode: {questionState.mode}</OakTypography>
-      <OakTypography>
-        answer: {questionState.answer || "not answered"}
-      </OakTypography>
-
-      {isEndMode ? (
+      <OakSpan>mode: {questionState.mode}</OakSpan>
+      <OakSpan>answer: {questionState.answer || "not answered"}</OakSpan>
+      {isEndMode && (
         <OakFlex>
-          <OakTypography>
+          <OakSpan>
             End of quiz, score: {questionState.score}/
             {questionState.maximumScore}
-          </OakTypography>
+          </OakSpan>
         </OakFlex>
-      ) : (
+      )}
+      {(isInputMode || isFeedbackMode) && (
         <OakFlex $flexDirection={"column"}>
           <QuestionStem
             questionStem={questionStem || []}
@@ -89,6 +88,7 @@ export const QuizRenderer = () => {
                     if (isTextType) {
                       return (
                         <OakRadioButton
+                          id={`radio-${i}`}
                           key={`radio-${i}`}
                           tabIndex={i}
                           value={`${currentQuestionIndex}${answerItem.text}`}

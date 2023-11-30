@@ -1,6 +1,5 @@
-import { OakFlex, OakTypography } from "@oak-academy/oak-components";
+import { OakFlex, OakImage, OakSpan } from "@oak-academy/oak-components";
 
-import QuizImage from "@/components/QuizContainerNew/QuestionsListNew/QuestionListItemNew/QuizImage";
 import {
   removeMarkdown,
   shortAnswerTitleFormatter,
@@ -24,32 +23,32 @@ export const QuestionStem = ({
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakFlex key="stem-header">
         {showIndex && (
-          <OakTypography
+          <OakSpan
             $font={["body-2-bold", "body-1-bold"]}
             $mr={"space-between-s"}
           >
             {displayNumber}
-          </OakTypography>
+          </OakSpan>
         )}
         {questionStem[0]?.type === "text" && (
-          <OakTypography
+          <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
             $font={["body-2-bold", "body-1-bold"]}
           >
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
-          </OakTypography>
+          </OakSpan>
         )}
       </OakFlex>
 
       {questionStem.map((stemItem, i) => {
         if (stemItem.type === "text" && i > 0) {
           return (
-            <OakTypography
+            <OakSpan
               key={`q-${displayNumber}-stem-element-${i}`}
               $font={["body-2-bold", "body-1-bold"]}
             >
               {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
-            </OakTypography>
+            </OakSpan>
           );
         } else if (stemItem.type === "image") {
           return (
@@ -57,7 +56,13 @@ export const QuestionStem = ({
               $pv={"inner-padding-xl"}
               key={`q-${displayNumber}-stem-element-${i}`}
             >
-              <QuizImage src={stemItem.image_object} />
+              <OakImage
+                src={stemItem.image_object.secure_url}
+                height={stemItem.image_object.height}
+                width={stemItem.image_object.width}
+                alt={""}
+                $minWidth={"all-spacing-19"}
+              />
             </OakFlex>
           );
         }

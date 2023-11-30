@@ -1,2 +1,8 @@
-export { QuizEngineProvider, quizEngineContext } from "./QuizEngineProvider";
-export type { QuizEngineProps, QuizEngineContext } from "./QuizEngineProvider";
+export {
+  QuizEngineProvider,
+  QuizEngineContext as quizEngineContext,
+} from "./QuizEngineProvider";
+export type {
+  QuizEngineProps,
+  QuizEngineContextType as QuizEngineContext,
+} from "./QuizEngineProvider";

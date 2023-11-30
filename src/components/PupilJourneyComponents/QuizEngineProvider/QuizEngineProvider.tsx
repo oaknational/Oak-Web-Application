@@ -20,7 +20,7 @@ type QuestionState = {
   maximumScore: number;
 };
 
-export type QuizEngineContext = {
+export type QuizEngineContextType = {
   currentQuestionData: QuestionsArray[number] | undefined;
   currentQuestionIndex: number;
   questionState: QuestionState;
@@ -28,7 +28,7 @@ export type QuizEngineContext = {
   handleNextQuestion: () => void;
 };
 
-export const quizEngineContext = createContext<QuizEngineContext>({
+export const QuizEngineContext = createContext<QuizEngineContextType>({
   currentQuestionData: undefined,
   currentQuestionIndex: 0,
   questionState: {
@@ -51,7 +51,7 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
   const numberOfQuestions = multipleChoiceQuestionsArray.length;
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentQuestionData, setQuestionData] = useState(
+  const [currentQuestionData, setCurrentQuestionData] = useState(
     multipleChoiceQuestionsArray[currentQuestionIndex],
   );
   const [questionState, setQuestionState] = useState<QuestionState>({
@@ -63,7 +63,7 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
   });
 
   useEffect(() => {
-    setQuestionData(multipleChoiceQuestionsArray[currentQuestionIndex]);
+    setCurrentQuestionData(multipleChoiceQuestionsArray[currentQuestionIndex]);
   }, [currentQuestionIndex, multipleChoiceQuestionsArray]);
 
   const handleSubmitMCAnswer = (answer: MCAnswer | null | undefined) => {
@@ -106,7 +106,7 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
   };
 
   return (
-    <quizEngineContext.Provider
+    <QuizEngineContext.Provider
       value={{
         currentQuestionData,
         currentQuestionIndex,
@@ -116,6 +116,6 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
       }}
     >
       {props.children}
-    </quizEngineContext.Provider>
+    </QuizEngineContext.Provider>
   );
 };

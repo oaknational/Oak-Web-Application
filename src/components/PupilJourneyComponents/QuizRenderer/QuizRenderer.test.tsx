@@ -6,7 +6,6 @@ import { fireEvent } from "@testing-library/react";
 
 import {
   QuizEngineContext,
-  QuizEngineProvider,
   quizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
@@ -20,11 +19,25 @@ describe("QuizRenderer", () => {
     expect(container.innerHTML).toBe("");
   });
   it("renders heading, mode and answer when there is currentQuestionData", () => {
+    const context: QuizEngineContext = {
+      currentQuestionData: questionsArrayFixture[0],
+      currentQuestionIndex: 0,
+      questionState: {
+        mode: "input",
+        answer: undefined,
+        offerHint: false,
+        score: 2,
+        maximumScore: 3,
+      },
+      handleSubmitMCAnswer: () => {},
+      handleNextQuestion: () => {},
+    };
+
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineProvider questionsArray={questionsArrayFixture}>
+        <quizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </QuizEngineProvider>
+        </quizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const heading = getByText("Quiz Renderer");
@@ -37,11 +50,25 @@ describe("QuizRenderer", () => {
     expect(answer).toBeInTheDocument();
   });
   it("renders questionStem when questionState.mode !== 'end'", () => {
+    const context: QuizEngineContext = {
+      currentQuestionData: questionsArrayFixture[0],
+      currentQuestionIndex: 0,
+      questionState: {
+        mode: "input",
+        answer: undefined,
+        offerHint: false,
+        score: 2,
+        maximumScore: 3,
+      },
+      handleSubmitMCAnswer: () => {},
+      handleNextQuestion: () => {},
+    };
+
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineProvider questionsArray={questionsArrayFixture}>
+        <quizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </QuizEngineProvider>
+        </quizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const questionStemQuestion = getByText("What is a main clause?");
@@ -219,7 +246,7 @@ describe("QuizRenderer", () => {
       </OakThemeProvider>,
     );
 
-    const showscore = getByText("End of quiz, score: 2/3");
-    expect(showscore).toBeInTheDocument();
+    const showScore = getByText("End of quiz, score: 2/3");
+    expect(showScore).toBeInTheDocument();
   });
 });
