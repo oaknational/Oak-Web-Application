@@ -4,6 +4,8 @@ import React, {
   useState,
   createContext,
   useMemo,
+  memo,
+  useCallback,
 } from "react";
 
 import {
@@ -48,13 +50,22 @@ export const QuizEngineContext = createContext<QuizEngineContextType>({
   handleNextQuestion: () => {},
 });
 
-export const QuizEngineProvider = (props: QuizEngineProps) => {
+export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const multipleChoiceQuestionsArray = questionsArray.filter(
-    (question) =>
-      question.questionType === "multiple-choice" && question.answers,
+
+  const multipleChoiceQuestionsArray = useMemo(
+    () =>
+      questionsArray.filter(
+        (question) =>
+          question.questionType === "multiple-choice" && question.answers,
+      ),
+    [questionsArray],
   );
-  const numberOfQuestions = multipleChoiceQuestionsArray.length;
+
+  const numberOfQuestions = useMemo(
+    () => multipleChoiceQuestionsArray.length,
+    [multipleChoiceQuestionsArray],
+  );
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestionData, setCurrentQuestionData] = useState(
@@ -69,13 +80,21 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
   });
 
   useEffect(() => {
+    console.log(
+      "rendering QuizEngineProvider",
+      currentQuestionIndex,
+      questionState,
+    );
+  }, [currentQuestionIndex, currentQuestionData, questionState]);
+
+  useEffect(() => {
     const desiredQuestionData =
       multipleChoiceQuestionsArray[currentQuestionIndex];
     setCurrentQuestionData(desiredQuestionData);
   }, [currentQuestionIndex, multipleChoiceQuestionsArray]);
 
-  const value = useMemo(() => {
-    const handleSubmitMCAnswer = (answer: MCAnswer | null | undefined) => {
+  const handleSubmitMCAnswer = useCallback(
+    (answer: MCAnswer | null | undefined) => {
       const questionAnswers = currentQuestionData?.answers;
       const correctAnswerArray = questionAnswers?.["multiple-choice"]?.filter(
         (answer) => answer.answer_is_correct,
@@ -96,23 +115,27 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
           answer: "incorrect",
         });
       }
-    };
+    },
+    [currentQuestionData, questionState],
+  );
 
-    const handleNextQuestion = () => {
-      if (currentQuestionIndex === numberOfQuestions - 1) {
-        setQuestionState({
-          ...questionState,
-          mode: "end",
-        });
-      } else {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setQuestionState({
-          ...questionState,
-          mode: "input",
-          answer: undefined,
-        });
-      }
-    };
+  const handleNextQuestion = useCallback(() => {
+    if (currentQuestionIndex === numberOfQuestions - 1) {
+      setQuestionState({
+        ...questionState,
+        mode: "end",
+      });
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setQuestionState({
+        ...questionState,
+        mode: "input",
+        answer: undefined,
+      });
+    }
+  }, [currentQuestionIndex, numberOfQuestions, questionState]);
+
+  const value = useMemo(() => {
     return {
       currentQuestionData,
       currentQuestionIndex,
@@ -124,7 +147,8 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
-    numberOfQuestions,
+    handleSubmitMCAnswer,
+    handleNextQuestion,
   ]);
 
   return (
@@ -132,4 +156,4 @@ export const QuizEngineProvider = (props: QuizEngineProps) => {
       {props.children}
     </QuizEngineContext.Provider>
   );
-};
+});
