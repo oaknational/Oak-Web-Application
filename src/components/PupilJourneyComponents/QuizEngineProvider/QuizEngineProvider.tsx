@@ -80,14 +80,6 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   });
 
   useEffect(() => {
-    console.log(
-      "rendering QuizEngineProvider",
-      currentQuestionIndex,
-      questionState,
-    );
-  }, [currentQuestionIndex, currentQuestionData, questionState]);
-
-  useEffect(() => {
     const desiredQuestionData =
       multipleChoiceQuestionsArray[currentQuestionIndex];
     setCurrentQuestionData(desiredQuestionData);
@@ -135,24 +127,34 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     }
   }, [currentQuestionIndex, numberOfQuestions, questionState]);
 
-  const value = useMemo(() => {
+  const currentQuestionDataValue = useMemo(() => {
     return {
       currentQuestionData,
-      currentQuestionIndex,
-      questionState,
-      handleSubmitMCAnswer,
-      handleNextQuestion,
     };
-  }, [
-    currentQuestionData,
-    currentQuestionIndex,
-    questionState,
-    handleSubmitMCAnswer,
-    handleNextQuestion,
-  ]);
+  }, [currentQuestionData]);
+
+  const currentQuestionIndexValue = useMemo(() => {
+    return {
+      currentQuestionIndex,
+    };
+  }, [currentQuestionIndex]);
+
+  const questionStateValue = useMemo(() => {
+    return {
+      questionState,
+    };
+  }, [questionState]);
 
   return (
-    <QuizEngineContext.Provider value={value}>
+    <QuizEngineContext.Provider
+      value={{
+        ...currentQuestionDataValue,
+        ...currentQuestionIndexValue,
+        ...questionStateValue,
+        handleSubmitMCAnswer,
+        handleNextQuestion,
+      }}
+    >
       {props.children}
     </QuizEngineContext.Provider>
   );
