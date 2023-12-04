@@ -1,3 +1,30 @@
+# [1.309.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.308.0...v1.309.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* naming and type minor fixes ([c9d83a7](https://github.com/oaknational/Oak-Web-Application/commit/c9d83a75dfff10451d9364f4cfb3ae9046051e1e))
+* oak-components work in tests ([934f986](https://github.com/oaknational/Oak-Web-Application/commit/934f986e4185c20ed4773edc0a9ce9c227220a8b))
+* revert test script ([80fbfac](https://github.com/oaknational/Oak-Web-Application/commit/80fbfac99c1d495c7fd48c3d8416f0ac7a851ad9))
+
+
+### Features
+
+* **quiz engine:** create quiz engine provider ([d20e3ea](https://github.com/oaknational/Oak-Web-Application/commit/d20e3ea3963f5dac296b1cf542edab4f47ac88e6))
+* **quiz-engine:** add gap and padding ([9005b8b](https://github.com/oaknational/Oak-Web-Application/commit/9005b8b5f09a0f76c32d3741c6f5801847f1d2c1))
+* **quiz-engine:** add usememo to provider refctor renderer nested ([f08a1cb](https://github.com/oaknational/Oak-Web-Application/commit/f08a1cb289c51c4267eee2a8cbe09773c4e6b249))
+* **quiz-engine:** changes to pr ([70568da](https://github.com/oaknational/Oak-Web-Application/commit/70568da463bba6f58250f92e9f28d46ee0200afc))
+* **quiz-engine:** changes to pr ([337fd94](https://github.com/oaknational/Oak-Web-Application/commit/337fd94b67cd73c84f77d3897c7bd25a0ff7d1f4))
+* **quiz-engine:** clean code ([dbc8867](https://github.com/oaknational/Oak-Web-Application/commit/dbc88678492bed164ccd384aa791c65d11687003))
+* **quiz-engine:** create custom question stem and add quizrenderer tests ([58cb55c](https://github.com/oaknational/Oak-Web-Application/commit/58cb55c7a5857e8af53cabcbb7c376dfa5f453d4))
+* **quiz-engine:** distinguish between same answer questions radio buttons ([20bebff](https://github.com/oaknational/Oak-Web-Application/commit/20bebff37b0b147593a388532018bbe8b65f09a8))
+* **quiz-engine:** format ([0b402c1](https://github.com/oaknational/Oak-Web-Application/commit/0b402c1d8546aa18a97886fa928cc44101dbf4de))
+* **quiz-engine:** npm version ([18fdae9](https://github.com/oaknational/Oak-Web-Application/commit/18fdae9a1ff9f6ddfc0e0c92d34ec76f5816e138))
+* **quiz-engine:** refactor usememo ([940f88e](https://github.com/oaknational/Oak-Web-Application/commit/940f88e3cf3532f20c4a73a98c31deeb11a4c0d1))
+* **quiz-engine:** refactor usememo ([11a445e](https://github.com/oaknational/Oak-Web-Application/commit/11a445e7b11a02961cd101427b1096bc9f41014d))
+* **quiz-engine:** reviewed changes ([0f3f7f8](https://github.com/oaknational/Oak-Web-Application/commit/0f3f7f8ea0fbdb8f7c5411ab2308f229987be27b))
+* **quiz-engine:** test fix ([e557a8f](https://github.com/oaknational/Oak-Web-Application/commit/e557a8f382edb644e60df85c3b21bc8ebb783516))
+
 # [1.308.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.307.2...v1.308.0) (2023-11-29)
 
 
