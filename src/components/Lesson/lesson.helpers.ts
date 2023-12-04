@@ -8,6 +8,7 @@ import { ShallowNullable } from "@/utils/util.types";
 import {
   LessonOverviewQuizData,
   StemImageObject,
+  StemObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
@@ -337,6 +338,34 @@ type Attribution = {
   attribution: string;
 };
 
+const processImageStems = (
+  stems: StemObject[],
+  questionNumber: string,
+): Attribution[] => {
+  const imageStems = stems.filter((stem) => {
+    if (
+      stem.type === "image" &&
+      !Array.isArray(stem.image_object.metadata) &&
+      stem.image_object.metadata.attribution &&
+      stem.image_object
+    ) {
+      return stem;
+    }
+  }) as StemImageObject[];
+  const mappedAttributions = imageStems.map((imageStem: StemImageObject) => {
+    if (
+      !Array.isArray(imageStem.image_object.metadata) &&
+      imageStem.image_object.metadata.attribution
+    ) {
+      return {
+        questionNumber,
+        attribution: imageStem.image_object.metadata.attribution,
+      };
+    }
+  }) as Attribution[];
+  return mappedAttributions;
+};
+
 export const createAttributionObject = (
   questions: LessonOverviewQuizData,
 ): Attribution[] | [] => {
@@ -346,25 +375,11 @@ export const createAttributionObject = (
         const questionNumber = `Q${index + 1}`;
         if (question && question.questionStem) {
           const { questionStem } = question;
-          const imageStems = questionStem.filter(
-            (stem) =>
-              stem.type === "image" &&
-              !Array.isArray(stem.image_object.metadata) &&
-              stem.image_object.metadata.attribution &&
-              stem.image_object,
-          ) as StemImageObject[];
-          const mappedAttributions: Attribution[] = imageStems.map((stem) => {
-            if (
-              !Array.isArray(stem.image_object.metadata) &&
-              stem.image_object.metadata.attribution
-            ) {
-              return {
-                questionNumber,
-                attribution: stem.image_object.metadata.attribution,
-              };
-            }
-          }) as Attribution[];
-          acc.push(...mappedAttributions);
+          const proccesedStems = processImageStems(
+            questionStem,
+            questionNumber,
+          );
+          acc.push(...proccesedStems);
         }
         if (question && question.answers) {
           const { answers } = question;
