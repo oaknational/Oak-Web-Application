@@ -4,7 +4,7 @@ import { renderHook, act } from "@testing-library/react";
 import {
   QuizEngineProps,
   QuizEngineProvider,
-  quizEngineContext,
+  QuizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
@@ -19,10 +19,14 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(quizEngineContext), {
+    const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
 
     const { currentQuestionIndex } = result.current;
 
@@ -36,10 +40,14 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(quizEngineContext), {
+    const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
 
     const { currentQuestionData } = result.current;
 
@@ -53,10 +61,14 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(quizEngineContext), {
+    const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
 
     const { questionState } = result.current;
 
@@ -76,10 +88,14 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(quizEngineContext), {
+    const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
 
     const { handleSubmitMCAnswer, currentQuestionData } = result.current;
 
@@ -106,10 +122,14 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(quizEngineContext), {
+    const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture }),
     });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
 
     const { handleNextQuestion } = result.current;
 

@@ -5,8 +5,8 @@ import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 import { fireEvent } from "@testing-library/react";
 
 import {
+  QuizEngineContextType,
   QuizEngineContext,
-  quizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -19,7 +19,7 @@ describe("QuizRenderer", () => {
     expect(container.innerHTML).toBe("");
   });
   it("renders heading, mode and answer when there is currentQuestionData", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -35,9 +35,9 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const heading = getByText("Quiz Renderer");
@@ -50,7 +50,7 @@ describe("QuizRenderer", () => {
     expect(answer).toBeInTheDocument();
   });
   it("renders questionStem when questionState.mode !== 'end'", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -66,16 +66,16 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const questionStemQuestion = getByText("What is a main clause?");
     expect(questionStemQuestion).toBeInTheDocument();
   });
   it("renders OakRadioGroup when questionState.mode !== 'end'", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -91,16 +91,16 @@ describe("QuizRenderer", () => {
 
     const { getByLabelText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const radio1 = getByLabelText("a group of letters");
     expect(radio1).toBeInTheDocument();
   });
   it("disable submit button when selectedAnswer === undefined", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -116,15 +116,15 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     expect(getByText("Submit").closest("button")).toBeDisabled();
   });
   it("calls hanldeSubmitMCAnswer when submit button is clicked", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -140,9 +140,9 @@ describe("QuizRenderer", () => {
 
     const { getByText, getByLabelText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     const radio1 = getByLabelText("a group of letters");
@@ -151,7 +151,7 @@ describe("QuizRenderer", () => {
     expect(context.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
   });
   it("render Next buttonwhen questionState.mode is feedback", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -167,15 +167,15 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     expect(getByText("Next Question").closest("button")).toBeInTheDocument();
   });
   it("Does not render Next buttonwhen questionState.mode is not feedback", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -191,15 +191,15 @@ describe("QuizRenderer", () => {
 
     const { queryByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     expect(queryByText("Next Question")).not.toBeInTheDocument();
   });
   it("calls handleNextQuestion when next button is clicked and questionState.mode === 'feedback'", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -215,16 +215,16 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
     fireEvent.click(getByText("Next Question"));
     expect(context.handleNextQuestion).toHaveBeenCalledTimes(1);
   });
   it("questionState.mode === 'end', render score", () => {
-    const context: QuizEngineContext = {
+    const context: QuizEngineContextType = {
       currentQuestionData: questionsArrayFixture[0],
       currentQuestionIndex: 0,
       questionState: {
@@ -240,9 +240,9 @@ describe("QuizRenderer", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <quizEngineContext.Provider value={context}>
+        <QuizEngineContext.Provider value={context}>
           <QuizRenderer />
-        </quizEngineContext.Provider>
+        </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
 

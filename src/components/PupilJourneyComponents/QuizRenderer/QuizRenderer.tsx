@@ -8,17 +8,22 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
-import { quizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
-  const quizContext = useContext(quizEngineContext);
+  const quizContext = useContext(QuizEngineContext);
 
   const [selectedAnswer, setSelectedAnswer] = useState<{
     answer?: MCAnswer | null;
     index: number;
   }>();
+
+  if (quizContext === null) {
+    return;
+  }
+
   const {
     currentQuestionData,
     currentQuestionIndex,

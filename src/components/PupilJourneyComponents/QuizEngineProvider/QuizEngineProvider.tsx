@@ -34,21 +34,9 @@ export type QuizEngineContextType = {
   questionState: QuestionState;
   handleSubmitMCAnswer: (answer: MCAnswer | null | undefined) => void;
   handleNextQuestion: () => void;
-};
+} | null;
 
-export const QuizEngineContext = createContext<QuizEngineContextType>({
-  currentQuestionData: undefined,
-  currentQuestionIndex: 0,
-  questionState: {
-    mode: "input",
-    answer: undefined,
-    offerHint: false,
-    score: 0,
-    maximumScore: 0,
-  },
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
-});
+export const QuizEngineContext = createContext<QuizEngineContextType>(null);
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
