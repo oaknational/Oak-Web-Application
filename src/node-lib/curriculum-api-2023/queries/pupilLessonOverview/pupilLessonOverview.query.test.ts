@@ -4,7 +4,7 @@ import { pupilLessonOverviewQuery } from "./pupilLessonOverview.query";
 
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
-describe("pupilsessonOverview()", () => {
+describe("pupilLessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await pupilLessonOverviewQuery({

@@ -32,7 +32,7 @@ const Pupils: NextPage<PupilLessonOverviewPageProps> = ({ curriculumData }) => {
   );
 };
 
-export type URLParams = {
+export type PupilPageURLParams = {
   lessonSlug: string;
   unitSlug: string;
   programmeSlug: string;
@@ -43,7 +43,7 @@ export const getStaticPaths = async () => {
     return getFallbackBlockingConfig();
   }
 
-  const config: GetStaticPathsResult<URLParams> = {
+  const config: GetStaticPathsResult<PupilPageURLParams> = {
     fallback: "blocking",
     paths: [],
   };
@@ -52,7 +52,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<
   PupilLessonOverviewPageProps,
-  URLParams
+  PupilPageURLParams
 > = async (context) => {
   return getPageProps({
     page: "lesson-overview::getStaticProps",
