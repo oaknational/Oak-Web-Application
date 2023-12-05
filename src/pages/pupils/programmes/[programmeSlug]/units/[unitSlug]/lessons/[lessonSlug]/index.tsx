@@ -20,7 +20,9 @@ export type PupilLessonOverviewPageProps = {
   curriculumData: PupilLessonOverviewData;
 };
 
-const Pupils: NextPage<PupilLessonOverviewPageProps> = ({ curriculumData }) => {
+const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
+  curriculumData,
+}) => {
   const { starterQuiz } = curriculumData;
 
   return (
@@ -86,4 +88,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default Pupils;
+export default PupilsPage;
