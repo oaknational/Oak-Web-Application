@@ -69,7 +69,6 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
-  buttonColor?: OakColorName;
   /**
    * currentStyles specifies which styles to apply when the button/link
    * has state `current`. In some cases the text is underlined, in others
@@ -77,6 +76,7 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
+  buttonColor?: OakColorName;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
@@ -121,8 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorName = buttonColor ?? "grey60";
-
+  const currentColor: OakColorName = "grey60";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );
@@ -150,7 +149,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground ?? defaultIconBackground}
             data-testid="button-icon"
-            $color={currentColor}
+            $color={buttonColor}
           />
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
@@ -171,7 +170,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             $maxHeight={40}
             $maxWidth={40}
             $height={iconSize}
-            $color={buttonColor}
           />
         </Flex>
       )}
@@ -181,7 +179,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $display={displayProperty}
           $textDecoration={textDecoration}
           $color={
-            isCurrent && currentStyles?.includes("color")
+            buttonColor
+              ? buttonColor
+              : isCurrent && currentStyles?.includes("color")
               ? currentColor
               : undefined
           }
