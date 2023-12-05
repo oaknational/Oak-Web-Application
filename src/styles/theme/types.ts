@@ -183,6 +183,7 @@ const OakColorNameZod = z.union([
   z.literal("navy"),
   z.literal("navy110"),
   z.literal("navy120"),
+  z.literal("textLinkActive"),
 ]);
 
 export type OakColorName = z.infer<typeof OakColorNameZod>;

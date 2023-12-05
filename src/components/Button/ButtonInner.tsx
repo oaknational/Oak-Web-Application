@@ -69,6 +69,7 @@ export type ButtonInnerProps = {
   variant: ButtonVariant;
   disabled?: boolean;
   isCurrent?: boolean;
+  buttonColor?: OakColorName;
   /**
    * currentStyles specifies which styles to apply when the button/link
    * has state `current`. In some cases the text is underlined, in others
@@ -92,6 +93,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     isCurrent,
     currentStyles,
     $font,
+    buttonColor,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
 
@@ -119,7 +121,9 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorName = "grey60";
+  const currentColor: OakColorName =
+    isCurrent && !buttonColor ? "grey60" : buttonColor ?? "white";
+
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );
@@ -147,6 +151,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground ?? defaultIconBackground}
             data-testid="button-icon"
+            $color={currentColor}
           />
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />

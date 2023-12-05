@@ -50,6 +50,9 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
         label={dropdownTitle}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => setToggleOpen(!isToggleOpen)}
+        buttonColor={"navy"}
+        isCurrent={true}
+        currentStyles={["color"]}
       />
       <Box
         $display={isToggleOpen ? "block" : "none"}

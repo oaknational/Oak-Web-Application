@@ -44,6 +44,7 @@ const theme: OakTheme = {
     navy: "#0D24C4",
     navy110: "#0a1d9d",
     navy120: "#081676",
+    textLinkActive: "0d24c4",
   },
   contrastColors: {
     white: "black",
@@ -87,6 +88,7 @@ const theme: OakTheme = {
     navy: "white",
     navy110: "white",
     navy120: "white",
+    textLinkActive: "white",
   },
   buttonIconBackgroundColors: {
     lemon: "black",
