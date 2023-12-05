@@ -171,6 +171,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             $maxHeight={40}
             $maxWidth={40}
             $height={iconSize}
+            $color={buttonColor}
           />
         </Flex>
       )}
