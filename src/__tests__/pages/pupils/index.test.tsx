@@ -34,7 +34,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       });
       expect(curriculumApi2023.default.pupilLessonOverview).toHaveBeenCalled();
     });
-    it("Should call both API::subjectListing on 'teachers-2023'", async () => {
+    it("Should call both API::pupilLessonOverview on 'teachers-2023'", async () => {
       await getStaticProps({
         params: {
           programmeSlug: "ks123",
