@@ -9,7 +9,7 @@ describe("pupilsessonOverview()", () => {
     await expect(async () => {
       await pupilLessonOverviewQuery({
         ...sdk,
-        lessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
+        pupilLessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
