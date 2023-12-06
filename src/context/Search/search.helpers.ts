@@ -6,11 +6,14 @@ import {
 } from "./search.types";
 
 import errorReporter from "@/common-lib/error-reporter";
-import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/LessonListItem";
-import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
+import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import {
+  LessonListingLinkProps,
+  LessonOverviewLinkProps,
+} from "@/common-lib/urls";
 
 const reportError = errorReporter("search/helpers");
 
@@ -94,13 +97,22 @@ const getProgrammeSlug = (
     .join("-");
 };
 
+export const getSearchHitObject = (
+  hit: LessonSearchHit | UnitSearchHit,
+  allKeyStages: KeyStage[],
+) => {
+  if (isLessonSearchHit(hit)) {
+    return getLessonObject({ hit, allKeyStages });
+  }
+  if (isUnitSearchHit(hit)) {
+    return getUnitObject({ hit, allKeyStages });
+  }
+};
+
 export function getLessonObject(props: {
   hit: LessonSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<
-  LessonListItemProps,
-  "hideTopHeading" | "trackSearchListItemSelected" | "index" | "hitCount"
-> | null {
+}): SearchResultsItemProps | null {
   const { hit, allKeyStages } = props;
   const { _source, highlight, legacy } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -108,40 +120,36 @@ export function getLessonObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-  const lessonResult = {
+  const buttonLinkProps: LessonOverviewLinkProps = {
+    page: "lesson-overview",
+    lessonSlug: highlightedHit.slug?.toString(),
     programmeSlug: legacy
       ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
         getProgrammeSlug(hit, allKeyStages)
       : getProgrammeSlug(hit, allKeyStages),
-    lessonTitle: highlightedHit.title?.toString(),
-    lessonSlug: highlightedHit.slug?.toString(),
-    description: highlightedHit.lesson_description?.toString() || "",
-    subjectSlug: highlightedHit.subject_slug?.toString(),
-    keyStageSlug: keyStage?.slug?.toString() || "",
-    keyStageTitle: keyStage?.title?.toString() || "",
-    subjectTitle: highlightedHit.subject_title?.toString(),
     unitSlug:
       highlightedHit.unit_slug?.toString() ||
       highlightedHit.topic_slug?.toString() ||
       "",
-    unitTitle: highlightedHit.topic_title?.toString() || "",
-    videoCount: null,
-    presentationCount: null,
-    worksheetCount: null,
-    hasCopyrightMaterial: false, // this will need to be added to elastic search
-    quizCount: null,
-    expired: Boolean(highlightedHit.expired),
+  };
+  const lessonResult: SearchResultsItemProps = {
+    type: "lesson",
+    title: highlightedHit.title?.toString(),
+    description: highlightedHit.lesson_description?.toString() || "",
+    subjectSlug: highlightedHit.subject_slug?.toString(),
+    keyStageShortCode: keyStage?.shortCode?.toString() || "",
+    keyStageTitle: keyStage?.title?.toString() || "",
+    keyStageSlug: keyStage?.slug?.toString() || "",
+    subjectTitle: highlightedHit.subject_title?.toString(),
+    buttonLinkProps: buttonLinkProps,
+    legacy: hit.legacy,
   };
 
-  const { unitSlug, programmeSlug, lessonSlug, keyStageSlug, subjectSlug } =
-    lessonResult;
-
   if (
-    !unitSlug ||
-    !programmeSlug ||
-    !lessonSlug ||
-    !keyStageSlug ||
-    !subjectSlug
+    !buttonLinkProps.unitSlug ||
+    !buttonLinkProps.programmeSlug ||
+    !buttonLinkProps.lessonSlug ||
+    !lessonResult.subjectSlug
   ) {
     console.warn(`Search result was omitted due to empty slug`, lessonResult);
 
@@ -154,10 +162,7 @@ export function getLessonObject(props: {
 export function getUnitObject(props: {
   hit: UnitSearchHit;
   allKeyStages: KeyStage[];
-}): Omit<
-  UnitListItemProps,
-  "hideTopHeading" | "index" | "hitCount" | "expiredLessonCount"
-> | null {
+}): SearchResultsItemProps | null {
   const { hit, allKeyStages } = props;
   const { _source, highlight, legacy } = hit;
   const highlightedHit = { ..._source, ...highlight };
@@ -165,31 +170,33 @@ export function getUnitObject(props: {
     elasticKeyStageSlug: highlightedHit.key_stage_slug.toString(),
     allKeyStages,
   });
-
-  const unitResult = {
+  const buttonLinkProps: LessonListingLinkProps = {
+    page: "lesson-index",
     programmeSlug: legacy
       ? addLegacySlugSuffix(getProgrammeSlug(hit, allKeyStages)) ||
         getProgrammeSlug(hit, allKeyStages)
       : getProgrammeSlug(hit, allKeyStages),
-    title: highlightedHit.title?.toString(),
-    nullTitle: highlightedHit.title?.toString(),
-    slug: highlightedHit.slug?.toString(),
-    themeTitle: highlightedHit.theme_title?.toString() || null,
-    themeSlug: null, // null values need to be added to elastic search
-    lessonCount: null,
-    quizCount: null,
-    yearTitle: null,
-    subjectSlug: highlightedHit.subject_slug?.toString(),
-    subjectTitle: highlightedHit.subject_title?.toString(),
-    keyStageSlug: keyStage?.slug?.toString() || "",
-    keyStageTitle: keyStage?.title?.toString() || "",
-    expired: Boolean(highlightedHit.expired),
-    learningThemes: [{ themeSlug: null, themeTitle: null }],
+    unitSlug: highlightedHit.slug?.toString(),
   };
 
-  const { slug, programmeSlug, keyStageSlug, subjectSlug } = unitResult;
+  const unitResult: SearchResultsItemProps = {
+    type: "unit",
+    title: highlightedHit.title?.toString(),
+    nullTitle: highlightedHit.title?.toString(),
+    subjectSlug: highlightedHit.subject_slug?.toString(),
+    subjectTitle: highlightedHit.subject_title?.toString(),
+    keyStageShortCode: keyStage?.shortCode?.toString() || "",
+    keyStageTitle: keyStage?.title?.toString() || "",
+    keyStageSlug: keyStage?.slug?.toString() || "",
+    buttonLinkProps: buttonLinkProps,
+    legacy: hit.legacy,
+  };
 
-  if (!slug || !programmeSlug || !keyStageSlug || !subjectSlug) {
+  if (
+    !buttonLinkProps.unitSlug ||
+    !buttonLinkProps.programmeSlug ||
+    !unitResult.subjectSlug
+  ) {
     console.warn(`Search result was omitted due to empty slug:`, unitResult);
 
     return null;
@@ -200,4 +207,8 @@ export function getUnitObject(props: {
 
 export function isLessonSearchHit(x: SearchHit): x is LessonSearchHit {
   return x._source.type === "lesson";
+}
+
+export function isUnitSearchHit(x: SearchHit): x is UnitSearchHit {
+  return x._source.type === "unit";
 }

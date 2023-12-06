@@ -11,7 +11,9 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
   const { keyStageFilters, subjectFilters, contentTypeFilters } = props;
   return (
     <>
-      <P $mb={16}>Type</P>
+      <P $mb={16} $font={"heading-7"}>
+        Type
+      </P>
       <Flex $mb={36} $flexWrap={"wrap"}>
         {contentTypeFilters.map((contentType) => (
           <SearchFilterCheckbox
@@ -23,7 +25,9 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
           />
         ))}
       </Flex>
-      <P $mb={16}>Key stage</P>
+      <P $mb={16} $font={"heading-7"}>
+        Key stage
+      </P>
       <Flex $mb={36} $flexDirection={"row"} $flexWrap={"wrap"}>
         {keyStageFilters.map((keyStageFilter) => (
           <SearchFilterCheckbox
@@ -34,7 +38,9 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
           />
         ))}
       </Flex>
-      <P $mb={16}>Subjects</P>
+      <P $mb={16} $font={"heading-7"}>
+        Subjects
+      </P>
       <Flex $flexDirection={"column"}>
         {subjectFilters.map((subjectFilter) => (
           <SearchFilterCheckbox

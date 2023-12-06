@@ -32,4 +32,17 @@ describe("LessonMetadata", () => {
     const dividers = getAllByText("•");
     expect(dividers).toHaveLength(2);
   });
+  it("renders a custom array of meta elements", () => {
+    const { getAllByText, getByText } = renderWithTheme(
+      <LessonMetadata metadataArray={["Year 5", "Foundation", "AQA"]} />,
+    );
+    const dividers = getAllByText("•");
+    expect(dividers).toHaveLength(2);
+    const tierTitle = getByText("Foundation");
+    expect(tierTitle).toBeInTheDocument();
+    const year = getByText("Year 5");
+    expect(year).toBeInTheDocument();
+    const examBoard = getByText("AQA");
+    expect(examBoard).toBeInTheDocument();
+  });
 });

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import Flex from "../Flex";
 import Button from "../Button";
-import { P, Span } from "../Typography";
+import { Span } from "../Typography";
 
 import {
   UseSearchFiltersReturnType,
@@ -34,10 +34,8 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       $alignItems={["flex-start", "center"]}
       $flexDirection={["column", "row"]}
       $minHeight={44}
+      $display={activeFilters.length ? "flex" : "none"}
     >
-      <P $mr={20} $mt={8} $mb={8} $color={["grey60", "black"]}>
-        Active filters: {activeFilters.length === 0 && "no filters set"}
-      </P>
       <Flex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button

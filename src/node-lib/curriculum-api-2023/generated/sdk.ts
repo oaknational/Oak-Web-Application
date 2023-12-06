@@ -94,6 +94,7 @@ export type Assets = {
   asset_type?: Maybe<Scalars['String']['output']>;
   asset_uid?: Maybe<Scalars['bpchar']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
@@ -103,6 +104,12 @@ export type Assets = {
 
 /** columns and relationships of "assets" */
 export type AssetsAsset_ObjectArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "assets" */
+export type AssetsDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -181,6 +188,7 @@ export type Assets_Aggregate_Order_By = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Assets_Append_Input = {
   asset_object?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** input type for inserting array relation for remote table "assets" */
@@ -217,6 +225,7 @@ export type Assets_Bool_Exp = {
   asset_type?: InputMaybe<String_Comparison_Exp>;
   asset_uid?: InputMaybe<Bpchar_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -232,16 +241,19 @@ export enum Assets_Constraint {
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Assets_Delete_At_Path_Input = {
   asset_object?: InputMaybe<Array<Scalars['String']['input']>>;
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Assets_Delete_Elem_Input = {
   asset_object?: InputMaybe<Scalars['Int']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Assets_Delete_Key_Input = {
   asset_object?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** input type for incrementing numeric columns in table "assets" */
@@ -261,6 +273,7 @@ export type Assets_Insert_Input = {
   asset_type?: InputMaybe<Scalars['String']['input']>;
   asset_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -363,6 +376,7 @@ export type Assets_Order_By = {
   asset_type?: InputMaybe<Order_By>;
   asset_uid?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -378,6 +392,7 @@ export type Assets_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Assets_Prepend_Input = {
   asset_object?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "assets" */
@@ -400,6 +415,8 @@ export enum Assets_Select_Column {
   AssetUid = 'asset_uid',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -433,6 +450,7 @@ export type Assets_Set_Input = {
   asset_type?: InputMaybe<Scalars['String']['input']>;
   asset_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -497,6 +515,7 @@ export type Assets_Stream_Cursor_Value_Input = {
   asset_type?: InputMaybe<Scalars['String']['input']>;
   asset_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -536,6 +555,8 @@ export enum Assets_Update_Column {
   AssetUid = 'asset_uid',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -663,6 +684,7 @@ export type Cat_Contentguidance = {
   contentguidance_id: Scalars['Int']['output'];
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   /** A computed field, executes function "function__cat_contentguidance__lessons" */
   lessons_with_contentguidance?: Maybe<Array<Lessons>>;
   /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
@@ -672,6 +694,12 @@ export type Cat_Contentguidance = {
   supervisionlevel?: Maybe<Cat_Supervisionlevels>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_contentguidance" */
+export type Cat_ContentguidanceDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -722,6 +750,7 @@ export type Cat_Contentguidance_Aggregate_FieldsCountArgs = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Contentguidance_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -730,8 +759,6 @@ export type Cat_Contentguidance_Avg_Fields = {
   __typename?: 'cat_contentguidance_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -750,6 +777,7 @@ export type Cat_Contentguidance_Bool_Exp = {
   contentguidance_id?: InputMaybe<Int_Comparison_Exp>;
   contentguidance_label?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   lessons_with_contentguidance?: InputMaybe<Lessons_Bool_Exp>;
   lessons_with_contentguidance_count?: InputMaybe<Int_Comparison_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -766,16 +794,19 @@ export enum Cat_Contentguidance_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Cat_Contentguidance_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Cat_Contentguidance_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Cat_Contentguidance_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -798,6 +829,7 @@ export type Cat_Contentguidance_Insert_Input = {
   contentguidance_id?: InputMaybe<Scalars['Int']['input']>;
   contentguidance_label?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   supervisionlevel?: InputMaybe<Cat_Supervisionlevels_Obj_Rel_Insert_Input>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
@@ -816,8 +848,6 @@ export type Cat_Contentguidance_Max_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -834,8 +864,6 @@ export type Cat_Contentguidance_Min_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -868,6 +896,7 @@ export type Cat_Contentguidance_Order_By = {
   contentguidance_id?: InputMaybe<Order_By>;
   contentguidance_label?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   lessons_with_contentguidance_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   lessons_with_contentguidance_count?: InputMaybe<Order_By>;
   programme_fields?: InputMaybe<Order_By>;
@@ -884,6 +913,7 @@ export type Cat_Contentguidance_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Contentguidance_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -910,6 +940,8 @@ export enum Cat_Contentguidance_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   ProgrammeFields = 'programme_fields',
   /** column name */
   SupervisionlevelId = 'supervisionlevel_id',
@@ -929,6 +961,7 @@ export type Cat_Contentguidance_Set_Input = {
   contentguidance_id?: InputMaybe<Scalars['Int']['input']>;
   contentguidance_label?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -939,8 +972,6 @@ export type Cat_Contentguidance_Stddev_Fields = {
   __typename?: 'cat_contentguidance_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -949,8 +980,6 @@ export type Cat_Contentguidance_Stddev_Pop_Fields = {
   __typename?: 'cat_contentguidance_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -959,8 +988,6 @@ export type Cat_Contentguidance_Stddev_Samp_Fields = {
   __typename?: 'cat_contentguidance_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -984,6 +1011,7 @@ export type Cat_Contentguidance_Stream_Cursor_Value_Input = {
   contentguidance_id?: InputMaybe<Scalars['Int']['input']>;
   contentguidance_label?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -994,8 +1022,6 @@ export type Cat_Contentguidance_Sum_Fields = {
   __typename?: 'cat_contentguidance_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1021,6 +1047,8 @@ export enum Cat_Contentguidance_Update_Column {
   ContentguidanceLabel = 'contentguidance_label',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   ProgrammeFields = 'programme_fields',
   /** column name */
@@ -1053,8 +1081,6 @@ export type Cat_Contentguidance_Var_Pop_Fields = {
   __typename?: 'cat_contentguidance_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1063,8 +1089,6 @@ export type Cat_Contentguidance_Var_Samp_Fields = {
   __typename?: 'cat_contentguidance_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1073,8 +1097,6 @@ export type Cat_Contentguidance_Variance_Fields = {
   __typename?: 'cat_contentguidance_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1086,6 +1108,7 @@ export type Cat_Examboardspecs = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id: Scalars['Int']['output'];
   programme_fields: Scalars['jsonb']['output'];
@@ -1095,6 +1118,12 @@ export type Cat_Examboardspecs = {
   /** A computed field, executes function "function__cat_examboardspecs__units__count" */
   units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_examboardspecs" */
+export type Cat_ExamboardspecsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1145,6 +1174,7 @@ export type Cat_Examboardspecs_Aggregate_FieldsCountArgs = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Examboardspecs_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -1153,8 +1183,6 @@ export type Cat_Examboardspecs_Avg_Fields = {
   __typename?: 'cat_examboardspecs_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_examboardspecs". All fields are combined with a logical 'AND'. */
@@ -1167,6 +1195,7 @@ export type Cat_Examboardspecs_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   examboardspecs_id?: InputMaybe<Int_Comparison_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -1178,22 +1207,25 @@ export type Cat_Examboardspecs_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_examboardspecs" */
 export enum Cat_Examboardspecs_Constraint {
-  /** unique or primary key constraint on columns "examboardspecs_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "examboardspecs_id" */
   CatExamboardspecsPkey = 'cat_examboardspecs_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Cat_Examboardspecs_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Cat_Examboardspecs_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Cat_Examboardspecs_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1210,6 +1242,7 @@ export type Cat_Examboardspecs_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   examboardspecs_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1227,8 +1260,6 @@ export type Cat_Examboardspecs_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1242,8 +1273,6 @@ export type Cat_Examboardspecs_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1270,6 +1299,7 @@ export type Cat_Examboardspecs_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   examboardspecs_id?: InputMaybe<Order_By>;
   programme_fields?: InputMaybe<Order_By>;
@@ -1287,6 +1317,7 @@ export type Cat_Examboardspecs_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Examboardspecs_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -1302,6 +1333,8 @@ export enum Cat_Examboardspecs_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1321,6 +1354,7 @@ export type Cat_Examboardspecs_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   examboardspecs_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1333,8 +1367,6 @@ export type Cat_Examboardspecs_Stddev_Fields = {
   __typename?: 'cat_examboardspecs_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1342,8 +1374,6 @@ export type Cat_Examboardspecs_Stddev_Pop_Fields = {
   __typename?: 'cat_examboardspecs_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1351,8 +1381,6 @@ export type Cat_Examboardspecs_Stddev_Samp_Fields = {
   __typename?: 'cat_examboardspecs_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_examboardspecs" */
@@ -1370,6 +1398,7 @@ export type Cat_Examboardspecs_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   examboardspecs_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1382,8 +1411,6 @@ export type Cat_Examboardspecs_Sum_Fields = {
   __typename?: 'cat_examboardspecs_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_examboardspecs" */
@@ -1398,6 +1425,8 @@ export enum Cat_Examboardspecs_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1434,8 +1463,6 @@ export type Cat_Examboardspecs_Var_Pop_Fields = {
   __typename?: 'cat_examboardspecs_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1443,8 +1470,6 @@ export type Cat_Examboardspecs_Var_Samp_Fields = {
   __typename?: 'cat_examboardspecs_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1452,8 +1477,6 @@ export type Cat_Examboardspecs_Variance_Fields = {
   __typename?: 'cat_examboardspecs_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_nationalcurriculum" */
@@ -1464,6 +1487,7 @@ export type Cat_Nationalcurriculum = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id: Scalars['Int']['output'];
   programme_fields: Scalars['jsonb']['output'];
@@ -1473,6 +1497,12 @@ export type Cat_Nationalcurriculum = {
   /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
   units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_nationalcurriculum" */
+export type Cat_NationalcurriculumDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -1523,6 +1553,7 @@ export type Cat_Nationalcurriculum_Aggregate_FieldsCountArgs = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Nationalcurriculum_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -1531,8 +1562,6 @@ export type Cat_Nationalcurriculum_Avg_Fields = {
   __typename?: 'cat_nationalcurriculum_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_nationalcurriculum". All fields are combined with a logical 'AND'. */
@@ -1545,6 +1574,7 @@ export type Cat_Nationalcurriculum_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   nationalcurriculum_id?: InputMaybe<Int_Comparison_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -1562,16 +1592,19 @@ export enum Cat_Nationalcurriculum_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Cat_Nationalcurriculum_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Cat_Nationalcurriculum_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Cat_Nationalcurriculum_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1588,6 +1621,7 @@ export type Cat_Nationalcurriculum_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   nationalcurriculum_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1605,8 +1639,6 @@ export type Cat_Nationalcurriculum_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1620,8 +1652,6 @@ export type Cat_Nationalcurriculum_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1648,6 +1678,7 @@ export type Cat_Nationalcurriculum_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   nationalcurriculum_id?: InputMaybe<Order_By>;
   programme_fields?: InputMaybe<Order_By>;
@@ -1665,6 +1696,7 @@ export type Cat_Nationalcurriculum_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Nationalcurriculum_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -1680,6 +1712,8 @@ export enum Cat_Nationalcurriculum_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1699,6 +1733,7 @@ export type Cat_Nationalcurriculum_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   nationalcurriculum_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1711,8 +1746,6 @@ export type Cat_Nationalcurriculum_Stddev_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1720,8 +1753,6 @@ export type Cat_Nationalcurriculum_Stddev_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1729,8 +1760,6 @@ export type Cat_Nationalcurriculum_Stddev_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_nationalcurriculum" */
@@ -1748,6 +1777,7 @@ export type Cat_Nationalcurriculum_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   nationalcurriculum_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
@@ -1760,8 +1790,6 @@ export type Cat_Nationalcurriculum_Sum_Fields = {
   __typename?: 'cat_nationalcurriculum_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_nationalcurriculum" */
@@ -1776,6 +1804,8 @@ export enum Cat_Nationalcurriculum_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -1812,8 +1842,6 @@ export type Cat_Nationalcurriculum_Var_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1821,8 +1849,6 @@ export type Cat_Nationalcurriculum_Var_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1830,8 +1856,6 @@ export type Cat_Nationalcurriculum_Variance_Fields = {
   __typename?: 'cat_nationalcurriculum_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_supervisionlevels" */
@@ -1842,12 +1866,19 @@ export type Cat_Supervisionlevels = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id: Scalars['Int']['output'];
   supervisionlevel_rating?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_supervisionlevels" */
+export type Cat_SupervisionlevelsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "cat_supervisionlevels" */
@@ -1880,6 +1911,11 @@ export type Cat_Supervisionlevels_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Cat_Supervisionlevels_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Cat_Supervisionlevels_Avg_Fields = {
   __typename?: 'cat_supervisionlevels_avg_fields';
@@ -1899,6 +1935,7 @@ export type Cat_Supervisionlevels_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   supervisionlevel_id?: InputMaybe<Int_Comparison_Exp>;
@@ -1912,6 +1949,21 @@ export enum Cat_Supervisionlevels_Constraint {
   /** unique or primary key constraint on columns "supervisionlevel_id", "_state" */
   CatSupervisionlevelsPkey = 'cat_supervisionlevels_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Cat_Supervisionlevels_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Cat_Supervisionlevels_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Cat_Supervisionlevels_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "cat_supervisionlevels" */
 export type Cat_Supervisionlevels_Inc_Input = {
@@ -1928,6 +1980,7 @@ export type Cat_Supervisionlevels_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
@@ -1996,6 +2049,7 @@ export type Cat_Supervisionlevels_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   supervisionlevel_id?: InputMaybe<Order_By>;
@@ -2010,6 +2064,11 @@ export type Cat_Supervisionlevels_Pk_Columns_Input = {
   supervisionlevel_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Cat_Supervisionlevels_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "cat_supervisionlevels" */
 export enum Cat_Supervisionlevels_Select_Column {
   /** column name */
@@ -2022,6 +2081,8 @@ export enum Cat_Supervisionlevels_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -2043,6 +2104,7 @@ export type Cat_Supervisionlevels_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
@@ -2093,6 +2155,7 @@ export type Cat_Supervisionlevels_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   supervisionlevel_id?: InputMaybe<Scalars['Int']['input']>;
@@ -2123,6 +2186,8 @@ export enum Cat_Supervisionlevels_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -2137,8 +2202,18 @@ export enum Cat_Supervisionlevels_Update_Column {
 }
 
 export type Cat_Supervisionlevels_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Cat_Supervisionlevels_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Cat_Supervisionlevels_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Cat_Supervisionlevels_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Cat_Supervisionlevels_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Cat_Supervisionlevels_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Cat_Supervisionlevels_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Cat_Supervisionlevels_Set_Input>;
   /** filter the rows which have to be updated */
@@ -2180,6 +2255,7 @@ export type Cat_Tags = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_tags__lessons" */
   lessons_with_tag?: Maybe<Array<Lessons>>;
@@ -2194,6 +2270,12 @@ export type Cat_Tags = {
   /** A computed field, executes function "function__cat_tags__units__count" */
   units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "cat_tags" */
+export type Cat_TagsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -2269,6 +2351,7 @@ export type Cat_Tags_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Tags_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -2276,11 +2359,7 @@ export type Cat_Tags_Append_Input = {
 export type Cat_Tags_Avg_Fields = {
   __typename?: 'cat_tags_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_tags" */
@@ -2299,6 +2378,7 @@ export type Cat_Tags_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   lessons_with_tag?: InputMaybe<Lessons_Bool_Exp>;
   lessons_with_tag_count?: InputMaybe<Int_Comparison_Exp>;
@@ -2313,22 +2393,25 @@ export type Cat_Tags_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_tags" */
 export enum Cat_Tags_Constraint {
-  /** unique or primary key constraint on columns "_state", "tag_id" */
+  /** unique or primary key constraint on columns "tag_id", "_state" */
   CatTagsPkey = 'cat_tags_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Cat_Tags_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Cat_Tags_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Cat_Tags_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2345,6 +2428,7 @@ export type Cat_Tags_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   tag_category?: InputMaybe<Scalars['String']['input']>;
@@ -2361,13 +2445,9 @@ export type Cat_Tags_Max_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2392,13 +2472,9 @@ export type Cat_Tags_Min_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2438,6 +2514,7 @@ export type Cat_Tags_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   lessons_with_tag_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   lessons_with_tag_count?: InputMaybe<Order_By>;
@@ -2458,6 +2535,7 @@ export type Cat_Tags_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Cat_Tags_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -2473,6 +2551,8 @@ export enum Cat_Tags_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -2494,6 +2574,7 @@ export type Cat_Tags_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   tag_category?: InputMaybe<Scalars['String']['input']>;
@@ -2506,11 +2587,7 @@ export type Cat_Tags_Set_Input = {
 export type Cat_Tags_Stddev_Fields = {
   __typename?: 'cat_tags_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_tags" */
@@ -2523,11 +2600,7 @@ export type Cat_Tags_Stddev_Order_By = {
 export type Cat_Tags_Stddev_Pop_Fields = {
   __typename?: 'cat_tags_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_tags" */
@@ -2540,11 +2613,7 @@ export type Cat_Tags_Stddev_Pop_Order_By = {
 export type Cat_Tags_Stddev_Samp_Fields = {
   __typename?: 'cat_tags_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_tags" */
@@ -2568,6 +2637,7 @@ export type Cat_Tags_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   tag_category?: InputMaybe<Scalars['String']['input']>;
@@ -2580,11 +2650,7 @@ export type Cat_Tags_Stream_Cursor_Value_Input = {
 export type Cat_Tags_Sum_Fields = {
   __typename?: 'cat_tags_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_tags" */
@@ -2605,6 +2671,8 @@ export enum Cat_Tags_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -2642,11 +2710,7 @@ export type Cat_Tags_Updates = {
 export type Cat_Tags_Var_Pop_Fields = {
   __typename?: 'cat_tags_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_tags" */
@@ -2659,11 +2723,7 @@ export type Cat_Tags_Var_Pop_Order_By = {
 export type Cat_Tags_Var_Samp_Fields = {
   __typename?: 'cat_tags_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_tags" */
@@ -2676,11 +2736,7 @@ export type Cat_Tags_Var_Samp_Order_By = {
 export type Cat_Tags_Variance_Fields = {
   __typename?: 'cat_tags_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_tags" */
@@ -4218,7 +4274,7 @@ export type Lessons = {
   content_guidance_details?: Maybe<Scalars['json']['output']>;
   copyright_content?: Maybe<Scalars['json']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deprecated_fields?: Maybe<Scalars['json']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   equipment_and_resources?: Maybe<Scalars['json']['output']>;
   key_learning_points?: Maybe<Scalars['json']['output']>;
@@ -4670,6 +4726,7 @@ export type Lessons_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Lessons_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -4739,7 +4796,7 @@ export type Lessons_Bool_Exp = {
   content_guidance_details?: InputMaybe<Json_Comparison_Exp>;
   copyright_content?: InputMaybe<Json_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deprecated_fields?: InputMaybe<Json_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
   key_learning_points?: InputMaybe<Json_Comparison_Exp>;
@@ -4791,16 +4848,19 @@ export enum Lessons_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Lessons_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   thirdpartycontent_list?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Lessons_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Lessons_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -4841,7 +4901,7 @@ export type Lessons_Insert_Input = {
   content_guidance_details?: InputMaybe<Scalars['json']['input']>;
   copyright_content?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
@@ -5066,6 +5126,7 @@ export type Lessons_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Lessons_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -5170,7 +5231,7 @@ export type Lessons_Set_Input = {
   content_guidance_details?: InputMaybe<Scalars['json']['input']>;
   copyright_content?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
@@ -5304,7 +5365,7 @@ export type Lessons_Stream_Cursor_Value_Input = {
   content_guidance_details?: InputMaybe<Scalars['json']['input']>;
   copyright_content?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   key_learning_points?: InputMaybe<Scalars['json']['input']>;
@@ -5580,6 +5641,10 @@ export type Mutation_Root = {
   delete_lessons?: Maybe<Lessons_Mutation_Response>;
   /** delete single row from the table: "lessons" */
   delete_lessons_by_pk?: Maybe<Lessons>;
+  /** delete data from the table: "pf_developmentstages" */
+  delete_pf_developmentstages?: Maybe<Pf_Developmentstages_Mutation_Response>;
+  /** delete single row from the table: "pf_developmentstages" */
+  delete_pf_developmentstages_by_pk?: Maybe<Pf_Developmentstages>;
   /** delete data from the table: "pf_examboards" */
   delete_pf_examboards?: Maybe<Pf_Examboards_Mutation_Response>;
   /** delete single row from the table: "pf_examboards" */
@@ -5704,6 +5769,10 @@ export type Mutation_Root = {
   insert_lessons?: Maybe<Lessons_Mutation_Response>;
   /** insert a single row into the table: "lessons" */
   insert_lessons_one?: Maybe<Lessons>;
+  /** insert data into the table: "pf_developmentstages" */
+  insert_pf_developmentstages?: Maybe<Pf_Developmentstages_Mutation_Response>;
+  /** insert a single row into the table: "pf_developmentstages" */
+  insert_pf_developmentstages_one?: Maybe<Pf_Developmentstages>;
   /** insert data into the table: "pf_examboards" */
   insert_pf_examboards?: Maybe<Pf_Examboards_Mutation_Response>;
   /** insert a single row into the table: "pf_examboards" */
@@ -5848,6 +5917,12 @@ export type Mutation_Root = {
   update_lessons_by_pk?: Maybe<Lessons>;
   /** update multiples rows of table: "lessons" */
   update_lessons_many?: Maybe<Array<Maybe<Lessons_Mutation_Response>>>;
+  /** update data of the table: "pf_developmentstages" */
+  update_pf_developmentstages?: Maybe<Pf_Developmentstages_Mutation_Response>;
+  /** update single row of the table: "pf_developmentstages" */
+  update_pf_developmentstages_by_pk?: Maybe<Pf_Developmentstages>;
+  /** update multiples rows of table: "pf_developmentstages" */
+  update_pf_developmentstages_many?: Maybe<Array<Maybe<Pf_Developmentstages_Mutation_Response>>>;
   /** update data of the table: "pf_examboards" */
   update_pf_examboards?: Maybe<Pf_Examboards_Mutation_Response>;
   /** update single row of the table: "pf_examboards" */
@@ -6104,6 +6179,19 @@ export type Mutation_RootDelete_LessonsArgs = {
 export type Mutation_RootDelete_Lessons_By_PkArgs = {
   _state: Scalars['String']['input'];
   lesson_id: Scalars['Int']['input'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pf_DevelopmentstagesArgs = {
+  where: Pf_Developmentstages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pf_Developmentstages_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  developmentstage_id: Scalars['Int']['input'];
 };
 
 
@@ -6521,6 +6609,20 @@ export type Mutation_RootInsert_LessonsArgs = {
 export type Mutation_RootInsert_Lessons_OneArgs = {
   object: Lessons_Insert_Input;
   on_conflict?: InputMaybe<Lessons_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pf_DevelopmentstagesArgs = {
+  objects: Array<Pf_Developmentstages_Insert_Input>;
+  on_conflict?: InputMaybe<Pf_Developmentstages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pf_Developmentstages_OneArgs = {
+  object: Pf_Developmentstages_Insert_Input;
+  on_conflict?: InputMaybe<Pf_Developmentstages_On_Conflict>;
 };
 
 
@@ -6948,7 +7050,12 @@ export type Mutation_RootUpdate_Cat_Nationalcurriculum_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Cat_SupervisionlevelsArgs = {
+  _append?: InputMaybe<Cat_Supervisionlevels_Append_Input>;
+  _delete_at_path?: InputMaybe<Cat_Supervisionlevels_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Cat_Supervisionlevels_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Cat_Supervisionlevels_Delete_Key_Input>;
   _inc?: InputMaybe<Cat_Supervisionlevels_Inc_Input>;
+  _prepend?: InputMaybe<Cat_Supervisionlevels_Prepend_Input>;
   _set?: InputMaybe<Cat_Supervisionlevels_Set_Input>;
   where: Cat_Supervisionlevels_Bool_Exp;
 };
@@ -6956,7 +7063,12 @@ export type Mutation_RootUpdate_Cat_SupervisionlevelsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Cat_Supervisionlevels_By_PkArgs = {
+  _append?: InputMaybe<Cat_Supervisionlevels_Append_Input>;
+  _delete_at_path?: InputMaybe<Cat_Supervisionlevels_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Cat_Supervisionlevels_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Cat_Supervisionlevels_Delete_Key_Input>;
   _inc?: InputMaybe<Cat_Supervisionlevels_Inc_Input>;
+  _prepend?: InputMaybe<Cat_Supervisionlevels_Prepend_Input>;
   _set?: InputMaybe<Cat_Supervisionlevels_Set_Input>;
   pk_columns: Cat_Supervisionlevels_Pk_Columns_Input;
 };
@@ -7119,8 +7231,45 @@ export type Mutation_RootUpdate_Lessons_ManyArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Pf_DevelopmentstagesArgs = {
+  _append?: InputMaybe<Pf_Developmentstages_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Developmentstages_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Developmentstages_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Developmentstages_Delete_Key_Input>;
+  _inc?: InputMaybe<Pf_Developmentstages_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Developmentstages_Prepend_Input>;
+  _set?: InputMaybe<Pf_Developmentstages_Set_Input>;
+  where: Pf_Developmentstages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pf_Developmentstages_By_PkArgs = {
+  _append?: InputMaybe<Pf_Developmentstages_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Developmentstages_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Developmentstages_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Developmentstages_Delete_Key_Input>;
+  _inc?: InputMaybe<Pf_Developmentstages_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Developmentstages_Prepend_Input>;
+  _set?: InputMaybe<Pf_Developmentstages_Set_Input>;
+  pk_columns: Pf_Developmentstages_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pf_Developmentstages_ManyArgs = {
+  updates: Array<Pf_Developmentstages_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_Pf_ExamboardsArgs = {
+  _append?: InputMaybe<Pf_Examboards_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Examboards_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Examboards_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Examboards_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Examboards_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Examboards_Prepend_Input>;
   _set?: InputMaybe<Pf_Examboards_Set_Input>;
   where: Pf_Examboards_Bool_Exp;
 };
@@ -7128,7 +7277,12 @@ export type Mutation_RootUpdate_Pf_ExamboardsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Examboards_By_PkArgs = {
+  _append?: InputMaybe<Pf_Examboards_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Examboards_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Examboards_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Examboards_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Examboards_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Examboards_Prepend_Input>;
   _set?: InputMaybe<Pf_Examboards_Set_Input>;
   pk_columns: Pf_Examboards_Pk_Columns_Input;
 };
@@ -7142,7 +7296,12 @@ export type Mutation_RootUpdate_Pf_Examboards_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_KeystagesArgs = {
+  _append?: InputMaybe<Pf_Keystages_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Keystages_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Keystages_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Keystages_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Keystages_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Keystages_Prepend_Input>;
   _set?: InputMaybe<Pf_Keystages_Set_Input>;
   where: Pf_Keystages_Bool_Exp;
 };
@@ -7150,7 +7309,12 @@ export type Mutation_RootUpdate_Pf_KeystagesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Keystages_By_PkArgs = {
+  _append?: InputMaybe<Pf_Keystages_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Keystages_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Keystages_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Keystages_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Keystages_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Keystages_Prepend_Input>;
   _set?: InputMaybe<Pf_Keystages_Set_Input>;
   pk_columns: Pf_Keystages_Pk_Columns_Input;
 };
@@ -7164,7 +7328,12 @@ export type Mutation_RootUpdate_Pf_Keystages_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_PhasesArgs = {
+  _append?: InputMaybe<Pf_Phases_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Phases_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Phases_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Phases_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Phases_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Phases_Prepend_Input>;
   _set?: InputMaybe<Pf_Phases_Set_Input>;
   where: Pf_Phases_Bool_Exp;
 };
@@ -7172,7 +7341,12 @@ export type Mutation_RootUpdate_Pf_PhasesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Phases_By_PkArgs = {
+  _append?: InputMaybe<Pf_Phases_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Phases_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Phases_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Phases_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Phases_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Phases_Prepend_Input>;
   _set?: InputMaybe<Pf_Phases_Set_Input>;
   pk_columns: Pf_Phases_Pk_Columns_Input;
 };
@@ -7186,7 +7360,12 @@ export type Mutation_RootUpdate_Pf_Phases_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_SubjectsArgs = {
+  _append?: InputMaybe<Pf_Subjects_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Subjects_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Subjects_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Subjects_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Subjects_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Subjects_Prepend_Input>;
   _set?: InputMaybe<Pf_Subjects_Set_Input>;
   where: Pf_Subjects_Bool_Exp;
 };
@@ -7194,7 +7373,12 @@ export type Mutation_RootUpdate_Pf_SubjectsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Subjects_By_PkArgs = {
+  _append?: InputMaybe<Pf_Subjects_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Subjects_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Subjects_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Subjects_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Subjects_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Subjects_Prepend_Input>;
   _set?: InputMaybe<Pf_Subjects_Set_Input>;
   pk_columns: Pf_Subjects_Pk_Columns_Input;
 };
@@ -7208,7 +7392,12 @@ export type Mutation_RootUpdate_Pf_Subjects_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_TiersArgs = {
+  _append?: InputMaybe<Pf_Tiers_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Tiers_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Tiers_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Tiers_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Tiers_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Tiers_Prepend_Input>;
   _set?: InputMaybe<Pf_Tiers_Set_Input>;
   where: Pf_Tiers_Bool_Exp;
 };
@@ -7216,7 +7405,12 @@ export type Mutation_RootUpdate_Pf_TiersArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Tiers_By_PkArgs = {
+  _append?: InputMaybe<Pf_Tiers_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Tiers_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Tiers_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Tiers_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Tiers_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Tiers_Prepend_Input>;
   _set?: InputMaybe<Pf_Tiers_Set_Input>;
   pk_columns: Pf_Tiers_Pk_Columns_Input;
 };
@@ -7230,7 +7424,12 @@ export type Mutation_RootUpdate_Pf_Tiers_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_YearsArgs = {
+  _append?: InputMaybe<Pf_Years_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Years_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Years_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Years_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Years_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Years_Prepend_Input>;
   _set?: InputMaybe<Pf_Years_Set_Input>;
   where: Pf_Years_Bool_Exp;
 };
@@ -7238,7 +7437,12 @@ export type Mutation_RootUpdate_Pf_YearsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Pf_Years_By_PkArgs = {
+  _append?: InputMaybe<Pf_Years_Append_Input>;
+  _delete_at_path?: InputMaybe<Pf_Years_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Pf_Years_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Pf_Years_Delete_Key_Input>;
   _inc?: InputMaybe<Pf_Years_Inc_Input>;
+  _prepend?: InputMaybe<Pf_Years_Prepend_Input>;
   _set?: InputMaybe<Pf_Years_Set_Input>;
   pk_columns: Pf_Years_Pk_Columns_Input;
 };
@@ -7370,7 +7574,12 @@ export type Mutation_RootUpdate_Published_Viewmanager_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_QuestionsArgs = {
+  _append?: InputMaybe<Questions_Append_Input>;
+  _delete_at_path?: InputMaybe<Questions_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Questions_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Questions_Delete_Key_Input>;
   _inc?: InputMaybe<Questions_Inc_Input>;
+  _prepend?: InputMaybe<Questions_Prepend_Input>;
   _set?: InputMaybe<Questions_Set_Input>;
   where: Questions_Bool_Exp;
 };
@@ -7378,7 +7587,12 @@ export type Mutation_RootUpdate_QuestionsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Questions_By_PkArgs = {
+  _append?: InputMaybe<Questions_Append_Input>;
+  _delete_at_path?: InputMaybe<Questions_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Questions_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Questions_Delete_Key_Input>;
   _inc?: InputMaybe<Questions_Inc_Input>;
+  _prepend?: InputMaybe<Questions_Prepend_Input>;
   _set?: InputMaybe<Questions_Set_Input>;
   pk_columns: Questions_Pk_Columns_Input;
 };
@@ -7488,7 +7702,12 @@ export type Mutation_RootUpdate_Thirdpartycontent_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Thread_UnitsArgs = {
+  _append?: InputMaybe<Thread_Units_Append_Input>;
+  _delete_at_path?: InputMaybe<Thread_Units_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Thread_Units_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Thread_Units_Delete_Key_Input>;
   _inc?: InputMaybe<Thread_Units_Inc_Input>;
+  _prepend?: InputMaybe<Thread_Units_Prepend_Input>;
   _set?: InputMaybe<Thread_Units_Set_Input>;
   where: Thread_Units_Bool_Exp;
 };
@@ -7496,7 +7715,12 @@ export type Mutation_RootUpdate_Thread_UnitsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Thread_Units_By_PkArgs = {
+  _append?: InputMaybe<Thread_Units_Append_Input>;
+  _delete_at_path?: InputMaybe<Thread_Units_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Thread_Units_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Thread_Units_Delete_Key_Input>;
   _inc?: InputMaybe<Thread_Units_Inc_Input>;
+  _prepend?: InputMaybe<Thread_Units_Prepend_Input>;
   _set?: InputMaybe<Thread_Units_Set_Input>;
   pk_columns: Thread_Units_Pk_Columns_Input;
 };
@@ -7510,7 +7734,12 @@ export type Mutation_RootUpdate_Thread_Units_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_ThreadsArgs = {
+  _append?: InputMaybe<Threads_Append_Input>;
+  _delete_at_path?: InputMaybe<Threads_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Threads_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Threads_Delete_Key_Input>;
   _inc?: InputMaybe<Threads_Inc_Input>;
+  _prepend?: InputMaybe<Threads_Prepend_Input>;
   _set?: InputMaybe<Threads_Set_Input>;
   where: Threads_Bool_Exp;
 };
@@ -7518,7 +7747,12 @@ export type Mutation_RootUpdate_ThreadsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Threads_By_PkArgs = {
+  _append?: InputMaybe<Threads_Append_Input>;
+  _delete_at_path?: InputMaybe<Threads_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Threads_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Threads_Delete_Key_Input>;
   _inc?: InputMaybe<Threads_Inc_Input>;
+  _prepend?: InputMaybe<Threads_Prepend_Input>;
   _set?: InputMaybe<Threads_Set_Input>;
   pk_columns: Threads_Pk_Columns_Input;
 };
@@ -7532,7 +7766,12 @@ export type Mutation_RootUpdate_Threads_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_UnitsArgs = {
+  _append?: InputMaybe<Units_Append_Input>;
+  _delete_at_path?: InputMaybe<Units_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Units_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Units_Delete_Key_Input>;
   _inc?: InputMaybe<Units_Inc_Input>;
+  _prepend?: InputMaybe<Units_Prepend_Input>;
   _set?: InputMaybe<Units_Set_Input>;
   where: Units_Bool_Exp;
 };
@@ -7540,7 +7779,12 @@ export type Mutation_RootUpdate_UnitsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Units_By_PkArgs = {
+  _append?: InputMaybe<Units_Append_Input>;
+  _delete_at_path?: InputMaybe<Units_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Units_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Units_Delete_Key_Input>;
   _inc?: InputMaybe<Units_Inc_Input>;
+  _prepend?: InputMaybe<Units_Prepend_Input>;
   _set?: InputMaybe<Units_Set_Input>;
   pk_columns: Units_Pk_Columns_Input;
 };
@@ -7695,6 +7939,381 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
+/** columns and relationships of "pf_developmentstages" */
+export type Pf_Developmentstages = {
+  __typename?: 'pf_developmentstages';
+  _cohort: Scalars['String']['output'];
+  _deleted: Scalars['Boolean']['output'];
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state: Scalars['String']['output'];
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  developmentstage?: Maybe<Scalars['String']['output']>;
+  developmentstage_id: Scalars['Int']['output'];
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_developmentstages" */
+export type Pf_DevelopmentstagesDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "pf_developmentstages" */
+export type Pf_Developmentstages_Aggregate = {
+  __typename?: 'pf_developmentstages_aggregate';
+  aggregate?: Maybe<Pf_Developmentstages_Aggregate_Fields>;
+  nodes: Array<Pf_Developmentstages>;
+};
+
+/** aggregate fields of "pf_developmentstages" */
+export type Pf_Developmentstages_Aggregate_Fields = {
+  __typename?: 'pf_developmentstages_aggregate_fields';
+  avg?: Maybe<Pf_Developmentstages_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Pf_Developmentstages_Max_Fields>;
+  min?: Maybe<Pf_Developmentstages_Min_Fields>;
+  stddev?: Maybe<Pf_Developmentstages_Stddev_Fields>;
+  stddev_pop?: Maybe<Pf_Developmentstages_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Pf_Developmentstages_Stddev_Samp_Fields>;
+  sum?: Maybe<Pf_Developmentstages_Sum_Fields>;
+  var_pop?: Maybe<Pf_Developmentstages_Var_Pop_Fields>;
+  var_samp?: Maybe<Pf_Developmentstages_Var_Samp_Fields>;
+  variance?: Maybe<Pf_Developmentstages_Variance_Fields>;
+};
+
+
+/** aggregate fields of "pf_developmentstages" */
+export type Pf_Developmentstages_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Pf_Developmentstages_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Developmentstages_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Pf_Developmentstages_Avg_Fields = {
+  __typename?: 'pf_developmentstages_avg_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "pf_developmentstages". All fields are combined with a logical 'AND'. */
+export type Pf_Developmentstages_Bool_Exp = {
+  _and?: InputMaybe<Array<Pf_Developmentstages_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+  _or?: InputMaybe<Array<Pf_Developmentstages_Bool_Exp>>;
+  _release_id?: InputMaybe<Int_Comparison_Exp>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
+  developmentstage?: InputMaybe<String_Comparison_Exp>;
+  developmentstage_id?: InputMaybe<Int_Comparison_Exp>;
+  display_order?: InputMaybe<Int_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pf_developmentstages" */
+export enum Pf_Developmentstages_Constraint {
+  /** unique or primary key constraint on columns "developmentstage_id", "_state" */
+  PfDevelopmentstagesPkey = 'pf_developmentstages_pkey',
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
+  PfDevelopmentstagesSlugStateCohortKey = 'pf_developmentstages_slug__state__cohort_key'
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Developmentstages_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Developmentstages_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Developmentstages_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** input type for incrementing numeric columns in table "pf_developmentstages" */
+export type Pf_Developmentstages_Inc_Input = {
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** input type for inserting data into table "pf_developmentstages" */
+export type Pf_Developmentstages_Insert_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  developmentstage?: InputMaybe<Scalars['String']['input']>;
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate max on columns */
+export type Pf_Developmentstages_Max_Fields = {
+  __typename?: 'pf_developmentstages_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  developmentstage?: Maybe<Scalars['String']['output']>;
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** aggregate min on columns */
+export type Pf_Developmentstages_Min_Fields = {
+  __typename?: 'pf_developmentstages_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  created_at?: Maybe<Scalars['timestamptz']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  developmentstage?: Maybe<Scalars['String']['output']>;
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+/** response of any mutation on the table "pf_developmentstages" */
+export type Pf_Developmentstages_Mutation_Response = {
+  __typename?: 'pf_developmentstages_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']['output'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pf_Developmentstages>;
+};
+
+/** on_conflict condition type for table "pf_developmentstages" */
+export type Pf_Developmentstages_On_Conflict = {
+  constraint: Pf_Developmentstages_Constraint;
+  update_columns?: Array<Pf_Developmentstages_Update_Column>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pf_developmentstages". */
+export type Pf_Developmentstages_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _release_id?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
+  developmentstage?: InputMaybe<Order_By>;
+  developmentstage_id?: InputMaybe<Order_By>;
+  display_order?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: pf_developmentstages */
+export type Pf_Developmentstages_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  developmentstage_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Developmentstages_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** select columns of table "pf_developmentstages" */
+export enum Pf_Developmentstages_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Developmentstage = 'developmentstage',
+  /** column name */
+  DevelopmentstageId = 'developmentstage_id',
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "pf_developmentstages" */
+export type Pf_Developmentstages_Set_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  developmentstage?: InputMaybe<Scalars['String']['input']>;
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate stddev on columns */
+export type Pf_Developmentstages_Stddev_Fields = {
+  __typename?: 'pf_developmentstages_stddev_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Pf_Developmentstages_Stddev_Pop_Fields = {
+  __typename?: 'pf_developmentstages_stddev_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Pf_Developmentstages_Stddev_Samp_Fields = {
+  __typename?: 'pf_developmentstages_stddev_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "pf_developmentstages" */
+export type Pf_Developmentstages_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Pf_Developmentstages_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Pf_Developmentstages_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _release_id?: InputMaybe<Scalars['Int']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  developmentstage?: InputMaybe<Scalars['String']['input']>;
+  developmentstage_id?: InputMaybe<Scalars['Int']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Pf_Developmentstages_Sum_Fields = {
+  __typename?: 'pf_developmentstages_sum_fields';
+  _release_id?: Maybe<Scalars['Int']['output']>;
+  developmentstage_id?: Maybe<Scalars['Int']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** update columns of table "pf_developmentstages" */
+export enum Pf_Developmentstages_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Developmentstage = 'developmentstage',
+  /** column name */
+  DevelopmentstageId = 'developmentstage_id',
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+export type Pf_Developmentstages_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Developmentstages_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Developmentstages_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Developmentstages_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Developmentstages_Delete_Key_Input>;
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Pf_Developmentstages_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Developmentstages_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Pf_Developmentstages_Set_Input>;
+  /** filter the rows which have to be updated */
+  where: Pf_Developmentstages_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Pf_Developmentstages_Var_Pop_Fields = {
+  __typename?: 'pf_developmentstages_var_pop_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Pf_Developmentstages_Var_Samp_Fields = {
+  __typename?: 'pf_developmentstages_var_samp_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Pf_Developmentstages_Variance_Fields = {
+  __typename?: 'pf_developmentstages_variance_fields';
+  _release_id?: Maybe<Scalars['Float']['output']>;
+  developmentstage_id?: Maybe<Scalars['Float']['output']>;
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "pf_examboards" */
 export type Pf_Examboards = {
   __typename?: 'pf_examboards';
@@ -7703,12 +8322,19 @@ export type Pf_Examboards = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   examboard?: Maybe<Scalars['String']['output']>;
   examboard_id: Scalars['Int']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_examboards" */
+export type Pf_ExamboardsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_examboards" */
@@ -7741,6 +8367,11 @@ export type Pf_Examboards_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Examboards_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Examboards_Avg_Fields = {
   __typename?: 'pf_examboards_avg_fields';
@@ -7759,6 +8390,7 @@ export type Pf_Examboards_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   examboard?: InputMaybe<String_Comparison_Exp>;
@@ -7775,6 +8407,21 @@ export enum Pf_Examboards_Constraint {
   PfExamboardsSlugStateCohortKey = 'pf_examboards_slug__state__cohort_key'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Examboards_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Examboards_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Examboards_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "pf_examboards" */
 export type Pf_Examboards_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -7789,6 +8436,7 @@ export type Pf_Examboards_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   examboard?: InputMaybe<Scalars['String']['input']>;
@@ -7850,6 +8498,7 @@ export type Pf_Examboards_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   examboard?: InputMaybe<Order_By>;
@@ -7864,6 +8513,11 @@ export type Pf_Examboards_Pk_Columns_Input = {
   examboard_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Examboards_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_examboards" */
 export enum Pf_Examboards_Select_Column {
   /** column name */
@@ -7876,6 +8530,8 @@ export enum Pf_Examboards_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -7897,6 +8553,7 @@ export type Pf_Examboards_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   examboard?: InputMaybe<Scalars['String']['input']>;
@@ -7944,6 +8601,7 @@ export type Pf_Examboards_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   examboard?: InputMaybe<Scalars['String']['input']>;
@@ -7973,6 +8631,8 @@ export enum Pf_Examboards_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -7987,8 +8647,18 @@ export enum Pf_Examboards_Update_Column {
 }
 
 export type Pf_Examboards_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Examboards_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Examboards_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Examboards_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Examboards_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Examboards_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Examboards_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Examboards_Set_Input>;
   /** filter the rows which have to be updated */
@@ -8027,12 +8697,19 @@ export type Pf_Keystages = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   keystage?: Maybe<Scalars['String']['output']>;
   keystage_id: Scalars['Int']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_keystages" */
+export type Pf_KeystagesDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_keystages" */
@@ -8065,6 +8742,11 @@ export type Pf_Keystages_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Keystages_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Keystages_Avg_Fields = {
   __typename?: 'pf_keystages_avg_fields';
@@ -8083,6 +8765,7 @@ export type Pf_Keystages_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   keystage?: InputMaybe<String_Comparison_Exp>;
@@ -8099,6 +8782,21 @@ export enum Pf_Keystages_Constraint {
   PfKeystagesSlugStateCohortKey = 'pf_keystages_slug__state__cohort_key'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Keystages_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Keystages_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Keystages_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "pf_keystages" */
 export type Pf_Keystages_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -8113,6 +8811,7 @@ export type Pf_Keystages_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   keystage?: InputMaybe<Scalars['String']['input']>;
@@ -8174,6 +8873,7 @@ export type Pf_Keystages_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   keystage?: InputMaybe<Order_By>;
@@ -8188,6 +8888,11 @@ export type Pf_Keystages_Pk_Columns_Input = {
   keystage_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Keystages_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_keystages" */
 export enum Pf_Keystages_Select_Column {
   /** column name */
@@ -8200,6 +8905,8 @@ export enum Pf_Keystages_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -8221,6 +8928,7 @@ export type Pf_Keystages_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   keystage?: InputMaybe<Scalars['String']['input']>;
@@ -8268,6 +8976,7 @@ export type Pf_Keystages_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   keystage?: InputMaybe<Scalars['String']['input']>;
@@ -8297,6 +9006,8 @@ export enum Pf_Keystages_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -8311,8 +9022,18 @@ export enum Pf_Keystages_Update_Column {
 }
 
 export type Pf_Keystages_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Keystages_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Keystages_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Keystages_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Keystages_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Keystages_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Keystages_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Keystages_Set_Input>;
   /** filter the rows which have to be updated */
@@ -8351,12 +9072,19 @@ export type Pf_Phases = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   phase?: Maybe<Scalars['String']['output']>;
   phase_id: Scalars['Int']['output'];
   slug?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_phases" */
+export type Pf_PhasesDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_phases" */
@@ -8389,6 +9117,11 @@ export type Pf_Phases_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Phases_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Phases_Avg_Fields = {
   __typename?: 'pf_phases_avg_fields';
@@ -8407,6 +9140,7 @@ export type Pf_Phases_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   phase?: InputMaybe<String_Comparison_Exp>;
@@ -8417,11 +9151,26 @@ export type Pf_Phases_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_phases" */
 export enum Pf_Phases_Constraint {
-  /** unique or primary key constraint on columns "_state", "phase_id" */
+  /** unique or primary key constraint on columns "phase_id", "_state" */
   PfPhasesPkey = 'pf_phases_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfPhasesSlugStateCohortKey = 'pf_phases_slug__state__cohort_key'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Phases_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Phases_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Phases_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "pf_phases" */
 export type Pf_Phases_Inc_Input = {
@@ -8437,6 +9186,7 @@ export type Pf_Phases_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   phase?: InputMaybe<Scalars['String']['input']>;
@@ -8498,6 +9248,7 @@ export type Pf_Phases_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   phase?: InputMaybe<Order_By>;
@@ -8512,6 +9263,11 @@ export type Pf_Phases_Pk_Columns_Input = {
   phase_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Phases_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_phases" */
 export enum Pf_Phases_Select_Column {
   /** column name */
@@ -8524,6 +9280,8 @@ export enum Pf_Phases_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -8545,6 +9303,7 @@ export type Pf_Phases_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   phase?: InputMaybe<Scalars['String']['input']>;
@@ -8592,6 +9351,7 @@ export type Pf_Phases_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   phase?: InputMaybe<Scalars['String']['input']>;
@@ -8621,6 +9381,8 @@ export enum Pf_Phases_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -8635,8 +9397,18 @@ export enum Pf_Phases_Update_Column {
 }
 
 export type Pf_Phases_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Phases_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Phases_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Phases_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Phases_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Phases_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Phases_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Phases_Set_Input>;
   /** filter the rows which have to be updated */
@@ -8675,6 +9447,7 @@ export type Pf_Subjects = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -8682,6 +9455,12 @@ export type Pf_Subjects = {
   subject_id: Scalars['Int']['output'];
   subject_parent_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_subjects" */
+export type Pf_SubjectsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_subjects" */
@@ -8714,6 +9493,11 @@ export type Pf_Subjects_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Subjects_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Subjects_Avg_Fields = {
   __typename?: 'pf_subjects_avg_fields';
@@ -8733,6 +9517,7 @@ export type Pf_Subjects_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
@@ -8750,6 +9535,21 @@ export enum Pf_Subjects_Constraint {
   PfSubjectsSlugStateCohortKey = 'pf_subjects_slug__state__cohort_key'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Subjects_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Subjects_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Subjects_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "pf_subjects" */
 export type Pf_Subjects_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -8765,6 +9565,7 @@ export type Pf_Subjects_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -8829,6 +9630,7 @@ export type Pf_Subjects_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
@@ -8844,6 +9646,11 @@ export type Pf_Subjects_Pk_Columns_Input = {
   subject_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Subjects_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_subjects" */
 export enum Pf_Subjects_Select_Column {
   /** column name */
@@ -8856,6 +9663,8 @@ export enum Pf_Subjects_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -8879,6 +9688,7 @@ export type Pf_Subjects_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -8930,6 +9740,7 @@ export type Pf_Subjects_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -8961,6 +9772,8 @@ export enum Pf_Subjects_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -8977,8 +9790,18 @@ export enum Pf_Subjects_Update_Column {
 }
 
 export type Pf_Subjects_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Subjects_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Subjects_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Subjects_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Subjects_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Subjects_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Subjects_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Subjects_Set_Input>;
   /** filter the rows which have to be updated */
@@ -9020,12 +9843,19 @@ export type Pf_Tiers = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   tier?: Maybe<Scalars['String']['output']>;
   tier_id: Scalars['Int']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "pf_tiers" */
+export type Pf_TiersDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_tiers" */
@@ -9058,6 +9888,11 @@ export type Pf_Tiers_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Tiers_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Tiers_Avg_Fields = {
   __typename?: 'pf_tiers_avg_fields';
@@ -9076,6 +9911,7 @@ export type Pf_Tiers_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
@@ -9086,11 +9922,26 @@ export type Pf_Tiers_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_tiers" */
 export enum Pf_Tiers_Constraint {
-  /** unique or primary key constraint on columns "_state", "tier_id" */
+  /** unique or primary key constraint on columns "tier_id", "_state" */
   PfTiersPkey = 'pf_tiers_pkey',
   /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfTiersSlugStateCohortKey = 'pf_tiers_slug__state__cohort_key'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Tiers_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Tiers_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Tiers_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "pf_tiers" */
 export type Pf_Tiers_Inc_Input = {
@@ -9106,6 +9957,7 @@ export type Pf_Tiers_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9167,6 +10019,7 @@ export type Pf_Tiers_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
@@ -9181,6 +10034,11 @@ export type Pf_Tiers_Pk_Columns_Input = {
   tier_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Tiers_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_tiers" */
 export enum Pf_Tiers_Select_Column {
   /** column name */
@@ -9193,6 +10051,8 @@ export enum Pf_Tiers_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -9214,6 +10074,7 @@ export type Pf_Tiers_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9261,6 +10122,7 @@ export type Pf_Tiers_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9290,6 +10152,8 @@ export enum Pf_Tiers_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -9304,8 +10168,18 @@ export enum Pf_Tiers_Update_Column {
 }
 
 export type Pf_Tiers_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Tiers_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Tiers_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Tiers_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Tiers_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Tiers_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Tiers_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Tiers_Set_Input>;
   /** filter the rows which have to be updated */
@@ -9344,12 +10218,19 @@ export type Pf_Years = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
   year?: Maybe<Scalars['String']['output']>;
   year_id: Scalars['Int']['output'];
+};
+
+
+/** columns and relationships of "pf_years" */
+export type Pf_YearsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** aggregated selection of "pf_years" */
@@ -9382,6 +10263,11 @@ export type Pf_Years_Aggregate_FieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Years_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** aggregate avg on columns */
 export type Pf_Years_Avg_Fields = {
   __typename?: 'pf_years_avg_fields';
@@ -9400,6 +10286,7 @@ export type Pf_Years_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
@@ -9416,6 +10303,21 @@ export enum Pf_Years_Constraint {
   PfYearsSlugStateCohortKey = 'pf_years_slug__state__cohort_key'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Pf_Years_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Pf_Years_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Pf_Years_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "pf_years" */
 export type Pf_Years_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -9430,6 +10332,7 @@ export type Pf_Years_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9491,6 +10394,7 @@ export type Pf_Years_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
@@ -9505,6 +10409,11 @@ export type Pf_Years_Pk_Columns_Input = {
   year_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Pf_Years_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "pf_years" */
 export enum Pf_Years_Select_Column {
   /** column name */
@@ -9517,6 +10426,8 @@ export enum Pf_Years_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -9538,6 +10449,7 @@ export type Pf_Years_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9585,6 +10497,7 @@ export type Pf_Years_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -9614,6 +10527,8 @@ export enum Pf_Years_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
@@ -9628,8 +10543,18 @@ export enum Pf_Years_Update_Column {
 }
 
 export type Pf_Years_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Pf_Years_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Pf_Years_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Pf_Years_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Pf_Years_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Pf_Years_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Pf_Years_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Pf_Years_Set_Input>;
   /** filter the rows which have to be updated */
@@ -9668,6 +10593,7 @@ export type Programme_Threads = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at: Scalars['timestamptz']['output'];
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   /** An object relationship */
   programme?: Maybe<Programmes>;
@@ -9685,6 +10611,12 @@ export type Programme_Threads = {
   /** An aggregate relationship */
   threads_all_states_aggregate: Threads_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
+};
+
+
+/** columns and relationships of "programme_threads" */
+export type Programme_ThreadsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -9807,6 +10739,7 @@ export type Programme_Threads_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Programme_Threads_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thread_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -9844,6 +10777,7 @@ export type Programme_Threads_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   programme?: InputMaybe<Programmes_Bool_Exp>;
   programme_id?: InputMaybe<Int_Comparison_Exp>;
@@ -9859,22 +10793,25 @@ export type Programme_Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "programme_threads" */
 export enum Programme_Threads_Constraint {
-  /** unique or primary key constraint on columns "thread_id", "_state", "programme_id" */
+  /** unique or primary key constraint on columns "_state", "thread_id", "programme_id" */
   ProgrammeThreadsPkey = 'programme_threads_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Programme_Threads_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   thread_overrides?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Programme_Threads_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   thread_overrides?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Programme_Threads_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   thread_overrides?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -9893,6 +10830,7 @@ export type Programme_Threads_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme?: InputMaybe<Programmes_Obj_Rel_Insert_Input>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
@@ -9977,6 +10915,7 @@ export type Programme_Threads_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   programme?: InputMaybe<Programmes_Order_By>;
   programme_id?: InputMaybe<Order_By>;
@@ -9997,6 +10936,7 @@ export type Programme_Threads_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Programme_Threads_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thread_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -10012,6 +10952,8 @@ export enum Programme_Threads_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -10043,6 +10985,7 @@ export type Programme_Threads_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
   thread_id?: InputMaybe<Scalars['Int']['input']>;
@@ -10116,6 +11059,7 @@ export type Programme_Threads_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
   thread_id?: InputMaybe<Scalars['Int']['input']>;
@@ -10152,6 +11096,8 @@ export enum Programme_Threads_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -10242,6 +11188,7 @@ export type Programme_Units = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at: Scalars['timestamptz']['output'];
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   /** An object relationship */
   programme?: Maybe<Programmes>;
@@ -10259,6 +11206,12 @@ export type Programme_Units = {
   /** An aggregate relationship */
   units_all_states_aggregate: Units_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
+};
+
+
+/** columns and relationships of "programme_units" */
+export type Programme_UnitsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -10381,6 +11334,7 @@ export type Programme_Units_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Programme_Units_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -10418,6 +11372,7 @@ export type Programme_Units_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   programme?: InputMaybe<Programmes_Bool_Exp>;
   programme_id?: InputMaybe<Int_Comparison_Exp>;
@@ -10439,16 +11394,19 @@ export enum Programme_Units_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Programme_Units_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   unit_overrides?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Programme_Units_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   unit_overrides?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Programme_Units_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   unit_overrides?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -10467,6 +11425,7 @@ export type Programme_Units_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme?: InputMaybe<Programmes_Obj_Rel_Insert_Input>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
@@ -10551,6 +11510,7 @@ export type Programme_Units_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   programme?: InputMaybe<Programmes_Order_By>;
   programme_id?: InputMaybe<Order_By>;
@@ -10571,6 +11531,7 @@ export type Programme_Units_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Programme_Units_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -10586,6 +11547,8 @@ export enum Programme_Units_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -10617,6 +11580,7 @@ export type Programme_Units_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -10690,6 +11654,7 @@ export type Programme_Units_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -10726,6 +11691,8 @@ export enum Programme_Units_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -10819,6 +11786,7 @@ export type Programmes = {
   adapt_video_id?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   curriculum_intent?: Maybe<Scalars['String']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
   programme_fields: Scalars['jsonb']['output'];
   programme_id: Scalars['Int']['output'];
@@ -10845,6 +11813,12 @@ export type Programmes = {
 
 /** columns and relationships of "programmes" */
 export type Programmes_MetadataArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "programmes" */
+export type ProgrammesDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11008,6 +11982,7 @@ export type Programmes_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Programmes_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -11048,6 +12023,7 @@ export type Programmes_Bool_Exp = {
   adapt_video_id?: InputMaybe<Int_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   curriculum_intent?: InputMaybe<String_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   intro_video_id?: InputMaybe<Int_Comparison_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   programme_id?: InputMaybe<Int_Comparison_Exp>;
@@ -11073,16 +12049,19 @@ export enum Programmes_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Programmes_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Programmes_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Programmes_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -11104,6 +12083,7 @@ export type Programmes_Insert_Input = {
   adapt_video_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   curriculum_intent?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
@@ -11206,6 +12186,7 @@ export type Programmes_Order_By = {
   adapt_video_id?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   curriculum_intent?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   intro_video_id?: InputMaybe<Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   programme_id?: InputMaybe<Order_By>;
@@ -11225,6 +12206,7 @@ export type Programmes_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Programmes_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -11246,6 +12228,8 @@ export enum Programmes_Select_Column {
   CreatedAt = 'created_at',
   /** column name */
   CurriculumIntent = 'curriculum_intent',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   IntroVideoId = 'intro_video_id',
   /** column name */
@@ -11280,6 +12264,7 @@ export type Programmes_Set_Input = {
   adapt_video_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   curriculum_intent?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
@@ -11356,6 +12341,7 @@ export type Programmes_Stream_Cursor_Value_Input = {
   adapt_video_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   curriculum_intent?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_id?: InputMaybe<Scalars['Int']['input']>;
@@ -11398,6 +12384,8 @@ export enum Programmes_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   CurriculumIntent = 'curriculum_intent',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   IntroVideoId = 'intro_video_id',
   /** column name */
@@ -19865,6 +20853,12 @@ export type Query_Root = {
   lessons_aggregate: Lessons_Aggregate;
   /** fetch data from the table: "lessons" using primary key columns */
   lessons_by_pk?: Maybe<Lessons>;
+  /** fetch data from the table: "pf_developmentstages" */
+  pf_developmentstages: Array<Pf_Developmentstages>;
+  /** fetch aggregated fields from the table: "pf_developmentstages" */
+  pf_developmentstages_aggregate: Pf_Developmentstages_Aggregate;
+  /** fetch data from the table: "pf_developmentstages" using primary key columns */
+  pf_developmentstages_by_pk?: Maybe<Pf_Developmentstages>;
   /** fetch data from the table: "pf_examboards" */
   pf_examboards: Array<Pf_Examboards>;
   /** fetch aggregated fields from the table: "pf_examboards" */
@@ -20379,6 +21373,30 @@ export type Query_RootLessons_AggregateArgs = {
 export type Query_RootLessons_By_PkArgs = {
   _state: Scalars['String']['input'];
   lesson_id: Scalars['Int']['input'];
+};
+
+
+export type Query_RootPf_DevelopmentstagesArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Developmentstages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Developmentstages_Order_By>>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+};
+
+
+export type Query_RootPf_Developmentstages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Developmentstages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Developmentstages_Order_By>>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+};
+
+
+export type Query_RootPf_Developmentstages_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  developmentstage_id: Scalars['Int']['input'];
 };
 
 
@@ -21567,6 +22585,7 @@ export type Questions = {
   /** A computed field, executes function "function__questions__answers_clean" */
   answers_clean?: Maybe<Scalars['json']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   feedback?: Maybe<Scalars['String']['output']>;
   hint?: Maybe<Scalars['String']['output']>;
   question_id: Scalars['Int']['output'];
@@ -21595,6 +22614,12 @@ export type QuestionsAnswersArgs = {
 
 /** columns and relationships of "questions" */
 export type QuestionsAnswers_CleanArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "questions" */
+export type QuestionsDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -21722,6 +22747,11 @@ export type Questions_Aggregate_Order_By = {
   variance?: InputMaybe<Questions_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Questions_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "questions" */
 export type Questions_Arr_Rel_Insert_Input = {
   data: Array<Questions_Insert_Input>;
@@ -21755,6 +22785,7 @@ export type Questions_Bool_Exp = {
   answers?: InputMaybe<Json_Comparison_Exp>;
   answers_clean?: InputMaybe<Json_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   feedback?: InputMaybe<String_Comparison_Exp>;
   hint?: InputMaybe<String_Comparison_Exp>;
   question_id?: InputMaybe<Int_Comparison_Exp>;
@@ -21775,6 +22806,21 @@ export enum Questions_Constraint {
   QuestionsPkey = 'questions_pkey'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Questions_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Questions_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Questions_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "questions" */
 export type Questions_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -21790,6 +22836,7 @@ export type Questions_Insert_Input = {
   active?: InputMaybe<Scalars['Boolean']['input']>;
   answers?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   feedback?: InputMaybe<Scalars['String']['input']>;
   hint?: InputMaybe<Scalars['String']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
@@ -21892,6 +22939,7 @@ export type Questions_Order_By = {
   answers?: InputMaybe<Order_By>;
   answers_clean?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   feedback?: InputMaybe<Order_By>;
   hint?: InputMaybe<Order_By>;
   question_id?: InputMaybe<Order_By>;
@@ -21910,6 +22958,11 @@ export type Questions_Pk_Columns_Input = {
   question_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Questions_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "questions" */
 export enum Questions_Select_Column {
   /** column name */
@@ -21926,6 +22979,8 @@ export enum Questions_Select_Column {
   Answers = 'answers',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Feedback = 'feedback',
   /** column name */
@@ -21967,6 +23022,7 @@ export type Questions_Set_Input = {
   active?: InputMaybe<Scalars['Boolean']['input']>;
   answers?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   feedback?: InputMaybe<Scalars['String']['input']>;
   hint?: InputMaybe<Scalars['String']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
@@ -22032,6 +23088,7 @@ export type Questions_Stream_Cursor_Value_Input = {
   active?: InputMaybe<Scalars['Boolean']['input']>;
   answers?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   feedback?: InputMaybe<Scalars['String']['input']>;
   hint?: InputMaybe<Scalars['String']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
@@ -22071,6 +23128,8 @@ export enum Questions_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Feedback = 'feedback',
   /** column name */
   Hint = 'hint',
@@ -22087,8 +23146,18 @@ export enum Questions_Update_Column {
 }
 
 export type Questions_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Questions_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Questions_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Questions_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Questions_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Questions_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Questions_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Questions_Set_Input>;
   /** filter the rows which have to be updated */
@@ -22142,6 +23211,7 @@ export type Quiz_Questions = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   /** An object relationship */
   question?: Maybe<Questions>;
@@ -22159,6 +23229,12 @@ export type Quiz_Questions = {
   quiz_all_states_aggregate: Quizzes_Aggregate;
   quiz_id: Scalars['Int']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "quiz_questions" */
+export type Quiz_QuestionsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -22281,6 +23357,7 @@ export type Quiz_Questions_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Quiz_Questions_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   question_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -22318,6 +23395,7 @@ export type Quiz_Questions_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   question?: InputMaybe<Questions_Bool_Exp>;
   question_all_states?: InputMaybe<Questions_Bool_Exp>;
@@ -22333,22 +23411,25 @@ export type Quiz_Questions_Bool_Exp = {
 
 /** unique or primary key constraints on table "quiz_questions" */
 export enum Quiz_Questions_Constraint {
-  /** unique or primary key constraint on columns "quiz_id", "question_id", "_state" */
+  /** unique or primary key constraint on columns "question_id", "quiz_id", "_state" */
   QuizQuestionsPkey = 'quiz_questions_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Quiz_Questions_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   question_overrides?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Quiz_Questions_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   question_overrides?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Quiz_Questions_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   question_overrides?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -22367,6 +23448,7 @@ export type Quiz_Questions_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   question?: InputMaybe<Questions_Obj_Rel_Insert_Input>;
   question_all_states?: InputMaybe<Questions_Arr_Rel_Insert_Input>;
@@ -22451,6 +23533,7 @@ export type Quiz_Questions_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   question?: InputMaybe<Questions_Order_By>;
   question_all_states_aggregate?: InputMaybe<Questions_Aggregate_Order_By>;
@@ -22471,6 +23554,7 @@ export type Quiz_Questions_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Quiz_Questions_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   question_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -22486,6 +23570,8 @@ export enum Quiz_Questions_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -22517,6 +23603,7 @@ export type Quiz_Questions_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
   question_overrides?: InputMaybe<Scalars['jsonb']['input']>;
@@ -22590,6 +23677,7 @@ export type Quiz_Questions_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   question_id?: InputMaybe<Scalars['Int']['input']>;
   question_overrides?: InputMaybe<Scalars['jsonb']['input']>;
@@ -22626,6 +23714,8 @@ export enum Quiz_Questions_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -22716,7 +23806,7 @@ export type Quizzes = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  deprecated_fields?: Maybe<Scalars['json']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__quizzes__lessons" */
   lessons?: Maybe<Array<Lessons>>;
@@ -22871,6 +23961,7 @@ export type Quizzes_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Quizzes_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   quiz_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -22904,7 +23995,7 @@ export type Quizzes_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  deprecated_fields?: InputMaybe<Json_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   lessons?: InputMaybe<Lessons_Bool_Exp>;
   quiz_id?: InputMaybe<Int_Comparison_Exp>;
@@ -22926,16 +24017,19 @@ export enum Quizzes_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Quizzes_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   quiz_object?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Quizzes_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   quiz_object?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Quizzes_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   quiz_object?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -22952,7 +24046,7 @@ export type Quizzes_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   quiz_object?: InputMaybe<Scalars['jsonb']['input']>;
@@ -23067,6 +24161,7 @@ export type Quizzes_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Quizzes_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   quiz_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -23117,7 +24212,7 @@ export type Quizzes_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   quiz_object?: InputMaybe<Scalars['jsonb']['input']>;
@@ -23180,7 +24275,7 @@ export type Quizzes_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
-  deprecated_fields?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   quiz_object?: InputMaybe<Scalars['jsonb']['input']>;
@@ -23370,6 +24465,14 @@ export type Subscription_Root = {
   lessons_by_pk?: Maybe<Lessons>;
   /** fetch data from the table in a streaming manner: "lessons" */
   lessons_stream: Array<Lessons>;
+  /** fetch data from the table: "pf_developmentstages" */
+  pf_developmentstages: Array<Pf_Developmentstages>;
+  /** fetch aggregated fields from the table: "pf_developmentstages" */
+  pf_developmentstages_aggregate: Pf_Developmentstages_Aggregate;
+  /** fetch data from the table: "pf_developmentstages" using primary key columns */
+  pf_developmentstages_by_pk?: Maybe<Pf_Developmentstages>;
+  /** fetch data from the table in a streaming manner: "pf_developmentstages" */
+  pf_developmentstages_stream: Array<Pf_Developmentstages>;
   /** fetch data from the table: "pf_examboards" */
   pf_examboards: Array<Pf_Examboards>;
   /** fetch aggregated fields from the table: "pf_examboards" */
@@ -24070,6 +25173,37 @@ export type Subscription_RootLessons_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Lessons_Stream_Cursor_Input>>;
   where?: InputMaybe<Lessons_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_DevelopmentstagesArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Developmentstages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Developmentstages_Order_By>>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_Developmentstages_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Pf_Developmentstages_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Pf_Developmentstages_Order_By>>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
+};
+
+
+export type Subscription_RootPf_Developmentstages_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  developmentstage_id: Scalars['Int']['input'];
+};
+
+
+export type Subscription_RootPf_Developmentstages_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Pf_Developmentstages_Stream_Cursor_Input>>;
+  where?: InputMaybe<Pf_Developmentstages_Bool_Exp>;
 };
 
 
@@ -25667,6 +26801,7 @@ export type Thirdpartycontent = {
   content_status?: Maybe<Scalars['String']['output']>;
   content_type?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   end_date?: Maybe<Scalars['date']['output']>;
   fair_dealing?: Maybe<Scalars['Boolean']['output']>;
   login_required?: Maybe<Scalars['Boolean']['output']>;
@@ -25691,6 +26826,12 @@ export type Thirdpartycontent = {
 
 /** columns and relationships of "thirdpartycontent" */
 export type ThirdpartycontentContent_DetailsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "thirdpartycontent" */
+export type ThirdpartycontentDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -25768,6 +26909,7 @@ export type Thirdpartycontent_Aggregate_Order_By = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Thirdpartycontent_Append_Input = {
   content_details?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   terms?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -25805,6 +26947,7 @@ export type Thirdpartycontent_Bool_Exp = {
   content_status?: InputMaybe<String_Comparison_Exp>;
   content_type?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   end_date?: InputMaybe<Date_Comparison_Exp>;
   fair_dealing?: InputMaybe<Boolean_Comparison_Exp>;
   login_required?: InputMaybe<Boolean_Comparison_Exp>;
@@ -25825,25 +26968,28 @@ export type Thirdpartycontent_Bool_Exp = {
 
 /** unique or primary key constraints on table "thirdpartycontent" */
 export enum Thirdpartycontent_Constraint {
-  /** unique or primary key constraint on columns "_state", "thirdpartycontent_id" */
+  /** unique or primary key constraint on columns "thirdpartycontent_id", "_state" */
   ThirdpartycontentPkey = 'thirdpartycontent_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Thirdpartycontent_Delete_At_Path_Input = {
   content_details?: InputMaybe<Array<Scalars['String']['input']>>;
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   terms?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Thirdpartycontent_Delete_Elem_Input = {
   content_details?: InputMaybe<Scalars['Int']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   terms?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Thirdpartycontent_Delete_Key_Input = {
   content_details?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   terms?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -25869,6 +27015,7 @@ export type Thirdpartycontent_Insert_Input = {
   content_status?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   end_date?: InputMaybe<Scalars['date']['input']>;
   fair_dealing?: InputMaybe<Scalars['Boolean']['input']>;
   login_required?: InputMaybe<Scalars['Boolean']['input']>;
@@ -26014,6 +27161,7 @@ export type Thirdpartycontent_Order_By = {
   content_status?: InputMaybe<Order_By>;
   content_type?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   end_date?: InputMaybe<Order_By>;
   fair_dealing?: InputMaybe<Order_By>;
   login_required?: InputMaybe<Order_By>;
@@ -26040,6 +27188,7 @@ export type Thirdpartycontent_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Thirdpartycontent_Prepend_Input = {
   content_details?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   terms?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -26069,6 +27218,8 @@ export enum Thirdpartycontent_Select_Column {
   ContentType = 'content_type',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   EndDate = 'end_date',
   /** column name */
@@ -26111,6 +27262,7 @@ export type Thirdpartycontent_Set_Input = {
   content_status?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   end_date?: InputMaybe<Scalars['date']['input']>;
   fair_dealing?: InputMaybe<Scalars['Boolean']['input']>;
   login_required?: InputMaybe<Scalars['Boolean']['input']>;
@@ -26199,6 +27351,7 @@ export type Thirdpartycontent_Stream_Cursor_Value_Input = {
   content_status?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   end_date?: InputMaybe<Scalars['date']['input']>;
   fair_dealing?: InputMaybe<Scalars['Boolean']['input']>;
   login_required?: InputMaybe<Scalars['Boolean']['input']>;
@@ -26257,6 +27410,8 @@ export enum Thirdpartycontent_Update_Column {
   ContentType = 'content_type',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   EndDate = 'end_date',
   /** column name */
@@ -26363,6 +27518,7 @@ export type Thread_Units = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at: Scalars['timestamptz']['output'];
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   order?: Maybe<Scalars['Int']['output']>;
   /** An object relationship */
   thread?: Maybe<Threads>;
@@ -26379,6 +27535,12 @@ export type Thread_Units = {
   /** An aggregate relationship */
   units_all_states_aggregate: Units_Aggregate;
   updated_at: Scalars['timestamptz']['output'];
+};
+
+
+/** columns and relationships of "thread_units" */
+export type Thread_UnitsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -26493,6 +27655,11 @@ export type Thread_Units_Aggregate_Order_By = {
   variance?: InputMaybe<Thread_Units_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Thread_Units_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "thread_units" */
 export type Thread_Units_Arr_Rel_Insert_Input = {
   data: Array<Thread_Units_Insert_Input>;
@@ -26527,6 +27694,7 @@ export type Thread_Units_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   order?: InputMaybe<Int_Comparison_Exp>;
   thread?: InputMaybe<Threads_Bool_Exp>;
   thread_id?: InputMaybe<Int_Comparison_Exp>;
@@ -26541,9 +27709,24 @@ export type Thread_Units_Bool_Exp = {
 
 /** unique or primary key constraints on table "thread_units" */
 export enum Thread_Units_Constraint {
-  /** unique or primary key constraint on columns "unit_id", "thread_id", "_state" */
+  /** unique or primary key constraint on columns "unit_id", "_state", "thread_id" */
   ThreadUnitsPkey = 'thread_units_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Thread_Units_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Thread_Units_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Thread_Units_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "thread_units" */
 export type Thread_Units_Inc_Input = {
@@ -26560,6 +27743,7 @@ export type Thread_Units_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   thread?: InputMaybe<Threads_Obj_Rel_Insert_Input>;
   thread_id?: InputMaybe<Scalars['Int']['input']>;
@@ -26643,6 +27827,7 @@ export type Thread_Units_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   order?: InputMaybe<Order_By>;
   thread?: InputMaybe<Threads_Order_By>;
   thread_id?: InputMaybe<Order_By>;
@@ -26660,6 +27845,11 @@ export type Thread_Units_Pk_Columns_Input = {
   unit_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Thread_Units_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "thread_units" */
 export enum Thread_Units_Select_Column {
   /** column name */
@@ -26672,6 +27862,8 @@ export enum Thread_Units_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Order = 'order',
   /** column name */
@@ -26701,6 +27893,7 @@ export type Thread_Units_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   thread_id?: InputMaybe<Scalars['Int']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -26773,6 +27966,7 @@ export type Thread_Units_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
   thread_id?: InputMaybe<Scalars['Int']['input']>;
   unit_id?: InputMaybe<Scalars['Int']['input']>;
@@ -26809,6 +28003,8 @@ export enum Thread_Units_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Order = 'order',
   /** column name */
   ThreadId = 'thread_id',
@@ -26819,8 +28015,18 @@ export enum Thread_Units_Update_Column {
 }
 
 export type Thread_Units_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Thread_Units_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Thread_Units_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Thread_Units_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Thread_Units_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Thread_Units_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Thread_Units_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Thread_Units_Set_Input>;
   /** filter the rows which have to be updated */
@@ -26890,6 +28096,7 @@ export type Threads = {
   /** An aggregate relationship */
   child_threads_aggregate: Threads_Aggregate;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   /** An object relationship */
   parent_thread?: Maybe<Threads>;
@@ -26935,6 +28142,12 @@ export type ThreadsChild_Threads_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Threads_Order_By>>;
   where?: InputMaybe<Threads_Bool_Exp>;
+};
+
+
+/** columns and relationships of "threads" */
+export type ThreadsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -27089,6 +28302,11 @@ export type Threads_Aggregate_Order_By = {
   variance?: InputMaybe<Threads_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Threads_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "threads" */
 export type Threads_Arr_Rel_Insert_Input = {
   data: Array<Threads_Insert_Input>;
@@ -27123,6 +28341,7 @@ export type Threads_Bool_Exp = {
   child_threads?: InputMaybe<Threads_Bool_Exp>;
   child_threads_aggregate?: InputMaybe<Threads_Aggregate_Bool_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   parent_thread?: InputMaybe<Threads_Bool_Exp>;
   parent_thread_id?: InputMaybe<Int_Comparison_Exp>;
@@ -27143,9 +28362,24 @@ export type Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "threads" */
 export enum Threads_Constraint {
-  /** unique or primary key constraint on columns "thread_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "thread_id" */
   ThreadsPkey = 'threads_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Threads_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Threads_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Threads_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
 
 /** input type for incrementing numeric columns in table "threads" */
 export type Threads_Inc_Input = {
@@ -27162,6 +28396,7 @@ export type Threads_Insert_Input = {
   _state?: InputMaybe<Scalars['String']['input']>;
   child_threads?: InputMaybe<Threads_Arr_Rel_Insert_Input>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   parent_thread?: InputMaybe<Threads_Obj_Rel_Insert_Input>;
   parent_thread_id?: InputMaybe<Scalars['Int']['input']>;
@@ -27269,6 +28504,7 @@ export type Threads_Order_By = {
   _state?: InputMaybe<Order_By>;
   child_threads_aggregate?: InputMaybe<Threads_Aggregate_Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   parent_thread?: InputMaybe<Threads_Order_By>;
   parent_thread_id?: InputMaybe<Order_By>;
@@ -27289,6 +28525,11 @@ export type Threads_Pk_Columns_Input = {
   thread_id: Scalars['Int']['input'];
 };
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Threads_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** select columns of table "threads" */
 export enum Threads_Select_Column {
   /** column name */
@@ -27301,6 +28542,8 @@ export enum Threads_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -27336,6 +28579,7 @@ export type Threads_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   parent_thread_id?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -27405,6 +28649,7 @@ export type Threads_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   parent_thread_id?: InputMaybe<Scalars['Int']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
@@ -27442,6 +28687,8 @@ export enum Threads_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   ParentThreadId = 'parent_thread_id',
@@ -27458,8 +28705,18 @@ export enum Threads_Update_Column {
 }
 
 export type Threads_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Threads_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Threads_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Threads_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Threads_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Threads_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Threads_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Threads_Set_Input>;
   /** filter the rows which have to be updated */
@@ -27552,6 +28809,7 @@ export type Units = {
   connections_prior_units?: Maybe<Scalars['json']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   cross_subject_links?: Maybe<Scalars['json']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   exam_board_specification_content?: Maybe<Scalars['json']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
@@ -27650,6 +28908,12 @@ export type UnitsConnections_Prior_UnitsArgs = {
 
 /** columns and relationships of "units" */
 export type UnitsCross_Subject_LinksArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "units" */
+export type UnitsDeprecated_FieldsArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -27879,6 +29143,11 @@ export type Units_Aggregate_Order_By = {
   variance?: InputMaybe<Units_Variance_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Units_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
 /** input type for inserting array relation for remote table "units" */
 export type Units_Arr_Rel_Insert_Input = {
   data: Array<Units_Insert_Input>;
@@ -27931,6 +29200,7 @@ export type Units_Bool_Exp = {
   connections_prior_units?: InputMaybe<Json_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   cross_subject_links?: InputMaybe<Json_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   exam_board_specification_content?: InputMaybe<Json_Comparison_Exp>;
   intro_video_id?: InputMaybe<Int_Comparison_Exp>;
@@ -27966,6 +29236,21 @@ export enum Units_Constraint {
   UnitsPkey = 'units_pkey'
 }
 
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Units_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Units_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Units_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** input type for incrementing numeric columns in table "units" */
 export type Units_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -27995,6 +29280,7 @@ export type Units_Insert_Input = {
   connections_prior_units?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   cross_subject_links?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
@@ -28029,8 +29315,6 @@ export type Units_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -28074,8 +29358,6 @@ export type Units_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -28148,6 +29430,7 @@ export type Units_Order_By = {
   connections_prior_units?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   cross_subject_links?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   exam_board_specification_content?: InputMaybe<Order_By>;
   intro_video_id?: InputMaybe<Order_By>;
@@ -28175,6 +29458,11 @@ export type Units_Order_By = {
 export type Units_Pk_Columns_Input = {
   _state: Scalars['String']['input'];
   unit_id: Scalars['Int']['input'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Units_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "units" */
@@ -28205,6 +29493,8 @@ export enum Units_Select_Column {
   CreatedAt = 'created_at',
   /** column name */
   CrossSubjectLinks = 'cross_subject_links',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -28264,6 +29554,7 @@ export type Units_Set_Input = {
   connections_prior_units?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   cross_subject_links?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
@@ -28365,6 +29656,7 @@ export type Units_Stream_Cursor_Value_Input = {
   connections_prior_units?: InputMaybe<Scalars['json']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   cross_subject_links?: InputMaybe<Scalars['json']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   exam_board_specification_content?: InputMaybe<Scalars['json']['input']>;
   intro_video_id?: InputMaybe<Scalars['Int']['input']>;
@@ -28430,6 +29722,8 @@ export enum Units_Update_Column {
   /** column name */
   CrossSubjectLinks = 'cross_subject_links',
   /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
   Description = 'description',
   /** column name */
   ExamBoardSpecificationContent = 'exam_board_specification_content',
@@ -28458,8 +29752,18 @@ export enum Units_Update_Column {
 }
 
 export type Units_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Units_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Units_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Units_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Units_Delete_Key_Input>;
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<Units_Inc_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Units_Prepend_Input>;
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<Units_Set_Input>;
   /** filter the rows which have to be updated */
@@ -28537,6 +29841,7 @@ export type Unitvariant_Lessons = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   /** An object relationship */
   lesson?: Maybe<Lessons>;
   /** An array relationship */
@@ -28554,6 +29859,12 @@ export type Unitvariant_Lessons = {
   unitvariant_all_states_aggregate: Unitvariants_Aggregate;
   unitvariant_id: Scalars['Int']['output'];
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "unitvariant_lessons" */
+export type Unitvariant_LessonsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -28676,6 +29987,7 @@ export type Unitvariant_Lessons_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Unitvariant_Lessons_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -28713,6 +30025,7 @@ export type Unitvariant_Lessons_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   lesson?: InputMaybe<Lessons_Bool_Exp>;
   lesson_all_states?: InputMaybe<Lessons_Bool_Exp>;
   lesson_all_states_aggregate?: InputMaybe<Lessons_Aggregate_Bool_Exp>;
@@ -28734,16 +30047,19 @@ export enum Unitvariant_Lessons_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Unitvariant_Lessons_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   lesson_overrides?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Unitvariant_Lessons_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   lesson_overrides?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Unitvariant_Lessons_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   lesson_overrides?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -28762,6 +30078,7 @@ export type Unitvariant_Lessons_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   lesson?: InputMaybe<Lessons_Obj_Rel_Insert_Input>;
   lesson_all_states?: InputMaybe<Lessons_Arr_Rel_Insert_Input>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
@@ -28846,6 +30163,7 @@ export type Unitvariant_Lessons_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   lesson?: InputMaybe<Lessons_Order_By>;
   lesson_all_states_aggregate?: InputMaybe<Lessons_Aggregate_Order_By>;
   lesson_id?: InputMaybe<Order_By>;
@@ -28866,6 +30184,7 @@ export type Unitvariant_Lessons_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Unitvariant_Lessons_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_overrides?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -28881,6 +30200,8 @@ export enum Unitvariant_Lessons_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   LessonId = 'lesson_id',
   /** column name */
@@ -28912,6 +30233,7 @@ export type Unitvariant_Lessons_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_overrides?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -28985,6 +30307,7 @@ export type Unitvariant_Lessons_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   lesson_id?: InputMaybe<Scalars['Int']['input']>;
   lesson_overrides?: InputMaybe<Scalars['jsonb']['input']>;
   order?: InputMaybe<Scalars['Int']['input']>;
@@ -29021,6 +30344,8 @@ export enum Unitvariant_Lessons_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   LessonId = 'lesson_id',
   /** column name */
@@ -29111,6 +30436,7 @@ export type Unitvariants = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   programme_fields: Scalars['jsonb']['output'];
   quiz_id?: Maybe<Scalars['Int']['output']>;
   static_lesson_list?: Maybe<Scalars['jsonb']['output']>;
@@ -29133,6 +30459,12 @@ export type Unitvariants = {
   unitvariant_lessons_all_states_aggregate: Unitvariant_Lessons_Aggregate;
   unitvariant_uid?: Maybe<Scalars['bpchar']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
+};
+
+
+/** columns and relationships of "unitvariants" */
+export type UnitvariantsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -29287,6 +30619,7 @@ export type Unitvariants_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Unitvariants_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   static_lesson_list?: InputMaybe<Scalars['jsonb']['input']>;
   unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
@@ -29326,6 +30659,7 @@ export type Unitvariants_Bool_Exp = {
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   quiz_id?: InputMaybe<Int_Comparison_Exp>;
   static_lesson_list?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -29347,12 +30681,13 @@ export type Unitvariants_Bool_Exp = {
 export enum Unitvariants_Constraint {
   /** unique or primary key constraint on columns "unitvariant_id", "_state" */
   UnitvariantsPkey = 'unitvariants_pkey',
-  /** unique or primary key constraint on columns "programme_fields", "unit_id", "_state" */
+  /** unique or primary key constraint on columns "unit_id", "programme_fields", "_state" */
   UnitvariantsUnitIdProgrammeFieldsStateKey = 'unitvariants_unit_id_programme_fields__state_key'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Unitvariants_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   programme_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   static_lesson_list?: InputMaybe<Array<Scalars['String']['input']>>;
   unit_overrides?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -29360,6 +30695,7 @@ export type Unitvariants_Delete_At_Path_Input = {
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Unitvariants_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   programme_fields?: InputMaybe<Scalars['Int']['input']>;
   static_lesson_list?: InputMaybe<Scalars['Int']['input']>;
   unit_overrides?: InputMaybe<Scalars['Int']['input']>;
@@ -29367,6 +30703,7 @@ export type Unitvariants_Delete_Elem_Input = {
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Unitvariants_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['String']['input']>;
   static_lesson_list?: InputMaybe<Scalars['String']['input']>;
   unit_overrides?: InputMaybe<Scalars['String']['input']>;
@@ -29387,6 +30724,7 @@ export type Unitvariants_Insert_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   static_lesson_list?: InputMaybe<Scalars['jsonb']['input']>;
@@ -29485,6 +30823,7 @@ export type Unitvariants_Order_By = {
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   programme_fields?: InputMaybe<Order_By>;
   quiz_id?: InputMaybe<Order_By>;
   static_lesson_list?: InputMaybe<Order_By>;
@@ -29507,6 +30846,7 @@ export type Unitvariants_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Unitvariants_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   static_lesson_list?: InputMaybe<Scalars['jsonb']['input']>;
   unit_overrides?: InputMaybe<Scalars['jsonb']['input']>;
@@ -29524,6 +30864,8 @@ export enum Unitvariants_Select_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   ProgrammeFields = 'programme_fields',
   /** column name */
@@ -29561,6 +30903,7 @@ export type Unitvariants_Set_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   static_lesson_list?: InputMaybe<Scalars['jsonb']['input']>;
@@ -29637,6 +30980,7 @@ export type Unitvariants_Stream_Cursor_Value_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
   quiz_id?: InputMaybe<Scalars['Int']['input']>;
   static_lesson_list?: InputMaybe<Scalars['jsonb']['input']>;
@@ -29676,6 +31020,8 @@ export enum Unitvariants_Update_Column {
   State = '_state',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   ProgrammeFields = 'programme_fields',
   /** column name */
@@ -29775,6 +31121,7 @@ export type Videocaptions = {
   caption_id: Scalars['Int']['output'];
   caption_uid?: Maybe<Scalars['bpchar']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   inappropriate_words?: Maybe<Scalars['json']['output']>;
   ingest_id?: Maybe<Scalars['String']['output']>;
   language_approved: Scalars['Boolean']['output'];
@@ -29787,6 +31134,12 @@ export type Videocaptions = {
   /** An aggregate relationship */
   video_all_states_aggregate: Videos_Aggregate;
   videocaption_object: Scalars['jsonb']['output'];
+};
+
+
+/** columns and relationships of "videocaptions" */
+export type VideocaptionsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -29895,6 +31248,7 @@ export type Videocaptions_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Videocaptions_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -29931,6 +31285,7 @@ export type Videocaptions_Bool_Exp = {
   caption_id?: InputMaybe<Int_Comparison_Exp>;
   caption_uid?: InputMaybe<Bpchar_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   inappropriate_words?: InputMaybe<Json_Comparison_Exp>;
   ingest_id?: InputMaybe<String_Comparison_Exp>;
   language_approved?: InputMaybe<Boolean_Comparison_Exp>;
@@ -29944,22 +31299,25 @@ export type Videocaptions_Bool_Exp = {
 
 /** unique or primary key constraints on table "videocaptions" */
 export enum Videocaptions_Constraint {
-  /** unique or primary key constraint on columns "_state", "caption_id" */
+  /** unique or primary key constraint on columns "caption_id", "_state" */
   VideocaptionsPkey = 'videocaptions_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Videocaptions_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   videocaption_object?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Videocaptions_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   videocaption_object?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Videocaptions_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   videocaption_object?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -29979,6 +31337,7 @@ export type Videocaptions_Insert_Input = {
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   caption_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -30076,6 +31435,7 @@ export type Videocaptions_Order_By = {
   caption_id?: InputMaybe<Order_By>;
   caption_uid?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   inappropriate_words?: InputMaybe<Order_By>;
   ingest_id?: InputMaybe<Order_By>;
   language_approved?: InputMaybe<Order_By>;
@@ -30094,6 +31454,7 @@ export type Videocaptions_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Videocaptions_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   videocaption_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -30115,6 +31476,8 @@ export enum Videocaptions_Select_Column {
   CaptionUid = 'caption_uid',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   InappropriateWords = 'inappropriate_words',
   /** column name */
@@ -30159,6 +31522,7 @@ export type Videocaptions_Set_Input = {
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   caption_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -30224,6 +31588,7 @@ export type Videocaptions_Stream_Cursor_Value_Input = {
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   caption_uid?: InputMaybe<Scalars['bpchar']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   inappropriate_words?: InputMaybe<Scalars['json']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   language_approved?: InputMaybe<Scalars['Boolean']['input']>;
@@ -30263,6 +31628,8 @@ export enum Videocaptions_Update_Column {
   CaptionUid = 'caption_uid',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   InappropriateWords = 'inappropriate_words',
   /** column name */
@@ -30350,6 +31717,7 @@ export type Videos = {
   caption_all_states_aggregate: Videocaptions_Aggregate;
   caption_id?: Maybe<Scalars['Int']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   ingest_id?: Maybe<Scalars['String']['output']>;
   mux_asset_id?: Maybe<Scalars['String']['output']>;
@@ -30383,6 +31751,12 @@ export type VideosCaption_All_States_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Videocaptions_Order_By>>;
   where?: InputMaybe<Videocaptions_Bool_Exp>;
+};
+
+
+/** columns and relationships of "videos" */
+export type VideosDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -30465,6 +31839,7 @@ export type Videos_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Videos_Append_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   video_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -30504,6 +31879,7 @@ export type Videos_Bool_Exp = {
   caption_all_states_aggregate?: InputMaybe<Videocaptions_Aggregate_Bool_Exp>;
   caption_id?: InputMaybe<Int_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   ingest_id?: InputMaybe<String_Comparison_Exp>;
   mux_asset_id?: InputMaybe<String_Comparison_Exp>;
@@ -30521,22 +31897,25 @@ export type Videos_Bool_Exp = {
 
 /** unique or primary key constraints on table "videos" */
 export enum Videos_Constraint {
-  /** unique or primary key constraint on columns "_state", "video_id" */
+  /** unique or primary key constraint on columns "video_id", "_state" */
   VideosPkey = 'videos_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Videos_Delete_At_Path_Input = {
+  deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   video_object?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Videos_Delete_Elem_Input = {
+  deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   video_object?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Videos_Delete_Key_Input = {
+  deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   video_object?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -30557,6 +31936,7 @@ export type Videos_Insert_Input = {
   caption_all_states?: InputMaybe<Videocaptions_Arr_Rel_Insert_Input>;
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   mux_asset_id?: InputMaybe<Scalars['String']['input']>;
@@ -30687,6 +32067,7 @@ export type Videos_Order_By = {
   caption_all_states_aggregate?: InputMaybe<Videocaptions_Aggregate_Order_By>;
   caption_id?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   ingest_id?: InputMaybe<Order_By>;
   mux_asset_id?: InputMaybe<Order_By>;
@@ -30710,6 +32091,7 @@ export type Videos_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Videos_Prepend_Input = {
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   video_object?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
@@ -30727,6 +32109,8 @@ export enum Videos_Select_Column {
   CaptionId = 'caption_id',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -30779,6 +32163,7 @@ export type Videos_Set_Input = {
   _state?: InputMaybe<Scalars['String']['input']>;
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   mux_asset_id?: InputMaybe<Scalars['String']['input']>;
@@ -30855,6 +32240,7 @@ export type Videos_Stream_Cursor_Value_Input = {
   _state?: InputMaybe<Scalars['String']['input']>;
   caption_id?: InputMaybe<Scalars['Int']['input']>;
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   ingest_id?: InputMaybe<Scalars['String']['input']>;
   mux_asset_id?: InputMaybe<Scalars['String']['input']>;
@@ -30899,6 +32285,8 @@ export enum Videos_Update_Column {
   CaptionId = 'caption_id',
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
   /** column name */
@@ -31053,6 +32441,15 @@ export type ProgrammeListingQueryVariables = Exact<{
 
 
 export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_programme_listing_3_0_0', keyStageTitle?: string | null, keyStageSlug?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, programmes?: any | null }> };
+
+export type PupilLessonOverviewQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+  lessonSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Array<{ __typename?: 'published_mv_lesson_overview_3_0_0', lessonSlug?: string | null, lessonTitle?: string | null, programmeSlug?: string | null, unitSlug?: string | null, unitTitle?: string | null, keyStageSlug?: string | null, keyStageTitle?: string | null, subjectSlug?: string | null, subjectTitle?: string | null, examBoardTitle?: string | null, tierTitle?: string | null, misconceptionsAndCommonMistakes?: any | null, lessonEquipmentAndResources?: any | null, teacherTips?: any | null, keyLearningPoints?: any | null, pupilLessonOutcome?: string | null, lessonKeywords?: any | null, copyrightContent?: any | null, contentGuidance?: any | null, additionalMaterialUrl?: string | null, supervisionLevel?: string | null, worksheetUrl?: string | null, presentationUrl?: string | null, videoMuxPlaybackId?: string | null, videoWithSignLanguageMuxPlaybackId?: string | null, transcriptSentences?: string | null, starterQuiz?: any | null, exitQuiz?: any | null, yearTitle?: string | null, hasDownloadableResources?: boolean | null, videoTitle?: string | null }> };
 
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -31280,6 +32677,45 @@ export const ProgrammeListingDocument = gql`
   }
 }
     `;
+export const PupilLessonOverviewDocument = gql`
+    query pupilLessonOverview($programmeSlug: String!, $lessonSlug: String!, $unitSlug: String!) {
+  lesson: published_mv_lesson_overview_3_0_0(
+    where: {lessonSlug: {_eq: $lessonSlug}, programmeSlug: {_eq: $programmeSlug}, unitSlug: {_eq: $unitSlug}}
+  ) {
+    lessonSlug
+    lessonTitle
+    programmeSlug
+    unitSlug
+    unitTitle
+    keyStageSlug
+    keyStageTitle
+    subjectSlug
+    subjectTitle
+    examBoardTitle
+    tierTitle
+    misconceptionsAndCommonMistakes
+    lessonEquipmentAndResources
+    teacherTips
+    keyLearningPoints
+    pupilLessonOutcome
+    lessonKeywords
+    copyrightContent
+    contentGuidance
+    additionalMaterialUrl
+    supervisionLevel
+    worksheetUrl
+    presentationUrl
+    videoMuxPlaybackId
+    videoWithSignLanguageMuxPlaybackId
+    transcriptSentences
+    starterQuiz
+    exitQuiz
+    yearTitle
+    hasDownloadableResources
+    videoTitle
+  }
+}
+    `;
 export const SearchPageDocument = gql`
     query searchPage {
   searchPage: published_mv_search_page_1 {
@@ -31370,6 +32806,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query');
+    },
+    pupilLessonOverview(variables: PupilLessonOverviewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<PupilLessonOverviewQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PupilLessonOverviewQuery>(PupilLessonOverviewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pupilLessonOverview', 'query');
     },
     searchPage(variables?: SearchPageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SearchPageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SearchPageQuery>(SearchPageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchPage', 'query');

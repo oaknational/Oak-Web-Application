@@ -36,11 +36,13 @@ describe("pages/teachers/search.tsx", () => {
       robots: "noindex,nofollow",
     });
   });
-  test("renders correct key stage filters", () => {
+  test("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />,
     );
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAccessibleName(
+
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
+      "aria-label",
       "KS1 filter",
     );
   });
@@ -49,7 +51,8 @@ describe("pages/teachers/search.tsx", () => {
       <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAccessibleName(
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
+      "aria-label",
       "English filter",
     );
   });
@@ -57,11 +60,13 @@ describe("pages/teachers/search.tsx", () => {
     const { getAllByRole } = renderWithSeo(providers)(
       <SearchPage curriculumData={{ keyStages, subjects, contentTypes }} />,
     );
-    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAccessibleName(
+    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
+      "aria-label",
       "Lessons filter",
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAccessibleName(
+    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
+      "aria-label",
       "Units filter",
     );
   });

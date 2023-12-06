@@ -5,6 +5,10 @@ import { LessonBase, LessonPathway } from "./lesson.types";
 import truthy from "@/utils/truthy";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
+import {
+  LessonOverviewQuizData,
+  StemImageObject,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 /**
  * Returns the intersection different pathways.
@@ -327,3 +331,68 @@ export function groupLessonPathways(pathways: LessonPathway[]) {
     subjects,
   };
 }
+
+type Attribution = {
+  questionNumber: string;
+  attribution: string;
+};
+
+export const createAttributionObject = (
+  questions: LessonOverviewQuizData,
+): Attribution[] | [] => {
+  if (questions) {
+    const attributions: Attribution[] = questions.reduce(
+      (acc: Attribution[], question, index) => {
+        const questionNumber = `Q${index + 1}`;
+        if (question && question.questionStem) {
+          const { questionStem } = question;
+          const imageStems = questionStem.filter(
+            (stem) =>
+              stem.type === "image" &&
+              !Array.isArray(stem.image_object.metadata) &&
+              stem.image_object.metadata.attribution &&
+              stem.image_object,
+          ) as StemImageObject[];
+          const mappedAttributions: Attribution[] = imageStems.map((stem) => {
+            if (
+              !Array.isArray(stem.image_object.metadata) &&
+              stem.image_object.metadata.attribution
+            ) {
+              return {
+                questionNumber,
+                attribution: stem.image_object.metadata.attribution,
+              };
+            }
+          }) as Attribution[];
+          acc.push(...mappedAttributions);
+        }
+        if (question && question.answers) {
+          const { answers } = question;
+          if (answers["multiple-choice"]) {
+            const { "multiple-choice": multipleChoice } = answers;
+            multipleChoice.forEach(({ answer }, index) => {
+              answer.forEach((stem) => {
+                if (
+                  stem.type === "image" &&
+                  !Array.isArray(stem.image_object.metadata) &&
+                  stem.image_object.metadata &&
+                  stem.image_object.metadata.attribution
+                ) {
+                  acc.push({
+                    questionNumber: `${questionNumber} image ${index + 1}`,
+                    attribution: stem.image_object.metadata.attribution,
+                  });
+                }
+              });
+            });
+          }
+        }
+
+        return acc;
+      },
+      [],
+    );
+    return attributions;
+  }
+  return [];
+};

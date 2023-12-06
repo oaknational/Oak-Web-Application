@@ -57,12 +57,16 @@ describe("search helpers", () => {
       hit: { ...lessonHit, legacy: true },
       allKeyStages,
     });
-    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2");
-    expect(unitListObjectLegacy?.programmeSlug).toEqual(
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-primary-ks2",
+    );
+    expect(unitListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
       "english-primary-ks2-l",
     );
-    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2");
-    expect(lessonListObjectLegacy?.programmeSlug).toEqual(
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "drama-primary-ks2",
+    );
+    expect(lessonListObjectLegacy?.buttonLinkProps.programmeSlug).toEqual(
       "drama-primary-ks2-l",
     );
   });
@@ -72,8 +76,10 @@ describe("search helpers", () => {
       hit: lessonHitTier,
       allKeyStages,
     });
-    expect(unitListObject?.programmeSlug).toEqual("english-secondary-ks4-core");
-    expect(lessonListObject?.programmeSlug).toEqual(
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-secondary-ks4-core",
+    );
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
       "english-secondary-ks4-higher",
     );
   });
@@ -86,8 +92,12 @@ describe("search helpers", () => {
       hit: { ...lessonHit, legacy: true },
       allKeyStages,
     });
-    expect(unitListObject?.programmeSlug).toEqual("english-primary-ks2-l");
-    expect(lessonListObject?.programmeSlug).toEqual("drama-primary-ks2-l");
+    expect(unitListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "english-primary-ks2-l",
+    );
+    expect(lessonListObject?.buttonLinkProps.programmeSlug).toEqual(
+      "drama-primary-ks2-l",
+    );
   });
   test("isFilterItem returns true if slug is a filter item", () => {
     expect(isFilterItem("ks2", allKeyStages)).toEqual(true);

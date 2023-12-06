@@ -1,25 +1,24 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
-import Box from "../Box";
-import Card from "../Card";
-import Flex from "../Flex";
-import Grid, { GridArea } from "../Grid";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import MobileFilters from "../MobileFilters";
-import SearchFilters from "../SearchFilters";
-import ActiveFilters from "../SearchFilters/ActiveFilters";
-import SearchForm from "../SearchForm";
-import SearchResults from "../SearchResults";
-import NoSearchResults from "../SearchResults/NoSearchResults";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "../Typography";
+import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import Flex from "@/components/Flex";
+import Grid, { GridArea } from "@/components/Grid";
+import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MobileFilters from "@/components/MobileFilters";
+import SearchFilters from "@/components/SearchFilters";
+import ActiveFilters from "@/components/SearchFilters/ActiveFilters";
+import SearchForm from "@/components/SearchForm";
+import SearchResults from "@/components/SearchResults";
+import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -81,66 +80,56 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
+  const searchResultClicked = ({
+    searchHit,
+    searchRank,
+  }: {
+    searchHit: SearchResultsItemProps;
+    searchRank: number;
+  }) => {
+    if (searchHit) {
+      track.searchResultClicked({
+        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: searchHit.subjectTitle,
+        subjectSlug: searchHit.subjectSlug,
+        unitName: searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        analyticsUseCase: analyticsUseCase,
+        searchRank: searchRank,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages,
+        ),
+        searchResultCount: hitCount,
+        searchResultType: searchHit.type,
+        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonSlug:
+          searchHit.type === "lesson"
+            ? searchHit.buttonLinkProps.lessonSlug
+            : undefined,
+      });
+    }
+  };
+
   return (
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
         <Grid $mt={48} $cg={16}>
-          <GridArea $colSpan={[12, 12, 12]} $mt={24} $mb={24}>
-            <Flex $flexDirection={["column"]}>
-              {query.term ? (
-                <Heading
-                  tag={"h1"}
-                  $font={["heading-5", "heading-4"]}
-                  $mt={24}
-                  $wordWrap={"break-word"}
-                >
-                  &ldquo;{query.term}&rdquo;
-                </Heading>
-              ) : (
-                <Heading tag={"h1"} $font={["heading-5", "heading-4"]} $mt={24}>
-                  Search
-                </Heading>
-              )}
-              <Heading tag="h2" $font={"heading-light-6"} $mt={24}>
-                Search for topics and key words to explore thousands of lessons
-                with adaptable teaching resources
+          <GridArea $colSpan={[12, 12, 7]} $mt={24}>
+            <Flex $flexDirection={["column"]} $mb={[48, 72]}>
+              <Heading tag="h1" $font={"heading-4"} $mb={32}>
+                Search
               </Heading>
-              <Card
-                $background={"lemon50"}
-                $width={"100%"}
-                $pv={[24]}
-                $ph={[16, 24]}
-                $mt={24}
-                $mb={20}
-                $position={"relative"}
-              >
-                <SearchForm
-                  searchTerm={query.term}
-                  placeholderText="Search by keyword or topic"
-                  handleSubmit={(value) => {
-                    setSearchTerm(value);
-                  }}
-                  analyticsSearchSource={"search page search box"}
-                />
-                <BrushBorders color={"lemon50"} />
-              </Card>
+              <SearchForm
+                searchTerm={query.term}
+                placeholderText="Search by keyword or topic"
+                handleSubmit={(value) => {
+                  setSearchTerm(value);
+                }}
+                analyticsSearchSource={"search page search box"}
+              />
             </Flex>
             <ActiveFilters searchFilters={searchFilters} />
-          </GridArea>
-          <GridArea $colSpan={[12, 3]} $pr={16}>
-            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} />
-            </Flex>
-            <Box $mb={32}>
-              <MobileFilters
-                label="Filters"
-                labelOpened="Close"
-                iconOpened="cross"
-                iconClosed="hamburger"
-              >
-                <SearchFilters {...searchFilters} />
-              </MobileFilters>
-            </Box>
           </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
             <div role="status">
@@ -152,9 +141,36 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
             </div>
+            <Flex $mb={32}>
+              <MobileFilters
+                $mt={0}
+                label="Filters"
+                labelOpened="Close"
+                iconOpened="cross"
+                iconClosed="mini-menu"
+                iconBackground="black"
+                $alignSelf={"flex-start"}
+              >
+                <SearchFilters {...searchFilters} />
+              </MobileFilters>
+            </Flex>
             {shouldShowResults && (
-              <SearchResults hits={results} allKeyStages={allKeyStages} />
+              <SearchResults
+                hits={results}
+                allKeyStages={allKeyStages}
+                searchResultClicked={(searchHit, searchRank) =>
+                  searchResultClicked({
+                    searchHit,
+                    searchRank,
+                  })
+                }
+              />
             )}
+          </GridArea>
+          <GridArea $colSpan={[12, 3]} $pr={16}>
+            <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
+              <SearchFilters {...searchFilters} />
+            </Flex>
           </GridArea>
         </Grid>
       </MaxWidth>

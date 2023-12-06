@@ -147,6 +147,10 @@ describe("pages/teachers/lessons", () => {
     });
   });
   describe("tracking events", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+      jest.resetModules();
+    });
     it("calls track.downloadResourceButtonClicked will 'all' when download all button is pressed", async () => {
       const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
       const downloadAllButton = getAllByTestId("download-all-button");
@@ -165,6 +169,90 @@ describe("pages/teachers/lessons", () => {
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
         analyticsUseCase: null,
         downloadResourceButtonName: "all",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
+      });
+    });
+    it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
+      const { getByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getByText("Download slide deck");
+
+      act(() => {
+        downloadButton.click();
+      });
+
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        downloadResourceButtonName: "slide deck",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
+      });
+    });
+    it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
+      const { getByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getByText("Download worksheet");
+
+      act(() => {
+        downloadButton.click();
+      });
+
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        downloadResourceButtonName: "worksheet",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
+      });
+    });
+    it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
+      const { getByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getByText("Download exit quiz");
+
+      act(() => {
+        downloadButton.click();
+      });
+
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        downloadResourceButtonName: "exit quiz",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Islamic Geometry",
+        lessonSlug: "macbeth-lesson-1",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        unitName: "Maths unit",
+        unitSlug: "maths-unit",
+      });
+    });
+    it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
+      const { getByText } = render(<LessonOverviewPage {...props} />);
+      const downloadButton = getByText("Download starter quiz");
+
+      act(() => {
+        downloadButton.click();
+      });
+
+      expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        downloadResourceButtonName: "starter quiz",
         keyStageSlug: "ks4",
         keyStageTitle: "Key stage 4",
         lessonName: "Islamic Geometry",
