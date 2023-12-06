@@ -57,6 +57,7 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
             $gap={16}
             $mt={8}
             $pl={8}
+            $width={"fit-content"}
           >
             {dropdownContent.map((item) => {
               const buttonTitle = `${item.examboardTitle} ${
@@ -71,6 +72,8 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
                     programmeSlug={item.programmeSlug}
                     unitSlug={item.unitSlug}
                     $font={"heading-7"}
+                    $width={"fit-content"}
+                    $focusStyles={["new-underline"]}
                   >
                     {buttonTitle}
                   </OakLink>
