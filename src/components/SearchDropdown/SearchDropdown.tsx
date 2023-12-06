@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 
+import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
-import Button from "@/components/Button";
 import OakLink from "@/components/OakLink";
 
 type SearchDropdownProps = {
@@ -38,21 +38,13 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
   return (
-    <Flex $flexDirection={"column"} $alignItems={"flex-start"}>
-      <Button
-        variant={"minimal"}
-        $iconPosition="trailing"
-        iconBackground="white"
-        $font={"heading-7"}
-        aria-expanded={isToggleOpen}
-        aria-label={dropdownTitle}
-        title={dropdownTitle}
+    <Flex $flexDirection={"column"} $justifyContent={"center"}>
+      <MiniDropDown
         label={dropdownTitle}
+        title="Select exam board"
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => setToggleOpen(!isToggleOpen)}
-        buttonColor={"navy"}
-        isCurrent={true}
-        currentStyles={["color"]}
+        isExpanded={isToggleOpen}
       />
       <Box
         $display={isToggleOpen ? "block" : "none"}
@@ -63,7 +55,8 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
             data-testid="search-dropdown-content"
             $flexDirection={"column"}
             $gap={16}
-            $mt={16}
+            $mt={8}
+            $pl={8}
           >
             {dropdownContent.map((item) => {
               const buttonTitle = `${item.examboardTitle} ${
