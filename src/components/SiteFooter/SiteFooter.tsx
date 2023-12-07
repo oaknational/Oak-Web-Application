@@ -212,16 +212,41 @@ const SiteFooter: FC = () => {
               <FooterSectionLinks {...sections.legal} />
             </GridArea>
             <GridArea $colSpan={[12, 3]}>
-              <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
-                <Logo variant="with text" height={66} width={150} />
+              <Flex $justifyContent={["left", "right"]} $mt={[32, 0]}>
+                <Box $display={["none", "block"]}>
+                  <Logo variant="with text" height={66} width={150} />
+                </Box>
+                <SocialButtons
+                  $display={["flex", "none"]}
+                  for="Oak National Academy"
+                  {...OAK_SOCIALS}
+                />
               </Flex>
             </GridArea>
           </Grid>
-          <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
-            <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-            <Flex $alignItems={"center"} $ml={[16]}>
-              <P $textAlign="center" $font={["body-4", "body-2"]}>
-                © Oak National Academy
+          <Flex
+            $mb={56}
+            $mt={[32, 64]}
+            $width={"100%"}
+            $justifyContent={["flex-start", "space-between"]}
+            $flexDirection={["column", "row"]}
+            $alignItems={["flex-start", "center"]}
+            $pt={[12, 0]}
+          >
+            <SocialButtons
+              $display={["none", "flex"]}
+              for="Oak National Academy"
+              {...OAK_SOCIALS}
+            />
+            <Box $ml={-4} $display={["block", "none"]}>
+              <Logo variant="with text" height={66} width={150} />
+            </Box>
+            <Flex $mt={[32, 0]} $flexDirection={"column"}>
+              <P $font={"body-3-bold"}>
+                © Oak National Academy Limited, No 14174888
+              </P>
+              <P $font={["body-4"]}>
+                1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
               </P>
             </Flex>
           </Flex>
