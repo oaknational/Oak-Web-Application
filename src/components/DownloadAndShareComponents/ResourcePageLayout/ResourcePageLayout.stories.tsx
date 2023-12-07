@@ -8,17 +8,16 @@ import { ResourceFormProps } from "../downloadAndShare.types";
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
-import Component from "./ResourcePageLayout";
 
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 
-const meta: Meta<typeof Component> = {
+const meta: Meta<typeof ResourcePageLayout> = {
   title: "Download Components/Resource Page Layout",
-  component: Component,
+  component: ResourcePageLayout,
 };
 
 export default meta;
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof ResourcePageLayout>;
 
 const Wrapper = (args: ResourcePageLayoutProps) => {
   const { control, register } = useForm<ResourceFormProps>();
