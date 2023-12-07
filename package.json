@@ -222,8 +222,8 @@
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
-    "node": "18",
-    "npm": ">=8 <=10"
+    "node": "20",
+    "npm": ">=10"
   },
   "publishConfig": {
     "access": "restricted"
