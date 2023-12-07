@@ -21,7 +21,6 @@ import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabIma
 import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
 import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
 import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
-import HomePageBanner from "@/components/Banner/Banner";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -125,11 +124,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   };
 
   return (
-    <AppLayout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background={"white"}
-      banner={HomePageBanner}
-    >
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <HomePageTabImageNav current={current} setCurrent={setActiveTab} />
       {current === "teachers" && (
         <TeachersTab keyStages={curriculumData.keyStages} />
