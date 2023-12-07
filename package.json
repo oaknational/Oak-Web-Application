@@ -223,7 +223,7 @@
   },
   "engines": {
     "node": "18 || 20",
-    "npm": ">=9 <=10"
+    "npm": ">=10"
   },
   "publishConfig": {
     "access": "restricted"
