@@ -30,6 +30,9 @@ module.exports = {
     `,
   },
   discovery: {
+    // Debug for Percy analysis.
+    concurrency: 5,
+    // Standard config.
     networkIdleTimeout: 750,
     allowedHostnames: [
       "docs.google.com",
