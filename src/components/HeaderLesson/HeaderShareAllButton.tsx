@@ -67,11 +67,13 @@ export const HeaderShareAllButton: FC<HeaderLessonProps> = (props) => {
         disabled={!isLegacyLesson}
         onClick={onClickShareAll}
       />
-      {!isLegacyLesson && (
-        <Span $color={"grey50"} $font={"body-3"}>
-          Share function coming soon...
-        </Span>
-      )}
+      <Flex $mt={[12, 0]}>
+        {!isLegacyLesson && (
+          <Span $color={"grey50"} $font={"body-3"}>
+            Share function coming soon...
+          </Span>
+        )}
+      </Flex>
     </Flex>
   );
 };
