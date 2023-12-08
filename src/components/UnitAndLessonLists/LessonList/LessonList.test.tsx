@@ -84,7 +84,7 @@ describe("components/ Lesson List", () => {
         onClick={onClick}
       />,
     );
-    const unit = getByText("Data Representation");
+    const unit = getByText("Add two surds");
 
     act(() => {
       unit.click();
