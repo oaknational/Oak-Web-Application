@@ -1,3 +1,14 @@
+# [1.310.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.309.0...v1.310.0) (2023-12-05)
+
+
+### Features
+
+* **pupil-quiz:**  increase test coverage ([9bcd07a](https://github.com/oaknational/Oak-Web-Application/commit/9bcd07aa6cffe9790689be5d5675fcf3ecb39d0e))
+* **pupil-quiz:**  increase test coverage ([8fe81d4](https://github.com/oaknational/Oak-Web-Application/commit/8fe81d43f185030e1ebbe7fe48374b12ed6389f6))
+* **pupil-quiz:**  typo and name change ([32deee1](https://github.com/oaknational/Oak-Web-Application/commit/32deee169e5976839a4fc5f11442376e065b548b))
+* **pupil-quiz:** connect pupil quiz to data ([fcfe2c2](https://github.com/oaknational/Oak-Web-Application/commit/fcfe2c2fd23aaae3adb6f547d5b85d709cb667a3))
+* **pupil-quiz:** test fix ([13a7763](https://github.com/oaknational/Oak-Web-Application/commit/13a776318bdf1a614a674b3bb884ae8202f34cb5))
+
 # [1.309.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.308.0...v1.309.0) (2023-12-04)
 
 
