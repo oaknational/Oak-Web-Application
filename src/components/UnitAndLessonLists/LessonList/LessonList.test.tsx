@@ -1,3 +1,5 @@
+import { act } from "react-dom/test-utils";
+
 import LessonList from ".";
 
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
@@ -12,6 +14,8 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
+const onClick = jest.fn();
+
 describe("components/ Lesson List", () => {
   test("it renders the list items", () => {
     const { getByRole } = render(
@@ -23,6 +27,7 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={lessons.length}
+        onClick={onClick}
       />,
     );
 
@@ -40,6 +45,7 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={10}
+        onClick={onClick}
       />,
     );
 
@@ -57,11 +63,33 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={4}
+        onClick={onClick}
       />,
     );
 
     const pagination = queryByTestId("pagination");
 
     expect(pagination).not.toBeInTheDocument();
+  });
+  test("onClick is called when a unit is clicked", () => {
+    const { getByText } = render(
+      <LessonList
+        paginationProps={mockPaginationProps}
+        subjectSlug={"computing"}
+        keyStageSlug={"2"}
+        headingTag={"h2"}
+        currentPageItems={lessonsWithUnitData}
+        unitTitle={"Unit title"}
+        lessonCount={4}
+        onClick={onClick}
+      />,
+    );
+    const unit = getByText("Data Representation");
+
+    act(() => {
+      unit.click();
+    });
+
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
