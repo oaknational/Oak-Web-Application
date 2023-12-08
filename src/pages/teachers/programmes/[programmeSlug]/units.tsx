@@ -32,6 +32,9 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { filterLearningTheme } from "@/utils/filterLearningTheme/filterLearningTheme";
 import HeaderListing from "@/components/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -51,6 +54,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     units,
     examBoardTitle,
   } = curriculumData;
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const learningThemes = curriculumData.learningThemes ?? [];
 
@@ -90,6 +96,18 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
       description: "Programme units",
     }),
     ...{ noFollow: true, noIndex: true },
+  };
+
+  const trackUnitSelected = ({ ...props }: UnitListItemProps) => {
+    track.unitSelected({
+      keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug,
+      unitName: props.title,
+      unitSlug: props.slug,
+      analyticsUseCase,
+    });
   };
 
   return (
@@ -244,6 +262,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               {...curriculumData}
               currentPageItems={currentPageItems}
               paginationProps={paginationProps}
+              onClick={trackUnitSelected}
             />
           </GridArea>
         </Grid>

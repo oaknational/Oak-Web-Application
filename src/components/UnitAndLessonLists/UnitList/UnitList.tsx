@@ -17,15 +17,16 @@ export type Tier = {
 };
 
 type PageSize = { pageSize: number };
-type CurrenPageItemsProps = Omit<UnitListItemProps, "index">[];
+type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
 export type UnitListProps = UnitListingData & {
   currentPageItems: CurrenPageItemsProps[];
   paginationProps: PaginationProps & PageSize;
+  onClick: (props: UnitListItemProps) => void;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems } = props;
+  const { units, paginationProps, currentPageItems, onClick } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
     <Flex $flexDirection="column">
@@ -39,6 +40,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     <OptionalityCard
                       unitOptions={item}
                       index={index + pageSize * (currentPage - 1)}
+                      onClick={onClick}
                     />
                   </>
                 ) : (
@@ -51,6 +53,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                           hideTopHeading
                           index={index + pageSize * (currentPage - 1)}
                           firstItemRef={index === 0 ? firstItemRef : null}
+                          onClick={onClick}
                         />
                       );
                     })}

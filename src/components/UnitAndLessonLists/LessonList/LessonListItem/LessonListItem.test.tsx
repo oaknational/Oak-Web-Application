@@ -5,6 +5,8 @@ import renderWithProviders from "../../../../__tests__/__helpers__/renderWithPro
 
 import LessonListItem from "./LessonListItem";
 
+const onClick = jest.fn();
+
 const props = {
   unitTitle: "Adding surds",
   programmeSlug: "maths-secondary-ks4-higher",
@@ -24,23 +26,11 @@ const props = {
   presentationCount: 1,
   worksheetCount: 1,
   hasCopyrightMaterial: false,
-  fromSearchPage: false,
   hitCount: 10,
   index: 3,
   currentPage: 1,
+  onClick: onClick,
 };
-
-const lessonSelected = jest.fn();
-const searchResultClicked = jest.fn();
-jest.mock("../../../../context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      lessonSelected: (...args: unknown[]) => lessonSelected(...args),
-      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
-    },
-  }),
-}));
 
 let render: ReturnType<typeof renderWithProviders>;
 
@@ -85,7 +75,7 @@ describe("Lesson List Item", () => {
       getByText("This lesson is currently unavailable."),
     ).toBeInTheDocument();
   });
-  test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+  test("It calls onClick with correct props when clicked", async () => {
     const { getByText } = render(<LessonListItem {...props} />);
 
     const lesson = getByText("Add two surds");
@@ -93,48 +83,12 @@ describe("Lesson List Item", () => {
     const user = userEvent.setup();
     await user.click(lesson);
 
-    expect(lessonSelected).toHaveBeenCalledTimes(1);
-    expect(lessonSelected).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      lessonName: "Add two surds",
-      lessonSlug: "add-two-surds-6wwk0c",
-      subjectSlug: "maths",
-      unitName: "Adding surds",
-      unitSlug: "adding-surds-a57d",
-      subjectTitle: "Maths",
+    expect(onClick).toHaveBeenCalledTimes(1);
+    expect(onClick).toHaveBeenCalledWith({
+      ...props,
     });
   });
 
-  test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
-    const { getByText } = render(
-      <LessonListItem {...{ ...props, fromSearchPage: true }} />,
-    );
-
-    const lesson = getByText("Add two surds");
-
-    const user = userEvent.setup();
-    await user.click(lesson);
-
-    expect(searchResultClicked).toHaveBeenCalledTimes(1);
-    expect(lessonSelected).not.toBeCalled();
-    expect(searchResultClicked).toHaveBeenCalledWith({
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      subjectTitle: "Maths",
-      subjectSlug: "maths",
-      unitName: "Adding surds",
-      unitSlug: "adding-surds-a57d",
-      analyticsUseCase: "Teacher",
-      searchRank: 4,
-      searchFilterOptionSelected: [],
-      searchResultCount: 10,
-      searchResultType: "lesson",
-      lessonName: "Add two surds",
-      lessonSlug: "add-two-surds-6wwk0c",
-    });
-  });
   test("it changes the card background colour on hover", async () => {
     render(<LessonListItem {...props} />);
     const cardContainer = screen.getByTestId("list-item-card-container");
@@ -143,25 +97,5 @@ describe("Lesson List Item", () => {
     const user = userEvent.setup();
     await user.hover(cardContainer);
     expect(cardContainer).toHaveStyle("background-color: #f2f2f2");
-  });
-  test("it changes the index background on hover", async () => {
-    render(<LessonListItem {...props} />);
-
-    const indexContainer = screen.getByTestId("list-item-index-container");
-    expect(indexContainer).toHaveStyle("background-color: #deb7d5");
-
-    const user = userEvent.setup();
-    await user.hover(indexContainer);
-    expect(indexContainer).toHaveStyle("background-color: #cF9cc3");
-  });
-  test("it changes the list icon background on hover", async () => {
-    render(<LessonListItem {...{ ...props, fromSearchPage: true }} />);
-
-    const listIconContainer = screen.getByTestId("list-item-icon");
-    expect(listIconContainer).toHaveStyle("background-color: #deb7d5");
-
-    const user = userEvent.setup();
-    await user.hover(listIconContainer);
-    expect(listIconContainer).toHaveStyle("background-color: #cF9cc3");
   });
 });
