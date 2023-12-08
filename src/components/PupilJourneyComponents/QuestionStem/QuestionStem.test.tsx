@@ -23,17 +23,6 @@ describe("QuestionListItem", () => {
     expect(primaryQuestionText).toBeInTheDocument();
   });
 
-  it("renders the question number", () => {
-    if (!mcqText) throw new Error("mcqText is null");
-
-    const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
-    );
-    const numberText = getByText("Q1.");
-
-    expect(numberText).toBeInTheDocument();
-  });
-
   it("renders question stem images", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
@@ -45,7 +34,8 @@ describe("QuestionListItem", () => {
     expect(image).toBeInTheDocument();
   });
 
-  it("renders the question number when there is no primary text", () => {
+  // we've removed question number rendering for now but this might be reinstated
+  it.skip("renders the question number when there is no primary text", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
     const questionStem: (StemImageObject | StemTextObject)[] = [
