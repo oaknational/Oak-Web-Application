@@ -60,6 +60,7 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
             $pl={8}
             $width={"fit-content"}
             $gap={16}
+            $mt={8}
           >
             {dropdownContent.map((item) => {
               const buttonTitle = `${item.examboardTitle} ${
