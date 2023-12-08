@@ -76,7 +76,6 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
-  buttonColor?: OakColorName;
 };
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
@@ -93,7 +92,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     isCurrent,
     currentStyles,
     $font,
-    buttonColor,
   } = props;
   const iconSize = buttonIconSizeMap[buttonSize];
 
@@ -149,7 +147,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
             size={iconSize}
             $background={iconBackground ?? defaultIconBackground}
             data-testid="button-icon"
-            $color={buttonColor}
           />
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
@@ -179,9 +176,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           $display={displayProperty}
           $textDecoration={textDecoration}
           $color={
-            buttonColor
-              ? buttonColor
-              : isCurrent && currentStyles?.includes("color")
+            isCurrent && currentStyles?.includes("color")
               ? currentColor
               : undefined
           }

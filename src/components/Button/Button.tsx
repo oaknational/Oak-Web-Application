@@ -17,7 +17,6 @@ import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/UnstyledButton";
-import { OakColorName } from "@/styles/theme";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
@@ -35,7 +34,6 @@ export type ButtonProps = CommonButtonProps & {
   isCurrent?: boolean;
   currentStyles?: ButtonCurrentStyles;
   role?: string;
-  buttonColor?: OakColorName;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
@@ -54,7 +52,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     title,
     isCurrent,
     currentStyles,
-    buttonColor,
     ...spacingProps
   } = props;
 
@@ -93,7 +90,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
         disabled={disabled}
         isCurrent={isCurrent}
         currentStyles={currentStyles}
-        buttonColor={buttonColor}
       />
     </StyledButton>
   );
