@@ -4,6 +4,8 @@ import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
 import OakLink from "@/components/OakLink";
+import { LI } from "@/components/Typography";
+import { FlexList } from "@/components/Typography/UL";
 
 type SearchDropdownProps = {
   dropdownTitle: string;
@@ -51,13 +53,13 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
         $transition={"all 0.3s ease"}
       >
         {dropdownContent.length > 0 && (
-          <Flex
+          <FlexList
+            $reset
             data-testid="search-dropdown-content"
             $flexDirection={"column"}
-            $gap={16}
-            $mt={8}
             $pl={8}
             $width={"fit-content"}
+            $gap={16}
           >
             {dropdownContent.map((item) => {
               const buttonTitle = `${item.examboardTitle} ${
@@ -65,35 +67,39 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
               }`;
               if (item.type === "unit") {
                 return (
-                  <OakLink
-                    $color={"navy"}
-                    data-testid="search-dropdown-link"
-                    page={"lesson-index"}
-                    programmeSlug={item.programmeSlug}
-                    unitSlug={item.unitSlug}
-                    $font={"heading-7"}
-                    $width={"fit-content"}
-                    $focusStyles={["new-underline"]}
-                  >
-                    {buttonTitle}
-                  </OakLink>
+                  <LI $mb={16}>
+                    <OakLink
+                      $color={"navy"}
+                      data-testid="search-dropdown-link"
+                      page={"lesson-index"}
+                      programmeSlug={item.programmeSlug}
+                      unitSlug={item.unitSlug}
+                      $font={"heading-7"}
+                      $width={"fit-content"}
+                      $focusStyles={["new-underline"]}
+                    >
+                      {buttonTitle}
+                    </OakLink>
+                  </LI>
                 );
               } else if (item.type === "lesson") {
                 return (
-                  <OakLink
-                    $font={"heading-7"}
-                    page={"lesson-overview"}
-                    programmeSlug={item.programmeSlug}
-                    unitSlug={item.unitSlug}
-                    lessonSlug={item.lessonSlug}
-                    $color={"navy"}
-                  >
-                    {buttonTitle}
-                  </OakLink>
+                  <LI $mb={16}>
+                    <OakLink
+                      $font={"heading-7"}
+                      page={"lesson-overview"}
+                      programmeSlug={item.programmeSlug}
+                      unitSlug={item.unitSlug}
+                      lessonSlug={item.lessonSlug}
+                      $color={"navy"}
+                    >
+                      {buttonTitle}
+                    </OakLink>
+                  </LI>
                 );
               }
             })}
-          </Flex>
+          </FlexList>
         )}
       </Box>
     </Flex>
