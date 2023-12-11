@@ -8,74 +8,20 @@ import {
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-import IconButton from "../Button/IconButton";
-import flex, { FlexCssProps } from "../../styles/utils/flex";
-import spacing, { margin, SpacingProps } from "../../styles/utils/spacing";
-import UnstyledInput from "../UnstyledInput";
-import ButtonBorders from "../SpriteSheet/BrushSvgs/ButtonBorders";
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { getBreakpoint } from "../../styles/utils/responsive";
-import Flex from "../Flex";
-import {
-  InputFieldWrap,
-  InputFocusUnderline,
-  StyledInputProps,
-} from "../Input/Input";
-import useAnalytics from "../../context/Analytics/useAnalytics";
-import { getSortedSearchFiltersSelected } from "../../context/Search/search.helpers";
-import { SearchSourceValueType } from "../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
+import flex, { FlexCssProps } from "@/styles/utils/flex";
+import spacing, { SpacingProps } from "@/styles/utils/spacing";
+import Flex from "@/components/Flex";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import { SearchSourceValueType } from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import Input from "@/components/Input/Input";
+import Button from "@/components/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
   ${spacing}
   display: flex;
-`;
-
-const StyledInput = styled(UnstyledInput)<StyledInputProps>`
-  color: ${getColorByLocation(({ theme }) => theme.input.states.default.text)};
-  height: ${(props) => props.theme.input.height};
-  border-radius: ${(props) => props.theme.input.borderRadius};
-  border-color: ${getColorByLocation(
-    ({ theme }) => theme.input.states.default.border,
-  )};
-  background: ${(props) => props.theme.input.states.default.background};
-  border-width: ${(props) => props.theme.input.borderWidth};
-  font-size: 16px;
-  font-family: ${getFontFamily("ui")};
-  font-weight: 300;
-  width: 100%;
-  padding-left: 8px;
-  outline: none;
-
-  @media (max-width: ${getBreakpoint("small")}px) {
-    /* iOS zooms in on inputs with font sizes <16px on mobile */
-    font-size: 16px;
-  }
-
-  ::placeholder {
-    font-family: ${getFontFamily("ui")};
-    color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.default.placeholder,
-    )};
-    opacity: 1;
-  }
-
-  :valid:not([value=""]) {
-    border-color: ${getColorByLocation(
-      ({ theme }) => theme.input.states.valid.border,
-    )};
-
-    ::placeholder {
-      font-size: 14px;
-      color: ${getColorByLocation(
-        ({ theme }) => theme.input.states.valid.placeholder,
-      )};
-    }
-  }
-
-  ${margin}
 `;
 
 type SearchFormProps = {
@@ -137,33 +83,29 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   );
 
   return (
-    <StyledForm
-      role="search"
-      $flexWrap="nowrap"
-      onSubmit={onSubmit}
-      $ml={4}
-      $alignItems={"center"}
-    >
-      <Flex $position={"relative"} $width={"100%"}>
-        <InputFieldWrap $width={"100%"} $background={"white"}>
-          <StyledInput
-            id="search-form-search-input"
-            value={value}
-            type="search"
-            onChange={onChange}
-            placeholder={placeholderText}
-          />
-          <InputFocusUnderline aria-hidden="true" name={"underline-1"} />
-          <ButtonBorders background={"white"} />
-        </InputFieldWrap>
+    <StyledForm role="search" onSubmit={onSubmit} $alignItems={"center"}>
+      <Flex $width={"100%"} $flexDirection={"row"} $alignItems={"center"}>
+        <Input
+          $mb={0}
+          label="Search"
+          id="search-form-search-input"
+          value={value}
+          type="search"
+          onChange={onChange}
+          placeholder={placeholderText}
+        />
+
+        <Button
+          icon="search"
+          label="Search"
+          shouldHideLabel={[true]}
+          iconBackground="black"
+          aria-label="Submit"
+          htmlButtonProps={{ type: "submit" }}
+          size={"large"}
+          $ml={20}
+        />
       </Flex>
-      <IconButton
-        icon="search"
-        aria-label="Submit"
-        htmlButtonProps={{ type: "submit" }}
-        size={"large"}
-        $ml={20}
-      />
     </StyledForm>
   );
 };

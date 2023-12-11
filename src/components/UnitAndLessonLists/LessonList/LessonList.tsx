@@ -63,7 +63,7 @@ const LessonList: FC<LessonListProps> = (props) => {
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
         <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
-          <Pagination {...paginationProps} />
+          <Pagination pageName={unitTitle} {...paginationProps} />
         </Box>
       ) : (
         <Box $pb={32} />

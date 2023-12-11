@@ -27,6 +27,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
+        pageName={"test"}
       />,
     );
 
@@ -44,6 +45,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
+        pageName={"test"}
       />,
     );
 
@@ -63,10 +65,11 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
+        pageName={"blog"}
       />,
     );
 
-    const link = getByRole("link", { name: "next page" });
+    const link = getByRole("link", { name: "blog page 7" });
     expect(link).toHaveAttribute("href", "/blog/updates?page=2");
   });
   test("previous arrow has correct href", () => {
@@ -74,7 +77,7 @@ describe("Pagination", () => {
     const currentPage = 6;
     const prevPageUrlObject = {
       pathname: "/blog/[categorySlug]",
-      query: { categorySlug: "updates", page: 1 },
+      query: { categorySlug: "updates", page: 5 },
     };
     const nextPageUrlObject = "next-page";
     const { getByRole } = renderWithTheme(
@@ -83,11 +86,12 @@ describe("Pagination", () => {
         totalPages={totalPages}
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
+        pageName={"blog"}
       />,
     );
 
-    const link = getByRole("link", { name: "previous page" });
-    expect(link).toHaveAttribute("href", "/blog/updates?page=1");
+    const link = getByRole("link", { name: "blog page 5" });
+    expect(link).toHaveAttribute("href", "/blog/updates?page=5");
   });
 
   test("the next arrow is disabled when there are no more pages", () => {
@@ -101,10 +105,11 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
+        pageName={"test"}
       />,
     );
 
-    const nextLink = getByLabelText("next page");
+    const nextLink = getByLabelText("No further pages");
 
     getByText("page 25 / 25");
 
@@ -122,9 +127,10 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
+        pageName={"test"}
       />,
     );
-    const previousLink = getByLabelText("previous page");
+    const previousLink = getByLabelText("No previous pages");
 
     getByText("page 1 / 25");
 
@@ -142,6 +148,7 @@ describe("Pagination", () => {
         totalPages={totalPages}
         nextPageUrlObject={nextPageUrlObject}
         prevPageUrlObject={prevPageUrlObject}
+        pageName={"test"}
       />,
     );
 
@@ -173,6 +180,7 @@ describe("Pagination", () => {
         prevPageUrlObject={prevPageUrlObject}
         nextPageUrlObject={nextPageUrlObject}
         firstItemRef={firstItemRef}
+        pageName={"test"}
       />,
     );
 

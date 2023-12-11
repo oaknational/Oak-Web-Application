@@ -8,15 +8,16 @@ import {
   ReactNode,
 } from "react";
 
-import Box from "../Box";
-import Button from "../Button";
-import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex, { FlexProps } from "../Flex";
-import useEventListener from "../../hooks/useEventListener";
-import Cover from "../Cover";
-import { IconName } from "../Icon";
-import { useMenuContext } from "../../context/Menu";
-import { PostCategoryPage } from "../Posts/PostCategoryList/PostCategoryList";
+import Box from "@/components/Box";
+import Button from "@/components/Button";
+import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Flex, { FlexProps } from "@/components/Flex";
+import useEventListener from "@/hooks/useEventListener";
+import Cover from "@/components/Cover";
+import { IconName } from "@/components/Icon";
+import { useMenuContext } from "@/context/Menu";
+import { PostCategoryPage } from "@/components/Posts/PostCategoryList/PostCategoryList";
+import { OakColorName } from "@/styles/theme";
 
 export type MobileFiltersProps = {
   withBackButton?: boolean;
@@ -27,6 +28,7 @@ export type MobileFiltersProps = {
   label: string;
   labelOpened?: string;
   providedId?: string;
+  iconBackground?: OakColorName;
 } & FlexProps;
 const MobileFilters: FC<MobileFiltersProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,14 +85,14 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
 
   return (
     <Flex
-      $mt={24}
+      $mt={props.$mt ?? 24}
       $display={["flex", "none"]}
       $flexDirection={"column"}
       $width={"100%"}
       {...flexProps}
     >
       <Cover $pointerEvents={isOpen ? null : "none"} onClick={close} />
-      <Flex>
+      <Flex $alignSelf={props.$alignSelf}>
         {withBackButton &&
           (page === "blog-index" || page === "webinar-index") && (
             <Box
@@ -109,12 +111,13 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
               />
             </Box>
           )}
+
         <Button
           id={triggerId}
           $ml="auto"
           variant="minimal"
           icon={isOpen ? iconOpened : iconClosed}
-          iconBackground="blue"
+          iconBackground={props.iconBackground ?? "blue"}
           $iconPosition="trailing"
           size="large"
           label={isOpen ? labelOpened : label}

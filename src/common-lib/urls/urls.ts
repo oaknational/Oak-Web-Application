@@ -94,12 +94,12 @@ export type KeyStageSubjectProgrammesLinkProps = {
   keyStageSlug: string;
   subjectSlug: string;
 };
-type LessonListingLinkProps = {
+export type LessonListingLinkProps = {
   page: "lesson-index";
   programmeSlug: string;
   unitSlug: string;
 };
-type LessonOverviewLinkProps = {
+export type LessonOverviewLinkProps = {
   page: "lesson-overview";
   programmeSlug: string;
   unitSlug: string;
