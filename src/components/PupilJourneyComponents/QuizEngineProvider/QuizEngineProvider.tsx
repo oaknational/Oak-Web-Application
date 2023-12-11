@@ -41,6 +41,7 @@ export const QuizEngineContext = createContext<QuizEngineContextType>(null);
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
 
+  // TODO - filter out questions that have multiple correct answers
   const multipleChoiceQuestionsArray = useMemo(
     () =>
       questionsArray.filter(

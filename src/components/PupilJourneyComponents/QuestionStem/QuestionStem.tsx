@@ -12,7 +12,6 @@ import {
 export const QuestionStem = ({
   questionStem,
   index,
-  showIndex = true,
 }: {
   questionStem: (StemImageObject | StemTextObject)[];
   index: number;
@@ -22,18 +21,10 @@ export const QuestionStem = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakFlex key="stem-header">
-        {showIndex && (
-          <OakSpan
-            $font={["body-2-bold", "body-1-bold"]}
-            $mr={"space-between-s"}
-          >
-            {displayNumber}
-          </OakSpan>
-        )}
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}
-            $font={["body-2-bold", "body-1-bold"]}
+            $font={"heading-5"}
           >
             {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
           </OakSpan>
