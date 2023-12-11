@@ -21,11 +21,6 @@ export const QuestionStem = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakFlex key="stem-header">
-        {/* {showIndex && (
-          <OakSpan $font={"heading-5"} $mr={"space-between-s"}>
-            {displayNumber}
-          </OakSpan>
-        )} */}
         {questionStem[0]?.type === "text" && (
           <OakSpan
             key={`q-${displayNumber}-stem-element-0`}

@@ -34,22 +34,6 @@ describe("QuestionListItem", () => {
     expect(image).toBeInTheDocument();
   });
 
-  // we've removed question number rendering for now but this might be reinstated
-  it.skip("renders the question number when there is no primary text", () => {
-    if (!mcqStemImage) throw new Error("mcqText is null");
-
-    const questionStem: (StemImageObject | StemTextObject)[] = [
-      mcqStemImage.questionStem[1] as StemImageObject,
-    ];
-
-    const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
-    );
-    const numberText = getByText("Q1.");
-
-    expect(numberText).toBeInTheDocument();
-  });
-
   it("renders text after an image", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
