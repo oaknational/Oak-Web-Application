@@ -1,10 +1,6 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
 
-import { ResponsiveValues } from "../../styles/utils/responsive";
-import typography, { FontVariant } from "../../styles/utils/typography";
-import UnstyledButton, { UnstyledButtonProps } from "../UnstyledButton";
-
 import button, {
   ButtonStylesProps,
   getButtonStylesProps,
@@ -15,6 +11,12 @@ import {
   defaultButtonProps,
   HTMLButtonProps,
 } from "./common";
+
+import { ResponsiveValues } from "@/styles/utils/responsive";
+import typography, { FontVariant } from "@/styles/utils/typography";
+import UnstyledButton, {
+  UnstyledButtonProps,
+} from "@/components/UnstyledButton";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
