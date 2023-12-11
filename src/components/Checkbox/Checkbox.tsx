@@ -186,6 +186,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
       >
         <ScreenReaderCheckbox
           type="checkbox"
+          id={id}
           value={id}
           name={name}
           onChange={onChange}
