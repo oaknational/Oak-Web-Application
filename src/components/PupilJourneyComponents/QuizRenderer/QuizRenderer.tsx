@@ -6,6 +6,7 @@ import {
   OakRadioGroup,
   OakRadioButton,
   OakSpan,
+  OakBox,
 } from "@oak-academy/oak-components";
 
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
@@ -46,11 +47,14 @@ export const QuizRenderer = () => {
   return (
     <OakFlex
       $flexDirection={"column"}
-      $color={"text-inverted"}
-      $background={"lavender"}
-      $alignItems={["center", "start"]}
+      $color="text-subdued"
+      $minWidth={"all-spacing-24"}
+      $pa={"inner-padding-xl"}
+      $ba="border-solid-m"
+      $borderColor={"border-inverted"}
+      $background={"bg-decorative2-subdued"}
+      $alignItems={"center"}
       $gap={"all-spacing-5"}
-      $pa={"inner-padding-m"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
       <OakSpan>mode: {questionState.mode}</OakSpan>
@@ -81,57 +85,69 @@ export const QuizRenderer = () => {
                 index: targetIndex,
               });
             }}
+            disabled={isFeedbackMode}
           >
             {MCAnswers?.map((answer, i) => {
               return (
-                <OakFlex key={i}>
+                <OakBox key={`radio-${i}`}>
                   {answer.answer.map((answerItem) => {
-                    const isCorrectAnswer = answer.answer_is_correct === true;
                     const isSelected = selectedAnswer?.index === i;
-                    const incorrectColor = isSelected ? "red" : "lavender";
-                    const feedbackModeColor = isCorrectAnswer
+                    const incorrectColor = isSelected ? "red" : undefined;
+
+                    const feedbackModeColor = answer.answer_is_correct
                       ? "oakGreen"
                       : incorrectColor;
-                    const isTextType = answerItem.type === "text";
+
                     const backgroundColor = isFeedbackMode
                       ? feedbackModeColor
-                      : "lavender";
-                    if (isTextType) {
+                      : undefined;
+
+                    const color = backgroundColor ? "text-inverted" : undefined;
+
+                    if (answerItem.type === "text") {
                       return (
                         <OakRadioButton
-                          id={`radio-${i}`}
                           key={`radio-${i}`}
+                          $pa="inner-padding-s"
+                          $ba={"border-solid-s"}
+                          $borderRadius={"border-radius-s"}
+                          $color={color}
+                          $background={backgroundColor}
+                          id={`radio-${i}`}
                           tabIndex={i}
                           value={`${currentQuestionIndex}${answerItem.text}`}
                           label={answerItem.text}
-                          $background={backgroundColor}
                         />
                       );
                     }
                   })}
-                </OakFlex>
+                </OakBox>
               );
             })}
           </OakRadioGroup>
           {isInputMode && (
-            <OakPrimaryButton
-              disabled={selectedAnswer === undefined}
-              onClick={() => {
-                handleSubmitMCAnswer(selectedAnswer?.answer);
-              }}
-            >
-              Submit
-            </OakPrimaryButton>
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton
+                disabled={selectedAnswer === undefined}
+                onClick={() => {
+                  handleSubmitMCAnswer(selectedAnswer?.answer);
+                }}
+              >
+                Submit
+              </OakPrimaryButton>
+            </OakFlex>
           )}
           {isFeedbackMode && (
-            <OakPrimaryButton
-              onClick={() => {
-                handleNextQuestion();
-                setSelectedAnswer(undefined);
-              }}
-            >
-              Next Question
-            </OakPrimaryButton>
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton
+                onClick={() => {
+                  handleNextQuestion();
+                  setSelectedAnswer(undefined);
+                }}
+              >
+                Next Question
+              </OakPrimaryButton>
+            </OakFlex>
           )}
         </OakFlex>
       )}

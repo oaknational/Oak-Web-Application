@@ -92,3 +92,7 @@ madge
 
 # mathjax
 public/mathjax/**/*
+
+#yalc
+.yalc/
+yalc.lock
