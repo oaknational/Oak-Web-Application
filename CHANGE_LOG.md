@@ -1,3 +1,17 @@
+## [1.311.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.0...v1.311.1) (2023-12-12)
+
+# [1.311.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.310.4...v1.311.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* respond to review requests ([9b0706f](https://github.com/oaknational/Oak-Web-Application/commit/9b0706f5efb9d298b7f7fbc23aafcce468574987))
+
+
+### Features
+
+* style improvements on pupil quiz page ([d2dd79a](https://github.com/oaknational/Oak-Web-Application/commit/d2dd79a7e747169c9739d67a12588613dcf66f9e))
+
 ## [1.310.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.310.3...v1.310.4) (2023-12-08)
 
 ## [1.310.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.310.2...v1.310.3) (2023-12-08)

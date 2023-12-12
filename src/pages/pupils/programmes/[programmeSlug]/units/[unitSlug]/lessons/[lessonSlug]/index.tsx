@@ -4,7 +4,11 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { oakDefaultTheme, OakThemeProvider } from "@oak-academy/oak-components";
+import {
+  oakDefaultTheme,
+  OakFlex,
+  OakThemeProvider,
+} from "@oak-academy/oak-components";
 
 import { QuizEngineProvider } from "@/components/PupilJourneyComponents/QuizEngineProvider/QuizEngineProvider";
 import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer/QuizRenderer";
@@ -28,7 +32,16 @@ const PupilsPage: NextPage<PupilLessonOverviewPageProps> = ({
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <QuizEngineProvider questionsArray={starterQuiz ?? []}>
-        <QuizRenderer />
+        <OakFlex
+          $width={"100vw"}
+          $height={"100vh"}
+          $background={"bg-decorative1–main"}
+          $flexDirection={"column"}
+          $alignItems={"center"}
+          $pt="inner-padding-xl"
+        >
+          <QuizRenderer />
+        </OakFlex>
       </QuizEngineProvider>
     </OakThemeProvider>
   );
