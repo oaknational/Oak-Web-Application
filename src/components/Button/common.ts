@@ -11,6 +11,7 @@ import getTextColorForBackground from "@/styles/themeHelpers/getTextColorForBack
 import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
 import { IconName } from "@/components/Icon";
+import { ColorProps } from "@/styles/utils/color";
 
 export type ButtonHoverStyle = "underline-link-text" | "drop-shadow";
 export type ButtonVariant =
@@ -271,7 +272,8 @@ export const DEFAULT_ICON_POSITION: IconPosition = "leading";
 export const DEFAULT_BUTTON_BACKGROUND: ButtonBackground = "black";
 
 export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
-  MarginProps & {
+  MarginProps &
+  ColorProps & {
     id?: string;
     label: string;
     /**
