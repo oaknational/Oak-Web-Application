@@ -1,4 +1,5 @@
 import { act } from "react-dom/test-utils";
+import userEvent from "@testing-library/user-event";
 
 import LessonList from ".";
 
@@ -71,7 +72,7 @@ describe("components/ Lesson List", () => {
 
     expect(pagination).not.toBeInTheDocument();
   });
-  test("onClick is called when a unit is clicked", () => {
+  test("onClick is called when a unit is clicked", async () => {
     const { getByText } = render(
       <LessonList
         paginationProps={mockPaginationProps}
@@ -86,8 +87,8 @@ describe("components/ Lesson List", () => {
     );
     const unit = getByText("Add two surds");
 
-    act(() => {
-      unit.click();
+    await act(async () => {
+      await userEvent.click(unit);
     });
 
     expect(onClick).toHaveBeenCalledTimes(1);

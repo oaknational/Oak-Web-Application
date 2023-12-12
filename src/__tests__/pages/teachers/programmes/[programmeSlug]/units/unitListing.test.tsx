@@ -1,5 +1,6 @@
 import mockRouter from "next-router-mock";
 import { act } from "react-dom/test-utils";
+import userEvent from "@testing-library/user-event";
 
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 import UnitListingPage, {
@@ -185,8 +186,8 @@ describe("tracking", () => {
 
     const unit = getByRole("link", { name: "1. Data Representation" });
 
-    act(() => {
-      unit.click();
+    await act(async () => {
+      await userEvent.click(unit);
     });
 
     expect(unitSelected).toHaveBeenCalledTimes(1);
