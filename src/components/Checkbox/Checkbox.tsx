@@ -178,7 +178,6 @@ const Checkbox: FC<CheckboxProps> = (props) => {
   return (
     <>
       <CheckboxLabel
-        htmlFor={id}
         checked={checked}
         disabled={disabled}
         variant={variant}
