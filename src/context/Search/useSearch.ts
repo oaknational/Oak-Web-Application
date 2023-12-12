@@ -156,10 +156,10 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   );
 
   useEffect(() => {
-    if (!query.term || use2023SearchApi === undefined) {
+    if (!query.term) {
       return;
     }
-    fetchResults(use2023SearchApi);
+    fetchResults(use2023SearchApi ?? false);
   }, [fetchResults, query, use2023SearchApi]);
 
   return {

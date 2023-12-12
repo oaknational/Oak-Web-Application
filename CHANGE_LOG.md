@@ -1,3 +1,10 @@
+## [1.311.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.1...v1.311.2) (2023-12-12)
+
+
+### Bug Fixes
+
+* remove requirement for feature flag to perform search ([c634162](https://github.com/oaknational/Oak-Web-Application/commit/c634162e1891589370f890133e7f8027fe02b6c4))
+
 ## [1.311.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.0...v1.311.1) (2023-12-12)
 
 # [1.311.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.310.4...v1.311.0) (2023-12-11)
