@@ -107,7 +107,6 @@ const EarlyReleaseExemplarUnits: FC<EarlyReleaseExemplarUnitsProps> = ({
             >
               <UnitListItem
                 isExemplarUnit={true}
-                fromSearchPage={true}
                 subjectIconBackground={subjectIconBackground}
                 {...unit}
               />

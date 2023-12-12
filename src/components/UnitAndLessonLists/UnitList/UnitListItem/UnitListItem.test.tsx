@@ -1,9 +1,10 @@
-import userEvent from "@testing-library/user-event";
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 
 import UnitListItem from "./UnitListItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const onClick = jest.fn();
 
 const props = {
   title: "Numbers and numerals",
@@ -22,9 +23,9 @@ const props = {
   quizCount: 3,
   programmeSlug: "maths--primary-ks1-l",
   hitCount: 10,
-  fromSearchPage: false,
   currentPage: 1,
   yearTitle: "Year 1",
+  onClick: onClick,
   learningThemes: [
     {
       themeTitle: "Circles",
@@ -32,18 +33,6 @@ const props = {
     },
   ],
 };
-
-const unitSelected = jest.fn();
-const searchResultClicked = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      unitSelected: (...args: unknown[]) => unitSelected(...args),
-      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
-    },
-  }),
-}));
 
 const render = renderWithProviders();
 
@@ -71,55 +60,19 @@ describe("Unit List Item", () => {
     expect(lessonCountText).toBeInTheDocument();
   });
 
-  test("It calls tracking.unitSelected with correct props when clicked", async () => {
+  test("It calls onClick with correct props when clicked", async () => {
     const { getByText } = render(<UnitListItem {...props} />);
 
     const unit = getByText("Numbers and numerals");
 
-    const user = userEvent.setup();
-
-    await user.click(unit);
-
-    expect(unitSelected).toHaveBeenCalledTimes(1);
-    expect(searchResultClicked).not.toBeCalled();
-    expect(unitSelected).toHaveBeenCalledWith({
-      keyStageTitle: "Key stage 1",
-      keyStageSlug: "ks1",
-      analyticsUseCase: null,
-      subjectTitle: "Maths",
-      subjectSlug: "maths",
-      unitName: "Numbers and numerals",
-      unitSlug: "numbers-and-numerals",
+    act(() => {
+      unit.click();
     });
-  });
 
-  test("It calls tracking.searchResultClicked with correct props when clicked", async () => {
-    const { getByText } = render(
-      <UnitListItem {...{ ...props, fromSearchPage: true }} />,
-    );
+    expect(onClick).toHaveBeenCalledTimes(1);
 
-    const unit = getByText("Numbers and numerals");
-
-    const user = userEvent.setup();
-
-    await user.click(unit);
-
-    expect(searchResultClicked).toHaveBeenCalledTimes(1);
-    expect(unitSelected).not.toBeCalled();
-    expect(searchResultClicked).toHaveBeenCalledWith({
-      keyStageTitle: "Key stage 1",
-      keyStageSlug: "ks1",
-      analyticsUseCase: "Teacher",
-      subjectTitle: "Maths",
-      subjectSlug: "maths",
-      unitName: "Numbers and numerals",
-      unitSlug: "numbers-and-numerals",
-      lessonName: undefined,
-      lessonSlug: undefined,
-      searchFilterOptionSelected: [],
-      searchRank: 4,
-      searchResultCount: 10,
-      searchResultType: "unit",
+    expect(onClick).toHaveBeenCalledWith({
+      ...props,
     });
   });
 });

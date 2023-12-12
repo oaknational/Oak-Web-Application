@@ -1,4 +1,6 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 
 import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
@@ -9,11 +11,24 @@ import LessonListPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
 const render = renderWithProviders();
 
 const utilsMock = jest.requireMock("@/utils/resultsPerPage");
 jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
+}));
+
+const lessonSelected = jest.fn();
+const searchResultClicked = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonSelected: (...args: unknown[]) => lessonSelected(...args),
+      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
+    },
+  }),
 }));
 
 describe("Lesson listing page", () => {
@@ -36,6 +51,7 @@ describe("Lesson listing page", () => {
 
     expect(lessonCount).toBeInTheDocument();
   });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
@@ -91,6 +107,32 @@ describe("Lesson listing page", () => {
       await expect(
         getStaticProps({} as GetStaticPropsContext<URLParams, PreviewData>),
       ).rejects.toThrowError("no context.params");
+    });
+  });
+  describe("tracking", () => {
+    test("It calls tracking.lessonSelected with correct props when clicked", async () => {
+      const { getByText } = render(
+        <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+
+      const lesson = getByText("Add two surds");
+
+      await act(async () => {
+        await userEvent.click(lesson);
+      });
+
+      expect(lessonSelected).toHaveBeenCalledTimes(1);
+      expect(lessonSelected).toHaveBeenCalledWith({
+        analyticsUseCase: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        lessonName: "Add two surds",
+        lessonSlug: "add-two-surds-6wwk0c",
+        subjectSlug: "maths",
+        unitName: "Adding surds",
+        unitSlug: "adding-surds-a57d",
+        subjectTitle: "Maths",
+      });
     });
   });
 });

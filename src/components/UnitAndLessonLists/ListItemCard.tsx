@@ -14,7 +14,6 @@ export type ListItemCardProps = {
   background: OakColorName;
   expired: boolean | null;
   index: number;
-  fromSearchPage?: boolean;
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
   } & Pick<DOMAttributes<FocusableElement>, "onClick">;

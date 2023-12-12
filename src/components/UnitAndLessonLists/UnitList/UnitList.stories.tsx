@@ -16,6 +16,9 @@ const currentPageItems: UnitListProps = {
     totalPages: 2,
     pageSize: 20,
   },
+  onClick: function (): void {
+    console.log("Click");
+  },
 };
 
 export default {
@@ -39,6 +42,9 @@ const currentPageItemsWithTiers: UnitListProps = {
     currentPage: 1,
     totalPages: 2,
     pageSize: 20,
+  },
+  onClick: function (): void {
+    console.log("Click");
   },
 };
 

@@ -9,10 +9,14 @@ import ExemplarCategoryHeading from "./ExemplarCategoryHeading";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
+import {
+  LessonListingLinkProps,
+  LessonOverviewLinkProps,
+} from "@/common-lib/urls";
+
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
   $isHovered: boolean;
-  fromSearchPage?: boolean;
 };
 
 interface CommonProps {
@@ -61,7 +65,6 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     expired,
     onClick,
     programmeSlug,
-    fromSearchPage,
     index,
     isExemplarUnit,
     yearTitle,
@@ -69,10 +72,20 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
 
   const itemTitle = title;
 
+  const linkProps: LessonOverviewLinkProps | LessonListingLinkProps =
+    "unitSlug" in props
+      ? {
+          lessonSlug: slug,
+          page: "lesson-overview",
+          unitSlug: props.unitSlug,
+          programmeSlug: programmeSlug,
+        }
+      : { page: "lesson-index", unitSlug: slug, programmeSlug: programmeSlug };
+
   if (expired) {
     return (
       <Flex $flexDirection={"column"}>
-        <ListTitle expired={true} index={fromSearchPage ? undefined : index}>
+        <ListTitle expired={true} index={index}>
           {itemTitle}
         </ListTitle>
       </Flex>
@@ -96,34 +109,9 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
             yearTitle={yearTitle}
           />
         )}
-        {"unitSlug" in props ? (
-          // lesson
-          <OakLink
-            lessonSlug={slug}
-            programmeSlug={programmeSlug}
-            unitSlug={props.unitSlug}
-            page={"lesson-overview"}
-            onClick={onClick}
-            {...primaryTargetProps}
-          >
-            <ListTitle index={fromSearchPage ? undefined : index}>
-              {itemTitle}
-            </ListTitle>
-          </OakLink>
-        ) : (
-          // unit
-          <OakLink
-            programmeSlug={programmeSlug}
-            unitSlug={slug}
-            page={"lesson-index"}
-            onClick={onClick}
-            {...primaryTargetProps}
-          >
-            <ListTitle index={fromSearchPage ? undefined : index}>
-              {itemTitle}
-            </ListTitle>
-          </OakLink>
-        )}
+        <OakLink onClick={onClick} {...primaryTargetProps} {...linkProps}>
+          <ListTitle index={index}>{itemTitle}</ListTitle>
+        </OakLink>
       </Flex>
     </Flex>
   );
