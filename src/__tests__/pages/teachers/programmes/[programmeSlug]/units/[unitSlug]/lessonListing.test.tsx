@@ -1,5 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
-import { act } from "react-dom/test-utils";
+import userEvent from "@testing-library/user-event";
 
 import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import LessonListPage, {
@@ -116,9 +116,7 @@ describe("Lesson listing page", () => {
 
       const lesson = getByText("Add two surds");
 
-      act(() => {
-        lesson.click();
-      });
+      await userEvent.click(lesson);
 
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
