@@ -181,6 +181,7 @@ describe("SearchResultsItem", () => {
         keyStageSlug: "ks2",
         subjectTitle: "Drama",
         onClick: searchResultClicked,
+        pathways: [],
         buttonLinkProps: {
           page: "lesson-overview",
           lessonSlug: "dipping-into-macbeth-brave-macbeth-part-2-crvkad",

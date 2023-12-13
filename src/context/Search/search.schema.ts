@@ -1,5 +1,21 @@
 import { z } from "zod";
 
+export const pathwaySchema = z.object({
+  programmeSlug: z.string(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  tierSlug: z.string().nullish(),
+  tierTitle: z.string().nullish(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
+  yearSlug: z.string().nullish(),
+  yearTitle: z.string().nullish(),
+});
+
 const searchResultsSourceCommon = z.object({
   id: z.number().nullish(),
   slug: z.string(),
@@ -17,6 +33,7 @@ const searchResultsSourceCommon = z.object({
   theme_title: z.string().nullish(),
   tier: z.string().nullish(),
   phase: z.string().nullish(),
+  pathways: z.array(pathwaySchema).default([]),
 });
 
 const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({

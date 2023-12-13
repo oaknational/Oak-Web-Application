@@ -6,6 +6,7 @@ import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
 import Icon from "../Icon";
+import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
@@ -14,6 +15,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { SearchHit } from "@/context/Search/search.types";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -27,6 +29,7 @@ export type SearchResultsItemProps = {
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  pathways: SearchHit["_source"]["pathways"] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
 } & (
@@ -57,6 +60,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     legacy,
     subjectSlug,
     firstItemRef,
+    pathways,
   } = props;
 
   const { primaryTargetProps, containerProps } =
@@ -65,6 +69,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const metadataArray = [capitalizedType, keyStageShortCode, yearTitle].filter(
     (item): item is string => item !== undefined,
   );
+
+  const isPathwaySearchHit = pathways.length > 1;
 
   return (
     <Flex
@@ -106,23 +112,27 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         )}
       </Flex>
       <Flex $mb={20}>
-        <OakLink
-          aria-label={`${subjectTitle} ${type}: ${title}`}
-          {...buttonLinkProps}
-          onClick={() => {
-            onClick?.(props);
-          }}
-          {...primaryTargetProps}
-          $color={"navy"}
-          $focusStyles={["underline"]}
-        >
-          <Flex $justifyContent={"center"} $alignItems={"center"}>
-            <Span $font={"heading-7"}>
-              {type === "unit" ? "See unit" : "See lesson"}
-            </Span>
-            <Icon $ml={4} name={"arrow-right"} />
-          </Flex>
-        </OakLink>
+        {isPathwaySearchHit ? (
+          <SearchDropdown label={"Select exam board"} {...props} />
+        ) : (
+          <OakLink
+            aria-label={`${subjectTitle} ${type}: ${title}`}
+            {...buttonLinkProps}
+            onClick={() => {
+              onClick?.(props);
+            }}
+            {...primaryTargetProps}
+            $color={"navy"}
+            $focusStyles={["underline"]}
+          >
+            <Flex $justifyContent={"center"} $alignItems={"center"}>
+              <Span $font={"heading-7"}>
+                {type === "unit" ? "See unit" : "See lesson"}
+              </Span>
+              <Icon $ml={4} name={"arrow-right"} />
+            </Flex>
+          </OakLink>
+        )}
       </Flex>
     </Flex>
   );

@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 
+import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
+
 import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/Flex";
 import Box from "@/components/Box";
@@ -7,42 +9,19 @@ import OakLink from "@/components/OakLink";
 import { LI } from "@/components/Typography";
 import { FlexList } from "@/components/Typography/UL";
 
-type SearchDropdownProps = {
-  dropdownTitle: string;
-  dropdownContent: DropdownContentItem[];
-};
-
-export type UnitContentItem = {
-  type: "unit";
-  unitTitle: string;
-  unitSlug: string;
-  programmeSlug: string;
-  examboardTitle?: string;
-  tierTitle?: string | null;
-};
-
-export type LessonContentItem = {
-  type: "lesson";
-  lessonTitle: string;
-  lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
-  examboardTitle?: string;
-  tierTitle?: string;
-};
-
-type DropdownContentItem = UnitContentItem | LessonContentItem;
-
-const SearchDropdown: FC<SearchDropdownProps> = ({
-  dropdownTitle,
-  dropdownContent,
-}) => {
+const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
+  props,
+) => {
+  const { pathways, label, onClick } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const examDropdownContent = pathways.filter(
+    (content) => content.examBoardSlug,
+  );
 
   return (
     <Flex $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
-        label={dropdownTitle}
+        label={label}
         title="Select exam board"
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => setToggleOpen(!isToggleOpen)}
@@ -52,7 +31,7 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
         $display={isToggleOpen ? "block" : "none"}
         $transition={"all 0.3s ease"}
       >
-        {dropdownContent.length > 0 && (
+        {examDropdownContent.length > 0 && (
           <FlexList
             $reset
             data-testid="search-dropdown-content"
@@ -62,43 +41,29 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
             $gap={16}
             $mt={8}
           >
-            {dropdownContent.map((item) => {
-              const buttonTitle = `${item.examboardTitle} ${
+            {examDropdownContent.map((item, index) => {
+              const buttonTitle = `${item.examBoardTitle} ${
                 item.tierTitle ?? ""
               }`;
-              if (item.type === "unit") {
-                return (
-                  <LI $mb={16}>
-                    <OakLink
-                      $color={"navy"}
-                      data-testid="search-dropdown-link"
-                      page={"lesson-index"}
-                      programmeSlug={item.programmeSlug}
-                      unitSlug={item.unitSlug}
-                      $font={"heading-7"}
-                      $width={"fit-content"}
-                      $focusStyles={["new-underline"]}
-                    >
-                      {buttonTitle}
-                    </OakLink>
-                  </LI>
-                );
-              } else if (item.type === "lesson") {
-                return (
-                  <LI $mb={16}>
-                    <OakLink
-                      $font={"heading-7"}
-                      page={"lesson-overview"}
-                      programmeSlug={item.programmeSlug}
-                      unitSlug={item.unitSlug}
-                      lessonSlug={item.lessonSlug}
-                      $color={"navy"}
-                    >
-                      {buttonTitle}
-                    </OakLink>
-                  </LI>
-                );
-              }
+
+              return (
+                <LI key={`${index}-${item.programmeSlug}`} $mb={16}>
+                  <OakLink
+                    $color={"navy"}
+                    data-testid="search-dropdown-link"
+                    $font={"heading-7"}
+                    $width={"fit-content"}
+                    $focusStyles={["new-underline"]}
+                    {...props.buttonLinkProps}
+                    programmeSlug={item.programmeSlug}
+                    onClick={() => {
+                      onClick?.(props);
+                    }}
+                  >
+                    {buttonTitle}
+                  </OakLink>
+                </LI>
+              );
             })}
           </FlexList>
         )}

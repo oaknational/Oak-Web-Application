@@ -4,6 +4,7 @@ import {
   lessonSearchHitSchema,
   unitSearchHitSchema,
   searchResultsHitSchema,
+  pathwaySchema,
 } from "./search.schema";
 
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
@@ -49,3 +50,5 @@ export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;
 export type UnitSearchHit = z.infer<typeof unitSearchHitSchema>;
 
 export type SearchHit = z.infer<typeof searchResultsHitSchema>;
+
+export type PathwaySchema = z.infer<typeof pathwaySchema>;

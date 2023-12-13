@@ -7,11 +7,8 @@ const meta: Meta<typeof Component> = {
   component: Component,
   title: "Foundations/SearchDropdown",
   argTypes: {
-    dropdownTitle: {
+    label: {
       defaultValue: "Select exam board",
-    },
-    dropdownContent: {
-      defaultValue: unitListData,
     },
   },
 };
@@ -22,8 +19,8 @@ type Story = StoryObj<typeof Component>;
 
 export const SearchDropdown: Story = {
   args: {
-    dropdownTitle: "Select exam board",
-    dropdownContent: unitListData,
+    label: "Select exam board",
+    ...unitListData,
   },
   render: (args) => <Component {...args} />,
 };

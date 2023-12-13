@@ -143,6 +143,7 @@ export function getLessonObject(props: {
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways,
   };
 
   if (
@@ -190,6 +191,7 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways,
   };
 
   if (
