@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./SearchDropdown";
-import { unitListData } from "./SearchDropdown.fixture";
+
+import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+
+const searchResultsData = searchResultsItem();
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -20,7 +23,7 @@ type Story = StoryObj<typeof Component>;
 export const SearchDropdown: Story = {
   args: {
     label: "Select exam board",
-    ...unitListData,
+    ...searchResultsData,
   },
   render: (args) => <Component {...args} />,
 };
