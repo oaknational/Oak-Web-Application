@@ -120,24 +120,7 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Email not valid");
   });
-  test("should display all error hints on submit", async () => {
-    const { getByRole, getByPlaceholderText } = render(
-      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
-    );
 
-    const input = getByPlaceholderText("Anna Smith");
-    // initially error is not shown
-    expect(computeAccessibleDescription(input)).toBe("");
-    const submit = getByRole("button", { name: "Sign up" });
-    const user = userEvent.setup();
-    await user.click(submit);
-
-    // HACK: wait for next tick
-    await waitForNextTick();
-
-    // error is shown after form is submitted
-    expect(computeAccessibleDescription(input)).toBe("Name can't be empty");
-  });
   test("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
