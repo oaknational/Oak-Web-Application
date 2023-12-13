@@ -103,16 +103,18 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
     >
       <Input
         id={`${id}-newsletter-signup-name`}
-        label="Name"
+        label="Name (required)"
         placeholder="Anna Smith"
+        required={true}
         autoComplete="name"
         {...register("name")}
         error={errors.name?.message}
       />
       <Input
         id={`${id}-newsletter-signup-email`}
-        label="Email"
+        label="Email (required)"
         autoComplete="email"
+        required={true}
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}
