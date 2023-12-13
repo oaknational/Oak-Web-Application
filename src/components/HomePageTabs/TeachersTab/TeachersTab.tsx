@@ -43,7 +43,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Get a head-start on your lesson planning using quality-checked
                 resources you can download and adapt for free.
               </Typography>
-              <Box $mt={16} $width={"90%"}>
+              <Box $mt={16} $width={["100%", "90%"]}>
                 <SearchForm
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
