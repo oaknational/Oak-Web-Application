@@ -120,7 +120,22 @@ describe("NewsletterForm", () => {
     const description = computeAccessibleDescription(input);
     expect(description).toBe("Email not valid");
   });
+  test("form cannot be submitted if not complete", async () => {
+    const onSubmit = jest.fn();
+    const { getByRole, getByPlaceholderText } = render(
+      <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
+    );
 
+    const user = userEvent.setup();
+    const email = getByPlaceholderText("anna@amail.com");
+
+    const submit = getByRole("button", { name: "Sign up" });
+    await user.type(email, "joebloggs@example.com");
+
+    await user.click(submit);
+
+    expect(onSubmit).toHaveBeenCalledTimes(0);
+  });
   test("onSubmit() should not be called if form invalid", async () => {
     const { getByRole } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
