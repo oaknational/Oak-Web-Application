@@ -180,6 +180,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                 $objectFit="contain"
                 $objectPosition={"center"}
                 fill
+                alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
               />
             </Cover>
           </Flex>
