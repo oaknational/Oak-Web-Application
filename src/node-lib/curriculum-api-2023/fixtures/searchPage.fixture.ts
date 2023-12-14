@@ -47,8 +47,6 @@ const searchPageFixture = (
 ];
 export default searchPageFixture;
 
-export const onClickSearchHit = jest.fn();
-
 export const searchResultsItem = (
   partial?: Partial<SearchResultsItemProps[]>,
 ): SearchResultsItemProps[] => [
@@ -62,7 +60,9 @@ export const searchResultsItem = (
     keyStageTitle: "Key stage 4",
     keyStageSlug: "ks4",
     subjectTitle: "Computing",
-    onClick: onClickSearchHit,
+    onClick: () => {
+      console.log("click");
+    },
     buttonLinkProps: {
       page: "lesson-overview",
       lessonSlug: "the-fde-cycle-68w3ct",
@@ -128,7 +128,9 @@ export const searchResultsItem = (
     keyStageShortCode: "KS3",
     keyStageTitle: "Key stage 3",
     keyStageSlug: "ks3",
-    onClick: onClickSearchHit,
+    onClick: () => {
+      console.log("click");
+    },
     buttonLinkProps: {
       page: "lesson-index",
       programmeSlug: "computing-secondary-ks3-l",

@@ -4,7 +4,7 @@ import Component from "./SearchDropdown";
 
 import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-const searchResultsData = searchResultsItem();
+const searchResultsData = searchResultsItem()[0];
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -27,3 +27,5 @@ export const SearchDropdown: Story = {
   },
   render: (args) => <Component {...args} />,
 };
+
+// SearchDropdown.storyName = "MyComponent";

@@ -6,14 +6,20 @@ import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 import SearchDropdown from "./SearchDropdown";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import {
-  onClickSearchHit,
-  searchResultsItem,
-} from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-const searchResultLesson = searchResultsItem()[0] as SearchResultsItemProps;
+export const onClickSearchHit = jest.fn();
 
-const searchResultUnit = searchResultsItem()[1] as SearchResultsItemProps;
+const searchResultsData = searchResultsItem().map((result) => {
+  return {
+    ...result,
+    onClick: onClickSearchHit,
+  };
+});
+
+const searchResultLesson = searchResultsData[0] as SearchResultsItemProps; // we know this exists
+
+const searchResultUnit = searchResultsData[1] as SearchResultsItemProps; // we know this exists
 
 describe("SearchDropdown component", () => {
   test("component renders with correct title", () => {
