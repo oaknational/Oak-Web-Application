@@ -106,9 +106,9 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         label="Name"
         placeholder="Anna Smith"
         required={true}
+        isRequired={true}
         autoComplete="name"
         {...register("name")}
-        aria-required={true}
         error={errors.name?.message}
       />
       <Input
@@ -116,7 +116,6 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         label="Email"
         autoComplete="email"
         required={true}
-        aria-required={true}
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}

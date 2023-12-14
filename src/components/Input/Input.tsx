@@ -23,6 +23,7 @@ export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
   isOptional?: boolean;
+  isRequired?: boolean;
 };
 
 export const InputFocusUnderline = styled(Svg)`
@@ -128,7 +129,7 @@ type InputProps = UnstyledInputProps &
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { id, icon, label, error, isOptional, required, ...inputProps } =
+    const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
       props;
     const errorId = `${id}-error`;
     const labelId = `${id}-label`;
@@ -153,7 +154,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 $font={"heading-7"}
                 data-testid="rotated-input-label"
               >
-                {required && (
+                {isRequired && (
                   <Span>
                     {props.label}{" "}
                     <Span $font={"heading-light-7"}>(required)</Span>
@@ -165,7 +166,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                     <Span $font={"heading-light-7"}>(optional)</Span>
                   </Span>
                 )}
-                {!required && !isOptional && props.label}
+                {!isRequired && !isOptional && props.label}
               </RotatedInputLabel>
             </Flex>
 
