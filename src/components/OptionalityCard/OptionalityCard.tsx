@@ -3,7 +3,9 @@ import React, { FC } from "react";
 import Box from "@/components/Box";
 import Flex from "@/components/Flex";
 import { Heading, P } from "@/components/Typography";
-import UnitListItem from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import UnitListItem, {
+  UnitListItemProps,
+} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
 
@@ -12,9 +14,14 @@ export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 type OptionalityCardProps = {
   unitOptions: UnitOption[];
   index: number;
+  onClick: (props: UnitListItemProps) => void;
 };
 
-const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
+const OptionalityCard: FC<OptionalityCardProps> = ({
+  unitOptions,
+  index,
+  onClick,
+}) => {
   const stringIndex = (index + 1).toString();
   const unitTitle = unitOptions[0]?.nullTitle;
   const unitYear = unitOptions[0]?.yearTitle;
@@ -77,8 +84,8 @@ const OptionalityCard: FC<OptionalityCardProps> = ({ unitOptions, index }) => {
                     subjectSlug={unitOption.subjectSlug}
                     index={index}
                     expired={false}
-                    fromSearchPage={false}
                     isUnitOption={true}
+                    onClick={onClick}
                   />
                 </Flex>
               );

@@ -11,12 +11,16 @@ import { HeadingTag } from "@/components/Typography/Heading";
 
 export type LessonListProps = {
   lessonCount: number;
-  currentPageItems: Omit<LessonListItemProps, "unitTitle" | "index">[];
+  currentPageItems: Omit<
+    LessonListItemProps,
+    "unitTitle" | "index" | "onClick"
+  >[];
   keyStageSlug: string;
   subjectSlug: string;
   paginationProps: PaginationProps & UsePaginationProps;
   headingTag: HeadingTag;
   unitTitle: string;
+  onClick: (props: LessonListItemProps) => void;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -34,6 +38,7 @@ const LessonList: FC<LessonListProps> = (props) => {
     headingTag,
     currentPageItems,
     unitTitle,
+    onClick,
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
@@ -55,6 +60,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                   hideTopHeading
                   index={index + pageSize * (currentPage - 1)}
                   firstItemRef={index === 0 ? firstItemRef : null}
+                  onClick={onClick}
                 />
               </LI>
             ))}
