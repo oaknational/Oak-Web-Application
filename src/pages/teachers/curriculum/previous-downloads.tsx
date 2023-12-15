@@ -11,7 +11,7 @@ import TabularNav from "@/components/TabularNav/TabularNav";
 import Heading from "@/components/Typography/Heading";
 import Icon from "@/components/Icon/Icon";
 import Hr from "@/components/Typography/Hr";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import P from "@/components/Typography/P";
 import { ButtonAsLinkProps } from "@/components/Button/ButtonAsLink";
 import { CurriculumDownloads } from "@/components/pages/Curriculum/CurriculumDownloads/CurriculumDownloads";
@@ -107,8 +107,13 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
           />
           <Hr $color={"white"} />
           <Flex>
-            <Box $background={"mint30"} $borderRadius={6} $mr={12} $mv={"auto"}>
-              <BoxBorders $color="mint30" />
+            <Box
+              $background={"mint30"}
+              $mr={12}
+              $mv={"auto"}
+              $position={"relative"}
+            >
+              <BrushBorders color="mint30" />
               <Icon
                 name={"download"}
                 $color="black"
