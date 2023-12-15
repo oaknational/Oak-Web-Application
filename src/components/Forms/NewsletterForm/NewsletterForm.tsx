@@ -116,6 +116,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         label="Email"
         autoComplete="email"
         required={true}
+        isRequired={true}
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}
