@@ -146,7 +146,6 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
             <BoxBorders gapPosition="rightTop" />
             <Flex $position={"absolute"}>
               <RotatedInputLabel
-                aria-hidden="true"
                 background={error ? "red" : "lemon"}
                 color={error ? "white" : "black"}
                 htmlFor={id}
