@@ -17,13 +17,15 @@ describe("SearchFilters", () => {
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
+        examBoardFilters={props.examBoardFilters}
       />,
     );
     const searchFilters = getAllByRole("checkbox");
     expect(searchFilters).toHaveLength(
       props.keyStageFilters.length +
         props.subjectFilters.length +
-        props.contentTypeFilters.length,
+        props.contentTypeFilters.length +
+        props.examBoardFilters.length,
     );
   });
   test("have correct a11y label", () => {
@@ -32,6 +34,7 @@ describe("SearchFilters", () => {
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
+        examBoardFilters={props.examBoardFilters}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -58,6 +61,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
+        examBoardFilters={props.examBoardFilters.map((filter) => ({
+          ...filter,
+          checked: true,
+        }))}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -69,9 +76,13 @@ describe("SearchFilters", () => {
     const lessonFilter = getByRole("checkbox", {
       name: "Lessons filter",
     });
+    const examBoardFilter = getByRole("checkbox", {
+      name: "OCR filter",
+    });
     expect(ks2Filter).toHaveAttribute("checked");
     expect(mathsFilter).toHaveAttribute("checked");
     expect(lessonFilter).toHaveAttribute("checked");
+    expect(examBoardFilter).toHaveAttribute("checked");
   });
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
@@ -88,6 +99,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        examBoardFilters={props.examBoardFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
       />,
     );
     const ks2Filter = getByRole("checkbox", {
@@ -99,9 +114,13 @@ describe("SearchFilters", () => {
     const unitFilter = getByRole("checkbox", {
       name: "Units filter",
     });
+    const examBoardFilter = getByRole("checkbox", {
+      name: "OCR filter",
+    });
     expect(ks2Filter).not.toHaveAttribute("checked");
     expect(mathsFilter).not.toHaveAttribute("checked");
     expect(unitFilter).not.toHaveAttribute("checked");
+    expect(examBoardFilter).not.toHaveAttribute("checked");
   });
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
@@ -117,6 +136,10 @@ describe("SearchFilters", () => {
         subjectFilters={props.subjectFilters.map((filter) => ({
           ...filter,
           checked: true,
+        }))}
+        examBoardFilters={props.examBoardFilters.map((filter) => ({
+          ...filter,
+          checked: false,
         }))}
       />,
     );

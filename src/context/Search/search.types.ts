@@ -6,13 +6,14 @@ import {
   searchResultsHitSchema,
 } from "./search.schema";
 
-import { SearchPageData } from "@/node-lib/curriculum-api-2023";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
 
 export type SearchQuery = {
   term: string;
   keyStages?: string[];
   subjects?: string[];
   contentTypes?: ("unit" | "lesson")[];
+  examBoards?: string[];
 };
 
 export type SetSearchQuery = (
@@ -25,11 +26,13 @@ export type ContentType = {
   slug: "lesson" | "unit";
   title: "Lessons" | "Units";
 };
+export type ExamBoard = SearchPageData["examBoards"][number];
 
 export type UseSearchFiltersProps = {
   allKeyStages: KeyStage[];
   allSubjects: SearchPageData["subjects"];
   allContentTypes: ContentType[];
+  allExamBoards: ExamBoard[];
   setQuery: SetSearchQuery;
   query: SearchQuery;
 };
@@ -43,9 +46,9 @@ export type UseSearchFiltersReturnType = {
   subjectFilters: (Subject & SearchCheckBoxProps)[];
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
+  examBoardFilters: (ExamBoard & SearchCheckBoxProps)[];
 };
 
 export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;
 export type UnitSearchHit = z.infer<typeof unitSearchHitSchema>;
-
 export type SearchHit = z.infer<typeof searchResultsHitSchema>;

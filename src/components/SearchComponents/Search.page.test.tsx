@@ -71,6 +71,14 @@ const props: SearchProps = {
     contentTypeFilters: [
       { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
     ],
+    examBoardFilters: [
+      {
+        slug: "aqa",
+        title: "AQA",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
   },
   allKeyStages: [
     {

@@ -4,7 +4,8 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "@/components/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/SearchComponents/Search.page";
-import curriculumApi, { SearchPageData } from "@/node-lib/curriculum-api";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/Pagination/usePagination";
@@ -21,12 +22,14 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     subjects: allSubjects,
     keyStages: allKeyStages,
     contentTypes: allContentTypes,
+    examBoards: allExamBoards,
   } = curriculumData;
 
   const searchProps = useSearch({
     allKeyStages,
     allSubjects,
     allContentTypes,
+    allExamBoards,
   });
   const { results } = searchProps;
 
@@ -43,6 +46,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allKeyStages,
     allSubjects,
     allContentTypes,
+    allExamBoards,
   });
 
   return (
@@ -73,7 +77,7 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     page: "teachers-search::getStaticProps",
     context,
     getProps: async () => {
-      const curriculumData = await curriculumApi.searchPage();
+      const curriculumData = await curriculumApi2023.searchPage();
       const results = {
         props: {
           curriculumData,

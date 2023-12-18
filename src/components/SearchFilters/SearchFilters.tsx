@@ -8,7 +8,12 @@ import SearchFilterCheckbox from "./SearchFilterCheckbox";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
-  const { keyStageFilters, subjectFilters, contentTypeFilters } = props;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    contentTypeFilters,
+    examBoardFilters,
+  } = props;
   return (
     <>
       <P $mb={16} $font={"heading-7"}>
@@ -22,6 +27,20 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
             key={`search-filters-type-${contentType.slug}`}
             width={"50%"}
             {...contentType}
+          />
+        ))}
+      </Flex>
+      <P $mb={16} $font={"heading-7"}>
+        Exam Board
+      </P>
+      <Flex $mb={36} $flexWrap={"wrap"}>
+        {examBoardFilters.map((examBoard) => (
+          <SearchFilterCheckbox
+            name={"examBoardFilters"}
+            label={examBoard.title}
+            key={`search-filters-examBoard-${examBoard.slug}`}
+            width={"50%"}
+            {...examBoard}
           />
         ))}
       </Flex>

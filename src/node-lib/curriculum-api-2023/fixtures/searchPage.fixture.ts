@@ -40,6 +40,12 @@ const searchPageFixture = (
       { slug: "unit", title: "Units" },
       { slug: "lesson", title: "Lessons" },
     ],
+    examBoards: [
+      { slug: "aqa", title: "AQA", displayOrder: 1 },
+      { slug: "edexcel", title: "Edexcel", displayOrder: 2 },
+      { slug: "eduqas", title: "Eduqas", displayOrder: 3 },
+      { slug: "ocr", title: "OCR", displayOrder: 4 },
+    ],
     ...partial,
   },
 ];

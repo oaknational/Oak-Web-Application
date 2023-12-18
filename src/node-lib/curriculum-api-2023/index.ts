@@ -17,6 +17,7 @@ import curriculumUnitsSchema from "./queries/curriculumUnits/curriculumUnits.sch
 import lessonOverviewCanonicalQuery from "./queries/lessonOverviewCanonical/lessonOverviewCanonical.query";
 import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/lessonDownloadsCanonical.query";
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
+import searchPageQuery from "./queries/searchPage/searchPage.query";
 
 const keyStageSchema = z.object({
   slug: z.string(),
@@ -52,6 +53,7 @@ const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
   contentTypes: z.array(contentTypesSchema),
+  examBoards: z.array(examboardSchema),
 });
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
@@ -113,11 +115,7 @@ const curriculumApi2023 = {
   pupilLessonOverview: pupilLessonOverviewQuery(sdk),
   lessonOverviewCanonical: lessonOverviewCanonicalQuery(sdk),
   programmeListingPage: programmeListingQuery(sdk),
-  searchPage: async () => {
-    const res = await sdk.searchPage();
-    const searchPage = getFirstResultOrNull()({ results: res.searchPage });
-    return searchPageSchema.parse(searchPage);
-  },
+  searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
   teachersHomePage: async () => {
