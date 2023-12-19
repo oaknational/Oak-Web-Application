@@ -32,7 +32,7 @@ describe("WebinarRegistration", () => {
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
-    const button = getByRole("button", { name: "Sign up" });
+    const button = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(button);
     expect(onSubmit).not.toHaveBeenCalled();
@@ -50,7 +50,9 @@ describe("WebinarRegistration", () => {
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
 
-    await user.click(getByRole("button", { name: "Sign up" }));
+    await user.click(
+      getByRole("button", { name: "Sign up to the newsletter" }),
+    );
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
   test("button has a11y name with enough context", async () => {
@@ -60,7 +62,7 @@ describe("WebinarRegistration", () => {
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
-    const button = getByRole("button", { name: "Sign up" });
-    expect(button).toHaveAccessibleName("Sign up");
+    const button = getByRole("button", { name: "Sign up to the newsletter" });
+    expect(button).toHaveAccessibleName("Sign up to the newsletter");
   });
 });
