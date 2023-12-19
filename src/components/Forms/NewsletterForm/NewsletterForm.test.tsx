@@ -129,7 +129,7 @@ describe("NewsletterForm", () => {
     const user = userEvent.setup();
     const email = getByPlaceholderText("anna@amail.com");
 
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.type(email, "joebloggs@example.com");
 
     await user.click(submit);
@@ -141,7 +141,7 @@ describe("NewsletterForm", () => {
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(submit);
 
@@ -159,7 +159,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.click(submit);
 
     // HACK: wait for next tick
@@ -181,7 +181,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.click(submit);
 
     // HACK: wait for next tick
