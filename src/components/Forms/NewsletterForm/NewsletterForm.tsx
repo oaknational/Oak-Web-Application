@@ -132,7 +132,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <Button
         $mt={24}
-        label="Sign up"
+        label="Sign up to the newsletter"
         $fullWidth
         htmlButtonProps={{ disabled: loading }}
         background="black"
