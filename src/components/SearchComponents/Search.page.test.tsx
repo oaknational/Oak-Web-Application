@@ -8,7 +8,6 @@ import Search from "./Search.page";
 import { SearchProps } from "./search.page.types";
 
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
-import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 const createSearchResult = (): SearchHit => {
   return {
@@ -45,7 +44,38 @@ const resultsPropsPathWays: Partial<SearchProps> = {
       ...{
         _source: {
           ...createSearchResult()._source,
-          pathways: searchResultsItem()[0]?.pathways || [],
+          pathways: [
+            {
+              programme_slug: "maths-program-1",
+              unit_slug: "algebra-unit-1",
+              unit_title: "Algebra",
+              key_stage_slug: "ks3",
+              key_stage_title: "Key Stage 3",
+              subject_slug: "maths",
+              subject_title: "Mathematics",
+              tier_slug: "higher",
+              tier_title: "Higher",
+              exam_board_slug: "exam-board-1",
+              exam_board_title: "Exam Board 1",
+              year_slug: "2023",
+              year_title: "2023-2024",
+            },
+            {
+              programme_slug: "maths-program-1",
+              unit_slug: "algebra-unit-2",
+              unit_title: "Algebra",
+              key_stage_slug: "ks3",
+              key_stage_title: "Key Stage 3",
+              subject_slug: "maths",
+              subject_title: "Mathematics",
+              tier_slug: "higher",
+              tier_title: "Higher",
+              exam_board_slug: "exam-board-2",
+              exam_board_title: "Exam Board 2",
+              year_slug: "2023",
+              year_title: "2023-2024",
+            },
+          ],
         },
       },
     },
