@@ -178,6 +178,7 @@ describe("SearchResultsItem", () => {
         subjectSlug: "drama",
         keyStageShortCode: "KS2",
         keyStageTitle: "Key stage 2",
+        pupilLessonOutcome: "",
         keyStageSlug: "ks2",
         subjectTitle: "Drama",
         onClick: searchResultClicked,
