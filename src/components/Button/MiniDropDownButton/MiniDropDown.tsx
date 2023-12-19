@@ -73,7 +73,6 @@ const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
           {...focusWithinProps}
           onMouseOver={() => setTextUnderline(true)}
           onMouseLeave={() => setTextUnderline(false)}
-          $pa={8}
           ref={ref}
           {...htmlButtonProps}
           $color={"navy"}

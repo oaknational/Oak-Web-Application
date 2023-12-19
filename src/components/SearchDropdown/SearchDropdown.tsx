@@ -14,9 +14,15 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
 ) => {
   const { pathways, label, onClick } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
-  const examDropdownContent = pathways.filter(
-    (content) => content.examBoardSlug,
-  );
+  const examDropdownContent = pathways
+    .filter(({ examBoardSlug }) => examBoardSlug)
+    .sort((a, b) => {
+      const getSlug = (item: string | null | undefined) => item || "";
+      return (
+        getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
+        getSlug(a.tierSlug).localeCompare(getSlug(b.tierSlug))
+      );
+    });
 
   return (
     <Flex $flexDirection={"column"} $justifyContent={"center"}>
@@ -36,10 +42,8 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
             $reset
             data-testid="search-dropdown-content"
             $flexDirection={"column"}
-            $pl={8}
             $width={"fit-content"}
             $gap={16}
-            $mt={8}
           >
             {examDropdownContent.map((item, index) => {
               const buttonTitle = `${item.examBoardTitle} ${

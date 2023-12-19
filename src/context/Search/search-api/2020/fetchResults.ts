@@ -36,7 +36,6 @@ export async function fetchResults(query: SearchQuery) {
   };
 
   const data = searchResultsSchema.parse(unparsedDataWithLegacyFlag);
-
   const { hits } = data;
   const hitList = hits.hits;
 

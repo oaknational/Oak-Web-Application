@@ -50,7 +50,6 @@ export async function fetchResults(query: SearchQuery) {
             legacy: false,
             _source: {
               ...source,
-              pathways: [],
               title,
               slug,
             },

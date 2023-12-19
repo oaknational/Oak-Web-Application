@@ -15,7 +15,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
-import { SearchHit } from "@/context/Search/search.types";
+import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -26,10 +26,11 @@ export type SearchResultsItemProps = {
   keyStageSlug: string;
   yearTitle?: string | null;
   description?: string;
+  pupilLessonOutcome?: string;
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
-  pathways: SearchHit["_source"]["pathways"] | [];
+  pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
 } & (
@@ -50,6 +51,7 @@ export type SearchResultsItemProps = {
 const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const {
     description,
+    pupilLessonOutcome,
     title,
     subjectTitle,
     buttonLinkProps,
@@ -71,6 +73,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   );
 
   const isPathwaySearchHit = pathways.length > 1;
+  const searchHitDescription = description || pupilLessonOutcome || "";
 
   return (
     <Flex
@@ -101,15 +104,16 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </Heading>
-        {description && (
-          <P
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-            $mt={16}
-            $font={"body-2"}
-          />
-        )}
+        {description ||
+          (pupilLessonOutcome && (
+            <P
+              dangerouslySetInnerHTML={{
+                __html: searchHitDescription,
+              }}
+              $mt={16}
+              $font={"body-2"}
+            />
+          ))}
       </Flex>
       <Flex $mb={20}>
         {isPathwaySearchHit ? (
