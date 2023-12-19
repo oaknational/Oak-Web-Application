@@ -105,6 +105,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         id={`${id}-newsletter-signup-name`}
         label="Name"
         placeholder="Anna Smith"
+        required={true}
+        isRequired={true}
         autoComplete="name"
         {...register("name")}
         error={errors.name?.message}
@@ -113,6 +115,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         id={`${id}-newsletter-signup-email`}
         label="Email"
         autoComplete="email"
+        required={true}
+        isRequired={true}
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}
