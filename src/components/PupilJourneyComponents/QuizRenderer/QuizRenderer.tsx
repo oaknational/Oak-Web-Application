@@ -3,15 +3,13 @@ import {
   OakFlex,
   OakHeading,
   OakPrimaryButton,
-  OakRadioGroup,
-  OakRadioButton,
   OakSpan,
-  OakBox,
 } from "@oak-academy/oak-components";
 
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 
 export const QuizRenderer = () => {
   const quizContext = useContext(QuizEngineContext);
@@ -44,6 +42,28 @@ export const QuizRenderer = () => {
   const isEndMode = questionState.mode === "end";
   const isInputMode = questionState.mode === "input";
 
+  const handleAnswerSelected = (val: {
+    answer?: MCAnswer | null;
+    index: number;
+  }) => {
+    setSelectedAnswer(val);
+  };
+
+  let answerRender = null;
+
+  if (MCAnswers && MCAnswers?.length > 0) {
+    answerRender = (
+      <QuizMCQSingleAnswer
+        questionUid={questionUid}
+        currentQuestionIndex={currentQuestionIndex}
+        answers={MCAnswers}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={handleAnswerSelected}
+        isFeedbackMode={isFeedbackMode}
+      />
+    );
+  }
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -52,13 +72,14 @@ export const QuizRenderer = () => {
       $pa={"inner-padding-xl"}
       $ba="border-solid-m"
       $borderColor={"border-inverted"}
-      $background={"bg-decorative2-subdued"}
+      $background={"bg-decorative1-subdued"}
       $alignItems={"center"}
       $gap={"all-spacing-5"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
       <OakSpan>mode: {questionState.mode}</OakSpan>
       <OakSpan>answer: {questionState.answer || "not answered"}</OakSpan>
+
       {isEndMode && (
         <OakFlex>
           <OakSpan>
@@ -67,6 +88,7 @@ export const QuizRenderer = () => {
           </OakSpan>
         </OakFlex>
       )}
+
       {(isInputMode || isFeedbackMode) && (
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuestionStem
@@ -74,57 +96,7 @@ export const QuizRenderer = () => {
             index={currentQuestionIndex}
             showIndex={true}
           />
-          <OakRadioGroup
-            name={questionUid || "quiz"}
-            $flexDirection={"column"}
-            onChange={(e) => {
-              const targetIndex = e.target.tabIndex;
-              const selectedAnswer = MCAnswers?.[targetIndex];
-              setSelectedAnswer({
-                answer: selectedAnswer,
-                index: targetIndex,
-              });
-            }}
-            disabled={isFeedbackMode}
-          >
-            {MCAnswers?.map((answer, i) => {
-              return (
-                <OakBox key={`radio-${i}`}>
-                  {answer.answer.map((answerItem) => {
-                    const isSelected = selectedAnswer?.index === i;
-                    const incorrectColor = isSelected ? "red" : undefined;
-
-                    const feedbackModeColor = answer.answer_is_correct
-                      ? "oakGreen"
-                      : incorrectColor;
-
-                    const backgroundColor = isFeedbackMode
-                      ? feedbackModeColor
-                      : undefined;
-
-                    const color = backgroundColor ? "text-inverted" : undefined;
-
-                    if (answerItem.type === "text") {
-                      return (
-                        <OakRadioButton
-                          key={`radio-${i}`}
-                          $pa="inner-padding-s"
-                          $ba={"border-solid-s"}
-                          $borderRadius={"border-radius-s"}
-                          $color={color}
-                          $background={backgroundColor}
-                          id={`radio-${i}`}
-                          tabIndex={i}
-                          value={`${currentQuestionIndex}${answerItem.text}`}
-                          label={answerItem.text}
-                        />
-                      );
-                    }
-                  })}
-                </OakBox>
-              );
-            })}
-          </OakRadioGroup>
+          {answerRender}
           {isInputMode && (
             <OakFlex $pt="inner-padding-l">
               <OakPrimaryButton
