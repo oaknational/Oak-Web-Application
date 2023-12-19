@@ -17,12 +17,18 @@ type ActiveFiltersProps = {
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   const { searchFilters } = props;
-  const { keyStageFilters, subjectFilters, contentTypeFilters } = searchFilters;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    contentTypeFilters,
+    examBoardFilters,
+  } = searchFilters;
 
   const activeFilters = [
     ...keyStageFilters.filter((keyStage) => keyStage.checked),
     ...subjectFilters.filter((subject) => subject.checked),
     ...contentTypeFilters.filter((contentType) => contentType.checked),
+    ...examBoardFilters.filter((examBoard) => examBoard.checked),
   ];
 
   const maxActiveFilters = 4;
