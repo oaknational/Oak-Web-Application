@@ -39,15 +39,17 @@ describe("WebinarRegistration", () => {
   });
   test("clicking button calls onSubmit() if form filled out", async () => {
     const onSubmit = jest.fn();
-    const { getByRole } = renderWithTheme(
+    const { getByRole, getByPlaceholderText } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
     const user = userEvent.setup();
-    await user.click(getByRole("textbox", { name: "Email" }));
-    await user.keyboard("test@thenational.academy");
-    await user.click(getByRole("textbox", { name: "Name" }));
-    await user.keyboard("Antonia");
+
+    const name = getByPlaceholderText("Anna Smith");
+    await user.type(name, "joe bloggs");
+    const email = getByPlaceholderText("anna@amail.com");
+    await user.type(email, "joebloggs@example.com");
+
     await user.click(getByRole("button", { name: "Sign up" }));
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
