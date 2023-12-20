@@ -6,7 +6,6 @@ import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
 import { LandingPageTextAndMedia as Component } from "./LandingPageTextAndMedia";
 
 const meta: Meta<typeof Component> = {
-  title: "Sanity/Pages/Landing Pages",
   component: Component,
   argTypes: {},
 };

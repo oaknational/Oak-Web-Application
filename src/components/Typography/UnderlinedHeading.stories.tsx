@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { UnderlinedHeading as Component } from ".";
 
 export default {
-  title: "Typography/Heading - underlined",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

@@ -6,7 +6,6 @@ import AspectRatio from "../../AspectRatio";
 import Component from ".";
 
 export default {
-  title: "Blogs & Webinars/UpcomingWebinarWall",
   component: Component,
   parameters: {
     backgrounds: {

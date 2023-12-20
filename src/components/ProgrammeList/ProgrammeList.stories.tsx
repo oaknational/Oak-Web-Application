@@ -6,7 +6,6 @@ import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fix
 import Component from ".";
 
 export default {
-  title: "Lists",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

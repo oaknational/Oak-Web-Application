@@ -4,7 +4,7 @@ import Component from "./NextLessonContainer";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Download Components/Confirmation Container",
+
   argTypes: {
     programmeSlug: { defaultValue: "programme-slug" },
     unitSlug: { defaultValue: "unit-slug" },

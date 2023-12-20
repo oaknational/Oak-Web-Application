@@ -4,7 +4,6 @@ import { StoryFn, Meta } from "@storybook/react";
 import { LessonPathwayCard as Component } from "./LessonPathwayCard";
 
 export default {
-  title: "Lesson/Lesson Pathway Card",
   component: Component,
   argTypes: {},
 } as Meta<typeof Component>;

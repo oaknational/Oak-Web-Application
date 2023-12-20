@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "typography/Outline Heading",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

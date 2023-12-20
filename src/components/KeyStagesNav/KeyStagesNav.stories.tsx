@@ -5,7 +5,6 @@ import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
 import Component from "./KeyStagesNav";
 
 export default {
-  title: "Navigation/Key Stages Nav",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

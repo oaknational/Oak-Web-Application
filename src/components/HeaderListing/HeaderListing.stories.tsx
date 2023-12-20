@@ -67,7 +67,6 @@ export const headerListingProps = {
 };
 
 const meta: Meta<typeof Component> = {
-  title: "Headers & Footers/HeaderListing",
   decorators: [AnalyticsDecorator],
   component: Component,
 };

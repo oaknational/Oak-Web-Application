@@ -7,7 +7,6 @@ import { ICON_NAMES } from "../../image-data";
 import Component from "./Icon";
 
 export default {
-  title: "Media/Icon",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

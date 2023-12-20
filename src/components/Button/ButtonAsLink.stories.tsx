@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from "./ButtonAsLink";
 
 const meta: Meta<typeof Component> = {
-  title: "Buttons/Button As Link",
   component: Component,
   argTypes: {
     label: {

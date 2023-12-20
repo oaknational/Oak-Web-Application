@@ -6,7 +6,6 @@ import Flex from "../../Flex";
 import Component from "./LandingPageHero";
 
 export default {
-  title: "Sanity/Pages/Landing Pages",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
