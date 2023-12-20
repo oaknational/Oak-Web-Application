@@ -25,7 +25,7 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
     });
 
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"}>
+    <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
         label={label}
         title="Select exam board"
