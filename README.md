@@ -57,6 +57,16 @@ npm run dev
 
 If successful two further config files `.env.development.local` and `.env.local` will have been automatically generated. You can access the running web app on `http://localhost:3000`
 
+### Troubleshooting
+
+On a mac with silicon chip, you might get an error running `npm run dev`. To resolve, run:
+
+```bash
+npm rebuild --platform=darwin --arch=arm64 sharp
+```
+
+then try again.
+
 ## Automatic Checks
 
 For more detail please see the [test documentation](docs/testing.md).
