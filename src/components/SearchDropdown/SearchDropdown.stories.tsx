@@ -9,11 +9,7 @@ const searchResultsData = searchResultsItem()[0];
 const meta: Meta<typeof Component> = {
   component: Component,
   title: "Foundations/SearchDropdown",
-  argTypes: {
-    label: {
-      defaultValue: "Select exam board",
-    },
-  },
+  argTypes: {},
 };
 
 export default meta;
@@ -22,7 +18,6 @@ type Story = StoryObj<typeof Component>;
 
 export const SearchDropdown: Story = {
   args: {
-    label: "Select exam board",
     ...searchResultsData,
   },
   render: (args) => <Component {...args} />,
