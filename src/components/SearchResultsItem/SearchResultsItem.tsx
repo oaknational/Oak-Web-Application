@@ -80,7 +80,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       $bb={1}
       $borderColor={"grey40"}
       $flexDirection={"column"}
-      {...containerProps}
+      {...(!isPathwaySearchHit ? containerProps : null)}
       $mb={56}
       $maxWidth={734}
     >

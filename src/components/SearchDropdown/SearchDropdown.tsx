@@ -39,6 +39,7 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
       >
         {examDropdownContent.length > 0 && (
           <FlexList
+            $mt={16}
             $reset
             data-testid="search-dropdown-content"
             $flexDirection={"column"}
@@ -51,7 +52,7 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
               }`;
 
               return (
-                <LI key={`${index}-${item.programmeSlug}`} $mb={16}>
+                <LI $pl={8} key={`${index}-${item.programmeSlug}`} $mb={16}>
                   <OakLink
                     $color={"navy"}
                     data-testid="search-dropdown-link"
