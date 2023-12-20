@@ -1,23 +1,19 @@
+import { useContext } from "react";
 import { OakFlex, OakQuizCheckBox } from "@oak-academy/oak-components";
+
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQMultiAnswerProps = {
   questionUid: string;
   answers: MCAnswer[];
   isFeedbackMode: boolean;
-  feedback?: boolean[];
 };
 
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
-  const {
-    questionUid,
-    answers,
-    // currentQuestionIndex,
-    isFeedbackMode,
-    feedback,
-    // selectedAnswer,
-    // setSelectedAnswer,
-  } = props;
+  const { questionUid, answers, isFeedbackMode } = props;
+
+  const quizEngine = useContext(QuizEngineContext);
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>

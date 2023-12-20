@@ -12,6 +12,7 @@ import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { c } from "msw/lib/glossary-de6278a9";
 
 type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -20,18 +21,22 @@ export type QuizEngineProps = {
   questionsArray: QuestionsArray;
 };
 
+type QuestionFeedbackType = "correct" | "incorrect" | undefined;
+
 type QuestionState = {
-  mode: "input" | "feedback" | "end";
-  answer: undefined | "correct" | "incorrect";
+  mode: "input" | "feedback";
+  grade: number;
   offerHint: boolean;
-  score: number;
-  maximumScore: number;
+  feedback?: QuestionFeedbackType[];
 };
 
 export type QuizEngineContextType = {
   currentQuestionData: QuestionsArray[number] | undefined;
   currentQuestionIndex: number;
-  questionState: QuestionState;
+  questionState: QuestionState[];
+  score: number;
+  maxScore: number;
+  isComplete: boolean;
   handleSubmitMCAnswer: (answer: MCAnswer | null | undefined) => void;
   handleNextQuestion: () => void;
 } | null;
@@ -41,7 +46,7 @@ export const QuizEngineContext = createContext<QuizEngineContextType>(null);
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
 
-  const multipleChoiceQuestionsArray = useMemo(
+  const filteredQuestions = useMemo(
     () =>
       questionsArray.filter(
         (question) =>
@@ -50,95 +55,85 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     [questionsArray],
   );
 
-  const numberOfQuestions = useMemo(
-    () => multipleChoiceQuestionsArray.length,
-    [multipleChoiceQuestionsArray],
-  );
-
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [currentQuestionData, setCurrentQuestionData] = useState(
-    multipleChoiceQuestionsArray[currentQuestionIndex],
+    filteredQuestions[currentQuestionIndex],
   );
-  const [questionState, setQuestionState] = useState<QuestionState>({
-    mode: "input",
-    answer: undefined,
-    offerHint: false,
-    score: 0,
-    maximumScore: numberOfQuestions,
-  });
+  const [questionState, setQuestionState] = useState<QuestionState[]>(
+    filteredQuestions.map(() => ({
+      mode: "input",
+      offerHint: false,
+      grade: 0,
+      feedback: undefined,
+    })),
+  );
+  const [score, setScore] = useState(0);
+  const maxScore = useMemo(() => filteredQuestions.length, [filteredQuestions]);
+  const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
-    const desiredQuestionData =
-      multipleChoiceQuestionsArray[currentQuestionIndex];
-    setCurrentQuestionData(desiredQuestionData);
-  }, [currentQuestionIndex, multipleChoiceQuestionsArray]);
+    setCurrentQuestionData(filteredQuestions[currentQuestionIndex]);
+  }, [currentQuestionIndex, filteredQuestions]);
+
+  useEffect(() => {
+    setScore(questionState.reduce((acc, curr) => acc + curr.grade, 0));
+  }, [questionState]);
+
+  useEffect(() => {
+    setIsComplete(currentQuestionIndex === maxScore);
+  }, [currentQuestionIndex, maxScore]);
 
   const handleSubmitMCAnswer = useCallback(
-    (answer: MCAnswer | null | undefined) => {
+    (pupilAnswers: MCAnswer[]) => {
       const questionAnswers = currentQuestionData?.answers;
-      const correctAnswerArray = questionAnswers?.["multiple-choice"]?.filter(
+      const correctAnswers = questionAnswers?.["multiple-choice"]?.filter(
         (answer) => answer.answer_is_correct,
       );
-      const isCorrect = answer && correctAnswerArray?.includes(answer);
+      const matchingAnswers = pupilAnswers?.filter(
+        (answer) => correctAnswers?.includes(answer),
+      );
 
-      if (isCorrect) {
-        setQuestionState((preState) => ({
-          ...preState,
-          score: preState.score + 1,
+      const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
           mode: "feedback",
-          answer: "correct",
-        }));
-      } else {
-        setQuestionState({
-          ...questionState,
-          mode: "feedback",
-          answer: "incorrect",
-        });
-      }
+          grade,
+          feedback: correctAnswers?.map((answer) => {
+            if (pupilAnswers.includes(answer)) {
+              return matchingAnswers.includes(answer) ? "correct" : "incorrect";
+            } else {
+              return undefined;
+            }
+          }),
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+        };
+        return newState;
+      });
     },
-    [currentQuestionData, questionState],
+    [currentQuestionData, currentQuestionIndex],
   );
 
   const handleNextQuestion = useCallback(() => {
-    if (currentQuestionIndex === numberOfQuestions - 1) {
-      setQuestionState({
-        ...questionState,
-        mode: "end",
-      });
-    } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setQuestionState({
-        ...questionState,
-        mode: "input",
-        answer: undefined,
-      });
-    }
-  }, [currentQuestionIndex, numberOfQuestions, questionState]);
-
-  const currentQuestionDataValue = useMemo(() => {
-    return {
-      currentQuestionData,
-    };
-  }, [currentQuestionData]);
-
-  const currentQuestionIndexValue = useMemo(() => {
-    return {
-      currentQuestionIndex,
-    };
-  }, [currentQuestionIndex]);
-
-  const questionStateValue = useMemo(() => {
-    return {
-      questionState,
-    };
-  }, [questionState]);
+    setCurrentQuestionIndex((prev) => Math.min(prev + 1, maxScore));
+  }, [maxScore]);
 
   return (
     <QuizEngineContext.Provider
       value={{
-        ...currentQuestionDataValue,
-        ...currentQuestionIndexValue,
-        ...questionStateValue,
+        currentQuestionData: useMemo(
+          () => currentQuestionData,
+          [currentQuestionData],
+        ),
+        currentQuestionIndex: useMemo(
+          () => currentQuestionIndex,
+          [currentQuestionIndex],
+        ),
+        questionState: useMemo(() => questionState, [questionState]),
+        score: useMemo(() => score, [score]),
+        maxScore,
+        isComplete: useMemo(() => isComplete, [isComplete]),
         handleSubmitMCAnswer,
         handleNextQuestion,
       }}
