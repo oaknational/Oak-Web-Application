@@ -4,10 +4,8 @@ import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type QuizMCQMultiAnswerProps = {
   questionUid: string;
   answers: MCAnswer[];
-  currentQuestionIndex: number;
   isFeedbackMode: boolean;
-  // selectedAnswer?: { answer?: MCAnswer | null; index: number };
-  // setSelectedAnswer: (val: { answer?: MCAnswer | null; index: number }) => void;
+  feedback?: boolean[];
 };
 
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
@@ -16,19 +14,26 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
     answers,
     // currentQuestionIndex,
     isFeedbackMode,
+    feedback,
     // selectedAnswer,
     // setSelectedAnswer,
   } = props;
 
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-      {answers.map((answer, index) => (
-        <OakQuizCheckBox
-          id={`${questionUid}-answer${index}`}
-          value={answer.answer[0].text}
-          isFeedback={isFeedbackMode}
-        />
-      ))}
+      {answers.map((answer, index) => {
+        const a = answer.answer[0];
+        const isCorrect = feedback ? feedback[index] : false;
+        return (
+          <OakQuizCheckBox
+            key={`${questionUid}-answer${index}`}
+            id={`${questionUid}-answer${index}`}
+            value={a.text}
+            isFeedback={isFeedbackMode}
+            isCorrect={isCorrect}
+          />
+        );
+      })}
     </OakFlex>
   );
 };

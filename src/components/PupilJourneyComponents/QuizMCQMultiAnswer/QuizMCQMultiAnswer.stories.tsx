@@ -23,13 +23,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const multiTextAnswers = [...mcqTextAnswers];
-if (multiTextAnswers[0]) {
-  multiTextAnswers[0].answer_is_correct = true;
-}
-
 /*
- * This component is not yet implemented.
+ * A component to render MCQ questions where there are multiple answers
+ * The component updates the state of the quizEngineProvider with the attempted answer
+ *
  */
 export const Primary: Story = {
   render: (args) => (
@@ -42,5 +39,10 @@ export const Primary: Story = {
       </OakBox>
     </OakThemeProvider>
   ),
-  args: { questionUid: "123", answers: multiTextAnswers },
+  args: {
+    questionUid: "123",
+    answers: mcqTextAnswers,
+    feedback: [true, false, true, false],
+    isFeedbackMode: false,
+  },
 };
