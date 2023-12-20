@@ -7,7 +7,7 @@ import {
 } from "@oak-academy/oak-components";
 
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem";
+import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 
@@ -91,7 +91,7 @@ export const QuizRenderer = () => {
 
       {(isInputMode || isFeedbackMode) && (
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
-          <QuestionStem
+          <QuizQuestionStem
             questionStem={questionStem}
             index={currentQuestionIndex}
             showIndex={true}
