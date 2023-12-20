@@ -14,7 +14,7 @@ import { performSearch } from "./search-api/performSearch";
 
 import useStableCallback from "@/hooks/useStableCallback";
 import { resolveOakHref } from "@/common-lib/urls";
-import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
 type UseSearchQueryReturnType = {
   query: SearchQuery;

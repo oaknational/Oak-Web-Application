@@ -1,4 +1,4 @@
-import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
 const searchPageFixture = (
   partial?: Partial<SearchPageData>,

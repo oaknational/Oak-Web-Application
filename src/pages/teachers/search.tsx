@@ -4,8 +4,9 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "@/components/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/SearchComponents/Search.page";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
+import curriculumApi2023, {
+  SearchPageData,
+} from "@/node-lib/curriculum-api-2023";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/Pagination/usePagination";

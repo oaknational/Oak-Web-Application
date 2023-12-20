@@ -6,7 +6,7 @@ import {
   searchResultsHitSchema,
 } from "./search.schema";
 
-import { SearchPageData } from "@/node-lib/curriculum-api-2023/queries/searchPage/searchPage.schema";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
 export type SearchQuery = {
   term: string;

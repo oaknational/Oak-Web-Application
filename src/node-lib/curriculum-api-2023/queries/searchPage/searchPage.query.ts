@@ -1,6 +1,5 @@
 import { Sdk } from "../../sdk";
-
-import searchPageSchema from "./searchPage.schema";
+import { searchPageSchema } from "../../";
 
 import OakError from "@/errors/OakError";
 
