@@ -27,5 +27,3 @@ export const SearchDropdown: Story = {
   },
   render: (args) => <Component {...args} />,
 };
-
-// SearchDropdown.storyName = "MyComponent";
