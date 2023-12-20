@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
+import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
+
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oak-academy/oak-components";
-
-import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
-
 import { mcqTextAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 const meta = {
@@ -22,6 +22,8 @@ const multiTextAnswers = [...mcqTextAnswers];
 if (multiTextAnswers[0]) {
   multiTextAnswers[0].answer_is_correct = true;
 }
+
+console.log("multiTextAnswers", multiTextAnswers);
 
 /*
  * This component is not yet implemented.

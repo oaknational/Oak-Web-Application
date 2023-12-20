@@ -1,5 +1,4 @@
 import { OakFlex, OakQuizCheckBox } from "@oak-academy/oak-components";
-
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizMCQMultiAnswerProps = {
@@ -26,7 +25,7 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
       {answers.map((answer, index) => (
         <OakQuizCheckBox
           id={`${questionUid}-answer${index}`}
-          value={answer.text}
+          value={answer.answer[0].text}
           isFeedback={isFeedbackMode}
         />
       ))}
