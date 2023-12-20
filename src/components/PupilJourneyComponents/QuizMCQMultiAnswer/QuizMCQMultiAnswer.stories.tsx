@@ -12,6 +12,11 @@ import { mcqTextAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElem
 const meta = {
   component: QuizMCQMultiAnswer,
   tags: ["autodocs"],
+  parameters: {
+    controls: {
+      include: ["isFeedbackMode"],
+    },
+  },
 } satisfies Meta<typeof QuizMCQMultiAnswer>;
 
 export default meta;
@@ -22,8 +27,6 @@ const multiTextAnswers = [...mcqTextAnswers];
 if (multiTextAnswers[0]) {
   multiTextAnswers[0].answer_is_correct = true;
 }
-
-console.log("multiTextAnswers", multiTextAnswers);
 
 /*
  * This component is not yet implemented.
