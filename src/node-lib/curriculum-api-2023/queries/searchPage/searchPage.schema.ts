@@ -1,17 +1,6 @@
 import { z } from "zod";
 
-const keyStageSchema = z.object({
-  slug: z.string(),
-  title: z.string(),
-  shortCode: z.string(),
-  displayOrder: z.number().optional(),
-});
-
-const subjectSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
+import { keyStageSchema, subjectSchema } from "../..";
 
 const examBoardSchema = z.object({
   title: z.string(),

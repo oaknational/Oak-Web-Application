@@ -19,7 +19,7 @@ import lessonDownloadsCanonicalQuery from "./queries/lessonDownloadsCanonical/le
 import curriculumOverviewSchema from "./queries/curriculumOverview/curriculumOverview.schema";
 import searchPageQuery from "./queries/searchPage/searchPage.query";
 
-const keyStageSchema = z.object({
+export const keyStageSchema = z.object({
   slug: z.string(),
   title: z.string(),
   shortCode: z.string(),
@@ -30,7 +30,7 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-const subjectSchema = z.object({
+export const subjectSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -40,20 +40,10 @@ const phaseSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
-const examboardSchema = z.object({
+export const examboardSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
-});
-const contentTypesSchema = z.object({
-  slug: z.union([z.literal("unit"), z.literal("lesson")]),
-  title: z.union([z.literal("Units"), z.literal("Lessons")]),
-});
-const searchPageSchema = z.object({
-  keyStages: z.array(keyStageSchema),
-  subjects: z.array(subjectSchema),
-  contentTypes: z.array(contentTypesSchema),
-  examBoards: z.array(examboardSchema),
 });
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
@@ -78,7 +68,6 @@ export type Phase = z.infer<typeof phaseSchema>;
 export type Subject = z.infer<typeof subjectSchema>;
 export type Examboard = z.infer<typeof examboardSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
-export type SearchPageData = z.infer<typeof searchPageSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 

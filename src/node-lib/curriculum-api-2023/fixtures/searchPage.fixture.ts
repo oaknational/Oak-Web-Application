@@ -1,4 +1,4 @@
-import { SearchPageData } from "..";
+import { SearchPageData } from "../queries/searchPage/searchPage.schema";
 
 const searchPageFixture = (
   partial?: Partial<SearchPageData>,
