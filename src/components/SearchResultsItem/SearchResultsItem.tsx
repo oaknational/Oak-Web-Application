@@ -117,7 +117,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       </Flex>
       <Flex $mb={20}>
         {isPathwaySearchHit ? (
-          <SearchDropdown label={"Select exam board"} {...props} />
+          <SearchDropdown {...props} />
         ) : (
           <OakLink
             aria-label={`${subjectTitle} ${type}: ${title}`}

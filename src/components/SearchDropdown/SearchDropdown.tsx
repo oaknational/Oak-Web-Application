@@ -9,26 +9,38 @@ import OakLink from "@/components/OakLink";
 import { LI } from "@/components/Typography";
 import { FlexList } from "@/components/Typography/UL";
 
-const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
-  props,
-) => {
-  const { pathways, label, onClick } = props;
+const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
+  const { pathways, onClick } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+
+  const getSlug = (item: string | null | undefined) => item || "";
+
   const examDropdownContent = pathways
-    .filter(({ examBoardSlug }) => examBoardSlug)
+    .filter(({ examBoardSlug }) => examBoardSlug !== null)
     .sort((a, b) => {
-      const getSlug = (item: string | null | undefined) => item || "";
       return (
         getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
-        getSlug(a.tierSlug).localeCompare(getSlug(b.tierSlug))
+        getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug))
       );
     });
+
+  const tierDropdownContent = pathways
+    .filter(({ examBoardSlug }) => !examBoardSlug)
+    .sort((a, b) => {
+      return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
+    });
+  const label = `Select ${
+    tierDropdownContent.length > 0 ? "tier" : "exam board"
+  }`;
+
+  const dropDownContent =
+    examDropdownContent.length > 0 ? examDropdownContent : tierDropdownContent;
 
   return (
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
         label={label}
-        title="Select exam board"
+        title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => setToggleOpen(!isToggleOpen)}
         isExpanded={isToggleOpen}
@@ -37,7 +49,7 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
         $display={isToggleOpen ? "block" : "none"}
         $transition={"all 0.3s ease"}
       >
-        {examDropdownContent.length > 0 && (
+        {dropDownContent.length > 0 && (
           <FlexList
             $mt={16}
             $reset
@@ -46,8 +58,8 @@ const SearchDropdown: FC<SearchResultsItemProps & { label: string }> = (
             $width={"fit-content"}
             $gap={16}
           >
-            {examDropdownContent.map((item, index) => {
-              const buttonTitle = `${item.examBoardTitle} ${
+            {dropDownContent.map((item, index) => {
+              const buttonTitle = `${item.examBoardTitle ?? ""} ${
                 item.tierTitle ?? ""
               }`;
 
