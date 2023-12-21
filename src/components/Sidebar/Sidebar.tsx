@@ -66,7 +66,7 @@ const Sidebar: FC<ModalProps> = ({
                 <Flex $overflowY={"auto"} $flexGrow={1}>
                   {children}
                 </Flex>
-                (
+
                 {!unitOptionsAvailable && (
                   <Flex $flexDirection={"column"}>
                     <Hr $color={"grey30"} $mt={0} $mb={24} />
@@ -96,6 +96,7 @@ const Sidebar: FC<ModalProps> = ({
                             disabled={!lessonsAvailable}
                             currentStyles={["color"]}
                             icon="chevron-right"
+                            isCurrent={true}
                             iconBackground="grey60"
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
@@ -108,7 +109,6 @@ const Sidebar: FC<ModalProps> = ({
                     </Flex>
                   </Flex>
                 )}
-                )
               </Flex>
             </SideMenu>
           </FocusOn>
