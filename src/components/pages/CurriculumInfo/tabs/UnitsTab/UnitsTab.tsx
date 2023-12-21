@@ -15,14 +15,13 @@ import Grid from "@/components/Grid/Grid";
 import Radio from "@/components/RadioButtons/Radio";
 import RadioGroup from "@/components/RadioButtons/RadioGroup";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import UnitModal from "@/components/UnitModal/UnitModal";
+import UnitModal, { Lesson } from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
 import Heading from "@/components/Typography/Heading";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
-
 // Types and interfaces
 
 type UnitsTabProps = {
@@ -73,6 +72,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
+
   const modalButtonRef = useRef<HTMLButtonElement>(null);
   const unitSlugs = new Set<string>();
   const duplicateUnitSlugs = new Set<string>();
@@ -90,7 +90,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
 
   data.units.forEach((unit) => {
     // Populate years object
-
     if (yearOptions.every((yo) => yo !== unit.year)) {
       yearOptions.push(unit.year);
     }
@@ -358,6 +357,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
         analyticsUseCase: analyticsUseCase,
       });
     }
+  }
+
+  function getLessonsAvailable(): boolean {
+    return unitData && unitData.lessons
+      ? unitData.lessons.some((lesson: Lesson) => lesson._state === "published")
+      : false;
   }
 
   return (
@@ -669,7 +674,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         displayModal={displayModal}
                         onClose={handleCloseModal}
                         unitData={unitData}
-                        unitOptionsAvailable={unitOptionsAvailable}
+                        lessonsAvailable={getLessonsAvailable()}
                       >
                         <UnitModal
                           unitData={unitData}
