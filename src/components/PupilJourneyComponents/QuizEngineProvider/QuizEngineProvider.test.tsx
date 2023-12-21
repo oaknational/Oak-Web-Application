@@ -6,129 +6,136 @@ import {
   QuizEngineProvider,
   QuizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-import { max } from "lodash";
-import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
-
-const questionsArrayFixture = quizQuestions || [];
+import { quizQuestions as questionsArrayFixture } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 describe("useQuizEngineContext", () => {
-  it("'currentQuestionIndex' should default to 0", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
-    });
+  describe("currentQuestionIndex", () => {
+    it("should default to 0", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
 
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
 
-    const { currentQuestionIndex } = result.current;
+      const { currentQuestionIndex } = result.current;
 
-    expect(currentQuestionIndex).toBe(0);
-  });
-
-  it("'currentQuestionData' should default to the first question", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
-    });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    const { currentQuestionData } = result.current;
-
-    expect(currentQuestionData).toEqual(questionsArrayFixture[0]);
-  });
-
-  it("'questionState' should default to the correct shape", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
-    });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    const { questionState } = result.current;
-
-    expect(questionState[0]).toEqual({
-      mode: "input",
-      feedback: undefined,
-      offerHint: false,
-      grade: 0,
+      expect(currentQuestionIndex).toBe(0);
     });
   });
 
-  it("'score' should default to 0", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+  describe("currentQuestionData", () => {
+    it("should default to the first question", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { currentQuestionData } = result.current;
+
+      expect(currentQuestionData).toEqual(questionsArrayFixture?.[0]);
     });
-
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
-
-    const { score } = result.current;
-
-    expect(score).toBe(0);
   });
 
-  it("'maxScore' should default to the number of mcq questions", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+  describe("questionState", () => {
+    it("should default to the correct shape", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "input",
+        feedback: undefined,
+        offerHint: false,
+        grade: 0,
+      });
     });
+  });
 
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
+  describe("score", () => {
+    it("should default to 0", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
 
-    const { maxScore } = result.current;
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
 
-    expect(maxScore).toBe(
-      questionsArrayFixture.filter((q) => q.questionType === "multiple-choice")
-        .length,
-    );
+      const { score } = result.current;
+
+      expect(score).toBe(0);
+    });
+  });
+
+  describe("maxScore", () => {
+    it("should default to the number of mcq questions", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { maxScore } = result.current;
+
+      expect(maxScore).toBe(
+        questionsArrayFixture?.filter(
+          (q) => q.questionType === "multiple-choice",
+        ).length,
+      );
+    });
   });
 
   it("should update currentQuestionIndex on handleNextQuestion", () => {
@@ -141,7 +148,7 @@ describe("useQuizEngineContext", () => {
     };
     const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+        wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
 
     if (result.current === null) {
@@ -166,7 +173,7 @@ describe("useQuizEngineContext", () => {
     };
     const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+        wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
 
     if (result.current === null) {
@@ -181,7 +188,7 @@ describe("useQuizEngineContext", () => {
     expect(result.current.currentQuestionData).toBe(questionsArrayFixture[1]);
   });
 
-  it("should update isComplete when currentQuestionData is > maxScore", async () => {
+  it("should update isComplete when currentQuestionData is > maxScore", () => {
     const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
       return (
         <QuizEngineProvider questionsArray={questionsArray}>
@@ -191,7 +198,7 @@ describe("useQuizEngineContext", () => {
     };
     const { result } = renderHook(() => useContext(QuizEngineContext), {
       wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+        wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
 
     if (result.current === null) {
@@ -204,43 +211,190 @@ describe("useQuizEngineContext", () => {
       act(() => {
         handleNextQuestion();
       });
-      expect(result.current.currentQuestionIndex).toBe(i + 1);
+      expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
     }
     expect(result.current.isComplete).toBe(true);
   });
 
-  it.skip("'handleSubmitMCAnswer' should update the questionState", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
-      wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture }),
+  describe("handleSubmitMCAnswer", () => {
+    it("should grade a single answer mcq as correct if the pupilAnswer is correct", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { handleSubmitMCAnswer, currentQuestionData } = result.current;
+
+      act(() => {
+        handleSubmitMCAnswer(
+          currentQuestionData?.answers?.["multiple-choice"]?.[2],
+        );
+      });
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "feedback",
+        grade: 1,
+        feedback: [null, null, "correct", null],
+        offerHint: false,
+      });
     });
 
-    if (result.current === null) {
-      throw new Error("result.current is null");
-    }
+    it("should grade a single answer mcq as incorrect if the pupilAnswer is incorrect", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) =>
+          wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+      });
 
-    const { handleSubmitMCAnswer, currentQuestionData } = result.current;
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
 
-    act(() => {
-      handleSubmitMCAnswer(
-        currentQuestionData?.answers?.["multiple-choice"]?.[2],
-      );
+      const { handleSubmitMCAnswer, currentQuestionData } = result.current;
+
+      act(() => {
+        handleSubmitMCAnswer(
+          currentQuestionData?.answers?.["multiple-choice"]?.[0],
+        );
+      });
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "feedback",
+        grade: 0,
+        feedback: ["incorrect", null, null, null],
+        offerHint: false,
+      });
     });
 
-    const { questionState } = result.current;
-    expect(questionState).toEqual({
-      mode: "feedback",
-      answer: "correct",
-      offerHint: false,
-      maximumScore: 3,
-      score: 1,
+    it("should grade a multi answer mcq as correct if all of the pupilAnswers are correct", () => {
+      if (!questionsArrayFixture) {
+        throw new Error("questionsArrayFixture is null");
+      }
+
+      const multiQs = [...questionsArrayFixture].filter(
+        (question) => question.questionType === "multiple-choice",
+      );
+
+      // set the first answer as also correct
+      if (multiQs[0]?.answers?.["multiple-choice"]?.[0]) {
+        multiQs[0].answers["multiple-choice"][0].answer_is_correct = true;
+      } else {
+        throw new Error("multiQs[0] is not properly defined");
+      }
+
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { handleSubmitMCAnswer, currentQuestionData } = result.current;
+
+      const pupilAnswers = currentQuestionData?.answers?.[
+        "multiple-choice"
+      ]?.filter((answer) => answer.answer_is_correct);
+
+      act(() => {
+        handleSubmitMCAnswer(pupilAnswers);
+      });
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "feedback",
+        grade: 1,
+        feedback: ["correct", null, "correct", null],
+        offerHint: false,
+      });
+    });
+
+    it("should grade a multi answer mcq as incorrect if only some of the pupilAnswers are correct", () => {
+      if (!questionsArrayFixture) {
+        throw new Error("questionsArrayFixture is null");
+      }
+
+      const multiQs = [...questionsArrayFixture].filter(
+        (question) => question.questionType === "multiple-choice",
+      );
+
+      // set the first answer as also correct
+      if (multiQs[0]?.answers?.["multiple-choice"]?.[0]) {
+        multiQs[0].answers["multiple-choice"][0].answer_is_correct = true;
+      } else {
+        throw new Error("multiQs[0] is not properly defined");
+      }
+
+      if (multiQs[0]?.answers?.["multiple-choice"]?.[1] === undefined) {
+        throw new Error("multiQs[1] is not properly defined");
+      }
+
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+
+      const { result } = renderHook(() => useContext(QuizEngineContext), {
+        wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { handleSubmitMCAnswer, currentQuestionData } = result.current;
+
+      const pupilAnswers = [
+        currentQuestionData?.answers?.["multiple-choice"]?.[0],
+        currentQuestionData?.answers?.["multiple-choice"]?.[1],
+      ];
+
+      act(() => {
+        //@ts-expect-error: we know that these will not be undefined
+        handleSubmitMCAnswer(pupilAnswers);
+      });
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "feedback",
+        grade: 0,
+        feedback: ["correct", "incorrect", null, null],
+        offerHint: false,
+      });
     });
   });
 });

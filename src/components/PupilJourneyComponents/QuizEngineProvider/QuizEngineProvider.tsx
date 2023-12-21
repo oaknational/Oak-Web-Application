@@ -12,7 +12,6 @@ import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { c } from "msw/lib/glossary-de6278a9";
 
 type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
@@ -21,7 +20,7 @@ export type QuizEngineProps = {
   questionsArray: QuestionsArray;
 };
 
-type QuestionFeedbackType = "correct" | "incorrect" | undefined;
+type QuestionFeedbackType = "correct" | "incorrect" | null;
 
 type QuestionState = {
   mode: "input" | "feedback";
@@ -31,13 +30,13 @@ type QuestionState = {
 };
 
 export type QuizEngineContextType = {
-  currentQuestionData: QuestionsArray[number] | undefined;
+  currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
   questionState: QuestionState[];
   score: number;
   maxScore: number;
   isComplete: boolean;
-  handleSubmitMCAnswer: (answer: MCAnswer | null | undefined) => void;
+  handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleNextQuestion: () => void;
 } | null;
 
@@ -84,13 +83,18 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   }, [currentQuestionIndex, maxScore]);
 
   const handleSubmitMCAnswer = useCallback(
-    (pupilAnswers: MCAnswer[]) => {
-      const questionAnswers = currentQuestionData?.answers;
-      const correctAnswers = questionAnswers?.["multiple-choice"]?.filter(
+    (pupilAnswer?: MCAnswer | MCAnswer[] | null) => {
+      const questionAnswers = currentQuestionData?.answers?.["multiple-choice"];
+      const correctAnswers = questionAnswers?.filter(
         (answer) => answer.answer_is_correct,
       );
-      const matchingAnswers = pupilAnswers?.filter(
-        (answer) => correctAnswers?.includes(answer),
+
+      const pupilAnswerArray = Array.isArray(pupilAnswer)
+        ? pupilAnswer
+        : [pupilAnswer];
+
+      const matchingAnswers = pupilAnswerArray?.filter(
+        (answer) => answer && correctAnswers?.includes(answer),
       );
 
       const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
@@ -100,11 +104,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         newState[currentQuestionIndex] = {
           mode: "feedback",
           grade,
-          feedback: correctAnswers?.map((answer) => {
-            if (pupilAnswers.includes(answer)) {
-              return matchingAnswers.includes(answer) ? "correct" : "incorrect";
+          feedback: questionAnswers?.map((answer) => {
+            // NB. feedback is only given where the pupil has selected a choice
+            if (pupilAnswerArray.includes(answer)) {
+              return correctAnswers?.includes(answer) ? "correct" : "incorrect";
             } else {
-              return undefined;
+              return null;
             }
           }),
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
