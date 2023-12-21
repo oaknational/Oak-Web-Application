@@ -78,7 +78,7 @@ describe("useQuizEngineContext", () => {
       const { questionState } = result.current;
 
       expect(questionState[0]).toEqual({
-        mode: "input",
+        mode: "init",
         feedback: undefined,
         offerHint: false,
         grade: 0,

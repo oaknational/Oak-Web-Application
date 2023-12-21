@@ -21,9 +21,10 @@ export type QuizEngineProps = {
 };
 
 type QuestionFeedbackType = "correct" | "incorrect" | null;
+type QuestionModeType = "init" | "input" | "feedback";
 
 type QuestionState = {
-  mode: "input" | "feedback";
+  mode: QuestionModeType;
   grade: number;
   offerHint: boolean;
   feedback?: QuestionFeedbackType[];
@@ -36,6 +37,7 @@ export type QuizEngineContextType = {
   score: number;
   maxScore: number;
   isComplete: boolean;
+  updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleNextQuestion: () => void;
 } | null;
@@ -60,7 +62,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
   const [questionState, setQuestionState] = useState<QuestionState[]>(
     filteredQuestions.map(() => ({
-      mode: "input",
+      mode: "init",
       offerHint: false,
       grade: 0,
       feedback: undefined,
@@ -81,6 +83,24 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   useEffect(() => {
     setIsComplete(currentQuestionIndex === maxScore);
   }, [currentQuestionIndex, maxScore]);
+
+  const updateQuestionMode = useCallback(
+    (mode: QuestionModeType) => {
+      setQuestionState((prev) => {
+        const newState = [...prev];
+
+        newState[currentQuestionIndex] = {
+          mode,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          grade: prev[currentQuestionIndex]?.grade ?? 0,
+          feedback: prev[currentQuestionIndex]?.feedback,
+        };
+
+        return newState;
+      });
+    },
+    [currentQuestionIndex],
+  );
 
   const handleSubmitMCAnswer = useCallback(
     (pupilAnswer?: MCAnswer | MCAnswer[] | null) => {
@@ -139,6 +159,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         score: useMemo(() => score, [score]),
         maxScore,
         isComplete: useMemo(() => isComplete, [isComplete]),
+        updateQuestionMode,
         handleSubmitMCAnswer,
         handleNextQuestion,
       }}

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -8,16 +8,10 @@ import {
 
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 
 export const QuizRenderer = () => {
   const quizContext = useContext(QuizEngineContext);
-
-  const [selectedAnswer, setSelectedAnswer] = useState<{
-    answer?: MCAnswer | null;
-    index: number;
-  }>();
 
   if (quizContext === null) {
     return;
@@ -27,8 +21,11 @@ export const QuizRenderer = () => {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
-    handleSubmitMCAnswer,
+    isComplete,
+    score,
+    maxScore,
     handleNextQuestion,
+    updateQuestionMode,
   } = quizContext;
 
   if (!currentQuestionData) {
@@ -38,29 +35,14 @@ export const QuizRenderer = () => {
   const { questionStem, answers, questionUid } = currentQuestionData;
 
   const MCAnswers = answers?.["multiple-choice"];
-  const isFeedbackMode = questionState.mode === "feedback";
-  const isEndMode = questionState.mode === "end";
-  const isInputMode = questionState.mode === "input";
-
-  const handleAnswerSelected = (val: {
-    answer?: MCAnswer | null;
-    index: number;
-  }) => {
-    setSelectedAnswer(val);
-  };
+  const isFeedbackMode =
+    questionState[currentQuestionIndex]?.mode === "feedback";
 
   let answerRender = null;
 
   if (MCAnswers && MCAnswers?.length > 0) {
     answerRender = (
-      <QuizMCQSingleAnswer
-        questionUid={questionUid}
-        currentQuestionIndex={currentQuestionIndex}
-        answers={MCAnswers}
-        selectedAnswer={selectedAnswer}
-        setSelectedAnswer={handleAnswerSelected}
-        isFeedbackMode={isFeedbackMode}
-      />
+      <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
     );
   }
 
@@ -77,19 +59,26 @@ export const QuizRenderer = () => {
       $gap={"all-spacing-5"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
-      <OakSpan>mode: {questionState.mode}</OakSpan>
-      <OakSpan>answer: {questionState.answer || "not answered"}</OakSpan>
+      <OakSpan>mode: {questionState[currentQuestionIndex]?.mode}</OakSpan>
 
-      {isEndMode && (
+      {isFeedbackMode && (
+        <OakSpan>
+          feedback:
+          {questionState[currentQuestionIndex]?.grade === 1
+            ? "correct"
+            : "incorrect"}
+        </OakSpan>
+      )}
+
+      {isComplete && (
         <OakFlex>
           <OakSpan>
-            End of quiz, score: {questionState.score}/
-            {questionState.maximumScore}
+            End of quiz, score: {score}/{maxScore}
           </OakSpan>
         </OakFlex>
       )}
 
-      {(isInputMode || isFeedbackMode) && (
+      {!isComplete && (
         <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
           <QuizQuestionStem
             questionStem={questionStem}
@@ -97,12 +86,12 @@ export const QuizRenderer = () => {
             showIndex={true}
           />
           {answerRender}
-          {isInputMode && (
+          {!isFeedbackMode && (
             <OakFlex $pt="inner-padding-l">
               <OakPrimaryButton
-                disabled={selectedAnswer === undefined}
+                disabled={questionState[currentQuestionIndex]?.mode === "init"}
                 onClick={() => {
-                  handleSubmitMCAnswer(selectedAnswer?.answer);
+                  updateQuestionMode("feedback");
                 }}
               >
                 Submit
@@ -111,12 +100,7 @@ export const QuizRenderer = () => {
           )}
           {isFeedbackMode && (
             <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton
-                onClick={() => {
-                  handleNextQuestion();
-                  setSelectedAnswer(undefined);
-                }}
-              >
+              <OakPrimaryButton onClick={handleNextQuestion}>
                 Next Question
               </OakPrimaryButton>
             </OakFlex>

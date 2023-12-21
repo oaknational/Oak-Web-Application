@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
   OakBox,
   OakRadioButton,
@@ -5,25 +6,36 @@ import {
 } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQSingleAnswerProps = {
   questionUid: string;
   answers: MCAnswer[];
-  currentQuestionIndex: number;
-  isFeedbackMode: boolean;
-  selectedAnswer?: { answer?: MCAnswer | null; index: number };
-  setSelectedAnswer: (val: { answer?: MCAnswer | null; index: number }) => void;
 };
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
-  const {
-    questionUid,
-    currentQuestionIndex,
-    answers,
-    isFeedbackMode,
-    selectedAnswer,
-    setSelectedAnswer,
-  } = props;
+  const { questionUid, answers } = props;
+
+  const quizEngineContext = useContext(QuizEngineContext);
+
+  const currentQuestionIndex = quizEngineContext?.currentQuestionIndex || 0;
+  const questionState = quizEngineContext?.questionState[currentQuestionIndex];
+
+  const [selectedAnswer, setSelectedAnswer] = useState<
+    MCAnswer | null | undefined
+  >(null);
+
+  useEffect(() => {
+    if (questionState?.mode === "feedback") {
+      quizEngineContext?.handleSubmitMCAnswer(selectedAnswer);
+    }
+  }, [questionState, currentQuestionIndex, quizEngineContext, selectedAnswer]);
+
+  if (!questionState) {
+    return null;
+  }
+
+  const isFeedbackMode = questionState.mode === "feedback";
 
   return (
     <OakRadioGroup
@@ -31,11 +43,10 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
       $flexDirection={"column"}
       onChange={(e) => {
         const targetIndex = e.target.tabIndex;
-        const selectedAnswer = answers[targetIndex];
-        setSelectedAnswer({
-          answer: selectedAnswer,
-          index: targetIndex,
-        });
+        if (questionState?.mode === "init") {
+          quizEngineContext?.updateQuestionMode("input");
+        }
+        setSelectedAnswer(answers[targetIndex]);
       }}
       disabled={isFeedbackMode}
     >
@@ -43,12 +54,13 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
         return (
           <OakBox key={`radio-${i}`}>
             {answer.answer.map((answerItem) => {
-              const isSelected = selectedAnswer?.index === i;
-              const incorrectColor = isSelected ? "red" : undefined;
+              let feedbackModeColor: "oakGreen" | "red" | undefined;
 
-              const feedbackModeColor = answer.answer_is_correct
-                ? "oakGreen"
-                : incorrectColor;
+              if (questionState.feedback?.[i] === "correct") {
+                feedbackModeColor = "oakGreen";
+              } else if (questionState.feedback?.[i] === "incorrect") {
+                feedbackModeColor = "red";
+              }
 
               const backgroundColor = isFeedbackMode
                 ? feedbackModeColor
@@ -56,20 +68,39 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
 
               const color = backgroundColor ? "text-inverted" : undefined;
 
+              const correctChoice = (
+                <>
+                  {answer.answer_is_correct && isFeedbackMode && (
+                    <OakBox
+                      $position={"absolute"}
+                      $top={"all-spacing-3"}
+                      $right={"all-spacing-3"}
+                      $font={"body-3-bold"}
+                      $color={color}
+                    >
+                      Correct choice
+                    </OakBox>
+                  )}
+                </>
+              );
+
               if (answerItem.type === "text") {
                 return (
-                  <OakRadioButton
-                    key={`radio-${i}`}
-                    $pa="inner-padding-s"
-                    $ba={"border-solid-s"}
-                    $borderRadius={"border-radius-s"}
-                    $color={color}
-                    $background={backgroundColor}
-                    id={`radio-${i}`}
-                    tabIndex={i}
-                    value={`${currentQuestionIndex}${answerItem.text}`}
-                    label={answerItem.text}
-                  />
+                  <OakBox key={`radio-${i}`} $position={"relative"}>
+                    <OakRadioButton
+                      key={`radio-${i}`}
+                      $pa="inner-padding-s"
+                      $ba={"border-solid-s"}
+                      $borderRadius={"border-radius-s"}
+                      $color={color}
+                      $background={backgroundColor}
+                      id={`radio-${i}`}
+                      tabIndex={i}
+                      value={`${questionUid}: ${answerItem.text}`} // we make this unique to the question to prevent selection on later questions
+                      label={answerItem.text}
+                    />
+                    {correctChoice}
+                  </OakBox>
                 );
               }
             })}
