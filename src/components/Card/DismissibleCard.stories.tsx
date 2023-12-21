@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./DismissibleCard";
 
 export default {
-  title: "Cards/Dismissible Card",
   component: Component,
   argTypes: {
     children: {

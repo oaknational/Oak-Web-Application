@@ -7,7 +7,6 @@ import { Heading } from "../Typography";
 import Component from ".";
 
 export default {
-  title: "Interactive/Collapsible Section",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

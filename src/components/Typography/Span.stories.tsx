@@ -6,7 +6,6 @@ import Component from "./Span";
 import Typography, { P } from ".";
 
 export default {
-  title: "Typography/Span",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

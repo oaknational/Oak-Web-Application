@@ -4,7 +4,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import Component from "./LoadingButton";
 
 const meta: Meta<typeof Component> = {
-  title: "Buttons/Loading",
   component: Component,
 };
 

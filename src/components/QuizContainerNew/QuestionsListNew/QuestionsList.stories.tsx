@@ -9,7 +9,6 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {
-  title: "Lists/New Question List",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

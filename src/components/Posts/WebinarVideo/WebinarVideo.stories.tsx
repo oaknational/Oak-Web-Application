@@ -7,7 +7,6 @@ import { mockWebinar } from "../../../__tests__/pages/webinars/webinar.fixtures"
 import Component from ".";
 
 export default {
-  title: "Blogs & Webinars/Webinar Video",
   component: Component,
   decorators: [
     AnalyticsDecorator,

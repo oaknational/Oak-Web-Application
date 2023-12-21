@@ -41,7 +41,6 @@ const currentPageItems: PostListProps["currentPageItems"] = [
 ];
 
 export default {
-  title: "Blogs & Webinars/Post List",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

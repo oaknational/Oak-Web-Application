@@ -9,7 +9,6 @@ import { PortableTextWithDefaults } from "../../PortableText";
 import { ULTick as Component } from "./ULTick";
 
 export default {
-  title: "Sanity/PortableText/Lists",
   component: Card,
 
   argTypes: {

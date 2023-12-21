@@ -9,7 +9,7 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const QuestionStem = ({
+export const QuizQuestionStem = ({
   questionStem,
   index,
 }: {

@@ -6,7 +6,6 @@ import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import Component from "./SearchForm";
 
 export default {
-  title: "Form Fields/Search",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

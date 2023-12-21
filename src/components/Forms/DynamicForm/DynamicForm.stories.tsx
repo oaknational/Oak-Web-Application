@@ -5,7 +5,6 @@ import Grid, { GridArea } from "../../Grid";
 import Component from ".";
 
 export default {
-  title: "Forms/Dynamic Form",
   component: Component,
   argTypes: {},
   parameters: {

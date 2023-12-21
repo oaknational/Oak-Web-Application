@@ -7,7 +7,6 @@ import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {
-  title: "HomePage/OldBetaHomeTab",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
