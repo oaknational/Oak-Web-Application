@@ -46,7 +46,12 @@ describe("Sidebar component", () => {
   describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
-        <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,
+        <Sidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitData={mockUnit}
+          lessonsAvailable={true}
+        />,
       );
 
       expect(getByTestId("unit-lessons-button")).toBeInTheDocument();
@@ -58,10 +63,28 @@ describe("Sidebar component", () => {
           displayModal={true}
           onClose={jest.fn()}
           unitData={mockOptionalityUnit}
+          lessonsAvailable={false}
           unitOptionsAvailable={true}
         />,
       );
 
+      expect(queryByTestId("unit-lessons-button")).not.toBeInTheDocument();
+    });
+  });
+
+  describe("Navigate to lesson button", () => {
+    test("should render coming soon for unavailable units", () => {
+      const { queryByTestId } = renderWithTheme(
+        <Sidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitData={mockOptionalityUnit}
+          lessonsAvailable={false}
+          unitOptionsAvailable={false}
+        />,
+      );
+
+      expect(queryByTestId("coming-soon-flag")).toBeInTheDocument();
       expect(queryByTestId("unit-lessons-button")).not.toBeInTheDocument();
     });
   });

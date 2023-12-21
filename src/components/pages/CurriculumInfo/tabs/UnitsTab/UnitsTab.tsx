@@ -675,6 +675,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         onClose={handleCloseModal}
                         unitData={unitData}
                         lessonsAvailable={getLessonsAvailable()}
+                        unitOptionsAvailable={unitOptionsAvailable}
                       >
                         <UnitModal
                           unitData={unitData}

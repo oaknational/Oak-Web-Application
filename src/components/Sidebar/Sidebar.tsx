@@ -16,6 +16,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
   unitData?: Unit | null;
+  unitOptionsAvailable?: boolean;
   lessonsAvailable?: boolean;
 };
 
@@ -25,6 +26,7 @@ const Sidebar: FC<ModalProps> = ({
   children,
   lessonsAvailable,
   unitData,
+  unitOptionsAvailable,
 }) => {
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
@@ -65,41 +67,47 @@ const Sidebar: FC<ModalProps> = ({
                   {children}
                 </Flex>
                 (
-                <Flex $flexDirection={"column"}>
-                  <Hr $color={"grey30"} $mt={0} $mb={24} />
-                  <Flex
-                    $justifyContent={"space-between"}
-                    $alignItems={["flex-end"]}
-                    $ph={16}
-                    $pb={16}
-                  >
+                {!unitOptionsAvailable && (
+                  <Flex $flexDirection={"column"}>
+                    <Hr $color={"grey30"} $mt={0} $mb={24} />
                     <Flex
-                      $flexDirection={["column", "row"]}
-                      $alignItems={"flex-start"}
-                      $gap={8}
+                      $justifyContent={"space-between"}
+                      $alignItems={["flex-end"]}
+                      $ph={16}
+                      $pb={16}
                     >
-                      {!lessonsAvailable && (
-                        <TagFunctional text={"Coming soon"} color="grey" />
-                      )}
-                      {unitData && (
-                        <ButtonAsLink
-                          data-testid="unit-lessons-button"
-                          label="See lessons in unit"
-                          $font={"heading-7"}
-                          disabled={!lessonsAvailable}
-                          currentStyles={["color"]}
-                          icon="chevron-right"
-                          iconBackground="grey60"
-                          $iconPosition="trailing"
-                          variant="buttonStyledAsLink"
-                          page="lesson-index"
-                          unitSlug={unitData.slug}
-                          programmeSlug={`${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`}
-                        />
-                      )}
+                      <Flex
+                        $flexDirection={["column", "row"]}
+                        $alignItems={"flex-start"}
+                        $gap={8}
+                      >
+                        {!lessonsAvailable && (
+                          <TagFunctional
+                            data-testid="coming-soon-flag"
+                            text={"Coming soon"}
+                            color="grey"
+                          />
+                        )}
+                        {unitData && (
+                          <ButtonAsLink
+                            data-testid="unit-lessons-button"
+                            label="See lessons in unit"
+                            $font={"heading-7"}
+                            disabled={!lessonsAvailable}
+                            currentStyles={["color"]}
+                            icon="chevron-right"
+                            iconBackground="grey60"
+                            $iconPosition="trailing"
+                            variant="buttonStyledAsLink"
+                            page="lesson-index"
+                            unitSlug={unitData.slug}
+                            programmeSlug={`${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`}
+                          />
+                        )}
+                      </Flex>
                     </Flex>
                   </Flex>
-                </Flex>
+                )}
                 )
               </Flex>
             </SideMenu>
