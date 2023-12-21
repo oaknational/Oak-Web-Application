@@ -360,9 +360,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
   }
 
   function getLessonsAvailable(): boolean {
-    return unitData && unitData.lessons
-      ? unitData.lessons.some((lesson: Lesson) => lesson._state === "published")
-      : false;
+    return (
+      unitData?.lessons?.some(
+        (lesson: Lesson) => lesson._state === "published",
+      ) || false
+    );
   }
 
   return (
