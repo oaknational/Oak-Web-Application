@@ -85,7 +85,22 @@ describe("Sidebar component", () => {
       );
 
       expect(queryByTestId("coming-soon-flag")).toBeInTheDocument();
-      expect(queryByTestId("unit-lessons-button")).not.toBeInTheDocument();
+      expect(queryByTestId("unit-lessons-button")).toBeInTheDocument();
+    });
+
+    test("should have button and no flag for available units", () => {
+      const { queryByTestId } = renderWithTheme(
+        <Sidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitData={mockOptionalityUnit}
+          lessonsAvailable={true}
+          unitOptionsAvailable={false}
+        />,
+      );
+
+      expect(queryByTestId("coming-soon-flag")).not.toBeInTheDocument();
+      expect(queryByTestId("unit-lessons-button")).toBeInTheDocument();
     });
   });
 });
