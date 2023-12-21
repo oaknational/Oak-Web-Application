@@ -26,7 +26,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   >(null);
 
   useEffect(() => {
-    if (questionState?.mode === "feedback") {
+    if (questionState?.mode === "grading") {
       quizEngineContext?.handleSubmitMCAnswer(selectedAnswer);
     }
   }, [questionState, currentQuestionIndex, quizEngineContext, selectedAnswer]);

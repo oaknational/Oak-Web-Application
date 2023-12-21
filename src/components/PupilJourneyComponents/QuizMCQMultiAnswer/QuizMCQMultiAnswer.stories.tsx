@@ -1,17 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
-
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oak-academy/oak-components";
-import { mcqTextAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+
+import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
+
+import { QuizEngineProvider } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 const meta = {
   component: QuizMCQMultiAnswer,
   tags: ["autodocs"],
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineProvider questionsArray={quizQuestions ?? []}>
+          <Story />
+        </QuizEngineProvider>
+      </OakThemeProvider>
+    ),
+  ],
   parameters: {
     controls: {
       include: ["isFeedbackMode"],
@@ -30,19 +40,12 @@ type Story = StoryObj<typeof meta>;
  */
 export const Primary: Story = {
   render: (args) => (
-    <OakThemeProvider theme={oakDefaultTheme}>
-      <OakBox
-        $background={"bg-decorative1-very-subdued"}
-        $pa={"inner-padding-m"}
-      >
-        <QuizMCQMultiAnswer {...args} />
-      </OakBox>
-    </OakThemeProvider>
+    <OakBox $background={"bg-decorative1-very-subdued"} $pa={"inner-padding-m"}>
+      <QuizMCQMultiAnswer {...args} />
+    </OakBox>
   ),
   args: {
     questionUid: "123",
-    answers: mcqTextAnswers,
-    feedback: [true, false, true, false],
-    isFeedbackMode: false,
+    answers: quizQuestions?.[0]?.answers?.["multiple-choice"] || [],
   },
 };

@@ -6,6 +6,8 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
+import { QuizMCQMultiAnswer } from "../QuizMCQMultiAnswer";
+
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
@@ -40,10 +42,16 @@ export const QuizRenderer = () => {
 
   let answerRender = null;
 
-  if (MCAnswers && MCAnswers?.length > 0) {
-    answerRender = (
-      <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
-    );
+  if (MCAnswers) {
+    if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
+      answerRender = (
+        <QuizMCQMultiAnswer questionUid={questionUid} answers={MCAnswers} />
+      );
+    } else {
+      answerRender = (
+        <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
+      );
+    }
   }
 
   return (
@@ -54,7 +62,7 @@ export const QuizRenderer = () => {
       $pa={"inner-padding-xl"}
       $ba="border-solid-m"
       $borderColor={"border-inverted"}
-      $background={"bg-decorative1-subdued"}
+      $background={"bg-decorative1-very-subdued"}
       $alignItems={"center"}
       $gap={"all-spacing-5"}
     >
@@ -91,7 +99,7 @@ export const QuizRenderer = () => {
               <OakPrimaryButton
                 disabled={questionState[currentQuestionIndex]?.mode === "init"}
                 onClick={() => {
-                  updateQuestionMode("feedback");
+                  updateQuestionMode("grading");
                 }}
               >
                 Submit

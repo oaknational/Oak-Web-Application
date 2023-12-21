@@ -185,7 +185,7 @@ describe("useQuizEngineContext", () => {
     act(() => {
       handleNextQuestion();
     });
-    expect(result.current.currentQuestionData).toBe(questionsArrayFixture[1]);
+    expect(result.current.currentQuestionData).toBe(questionsArrayFixture?.[1]);
   });
 
   it("should update isComplete when currentQuestionData is > maxScore", () => {

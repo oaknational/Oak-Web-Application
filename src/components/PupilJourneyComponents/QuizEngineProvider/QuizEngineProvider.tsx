@@ -21,7 +21,7 @@ export type QuizEngineProps = {
 };
 
 type QuestionFeedbackType = "correct" | "incorrect" | null;
-type QuestionModeType = "init" | "input" | "feedback";
+type QuestionModeType = "init" | "input" | "grading" | "feedback";
 
 type QuestionState = {
   mode: QuestionModeType;
