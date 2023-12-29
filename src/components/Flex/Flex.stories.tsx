@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Foundations/Flex",
   component: Component,
   argTypes: {
     children: {

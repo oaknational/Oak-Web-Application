@@ -5,7 +5,7 @@ import { unitListData } from "./SearchDropdown.fixture";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Foundations/SearchDropdown",
+
   argTypes: {
     dropdownTitle: {
       defaultValue: "Select exam board",

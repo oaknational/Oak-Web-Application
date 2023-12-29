@@ -4,7 +4,7 @@ import Component from "./Accordion";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Foundations/Accordion",
+
   argTypes: {
     title: {
       defaultValue: "Lesson in unit",

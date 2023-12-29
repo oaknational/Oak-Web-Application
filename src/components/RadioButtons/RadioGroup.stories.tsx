@@ -5,7 +5,6 @@ import Component from "./RadioGroup";
 import Radio from "./Radio";
 
 export default {
-  title: "Form Fields/Radio Group",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

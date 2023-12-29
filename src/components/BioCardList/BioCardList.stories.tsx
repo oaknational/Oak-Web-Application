@@ -4,7 +4,6 @@ import { OverlayProvider } from "react-aria";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Lists/BioCardList",
   component: Component,
 };
 

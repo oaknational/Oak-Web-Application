@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./P";
 
 export default {
-  title: "Typography/P",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

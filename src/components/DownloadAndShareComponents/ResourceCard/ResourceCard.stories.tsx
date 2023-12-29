@@ -5,7 +5,7 @@ import Component from "./ResourceCard";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Download Components/DL Card",
+
   argTypes: {
     id: {
       defaultValue: "1",

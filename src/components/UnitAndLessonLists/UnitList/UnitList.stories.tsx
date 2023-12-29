@@ -22,7 +22,6 @@ const currentPageItems: UnitListProps = {
 };
 
 export default {
-  title: "Lists/Unit list",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

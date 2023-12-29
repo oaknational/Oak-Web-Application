@@ -7,7 +7,6 @@ import Flex from "../Flex";
 import Component from "./KeyStageKeypad";
 
 const meta: Meta<typeof Component> = {
-  title: "Navigation",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

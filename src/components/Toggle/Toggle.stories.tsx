@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Interactive/Toggle",
   component: Component,
   argTypes: {
     labelOn: {

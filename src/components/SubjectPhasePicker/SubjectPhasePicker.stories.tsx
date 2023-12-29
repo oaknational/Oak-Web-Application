@@ -7,7 +7,6 @@ import subjectPhaseOptions from "../../browser-lib/fixtures/subjectPhaseOptions"
 import Component from "./SubjectPhasePicker";
 
 const meta: Meta<typeof Component> = {
-  title: "",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
