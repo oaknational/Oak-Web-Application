@@ -36,4 +36,13 @@ const Grid = styled(Box)<GridProps>`
   ${grid}
 `;
 
+export const ListAsGrid = styled("ol")<GridProps>`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  ${grid}
+`;
+
 export default Grid;
