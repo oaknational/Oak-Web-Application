@@ -21,13 +21,22 @@ const searchResultLesson = searchResultsData[0] as SearchResultsItemProps; // we
 
 const searchResultUnit = searchResultsData[1] as SearchResultsItemProps; // we know this exists
 
+const searchResultTierPathways = searchResultsData[2] as SearchResultsItemProps; // we know this exists
+
 describe("SearchDropdown component", () => {
-  test("component renders with correct title", () => {
+  test("component renders with correct title for pathways with exam boards", () => {
     const { getByText } = renderWithTheme(
       <SearchDropdown {...searchResultLesson} />,
     );
 
     expect(getByText("Select exam board")).toBeInTheDocument();
+  });
+  test("component renders with correct title for pathways without exam boards", () => {
+    const { getByText } = renderWithTheme(
+      <SearchDropdown {...searchResultTierPathways} />,
+    );
+
+    expect(getByText("Select tier")).toBeInTheDocument();
   });
 
   test("child component to not be visible on unexpanded container", () => {
@@ -52,12 +61,27 @@ describe("SearchDropdown component", () => {
     expect(getByTestId("search-dropdown-content")).toBeVisible();
     expect(button).toHaveAttribute("aria-expanded", "true");
   });
-  test("pathways without exam boards are filtered out", async () => {
+  test("when a pathway has exam boards other pathways are filtered out", async () => {
     const { getByRole, getAllByRole } = renderWithTheme(
       <SearchDropdown {...searchResultLesson} />,
     );
 
     const button = getByRole("button", { name: "Select exam board" });
+
+    await act(async () => {
+      await userEvent.click(button);
+    });
+
+    const links = getAllByRole("link");
+
+    expect(links).toHaveLength(2);
+  });
+  test("when a pathway has no exam boards paths are filtered by tiers", async () => {
+    const { getByRole, getAllByRole } = renderWithTheme(
+      <SearchDropdown {...searchResultTierPathways} />,
+    );
+
+    const button = getByRole("button", { name: "Select tier" });
 
     await act(async () => {
       await userEvent.click(button);
@@ -122,6 +146,7 @@ describe("SearchDropdown component", () => {
       ),
     );
   });
+
   test("onClick is called when a dropdown link is clicked", async () => {
     const { getByRole, getByText } = renderWithTheme(
       <SearchDropdown {...searchResultUnit} />,

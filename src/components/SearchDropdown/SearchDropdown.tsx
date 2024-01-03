@@ -25,16 +25,18 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
     });
 
   const tierDropdownContent = pathways
-    .filter(({ examBoardSlug }) => !examBoardSlug)
+    .filter(({ examBoardSlug, tierSlug }) => !examBoardSlug && tierSlug)
     .sort((a, b) => {
       return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
     });
-  const label = `Select ${
-    tierDropdownContent.length > 0 ? "tier" : "exam board"
-  }`;
 
-  const dropDownContent =
-    examDropdownContent.length > 0 ? examDropdownContent : tierDropdownContent;
+  const isExamBoardDropdown = examDropdownContent.length > 0;
+
+  const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
+
+  const dropDownContent = isExamBoardDropdown
+    ? examDropdownContent
+    : tierDropdownContent;
 
   return (
     <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
