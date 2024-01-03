@@ -17,6 +17,8 @@ import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+
 export type MenuConfig = {
   width: PixelSpacing;
   background: OakColorName;
@@ -27,7 +29,16 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-export const SideMenu = styled(Flex)<TransitionProps>`
+export const SideMenu = styled("nav")<TransitionProps & MenuConfig>`
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  width: ${(props) => props.width}px;
+  flexdirection: column;
+  background: ${(props) => getColorByName(props.background)};
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -88,7 +99,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
       onExited={removeFocus}
     >
       {(state) => (
-        <Box $position="absolute" ref={ref}>
+        <Box $position="absolute" ref={ref} role="navigation">
           <MenuBackdrop state={state} />
           <FocusOn
             enabled={open}
@@ -97,16 +108,10 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
           >
             <SideMenu
               data-testid={"menu"}
-              $position="fixed"
-              $top={0}
-              $right={0}
-              $height="100%"
-              $maxWidth="100%"
-              $width={menuConfig.width}
-              $flexDirection={"column"}
-              $background={menuConfig.background}
+              background={menuConfig.background}
+              width={menuConfig.width}
               state={state}
-              $zIndex={"neutral"}
+              aria-expanded={open}
             >
               <Svg
                 name="looping-line-1"
