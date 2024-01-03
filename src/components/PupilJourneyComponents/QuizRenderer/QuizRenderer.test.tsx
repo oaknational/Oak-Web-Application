@@ -95,24 +95,23 @@ describe("QuizRenderer", () => {
     expect(getByText("Submit").closest("button")).toBeDisabled();
   });
 
-  it("calls handleSubmitMCAnswer when submit button is clicked", () => {
+  it("updates question mode to grading when submit is clicked", () => {
     const context = getContext();
 
     if (context?.questionState?.[0]) {
+      context.updateQuestionMode = jest.fn();
       context.questionState[0].mode = "input";
-      context.handleSubmitMCAnswer = jest.fn();
 
-      const { getByText, getByLabelText } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer />
           </QuizEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const radio1 = getByLabelText("a group of letters");
-      fireEvent.click(radio1);
-      fireEvent.click(getByText("Submit"));
-      expect(context.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
+
+      fireEvent.click(getByRole("button", { name: "Submit" }));
+      expect(context.updateQuestionMode).toHaveBeenCalledWith("grading");
     }
   });
 
@@ -153,16 +152,15 @@ describe("QuizRenderer", () => {
       context.questionState[0].mode = "feedback";
       context.handleNextQuestion = jest.fn();
 
-      const { getByText, getByLabelText } = renderWithTheme(
+      const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={context}>
             <QuizRenderer />
           </QuizEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const radio1 = getByLabelText("a group of letters");
-      fireEvent.click(radio1);
-      fireEvent.click(getByText("Submit"));
+
+      fireEvent.click(getByRole("button", { name: "Next Question" }));
       expect(context.handleNextQuestion).toHaveBeenCalledTimes(1);
     }
   });
