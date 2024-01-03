@@ -6,18 +6,18 @@ import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName, PixelSpacing } from "../../styles/theme/types";
-import Flex from "../Flex";
+import Flex, { FlexProps } from "../Flex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
-import Box from "../Box";
+import Box, { BoxProps, box } from "../Box";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
-import getColorByName from "@/styles/themeHelpers/getColorByName";
+import flex from "@/styles/utils/flex";
 
 export type MenuConfig = {
   width: PixelSpacing;
@@ -29,16 +29,7 @@ export type TransitionProps = {
 };
 const transitionDuration = 250;
 
-export const SideMenu = styled("nav")<TransitionProps & MenuConfig>`
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  max-width: 100%;
-  display: flex;
-  width: ${(props) => props.width}px;
-  flexdirection: column;
-  background: ${(props) => getColorByName(props.background)};
+export const SideMenu = styled(Flex)<TransitionProps>`
   transition: transform ${transitionDuration}ms ease-in-out;
   transform: ${(props) => {
     switch (props.state) {
@@ -69,6 +60,11 @@ export const SideMenu = styled("nav")<TransitionProps & MenuConfig>`
 type MenuProps = HTMLProps<HTMLButtonElement> & {
   menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
+
+const NavMenuList = styled("nav")<FlexProps & BoxProps>`
+  ${box}
+  ${flex}
+`;
 
 const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
@@ -108,9 +104,16 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
           >
             <SideMenu
               data-testid={"menu"}
-              background={menuConfig.background}
-              width={menuConfig.width}
+              $position="fixed"
+              $top={0}
+              $right={0}
+              $height="100%"
+              $maxWidth="100%"
+              $width={menuConfig.width}
+              $flexDirection={"column"}
+              $background={menuConfig.background}
               state={state}
+              $zIndex={"neutral"}
               aria-expanded={open}
             >
               <Svg
@@ -138,7 +141,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   aria-expanded={open}
                 />
               </Box>
-              <Flex
+              <NavMenuList
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
@@ -172,7 +175,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                     <Logo variant="with text" width={150} height={63} />
                   </Flex>
                 </Flex>
-              </Flex>
+              </NavMenuList>
             </SideMenu>
           </FocusOn>
         </Box>

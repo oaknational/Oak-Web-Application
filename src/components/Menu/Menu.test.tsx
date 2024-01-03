@@ -46,15 +46,15 @@ describe("Menu", () => {
       closeMenu: jest.fn(),
     };
 
-    const { getByLabelText, getByRole } = renderWithTheme(
+    const { getByLabelText, getByTestId } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
       </menuContext.Provider>,
     );
 
     expect(getByLabelText("Close Menu")).toBeVisible();
-    expect(getByRole("navigation")).toBeVisible();
-    expect(getByRole("navigation")).toHaveAttribute("aria-expanded", "true");
+    expect(getByTestId("menu")).toBeVisible();
+    expect(getByTestId("menu")).toHaveAttribute("aria-expanded", "true");
   });
 
   test("clicking the close button invokes the closeMenu callback", async () => {
