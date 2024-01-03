@@ -170,19 +170,7 @@ describe("QuizRenderer", () => {
   // TODO: reinstate and modify when we have implemented the end of quiz state again
 
   it.skip("questionState.mode === 'end', render score", () => {
-    const context: QuizEngineContextType = {
-      currentQuestionData: questionsArrayFixture[0],
-      currentQuestionIndex: 0,
-      questionState: {
-        mode: "end",
-        answer: undefined,
-        offerHint: false,
-        score: 2,
-        maximumScore: 3,
-      },
-      handleSubmitMCAnswer: () => {},
-      handleNextQuestion: () => {},
-    };
+    const context = getContext();
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
