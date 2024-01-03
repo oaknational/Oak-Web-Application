@@ -21,6 +21,7 @@ const MiniDropDownInner: FC<MiniDropDownInnerProps> = ({
     <Flex
       $alignItems={"center"}
       $textDecoration={isHovered ? "underline" : "none"}
+      $zIndex={"inFront"}
     >
       <ButtonLabel $color={isExpanded ? "navy120" : "navy"}>
         {label}
