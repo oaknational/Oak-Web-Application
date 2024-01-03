@@ -32,15 +32,16 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
 
   useEffect(() => {
     if (questionState?.mode === "grading") {
-      //TODO: use this to create a list of selected answers
-      innerRefs.current.forEach((ref, index) => {
-        console.log("ref", index, ref.current?.checked);
-      });
+      // create a list of selected answers
+      const selectedAnswers: MCAnswer[] = innerRefs.current
+        .map((ref, index) => {
+          return ref.current?.checked ? answers[index] : null;
+        })
+        .filter((answer): answer is MCAnswer => !!answer); // remove nulls
 
-      //TODO: use this to submit the selected answers
-      // quizEngineContext?.handleSubmitMCAnswer(selectedAnswer);
+      quizEngineContext?.handleSubmitMCAnswer(selectedAnswers);
     }
-  }, [questionState]);
+  }, [questionState, answers, quizEngineContext]);
 
   if (!questionState) {
     return null;
