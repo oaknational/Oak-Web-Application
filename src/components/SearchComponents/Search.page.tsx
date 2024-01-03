@@ -57,13 +57,14 @@ const Search: FC<SearchProps> = (props) => {
     ) {
       const searchEndTime = performance.now();
 
-      track.searchCompleted({
+      track.searchResultsDisplayed({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query.keyStages,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
-        searchResultsStatus: status,
+        context: "search",
+        depth: "complete",
         searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
       });
       setSearchStartTime(null);
@@ -80,7 +81,7 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
-  const searchResultClicked = ({
+  const searchResultOpened = ({
     searchHit,
     searchRank,
   }: {
@@ -88,7 +89,7 @@ const Search: FC<SearchProps> = (props) => {
     searchRank: number;
   }) => {
     if (searchHit) {
-      track.searchResultClicked({
+      track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
         keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
         subjectTitle: searchHit.subjectTitle,
@@ -107,6 +108,8 @@ const Search: FC<SearchProps> = (props) => {
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
             : undefined,
+        context: "search",
+        depth: "complete",
       });
     }
   };
@@ -158,8 +161,8 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
-                searchResultClicked={(searchHit, searchRank) =>
-                  searchResultClicked({
+                searchResultOpened={(searchHit, searchRank) =>
+                  searchResultOpened({
                     searchHit,
                     searchRank,
                   })

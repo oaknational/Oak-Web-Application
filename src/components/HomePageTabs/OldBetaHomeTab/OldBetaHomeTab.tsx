@@ -30,6 +30,8 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
       pageName,
       searchFilterOptionSelected: [],
       searchSource: "homepage search suggestion",
+      context: "homepage",
+      depth: "attempt",
     });
   };
   return (

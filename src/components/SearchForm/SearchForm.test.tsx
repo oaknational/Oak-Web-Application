@@ -153,7 +153,7 @@ describe("<SearchForm />", () => {
 
     expect(handleSubmit).not.toHaveBeenCalled();
   });
-  it("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
+  it.only("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
     const initialText = "M";
     const addedText = "a";
     const { getByRole } = render(
@@ -172,8 +172,9 @@ describe("<SearchForm />", () => {
 
     expect(searchJourneyInitiated).toHaveBeenCalledTimes(1);
     expect(searchJourneyInitiated).toHaveBeenCalledWith({
-      analyticsUseCase: null,
       searchSource: "homepage search box",
+      context: "homepage",
+      depth: "refine",
     });
   });
   it("track.searchAttempted is called on submit ", async () => {
@@ -200,6 +201,8 @@ describe("<SearchForm />", () => {
       searchFilterOptionSelected: [],
       searchSource: "homepage search box",
       searchTerm: "search me",
+      context: "homepage",
+      depth: "attempt",
     });
   });
   it("search input is populated with placeholder text", () => {

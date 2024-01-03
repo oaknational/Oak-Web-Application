@@ -97,13 +97,14 @@ const props: SearchProps = {
   setSearchTerm: jest.fn(),
 };
 
-const searchCompleted = jest.fn();
+const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      searchCompleted: (...args: unknown[]) => searchCompleted(...args),
+      searchResultsDisplayed: (...args: unknown[]) =>
+        searchResultsDisplayed(...args),
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
     },
   }),
@@ -276,21 +277,25 @@ describe("Search.page.tsx", () => {
     await user.click(filter);
     await waitFor(() => expect(typeOnChange).toHaveBeenCalledTimes(1));
   });
-  test("searchCompleted is called when a search is completed with success status", async () => {
+  test("searchResultsDisplayed is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);
-    await waitFor(() => expect(searchCompleted).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
+      expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
+    );
   });
-  test("searchCompleted is called when a search is completed with fail status", async () => {
+  test("searchResultsDisplayed is called when a search is completed with fail status", async () => {
     render(<Search {...{ ...props, status: "fail" }} {...resultsProps} />);
-    await waitFor(() => expect(searchCompleted).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
+      expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
+    );
   });
-  test("searchCompleted is not called when status is not asked", async () => {
+  test("searchResultsDisplayed is not called when status is not asked", async () => {
     render(<Search {...props} />);
-    await waitFor(() => expect(searchCompleted).not.toHaveBeenCalled());
+    await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
-  test("searchCompleted is not called when status is loading", async () => {
+  test("searchResultsDisplayed is not called when status is loading", async () => {
     render(<Search {...{ ...props, status: "loading" }} />);
-    await waitFor(() => expect(searchCompleted).not.toHaveBeenCalled());
+    await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
   });
   test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
     render(<Search {...props} {...resultsProps} />);

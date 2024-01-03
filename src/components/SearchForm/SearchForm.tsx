@@ -47,6 +47,8 @@ const SearchForm: FC<SearchFormProps> = (props) => {
         router.query.keyStages,
       ),
       searchSource: analyticsSearchSource,
+      context: "homepage",
+      depth: "attempt",
     });
   }, [
     track,
@@ -61,9 +63,10 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     value.length === 1 &&
       track.searchJourneyInitiated({
         searchSource: analyticsSearchSource,
-        analyticsUseCase: analyticsUseCase,
+        context: "homepage",
+        depth: "refine",
       });
-  }, [analyticsSearchSource, analyticsUseCase, track, value.length]);
+  }, [analyticsSearchSource, track, value.length]);
 
   const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {
