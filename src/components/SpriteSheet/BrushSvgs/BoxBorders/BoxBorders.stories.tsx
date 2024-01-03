@@ -6,7 +6,6 @@ import CardTitle from "../../../Card/CardComponents/CardTitle";
 import Component from ".";
 
 export default {
-  title: "Foundations/BoxBorders",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

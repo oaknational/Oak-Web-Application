@@ -9,7 +9,7 @@ import * as resources from "@/node-lib/curriculum-api/fixtures/shareableResource
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Download Components/Share Card Group",
+
   decorators: [
     (Story) => (
       <div style={{ maxWidth: "656px" }}>

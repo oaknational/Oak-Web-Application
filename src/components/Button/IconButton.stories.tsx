@@ -6,7 +6,6 @@ import Flex from "../Flex";
 import Component from "./IconButton";
 
 export default {
-  title: "Buttons/Icon Button",
   component: Component,
   argTypes: {
     onClick: { action: "clicked" },

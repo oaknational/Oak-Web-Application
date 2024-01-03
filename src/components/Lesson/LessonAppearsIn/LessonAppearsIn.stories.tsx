@@ -7,7 +7,6 @@ import Flex from "@/components/Flex";
 import MaxWidth from "@/components/MaxWidth/MaxWidth";
 
 export default {
-  title: "Lesson/Lesson Appears In",
   component: Component,
   argTypes: {},
 } as Meta<typeof Component>;

@@ -13,7 +13,6 @@ import Component from "./ResourcePageLayout";
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 
 const meta: Meta<typeof Component> = {
-  title: "Download Components/Resource Page Layout",
   component: Component,
 };
 

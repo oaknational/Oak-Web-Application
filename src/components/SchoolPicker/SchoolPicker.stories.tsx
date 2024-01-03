@@ -45,7 +45,6 @@ const items = [
 ];
 
 export default {
-  title: "Form Fields/School Picker",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

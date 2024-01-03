@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from "./CardLinkIcon";
 
 const meta: Meta<typeof Component> = {
-  title: "Cards/Card Link Icon",
   component: Component,
   argTypes: {},
 };

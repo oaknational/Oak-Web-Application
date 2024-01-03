@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./ScreenReaderOnly";
 
 export default {
-  title: "Accessibility/Screen Reader Only",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

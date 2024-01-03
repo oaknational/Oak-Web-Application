@@ -28,7 +28,6 @@ const props: OverviewVideoProps = {
 };
 
 const meta: Meta<typeof OverviewVideo> = {
-  title: "Lesson Overview/Overview Video",
   component: OverviewVideo,
   decorators: [AnalyticsDecorator, (Story) => <Story />],
 };

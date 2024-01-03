@@ -5,7 +5,6 @@ import Component from "./Hr";
 import Typography from "./Typography";
 
 export default {
-  title: "Typography/Hr",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

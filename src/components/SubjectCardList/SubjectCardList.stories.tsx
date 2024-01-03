@@ -5,7 +5,6 @@ import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import Component, { KeyStageSubject } from "./SubjectCardList";
 
 export default {
-  title: "Lists/SubjectCardList/SubjectCardList",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

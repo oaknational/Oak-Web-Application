@@ -6,7 +6,6 @@ import { ToastProvider } from "../../../context/Toast";
 import Component from "./CopyLinkButton";
 
 export default {
-  title: "Buttons/Copy Link",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

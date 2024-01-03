@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Foundations/Line Clamp",
   component: Component,
   argTypes: {
     lines: {
