@@ -28,8 +28,8 @@ import { getSizes } from "@/components/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { ListAsGrid } from "@/components/Grid/Grid";
-import { ListItemAsGridArea } from "@/components/Grid/GridArea";
+import { GridList } from "@/components/Typography/UL";
+import { GridAreaListItem } from "@/components/Typography/LI";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -291,12 +291,12 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           <SectionHeader>
             <SectionTitle>{pageData.stepsHeading}</SectionTitle>
           </SectionHeader>
-          <ListAsGrid $cg={24} $rg={0}>
+          <GridList $cg={24} $rg={0}>
             {getLessonPlanningCards(pageData).map(
               ({ title, portableText, imageSlug, withSearchCTA }, i, arr) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
-                  <ListItemAsGridArea
+                  <GridAreaListItem
                     key={`plan-a-lesson--planning-card--${i}`}
                     $alignItems={"center"}
                     $justifyContent={"center"}
@@ -350,11 +350,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         )}
                       </Flex>
                     </Card>
-                  </ListItemAsGridArea>
+                  </GridAreaListItem>
                 );
               },
             )}
-          </ListAsGrid>
+          </GridList>
         </MaxWidth>
       </section>
       <section>

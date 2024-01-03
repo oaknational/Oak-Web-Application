@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 
 import { box, BoxProps } from "../Box";
 import { FlexProps } from "../Flex";
+import { GridProps } from "../Grid";
+import { grid } from "../Grid/Grid";
 
 import flex from "@/styles/utils/flex";
 
@@ -32,6 +34,18 @@ const UL = styled.ul<ULProps>`
  */
 export const FlexList = styled(UL)<ULProps & FlexProps>`
   ${flex}
+`;
+
+/**
+ * Styled 'ul' extended with properties of Grid
+ */
+export const GridList = styled(UL)<ULProps & GridProps>`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  ${grid}
 `;
 
 export default UL;

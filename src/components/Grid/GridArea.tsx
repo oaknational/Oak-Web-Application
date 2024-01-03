@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { SpacingProps } from "../../styles/utils/spacing";
 import Flex, { FlexProps } from "../Flex";
-import { LI } from "../Typography";
 
 type ColRowSpan =
   | 0
@@ -49,72 +48,65 @@ const parseSpanStart = (value: string | null | undefined) => {
   return `span ${span}`;
 };
 
-const gridLayout = (props: GridAreaProps & FlexProps) => {
-  return css`
-    flex-direction: column;
-    ${responsive(
-      "grid-column",
-      () => {
-        return Array.isArray(props.$colSpan)
-          ? props.$colSpan.map((span, index) =>
-              combineSpanStart(
-                Array.isArray(props.$colStart)
-                  ? props.$colStart[index]
-                  : props.$colStart,
-                span,
-              ),
-            )
-          : combineSpanStart(
+export const gridArea = css<GridAreaProps>`
+  flex-direction: column;
+  ${responsive(
+    "grid-column",
+    (props) => {
+      return Array.isArray(props.$colSpan)
+        ? props.$colSpan.map((span, index) =>
+            combineSpanStart(
               Array.isArray(props.$colStart)
-                ? props.$colStart[0]
+                ? props.$colStart[index]
                 : props.$colStart,
-              props.$colSpan,
-            );
-      },
-      (value) => parseSpanStart(value),
-    )};
-    ${responsive(
-      "grid-row",
-      () => {
-        return Array.isArray(props.$rowSpan)
-          ? props.$rowSpan.map((span, index) =>
-              combineSpanStart(
-                Array.isArray(props.$rowStart)
-                  ? props.$rowStart[index]
-                  : props.$rowStart,
-                span,
-              ),
-            )
-          : combineSpanStart(
+              span,
+            ),
+          )
+        : combineSpanStart(
+            Array.isArray(props.$colStart)
+              ? props.$colStart[0]
+              : props.$colStart,
+            props.$colSpan,
+          );
+    },
+    (value) => parseSpanStart(value),
+  )};
+  ${responsive(
+    "grid-row",
+    (props) => {
+      return Array.isArray(props.$rowSpan)
+        ? props.$rowSpan.map((span, index) =>
+            combineSpanStart(
               Array.isArray(props.$rowStart)
-                ? props.$rowStart[0]
+                ? props.$rowStart[index]
                 : props.$rowStart,
-              props.$rowSpan,
-            );
-      },
-      (value) => parseSpanStart(value),
-    )};
-    ${responsive(
-      "order",
-      () => props.$order,
-      (value) => value && `${value}`,
-    )};
-    ${responsive("grid-row", () =>
-      props.$rowSpan ? `span ${props.$rowSpan}` : "span 1",
-    )};
-    ${responsive("grid-column-start", () => props.$colStart)}
-    ${responsive("grid-column-end", () => props.$colEnd)}
-  ${responsive("grid-row-start", () => props.$rowStart)}
-  `;
-};
-
-const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
-  ${(props) => gridLayout(props)}
+              span,
+            ),
+          )
+        : combineSpanStart(
+            Array.isArray(props.$rowStart)
+              ? props.$rowStart[0]
+              : props.$rowStart,
+            props.$rowSpan,
+          );
+    },
+    (value) => parseSpanStart(value),
+  )};
+  ${responsive(
+    "order",
+    (props) => props.$order,
+    (value) => value && `${value}`,
+  )};
+  ${responsive("grid-row", (props) =>
+    props.$rowSpan ? `span ${props.$rowSpan}` : "span 1",
+  )};
+  ${responsive("grid-column-start", (props) => props.$colStart)}
+  ${responsive("grid-column-end", (props) => props.$colEnd)}
+  ${responsive("grid-row-start", (props) => props.$rowStart)}
 `;
 
-export const ListItemAsGridArea = styled(LI)<GridAreaProps & FlexProps>`
-  display: flex;
-  ${(props) => gridLayout(props)}
+const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
+  ${gridArea}
 `;
 
 export default GridArea;

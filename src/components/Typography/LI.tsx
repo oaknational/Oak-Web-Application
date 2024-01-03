@@ -5,6 +5,8 @@ import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import typography, { TypographyProps } from "../../styles/utils/typography";
 import { box } from "../Box";
 import { FlexProps } from "../Flex";
+import { GridAreaProps } from "../Grid";
+import { gridArea } from "../Grid/GridArea";
 
 type ListItemProps = {
   listStyle?: ResponsiveValues<CSSProperties["listStyle"]>;
@@ -32,5 +34,13 @@ const LI = styled.li<FlexProps & TypographyProps & ListItemProps>`
 LI.defaultProps = {
   $display: "revert",
 };
+
+/**
+ * Styled LI with properties of GridArea
+ */
+export const GridAreaListItem = styled(LI)<GridAreaProps & FlexProps>`
+  display: flex;
+  ${gridArea}
+`;
 
 export default LI;
