@@ -40,7 +40,10 @@ LI.defaultProps = {
  */
 export const GridAreaListItem = styled(LI)<GridAreaProps & FlexProps>`
   display: flex;
+  list-style: none;
   ${gridArea}
+  ${flex}
+  ${box}
 `;
 
 export default LI;
