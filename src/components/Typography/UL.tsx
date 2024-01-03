@@ -33,6 +33,7 @@ const UL = styled.ul<ULProps>`
  * Styled 'ul' extended with properties of Flex
  */
 export const FlexList = styled(UL)<ULProps & FlexProps>`
+  display: flex;
   ${flex}
 `;
 

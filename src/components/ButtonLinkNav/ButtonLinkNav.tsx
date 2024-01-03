@@ -5,6 +5,8 @@ import ButtonAsLink from "../Button/ButtonAsLink";
 import Flex, { FlexProps } from "../Flex";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
 import { HTMLAnchorProps } from "../Button/common";
+import { FlexList } from "../Typography/UL";
+import { LI } from "../Typography";
 
 type LinkProps = {
   label: string;
@@ -28,7 +30,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   };
 
   return (
-    <>
+    <LI listStyle="none">
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
@@ -63,7 +65,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           $mr={[0, 36]}
         />
       </Flex>
-    </>
+    </LI>
   );
 };
 
@@ -84,10 +86,11 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
 }) => {
   return (
     <nav aria-label={ariaLabel}>
-      <Flex
+      <FlexList
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
+        $pa={0}
         {...props}
       >
         {buttons.map((button) => (
@@ -98,7 +101,7 @@ const ButtonLinkNav: FC<ButtonLinkNavProps> = ({
             arrowSuffix={arrowSuffix}
           />
         ))}
-      </Flex>
+      </FlexList>
     </nav>
   );
 };
