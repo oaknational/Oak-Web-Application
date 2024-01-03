@@ -99,7 +99,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
       onExited={removeFocus}
     >
       {(state) => (
-        <Box $position="absolute" ref={ref} role="navigation">
+        <Box $position="absolute" ref={ref}>
           <MenuBackdrop state={state} />
           <FocusOn
             enabled={open}

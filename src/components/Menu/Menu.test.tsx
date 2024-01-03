@@ -27,30 +27,34 @@ describe("Menu", () => {
     expect(getByLabelText("Close Menu")).toBeInTheDocument();
   });
 
-  test("it is hidden by default", () => {
-    const { getByLabelText } = renderWithTheme(
+  test("it is hidden and not expanded by default", () => {
+    const { getByLabelText, getByTestId } = renderWithTheme(
       <MenuProvider>
         <Menu menuButtonRef={null} />
       </MenuProvider>,
     );
 
     expect(getByLabelText("Close Menu")).not.toBeVisible();
+    expect(getByTestId("menu")).not.toBeVisible();
+    expect(getByTestId("menu")).toHaveAttribute("aria-expanded", "false");
   });
 
-  test("if menu context open is true it is visible", () => {
+  test("if menu context open is true it is visible and expanded", () => {
     const menuValue = {
       open: true,
       openMenu: jest.fn(),
       closeMenu: jest.fn(),
     };
 
-    const { getByLabelText } = renderWithTheme(
+    const { getByLabelText, getByRole } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
         <Menu menuButtonRef={null} />
       </menuContext.Provider>,
     );
 
     expect(getByLabelText("Close Menu")).toBeVisible();
+    expect(getByRole("navigation")).toBeVisible();
+    expect(getByRole("navigation")).toHaveAttribute("aria-expanded", "true");
   });
 
   test("clicking the close button invokes the closeMenu callback", async () => {
