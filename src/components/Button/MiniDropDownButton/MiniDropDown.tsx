@@ -1,6 +1,6 @@
 import { forwardRef, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
-import { useFocusWithin } from "react-aria";
+import { useFocusRing } from "react-aria";
 
 import { CommonButtonProps, HTMLButtonProps } from "../common";
 
@@ -58,14 +58,16 @@ const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
   (props, ref) => {
     const { onClick, icon, label, htmlButtonProps, isExpanded } = props;
     const [textUnderline, setTextUnderline] = useState<boolean>(false);
-    const [isFocused, setIsFocused] = useState<boolean>(false);
-    const { focusWithinProps } = useFocusWithin({
-      onFocusWithinChange: setIsFocused,
-    });
+    const { isFocusVisible, focusProps } = useFocusRing();
+
     return (
-      <BoxWithFocusState $pv={8} $width={"fit-content"} isFocused={isFocused}>
+      <BoxWithFocusState
+        $pv={8}
+        $width={"fit-content"}
+        isFocused={isFocusVisible}
+      >
         <StyledButton
-          {...focusWithinProps}
+          {...focusProps}
           onMouseOver={() => setTextUnderline(true)}
           onMouseLeave={() => setTextUnderline(false)}
           ref={ref}

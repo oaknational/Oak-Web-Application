@@ -26,7 +26,7 @@ const MiniDropDownInner: FC<MiniDropDownInnerProps> = ({
       <ButtonLabel $color={isExpanded ? "navy120" : "navy"}>
         {label}
       </ButtonLabel>
-      <Icon name={icon} />
+      <Icon $color={isExpanded ? "navy120" : "navy"} name={icon} />
     </Flex>
   );
 };
