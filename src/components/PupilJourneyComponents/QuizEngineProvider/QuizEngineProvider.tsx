@@ -81,7 +81,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   }, [questionState]);
 
   useEffect(() => {
-    setIsComplete(currentQuestionIndex === maxScore);
+    setIsComplete(currentQuestionIndex >= maxScore);
   }, [currentQuestionIndex, maxScore]);
 
   const updateQuestionMode = useCallback(

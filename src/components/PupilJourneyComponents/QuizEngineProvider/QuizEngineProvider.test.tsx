@@ -188,7 +188,7 @@ describe("useQuizEngineContext", () => {
     expect(result.current.currentQuestionData).toBe(questionsArrayFixture?.[1]);
   });
 
-  it("should update isComplete when currentQuestionData is > maxScore", () => {
+  it("should update isComplete when currentQuestionIndex is > maxScore", () => {
     const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
       return (
         <QuizEngineProvider questionsArray={questionsArray}>

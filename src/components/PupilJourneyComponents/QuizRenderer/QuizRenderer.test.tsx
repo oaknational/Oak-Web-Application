@@ -165,20 +165,22 @@ describe("QuizRenderer", () => {
     }
   });
 
-  // TODO: reinstate and modify when we have implemented the end of quiz state again
-
-  it.skip("questionState.mode === 'end', render score", () => {
+  it("renders final state when isComplete === true", () => {
     const context = getContext();
 
-    const { getByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizRenderer />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
+    if (context) {
+      context.isComplete = true;
+      context.currentQuestionIndex = 1;
 
-    const showScore = getByText("End of quiz, score: 2/3");
-    expect(showScore).toBeInTheDocument();
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByText(/End of quiz/i)).toBeInTheDocument();
+    }
   });
 });

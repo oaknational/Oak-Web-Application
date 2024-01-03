@@ -30,28 +30,85 @@ export const QuizRenderer = () => {
     updateQuestionMode,
   } = quizContext;
 
-  if (!currentQuestionData) {
-    return null;
-  }
+  let innerRender = null;
 
-  const { questionStem, answers, questionUid } = currentQuestionData;
+  let questionFeedback = null;
 
-  const MCAnswers = answers?.["multiple-choice"];
-  const isFeedbackMode =
-    questionState[currentQuestionIndex]?.mode === "feedback";
+  if (isComplete) {
+    innerRender = (
+      <OakFlex>
+        <OakSpan>
+          End of quiz, score: {score}/{maxScore}
+        </OakSpan>
+      </OakFlex>
+    );
+  } else if (currentQuestionData) {
+    const { questionStem, answers, questionUid } = currentQuestionData;
 
-  let answerRender = null;
+    const MCAnswers = answers?.["multiple-choice"];
+    const isFeedbackMode =
+      questionState[currentQuestionIndex]?.mode === "feedback";
 
-  if (MCAnswers) {
-    if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
-      answerRender = (
-        <QuizMCQMultiAnswer questionUid={questionUid} answers={MCAnswers} />
-      );
-    } else {
-      answerRender = (
-        <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
-      );
+    let answerRender = null;
+
+    if (MCAnswers) {
+      if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
+        answerRender = (
+          <QuizMCQMultiAnswer questionUid={questionUid} answers={MCAnswers} />
+        );
+      } else {
+        answerRender = (
+          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
+        );
+      }
     }
+
+    innerRender = (
+      <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
+        <QuizQuestionStem
+          questionStem={questionStem}
+          index={currentQuestionIndex}
+          showIndex={true}
+        />
+        {answerRender}
+        {!isFeedbackMode && (
+          <OakFlex $pt="inner-padding-l">
+            <OakPrimaryButton
+              disabled={questionState[currentQuestionIndex]?.mode === "init"}
+              onClick={() => {
+                updateQuestionMode("grading");
+              }}
+            >
+              Submit
+            </OakPrimaryButton>
+          </OakFlex>
+        )}
+        {isFeedbackMode && (
+          <OakFlex $pt="inner-padding-l">
+            <OakPrimaryButton onClick={handleNextQuestion}>
+              Next Question
+            </OakPrimaryButton>
+          </OakFlex>
+        )}
+      </OakFlex>
+    );
+
+    questionFeedback = (
+      <OakFlex
+        $position={"absolute"}
+        $left={"space-between-m"}
+        $flexDirection={"column"}
+        $gap={"space-between-ssx"}
+      >
+        <OakSpan>mode: {questionState[currentQuestionIndex]?.mode}</OakSpan>
+        <OakSpan>
+          feedback:
+          {questionState[currentQuestionIndex]?.grade === 1
+            ? "correct"
+            : "incorrect"}
+        </OakSpan>
+      </OakFlex>
+    );
   }
 
   return (
@@ -67,54 +124,9 @@ export const QuizRenderer = () => {
       $gap={"all-spacing-5"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
-      <OakSpan>mode: {questionState[currentQuestionIndex]?.mode}</OakSpan>
 
-      {isFeedbackMode && (
-        <OakSpan>
-          feedback:
-          {questionState[currentQuestionIndex]?.grade === 1
-            ? "correct"
-            : "incorrect"}
-        </OakSpan>
-      )}
-
-      {isComplete && (
-        <OakFlex>
-          <OakSpan>
-            End of quiz, score: {score}/{maxScore}
-          </OakSpan>
-        </OakFlex>
-      )}
-
-      {!isComplete && (
-        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
-          <QuizQuestionStem
-            questionStem={questionStem}
-            index={currentQuestionIndex}
-            showIndex={true}
-          />
-          {answerRender}
-          {!isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton
-                disabled={questionState[currentQuestionIndex]?.mode === "init"}
-                onClick={() => {
-                  updateQuestionMode("grading");
-                }}
-              >
-                Submit
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-          {isFeedbackMode && (
-            <OakFlex $pt="inner-padding-l">
-              <OakPrimaryButton onClick={handleNextQuestion}>
-                Next Question
-              </OakPrimaryButton>
-            </OakFlex>
-          )}
-        </OakFlex>
-      )}
+      {questionFeedback}
+      {innerRender}
     </OakFlex>
   );
 };
