@@ -5,7 +5,6 @@ import Box from "../Box";
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
 
 export default {
-  title: "Foundations/Aspect Ratio",
   component: Component,
   argTypes: {
     ratio: { control: { type: "select", options: ASPECT_RATIOS } },

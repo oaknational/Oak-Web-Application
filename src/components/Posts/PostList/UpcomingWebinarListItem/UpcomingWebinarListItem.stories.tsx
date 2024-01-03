@@ -5,7 +5,6 @@ import Box from "../../../Box";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Blogs & Webinars/Post List/UpcomingWebinarListItem",
   component: Component,
   decorators: [
     (Story) => (

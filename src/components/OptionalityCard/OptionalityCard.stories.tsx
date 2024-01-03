@@ -12,7 +12,6 @@ const option2 = units[1] ? units[1][0] : null;
 const unitOptions = [option1, option2] as UnitOption[];
 
 const meta: Meta<typeof Component> = {
-  title: "Lists/Optionality Card",
   decorators: [AnalyticsDecorator],
   component: Component,
 };

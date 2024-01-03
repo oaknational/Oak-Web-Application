@@ -4,7 +4,6 @@ import { useState } from "react";
 import Component from ".";
 
 export default {
-  title: "Form Fields/Dropdown",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

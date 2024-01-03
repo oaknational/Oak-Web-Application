@@ -22,7 +22,6 @@ const props: TranscriptViewerProps = {
 };
 
 const meta: Meta<typeof TranscriptViewer> = {
-  title: "Element/Transcript Viewer",
   component: TranscriptViewer,
 };
 

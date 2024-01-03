@@ -11,7 +11,6 @@ import CardImage from "./CardComponents/CardImage";
 import Component from ".";
 
 export default {
-  title: "Cards/Card",
   component: Component,
   argTypes: {
     background: {

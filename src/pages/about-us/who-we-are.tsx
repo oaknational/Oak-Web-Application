@@ -45,7 +45,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
       {...props}
     >
       <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
-        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
+        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
           {title}
         </OutlineHeading>
         <Typography $font={["body-2", "body-1"]}>
@@ -137,7 +137,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
                   <Heading
                     $font={["heading-5", "heading-4"]}
-                    tag={"h2"}
+                    tag={"h3"}
                     $mb={[24]}
                   >
                     {principle.title}

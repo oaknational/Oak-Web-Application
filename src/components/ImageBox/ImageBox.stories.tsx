@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Foundations/ImageBox",
   component: Component,
   argTypes: {
     children: {
