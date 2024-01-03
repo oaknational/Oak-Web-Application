@@ -13,7 +13,7 @@ import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import Flex from "@/components/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { SearchSourceValueType } from "@/browser-lib/avo/Avo";
+import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Input from "@/components/Input/Input";
 import Button from "@/components/Button";
@@ -29,44 +29,54 @@ type SearchFormProps = {
   placeholderText: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
+  searchContext: ContextValueType;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm, analyticsSearchSource, placeholderText } =
-    props;
+  const {
+    handleSubmit,
+    searchTerm,
+    analyticsSearchSource,
+    placeholderText,
+    searchContext,
+  } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
   const router = useRouter();
 
+  const useCase =
+    pageName === "Homepage" && !analyticsUseCase ? "Teacher" : analyticsUseCase;
+
   const trackSearchAttempted = useCallback(() => {
     track.searchAttempted({
       searchTerm: value,
-      analyticsUseCase: analyticsUseCase,
+      analyticsUseCase: useCase,
       pageName,
       searchFilterOptionSelected: getSortedSearchFiltersSelected(
         router.query.keyStages,
       ),
       searchSource: analyticsSearchSource,
-      context: "homepage",
+      context: searchContext,
       depth: "attempt",
     });
   }, [
     track,
     value,
-    analyticsUseCase,
+    useCase,
     pageName,
     router.query.keyStages,
     analyticsSearchSource,
+    searchContext,
   ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
     value.length === 1 &&
       track.searchJourneyInitiated({
         searchSource: analyticsSearchSource,
-        context: "homepage",
+        context: searchContext,
         depth: "refine",
       });
-  }, [analyticsSearchSource, track, value.length]);
+  }, [analyticsSearchSource, track, value.length, searchContext]);
 
   const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (e) => {

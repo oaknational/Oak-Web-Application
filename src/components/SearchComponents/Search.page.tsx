@@ -124,6 +124,7 @@ const Search: FC<SearchProps> = (props) => {
                 Search
               </Heading>
               <SearchForm
+                searchContext="search"
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
                 handleSubmit={(value) => {

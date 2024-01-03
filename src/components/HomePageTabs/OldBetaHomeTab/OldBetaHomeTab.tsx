@@ -60,6 +60,7 @@ const OldBetaHomeTab: FC<OldBetaHomeTabProps> = (props) => {
               </P>
               <Box $mt={16}>
                 <SearchForm
+                  searchContext="homepage"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {

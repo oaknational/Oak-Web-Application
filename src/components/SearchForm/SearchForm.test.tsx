@@ -36,6 +36,7 @@ describe("<SearchForm />", () => {
   it("renders", () => {
     const { getByRole } = render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -50,6 +51,7 @@ describe("<SearchForm />", () => {
     const searchTerm = "Macbeth";
     const { getByRole } = render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -73,6 +75,7 @@ describe("<SearchForm />", () => {
     const addedText = "be";
     const { getByRole } = render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         handleSubmit={handleSubmit}
         searchTerm={initialText}
@@ -96,6 +99,7 @@ describe("<SearchForm />", () => {
   it("{Enter} submits the form if search input has focus", async () => {
     const { getByRole } = render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -113,6 +117,7 @@ describe("<SearchForm />", () => {
   it("{Enter} does not submit the form if search if inputs don't have focus", async () => {
     render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -128,6 +133,7 @@ describe("<SearchForm />", () => {
   it("search input is first tabbable element", async () => {
     render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -142,6 +148,7 @@ describe("<SearchForm />", () => {
   it("submit button is second tabbable element", async () => {
     render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -153,11 +160,12 @@ describe("<SearchForm />", () => {
 
     expect(handleSubmit).not.toHaveBeenCalled();
   });
-  it.only("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
+  it("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
     const initialText = "M";
     const addedText = "a";
     const { getByRole } = render(
       <SearchForm
+        searchContext="homepage"
         placeholderText=""
         handleSubmit={handleSubmit}
         searchTerm={initialText}
@@ -183,6 +191,7 @@ describe("<SearchForm />", () => {
     const { getByRole } = render(
       <SearchForm
         placeholderText=""
+        searchContext="homepage"
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
@@ -209,6 +218,7 @@ describe("<SearchForm />", () => {
     const placeholderText = "Search by keyword or topic";
     render(
       <SearchForm
+        searchContext="homepage"
         placeholderText={placeholderText}
         searchTerm=""
         handleSubmit={handleSubmit}
