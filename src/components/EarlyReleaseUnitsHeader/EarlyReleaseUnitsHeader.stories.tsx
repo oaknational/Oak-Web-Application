@@ -3,7 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Headers & Footers/Early Release Units Header",
   component: Component,
 };
 

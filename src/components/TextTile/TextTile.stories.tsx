@@ -5,7 +5,6 @@ import { Span } from "../Typography";
 import Component from "./TextTitle";
 
 const meta: Meta<typeof Component> = {
-  title: "Cards/Text Tile",
   component: Component,
   argTypes: {},
 };

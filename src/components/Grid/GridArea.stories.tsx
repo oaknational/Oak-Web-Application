@@ -7,7 +7,6 @@ import Component from "./GridArea";
 import Grid from ".";
 
 export default {
-  title: "Foundations/Grid",
   component: Component,
   decorators: [
     (Story) => (

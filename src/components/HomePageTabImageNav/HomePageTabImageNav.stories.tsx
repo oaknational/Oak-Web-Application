@@ -6,7 +6,6 @@ import Component from ".";
 import { HomePageTab } from "@/pages";
 
 export default {
-  title: "Navigation/HomePageTabImageNav",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

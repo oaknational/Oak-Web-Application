@@ -20,7 +20,6 @@ const props: LessonItemContainerProps = {
 };
 
 const meta: Meta<typeof LessonItemContainer> = {
-  title: "Element/Lesson Item Container",
   component: LessonItemContainer,
 };
 

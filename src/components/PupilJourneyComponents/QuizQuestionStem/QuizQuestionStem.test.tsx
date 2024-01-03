@@ -1,4 +1,4 @@
-import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem/QuestionStem";
+import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import {
@@ -16,7 +16,7 @@ describe("QuestionListItem", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <QuizQuestionStem questionStem={mcqText.questionStem} index={0} />,
     );
     const primaryQuestionText = getByText("What is a main clause?");
 
@@ -27,7 +27,7 @@ describe("QuestionListItem", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
     const { getByRole } = renderWithTheme(
-      <QuestionStem questionStem={mcqStemImage.questionStem} index={0} />,
+      <QuizQuestionStem questionStem={mcqStemImage.questionStem} index={0} />,
     );
     const image = getByRole("img");
 
@@ -43,7 +43,7 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
+      <QuizQuestionStem questionStem={questionStem} index={0} />,
     );
     const secondaryText = getByText("This is some text");
 

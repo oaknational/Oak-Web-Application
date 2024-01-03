@@ -6,7 +6,6 @@ import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectP
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
-  title: "Cards/Subject Card Double",
   component: Component,
   decorators: [AnalyticsDecorator],
   argTypes: {},

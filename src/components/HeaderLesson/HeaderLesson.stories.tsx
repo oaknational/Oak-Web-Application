@@ -124,7 +124,6 @@ const props = {
 };
 
 const meta: Meta<typeof Component> = {
-  title: "Headers & Footers/HeaderLesson",
   decorators: [AnalyticsDecorator],
   component: Component,
 };

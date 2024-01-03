@@ -18,7 +18,6 @@ const props: LessonListItemProps = {
 };
 
 const meta: Meta<typeof LessonListItem> = {
-  title: "Lists/Lesson List Item",
   component: LessonListItem,
   decorators: [AnalyticsDecorator],
 };

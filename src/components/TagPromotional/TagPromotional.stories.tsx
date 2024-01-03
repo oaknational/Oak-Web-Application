@@ -5,7 +5,6 @@ import Flex from "../Flex";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Element/Tag promotional",
   component: Component,
   argTypes: {
     size: {
