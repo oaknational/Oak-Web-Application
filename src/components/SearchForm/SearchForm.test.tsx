@@ -160,9 +160,9 @@ describe("<SearchForm />", () => {
 
     expect(handleSubmit).not.toHaveBeenCalled();
   });
-  it("track.searchJourneyInitiated is called after the first letter is typed into input box ", async () => {
+  it("track.searchJourneyInitiated is called after selecting the input box ", async () => {
     const initialText = "M";
-    const addedText = "a";
+
     const { getByRole } = render(
       <SearchForm
         searchContext="homepage"
@@ -176,7 +176,6 @@ describe("<SearchForm />", () => {
 
     const searchField = getByRole("searchbox");
     await user.click(searchField);
-    await user.keyboard(addedText);
 
     expect(searchJourneyInitiated).toHaveBeenCalledTimes(1);
     expect(searchJourneyInitiated).toHaveBeenCalledWith({

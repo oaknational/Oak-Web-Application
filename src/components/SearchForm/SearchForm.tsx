@@ -69,20 +69,15 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
-    value.length === 0 &&
-      track.searchJourneyInitiated({
-        searchSource: analyticsSearchSource,
-        context: searchContext,
-      });
-  }, [analyticsSearchSource, track, value.length, searchContext]);
+    track.searchJourneyInitiated({
+      searchSource: analyticsSearchSource,
+      context: searchContext,
+    });
+  }, [analyticsSearchSource, track, searchContext]);
 
-  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
-    (e) => {
-      setValue(e.target.value);
-      trackSearchJourneyInitiated();
-    },
-    [trackSearchJourneyInitiated],
-  );
+  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
+    setValue(e.target.value);
+  }, []);
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
     (e) => {
@@ -104,6 +99,9 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           type="search"
           onChange={onChange}
           placeholder={placeholderText}
+          onFocus={() => {
+            trackSearchJourneyInitiated();
+          }}
         />
 
         <Button
