@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../../node-lib/cms";
 import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
+import MaxWidth from "../../components/SharedComponents/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
 import { Heading } from "../../components/Typography";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
 import { Heading, P } from "@/components/Typography";
-import Flex from "@/components/Flex/Flex";
-import Box from "@/components/Box/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";

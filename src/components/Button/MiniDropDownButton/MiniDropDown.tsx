@@ -14,7 +14,7 @@ import typography, { FontVariant } from "@/styles/utils/typography";
 import { IconName } from "@/components/Icon";
 import color from "@/styles/utils/color";
 import { OakColorName } from "@/styles/theme";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 
 const StyledButton = styled(UnstyledButton)<
   UnstyledButtonProps & { $color?: OakColorName }

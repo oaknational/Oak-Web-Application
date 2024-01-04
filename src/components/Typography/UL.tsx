@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
-import { box, BoxProps } from "../Box";
-import { FlexProps } from "../Flex";
 import { GridProps } from "../Grid";
 import { grid } from "../Grid/Grid";
+import { box, BoxProps } from "../SharedComponents/Box";
 
+import { FlexProps } from "@/components/SharedComponents/Flex";
 import flex from "@/styles/utils/flex";
 
 type ULProps = BoxProps & {

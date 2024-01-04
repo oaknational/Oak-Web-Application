@@ -3,8 +3,9 @@ import { FC } from "react";
 import { CTA } from "../../../common-lib/cms-types";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 import ButtonAsLink from "../../Button/ButtonAsLink";
-import Flex from "../../Flex";
 import { Heading } from "../../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export const LandingPageTitle: FC<{
   title: string;

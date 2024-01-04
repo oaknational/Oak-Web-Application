@@ -1,4 +1,4 @@
-import Flex, { FlexProps } from "@/components/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import HomePageTabImageButton from "@/components/NewButtons/HomepageTabImageButton/HomePageTabImageButton";
 import { Hr } from "@/components/Typography";
 import { HomePageTab } from "@/pages";

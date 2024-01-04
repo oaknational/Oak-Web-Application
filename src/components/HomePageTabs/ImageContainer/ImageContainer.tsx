@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Flex from "@/components/Flex/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Illustration from "@/components/Illustration/Illustration";
 import { IllustrationSlug } from "@/image-data";
 

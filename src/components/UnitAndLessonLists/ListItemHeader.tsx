@@ -1,6 +1,5 @@
 import { FC, MutableRefObject } from "react";
 
-import Flex from "../Flex";
 import OakLink from "../OakLink";
 import { Heading } from "../Typography";
 
@@ -9,6 +8,7 @@ import ExemplarCategoryHeading from "./ExemplarCategoryHeading";
 import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
+import Flex from "@/components/SharedComponents/Flex";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,

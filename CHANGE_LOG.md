@@ -1,3 +1,10 @@
+## [1.312.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.1...v1.312.2) (2024-01-04)
+
+
+### Bug Fixes
+
+* correct subject fliters on search page ([9b5debc](https://github.com/oaknational/Oak-Web-Application/commit/9b5debca7602a1cfb408457071afbe806792602f))
+
 ## [1.312.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.0...v1.312.1) (2024-01-03)
 
 # [1.312.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.8...v1.312.0) (2023-12-21)

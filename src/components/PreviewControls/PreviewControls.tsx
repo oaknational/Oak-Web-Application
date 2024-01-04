@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import CopyLinkButton from "../Button/CopyLinkButton";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Flex from "../Flex";
 import { Span } from "../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * A small toast-like banner in the bottom left corner to inform

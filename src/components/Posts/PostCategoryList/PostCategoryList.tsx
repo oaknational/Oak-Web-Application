@@ -1,15 +1,16 @@
 import { FC } from "react";
 
-import Box, { BoxProps } from "../../Box";
+import Box, { BoxProps } from "../../SharedComponents/Box";
 import OakLink from "../../OakLink";
 import Icon from "../../Icon";
-import Flex from "../../Flex";
 import CategoryFilterList from "../../Filters/CategoryFilterList";
 import useCategoryFilterList from "../../Filters/CategoryFilterList/useCategoryFilterList";
 import {
   BlogListingLinkProps,
   WebinarListingLinkProps,
 } from "../../../common-lib/urls";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 

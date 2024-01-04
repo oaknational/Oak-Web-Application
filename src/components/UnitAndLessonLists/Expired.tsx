@@ -1,7 +1,8 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
 import { Span } from "../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type ExpiredProps = {
   page: "lesson" | "unit";

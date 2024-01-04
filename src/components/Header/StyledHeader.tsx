@@ -7,7 +7,8 @@ import {
   PropsWithTheme,
 } from "../../styles/theme";
 import background, { BackgroundProps } from "../../styles/utils/background";
-import Flex from "../Flex";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type HeaderConfig = {
   height: PixelSpacing;

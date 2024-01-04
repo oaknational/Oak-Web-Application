@@ -5,8 +5,8 @@ import { QuizProps } from "../QuizContainerNew";
 import QuestionListItem from "./QuestionListItemNew";
 
 import { Heading } from "@/components/Typography";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Flex from "@/components/Flex/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type QuizQuestionListProps = QuizProps;
 

@@ -4,8 +4,8 @@ import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
 import { HeaderShareAllButton } from "./HeaderShareAllButton";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
 import { Heading, P, Span } from "@/components/Typography";
 import Grid, { GridArea } from "@/components/Grid";

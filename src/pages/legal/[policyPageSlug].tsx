@@ -12,10 +12,10 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading, P } from "@/components/Typography";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";

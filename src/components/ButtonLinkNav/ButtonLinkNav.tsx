@@ -1,12 +1,13 @@
 import { FC } from "react";
 
-import Box from "../Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
 import { HTMLAnchorProps } from "../Button/common";
 import { FlexList } from "../Typography/UL";
 import { LI } from "../Typography";
+
+import Box from "@/components/SharedComponents/Box";
 
 type LinkProps = {
   label: string;

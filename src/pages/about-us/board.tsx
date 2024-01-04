@@ -4,11 +4,10 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/Card";
 import AboutContactCard from "@/components/AboutContactCard";
 import Typography, { Heading, Hr, P } from "@/components/Typography";
-import Flex from "@/components/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "@/components/Button/IconButtonAsLink";
@@ -19,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { GridList } from "@/components/Typography/UL";
 import { GridAreaListItem } from "@/components/Typography/LI";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;

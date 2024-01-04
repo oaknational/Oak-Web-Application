@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Flex from "../Flex";
-
 import Component from ".";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {
   component: Component,

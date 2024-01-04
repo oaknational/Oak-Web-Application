@@ -1,11 +1,11 @@
 import { FC } from "react";
 
 import { Heading, P, Span } from "@/components/Typography";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import KeyStageKeypad from "@/components/KeyStageKeypad";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OakLink from "@/components/OakLink";
 import SearchForm from "@/components/SearchForm";
 import UnderlinedHeading from "@/components/Typography/UnderlinedHeading";

@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 
 import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import Box, { BoxProps } from "../Box";
+
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
 const parse = (value?: NullablePixelSpacing) => {
   switch (typeof value) {

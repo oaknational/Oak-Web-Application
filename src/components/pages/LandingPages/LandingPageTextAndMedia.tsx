@@ -9,7 +9,7 @@ import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Card from "@/components/Card";
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import { LI } from "@/components/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";

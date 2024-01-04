@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
 import { GridProps } from "../Grid";
-import { box, BoxProps } from "../Box";
 import { grid } from "../Grid/Grid";
+import { box, BoxProps } from "../SharedComponents/Box";
 
 /**
  * Styled `ol` (ordered list) component.

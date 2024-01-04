@@ -6,10 +6,11 @@ import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
 import theme, { OakColorName } from "../../styles/theme";
-import Flex from "../Flex";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline } from "../Input/Input";
 import { LI, Span } from "../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type SelectListBoxConfig = {
   states: {
