@@ -106,6 +106,7 @@ jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
       searchResultsDisplayed: (...args: unknown[]) =>
         searchResultsDisplayed(...args),
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
+      searchJourneyInitiated: jest.fn(),
     },
   }),
 }));
