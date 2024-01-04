@@ -2,7 +2,7 @@ import mockRouter from "next-router-mock";
 
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import ButtonLinkNav from "./ButtonLinkNav";
+import AboutUsNavButton from "./AboutUsNavButton";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
@@ -12,13 +12,13 @@ const buttons = [
   { label: "Third one", href: "/third-one" },
 ];
 
-describe("ButtonLinkNav", () => {
+describe("AboutUsNavButton", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/first-one");
   });
   test("renders links with correct hrefs and labels", () => {
     const { getAllByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <AboutUsNavButton ariaLabel="testing 123" buttons={buttons} />,
     );
 
     const links = getAllByRole("link");
@@ -33,7 +33,7 @@ describe("ButtonLinkNav", () => {
   });
   test("renders nav with correct a11y label", () => {
     const { getByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <AboutUsNavButton ariaLabel="testing 123" buttons={buttons} />,
     );
     const nav = getByRole("navigation");
     expect(nav).toHaveAccessibleName("testing 123");
@@ -42,7 +42,7 @@ describe("ButtonLinkNav", () => {
     mockRouter.setCurrentUrl("/second-one");
 
     const { getByRole } = renderWithTheme(
-      <ButtonLinkNav ariaLabel="testing 123" buttons={buttons} />,
+      <AboutUsNavButton ariaLabel="testing 123" buttons={buttons} />,
     );
     const currentLink = getByRole("link", { name: "Second one" });
     expect(currentLink).toHaveAttribute("aria-current", "page");
