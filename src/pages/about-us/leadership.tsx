@@ -42,7 +42,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
               Our leadership
             </Heading>
             <BioCardList
-              $mb={[80, 92]}
+              $mb={[80, 60]}
               $ph={[16, 0]}
               bios={leadershipTeam}
               withModals

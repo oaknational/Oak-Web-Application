@@ -57,7 +57,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
               Our interim board
             </Heading>
             <BioCardList
-              $mb={[80, 92]}
+              $mb={[80, 60]}
               $ph={[16, 0]}
               bios={boardMembers}
               withModals={bioModalsEnabled}
