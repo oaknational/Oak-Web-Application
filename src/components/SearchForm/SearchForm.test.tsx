@@ -182,7 +182,6 @@ describe("<SearchForm />", () => {
     expect(searchJourneyInitiated).toHaveBeenCalledWith({
       searchSource: "homepage search box",
       context: "homepage",
-      depth: "refine",
     });
   });
   it("track.searchAttempted is called on submit ", async () => {
@@ -211,7 +210,6 @@ describe("<SearchForm />", () => {
       searchSource: "homepage search box",
       searchTerm: "search me",
       context: "homepage",
-      depth: "attempt",
     });
   });
   it("search input is populated with placeholder text", () => {
