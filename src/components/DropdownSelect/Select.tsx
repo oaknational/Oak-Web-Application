@@ -5,7 +5,7 @@ import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import Icon, { IconName } from "../Icon";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";

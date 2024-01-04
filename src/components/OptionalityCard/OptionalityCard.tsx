@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/Typography";
 import UnitListItem, {
   UnitListItemProps,

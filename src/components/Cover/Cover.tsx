@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 
 const Cover: FC<FlexProps> = (props) => {
   return (

@@ -6,7 +6,7 @@ import { sortShareResources } from "../helpers/sortResources";
 import { ResourceFormProps } from "../downloadAndShare.types";
 
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 export type ShareCardGroupProps = {

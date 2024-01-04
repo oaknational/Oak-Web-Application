@@ -9,7 +9,7 @@ import Card from "@/components/Card";
 import CardImage, {
   CardImageProps,
 } from "@/components/Card/CardComponents/CardImage";
-import Flex, { FlexProps } from "@/components/Flex";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "@/components/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";

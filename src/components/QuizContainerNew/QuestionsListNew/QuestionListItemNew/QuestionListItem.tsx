@@ -6,7 +6,7 @@ import { MatchAnswers } from "./Answers/MatchAnswers";
 import { OrderAnswers } from "./Answers/OrderAnswers";
 import { ShortAnswers } from "./Answers/ShortAnswers";
 
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 

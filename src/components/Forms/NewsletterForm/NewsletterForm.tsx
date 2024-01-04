@@ -10,7 +10,7 @@ import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
 import errorReporter from "../../../common-lib/error-reporter";
 import Form from "../Form";
-import { BoxProps } from "../../Box";
+import { BoxProps } from "../../SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,

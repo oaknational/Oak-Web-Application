@@ -3,14 +3,14 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import UnstyledButton from "../../UnstyledButton";
-import Flex from "../../Flex";
 import Icon, { IconName } from "../../Icon";
-import Box from "../../Box";
 import { DoubleButtonBorders } from "../../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
 import ButtonLabel from "../ButtonLabel";
 
 import { Spinner } from "./Spinner";
 
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
 

@@ -13,9 +13,9 @@ import {
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppearsIn";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import { groupLessonPathways } from "@/components/Lesson/lesson.helpers";
 import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
 import curriculumApi from "@/node-lib/curriculum-api";

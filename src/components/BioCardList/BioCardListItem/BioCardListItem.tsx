@@ -4,10 +4,11 @@ import useClickableCard from "../../../hooks/useClickableCard";
 import AvatarImage from "../../AvatarImage";
 import { BioData } from "../../BioModal/BioModal";
 import Button from "../../Button";
-import Flex from "../../Flex";
 import SocialButtons from "../../SocialButtons";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading, P } from "../../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type BioCardListItemProps = BioData & {
   onClick?: (bio: BioData) => void;

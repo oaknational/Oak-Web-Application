@@ -5,11 +5,12 @@ import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Button from "../Button";
 import ButtonAsLink from "../Button/ButtonAsLink";
 import ButtonGroup from "../ButtonGroup/ButtonGroup";
-import Flex from "../Flex";
 import Layout from "../Layout";
 import { HeaderVariant, FooterVariant } from "../Layout/Layout";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import { P, Heading } from "../Typography";
+
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
 
 const shadow =
   "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000";

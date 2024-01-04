@@ -2,13 +2,13 @@ import { FC } from "react";
 
 import { Breadcrumb } from "../Breadcrumbs";
 import { HeaderWrapper } from "../HeaderLesson/HeaderWrapper";
-import Flex from "../Flex";
-import Box from "../Box";
 import { Heading, Span } from "../Typography";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonMetadata from "../LessonMetadata";
 
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
 
 /**

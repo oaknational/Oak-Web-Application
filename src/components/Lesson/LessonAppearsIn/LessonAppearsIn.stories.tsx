@@ -3,8 +3,8 @@ import { StoryFn, Meta } from "@storybook/react";
 
 import { LessonAppearsIn as Component } from "./LessonAppearsIn";
 
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export default {
   component: Component,

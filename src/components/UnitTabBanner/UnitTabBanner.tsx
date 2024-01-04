@@ -1,4 +1,4 @@
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/Icon";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import Heading from "@/components/Typography/Heading";
