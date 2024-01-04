@@ -4,11 +4,12 @@ import { HomePageNotification } from "../../../common-lib/cms-types";
 import Card from "../../Card";
 import { Heading, P, Span } from "../../Typography";
 import CardLink from "../../Card/CardLink";
-import Box from "../../Box";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import Icon from "../../Icon";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
+
+import Box from "@/components/SharedComponents/Box";
 
 type HomeNotificationProps = {
   notification: HomePageNotification;

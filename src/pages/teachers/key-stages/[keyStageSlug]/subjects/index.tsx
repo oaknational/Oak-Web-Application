@@ -9,7 +9,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Box from "@//components/Box";
+import Box from "@/components/SharedComponents/Box";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
@@ -17,7 +17,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/KeyStageKeypad/KeyStageKeypad";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 
 export type KeyStagePageProps = {

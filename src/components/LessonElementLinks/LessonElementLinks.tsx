@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import Typography from "../Typography";
 import CardLink from "../Card/CardLink";
 import { zIndexMap } from "../../styles/utils/zIndex";

@@ -2,8 +2,9 @@ import { FC } from "react";
 
 import Icon, { IconName } from "../Icon";
 import Circle from "../Circle";
-import { FlexProps } from "../Flex";
 import { OakColorName } from "../../styles/theme";
+
+import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type GraphicCircleIconProps = FlexProps & {
   icon: IconName;

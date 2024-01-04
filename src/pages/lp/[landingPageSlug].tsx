@@ -2,7 +2,6 @@ import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import CMSClient from "../../node-lib/cms";
 import { LandingPage } from "../../common-lib/cms-types/landingPage";
 import { LandingPageTextAndMedia } from "../../components/pages/LandingPages/LandingPageTextAndMedia";
@@ -12,6 +11,8 @@ import { LandingPageTextBlock } from "../../components/pages/LandingPages/Landin
 import LandingPageHero from "../../components/pages/LandingPages/LandingPageHero";
 import getPageProps from "../../node-lib/getPageProps";
 import { getABTestedLandingPage } from "../../node-lib/cms/ab-testing";
+
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 export type LandingPageProps = {
   pageData: LandingPage;

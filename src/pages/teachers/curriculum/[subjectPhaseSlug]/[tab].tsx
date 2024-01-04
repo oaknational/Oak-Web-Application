@@ -13,7 +13,7 @@ import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
-import Box from "@/components/Box/Box";
+import Box from "@/components/SharedComponents/Box/Box";
 import curriculumApi, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,

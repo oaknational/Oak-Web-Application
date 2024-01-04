@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Flex, { FlexProps } from "../Flex/Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 
 export type CardProps = FlexProps;
 const Card = styled(Flex)``;

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/Typography";
 import OakLink from "@/components/OakLink";

@@ -1,8 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Box from "../Box";
-
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
+
+import Box from "@/components/SharedComponents/Box";
+
 
 export default {
   component: Component,

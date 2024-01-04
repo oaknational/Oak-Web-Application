@@ -1,9 +1,10 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 
-import Box from "../Box";
-
 import Component from "./SchoolPicker";
+
+import Box from "@/components/SharedComponents/Box";
+
 
 const items = [
   {

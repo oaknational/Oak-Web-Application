@@ -8,9 +8,9 @@ import { SearchProps } from "./search.page.types";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/SearchFilters";
 import ActiveFilters from "@/components/SearchFilters/ActiveFilters";

@@ -4,9 +4,11 @@ import { OverlayContainer, OverlayProvider } from "react-aria";
 
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
-import Box from "../Box";
 
 import Component from ".";
+
+import Box from "@/components/SharedComponents/Box";
+
 
 export default {
   component: Component,

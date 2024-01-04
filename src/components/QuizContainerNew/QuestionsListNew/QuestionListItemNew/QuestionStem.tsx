@@ -2,7 +2,7 @@ import { shortAnswerTitleFormatter, removeMarkdown } from "../../quizUtils";
 
 import QuizImage from "./QuizImage";
 
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Typography from "@/components/Typography";
 import {
   StemImageObject,

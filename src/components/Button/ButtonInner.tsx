@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-import Flex from "../Flex";
 
 import ButtonLabel from "./ButtonLabel";
 import {
@@ -14,7 +13,8 @@ import {
 } from "./common";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
-import Box from "@/components/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/Icon";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/Svg";

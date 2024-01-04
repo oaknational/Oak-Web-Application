@@ -18,8 +18,8 @@ import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/UnstyledButton";
 import CMSImage from "@/components/CMSImage/CMSImage";
-import Flex from "@/components/Flex/Flex";
-import Box from "@/components/Box/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box/Box";
 import TagPromotional from "@/components/TagPromotional";
 import {
   ButtonHoverStyle,

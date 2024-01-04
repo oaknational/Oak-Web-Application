@@ -2,9 +2,11 @@ import { FC } from "react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import TagPromotional from "../TagPromotional";
-import Flex from "../Flex/Flex";
 
 import { BurgerMenuLink, linkIsHref } from "./types";
+
+import Flex from "@/components/SharedComponents/Flex";
+
 
 export type BurgerMenuLinkProps = {
   link: BurgerMenuLink;

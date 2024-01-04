@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import Box from "@/components/Box/Box";
+import Box from "@/components/SharedComponents/Box/Box";
 import { Heading, LI, UL } from "@/components/Typography";
 import { CurriculumDownloadsTabData } from "@/node-lib/curriculum-api-2023";
 

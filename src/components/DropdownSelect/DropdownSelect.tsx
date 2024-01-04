@@ -1,11 +1,12 @@
 import { FC, forwardRef } from "react";
 
-import { FlexProps } from "../Flex";
 import { IconName } from "../Icon";
 import FieldError from "../FormFields/FieldError";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
+
+import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type SelectChangeHandler = (e: {
   target: { name: string; value: string };

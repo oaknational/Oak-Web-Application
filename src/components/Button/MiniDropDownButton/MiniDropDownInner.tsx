@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import ButtonLabel from "@/components/Button/ButtonLabel";
 import Icon, { IconName } from "@/components/Icon";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 
 type MiniDropDownInnerProps = {
   label: string;

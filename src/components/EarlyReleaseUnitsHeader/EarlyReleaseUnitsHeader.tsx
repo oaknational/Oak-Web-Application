@@ -1,12 +1,13 @@
-import Box from "../Box/Box";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex from "../Flex/Flex";
 import { GridArea } from "../Grid";
 import Grid from "../Grid/Grid";
 import Illustration from "../Illustration/Illustration";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import { Heading } from "../Typography";
 import Typography from "../Typography/Typography";
+
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 const EarlyReleaseUnitsHeader = () => {
   return (

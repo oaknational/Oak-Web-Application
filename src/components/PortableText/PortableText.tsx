@@ -16,9 +16,11 @@ import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
 import AnchorTarget from "../AnchorTarget";
-import Box from "../Box";
 
 import { PTActionTrigger } from "./PTActionTrigger";
+
+import Box from "@/components/SharedComponents/Box";
+
 
 const reportError = errorReporter("PortableText");
 

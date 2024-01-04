@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import Pagination, { PaginationProps } from "@/components/Pagination";
 import { UsePaginationProps } from "@/components/Pagination/usePagination";
 import { Heading, LI, UL } from "@/components/Typography";
