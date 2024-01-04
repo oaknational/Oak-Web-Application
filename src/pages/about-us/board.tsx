@@ -9,7 +9,6 @@ import Card from "@/components/Card";
 import AboutContactCard from "@/components/AboutContactCard";
 import Typography, { Heading, Hr, P } from "@/components/Typography";
 import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "@/components/Button/IconButtonAsLink";
@@ -18,6 +17,8 @@ import BioCardList from "@/components/BioCardList";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
+import { GridList } from "@/components/Typography/UL";
+import { GridAreaListItem } from "@/components/Typography/LI";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -71,13 +72,13 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             <Hr $color={"aqua"} $mv={32} />
           </Typography>
 
-          <Grid $rg={[16]} $cg={[12, 20]}>
+          <GridList $rg={[16]} $cg={[12, 20]}>
             {documents.map((doc) => {
               const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
                 1,
               );
               return (
-                <GridArea key={doc.title} $colSpan={[6, 3, 2]}>
+                <GridAreaListItem key={doc.title} $colSpan={[6, 3, 2]}>
                   <Card $height={220} $pa={16}>
                     <BoxBorders gapPosition="rightTop" />
                     <Flex
@@ -103,10 +104,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       </Flex>
                     </Flex>
                   </Card>
-                </GridArea>
+                </GridAreaListItem>
               );
             })}
-          </Grid>
+          </GridList>
           <Typography $width={"100%"}>
             <Hr $color={"aqua"} $mv={0} $mt={32} />
           </Typography>
