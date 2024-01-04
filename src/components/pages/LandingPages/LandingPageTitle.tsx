@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { CTA } from "../../../common-lib/cms-types";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-import ButtonAsLink from "../../Button/ButtonAsLink";
+import ButtonAsLink from "../../SharedComponents/Button/ButtonAsLink";
 import { Heading } from "../../Typography";
 
 import Flex from "@/components/SharedComponents/Flex";

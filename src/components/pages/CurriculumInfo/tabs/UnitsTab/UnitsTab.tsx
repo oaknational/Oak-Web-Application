@@ -8,7 +8,7 @@ import Card from "@/components/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
-import Button from "@/components/Button/Button";
+import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import GridArea from "@/components/Grid/GridArea";
 import Grid from "@/components/Grid/Grid";

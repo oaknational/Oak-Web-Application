@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 
-import ButtonAsLink from "../Button/ButtonAsLink";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import Card from "../Card";
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";

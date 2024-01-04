@@ -2,8 +2,8 @@ import { FC, useId } from "react";
 
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
-import { ButtonSize } from "../Button/common";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
+import { ButtonSize } from "../SharedComponents/Button/common";
+import IconButtonAsLink from "../SharedComponents/Button/IconButtonAsLink";
 import Flex, { FlexProps } from "../SharedComponents/Flex";
 import { IconName } from "../Icon";
 

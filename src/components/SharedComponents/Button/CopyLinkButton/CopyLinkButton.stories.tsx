@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ToastProvider } from "../../../context/Toast";
+import { ToastProvider } from "../../../../context/Toast";
 
 import Component from "./CopyLinkButton";
 

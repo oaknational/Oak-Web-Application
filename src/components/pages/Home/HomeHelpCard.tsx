@@ -3,7 +3,7 @@ import { FC } from "react";
 import type { Card as CardShape } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/Card";
 import CardTitle from "@/components/Card/CardComponents/CardTitle";
 import Typography from "@/components/Typography";

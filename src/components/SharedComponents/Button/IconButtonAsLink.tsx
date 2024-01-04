@@ -2,7 +2,10 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { OakLinkPropsWithoutChildren, transformOakLinkProps } from "../OakLink";
+import {
+  OakLinkPropsWithoutChildren,
+  transformOakLinkProps,
+} from "../../OakLink";
 
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import IconButtonInner from "./IconButtonInner";

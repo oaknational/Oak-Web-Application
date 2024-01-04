@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import ButtonAsLink from "../../Button/ButtonAsLink";
+import ButtonAsLink from "../../SharedComponents/Button/ButtonAsLink";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Typography from "../../Typography";

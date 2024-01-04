@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
-import { margin, MarginProps } from "../../styles/utils/spacing";
-import { BackgroundIcon } from "../Icon/Icon";
+import { margin, MarginProps } from "../../../styles/utils/spacing";
+import { BackgroundIcon } from "../../Icon/Icon";
 
 import {
   ButtonBackground,

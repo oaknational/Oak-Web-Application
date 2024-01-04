@@ -13,7 +13,7 @@ import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import { TextBlockCard } from "../components/Sanity/TextBlock/TextBlockCard";
 import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardImageCta";
 import BubbleMessage from "../components/BubbleMessage";
-import ButtonAsLink from "../components/Button/ButtonAsLink";
+import ButtonAsLink from "../components/SharedComponents/Button/ButtonAsLink";
 import getPageProps from "../node-lib/getPageProps";
 
 import Box from "@/components/SharedComponents/Box";

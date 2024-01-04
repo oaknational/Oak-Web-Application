@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import Typography from "../Typography/Typography";
-import ButtonAsLink from "../Button/ButtonAsLink";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import { Hr } from "../Typography";
 
 import Flex from "@/components/SharedComponents/Flex";

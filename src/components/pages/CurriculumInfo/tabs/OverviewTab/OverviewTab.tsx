@@ -13,7 +13,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type OverviewTabProps = {
   data: {

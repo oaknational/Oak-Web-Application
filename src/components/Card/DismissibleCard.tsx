@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import styled from "styled-components";
 
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 
 import Card from "./Card";
 

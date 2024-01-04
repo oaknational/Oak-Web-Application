@@ -4,7 +4,7 @@ import Logo from "../Logo";
 import { HeaderProps } from "../Layout/Layout";
 import OakLink from "../OakLink";
 import { Menu } from "../Menu";
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 import { ActiveLinkUnderline } from "../OakLink/OakLink";

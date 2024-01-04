@@ -1,4 +1,4 @@
-import ButtonAsLink from "../Button/ButtonAsLink";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import { GridArea } from "../Grid";
 import Grid from "../Grid/Grid";
 import Illustration from "../Illustration/Illustration";

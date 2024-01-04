@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import ButtonLabel from "@/components/Button/ButtonLabel";
+import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Icon, { IconName } from "@/components/Icon";
 import Flex from "@/components/SharedComponents/Flex";
 

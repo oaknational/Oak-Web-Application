@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { Heading, HeadingTag } from "../../Typography";
-import ButtonAsLink from "../../Button/ButtonAsLink";
+import ButtonAsLink from "../../SharedComponents/Button/ButtonAsLink";
 import Illustration from "../../Illustration";
 
 import Box from "@/components/SharedComponents/Box";

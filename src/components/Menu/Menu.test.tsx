@@ -6,7 +6,7 @@ import { createRef } from "react";
 import { MenuProvider } from "../../context/Menu";
 import { menuContext } from "../../context/Menu/MenuProvider";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 
 import Menu from "./Menu";
 

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { OverlayContainer, OverlayProvider } from "react-aria";
 
-import Button from "../Button";
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 
 import Component from ".";
 
+import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 
 export default {

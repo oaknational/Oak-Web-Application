@@ -1,7 +1,7 @@
 import { KeyboardEvent } from "react";
 
-import errorReporter from "../../common-lib/error-reporter";
-import OakError from "../../errors/OakError";
+import errorReporter from "../../../common-lib/error-reporter";
+import OakError from "../../../errors/OakError";
 
 const reportError = errorReporter("IconButtonAsLink");
 /**

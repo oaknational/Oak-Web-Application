@@ -3,7 +3,7 @@ import { useHover } from "react-aria";
 
 import { Heading, P } from "../../../Typography";
 import LineClamp from "../../../LineClamp";
-import ButtonAsLink from "../../../Button/ButtonAsLink";
+import ButtonAsLink from "../../../SharedComponents/Button/ButtonAsLink";
 import OakLink from "../../../OakLink";
 import formatDate from "../../../../utils/formatDate";
 import { PostListItemProps } from "../PostListItem";

@@ -10,7 +10,7 @@ import { Heading } from "../../components/Typography";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
+import ButtonAsLink from "../../components/SharedComponents/Button/ButtonAsLink";
 import AspectRatio from "../../components/AspectRatio";
 import CMSImage from "../../components/CMSImage";
 import { CMSImageProps } from "../../components/CMSImage/CMSImage";

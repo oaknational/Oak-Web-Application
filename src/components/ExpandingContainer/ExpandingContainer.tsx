@@ -2,13 +2,13 @@ import React, { FC, useState } from "react";
 
 import Card, { CardProps } from "../Card";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Button from "../Button";
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 import Icon from "../Icon";
-import ButtonAsLink from "../Button/ButtonAsLink";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
+import IconButtonAsLink from "../SharedComponents/Button/IconButtonAsLink";
 import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
+import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";

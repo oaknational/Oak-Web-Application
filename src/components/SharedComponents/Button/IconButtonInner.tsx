@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { OakColorName } from "../../styles/theme";
-import Icon, { IconName, isIconVariant } from "../Icon";
+import { OakColorName } from "../../../styles/theme";
+import Icon, { IconName, isIconVariant } from "../../Icon";
 
 import {
   ButtonBackground,

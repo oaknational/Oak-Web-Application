@@ -25,7 +25,7 @@ import {
   ButtonHoverStyle,
   CommonButtonProps,
   HTMLButtonProps,
-} from "@/components/Button/common";
+} from "@/components/SharedComponents/Button/common";
 import Illustration from "@/components/Illustration/Illustration";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {

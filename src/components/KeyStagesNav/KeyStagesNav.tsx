@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import ButtonAsLink from "../Button/ButtonAsLink";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import OakLink from "../OakLink";
 import { P } from "../Typography";
 

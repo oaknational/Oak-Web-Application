@@ -8,7 +8,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
 import Typography, { Heading } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/Icon";
 import LessonElementLinks from "@/components/LessonElementLinks";
 import { OakColorName } from "@/styles/theme";

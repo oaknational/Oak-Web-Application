@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from "react";
 
-import IconButton from "../Button/IconButton";
+import IconButton from "../SharedComponents/Button/IconButton";
 import ButtonGroup, { ButtonGroupProps } from "../ButtonGroup/ButtonGroup";
 
 type NavigationButtonsProps = ButtonGroupProps & {

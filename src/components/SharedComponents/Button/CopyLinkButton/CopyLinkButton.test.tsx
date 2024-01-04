@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 
-import { ToastProvider } from "../../../context/Toast";
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
+import { ToastProvider } from "../../../../context/Toast";
+import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme";
 
 import CopyLinkButton from "./CopyLinkButton";
 
