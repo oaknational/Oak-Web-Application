@@ -6,7 +6,7 @@ import { AboutPartnersPage } from "../../common-lib/cms-types";
 import Layout from "../../components/Layout";
 import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
-import { Heading } from "../../components/Typography";
+import { Heading, LI } from "../../components/Typography";
 import Flex from "../../components/Flex";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -20,6 +20,8 @@ import Illustration from "../../components/Illustration";
 import { getSizes } from "../../components/CMSImage/getSizes";
 import getPageProps from "../../node-lib/getPageProps";
 
+import { FlexList } from "@/components/Typography/UL";
+
 export type AboutPageProps = {
   pageData: AboutPartnersPage;
 };
@@ -28,19 +30,17 @@ const ImageContainer: FC<CMSImageProps & SpacingProps & { name: string }> = (
   props,
 ) => {
   return (
-    <Flex $mb={32} $minWidth={"20%"}>
-      <AspectRatio ratio={["3:2", "16:9"]}>
-        <CMSImage
-          {...props}
-          width={440}
-          height={220}
-          noCrop
-          alt={props.name}
-          $objectFit="contain"
-          $objectPosition={"center center"}
-        />
-      </AspectRatio>
-    </Flex>
+    <AspectRatio ratio={["3:2", "16:9"]}>
+      <CMSImage
+        {...props}
+        width={440}
+        height={220}
+        noCrop
+        alt={props.name}
+        $objectFit="contain"
+        $objectPosition={"center center"}
+      />
+    </AspectRatio>
   );
 };
 
@@ -89,19 +89,33 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
           Curriculum partners
         </Heading>
-        <Flex $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
+        <FlexList $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.curriculumPartners.map((partner) => (
-            <ImageContainer $pa={[4, 16]} name={partner.name} image={partner} />
+            <LI $mb={32} $minWidth={"20%"} listStyle="none">
+              <ImageContainer
+                name={partner.name}
+                image={partner}
+                $pa={[4, 16]}
+                key={`curriculum-partners-${partner.name}`}
+              />
+            </LI>
           ))}
-        </Flex>
+        </FlexList>
         <Heading $mb={[40, 32]} $font={["heading-6", "heading-5"]} tag={"h2"}>
           Tech partners
         </Heading>
-        <Flex $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
+        <FlexList $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.techPartners.map((partner) => (
-            <ImageContainer $pa={[8, 32]} name={partner.name} image={partner} />
+            <LI $mb={32} $minWidth={"20%"} listStyle="none">
+              <ImageContainer
+                $pa={[8, 32]}
+                name={partner.name}
+                image={partner}
+                key={`tech-partners-${partner.name}`}
+              />
+            </LI>
           ))}
-        </Flex>
+        </FlexList>
         <AboutContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>

@@ -33,6 +33,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               $colStart={[null, 5, 4]}
               $colEnd={[null, 9, 10]}
               $mb={[16, 32]}
+              key={`bio-card-list-gridarea-${firstBio.id}`}
             >
               <Box $width={["100%", "100%", "50%"]} $mh="auto">
                 <BioCardListItem
@@ -52,7 +53,11 @@ const BioCardList: FC<BioCardListProps> = (props) => {
           </>
         )}
         {firstBio && !firstBioHasOwnRow && (
-          <GridAreaListItem $colSpan={[12, 4, 3]} $mb={[16, 32]}>
+          <GridAreaListItem
+            $colSpan={[12, 4, 3]}
+            $mb={[16, 32]}
+            key={`bio-card-list-gridarea-${firstBio.id}`}
+          >
             <BioCardListItem
               {...firstBio}
               onClick={onCardClick}
