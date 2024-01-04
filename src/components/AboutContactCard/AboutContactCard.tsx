@@ -3,7 +3,6 @@ import { PortableTextComponents } from "@portabletext/react";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
 import Card from "../Card";
-import Flex from "../Flex";
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
@@ -12,6 +11,8 @@ import { Heading } from "../Typography";
 import Typography from "../Typography/Typography";
 import { PortableTextJSON } from "../../common-lib/cms-types";
 import { PortableTextWithDefaults } from "../PortableText";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 const aboutContactCardPortableTextComponents: PortableTextComponents = {
   block: {

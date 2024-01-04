@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import { Heading } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Box from "../Box";
 import SubjectIcon from "../SubjectIcon";
+
+import Box from "@/components/SharedComponents/Box";
 
 export const titleCardIconBackground = {
   subject: "lemon50",

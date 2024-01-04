@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsHeading";
 import CopyrightNotice from "../DownloadAndShareComponents/CopyrightNotice";
 
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import Grid, { GridArea } from "@/components/Grid";
 import LessonRequirements, {
   Equipment,

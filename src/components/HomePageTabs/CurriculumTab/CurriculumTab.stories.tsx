@@ -6,7 +6,6 @@ import Component from "./CurriculumTab";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {
-  title: "HomePage/CurriculumTab",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

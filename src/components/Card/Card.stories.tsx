@@ -3,15 +3,15 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { P } from "../Typography";
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex from "../Flex";
 
 import CardTitle from "./CardComponents/CardTitle";
 import CardImage from "./CardComponents/CardImage";
 
 import Component from ".";
 
+import Flex from "@/components/SharedComponents/Flex";
+
 export default {
-  title: "Cards/Card",
   component: Component,
   argTypes: {
     background: {

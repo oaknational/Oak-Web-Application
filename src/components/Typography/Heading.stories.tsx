@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Heading as Component } from ".";
 
 export default {
-  title: "Typography/Heading",
   component: Component,
   argTypes: {
     tag: {

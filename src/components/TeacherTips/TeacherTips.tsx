@@ -1,7 +1,8 @@
 import React from "react";
 
 import SpeechBubble from "../SpeechBubble/SpeechBubble";
-import Flex from "../Flex";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type TeacherTip = {
   teacherTip: string | null;

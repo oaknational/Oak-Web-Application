@@ -1,12 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Flex from "../Flex";
-
 import Component from "./IconButton";
 
+import Flex from "@/components/SharedComponents/Flex";
+
 export default {
-  title: "Buttons/Icon Button",
   component: Component,
   argTypes: {
     onClick: { action: "clicked" },

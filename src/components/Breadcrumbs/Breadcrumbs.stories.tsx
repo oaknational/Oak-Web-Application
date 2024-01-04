@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./Breadcrumbs";
 
 export default {
-  title: "Navigation/Breadcrumbs",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

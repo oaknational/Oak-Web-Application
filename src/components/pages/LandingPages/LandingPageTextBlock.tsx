@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Typography from "@/components/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 

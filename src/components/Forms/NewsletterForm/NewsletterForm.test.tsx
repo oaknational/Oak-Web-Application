@@ -66,7 +66,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Name can't be empty");
+    expect(description).toBe("Enter a name");
   });
   test("should display error hint on blur if name more than 60 chars", async () => {
     const { getByPlaceholderText } = render(
@@ -101,7 +101,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Email can't be empty");
+    expect(description).toBe("Enter an email");
   });
   test("should display error hint on blur email not formatted correctly", async () => {
     const { getByPlaceholderText } = render(
@@ -118,7 +118,7 @@ describe("NewsletterForm", () => {
     await waitForNextTick();
 
     const description = computeAccessibleDescription(input);
-    expect(description).toBe("Email not valid");
+    expect(description).toBe("Enter a valid email");
   });
   test("form cannot be submitted if not complete", async () => {
     const onSubmit = jest.fn();
@@ -129,7 +129,7 @@ describe("NewsletterForm", () => {
     const user = userEvent.setup();
     const email = getByPlaceholderText("anna@amail.com");
 
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.type(email, "joebloggs@example.com");
 
     await user.click(submit);
@@ -141,7 +141,7 @@ describe("NewsletterForm", () => {
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );
 
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(submit);
 
@@ -159,7 +159,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.click(submit);
 
     // HACK: wait for next tick
@@ -181,7 +181,7 @@ describe("NewsletterForm", () => {
     await user.type(name, "joe bloggs");
     const email = getByPlaceholderText("anna@amail.com");
     await user.type(email, "joebloggs@example.com");
-    const submit = getByRole("button", { name: "Sign up" });
+    const submit = getByRole("button", { name: "Sign up to the newsletter" });
     await user.click(submit);
 
     // HACK: wait for next tick

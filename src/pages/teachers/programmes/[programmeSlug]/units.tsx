@@ -14,14 +14,14 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/AppLayout";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/UnitAndLessonLists/UnitList";
 import Grid, { GridArea } from "@/components/Grid";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/Typography";

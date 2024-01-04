@@ -1,3 +1,30 @@
+## [1.312.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.0...v1.312.1) (2024-01-03)
+
+# [1.312.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.8...v1.312.0) (2023-12-21)
+
+
+### Bug Fixes
+
+* broken import ([32e898f](https://github.com/oaknational/Oak-Web-Application/commit/32e898f127d16f8f168d8330409d74795d9d0fbc))
+* refactor quiz render into seperate component ([a15c4c6](https://github.com/oaknational/Oak-Web-Application/commit/a15c4c6fbc61f99f39607ad3b7b267b2e7b7df2c))
+* reinstated oak components from npm ([56c9cb0](https://github.com/oaknational/Oak-Web-Application/commit/56c9cb0e2ac93a9f1433a1bcb21f6f9299e1881f))
+* remove QuizMCQMultiAnswer ([00c182b](https://github.com/oaknational/Oak-Web-Application/commit/00c182b61b58f9f9365946fce75d11828f9cd451))
+* remove title arg from all storybooks to make structure match folders ([a25d73b](https://github.com/oaknational/Oak-Web-Application/commit/a25d73b7c2a504f1f55f7a81c95dab25e52e74b0))
+
+
+### Features
+
+* wip mcq multi answer ([1b4ba30](https://github.com/oaknational/Oak-Web-Application/commit/1b4ba304bd9b26076e27ace12473fd542b4e5d44))
+
+## [1.311.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.7...v1.311.8) (2023-12-21)
+
+## [1.311.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.6...v1.311.7) (2023-12-19)
+
+
+### Bug Fixes
+
+* test values ([9a4306f](https://github.com/oaknational/Oak-Web-Application/commit/9a4306f1a2389f27fd7faa1dbf668107e97129d6))
+
 ## [1.311.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.5...v1.311.6) (2023-12-18)
 
 ## [1.311.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.4...v1.311.5) (2023-12-15)

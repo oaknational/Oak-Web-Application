@@ -8,7 +8,6 @@ import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-  title: "Download Components/Download Card Group",
 };
 
 export default meta;

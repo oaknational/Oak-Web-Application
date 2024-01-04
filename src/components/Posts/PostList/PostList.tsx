@@ -1,13 +1,14 @@
 import { FC } from "react";
 
-import Flex from "../../Flex";
 import Pagination, { PaginationProps } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
-import Box from "../../Box";
 import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import PostListItem, { PostListItemProps } from "./PostListItem";
+
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type PostListProps = {
   upcomingItem?: PostListItemProps;

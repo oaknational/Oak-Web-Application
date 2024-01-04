@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./ButtonLinkNav";
 
 export default {
-  title: "Navigation/Button Link Nav",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

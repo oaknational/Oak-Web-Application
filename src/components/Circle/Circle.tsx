@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 
 export type CircleProps = FlexProps & {
   children?: React.ReactNode;

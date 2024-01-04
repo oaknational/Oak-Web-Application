@@ -8,7 +8,6 @@ import PostHogDecorator from "../../storybook-decorators/PostHogDecorator";
 import Component from ".";
 
 export default {
-  title: "Interactive/Toast",
   decorators: [PostHogDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

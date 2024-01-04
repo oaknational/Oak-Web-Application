@@ -8,7 +8,6 @@ import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 import Component from "./";
 
 export default {
-  title: "Media/ Video Player",
   component: Component,
   decorators: [AnalyticsDecorator],
   argTypes: {

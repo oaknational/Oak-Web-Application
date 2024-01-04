@@ -1,11 +1,10 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Box from "../Box";
-
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
 
+import Box from "@/components/SharedComponents/Box";
+
 export default {
-  title: "Foundations/Aspect Ratio",
   component: Component,
   argTypes: {
     ratio: { control: { type: "select", options: ASPECT_RATIOS } },

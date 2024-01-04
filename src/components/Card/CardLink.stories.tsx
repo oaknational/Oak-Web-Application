@@ -6,7 +6,6 @@ import Card from "./Card";
 import Component from "./CardLink";
 
 const meta: Meta<typeof Component> = {
-  title: "Cards/Card Link",
   component: Component,
   argTypes: {},
 };
