@@ -3,10 +3,10 @@ import React, { FC } from "react";
 import Grid, { GridArea } from "../Grid";
 import Heading from "../Typography/Heading";
 import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import TagPromotional from "../TagPromotional";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Box from "@/components/SharedComponents/Box";

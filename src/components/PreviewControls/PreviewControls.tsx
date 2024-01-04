@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
-import CopyLinkButton from "../SharedComponents/Button/CopyLinkButton";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { Span } from "../Typography";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";
 
 /**

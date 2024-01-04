@@ -2,11 +2,11 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import Layout from "../Layout";
 import { HeaderVariant, FooterVariant } from "../Layout/Layout";
 import { P, Heading } from "../Typography";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

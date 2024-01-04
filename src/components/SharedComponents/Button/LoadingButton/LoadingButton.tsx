@@ -5,10 +5,10 @@ import Link from "next/link";
 import UnstyledButton from "../../../UnstyledButton";
 import Icon, { IconName } from "../../../Icon";
 import { DoubleButtonBorders } from "../../../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
-import ButtonLabel from "../ButtonLabel";
 
 import { Spinner } from "./Spinner";
 
+import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";

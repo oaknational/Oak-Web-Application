@@ -1,9 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ButtonAsLink from "../Button/ButtonAsLink";
-
 import Component from "./ButtonGroup";
+
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+
 
 export default {
   component: Component,

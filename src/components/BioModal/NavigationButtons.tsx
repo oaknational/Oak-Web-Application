@@ -1,7 +1,6 @@
 import { RefObject, useEffect } from "react";
 
-import IconButton from "../SharedComponents/Button/IconButton";
-
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonGroup, {
   ButtonGroupProps,
 } from "@/components/SharedComponents/ButtonGroup";

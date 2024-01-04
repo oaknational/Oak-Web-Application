@@ -2,7 +2,8 @@ import { PortableTextComponentProps } from "@portabletext/react";
 
 import { CTA } from "../../../common-lib/cms-types";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-import ButtonAsLink from "../../SharedComponents/Button/ButtonAsLink";
+
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 const PostCta = (props: PortableTextComponentProps<CTA>) => {
   if (!props.value) {

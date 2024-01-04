@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from "react";
 
 import { useToastContext, SHOW_DURATION } from "../../../../context/Toast";
-import IconButton from "../IconButton";
+
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 type CopyLinkButtonProps = {
   href?: string;

@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-import ButtonLabel from "./ButtonLabel";
 import {
   ButtonBackground,
   buttonIconSizeMap,
@@ -10,8 +9,9 @@ import {
   getButtonIconBackground,
   IconPosition,
 } from "./common";
-import { IconFocusUnderline } from "./IconFocusUnderline";
 
+import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
+import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/Icon";

@@ -7,13 +7,16 @@ import {
   transformOakLinkProps,
 } from "../../OakLink";
 
-import ButtonInner, { ButtonInnerProps } from "./ButtonInner";
 import useButtonAsLinkProps from "./useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,
   getButtonStylesProps,
 } from "./button.styles";
 import { CommonButtonProps, defaultButtonProps } from "./common";
+
+import ButtonInner, {
+  ButtonInnerProps,
+} from "@/components/SharedComponents/Button/ButtonInner";
 
 const StyledNextLink = styled.a<ButtonStylesProps>`
   ${buttonStyles}

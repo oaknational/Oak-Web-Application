@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
 import { capitalize } from "lodash";
 
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import FieldError from "../FormFields/FieldError";
 
 import downloadZip from "./helpers/downloadZip";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

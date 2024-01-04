@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import OakLink from "../OakLink";
 import { P } from "../Typography";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type KeyStageYear = {

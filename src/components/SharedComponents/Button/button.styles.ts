@@ -11,7 +11,6 @@ import {
   ButtonMinimalFocusUnderline,
   ButtonStyledAsLinkFocusUnderline,
 } from "./ButtonInner";
-import ButtonLabel from "./ButtonLabel";
 import {
   ButtonSize,
   ButtonVariant,
@@ -31,6 +30,8 @@ import {
   ButtonHoverStyle,
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
+
+import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 
 export type ButtonStylesProps = OpacityProps &
   MarginProps & {

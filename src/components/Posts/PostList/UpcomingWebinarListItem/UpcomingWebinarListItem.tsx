@@ -3,12 +3,12 @@ import { useHover } from "react-aria";
 
 import { Heading, P } from "../../../Typography";
 import LineClamp from "../../../LineClamp";
-import ButtonAsLink from "../../../SharedComponents/Button/ButtonAsLink";
 import OakLink from "../../../OakLink";
 import formatDate from "../../../../utils/formatDate";
 import { PostListItemProps } from "../PostListItem";
 import useClickableCard from "../../../../hooks/useClickableCard";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 

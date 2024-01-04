@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import Card from "../Card";
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
@@ -12,6 +11,7 @@ import Typography from "../Typography/Typography";
 import { PortableTextJSON } from "../../common-lib/cms-types";
 import { PortableTextWithDefaults } from "../PortableText";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
 const aboutContactCardPortableTextComponents: PortableTextComponents = {
