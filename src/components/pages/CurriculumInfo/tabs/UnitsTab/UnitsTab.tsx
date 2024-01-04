@@ -1,7 +1,7 @@
 import React, { FC, useState, useRef } from "react";
 import { VisuallyHidden } from "react-aria";
 
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import P from "@/components/Typography";
 import Card from "@/components/Card/Card";
