@@ -28,8 +28,8 @@ import { getSizes } from "@/components/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { GridList } from "@/components/Typography/UL";
 import { GridAreaListItem } from "@/components/Typography/LI";
+import { GridOrderedList } from "@/components/Typography/OL";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -291,7 +291,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           <SectionHeader>
             <SectionTitle>{pageData.stepsHeading}</SectionTitle>
           </SectionHeader>
-          <GridList $cg={24} $rg={0}>
+          <GridOrderedList $cg={24} $rg={0}>
             {getLessonPlanningCards(pageData).map(
               ({ title, portableText, imageSlug, withSearchCTA }, i, arr) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
@@ -355,7 +355,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                 );
               },
             )}
-          </GridList>
+          </GridOrderedList>
         </MaxWidth>
       </section>
       <section>
