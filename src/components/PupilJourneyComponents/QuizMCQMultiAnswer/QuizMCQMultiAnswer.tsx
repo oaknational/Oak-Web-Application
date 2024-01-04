@@ -66,14 +66,16 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
         // ) as StemImageObject[];
         const answerText = filterByText.length > 0 && filterByText[0];
 
-        const isCorrect = questionState.feedback?.[index] === "correct";
+        const feedback = isFeedbackMode
+          ? questionState.feedback?.[index]
+          : undefined;
+
         return (
           <OakQuizCheckBox
             key={`${questionUid}-answer${index}`}
             id={`${questionUid}-answer${index}`}
             value={answerText ? answerText.text : ""}
-            isFeedback={isFeedbackMode}
-            isCorrect={isCorrect}
+            feedback={feedback}
             innerRef={innerRefs.current[index]}
             onChange={handleOnChange}
           />

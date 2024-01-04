@@ -125,11 +125,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           mode: "feedback",
           grade,
           feedback: questionAnswers?.map((answer) => {
-            // NB. feedback is only given where the pupil has selected a choice
+            // every answer receives feedback whether the student has selected it or not
+            // which are the correct choices are implied by the combination of whether it is selected and the feedback
             if (pupilAnswerArray.includes(answer)) {
+              // Where pupils have selected an answer
               return correctAnswers?.includes(answer) ? "correct" : "incorrect";
             } else {
-              return null;
+              // where pupils have not selected an answer
+              return correctAnswers?.includes(answer) ? "incorrect" : "correct";
             }
           }),
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,

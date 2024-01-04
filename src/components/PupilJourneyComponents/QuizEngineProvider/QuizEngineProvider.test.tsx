@@ -247,7 +247,7 @@ describe("useQuizEngineContext", () => {
       expect(questionState[0]).toEqual({
         mode: "feedback",
         grade: 1,
-        feedback: [null, null, "correct", null],
+        feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
       });
     });
@@ -282,7 +282,7 @@ describe("useQuizEngineContext", () => {
       expect(questionState[0]).toEqual({
         mode: "feedback",
         grade: 0,
-        feedback: ["incorrect", null, null, null],
+        feedback: ["incorrect", "correct", "incorrect", "correct"],
         offerHint: false,
       });
     });
@@ -334,7 +334,7 @@ describe("useQuizEngineContext", () => {
       expect(questionState[0]).toEqual({
         mode: "feedback",
         grade: 1,
-        feedback: ["correct", null, "correct", null],
+        feedback: ["correct", "correct", "correct", "correct"],
         offerHint: false,
       });
     });
@@ -392,7 +392,7 @@ describe("useQuizEngineContext", () => {
       expect(questionState[0]).toEqual({
         mode: "feedback",
         grade: 0,
-        feedback: ["correct", "incorrect", null, null],
+        feedback: ["correct", "incorrect", "incorrect", "correct"],
         offerHint: false,
       });
     });
