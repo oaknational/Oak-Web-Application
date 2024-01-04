@@ -10,6 +10,7 @@ import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "@/components/SearchResults/SearchResults";
 import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -73,7 +74,34 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     page: "teachers-search::getStaticProps",
     context,
     getProps: async () => {
-      const curriculumData = await curriculumApi.searchPage();
+      const curriculumData2020 = await curriculumApi.searchPage();
+      const curriculumData2023 = await curriculumApi2023.searchPage();
+
+      const subjects = [
+        ...curriculumData2020.subjects,
+        ...curriculumData2023.subjects,
+      ];
+
+      const uniqueSubjects = subjects.reduce(
+        (acc: SearchPageData["subjects"], subject) => {
+          const existingSubject = acc.find(
+            (s: SearchPageData["subjects"][number]) => s.slug === subject.slug,
+          );
+
+          if (!existingSubject) {
+            acc.push(subject);
+          }
+
+          return acc;
+        },
+        [],
+      );
+
+      const curriculumData = {
+        ...curriculumData2023,
+        subjects: uniqueSubjects,
+      };
+
       const results = {
         props: {
           curriculumData,

@@ -6,18 +6,18 @@ import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "../../context/Menu/";
 import { OakColorName, PixelSpacing } from "../../styles/theme/types";
-import Flex, { FlexProps } from "../Flex";
 import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Svg from "../Svg";
-import Box, { BoxProps, box } from "../Box";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
 import flex from "@/styles/utils/flex";
+import Box, { BoxProps, box } from "@/components/SharedComponents/Box";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type MenuConfig = {
   width: PixelSpacing;

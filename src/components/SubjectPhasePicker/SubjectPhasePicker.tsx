@@ -7,11 +7,11 @@ import OakLink from "../OakLink/OakLink";
 import Svg from "../Svg";
 
 import { Heading, Span } from "@/components/Typography";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/Button/Button";
 import P from "@/components/Typography/P";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import {
   Examboard,
   Phase,

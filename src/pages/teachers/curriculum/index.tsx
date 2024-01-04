@@ -2,9 +2,9 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Heading, UL, LI, P, Hr } from "@/components/Typography";
 import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";

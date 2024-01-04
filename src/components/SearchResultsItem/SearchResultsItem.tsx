@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import LessonMetadata from "../LessonMetadata";
-import Flex from "../Flex";
 import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
@@ -9,6 +8,7 @@ import Icon from "../Icon";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
   LessonListingLinkProps,

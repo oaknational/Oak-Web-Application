@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import HomePageBanner from "./Banner";
 
-import Component from "@/components/Flex";
+import Component from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {
   component: Component,

@@ -4,10 +4,11 @@ import BioModal from "../BioModal";
 import { BioData } from "../BioModal/BioModal";
 import { useBioModal } from "../BioModal/useBioModal";
 import Grid, { GridArea } from "../Grid";
-import Box from "../Box";
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 
 import BioCardListItem from "./BioCardListItem";
+
+import Box from "@/components/SharedComponents/Box";
 
 type BioCardListProps = FlexProps & {
   bios: BioData[];

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Heading from "@/components/Typography/Heading";
 import NextLessonCard from "@/components/DownloadAndShareComponents/NextLessonCard";
 import { Span } from "@/components/Typography";

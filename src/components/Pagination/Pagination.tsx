@@ -2,9 +2,10 @@ import Router, { useRouter } from "next/router";
 import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
 
-import Flex from "../Flex";
 import { Span } from "../Typography";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type PaginationProps = {
   currentPage: number;

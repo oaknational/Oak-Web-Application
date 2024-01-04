@@ -7,7 +7,7 @@ import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
 } from "@/common-lib/urls";
-import Box, { BoxProps } from "@/components/Box";
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
 export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
   props,
