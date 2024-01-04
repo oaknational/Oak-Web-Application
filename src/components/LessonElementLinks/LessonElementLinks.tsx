@@ -7,8 +7,7 @@ import CardLink from "../Card/CardLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import GraphiCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
-
-import responsive from "@/styles/utils/responsive";
+import { GridList } from "../Typography/UL";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex
@@ -85,19 +84,6 @@ const ElementIcon = (props: { icon: IconName | [IconName, IconName] }) => {
   }
 };
 
-const ElementGrid = styled("ul")`
-  display: grid;
-  grid-column-gap: 40px;
-  grid-row-gap: 80px;
-  margin-bottom: 80px;
-  width: min-content;
-  padding: 0;
-  ${responsive("grid-template-columns", () => [
-    "repeat(2, 1fr)",
-    "repeat(4, 1fr)",
-  ])}
-`;
-
 /**
  * LessonElementLinks is a collection graphics linking to sections depending
  * on ids passed in the 'linkTargetIds' prop.
@@ -132,7 +118,13 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
   ];
 
   return (
-    <ElementGrid>
+    <GridList
+      $gridTemplateColumns={["repeat(2, 1fr)", "repeat(4, 1fr)"]}
+      $cg={40}
+      $rg={80}
+      $mb={80}
+      $width="min-content"
+    >
       {elementList.map((element) => (
         <LI key={element.id} $pa={0} listStyle="none">
           <GraphicContainer $zIndex="neutral">
@@ -145,7 +137,7 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
           </GraphicContainer>
         </LI>
       ))}
-    </ElementGrid>
+    </GridList>
   );
 };
 
