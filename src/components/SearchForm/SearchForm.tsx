@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";

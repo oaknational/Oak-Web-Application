@@ -1,12 +1,12 @@
-import Flex from "../Flex";
 import { LI, UL } from "../Typography";
-import Box from "../Box";
 import Pagination from "../Pagination";
 import usePagination from "../Pagination/usePagination";
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "../SearchResultsItem/SearchResultsItem";
 
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { KeyStage, SearchHit } from "@/context/Search/search.types";
 

@@ -1,11 +1,12 @@
 import { FC } from "react";
 
 import { SubjectListingPageProps } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
-import Flex from "../Flex";
 import Grid, { GridArea } from "../Grid";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import SubjectCardDouble from "../SubjectCardDouble/SubjectCardDouble";
 import { Heading } from "../Typography";
+
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
 
 const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
   const { subjects, keyStageSlug, keyStageTitle } = props;

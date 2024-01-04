@@ -3,8 +3,9 @@ import styled, { css, CSSProperties } from "styled-components";
 import flex from "../../styles/utils/flex";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import typography, { TypographyProps } from "../../styles/utils/typography";
-import { box } from "../Box";
-import { FlexProps } from "../Flex";
+import { box } from "../SharedComponents/Box";
+
+import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type ListItemProps = {
   listStyle?: ResponsiveValues<CSSProperties["listStyle"]>;

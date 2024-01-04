@@ -1,4 +1,4 @@
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import { LessonPathwayCard } from "@/components/Lesson/LessonPathwayCard/LessonPathwayCard";
 import { TagFunctional } from "@/components/TagFunctional";

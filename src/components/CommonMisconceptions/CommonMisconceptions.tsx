@@ -1,7 +1,8 @@
 import React from "react";
 
-import Flex from "../Flex";
 import { Heading, P } from "../Typography";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type CommonMisconceptionsAndResponses = {
   commonMisconceptions: CommonMisconception[] | null | undefined;

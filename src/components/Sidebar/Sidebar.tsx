@@ -2,10 +2,10 @@ import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
 
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/Menu/Menu";
 import MenuBackdrop from "@/components/Menu/MenuBackdrop";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import IconButton from "@/components/Button/IconButton";
 import { Hr } from "@/components/Typography";
 import Button from "@/components/Button";

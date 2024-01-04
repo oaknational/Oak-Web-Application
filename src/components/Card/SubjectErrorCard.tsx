@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
 import { Heading, HeadingTag, Span } from "../Typography";
 import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
 import { SpacingProps } from "../../styles/utils/spacing";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 type SubjectErrorCardProps = {
   heading: string;

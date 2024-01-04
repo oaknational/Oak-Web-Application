@@ -2,12 +2,13 @@ import { FC } from "react";
 
 import CMSImage from "../CMSImage";
 import { CMSImageProps } from "../CMSImage/CMSImage";
-import Box from "../Box";
 import { getSubjectIconAsset } from "../../image-data";
-import Flex from "../Flex";
 import Svg from "../Svg";
 import { OakColorName } from "../../styles/theme/types";
 import TagPromotional from "../TagPromotional";
+
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {
   subjectSlug: string | null;

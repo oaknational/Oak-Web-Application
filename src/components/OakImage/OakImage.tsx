@@ -1,7 +1,7 @@
 import Image, { ImageProps } from "next/image";
 import styled from "styled-components";
 
-import { box, BoxProps } from "../Box";
+import { box, BoxProps } from "../SharedComponents/Box";
 
 export type OakImageProps = ImageProps & BoxProps;
 /**

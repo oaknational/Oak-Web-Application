@@ -4,7 +4,7 @@ import Button, { ButtonProps } from "@/components/Button";
 import VideoPlayer from "@/components/VideoPlayer";
 import { P } from "@/components/Typography";
 import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 
 export interface OverviewVideoProps {
   video: string | null;
