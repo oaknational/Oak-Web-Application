@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Z83eGrcQgQ3vT6PqTxXY",
+          "ac": "zARgBfHTxHFzZmC29WmY",
           "br": "Rx5PGc6-w",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "Z83eGrcQgQ3vT6PqTxXY",
+          "ac": "zARgBfHTxHFzZmC29WmY",
           "br": "Rx5PGc6-w",
           "en": env,
           "ty": type,
@@ -1095,16 +1095,6 @@ export const VideoLocation = {
 } as const;
 export type VideoLocationType = typeof VideoLocation;
 export type VideoLocationValueType = VideoLocationType[keyof VideoLocationType];
-
-export const Depth = {
-  'INTEREST': 'interest',
-  'ATTEMPT': 'attempt',
-  'REFINE': 'refine',
-  'EXPLORE': 'explore',
-  'COMPLETE': 'complete',
-} as const;
-export type DepthType = typeof Depth;
-export type DepthValueType = DepthType[keyof DepthType];
 
 export const Context = {
   'HOMEPAGE': 'homepage',
@@ -2874,7 +2864,6 @@ export interface SearchAttemptedProperties {
   searchFilterOptionSelected: string[];
   searchSource: SearchSourceValueType;
   context: ContextValueType;
-  depth: DepthValueType;
 }
 /**
  * Search Attempted: A user enters a search term (eg. lesson or unit topic, keyword), submits the search from the homepage or search page itself
@@ -2900,7 +2889,6 @@ NB. ensure filters are sent in a consistent order
  * @param properties.searchSource: The location of the search box/entry point.
 eg. homepage search box, search page search box, hamburger menu search box (future)
  * @param properties.context: Relates to the application or view from which a action was performed
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/Rx5PGc6-w/events/I_dSzYI2PB}
  */
@@ -2913,7 +2901,6 @@ export function searchAttempted(properties: SearchAttemptedProperties) {
   eventPropertiesArray.push({id: "psOVldb0Z", name: "Search Filter Option Selected", value: properties.searchFilterOptionSelected});
   eventPropertiesArray.push({id: "cAhJwc7aw", name: "Search Source", value: properties.searchSource});
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -2923,7 +2910,7 @@ export function searchAttempted(properties: SearchAttemptedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "66abbc2b19ec6cdf6bf726016705239a83fe2db06bd4fccb9674aab8ec5f61c3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "I_dSzYI2PB", "200af78c5877c5c9b7db926744ddfcb96ed8a6e9e53a50e723c6bb107cf47356", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Attempted", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2934,7 +2921,7 @@ export function searchAttempted(properties: SearchAttemptedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Attempted", eventProperties, "I_dSzYI2PB", "66abbc2b19ec6cdf6bf726016705239a83fe2db06bd4fccb9674aab8ec5f61c3");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Attempted", eventProperties, "I_dSzYI2PB", "200af78c5877c5c9b7db926744ddfcb96ed8a6e9e53a50e723c6bb107cf47356");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Attempted", (Object as any).assign({}, eventProperties));
@@ -2958,7 +2945,6 @@ export interface SearchResultOpenedProperties {
   searchResultCount: number;
   searchResultType: SearchResultTypeValueType;
   context: ContextValueType;
-  depth: DepthValueType;
 }
 /**
  * Search Result Opened: User clicks on a search result from the listing
@@ -2983,7 +2969,6 @@ NB. ensure filters are sent in a consistent order
  * @param properties.searchResultCount: total number of search results returned
  * @param properties.searchResultType: The type of result returned (eg. unit or lesson)
  * @param properties.context: Relates to the application or view from which a action was performed
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/Rx5PGc6-w/events/_TD-gtSgIj}
  */
@@ -3020,7 +3005,6 @@ export function searchResultOpened(properties: SearchResultOpenedProperties) {
   eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
   eventPropertiesArray.push({id: "weaA0iE9I", name: "Search Result Type", value: properties.searchResultType});
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3030,7 +3014,7 @@ export function searchResultOpened(properties: SearchResultOpenedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "_TD-gtSgIj", "7b0bee19478fd1644436742d151b32f01f0d2e809058db2d515c1003e7ca6a88", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "_TD-gtSgIj", "80efe476875675d05b38789bbeb9f460c33dff2acb28ff8e8b7044f213d567d3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Result Opened", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3041,7 +3025,7 @@ export function searchResultOpened(properties: SearchResultOpenedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Opened", eventProperties, "_TD-gtSgIj", "7b0bee19478fd1644436742d151b32f01f0d2e809058db2d515c1003e7ca6a88");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Opened", eventProperties, "_TD-gtSgIj", "80efe476875675d05b38789bbeb9f460c33dff2acb28ff8e8b7044f213d567d3");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Result Opened", (Object as any).assign({}, eventProperties));
@@ -3056,7 +3040,6 @@ export interface SearchResultsDisplayedProperties {
   analyticsUseCase: AnalyticsUseCaseValueType;
   searchResultsLoadTime: number;
   context: ContextValueType;
-  depth: DepthValueType;
 }
 /**
  * Search Results Displayed: When a search term has been submitted and results are displayed
@@ -3072,7 +3055,6 @@ NB. ensure filters are sent in a consistent order
  * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
  * @param properties.searchResultsLoadTime: Amount of time taken to fetch and load the search results
  * @param properties.context: Relates to the application or view from which a action was performed
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/Rx5PGc6-w/events/QI7bIsW3os}
  */
@@ -3085,7 +3067,6 @@ export function searchResultsDisplayed(
   eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
   eventPropertiesArray.push({id: "uKpVoe2qJ", name: "Search Results Load Time", value: properties.searchResultsLoadTime});
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3095,7 +3076,7 @@ export function searchResultsDisplayed(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "QI7bIsW3os", "a355669a11b5a91cf7f50be9a62222205a4ad530e6c80f6b9ac8b9559c456e8d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "QI7bIsW3os", "ef63c92377972c38180fdc001b9215d50ce96f1cfd9bd13b29515a762883a89f", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Results Displayed", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3106,7 +3087,7 @@ export function searchResultsDisplayed(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Results Displayed", eventProperties, "QI7bIsW3os", "a355669a11b5a91cf7f50be9a62222205a4ad530e6c80f6b9ac8b9559c456e8d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Results Displayed", eventProperties, "QI7bIsW3os", "ef63c92377972c38180fdc001b9215d50ce96f1cfd9bd13b29515a762883a89f");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Results Displayed", (Object as any).assign({}, eventProperties));
@@ -3118,7 +3099,6 @@ export function searchResultsDisplayed(
 export interface SearchJourneyInitiatedProperties {
   searchSource: SearchSourceValueType;
   context: ContextValueType;
-  depth: DepthValueType;
 }
 /**
  * Search Journey Initiated: The search box is selected
@@ -3133,7 +3113,6 @@ export interface SearchJourneyInitiatedProperties {
  * @param properties.searchSource: The location of the search box/entry point.
 eg. homepage search box, search page search box, hamburger menu search box (future)
  * @param properties.context: Relates to the application or view from which a action was performed
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/Rx5PGc6-w/events/rYxJBK8Kpm}
  */
@@ -3143,7 +3122,6 @@ export function searchJourneyInitiated(
   let eventPropertiesArray: array = [];
   eventPropertiesArray.push({id: "cAhJwc7aw", name: "Search Source", value: properties.searchSource});
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
   let userPropertiesArray: array = [];
@@ -3153,7 +3131,7 @@ export function searchJourneyInitiated(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "rYxJBK8Kpm", "6a6224c9217f67a080d1c5f1f354e6b53290d36b0830052a48b6f3cc1d6ba2de", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "rYxJBK8Kpm", "006d2562e0107acacb267f0facf567771921d7c7151c3853af18c57c38437ce3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Journey Initiated", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3164,7 +3142,7 @@ export function searchJourneyInitiated(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Journey Initiated", eventProperties, "rYxJBK8Kpm", "6a6224c9217f67a080d1c5f1f354e6b53290d36b0830052a48b6f3cc1d6ba2de");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Journey Initiated", eventProperties, "rYxJBK8Kpm", "006d2562e0107acacb267f0facf567771921d7c7151c3853af18c57c38437ce3");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Journey Initiated", (Object as any).assign({}, eventProperties));
@@ -3589,7 +3567,6 @@ export interface SearchRefinedProperties {
   context: ContextValueType;
   filterType: string;
   filterValue: string;
-  depth: DepthValueType;
   searchResultCount: number;
 }
 /**
@@ -3599,7 +3576,6 @@ export interface SearchRefinedProperties {
  * @param properties.context: Relates to the application or view from which a action was performed
  * @param properties.filterType: no description
  * @param properties.filterValue: no description
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  * @param properties.searchResultCount: total number of search results returned
  *
  * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/Rx5PGc6-w/events/XpQ27vPNH4}
@@ -3610,7 +3586,6 @@ export function searchRefined(properties: SearchRefinedProperties) {
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
   eventPropertiesArray.push({id: "XPABjlx_F", name: "Filter Type", value: properties.filterType});
   eventPropertiesArray.push({id: "v3Ne3qUXs", name: "Filter Value", value: properties.filterValue});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
   let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
   // @ts-ignore
@@ -3621,7 +3596,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "626881702c0f581c3e78810e7903418601d3406c8bb8813af6b7be5d1f43e4b1", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "80a1fedd257bed0cb9cc57821719b28987dfa32d7b81f344c09eaa730006957a", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3632,7 +3607,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "626881702c0f581c3e78810e7903418601d3406c8bb8813af6b7be5d1f43e4b1");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "80a1fedd257bed0cb9cc57821719b28987dfa32d7b81f344c09eaa730006957a");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Refined", (Object as any).assign({}, eventProperties));
@@ -3651,7 +3626,6 @@ export interface SearchResultExpandedProperties {
   lessonName: string;
   lessonSlug: string;
   context: ContextValueType;
-  depth: DepthValueType;
   searchRank: number;
   searchFilterOptionSelected: string[];
   searchResultCount: number;
@@ -3670,7 +3644,6 @@ export interface SearchResultExpandedProperties {
  * @param properties.lessonName: Name of the current lesson.
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
  * @param properties.context: Relates to the application or view from which a action was performed
- * @param properties.depth: Describes the level of engagement along a user journey from initially showing an interest in using particular functionality/products through to completing the purpose of a particular journey / product.
  * @param properties.searchRank: The position of the clicked search result
  * @param properties.searchFilterOptionSelected: The specific search filter option that has been selected (eg. 'ks2,ks3')
 NB. ensure filters are sent in a consistent order
@@ -3692,7 +3665,6 @@ export function searchResultExpanded(
   eventPropertiesArray.push({id: "vbCKXJ6xRQ", name: "Lesson Name", value: properties.lessonName});
   eventPropertiesArray.push({id: "1FiHL77eSX", name: "Lesson Slug", value: properties.lessonSlug});
   eventPropertiesArray.push({id: "9BNUma5en", name: "Context", value: properties.context});
-  eventPropertiesArray.push({id: "7xNx4dS8aC", name: "Depth", value: properties.depth});
   eventPropertiesArray.push({id: "Gvu_40yW7", name: "Search Rank", value: properties.searchRank});
   eventPropertiesArray.push({id: "psOVldb0Z", name: "Search Filter Option Selected", value: properties.searchFilterOptionSelected});
   eventPropertiesArray.push({id: "ssKpAufWU", name: "Search Result Count", value: properties.searchResultCount});
@@ -3706,7 +3678,7 @@ export function searchResultExpanded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "eP2lOQQj8C", "d9936e6bb83f666623f614a81c02d1c9a7056554fc8134726d2dd5ccb3db2cf8", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "eP2lOQQj8C", "054523c0807d7179ed23dc5246c33f8c592eed480b4f04ea9ce2e4e327171e7c", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Result Expanded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3717,7 +3689,7 @@ export function searchResultExpanded(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Expanded", eventProperties, "eP2lOQQj8C", "d9936e6bb83f666623f614a81c02d1c9a7056554fc8134726d2dd5ccb3db2cf8");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Result Expanded", eventProperties, "eP2lOQQj8C", "054523c0807d7179ed23dc5246c33f8c592eed480b4f04ea9ce2e4e327171e7c");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Result Expanded", (Object as any).assign({}, eventProperties));
@@ -3732,7 +3704,6 @@ export default {
   avoInspectorApiKey,
   PupilActivityResourceTypes,
   VideoLocation,
-  Depth,
   Context,
   OnwardIntent,
   SchoolOption,

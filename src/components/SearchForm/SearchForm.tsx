@@ -57,7 +57,6 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       ),
       searchSource: analyticsSearchSource,
       context: searchContext,
-      depth: "attempt",
     });
   }, [
     track,
@@ -74,7 +73,6 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       track.searchJourneyInitiated({
         searchSource: analyticsSearchSource,
         context: searchContext,
-        depth: "refine",
       });
   }, [analyticsSearchSource, track, value.length, searchContext]);
 

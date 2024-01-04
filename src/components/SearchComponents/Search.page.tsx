@@ -64,7 +64,6 @@ const Search: FC<SearchProps> = (props) => {
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
         context: "search",
-        depth: "complete",
         searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
       });
       setSearchStartTime(null);
@@ -94,7 +93,10 @@ const Search: FC<SearchProps> = (props) => {
         keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName: searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitName:
+          searchHit.type === "unit"
+            ? searchHit.title.replace(/(<([^>]+)>)/gi, "")
+            : null, // unit name without highlighting html tags,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
@@ -103,13 +105,15 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonName:
+          searchHit.type === "lesson"
+            ? searchHit.title.replace(/(<([^>]+)>)/gi, "")
+            : null,
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
-            : undefined,
+            : null,
         context: "search",
-        depth: "complete",
       });
     }
   };
