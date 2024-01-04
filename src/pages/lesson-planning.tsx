@@ -303,6 +303,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                     $colSpan={[12, isFirstOrLast ? 12 : 6]}
                     $mb={i !== arr.length - 1 ? [24, 56] : 0}
                     listStyle="none"
+                    $display="flex"
                   >
                     <Card
                       $width={["100%", isFirstOrLast ? "50%" : "100%"]}
