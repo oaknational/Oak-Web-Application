@@ -1,8 +1,13 @@
 import { createRef, useContext, useEffect, useRef } from "react";
-import { OakFlex, OakQuizCheckBox } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakImage,
+  OakQuizCheckBox,
+} from "@oak-academy/oak-components";
 
 import {
   MCAnswer,
+  StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
@@ -14,6 +19,8 @@ export type QuizMCQMultiAnswerProps = {
 
 // Test with
 // http://localhost:3000/pupils/programmes/english-secondary-ks4-aqa/units/non-fiction-crime-and-punishment/lessons/reading-complex-texts-about-crime-and-punishment#starter-quiz
+// Multiple correct answers
+// http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const { questionUid, answers } = props;
@@ -61,10 +68,22 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
         const filterByText = answer.answer.filter(
           (a) => a.type === "text",
         ) as StemTextObject[];
-        // const filterByImage = answer.answer.filter(
-        //   (a) => a.type === "image",
-        // ) as StemImageObject[];
+        const filterByImage = answer.answer.filter(
+          (a) => a.type === "image",
+        ) as StemImageObject[];
         const answerText = filterByText.length > 0 && filterByText[0];
+        const answerImageData =
+          filterByImage.length > 0 && filterByImage[0]?.image_object;
+
+        const answerImage = answerImageData ? (
+          <OakImage
+            src={answerImageData.secure_url}
+            alt=""
+            width={answerImageData.width}
+            height={answerImageData.height}
+            $minWidth={"all-spacing-19"}
+          />
+        ) : undefined;
 
         const feedback = isFeedbackMode
           ? questionState.feedback?.[index]
@@ -76,6 +95,7 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
             id={`${questionUid}-answer${index}`}
             value={answerText ? answerText.text : ""}
             feedback={feedback}
+            image={answerImage}
             innerRef={innerRefs.current[index]}
             onChange={handleOnChange}
           />
