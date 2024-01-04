@@ -66,6 +66,38 @@ type ElementListItem = {
   href: string;
 };
 
+const ElementIcon = (props: { icon: IconName | [IconName, IconName] }) => {
+  if (Array.isArray(props.icon)) {
+    return (
+      <Flex $mr={-16}>
+        <GraphiCircleIcon
+          $zIndex="inFront"
+          icon={props.icon[0]}
+          $background="aqua"
+        />
+        <OverlapBehind>
+          <GraphiCircleIcon icon={props.icon[1]} />
+        </OverlapBehind>
+      </Flex>
+    );
+  } else {
+    return <GraphiCircleIcon icon={props.icon} />;
+  }
+};
+
+const ElementGrid = styled("ul")`
+  display: grid;
+  grid-column-gap: 40px;
+  grid-row-gap: 80px;
+  margin-bottom: 80px;
+  width: min-content;
+  padding: 0;
+  ${responsive("grid-template-columns", () => [
+    "repeat(2, 1fr)",
+    "repeat(4, 1fr)",
+  ])}
+`;
+
 /**
  * LessonElementLinks is a collection graphics linking to sections depending
  * on ids passed in the 'linkTargetIds' prop.
@@ -98,38 +130,6 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
       href: `#${linkTargetIds.exitQuiz}`,
     },
   ];
-
-  const ElementIcon = (props: { icon: IconName | [IconName, IconName] }) => {
-    if (Array.isArray(props.icon)) {
-      return (
-        <Flex $mr={-16}>
-          <GraphiCircleIcon
-            $zIndex="inFront"
-            icon={props.icon[0]}
-            $background="aqua"
-          />
-          <OverlapBehind>
-            <GraphiCircleIcon icon={props.icon[1]} />
-          </OverlapBehind>
-        </Flex>
-      );
-    } else {
-      return <GraphiCircleIcon icon={props.icon} />;
-    }
-  };
-
-  const ElementGrid = styled("ul")`
-    display: grid;
-    grid-column-gap: 40px;
-    grid-row-gap: 80px;
-    margin-bottom: 80px;
-    width: min-content;
-    padding: 0;
-    ${responsive("grid-template-columns", () => [
-      "repeat(2, 1fr)",
-      "repeat(4, 1fr)",
-    ])}
-  `;
 
   return (
     <ElementGrid>
