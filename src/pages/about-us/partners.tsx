@@ -91,12 +91,16 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <FlexList $ph={[16, 0]} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.curriculumPartners.map((partner) => (
-            <LI $mb={32} $minWidth={"20%"} listStyle="none">
+            <LI
+              $mb={32}
+              $minWidth={"20%"}
+              listStyle="none"
+              key={`curriculum-partners-${partner.name}`}
+            >
               <ImageContainer
                 name={partner.name}
                 image={partner}
                 $pa={[4, 16]}
-                key={`curriculum-partners-${partner.name}`}
               />
             </LI>
           ))}
@@ -106,12 +110,16 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
         </Heading>
         <FlexList $ph={[16, 0]} $mb={56} $flexWrap={"wrap"} $width={"100%"}>
           {pageData.techPartners.map((partner) => (
-            <LI $mb={32} $minWidth={"20%"} listStyle="none">
+            <LI
+              $mb={32}
+              $minWidth={"20%"}
+              listStyle="none"
+              key={`tech-partners-${partner.name}`}
+            >
               <ImageContainer
                 $pa={[8, 32]}
                 name={partner.name}
                 image={partner}
-                key={`tech-partners-${partner.name}`}
               />
             </LI>
           ))}
