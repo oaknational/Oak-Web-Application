@@ -53,8 +53,6 @@ const SearchResults = (props: SearchResultsProps) => {
                     firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
                     onClick={(props) => {
                       searchResultOpened(props, searchRank(index));
-                      console.log(props, "<< PROPS");
-                      console.log(searchRank(index), "<< RANK");
                     }}
                   />
                 </LI>
