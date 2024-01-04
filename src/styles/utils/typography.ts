@@ -30,7 +30,7 @@ export type FontVariant =
   | "list-item-1"
   | "list-item-2";
 
-type FontWeight = 300 | 400 | 600 | 700;
+export type FontWeight = 300 | 400 | 600 | 700;
 export type FontSize = 12 | 14 | 16 | 18 | 20 | 24 | 32 | 40 | 48 | 56;
 type LineHeight = 16 | 20 | 24 | 28 | 32 | 40 | 48 | 56 | 64;
 type LetterSpacing = "0.0115em" | "-0.005em";
@@ -106,6 +106,7 @@ export type TypographyProps = FontProps & {
   $wordWrap?: ResponsiveValues<"normal" | "break-word" | "initial" | "inherit">;
   $textOverflow?: ResponsiveValues<"clip" | "ellipsis">;
   $overflowWrap?: ResponsiveValues<"normal" | "break-word" | "anywhere">;
+  $fontWeight?: ResponsiveValues<FontWeight>;
 };
 
 const typography = css<TypographyProps>`
@@ -116,6 +117,7 @@ const typography = css<TypographyProps>`
   ${responsive("word-wrap", (props) => props.$wordWrap)}
   ${responsive("text-overflow", (props) => props.$textOverflow)}
   ${responsive("overflow-wrap", (props) => props.$overflowWrap)}
+  ${responsive("font-weight", (props) => props.$fontWeight)}
 `;
 
 export default typography;

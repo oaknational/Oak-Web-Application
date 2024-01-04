@@ -40,7 +40,12 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
         $flexDirection={"column"}
         $zIndex={"inFront"}
       >
-        <OutlineHeading $mb={[12, 0]} tag={"h3"} $fontSize={[60, 100]}>
+        <OutlineHeading
+          $mb={[12, 0]}
+          tag={"div"}
+          $fontSize={[60, 100]}
+          $fontWeight={600}
+        >
           {outlineHeading}
         </OutlineHeading>
         <Heading
@@ -48,7 +53,7 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
           $mt={-20}
           $textAlign={"center"}
           $font={["heading-5", "heading-4"]}
-          tag={"h4"}
+          tag={"h3"}
         >
           {heading}
         </Heading>
@@ -57,7 +62,7 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
             $mh={[30, 0]}
             $textAlign={"center"}
             $font={["heading-light-7", "heading-light-6"]}
-            tag={"h5"}
+            tag={"h4"}
           >
             {subHeading}
           </Heading>

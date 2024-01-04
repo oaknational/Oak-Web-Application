@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import color from "../../styles/utils/color";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { margin } from "../../styles/utils/spacing";
-import typography from "../../styles/utils/typography";
+import typography, { FontWeight } from "../../styles/utils/typography";
 import { HeadingProps, HeadingTagComponent } from "../Typography/Heading";
 
 export const outlineShadow = `-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}`;
@@ -33,6 +33,7 @@ const OutlineHeading = styled(HeadingTagComponent).attrs({
   OutlineHeadingProps & {
     $fontSize: OutlineSizeResponsive;
     $lightShadow?: boolean | null;
+    $fontWeight?: ResponsiveValues<FontWeight>;
   }
 >`
   color: white;
