@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
-import Flex, { FlexProps } from "../SharedComponents/Flex";
 import useIsCurrent from "../MenuLinks/useIsCurrent";
 import { HTMLAnchorProps } from "../SharedComponents/Button/common";
 
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
 type LinkProps = {

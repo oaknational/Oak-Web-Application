@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
+import ButtonAsLink from "../Button/ButtonAsLink";
 
 import Component from "./ButtonGroup";
 
