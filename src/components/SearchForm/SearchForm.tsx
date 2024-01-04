@@ -69,7 +69,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
-    value.length === 1 &&
+    value.length === 0 &&
       track.searchJourneyInitiated({
         searchSource: analyticsSearchSource,
         context: searchContext,
