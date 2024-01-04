@@ -5,7 +5,6 @@ import Component from "./LandingPageHero";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 export default {
   component: Component,
   argTypes: {},

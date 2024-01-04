@@ -7,7 +7,6 @@ import { BurgerMenuLink, linkIsHref } from "./types";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 export type BurgerMenuLinkProps = {
   link: BurgerMenuLink;
 };

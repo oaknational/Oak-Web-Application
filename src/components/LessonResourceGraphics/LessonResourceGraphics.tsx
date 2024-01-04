@@ -6,7 +6,6 @@ import LessonResourceGraphicsItem, {
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 type LessonResourceGraphicsProps = {
   items: LessonResourceGraphicsItemProps[];
 };

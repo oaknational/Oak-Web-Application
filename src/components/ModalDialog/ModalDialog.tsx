@@ -5,7 +5,6 @@ import { DialogModalSize, OverlayProps, UnderlayProps } from "./useModalDialog";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 type ModalDialogProps = {
   underlayProps: UnderlayProps;
   overlayProps: OverlayProps;

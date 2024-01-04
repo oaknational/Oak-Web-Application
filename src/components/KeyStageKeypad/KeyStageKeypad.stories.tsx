@@ -7,7 +7,6 @@ import Component from "./KeyStageKeypad";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
   component: Component,

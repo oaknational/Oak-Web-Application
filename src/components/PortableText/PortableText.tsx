@@ -21,7 +21,6 @@ import { PTActionTrigger } from "./PTActionTrigger";
 
 import Box from "@/components/SharedComponents/Box";
 
-
 const reportError = errorReporter("PortableText");
 
 type UnresolvedReference = {

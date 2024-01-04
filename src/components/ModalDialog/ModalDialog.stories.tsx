@@ -9,7 +9,6 @@ import Component from ".";
 
 import Box from "@/components/SharedComponents/Box";
 
-
 export default {
   component: Component,
 } as ComponentMeta<typeof Component>;

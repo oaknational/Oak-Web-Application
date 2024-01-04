@@ -5,7 +5,6 @@ import Component from "./SchoolPicker";
 
 import Box from "@/components/SharedComponents/Box";
 
-
 const items = [
   {
     urn: "101105",

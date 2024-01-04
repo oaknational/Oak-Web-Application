@@ -4,7 +4,6 @@ import Component from ".";
 
 import Box from "@/components/SharedComponents/Box";
 
-
 const meta: Meta<typeof Component> = {
   component: Component,
   decorators: [

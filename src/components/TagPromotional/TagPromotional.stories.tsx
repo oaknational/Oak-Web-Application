@@ -4,7 +4,6 @@ import Component from ".";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 const meta: Meta<typeof Component> = {
   component: Component,
   argTypes: {

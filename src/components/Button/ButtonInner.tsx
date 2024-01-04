@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
 
-
 import ButtonLabel from "./ButtonLabel";
 import {
   ButtonBackground,

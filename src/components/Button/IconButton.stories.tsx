@@ -5,7 +5,6 @@ import Component from "./IconButton";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-
 export default {
   component: Component,
   argTypes: {
