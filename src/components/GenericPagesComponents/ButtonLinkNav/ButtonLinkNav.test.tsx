@@ -1,6 +1,6 @@
 import mockRouter from "next-router-mock";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import ButtonLinkNav from "./ButtonLinkNav";
 
