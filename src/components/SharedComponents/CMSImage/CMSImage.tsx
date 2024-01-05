@@ -3,7 +3,6 @@ import { ImageLoader } from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 import { Image } from "../../../common-lib/cms-types";
-import OakImage, { OakImageProps } from "../../OakImage";
 import { SizeValues } from "../../../styles/utils/size";
 
 import {
@@ -11,6 +10,10 @@ import {
   getSanityRefId,
   imageBuilder,
 } from "./sanityImageBuilder";
+
+import OwaImage, {
+  OwaImageProps,
+} from "@/components/SharedComponents/OwaImage";
 
 function getAspectRatio({
   cropRect,
@@ -34,7 +37,7 @@ function getAspectRatio({
   return null;
 }
 
-export type CMSImageProps = Omit<OakImageProps, "src" | "alt"> & {
+export type CMSImageProps = Omit<OwaImageProps, "src" | "alt"> & {
   /**
    * Sanity image asset
    */
@@ -191,7 +194,7 @@ const CMSImage: FC<CMSImageProps> = (props) => {
   };
 
   return (
-    <OakImage
+    <OwaImage
       {...rest}
       {...styleDimensions}
       {...nextImageDimensions}
