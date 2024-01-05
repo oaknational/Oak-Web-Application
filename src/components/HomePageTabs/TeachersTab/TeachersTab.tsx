@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import ImageContainer from "../ImageContainer/ImageContainer";
 
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";
@@ -45,6 +45,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               </Typography>
               <Box $mt={16} $width={["100%", "100%", "90%"]}>
                 <SearchForm
+                  searchContext="homepage"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {

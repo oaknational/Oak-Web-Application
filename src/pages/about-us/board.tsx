@@ -10,7 +10,7 @@ import AboutContactCard from "@/components/AboutContactCard";
 import Typography, { Heading, Hr, P } from "@/components/Typography";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
-import IconButtonAsLink from "@/components/Button/IconButtonAsLink";
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BioCardList from "@/components/BioCardList";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";

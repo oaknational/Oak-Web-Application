@@ -6,9 +6,10 @@ import { createRef } from "react";
 import { MenuProvider } from "../../context/Menu";
 import { menuContext } from "../../context/Menu/MenuProvider";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import IconButton from "../Button/IconButton";
 
 import Menu from "./Menu";
+
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 

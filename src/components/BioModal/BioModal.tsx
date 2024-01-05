@@ -10,7 +10,7 @@ import {
 } from "@/common-lib/cms-types";
 import AspectRatio from "@/components/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
-import IconButton from "@/components/Button/IconButton";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";

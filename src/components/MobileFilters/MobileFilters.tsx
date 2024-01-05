@@ -9,8 +9,8 @@ import {
 } from "react";
 
 import Box from "@/components/SharedComponents/Box";
-import Button from "@/components/Button";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import Button from "@/components/SharedComponents/Button";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/Cover";

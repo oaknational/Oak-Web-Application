@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { PortableTextJSON, Image } from "../../common-lib/cms-types";
-import Flex, { FlexProps } from "../SharedComponents/Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";
@@ -10,6 +9,8 @@ import CMSImage from "../CMSImage";
 import { PortableTextWithDefaults } from "../PortableText";
 
 import Card from "./Card";
+
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type SummaryCardProps = {
   children?: React.ReactNode;
