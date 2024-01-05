@@ -5,7 +5,9 @@ import UnitListItem, {
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import Pagination, { PaginationProps } from "@/components/Pagination";
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
 import { LI, UL } from "@/components/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
