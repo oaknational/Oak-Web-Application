@@ -51,6 +51,7 @@ const OL = styled.ol<MarginProps>`
 `;
 
 export const GridOrderedList = styled("ol")<OLProps & GridProps & BoxProps>`
+  display: grid;
   ${grid}${box}
 `;
 
