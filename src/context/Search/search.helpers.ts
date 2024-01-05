@@ -47,6 +47,19 @@ export const getSortedSearchFiltersSelected = (
   return [];
 };
 
+const keyStageToSentenceCase = (keyStage?: string): string | undefined => {
+  if (!keyStage) {
+    return undefined;
+  }
+  const words = keyStage.split(" ");
+
+  if (words.length > 1 && words[1] !== undefined) {
+    words[1] = words[1].toLowerCase();
+  }
+
+  return words.join(" ");
+};
+
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
   allKeyStages,
@@ -74,7 +87,7 @@ export function elasticKeyStageSlugToKeyStage({
     reportError(error);
   }
 
-  return keyStage;
+  return { ...keyStage, title: keyStageToSentenceCase(keyStage?.title) };
 }
 
 const pathwaysSnakeToCamel = (pathway: PathwaySchema) => {
