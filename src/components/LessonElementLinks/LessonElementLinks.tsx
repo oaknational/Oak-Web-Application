@@ -1,17 +1,18 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Flex, { FlexProps } from "../Flex";
-import Typography from "../Typography";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
+import Typography, { LI } from "../Typography";
 import CardLink from "../Card/CardLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import GraphiCircleIcon from "../Icon/GraphicCircleIcon";
+import { IconName } from "../Icon";
+import { GridList } from "../Typography/UL";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex
     $flexDirection="column"
     $alignItems="center"
-    $mr={40}
     $position="relative"
     {...props}
   />
@@ -56,72 +57,87 @@ type LessonProgressionGraphicProps = {
     exitQuiz: string;
   };
 };
+
+type ElementListItem = {
+  id: string;
+  label: string;
+  icon: IconName | [IconName, IconName];
+  href: string;
+};
+
+const ElementIcon = (props: { icon: IconName | [IconName, IconName] }) => {
+  if (Array.isArray(props.icon)) {
+    return (
+      <Flex $mr={-16}>
+        <GraphiCircleIcon
+          $zIndex="inFront"
+          icon={props.icon[0]}
+          $background="aqua"
+        />
+        <OverlapBehind>
+          <GraphiCircleIcon icon={props.icon[1]} />
+        </OverlapBehind>
+      </Flex>
+    );
+  } else {
+    return <GraphiCircleIcon icon={props.icon} />;
+  }
+};
+
 /**
  * LessonElementLinks is a collection graphics linking to sections depending
  * on ids passed in the 'linkTargetIds' prop.
  */
 const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
   const { linkTargetIds } = props;
-  return (
-    <Flex
-      $justifyContent={"center"}
-      $flexDirection={["column", "row"]}
-      $mb={80}
-    >
-      <Flex
-        $mb={[80, 0]}
-        $width={["100%", "auto"]}
-        $justifyContent={["space-between", "initial"]}
-      >
-        <GraphicContainer>
-          <GraphiCircleIcon icon="quiz" />
-          <LinkText>
-            <AnchorLink page={null} href={`#${linkTargetIds.introQuiz}`}>
-              Starter quiz
-            </AnchorLink>
-          </LinkText>
-        </GraphicContainer>
-        <GraphicContainer $zIndex="neutral" $mr={[0, 40]}>
-          <Flex $mr={-16}>
-            <GraphiCircleIcon
-              $zIndex="neutral"
-              icon="slide-deck"
-              $background="aqua"
-            />
-            <OverlapBehind>
-              <GraphiCircleIcon icon="video" />
-            </OverlapBehind>
-          </Flex>
-          <LinkText>
-            <AnchorLink page={null} href={`#${linkTargetIds.video}`}>
-              Slide deck or video
-            </AnchorLink>
-          </LinkText>
-        </GraphicContainer>
-      </Flex>
-      <Flex
-        $width={["100%", "auto"]}
-        $justifyContent={["space-between", "initial"]}
-      >
-        <GraphicContainer>
-          <GraphiCircleIcon icon="worksheet" />
-          <LinkText>
-            <AnchorLink page={null} href={`#${linkTargetIds.worksheet}`}>
-              Worksheet
-            </AnchorLink>
-          </LinkText>
-        </GraphicContainer>
+  const elementList: Array<ElementListItem> = [
+    {
+      id: "introQuiz",
+      label: "Starter quiz",
+      icon: "quiz",
+      href: `#${linkTargetIds.introQuiz}`,
+    },
+    {
+      id: "video",
+      label: "Slide deck or video",
+      icon: ["slide-deck", "video"],
+      href: `#${linkTargetIds.video}`,
+    },
+    {
+      id: "worksheet",
+      label: "Worksheet",
+      icon: "worksheet",
+      href: `#${linkTargetIds.worksheet}`,
+    },
+    {
+      id: "exitQuiz",
+      label: "Exit quiz",
+      icon: "quiz",
+      href: `#${linkTargetIds.exitQuiz}`,
+    },
+  ];
 
-        <GraphicContainer $mr={0}>
-          <GraphiCircleIcon icon="quiz" />
-          <LinkText>
-            <AnchorLink page={null} href={`#${linkTargetIds.exitQuiz}`}>
-              Exit quiz
-            </AnchorLink>
-          </LinkText>
-        </GraphicContainer>
-      </Flex>
-    </Flex>
+  return (
+    <GridList
+      $gridTemplateColumns={["repeat(2, 1fr)", "repeat(4, 1fr)"]}
+      $cg={40}
+      $rg={80}
+      $mb={80}
+      $width="min-content"
+    >
+      {elementList.map((element) => (
+        <LI key={element.id} $pa={0} listStyle="none">
+          <GraphicContainer $zIndex="neutral">
+            <ElementIcon icon={element.icon} />
+            <LinkText>
+              <AnchorLink page={null} href={element.href}>
+                {element.label}
+              </AnchorLink>
+            </LinkText>
+          </GraphicContainer>
+        </LI>
+      ))}
+    </GridList>
   );
 };
 

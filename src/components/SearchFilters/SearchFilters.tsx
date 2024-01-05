@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
 import { P } from "../Typography";
 
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
+import Flex from "@/components/SharedComponents/Flex";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {

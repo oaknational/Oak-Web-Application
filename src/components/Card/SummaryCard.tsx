@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { PortableTextJSON, Image } from "../../common-lib/cms-types";
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import Typography, { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 import Cover from "../Cover";

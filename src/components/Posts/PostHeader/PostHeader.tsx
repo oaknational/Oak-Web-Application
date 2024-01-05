@@ -6,9 +6,9 @@ import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "@/pages/blog/[blogSlug]";
 import formatDate from "@/utils/formatDate";
 import AvatarImage from "@/components/AvatarImage";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/Button/CopyLinkButton";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import OakLink from "@/components/OakLink";
 import { Heading, P, Span } from "@/components/Typography";
 

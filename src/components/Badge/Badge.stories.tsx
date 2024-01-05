@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Element/Badge",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

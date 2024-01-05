@@ -2,13 +2,13 @@ import { FC } from "react";
 
 import ImageContainer from "../ImageContainer/ImageContainer";
 
-import Box from "@/components/Box/Box";
-import Flex from "@/components/Flex/Flex";
+import Box from "@/components/SharedComponents/Box/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import useSearch from "@/context/Search/useSearch";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ResourceSelectorCard from "@/components/ResourceSelectorCard/ResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/KeyStageKeypad/KeyStageKeypad";
 import Grid from "@/components/Grid/Grid";
@@ -45,6 +45,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               </Typography>
               <Box $mt={16} $width={["100%", "100%", "90%"]}>
                 <SearchForm
+                  searchContext="homepage"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {

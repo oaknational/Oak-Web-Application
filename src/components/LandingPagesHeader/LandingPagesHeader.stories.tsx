@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./LandingPagesHeader";
 
 export default {
-  title: "Headers & Footers",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

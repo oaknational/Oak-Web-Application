@@ -5,10 +5,10 @@ import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Flex, { FlexProps } from "@/components/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/Card";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/Typography";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";
 import OutlineHeading from "@/components/OutlineHeading";
@@ -45,7 +45,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
       {...props}
     >
       <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
-        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
+        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
           {title}
         </OutlineHeading>
         <Typography $font={["body-2", "body-1"]}>
@@ -137,7 +137,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
                   <Heading
                     $font={["heading-5", "heading-4"]}
-                    tag={"h2"}
+                    tag={"h3"}
                     $mb={[24]}
                   >
                     {principle.title}

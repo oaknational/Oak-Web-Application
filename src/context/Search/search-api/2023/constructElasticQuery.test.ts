@@ -46,7 +46,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -99,7 +99,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -153,7 +153,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });
@@ -209,7 +209,7 @@ describe("Search/2023/constructElasticQuery", () => {
         number_of_fragments: 0,
         pre_tags: ["<b>"],
         post_tags: ["</b>"],
-        fields: {},
+        fields: { pupil_lesson_outcome: {} },
       },
     });
   });

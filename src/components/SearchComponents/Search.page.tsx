@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
+import * as cheerio from "cheerio";
 
 import { Heading } from "../Typography";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
@@ -8,9 +9,9 @@ import { SearchProps } from "./search.page.types";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/SearchFilters";
 import ActiveFilters from "@/components/SearchFilters/ActiveFilters";
@@ -19,6 +20,7 @@ import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { convertUnitSlugToTitle } from "@/components/SearchComponents/helpers";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -57,13 +59,13 @@ const Search: FC<SearchProps> = (props) => {
     ) {
       const searchEndTime = performance.now();
 
-      track.searchCompleted({
+      track.searchResultsDisplayed({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query.keyStages,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
-        searchResultsStatus: status,
+        context: "search",
         searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
       });
       setSearchStartTime(null);
@@ -80,7 +82,7 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
-  const searchResultClicked = ({
+  const searchResultOpened = ({
     searchHit,
     searchRank,
   }: {
@@ -88,12 +90,16 @@ const Search: FC<SearchProps> = (props) => {
     searchRank: number;
   }) => {
     if (searchHit) {
-      track.searchResultClicked({
+      const $ = cheerio.load(searchHit.title);
+      track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
         keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName: searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitName:
+          searchHit.type === "unit"
+            ? $.text()
+            : convertUnitSlugToTitle(searchHit.buttonLinkProps.unitSlug), // unit name without highlighting html tags,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
@@ -102,11 +108,12 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonName: searchHit.type === "lesson" ? $.text() : null,
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
-            : undefined,
+            : null,
+        context: "search",
       });
     }
   };
@@ -121,6 +128,7 @@ const Search: FC<SearchProps> = (props) => {
                 Search
               </Heading>
               <SearchForm
+                searchContext="search"
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
                 handleSubmit={(value) => {
@@ -158,8 +166,8 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
-                searchResultClicked={(searchHit, searchRank) =>
-                  searchResultClicked({
+                searchResultOpened={(searchHit, searchRank) =>
+                  searchResultOpened({
                     searchHit,
                     searchRank,
                   })

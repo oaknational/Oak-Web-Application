@@ -4,8 +4,8 @@ import QuizImage from "../QuizImage";
 import { removeMarkdown } from "../../../quizUtils";
 import QuizImageAnswer from "../QuizImageAnswer";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/Icon";
 import Typography from "@/components/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";

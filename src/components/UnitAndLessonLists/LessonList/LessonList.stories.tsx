@@ -9,7 +9,6 @@ import { LessonListProps } from "./LessonList";
 import Component from ".";
 
 export default {
-  title: "Lists/Lesson List",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

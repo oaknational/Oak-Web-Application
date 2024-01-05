@@ -1,6 +1,6 @@
 import { forwardRef, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
-import { useFocusWithin } from "react-aria";
+import { useFocusRing } from "react-aria";
 
 import { CommonButtonProps, HTMLButtonProps } from "../common";
 
@@ -14,7 +14,7 @@ import typography, { FontVariant } from "@/styles/utils/typography";
 import { IconName } from "@/components/Icon";
 import color from "@/styles/utils/color";
 import { OakColorName } from "@/styles/theme";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 
 const StyledButton = styled(UnstyledButton)<
   UnstyledButtonProps & { $color?: OakColorName }
@@ -30,16 +30,15 @@ const BoxWithFocusState = styled(Box)<{ isFocused: boolean }>`
   position: relative;
 
   &::before {
-    z-index: -100;
     content: "";
     position: absolute;
     height: 100%;
     width: 100%;
     top: 0;
     border: ${(props) => (props.isFocused ? `solid 4px #ffe555` : "none")};
-    border-radius: 4px;
     box-shadow: ${(props) =>
       props.isFocused ? `0px 0px 0px 5px #575757` : "none"};
+    border-radius: 4px;
   }
 `;
 
@@ -59,21 +58,18 @@ const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
   (props, ref) => {
     const { onClick, icon, label, htmlButtonProps, isExpanded } = props;
     const [textUnderline, setTextUnderline] = useState<boolean>(false);
-    const [isFocused, setIsFocused] = useState<boolean>(false);
-    const { focusWithinProps } = useFocusWithin({
-      onFocusWithinChange: setIsFocused,
-    });
+    const { isFocusVisible, focusProps } = useFocusRing();
+
     return (
       <BoxWithFocusState
+        $pv={8}
         $width={"fit-content"}
-        $height={40}
-        isFocused={isFocused}
+        isFocused={isFocusVisible}
       >
         <StyledButton
-          {...focusWithinProps}
+          {...focusProps}
           onMouseOver={() => setTextUnderline(true)}
           onMouseLeave={() => setTextUnderline(false)}
-          $pa={8}
           ref={ref}
           {...htmlButtonProps}
           $color={"navy"}
@@ -81,6 +77,7 @@ const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
           $font={"heading-7"}
           aria-label={label}
           aria-expanded={isExpanded}
+          $ph={8}
         >
           <MiniDropDownInner
             icon={icon}

@@ -3,8 +3,11 @@ import styled, { css, CSSProperties } from "styled-components";
 import flex from "../../styles/utils/flex";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import typography, { TypographyProps } from "../../styles/utils/typography";
-import { box } from "../Box";
-import { FlexProps } from "../Flex";
+import { GridAreaProps } from "../Grid";
+import { gridArea } from "../Grid/GridArea";
+import { box } from "../SharedComponents/Box";
+
+import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type ListItemProps = {
   listStyle?: ResponsiveValues<CSSProperties["listStyle"]>;
@@ -32,5 +35,16 @@ const LI = styled.li<FlexProps & TypographyProps & ListItemProps>`
 LI.defaultProps = {
   $display: "revert",
 };
+
+/**
+ * Styled LI with properties of GridArea
+ */
+export const GridAreaListItem = styled(LI)<GridAreaProps & FlexProps>`
+  display: flex;
+  list-style: none;
+  ${gridArea}
+  ${flex}
+  ${box}
+`;
 
 export default LI;

@@ -4,7 +4,7 @@ import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout/AppLayout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SubjectTierListing from "@/components/SubjectProgrammeListing/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,

@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Checkbox from "@/components/Checkbox";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import FieldError from "@/components/FormFields/FieldError";
 import { CheckboxProps } from "@/components/Checkbox/Checkbox";
 

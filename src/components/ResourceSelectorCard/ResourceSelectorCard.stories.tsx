@@ -6,7 +6,6 @@ import Component from "./ResourceSelectorCard";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 export default {
-  title: "HomePage/ResourceSelector",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import Icon, { IconName } from "@/components/Icon";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/Typography";
 
 type LessonRequirementsHeadingProps = {

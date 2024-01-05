@@ -1,10 +1,11 @@
 import { FC, useId } from "react";
 
 import Card from "../../Card";
-import Box from "../../Box";
 import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
 import AnchorTarget from "../../AnchorTarget";
 import CardTitle from "../../Card/CardComponents/CardTitle";
+
+import Box from "@/components/SharedComponents/Box";
 
 export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
   const { onSubmit } = useNewsletterForm();

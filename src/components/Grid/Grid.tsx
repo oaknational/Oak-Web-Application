@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 
 import { NullablePixelSpacing, PixelSpacing } from "../../styles/theme";
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import Box, { BoxProps } from "../Box";
+
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
 const parse = (value?: NullablePixelSpacing) => {
   switch (typeof value) {
@@ -13,7 +14,7 @@ const parse = (value?: NullablePixelSpacing) => {
   }
 };
 
-const grid = css<GridProps>`
+export const grid = css<GridProps>`
   ${responsive("grid-row-gap", (props) => props.$rg, parse)}
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
   ${responsive("grid-auto-rows", (props) => props.$gridAutoRows)}

@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./SummaryCard";
 
 export default {
-  title: "Cards/Summary Card",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

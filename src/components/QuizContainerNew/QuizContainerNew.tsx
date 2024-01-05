@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { Span } from "../Typography";
-import Box from "../Box";
 
 import QuestionsListNew from "./QuestionsListNew";
 
+import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type QuizProps = {
