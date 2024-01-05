@@ -2,7 +2,6 @@ import { SearchHit } from "../search.types";
 
 import { performSearch } from "./performSearch";
 import * as fetchResults2020 from "./2020/fetchResults";
-import * as fetchResults2023 from "./2023/fetchResults";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
@@ -23,9 +22,6 @@ jest.mock("./2023/fetchResults", () => ({
   __esModule: true,
   ...jest.requireActual("./2023/fetchResults"),
 }));
-const fetchResults2023Spy = jest
-  .spyOn(fetchResults2023, "fetchResults")
-  .mockResolvedValue([...mockResults2023]);
 
 const callbacks = {
   onStart: jest.fn(),
@@ -42,27 +38,15 @@ describe("performSearch", () => {
       query: {
         term: "test",
       },
-      apiVersion: "2020",
       ...callbacks,
     });
     expect(callbacks.onStart).toHaveBeenCalled();
-  });
-  test("should call onSuccess with 2020 results on success", async () => {
-    await performSearch({
-      query: {
-        term: "test",
-      },
-      apiVersion: "2020",
-      ...callbacks,
-    });
-    expect(callbacks.onSuccess).toHaveBeenCalledWith(mockResults2020);
   });
   test("should call onSuccess with 2023 results on success", async () => {
     await performSearch({
       query: {
         term: "test",
       },
-      apiVersion: "2023",
       ...callbacks,
     });
 
@@ -77,31 +61,8 @@ describe("performSearch", () => {
       query: {
         term: "test",
       },
-      apiVersion: "2020",
       ...callbacks,
     });
     expect(callbacks.onFail).toHaveBeenCalled();
-  });
-  test("apiVersion 2020: should call 2020 data sets", async () => {
-    await performSearch({
-      query: {
-        term: "test",
-      },
-      apiVersion: "2020",
-      ...callbacks,
-    });
-    expect(fetchResults2020Spy).toHaveBeenCalled();
-    expect(fetchResults2023Spy).not.toHaveBeenCalled();
-  });
-  test.skip("apiVersion 2023: should call only 2023 data sets", async () => {
-    await performSearch({
-      query: {
-        term: "test",
-      },
-      apiVersion: "2023",
-      ...callbacks,
-    });
-    expect(fetchResults2020Spy).not.toHaveBeenCalled();
-    expect(fetchResults2023Spy).toHaveBeenCalled();
   });
 });
