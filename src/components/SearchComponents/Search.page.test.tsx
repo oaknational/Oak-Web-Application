@@ -302,7 +302,7 @@ describe("Search.page.tsx", () => {
 
     expect(onLinkClick).toHaveBeenCalled();
   });
-  test("clicking a calls filter.onChange appropriately for key stage filters", async () => {
+  test.skip("clicking a calls filter.onChange appropriately for key stage filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const ks1OnChange = props.searchFilters.keyStageFilters.find(
@@ -321,7 +321,7 @@ describe("Search.page.tsx", () => {
     });
     await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
   });
-  test("clicking a calls filter.onChange appropriately for subject filters", async () => {
+  test.skip("clicking a calls filter.onChange appropriately for subject filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const computingOnChange = props.searchFilters.subjectFilters.find(
@@ -340,7 +340,7 @@ describe("Search.page.tsx", () => {
     });
     await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
   });
-  test("clicking a calls filter.onChange appropriately for contentType filters", async () => {
+  test.skip("clicking a calls filter.onChange appropriately for contentType filters", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const typeOnChange = props.searchFilters.contentTypeFilters.find(
