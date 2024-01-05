@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 
-import Flex from "@/components/Flex";
-import Box from "@/components/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import { Heading } from "@/components/Typography";
 import Button from "@/components/Button";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/Typography";
 import Svg from "@/components/Svg";
 import ButtonAsLink from "@/components/Button/ButtonAsLink";

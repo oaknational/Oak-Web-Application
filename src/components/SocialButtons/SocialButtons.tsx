@@ -4,7 +4,7 @@ import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { ButtonSize } from "../Button/common";
 import IconButtonAsLink from "../Button/IconButtonAsLink";
-import Flex, { FlexProps } from "../Flex";
+import Flex, { FlexProps } from "../SharedComponents/Flex";
 import { IconName } from "../Icon";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {

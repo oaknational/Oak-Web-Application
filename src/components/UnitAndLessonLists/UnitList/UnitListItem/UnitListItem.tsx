@@ -5,7 +5,7 @@ import ListItemIconDesktop from "../../ListItemIconDesktop";
 
 import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import ListItemHeader from "@/components/UnitAndLessonLists/ListItemHeader";
 import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
 import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";

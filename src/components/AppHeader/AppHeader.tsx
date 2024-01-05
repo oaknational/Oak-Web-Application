@@ -1,6 +1,5 @@
 import { FC, useRef } from "react";
 
-import Flex from "../Flex";
 import Logo from "../Logo";
 import { HeaderProps } from "../Layout/Layout";
 import OakLink from "../OakLink";
@@ -9,8 +8,9 @@ import IconButton from "../Button/IconButton";
 import { useMenuContext } from "../../context/Menu";
 import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
 import { ActiveLinkUnderline } from "../OakLink/OakLink";
-import Box from "../Box";
 
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 import Icon from "@/components/Icon";
@@ -23,7 +23,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
  */
 const AppHeader: FC<HeaderProps> = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { openMenu } = useMenuContext();
+  const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
@@ -80,6 +80,7 @@ const AppHeader: FC<HeaderProps> = () => {
             size={"large"}
             ref={menuButtonRef}
             onClick={openMenu}
+            aria-expanded={open}
           />
         </Flex>
 

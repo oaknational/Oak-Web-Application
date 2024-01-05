@@ -1,9 +1,10 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
 import { Video } from "../../../common-lib/cms-types";
-import Box from "../../Box";
 import CMSVideo from "../../CMSVideo";
-import Flex from "../../Flex";
+
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 const PostVideo = (props: PortableTextComponentProps<Video>) => {
   if (!props.value) {

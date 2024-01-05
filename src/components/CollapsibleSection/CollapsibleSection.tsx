@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 import Button from "../Button";
 import IconButton from "../Button/IconButton";
-import Flex from "../Flex";
 import { IconName } from "../Icon";
 import Heading, { HeadingTag } from "../Typography/Heading";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 const Summary = styled.summary`
   list-style: none;
