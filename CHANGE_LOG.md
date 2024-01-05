@@ -1,3 +1,15 @@
+# [1.313.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.3...v1.313.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* add aria expanded to hamburger menu button ([aa131ce](https://github.com/oaknational/Oak-Web-Application/commit/aa131cefdd11f0871f97a2b5fcf4c0a714f41868))
+
+
+### Features
+
+* add extra test cases for nav role ([982f6e5](https://github.com/oaknational/Oak-Web-Application/commit/982f6e58ab58f005bf216febfc822e0cf1256a56))
+
 ## [1.312.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.2...v1.312.3) (2024-01-04)
 
 ## [1.312.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.1...v1.312.2) (2024-01-04)
