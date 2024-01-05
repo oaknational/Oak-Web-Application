@@ -7,6 +7,7 @@ import Search from "@/components/SearchComponents/Search.page";
 import curriculumApi2023, {
   SearchPageData,
 } from "@/node-lib/curriculum-api-2023";
+import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/Pagination/usePagination";
