@@ -82,4 +82,25 @@ describe("QuizMCQSingleAnswer", () => {
 
     expect(context.updateQuestionMode).toHaveBeenCalledWith("input");
   });
+
+  it("calls handleSubmitMCAnswer when questionState.mode is set to grading", () => {
+    const context = getContext();
+
+    if (context.questionState[0]) {
+      context.questionState[0].mode = "grading";
+    }
+
+    const answers =
+      context?.currentQuestionData?.answers?.["multiple-choice"] ?? [];
+
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizMCQSingleAnswer questionUid="123" answers={answers} />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(context.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
+  });
 });
