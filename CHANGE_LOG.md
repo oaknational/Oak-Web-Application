@@ -1,3 +1,20 @@
+# [1.314.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.313.0...v1.314.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* alignment of list items on plan a lesson page ([2c32040](https://github.com/oaknational/Oak-Web-Application/commit/2c32040d7ab48a41198ed3da24193348920d7987))
+* bio card sizes ([ce2d9be](https://github.com/oaknational/Oak-Web-Application/commit/ce2d9bec3f98471cce1e188acdf9f7a42d7e27e9))
+* display grid on ordered grid list ([c55c77e](https://github.com/oaknational/Oak-Web-Application/commit/c55c77e2eeb04020c4233708c5c913638af16577))
+* grid auto rows ([a476f6b](https://github.com/oaknational/Oak-Web-Application/commit/a476f6bcecd5cbfc91a5c1ee8b52d2c7272238c7))
+* move list key to top component ([1f10566](https://github.com/oaknational/Oak-Web-Application/commit/1f10566a18619aa87f37e4c2aea297f448aff819))
+* use ol for numbered list ([570dad8](https://github.com/oaknational/Oak-Web-Application/commit/570dad81f411eab5d1d9c05e0bea8b1b491c6ead))
+
+
+### Features
+
+* update icon list on lesson planning page ([56ed40b](https://github.com/oaknational/Oak-Web-Application/commit/56ed40b9290114f9067eb29d36397d4fad3f1897))
+
 # [1.313.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.3...v1.313.0) (2024-01-05)
 
 
