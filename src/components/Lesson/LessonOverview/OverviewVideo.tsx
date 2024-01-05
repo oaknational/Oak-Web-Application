@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import Button, { ButtonProps } from "@/components/Button";
+import Button, { ButtonProps } from "@/components/SharedComponents/Button";
 import VideoPlayer from "@/components/VideoPlayer";
 import { P } from "@/components/Typography";
 import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";

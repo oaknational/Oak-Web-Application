@@ -11,8 +11,8 @@ import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
 import { IconName } from "../Icon";
 import Icon from "../Icon/Icon";
-import Button from "../Button";
 
+import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex";

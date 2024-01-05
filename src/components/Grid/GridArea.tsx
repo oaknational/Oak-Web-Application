@@ -2,7 +2,8 @@ import styled, { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { SpacingProps } from "../../styles/utils/spacing";
-import Flex, { FlexProps } from "../SharedComponents/Flex";
+
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 type ColRowSpan =
   | 0

@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { ButtonBackground } from "@/components/Button/common";
+import { ButtonBackground } from "@/components/SharedComponents/Button/common";
 import Svg from "@/components/Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
