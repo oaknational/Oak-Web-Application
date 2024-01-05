@@ -2,6 +2,7 @@ import { SearchHit } from "../search.types";
 
 import { performSearch } from "./performSearch";
 import * as fetchResults2020 from "./2020/fetchResults";
+import * as fetchResults2023 from "./2023/fetchResults";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
@@ -22,6 +23,7 @@ jest.mock("./2023/fetchResults", () => ({
   __esModule: true,
   ...jest.requireActual("./2023/fetchResults"),
 }));
+const fetchResults2023Spy = jest.spyOn(fetchResults2023, "fetchResults");
 
 const callbacks = {
   onStart: jest.fn(),
@@ -43,6 +45,7 @@ describe("performSearch", () => {
     expect(callbacks.onStart).toHaveBeenCalled();
   });
   test("should call onSuccess with 2023 results on success", async () => {
+    fetchResults2023Spy.mockResolvedValue([...mockResults2023]);
     await performSearch({
       query: {
         term: "test",
