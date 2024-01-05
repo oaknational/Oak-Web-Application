@@ -1,10 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Card from "../Card";
 
 import Component from "./GridArea";
 
 import Grid from ".";
+
+import Card from "@/components/SharedComponents/Card";
 
 export default {
   component: Component,

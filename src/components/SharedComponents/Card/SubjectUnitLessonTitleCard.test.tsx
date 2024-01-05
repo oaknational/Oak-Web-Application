@@ -1,6 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import TitleCard from "./SubjectUnitLessonTitleCard";
 

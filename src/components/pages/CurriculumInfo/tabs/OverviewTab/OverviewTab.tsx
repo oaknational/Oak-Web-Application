@@ -3,7 +3,7 @@ import { FC } from "react";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { P, Heading, UL, LI } from "@/components/Typography";
-import Card from "@/components/Card/Card";
+import Card from "@/components/SharedComponents/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Icon from "@/components/Icon/Icon";

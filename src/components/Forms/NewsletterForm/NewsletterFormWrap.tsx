@@ -1,12 +1,12 @@
 import { FC, useId } from "react";
 
-import Card, { CardProps } from "../../Card";
-import CardTitle from "../../Card/CardComponents/CardTitle";
 import { P } from "../../Typography";
 import OakLink from "../../OakLink";
 
 import NewsletterForm, { NewsletterFormProps } from "./NewsletterForm";
 
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+import Card, { CardProps } from "@/components/SharedComponents/Card";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Grid, { GridArea } from "@/components/Grid";
 

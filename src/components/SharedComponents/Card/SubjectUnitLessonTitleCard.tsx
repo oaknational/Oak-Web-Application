@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { Heading } from "../Typography";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import SubjectIcon from "../SubjectIcon";
+import { Heading } from "../../Typography";
+import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import SubjectIcon from "../../SubjectIcon";
 
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

@@ -6,7 +6,7 @@ import { OLOutline } from "./OLOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
 import Flex from "@/components/SharedComponents/Flex";

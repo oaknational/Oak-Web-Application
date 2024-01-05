@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 
-import { Heading, P } from "../Typography";
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import { Heading, P } from "../../Typography";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import Card from "./Card";
 import CardLink from "./CardLink";

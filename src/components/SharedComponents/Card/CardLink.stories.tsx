@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Heading, P } from "../Typography";
+import { Heading, P } from "../../Typography";
 
 import Card from "./Card";
 import Component from "./CardLink";

@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { PortableTextJSON, Image } from "../../common-lib/cms-types";
-import Typography, { Heading } from "../Typography";
-import { OakColorName } from "../../styles/theme/types";
-import Cover from "../Cover";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import CMSImage from "../CMSImage";
-import { PortableTextWithDefaults } from "../PortableText";
+import { PortableTextJSON, Image } from "../../../common-lib/cms-types";
+import Typography, { Heading } from "../../Typography";
+import { OakColorName } from "../../../styles/theme/types";
+import Cover from "../../Cover";
+import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
+import CMSImage from "../../CMSImage";
+import { PortableTextWithDefaults } from "../../PortableText";
 
 import Card from "./Card";
 

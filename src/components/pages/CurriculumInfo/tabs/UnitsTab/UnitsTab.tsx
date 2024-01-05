@@ -4,7 +4,7 @@ import { VisuallyHidden } from "react-aria";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import P from "@/components/Typography";
-import Card from "@/components/Card/Card";
+import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";

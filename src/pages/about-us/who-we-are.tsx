@@ -7,7 +7,7 @@ import { decorateWithIsr } from "@/node-lib/isr";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
