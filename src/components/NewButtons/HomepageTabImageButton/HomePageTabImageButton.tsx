@@ -19,13 +19,13 @@ import UnstyledButton, {
 } from "@/components/UnstyledButton";
 import CMSImage from "@/components/CMSImage/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import TagPromotional from "@/components/TagPromotional";
 import {
   ButtonHoverStyle,
   CommonButtonProps,
   HTMLButtonProps,
-} from "@/components/Button/common";
+} from "@/components/SharedComponents/Button/common";
 import Illustration from "@/components/Illustration/Illustration";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {

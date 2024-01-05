@@ -9,7 +9,7 @@ import Card from "@/components/Card";
 import AboutContactCard from "@/components/AboutContactCard";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";

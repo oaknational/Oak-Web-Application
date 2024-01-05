@@ -4,7 +4,7 @@ import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
 import { OmitKeepDiscriminated } from "@/utils/generics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import Box from "@/components/SharedComponents/Box";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CMSImage from "@/components/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/Typography";

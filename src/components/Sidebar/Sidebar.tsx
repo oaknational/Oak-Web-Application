@@ -6,9 +6,9 @@ import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/Menu/Menu";
 import MenuBackdrop from "@/components/Menu/MenuBackdrop";
 import Flex from "@/components/SharedComponents/Flex";
-import IconButton from "@/components/Button/IconButton";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { Hr } from "@/components/Typography";
-import Button from "@/components/Button";
+import Button from "@/components/SharedComponents/Button";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 
