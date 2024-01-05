@@ -9,7 +9,6 @@ import AboutContactCard from "../../components/AboutContactCard";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import ButtonAsLink from "../../components/Button/ButtonAsLink";
 import AspectRatio from "../../components/AspectRatio";
 import CMSImage from "../../components/CMSImage";
 import { CMSImageProps } from "../../components/CMSImage/CMSImage";
@@ -18,6 +17,7 @@ import Illustration from "../../components/Illustration";
 import { getSizes } from "../../components/CMSImage/getSizes";
 import getPageProps from "../../node-lib/getPageProps";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, LI } from "@/components/Typography";
 import { FlexList } from "@/components/Typography/UL";

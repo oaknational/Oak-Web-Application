@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { P, Heading, UL, LI } from "@/components/Typography";
 import Card from "@/components/Card/Card";
@@ -13,7 +13,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import CMSImage from "@/components/CMSImage";
 import CMSVideo from "@/components/CMSVideo";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type OverviewTabProps = {
   data: {

@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "../../../../styles/themeHelpers/getColorByName";
-import { ButtonBackground } from "../../../Button/common";
+import { ButtonBackground } from "../../../SharedComponents/Button/common";
 import Svg from "../../../Svg";
 import { HOVER_SHADOW_TRANSITION } from "../../../../styles/transitions";
 

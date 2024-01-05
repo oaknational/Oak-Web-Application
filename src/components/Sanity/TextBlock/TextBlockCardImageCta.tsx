@@ -4,7 +4,7 @@ import { FC } from "react";
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/Card";
 import CardImage, {
   CardImageProps,
