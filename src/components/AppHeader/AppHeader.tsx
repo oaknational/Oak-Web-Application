@@ -23,7 +23,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
  */
 const AppHeader: FC<HeaderProps> = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const { openMenu } = useMenuContext();
+  const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
 
   return (
@@ -80,6 +80,7 @@ const AppHeader: FC<HeaderProps> = () => {
             size={"large"}
             ref={menuButtonRef}
             onClick={openMenu}
+            aria-expanded={open}
           />
         </Flex>
 

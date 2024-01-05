@@ -15,8 +15,9 @@ import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 import MenuBackdrop from "./MenuBackdrop";
 
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex";
+import flex from "@/styles/utils/flex";
+import Box, { BoxProps, box } from "@/components/SharedComponents/Box";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type MenuConfig = {
   width: PixelSpacing;
@@ -59,6 +60,11 @@ export const SideMenu = styled(Flex)<TransitionProps>`
 type MenuProps = HTMLProps<HTMLButtonElement> & {
   menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
+
+const NavMenuList = styled("nav")<FlexProps & BoxProps>`
+  ${box}
+  ${flex}
+`;
 
 const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
@@ -108,6 +114,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
+              aria-expanded={open}
             >
               <Svg
                 name="looping-line-1"
@@ -134,7 +141,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   aria-expanded={open}
                 />
               </Box>
-              <Flex
+              <NavMenuList
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
@@ -168,7 +175,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                     <Logo variant="with text" width={150} height={63} />
                   </Flex>
                 </Flex>
-              </Flex>
+              </NavMenuList>
             </SideMenu>
           </FocusOn>
         </Box>
