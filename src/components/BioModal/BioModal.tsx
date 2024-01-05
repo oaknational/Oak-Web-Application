@@ -8,7 +8,7 @@ import {
   PortableTextJSON,
   TeamMemberSocials,
 } from "@/common-lib/cms-types";
-import AspectRatio from "@/components/AspectRatio";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/CMSImage";

@@ -1,9 +1,12 @@
 import { CSSProperties, FC } from "react";
 
 import { IllustrationSlug } from "../../../image-data";
-import AspectRatio, { AspectRatios } from "../../AspectRatio";
 import { CMSImageProps } from "../../CMSImage/CMSImage";
 import Illustration from "../../Illustration";
+
+import AspectRatio, {
+  AspectRatios,
+} from "@/components/SharedComponents/AspectRatio";
 
 const DEFAULT_ASPECT_RATIO: AspectRatios = ["3:2", "16:9"];
 

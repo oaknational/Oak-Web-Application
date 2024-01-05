@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
+import responsive, { ResponsiveValues } from "../../../styles/utils/responsive";
 
 export const ASPECT_RATIOS = ["7:8", "2:3", "1:1", "3:2", "16:9"] as const;
 // Constraining ratio for 1 consistency and 2 option to move to static css
