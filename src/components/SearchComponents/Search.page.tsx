@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
+import * as cheerio from "cheerio";
 
 import { Heading } from "../Typography";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
@@ -89,6 +90,7 @@ const Search: FC<SearchProps> = (props) => {
     searchRank: number;
   }) => {
     if (searchHit) {
+      const $ = cheerio.load(searchHit.title);
       track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
         keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
@@ -96,7 +98,7 @@ const Search: FC<SearchProps> = (props) => {
         subjectSlug: searchHit.subjectSlug,
         unitName:
           searchHit.type === "unit"
-            ? searchHit.title.replace(/(<([^>]+)>)/gi, "")
+            ? $.text()
             : convertUnitSlugToTitle(searchHit.buttonLinkProps.unitSlug), // unit name without highlighting html tags,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
@@ -106,10 +108,7 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName:
-          searchHit.type === "lesson"
-            ? searchHit.title.replace(/(<([^>]+)>)/gi, "")
-            : null,
+        lessonName: searchHit.type === "lesson" ? $.text() : null,
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
