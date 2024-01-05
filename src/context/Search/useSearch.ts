@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+// import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { getFilterForQuery, isFilterItem } from "./search.helpers";
 import {
@@ -137,7 +137,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
-  const use2023SearchApi = useFeatureFlagEnabled("use-2023-search-api");
+  const use2023SearchApi = true;
 
   const fetchResults = useStableCallback(async (useNewApi: boolean) => {
     /**
