@@ -1,4 +1,15 @@
-import { createRef, useContext, useEffect, useRef } from "react";
+/**
+ *
+ * This component is used to render the multiple choice question with multiple answers
+ *
+ */
+
+// Test with
+// http://localhost:3000/pupils/programmes/english-secondary-ks4-aqa/units/non-fiction-crime-and-punishment/lessons/reading-complex-texts-about-crime-and-punishment#starter-quiz
+// Multiple correct answers
+// http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
+
+import { createRef, useContext, useEffect, useMemo, useRef } from "react";
 import {
   OakFlex,
   OakImage,
@@ -12,25 +23,19 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
-export type QuizMCQMultiAnswerProps = {
-  questionUid: string;
-  answers: MCAnswer[];
-};
-
-// Test with
-// http://localhost:3000/pupils/programmes/english-secondary-ks4-aqa/units/non-fiction-crime-and-punishment/lessons/reading-complex-texts-about-crime-and-punishment#starter-quiz
-// Multiple correct answers
-// http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
-
-export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
-  const { questionUid, answers } = props;
-
+export const QuizMCQMultiAnswer = () => {
   const quizEngineContext = useContext(QuizEngineContext);
 
   const innerRefs = useRef<React.RefObject<HTMLInputElement>[]>([]);
 
   const currentQuestionIndex = quizEngineContext?.currentQuestionIndex ?? 0;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
+  const currentQuestionData = quizEngineContext?.currentQuestionData;
+  const answers = useMemo(
+    () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
+    [currentQuestionData],
+  );
+  const questionUid = currentQuestionData?.questionUid;
 
   useEffect(() => {
     // Dynamically create the refs for the answers
@@ -50,7 +55,7 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
     }
   }, [questionState, answers, quizEngineContext]);
 
-  if (!questionState) {
+  if (!questionState || !currentQuestionData) {
     return null;
   }
 

@@ -13,8 +13,8 @@ import {
   QuizEngineProvider,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import {
-  mcqTextAnswers,
   quizQuestions,
+  mcqImageAnswers,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 const meta = {
@@ -40,21 +40,7 @@ type Story = StoryObj<typeof meta>;
 
 // mock the QuizEngineContext
 const mockQuizEngineContext: QuizEngineContextType = {
-  currentQuestionData: {
-    questionUid: "test",
-    questionId: 0,
-    questionType: "multiple-choice",
-    questionStem: [
-      {
-        type: "text",
-        text: "Test question",
-      },
-    ],
-    answers: { "multiple-choice": mcqTextAnswers },
-    feedback: "",
-    hint: "",
-    active: true,
-  },
+  currentQuestionData: quizQuestions?.[0],
   currentQuestionIndex: 0,
   questionState: [
     {
@@ -72,6 +58,14 @@ const mockQuizEngineContext: QuizEngineContextType = {
   handleNextQuestion: () => {},
 };
 
+const mcqMultiImageAnswers = [...mcqImageAnswers];
+if (mcqMultiImageAnswers[0]) {
+  mcqMultiImageAnswers[0].answer_is_correct = true;
+}
+if (mcqMultiImageAnswers[2]) {
+  mcqMultiImageAnswers[2].answer_is_correct = true;
+}
+
 /*
  * A component to render MCQ questions where there are multiple answers
  * The component updates the state of the quizEngineProvider with the attempted answer
@@ -88,10 +82,7 @@ export const Primary: Story = {
       </OakBox>
     </QuizEngineProvider>
   ),
-  args: {
-    questionUid: "123",
-    answers: quizQuestions?.[0]?.answers?.["multiple-choice"] || [],
-  },
+  args: {},
 };
 
 export const FeedbackMode: Story = {
@@ -105,10 +96,7 @@ export const FeedbackMode: Story = {
       </OakBox>
     </QuizEngineContext.Provider>
   ),
-  args: {
-    questionUid: "123",
-    answers: quizQuestions?.[0]?.answers?.["multiple-choice"] || [],
-  },
+  args: {},
 };
 
 export const WithImagesNoFeedback: Story = {
@@ -117,6 +105,10 @@ export const WithImagesNoFeedback: Story = {
     contextNoFeedback.questionState = [
       { mode: "input", grade: 0, feedback: [], offerHint: false },
     ];
+    if (contextNoFeedback.currentQuestionData?.answers) {
+      contextNoFeedback.currentQuestionData.answers["multiple-choice"] =
+        mcqMultiImageAnswers;
+    }
 
     return (
       <QuizEngineContext.Provider value={contextNoFeedback}>
@@ -129,16 +121,27 @@ export const WithImagesNoFeedback: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {
-    questionUid: "123",
-    answers: quizQuestions?.[2]?.answers?.["multiple-choice"] || [],
-  },
+  args: {},
 };
 
 export const WithImagesFeedback: Story = {
   render: (args) => {
+    const contextFeedback = { ...mockQuizEngineContext };
+    contextFeedback.questionState = [
+      {
+        mode: "feedback",
+        grade: 0,
+        feedback: ["correct", "incorrect", "correct", "incorrect"],
+        offerHint: false,
+      },
+    ];
+    if (contextFeedback.currentQuestionData?.answers) {
+      contextFeedback.currentQuestionData.answers["multiple-choice"] =
+        mcqMultiImageAnswers;
+    }
+
     return (
-      <QuizEngineContext.Provider value={mockQuizEngineContext}>
+      <QuizEngineContext.Provider value={contextFeedback}>
         <OakBox
           $background={"bg-decorative1-very-subdued"}
           $pa={"inner-padding-m"}
@@ -148,8 +151,5 @@ export const WithImagesFeedback: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {
-    questionUid: "123",
-    answers: quizQuestions?.[2]?.answers?.["multiple-choice"] || [],
-  },
+  args: {},
 };

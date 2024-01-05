@@ -10,59 +10,78 @@ import {
   QuizEngineContextType,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { mcqTextAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-
-// mock the QuizEngineContext
-const mockQuizEngineContext: QuizEngineContextType = {
-  currentQuestionData: {
-    questionUid: "test",
-    questionId: 0,
-    questionType: "multiple-choice",
-    questionStem: [
-      {
-        type: "text",
-        text: "Test question",
-      },
-    ],
-    answers: { "multiple-choice": mcqTextAnswers },
-    feedback: "",
-    hint: "",
-    active: true,
-  },
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: "input",
-      grade: 0,
-      offerHint: false,
-    },
-  ],
-  score: 0,
-  maxScore: 0,
-  isComplete: false,
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-};
+import {
+  mcqTextAnswers,
+  mcqImageAnswers,
+} from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import { LessonOverviewQuizQuestion } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 describe("QuizMCQMultiAnswer", () => {
   const multiMcqTextAnswers = [...mcqTextAnswers];
 
-  beforeAll(() => {
-    // Make multiple answers correct
-    if (multiMcqTextAnswers[0]) {
-      multiMcqTextAnswers[0].answer_is_correct = true;
-    }
-    if (multiMcqTextAnswers[2]) {
-      multiMcqTextAnswers[2].answer_is_correct = true;
-    }
-  });
+  const multiMcqImageAnswers = [...mcqImageAnswers];
+
+  // Make multiple answers correct
+  if (multiMcqTextAnswers[0]) {
+    multiMcqTextAnswers[0].answer_is_correct = true;
+  }
+  if (multiMcqTextAnswers[2]) {
+    multiMcqTextAnswers[2].answer_is_correct = true;
+  }
+
+  if (multiMcqImageAnswers[0]) {
+    multiMcqImageAnswers[0].answer_is_correct = true;
+  }
+  if (multiMcqImageAnswers[2]) {
+    multiMcqImageAnswers[2].answer_is_correct = true;
+  }
+
+  // mock the QuizEngineContext
+  const mockQuizEngineContext: QuizEngineContextType = {
+    currentQuestionData: {
+      questionUid: "test",
+      questionId: 0,
+      questionType: "multiple-choice",
+      questionStem: [
+        {
+          type: "text",
+          text: "Test question",
+        },
+      ],
+      answers: { "multiple-choice": multiMcqTextAnswers },
+      feedback: "",
+      hint: "",
+      active: true,
+    },
+    currentQuestionIndex: 0,
+    questionState: [
+      {
+        mode: "input",
+        grade: 0,
+        offerHint: false,
+      },
+    ],
+    score: 0,
+    maxScore: 0,
+    isComplete: false,
+    updateQuestionMode: jest.fn(),
+    handleSubmitMCAnswer: jest.fn(),
+    handleNextQuestion: jest.fn(),
+  };
+
+  const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {
+    ...mockQuizEngineContext,
+    currentQuestionData: {
+      ...(mockQuizEngineContext.currentQuestionData as LessonOverviewQuizQuestion),
+      answers: { "multiple-choice": multiMcqImageAnswers },
+    },
+  };
 
   it("renders the answers", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer questionUid="test" answers={mcqTextAnswers} />
+          <QuizMCQMultiAnswer />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -78,7 +97,7 @@ describe("QuizMCQMultiAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer questionUid="test" answers={mcqTextAnswers} />
+          <QuizMCQMultiAnswer />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -111,7 +130,7 @@ describe("QuizMCQMultiAnswer", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContextFeedback}>
-          <QuizMCQMultiAnswer questionUid="test" answers={mcqTextAnswers} />
+          <QuizMCQMultiAnswer />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -128,5 +147,19 @@ describe("QuizMCQMultiAnswer", () => {
         ).not.toBeChecked();
       }
     }
+  });
+
+  it("renders images when they are present in the answers", () => {
+    const { getAllByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider
+          value={mockQuizEngineContextWithImageAnswers}
+        >
+          <QuizMCQMultiAnswer />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    const images = getAllByRole("img", { name: "" }); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
+    expect(images.length).toEqual(mcqImageAnswers.length);
   });
 });

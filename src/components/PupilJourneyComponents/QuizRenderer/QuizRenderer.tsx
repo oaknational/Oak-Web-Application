@@ -6,11 +6,10 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
-import { QuizMCQMultiAnswer } from "../QuizMCQMultiAnswer";
-
 import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
 
 export const QuizRenderer = () => {
   const quizContext = useContext(QuizEngineContext);
@@ -53,12 +52,10 @@ export const QuizRenderer = () => {
 
     if (MCAnswers) {
       if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
-        answerRender = (
-          <QuizMCQMultiAnswer questionUid={questionUid} answers={MCAnswers} />
-        );
+        answerRender = <QuizMCQMultiAnswer />;
       } else {
         answerRender = (
-          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} />
+          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} /> // TODO: remove props and make the component use the context
         );
       }
     }
