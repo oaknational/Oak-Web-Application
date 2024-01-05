@@ -37,7 +37,7 @@ describe("QuizMCQMultiAnswer", () => {
   }
 
   // mock the QuizEngineContext
-  const mockQuizEngineContext: QuizEngineContextType = {
+  const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
     currentQuestionData: {
       questionUid: "test",
       questionId: 0,
@@ -115,17 +115,15 @@ describe("QuizMCQMultiAnswer", () => {
   it("renders the answers as unclickable in feedback mode", () => {
     const mockQuizEngineContextFeedback: QuizEngineContextType = {
       ...mockQuizEngineContext,
+      questionState: [
+        {
+          mode: "feedback",
+          grade: 0,
+          offerHint: false,
+          feedback: ["correct", "correct", "correct", "correct"],
+        },
+      ],
     };
-
-    if (mockQuizEngineContextFeedback.questionState[0]) {
-      mockQuizEngineContextFeedback.questionState[0].mode = "feedback";
-      mockQuizEngineContextFeedback.questionState[0].feedback = [
-        "correct",
-        "correct",
-        "correct",
-        "correct",
-      ];
-    }
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -161,5 +159,24 @@ describe("QuizMCQMultiAnswer", () => {
     );
     const images = getAllByRole("img", { name: "" }); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
     expect(images.length).toEqual(mcqImageAnswers.length);
+  });
+
+  it("calls handleSubmitMCAnswer when questionState.mode is set to grading", () => {
+    const mockQuizEngineContextGrading: QuizEngineContextType = {
+      ...mockQuizEngineContext,
+    };
+
+    if (mockQuizEngineContextGrading.questionState[0]) {
+      mockQuizEngineContextGrading.questionState[0].mode = "grading";
+    }
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={mockQuizEngineContext}>
+          <QuizMCQMultiAnswer />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(mockQuizEngineContext.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
   });
 });
