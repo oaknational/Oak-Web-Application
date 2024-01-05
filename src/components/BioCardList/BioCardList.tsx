@@ -3,7 +3,8 @@ import { FC } from "react";
 import BioModal from "../BioModal";
 import { BioData } from "../BioModal/BioModal";
 import { useBioModal } from "../BioModal/useBioModal";
-import Grid, { GridArea } from "../Grid";
+import { GridList } from "../Typography/UL";
+import { GridAreaListItem } from "../Typography/LI";
 
 import BioCardListItem from "./BioCardListItem";
 
@@ -15,6 +16,7 @@ type BioCardListProps = FlexProps & {
   withModals?: boolean;
   firstBioHasOwnRow?: boolean;
 };
+
 const BioCardList: FC<BioCardListProps> = (props) => {
   const { bios, withModals, firstBioHasOwnRow, ...flexProps } = props;
   const modal = useBioModal({ bios });
@@ -24,39 +26,52 @@ const BioCardList: FC<BioCardListProps> = (props) => {
 
   return (
     <Flex $flexDirection="column" {...flexProps}>
-      {firstBio && firstBioHasOwnRow && (
-        <Grid $mb={[16, 32]} $cg={16}>
-          <GridArea
-            $colSpan={[12, 4, 6]}
-            $colStart={[null, 5, 4]}
-            $colEnd={[null, 9, 10]}
-          >
-            <Box $width={["100%", "100%", "50%"]} $mh="auto">
-              <BioCardListItem
-                {...firstBio}
-                onClick={onCardClick}
-                modalControllerRef={modal.modalControllerRefs[firstBio.id]}
-                isOpen={modal.isOpen}
-              />
-            </Box>
-          </GridArea>
-        </Grid>
-      )}
-      <Grid $cg={16} $rg={[16, 32]} $gridAutoRows={[null, "1fr"]}>
+      <GridList $cg={16} $gridAutoRows={[null, "1fr"]}>
+        {firstBio && firstBioHasOwnRow && (
+          <>
+            <GridAreaListItem
+              $colSpan={[12, 4, 6]}
+              $colStart={[null, 5, 4]}
+              $colEnd={[null, 9, 10]}
+              $mb={[16, 32]}
+              key={`bio-card-list-gridarea-${firstBio.id}`}
+            >
+              <Box $width={["100%", "100%", "50%"]} $height="100%" $mh="auto">
+                <BioCardListItem
+                  {...firstBio}
+                  onClick={onCardClick}
+                  modalControllerRef={modal.modalControllerRefs[firstBio.id]}
+                  isOpen={modal.isOpen}
+                />
+              </Box>
+            </GridAreaListItem>
+            {/* Empty GridAreaListItem to fill the gap on desktop */}
+            <GridAreaListItem
+              $colSpan={[12, 3, 2]}
+              $colStart={[null, 10, 11]}
+              $colEnd={[null, 12, 12]}
+            />
+          </>
+        )}
         {firstBio && !firstBioHasOwnRow && (
-          <GridArea $colSpan={[12, 4, 3]}>
+          <GridAreaListItem
+            $colSpan={[12, 4, 3]}
+            $mb={[16, 32]}
+            key={`bio-card-list-gridarea-${firstBio.id}`}
+          >
             <BioCardListItem
               {...firstBio}
               onClick={onCardClick}
               modalControllerRef={modal.modalControllerRefs[firstBio.id]}
               isOpen={modal.isOpen}
             />
-          </GridArea>
+          </GridAreaListItem>
         )}
         {otherBios.map((bio) => (
-          <GridArea
+          <GridAreaListItem
             $colSpan={[12, 4, 3]}
             key={`bio-card-list-gridarea-${bio.id}`}
+            $mb={[16, 32]}
           >
             <BioCardListItem
               {...bio}
@@ -64,9 +79,9 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               modalControllerRef={modal.modalControllerRefs[bio.id]}
               isOpen={modal.isOpen}
             />
-          </GridArea>
+          </GridAreaListItem>
         ))}
-      </Grid>
+      </GridList>
       <BioModal {...modal} />
     </Flex>
   );

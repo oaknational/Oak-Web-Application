@@ -1,8 +1,9 @@
 import { FC } from "react";
 
-import useIsCurrent from "../../MenuLinks/useIsCurrent";
-import { HTMLAnchorProps } from "../../SharedComponents/Button/common";
-
+import useIsCurrent from "@/components/MenuLinks/useIsCurrent";
+import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
+import { FlexList } from "@/components/Typography/UL";
+import { LI } from "@/components/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -29,7 +30,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   };
 
   return (
-    <>
+    <LI listStyle="none">
       {/* Desktop */}
       <Box $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
@@ -64,7 +65,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           $mr={[0, 36]}
         />
       </Flex>
-    </>
+    </LI>
   );
 };
 
@@ -85,10 +86,11 @@ const AboutUsNavButton: FC<AboutUsNavButtonProps> = ({
 }) => {
   return (
     <nav aria-label={ariaLabel}>
-      <Flex
+      <FlexList
         $flexWrap={"wrap"}
         $alignItems={["flex-start", "center"]}
         $flexDirection={["column", "row"]}
+        $pa={0}
         {...props}
       >
         {buttons.map((button) => (
@@ -99,7 +101,7 @@ const AboutUsNavButton: FC<AboutUsNavButtonProps> = ({
             arrowSuffix={arrowSuffix}
           />
         ))}
-      </Flex>
+      </FlexList>
     </nav>
   );
 };

@@ -28,6 +28,7 @@ export async function fetchResults(query: SearchQuery) {
       hits: unparsedData.hits.hits.map((hit: SearchHit) => {
         return {
           ...hit,
+          _source: { ...hit._source, pathways: [] },
           legacy: true,
         };
       }),
@@ -35,7 +36,6 @@ export async function fetchResults(query: SearchQuery) {
   };
 
   const data = searchResultsSchema.parse(unparsedDataWithLegacyFlag);
-
   const { hits } = data;
   const hitList = hits.hits;
 
