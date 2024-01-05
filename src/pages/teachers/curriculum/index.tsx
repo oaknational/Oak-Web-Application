@@ -10,7 +10,7 @@ import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectP
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/Illustration/Illustration";
 import Cover from "@/components/Cover/Cover";
 import { getSizes } from "@/components/CMSImage/getSizes";

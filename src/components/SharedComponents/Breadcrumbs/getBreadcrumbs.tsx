@@ -1,7 +1,8 @@
-import { BlogWebinarCategory } from "../../common-lib/cms-types";
-import { SerializedWebinar } from "../../pages/webinars/[webinarSlug]";
-import { SerializedBlog } from "../../pages/blog/[blogSlug]";
-import { Breadcrumb } from "../Breadcrumbs";
+import { BlogWebinarCategory } from "../../../common-lib/cms-types";
+import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
+import { SerializedBlog } from "../../../pages/blog/[blogSlug]";
+
+import { Breadcrumb } from ".";
 
 /*
  *
