@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
-import * as cheerio from "cheerio";
 
 import { Heading } from "../Typography";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
@@ -20,7 +19,6 @@ import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import { convertUnitSlugToTitle } from "@/components/SearchComponents/helpers";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -82,6 +80,41 @@ const Search: FC<SearchProps> = (props) => {
     track,
   ]);
 
+  const searchResultExpanded = ({
+    searchHit,
+    searchRank,
+  }: {
+    searchHit: SearchResultsItemProps;
+    searchRank: number;
+  }) => {
+    console.log(searchHit.isToggleOpen);
+    if (searchHit.isToggleOpen) {
+      track.searchResultExpanded({
+        context: "search",
+        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: searchHit.subjectTitle,
+        subjectSlug: searchHit.subjectSlug,
+        unitName:
+          searchHit.type === "lesson"
+            ? searchHit.unitTitle.replace(/(<([^>]+)>)/gi, "")
+            : searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        searchRank: searchRank,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query.keyStages,
+        ),
+        searchResultCount: hitCount,
+        searchResultType: searchHit.type,
+        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonSlug:
+          searchHit.type === "lesson"
+            ? searchHit.buttonLinkProps.lessonSlug
+            : "",
+      });
+    }
+  };
+
   const searchResultOpened = ({
     searchHit,
     searchRank,
@@ -90,16 +123,15 @@ const Search: FC<SearchProps> = (props) => {
     searchRank: number;
   }) => {
     if (searchHit) {
-      const $ = cheerio.load(searchHit.title);
       track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
         keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
         unitName:
-          searchHit.type === "unit"
-            ? $.text()
-            : convertUnitSlugToTitle(searchHit.buttonLinkProps.unitSlug), // unit name without highlighting html tags,
+          searchHit.type === "lesson"
+            ? searchHit.unitTitle.replace(/(<([^>]+)>)/gi, "")
+            : searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
@@ -108,7 +140,7 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.type === "lesson" ? $.text() : null,
+        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
@@ -166,6 +198,12 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
+                searchResultExpanded={(searchHit, searchRank) =>
+                  searchResultExpanded({
+                    searchHit,
+                    searchRank,
+                  })
+                }
                 searchResultOpened={(searchHit, searchRank) =>
                   searchResultOpened({
                     searchHit,

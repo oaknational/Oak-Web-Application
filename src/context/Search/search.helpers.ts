@@ -154,6 +154,10 @@ export function getLessonObject(props: {
   const lessonResult: SearchResultsItemProps = {
     type: "lesson",
     title: highlightedHit.title?.toString(),
+    unitTitle:
+      highlightedHit.unit_title?.toString() ||
+      highlightedHit.topic_title?.toString() ||
+      "",
     description: highlightedHit.lesson_description?.toString() || "",
     pupilLessonOutcome: highlightedHit.pupil_lesson_outcome?.toString() || "",
     subjectSlug: highlightedHit.subject_slug?.toString(),
