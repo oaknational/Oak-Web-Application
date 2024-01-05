@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import { SizeProps } from "../../styles/utils/size";
 import Checkbox from "../Checkbox";
@@ -28,9 +28,11 @@ const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
     searchRefined,
   } = props;
 
-  if (checked) {
-    searchRefined(filterType, label);
-  }
+  useEffect(() => {
+    if (checked) {
+      searchRefined(filterType, label);
+    }
+  }, [checked]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Box $width={width}>
