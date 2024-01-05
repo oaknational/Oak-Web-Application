@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-
 import Component from "./GridArea";
 
 import Grid from ".";

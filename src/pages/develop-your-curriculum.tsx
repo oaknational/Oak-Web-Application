@@ -20,7 +20,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Cover from "@/components/Cover";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/Illustration";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 

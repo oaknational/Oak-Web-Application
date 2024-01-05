@@ -5,11 +5,11 @@ import Typography, { Heading } from "../../Typography";
 import { OakColorName } from "../../../styles/theme/types";
 import Cover from "../../Cover";
 import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
-import CMSImage from "../../CMSImage";
 import { PortableTextWithDefaults } from "../../PortableText";
 
 import Card from "./Card";
 
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type SummaryCardProps = {

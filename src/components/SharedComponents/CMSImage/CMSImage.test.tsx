@@ -1,7 +1,7 @@
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
-import { mockImageAsset } from "../../__tests__/__helpers__/cms";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
+import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 
 import CMSImage from "./CMSImage";
 

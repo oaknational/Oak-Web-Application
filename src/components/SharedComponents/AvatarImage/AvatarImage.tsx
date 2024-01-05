@@ -5,8 +5,8 @@ import { Image } from "../../../common-lib/cms-types";
 import { PixelSpacing } from "../../../styles/theme";
 import { ResponsiveValues } from "../../../styles/utils/responsive";
 import Circle from "../../Circle";
-import CMSImage from "../../CMSImage";
 
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 
 const DEFAULT_AVATAR_SIZE = 56;

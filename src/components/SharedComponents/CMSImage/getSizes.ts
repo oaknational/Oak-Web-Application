@@ -1,4 +1,4 @@
-import { breakpoints } from "../../styles/utils/responsive";
+import { breakpoints } from "../../../styles/utils/responsive";
 
 type Width = number | string;
 

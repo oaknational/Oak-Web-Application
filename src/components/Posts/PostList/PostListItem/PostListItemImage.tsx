@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import CMSImage from "../../../CMSImage";
-import { getSizes } from "../../../CMSImage/getSizes";
+import { getSizes } from "../../../SharedComponents/CMSImage/getSizes";
 import OakImage from "../../../OakImage";
 
 import { PostListItemProps } from ".";
+
+import CMSImage from "@/components/SharedComponents/CMSImage";
 
 /**
  * The image next to the blurb in a blog list item.

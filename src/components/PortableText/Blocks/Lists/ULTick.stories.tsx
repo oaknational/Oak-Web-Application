@@ -7,7 +7,7 @@ import { PortableTextWithDefaults } from "../../PortableText";
 
 import { ULTick as Component } from "./ULTick";
 
-import Card from "@/components/SharedComponents/Card/Card";
+import Card from "@/components/SharedComponents/Card";
 
 export default {
   component: Card,

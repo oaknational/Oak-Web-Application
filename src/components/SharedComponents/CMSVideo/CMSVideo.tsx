@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import { VideoLocationValueType } from "../../browser-lib/avo/Avo";
-import { Video } from "../../common-lib/cms-types";
-import VideoPlayer from "../VideoPlayer";
-import { VideoPlayerProps } from "../VideoPlayer/VideoPlayer";
+import { VideoLocationValueType } from "../../../browser-lib/avo/Avo";
+import { Video } from "../../../common-lib/cms-types";
+import VideoPlayer from "../../VideoPlayer";
+import { VideoPlayerProps } from "../../VideoPlayer/VideoPlayer";
 
 type OtherVideoPlayerProps = Partial<
   Omit<VideoPlayerProps, "thumbnailTime" | "playbackId">

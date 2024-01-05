@@ -7,7 +7,6 @@ import ExpandingContainer from ".";
 
 import Card from "@/components/SharedComponents/Card";
 
-
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(
     <ExpandingContainer

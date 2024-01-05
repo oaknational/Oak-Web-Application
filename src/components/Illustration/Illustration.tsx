@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import CMSImage from "../CMSImage";
-import { CMSImageProps } from "../CMSImage/CMSImage";
+import { CMSImageProps } from "../SharedComponents/CMSImage/CMSImage";
 import { getIllustrationAsset, IllustrationSlug } from "../../image-data";
 
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import Box from "@/components/SharedComponents/Box";
 
 type IllustrationProps = Omit<CMSImageProps, "image"> & {

@@ -1,11 +1,12 @@
-import { mockVideoAsset } from "../../__tests__/__helpers__/cms";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import CMSVideo from "../CMSVideo";
+import { mockVideoAsset } from "../../../__tests__/__helpers__/cms";
+import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+
+import CMSVideo from ".";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockPlayer = jest.fn((_props: never) => <div />);
 
-jest.mock("../VideoPlayer", () => ({
+jest.mock("@/components/VideoPlayer", () => ({
   __esModule: true,
   default: (props: never) => mockPlayer(props),
 }));

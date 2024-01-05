@@ -16,7 +16,7 @@ import Grid, { GridArea } from "@/components/Grid";
 import AboutContactCard from "@/components/AboutContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/CMSVideo";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";

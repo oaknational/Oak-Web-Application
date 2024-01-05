@@ -20,11 +20,11 @@ import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTit
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Cover from "@/components/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/CMSVideo";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/Illustration";
 import { IllustrationSlug } from "@/image-data";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";

@@ -13,7 +13,7 @@ import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLan
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/Illustration/Illustration";
 import Cover from "@/components/Cover/Cover";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OakLink from "@/components/OakLink/OakLink";
 import Typography from "@/components/Typography/Typography";
 import Icon from "@/components/Icon/Icon";

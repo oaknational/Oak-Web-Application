@@ -5,7 +5,6 @@ import Component from ".";
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 
-
 export default {
   component: Component,
 } as ComponentMeta<typeof Component>;

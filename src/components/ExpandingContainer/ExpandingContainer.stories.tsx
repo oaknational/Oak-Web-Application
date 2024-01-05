@@ -6,7 +6,6 @@ import Component from ".";
 
 import Card from "@/components/SharedComponents/Card";
 
-
 const meta: Meta<typeof Component> = {
   component: Component,
   decorators: [AnalyticsDecorator, (Story) => <Story />],

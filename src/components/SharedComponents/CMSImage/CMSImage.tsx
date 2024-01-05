@@ -2,9 +2,9 @@ import { FC, useCallback, useMemo } from "react";
 import { ImageLoader } from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-import { Image } from "../../common-lib/cms-types";
-import OakImage, { OakImageProps } from "../OakImage";
-import { SizeValues } from "../../styles/utils/size";
+import { Image } from "../../../common-lib/cms-types";
+import OakImage, { OakImageProps } from "../../OakImage";
+import { SizeValues } from "../../../styles/utils/size";
 
 import {
   getImageDimensions,
