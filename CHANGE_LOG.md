@@ -1,3 +1,19 @@
+# [1.315.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.314.0...v1.315.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* clickable dropdown label ([c5a9c96](https://github.com/oaknational/Oak-Web-Application/commit/c5a9c96167d3acc64453629621be033c1a2a4795))
+* focus state ([4ed759a](https://github.com/oaknational/Oak-Web-Application/commit/4ed759ac9fd3d993365b3db63248e105187d991f))
+* storybook search drop down ([ed1acd4](https://github.com/oaknational/Oak-Web-Application/commit/ed1acd4b55b33f31bad1e666ba9f6df2f178748a))
+* tier dropdown when no exam boards ([6d8d293](https://github.com/oaknational/Oak-Web-Application/commit/6d8d293be4c1d706bab941fa668bc30dbd063b1d))
+
+
+### Features
+
+* connect pathways to dropdown search hit ([496407b](https://github.com/oaknational/Oak-Web-Application/commit/496407b8844f33fa8d6ca4084479f8f2253ee8ab))
+* dropdown search hit ([bcdd126](https://github.com/oaknational/Oak-Web-Application/commit/bcdd1268a0a5d60e1e1c03c17755e664b1631c3f))
+
 # [1.314.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.313.0...v1.314.0) (2024-01-05)
 
 
