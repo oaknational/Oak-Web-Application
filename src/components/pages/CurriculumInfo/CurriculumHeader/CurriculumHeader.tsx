@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
 
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, Hr, P } from "@/components/Typography";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";

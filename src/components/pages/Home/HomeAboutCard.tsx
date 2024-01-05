@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import ButtonAsLink from "../../Button/ButtonAsLink";
 import Card from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import Typography from "../../Typography";
 
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { Card as CardShape } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";

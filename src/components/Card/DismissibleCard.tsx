@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import styled from "styled-components";
 
-import IconButton from "../Button/IconButton";
-
 import Card from "./Card";
+
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 const CloseButtonWrapper = styled.div`
   position: absolute;

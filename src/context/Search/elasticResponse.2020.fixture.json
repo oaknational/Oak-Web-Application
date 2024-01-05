@@ -19,6 +19,7 @@
         "_id": "5KnzTocBd235CCw7oqe1",
         "_score": 121.737686,
         "_source": {
+          "pathways": [],
           "id": 211319,
           "type": "lesson",
           "slug": "dipping-into-macbeth-brave-macbeth-part-2-crvkad",
@@ -54,6 +55,7 @@
         "_id": "-6n2TocBd235CCw7t7bd",
         "_score": 121.539116,
         "_source": {
+          "pathways": [],
           "id": 211797,
           "type": "lesson",
           "slug": "dipping-into-macbeth-lady-macbeth-part-3-6cwkjd",
@@ -90,6 +92,7 @@
         "_score": 91.291405,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 555,
           "type": "lesson",
           "slug": "to-analyse-the-opening-of-the-play-macbeth-c9h3cd",
@@ -125,6 +128,7 @@
         "_id": "36nxTocBd235CCw75pYd",
         "_score": 90.53305,
         "_source": {
+          "pathways": [],
           "id": 4913,
           "type": "unit",
           "slug": "macbeth-narrative-writing-9566",
@@ -154,6 +158,7 @@
         "_id": "36nxTocBd235CCw75pYd",
         "_score": 90.53305,
         "_source": {
+          "pathways": [],
           "id": 4913,
           "type": "unit",
           "slug": "macbeth-narrative-writing-core",
@@ -183,6 +188,7 @@
         "_id": "16nyTocBd235CCw7Xpzz",
         "_score": 86.01493,
         "_source": {
+          "pathways": [],
           "id": 6938,
           "type": "lesson",
           "slug": "to-build-knowledge-of-the-historical-context-of-the-play-macbeth-6ngker",
@@ -222,6 +228,7 @@
         "_score": 86.000854,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 211352,
           "type": "lesson",
           "slug": "dipping-into-macbeth-the-witches-part-1-6njp4c",
@@ -258,6 +265,7 @@
         "_score": 82.54817,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 211391,
           "type": "lesson",
           "slug": "dipping-into-macbeth-murder-and-the-crown-part-4-71h3ac",
@@ -294,6 +302,7 @@
         "_score": 65.00431,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 6942,
           "type": "lesson",
           "slug": "to-generate-vocabulary-cmt62c",
@@ -329,6 +338,7 @@
         "_id": "4Kn1TocBd235CCw7zrIK",
         "_score": 63.2014,
         "_source": {
+          "pathways": [],
           "id": 7379,
           "type": "lesson",
           "slug": "to-analyse-quotes-from-the-script-71jpcc",
@@ -365,6 +375,7 @@
         "_score": 62.668194,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 650,
           "type": "lesson",
           "slug": "to-plan-a-character-description-cmu6ar",
@@ -400,6 +411,7 @@
         "_id": "yqnzTocBd235CCw7GqMu",
         "_score": 61.722958,
         "_source": {
+          "pathways": [],
           "id": 633,
           "type": "lesson",
           "slug": "to-practise-using-precise-verbs-and-adverbs-for-characterisation-65jkge",
@@ -436,6 +448,7 @@
         "_score": 61.24677,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 629,
           "type": "lesson",
           "slug": "to-analyse-evidence-from-the-clip-6njkec",
@@ -471,6 +484,7 @@
         "_id": "yKnyTocBd235CCw7SJsD",
         "_score": 61.15386,
         "_source": {
+          "pathways": [],
           "id": 659,
           "type": "lesson",
           "slug": "to-write-a-character-description-part-2-6mvkac",
@@ -507,6 +521,7 @@
         "_score": 60.744938,
         "_ignored": ["lesson_description.keyword"],
         "_source": {
+          "pathways": [],
           "id": 663,
           "type": "lesson",
           "slug": "to-write-a-character-description-part-3-chjpce",
@@ -542,6 +557,7 @@
         "_id": "o6nyTocBd235CCw7Xpzz",
         "_score": 57.056934,
         "_source": {
+          "pathways": [],
           "id": 591,
           "type": "lesson",
           "slug": "to-write-the-setting-description-c8u34r",
@@ -574,6 +590,7 @@
         "_id": "RqnzTocBd235CCw7JqSU",
         "_score": 57.056934,
         "_source": {
+          "pathways": [],
           "id": 864,
           "type": "lesson",
           "slug": "to-practise-writing-complex-sentences-69h3ed",
@@ -604,6 +621,7 @@
         "_id": "PqnzTocBd235CCw7s6h6",
         "_score": 57.056934,
         "_source": {
+          "pathways": [],
           "id": 4523,
           "type": "lesson",
           "slug": "to-plan-the-setting-description-cmv66d",
@@ -634,6 +652,7 @@
         "_id": "XqnzTocBd235CCw7lKe1",
         "_score": 57.056934,
         "_source": {
+          "pathways": [],
           "id": 3722,
           "type": "lesson",
           "slug": "to-develop-a-rich-understanding-of-words-associated-with-intelligence-and-confidence-cmvp4t",
@@ -664,6 +683,7 @@
         "_id": "CKn3TocBd235CCw7Nblk",
         "_score": 57.056934,
         "_source": {
+          "pathways": [],
           "id": 3708,
           "type": "lesson",
           "slug": "to-develop-a-rich-understanding-of-words-associated-with-dark-and-rainy-weather-6mtp2r",

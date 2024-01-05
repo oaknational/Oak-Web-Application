@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import P from "@/components/Typography/P";
 import OakLink from "@/components/OakLink";
-import Box from "@/components/SharedComponents/Box/Box";
+import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
 import Icon from "@/components/Icon";
 

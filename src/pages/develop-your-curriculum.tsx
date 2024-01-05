@@ -12,7 +12,7 @@ import Typography from "@/components/Typography/Typography";
 import Card from "@/components/Card";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CardLink from "@/components/Card/CardLink";
 import Grid from "@/components/Grid";
 import GridArea from "@/components/Grid/GridArea";

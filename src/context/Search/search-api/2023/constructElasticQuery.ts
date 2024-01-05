@@ -48,6 +48,7 @@ export const constructElasticQuery = (query: ConstructQueryParams) => {
     pre_tags: ["<b>"],
     post_tags: ["</b>"],
     fields: {
+      pupil_lesson_outcome: {},
       // topic_title: {},
       // theme_title: {},
       // lesson_description: {},
