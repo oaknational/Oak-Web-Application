@@ -42,6 +42,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       $minHeight={44}
       $display={activeFilters.length ? "flex" : "none"}
     >
+      <Span $font="heading-light-7" $mr={16}>
+        Active filters:
+      </Span>
       <Flex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button
@@ -51,6 +54,8 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
             onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"
+            $font={"heading-7"}
+            $color={"grey70"}
             $iconPosition="trailing"
             $mr={16}
           />
