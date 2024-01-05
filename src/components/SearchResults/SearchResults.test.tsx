@@ -42,14 +42,14 @@ const props = {
   allKeyStages: searchPageFixture().keyStages,
 };
 
-const searchResultClicked = jest.fn();
+const searchResultOpened = jest.fn();
 
 const render = renderWithProviders();
 
 describe("<SearchResults />", () => {
   test("A lesson search result links to the lesson listing page", () => {
     const { getByRole } = render(
-      <SearchResults {...props} searchResultClicked={searchResultClicked} />,
+      <SearchResults {...props} searchResultOpened={searchResultOpened} />,
     );
     expect(
       getByRole("link", {
@@ -64,7 +64,7 @@ describe("<SearchResults />", () => {
   test("A unit search result links to the unit listing page", () => {
     const { getByRole } = render(
       <SearchResults
-        searchResultClicked={searchResultClicked}
+        searchResultOpened={searchResultOpened}
         {...props}
         hits={props.hits.filter((hit) => hit._source.type === "unit")}
       />,
@@ -79,7 +79,7 @@ describe("<SearchResults />", () => {
 
   test("it renders the search results", () => {
     const { getAllByRole } = render(
-      <SearchResults searchResultClicked={searchResultClicked} {...props} />,
+      <SearchResults searchResultOpened={searchResultOpened} {...props} />,
     );
 
     const searchElement = getAllByRole("listitem");
@@ -91,7 +91,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(21);
     const { getByRole } = render(
       <SearchResults
-        searchResultClicked={searchResultClicked}
+        searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}
       />,
@@ -105,7 +105,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(20);
     const { queryByRole } = render(
       <SearchResults
-        searchResultClicked={searchResultClicked}
+        searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}
       />,
@@ -119,7 +119,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(1);
     const { getByRole } = render(
       <SearchResults
-        searchResultClicked={searchResultClicked}
+        searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}
       />,
@@ -131,6 +131,6 @@ describe("<SearchResults />", () => {
       searchHit.click();
     });
 
-    expect(searchResultClicked).toHaveBeenCalled();
+    expect(searchResultOpened).toHaveBeenCalled();
   });
 });

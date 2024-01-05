@@ -45,6 +45,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               </Typography>
               <Box $mt={16} $width={["100%", "100%", "90%"]}>
                 <SearchForm
+                  searchContext="homepage"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
                   handleSubmit={(value) => {

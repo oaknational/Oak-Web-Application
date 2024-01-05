@@ -13,7 +13,7 @@ import { KeyStage, SearchHit } from "@/context/Search/search.types";
 interface SearchResultsProps {
   hits: Array<SearchHit>;
   allKeyStages: KeyStage[];
-  searchResultClicked: (
+  searchResultOpened: (
     searchHit: SearchResultsItemProps,
     searchRank: number,
   ) => void;
@@ -22,7 +22,7 @@ interface SearchResultsProps {
 export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
-  const { hits, allKeyStages, searchResultClicked } = props;
+  const { hits, allKeyStages, searchResultOpened } = props;
   const hitCount = hits.length;
   const paginationProps = usePagination({
     totalResults: hitCount,
@@ -52,7 +52,7 @@ const SearchResults = (props: SearchResultsProps) => {
                     {...searchHitObject}
                     firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
                     onClick={(props) => {
-                      searchResultClicked(props, searchRank(index));
+                      searchResultOpened(props, searchRank(index));
                     }}
                   />
                 </LI>
