@@ -60,9 +60,11 @@ export const searchResultsItem = (
     keyStageTitle: "Key stage 4",
     keyStageSlug: "ks4",
     subjectTitle: "Computing",
+    unitTitle: "Computer systems",
     onClick: () => {
       console.log("click");
     },
+
     buttonLinkProps: {
       page: "lesson-overview",
       lessonSlug: "the-fde-cycle-68w3ct",
