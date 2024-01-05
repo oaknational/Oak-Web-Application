@@ -107,16 +107,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </Heading>
-        {description ||
-          (pupilLessonOutcome && (
-            <P
-              dangerouslySetInnerHTML={{
-                __html: searchHitDescription,
-              }}
-              $mt={16}
-              $font={"body-2"}
-            />
-          ))}
+        {searchHitDescription && (
+          <P
+            dangerouslySetInnerHTML={{
+              __html: searchHitDescription,
+            }}
+            $mt={16}
+            $font={"body-2"}
+          />
+        )}
       </Flex>
       <Flex $mb={20}>
         {isPathwaySearchHit ? (
