@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { Heading, P } from "@/components/Typography";
-import Button from "@/components/Button";
+import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";

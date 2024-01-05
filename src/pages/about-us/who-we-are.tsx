@@ -10,7 +10,7 @@ import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/Card";
 import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/OutlineHeading";
 import Grid, { GridArea } from "@/components/Grid";
 import AboutContactCard from "@/components/AboutContactCard";

@@ -1,13 +1,14 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Flex, { FlexProps } from "../SharedComponents/Flex";
 import Typography, { LI } from "../Typography";
 import CardLink from "../Card/CardLink";
 import { zIndexMap } from "../../styles/utils/zIndex";
 import GraphiCircleIcon from "../Icon/GraphicCircleIcon";
 import { IconName } from "../Icon";
 import { GridList } from "../Typography/UL";
+
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 const GraphicContainer: FC<FlexProps> = (props) => (
   <Flex

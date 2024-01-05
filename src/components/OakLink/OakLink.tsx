@@ -11,7 +11,7 @@ import {
 import flex from "../../styles/utils/flex";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import { box } from "../SharedComponents/Box";
-import { HTMLAnchorProps } from "../Button/common";
+import { HTMLAnchorProps } from "../SharedComponents/Button/common";
 import Svg from "../Svg";
 
 import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";

@@ -1,7 +1,9 @@
 import { RefObject, useEffect } from "react";
 
-import IconButton from "../Button/IconButton";
-import ButtonGroup, { ButtonGroupProps } from "../ButtonGroup/ButtonGroup";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import ButtonGroup, {
+  ButtonGroupProps,
+} from "@/components/SharedComponents/ButtonGroup";
 
 type NavigationButtonsProps = ButtonGroupProps & {
   nextBio?: () => void;

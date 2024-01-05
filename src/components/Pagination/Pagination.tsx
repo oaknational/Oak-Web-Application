@@ -3,8 +3,8 @@ import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
 
 import { Span } from "../Typography";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
 
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type PaginationProps = {
