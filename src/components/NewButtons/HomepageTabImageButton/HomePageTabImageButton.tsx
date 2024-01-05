@@ -26,7 +26,7 @@ import {
   CommonButtonProps,
   HTMLButtonProps,
 } from "@/components/SharedComponents/Button/common";
-import Illustration from "@/components/Illustration/Illustration";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;

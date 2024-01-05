@@ -11,7 +11,7 @@ import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import Illustration from "@/components/Illustration/Illustration";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OakLink from "@/components/OakLink/OakLink";

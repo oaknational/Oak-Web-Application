@@ -10,9 +10,9 @@ import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import { SpacingProps } from "../../styles/utils/spacing";
-import Illustration from "../../components/Illustration";
 import getPageProps from "../../node-lib/getPageProps";
 
+import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import CMSImage, {
   CMSImageProps,
