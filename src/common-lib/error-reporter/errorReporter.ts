@@ -41,6 +41,7 @@ export const matchesIgnoredError = (error: {
     /t.report is not a function/i,
     /null is not an object (evaluating 'e.portalId')/i,
     /Hubspot script failed to load/i,
+    /undefined is not an object (evaluating 'e.find(e=>e.startsWith("#EXT-X-TARGETDURATION")).split')/i,
   ];
   return (
     filesToMatch.some((regex) =>
