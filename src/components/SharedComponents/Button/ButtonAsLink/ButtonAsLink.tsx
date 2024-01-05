@@ -5,14 +5,13 @@ import styled from "styled-components";
 import {
   OakLinkPropsWithoutChildren,
   transformOakLinkProps,
-} from "../../OakLink";
-
-import useButtonAsLinkProps from "./useButtonAsLinkProps";
+} from "../../../OakLink";
+import useButtonAsLinkProps from "../useButtonAsLinkProps";
 import buttonStyles, {
   ButtonStylesProps,
   getButtonStylesProps,
-} from "./button.styles";
-import { CommonButtonProps, defaultButtonProps } from "./common";
+} from "../button.styles";
+import { CommonButtonProps, defaultButtonProps } from "../common";
 
 import ButtonInner, {
   ButtonInnerProps,

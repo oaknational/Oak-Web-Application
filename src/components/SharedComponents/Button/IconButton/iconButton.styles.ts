@@ -1,8 +1,7 @@
 import { css } from "styled-components";
 
-import { margin, MarginProps } from "../../../styles/utils/spacing";
-import { BackgroundIcon } from "../../Icon/Icon";
-
+import { margin, MarginProps } from "../../../../styles/utils/spacing";
+import { BackgroundIcon } from "../../../Icon/Icon";
 import {
   ButtonBackground,
   ButtonSize,
@@ -13,8 +12,8 @@ import {
   DEFAULT_BUTTON_BACKGROUND,
   getButtonColor,
   getIconButtonHeight,
-} from "./common";
-import { iconFocusUnderline } from "./IconFocusUnderline";
+} from "../common";
+import { iconFocusUnderline } from "../IconFocusUnderline";
 
 const disabledStyles = css`
   opacity: 0.5;

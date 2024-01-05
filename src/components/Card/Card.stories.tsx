@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { P } from "../Typography";
 
-
 import CardTitle from "./CardComponents/CardTitle";
 import CardImage from "./CardComponents/CardImage";
 

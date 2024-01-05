@@ -8,7 +8,6 @@ import Toast from "./Toast";
 
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 
-
 describe("toast notification", () => {
   const ROLE = "alert";
   test("shows feedback", async () => {

@@ -5,7 +5,6 @@ import Card from "./Card";
 
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-
 const CloseButtonWrapper = styled.div`
   position: absolute;
   top: 12px;

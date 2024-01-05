@@ -5,7 +5,6 @@ import Component from "./ButtonGroup";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
-
 export default {
   component: Component,
 } as ComponentMeta<typeof Component>;

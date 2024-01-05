@@ -6,12 +6,13 @@ import {
 } from "react";
 import styled from "styled-components";
 
-import { CommonIconButtonProps } from "./common";
+import { CommonIconButtonProps } from "../common";
+import IconButtonInner from "../IconButtonInner";
+
 import iconButtonStyles, {
   getIconButtonStylesProps,
   IconButtonStylesProps,
 } from "./iconButton.styles";
-import IconButtonInner from "./IconButtonInner";
 
 import UnstyledButton from "@/components/UnstyledButton";
 

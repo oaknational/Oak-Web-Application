@@ -11,7 +11,6 @@ import Menu from "./Menu";
 
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("Menu", () => {

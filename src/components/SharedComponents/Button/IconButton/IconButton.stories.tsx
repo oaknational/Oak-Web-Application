@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./IconButton";
+import Component from ".";
 
 import Flex from "@/components/SharedComponents/Flex";
 

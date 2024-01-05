@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./ButtonAsLink";
+import Component from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
