@@ -5,6 +5,7 @@ import { Heading } from "../Typography";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
+import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -18,7 +19,6 @@ import SearchForm from "@/components/SearchForm";
 import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -87,18 +87,20 @@ const Search: FC<SearchProps> = (props) => {
     searchHit: SearchResultsItemProps;
     searchRank: number;
   }) => {
-    console.log(searchHit.isToggleOpen);
-    if (searchHit.isToggleOpen) {
+    if (
+      searchHit.isToggleOpen &&
+      isKeyStageTitleValueType(searchHit.keyStageTitle)
+    ) {
       track.searchResultExpanded({
         context: "search",
         keyStageSlug: searchHit.keyStageSlug || "",
-        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
         unitName:
           searchHit.type === "lesson"
-            ? searchHit.unitTitle.replace(/(<([^>]+)>)/gi, "")
-            : searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+            ? removeHTMLTags(searchHit.unitTitle)
+            : removeHTMLTags(searchHit.title),
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
@@ -106,7 +108,7 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonName: removeHTMLTags(searchHit.title),
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
@@ -122,16 +124,16 @@ const Search: FC<SearchProps> = (props) => {
     searchHit: SearchResultsItemProps;
     searchRank: number;
   }) => {
-    if (searchHit) {
+    if (searchHit && isKeyStageTitleValueType(searchHit.keyStageTitle)) {
       track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
-        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
         unitName:
           searchHit.type === "lesson"
-            ? searchHit.unitTitle.replace(/(<([^>]+)>)/gi, "")
-            : searchHit.title.replace(/(<([^>]+)>)/gi, ""), // unit name without highlighting html tags,
+            ? removeHTMLTags(searchHit.unitTitle)
+            : removeHTMLTags(searchHit.title),
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
@@ -140,7 +142,7 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.title.replace(/(<([^>]+)>)/gi, ""),
+        lessonName: removeHTMLTags(searchHit.title),
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
