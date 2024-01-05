@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { CMSImageProps } from "../SharedComponents/CMSImage/CMSImage";
 import { getIllustrationAsset, IllustrationSlug } from "../../image-data";
 
+import { CMSImageProps } from "@/components/SharedComponents/CMSImage/CMSImage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Box from "@/components/SharedComponents/Box";
 

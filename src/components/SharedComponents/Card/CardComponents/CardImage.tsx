@@ -1,9 +1,9 @@
 import { CSSProperties, FC } from "react";
 
 import { IllustrationSlug } from "../../../../image-data";
-import { CMSImageProps } from "../../CMSImage/CMSImage";
 import Illustration from "../../../Illustration";
 
+import { CMSImageProps } from "@/components/SharedComponents/CMSImage/CMSImage";
 import AspectRatio, {
   AspectRatios,
 } from "@/components/SharedComponents/AspectRatio";
