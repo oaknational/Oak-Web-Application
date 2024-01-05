@@ -14,7 +14,7 @@ const parse = (value?: NullablePixelSpacing) => {
   }
 };
 
-const grid = css<GridProps>`
+export const grid = css<GridProps>`
   ${responsive("grid-row-gap", (props) => props.$rg, parse)}
   ${responsive("grid-column-gap", (props) => props.$cg, parse)}
   ${responsive("grid-auto-rows", (props) => props.$gridAutoRows)}
