@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { P } from "@/components/Typography";
 
 export interface TranscriptViewerProps {

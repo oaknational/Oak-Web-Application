@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Box from "@/components/Box";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";

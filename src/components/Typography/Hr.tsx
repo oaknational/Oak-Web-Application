@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Box, { BoxProps } from "../Box";
+import Box, { BoxProps } from "../SharedComponents/Box";
 import Svg from "../Svg";
 
 type Thickness = 1 | 2 | 3 | 4 | 8;

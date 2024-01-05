@@ -3,8 +3,8 @@ import { FC, useState } from "react";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
-import Flex from "@/components/Flex";
-import Box from "@/components/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/OakLink";
 import { LI } from "@/components/Typography";
 import { FlexList } from "@/components/Typography/UL";

@@ -1,7 +1,8 @@
 import { UnitListingLinkProps } from "../../../common-lib/urls";
-import Flex from "../../Flex";
 import CategoryFilterList from "../CategoryFilterList";
 import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 export type LearningThemeSelectedTrackingProps = {
   keyStageSlug: string;

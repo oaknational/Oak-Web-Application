@@ -16,7 +16,7 @@ import {
 } from "@/components/Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "@/components/Card/SummaryCard";
 import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import {
   PostListingPageProps,

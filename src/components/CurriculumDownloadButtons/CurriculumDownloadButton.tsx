@@ -2,13 +2,13 @@ import React, { FC, useState } from "react";
 import { capitalize } from "lodash";
 
 import ButtonAsLink from "../Button/ButtonAsLink";
-import Flex from "../Flex";
 import Button from "../Button";
 import FieldError from "../FormFields/FieldError";
-import Box from "../Box";
 
 import downloadZip from "./helpers/downloadZip";
 
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";

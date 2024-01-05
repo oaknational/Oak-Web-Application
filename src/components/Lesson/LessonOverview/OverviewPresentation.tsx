@@ -2,7 +2,7 @@ import { FC, memo, useState } from "react";
 
 import AspectRatio from "../../AspectRatio";
 
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 
 interface OverviewPresentationProps {
   asset: string | null;
