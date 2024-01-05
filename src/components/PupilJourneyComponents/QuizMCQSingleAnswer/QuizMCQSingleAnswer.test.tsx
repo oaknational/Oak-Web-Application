@@ -3,11 +3,12 @@ import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
 
+import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
+
 import {
   QuizEngineContextType,
   QuizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
@@ -35,10 +36,13 @@ describe("QuizMCQSingleAnswer", () => {
   it("renders the question answers", () => {
     const context = getContext();
 
+    const answers =
+      context?.currentQuestionData?.answers?.["multiple-choice"] ?? [];
+
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={context}>
-          <QuizRenderer />
+          <QuizMCQSingleAnswer questionUid="123" answers={answers} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
