@@ -30,6 +30,7 @@ import {
   getSchoolName,
   getSchoolOption,
 } from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
+import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
 
 type LessonShareProps =
   | {
@@ -98,12 +99,14 @@ export function LessonShare(props: LessonShareProps) {
   const { onSubmit } = useResourceFormSubmit({
     type: "share",
   });
+  const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
     data: ResourceFormProps,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
+    await onHubspotSubmit(data);
 
     if (editDetailsClicked && !data.email) {
       setEmailInLocalStorage("");

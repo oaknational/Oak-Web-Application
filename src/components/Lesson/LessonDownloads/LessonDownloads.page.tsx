@@ -29,6 +29,7 @@ import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
+import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
 
 type LessonDownloadsProps =
   | {
@@ -114,6 +115,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     type: "download",
   });
 
+  const { onHubspotSubmit } = useHubspotSubmit();
+
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
 
@@ -160,6 +163,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onwardContent,
         emailSupplied: data?.email ? true : false,
       });
+
+      onHubspotSubmit(data);
     } catch (error) {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);
