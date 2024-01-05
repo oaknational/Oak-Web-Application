@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
-import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
+import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/OakLink";

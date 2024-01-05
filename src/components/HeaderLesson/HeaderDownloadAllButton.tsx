@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { HeaderLessonProps } from "./HeaderLesson";
 
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,

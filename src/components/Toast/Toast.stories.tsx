@@ -2,10 +2,11 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { ToastProvider } from "../../context/Toast";
-import CopyLinkButton from "../Button/CopyLinkButton";
 import PostHogDecorator from "../../storybook-decorators/PostHogDecorator";
 
 import Component from ".";
+
+import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 
 export default {
   decorators: [PostHogDecorator],

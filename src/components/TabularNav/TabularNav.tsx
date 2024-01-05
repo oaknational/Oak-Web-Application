@@ -1,5 +1,8 @@
-import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
-import Flex, { FlexProps } from "../SharedComponents/Flex";
+import ButtonAsLink, {
+  ButtonAsLinkProps,
+} from "../SharedComponents/Button/ButtonAsLink";
+
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 /**
  * TabularNav is a 'nav' component which renders 'minimal' (text-link) link

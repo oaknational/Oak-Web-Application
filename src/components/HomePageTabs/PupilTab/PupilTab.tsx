@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import ImageContainer from "../ImageContainer/ImageContainer";
 
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import { GridArea } from "@/components/Grid";
 import Grid from "@/components/Grid/Grid";

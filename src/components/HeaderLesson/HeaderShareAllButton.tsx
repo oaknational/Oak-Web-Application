@@ -5,7 +5,7 @@ import { Span } from "../Typography";
 import { HeaderLessonProps } from "./HeaderLesson";
 
 import Flex from "@/components/SharedComponents/Flex";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
