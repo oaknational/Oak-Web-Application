@@ -20,13 +20,12 @@ jest.mock("@/utils/resultsPerPage", () => ({
 }));
 
 const lessonSelected = jest.fn();
-const searchResultClicked = jest.fn();
+
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       lessonSelected: (...args: unknown[]) => lessonSelected(...args),
-      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
     },
   }),
 }));

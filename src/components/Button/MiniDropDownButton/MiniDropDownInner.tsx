@@ -21,11 +21,12 @@ const MiniDropDownInner: FC<MiniDropDownInnerProps> = ({
     <Flex
       $alignItems={"center"}
       $textDecoration={isHovered ? "underline" : "none"}
+      $zIndex={"inFront"}
     >
       <ButtonLabel $color={isExpanded ? "navy120" : "navy"}>
         {label}
       </ButtonLabel>
-      <Icon name={icon} />
+      <Icon $color={isExpanded ? "navy120" : "navy"} name={icon} />
     </Flex>
   );
 };
