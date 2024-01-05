@@ -19,6 +19,7 @@ import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { convertUnitSlugToTitle } from "@/components/SearchComponents/helpers";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -96,7 +97,7 @@ const Search: FC<SearchProps> = (props) => {
         unitName:
           searchHit.type === "unit"
             ? searchHit.title.replace(/(<([^>]+)>)/gi, "")
-            : null, // unit name without highlighting html tags,
+            : convertUnitSlugToTitle(searchHit.buttonLinkProps.unitSlug), // unit name without highlighting html tags,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
