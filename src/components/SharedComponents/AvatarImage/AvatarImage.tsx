@@ -1,11 +1,11 @@
 import { max } from "lodash";
 import { FC } from "react";
 
-import { Image } from "../../common-lib/cms-types";
-import { PixelSpacing } from "../../styles/theme";
-import { ResponsiveValues } from "../../styles/utils/responsive";
-import Circle from "../Circle";
-import CMSImage from "../CMSImage";
+import { Image } from "../../../common-lib/cms-types";
+import { PixelSpacing } from "../../../styles/theme";
+import { ResponsiveValues } from "../../../styles/utils/responsive";
+import Circle from "../../Circle";
+import CMSImage from "../../CMSImage";
 
 import { FlexProps } from "@/components/SharedComponents/Flex";
 
