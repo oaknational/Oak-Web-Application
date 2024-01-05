@@ -12,9 +12,26 @@ type SearchFilterCheckboxProps = {
   checked: boolean;
   width?: SizeProps["$width"];
   onChange: () => void;
+  filterType: string;
+  searchRefined: (filterType: string, filterValue: string) => void;
 };
+
 const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
-  const { slug, label, onChange, checked, name, width = "50%" } = props;
+  const {
+    slug,
+    label,
+    onChange,
+    checked,
+    name,
+    width = "50%",
+    filterType,
+    searchRefined,
+  } = props;
+
+  if (checked) {
+    searchRefined(filterType, label);
+  }
+
   return (
     <Box $width={width}>
       <Checkbox

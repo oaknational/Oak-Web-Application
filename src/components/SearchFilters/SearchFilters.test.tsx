@@ -7,13 +7,17 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const props = searchFilters;
 
+const searchRefined = jest.fn();
+
 describe("SearchFilters", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
   test("renders all the key stage, subject filters and search type filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
+        searchRefined={searchRefined}
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
@@ -31,6 +35,7 @@ describe("SearchFilters", () => {
   test("have correct a11y label", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchRefined={searchRefined}
         contentTypeFilters={props.contentTypeFilters}
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
@@ -49,6 +54,7 @@ describe("SearchFilters", () => {
   test("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchRefined={searchRefined}
         contentTypeFilters={props.contentTypeFilters.map((filter) => ({
           ...filter,
           checked: true,
@@ -87,6 +93,7 @@ describe("SearchFilters", () => {
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchRefined={searchRefined}
         contentTypeFilters={props.contentTypeFilters.map((filter) => ({
           ...filter,
           checked: false,
@@ -125,6 +132,7 @@ describe("SearchFilters", () => {
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
       <SearchFilters
+        searchRefined={searchRefined}
         contentTypeFilters={props.contentTypeFilters.map((filter) => ({
           ...filter,
           checked: false,
@@ -164,5 +172,35 @@ describe("SearchFilters", () => {
     expect(mockOnChange).toHaveBeenCalledWith(
       expect.objectContaining({ target: unitFilter }),
     );
+  });
+
+  test("searchRefined function invoked when checked", () => {
+    const { getByRole } = renderWithTheme(
+      <SearchFilters
+        searchRefined={searchRefined}
+        contentTypeFilters={props.contentTypeFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
+        keyStageFilters={props.keyStageFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
+        subjectFilters={props.subjectFilters.map((filter) => ({
+          ...filter,
+          checked: true,
+        }))}
+        examBoardFilters={props.examBoardFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
+      />,
+    );
+    const ks2Filter = getByRole("checkbox", {
+      name: "KS2 filter",
+    });
+    ks2Filter.click();
+
+    expect(searchRefined).toHaveBeenCalledTimes(2);
   });
 });
