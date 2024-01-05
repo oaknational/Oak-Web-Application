@@ -12,7 +12,7 @@ import Grid, { GridArea } from "@/components/Grid";
 import Card from "@/components/Card";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import AnchorTarget from "@/components/AnchorTarget";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 const EarlyReleaseUnits: NextPage = () => {
   const exemplarUnitsFixture = earlyReleaseExemplarUnitsFixture();

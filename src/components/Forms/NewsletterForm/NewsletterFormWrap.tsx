@@ -3,11 +3,11 @@ import { FC, useId } from "react";
 import Card, { CardProps } from "../../Card";
 import CardTitle from "../../Card/CardComponents/CardTitle";
 import { P } from "../../Typography";
-import AnchorTarget from "../../AnchorTarget";
 import OakLink from "../../OakLink";
 
 import NewsletterForm, { NewsletterFormProps } from "./NewsletterForm";
 
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Grid, { GridArea } from "@/components/Grid";
 
 /**

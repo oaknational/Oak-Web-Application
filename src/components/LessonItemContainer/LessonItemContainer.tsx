@@ -1,12 +1,12 @@
 import { forwardRef } from "react";
 
 import { Heading, Hr } from "../Typography";
-import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
 import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
 import { ContainerLink } from "./ContainerLink";
 
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
