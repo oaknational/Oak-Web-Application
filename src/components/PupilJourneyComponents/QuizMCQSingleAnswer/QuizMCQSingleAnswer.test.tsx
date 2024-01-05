@@ -14,7 +14,7 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getContext = (): QuizEngineContextType => ({
+const getContext = (): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: questionsArrayFixture[0],
   currentQuestionIndex: 0,
   questionState: [
@@ -24,9 +24,9 @@ const getContext = (): QuizEngineContextType => ({
       grade: 0,
     },
   ],
-  updateQuestionMode: (mode) => mode,
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
+  updateQuestionMode: jest.fn(),
+  handleSubmitMCAnswer: jest.fn(),
+  handleNextQuestion: jest.fn(),
   score: 0,
   maxScore: 1,
   isComplete: false,
@@ -59,5 +59,27 @@ describe("QuizMCQSingleAnswer", () => {
         }
       }
     }
+  });
+
+  it("changes the mode from init to input when an answer is selected", () => {
+    const context = getContext();
+
+    const answers =
+      context?.currentQuestionData?.answers?.["multiple-choice"] ?? [];
+
+    const { getAllByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizMCQSingleAnswer questionUid="123" answers={answers} />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    const answerInput = getAllByRole("radio")[0];
+    expect(answerInput).toBeInTheDocument();
+
+    answerInput?.click();
+
+    expect(context.updateQuestionMode).toHaveBeenCalledWith("input");
   });
 });
