@@ -1,5 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 
 import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
 
@@ -27,12 +28,58 @@ const createSearchResult = (): SearchHit => {
       subject_slug: "subject-slug",
       key_stage_title: "key stage title",
       key_stage_slug: "key-stage-1",
+      pathways: [],
     },
   };
 };
 
 const resultsProps: Partial<SearchProps> = {
   results: [createSearchResult()],
+  status: "success",
+};
+const resultsPropsPathWays: Partial<SearchProps> = {
+  results: [
+    {
+      ...createSearchResult(),
+      ...{
+        _source: {
+          ...createSearchResult()._source,
+          pathways: [
+            {
+              programme_slug: "maths-program-1",
+              unit_slug: "algebra-unit-1",
+              unit_title: "Algebra",
+              key_stage_slug: "ks3",
+              key_stage_title: "Key Stage 3",
+              subject_slug: "maths",
+              subject_title: "Mathematics",
+              tier_slug: "higher",
+              tier_title: "Higher",
+              exam_board_slug: "exam-board-1",
+              exam_board_title: "Exam Board 1",
+              year_slug: "2023",
+              year_title: "2023-2024",
+            },
+            {
+              programme_slug: "maths-program-1",
+              unit_slug: "algebra-unit-2",
+              unit_title: "Algebra",
+              key_stage_slug: "ks3",
+              key_stage_title: "Key Stage 3",
+              subject_slug: "maths",
+              subject_title: "Mathematics",
+              tier_slug: "higher",
+              tier_title: "Higher",
+              exam_board_slug: "exam-board-2",
+              exam_board_title: "Exam Board 2",
+              year_slug: "2023",
+              year_title: "2023-2024",
+            },
+          ],
+        },
+      },
+    },
+  ],
   status: "success",
 };
 
@@ -99,6 +146,7 @@ const props: SearchProps = {
 
 const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
+const searchResultClicked = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
@@ -107,6 +155,7 @@ jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
         searchResultsDisplayed(...args),
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
       searchJourneyInitiated: jest.fn(),
+      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
     },
   }),
 }));
@@ -152,7 +201,7 @@ describe("Search.page.tsx", () => {
     );
     expect(getByRole("status")).not.toHaveTextContent("No search results");
   });
-  test("status: 'no results' message not displayed if resuts not empty", () => {
+  test("status: 'no results' message not displayed if results not empty", () => {
     const { getByRole } = render(
       <Search
         {...props}
@@ -183,8 +232,10 @@ describe("Search.page.tsx", () => {
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
     getByRole("searchbox").focus();
-    await user.keyboard("macb");
-    await user.keyboard("{Enter}");
+    await act(async () => {
+      await user.keyboard("macb");
+      await user.keyboard("{Enter}");
+    });
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("query is set on submit button click", async () => {
@@ -193,22 +244,28 @@ describe("Search.page.tsx", () => {
     const setSearchTerm = props.setSearchTerm as jest.Mock;
     setSearchTerm.mockClear();
     const submit = getByRole("button", { name: "Submit" });
-    await user.click(submit);
+    await act(async () => {
+      await user.click(submit);
+    });
     expect(setSearchTerm).toHaveBeenCalledTimes(1);
   });
   test("tab order, 1: search input", async () => {
     const { getByRole } = render(<Search {...props} />);
     const user = userEvent.setup();
     const searchInput = getByRole("searchbox");
-    await user.tab();
+    await act(async () => {
+      await user.tab();
+    });
     expect(searchInput).toHaveFocus();
   });
   test("tab order, 2: submit button", async () => {
     const { getByRole } = render(<Search {...props} {...resultsProps} />);
 
     const user = userEvent.setup();
-    await user.tab();
-    await user.tab();
+    await act(async () => {
+      await user.tab();
+      await user.tab();
+    });
     expect(getByRole("button", { name: "Submit" })).toHaveFocus();
   });
   test("clicking result description clicks the link", async () => {
@@ -229,7 +286,9 @@ describe("Search.page.tsx", () => {
       },
       false,
     );
-    await user.click(description);
+    await act(async () => {
+      await user.click(description);
+    });
 
     expect(onLinkClick).toHaveBeenCalled();
   });
@@ -240,12 +299,16 @@ describe("Search.page.tsx", () => {
       (ks) => ks.slug === "ks1",
     )?.onChange as jest.Mock;
     ks1OnChange.mockClear();
-    await user.click(getByRole("button", { name: "Filters" }));
+    await act(async () => {
+      await user.click(getByRole("button", { name: "Filters" }));
+    });
     const filter = getByRole("checkbox", { name: "KS1 filter" });
     if (!filter) {
       throw new Error("Expected filter to exist");
     }
-    await user.click(filter);
+    await act(async () => {
+      await user.click(filter);
+    });
     await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
   });
   test("clicking a calls filter.onChange appropriately for subject filters", async () => {
@@ -255,12 +318,16 @@ describe("Search.page.tsx", () => {
       (c) => c.slug === "computing",
     )?.onChange as jest.Mock;
     computingOnChange.mockClear();
-    await user.click(getByRole("button", { name: "Filters" }));
+    await act(async () => {
+      await user.click(getByRole("button", { name: "Filters" }));
+    });
     const filter = getByRole("checkbox", { name: "Computing filter" });
     if (!filter) {
       throw new Error("Expected filter to exist");
     }
-    await user.click(filter);
+    await act(async () => {
+      await user.click(filter);
+    });
     await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
   });
   test("clicking a calls filter.onChange appropriately for contentType filters", async () => {
@@ -270,12 +337,16 @@ describe("Search.page.tsx", () => {
       (t) => t.slug === "unit",
     )?.onChange as jest.Mock;
     typeOnChange.mockClear();
-    await user.click(getByRole("button", { name: "Filters" }));
+    await act(async () => {
+      await user.click(getByRole("button", { name: "Filters" }));
+    });
     const filter = getByRole("checkbox", { name: "Units filter" });
     if (!filter) {
       throw new Error("Expected filter to exist");
     }
-    await user.click(filter);
+    await act(async () => {
+      await user.click(filter);
+    });
     await waitFor(() => expect(typeOnChange).toHaveBeenCalledTimes(1));
   });
   test("searchResultsDisplayed is called when a search is completed with success status", async () => {
@@ -302,5 +373,62 @@ describe("Search.page.tsx", () => {
     render(<Search {...props} {...resultsProps} />);
 
     expect(setSearchStartTime).toHaveBeenCalledTimes(1);
+  });
+  test("searchResultClicked is called when a search hit is clicked", async () => {
+    const { getByText } = render(<Search {...props} {...resultsProps} />);
+    const description = getByText("lesson title");
+    const user = userEvent.setup();
+    await act(async () => {
+      await user.click(description);
+    });
+
+    expect(searchResultClicked).toHaveBeenCalledTimes(1);
+    expect(searchResultClicked).toHaveBeenCalledWith({
+      analyticsUseCase: null,
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key-stage 1",
+      lessonName: "lesson title",
+      lessonSlug: "lesson-slug",
+      searchFilterOptionSelected: [],
+      searchRank: 1,
+      searchResultCount: 1,
+      searchResultType: "lesson",
+      subjectSlug: "subject-slug",
+      subjectTitle: "subject title",
+      unitName: "lesson title",
+      unitSlug: "topic-slug",
+    });
+  });
+  test("searchResultClicked is called when a pathway hit is clicked", async () => {
+    const { getByText } = render(
+      <Search {...props} {...resultsPropsPathWays} />,
+    );
+    const dropdown = getByText("Select exam board");
+    const user = userEvent.setup();
+    await act(async () => {
+      await user.click(dropdown);
+    });
+
+    const link = getByText("Exam Board 1 Higher");
+    await act(async () => {
+      await user.click(link);
+    });
+
+    expect(searchResultClicked).toHaveBeenCalledTimes(1);
+    expect(searchResultClicked).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key-stage 1",
+      lessonName: "lesson title",
+      lessonSlug: "lesson-slug",
+      searchFilterOptionSelected: [],
+      searchRank: 1,
+      searchResultCount: 1,
+      searchResultType: "lesson",
+      subjectSlug: "subject-slug",
+      subjectTitle: "subject title",
+      unitName: "lesson title",
+      unitSlug: "topic-slug",
+    });
   });
 });
