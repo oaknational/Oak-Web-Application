@@ -31,7 +31,7 @@ module.exports = function githubDeploymentPlugin() {
 
   return {
     onPreBuild: async ({ netlifyConfig, utils }) => {
-      if (isDisabled()) {
+      if (isDisabled) {
         return;
       }
 
@@ -172,7 +172,7 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status failure.
      */
     onError: async ({ utils }) => {
-      if (isDisabled()) {
+      if (isDisabled) {
         return;
       }
 
@@ -201,7 +201,7 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status success.
      */
     onSuccess: async ({ utils }) => {
-      if (isDisabled()) {
+      if (isDisabled) {
         return;
       }
 
