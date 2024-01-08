@@ -1,4 +1,4 @@
-const { getExitIfPluginDisabled } = require("../lib");
+const { getIsPluginDisabled } = require("../lib");
 
 const { createDeployment, updateDeployment } = require("./actions");
 
@@ -24,16 +24,16 @@ const DEPLOY_CONTEXTS = {
 /**
  * We need to disable plugins for some custom builds.
  */
-const exitIfDisabled = getExitIfPluginDisabled(
-  "PLUGIN_GITHUB_DEPLOYMENTS_DISABLED",
-);
+const isDisabled = getIsPluginDisabled("PLUGIN_GITHUB_DEPLOYMENTS_DISABLED");
 
 module.exports = function githubDeploymentPlugin() {
   let deploymentInfo = {};
 
   return {
     onPreBuild: async ({ netlifyConfig, utils }) => {
-      exitIfDisabled();
+      if (isDisabled()) {
+        return;
+      }
 
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
@@ -172,7 +172,9 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status failure.
      */
     onError: async ({ utils }) => {
-      exitIfDisabled();
+      if (isDisabled()) {
+        return;
+      }
 
       const githubToken = deploymentInfo.githubToken;
 
@@ -199,7 +201,9 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status success.
      */
     onSuccess: async ({ utils }) => {
-      exitIfDisabled();
+      if (isDisabled()) {
+        return;
+      }
 
       const githubToken = deploymentInfo.githubToken;
 
