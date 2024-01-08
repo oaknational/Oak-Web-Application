@@ -1,9 +1,10 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Box from "../../Box";
 import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
 import Component from ".";
+
+import Box from "@/components/SharedComponents/Box";
 
 export default {
   component: Component,

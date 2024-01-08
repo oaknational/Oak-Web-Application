@@ -6,8 +6,8 @@ import type {
   PortableTextMarkDefinition,
 } from "@portabletext/types";
 
-import Box from "../../Box";
-import AnchorTarget from "../../AnchorTarget";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import Box from "@/components/SharedComponents/Box";
 
 export type Footnote = {
   index: number;

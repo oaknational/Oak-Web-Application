@@ -1,9 +1,9 @@
 import { FC, MutableRefObject, ReactNode, RefObject } from "react";
 import { FocusOn } from "react-focus-on";
 
-import Flex from "../Flex";
-
 import { DialogModalSize, OverlayProps, UnderlayProps } from "./useModalDialog";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 type ModalDialogProps = {
   underlayProps: UnderlayProps;

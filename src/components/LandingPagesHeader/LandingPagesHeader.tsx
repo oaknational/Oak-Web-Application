@@ -1,13 +1,14 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
 import FixedHeader from "../Header";
 import Logo from "../Logo";
-import Typography from "../Typography";
-import Icon from "../Icon";
 import { CTA } from "../../common-lib/cms-types";
 import { getLinkHref } from "../../utils/portableText/resolveInternalHref";
 import OakLink from "../OakLink";
+
+import Icon from "@/components/SharedComponents/Icon";
+import Typography from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type LandingPagesHeaderProps = {
   headerCta?: CTA | null;

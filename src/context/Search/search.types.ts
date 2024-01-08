@@ -4,9 +4,11 @@ import {
   lessonSearchHitSchema,
   unitSearchHitSchema,
   searchResultsHitSchema,
+  pathwaySchema,
 } from "./search.schema";
 
 import { SearchPageData } from "@/node-lib/curriculum-api-2023";
+import { SnakeToCamel } from "@/utils/util.types";
 
 export type SearchQuery = {
   term: string;
@@ -49,3 +51,6 @@ export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;
 export type UnitSearchHit = z.infer<typeof unitSearchHitSchema>;
 
 export type SearchHit = z.infer<typeof searchResultsHitSchema>;
+
+export type PathwaySchema = z.infer<typeof pathwaySchema>;
+export type PathwaySchemaCamel = SnakeToCamel<PathwaySchema>;

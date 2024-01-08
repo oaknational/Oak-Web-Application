@@ -2,7 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { InlineSpriteSvg } from "../InlineSpriteSheet";
-import ScreenReaderOnly from "../ScreenReaderOnly";
+
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 type LogoProps = {
   width: number;

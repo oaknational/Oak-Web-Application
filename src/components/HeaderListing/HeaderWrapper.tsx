@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
-import Breadcrumbs, { Breadcrumb } from "../Breadcrumbs";
-import MaxWidth from "../MaxWidth/MaxWidth";
-import { Hr } from "../Typography";
-
+import { Hr } from "@/components/SharedComponents/Typography";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { OakColorName } from "@/styles/theme";
 
 /**

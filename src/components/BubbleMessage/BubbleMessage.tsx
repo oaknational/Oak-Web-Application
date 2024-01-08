@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-import Box from "../Box";
-import Flex, { FlexProps } from "../Flex";
-import OutlineHeading from "../OutlineHeading";
-import Svg from "../Svg";
-import { Heading } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
+
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
+import Svg from "@/components/SharedComponents/Svg";
+import { Heading } from "@/components/SharedComponents/Typography";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 type BubbleMessageProps = {
   outlineHeading: string;

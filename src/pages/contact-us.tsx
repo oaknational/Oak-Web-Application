@@ -8,14 +8,14 @@ import {
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
-import { Heading, P } from "@/components/Typography";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Card from "@/components/Card";
-import Flex from "@/components/Flex";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Layout from "@/components/SharedComponents/Layout";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Card from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
-import SummaryCard from "@/components/Card/SummaryCard";
-import Box from "@/components/Box";
+import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
+import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";

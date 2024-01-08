@@ -1,7 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
-import Flex from "../../Flex";
 import { SignUpForm } from "../../pages/LandingPages/SignUpForm";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 type FormBlock = {
   title: string;

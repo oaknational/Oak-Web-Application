@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { box } from "../Box";
+import { box } from "../SharedComponents/Box";
 
 const Form = styled.form`
   ${box}
