@@ -3,11 +3,11 @@ import { FC } from "react";
 import BioModal from "../BioModal";
 import { BioData } from "../BioModal/BioModal";
 import { useBioModal } from "../BioModal/useBioModal";
-import { GridList } from "../Typography/UL";
-import { GridAreaListItem } from "../Typography/LI";
 
 import BioCardListItem from "./BioCardListItem";
 
+import { GridList } from "@/components/SharedComponents/Typography/UL";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 

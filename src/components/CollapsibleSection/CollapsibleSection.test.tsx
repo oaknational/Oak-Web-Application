@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
-import { Heading } from "../Typography";
 
 import CollapsibleSection from "./CollapsibleSection";
+
+import { Heading } from "@/components/SharedComponents/Typography";
 
 describe("CollapsibleSection", () => {
   it("renders a CollapsibleSection", () => {

@@ -10,7 +10,7 @@ import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";
 import OakLink from "@/components/OakLink";
-import { Heading, P, Span } from "@/components/Typography";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 
 type PostHeaderProps = {
   post: SerializedBlog | SerializedWebinar;

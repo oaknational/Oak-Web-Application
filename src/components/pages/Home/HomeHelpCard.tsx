@@ -6,7 +6,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
-import Typography from "@/components/Typography";
+import Typography from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 type HomeSidebarTextCard = CardShape;

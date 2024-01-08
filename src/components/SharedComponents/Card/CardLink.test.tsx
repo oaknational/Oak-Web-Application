@@ -1,10 +1,11 @@
 import { screen } from "@testing-library/react";
 
-import { Heading, P } from "../../Typography";
 import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import Card from "./Card";
 import CardLink from "./CardLink";
+
+import { Heading, P } from "@/components/SharedComponents/Typography";
 
 describe("CardLink", () => {
   it("is a link if clicked", async () => {

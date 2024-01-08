@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { Span } from "../Typography";
 import OakLink from "../OakLink";
 import TagPromotional from "../TagPromotional";
 import TextTile from "../TextTile/TextTitle";
 
 import { SubjectCardDoubleProps } from "./SubjectCardDouble";
 
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

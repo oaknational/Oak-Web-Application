@@ -2,10 +2,10 @@ import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "../../../hooks/useClickableCard";
 import { BioData } from "../../BioModal/BioModal";
-import SocialButtons from "../../SocialButtons";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading, P } from "../../Typography";
 
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import { Heading, P } from "@/components/SharedComponents/Typography";
 import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";

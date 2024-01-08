@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { P } from "../Typography";
-
 import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
+import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 

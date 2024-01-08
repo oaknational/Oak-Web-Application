@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { HomePageNotification } from "../../../common-lib/cms-types";
-import { Heading, P, Span } from "../../Typography";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import Icon from "../../Icon";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 
+import Icon from "@/components/SharedComponents/Icon";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";

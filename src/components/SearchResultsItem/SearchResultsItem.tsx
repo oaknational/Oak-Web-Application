@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import LessonMetadata from "../LessonMetadata";
-import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
-import Icon from "../Icon";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import Icon from "@/components/SharedComponents/Icon";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
