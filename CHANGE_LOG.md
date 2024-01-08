@@ -1,3 +1,10 @@
+# [1.317.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.316.0...v1.317.0) (2024-01-08)
+
+
+### Features
+
+* report hubspot fail to connect errors ([8bae327](https://github.com/oaknational/Oak-Web-Application/commit/8bae327f9ac049c89fe372a895eade78a98e4758))
+
 # [1.316.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.2...v1.316.0) (2024-01-08)
 
 
