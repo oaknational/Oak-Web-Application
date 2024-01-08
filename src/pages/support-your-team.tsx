@@ -5,7 +5,7 @@ import CMSClient from "../node-lib/cms";
 import { SupportPage } from "../common-lib/cms-types";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/SharedComponents/MaxWidth";
-import SummaryCard from "../components/Card/SummaryCard";
+import SummaryCard from "../components/SharedComponents/Card/SummaryCard";
 import { Heading, P } from "../components/Typography";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";

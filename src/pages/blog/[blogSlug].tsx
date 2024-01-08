@@ -19,8 +19,8 @@ import Box from "@/components/SharedComponents/Box";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { sanityClientLike } from "@/components/CMSImage";
-import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
+import { sanityClientLike } from "@/components/SharedComponents/CMSImage";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import PostSingleLayout from "@/components/Posts/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 

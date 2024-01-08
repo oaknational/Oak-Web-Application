@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Breadcrumb } from "../Breadcrumbs";
+import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
 import { HeaderWrapper } from "../HeaderLesson/HeaderWrapper";
 import { Heading, Span } from "../Typography";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";

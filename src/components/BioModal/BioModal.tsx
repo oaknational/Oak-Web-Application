@@ -8,10 +8,10 @@ import {
   PortableTextJSON,
   TeamMemberSocials,
 } from "@/common-lib/cms-types";
-import AspectRatio from "@/components/AspectRatio";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import CMSImage from "@/components/CMSImage";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

@@ -1,12 +1,13 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Card from "../../../Card/Card";
 import { Heading, P } from "../../../Typography";
 import { bodyPortableText } from "../../../Sanity/TextBlock/TextBlockCard.stories";
 import { PortableTextWithDefaults } from "../../PortableText";
 
 import { ULTick as Component } from "./ULTick";
+
+import Card from "@/components/SharedComponents/Card";
 
 export default {
   component: Card,

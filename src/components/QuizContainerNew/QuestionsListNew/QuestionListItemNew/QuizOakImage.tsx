@@ -2,7 +2,7 @@ import { Dispatch, FC, SetStateAction } from "react";
 
 import { calcDims } from "../../quizUtils";
 
-import OakImage from "@/components/OakImage";
+import OwaImage from "@/components/SharedComponents/OwaImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type QuizOakImageProps = {
@@ -33,7 +33,7 @@ type QuizOakImageProps = {
 
 const QuizOakImage: FC<QuizOakImageProps> = ({ src, alt, dims, setDims }) => {
   return dims.width && dims.height ? (
-    <OakImage
+    <OwaImage
       $objectPosition={["center", "left"]}
       width={dims.width}
       height={dims.height}
@@ -42,7 +42,7 @@ const QuizOakImage: FC<QuizOakImageProps> = ({ src, alt, dims, setDims }) => {
       style={{ objectFit: "contain" }}
     />
   ) : (
-    <OakImage
+    <OwaImage
       $objectPosition={["center", "left"]}
       fill
       src={src.secure_url}

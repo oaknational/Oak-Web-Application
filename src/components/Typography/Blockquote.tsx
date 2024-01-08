@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { box, BoxProps } from "../SharedComponents/Box";
+import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 export const Blockquote = styled.blockquote<BoxProps>`
   ${box}

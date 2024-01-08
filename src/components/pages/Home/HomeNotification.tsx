@@ -1,14 +1,14 @@
 import { FC } from "react";
 
 import { HomePageNotification } from "../../../common-lib/cms-types";
-import Card from "../../Card";
 import { Heading, P, Span } from "../../Typography";
-import CardLink from "../../Card/CardLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import Icon from "../../Icon";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
 import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
 
+import CardLink from "@/components/SharedComponents/Card/CardLink";
+import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 
 type HomeNotificationProps = {
