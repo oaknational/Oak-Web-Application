@@ -1,11 +1,10 @@
 import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
-
 import CollapsibleSection from "./CollapsibleSection";
 
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import { Heading } from "@/components/SharedComponents/Typography";
 
 describe("CollapsibleSection", () => {

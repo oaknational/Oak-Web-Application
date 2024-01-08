@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import Box, { BoxProps } from "../SharedComponents/Box";
-
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import imageSize, { ImageSizeProps } from "@/styles/utils/imageSize";
 
 export type ImageBoxProps = BoxProps & ImageSizeProps;
