@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 import { margin, MarginProps } from "../../styles/utils/spacing";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
+import { GridProps } from "../Grid";
+import { grid } from "../Grid/Grid";
+
+import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 /**
  * Styled `ol` (ordered list) component.
@@ -11,6 +15,8 @@ import getFontFamily from "../../styles/themeHelpers/getFontFamily";
  * Use where we have an ordered list to ensure numbers are styled
  *
  * */
+type OLProps = MarginProps;
+
 const OL = styled.ol<MarginProps>`
   ${margin}
   counter-reset: item;
@@ -43,6 +49,11 @@ const OL = styled.ol<MarginProps>`
   a {
     color: ${(props) => props.theme.colors.navy};
   }
+`;
+
+export const GridOrderedList = styled("ol")<OLProps & GridProps & BoxProps>`
+  display: grid;
+  ${grid}${box}
 `;
 
 export default OL;

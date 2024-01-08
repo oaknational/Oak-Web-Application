@@ -4,7 +4,7 @@
 // import Component from "./PostListItem";
 
 // export default {
-//   title: "Blogs & Webinars/Post List/PostListItem",
+//
 //   component: Component,
 // } as ComponentMeta<typeof Component>;
 
@@ -30,7 +30,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from "./PostListItem";
 
 const meta: Meta<typeof Component> = {
-  title: "Blogs & Webinars/Post List/PostListItem",
   component: Component,
 };
 

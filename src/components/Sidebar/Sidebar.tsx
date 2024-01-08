@@ -2,15 +2,16 @@ import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
 
-import Box from "@/components/Box";
+import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
+import Box from "../SharedComponents/Box";
+import Flex from "../SharedComponents/Flex";
+import IconButton from "../SharedComponents/Button/IconButton";
+
 import { SideMenu } from "@/components/Menu/Menu";
 import MenuBackdrop from "@/components/Menu/MenuBackdrop";
-import Flex from "@/components/Flex";
-import IconButton from "@/components/Button/IconButton";
 import { Hr } from "@/components/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;

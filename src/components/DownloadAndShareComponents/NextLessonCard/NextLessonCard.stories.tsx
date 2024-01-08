@@ -3,7 +3,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import Component from "./NextLessonCard";
 
 const meta: Meta<typeof Component> = {
-  title: "Download Components/NextLessonCard",
   component: Component,
   argTypes: {
     lessonSlug: { defaultValue: "test-slug" },

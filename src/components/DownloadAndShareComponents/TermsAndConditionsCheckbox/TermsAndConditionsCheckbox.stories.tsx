@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Form Fields/Checkbox/Terms and Conditions Checkbox",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { useState } from "react";
 
-import Box from "../Box";
-
 import Component from "./SchoolPicker";
+
+import Box from "@/components/SharedComponents/Box";
 
 const items = [
   {
@@ -45,7 +45,6 @@ const items = [
 ];
 
 export default {
-  title: "Form Fields/School Picker",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

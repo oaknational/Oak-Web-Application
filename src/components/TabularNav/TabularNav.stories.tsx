@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./TabularNav";
 
 export default {
-  title: "Lists/TabularNav/TabularNav",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

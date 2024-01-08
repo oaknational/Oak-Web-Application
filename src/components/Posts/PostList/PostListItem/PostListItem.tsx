@@ -2,18 +2,19 @@ import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
 
 import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
-import Box from "../../../Box";
 import useClickableCard from "../../../../hooks/useClickableCard";
-import Flex from "../../../Flex";
 import LineClamp from "../../../LineClamp";
 import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
 import { P, Heading, HeadingTag } from "../../../Typography";
-import AspectRatio from "../../../AspectRatio";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 import formatDate from "../../../../utils/formatDate";
 
 import PostListItemImage from "./PostListItemImage";
+
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 type PostListItemContentType = "blog-post" | "webinar";
 

@@ -1,9 +1,7 @@
 import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
-import Flex from "../../../Flex";
 import LessonResourceGraphics from "../../../LessonResourceGraphics";
-import Box from "../../../Box";
 import ListItemHeader from "../../ListItemHeader";
 import { P, Span } from "../../../Typography";
 import ListItemCard from "../../ListItemCard";
@@ -12,6 +10,8 @@ import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/
 import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIndexDesktop from "../../ListItemIndexDesktop";
 
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {

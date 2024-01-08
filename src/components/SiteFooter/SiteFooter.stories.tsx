@@ -7,7 +7,6 @@ import CookieConsentDecorator from "../../storybook-decorators/CookieConsentDeco
 import Component from "./SiteFooter";
 
 export default {
-  title: "Headers & Footers/Site Footer",
   decorators: [CookieConsentDecorator, AnalyticsDecorator],
   component: Component,
   argTypes: {},

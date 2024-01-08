@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./LessonResourceGraphics";
 
 export default {
-  title: "Element/Lesson Resource Graphic ",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

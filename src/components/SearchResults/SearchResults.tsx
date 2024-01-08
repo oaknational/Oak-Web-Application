@@ -1,19 +1,19 @@
-import Flex from "../Flex";
 import { LI, UL } from "../Typography";
-import Box from "../Box";
-import Pagination from "../Pagination";
-import usePagination from "../Pagination/usePagination";
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "../SearchResultsItem/SearchResultsItem";
 
+import Pagination from "@/components/SharedComponents/Pagination";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { KeyStage, SearchHit } from "@/context/Search/search.types";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
   allKeyStages: KeyStage[];
-  searchResultClicked: (
+  searchResultOpened: (
     searchHit: SearchResultsItemProps,
     searchRank: number,
   ) => void;
@@ -22,7 +22,7 @@ interface SearchResultsProps {
 export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
-  const { hits, allKeyStages, searchResultClicked } = props;
+  const { hits, allKeyStages, searchResultOpened } = props;
   const hitCount = hits.length;
   const paginationProps = usePagination({
     totalResults: hitCount,
@@ -52,7 +52,7 @@ const SearchResults = (props: SearchResultsProps) => {
                     {...searchHitObject}
                     firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
                     onClick={(props) => {
-                      searchResultClicked(props, searchRank(index));
+                      searchResultOpened(props, searchRank(index));
                     }}
                   />
                 </LI>

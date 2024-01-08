@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import Card from "../Card/Card";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Icon from "../Icon/Icon";
 import { IconName } from "../Icon";
-import Flex from "../Flex/Flex";
 import Typography from "../Typography/Typography";
 
+import Card from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 import { PositionProps } from "@/styles/utils/position";
 import { DisplayProps } from "@/styles/utils/display";
 

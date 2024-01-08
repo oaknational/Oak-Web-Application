@@ -11,14 +11,14 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
-import Box from "@/components/Box";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
+import Box from "@/components/SharedComponents/Box";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import WebinarVideo from "@/components/Posts/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";

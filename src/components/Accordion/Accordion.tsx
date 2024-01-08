@@ -2,13 +2,13 @@ import { FC, useState } from "react";
 import { useFocusWithin } from "react-aria";
 
 import useClickableCard from "@/hooks/useClickableCard";
-import Card from "@/components/Card";
-import Flex from "@/components/Flex";
+import Card from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/Icon";
-import Button from "@/components/Button";
+import Button from "@/components/SharedComponents/Button";
 import Svg from "@/components/Svg";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 
 export type AccordionContainerTitles =
   | "Lessons in unit"

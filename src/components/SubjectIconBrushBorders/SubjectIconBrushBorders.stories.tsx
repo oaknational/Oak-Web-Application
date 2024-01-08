@@ -3,7 +3,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Element/Subject icon brush borders",
   component: Component,
   argTypes: {},
 };

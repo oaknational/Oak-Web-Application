@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Box from "@/components/Box";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
@@ -13,7 +13,7 @@ import {
   ResourceFormProps,
   DownloadResourceType,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
 import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -25,7 +25,7 @@ import {
 } from "@/components/Lesson/lesson.helpers";
 import { LessonPathway } from "@/components/Lesson/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
-import LoadingButton from "@/components/Button/LoadingButton";
+import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";

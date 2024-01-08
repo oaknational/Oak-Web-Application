@@ -9,10 +9,12 @@ import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
 import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/Typography";
-import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Svg from "@/components/Svg/Svg";
 
 type PostSingleLayoutProps = {

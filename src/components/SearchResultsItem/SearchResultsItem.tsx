@@ -1,19 +1,21 @@
 import { FC } from "react";
 
 import LessonMetadata from "../LessonMetadata";
-import Flex from "../Flex";
 import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
 import Icon from "../Icon";
+import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -24,9 +26,11 @@ export type SearchResultsItemProps = {
   keyStageSlug: string;
   yearTitle?: string | null;
   description?: string;
+  pupilLessonOutcome?: string;
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
 } & (
@@ -47,6 +51,7 @@ export type SearchResultsItemProps = {
 const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const {
     description,
+    pupilLessonOutcome,
     title,
     subjectTitle,
     buttonLinkProps,
@@ -57,6 +62,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     legacy,
     subjectSlug,
     firstItemRef,
+    pathways,
   } = props;
 
   const { primaryTargetProps, containerProps } =
@@ -66,12 +72,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     (item): item is string => item !== undefined,
   );
 
+  const isPathwaySearchHit = pathways.length > 1;
+  const searchHitDescription = description || pupilLessonOutcome || "";
+
   return (
     <Flex
       $bb={1}
       $borderColor={"grey40"}
       $flexDirection={"column"}
-      {...containerProps}
+      {...(!isPathwaySearchHit ? containerProps : null)}
       $mb={56}
       $maxWidth={734}
     >
@@ -95,10 +104,10 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </Heading>
-        {description && (
+        {searchHitDescription && (
           <P
             dangerouslySetInnerHTML={{
-              __html: description,
+              __html: searchHitDescription,
             }}
             $mt={16}
             $font={"body-2"}
@@ -106,23 +115,27 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         )}
       </Flex>
       <Flex $mb={20}>
-        <OakLink
-          aria-label={`${subjectTitle} ${type}: ${title}`}
-          {...buttonLinkProps}
-          onClick={() => {
-            onClick?.(props);
-          }}
-          {...primaryTargetProps}
-          $color={"navy"}
-          $focusStyles={["underline"]}
-        >
-          <Flex $justifyContent={"center"} $alignItems={"center"}>
-            <Span $font={"heading-7"}>
-              {type === "unit" ? "See unit" : "See lesson"}
-            </Span>
-            <Icon $ml={4} name={"arrow-right"} />
-          </Flex>
-        </OakLink>
+        {isPathwaySearchHit ? (
+          <SearchDropdown {...props} />
+        ) : (
+          <OakLink
+            aria-label={`${subjectTitle} ${type}: ${title}`}
+            {...buttonLinkProps}
+            onClick={() => {
+              onClick?.(props);
+            }}
+            {...primaryTargetProps}
+            $color={"navy"}
+            $focusStyles={["underline"]}
+          >
+            <Flex $justifyContent={"center"} $alignItems={"center"}>
+              <Span $font={"heading-7"}>
+                {type === "unit" ? "See unit" : "See lesson"}
+              </Span>
+              <Icon $ml={4} name={"arrow-right"} />
+            </Flex>
+          </OakLink>
+        )}
       </Flex>
     </Flex>
   );

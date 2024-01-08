@@ -37,7 +37,6 @@ export const bodyPortableText = [
 ];
 
 export default {
-  title: "Sanity/Blocks/TextBlock",
   component: Component,
   argTypes: {
     $background: {

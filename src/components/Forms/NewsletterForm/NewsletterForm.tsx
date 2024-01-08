@@ -5,31 +5,32 @@ import { z } from "zod";
 
 import Input from "../../Input";
 import { P } from "../../Typography";
-import Button from "../../Button";
 import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
 import errorReporter from "../../../common-lib/error-reporter";
 import Form from "../Form";
-import { BoxProps } from "../../Box";
+import { BoxProps } from "../../SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
 } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+
+import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
 const schema = z.object({
   name: z
     .string()
-    .min(1, { message: "Name can't be empty" })
+    .min(1, { message: "Enter a name" })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
     .string()
     .min(1, {
-      message: "Email can't be empty",
+      message: "Enter an email",
     })
     .email({
-      message: "Email not valid",
+      message: "Enter a valid email",
     }),
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });

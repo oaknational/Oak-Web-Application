@@ -1,8 +1,8 @@
-import Box from "@/components/Box";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/Typography";
 import { LessonShareData } from "@/node-lib/curriculum-api";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,

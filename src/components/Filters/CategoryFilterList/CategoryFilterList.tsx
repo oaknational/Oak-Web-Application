@@ -1,4 +1,4 @@
-import { BoxProps } from "../../Box";
+import { BoxProps } from "../../SharedComponents/Box";
 import { UL } from "../../Typography";
 import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
 

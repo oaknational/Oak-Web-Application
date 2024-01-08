@@ -1,12 +1,13 @@
 import { FC } from "react";
 
 import { Heading, HeadingTag } from "../Typography";
-import Flex from "../Flex";
-import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
 import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 
 import CountCard from "./CountCard";
+
+import Card, { CardProps } from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type SubjectCardDoubleProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;

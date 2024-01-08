@@ -17,7 +17,6 @@ const props: UnitListItemProps = {
 };
 
 const meta: Meta<typeof UnitListItem> = {
-  title: "Lists/Unit List Item",
   component: UnitListItem,
   decorators: [AnalyticsDecorator],
 };

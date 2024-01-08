@@ -1,13 +1,14 @@
 import { forwardRef } from "react";
 
-import Box from "../Box";
-import Flex from "../Flex";
 import { Heading, Hr } from "../Typography";
-import AnchorTarget from "../AnchorTarget";
 import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
 import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
 import { ContainerLink } from "./ContainerLink";
+
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 /**
  * This replaces the old ExpandingContainer component on the lesson page. It should wrap each item of lesson content.

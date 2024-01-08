@@ -10,15 +10,16 @@ import {
 } from "../../common-lib/urls";
 import flex from "../../styles/utils/flex";
 import { OmitKeepDiscriminated } from "../../utils/generics";
-import { box } from "../Box";
-import { HTMLAnchorProps } from "../Button/common";
-import { FlexProps } from "../Flex";
+import { box } from "../SharedComponents/Box";
+import { HTMLAnchorProps } from "../SharedComponents/Button/common";
 import Svg from "../Svg";
 
 import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
 import NewFocusUnderline, {
   newFocusUnderlineStyles,
 } from "./NewFocusUnderline";
+
+import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type FocusStyle = "underline" | "new-underline";
 type FocusStylesProps = {

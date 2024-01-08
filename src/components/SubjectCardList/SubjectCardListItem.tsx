@@ -5,13 +5,14 @@ import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import Typography, { Heading, HeadingTag } from "../Typography";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
-import Flex from "../Flex";
 import OakLink from "../OakLink";
-import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 import { KeyStageSubject } from "./SubjectCardList";
+
+import Card, { CardProps } from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;

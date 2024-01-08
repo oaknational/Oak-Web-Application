@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import Button from "../Button";
 import { Span } from "../Typography";
 
+import Button from "@/components/SharedComponents/Button";
+import Flex from "@/components/SharedComponents/Flex";
 import {
   UseSearchFiltersReturnType,
   KeyStage,

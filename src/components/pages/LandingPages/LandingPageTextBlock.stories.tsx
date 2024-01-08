@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { LandingPageTextBlock as Component } from "./LandingPageTextBlock";
 
 export default {
-  title: "Sanity/Pages/Landing Pages",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

@@ -3,31 +3,33 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "@/node-lib/cms";
 import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
-import Card, { CardProps } from "@/components/Card";
-import Flex from "@/components/Flex";
+import Card, { CardProps } from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
 import Typography, { Heading } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/Icon";
 import LessonElementLinks from "@/components/LessonElementLinks";
 import { OakColorName } from "@/styles/theme";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import SummaryCard from "@/components/Card/SummaryCard";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Circle from "@/components/Circle";
-import Box from "@/components/Box";
-import CardTitle from "@/components/Card/CardComponents/CardTitle";
-import AnchorTarget from "@/components/AnchorTarget";
+import Box from "@/components/SharedComponents/Box";
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Cover from "@/components/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/CMSVideo";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import Illustration from "@/components/Illustration";
+import Illustration from "@/components/SharedComponents/Illustration";
 import { IllustrationSlug } from "@/image-data";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import { GridAreaListItem } from "@/components/Typography/LI";
+import { GridOrderedList } from "@/components/Typography/OL";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;
@@ -289,17 +291,19 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
           <SectionHeader>
             <SectionTitle>{pageData.stepsHeading}</SectionTitle>
           </SectionHeader>
-          <Grid $cg={24} $rg={0}>
+          <GridOrderedList $cg={24} $rg={0}>
             {getLessonPlanningCards(pageData).map(
               ({ title, portableText, imageSlug, withSearchCTA }, i, arr) => {
                 const isFirstOrLast = i === 0 || i == arr.length - 1;
                 return (
-                  <GridArea
+                  <GridAreaListItem
                     key={`plan-a-lesson--planning-card--${i}`}
                     $alignItems={"center"}
                     $justifyContent={"center"}
                     $colSpan={[12, isFirstOrLast ? 12 : 6]}
                     $mb={i !== arr.length - 1 ? [24, 56] : 0}
+                    listStyle="none"
+                    $display="flex"
                   >
                     <Card
                       $width={["100%", isFirstOrLast ? "50%" : "100%"]}
@@ -347,11 +351,11 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
                         )}
                       </Flex>
                     </Card>
-                  </GridArea>
+                  </GridAreaListItem>
                 );
               },
             )}
-          </Grid>
+          </GridOrderedList>
         </MaxWidth>
       </section>
       <section>

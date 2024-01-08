@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import Flex from "../../Flex";
 import { Heading, HeadingTag } from "../../Typography";
-import Box from "../../Box";
-import ButtonAsLink from "../../Button/ButtonAsLink";
-import Illustration from "../../Illustration";
+
+import Illustration from "@/components/SharedComponents/Illustration";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type UpcomingWebinarWallProps = {
   headingTag?: HeadingTag;

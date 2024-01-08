@@ -8,13 +8,13 @@ import {
   PortableTextJSON,
   TeamMemberSocials,
 } from "@/common-lib/cms-types";
-import AspectRatio from "@/components/AspectRatio";
-import Box from "@/components/Box";
-import IconButton from "@/components/Button/IconButton";
-import CMSImage from "@/components/CMSImage";
-import Flex from "@/components/Flex";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import Box from "@/components/SharedComponents/Box";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";
 import SocialButtons from "@/components/SocialButtons";

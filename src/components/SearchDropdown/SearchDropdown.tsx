@@ -1,49 +1,48 @@
 import { FC, useState } from "react";
 
-import MiniDropDown from "@/components/Button/MiniDropDownButton/MiniDropDown";
-import Flex from "@/components/Flex";
-import Box from "@/components/Box";
+import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
+
+import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/OakLink";
 import { LI } from "@/components/Typography";
 import { FlexList } from "@/components/Typography/UL";
 
-type SearchDropdownProps = {
-  dropdownTitle: string;
-  dropdownContent: DropdownContentItem[];
-};
-
-export type UnitContentItem = {
-  type: "unit";
-  unitTitle: string;
-  unitSlug: string;
-  programmeSlug: string;
-  examboardTitle?: string;
-  tierTitle?: string | null;
-};
-
-export type LessonContentItem = {
-  type: "lesson";
-  lessonTitle: string;
-  lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
-  examboardTitle?: string;
-  tierTitle?: string;
-};
-
-type DropdownContentItem = UnitContentItem | LessonContentItem;
-
-const SearchDropdown: FC<SearchDropdownProps> = ({
-  dropdownTitle,
-  dropdownContent,
-}) => {
+const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
+  const { pathways, onClick } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
+  const getSlug = (item: string | null | undefined) => item || "";
+
+  const examDropdownContent = pathways
+    .filter(({ examBoardSlug }) => examBoardSlug !== null)
+    .sort((a, b) => {
+      return (
+        getSlug(a.examBoardSlug).localeCompare(getSlug(b.examBoardSlug)) ||
+        getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug))
+      );
+    });
+
+  const tierDropdownContent = pathways
+    .filter(({ examBoardSlug, tierSlug }) => !examBoardSlug && tierSlug)
+    .sort((a, b) => {
+      return getSlug(b.tierSlug).localeCompare(getSlug(a.tierSlug));
+    });
+
+  const isExamBoardDropdown = examDropdownContent.length > 0;
+
+  const label = `Select ${isExamBoardDropdown ? "exam board" : "tier"}`;
+
+  const dropDownContent = isExamBoardDropdown
+    ? examDropdownContent
+    : tierDropdownContent;
+
   return (
-    <Flex $flexDirection={"column"} $justifyContent={"center"}>
+    <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
       <MiniDropDown
-        label={dropdownTitle}
-        title="Select exam board"
+        label={label}
+        title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
         onClick={() => setToggleOpen(!isToggleOpen)}
         isExpanded={isToggleOpen}
@@ -52,53 +51,38 @@ const SearchDropdown: FC<SearchDropdownProps> = ({
         $display={isToggleOpen ? "block" : "none"}
         $transition={"all 0.3s ease"}
       >
-        {dropdownContent.length > 0 && (
+        {dropDownContent.length > 0 && (
           <FlexList
+            $mt={16}
             $reset
             data-testid="search-dropdown-content"
             $flexDirection={"column"}
-            $pl={8}
             $width={"fit-content"}
             $gap={16}
-            $mt={8}
           >
-            {dropdownContent.map((item) => {
-              const buttonTitle = `${item.examboardTitle} ${
+            {dropDownContent.map((item, index) => {
+              const buttonTitle = `${item.examBoardTitle ?? ""} ${
                 item.tierTitle ?? ""
               }`;
-              if (item.type === "unit") {
-                return (
-                  <LI $mb={16}>
-                    <OakLink
-                      $color={"navy"}
-                      data-testid="search-dropdown-link"
-                      page={"lesson-index"}
-                      programmeSlug={item.programmeSlug}
-                      unitSlug={item.unitSlug}
-                      $font={"heading-7"}
-                      $width={"fit-content"}
-                      $focusStyles={["new-underline"]}
-                    >
-                      {buttonTitle}
-                    </OakLink>
-                  </LI>
-                );
-              } else if (item.type === "lesson") {
-                return (
-                  <LI $mb={16}>
-                    <OakLink
-                      $font={"heading-7"}
-                      page={"lesson-overview"}
-                      programmeSlug={item.programmeSlug}
-                      unitSlug={item.unitSlug}
-                      lessonSlug={item.lessonSlug}
-                      $color={"navy"}
-                    >
-                      {buttonTitle}
-                    </OakLink>
-                  </LI>
-                );
-              }
+
+              return (
+                <LI $pl={8} key={`${index}-${item.programmeSlug}`} $mb={16}>
+                  <OakLink
+                    $color={"navy"}
+                    data-testid="search-dropdown-link"
+                    $font={"heading-7"}
+                    $width={"fit-content"}
+                    $focusStyles={["new-underline"]}
+                    {...props.buttonLinkProps}
+                    programmeSlug={item.programmeSlug}
+                    onClick={() => {
+                      onClick?.(props);
+                    }}
+                  >
+                    {buttonTitle}
+                  </OakLink>
+                </LI>
+              );
             })}
           </FlexList>
         )}

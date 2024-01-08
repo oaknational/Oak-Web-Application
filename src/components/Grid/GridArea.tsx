@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
 import { SpacingProps } from "../../styles/utils/spacing";
-import Flex, { FlexProps } from "../Flex";
+
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 type ColRowSpan =
   | 0
@@ -48,7 +49,7 @@ const parseSpanStart = (value: string | null | undefined) => {
   return `span ${span}`;
 };
 
-const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
+export const gridArea = css<GridAreaProps>`
   flex-direction: column;
   ${responsive(
     "grid-column",
@@ -103,6 +104,10 @@ const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
   ${responsive("grid-column-start", (props) => props.$colStart)}
   ${responsive("grid-column-end", (props) => props.$colEnd)}
   ${responsive("grid-row-start", (props) => props.$rowStart)}
+`;
+
+const GridArea = styled(Flex)<GridAreaProps & FlexProps>`
+  ${gridArea}
 `;
 
 export default GridArea;

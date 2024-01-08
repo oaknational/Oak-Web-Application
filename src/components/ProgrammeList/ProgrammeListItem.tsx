@@ -2,11 +2,11 @@ import { FC } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/Typography";
 import OakLink from "@/components/OakLink";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";

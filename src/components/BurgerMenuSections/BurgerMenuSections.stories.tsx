@@ -6,7 +6,6 @@ import Component from "./BurgerMenuSections";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 
 export default {
-  title: "Navigation/New Menu Sections",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

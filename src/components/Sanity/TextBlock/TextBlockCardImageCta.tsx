@@ -4,12 +4,12 @@ import { FC } from "react";
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Card from "@/components/Card";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,
-} from "@/components/Card/CardComponents/CardImage";
-import Flex, { FlexProps } from "@/components/Flex";
+} from "@/components/SharedComponents/Card/CardComponents/CardImage";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "@/components/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";

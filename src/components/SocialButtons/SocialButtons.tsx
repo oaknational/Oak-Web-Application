@@ -2,10 +2,11 @@ import { FC, useId } from "react";
 
 import { PixelSpacing } from "../../styles/theme";
 import { ResponsiveValues } from "../../styles/utils/responsive";
-import { ButtonSize } from "../Button/common";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
-import Flex, { FlexProps } from "../Flex";
+import { ButtonSize } from "../SharedComponents/Button/common";
 import { IconName } from "../Icon";
+
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export const OAK_SOCIALS: Record<SocialNetwork, string> = {
   instagram: "oaknational",

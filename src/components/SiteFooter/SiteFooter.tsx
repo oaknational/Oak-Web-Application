@@ -1,12 +1,9 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
-import Flex from "../Flex";
 import Typography, { Heading, LI, P } from "../Typography";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
-import Box from "../Box";
 import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import Svg from "../Svg";
@@ -14,8 +11,11 @@ import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
 import { IconName } from "../Icon";
 import Icon from "../Icon/Icon";
-import Button from "../Button";
 
+import Button from "@/components/SharedComponents/Button";
+import Box from "@/components/SharedComponents/Box";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";

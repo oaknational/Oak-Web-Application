@@ -1,11 +1,12 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 
-import ButtonAsLink from "../Button/ButtonAsLink";
-import CopyLinkButton from "../Button/CopyLinkButton";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Flex from "../Flex";
 import { Span } from "../Typography";
+
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
+import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * A small toast-like banner in the bottom left corner to inform

@@ -5,7 +5,6 @@ import { portableTextFromString } from "../../../__tests__/__helpers__/cms";
 import Component from "./AboutUsSummaryCard";
 
 export default {
-  title: "Cards/Summary Card/About Us Summary Card",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;
