@@ -7,7 +7,7 @@ import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading } from "@/components/Typography";
+import { Heading } from "@/components/SharedComponents/Typography";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {

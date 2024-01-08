@@ -1,14 +1,14 @@
 import { FC, useId } from "react";
 
-import { P } from "../../Typography";
 import OakLink from "../../OakLink";
 
 import NewsletterForm, { NewsletterFormProps } from "./NewsletterForm";
 
+import { P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * Newsletter Form wrapper adds copy around around NewsletterForm.

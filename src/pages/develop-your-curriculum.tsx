@@ -3,21 +3,22 @@ import { Fragment } from "react";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
+import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import { Heading, P } from "@/components/Typography";
+import Typography, {
+  Heading,
+  P,
+} from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
-import Typography from "@/components/Typography/Typography";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
-import Grid from "@/components/Grid";
-import GridArea from "@/components/Grid/GridArea";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Cover from "@/components/Cover";
+import Cover from "@/components/SharedComponents/Cover";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";

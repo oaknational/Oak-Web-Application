@@ -11,7 +11,7 @@ import UnstyledButton, {
 } from "@/components/UnstyledButton";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import typography, { FontVariant } from "@/styles/utils/typography";
-import { IconName } from "@/components/Icon";
+import { IconName } from "@/components/SharedComponents/Icon";
 import color from "@/styles/utils/color";
 import { OakColorName } from "@/styles/theme";
 import Box from "@/components/SharedComponents/Box";

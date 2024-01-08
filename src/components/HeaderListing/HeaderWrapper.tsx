@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { Hr } from "../Typography";
-
+import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";

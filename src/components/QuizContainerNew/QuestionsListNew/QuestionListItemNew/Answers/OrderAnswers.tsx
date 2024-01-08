@@ -4,8 +4,8 @@ import { removeMarkdown } from "../../../quizUtils";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import Icon from "@/components/Icon";
-import Typography from "@/components/Typography";
+import Icon from "@/components/SharedComponents/Icon";
+import Typography from "@/components/SharedComponents/Typography";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const OrderAnswers = ({

@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
 
 import Logo from "../Logo";
-import { HeaderProps } from "../Layout/Layout";
+import { HeaderProps } from "../SharedComponents/Layout/Layout";
 import OakLink from "../OakLink";
 import { Menu } from "../Menu";
 import { useMenuContext } from "../../context/Menu";
@@ -13,7 +13,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import { StyledHeader, HeaderUnderline } from "@/components/Header";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 /**

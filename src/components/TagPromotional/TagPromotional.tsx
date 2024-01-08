@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import Svg from "../Svg";
-import { Span } from "../Typography";
-
+import Svg from "@/components/SharedComponents/Svg";
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import { OakColorName } from "@/styles/theme/types";
 

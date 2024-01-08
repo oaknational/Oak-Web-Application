@@ -1,8 +1,8 @@
 import Flex from "@/components/SharedComponents/Flex";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Heading from "@/components/Typography/Heading";
-import P from "@/components/Typography/P";
+import Heading from "@/components/SharedComponents/Typography/Heading";
+import P from "@/components/SharedComponents/Typography/P";
 
 const UnitTabBanner = () => {
   return (

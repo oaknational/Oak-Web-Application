@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { P } from "@/components/Typography";
+import { P } from "@/components/SharedComponents/Typography";
 
 export interface TranscriptViewerProps {
   transcriptSentences: string[] | null;
