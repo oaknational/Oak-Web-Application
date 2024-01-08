@@ -13,5 +13,5 @@ inputs:
   pr_number:
     description: "[optional] The pull request number to report back to, not defined for baseline snapshots on 'main'"
 runs:
-  using: "node16"
+  using: "node20"
   main: "index.js"
