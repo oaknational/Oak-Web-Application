@@ -1,8 +1,8 @@
 import { FC, useId } from "react";
 
-import { PixelSpacing } from "../../styles/theme";
-import { ResponsiveValues } from "../../styles/utils/responsive";
-import { ButtonSize } from "../SharedComponents/Button/common";
+import { PixelSpacing } from "../../../styles/theme";
+import { ResponsiveValues } from "../../../styles/utils/responsive";
+import { ButtonSize } from "../Button/common";
 
 import { IconName } from "@/components/SharedComponents/Icon";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";

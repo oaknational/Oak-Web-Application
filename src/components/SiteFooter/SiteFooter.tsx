@@ -2,11 +2,11 @@ import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
 import Logo from "../Logo";
-import SocialButtons from "../SocialButtons";
 import OakLink from "../OakLink";
-import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
 
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";

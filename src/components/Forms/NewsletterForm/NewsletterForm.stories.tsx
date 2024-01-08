@@ -4,7 +4,6 @@ import Component from ".";
 
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
-
 export default {
   component: Component,
   argTypes: {},

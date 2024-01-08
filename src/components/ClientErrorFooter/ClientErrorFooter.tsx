@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import SocialButtons from "../SocialButtons";
-import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
 
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
