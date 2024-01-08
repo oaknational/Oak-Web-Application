@@ -4,7 +4,7 @@ import LessonRequirementsHeading from "./LessonRequirementsHeading";
 
 import { IconName } from "@/components/Icon";
 import Flex from "@/components/SharedComponents/Flex";
-import { P, UL, LI } from "@/components/Typography";
+import { P, UL, LI } from "@/components/SharedComponents/Typography";
 
 type LessonRequirementsProps = {
   helperIcon: IconName;

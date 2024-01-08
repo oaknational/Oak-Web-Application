@@ -4,7 +4,7 @@ import { removeMarkdown } from "@/components/QuizContainerNew/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/Icon";
-import Typography from "@/components/Typography";
+import Typography from "@/components/SharedComponents/Typography";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const MatchAnswers = ({

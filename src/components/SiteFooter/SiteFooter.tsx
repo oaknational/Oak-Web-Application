@@ -1,7 +1,6 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
-import Typography, { Heading, LI, P } from "../Typography";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
 import Grid, { GridArea } from "../Grid";
@@ -12,6 +11,11 @@ import FooterSignpost from "../FooterSignpost/FooterSignpost";
 import { IconName } from "../Icon";
 import Icon from "../Icon/Icon";
 
+import Typography, {
+  Heading,
+  LI,
+  P,
+} from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

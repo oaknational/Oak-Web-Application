@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/Typography";
+import { Heading, P } from "@/components/SharedComponents/Typography";
 import UnitListItem, {
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";

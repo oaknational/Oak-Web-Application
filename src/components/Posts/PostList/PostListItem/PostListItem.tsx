@@ -6,12 +6,16 @@ import useClickableCard from "../../../../hooks/useClickableCard";
 import LineClamp from "../../../LineClamp";
 import OakLink from "../../../OakLink";
 import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag } from "../../../Typography";
 import { ResolveOakHrefProps } from "../../../../common-lib/urls";
 import formatDate from "../../../../utils/formatDate";
 
 import PostListItemImage from "./PostListItemImage";
 
+import {
+  P,
+  Heading,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

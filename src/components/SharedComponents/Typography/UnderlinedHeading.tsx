@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Svg from "../Svg";
+import Svg from "../../Svg";
 
 import Heading, { HeadingProps } from "./Heading";
 

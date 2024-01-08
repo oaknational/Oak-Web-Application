@@ -4,8 +4,7 @@ import ImageContainer from "../ImageContainer/ImageContainer";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import Icon from "../Icon";
-import Typography from "../Typography";
+
+import Typography from "@/components/SharedComponents/Typography";
 
 type ExemplarCategoryHeadingProps = {
   keyStageTitle?: string;

@@ -5,7 +5,7 @@ import AppLayout from "@/components/AppLayout/AppLayout";
 import EarlyReleaseUnitsHeader from "@/components/EarlyReleaseUnitsHeader";
 import EarlyReleaseExemplarUnits from "@/components/EarlyReleaseExemplarUnits";
 import earlyReleaseExemplarUnitsFixture from "@/node-lib/curriculum-api/fixtures/earlyReleaseExemplarUnits.fixture";
-import { Heading, Hr, P } from "@/components/Typography";
+import { Heading, Hr, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Grid, { GridArea } from "@/components/Grid";

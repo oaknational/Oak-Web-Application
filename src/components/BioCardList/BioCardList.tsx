@@ -3,8 +3,8 @@ import { FC } from "react";
 import BioModal from "../BioModal";
 import { BioData } from "../BioModal/BioModal";
 import { useBioModal } from "../BioModal/useBioModal";
-import { GridList } from "../Typography/UL";
-import { GridAreaListItem } from "../Typography/LI";
+import { GridList } from "../SharedComponents/Typography/UL";
+import { GridAreaListItem } from "../SharedComponents/Typography/LI";
 
 import BioCardListItem from "./BioCardListItem";
 

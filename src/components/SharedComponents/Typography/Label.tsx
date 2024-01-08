@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import typography, { TypographyProps } from "../../styles/utils/typography";
+import typography, { TypographyProps } from "../../../styles/utils/typography";
 
 type LabelProps = TypographyProps;
 /**

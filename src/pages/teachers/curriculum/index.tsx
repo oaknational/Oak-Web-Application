@@ -5,7 +5,13 @@ import AppLayout from "@/components/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Heading, UL, LI, P, Hr } from "@/components/Typography";
+import Typography, {
+  Heading,
+  UL,
+  LI,
+  P,
+  Hr,
+} from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -15,7 +21,6 @@ import Illustration from "@/components/SharedComponents/Illustration/Illustratio
 import Cover from "@/components/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OakLink from "@/components/OakLink/OakLink";
-import Typography from "@/components/Typography/Typography";
 import Icon from "@/components/Icon/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";

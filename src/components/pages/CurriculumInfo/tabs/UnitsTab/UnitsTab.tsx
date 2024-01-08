@@ -3,7 +3,6 @@ import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import P from "@/components/Typography";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/Icon/Icon";
@@ -18,7 +17,7 @@ import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
-import Heading from "@/components/Typography/Heading";
+import { P, Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";

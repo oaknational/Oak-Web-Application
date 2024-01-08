@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import P from "../Typography/P";
+import P from "../SharedComponents/Typography/P";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import { OakColorName } from "../../styles/theme/types";
 

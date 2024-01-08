@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { PortableTextJSON, Image } from "../../../common-lib/cms-types";
-import Typography, { Heading } from "../../Typography";
 import { OakColorName } from "../../../styles/theme/types";
 import Cover from "../../Cover";
 import BrushBorders from "../../SpriteSheet/BrushSvgs/BrushBorders";
@@ -9,6 +8,7 @@ import { PortableTextWithDefaults } from "../../PortableText";
 
 import Card from "./Card";
 
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 

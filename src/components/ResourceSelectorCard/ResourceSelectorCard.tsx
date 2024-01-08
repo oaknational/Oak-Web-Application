@@ -3,7 +3,7 @@ import { FC } from "react";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Icon from "../Icon/Icon";
 import { IconName } from "../Icon";
-import Typography from "../Typography/Typography";
+import Typography from "../SharedComponents/Typography/Typography";
 
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";

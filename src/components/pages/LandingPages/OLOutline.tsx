@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { OakColorName } from "../../../styles/theme";
 import getColorByName from "../../../styles/themeHelpers/getColorByName";
 import { outlineShadow } from "../../OutlineHeading/OutlineHeading";
-import { OL } from "../../Typography";
+
+import { OL } from "@/components/SharedComponents/Typography";
 
 export const OLOutline = styled(OL)<{ $color: OakColorName }>`
   & div:last-child {

@@ -1,9 +1,13 @@
 import { FC } from "react";
 
-import { Heading, HeadingTag, Span } from "../../Typography";
 import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
 import { SpacingProps } from "../../../styles/utils/spacing";
 
+import {
+  Heading,
+  HeadingTag,
+  Span,
+} from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 type SubjectErrorCardProps = {

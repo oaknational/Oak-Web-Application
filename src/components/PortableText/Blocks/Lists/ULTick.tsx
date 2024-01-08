@@ -2,7 +2,8 @@ import { PortableTextComponents } from "@portabletext/react";
 
 import Circle from "../../../Circle";
 import Icon from "../../../Icon";
-import { LI, Span, UL } from "../../../Typography";
+
+import { LI, Span, UL } from "@/components/SharedComponents/Typography";
 
 export const ULTick: PortableTextComponents = {
   list: {

@@ -20,8 +20,8 @@ import CMSImage, {
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, LI } from "@/components/Typography";
-import { FlexList } from "@/components/Typography/UL";
+import { Heading, LI } from "@/components/SharedComponents/Typography";
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;

@@ -8,7 +8,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
-import { LI, UL } from "@/components/Typography";
+import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
 

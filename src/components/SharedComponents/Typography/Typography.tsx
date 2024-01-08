@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import typography, { TypographyProps } from "../../styles/utils/typography";
-import Box, { BoxProps } from "../SharedComponents/Box";
+import typography, { TypographyProps } from "../../../styles/utils/typography";
+import Box, { BoxProps } from "../Box";
 
 type TypographyComponent = BoxProps & TypographyProps;
 /**

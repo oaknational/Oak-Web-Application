@@ -16,7 +16,10 @@ import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Typography, { Heading, P } from "@/components/Typography";
+import Typography, {
+  Heading,
+  P,
+} from "@/components/SharedComponents/Typography";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";

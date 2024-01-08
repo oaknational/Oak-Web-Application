@@ -5,11 +5,10 @@ import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import { Heading } from "../Typography";
-import Typography from "../Typography/Typography";
 import { PortableTextJSON } from "../../common-lib/cms-types";
 import { PortableTextWithDefaults } from "../PortableText";
 
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";

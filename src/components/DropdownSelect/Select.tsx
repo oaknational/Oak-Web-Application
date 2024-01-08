@@ -12,11 +12,11 @@ import ellipsis from "../../styles/ellipsis";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
 import getColorByName from "../../styles/themeHelpers/getColorByName";
-import { Span } from "../Typography";
 
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
 
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export { Item } from "react-stately";

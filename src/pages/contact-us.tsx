@@ -8,7 +8,7 @@ import {
 
 import CMSClient from "@/node-lib/cms";
 import { ContactPage } from "@/common-lib/cms-types";
-import { Heading, P } from "@/components/Typography";
+import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";

@@ -8,7 +8,7 @@ import {
   HeadingTag,
   Span,
   getNextHeadingTag,
-} from "@/components/Typography";
+} from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInProps = {
   headingTag: HeadingTag;

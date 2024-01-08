@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { DEFAULT_SEO_PROPS } from "../../browser-lib/seo/Seo";
 import Layout from "../Layout";
 import { HeaderVariant, FooterVariant } from "../Layout/Layout";
-import { P, Heading } from "../Typography";
 
+import { P, Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";

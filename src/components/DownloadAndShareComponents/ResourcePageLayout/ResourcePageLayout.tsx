@@ -18,7 +18,7 @@ import CopyrightNotice from "../CopyrightNotice";
 import NoResourcesToShare from "../NoResourcesToShare";
 
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
-import { Heading, LI, P, UL } from "@/components/Typography";
+import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/Checkbox";

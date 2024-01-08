@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import Icon from "../Icon";
 import { IconName } from "../Icon/Icon";
-import { Span } from "../Typography";
 
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 const getResourceTitle = (

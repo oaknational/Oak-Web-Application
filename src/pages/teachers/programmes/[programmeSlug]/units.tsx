@@ -24,7 +24,7 @@ import Grid, { GridArea } from "@/components/Grid";
 import Box from "@/components/SharedComponents/Box";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 import MobileFilters from "@/components/MobileFilters";
-import { Heading } from "@/components/Typography";
+import { Heading } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";

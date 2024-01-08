@@ -3,7 +3,6 @@ import { useTheme } from "styled-components";
 
 import Grid, { GridArea } from "../Grid";
 import { PostListingPageProps } from "../pages/BlogIndex.page";
-import { Heading } from "../Typography";
 
 import PostCategoryList from "./PostCategoryList";
 import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
@@ -12,6 +11,7 @@ import PostList from "./PostList";
 import { PostListItemProps } from "./PostList/PostListItem";
 import usePostList from "./PostList/usePostList";
 
+import { Heading } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
 export type PostListAndCategoriesProps = Omit<PostListingPageProps, "blogs"> & {

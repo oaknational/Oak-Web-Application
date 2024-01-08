@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "../../../browser-lib/seo/getJsonLd";
 import Icon from "../../Icon";
-import UL from "../../Typography/UL";
+import UL from "../Typography/UL";
 import OakLink from "../../OakLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "../../../common-lib/urls";
 

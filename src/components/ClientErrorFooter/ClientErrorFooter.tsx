@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import SocialButtons from "../SocialButtons";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
-import { P } from "../Typography";
 
+import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 const ClientErrorFooter: FC = () => {

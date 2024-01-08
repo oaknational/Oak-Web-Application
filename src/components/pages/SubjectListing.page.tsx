@@ -2,10 +2,10 @@ import { FC } from "react";
 
 import { SubjectListingPageProps } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectCardDouble from "../SubjectCardDouble/SubjectCardDouble";
-import { Heading } from "../Typography";
-import { GridList } from "../Typography/UL";
-import { GridAreaListItem } from "../Typography/LI";
+import { GridList } from "../SharedComponents/Typography/UL";
+import { GridAreaListItem } from "../SharedComponents/Typography/LI";
 
+import { Heading } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex";
 

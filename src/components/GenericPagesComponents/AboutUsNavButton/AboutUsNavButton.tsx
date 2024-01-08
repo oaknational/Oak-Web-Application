@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import useIsCurrent from "@/components/MenuLinks/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
-import { FlexList } from "@/components/Typography/UL";
-import { LI } from "@/components/Typography";
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
+import { LI } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

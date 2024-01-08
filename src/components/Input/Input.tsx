@@ -10,14 +10,13 @@ import { margin, MarginProps } from "@/styles/utils/spacing";
 import Flex from "@/components/SharedComponents/Flex";
 import { IconName } from "@/components/Icon";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Label from "@/components/Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
 import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import Svg from "@/components/Svg";
 import FieldError from "@/components/FormFields/FieldError";
-import { Span } from "@/components/Typography";
+import Label, { Span } from "@/components/SharedComponents/Typography";
 
 export type StyledInputProps = MarginProps & {
   value?: string;

@@ -1,4 +1,4 @@
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
 
 import Hr from "./Hr";
 

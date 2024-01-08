@@ -6,9 +6,11 @@ import { CurriculumPage } from "@/common-lib/cms-types";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import { Heading, P } from "@/components/Typography";
+import Typography, {
+  Heading,
+  P,
+} from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
-import Typography from "@/components/Typography/Typography";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";

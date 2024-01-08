@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
-import { GridProps } from "../Grid";
-import { grid } from "../Grid/Grid";
+import { GridProps } from "../../Grid";
+import { grid } from "../../Grid/Grid";
 
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 import { FlexProps } from "@/components/SharedComponents/Flex";

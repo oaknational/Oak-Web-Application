@@ -8,8 +8,7 @@ import { GridArea } from "@/components/Grid";
 import Grid from "@/components/Grid/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Svg from "@/components/Svg/Svg";
-import { Heading } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 
 const PupilTab: FC = () => {
   return (

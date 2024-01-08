@@ -5,7 +5,7 @@ import { removeMarkdown } from "../../../quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/Icon";
-import Typography from "@/components/Typography";
+import Typography from "@/components/SharedComponents/Typography";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const ShortAnswers = ({ answers }: { answers: ShortAnswer[] }) => {

@@ -1,11 +1,11 @@
 import styled, { css, CSSProperties } from "styled-components";
 
-import flex from "../../styles/utils/flex";
-import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import typography, { TypographyProps } from "../../styles/utils/typography";
-import { GridAreaProps } from "../Grid";
-import { gridArea } from "../Grid/GridArea";
-import { box } from "../SharedComponents/Box";
+import flex from "../../../styles/utils/flex";
+import responsive, { ResponsiveValues } from "../../../styles/utils/responsive";
+import typography, { TypographyProps } from "../../../styles/utils/typography";
+import { GridAreaProps } from "../../Grid";
+import { gridArea } from "../../Grid/GridArea";
+import { box } from "../Box";
 
 import { FlexProps } from "@/components/SharedComponents/Flex";
 

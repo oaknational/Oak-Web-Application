@@ -7,7 +7,7 @@ import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
-import Typography, { Heading } from "@/components/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/Icon";
 import LessonElementLinks from "@/components/LessonElementLinks";
@@ -28,8 +28,8 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { GridAreaListItem } from "@/components/Typography/LI";
-import { GridOrderedList } from "@/components/Typography/OL";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
+import { GridOrderedList } from "@/components/SharedComponents/Typography/OL";
 
 export type PlanALessonProps = {
   pageData: PlanningPage;

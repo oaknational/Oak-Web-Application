@@ -5,7 +5,7 @@ import { PixelSpacing } from "../../../../styles/theme";
 import { ResponsiveValues } from "../../../../styles/utils/responsive";
 import { FontVariant } from "../../../../styles/utils/typography";
 import Icon, { IconName } from "../../../Icon";
-import Heading, { HeadingTag } from "../../../Typography/Heading";
+import Heading, { HeadingTag } from "../../Typography/Heading";
 
 import Flex from "@/components/SharedComponents/Flex";
 

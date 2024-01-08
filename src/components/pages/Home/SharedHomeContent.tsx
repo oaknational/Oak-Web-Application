@@ -9,11 +9,11 @@ import NewsletterFormWrap from "../../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../../Grid";
 import MaxWidth from "../../SharedComponents/MaxWidth";
 import OakLink from "../../OakLink";
-import Typography, { Heading } from "../../Typography";
 
 import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
 
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 

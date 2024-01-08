@@ -7,7 +7,7 @@ import { HeaderShareAllButton } from "./HeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
-import { Heading, P, Span } from "@/components/Typography";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Grid, { GridArea } from "@/components/Grid";
 import LessonMetadata from "@/components/LessonMetadata";
 

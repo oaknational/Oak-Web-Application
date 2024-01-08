@@ -6,7 +6,7 @@ import { SupportPage } from "../common-lib/cms-types";
 import Layout from "../components/Layout";
 import MaxWidth from "../components/SharedComponents/MaxWidth";
 import SummaryCard from "../components/SharedComponents/Card/SummaryCard";
-import { Heading, P } from "../components/Typography";
+import { Heading, P } from "../components/SharedComponents/Typography";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";

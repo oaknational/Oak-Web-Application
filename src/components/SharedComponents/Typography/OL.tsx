@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import { margin, MarginProps } from "../../styles/utils/spacing";
-import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import { GridProps } from "../Grid";
-import { grid } from "../Grid/Grid";
+import { margin, MarginProps } from "../../../styles/utils/spacing";
+import getFontFamily from "../../../styles/themeHelpers/getFontFamily";
+import { GridProps } from "../../Grid";
+import { grid } from "../../Grid/Grid";
 
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 

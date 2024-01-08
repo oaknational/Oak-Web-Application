@@ -11,7 +11,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import Flex from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import { LI } from "@/components/Typography";
+import { LI } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {

@@ -11,7 +11,7 @@ import theme from "@/styles/theme";
 import Grid, { GridArea } from "@/components/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
-import { Heading } from "@/components/Typography";
+import { Heading } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";

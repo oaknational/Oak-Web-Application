@@ -1,8 +1,8 @@
-import { LI, UL } from "../Typography";
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "../SearchResultsItem/SearchResultsItem";
 
+import { LI, UL } from "@/components/SharedComponents/Typography";
 import Pagination from "@/components/SharedComponents/Pagination";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";

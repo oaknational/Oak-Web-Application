@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import Grid, { GridArea } from "../Grid";
-import Heading from "../Typography/Heading";
+import Heading from "../SharedComponents/Typography/Heading";
 import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import TagPromotional from "../TagPromotional";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";

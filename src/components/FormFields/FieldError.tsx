@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { Span } from "@/components/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 import Icon from "@/components/Icon";
 
 type FieldErrorVariant = "large";
