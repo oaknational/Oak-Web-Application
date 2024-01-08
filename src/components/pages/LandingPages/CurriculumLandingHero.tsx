@@ -6,8 +6,8 @@ import Box from "@/components/SharedComponents/Box";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import Illustration from "@/components/Illustration/Illustration";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Cover from "@/components/Cover/Cover";
 
 type CurriculumLandingHeroProps = {

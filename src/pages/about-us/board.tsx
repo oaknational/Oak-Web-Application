@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import AboutContactCard from "@/components/AboutContactCard";
 import Typography, { Heading, Hr, P } from "@/components/Typography";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";

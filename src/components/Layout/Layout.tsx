@@ -15,7 +15,7 @@ import ClientErrorFooter from "../ClientErrorFooter";
 import LandingPagesHeader from "../LandingPagesHeader";
 import { CTA } from "../../common-lib/cms-types";
 import { LandingPagesHeaderProps } from "../LandingPagesHeader/LandingPagesHeader";
-import { Breadcrumb } from "../Breadcrumbs";
+import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;

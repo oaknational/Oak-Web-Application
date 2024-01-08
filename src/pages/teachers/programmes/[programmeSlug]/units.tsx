@@ -17,7 +17,7 @@ import AppLayout from "@/components/AppLayout";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import usePagination from "@/components/Pagination/usePagination";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/UnitAndLessonLists/UnitList";
 import Grid, { GridArea } from "@/components/Grid";
