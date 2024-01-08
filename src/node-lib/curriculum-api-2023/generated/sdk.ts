@@ -4362,6 +4362,7 @@ export type Lessons = {
   _preferredversion?: Maybe<Scalars['Boolean']['output']>;
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
+  additional_files?: Maybe<Scalars['jsonb']['output']>;
   asset_id_slidedeck?: Maybe<Scalars['Int']['output']>;
   asset_id_supplementary_asset?: Maybe<Scalars['Int']['output']>;
   asset_id_worksheet?: Maybe<Scalars['Int']['output']>;
@@ -4457,6 +4458,12 @@ export type Lessons = {
   video_sign_language_all_states: Array<Videos>;
   /** An aggregate relationship */
   video_sign_language_all_states_aggregate: Videos_Aggregate;
+};
+
+
+/** columns and relationships of "lessons" */
+export type LessonsAdditional_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -4847,6 +4854,7 @@ export type Lessons_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Lessons_Append_Input = {
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -4898,6 +4906,7 @@ export type Lessons_Bool_Exp = {
   _preferredversion?: InputMaybe<Boolean_Comparison_Exp>;
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
+  additional_files?: InputMaybe<Jsonb_Comparison_Exp>;
   asset_id_slidedeck?: InputMaybe<Int_Comparison_Exp>;
   asset_id_supplementary_asset?: InputMaybe<Int_Comparison_Exp>;
   asset_id_worksheet?: InputMaybe<Int_Comparison_Exp>;
@@ -4971,18 +4980,21 @@ export enum Lessons_Constraint {
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Lessons_Delete_At_Path_Input = {
+  additional_files?: InputMaybe<Array<Scalars['String']['input']>>;
   deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
   thirdpartycontent_list?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Lessons_Delete_Elem_Input = {
+  additional_files?: InputMaybe<Scalars['Int']['input']>;
   deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Lessons_Delete_Key_Input = {
+  additional_files?: InputMaybe<Scalars['String']['input']>;
   deprecated_fields?: InputMaybe<Scalars['String']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['String']['input']>;
 };
@@ -5007,6 +5019,7 @@ export type Lessons_Insert_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   asset_id_slidedeck?: InputMaybe<Scalars['Int']['input']>;
   asset_id_supplementary_asset?: InputMaybe<Scalars['Int']['input']>;
   asset_id_worksheet?: InputMaybe<Scalars['Int']['input']>;
@@ -5189,6 +5202,7 @@ export type Lessons_Order_By = {
   _preferredversion?: InputMaybe<Order_By>;
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
+  additional_files?: InputMaybe<Order_By>;
   asset_id_slidedeck?: InputMaybe<Order_By>;
   asset_id_supplementary_asset?: InputMaybe<Order_By>;
   asset_id_worksheet?: InputMaybe<Order_By>;
@@ -5251,6 +5265,7 @@ export type Lessons_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Lessons_Prepend_Input = {
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   thirdpartycontent_list?: InputMaybe<Scalars['jsonb']['input']>;
 };
@@ -5265,6 +5280,8 @@ export enum Lessons_Select_Column {
   ReleaseId = '_release_id',
   /** column name */
   State = '_state',
+  /** column name */
+  AdditionalFiles = 'additional_files',
   /** column name */
   AssetIdSlidedeck = 'asset_id_slidedeck',
   /** column name */
@@ -5347,6 +5364,7 @@ export type Lessons_Set_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   asset_id_slidedeck?: InputMaybe<Scalars['Int']['input']>;
   asset_id_supplementary_asset?: InputMaybe<Scalars['Int']['input']>;
   asset_id_worksheet?: InputMaybe<Scalars['Int']['input']>;
@@ -5481,6 +5499,7 @@ export type Lessons_Stream_Cursor_Value_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   asset_id_slidedeck?: InputMaybe<Scalars['Int']['input']>;
   asset_id_supplementary_asset?: InputMaybe<Scalars['Int']['input']>;
   asset_id_worksheet?: InputMaybe<Scalars['Int']['input']>;
@@ -5553,6 +5572,8 @@ export enum Lessons_Update_Column {
   ReleaseId = '_release_id',
   /** column name */
   State = '_state',
+  /** column name */
+  AdditionalFiles = 'additional_files',
   /** column name */
   AssetIdSlidedeck = 'asset_id_slidedeck',
   /** column name */
