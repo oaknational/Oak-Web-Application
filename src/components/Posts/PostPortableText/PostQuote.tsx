@@ -1,8 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
 import { Quote } from "../../../common-lib/cms-types";
-import { P } from "../../Typography";
 
+import { P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 

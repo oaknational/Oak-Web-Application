@@ -1,11 +1,11 @@
 import { FC } from "react";
 
-import { Heading, HeadingTag } from "../Typography";
 import SubjectIcon from "../SubjectIcon";
 import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
 
 import CountCard from "./CountCard";
 
+import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 

@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, P } from "@/components/Typography";
-import Svg from "@/components/Svg";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Svg from "@/components/SharedComponents/Svg";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import NextLessonContainer from "@/components/DownloadComponents/NextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";

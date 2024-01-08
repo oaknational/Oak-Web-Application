@@ -1,11 +1,11 @@
 import { FC } from "react";
 
-import { Hr, LI, UL } from "../../Typography";
 import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import PostListItem, { PostListItemProps } from "./PostListItem";
 
+import { Hr, LI, UL } from "@/components/SharedComponents/Typography";
 import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";

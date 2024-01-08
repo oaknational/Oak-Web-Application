@@ -15,7 +15,7 @@ import {
   getBlogWebinarListBreadcrumbs,
 } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Layout from "@/components/Layout";
+import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import {

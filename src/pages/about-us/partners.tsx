@@ -3,8 +3,6 @@ import { FC } from "react";
 
 import CMSClient from "../../node-lib/cms";
 import { AboutPartnersPage } from "../../common-lib/cms-types";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/SharedComponents/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
@@ -12,6 +10,8 @@ import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCar
 import { SpacingProps } from "../../styles/utils/spacing";
 import getPageProps from "../../node-lib/getPageProps";
 
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Layout from "@/components/SharedComponents/Layout";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import CMSImage, {
@@ -20,8 +20,8 @@ import CMSImage, {
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading, LI } from "@/components/Typography";
-import { FlexList } from "@/components/Typography/UL";
+import { Heading, LI } from "@/components/SharedComponents/Typography";
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 export type AboutPageProps = {
   pageData: AboutPartnersPage;

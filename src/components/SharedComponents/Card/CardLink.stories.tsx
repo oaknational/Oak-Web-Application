@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Heading, P } from "../../Typography";
-
 import Card from "./Card";
 import Component from "./CardLink";
+
+import { Heading, P } from "@/components/SharedComponents/Typography";
 
 const meta: Meta<typeof Component> = {
   component: Component,

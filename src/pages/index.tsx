@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
 
-import Typography, { Heading } from "@/components/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout";
 import Box from "@/components/SharedComponents/Box";

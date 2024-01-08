@@ -1,12 +1,12 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Typography, { LI } from "../Typography";
 import { zIndexMap } from "../../styles/utils/zIndex";
-import GraphiCircleIcon from "../Icon/GraphicCircleIcon";
-import { IconName } from "../Icon";
-import { GridList } from "../Typography/UL";
+import GraphiCircleIcon from "../SharedComponents/Icon/GraphicCircleIcon";
 
+import { GridList } from "@/components/SharedComponents/Typography/UL";
+import { IconName } from "@/components/SharedComponents/Icon";
+import Typography, { LI } from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
