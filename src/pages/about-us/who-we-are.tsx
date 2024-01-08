@@ -11,7 +11,7 @@ import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import OutlineHeading from "@/components/OutlineHeading";
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import AboutContactCard from "@/components/AboutContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";

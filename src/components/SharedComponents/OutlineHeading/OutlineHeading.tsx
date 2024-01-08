@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
-import color from "../../styles/utils/color";
-import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-import { margin } from "../../styles/utils/spacing";
-import typography from "../../styles/utils/typography";
+import color from "../../../styles/utils/color";
+import responsive, { ResponsiveValues } from "../../../styles/utils/responsive";
+import { margin } from "../../../styles/utils/spacing";
+import typography from "../../../styles/utils/typography";
 
 import {
   HeadingProps,

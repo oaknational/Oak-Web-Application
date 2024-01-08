@@ -6,7 +6,7 @@ import { Heading, P } from "@/components/SharedComponents/Typography";
 import UnitListItem, {
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
-import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
 
 export type UnitOption = Omit<UnitData, "unitStudyOrder">;

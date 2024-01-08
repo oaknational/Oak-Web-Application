@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { OakColorName } from "../../../styles/theme";
 import getColorByName from "../../../styles/themeHelpers/getColorByName";
-import { outlineShadow } from "../../OutlineHeading/OutlineHeading";
+import { outlineShadow } from "../../SharedComponents/OutlineHeading/OutlineHeading";
 
 import { OL } from "@/components/SharedComponents/Typography";
 

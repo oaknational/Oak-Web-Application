@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { OakColorName } from "../../styles/theme/types";
-import OutlineHeading from "../OutlineHeading/OutlineHeading";
-
+import { OakColorName } from "@/styles/theme/types";
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type ListItemIndexDesktopProps = {
