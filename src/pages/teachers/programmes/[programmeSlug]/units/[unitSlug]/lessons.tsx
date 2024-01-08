@@ -11,7 +11,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/UnitAndLessonLists/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,

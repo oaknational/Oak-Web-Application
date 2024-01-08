@@ -18,6 +18,7 @@ export const QuizQuestionStem = ({
   showIndex?: boolean;
 }) => {
   const displayNumber = `Q${index + 1}.`;
+
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakFlex key="stem-header">

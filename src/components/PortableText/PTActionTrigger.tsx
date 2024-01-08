@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 import { PortableTextMarkComponent } from "@portabletext/react";
 
-import { Span } from "../Typography";
 import UnstyledButton from "../UnstyledButton";
 import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
+
+import { Span } from "@/components/SharedComponents/Typography";
 
 enum AllowedActions {
   OPEN_COOKIE_SETTINGS = "OPEN_COOKIE_SETTINGS",

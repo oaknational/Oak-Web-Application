@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -29,6 +29,7 @@ import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
+import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
 
 type LessonDownloadsProps =
   | {
@@ -114,6 +115,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     type: "download",
   });
 
+  const { onHubspotSubmit } = useHubspotSubmit();
+
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
 
@@ -160,6 +163,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         onwardContent,
         emailSupplied: data?.email ? true : false,
       });
+
+      onHubspotSubmit(data);
     } catch (error) {
       setIsAttemptingDownload(false);
       setIsDownloadSuccessful(false);

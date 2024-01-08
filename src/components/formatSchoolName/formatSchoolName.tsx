@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { Span } from "../Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 
 export const formatSchoolName = (
   schoolName: ReactNode,

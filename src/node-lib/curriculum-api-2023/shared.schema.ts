@@ -117,27 +117,31 @@ export const lessonPathwaySchema = z.object({
   tierTitle: z.string().nullish(),
 });
 
+export const lessonOverviewQuizQuestionSchema = z.object({
+  questionId: z.number(),
+  questionUid: z.string(),
+  questionType: z.enum([
+    "multiple-choice",
+    "match",
+    "order",
+    "short-answer",
+    "explanatory-text",
+  ]),
+  questionStem: z
+    .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
+    .min(1),
+  answers: answersSchema.nullable().optional(),
+  feedback: z.string(),
+  hint: z.string(),
+  active: z.boolean(),
+});
+
+export type LessonOverviewQuizQuestion = z.infer<
+  typeof lessonOverviewQuizQuestionSchema
+>;
+
 export const lessonOverviewQuizData = z
-  .array(
-    z.object({
-      questionId: z.number(),
-      questionUid: z.string(),
-      questionType: z.enum([
-        "multiple-choice",
-        "match",
-        "order",
-        "short-answer",
-        "explanatory-text",
-      ]),
-      questionStem: z
-        .array(z.union([stemTextObjectSchema, stemImageObjectSchema]))
-        .min(1),
-      answers: answersSchema.nullable().optional(),
-      feedback: z.string(),
-      hint: z.string(),
-      active: z.boolean(),
-    }),
-  )
+  .array(lessonOverviewQuizQuestionSchema)
   .nullable()
   .optional();
 

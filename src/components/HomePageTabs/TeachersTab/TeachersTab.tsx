@@ -4,15 +4,13 @@ import ImageContainer from "../ImageContainer/ImageContainer";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import { Heading } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import SearchForm from "@/components/SearchForm/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ResourceSelectorCard from "@/components/ResourceSelectorCard/ResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/KeyStageKeypad/KeyStageKeypad";
-import Grid from "@/components/Grid/Grid";
-import { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import KeyStageKeypad from "@/components/KeyStageKeypad";
 
 type TeacherTabProps = {

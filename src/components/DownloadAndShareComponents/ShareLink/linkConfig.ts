@@ -1,6 +1,6 @@
 import { SharingMetadata } from "./getSharingMetadata";
 
-import { IconName } from "@/components/Icon";
+import { IconName } from "@/components/SharedComponents/Icon";
 
 export type ShareLinkConfig = {
   name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";

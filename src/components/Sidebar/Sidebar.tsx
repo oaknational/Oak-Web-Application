@@ -6,10 +6,10 @@ import ButtonAsLink from "../SharedComponents/Button/ButtonAsLink";
 import Box from "../SharedComponents/Box";
 import Flex from "../SharedComponents/Flex";
 import IconButton from "../SharedComponents/Button/IconButton";
+import { Hr } from "../SharedComponents/Typography";
 
 import { SideMenu } from "@/components/Menu/Menu";
 import MenuBackdrop from "@/components/Menu/MenuBackdrop";
-import { Hr } from "@/components/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 
