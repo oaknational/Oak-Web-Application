@@ -18,7 +18,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Cover from "@/components/Cover";
+import Cover from "@/components/SharedComponents/Cover";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";

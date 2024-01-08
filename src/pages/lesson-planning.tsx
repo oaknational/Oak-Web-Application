@@ -18,7 +18,7 @@ import Circle from "@/components/Circle";
 import Box from "@/components/SharedComponents/Box";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Cover from "@/components/Cover";
+import Cover from "@/components/SharedComponents/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
