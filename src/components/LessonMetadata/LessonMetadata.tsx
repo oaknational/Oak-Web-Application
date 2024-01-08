@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
-import Typography from "../Typography";
-import Flex from "../Flex";
-import { BoxProps } from "../Box";
+import { BoxProps } from "../SharedComponents/Box";
 
+import Typography from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 import { FontProps } from "@/styles/utils/typography";
 
 const LessonMetadata: FC<

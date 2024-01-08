@@ -5,7 +5,6 @@ import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator
 import Component from ".";
 
 const meta: Meta<typeof Component> = {
-  title: "Filters/Category Filter List/LearningThemeFilters",
   decorators: [AnalyticsDecorator],
   component: Component,
 };

@@ -1,8 +1,8 @@
 import { DOMAttributes, FC, MouseEventHandler } from "react";
 import { FocusableElement } from "@react-types/shared";
 
-import Card from "@/components/Card";
-import Flex from "@/components/Flex";
+import Card from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import { OakColorName } from "@/styles/theme/types";
 
@@ -14,7 +14,6 @@ export type ListItemCardProps = {
   background: OakColorName;
   expired: boolean | null;
   index: number;
-  fromSearchPage?: boolean;
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
   } & Pick<DOMAttributes<FocusableElement>, "onClick">;

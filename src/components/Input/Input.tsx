@@ -7,22 +7,23 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import { margin, MarginProps } from "@/styles/utils/spacing";
-import Flex from "@/components/Flex";
-import { IconName } from "@/components/Icon";
+import Flex from "@/components/SharedComponents/Flex";
+import { IconName } from "@/components/SharedComponents/Icon";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Label from "@/components/Typography/Label";
 import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
 import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
-import Svg from "@/components/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 import FieldError from "@/components/FormFields/FieldError";
-import { Span } from "@/components/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
+import Label from "@/components/SharedComponents/Typography/Label";
 
 export type StyledInputProps = MarginProps & {
   value?: string;
   icon?: IconName;
   isOptional?: boolean;
+  isRequired?: boolean;
 };
 
 export const InputFocusUnderline = styled(Svg)`
@@ -128,7 +129,8 @@ type InputProps = UnstyledInputProps &
   };
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
-    const { id, icon, label, error, isOptional, ...inputProps } = props;
+    const { id, icon, label, error, isOptional, isRequired, ...inputProps } =
+      props;
     const errorId = `${id}-error`;
     const labelId = `${id}-label`;
     return (
@@ -152,14 +154,19 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
                 $font={"heading-7"}
                 data-testid="rotated-input-label"
               >
-                {isOptional ? (
+                {isRequired && (
+                  <Span>
+                    {props.label}{" "}
+                    <Span $font={"heading-light-7"}>(required)</Span>
+                  </Span>
+                )}
+                {isOptional && (
                   <Span>
                     {props.label}{" "}
                     <Span $font={"heading-light-7"}>(optional)</Span>
                   </Span>
-                ) : (
-                  props.label
                 )}
+                {!isRequired && !isOptional && props.label}
               </RotatedInputLabel>
             </Flex>
 

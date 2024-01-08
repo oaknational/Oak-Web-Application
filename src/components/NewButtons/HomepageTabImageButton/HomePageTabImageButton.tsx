@@ -17,16 +17,16 @@ import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/UnstyledButton";
-import CMSImage from "@/components/CMSImage/CMSImage";
-import Flex from "@/components/Flex/Flex";
-import Box from "@/components/Box/Box";
+import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import TagPromotional from "@/components/TagPromotional";
 import {
   ButtonHoverStyle,
   CommonButtonProps,
   HTMLButtonProps,
-} from "@/components/Button/common";
-import Illustration from "@/components/Illustration/Illustration";
+} from "@/components/SharedComponents/Button/common";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 
 export type HomePageNavTabImageButtonProps = CommonButtonProps & {
   onClick?: MouseEventHandler<HTMLButtonElement>;

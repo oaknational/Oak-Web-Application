@@ -1,5 +1,21 @@
 import { z } from "zod";
 
+export const pathwaySchema = z.object({
+  programme_slug: z.string(),
+  unit_slug: z.string(),
+  unit_title: z.string(),
+  key_stage_slug: z.string(),
+  key_stage_title: z.string(),
+  subject_slug: z.string(),
+  subject_title: z.string(),
+  tier_slug: z.string().nullish(),
+  tier_title: z.string().nullish(),
+  exam_board_slug: z.string().nullish(),
+  exam_board_title: z.string().nullish(),
+  year_slug: z.string().nullish(),
+  year_title: z.string().nullish(),
+});
+
 const searchResultsSourceCommon = z.object({
   id: z.number().nullish(),
   slug: z.string(),
@@ -17,11 +33,13 @@ const searchResultsSourceCommon = z.object({
   theme_title: z.string().nullish(),
   tier: z.string().nullish(),
   phase: z.string().nullish(),
+  pathways: z.array(pathwaySchema).default([]),
 });
 
 const searchResultsSourceLessonSchema = searchResultsSourceCommon.extend({
   type: z.string(),
   lesson_description: z.string().nullish(),
+  pupil_lesson_outcome: z.string().nullish(),
   // topic slug/title are deprecated terms for unit slug/title
   topic_title: z.string().nullish(),
   topic_slug: z.string().nullish(),
@@ -37,6 +55,7 @@ const searchResultsSourceUnitSchema = searchResultsSourceCommon.extend({
 
 const searchResultsHighlightLessonSchema = z.object({
   lesson_description: z.coerce.string(),
+  pupil_lesson_outcomes: z.coerce.string(),
   topic_title: z.coerce.string(),
 });
 

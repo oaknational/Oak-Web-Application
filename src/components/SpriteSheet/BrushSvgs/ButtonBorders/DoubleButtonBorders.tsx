@@ -2,8 +2,8 @@ import { FC } from "react";
 import styled, { css } from "styled-components";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { ButtonBackground } from "@/components/Button/common";
-import Svg from "@/components/Svg";
+import { ButtonBackground } from "@/components/SharedComponents/Button/common";
+import Svg from "@/components/SharedComponents/Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
   position: absolute;

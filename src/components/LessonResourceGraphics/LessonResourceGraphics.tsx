@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-
 import LessonResourceGraphicsItem, {
   LessonResourceGraphicsItemProps,
 } from "./LessonResourceGraphicsItem";
+
+import Flex from "@/components/SharedComponents/Flex";
 
 type LessonResourceGraphicsProps = {
   items: LessonResourceGraphicsItemProps[];

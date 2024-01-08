@@ -6,7 +6,6 @@ import { KeyStageSubject } from "./SubjectCardList";
 import Component from "./SubjectCardListItem";
 
 export default {
-  title: "Lists/SubjectCardList/SubjectCardListItem",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

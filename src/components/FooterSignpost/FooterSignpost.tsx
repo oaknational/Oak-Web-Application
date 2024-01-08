@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 
-import Box from "../Box/Box";
-import { Heading, P } from "../Typography";
 import OakLink from "../OakLink";
+
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Box from "@/components/SharedComponents/Box";
 
 const FooterSignpost: FC = () => {
   return (

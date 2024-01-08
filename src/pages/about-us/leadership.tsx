@@ -1,16 +1,17 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../../node-lib/cms";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/MaxWidth/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
-import { Heading } from "../../components/Typography";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "../../components/BioCardList";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "../../common-lib/cms-types";
 import getPageProps from "../../node-lib/getPageProps";
+
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Layout from "@/components/SharedComponents/Layout";
+import { Heading } from "@/components/SharedComponents/Typography";
 
 export type AboutPageProps = {
   pageData: AboutLeadershipPage;
@@ -42,7 +43,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
               Our leadership
             </Heading>
             <BioCardList
-              $mb={[80, 92]}
+              $mb={[80, 60]}
               $ph={[16, 0]}
               bios={leadershipTeam}
               withModals

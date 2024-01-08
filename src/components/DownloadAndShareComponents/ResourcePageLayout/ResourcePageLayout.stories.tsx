@@ -9,11 +9,12 @@ import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
+import Component from ".";
+
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 
-const meta: Meta<typeof ResourcePageLayout> = {
-  title: "Download Components/Resource Page Layout",
-  component: ResourcePageLayout,
+const meta: Meta<typeof Component> = {
+  component: Component,
 };
 
 export default meta;

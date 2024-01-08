@@ -2,21 +2,31 @@ import { FC } from "react";
 
 import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import Pagination, { PaginationProps } from "@/components/Pagination";
-import { UsePaginationProps } from "@/components/Pagination/usePagination";
-import { Heading, LI, UL } from "@/components/Typography";
-import { HeadingTag } from "@/components/Typography/Heading";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
+import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import {
+  Heading,
+  LI,
+  UL,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
 
 export type LessonListProps = {
   lessonCount: number;
-  currentPageItems: Omit<LessonListItemProps, "unitTitle" | "index">[];
+  currentPageItems: Omit<
+    LessonListItemProps,
+    "unitTitle" | "index" | "onClick"
+  >[];
   keyStageSlug: string;
   subjectSlug: string;
   paginationProps: PaginationProps & UsePaginationProps;
   headingTag: HeadingTag;
   unitTitle: string;
+  onClick: (props: LessonListItemProps) => void;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -34,6 +44,7 @@ const LessonList: FC<LessonListProps> = (props) => {
     headingTag,
     currentPageItems,
     unitTitle,
+    onClick,
   } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
@@ -55,6 +66,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                   hideTopHeading
                   index={index + pageSize * (currentPage - 1)}
                   firstItemRef={index === 0 ? firstItemRef : null}
+                  onClick={onClick}
                 />
               </LI>
             ))}

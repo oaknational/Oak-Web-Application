@@ -9,7 +9,6 @@ import { LessonListProps } from "./LessonList";
 import Component from ".";
 
 export default {
-  title: "Lists/Lesson List",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
@@ -33,6 +32,9 @@ const currentPageItems: LessonListProps = {
     pageSize: 5,
   },
   unitTitle: "Unit title",
+  onClick: function (): void {
+    console.log("Click");
+  },
 };
 
 const Template: ComponentStory<typeof Component> = (args) => {

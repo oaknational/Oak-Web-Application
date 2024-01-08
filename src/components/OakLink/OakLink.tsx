@@ -10,14 +10,18 @@ import {
 } from "../../common-lib/urls";
 import flex from "../../styles/utils/flex";
 import { OmitKeepDiscriminated } from "../../utils/generics";
-import { box } from "../Box";
-import { HTMLAnchorProps } from "../Button/common";
-import { FlexProps } from "../Flex";
-import Svg from "../Svg";
+import { box } from "../SharedComponents/Box";
+import { HTMLAnchorProps } from "../SharedComponents/Button/common";
 
 import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
+import NewFocusUnderline, {
+  newFocusUnderlineStyles,
+} from "./NewFocusUnderline";
 
-type FocusStyle = "underline";
+import Svg from "@/components/SharedComponents/Svg";
+import { FlexProps } from "@/components/SharedComponents/Flex";
+
+type FocusStyle = "underline" | "new-underline";
 type FocusStylesProps = {
   $focusStyles?: FocusStyle[];
 };
@@ -57,6 +61,8 @@ const StyledNextLink = styled.a<StyleProps>`
   ${(props) => props.$isInline && inlineStyles}
   ${(props) =>
     props.$focusStyles?.includes("underline") && focusUnderlineStyles}
+    ${(props) =>
+    props.$focusStyles?.includes("new-underline") && newFocusUnderlineStyles}
   ${(props) => props.$isHovered && $hoverStyles}
 
   ${(props) => props.$isSelected && $selectedStyle}
@@ -180,6 +186,9 @@ const OakLink = forwardRef<HTMLAnchorElement, OakLinkProps>((props, ref) => {
           {props.children}
           {props.$focusStyles?.includes("underline") && (
             <FocusUnderline $color={"lemon"} />
+          )}
+          {props.$focusStyles?.includes("new-underline") && (
+            <NewFocusUnderline />
           )}
         </>
       </StyledNextLink>

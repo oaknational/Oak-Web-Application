@@ -2,12 +2,12 @@ import { FC } from "react";
 
 import { HeaderLessonProps } from "./HeaderLesson";
 
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
 } from "@/common-lib/urls";
-import Box, { BoxProps } from "@/components/Box";
+import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
 export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
   props,

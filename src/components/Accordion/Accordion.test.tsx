@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 import Accordion from "./Accordion";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import Card from "@/components/Card";
-import { P } from "@/components/Typography";
+import Card from "@/components/SharedComponents/Card";
+import { P } from "@/components/SharedComponents/Typography";
 
 describe("Accordion component", () => {
   test("component renders with correct title", () => {

@@ -1,12 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Flex from "../../Flex";
-
 import Component from "./LandingPageHero";
 
+import Flex from "@/components/SharedComponents/Flex";
+
 export default {
-  title: "Sanity/Pages/Landing Pages",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

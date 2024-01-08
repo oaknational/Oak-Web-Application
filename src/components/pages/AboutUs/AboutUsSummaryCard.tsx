@@ -1,8 +1,11 @@
 import { FC } from "react";
 
 import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
-import ButtonLinkNav from "../../ButtonLinkNav/ButtonLinkNav";
-import SummaryCard, { SummaryCardProps } from "../../Card/SummaryCard";
+import SummaryCard, {
+  SummaryCardProps,
+} from "../../SharedComponents/Card/SummaryCard";
+
+import AboutUsNavButton from "@/components/GenericPagesComponents/AboutUsNavButton";
 
 type AboutUsSummaryCardProps = Pick<
   SummaryCardProps,
@@ -25,7 +28,7 @@ const AboutUsSummaryCard: FC<AboutUsSummaryCardProps> = (props) => {
         $minWidth: 166,
       }}
     >
-      <ButtonLinkNav $mt={36} buttons={aboutNavLinks} ariaLabel="about us" />
+      <AboutUsNavButton $mt={36} buttons={aboutNavLinks} ariaLabel="about us" />
     </SummaryCard>
   );
 };

@@ -9,8 +9,9 @@ import {
 } from "../../styles/theme";
 import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import getFontFamily from "../../styles/themeHelpers/getFontFamily";
-import Flex from "../Flex";
-import Icon, { IconName } from "../Icon";
+
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type BadgeConfig = {
   size: string;

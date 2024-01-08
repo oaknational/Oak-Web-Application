@@ -1,21 +1,24 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
-import Flex from "../Flex";
-import Typography, { Heading, LI, P } from "../Typography";
-import MaxWidth from "../MaxWidth/MaxWidth";
 import Logo from "../Logo";
-import SocialButtons from "../SocialButtons";
-import Box from "../Box";
-import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
-import Svg from "../Svg";
-import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
-import { IconName } from "../Icon";
-import Icon from "../Icon/Icon";
-import Button from "../Button";
 
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Svg from "@/components/SharedComponents/Svg";
+import Typography, {
+  Heading,
+  LI,
+  P,
+} from "@/components/SharedComponents/Typography";
+import Button from "@/components/SharedComponents/Button";
+import Box from "@/components/SharedComponents/Box";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex from "@/components/SharedComponents/Flex";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -212,16 +215,41 @@ const SiteFooter: FC = () => {
               <FooterSectionLinks {...sections.legal} />
             </GridArea>
             <GridArea $colSpan={[12, 3]}>
-              <Flex $justifyContent={["left", "right"]} $mt={[40, 0]}>
-                <Logo variant="with text" height={66} width={150} />
+              <Flex $justifyContent={["left", "right"]} $mt={[32, 0]}>
+                <Box $display={["none", "block"]}>
+                  <Logo variant="with text" height={66} width={150} />
+                </Box>
+                <SocialButtons
+                  $display={["flex", "none"]}
+                  for="Oak National Academy"
+                  {...OAK_SOCIALS}
+                />
               </Flex>
             </GridArea>
           </Grid>
-          <Flex $mb={80} $mt={[172, 64]} $width={"100%"}>
-            <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-            <Flex $alignItems={"center"} $ml={[16]}>
-              <P $textAlign="center" $font={["body-4", "body-2"]}>
-                © Oak National Academy
+          <Flex
+            $mb={56}
+            $mt={[32, 64]}
+            $width={"100%"}
+            $justifyContent={["flex-start", "space-between"]}
+            $flexDirection={["column", "row"]}
+            $alignItems={["flex-start", "center"]}
+            $pt={[12, 0]}
+          >
+            <SocialButtons
+              $display={["none", "flex"]}
+              for="Oak National Academy"
+              {...OAK_SOCIALS}
+            />
+            <Box $ml={-4} $display={["block", "none"]}>
+              <Logo variant="with text" height={66} width={150} />
+            </Box>
+            <Flex $mt={[32, 0]} $flexDirection={"column"}>
+              <P $font={"body-3-bold"}>
+                © Oak National Academy Limited, No 14174888
+              </P>
+              <P $font={["body-4"]}>
+                1 Scott Place, 2 Hardman Street, Manchester, M3 3AA
               </P>
             </Flex>
           </Flex>

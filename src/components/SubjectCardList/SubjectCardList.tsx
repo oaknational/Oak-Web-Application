@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import Grid, { GridArea } from "../Grid";
-
 import SubjectCardListItem from "./SubjectCardListItem";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
 
 export type KeyStageSubject = [KeyStageSubjectData, ...KeyStageSubjectData[]];

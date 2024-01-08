@@ -1,140 +1,124 @@
-import { useContext, useState } from "react";
 import {
   OakFlex,
   OakHeading,
   OakPrimaryButton,
-  OakRadioGroup,
-  OakRadioButton,
   OakSpan,
 } from "@oak-academy/oak-components";
 
-import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuestionStem } from "@/components/PupilJourneyComponents/QuestionStem";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
+import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
 
 export const QuizRenderer = () => {
-  const quizContext = useContext(QuizEngineContext);
-
-  const [selectedAnswer, setSelectedAnswer] = useState<{
-    answer?: MCAnswer | null;
-    index: number;
-  }>();
-
-  if (quizContext === null) {
-    return;
-  }
+  const quizContext = useQuizEngineContext();
 
   const {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
-    handleSubmitMCAnswer,
+    isComplete,
+    score,
+    maxScore,
     handleNextQuestion,
+    updateQuestionMode,
   } = quizContext;
 
-  if (!currentQuestionData) {
-    return null;
-  }
+  let innerRender = null;
 
-  const { questionStem, answers, questionUid } = currentQuestionData;
+  let questionFeedback = null;
 
-  const MCAnswers = answers?.["multiple-choice"];
-  const isFeedbackMode = questionState.mode === "feedback";
-  const isEndMode = questionState.mode === "end";
-  const isInputMode = questionState.mode === "input";
+  if (isComplete) {
+    innerRender = (
+      <OakFlex>
+        <OakSpan>
+          End of quiz, score: {score}/{maxScore}
+        </OakSpan>
+      </OakFlex>
+    );
+  } else if (currentQuestionData) {
+    const { questionStem, answers, questionUid } = currentQuestionData;
 
-  return (
-    <OakFlex
-      $flexDirection={"column"}
-      $color={"text-inverted"}
-      $background={"lavender"}
-      $alignItems={["center", "start"]}
-      $gap={"all-spacing-5"}
-      $pa={"inner-padding-m"}
-    >
-      <OakHeading tag="h1">Quiz Renderer</OakHeading>
-      <OakSpan>mode: {questionState.mode}</OakSpan>
-      <OakSpan>answer: {questionState.answer || "not answered"}</OakSpan>
-      {isEndMode && (
-        <OakFlex>
-          <OakSpan>
-            End of quiz, score: {questionState.score}/
-            {questionState.maximumScore}
-          </OakSpan>
-        </OakFlex>
-      )}
-      {(isInputMode || isFeedbackMode) && (
-        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
-          <QuestionStem
-            questionStem={questionStem}
-            index={currentQuestionIndex}
-            showIndex={true}
-          />
-          <OakRadioGroup
-            name={questionUid || "quiz"}
-            $flexDirection={"column"}
-            onChange={(e) => {
-              const targetIndex = e.target.tabIndex;
-              const selectedAnswer = MCAnswers?.[targetIndex];
-              setSelectedAnswer({
-                answer: selectedAnswer,
-                index: targetIndex,
-              });
-            }}
-          >
-            {MCAnswers?.map((answer, i) => {
-              return (
-                <OakFlex key={i}>
-                  {answer.answer.map((answerItem) => {
-                    const isCorrectAnswer = answer.answer_is_correct === true;
-                    const isSelected = selectedAnswer?.index === i;
-                    const incorrectColor = isSelected ? "red" : "lavender";
-                    const feedbackModeColor = isCorrectAnswer
-                      ? "oakGreen"
-                      : incorrectColor;
-                    const isTextType = answerItem.type === "text";
-                    const backgroundColor = isFeedbackMode
-                      ? feedbackModeColor
-                      : "lavender";
-                    if (isTextType) {
-                      return (
-                        <OakRadioButton
-                          id={`radio-${i}`}
-                          key={`radio-${i}`}
-                          tabIndex={i}
-                          value={`${currentQuestionIndex}${answerItem.text}`}
-                          label={answerItem.text}
-                          $background={backgroundColor}
-                        />
-                      );
-                    }
-                  })}
-                </OakFlex>
-              );
-            })}
-          </OakRadioGroup>
-          {isInputMode && (
+    const MCAnswers = answers?.["multiple-choice"];
+    const isFeedbackMode =
+      questionState[currentQuestionIndex]?.mode === "feedback";
+
+    let answerRender = null;
+
+    if (MCAnswers) {
+      if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
+        answerRender = <QuizMCQMultiAnswer />;
+      } else {
+        answerRender = (
+          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} /> // TODO: remove props and make the component use the context
+        );
+      }
+    }
+
+    innerRender = (
+      <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
+        <QuizQuestionStem
+          questionStem={questionStem}
+          index={currentQuestionIndex}
+          showIndex={true}
+        />
+        {answerRender}
+        {!isFeedbackMode && (
+          <OakFlex $pt="inner-padding-l">
             <OakPrimaryButton
-              disabled={selectedAnswer === undefined}
+              disabled={questionState[currentQuestionIndex]?.mode === "init"}
               onClick={() => {
-                handleSubmitMCAnswer(selectedAnswer?.answer);
+                updateQuestionMode("grading");
               }}
             >
               Submit
             </OakPrimaryButton>
-          )}
-          {isFeedbackMode && (
-            <OakPrimaryButton
-              onClick={() => {
-                handleNextQuestion();
-                setSelectedAnswer(undefined);
-              }}
-            >
+          </OakFlex>
+        )}
+        {isFeedbackMode && (
+          <OakFlex $pt="inner-padding-l">
+            <OakPrimaryButton onClick={handleNextQuestion}>
               Next Question
             </OakPrimaryButton>
-          )}
-        </OakFlex>
-      )}
+          </OakFlex>
+        )}
+      </OakFlex>
+    );
+
+    questionFeedback = (
+      <OakFlex
+        $position={"absolute"}
+        $left={"space-between-m"}
+        $flexDirection={"column"}
+        $gap={"space-between-ssx"}
+      >
+        <OakSpan>mode: {questionState[currentQuestionIndex]?.mode}</OakSpan>
+        <OakSpan>
+          feedback:
+          {questionState[currentQuestionIndex]?.grade === 1
+            ? "correct"
+            : "incorrect"}
+        </OakSpan>
+      </OakFlex>
+    );
+  }
+
+  return (
+    <OakFlex
+      $flexDirection={"column"}
+      $color="text-subdued"
+      $minWidth={"all-spacing-24"}
+      $pa={"inner-padding-xl"}
+      $ba="border-solid-m"
+      $borderColor={"border-inverted"}
+      $background={"bg-decorative1-very-subdued"}
+      $alignItems={"center"}
+      $gap={"all-spacing-5"}
+    >
+      <OakHeading tag="h1">Quiz Renderer</OakHeading>
+
+      {questionFeedback}
+      {innerRender}
     </OakFlex>
   );
 };
