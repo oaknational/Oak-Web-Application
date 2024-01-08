@@ -9,7 +9,7 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { RefObject, useMemo, useRef } from "react";
+import { RefObject, useEffect, useMemo, useRef } from "react";
 import {
   OakFlex,
   OakImage,
@@ -23,7 +23,7 @@ import {
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQMultiAnswerProps = {
-  answerRefs: RefObject<HTMLInputElement>[];
+  answerRefs?: RefObject<HTMLInputElement>[];
   onInitialChange?: () => void;
   onChange?: () => void;
 };
@@ -31,17 +31,20 @@ export type QuizMCQMultiAnswerProps = {
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const { answerRefs, onInitialChange, onChange } = props;
   const quizEngineContext = useQuizEngineContext();
+  const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
+  const questionState = quizEngineContext?.questionState[currentQuestionIndex];
+  const questionUid = currentQuestionData?.questionUid;
 
   const lastChanged = useRef<number>(0);
 
-  const currentQuestionIndex = quizEngineContext?.currentQuestionIndex ?? 0;
-  const questionState = quizEngineContext?.questionState[currentQuestionIndex];
-  const currentQuestionData = quizEngineContext?.currentQuestionData;
+  useEffect(() => {
+    lastChanged.current = 0;
+  }, [currentQuestionIndex]);
+
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
   );
-  const questionUid = currentQuestionData?.questionUid;
 
   if (!questionState || !currentQuestionData) {
     return null;
@@ -50,7 +53,7 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const handleOnChange = () => {
     if (lastChanged.current === 0 && onInitialChange) {
       onInitialChange();
-    } else if (onChange) {
+    } else if (lastChanged.current !== 0 && onChange) {
       onChange();
     }
     lastChanged.current = Date.now();

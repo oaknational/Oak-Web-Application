@@ -37,7 +37,7 @@ export const QuizRenderer = () => {
       const answers = currentQuestionData?.answers?.["multiple-choice"];
       mcAnswerRefs.current = answers?.map(() => createRef()) ?? [];
     }
-  }, [currentQuestionData]);
+  }, [currentQuestionData, currentQuestionIndex]);
 
   if (isComplete) {
     innerRender = (
@@ -48,7 +48,7 @@ export const QuizRenderer = () => {
       </OakFlex>
     );
   } else if (currentQuestionData) {
-    const { questionStem, answers, questionUid } = currentQuestionData;
+    const { questionStem, answers } = currentQuestionData;
 
     const MCAnswers = answers?.["multiple-choice"];
     const isFeedbackMode =
@@ -57,6 +57,7 @@ export const QuizRenderer = () => {
     let answerRender = null;
 
     const handleInitialChange = () => {
+      console.log("handleInitialChange");
       if (questionState[currentQuestionIndex]?.mode === "init") {
         updateQuestionMode("input");
       }
@@ -72,7 +73,10 @@ export const QuizRenderer = () => {
         );
       } else {
         answerRender = (
-          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} /> // TODO: remove props and make the component use the context
+          <QuizMCQSingleAnswer
+            answerRefs={mcAnswerRefs.current}
+            onInitialChange={handleInitialChange}
+          />
         );
       }
     }
@@ -85,12 +89,9 @@ export const QuizRenderer = () => {
           const answers = currentQuestionData?.answers?.["multiple-choice"];
           const selectedAnswers: MCAnswer[] = mcAnswerRefs.current
             .map((ref, index) => {
-              console.log("ref", ref);
               return ref.current?.checked && answers ? answers[index] : null;
             })
             .filter((answer): answer is MCAnswer => !!answer); // remove nulls
-
-          console.log("selectedAnswers", selectedAnswers);
           quizEngineContext?.handleSubmitMCAnswer(selectedAnswers);
           break;
         }
