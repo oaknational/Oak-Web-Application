@@ -19,8 +19,8 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import Flex from "@/components/Flex";
-import { P } from "@/components/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import { P } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;

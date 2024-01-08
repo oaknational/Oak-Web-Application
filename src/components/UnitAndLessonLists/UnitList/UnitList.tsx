@@ -3,10 +3,12 @@ import React, { FC } from "react";
 import UnitListItem, {
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import Pagination, { PaginationProps } from "@/components/Pagination";
-import { LI, UL } from "@/components/Typography";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
+import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
 
@@ -17,15 +19,16 @@ export type Tier = {
 };
 
 type PageSize = { pageSize: number };
-type CurrenPageItemsProps = Omit<UnitListItemProps, "index">[];
+type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
 export type UnitListProps = UnitListingData & {
   currentPageItems: CurrenPageItemsProps[];
   paginationProps: PaginationProps & PageSize;
+  onClick: (props: UnitListItemProps) => void;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems } = props;
+  const { units, paginationProps, currentPageItems, onClick } = props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
   return (
     <Flex $flexDirection="column">
@@ -39,6 +42,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                     <OptionalityCard
                       unitOptions={item}
                       index={index + pageSize * (currentPage - 1)}
+                      onClick={onClick}
                     />
                   </>
                 ) : (
@@ -51,6 +55,7 @@ const UnitList: FC<UnitListProps> = (props) => {
                           hideTopHeading
                           index={index + pageSize * (currentPage - 1)}
                           firstItemRef={index === 0 ? firstItemRef : null}
+                          onClick={onClick}
                         />
                       );
                     })}

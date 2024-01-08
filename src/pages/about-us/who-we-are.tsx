@@ -4,19 +4,19 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
-import Layout from "@/components/Layout";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import Flex, { FlexProps } from "@/components/Flex";
-import Card from "@/components/Card";
-import Box from "@/components/Box";
-import Typography, { Heading } from "@/components/Typography";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import OutlineHeading from "@/components/OutlineHeading";
-import Grid, { GridArea } from "@/components/Grid";
+import Layout from "@/components/SharedComponents/Layout";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+import Card from "@/components/SharedComponents/Card";
+import Box from "@/components/SharedComponents/Box";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import AboutContactCard from "@/components/AboutContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import CMSVideo from "@/components/CMSVideo";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
@@ -45,7 +45,7 @@ const TimeLineCard: FC<TimeLineProps> = ({
       {...props}
     >
       <Flex $flexDirection={"column"} $width={["100%", "50%"]}>
-        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h2"}>
+        <OutlineHeading $mb={[32, 0]} $fontSize={[50, 100]} tag={"h3"}>
           {title}
         </OutlineHeading>
         <Typography $font={["body-2", "body-1"]}>
@@ -137,7 +137,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
                   <BrushBorders hideOnMobileH hideOnMobileV color={"aqua"} />
                   <Heading
                     $font={["heading-5", "heading-4"]}
-                    tag={"h2"}
+                    tag={"h3"}
                     $mb={[24]}
                   >
                     {principle.title}

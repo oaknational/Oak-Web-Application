@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import Flex from "@/components/Flex/Flex";
-import Illustration from "@/components/Illustration/Illustration";
+import Flex from "@/components/SharedComponents/Flex";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import { IllustrationSlug } from "@/image-data";
 
 type ImageContainerProps = {

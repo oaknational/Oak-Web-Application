@@ -10,7 +10,6 @@ import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.f
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 const meta: Meta<typeof Component> = {
-  title: "Lists/EarlyReleaseExemplarUnits",
   component: Component,
   decorators: [AnalyticsDecorator, (Story) => <Story />],
 };

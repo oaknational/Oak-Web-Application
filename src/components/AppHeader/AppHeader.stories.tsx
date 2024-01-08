@@ -6,7 +6,6 @@ import { MenuProvider } from "../../context/Menu";
 import Component from "./AppHeader";
 
 const meta: Meta<typeof Component> = {
-  title: "Headers & Footers/App Header",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

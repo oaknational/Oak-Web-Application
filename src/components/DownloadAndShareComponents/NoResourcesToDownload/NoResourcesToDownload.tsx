@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { Heading, P } from "../../Typography";
-import Box from "../../Box";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Box from "@/components/SharedComponents/Box";
 
 const NoResourcesToDownload: FC = () => (
   <Box $ph={24} $mb={64} $mt={56}>

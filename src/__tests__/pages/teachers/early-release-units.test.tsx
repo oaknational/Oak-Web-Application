@@ -14,6 +14,7 @@ const providers = {
 
 const secondaryUnitTitles =
   earlyReleaseExemplarUnitsFixture().secondary.units.map((unit) => unit.title);
+
 const primaryUnitTitles = earlyReleaseExemplarUnitsFixture().primary.units.map(
   (unit) => unit.title,
 );
@@ -46,20 +47,21 @@ describe("pages/teachers/early-release-units", () => {
       getByRole("heading", { name: "Secondary units" }),
     ).toBeInTheDocument();
   });
+
   test.each(secondaryUnitTitles)(
     "it renders the secondary %s  unit",
     (title) => {
-      const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
+      const { getByText } = renderWithProviders()(<EarlyReleaseUnits />);
 
-      const unit = getByRole("heading", { name: title });
+      const unit = getByText(title);
 
       expect(unit).toBeInTheDocument();
     },
   );
   test.each(primaryUnitTitles)("it renders the primary %s  unit", (title) => {
-    const { getByRole } = renderWithProviders()(<EarlyReleaseUnits />);
+    const { getByText } = renderWithProviders()(<EarlyReleaseUnits />);
 
-    const unit = getByRole("heading", { name: title });
+    const unit = getByText(title);
 
     expect(unit).toBeInTheDocument();
   });

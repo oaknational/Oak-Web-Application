@@ -3,7 +3,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "@/components/LessonHelper/LessonHelper";
 
 export default {
-  title: "Element/Lesson Helper ",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

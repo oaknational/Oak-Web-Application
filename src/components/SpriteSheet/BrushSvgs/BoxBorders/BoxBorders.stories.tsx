@@ -1,12 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Card from "../../../Card";
-import CardTitle from "../../../Card/CardComponents/CardTitle";
-
 import Component from ".";
 
+import Card from "@/components/SharedComponents/Card";
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+
 export default {
-  title: "Foundations/BoxBorders",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

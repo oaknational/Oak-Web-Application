@@ -1,10 +1,7 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
 
-import Box from "../Box";
-import Grid, { GridArea } from "../Grid";
 import { PostListingPageProps } from "../pages/BlogIndex.page";
-import { Heading } from "../Typography";
 
 import PostCategoryList from "./PostCategoryList";
 import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
@@ -12,6 +9,10 @@ import usePostCategoryList from "./PostCategoryList/usePostCategoryList";
 import PostList from "./PostList";
 import { PostListItemProps } from "./PostList/PostListItem";
 import usePostList from "./PostList/usePostList";
+
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import { Heading } from "@/components/SharedComponents/Typography";
+import Box from "@/components/SharedComponents/Box";
 
 export type PostListAndCategoriesProps = Omit<PostListingPageProps, "blogs"> & {
   blogs: PostListItemProps[];

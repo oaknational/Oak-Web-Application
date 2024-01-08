@@ -1,11 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import { Span } from "../Typography";
-
 import { HeaderLessonProps } from "./HeaderLesson";
 
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import { Span } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonShareCanonicalLinkProps,
   LessonShareLinkProps,
@@ -67,11 +66,13 @@ export const HeaderShareAllButton: FC<HeaderLessonProps> = (props) => {
         disabled={!isLegacyLesson}
         onClick={onClickShareAll}
       />
-      {!isLegacyLesson && (
-        <Span $color={"grey50"} $font={"body-3"}>
-          Share function coming soon...
-        </Span>
-      )}
+      <Flex $mt={[12, 0]}>
+        {!isLegacyLesson && (
+          <Span $color={"grey50"} $font={"body-3"}>
+            Share function coming soon...
+          </Span>
+        )}
+      </Flex>
     </Flex>
   );
 };

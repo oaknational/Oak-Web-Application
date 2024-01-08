@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import Box from "@/components/Box";
-import Svg from "@/components/Svg";
+import Box from "@/components/SharedComponents/Box";
+import Svg from "@/components/SharedComponents/Svg";
 
 export const HeaderUnderline: FC = () => {
   return (

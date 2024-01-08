@@ -9,12 +9,13 @@ import { useComboBox } from "react-aria";
 import { Popover } from "../DropdownSelect/Popover";
 import { ListBox } from "../DropdownSelect/ListBox";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Flex from "../Flex";
 import { RotatedInputLabel, StyledInput } from "../Input/Input";
 import { DropdownFocusUnderline } from "../DropdownSelect/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
 import { OakColorName } from "../../styles/theme/types";
-import { Span } from "../Typography";
+
+import { Span } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
 

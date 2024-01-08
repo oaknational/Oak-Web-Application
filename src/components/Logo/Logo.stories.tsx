@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Media/Logo",
   component: Component,
   argTypes: {
     title: { defaultValue: "Oak Nayional Academy" },

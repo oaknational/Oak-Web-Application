@@ -3,9 +3,10 @@ import userEvent from "@testing-library/user-event";
 import ToastProvider from "../../context/Toast/ToastProvider";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
-import CopyLinkButton from "../Button/CopyLinkButton";
 
 import Toast from "./Toast";
+
+import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 
 describe("toast notification", () => {
   const ROLE = "alert";

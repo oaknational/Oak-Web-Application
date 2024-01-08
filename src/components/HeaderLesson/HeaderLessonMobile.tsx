@@ -4,9 +4,9 @@ import { HeaderLessonProps } from "./HeaderLesson";
 import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
 import { HeaderShareAllButton } from "./HeaderShareAllButton";
 
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import { Heading, P, Span } from "@/components/Typography";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
 import LessonMetadata from "@/components/LessonMetadata";
 

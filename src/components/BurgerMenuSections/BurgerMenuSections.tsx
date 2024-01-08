@@ -1,11 +1,11 @@
 import { FC } from "react";
 
-import { Heading, LI } from "../Typography";
-import Flex from "../Flex/Flex";
-import { FlexList } from "../Typography/UL";
-
 import BurgerMenuLinkButton from "./BurgerMenuLink";
 import { BurgerMenuSection } from "./types";
+
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
+import { Heading, LI } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site

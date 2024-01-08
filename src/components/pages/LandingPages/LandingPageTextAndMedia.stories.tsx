@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Flex from "../../Flex";
 import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
 
 import { LandingPageTextAndMedia as Component } from "./LandingPageTextAndMedia";
 
+import Flex from "@/components/SharedComponents/Flex";
+
 const meta: Meta<typeof Component> = {
-  title: "Sanity/Pages/Landing Pages",
   component: Component,
   argTypes: {},
 };

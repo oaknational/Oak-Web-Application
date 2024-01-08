@@ -2,13 +2,13 @@ import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
 
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/Menu/Menu";
 import MenuBackdrop from "@/components/Menu/MenuBackdrop";
-import Flex from "@/components/Flex";
-import IconButton from "@/components/Button/IconButton";
-import { Hr } from "@/components/Typography";
-import Button from "@/components/Button";
+import Flex from "@/components/SharedComponents/Flex";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import { Hr } from "@/components/SharedComponents/Typography";
+import Button from "@/components/SharedComponents/Button";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 

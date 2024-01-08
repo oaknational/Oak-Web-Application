@@ -6,7 +6,6 @@ import ToastDecorator from "../../../storybook-decorators/ToastDecorator";
 import Component from "./PostHeader";
 
 export default {
-  title: "Blogs & Webinars/PostHeader",
   decorators: [ToastDecorator, PostHogDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;

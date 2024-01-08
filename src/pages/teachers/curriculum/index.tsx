@@ -2,21 +2,26 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, UL, LI, P, Hr } from "@/components/Typography";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Typography, {
+  Heading,
+  UL,
+  LI,
+  P,
+  Hr,
+} from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
-import Illustration from "@/components/Illustration/Illustration";
-import Cover from "@/components/Cover/Cover";
-import { getSizes } from "@/components/CMSImage/getSizes";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
+import Cover from "@/components/SharedComponents/Cover/Cover";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OakLink from "@/components/OakLink/OakLink";
-import Typography from "@/components/Typography/Typography";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import {
@@ -96,6 +101,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $objectFit="contain"
                   $objectPosition={"center"}
                   fill
+                  alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>
             </Box>

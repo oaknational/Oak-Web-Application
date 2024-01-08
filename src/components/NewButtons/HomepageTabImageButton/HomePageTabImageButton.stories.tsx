@@ -4,8 +4,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Component from "./HomePageTabImageButton";
 
 const meta: Meta<typeof Component> = {
-  title: "Buttons/HomePageTabImageButton",
-
   component: Component,
   argTypes: {
     onClick: { action: "clicked" },

@@ -1,12 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { useEffect, useState } from "react";
 
-import Typography, { Heading } from "@/components/Typography";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/AppLayout";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OakLink from "@/components/OakLink";
 import usePostList from "@/components/Posts/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
@@ -21,7 +21,6 @@ import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabIma
 import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
 import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
 import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
-import HomePageBanner from "@/components/Banner/Banner";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -125,11 +124,7 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   };
 
   return (
-    <AppLayout
-      seoProps={DEFAULT_SEO_PROPS}
-      $background={"white"}
-      banner={HomePageBanner}
-    >
+    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <HomePageTabImageNav current={current} setCurrent={setActiveTab} />
       {current === "teachers" && (
         <TeachersTab keyStages={curriculumData.keyStages} />

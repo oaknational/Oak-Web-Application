@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import Svg from "../Svg";
-import { Span } from "../Typography";
-import Box from "../Box";
+import Svg from "@/components/SharedComponents/Svg";
+import { Span } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 type SpeechBubbleProps = {
   text?: string | null | undefined;
