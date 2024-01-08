@@ -21,7 +21,7 @@ import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Cover from "@/components/SharedComponents/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { IllustrationSlug } from "@/image-data";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";

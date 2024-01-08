@@ -6,7 +6,6 @@ import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
 import UnstyledButton from "../UnstyledButton";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import {
   InputFocusUnderline,
   RotatedInputLabel,
@@ -21,6 +20,7 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
+("@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders");
 
 export { Item } from "react-stately";
 

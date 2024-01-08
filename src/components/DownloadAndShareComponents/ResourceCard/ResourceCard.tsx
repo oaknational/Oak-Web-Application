@@ -4,7 +4,7 @@ import { useHover } from "react-aria";
 
 import type { DownloadResourceType } from "../downloadAndShare.types";
 
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/SharedComponents/Typography/P";
 import Flex from "@/components/SharedComponents/Flex";
 import Checkbox from "@/components/SharedComponents/Checkbox";

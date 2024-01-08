@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { SvgProps } from "../../getSvgId";
+import { SvgProps } from "@/components/SharedComponents/SpriteSheet/getSvgId";
 
 const IconBackground: FC<SvgProps> = (props) => {
   return (

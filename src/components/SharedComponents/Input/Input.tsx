@@ -9,7 +9,7 @@ import { getBreakpoint } from "@/styles/utils/responsive";
 import { margin, MarginProps } from "@/styles/utils/spacing";
 import Flex from "@/components/SharedComponents/Flex";
 import { IconName } from "@/components/SharedComponents/Icon";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import UnstyledInput, {
   UnstyledInputProps,
 } from "@/components/SharedComponents/UnstyledInput";

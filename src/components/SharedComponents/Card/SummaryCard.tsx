@@ -4,7 +4,7 @@ import Card from "./Card";
 
 import { PortableTextJSON, Image } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme/types";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";

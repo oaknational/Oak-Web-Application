@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Spinner } from "./Spinner";
 
 import UnstyledButton from "@/components/UnstyledButton";
-import { DoubleButtonBorders } from "@/components/SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
+import { DoubleButtonBorders } from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Box from "@/components/SharedComponents/Box";
 import FieldError from "@/components/FormFields/FieldError";
