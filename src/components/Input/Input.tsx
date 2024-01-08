@@ -16,7 +16,8 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import Svg from "@/components/SharedComponents/Svg";
 import FieldError from "@/components/FormFields/FieldError";
-import Label, { Span } from "@/components/SharedComponents/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
+import Label from "@/components/SharedComponents/Typography/Label";
 
 export type StyledInputProps = MarginProps & {
   value?: string;

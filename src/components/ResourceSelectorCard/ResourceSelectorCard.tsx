@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Typography from "../SharedComponents/Typography/Typography";
 
+import Typography from "@/components/SharedComponents/Typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";

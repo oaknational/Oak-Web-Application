@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 
 import Grid, { GridArea } from "../Grid";
-import Heading from "../SharedComponents/Typography/Heading";
 import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import TagPromotional from "../TagPromotional";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
+import Heading from "@/components/SharedComponents/Typography/Heading";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

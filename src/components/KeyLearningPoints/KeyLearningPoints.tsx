@@ -1,9 +1,6 @@
 import React from "react";
 
-import OL from "../SharedComponents/Typography/OL";
-import LI from "../SharedComponents/Typography/LI";
-
-import { Heading } from "@/components/SharedComponents/Typography";
+import { OL, LI, Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type KeyLearningPoint = {

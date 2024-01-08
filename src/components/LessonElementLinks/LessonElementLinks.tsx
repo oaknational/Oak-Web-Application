@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { zIndexMap } from "../../styles/utils/zIndex";
 import GraphiCircleIcon from "../SharedComponents/Icon/GraphicCircleIcon";
-import { GridList } from "../SharedComponents/Typography/UL";
 
+import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { IconName } from "@/components/SharedComponents/Icon";
 import Typography, { LI } from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";

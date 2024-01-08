@@ -1,10 +1,9 @@
 import { FC } from "react";
 
-import { FlexList } from "../SharedComponents/Typography/UL";
-
 import BurgerMenuLinkButton from "./BurgerMenuLink";
 import { BurgerMenuSection } from "./types";
 
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
 import { Heading, LI } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
