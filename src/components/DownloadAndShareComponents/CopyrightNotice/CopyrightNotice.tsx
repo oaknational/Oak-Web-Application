@@ -1,11 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import P from "@/components/Typography/P";
+import P from "@/components/SharedComponents/Typography/P";
 import OakLink from "@/components/OakLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;

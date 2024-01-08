@@ -8,8 +8,12 @@ import Pagination, {
   PaginationProps,
 } from "@/components/SharedComponents/Pagination";
 import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import { Heading, LI, UL } from "@/components/Typography";
-import { HeadingTag } from "@/components/Typography/Heading";
+import {
+  Heading,
+  LI,
+  UL,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
 
 export type LessonListProps = {
   lessonCount: number;

@@ -2,15 +2,15 @@ import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 import * as cheerio from "cheerio";
 
-import { Heading } from "../Typography";
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
 
+import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/SearchFilters";

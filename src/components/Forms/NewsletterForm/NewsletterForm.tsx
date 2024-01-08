@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import Input from "../../Input";
-import { P } from "../../Typography";
 import OakError from "../../../errors/OakError";
 import DropdownSelect from "../../DropdownSelect";
 import errorReporter from "../../../common-lib/error-reporter";
@@ -15,6 +14,7 @@ import {
   UserRole,
 } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
 
+import { P } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");

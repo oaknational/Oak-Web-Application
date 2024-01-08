@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Span } from "../Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 
 type CategoryHeadingProps = {
   keyStageTitle?: string;

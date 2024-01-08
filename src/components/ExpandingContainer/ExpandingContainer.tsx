@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Icon from "../Icon";
 import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 
+import Icon from "@/components/SharedComponents/Icon";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

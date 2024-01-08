@@ -12,7 +12,7 @@ import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import FocusUnderline from "@/components/OakLink/FocusUnderline";
 import FieldError from "@/components/FormFields/FieldError";
 import { ZIndex } from "@/styles/utils/zIndex";
-import Span from "@/components/Typography/Span";
+import Span from "@/components/SharedComponents/Typography/Span";
 
 export type CheckboxConfig = {
   default: {

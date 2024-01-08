@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 
 import ProgrammeList from "../ProgrammeList";
-import { Heading } from "../Typography";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import Grid, { GridArea, GridAreaProps } from "../Grid";
+
+import Grid, {
+  GridArea,
+  GridAreaProps,
+} from "@/components/SharedComponents/Grid";
+import { Heading } from "@/components/SharedComponents/Typography";
 
 export type LessonItemContainerProps = {
   children?: React.ReactNode;

@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import { OakColorName } from "../../../styles/theme";
-import Icon, { IconName, isIconVariant } from "../../Icon";
 
 import {
   ButtonBackground,
@@ -12,6 +11,11 @@ import {
 } from "./common";
 import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
+
+import Icon, {
+  IconName,
+  isIconVariant,
+} from "@/components/SharedComponents/Icon";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;

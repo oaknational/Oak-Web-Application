@@ -1,11 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import GridArea from "../Grid/GridArea";
-import Grid from "../Grid";
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
 
 import Component from "./";
+
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 export default {
   component: Component,

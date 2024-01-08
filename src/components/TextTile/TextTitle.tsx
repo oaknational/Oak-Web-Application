@@ -1,8 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import Svg from "../Svg";
-
+import Svg from "@/components/SharedComponents/Svg";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
