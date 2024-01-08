@@ -37,7 +37,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
         ))}
       </Flex>
       <P $mb={16} $font={"heading-7"}>
-        Exam Board
+        Exam board
       </P>
       <Flex $mb={36} $flexWrap={"wrap"}>
         {examBoardFilters.map((examBoard) => (
