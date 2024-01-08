@@ -1,6 +1,7 @@
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import CardLinkIcon from "../../Card/CardLinkIcon";
 import Grid, { GridArea } from "../../Grid";
+
+import CardLinkIcon from "@/components/SharedComponents/Card/CardLinkIcon";
 
 const HomeSiteCards = () => {
   const { track } = useAnalytics();

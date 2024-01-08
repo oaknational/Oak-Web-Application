@@ -1,12 +1,14 @@
 import { FC } from "react";
 
-import Pagination, { PaginationProps } from "../../Pagination";
 import { Hr, LI, UL } from "../../Typography";
 import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
 import PostListItem, { PostListItemProps } from "./PostListItem";
 
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 

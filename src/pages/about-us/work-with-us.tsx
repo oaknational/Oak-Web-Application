@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import AboutContactCard from "@/components/AboutContactCard";
 import { Heading } from "@/components/Typography";
 import Typography from "@/components/Typography/Typography";
