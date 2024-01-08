@@ -6,6 +6,7 @@ import React, {
   useMemo,
   memo,
   useCallback,
+  useContext,
 } from "react";
 
 import {
@@ -42,7 +43,16 @@ export type QuizEngineContextType = {
   handleNextQuestion: () => void;
 } | null;
 
+// this is used by storybook to mock the QuizEngineContext
 export const QuizEngineContext = createContext<QuizEngineContextType>(null);
+
+export const useQuizEngineContext = () => {
+  const context = useContext(QuizEngineContext);
+  if (!context) {
+    throw new Error("`QuizEngineProvider` is not available");
+  }
+  return context;
+};
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
@@ -57,9 +67,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentQuestionData, setCurrentQuestionData] = useState(
-    filteredQuestions[currentQuestionIndex],
-  );
+  const currentQuestionData = filteredQuestions[currentQuestionIndex];
   const [questionState, setQuestionState] = useState<QuestionState[]>(
     filteredQuestions.map(() => ({
       mode: "init",
@@ -68,13 +76,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
       feedback: undefined,
     })),
   );
-  const [score, setScore] = useState(0);
+
   const maxScore = filteredQuestions.length;
   const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    setCurrentQuestionData(filteredQuestions[currentQuestionIndex]);
-  }, [currentQuestionIndex, filteredQuestions]);
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
@@ -148,10 +152,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   return (
     <QuizEngineContext.Provider
       value={{
-        currentQuestionData: useMemo(
-          () => currentQuestionData,
-          [currentQuestionData],
-        ),
+        currentQuestionData,
         currentQuestionIndex: useMemo(
           () => currentQuestionIndex,
           [currentQuestionIndex],
@@ -159,7 +160,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         questionState: useMemo(() => questionState, [questionState]),
         score: useMemo(() => score, [score]),
         maxScore,
-        isComplete: useMemo(() => isComplete, [isComplete]),
+        isComplete,
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleNextQuestion,

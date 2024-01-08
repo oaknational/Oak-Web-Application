@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { renderHook, act } from "@testing-library/react";
 
 import {
   QuizEngineProps,
   QuizEngineProvider,
-  QuizEngineContext,
+  useQuizEngineContext,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { quizQuestions as questionsArrayFixture } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
-describe("useQuizEngineContext", () => {
+describe("QuizEngineContext", () => {
   describe("currentQuestionIndex", () => {
     it("should default to 0", () => {
       const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
@@ -18,7 +18,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -42,7 +42,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -66,7 +66,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -95,7 +95,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -119,7 +119,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -146,7 +146,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
+    const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
@@ -171,7 +171,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
+    const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
@@ -196,7 +196,7 @@ describe("useQuizEngineContext", () => {
         </QuizEngineProvider>
       );
     };
-    const { result } = renderHook(() => useContext(QuizEngineContext), {
+    const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
     });
@@ -225,7 +225,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -260,7 +260,7 @@ describe("useQuizEngineContext", () => {
           </QuizEngineProvider>
         );
       };
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
       });
@@ -311,7 +311,7 @@ describe("useQuizEngineContext", () => {
         );
       };
 
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
       });
 
@@ -367,7 +367,7 @@ describe("useQuizEngineContext", () => {
         );
       };
 
-      const { result } = renderHook(() => useContext(QuizEngineContext), {
+      const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
       });
 
@@ -396,5 +396,18 @@ describe("useQuizEngineContext", () => {
         offerHint: false,
       });
     });
+  });
+});
+
+describe("useQuizEngineContext", () => {
+  it("throws an error when there is no context", () => {
+    jest.spyOn(console, "error").mockImplementation(() => jest.fn()); // suppress console.error
+    expect(() => renderHook(() => useQuizEngineContext())).toThrow(
+      "`QuizEngineProvider` is not available",
+    );
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 });

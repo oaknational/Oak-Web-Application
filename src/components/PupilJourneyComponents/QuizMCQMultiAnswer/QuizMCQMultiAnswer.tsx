@@ -9,7 +9,7 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { createRef, useContext, useEffect, useMemo, useRef } from "react";
+import { createRef, useEffect, useMemo, useRef } from "react";
 import {
   OakFlex,
   OakImage,
@@ -21,10 +21,10 @@ import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export const QuizMCQMultiAnswer = () => {
-  const quizEngineContext = useContext(QuizEngineContext);
+  const quizEngineContext = useQuizEngineContext();
 
   const innerRefs = useRef<React.RefObject<HTMLInputElement>[]>([]);
 
