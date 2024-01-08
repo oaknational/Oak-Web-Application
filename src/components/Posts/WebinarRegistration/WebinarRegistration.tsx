@@ -1,11 +1,11 @@
 import { FC, useId } from "react";
 
-import { HeadingTag, P } from "../../Typography";
 import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
-import CardTitle from "../../Card/CardComponents/CardTitle";
 import OakLink from "../../OakLink";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 
+import { HeadingTag, P } from "@/components/SharedComponents/Typography";
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type WebinarRegistrationProps = {

@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Breadcrumb } from "../Breadcrumbs";
+import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
 
 import { HeaderWrapper } from "./HeaderWrapper";
 import { HeaderLessonMobile } from "./HeaderLessonMobile";

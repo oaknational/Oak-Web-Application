@@ -2,14 +2,14 @@ import { FC } from "react";
 // import * as cheerio from "cheerio";
 
 import LessonMetadata from "../LessonMetadata";
-import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
-import Icon from "../Icon";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import Icon from "@/components/SharedComponents/Icon";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
@@ -107,16 +107,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </Heading>
-        {description ||
-          (pupilLessonOutcome && (
-            <P
-              dangerouslySetInnerHTML={{
-                __html: searchHitDescription,
-              }}
-              $mt={16}
-              $font={"body-2"}
-            />
-          ))}
+        {searchHitDescription && (
+          <P
+            dangerouslySetInnerHTML={{
+              __html: searchHitDescription,
+            }}
+            $mt={16}
+            $font={"body-2"}
+          />
+        )}
       </Flex>
       <Flex $mb={20}>
         {isPathwaySearchHit ? (

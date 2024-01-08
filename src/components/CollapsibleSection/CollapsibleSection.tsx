@@ -1,9 +1,10 @@
 import { FC, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
 
-import { IconName } from "../Icon";
-import Heading, { HeadingTag } from "../Typography/Heading";
-
+import { IconName } from "@/components/SharedComponents/Icon";
+import Heading, {
+  HeadingTag,
+} from "@/components/SharedComponents/Typography/Heading";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Button from "@/components/SharedComponents/Button";
 import Flex from "@/components/SharedComponents/Flex";

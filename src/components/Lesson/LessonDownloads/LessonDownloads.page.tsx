@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/Typography";
+import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -13,7 +13,7 @@ import {
   ResourceFormProps,
   DownloadResourceType,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
 import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

@@ -12,13 +12,13 @@ import { merge } from "lodash/fp";
 import errorReporter from "../../common-lib/error-reporter";
 import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
 import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
-import { LI, OL, P, Span } from "../Typography";
 import OakLink from "../OakLink";
 import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
-import AnchorTarget from "../AnchorTarget";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
+import { LI, OL, P, Span } from "@/components/SharedComponents/Typography";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
 
 const reportError = errorReporter("PortableText");

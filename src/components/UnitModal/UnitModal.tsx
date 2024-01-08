@@ -2,12 +2,12 @@ import { FC, useState, useEffect } from "react";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { Heading } from "@/components/Typography";
+import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/LessonMetadata";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
