@@ -10,7 +10,9 @@ import { margin, MarginProps } from "@/styles/utils/spacing";
 import Flex from "@/components/SharedComponents/Flex";
 import { IconName } from "@/components/SharedComponents/Icon";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
+import UnstyledInput, {
+  UnstyledInputProps,
+} from "@/components/SharedComponents/UnstyledInput";
 import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
