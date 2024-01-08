@@ -1,3 +1,4 @@
+import { createRef, useEffect, useRef } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -9,9 +10,11 @@ import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEn
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
-  const quizContext = useQuizEngineContext();
+  const quizEngineContext = useQuizEngineContext();
+  const mcAnswerRefs = useRef<React.RefObject<HTMLInputElement>[]>([]);
 
   const {
     currentQuestionData,
@@ -22,11 +25,19 @@ export const QuizRenderer = () => {
     maxScore,
     handleNextQuestion,
     updateQuestionMode,
-  } = quizContext;
+  } = quizEngineContext;
 
   let innerRender = null;
 
   let questionFeedback = null;
+
+  // on question change, reset the refs
+  useEffect(() => {
+    if (currentQuestionData?.questionType === "multiple-choice") {
+      const answers = currentQuestionData?.answers?.["multiple-choice"];
+      mcAnswerRefs.current = answers?.map(() => createRef()) ?? [];
+    }
+  }, [currentQuestionData]);
 
   if (isComplete) {
     innerRender = (
@@ -45,15 +56,51 @@ export const QuizRenderer = () => {
 
     let answerRender = null;
 
+    const handleInitialChange = () => {
+      if (questionState[currentQuestionIndex]?.mode === "init") {
+        updateQuestionMode("input");
+      }
+    };
+
     if (MCAnswers) {
       if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
-        answerRender = <QuizMCQMultiAnswer />;
+        answerRender = (
+          <QuizMCQMultiAnswer
+            answerRefs={mcAnswerRefs.current}
+            onInitialChange={handleInitialChange}
+          />
+        );
       } else {
         answerRender = (
           <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} /> // TODO: remove props and make the component use the context
         );
       }
     }
+
+    const handleSubmit = () => {
+      updateQuestionMode("grading");
+
+      switch (currentQuestionData.questionType) {
+        case "multiple-choice": {
+          const answers = currentQuestionData?.answers?.["multiple-choice"];
+          const selectedAnswers: MCAnswer[] = mcAnswerRefs.current
+            .map((ref, index) => {
+              console.log("ref", ref);
+              return ref.current?.checked && answers ? answers[index] : null;
+            })
+            .filter((answer): answer is MCAnswer => !!answer); // remove nulls
+
+          console.log("selectedAnswers", selectedAnswers);
+          quizEngineContext?.handleSubmitMCAnswer(selectedAnswers);
+          break;
+        }
+        case "short-answer":
+        case "order":
+        case "match":
+        default:
+          break;
+      }
+    };
 
     innerRender = (
       <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
@@ -67,9 +114,7 @@ export const QuizRenderer = () => {
           <OakFlex $pt="inner-padding-l">
             <OakPrimaryButton
               disabled={questionState[currentQuestionIndex]?.mode === "init"}
-              onClick={() => {
-                updateQuestionMode("grading");
-              }}
+              onClick={handleSubmit}
             >
               Submit
             </OakPrimaryButton>

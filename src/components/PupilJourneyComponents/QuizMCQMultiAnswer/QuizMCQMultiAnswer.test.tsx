@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
@@ -161,22 +161,24 @@ describe("QuizMCQMultiAnswer", () => {
     expect(images.length).toEqual(mcqImageAnswers.length);
   });
 
-  it("calls handleSubmitMCAnswer when questionState.mode is set to grading", () => {
-    const mockQuizEngineContextGrading: QuizEngineContextType = {
-      ...mockQuizEngineContext,
-    };
+  it("assigns refs to the answers", () => {
+    const answerRefs =
+      mockQuizEngineContext.currentQuestionData?.answers?.[
+        "multiple-choice"
+      ]?.map(() => createRef<HTMLInputElement>()) ?? [];
 
-    if (mockQuizEngineContextGrading.questionState[0]) {
-      mockQuizEngineContextGrading.questionState[0].mode = "grading";
-    }
-    renderWithTheme(
+    const { getAllByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer />
+          <QuizMCQMultiAnswer answerRefs={answerRefs} />
         </QuizEngineContext.Provider>
       </OakThemeProvider>,
     );
 
-    expect(mockQuizEngineContext.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
+    const checkboxes = getAllByRole("checkbox");
+
+    checkboxes.forEach((checkbox, index) => {
+      expect(answerRefs[index]?.current).toBe(checkbox);
+    });
   });
 });
