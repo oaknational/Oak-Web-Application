@@ -1,7 +1,9 @@
 import { FC } from "react";
 
 import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
-import SummaryCard, { SummaryCardProps } from "../../Card/SummaryCard";
+import SummaryCard, {
+  SummaryCardProps,
+} from "../../SharedComponents/Card/SummaryCard";
 
 import AboutUsNavButton from "@/components/GenericPagesComponents/AboutUsNavButton";
 

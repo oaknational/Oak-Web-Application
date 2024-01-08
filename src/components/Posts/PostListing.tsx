@@ -13,8 +13,8 @@ import PostListAndCategories from "@/components/Posts/PostListAndCategories";
 import {
   CrumbPageVariant,
   getBlogWebinarListBreadcrumbs,
-} from "@/components/Breadcrumbs/getBreadcrumbs";
-import SummaryCard from "@/components/Card/SummaryCard";
+} from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
+import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Layout from "@/components/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
@@ -28,7 +28,7 @@ import {
   WebinarListingPageProps,
   webinarToPostListItem,
 } from "@/components/pages/WebinarsIndex.page";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 
 type PostListingProps = {
   seo: SeoProps;

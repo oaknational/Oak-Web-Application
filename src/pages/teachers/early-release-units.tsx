@@ -9,10 +9,10 @@ import { Heading, Hr, P } from "@/components/Typography";
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Grid, { GridArea } from "@/components/Grid";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import AnchorTarget from "@/components/AnchorTarget";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 
 const EarlyReleaseUnits: NextPage = () => {
   const exemplarUnitsFixture = earlyReleaseExemplarUnitsFixture();
