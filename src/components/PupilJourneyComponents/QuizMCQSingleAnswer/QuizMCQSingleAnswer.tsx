@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   OakBox,
   OakRadioButton,
@@ -6,7 +6,7 @@ import {
 } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQSingleAnswerProps = {
   questionUid: string;
@@ -16,7 +16,7 @@ export type QuizMCQSingleAnswerProps = {
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const { questionUid, answers } = props;
 
-  const quizEngineContext = useContext(QuizEngineContext);
+  const quizEngineContext = useQuizEngineContext();
 
   const currentQuestionIndex = quizEngineContext?.currentQuestionIndex || 0;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];

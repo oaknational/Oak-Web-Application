@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import {
   OakFlex,
   OakHeading,
@@ -6,17 +5,13 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
-import { QuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
 
 export const QuizRenderer = () => {
-  const quizContext = useContext(QuizEngineContext);
-
-  if (quizContext === null) {
-    return;
-  }
+  const quizContext = useQuizEngineContext();
 
   const {
     currentQuestionData,

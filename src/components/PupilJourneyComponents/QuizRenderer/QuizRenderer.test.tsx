@@ -33,9 +33,8 @@ const getContext = (): QuizEngineContextType => ({
 });
 
 describe("QuizRenderer", () => {
-  it("renders null when no currentQuestionData", () => {
-    const { container } = renderWithTheme(<QuizRenderer />);
-    expect(container.innerHTML).toBe("");
+  it("throws an error when there is no context", () => {
+    expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
   });
 
   it("renders heading, mode and answer when there is currentQuestionData", () => {
