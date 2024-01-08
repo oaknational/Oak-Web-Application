@@ -1,3 +1,5 @@
+const { getIsPluginDisabled } = require("../lib");
+
 const { createDeployment, updateDeployment } = require("./actions");
 
 function validateSuccessCode(statusCode) {
@@ -19,11 +21,20 @@ const DEPLOY_CONTEXTS = {
   cache_busting: "not a deploy context",
 };
 
+/**
+ * We need to disable plugins for some custom builds.
+ */
+const isDisabled = getIsPluginDisabled("PLUGIN_GITHUB_DEPLOYMENTS_DISABLED");
+
 module.exports = function githubDeploymentPlugin() {
   let deploymentInfo = {};
 
   return {
     onPreBuild: async ({ netlifyConfig, utils }) => {
+      if (isDisabled) {
+        return;
+      }
+
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
@@ -161,6 +172,10 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status failure.
      */
     onError: async ({ utils }) => {
+      if (isDisabled) {
+        return;
+      }
+
       const githubToken = deploymentInfo.githubToken;
 
       /** @type {import('./actions').UpdateDeploymentOptions} */
@@ -186,6 +201,10 @@ module.exports = function githubDeploymentPlugin() {
      * Set deployment status success.
      */
     onSuccess: async ({ utils }) => {
+      if (isDisabled) {
+        return;
+      }
+
       const githubToken = deploymentInfo.githubToken;
 
       /** @type {import('./actions').UpdateDeploymentOptions} */
