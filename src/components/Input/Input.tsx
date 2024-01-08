@@ -8,7 +8,7 @@ import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import { margin, MarginProps } from "@/styles/utils/spacing";
 import Flex from "@/components/SharedComponents/Flex";
-import { IconName } from "@/components/Icon";
+import { IconName } from "@/components/SharedComponents/Icon";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
 import { OakColorName } from "@/styles/theme/types";

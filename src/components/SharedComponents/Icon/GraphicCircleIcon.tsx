@@ -1,8 +1,9 @@
 import { FC } from "react";
 
-import Icon, { IconName } from "../Icon";
-import Circle from "../Circle";
-import { OakColorName } from "../../styles/theme";
+import Circle from "../../Circle";
+import { OakColorName } from "../../../styles/theme";
+
+import Icon, { IconName } from ".";
 
 import { FlexProps } from "@/components/SharedComponents/Flex";
 

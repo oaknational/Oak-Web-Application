@@ -7,9 +7,8 @@ import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
-import { IconName } from "../Icon";
-import Icon from "../Icon/Icon";
 
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";
 import Typography, {
   Heading,

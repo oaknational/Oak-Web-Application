@@ -21,7 +21,7 @@ import Illustration from "@/components/SharedComponents/Illustration/Illustratio
 import Cover from "@/components/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OakLink from "@/components/OakLink/OakLink";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import {

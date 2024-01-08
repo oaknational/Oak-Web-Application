@@ -5,7 +5,6 @@ import Heading, { HeadingProps } from "./Heading";
 
 import Svg from "@/components/SharedComponents/Svg";
 
-
 const BrushUnderline = styled(Svg)`
   position: absolute;
   mask-position: center;

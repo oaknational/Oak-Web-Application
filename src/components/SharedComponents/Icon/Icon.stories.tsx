@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ICON_NAMES } from "../../image-data";
+import { ICON_NAMES } from "../../../image-data";
 
 import Component from "./Icon";
 

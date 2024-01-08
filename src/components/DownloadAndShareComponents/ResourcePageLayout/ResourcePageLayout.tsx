@@ -25,7 +25,7 @@ import Checkbox from "@/components/Checkbox";
 import Flex from "@/components/SharedComponents/Flex";
 import Input from "@/components/Input";
 import OakLink from "@/components/OakLink";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 
 /** Generic layout component for Downloads and Share page */
 

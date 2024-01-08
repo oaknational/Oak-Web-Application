@@ -1,5 +1,5 @@
 import Flex from "@/components/SharedComponents/Flex";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import { Span } from "@/components/SharedComponents/Typography";
 
 export interface IUnitListLessonCountProps {

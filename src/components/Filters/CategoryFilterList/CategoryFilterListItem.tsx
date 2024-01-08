@@ -1,5 +1,4 @@
 import { PixelSpacing } from "../../../styles/theme";
-import Icon from "../../Icon";
 import OakLink from "../../OakLink";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
@@ -7,6 +6,7 @@ import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters
 import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 
+import Icon from "@/components/SharedComponents/Icon";
 import { LI } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 

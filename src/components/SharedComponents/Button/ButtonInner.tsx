@@ -14,7 +14,7 @@ import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import Icon, { IconName } from "@/components/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
 import SubjectIcon from "@/components/SubjectIcon";

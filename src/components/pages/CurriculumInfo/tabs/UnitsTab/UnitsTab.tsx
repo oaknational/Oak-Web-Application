@@ -5,7 +5,7 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
-import Icon from "@/components/Icon/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import OutlineHeading from "@/components/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";

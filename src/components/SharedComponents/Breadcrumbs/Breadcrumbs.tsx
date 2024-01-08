@@ -2,11 +2,11 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { BreadcrumbJsonLd } from "../../../browser-lib/seo/getJsonLd";
-import Icon from "../../Icon";
-import UL from "../Typography/UL";
 import OakLink from "../../OakLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "../../../common-lib/urls";
 
+import Icon from "@/components/SharedComponents/Icon";
+import UL from "@/components/SharedComponents/Typography/UL";
 import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`

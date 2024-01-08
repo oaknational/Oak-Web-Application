@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import Icon, { IconName } from "@/components/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/SharedComponents/Typography";
 

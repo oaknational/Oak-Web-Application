@@ -13,7 +13,6 @@ import { OmitKeepDiscriminated } from "../../utils/generics";
 import { box } from "../SharedComponents/Box";
 import { HTMLAnchorProps } from "../SharedComponents/Button/common";
 
-
 import FocusUnderline, { focusUnderlineStyles } from "./FocusUnderline";
 import NewFocusUnderline, {
   newFocusUnderlineStyles,

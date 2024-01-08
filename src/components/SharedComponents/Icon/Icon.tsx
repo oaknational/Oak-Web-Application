@@ -1,11 +1,11 @@
 import { FC } from "react";
 import styled, { css, useTheme } from "styled-components";
 
-import { PixelSpacing } from "../../styles/theme";
-import color, { ColorProps } from "../../styles/utils/color";
-import size, { SizeProps } from "../../styles/utils/size";
-import { ResponsiveValues } from "../../styles/utils/responsive";
-import { UiIconName } from "../../image-data";
+import { PixelSpacing } from "../../../styles/theme";
+import color, { ColorProps } from "../../../styles/utils/color";
+import size, { SizeProps } from "../../../styles/utils/size";
+import { ResponsiveValues } from "../../../styles/utils/responsive";
+import { UiIconName } from "../../../image-data";
 
 import useIconAnimation from "./useIconAnimation";
 

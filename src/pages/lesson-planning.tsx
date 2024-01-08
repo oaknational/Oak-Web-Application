@@ -9,7 +9,7 @@ import Grid, { GridArea } from "@/components/Grid";
 import Layout from "@/components/Layout";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Icon, { IconName } from "@/components/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import LessonElementLinks from "@/components/LessonElementLinks";
 import { OakColorName } from "@/styles/theme";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

@@ -4,7 +4,7 @@ import { useFocusWithin } from "react-aria";
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
-import Icon from "@/components/Icon";
+import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import Svg from "@/components/SharedComponents/Svg";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";

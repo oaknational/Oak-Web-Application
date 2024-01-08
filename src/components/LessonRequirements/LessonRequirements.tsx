@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import LessonRequirementsHeading from "./LessonRequirementsHeading";
 
-import { IconName } from "@/components/Icon";
+import { IconName } from "@/components/SharedComponents/Icon";
 import Flex from "@/components/SharedComponents/Flex";
 import { P, UL, LI } from "@/components/SharedComponents/Typography";
 

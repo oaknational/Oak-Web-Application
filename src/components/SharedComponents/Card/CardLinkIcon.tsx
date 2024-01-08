@@ -1,12 +1,12 @@
 import { FC } from "react";
 
 import { OakColorName } from "../../../styles/theme";
-import Icon, { IconName } from "../../Icon";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 
 import Card from "./Card";
 import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 
 type RemoveField<Type, Key extends keyof Type> = {
