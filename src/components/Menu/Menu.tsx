@@ -8,12 +8,12 @@ import { useMenuContext } from "../../context/Menu/";
 import { OakColorName, PixelSpacing } from "../../styles/theme/types";
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
-import Svg from "../Svg";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
 
+import Svg from "@/components/SharedComponents/Svg";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import flex from "@/styles/utils/flex";
 import Box, { BoxProps, box } from "@/components/SharedComponents/Box";

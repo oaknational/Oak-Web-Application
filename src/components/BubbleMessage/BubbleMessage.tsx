@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import OutlineHeading from "../OutlineHeading";
-import Svg from "../Svg";
 import { OakColorName } from "../../styles/theme/types";
 
+import Svg from "@/components/SharedComponents/Svg";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

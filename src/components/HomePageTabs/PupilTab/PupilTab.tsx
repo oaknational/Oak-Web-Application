@@ -7,7 +7,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import { GridArea } from "@/components/Grid";
 import Grid from "@/components/Grid/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Svg from "@/components/Svg/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 
 const PupilTab: FC = () => {

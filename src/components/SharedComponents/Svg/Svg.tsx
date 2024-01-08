@@ -1,8 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import getSvgId, { SvgName } from "../SpriteSheet/getSvgId";
-import { OakColorName } from "../../styles/theme/types";
+import getSvgId, { SvgName } from "../../SpriteSheet/getSvgId";
+import { OakColorName } from "../../../styles/theme/types";
 
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 

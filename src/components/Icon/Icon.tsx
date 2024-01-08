@@ -3,13 +3,13 @@ import styled, { css, useTheme } from "styled-components";
 
 import { PixelSpacing } from "../../styles/theme";
 import color, { ColorProps } from "../../styles/utils/color";
-import Svg, { SvgProps } from "../Svg/Svg";
 import size, { SizeProps } from "../../styles/utils/size";
 import { ResponsiveValues } from "../../styles/utils/responsive";
 import { UiIconName } from "../../image-data";
 
 import useIconAnimation from "./useIconAnimation";
 
+import Svg, { SvgProps } from "@/components/SharedComponents/Svg";
 import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 export type IconName = UiIconName;

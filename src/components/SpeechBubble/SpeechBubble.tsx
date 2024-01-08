@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import Svg from "../Svg";
-
+import Svg from "@/components/SharedComponents/Svg";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

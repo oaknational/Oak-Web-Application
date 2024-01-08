@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-
 import CardTitle from "./CardComponents/CardTitle";
 import CardImage from "./CardComponents/CardImage";
 

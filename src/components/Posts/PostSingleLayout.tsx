@@ -15,7 +15,7 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import Svg from "@/components/Svg/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 
 type PostSingleLayoutProps = {
   children?: ReactNode;

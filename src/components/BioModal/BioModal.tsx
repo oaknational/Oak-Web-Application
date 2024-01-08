@@ -19,7 +19,7 @@ import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";
 import SocialButtons from "@/components/SocialButtons";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Svg from "@/components/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 

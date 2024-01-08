@@ -14,7 +14,7 @@ import UnstyledInput, { UnstyledInputProps } from "@/components/UnstyledInput";
 import { OakColorName } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { zIndexMap } from "@/styles/utils/zIndex";
-import Svg from "@/components/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 import FieldError from "@/components/FormFields/FieldError";
 import Label, { Span } from "@/components/SharedComponents/Typography";
 

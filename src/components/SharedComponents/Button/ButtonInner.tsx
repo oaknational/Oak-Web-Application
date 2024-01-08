@@ -16,7 +16,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/Icon";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
-import Svg from "@/components/Svg";
+import Svg from "@/components/SharedComponents/Svg";
 import SubjectIcon from "@/components/SubjectIcon";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";

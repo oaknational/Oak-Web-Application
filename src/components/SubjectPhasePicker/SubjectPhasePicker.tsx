@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import OakLink from "../OakLink/OakLink";
-import Svg from "../Svg";
 
+import Svg from "@/components/SharedComponents/Svg";
 import { Heading, Span, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
