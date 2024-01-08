@@ -1,3 +1,13 @@
+# [1.318.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.1...v1.318.0) (2024-01-08)
+
+
+### Features
+
+* **build:** allow Netlify plugins to be disabled with envs ([3e60629](https://github.com/oaknational/Oak-Web-Application/commit/3e60629ccb7f68038fcd3762d207e2b0c727d17a))
+* **build:** disable plugins in way that actually works ([3cfa43d](https://github.com/oaknational/Oak-Web-Application/commit/3cfa43db866149fe7fc5bb9c7d5261ae8253f122))
+
+## [1.317.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.0...v1.317.1) (2024-01-08)
+
 # [1.317.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.316.0...v1.317.0) (2024-01-08)
 
 
