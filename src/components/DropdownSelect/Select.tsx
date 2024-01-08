@@ -7,7 +7,10 @@ import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
 import UnstyledButton from "../UnstyledButton";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
+import {
+  InputFocusUnderline,
+  RotatedInputLabel,
+} from "../SharedComponents/Input/Input";
 
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";

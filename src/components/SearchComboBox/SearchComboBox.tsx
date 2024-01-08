@@ -9,7 +9,10 @@ import { useComboBox } from "react-aria";
 import { Popover } from "../DropdownSelect/Popover";
 import { ListBox } from "../DropdownSelect/ListBox";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { RotatedInputLabel, StyledInput } from "../Input/Input";
+import {
+  RotatedInputLabel,
+  StyledInput,
+} from "../SharedComponents/Input/Input";
 import { DropdownFocusUnderline } from "../DropdownSelect/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
 

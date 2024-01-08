@@ -6,7 +6,7 @@ import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import { InputFocusUnderline } from "../Input/Input";
+import { InputFocusUnderline } from "../SharedComponents/Input/Input";
 
 import theme, { OakColorName } from "@/styles/theme";
 import { LI, Span } from "@/components/SharedComponents/Typography";
