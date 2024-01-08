@@ -69,7 +69,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     })),
   );
   const [score, setScore] = useState(0);
-  const maxScore = useMemo(() => filteredQuestions.length, [filteredQuestions]);
+  const maxScore = filteredQuestions.length;
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
