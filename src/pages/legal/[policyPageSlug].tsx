@@ -14,7 +14,7 @@ import {
 } from "@/node-lib/isr";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/Grid";
-import Layout from "@/components/Layout";
+import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, {
   Heading,

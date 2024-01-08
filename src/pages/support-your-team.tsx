@@ -3,10 +3,8 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../node-lib/cms";
 import { SupportPage } from "../common-lib/cms-types";
-import Layout from "../components/Layout";
 import MaxWidth from "../components/SharedComponents/MaxWidth";
 import SummaryCard from "../components/SharedComponents/Card/SummaryCard";
-import { Heading, P } from "../components/SharedComponents/Typography";
 import Grid from "../components/Grid";
 import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
@@ -15,6 +13,8 @@ import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardI
 import BubbleMessage from "../components/BubbleMessage";
 import getPageProps from "../node-lib/getPageProps";
 
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Layout from "@/components/SharedComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

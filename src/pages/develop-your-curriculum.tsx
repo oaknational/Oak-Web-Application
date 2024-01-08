@@ -3,7 +3,7 @@ import { Fragment } from "react";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
+import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Typography, {

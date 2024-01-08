@@ -1,8 +1,6 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../../node-lib/cms";
-import Layout from "../../components/Layout";
-import MaxWidth from "../../components/SharedComponents/MaxWidth";
 import AboutContactCard from "../../components/AboutContactCard";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "../../components/BioCardList";
@@ -11,6 +9,8 @@ import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "../../common-lib/cms-types";
 import getPageProps from "../../node-lib/getPageProps";
 
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Layout from "@/components/SharedComponents/Layout";
 import { Heading } from "@/components/SharedComponents/Typography";
 
 export type AboutPageProps = {

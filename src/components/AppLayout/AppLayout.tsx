@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import Layout, { LayoutProps } from "../Layout";
+import Layout, { LayoutProps } from "@/components/SharedComponents/Layout";
 
 export type AppLayoutProps = LayoutProps;
 const AppLayout: FC<AppLayoutProps> = (props) => {
