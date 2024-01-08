@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import CMSImage from "../CMSImage";
-import { CMSImageProps } from "../CMSImage/CMSImage";
 import { getSubjectIconAsset } from "../../image-data";
 
+import CMSImage, {
+  CMSImageProps,
+} from "@/components/SharedComponents/CMSImage";
 import Box from "@/components/SharedComponents/Box";
 
 type SubjectIconProps = Omit<CMSImageProps, "image"> & {

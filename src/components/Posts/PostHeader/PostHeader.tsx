@@ -5,7 +5,7 @@ import { PostCategoryPage } from "../PostCategoryList/PostCategoryList";
 import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import { SerializedBlog } from "@/pages/blog/[blogSlug]";
 import formatDate from "@/utils/formatDate";
-import AvatarImage from "@/components/AvatarImage";
+import AvatarImage from "@/components/SharedComponents/AvatarImage";
 import Box from "@/components/SharedComponents/Box";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";
 import Flex from "@/components/SharedComponents/Flex";

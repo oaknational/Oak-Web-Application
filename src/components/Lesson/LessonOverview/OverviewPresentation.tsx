@@ -1,7 +1,6 @@
 import { FC, memo, useState } from "react";
 
-import AspectRatio from "../../AspectRatio";
-
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 
 interface OverviewPresentationProps {

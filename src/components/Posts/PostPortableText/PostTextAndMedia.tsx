@@ -5,7 +5,7 @@ import { OmitKeepDiscriminated } from "@/utils/generics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import Box from "@/components/SharedComponents/Box";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import CMSImage from "@/components/CMSImage";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/Typography";
 import VideoPlayer from "@/components/VideoPlayer";

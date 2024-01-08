@@ -11,7 +11,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
-import { getBlogWebinarPostBreadcrumbs } from "@/components/Breadcrumbs/getBreadcrumbs";
+import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import Box from "@/components/SharedComponents/Box";
 import {
   getFallbackBlockingConfig,

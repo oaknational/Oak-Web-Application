@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Card from "../Card";
 import { Heading } from "../Typography";
 
 import Component from ".";
+
+import Card from "@/components/SharedComponents/Card";
 
 export default {
   component: Component,

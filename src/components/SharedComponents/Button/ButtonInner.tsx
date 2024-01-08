@@ -18,7 +18,7 @@ import Icon, { IconName } from "@/components/Icon";
 import ButtonBorders from "@/components/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/Svg";
 import SubjectIcon from "@/components/SubjectIcon";
-import ScreenReaderOnly from "@/components/ScreenReaderOnly";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
 import { FontVariant } from "@/styles/utils/typography";

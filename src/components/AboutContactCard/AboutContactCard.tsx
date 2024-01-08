@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 
-import Card from "../Card";
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
 import Grid, { GridArea } from "../Grid";
@@ -11,6 +10,7 @@ import Typography from "../Typography/Typography";
 import { PortableTextJSON } from "../../common-lib/cms-types";
 import { PortableTextWithDefaults } from "../PortableText";
 
+import Card from "@/components/SharedComponents/Card";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 

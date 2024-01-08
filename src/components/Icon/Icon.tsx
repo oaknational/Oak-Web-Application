@@ -6,10 +6,11 @@ import color, { ColorProps } from "../../styles/utils/color";
 import Svg, { SvgProps } from "../Svg/Svg";
 import size, { SizeProps } from "../../styles/utils/size";
 import { ResponsiveValues } from "../../styles/utils/responsive";
-import { box, BoxProps } from "../SharedComponents/Box";
 import { UiIconName } from "../../image-data";
 
 import useIconAnimation from "./useIconAnimation";
+
+import { box, BoxProps } from "@/components/SharedComponents/Box";
 
 export type IconName = UiIconName;
 export type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
