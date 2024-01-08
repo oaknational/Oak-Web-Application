@@ -256,7 +256,24 @@ describe("Search/2023/constructElasticQuery", () => {
           filter: [
             { terms: { keyStageSlug: ["ks4"] } },
             { terms: { subjectSlug: ["physics"] } },
-            { terms: { examBoardSlug: ["aqa"] } },
+            // { terms: { examBoardSlug: ["aqa"] } },
+            {
+              bool: {
+                minimum_should_match: 1,
+                should: [
+                  {
+                    terms: {
+                      examBoardSlug: ["aqa"],
+                    },
+                  },
+                  {
+                    terms: {
+                      "pathways.examBoardSlug": ["aqa"],
+                    },
+                  },
+                ],
+              },
+            },
           ],
           minimum_should_match: 1,
         },
