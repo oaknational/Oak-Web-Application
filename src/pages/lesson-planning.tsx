@@ -14,7 +14,7 @@ import LessonElementLinks from "@/components/LessonElementLinks";
 import { OakColorName } from "@/styles/theme";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Circle from "@/components/Circle";
+import Circle from "@/components/SharedComponents/Circle";
 import Box from "@/components/SharedComponents/Box";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";

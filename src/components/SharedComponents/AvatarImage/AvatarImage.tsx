@@ -4,7 +4,7 @@ import { FC } from "react";
 import { Image } from "@/common-lib/cms-types";
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
-import Circle from "@/components/Circle";
+import Circle from "@/components/SharedComponents/Circle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 
