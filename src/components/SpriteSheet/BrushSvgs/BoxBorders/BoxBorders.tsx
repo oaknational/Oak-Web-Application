@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import { ZIndex } from "../../../../styles/utils/zIndex";
-import Svg from "../../../Svg";
 import { OakColorName } from "../../../../styles/theme/types";
 
+import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
 
 export const gapPositionMap = {

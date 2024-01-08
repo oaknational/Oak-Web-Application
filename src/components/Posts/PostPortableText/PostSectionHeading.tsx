@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Heading } from "../../Typography";
+import { Heading } from "@/components/SharedComponents/Typography";
 
 const PostSectionHeading: FC<{ children?: React.ReactNode }> = (props) => {
   return (

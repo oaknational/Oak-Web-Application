@@ -13,14 +13,14 @@ import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";
-import SocialButtons from "@/components/SocialButtons";
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Svg from "@/components/Svg";
-import { Heading, P } from "@/components/Typography";
+import Svg from "@/components/SharedComponents/Svg";
+import { Heading, P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type BioData = {

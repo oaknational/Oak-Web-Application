@@ -3,11 +3,11 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import UnstyledButton from "../../../UnstyledButton";
-import Icon, { IconName } from "../../../Icon";
 import { DoubleButtonBorders } from "../../../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
 
 import { Spinner } from "./Spinner";
 
+import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

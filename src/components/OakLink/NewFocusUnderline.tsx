@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import Svg from "../Svg";
+import Svg from "@/components/SharedComponents/Svg";
 
 const NewFocusUnderline = styled(Svg).attrs({ name: "underline-3" })`
   position: absolute;

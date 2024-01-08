@@ -1,7 +1,13 @@
 import React from "react";
 
 import Flex from "@/components/SharedComponents/Flex";
-import { LI, P, Span, UL, Heading } from "@/components/Typography";
+import {
+  LI,
+  P,
+  Span,
+  UL,
+  Heading,
+} from "@/components/SharedComponents/Typography";
 
 export type KeyWord = {
   keyword: string;
