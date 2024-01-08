@@ -10,8 +10,8 @@ import OutlineHeading from "@/components/SharedComponents/OutlineHeading/Outline
 import Button from "@/components/SharedComponents/Button/Button";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import Radio from "@/components/RadioButtons/Radio";
-import RadioGroup from "@/components/RadioButtons/RadioGroup";
+import Radio from "@/components/SharedComponents/RadioButtons/Radio";
+import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import UnitModal from "@/components/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";

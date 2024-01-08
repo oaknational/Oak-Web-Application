@@ -4,7 +4,6 @@ import Input from "./Input";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("Input", () => {
   it("renders an input", () => {
     renderWithTheme(

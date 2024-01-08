@@ -1,10 +1,11 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import Radio from "./Radio";
 import RadioGroup from "./RadioGroup";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("RadioGroup", () => {
   it("renders a RadioGroup", () => {
