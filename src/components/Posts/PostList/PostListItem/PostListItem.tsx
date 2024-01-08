@@ -1,16 +1,15 @@
 import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
 
-import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
-import useClickableCard from "../../../../hooks/useClickableCard";
-import LineClamp from "../../../LineClamp";
-import OakLink from "../../../OakLink";
-import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
-import { ResolveOakHrefProps } from "../../../../common-lib/urls";
-import formatDate from "../../../../utils/formatDate";
-
 import PostListItemImage from "./PostListItemImage";
 
+import { BlogWebinarCategory, Image } from "@/common-lib/cms-types";
+import useClickableCard from "@/hooks/useClickableCard";
+import LineClamp from "@/components/SharedComponents/LineClamp";
+import OakLink from "@/components/OakLink";
+import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import { ResolveOakHrefProps } from "@/common-lib/urls";
+import formatDate from "@/utils/formatDate";
 import {
   P,
   Heading,
