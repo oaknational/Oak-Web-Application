@@ -1,4 +1,4 @@
-const { getAppVersion } = require("../lib");
+const { getAppVersion, getExitIfPluginDisabled } = require("../lib");
 
 const {
   createBuildStartedSlackMessage,
@@ -22,8 +22,15 @@ module.exports = function slackBuildReporterPlugin() {
     dev: "dev",
   };
 
+  /**
+   * We need to disable plugins for some custom builds.
+   */
+  const exitIfDisabled = getExitIfPluginDisabled("PLUGIN_SLACK_DISABLED");
+
   return {
     onPreBuild: async ({ netlifyConfig, utils }) => {
+      exitIfDisabled();
+
       // Extract the data required to interact with the GitHub deployments rest API.
       const buildContext = netlifyConfig.build.environment.CONTEXT;
       const originalDeploymentUrl = process.env.DEPLOY_PRIME_URL;
@@ -113,6 +120,8 @@ module.exports = function slackBuildReporterPlugin() {
      * Set deployment status failure.
      */
     onError: async ({ utils }) => {
+      exitIfDisabled();
+
       // Early exits
       // Only report on production builds for now.
       if (!sharedInfo.isProduction) {
@@ -156,6 +165,8 @@ module.exports = function slackBuildReporterPlugin() {
      * Set deployment status success.
      */
     onSuccess: async ({ utils }) => {
+      exitIfDisabled();
+
       // Early exits
       // Only report on production builds for now.
       if (!sharedInfo.isProduction) {
