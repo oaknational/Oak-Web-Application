@@ -18,7 +18,7 @@ const meta: Meta<typeof Component> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ResourcePageLayout>;
+type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: ResourcePageLayoutProps) => {
   const { control, register } = useForm<ResourceFormProps>();
