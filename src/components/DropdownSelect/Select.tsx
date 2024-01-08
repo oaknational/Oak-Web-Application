@@ -20,7 +20,7 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
-("@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders");
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export { Item } from "react-stately";
 

@@ -15,7 +15,7 @@ import Typography, {
 } from "@/components/SharedComponents/Typography";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
-("@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders");
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;

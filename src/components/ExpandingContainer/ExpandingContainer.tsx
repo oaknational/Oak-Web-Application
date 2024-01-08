@@ -13,8 +13,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-
-("@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders");
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type ExpandingContainerTitle =
   | "Slide deck"

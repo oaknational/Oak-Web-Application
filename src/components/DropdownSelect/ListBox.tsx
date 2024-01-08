@@ -10,8 +10,7 @@ import { InputFocusUnderline } from "../SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
 import { LI, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
-
-("@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders");
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SelectListBoxConfig = {
   states: {
