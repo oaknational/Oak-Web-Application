@@ -55,13 +55,24 @@ export const constructElasticQuery = (query: ConstructQueryParams) => {
       return null;
     } else {
       return {
-        terms: {
-          examBoardSlug: examBoards,
+        bool: {
+          minimum_should_match: 1,
+          should: [
+            {
+              terms: {
+                examBoardSlug: examBoards,
+              },
+            },
+            {
+              terms: {
+                "pathways.examBoardSlug": examBoards,
+              },
+            },
+          ],
         },
       };
     }
   };
-
   const highlight = {
     number_of_fragments: 0,
     pre_tags: ["<b>"],
