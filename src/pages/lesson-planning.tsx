@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { CTA, PlanningPage, PortableTextJSON } from "@/common-lib/cms-types";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Layout from "@/components/SharedComponents/Layout";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

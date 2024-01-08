@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 
 import Logo from "../Logo";
 import SocialButtons from "../SocialButtons";
-import Grid, { GridArea } from "../Grid";
 import OakLink from "../OakLink";
 import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
 import FooterSignpost from "../FooterSignpost/FooterSignpost";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Svg from "@/components/SharedComponents/Svg";
 import Typography, {

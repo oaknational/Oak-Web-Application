@@ -13,7 +13,7 @@ import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";

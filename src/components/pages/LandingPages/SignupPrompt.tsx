@@ -3,7 +3,7 @@ import { FC } from "react";
 import { SignUpForm } from "./SignUpForm";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 

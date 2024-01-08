@@ -8,7 +8,7 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonMetadata from "@/components/LessonMetadata";
 
 export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {

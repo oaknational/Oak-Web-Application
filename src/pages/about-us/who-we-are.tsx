@@ -12,7 +12,7 @@ import Box from "@/components/SharedComponents/Box";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/OutlineHeading";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import AboutContactCard from "@/components/AboutContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";

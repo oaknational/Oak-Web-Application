@@ -6,13 +6,13 @@ import PostList from "../../Posts/PostList";
 import { PostListProps } from "../../Posts/PostList/PostList";
 import { useNewsletterForm } from "../../Forms/NewsletterForm";
 import NewsletterFormWrap from "../../Forms/NewsletterForm/NewsletterFormWrap";
-import Grid, { GridArea } from "../../Grid";
 import MaxWidth from "../../SharedComponents/MaxWidth";
 import OakLink from "../../OakLink";
 
 import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

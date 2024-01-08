@@ -1,6 +1,4 @@
-import { GridArea } from "../Grid";
-import Grid from "../Grid/Grid";
-
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

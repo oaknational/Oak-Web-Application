@@ -1,6 +1,6 @@
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import Grid, { GridArea } from "../../Grid";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import CardLinkIcon from "@/components/SharedComponents/Card/CardLinkIcon";
 
 const HomeSiteCards = () => {

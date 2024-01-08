@@ -3,16 +3,15 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../node-lib/cms";
 import { SupportPage } from "../common-lib/cms-types";
-import MaxWidth from "../components/SharedComponents/MaxWidth";
 import SummaryCard from "../components/SharedComponents/Card/SummaryCard";
-import Grid from "../components/Grid";
-import GridArea from "../components/Grid/GridArea";
 import { getSeoProps } from "../browser-lib/seo/getSeoProps";
 import { TextBlockCard } from "../components/Sanity/TextBlock/TextBlockCard";
 import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardImageCta";
 import BubbleMessage from "../components/BubbleMessage";
 import getPageProps from "../node-lib/getPageProps";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Layout from "@/components/SharedComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

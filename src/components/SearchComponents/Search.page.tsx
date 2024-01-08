@@ -10,7 +10,7 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/SearchFilters";

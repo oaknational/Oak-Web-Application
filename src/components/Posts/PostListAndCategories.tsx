@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
 
-import Grid, { GridArea } from "../Grid";
 import { PostListingPageProps } from "../pages/BlogIndex.page";
 
 import PostCategoryList from "./PostCategoryList";
@@ -11,6 +10,7 @@ import PostList from "./PostList";
 import { PostListItemProps } from "./PostList/PostListItem";
 import usePostList from "./PostList/usePostList";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 

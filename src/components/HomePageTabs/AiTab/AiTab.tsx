@@ -2,8 +2,7 @@ import { FC } from "react";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import { GridArea } from "@/components/Grid";
-import Grid from "@/components/Grid/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 

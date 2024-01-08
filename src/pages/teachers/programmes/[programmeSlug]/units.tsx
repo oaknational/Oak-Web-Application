@@ -20,7 +20,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import curriculumApi, { UnitListingData } from "@/node-lib/curriculum-api";
 import UnitList from "@/components/UnitAndLessonLists/UnitList";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 import MobileFilters from "@/components/MobileFilters";

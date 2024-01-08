@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import Grid, { GridArea } from "../Grid";
 import UnitListItem from "../UnitAndLessonLists/UnitList/UnitListItem";
 import TagPromotional from "../TagPromotional";
 import { UnitListItemProps } from "../UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Heading from "@/components/SharedComponents/Typography/Heading";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";

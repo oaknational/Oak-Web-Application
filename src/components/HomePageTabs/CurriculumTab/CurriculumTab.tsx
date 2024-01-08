@@ -4,8 +4,7 @@ import Box from "@/components/SharedComponents/Box";
 import Badge from "@/components/Badge/";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import { GridArea } from "@/components/Grid";
-import Grid from "@/components/Grid/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, {

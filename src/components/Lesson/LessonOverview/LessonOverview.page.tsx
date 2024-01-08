@@ -15,7 +15,7 @@ import {
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import OverviewPresentation from "@/components/Lesson/LessonOverview/OverviewPresentation";
 import OverviewVideo from "@/components/Lesson/LessonOverview/OverviewVideo";
 import QuizContainerNew from "@/components/QuizContainerNew";

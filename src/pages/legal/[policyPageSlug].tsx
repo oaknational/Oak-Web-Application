@@ -13,7 +13,7 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import Flex from "@/components/SharedComponents/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, {
