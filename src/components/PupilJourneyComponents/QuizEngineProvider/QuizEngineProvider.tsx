@@ -76,9 +76,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     setCurrentQuestionData(filteredQuestions[currentQuestionIndex]);
   }, [currentQuestionIndex, filteredQuestions]);
 
-  useEffect(() => {
-    setScore(questionState.reduce((acc, curr) => acc + curr.grade, 0));
-  }, [questionState]);
+  const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
   useEffect(() => {
     setIsComplete(currentQuestionIndex >= maxScore);
