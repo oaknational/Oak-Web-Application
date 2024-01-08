@@ -2,11 +2,10 @@ import { FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 
-import UnstyledButton from "../../../UnstyledButton";
-import { DoubleButtonBorders } from "../../../SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
-
 import { Spinner } from "./Spinner";
 
+import UnstyledButton from "@/components/UnstyledButton";
+import { DoubleButtonBorders } from "@/components/SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";

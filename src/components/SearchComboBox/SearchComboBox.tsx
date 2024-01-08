@@ -12,8 +12,8 @@ import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { RotatedInputLabel, StyledInput } from "../Input/Input";
 import { DropdownFocusUnderline } from "../DropdownSelect/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
-import { OakColorName } from "../../styles/theme/types";
 
+import { OakColorName } from "@/styles/theme/types";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 

@@ -1,10 +1,9 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
 
-import getColorByName from "../../../../styles/themeHelpers/getColorByName";
-import { ButtonBackground } from "../../../SharedComponents/Button/common";
-import { HOVER_SHADOW_TRANSITION } from "../../../../styles/transitions";
-
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { ButtonBackground } from "@/components/SharedComponents/Button/common";
+import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 import Svg from "@/components/SharedComponents/Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`

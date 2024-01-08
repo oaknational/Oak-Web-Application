@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 
 export type UnstyledInputProps = Omit<
   DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,

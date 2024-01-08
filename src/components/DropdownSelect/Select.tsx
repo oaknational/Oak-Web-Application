@@ -5,16 +5,16 @@ import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
 
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
 import UnstyledButton from "../UnstyledButton";
-import ellipsis from "../../styles/ellipsis";
 import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import { InputFocusUnderline, RotatedInputLabel } from "../Input/Input";
-import getColorByName from "../../styles/themeHelpers/getColorByName";
 
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
 
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import ellipsis from "@/styles/ellipsis";
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";

@@ -4,7 +4,6 @@ import VisualCheckbox from "./VisualCheckbox";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("VisualCheckbox", () => {
   it("renders a visual checkbox", () => {
     renderWithTheme(<VisualCheckbox checked={false} />);

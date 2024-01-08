@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { SizeProps } from "../../styles/utils/size";
-
+import { SizeProps } from "@/styles/utils/size";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Box from "@/components/SharedComponents/Box";
 

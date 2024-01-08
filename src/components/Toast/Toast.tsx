@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 import { useToastContext, SHOW_DURATION } from "../../context/Toast";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import theme from "../../styles/theme";
 
+import theme from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";

@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { ZIndex } from "../../../../styles/utils/zIndex";
-import { OakColorName } from "../../../../styles/theme/types";
-
+import { ZIndex } from "@/styles/utils/zIndex";
+import { OakColorName } from "@/styles/theme/types";
 import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
 

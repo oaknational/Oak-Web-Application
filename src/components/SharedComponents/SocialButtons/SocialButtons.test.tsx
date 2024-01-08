@@ -1,6 +1,6 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import SocialButtons from "./SocialButtons";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("SocialButtons", () => {
   test.each([

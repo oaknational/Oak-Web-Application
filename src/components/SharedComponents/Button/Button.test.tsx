@@ -1,6 +1,6 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import Button from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Button", () => {
   it("renders a button", () => {

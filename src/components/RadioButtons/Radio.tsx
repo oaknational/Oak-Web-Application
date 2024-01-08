@@ -8,9 +8,9 @@ import {
 import { RadioGroupState } from "react-stately";
 import styled, { css } from "styled-components";
 
-import getColorByName from "../../styles/themeHelpers/getColorByName";
-
 import { RadioContext } from "./RadioGroup";
+
+import getColorByName from "@/styles/themeHelpers/getColorByName";
 
 const Radio: FC<AriaRadioProps> = (props) => {
   const { children } = props;

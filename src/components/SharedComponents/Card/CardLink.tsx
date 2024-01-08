@@ -3,11 +3,11 @@ import styled, { css } from "styled-components";
 import Link from "next/link";
 
 import { OakLinkProps, transformOakLinkProps } from "../../OakLink";
-import { zIndexMap } from "../../../styles/utils/zIndex";
-import { DROP_SHADOW } from "../../../styles/utils/dropShadow";
-import getColorByName from "../../../styles/themeHelpers/getColorByName";
-import { HOVER_SHADOW_TRANSITION } from "../../../styles/transitions";
 
+import { zIndexMap } from "@/styles/utils/zIndex";
+import { DROP_SHADOW } from "@/styles/utils/dropShadow";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 import Svg from "@/components/SharedComponents/Svg";
 
 export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({

@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
 
-import getColorByName from "../../../../styles/themeHelpers/getColorByName";
-import { OakColorName } from "../../../../styles/theme/types";
-import { getBreakpoint } from "../../../../styles/utils/responsive";
-
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import { OakColorName } from "@/styles/theme/types";
+import { getBreakpoint } from "@/styles/utils/responsive";
 import Svg from "@/components/SharedComponents/Svg";
 import { $selectedStyle } from "@/components/OakLink/OakLink";
 

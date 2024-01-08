@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-import ellipsis from "../../../styles/ellipsis";
-import typography from "../../../styles/utils/typography";
-
+import ellipsis from "@/styles/ellipsis";
+import typography from "@/styles/utils/typography";
 import { Span } from "@/components/SharedComponents/Typography";
 
 const ButtonLabel = styled(Span)`

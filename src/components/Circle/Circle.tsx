@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { PixelSpacing } from "../../styles/theme";
-import { ResponsiveValues } from "../../styles/utils/responsive";
-
+import { PixelSpacing } from "@/styles/theme";
+import { ResponsiveValues } from "@/styles/utils/responsive";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type CircleProps = FlexProps & {
