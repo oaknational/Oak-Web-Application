@@ -7,9 +7,9 @@ import type { DownloadResourceType } from "../downloadAndShare.types";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/SharedComponents/Typography/P";
 import Flex from "@/components/SharedComponents/Flex";
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/SharedComponents/Checkbox";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import { CheckboxProps } from "@/components/Checkbox/Checkbox";
+import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import { LessonShareSchema } from "@/node-lib/curriculum-api";
 
 export type ResourceCardProps = CheckboxProps & {

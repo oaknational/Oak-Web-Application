@@ -1,8 +1,9 @@
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import VisualCheckbox from "./VisualCheckbox";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 describe("VisualCheckbox", () => {
   it("renders a visual checkbox", () => {

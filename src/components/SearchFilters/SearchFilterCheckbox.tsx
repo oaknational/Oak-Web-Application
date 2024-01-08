@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import { SizeProps } from "../../styles/utils/size";
-import Checkbox from "../Checkbox";
 
+import Checkbox from "@/components/SharedComponents/Checkbox";
 import Box from "@/components/SharedComponents/Box";
 
 type SearchFilterCheckboxProps = {
