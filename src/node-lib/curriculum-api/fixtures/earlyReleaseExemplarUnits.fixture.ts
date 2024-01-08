@@ -38,6 +38,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 0,
+          onClick: () => {},
         },
         {
           title: "Simple, compound and adverbial complex sentences",
@@ -57,6 +58,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 1,
+          onClick: () => {},
         },
         {
           title: "Local area: why is (our place) special?",
@@ -76,6 +78,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 2,
+          onClick: () => {},
         },
         {
           title: "South America: why does the Amazon matter?",
@@ -95,6 +98,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 3,
+          onClick: () => {},
         },
         // {
         //   title:
@@ -115,6 +119,7 @@ const earlyReleaseExemplarUnitsFixture = (
         //   expired: false,
         //   expiredLessonCount: 0,
         //   index: 4,
+
         // },
 
         {
@@ -135,6 +140,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 5,
+          onClick: () => {},
         },
         {
           title: "Ratio and proportion",
@@ -154,6 +160,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 6,
+          onClick: () => {},
         },
         {
           title: "Growing plants",
@@ -173,6 +180,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 7,
+          onClick: () => {},
         },
         {
           title: "Earth, Sun and Moon",
@@ -192,6 +200,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 8,
+          onClick: () => {},
         },
         {
           title: "The Romans: what impact did the Romans have on Britain?",
@@ -211,6 +220,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 4,
+          onClick: () => {},
         },
       ],
     },
@@ -244,6 +254,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 6,
+          onClick: () => {},
         },
         {
           title: "Macbeth and masculinity: the struggle for power",
@@ -263,6 +274,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 5,
+          onClick: () => {},
         },
         {
           title:
@@ -283,6 +295,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 2,
+          onClick: () => {},
         },
         // {
         //   title:
@@ -303,6 +316,7 @@ const earlyReleaseExemplarUnitsFixture = (
         //   expired: false,
         //   expiredLessonCount: 0,
         //   index: 1,
+
         // },
         {
           title: "Keyboard fundamentals",
@@ -321,6 +335,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 7,
+          onClick: () => {},
           lessonCount: 4,
         },
         {
@@ -341,6 +356,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 9,
+          onClick: () => {},
         },
 
         {
@@ -361,6 +377,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 0,
+          onClick: () => {},
         },
 
         // {
@@ -381,6 +398,7 @@ const earlyReleaseExemplarUnitsFixture = (
         //   expired: false,
         //   expiredLessonCount: 0,
         //   index: 8,
+
         // },
 
         {
@@ -401,6 +419,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 3,
+          onClick: () => {},
         },
         {
           title: "Measuring waves",
@@ -419,6 +438,7 @@ const earlyReleaseExemplarUnitsFixture = (
           expired: false,
           expiredLessonCount: 0,
           index: 4,
+          onClick: () => {},
           lessonCount: 4,
         },
       ],

@@ -1,13 +1,14 @@
 import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "../../../hooks/useClickableCard";
-import AvatarImage from "../../AvatarImage";
 import { BioData } from "../../BioModal/BioModal";
-import Button from "../../Button";
-import Flex from "../../Flex";
-import SocialButtons from "../../SocialButtons";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-import { Heading, P } from "../../Typography";
+
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import AvatarImage from "@/components/SharedComponents/AvatarImage";
+import Button from "@/components/SharedComponents/Button";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type BioCardListItemProps = BioData & {
   onClick?: (bio: BioData) => void;

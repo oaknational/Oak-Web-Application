@@ -1,5 +1,5 @@
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
+import Flex from "@/components/SharedComponents/Flex";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { LessonPathwayCard } from "@/components/Lesson/LessonPathwayCard/LessonPathwayCard";
 import { TagFunctional } from "@/components/TagFunctional";
 import { TagColor } from "@/components/TagFunctional/TagFunctional";
@@ -8,7 +8,7 @@ import {
   HeadingTag,
   Span,
   getNextHeadingTag,
-} from "@/components/Typography";
+} from "@/components/SharedComponents/Typography";
 
 type LessonAppearsInProps = {
   headingTag: HeadingTag;

@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./FieldError";
 
 export default {
-  title: "Form Fields/Field Error",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

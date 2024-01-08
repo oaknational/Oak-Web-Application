@@ -1,16 +1,17 @@
 import { FC } from "react";
 
-import Box from "../../Box/Box";
-
+import Box from "@/components/SharedComponents/Box";
 import Badge from "@/components/Badge/";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Flex from "@/components/Flex";
-import { GridArea } from "@/components/Grid";
-import Grid from "@/components/Grid/Grid";
-import Illustration from "@/components/Illustration/Illustration";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
-import { Heading, LI, UL } from "@/components/Typography";
-import Typography from "@/components/Typography/Typography";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Flex from "@/components/SharedComponents/Flex";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Illustration from "@/components/SharedComponents/Illustration";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import Typography, {
+  Heading,
+  LI,
+  UL,
+} from "@/components/SharedComponents/Typography";
 
 const CurriculumTab: FC = () => {
   return (

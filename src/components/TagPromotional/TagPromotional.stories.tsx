@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Flex from "../Flex";
-
 import Component from ".";
 
+import Flex from "@/components/SharedComponents/Flex";
+
 const meta: Meta<typeof Component> = {
-  title: "Element/Tag promotional",
   component: Component,
   argTypes: {
     size: {

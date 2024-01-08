@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./BubbleMessage";
 
 export default {
-  title: "Element/Bubble Message",
   component: Component,
   argTypes: {},
 } as ComponentMeta<typeof Component>;

@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Download Components/No resources to share",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

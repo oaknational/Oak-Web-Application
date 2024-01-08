@@ -32,23 +32,27 @@ describe("WebinarRegistration", () => {
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
-    const button = getByRole("button", { name: "Sign up" });
+    const button = getByRole("button", { name: "Sign up to the newsletter" });
     const user = userEvent.setup();
     await user.click(button);
     expect(onSubmit).not.toHaveBeenCalled();
   });
   test("clicking button calls onSubmit() if form filled out", async () => {
     const onSubmit = jest.fn();
-    const { getByRole } = renderWithTheme(
+    const { getByRole, getByPlaceholderText } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
     const user = userEvent.setup();
-    await user.click(getByRole("textbox", { name: "Email" }));
-    await user.keyboard("test@thenational.academy");
-    await user.click(getByRole("textbox", { name: "Name" }));
-    await user.keyboard("Antonia");
-    await user.click(getByRole("button", { name: "Sign up" }));
+
+    const name = getByPlaceholderText("Anna Smith");
+    await user.type(name, "joe bloggs");
+    const email = getByPlaceholderText("anna@amail.com");
+    await user.type(email, "joebloggs@example.com");
+
+    await user.click(
+      getByRole("button", { name: "Sign up to the newsletter" }),
+    );
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
   test("button has a11y name with enough context", async () => {
@@ -58,7 +62,7 @@ describe("WebinarRegistration", () => {
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
 
-    const button = getByRole("button", { name: "Sign up" });
-    expect(button).toHaveAccessibleName("Sign up");
+    const button = getByRole("button", { name: "Sign up to the newsletter" });
+    expect(button).toHaveAccessibleName("Sign up to the newsletter");
   });
 });

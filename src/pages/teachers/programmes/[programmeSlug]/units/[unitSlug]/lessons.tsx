@@ -8,10 +8,10 @@ import {
 
 import AppLayout from "@/components/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/UnitAndLessonLists/LessonList";
-import usePagination from "@/components/Pagination/usePagination";
-import Grid, { GridArea } from "@/components/Grid";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -23,6 +23,10 @@ import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/le
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
+import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/LessonListItem";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -65,6 +69,23 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   });
 
   const { currentPageItems, paginationTitle } = paginationProps;
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const trackLessonSelected = ({ ...props }: LessonListItemProps) => {
+    track.lessonSelected({
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      keyStageSlug,
+      subjectTitle,
+      subjectSlug: props.subjectSlug,
+      unitName: unitTitle,
+      unitSlug,
+      lessonName: props.lessonTitle,
+      lessonSlug: props.lessonSlug,
+      analyticsUseCase,
+    });
+  };
 
   return (
     <AppLayout
@@ -129,6 +150,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               paginationProps={paginationProps}
               headingTag={"h2"}
               unitTitle={unitTitle}
+              onClick={trackLessonSelected}
             />
           </GridArea>
         </Grid>

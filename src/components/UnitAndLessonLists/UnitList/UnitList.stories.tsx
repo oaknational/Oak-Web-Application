@@ -16,10 +16,12 @@ const currentPageItems: UnitListProps = {
     totalPages: 2,
     pageSize: 20,
   },
+  onClick: function (): void {
+    console.log("Click");
+  },
 };
 
 export default {
-  title: "Lists/Unit list",
   decorators: [AnalyticsDecorator],
   component: Component,
 } as ComponentMeta<typeof Component>;
@@ -39,6 +41,9 @@ const currentPageItemsWithTiers: UnitListProps = {
     currentPage: 1,
     totalPages: 2,
     pageSize: 20,
+  },
+  onClick: function (): void {
+    console.log("Click");
   },
 };
 

@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../../Flex";
-import Typography from "../../Typography";
 import { Quote as QuoteSchema } from "../../../common-lib/cms-types";
-import Blockquote from "../../Typography/Blockquote";
+
+import Typography from "@/components/SharedComponents/Typography";
+import Blockquote from "@/components/SharedComponents/Typography/Blockquote";
+import Flex from "@/components/SharedComponents/Flex";
 
 export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (

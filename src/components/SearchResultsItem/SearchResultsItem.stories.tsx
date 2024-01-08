@@ -11,7 +11,6 @@ import { searchResultsHitSchema } from "@/context/Search/search.schema";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 
 export default {
-  title: "Lists/Search Results",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

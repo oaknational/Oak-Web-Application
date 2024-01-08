@@ -1,8 +1,8 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import Flex from "@/components/Flex";
-import { P } from "@/components/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import { P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const PostCallout = (

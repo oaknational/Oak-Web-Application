@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from "./BurgerMenuLink";
 
 export default {
-  title: "Navigation/New Menu Link",
   component: Component,
 } as ComponentMeta<typeof Component>;
 

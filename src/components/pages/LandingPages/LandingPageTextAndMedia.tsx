@@ -5,13 +5,13 @@ import { OLOutline } from "./OLOutline";
 
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Card from "@/components/Card";
-import CMSImage from "@/components/CMSImage";
-import CMSVideo from "@/components/CMSVideo";
-import Flex from "@/components/Flex";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Card from "@/components/SharedComponents/Card";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import Flex from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import { LI } from "@/components/Typography";
+import { LI } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {

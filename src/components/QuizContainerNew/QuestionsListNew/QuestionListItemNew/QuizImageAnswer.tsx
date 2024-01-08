@@ -6,8 +6,8 @@ import { calcDims, removeMarkdown } from "../../quizUtils";
 import QuizOakImage from "./QuizOakImage";
 
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/Flex";
-import Icon from "@/components/Icon";
+import Flex from "@/components/SharedComponents/Flex";
+import Icon from "@/components/SharedComponents/Icon";
 
 type ImageProps = {
   src: StemImageObject["image_object"];

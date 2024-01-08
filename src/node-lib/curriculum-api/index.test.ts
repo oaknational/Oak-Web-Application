@@ -7,6 +7,7 @@ import lessonListingFixture from "./fixtures/lessonListing.fixture";
 import subjectListingFixture from "./fixtures/subjectListing.fixture";
 import unitsFixture from "./fixtures/units.fixture";
 import lessonShareFixtures from "./fixtures/lessonShare.fixture";
+import searchPageFixture from "./fixtures/searchPage.fixture";
 
 import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
 
@@ -100,6 +101,11 @@ const subjectListing = jest.fn(() => ({
   keyStageList: [{ slug: "ks4", title: "Key stage 4", shortCode: "KS4" }],
 }));
 
+const searchPage = jest.fn(() => ({
+  mv_key_stages: searchPageFixture().keyStages,
+  mv_programmes_available: searchPageFixture().subjects,
+}));
+
 jest.mock("");
 
 jest.mock("./generated/sdk", () => ({
@@ -113,6 +119,7 @@ jest.mock("./generated/sdk", () => ({
     tierListing: (...args: []) => tierListing(...args),
     subjectListing: (...args: []) => subjectListing(...args),
     lessonShare: (...args: []) => lessonShares(...args),
+    searchPage: (...args: []) => searchPage(...args),
   }),
 }));
 describe("curriculum-api", () => {
@@ -235,6 +242,10 @@ describe("curriculum-api", () => {
     expect(subjectListing).toHaveBeenCalledWith({
       keyStageSlug: "ks4",
     });
+  });
+  test("searchPage", async () => {
+    await curriculumApi.searchPage();
+    expect(searchPage).toHaveBeenCalled();
   });
   test("filterOutDuplicateProgrammesOrNull - there are no available programmes in unavailable programmes  ", async () => {
     const availableProgrammes = subjectListingFixture().subjects;

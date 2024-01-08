@@ -3,10 +3,10 @@ import { FC } from "react";
 import type { Card as CardShape } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Card from "@/components/Card";
-import CardTitle from "@/components/Card/CardComponents/CardTitle";
-import Typography from "@/components/Typography";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Card from "@/components/SharedComponents/Card";
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+import Typography from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 type HomeSidebarTextCard = CardShape;

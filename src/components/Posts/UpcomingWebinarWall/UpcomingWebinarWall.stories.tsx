@@ -1,12 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Box from "../../Box";
-import AspectRatio from "../../AspectRatio";
-
 import Component from ".";
 
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import Box from "@/components/SharedComponents/Box";
+
 export default {
-  title: "Blogs & Webinars/UpcomingWebinarWall",
   component: Component,
   parameters: {
     backgrounds: {

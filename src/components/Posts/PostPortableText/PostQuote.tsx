@@ -1,9 +1,10 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
 import { Quote } from "../../../common-lib/cms-types";
-import Box from "../../Box";
-import Flex from "../../Flex";
-import { P } from "../../Typography";
+
+import { P } from "@/components/SharedComponents/Typography";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 
 const PostQuote = (props: PortableTextComponentProps<Quote>) => {
   if (!props.value?.text) {

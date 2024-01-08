@@ -3,7 +3,6 @@ import { Meta, StoryObj } from "@storybook/react";
 import Component from "./SpeechBubble";
 
 const meta: Meta<typeof Component> = {
-  title: "Element/Speech Bubble",
   component: Component,
   argTypes: {},
 };

@@ -4,7 +4,6 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Component from ".";
 
 export default {
-  title: "Download Components/Details Completed",
   component: Component,
   argTypes: {
     email: {

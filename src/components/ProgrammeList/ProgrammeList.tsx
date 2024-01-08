@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import Grid, { GridArea } from "../Grid";
 import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 import ProgrammeListItem from "./ProgrammeListItem";
+
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
  * Clickable learning tier card list.

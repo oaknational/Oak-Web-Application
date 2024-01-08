@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Svg from "../Svg";
+import Svg from "@/components/SharedComponents/Svg";
 
 const NewBrushUnderline = styled(Svg)`
   position: absolute;

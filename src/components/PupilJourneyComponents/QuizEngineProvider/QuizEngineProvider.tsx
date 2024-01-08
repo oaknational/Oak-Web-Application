@@ -6,6 +6,7 @@ import React, {
   useMemo,
   memo,
   useCallback,
+  useContext,
 } from "react";
 
 import {
@@ -20,29 +21,43 @@ export type QuizEngineProps = {
   questionsArray: QuestionsArray;
 };
 
+type QuestionFeedbackType = "correct" | "incorrect" | null;
+type QuestionModeType = "init" | "input" | "grading" | "feedback";
+
 type QuestionState = {
-  mode: "input" | "feedback" | "end";
-  answer: undefined | "correct" | "incorrect";
+  mode: QuestionModeType;
+  grade: number;
   offerHint: boolean;
-  score: number;
-  maximumScore: number;
+  feedback?: QuestionFeedbackType[];
 };
 
 export type QuizEngineContextType = {
-  currentQuestionData: QuestionsArray[number] | undefined;
+  currentQuestionData?: QuestionsArray[number];
   currentQuestionIndex: number;
-  questionState: QuestionState;
-  handleSubmitMCAnswer: (answer: MCAnswer | null | undefined) => void;
+  questionState: QuestionState[];
+  score: number;
+  maxScore: number;
+  isComplete: boolean;
+  updateQuestionMode: (mode: QuestionModeType) => void;
+  handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleNextQuestion: () => void;
 } | null;
 
+// this is used by storybook to mock the QuizEngineContext
 export const QuizEngineContext = createContext<QuizEngineContextType>(null);
+
+export const useQuizEngineContext = () => {
+  const context = useContext(QuizEngineContext);
+  if (!context) {
+    throw new Error("`QuizEngineProvider` is not available");
+  }
+  return context;
+};
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
 
-  // TODO - filter out questions that have multiple correct answers
-  const multipleChoiceQuestionsArray = useMemo(
+  const filteredQuestions = useMemo(
     () =>
       questionsArray.filter(
         (question) =>
@@ -51,95 +66,99 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     [questionsArray],
   );
 
-  const numberOfQuestions = useMemo(
-    () => multipleChoiceQuestionsArray.length,
-    [multipleChoiceQuestionsArray],
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const currentQuestionData = filteredQuestions[currentQuestionIndex];
+  const [questionState, setQuestionState] = useState<QuestionState[]>(
+    filteredQuestions.map(() => ({
+      mode: "init",
+      offerHint: false,
+      grade: 0,
+      feedback: undefined,
+    })),
   );
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [currentQuestionData, setCurrentQuestionData] = useState(
-    multipleChoiceQuestionsArray[currentQuestionIndex],
-  );
-  const [questionState, setQuestionState] = useState<QuestionState>({
-    mode: "input",
-    answer: undefined,
-    offerHint: false,
-    score: 0,
-    maximumScore: numberOfQuestions,
-  });
+  const maxScore = filteredQuestions.length;
+  const [isComplete, setIsComplete] = useState(false);
+
+  const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
 
   useEffect(() => {
-    const desiredQuestionData =
-      multipleChoiceQuestionsArray[currentQuestionIndex];
-    setCurrentQuestionData(desiredQuestionData);
-  }, [currentQuestionIndex, multipleChoiceQuestionsArray]);
+    setIsComplete(currentQuestionIndex >= maxScore);
+  }, [currentQuestionIndex, maxScore]);
+
+  const updateQuestionMode = useCallback(
+    (mode: QuestionModeType) => {
+      setQuestionState((prev) => {
+        const newState = [...prev];
+
+        newState[currentQuestionIndex] = {
+          mode,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+          grade: prev[currentQuestionIndex]?.grade ?? 0,
+          feedback: prev[currentQuestionIndex]?.feedback,
+        };
+
+        return newState;
+      });
+    },
+    [currentQuestionIndex],
+  );
 
   const handleSubmitMCAnswer = useCallback(
-    (answer: MCAnswer | null | undefined) => {
-      const questionAnswers = currentQuestionData?.answers;
-      const correctAnswerArray = questionAnswers?.["multiple-choice"]?.filter(
+    (pupilAnswer?: MCAnswer | MCAnswer[] | null) => {
+      const questionAnswers = currentQuestionData?.answers?.["multiple-choice"];
+      const correctAnswers = questionAnswers?.filter(
         (answer) => answer.answer_is_correct,
       );
-      const isCorrect = answer && correctAnswerArray?.includes(answer);
 
-      if (isCorrect) {
-        setQuestionState((preState) => ({
-          ...preState,
-          score: preState.score + 1,
+      const pupilAnswerArray = Array.isArray(pupilAnswer)
+        ? pupilAnswer
+        : [pupilAnswer];
+
+      const matchingAnswers = pupilAnswerArray?.filter(
+        (answer) => answer && correctAnswers?.includes(answer),
+      );
+
+      const grade = matchingAnswers.length === correctAnswers?.length ? 1 : 0;
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
           mode: "feedback",
-          answer: "correct",
-        }));
-      } else {
-        setQuestionState({
-          ...questionState,
-          mode: "feedback",
-          answer: "incorrect",
-        });
-      }
+          grade,
+          feedback: questionAnswers?.map((answer) => {
+            // every answer receives feedback whether the student has selected it or not
+            // which are the correct choices are implied by the combination of whether it is selected and the feedback
+            if (pupilAnswerArray.includes(answer)) {
+              // Where pupils have selected an answer
+              return correctAnswers?.includes(answer) ? "correct" : "incorrect";
+            } else {
+              // where pupils have not selected an answer
+              return correctAnswers?.includes(answer) ? "incorrect" : "correct";
+            }
+          }),
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+        };
+        return newState;
+      });
     },
-    [currentQuestionData, questionState],
+    [currentQuestionData, currentQuestionIndex],
   );
 
   const handleNextQuestion = useCallback(() => {
-    if (currentQuestionIndex === numberOfQuestions - 1) {
-      setQuestionState({
-        ...questionState,
-        mode: "end",
-      });
-    } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setQuestionState({
-        ...questionState,
-        mode: "input",
-        answer: undefined,
-      });
-    }
-  }, [currentQuestionIndex, numberOfQuestions, questionState]);
-
-  const currentQuestionDataValue = useMemo(() => {
-    return {
-      currentQuestionData,
-    };
-  }, [currentQuestionData]);
-
-  const currentQuestionIndexValue = useMemo(() => {
-    return {
-      currentQuestionIndex,
-    };
-  }, [currentQuestionIndex]);
-
-  const questionStateValue = useMemo(() => {
-    return {
-      questionState,
-    };
-  }, [questionState]);
+    setCurrentQuestionIndex((prev) => Math.min(prev + 1, maxScore));
+  }, [maxScore]);
 
   return (
     <QuizEngineContext.Provider
       value={{
-        ...currentQuestionDataValue,
-        ...currentQuestionIndexValue,
-        ...questionStateValue,
+        currentQuestionData,
+        currentQuestionIndex,
+        questionState,
+        score,
+        maxScore,
+        isComplete,
+        updateQuestionMode,
         handleSubmitMCAnswer,
         handleNextQuestion,
       }}

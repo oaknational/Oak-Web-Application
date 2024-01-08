@@ -1,11 +1,9 @@
 import { ReactNode } from "react";
 
-import Box from "../Box/Box";
-import Flex from "../Flex/Flex";
-import Typography from "../Typography/Typography";
-import ButtonAsLink from "../Button/ButtonAsLink";
-import { Hr } from "../Typography";
-
+import Typography, { Hr } from "@/components/SharedComponents/Typography";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import Tag from "@/components/TagPromotional";
 
 const HomePageBanner: ReactNode = (

@@ -1,3 +1,155 @@
+## [1.318.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.0...v1.318.1) (2024-01-08)
+
+# [1.318.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.1...v1.318.0) (2024-01-08)
+
+
+### Features
+
+* **build:** allow Netlify plugins to be disabled with envs ([3e60629](https://github.com/oaknational/Oak-Web-Application/commit/3e60629ccb7f68038fcd3762d207e2b0c727d17a))
+* **build:** disable plugins in way that actually works ([3cfa43d](https://github.com/oaknational/Oak-Web-Application/commit/3cfa43db866149fe7fc5bb9c7d5261ae8253f122))
+
+## [1.317.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.0...v1.317.1) (2024-01-08)
+
+# [1.317.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.316.0...v1.317.0) (2024-01-08)
+
+
+### Features
+
+* report hubspot fail to connect errors ([8bae327](https://github.com/oaknational/Oak-Web-Application/commit/8bae327f9ac049c89fe372a895eade78a98e4758))
+
+# [1.316.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.2...v1.316.0) (2024-01-08)
+
+
+### Bug Fixes
+
+* conflicts ([9b18a0d](https://github.com/oaknational/Oak-Web-Application/commit/9b18a0de6cfbe2ec9b847ad094b17945f8629e14))
+* end of quiz rendering ([a9654c6](https://github.com/oaknational/Oak-Web-Application/commit/a9654c6c23b52c0d26495c539fe3666334a6995f))
+* minor pr fixes ([920a43f](https://github.com/oaknational/Oak-Web-Application/commit/920a43f6fab21b89cbb8864fb5a896b09e74b887))
+* remove redundant memoization ([8bf15d4](https://github.com/oaknational/Oak-Web-Application/commit/8bf15d4f63bc1ab35201628087e3f4fbed271c03))
+* render tests ([a6d1812](https://github.com/oaknational/Oak-Web-Application/commit/a6d1812160d11610b8952870e24ce7d7dc09caf4))
+* render tests ([6aa641c](https://github.com/oaknational/Oak-Web-Application/commit/6aa641ca69363b610cafcdca19e86819e6d90b16))
+* render tests ([8bcf19a](https://github.com/oaknational/Oak-Web-Application/commit/8bcf19a37252f8edab03aef43bf0eba10e15f6a8))
+
+
+### Features
+
+* added storybook envars for oak component icons ([55c1017](https://github.com/oaknational/Oak-Web-Application/commit/55c10174634cd24fe6969ef936c3ffcf2fc93964))
+* mcq answers use new checkbox interface ([93286a3](https://github.com/oaknational/Oak-Web-Application/commit/93286a3016c87d08b0be2aeaa394ea2b052efba1))
+* mcq multi answer images ([6e2d82b](https://github.com/oaknational/Oak-Web-Application/commit/6e2d82b7ec697bbd6b15eb03812ef29cf816362c))
+* mcq multi answer with images completed ([f267a3d](https://github.com/oaknational/Oak-Web-Application/commit/f267a3db16287a5cc98e98baa26a2eefd3b04cbb))
+* quiz multi answer work ([b688c60](https://github.com/oaknational/Oak-Web-Application/commit/b688c60d25aa4e18512b614bf2033a108e4ea377))
+* single answer mcq working with refactored provider ([e21e96f](https://github.com/oaknational/Oak-Web-Application/commit/e21e96ff33d9fbb1fb925e1a95b964a0de3d03ee))
+* submit answers to quizEngineContext ([3793d21](https://github.com/oaknational/Oak-Web-Application/commit/3793d212430fe40de1d5ed59d135d4170393756e))
+* wip multi answers ([b9b1835](https://github.com/oaknational/Oak-Web-Application/commit/b9b1835350d1859d4a5e8fa1878057cbc6eec72b))
+* wip QuizMCQMulti ([a7aaa3b](https://github.com/oaknational/Oak-Web-Application/commit/a7aaa3b439f2dd16820be5cd7e56e3267d3747f8))
+* wip QuizMCQMultiAnswer ([e84b81a](https://github.com/oaknational/Oak-Web-Application/commit/e84b81a450589ca255fc3587be3b8fd10925f4b2))
+* wip refactor of quiz engine provider for greater abstraction ([83faf7f](https://github.com/oaknational/Oak-Web-Application/commit/83faf7f419e3fd520bce1754158b4e43e38affe8))
+
+## [1.315.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.1...v1.315.2) (2024-01-05)
+
+## [1.315.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.0...v1.315.1) (2024-01-05)
+
+# [1.315.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.314.0...v1.315.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* clickable dropdown label ([c5a9c96](https://github.com/oaknational/Oak-Web-Application/commit/c5a9c96167d3acc64453629621be033c1a2a4795))
+* focus state ([4ed759a](https://github.com/oaknational/Oak-Web-Application/commit/4ed759ac9fd3d993365b3db63248e105187d991f))
+* storybook search drop down ([ed1acd4](https://github.com/oaknational/Oak-Web-Application/commit/ed1acd4b55b33f31bad1e666ba9f6df2f178748a))
+* tier dropdown when no exam boards ([6d8d293](https://github.com/oaknational/Oak-Web-Application/commit/6d8d293be4c1d706bab941fa668bc30dbd063b1d))
+
+
+### Features
+
+* connect pathways to dropdown search hit ([496407b](https://github.com/oaknational/Oak-Web-Application/commit/496407b8844f33fa8d6ca4084479f8f2253ee8ab))
+* dropdown search hit ([bcdd126](https://github.com/oaknational/Oak-Web-Application/commit/bcdd1268a0a5d60e1e1c03c17755e664b1631c3f))
+
+# [1.314.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.313.0...v1.314.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* alignment of list items on plan a lesson page ([2c32040](https://github.com/oaknational/Oak-Web-Application/commit/2c32040d7ab48a41198ed3da24193348920d7987))
+* bio card sizes ([ce2d9be](https://github.com/oaknational/Oak-Web-Application/commit/ce2d9bec3f98471cce1e188acdf9f7a42d7e27e9))
+* display grid on ordered grid list ([c55c77e](https://github.com/oaknational/Oak-Web-Application/commit/c55c77e2eeb04020c4233708c5c913638af16577))
+* grid auto rows ([a476f6b](https://github.com/oaknational/Oak-Web-Application/commit/a476f6bcecd5cbfc91a5c1ee8b52d2c7272238c7))
+* move list key to top component ([1f10566](https://github.com/oaknational/Oak-Web-Application/commit/1f10566a18619aa87f37e4c2aea297f448aff819))
+* use ol for numbered list ([570dad8](https://github.com/oaknational/Oak-Web-Application/commit/570dad81f411eab5d1d9c05e0bea8b1b491c6ead))
+
+
+### Features
+
+* update icon list on lesson planning page ([56ed40b](https://github.com/oaknational/Oak-Web-Application/commit/56ed40b9290114f9067eb29d36397d4fad3f1897))
+
+# [1.313.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.3...v1.313.0) (2024-01-05)
+
+
+### Bug Fixes
+
+* add aria expanded to hamburger menu button ([aa131ce](https://github.com/oaknational/Oak-Web-Application/commit/aa131cefdd11f0871f97a2b5fcf4c0a714f41868))
+
+
+### Features
+
+* add extra test cases for nav role ([982f6e5](https://github.com/oaknational/Oak-Web-Application/commit/982f6e58ab58f005bf216febfc822e0cf1256a56))
+
+## [1.312.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.2...v1.312.3) (2024-01-04)
+
+## [1.312.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.1...v1.312.2) (2024-01-04)
+
+
+### Bug Fixes
+
+* correct subject fliters on search page ([9b5debc](https://github.com/oaknational/Oak-Web-Application/commit/9b5debca7602a1cfb408457071afbe806792602f))
+
+## [1.312.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.312.0...v1.312.1) (2024-01-03)
+
+# [1.312.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.8...v1.312.0) (2023-12-21)
+
+
+### Bug Fixes
+
+* broken import ([32e898f](https://github.com/oaknational/Oak-Web-Application/commit/32e898f127d16f8f168d8330409d74795d9d0fbc))
+* refactor quiz render into seperate component ([a15c4c6](https://github.com/oaknational/Oak-Web-Application/commit/a15c4c6fbc61f99f39607ad3b7b267b2e7b7df2c))
+* reinstated oak components from npm ([56c9cb0](https://github.com/oaknational/Oak-Web-Application/commit/56c9cb0e2ac93a9f1433a1bcb21f6f9299e1881f))
+* remove QuizMCQMultiAnswer ([00c182b](https://github.com/oaknational/Oak-Web-Application/commit/00c182b61b58f9f9365946fce75d11828f9cd451))
+* remove title arg from all storybooks to make structure match folders ([a25d73b](https://github.com/oaknational/Oak-Web-Application/commit/a25d73b7c2a504f1f55f7a81c95dab25e52e74b0))
+
+
+### Features
+
+* wip mcq multi answer ([1b4ba30](https://github.com/oaknational/Oak-Web-Application/commit/1b4ba304bd9b26076e27ace12473fd542b4e5d44))
+
+## [1.311.8](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.7...v1.311.8) (2023-12-21)
+
+## [1.311.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.6...v1.311.7) (2023-12-19)
+
+
+### Bug Fixes
+
+* test values ([9a4306f](https://github.com/oaknational/Oak-Web-Application/commit/9a4306f1a2389f27fd7faa1dbf668107e97129d6))
+
+## [1.311.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.5...v1.311.6) (2023-12-18)
+
+## [1.311.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.4...v1.311.5) (2023-12-15)
+
+## [1.311.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.3...v1.311.4) (2023-12-14)
+
+## [1.311.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.2...v1.311.3) (2023-12-12)
+
+
+### Bug Fixes
+
+* broken lesson list test ([1879b42](https://github.com/oaknational/Oak-Web-Application/commit/1879b427185ff043eeaa2961b57b15fa0b4d72bc))
+
+## [1.311.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.1...v1.311.2) (2023-12-12)
+
+
+### Bug Fixes
+
+* remove requirement for feature flag to perform search ([c634162](https://github.com/oaknational/Oak-Web-Application/commit/c634162e1891589370f890133e7f8027fe02b6c4))
+
 ## [1.311.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.311.0...v1.311.1) (2023-12-12)
 
 # [1.311.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.310.4...v1.311.0) (2023-12-11)
