@@ -153,12 +153,9 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     <QuizEngineContext.Provider
       value={{
         currentQuestionData,
-        currentQuestionIndex: useMemo(
-          () => currentQuestionIndex,
-          [currentQuestionIndex],
-        ),
-        questionState: useMemo(() => questionState, [questionState]),
-        score: useMemo(() => score, [score]),
+        currentQuestionIndex,
+        questionState,
+        score,
         maxScore,
         isComplete,
         updateQuestionMode,
