@@ -1,3 +1,5 @@
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+
 export const convertUnitSlugToTitle = (unitSlug: string) => {
   const lastHyphenIndex = unitSlug.lastIndexOf("-");
   const truncatedSlug =
@@ -8,4 +10,19 @@ export const convertUnitSlugToTitle = (unitSlug: string) => {
   );
   const title = capitalisedWords.join(" ").trim();
   return title;
+};
+
+export const removeHTMLTags = (str: string) => {
+  return str.replace(/(<([^>]+)>)/gi, "");
+};
+
+export const isKeyStageTitleValueType = (
+  value: string,
+): value is KeyStageTitleValueType => {
+  return (
+    value === "Key stage 1" ||
+    value === "Key stage 2" ||
+    value === "Key stage 3" ||
+    value === "Key stage 4"
+  );
 };
