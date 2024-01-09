@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { Span } from "../Typography";
-
 import { HeaderLessonProps } from "./HeaderLesson";
 
+import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {

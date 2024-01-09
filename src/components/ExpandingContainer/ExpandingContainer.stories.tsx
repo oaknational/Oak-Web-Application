@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import Card from "../Card";
 
 import Component from ".";
+
+import Card from "@/components/SharedComponents/Card";
 
 const meta: Meta<typeof Component> = {
   component: Component,

@@ -1,8 +1,8 @@
 import { FC } from "react";
 
 import OakLink from "../OakLink";
-import { P } from "../Typography";
 
+import { P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 

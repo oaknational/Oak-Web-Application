@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 import { LandingPage } from "../../../common-lib/cms-types";
-import CMSImage from "../../CMSImage";
 
 import LandingPageTitle from "./LandingPageTitle";
 
+import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type LandingPageHeroProps = Pick<LandingPage, "hero">;

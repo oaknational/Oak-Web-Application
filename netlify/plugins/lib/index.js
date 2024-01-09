@@ -56,4 +56,24 @@ module.exports = {
     console.log(`Determined app version: ${appVersion}`);
     return appVersion;
   },
+
+  /**
+   * We need to disable plugins for some custom builds.
+   *
+   * @param {string} envName The name of the environment variable to check. Only "true" will disable the plugin.
+   * @returns {boolean} Whether the plugin should be disabled.
+   */
+  getIsPluginDisabled: function (envName) {
+    if (!envName) {
+      throw new TypeError(
+        "Attempted to get disabled plugin function without specifying an env variable name.",
+      );
+    }
+    const isDisabled = process.env[envName] === "true";
+    if (isDisabled) {
+      console.log(`Plugin controlled by ${envName}: disabled.`);
+      return true;
+    }
+    return false;
+  },
 };

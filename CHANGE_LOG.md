@@ -1,3 +1,52 @@
+## [1.318.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.0...v1.318.1) (2024-01-08)
+
+# [1.318.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.1...v1.318.0) (2024-01-08)
+
+
+### Features
+
+* **build:** allow Netlify plugins to be disabled with envs ([3e60629](https://github.com/oaknational/Oak-Web-Application/commit/3e60629ccb7f68038fcd3762d207e2b0c727d17a))
+* **build:** disable plugins in way that actually works ([3cfa43d](https://github.com/oaknational/Oak-Web-Application/commit/3cfa43db866149fe7fc5bb9c7d5261ae8253f122))
+
+## [1.317.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.0...v1.317.1) (2024-01-08)
+
+# [1.317.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.316.0...v1.317.0) (2024-01-08)
+
+
+### Features
+
+* report hubspot fail to connect errors ([8bae327](https://github.com/oaknational/Oak-Web-Application/commit/8bae327f9ac049c89fe372a895eade78a98e4758))
+
+# [1.316.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.2...v1.316.0) (2024-01-08)
+
+
+### Bug Fixes
+
+* conflicts ([9b18a0d](https://github.com/oaknational/Oak-Web-Application/commit/9b18a0de6cfbe2ec9b847ad094b17945f8629e14))
+* end of quiz rendering ([a9654c6](https://github.com/oaknational/Oak-Web-Application/commit/a9654c6c23b52c0d26495c539fe3666334a6995f))
+* minor pr fixes ([920a43f](https://github.com/oaknational/Oak-Web-Application/commit/920a43f6fab21b89cbb8864fb5a896b09e74b887))
+* remove redundant memoization ([8bf15d4](https://github.com/oaknational/Oak-Web-Application/commit/8bf15d4f63bc1ab35201628087e3f4fbed271c03))
+* render tests ([a6d1812](https://github.com/oaknational/Oak-Web-Application/commit/a6d1812160d11610b8952870e24ce7d7dc09caf4))
+* render tests ([6aa641c](https://github.com/oaknational/Oak-Web-Application/commit/6aa641ca69363b610cafcdca19e86819e6d90b16))
+* render tests ([8bcf19a](https://github.com/oaknational/Oak-Web-Application/commit/8bcf19a37252f8edab03aef43bf0eba10e15f6a8))
+
+
+### Features
+
+* added storybook envars for oak component icons ([55c1017](https://github.com/oaknational/Oak-Web-Application/commit/55c10174634cd24fe6969ef936c3ffcf2fc93964))
+* mcq answers use new checkbox interface ([93286a3](https://github.com/oaknational/Oak-Web-Application/commit/93286a3016c87d08b0be2aeaa394ea2b052efba1))
+* mcq multi answer images ([6e2d82b](https://github.com/oaknational/Oak-Web-Application/commit/6e2d82b7ec697bbd6b15eb03812ef29cf816362c))
+* mcq multi answer with images completed ([f267a3d](https://github.com/oaknational/Oak-Web-Application/commit/f267a3db16287a5cc98e98baa26a2eefd3b04cbb))
+* quiz multi answer work ([b688c60](https://github.com/oaknational/Oak-Web-Application/commit/b688c60d25aa4e18512b614bf2033a108e4ea377))
+* single answer mcq working with refactored provider ([e21e96f](https://github.com/oaknational/Oak-Web-Application/commit/e21e96ff33d9fbb1fb925e1a95b964a0de3d03ee))
+* submit answers to quizEngineContext ([3793d21](https://github.com/oaknational/Oak-Web-Application/commit/3793d212430fe40de1d5ed59d135d4170393756e))
+* wip multi answers ([b9b1835](https://github.com/oaknational/Oak-Web-Application/commit/b9b1835350d1859d4a5e8fa1878057cbc6eec72b))
+* wip QuizMCQMulti ([a7aaa3b](https://github.com/oaknational/Oak-Web-Application/commit/a7aaa3b439f2dd16820be5cd7e56e3267d3747f8))
+* wip QuizMCQMultiAnswer ([e84b81a](https://github.com/oaknational/Oak-Web-Application/commit/e84b81a450589ca255fc3587be3b8fd10925f4b2))
+* wip refactor of quiz engine provider for greater abstraction ([83faf7f](https://github.com/oaknational/Oak-Web-Application/commit/83faf7f419e3fd520bce1754158b4e43e38affe8))
+
+## [1.315.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.1...v1.315.2) (2024-01-05)
+
 ## [1.315.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.0...v1.315.1) (2024-01-05)
 
 # [1.315.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.314.0...v1.315.0) (2024-01-05)

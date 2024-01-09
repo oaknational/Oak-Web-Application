@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { Heading, HeadingTag } from "../../Typography";
-import Illustration from "../../Illustration";
-
+import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
+import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

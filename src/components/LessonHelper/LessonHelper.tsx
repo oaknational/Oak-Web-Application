@@ -4,7 +4,7 @@ import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsH
 import CopyrightNotice from "../DownloadAndShareComponents/CopyrightNotice";
 
 import Box from "@/components/SharedComponents/Box";
-import Grid, { GridArea } from "@/components/Grid";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonRequirements, {
   Equipment,
   ContentGuidance,

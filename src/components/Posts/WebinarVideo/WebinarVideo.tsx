@@ -1,6 +1,4 @@
 import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
-import AspectRatio from "../../AspectRatio";
-import CMSVideo from "../../CMSVideo";
 import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import WebinarRegistration, {
   useWebinarRegistration,
@@ -9,6 +7,9 @@ import isUpcomingWebinar from "../../../utils/isUpcomingWebinar";
 import UpcomingWebinarWall, {
   useUpcomingWebinarWall,
 } from "../UpcomingWebinarWall";
+
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 type WebinarVideoProps = {
   webinar: SerializedWebinar;

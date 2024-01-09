@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { P } from "../Typography";
-
 import {
   LessonItemContainer,
   LessonItemContainerProps,
 } from "./LessonItemContainer";
 
+import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOverview.fixture";
 

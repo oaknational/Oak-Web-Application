@@ -8,7 +8,8 @@ import { ResourceFormProps } from "../downloadAndShare.types";
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
-import Component from "./ResourcePageLayout";
+
+import Component from ".";
 
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 

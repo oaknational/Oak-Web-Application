@@ -1,8 +1,6 @@
 import { ReactNode } from "react";
 
-import Typography from "../Typography/Typography";
-import { Hr } from "../Typography";
-
+import Typography, { Hr } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

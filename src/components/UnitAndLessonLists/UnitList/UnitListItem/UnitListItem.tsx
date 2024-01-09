@@ -12,7 +12,7 @@ import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
 import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
-import { Span } from "@/components/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],

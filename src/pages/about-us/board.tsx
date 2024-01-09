@@ -3,11 +3,15 @@ import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutBoardPage } from "@/common-lib/cms-types";
-import Layout from "@/components/Layout";
+import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Card from "@/components/Card";
+import Card from "@/components/SharedComponents/Card";
 import AboutContactCard from "@/components/AboutContactCard";
-import Typography, { Heading, Hr, P } from "@/components/Typography";
+import Typography, {
+  Heading,
+  Hr,
+  P,
+} from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
@@ -16,8 +20,8 @@ import BioCardList from "@/components/BioCardList";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
-import { GridList } from "@/components/Typography/UL";
-import { GridAreaListItem } from "@/components/Typography/LI";
+import { GridList } from "@/components/SharedComponents/Typography/UL";
+import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type AboutPageProps = {
