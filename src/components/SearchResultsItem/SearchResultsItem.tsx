@@ -1,14 +1,15 @@
 import { FC } from "react";
+// import * as cheerio from "cheerio";
 
 import LessonMetadata from "../LessonMetadata";
-import { Heading, P, Span } from "../Typography";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
-import Icon from "../Icon";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import Icon from "@/components/SharedComponents/Icon";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
@@ -30,6 +31,8 @@ export type SearchResultsItemProps = {
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  onToggleClick?: (searchHit: SearchResultsItemProps) => void;
+  isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
@@ -42,6 +45,7 @@ export type SearchResultsItemProps = {
   | {
       type: "lesson";
       buttonLinkProps: LessonOverviewLinkProps;
+      unitTitle: string;
     }
 );
 
@@ -74,6 +78,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
+  // const $ = cheerio.load(searchHitDescription);
+  // const removeHTMLDescription = $.text();
 
   return (
     <Flex
@@ -104,16 +110,15 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         <Heading tag={"h2"} $font={["heading-6", "heading-5"]}>
           {title}
         </Heading>
-        {description ||
-          (pupilLessonOutcome && (
-            <P
-              dangerouslySetInnerHTML={{
-                __html: searchHitDescription,
-              }}
-              $mt={16}
-              $font={"body-2"}
-            />
-          ))}
+        {searchHitDescription && (
+          <P
+            dangerouslySetInnerHTML={{
+              __html: searchHitDescription,
+            }}
+            $mt={16}
+            $font={"body-2"}
+          />
+        )}
       </Flex>
       <Flex $mb={20}>
         {isPathwaySearchHit ? (

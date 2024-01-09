@@ -6,11 +6,11 @@ import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButto
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/OakLink";
-import { LI } from "@/components/Typography";
-import { FlexList } from "@/components/Typography/UL";
+import { LI } from "@/components/SharedComponents/Typography";
+import { FlexList } from "@/components/SharedComponents/Typography/UL";
 
 const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
-  const { pathways, onClick } = props;
+  const { pathways, onClick, onToggleClick } = props;
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
   const getSlug = (item: string | null | undefined) => item || "";
@@ -44,7 +44,10 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
         label={label}
         title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
-        onClick={() => setToggleOpen(!isToggleOpen)}
+        onClick={() => {
+          setToggleOpen(!isToggleOpen);
+          onToggleClick?.({ ...props, isToggleOpen: !isToggleOpen });
+        }}
         isExpanded={isToggleOpen}
       />
       <Box
@@ -76,7 +79,7 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     {...props.buttonLinkProps}
                     programmeSlug={item.programmeSlug}
                     onClick={() => {
-                      onClick?.(props);
+                      onClick?.({ ...props, isToggleOpen });
                     }}
                   >
                     {buttonTitle}

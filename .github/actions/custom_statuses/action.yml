@@ -13,5 +13,5 @@ inputs:
   target_url:
     description: "[optional] A link to further details on the status, e.g. the workflow run that caused it. Sensible default."
 runs:
-  using: "node16"
+  using: "node20"
   main: "index.js"

@@ -1,11 +1,11 @@
 import { FC, forwardRef } from "react";
 
-import { IconName } from "../Icon";
 import FieldError from "../FormFields/FieldError";
 
 import { Select, Item, SelectItem } from "./Select";
 import { Label } from "./ListBox";
 
+import { IconName } from "@/components/SharedComponents/Icon";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 
 type SelectChangeHandler = (e: {

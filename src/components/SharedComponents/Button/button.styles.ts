@@ -4,7 +4,7 @@ import getColorByLocation from "../../../styles/themeHelpers/getColorByLocation"
 import { HOVER_SHADOW_TRANSITION } from "../../../styles/transitions";
 import opacity, { OpacityProps } from "../../../styles/utils/opacity";
 import margin, { MarginProps } from "../../../styles/utils/spacing";
-import { BackgroundIcon } from "../../Icon/Icon";
+import { BackgroundIcon } from "../Icon/Icon";
 
 import {
   ButtonFocusUnderline,

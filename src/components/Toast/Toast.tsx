@@ -3,12 +3,12 @@ import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
 import { useToastContext, SHOW_DURATION } from "../../context/Toast";
-import Card from "../Card";
 import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-import Typography from "../Typography";
 import theme from "../../styles/theme";
-import Icon from "../Icon";
 
+import Icon from "@/components/SharedComponents/Icon";
+import Typography from "@/components/SharedComponents/Typography";
+import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 
 const TRANSITION_DURATION = 500;

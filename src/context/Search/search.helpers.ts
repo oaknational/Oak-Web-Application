@@ -47,6 +47,19 @@ export const getSortedSearchFiltersSelected = (
   return [];
 };
 
+const keyStageToSentenceCase = (keyStage?: string): string | undefined => {
+  if (!keyStage) {
+    return undefined;
+  }
+  const words = keyStage.split(" ");
+
+  if (words.length > 1 && words[1] !== undefined) {
+    words[1] = words[1].toLowerCase();
+  }
+
+  return words.join(" ");
+};
+
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
   allKeyStages,
@@ -74,7 +87,7 @@ export function elasticKeyStageSlugToKeyStage({
     reportError(error);
   }
 
-  return keyStage;
+  return { ...keyStage, title: keyStageToSentenceCase(keyStage?.title) };
 }
 
 const pathwaysSnakeToCamel = (pathway: PathwaySchema) => {
@@ -154,6 +167,10 @@ export function getLessonObject(props: {
   const lessonResult: SearchResultsItemProps = {
     type: "lesson",
     title: highlightedHit.title?.toString(),
+    unitTitle:
+      highlightedHit.unit_title?.toString() ||
+      highlightedHit.topic_title?.toString() ||
+      "",
     description: highlightedHit.lesson_description?.toString() || "",
     pupilLessonOutcome: highlightedHit.pupil_lesson_outcome?.toString() || "",
     subjectSlug: highlightedHit.subject_slug?.toString(),

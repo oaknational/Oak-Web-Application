@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
-import { P } from "../Typography";
-
+import { P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
 type SideBarSignpostProps = {

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled, { keyframes } from "styled-components";
 
-import ScreenReaderOnly from "../ScreenReaderOnly";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 const SpinnerKeyframe = keyframes`
   0% {

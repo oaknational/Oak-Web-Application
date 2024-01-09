@@ -8,7 +8,7 @@ import {
 import { PostListItemProps } from "../Posts/PostList/PostListItem";
 import PostListing from "../Posts/PostListing";
 import { PAGE_SIZE } from "../Posts/PostList/usePostList";
-import usePagination from "../Pagination/usePagination";
+import usePagination from "../SharedComponents/Pagination/usePagination";
 
 export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
   date: string;

@@ -1,5 +1,5 @@
 import { MarginProps } from "@/styles/utils/spacing";
-import { Span } from "@/components/Typography";
+import { Span } from "@/components/SharedComponents/Typography";
 import { ColorProps } from "@/styles/utils/color";
 
 const TAG_COLOR_MAP = {

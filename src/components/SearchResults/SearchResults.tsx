@@ -1,10 +1,10 @@
-import { LI, UL } from "../Typography";
-import Pagination from "../Pagination";
-import usePagination from "../Pagination/usePagination";
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "../SearchResultsItem/SearchResultsItem";
 
+import { LI, UL } from "@/components/SharedComponents/Typography";
+import Pagination from "@/components/SharedComponents/Pagination";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
@@ -17,12 +17,17 @@ interface SearchResultsProps {
     searchHit: SearchResultsItemProps,
     searchRank: number,
   ) => void;
+  searchResultExpanded: (
+    searchHit: SearchResultsItemProps,
+    searchRank: number,
+  ) => void;
 }
 
 export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
-  const { hits, allKeyStages, searchResultOpened } = props;
+  const { hits, allKeyStages, searchResultOpened, searchResultExpanded } =
+    props;
   const hitCount = hits.length;
   const paginationProps = usePagination({
     totalResults: hitCount,
@@ -53,6 +58,9 @@ const SearchResults = (props: SearchResultsProps) => {
                     firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
                     onClick={(props) => {
                       searchResultOpened(props, searchRank(index));
+                    }}
+                    onToggleClick={(props) => {
+                      searchResultExpanded(props, searchRank(index));
                     }}
                   />
                 </LI>

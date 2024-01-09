@@ -2,7 +2,11 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import { TagFunctional } from "@/components/TagFunctional";
 import { TagColor } from "@/components/TagFunctional/TagFunctional";
-import { Heading, HeadingTag, Span } from "@/components/Typography";
+import {
+  Heading,
+  HeadingTag,
+  Span,
+} from "@/components/SharedComponents/Typography";
 
 type LessonPathwayCardProps = {
   headingTag: HeadingTag;

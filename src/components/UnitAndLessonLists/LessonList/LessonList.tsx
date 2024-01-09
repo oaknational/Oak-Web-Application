@@ -4,10 +4,16 @@ import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import Pagination, { PaginationProps } from "@/components/Pagination";
-import { UsePaginationProps } from "@/components/Pagination/usePagination";
-import { Heading, LI, UL } from "@/components/Typography";
-import { HeadingTag } from "@/components/Typography/Heading";
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
+import { UsePaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import {
+  Heading,
+  LI,
+  UL,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
 
 export type LessonListProps = {
   lessonCount: number;

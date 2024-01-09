@@ -22,7 +22,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: "npm"
       - run: npm ci
 
@@ -40,30 +40,30 @@ jobs:
           replace: ${{ github.event.deployment_status.environment_url }}
 
   # Warm the caches on the test URLs
-  warm_caches:
-    # Only want to run on success, otherwise it might be "pending", or "failure".
-    # Filter out storybook deployments and temporarily Netlify deployments
-    if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
-    name: Warm Caches
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-          cache: "npm"
-      - run: npm ci
-      - name: Warm the Cache
-        run: node ./scripts/build/warm_cache.js
-        env:
-          BASE_URL: ${{ github.event.deployment_status.environment_url }}
-          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
-          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+  # warm_caches:
+  #   # Only want to run on success, otherwise it might be "pending", or "failure".
+  #   # Filter out storybook deployments and temporarily Netlify deployments
+  #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
+  #   name: Warm Caches
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20.x
+  #         cache: "npm"
+  #     - run: npm ci
+  #     - name: Warm the Cache
+  #       run: node ./scripts/build/warm_cache.js
+  #       env:
+  #         BASE_URL: ${{ github.event.deployment_status.environment_url }}
+  #         CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+  #         CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
 
   # Run Pa11yCI against a deployment.
   pa11y:
-    needs: warm_caches
+    # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
@@ -75,7 +75,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: "npm"
       # Install.
       - run: npm ci
@@ -106,7 +106,7 @@ jobs:
 
   # Run Percy visual regression tests against preview and production deployments.
   percy:
-    needs: warm_caches
+    # needs: warm_caches
     # Only want to run on success, otherwise it might be "pending", or "failure".
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
@@ -118,7 +118,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
           cache: "npm"
       - run: npm ci
 
@@ -165,7 +165,7 @@ jobs:
   # and can focus on testing a few key user journeys.
   # Run browser e2e tests (engineering) with WDIO on Browserstack.
   # browser_e2e_eng:
-  #   needs: warm_caches
+  #  # needs: warm_caches
   #   # Only want to run on success, otherwise it might be "pending", or "failure".
   #   # Filter out storybook deployments and temporarily Netlify deployments
   #   if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
@@ -177,7 +177,7 @@ jobs:
   #     - name: Use Node.js
   #       uses: actions/setup-node@v4
   #       with:
-  #         node-version: 18.x
+  #         node-version: 20.x
   #         cache: "npm"
   #     - run: npm ci
 

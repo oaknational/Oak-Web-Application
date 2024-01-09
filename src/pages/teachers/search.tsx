@@ -4,13 +4,15 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "@/components/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/SearchComponents/Search.page";
-import curriculumApi, { SearchPageData } from "@/node-lib/curriculum-api";
+import curriculumApi2023, {
+  SearchPageData,
+} from "@/node-lib/curriculum-api-2023";
+import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
-import usePagination from "@/components/Pagination/usePagination";
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import { RESULTS_PER_PAGE } from "@/components/SearchResults/SearchResults";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 type SearchPageProps = {
   curriculumData: SearchPageData;
@@ -22,12 +24,14 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     subjects: allSubjects,
     keyStages: allKeyStages,
     contentTypes: allContentTypes,
+    examBoards: allExamBoards,
   } = curriculumData;
 
   const searchProps = useSearch({
     allKeyStages,
     allSubjects,
     allContentTypes,
+    allExamBoards,
   });
   const { results } = searchProps;
 
@@ -44,6 +48,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allKeyStages,
     allSubjects,
     allContentTypes,
+    allExamBoards,
   });
 
   return (

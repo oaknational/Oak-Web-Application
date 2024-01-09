@@ -1,10 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import useStableCallback from "../../hooks/useStableCallback";
-import { resolveOakHref } from "../../common-lib/urls";
-import { SearchPageData } from "../../node-lib/curriculum-api/index";
-
 import { getFilterForQuery, isFilterItem } from "./search.helpers";
 import {
   ContentType,
@@ -14,6 +10,10 @@ import {
   SetSearchQuery,
 } from "./search.types";
 import { performSearch } from "./search-api/performSearch";
+
+import useStableCallback from "@/hooks/useStableCallback";
+import { resolveOakHref } from "@/common-lib/urls";
+import { SearchPageData } from "@/node-lib/curriculum-api-2023";
 
 type UseSearchQueryReturnType = {
   query: SearchQuery;
@@ -27,21 +27,30 @@ export const createSearchQuery = (
     keyStages = [],
     subjects = [],
     contentTypes = [],
+    examBoards = [],
   } = partialQuery;
-  return { term, keyStages, subjects, contentTypes };
+  return { term, keyStages, subjects, contentTypes, examBoards };
 };
 
 const useSearchQuery = ({
   allKeyStages,
   allSubjects,
   allContentTypes,
+  allExamBoards,
 }: {
   allKeyStages?: KeyStage[];
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
+  allExamBoards?: SearchPageData["examBoards"];
 }): UseSearchQueryReturnType => {
   const {
-    query: { term = "", keyStages = "", subjects = "", contentTypes = "" },
+    query: {
+      term = "",
+      keyStages = "",
+      subjects = "",
+      contentTypes = "",
+      examBoards = "",
+    },
     push,
   } = useRouter();
 
@@ -68,6 +77,9 @@ const useSearchQuery = ({
               type === "lesson" || type === "unit",
           )
         : [],
+      examBoards: allExamBoards
+        ? getFilterForQueryCallback(examBoards, allExamBoards)
+        : [],
     };
   }, [
     termString,
@@ -77,6 +89,8 @@ const useSearchQuery = ({
     allSubjects,
     contentTypes,
     allContentTypes,
+    examBoards,
+    allExamBoards,
     subjects,
   ]);
 
@@ -107,13 +121,15 @@ type UseSearchProps = {
   allKeyStages?: KeyStage[];
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
+  allExamBoards?: SearchPageData["examBoards"];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
-  const { allKeyStages, allSubjects, allContentTypes } = props;
+  const { allKeyStages, allSubjects, allContentTypes, allExamBoards } = props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
     allSubjects,
     allContentTypes,
+    allExamBoards,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 
