@@ -1,11 +1,10 @@
 import { FC } from "react";
 import { PortableTextComponents } from "@portabletext/react";
 
-import { useNewsletterForm } from "../Forms/NewsletterForm";
-import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
-import { PortableTextJSON } from "../../common-lib/cms-types";
-import { PortableTextWithDefaults } from "../PortableText";
-
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import { PortableTextWithDefaults } from "@/components/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
