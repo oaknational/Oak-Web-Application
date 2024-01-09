@@ -1,9 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
-import { portableTextFromString } from "../../__tests__/__helpers__/cms";
-
 import { useBioModal } from "./useBioModal";
+
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+
 
 const bios = ["Ramender Crompton", "Matt Hood"].map((name, i) => ({
   name,

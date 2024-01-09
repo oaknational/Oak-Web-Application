@@ -5,12 +5,14 @@ import ButtonGroup, {
   ButtonGroupProps,
 } from "@/components/SharedComponents/ButtonGroup";
 
-type NavigationButtonsProps = ButtonGroupProps & {
+type BioCardListModalNavigationButtonsProps = ButtonGroupProps & {
   nextBio?: () => void;
   prevBio?: () => void;
   defaultFocusRef: RefObject<HTMLButtonElement>;
 };
-const NavigationButtons = (props: NavigationButtonsProps) => {
+const BioCardListModalNavigationButtons = (
+  props: BioCardListModalNavigationButtonsProps,
+) => {
   const { nextBio, prevBio, defaultFocusRef, ...buttonGroupProps } = props;
 
   useEffect(() => {
@@ -43,4 +45,4 @@ const NavigationButtons = (props: NavigationButtonsProps) => {
   );
 };
 
-export default NavigationButtons;
+export default BioCardListModalNavigationButtons;

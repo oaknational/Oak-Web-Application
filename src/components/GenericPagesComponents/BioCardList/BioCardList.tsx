@@ -1,9 +1,10 @@
 import { FC } from "react";
 
 import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
-import BioModal from "@/components/BioModal";
-import { BioData } from "@/components/BioModal/BioModal";
-import { useBioModal } from "@/components/BioModal/useBioModal";
+import BioCardListModal, {
+  BioData,
+} from "@/components/GenericPagesComponents/BioCardListModal";
+import { useBioModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioModal";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
@@ -80,7 +81,7 @@ const BioCardList: FC<BioCardListProps> = (props) => {
           </GridAreaListItem>
         ))}
       </GridList>
-      <BioModal {...modal} />
+      <BioCardListModal {...modal} />
     </Flex>
   );
 };
