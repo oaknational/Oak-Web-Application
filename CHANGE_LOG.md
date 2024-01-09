@@ -1,3 +1,12 @@
+## [1.319.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.2...v1.319.3) (2024-01-09)
+
+
+### Bug Fixes
+
+* update curriculum sitemap ([378c12a](https://github.com/oaknational/Oak-Web-Application/commit/378c12a9e0712d83c92f15e3c106cab960ab0744))
+
+## [1.319.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.1...v1.319.2) (2024-01-09)
+
 ## [1.319.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.0...v1.319.1) (2024-01-09)
 
 # [1.319.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.3...v1.319.0) (2024-01-09)

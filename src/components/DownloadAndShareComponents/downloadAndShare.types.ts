@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { ExpandingContainerTitle } from "../ExpandingContainer/ExpandingContainer";
 import { LessonItemTitle } from "../LessonItemContainer/LessonItemContainer";
 
 import {
@@ -10,6 +9,7 @@ import {
   resourceFormValuesSchema,
 } from "./downloadAndShare.schema";
 
+import { ExpandingContainerTitle } from "@/components/ExpandingContainer/ExpandingContainer";
 import {
   LessonDownloadsData,
   LessonShareData,
