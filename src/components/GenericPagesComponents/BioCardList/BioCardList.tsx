@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import BioCardListItem from "./BioCardListItem";
-
+import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
 import BioModal from "@/components/BioModal";
 import { BioData } from "@/components/BioModal/BioModal";
 import { useBioModal } from "@/components/BioModal/useBioModal";
