@@ -14,7 +14,7 @@ type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;
 
 type SeoData = {
   loc: string;
-  lastmid: string;
+  lastmod: string;
 };
 
 describe("curriculum phase options sitemap", () => {
@@ -40,7 +40,7 @@ describe("curriculum phase options sitemap", () => {
       getServerSideSitemap as unknown as MockedGetServerSideSitemap
     ).mock.calls[0][1].forEach((argument: SeoData, index: number) => {
       expect(argument.loc).toEqual(generatedFields[index]?.loc);
-      expect(argument.lastmid.split("T")[0]).toEqual(
+      expect(argument.lastmod.split("T")[0]).toEqual(
         newDate.toISOString().split("T")[0],
       );
     });
