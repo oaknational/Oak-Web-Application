@@ -34,11 +34,8 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-css-modules-preset",
-    "storybook-addon-themes",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
-    "@storybook/addon-mdx-gfm",
-    "storybook-addon-next",
   ],
   framework: {
     name: "@storybook/nextjs",
