@@ -3,7 +3,8 @@ import { FC } from "react";
 import Flex, { FlexProps } from "../Flex";
 import OutlineHeading from "../OutlineHeading";
 import Svg from "../Svg";
-import { Heading, Span } from "../Typography";
+import Box from "../Box";
+import { P } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 
 type BubbleMessageProps = {
@@ -34,31 +35,36 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
     >
       <Svg name={variant} $color={background} $cover />
       <Flex
-        $maxWidth={300}
+        $maxWidth={320}
         $alignItems={"center"}
         $flexDirection={"column"}
         $zIndex={"inFront"}
       >
-        <Heading $mh={[12, 0]} $mt={-20} $textAlign={"center"} tag={"h3"}>
-          <OutlineHeading
-            $mb={[12, 0]}
-            tag={"span"}
-            $fontSize={[60, 100]}
-            $fontWeight={600}
-          >
-            {outlineHeading}
-          </OutlineHeading>
-          <br />
-          <Span $font={["heading-5", "heading-4"]}>{heading}</Span>
-          <br />
-          <Span
+        <OutlineHeading
+          $mb={[12, 0]}
+          tag={"div"}
+          $fontWeight={600}
+          $fontSize={[60, 100]}
+        >
+          <P>{outlineHeading}</P>
+        </OutlineHeading>
+        <P
+          $mh={[12, 0]}
+          $mt={-20}
+          $textAlign={"center"}
+          $font={["heading-5", "heading-4"]}
+        >
+          {heading}
+        </P>
+        <Box $mt={[8, 4]} $maxWidth={300}>
+          <P
             $mh={[30, 0]}
             $textAlign={"center"}
             $font={["heading-light-7", "heading-light-6"]}
           >
             {subHeading}
-          </Span>
-        </Heading>
+          </P>
+        </Box>
       </Flex>
     </Flex>
   );
