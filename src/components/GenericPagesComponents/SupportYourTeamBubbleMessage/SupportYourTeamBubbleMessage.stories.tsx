@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./BubbleMessage";
+import Component from "./SupportYourTeamBubbleMessage";
 
 export default {
   component: Component,

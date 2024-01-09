@@ -1,15 +1,14 @@
 import React from "react";
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
-import CMSClient from "../node-lib/cms";
-import { SupportPage } from "../common-lib/cms-types";
-import SummaryCard from "../components/SharedComponents/Card/SummaryCard";
-import { getSeoProps } from "../browser-lib/seo/getSeoProps";
-import { TextBlockCard } from "../components/Sanity/TextBlock/TextBlockCard";
-import TextBlockCardImageCta from "../components/Sanity/TextBlock/TextBlockCardImageCta";
-import BubbleMessage from "../components/BubbleMessage";
-import getPageProps from "../node-lib/getPageProps";
-
+import CMSClient from "@/node-lib/cms";
+import { SupportPage } from "@/common-lib/cms-types";
+import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { TextBlockCard } from "@/components/Sanity/TextBlock/TextBlockCard";
+import TextBlockCardImageCta from "@/components/Sanity/TextBlock/TextBlockCardImageCta";
+import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
+import getPageProps from "@/node-lib/getPageProps";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Heading, P } from "@/components/SharedComponents/Typography";
@@ -45,14 +44,14 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Flex>
         <Flex $justifyContent={"center"}>
           <Flex $flexDirection={["column", "row", "row"]}>
-            <BubbleMessage
+            <SupportYourTeamBubbleMessage
               background={"aqua"}
               variant="bubble-1"
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
             />
-            <BubbleMessage
+            <SupportYourTeamBubbleMessage
               background={"pink50"}
               variant="bubble-2"
               outlineHeading={"50%"}
