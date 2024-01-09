@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { Quote as Component } from "./Quote";
+import { LandingPageQuote as Component } from "./LandingPageQuote";
 
 export default {
   component: Component,

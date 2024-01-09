@@ -1,9 +1,7 @@
 import { FC } from "react";
 
-import { LandingPage } from "../../../common-lib/cms-types";
-
-import LandingPageTitle from "./LandingPageTitle";
-
+import { LandingPage } from "@/common-lib/cms-types";
+import LandingPageHeroTitle from "@/components/GenericPagesComponents/LandingPageHeroTitle";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 
@@ -17,7 +15,7 @@ const LandingPageHero: FC<LandingPageHeroProps> = (props) => {
   return (
     <Flex $flexDirection={["column", "row"]} $mt={[92]}>
       <Flex $justifyContent={"center"} $width={"100%"}>
-        <LandingPageTitle
+        <LandingPageHeroTitle
           leftAlign={props.hero.image ? true : false}
           heading={props.hero.heading}
           title={props.hero.title}

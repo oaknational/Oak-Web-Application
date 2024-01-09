@@ -7,7 +7,7 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
-export const LandingPageTitle: FC<{
+export const LandingPageHeroTitle: FC<{
   title: string;
   heading?: string | null;
   cta?: CTA | null;
@@ -53,4 +53,4 @@ export const LandingPageTitle: FC<{
   );
 };
 
-export default LandingPageTitle;
+export default LandingPageHeroTitle;
