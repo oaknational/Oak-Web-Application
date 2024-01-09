@@ -22,6 +22,12 @@ const props: UseSearchFiltersProps = {
     { slug: "lesson", title: "Lessons" },
     { slug: "unit", title: "Units" },
   ],
+  allExamBoards: [
+    { slug: "aqa", title: "AQA" },
+    { slug: "edexcel", title: "Edexcel" },
+    { slug: "eduqas", title: "Eduqas" },
+    { slug: "ocr", title: "OCR" },
+  ],
   setQuery,
   query: {
     term: "macbethy",
