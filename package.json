@@ -48,8 +48,8 @@
     "test:storybook:ci": "start-server-and-test storybook:static-serve http://localhost:6006 test:storybook",
     "wdio": "wdio run ./e2e_tests/browser/wdio.conf.local.ts",
     "wdio:ci": "wdio run ./e2e_tests/browser/wdio.conf.ci.ts",
-    "use-local-components": "npm remove @oak-academy/oak-components && yalc add @oak-academy/oak-components",
-    "remove-local-components": "yalc remove @oak-academy/oak-components && npm install @oak-academy/oak-components"
+    "use-local-components": "$npm_execpath remove @oak-academy/oak-components && yalc add @oak-academy/oak-components",
+    "remove-local-components": "yalc remove @oak-academy/oak-components && $npm_execpath install @oak-academy/oak-components"
   },
   "overrides": {
     "puppeteer": "$puppeteer",
