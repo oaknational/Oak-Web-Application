@@ -1,5 +1,4 @@
 import { SerializedWebinar } from "../../../pages/webinars/[webinarSlug]";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 import WebinarRegistration, {
   useWebinarRegistration,
 } from "../WebinarRegistration";
@@ -8,6 +7,7 @@ import UpcomingWebinarWall, {
   useUpcomingWebinarWall,
 } from "../UpcomingWebinarWall";
 
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
