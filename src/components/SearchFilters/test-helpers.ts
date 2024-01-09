@@ -41,4 +41,13 @@ export const searchFilters: UseSearchFiltersReturnType = {
       checked: true,
     },
   ],
+  examBoardFilters: [
+    { slug: "aqa", title: "AQA", onChange: mockOnChange, checked: true },
+    {
+      slug: "ocr",
+      title: "OCR",
+      onChange: mockOnChange,
+      checked: false,
+    },
+  ],
 };

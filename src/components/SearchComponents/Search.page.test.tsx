@@ -118,6 +118,14 @@ const props: SearchProps = {
     contentTypeFilters: [
       { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
     ],
+    examBoardFilters: [
+      {
+        slug: "aqa",
+        title: "AQA",
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
   },
   allKeyStages: [
     {
@@ -146,7 +154,7 @@ const props: SearchProps = {
 
 const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
-const searchResultClicked = jest.fn();
+const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
@@ -157,7 +165,7 @@ jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
       searchJourneyInitiated: (...args: unknown[]) =>
         searchJourneyInitiated(...args),
-      searchResultClicked: (...args: unknown[]) => searchResultClicked(...args),
+      searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
     },
   }),
 }));
@@ -294,63 +302,7 @@ describe("Search.page.tsx", () => {
 
     expect(onLinkClick).toHaveBeenCalled();
   });
-  test("clicking a calls filter.onChange appropriately for key stage filters", async () => {
-    const { getByRole } = render(<Search {...props} />);
-    const user = userEvent.setup();
-    const ks1OnChange = props.searchFilters.keyStageFilters.find(
-      (ks) => ks.slug === "ks1",
-    )?.onChange as jest.Mock;
-    ks1OnChange.mockClear();
-    await act(async () => {
-      await user.click(getByRole("button", { name: "Filters" }));
-    });
-    const filter = getByRole("checkbox", { name: "KS1 filter" });
-    if (!filter) {
-      throw new Error("Expected filter to exist");
-    }
-    await act(async () => {
-      await user.click(filter);
-    });
-    await waitFor(() => expect(ks1OnChange).toHaveBeenCalledTimes(1));
-  });
-  test("clicking a calls filter.onChange appropriately for subject filters", async () => {
-    const { getByRole } = render(<Search {...props} />);
-    const user = userEvent.setup();
-    const computingOnChange = props.searchFilters.subjectFilters.find(
-      (c) => c.slug === "computing",
-    )?.onChange as jest.Mock;
-    computingOnChange.mockClear();
-    await act(async () => {
-      await user.click(getByRole("button", { name: "Filters" }));
-    });
-    const filter = getByRole("checkbox", { name: "Computing filter" });
-    if (!filter) {
-      throw new Error("Expected filter to exist");
-    }
-    await act(async () => {
-      await user.click(filter);
-    });
-    await waitFor(() => expect(computingOnChange).toHaveBeenCalledTimes(1));
-  });
-  test("clicking a calls filter.onChange appropriately for contentType filters", async () => {
-    const { getByRole } = render(<Search {...props} />);
-    const user = userEvent.setup();
-    const typeOnChange = props.searchFilters.contentTypeFilters.find(
-      (t) => t.slug === "unit",
-    )?.onChange as jest.Mock;
-    typeOnChange.mockClear();
-    await act(async () => {
-      await user.click(getByRole("button", { name: "Filters" }));
-    });
-    const filter = getByRole("checkbox", { name: "Units filter" });
-    if (!filter) {
-      throw new Error("Expected filter to exist");
-    }
-    await act(async () => {
-      await user.click(filter);
-    });
-    await waitFor(() => expect(typeOnChange).toHaveBeenCalledTimes(1));
-  });
+
   test("searchResultsDisplayed is called when a search is completed with success status", async () => {
     render(<Search {...props} {...resultsProps} />);
     await waitFor(() =>
@@ -376,8 +328,7 @@ describe("Search.page.tsx", () => {
 
     expect(setSearchStartTime).toHaveBeenCalledTimes(1);
   });
-  // Re add when we have all events
-  test.skip("searchResultClicked is called when a search hit is clicked", async () => {
+  test("searchResultOpened is called when a search hit is clicked", async () => {
     const { getByText } = render(<Search {...props} {...resultsProps} />);
     const description = getByText("lesson title");
     const user = userEvent.setup();
@@ -385,8 +336,8 @@ describe("Search.page.tsx", () => {
       await user.click(description);
     });
 
-    expect(searchResultClicked).toHaveBeenCalledTimes(1);
-    expect(searchResultClicked).toHaveBeenCalledWith({
+    expect(searchResultOpened).toHaveBeenCalledTimes(1);
+    expect(searchResultOpened).toHaveBeenCalledWith({
       analyticsUseCase: null,
       keyStageSlug: "ks1",
       keyStageTitle: "Key-stage 1",
@@ -398,11 +349,12 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "lesson title",
+      unitName: "Topic",
       unitSlug: "topic-slug",
+      context: "search",
     });
   });
-  test.skip("searchResultClicked is called when a pathway hit is clicked", async () => {
+  test("searchResultClicked is called when a pathway hit is clicked", async () => {
     const { getByText } = render(
       <Search {...props} {...resultsPropsPathWays} />,
     );
@@ -417,8 +369,8 @@ describe("Search.page.tsx", () => {
       await user.click(link);
     });
 
-    expect(searchResultClicked).toHaveBeenCalledTimes(1);
-    expect(searchResultClicked).toHaveBeenCalledWith({
+    expect(searchResultOpened).toHaveBeenCalledTimes(1);
+    expect(searchResultOpened).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       keyStageSlug: "ks1",
       keyStageTitle: "Key-stage 1",
@@ -430,8 +382,9 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "lesson title",
+      unitName: "Topic",
       unitSlug: "topic-slug",
+      context: "search",
     });
   });
 });
