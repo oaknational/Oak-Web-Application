@@ -16,7 +16,7 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type AboutPageProps = {
   pageData: AboutWorkWithUsPage;

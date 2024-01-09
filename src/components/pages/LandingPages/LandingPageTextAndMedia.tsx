@@ -12,7 +12,7 @@ import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import Flex from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { LI } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const landingPortableTextComponent: PortableTextComponents = {
   list: {

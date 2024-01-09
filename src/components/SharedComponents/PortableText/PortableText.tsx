@@ -9,14 +9,13 @@ import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
 import { merge } from "lodash/fp";
 
-import errorReporter from "../../common-lib/error-reporter";
-import { resolveInternalHref } from "../../utils/portableText/resolveInternalHref";
-import { CTAInternalLinkEntry } from "../../common-lib/cms-types";
-import OakLink from "../OakLink";
-import getProxiedSanityAssetUrl from "../../common-lib/urls/getProxiedSanityAssetUrl";
-
 import { PTActionTrigger } from "./PTActionTrigger";
 
+import errorReporter from "@/common-lib/error-reporter";
+import { resolveInternalHref } from "@/utils/portableText/resolveInternalHref";
+import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
+import OakLink from "@/components/OakLink";
+import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import { LI, OL, P, Span } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";

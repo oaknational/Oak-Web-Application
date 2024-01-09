@@ -3,7 +3,7 @@ import { FC } from "react";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import Flex from "@/components/SharedComponents/Flex";
 import Typography from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export const LandingPageTextBlock: FC<{
   bodyPortableText: PortableTextJSON;

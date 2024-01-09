@@ -21,7 +21,7 @@ import {
 } from "./PostFootnotes";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const logMissingPortableTextComponents: MissingComponentHandler = (
   message,

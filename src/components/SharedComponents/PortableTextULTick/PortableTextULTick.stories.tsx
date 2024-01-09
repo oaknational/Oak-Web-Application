@@ -1,11 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { bodyPortableText } from "../../../Sanity/TextBlock/TextBlockCard.stories";
-import { PortableTextWithDefaults } from "../../PortableText";
+import { PortableTextULTick as Component } from "./PortableTextULTick";
 
-import { ULTick as Component } from "./ULTick";
-
+import { bodyPortableText } from "@/components/Sanity/TextBlock/TextBlockCard.stories";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
 
@@ -42,5 +41,5 @@ const Template: ComponentStory<typeof Card> = (args) => {
   );
 };
 
-export const ULTick = Template.bind({});
-ULTick.parameters = {};
+export const PortableTextULTick = Template.bind({});
+PortableTextULTick.parameters = {};

@@ -26,7 +26,7 @@ import Illustration from "@/components/SharedComponents/Illustration";
 import { IllustrationSlug } from "@/image-data";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import { GridOrderedList } from "@/components/SharedComponents/Typography/OL";

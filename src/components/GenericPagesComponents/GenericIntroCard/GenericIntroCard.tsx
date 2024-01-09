@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PortableTextProps } from "@portabletext/react";
 
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import CardImage, {

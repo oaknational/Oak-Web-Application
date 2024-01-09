@@ -7,7 +7,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { Card as CardShape } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 type HomeSidebarTextCard = CardShape;
 
