@@ -1,8 +1,8 @@
 import { FC, MutableRefObject, useRef } from "react";
 
-import NavigationButtons from "./NavigationButtons";
 import { ModalControllerRefs } from "./useBioModal";
 
+import BioCardListModalNavigationButtons from "@/components/GenericPagesComponents/BioCardListModalNavigationButtons/BioCardListModalNavigationButtons";
 import {
   Image,
   PortableTextJSON,
@@ -191,7 +191,7 @@ const BioModal: FC<BioModalProps> = (props) => {
               $left={[0]}
               $alignItems="flex-end"
             />
-            <NavigationButtons
+            <BioCardListModalNavigationButtons
               $ml="auto"
               $mr={["auto", 0]}
               prevBio={prevBio}

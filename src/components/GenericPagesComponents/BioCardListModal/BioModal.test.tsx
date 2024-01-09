@@ -1,10 +1,11 @@
 import { OverlayProvider } from "react-aria";
 import userEvent from "@testing-library/user-event";
 
-import { portableTextFromString } from "../../__tests__/__helpers__/cms";
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import BioModal from "./BioModal";
+
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 const bio = {
   name: "Ramender Crompton",
