@@ -65,6 +65,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
       onClick={(e) => {
         e.preventDefault();
       }}
+      role="button"
       {...(open ? { open: true } : {})}
     >
       <Summary
