@@ -13,7 +13,7 @@ import Typography, {
   P,
 } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
+import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BioCardList from "@/components/BioCardList";
