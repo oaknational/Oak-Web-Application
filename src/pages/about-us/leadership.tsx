@@ -4,7 +4,7 @@ import CMSClient from "../../node-lib/cms";
 import AboutContactCard from "../../components/GenericPagesComponents/AboutContactCard";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "../../components/BioCardList";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
+import AboutIntroCard from "../../components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import { AboutLeadershipPage } from "../../common-lib/cms-types";
 import getPageProps from "../../node-lib/getPageProps";

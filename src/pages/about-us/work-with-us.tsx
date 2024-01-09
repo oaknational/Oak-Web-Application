@@ -11,7 +11,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
+import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
