@@ -42,15 +42,15 @@ const VisualCheckboxWrapper = styled.span<VisualCheckboxWrapper>`
     props?.variant === "withoutLabel" && !props.slim
       ? "12px"
       : props?.variant === "withoutLabel" && props.slim
-        ? "85%"
-        : "initial"};
+      ? "85%"
+      : "initial"};
 
   top: ${(props) =>
     props?.variant === "withoutLabel" && !props.slim
       ? "12px"
       : props?.variant === "withoutLabel" && props.slim
-        ? "50%"
-        : "initial"};
+      ? "50%"
+      : "initial"};
 
   display: flex;
   align-items: center;

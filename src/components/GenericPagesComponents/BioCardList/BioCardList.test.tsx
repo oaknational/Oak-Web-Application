@@ -4,7 +4,6 @@ import BioCardList from "./BioCardList";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("BioCardList", () => {
   test("renders corrent headings", () => {
     const { getAllByRole } = renderWithTheme(

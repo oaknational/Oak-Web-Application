@@ -11,7 +11,6 @@ import { BioData, BioModalProps } from "./BioModal";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
-
 const reportError = errorReporter("useBioModal");
 
 type UseBioModalProps = {

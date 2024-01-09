@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { TextBlockCard as Component } from "./TextBlockCard";
+import { SupportYourTeamTextBlockCard as Component } from "./SupportYourTeamTextBlockCard";
 
 export const bodyPortableText = [
   {
@@ -49,8 +49,8 @@ const Template: ComponentStory<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const TextBlockCardULTick = Template.bind({});
-TextBlockCardULTick.args = {
+export const SupportYourTeamTextBlockCard = Template.bind({});
+SupportYourTeamTextBlockCard.args = {
   background: "lemon50",
   title: "Card title",
   bodyPortableText: bodyPortableText,

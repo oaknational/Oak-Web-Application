@@ -15,7 +15,6 @@ import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
-
 const consoleWarnSpy = jest.spyOn(console, "warn");
 
 jest.mock("@/browser-lib/cookie-consent/CookieConsentProvider");

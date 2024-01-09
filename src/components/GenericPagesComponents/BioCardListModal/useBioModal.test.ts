@@ -5,7 +5,6 @@ import { useBioModal } from "./useBioModal";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
-
 const bios = ["Ramender Crompton", "Matt Hood"].map((name, i) => ({
   name,
   bioPortableText: portableTextFromString(
