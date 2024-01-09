@@ -12,7 +12,7 @@ import Card from "@/components/SharedComponents/Card";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
-const aboutContactCardPortableTextComponents: PortableTextComponents = {
+const contactCardPortableTextComponents: PortableTextComponents = {
   block: {
     sectionHeading: (props) => {
       return (
@@ -31,11 +31,11 @@ const aboutContactCardPortableTextComponents: PortableTextComponents = {
   },
 };
 
-type AboutContactCardProps = {
+type ContactCardProps = {
   infoPortableText: PortableTextJSON;
 };
 
-const AboutContactCard: FC<AboutContactCardProps> = (props) => {
+const ContactCard: FC<ContactCardProps> = (props) => {
   const { onSubmit } = useNewsletterForm();
   return (
     <Flex $position={"relative"} $width={"100%"}>
@@ -49,7 +49,7 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
             $pt={[32, 0]}
           >
             <PortableTextWithDefaults
-              components={aboutContactCardPortableTextComponents}
+              components={contactCardPortableTextComponents}
               value={props.infoPortableText}
             />
             <Flex $mb={[32, 0]}>
@@ -67,4 +67,4 @@ const AboutContactCard: FC<AboutContactCardProps> = (props) => {
   );
 };
 
-export default AboutContactCard;
+export default ContactCard;
