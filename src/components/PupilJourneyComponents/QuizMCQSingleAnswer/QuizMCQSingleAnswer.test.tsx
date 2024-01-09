@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
@@ -56,30 +56,5 @@ describe("QuizMCQSingleAnswer", () => {
         }
       }
     }
-  });
-
-  it("assigns refs to the answers", () => {
-    const context = getContext();
-
-    const answerRefs =
-      context.currentQuestionData?.answers?.["multiple-choice"]?.map(() =>
-        createRef<HTMLInputElement>(),
-      ) ?? [];
-
-    const { getAllByRole } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={context}>
-          <QuizMCQSingleAnswer answerRefs={answerRefs} />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-
-    const checkboxes = getAllByRole("radio");
-
-    expect(checkboxes.length).toBe(answerRefs.length);
-
-    checkboxes.forEach((checkbox, index) => {
-      expect(answerRefs[index]?.current).toBe(checkbox);
-    });
   });
 });

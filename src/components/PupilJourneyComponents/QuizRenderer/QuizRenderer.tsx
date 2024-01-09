@@ -1,6 +1,7 @@
-import { createRef, useEffect, useRef } from "react";
+import { FormEvent } from "react";
 import {
   OakFlex,
+  OakForm,
   OakHeading,
   OakPrimaryButton,
   OakSpan,
@@ -14,7 +15,6 @@ import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
-  const mcAnswerRefs = useRef<React.RefObject<HTMLInputElement>[]>([]);
 
   const {
     currentQuestionData,
@@ -25,19 +25,12 @@ export const QuizRenderer = () => {
     maxScore,
     handleNextQuestion,
     updateQuestionMode,
+    handleSubmitMCAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
 
   let questionFeedback = null;
-
-  // on question change, reset the refs
-  useEffect(() => {
-    if (currentQuestionData?.questionType === "multiple-choice") {
-      const answers = currentQuestionData?.answers?.["multiple-choice"];
-      mcAnswerRefs.current = answers?.map(() => createRef()) ?? [];
-    }
-  }, [currentQuestionData, currentQuestionIndex]);
 
   if (isComplete) {
     innerRender = (
@@ -57,7 +50,6 @@ export const QuizRenderer = () => {
     let answerRender = null;
 
     const handleInitialChange = () => {
-      console.log("handleInitialChange");
       if (questionState[currentQuestionIndex]?.mode === "init") {
         updateQuestionMode("input");
       }
@@ -67,32 +59,35 @@ export const QuizRenderer = () => {
       if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
         answerRender = (
           <QuizMCQMultiAnswer
-            answerRefs={mcAnswerRefs.current}
+            key={`mcq-index-${currentQuestionIndex}`}
             onInitialChange={handleInitialChange}
           />
         );
       } else {
         answerRender = (
           <QuizMCQSingleAnswer
-            answerRefs={mcAnswerRefs.current}
+            key={`mcq-index-${currentQuestionIndex}`}
             onInitialChange={handleInitialChange}
           />
         );
       }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
       updateQuestionMode("grading");
+      const formData = new FormData(e.currentTarget);
 
       switch (currentQuestionData.questionType) {
         case "multiple-choice": {
+          const selectedAnswers: MCAnswer[] = [];
           const answers = currentQuestionData?.answers?.["multiple-choice"];
-          const selectedAnswers: MCAnswer[] = mcAnswerRefs.current
-            .map((ref, index) => {
-              return ref.current?.checked && answers ? answers[index] : null;
-            })
-            .filter((answer): answer is MCAnswer => !!answer); // remove nulls
-          quizEngineContext?.handleSubmitMCAnswer(selectedAnswers);
+
+          for (const entries of formData.entries()) {
+            const index = Number((entries[1] as string).at(-1)); // assumes the last character is the index and no more than 10 answers
+            answers?.[index] && selectedAnswers.push(answers[index]!); // FIXME: not sure why typescript doesn't recognize the null check
+          }
+          handleSubmitMCAnswer(selectedAnswers);
           break;
         }
         case "short-answer":
@@ -104,31 +99,33 @@ export const QuizRenderer = () => {
     };
 
     innerRender = (
-      <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
-        <QuizQuestionStem
-          questionStem={questionStem}
-          index={currentQuestionIndex}
-          showIndex={true}
-        />
-        {answerRender}
-        {!isFeedbackMode && (
-          <OakFlex $pt="inner-padding-l">
-            <OakPrimaryButton
-              disabled={questionState[currentQuestionIndex]?.mode === "init"}
-              onClick={handleSubmit}
-            >
-              Submit
-            </OakPrimaryButton>
-          </OakFlex>
-        )}
-        {isFeedbackMode && (
-          <OakFlex $pt="inner-padding-l">
-            <OakPrimaryButton onClick={handleNextQuestion}>
-              Next Question
-            </OakPrimaryButton>
-          </OakFlex>
-        )}
-      </OakFlex>
+      <OakForm onSubmit={handleSubmit}>
+        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
+          <QuizQuestionStem
+            questionStem={questionStem}
+            index={currentQuestionIndex}
+            showIndex={true}
+          />
+          {answerRender}
+          {!isFeedbackMode && (
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton
+                disabled={questionState[currentQuestionIndex]?.mode === "init"}
+                type="submit"
+              >
+                Submit
+              </OakPrimaryButton>
+            </OakFlex>
+          )}
+          {isFeedbackMode && (
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton onClick={handleNextQuestion}>
+                Next Question
+              </OakPrimaryButton>
+            </OakFlex>
+          )}
+        </OakFlex>
+      </OakForm>
     );
 
     questionFeedback = (
@@ -162,7 +159,6 @@ export const QuizRenderer = () => {
       $gap={"all-spacing-5"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
-
       {questionFeedback}
       {innerRender}
     </OakFlex>

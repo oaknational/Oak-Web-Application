@@ -2,7 +2,7 @@ import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
-import { fireEvent } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 
 import {
   QuizEngineContextType,
@@ -11,6 +11,7 @@ import {
 import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+i;
 
 const questionsArrayFixture = quizQuestions || [];
 
@@ -34,7 +35,9 @@ const getContext = (): QuizEngineContextType => ({
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
+    spy.mockRestore();
   });
 
   it("renders heading, mode and answer when there is currentQuestionData", () => {
@@ -180,6 +183,72 @@ describe("QuizRenderer", () => {
       );
 
       expect(getByText(/End of quiz/i)).toBeInTheDocument();
+    }
+  });
+
+  it("captures the MCQ selected answers when submit is clicked", () => {
+    const context = getContext();
+
+    if (context?.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+      context.handleSubmitMCAnswer = jest.fn();
+
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByRole("button", { name: "Submit" }));
+      });
+
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalled();
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalledWith([
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[1],
+      ]);
+    }
+  });
+
+  it("captures the MCQ selected answers when submit is clicked (multiple answers)", () => {
+    const context = getContext();
+
+    if (context?.currentQuestionData?.answers?.["multiple-choice"]?.[1]) {
+      context.currentQuestionData.answers[
+        "multiple-choice"
+      ][1].answer_is_correct = true;
+    }
+
+    if (context?.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+      context.handleSubmitMCAnswer = jest.fn();
+
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByLabelText(/a group of words/));
+        fireEvent.click(getByRole("button", { name: "Submit" }));
+      });
+
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalled();
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalledWith([
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[1],
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[2],
+      ]);
     }
   });
 });

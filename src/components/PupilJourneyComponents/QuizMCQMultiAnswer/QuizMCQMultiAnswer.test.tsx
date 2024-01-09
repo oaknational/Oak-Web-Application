@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
@@ -159,26 +159,5 @@ describe("QuizMCQMultiAnswer", () => {
     );
     const images = getAllByRole("img", { name: "" }); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
     expect(images.length).toEqual(mcqImageAnswers.length);
-  });
-
-  it("assigns refs to the answers", () => {
-    const answerRefs =
-      mockQuizEngineContext.currentQuestionData?.answers?.[
-        "multiple-choice"
-      ]?.map(() => createRef<HTMLInputElement>()) ?? [];
-
-    const { getAllByRole } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer answerRefs={answerRefs} />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-
-    const checkboxes = getAllByRole("checkbox");
-
-    checkboxes.forEach((checkbox, index) => {
-      expect(answerRefs[index]?.current).toBe(checkbox);
-    });
   });
 });

@@ -9,7 +9,7 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { RefObject, useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import {
   OakFlex,
   OakImage,
@@ -23,23 +23,18 @@ import {
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQMultiAnswerProps = {
-  answerRefs?: RefObject<HTMLInputElement>[];
   onInitialChange?: () => void;
   onChange?: () => void;
 };
 
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
-  const { answerRefs, onInitialChange, onChange } = props;
+  const { onInitialChange, onChange } = props;
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
 
   const lastChanged = useRef<number>(0);
-
-  useEffect(() => {
-    lastChanged.current = 0;
-  }, [currentQuestionIndex]);
 
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
@@ -90,12 +85,12 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
 
         return (
           <OakQuizCheckBox
-            key={`${questionUid}-answer${index}`}
-            id={`${questionUid}-answer${index}`}
-            value={answerText ? answerText.text : ""}
+            key={`${questionUid}-answer-${index}`}
+            id={`${questionUid}-answer-${index}`}
+            displayValue={answerText ? answerText.text : " "}
+            value={`answer-${index}`}
             feedback={feedback}
             image={answerImage}
-            innerRef={answerRefs?.[index]}
             onChange={handleOnChange}
           />
         );

@@ -1,4 +1,4 @@
-import { useMemo, RefObject, useRef, useEffect } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import {
   OakBox,
   OakRadioButton,
@@ -8,13 +8,12 @@ import {
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQSingleAnswerProps = {
-  answerRefs?: RefObject<HTMLInputElement>[];
   onInitialChange?: () => void;
   onChange?: () => void;
 };
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
-  const { answerRefs, onInitialChange, onChange } = props;
+  const { onInitialChange, onChange } = props;
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const answers = useMemo(
@@ -55,7 +54,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
     >
       {answers?.map((answer, i) => {
         return (
-          <OakBox key={`radio-${i}`}>
+          <OakBox key={`${questionUid}-answer-${i}`}>
             {answer.answer.map((answerItem) => {
               let feedbackModeColor: "oakGreen" | "red" | undefined;
 
@@ -91,17 +90,16 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
                 return (
                   <OakBox key={`radio-${i}`} $position={"relative"}>
                     <OakRadioButton
-                      key={`radio-${i}`}
+                      key={`${questionUid}-answer-${i}`}
                       $pa="inner-padding-s"
                       $ba={"border-solid-s"}
                       $borderRadius={"border-radius-s"}
                       $color={color}
                       $background={backgroundColor}
-                      id={`radio-${i}`}
+                      id={`${questionUid}-answer-${i}`}
                       tabIndex={i}
-                      value={`${questionUid}: ${answerItem.text}`} // we make this unique to the question to prevent selection on later questions
+                      value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
                       label={answerItem.text}
-                      ref={answerRefs?.[i]}
                     />
                     {correctChoice}
                   </OakBox>
