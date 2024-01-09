@@ -1,4 +1,5 @@
 import { FC } from "react";
+// import * as cheerio from "cheerio";
 
 import LessonMetadata from "../LessonMetadata";
 import TagPromotional from "../TagPromotional";
@@ -77,6 +78,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
+  // const $ = cheerio.load(searchHitDescription);
+  // const removeHTMLDescription = $.text();
 
   return (
     <Flex

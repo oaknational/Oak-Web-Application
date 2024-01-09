@@ -152,6 +152,15 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
+  const searchRefined = (filterType: string, filterValue: string) => {
+    track.searchRefined({
+      context: "search",
+      searchResultCount: hitCount,
+      filterType: filterType,
+      filterValue: filterValue,
+    });
+  };
+
   return (
     <Flex $background="white" $flexDirection={"column"}>
       <MaxWidth $ph={16}>
@@ -193,7 +202,10 @@ const Search: FC<SearchProps> = (props) => {
                 iconBackground="black"
                 $alignSelf={"flex-start"}
               >
-                <SearchFilters {...searchFilters} />
+                <SearchFilters
+                  {...searchFilters}
+                  searchRefined={searchRefined}
+                />
               </MobileFilters>
             </Flex>
             {shouldShowResults && (
@@ -217,7 +229,7 @@ const Search: FC<SearchProps> = (props) => {
           </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} />
+              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
             </Flex>
           </GridArea>
         </Grid>
