@@ -5,14 +5,14 @@ import styled from "styled-components";
 import {
   OakLinkPropsWithoutChildren,
   transformOakLinkProps,
-} from "../../../OakLink";
-import useButtonAsLinkProps from "../useButtonAsLinkProps";
-import IconButtonInner from "../IconButtonInner";
-import { CommonIconButtonProps } from "../common";
+} from "@/components/OakLink";
+import useButtonAsLinkProps from "@/components/SharedComponents/Button/useButtonAsLinkProps";
+import IconButtonInner from "@/components/SharedComponents/Button/IconButtonInner";
+import { CommonIconButtonProps } from "@/components/SharedComponents/Button/common";
 import iconButtonStyles, {
   getIconButtonStylesProps,
   IconButtonStylesProps,
-} from "../IconButton/iconButton.styles";
+} from "@/components/SharedComponents/Button/IconButton/iconButton.styles";
 
 const StyledNextLink = styled.a<IconButtonStylesProps>`
   ${iconButtonStyles}

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import color, { ColorProps } from "../../../styles/utils/color";
-import { margin, MarginProps } from "../../../styles/utils/spacing";
-import typography, { TypographyProps } from "../../../styles/utils/typography";
+import color, { ColorProps } from "@/styles/utils/color";
+import { margin, MarginProps } from "@/styles/utils/spacing";
+import typography, { TypographyProps } from "@/styles/utils/typography";
 
 type PProps = MarginProps & TypographyProps & ColorProps;
 /**

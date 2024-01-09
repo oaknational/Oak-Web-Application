@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { OakColorName } from "../../../styles/theme";
-
 import {
   ButtonBackground,
   ButtonSize,
@@ -12,6 +10,7 @@ import {
 import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
+import { OakColorName } from "@/styles/theme";
 import Icon, {
   IconName,
   isIconVariant,

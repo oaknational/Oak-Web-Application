@@ -8,7 +8,7 @@ import OakLink from "../OakLink/OakLink";
 import Svg from "@/components/SharedComponents/Svg";
 import { Heading, Span, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/SharedComponents/Button/Button";
 import Flex from "@/components/SharedComponents/Flex";
 import {

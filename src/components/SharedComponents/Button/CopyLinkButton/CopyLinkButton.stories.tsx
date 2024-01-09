@@ -1,9 +1,9 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ToastProvider } from "../../../../context/Toast";
-
 import Component from "./CopyLinkButton";
+
+import { ToastProvider } from "@/context/Toast";
 
 export default {
   component: Component,

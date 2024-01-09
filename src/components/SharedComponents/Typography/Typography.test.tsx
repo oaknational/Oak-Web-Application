@@ -1,8 +1,8 @@
-import { FontVariant, FONT_VARIANTS } from "../../../styles/utils/typography";
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import { REM_DP } from "../../../styles/utils/getRemUnits";
-
 import Typography from "./Typography";
+
+import { FontVariant, FONT_VARIANTS } from "@/styles/utils/typography";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { REM_DP } from "@/styles/utils/getRemUnits";
 
 describe("Typography", () => {
   test.each(Object.entries(FONT_VARIANTS))(
