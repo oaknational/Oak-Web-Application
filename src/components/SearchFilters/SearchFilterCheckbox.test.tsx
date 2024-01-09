@@ -9,6 +9,8 @@ const props = {
   onChange: jest.fn(),
   checked: false,
   name: "Key stage",
+  filterType: "Key stage filter",
+  searchRefined: jest.fn(),
 };
 
 describe("SearchFilterCheckbox", () => {

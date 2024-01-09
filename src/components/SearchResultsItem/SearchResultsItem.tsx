@@ -1,4 +1,5 @@
 import { FC } from "react";
+// import * as cheerio from "cheerio";
 
 import LessonMetadata from "../LessonMetadata";
 import TagPromotional from "../TagPromotional";
@@ -30,6 +31,8 @@ export type SearchResultsItemProps = {
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  onToggleClick?: (searchHit: SearchResultsItemProps) => void;
+  isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
@@ -42,6 +45,7 @@ export type SearchResultsItemProps = {
   | {
       type: "lesson";
       buttonLinkProps: LessonOverviewLinkProps;
+      unitTitle: string;
     }
 );
 
@@ -74,6 +78,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
+  // const $ = cheerio.load(searchHitDescription);
+  // const removeHTMLDescription = $.text();
 
   return (
     <Flex

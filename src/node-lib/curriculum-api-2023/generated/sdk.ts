@@ -30307,7 +30307,7 @@ export type PupilLessonOverviewQuery = { __typename?: 'query_root', lesson: Arra
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_1', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null }> };
+export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_3', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null, examBoards?: any | null }> };
 
 export type SubjectListingQueryVariables = Exact<{
   keyStageSlug: Scalars['String']['input'];
@@ -30541,10 +30541,11 @@ export const PupilLessonOverviewDocument = gql`
     `;
 export const SearchPageDocument = gql`
     query searchPage {
-  searchPage: published_mv_search_page_1 {
+  searchPage: published_mv_search_page_3 {
     contentTypes: content_type
     keyStages: key_stages
     subjects
+    examBoards: exam_boards
   }
 }
     `;

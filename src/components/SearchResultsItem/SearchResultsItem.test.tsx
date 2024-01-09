@@ -181,6 +181,7 @@ describe("SearchResultsItem", () => {
         pupilLessonOutcome: "",
         keyStageSlug: "ks2",
         subjectTitle: "Drama",
+        unitTitle: "Dipping into Shakespeare",
         onClick: searchResultClicked,
         pathways: [],
         buttonLinkProps: {
