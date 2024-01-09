@@ -1,8 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { portableTextFromString } from "../../../__tests__/__helpers__/cms";
+import Component from "./GenericSummaryCard";
 
-import Component from "./AboutUsSummaryCard";
+import { portableTextFromString } from "@/__tests__/__helpers__/cms";
+
 
 export default {
   component: Component,
@@ -13,9 +14,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const AboutUsSummaryCard = Template.bind({});
+export const GenericSummaryCard = Template.bind({});
 
-AboutUsSummaryCard.args = {
+GenericSummaryCard.args = {
   title: "Title",
   heading: "Heading",
   summaryPortableText: portableTextFromString(

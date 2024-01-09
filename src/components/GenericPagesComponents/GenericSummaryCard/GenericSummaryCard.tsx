@@ -1,13 +1,12 @@
 import { FC } from "react";
 
-import aboutNavLinks from "../../../browser-lib/fixtures/aboutNav";
+import aboutNavLinks from "@/browser-lib/fixtures/aboutNav";
 import SummaryCard, {
   SummaryCardProps,
-} from "../../SharedComponents/Card/SummaryCard";
-
+} from "@/components/SharedComponents/Card/SummaryCard";
 import AboutUsNavButton from "@/components/GenericPagesComponents/AboutUsNavButton";
 
-type AboutUsSummaryCardProps = Pick<
+type GenericSummaryCardProps = Pick<
   SummaryCardProps,
   "title" | "heading" | "summaryPortableText" | "summaryCardImage"
 >;
@@ -18,7 +17,7 @@ type AboutUsSummaryCardProps = Pick<
  *
  * Belongs at the top of each "About Us" sub-page
  */
-const AboutUsSummaryCard: FC<AboutUsSummaryCardProps> = (props) => {
+const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
   return (
     <SummaryCard
       {...props}
@@ -33,4 +32,4 @@ const AboutUsSummaryCard: FC<AboutUsSummaryCardProps> = (props) => {
   );
 };
 
-export default AboutUsSummaryCard;
+export default GenericSummaryCard;

@@ -6,7 +6,7 @@ import { AboutPartnersPage } from "@/common-lib/cms-types";
 import ContactCard from "@/components/GenericPagesComponents/ContactCard";
 import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { SpacingProps } from "@/styles/utils/spacing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -48,7 +48,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
+        <GenericSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
             illustration: "supporting",
