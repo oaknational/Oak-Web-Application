@@ -4,7 +4,7 @@ import Box from "../Box";
 import Flex, { FlexProps } from "../Flex";
 import OutlineHeading from "../OutlineHeading";
 import Svg from "../Svg";
-import { Heading } from "../Typography";
+import { Heading, Span } from "../Typography";
 import { OakColorName } from "../../styles/theme/types";
 
 type BubbleMessageProps = {
@@ -48,25 +48,19 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
         >
           {outlineHeading}
         </OutlineHeading>
-        <Heading
-          $mh={[12, 0]}
-          $mt={-20}
-          $textAlign={"center"}
-          $font={["heading-5", "heading-4"]}
-          tag={"h3"}
-        >
-          {heading}
+
+        <Heading $mh={[12, 0]} $mt={-20} $textAlign={"center"} tag={"h3"}>
+          <Span $font={["heading-5", "heading-4"]}>{heading}</Span>
+          <Box $mt={[8, 4]} $textAlign={"center"} $maxWidth={300}>
+            <Span
+              $mh={[30, 0]}
+              $textAlign={"center"}
+              $font={["heading-light-7", "heading-light-6"]}
+            >
+              {subHeading}
+            </Span>
+          </Box>
         </Heading>
-        <Box $mt={[8, 4]} $maxWidth={300}>
-          <Heading
-            $mh={[30, 0]}
-            $textAlign={"center"}
-            $font={["heading-light-7", "heading-light-6"]}
-            tag={"h4"}
-          >
-            {subHeading}
-          </Heading>
-        </Box>
       </Flex>
     </Flex>
   );
