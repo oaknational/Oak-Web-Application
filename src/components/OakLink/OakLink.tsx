@@ -56,6 +56,10 @@ export const $selectedStyle = css`
 `;
 
 const StyledNextLink = styled.a<StyleProps>`
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
   ${box}
   ${flex}
   ${(props) => props.$isInline && inlineStyles}
