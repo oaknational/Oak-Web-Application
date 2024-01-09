@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { HomePageNotification } from "../../../common-lib/cms-types";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import { getLinkHref } from "../../../utils/portableText/resolveInternalHref";
-
+import { HomePageNotification } from "@/common-lib/cms-types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Icon from "@/components/SharedComponents/Icon";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";

@@ -1,17 +1,15 @@
 import { FC } from "react";
 
-import { HomePage } from "../../../common-lib/cms-types";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import PostList from "../../Posts/PostList";
-import { PostListProps } from "../../Posts/PostList/PostList";
-import { useNewsletterForm } from "../../Forms/NewsletterForm";
-import NewsletterFormWrap from "../../Forms/NewsletterForm/NewsletterFormWrap";
-import MaxWidth from "../../SharedComponents/MaxWidth";
-import OakLink from "../../OakLink";
-
 import HomeAboutCard from "./HomeAboutCard";
 import HomeHelpCard from "./HomeHelpCard";
 
+import { HomePage } from "@/common-lib/cms-types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import PostList, { PostListProps } from "@/components/Posts/PostList";
+import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import OakLink from "@/components/OakLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
