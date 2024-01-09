@@ -6,7 +6,7 @@ import { AboutWorkWithUsPage } from "@/common-lib/cms-types";
 import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
-import ContactCard from "@/components/GenericPagesComponents/ContactCard";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
@@ -79,7 +79,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           ))}
         </Grid>
 
-        <ContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );
