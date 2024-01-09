@@ -6,7 +6,7 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import LessonMetadata from "@/components/LessonMetadata";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,

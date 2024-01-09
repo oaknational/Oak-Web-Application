@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { zIndexMap } from "../../styles/utils/zIndex";
 import GraphiCircleIcon from "../SharedComponents/Icon/GraphicCircleIcon";
 
+import { zIndexMap } from "@/styles/utils/zIndex";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { IconName } from "@/components/SharedComponents/Icon";
 import Typography, { LI } from "@/components/SharedComponents/Typography";

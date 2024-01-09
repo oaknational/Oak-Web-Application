@@ -15,7 +15,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Input from "@/components/Input/Input";
+import Input from "@/components/SharedComponents/Input/Input";
 import Button from "@/components/SharedComponents/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`

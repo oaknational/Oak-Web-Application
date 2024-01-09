@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 import Box, { BoxProps } from "../Box";
-import flex, { FlexCssProps } from "../../../styles/utils/flex";
+
+import flex, { FlexCssProps } from "@/styles/utils/flex";
 
 export type FlexProps = FlexCssProps & BoxProps;
 /**
