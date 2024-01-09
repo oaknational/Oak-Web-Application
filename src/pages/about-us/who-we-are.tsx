@@ -18,7 +18,7 @@ import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
@@ -72,7 +72,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]} $alignItems={"center"}>
-        <AboutUsSummaryCard {...pageData} />
+        <GenericSummaryCard {...pageData} />
         <Card
           $pv={32}
           $ph={[16, 24]}

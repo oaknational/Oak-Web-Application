@@ -17,7 +17,7 @@ import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutI
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BioCardList from "@/components/GenericPagesComponents/BioCardList";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
@@ -41,7 +41,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
+        <GenericSummaryCard {...pageData} />
         <AboutIntroCard
           image={{
             illustration: "supporting",
