@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useOverlay, DismissButton } from "react-aria";
 import { FocusOn } from "react-focus-on";
 
-import { zIndexMap } from "../../styles/utils/zIndex";
+import { zIndexMap } from "@/styles/utils/zIndex";
 
 interface PopoverProps {
   popoverRef?: React.RefObject<HTMLDivElement>;

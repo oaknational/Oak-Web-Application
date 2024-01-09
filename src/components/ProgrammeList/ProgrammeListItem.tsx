@@ -3,7 +3,7 @@ import { FC } from "react";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import Flex from "@/components/SharedComponents/Flex";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { Heading } from "@/components/SharedComponents/Typography";
 import OakLink from "@/components/OakLink";
 import Card from "@/components/SharedComponents/Card";

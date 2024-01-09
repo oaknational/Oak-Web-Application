@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { useRouter } from "next/router";
 
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
-
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { Span } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton";

@@ -21,9 +21,9 @@ import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/SharedComponents/Box";
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex";
-import Input from "@/components/Input";
+import Input from "@/components/SharedComponents/Input";
 import OakLink from "@/components/OakLink";
 import Icon from "@/components/SharedComponents/Icon";
 

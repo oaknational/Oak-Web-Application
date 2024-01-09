@@ -5,7 +5,7 @@ import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import Card from "@/components/SharedComponents/Card";
 import { ULTick } from "@/components/PortableText/Blocks/Lists/ULTick";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 

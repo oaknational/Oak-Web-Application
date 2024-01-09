@@ -1,11 +1,10 @@
 import { FC } from "react";
 
-import { OakColorName } from "../../../styles/theme";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
-
 import Card from "./Card";
 import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
+import { OakColorName } from "@/styles/theme";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 
