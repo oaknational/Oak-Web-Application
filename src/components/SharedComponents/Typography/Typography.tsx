@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import typography, { TypographyProps } from "../../../styles/utils/typography";
-
+import typography, { TypographyProps } from "@/styles/utils/typography";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
 type TypographyComponent = BoxProps & TypographyProps;

@@ -1,11 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import CardTitle from "./CardComponents/CardTitle";
-import CardImage from "./CardComponents/CardImage";
-
 import Component from ".";
 
+import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+import CardImage from "@/components/SharedComponents/Card/CardComponents/CardImage";
 import { P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";

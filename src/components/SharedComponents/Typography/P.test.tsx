@@ -1,6 +1,6 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import P from "./P";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("P", () => {
   test("should set the correct font-family", () => {

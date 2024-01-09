@@ -12,7 +12,7 @@ import Typography, {
   Hr,
   P,
 } from "@/components/SharedComponents/Typography";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";

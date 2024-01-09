@@ -1,6 +1,6 @@
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-
 import Hr from "./Hr";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
