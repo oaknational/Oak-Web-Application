@@ -235,8 +235,7 @@ export type OakLinkProps =
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
-  | CurriculumDownloadsLinkProps
-  | EarlyReleaseUnitsPageLinkProps;
+  | CurriculumDownloadsLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -626,7 +625,6 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "curriculum-landing-page",
   }),
-
   "curriculum-overview": createOakPageConfig({
     pathPattern: "/teachers/curriculum/:subjectPhaseSlug/overview",
     analyticsPageName: "Curriculum Overview",
