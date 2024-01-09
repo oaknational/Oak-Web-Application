@@ -2,15 +2,12 @@ import { FC, useCallback, useMemo } from "react";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Input from "../../Input";
-import Button from "../../Button";
-import DropdownSelect from "../../DropdownSelect";
-import {
-  FormDefinition,
-  FormField,
-} from "../../../common-lib/forms/FormDefinition";
-import evaluateCondition from "../../../common-lib/forms/evaluateCondition";
-import formToZod from "../../../common-lib/forms/formToZod";
+import Input from "@/components/SharedComponents/Input";
+import DropdownSelect from "@/components/DropdownSelect";
+import { FormDefinition, FormField } from "@/common-lib/forms/FormDefinition";
+import evaluateCondition from "@/common-lib/forms/evaluateCondition";
+import formToZod from "@/common-lib/forms/formToZod";
+import Button from "@/components/SharedComponents/Button";
 
 type FormValues = Record<string, unknown>;
 

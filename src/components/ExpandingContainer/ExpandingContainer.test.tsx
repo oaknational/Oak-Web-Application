@@ -1,10 +1,10 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import Card from "../Card";
-
 import ExpandingContainer from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import Card from "@/components/SharedComponents/Card";
 
 it("component renders with the title", () => {
   const { getAllByRole } = renderWithTheme(

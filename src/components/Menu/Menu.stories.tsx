@@ -6,7 +6,6 @@ import { MenuProvider } from "../../context/Menu";
 import Component from "./Menu";
 
 export default {
-  title: "Navigation/Menu",
   component: Component,
   argTypes: {
     children: {

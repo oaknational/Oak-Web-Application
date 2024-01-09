@@ -3,6 +3,7 @@ import {
   LessonSearchHit,
   UnitSearchHit,
   SearchHit,
+  PathwaySchema,
 } from "./search.types";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -46,6 +47,19 @@ export const getSortedSearchFiltersSelected = (
   return [];
 };
 
+const keyStageToSentenceCase = (keyStage?: string): string | undefined => {
+  if (!keyStage) {
+    return undefined;
+  }
+  const words = keyStage.split(" ");
+
+  if (words.length > 1 && words[1] !== undefined) {
+    words[1] = words[1].toLowerCase();
+  }
+
+  return words.join(" ");
+};
+
 export function elasticKeyStageSlugToKeyStage({
   elasticKeyStageSlug,
   allKeyStages,
@@ -73,8 +87,26 @@ export function elasticKeyStageSlugToKeyStage({
     reportError(error);
   }
 
-  return keyStage;
+  return { ...keyStage, title: keyStageToSentenceCase(keyStage?.title) };
 }
+
+const pathwaysSnakeToCamel = (pathway: PathwaySchema) => {
+  return {
+    programmeSlug: pathway.programme_slug,
+    unitSlug: pathway.unit_slug,
+    unitTitle: pathway.unit_title,
+    keyStageSlug: pathway.key_stage_slug,
+    keyStageTitle: pathway.key_stage_title,
+    subjectSlug: pathway.subject_slug,
+    subjectTitle: pathway.subject_title,
+    tierSlug: pathway.tier_slug || null,
+    tierTitle: pathway.tier_title || null,
+    examBoardSlug: pathway.exam_board_slug || null,
+    examBoardTitle: pathway.exam_board_title || null,
+    yearSlug: pathway.year_slug || null,
+    yearTitle: pathway.year_title || null,
+  };
+};
 
 const getProgrammeSlug = (
   hit: LessonSearchHit | UnitSearchHit,
@@ -135,7 +167,12 @@ export function getLessonObject(props: {
   const lessonResult: SearchResultsItemProps = {
     type: "lesson",
     title: highlightedHit.title?.toString(),
+    unitTitle:
+      highlightedHit.unit_title?.toString() ||
+      highlightedHit.topic_title?.toString() ||
+      "",
     description: highlightedHit.lesson_description?.toString() || "",
+    pupilLessonOutcome: highlightedHit.pupil_lesson_outcome?.toString() || "",
     subjectSlug: highlightedHit.subject_slug?.toString(),
     keyStageShortCode: keyStage?.shortCode?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
@@ -143,6 +180,9 @@ export function getLessonObject(props: {
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways.map((pathway) =>
+      pathwaysSnakeToCamel(pathway),
+    ),
   };
 
   if (
@@ -190,6 +230,9 @@ export function getUnitObject(props: {
     keyStageSlug: keyStage?.slug?.toString() || "",
     buttonLinkProps: buttonLinkProps,
     legacy: hit.legacy,
+    pathways: hit._source.pathways.map((pathway) =>
+      pathwaysSnakeToCamel(pathway),
+    ),
   };
 
   if (

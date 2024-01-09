@@ -4,5 +4,5 @@ outputs:
   is_release:
     description: "Boolean string, 'true' if it matches a release tag format, 'false' otherwise."
 runs:
-  using: "node16"
+  using: "node20"
   main: "index.js"

@@ -5,7 +5,6 @@ import { LessonShare } from "./LessonShare.page";
 import lessonShareFixtures from "@/node-lib/curriculum-api/fixtures/lessonShare.fixture";
 
 const meta: Meta<typeof LessonShare> = {
-  title: "Lesson/Share",
   component: LessonShare,
 };
 

@@ -5,9 +5,9 @@ import { ResourceType } from "../downloadAndShare.types";
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
-import LoadingButton from "@/components/Button/LoadingButton";
-import Flex from "@/components/Flex";
-import { Heading } from "@/components/Typography";
+import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
+import Flex from "@/components/SharedComponents/Flex";
+import { Heading } from "@/components/SharedComponents/Typography";
 import { ShareMediumValueType } from "@/browser-lib/avo/Avo";
 
 const copyToClipboard = (textToCopy: string, callback: () => void) => {

@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import Button from "../Button";
-import { Span } from "../Typography";
-
+import { Span } from "@/components/SharedComponents/Typography";
+import Button from "@/components/SharedComponents/Button";
+import Flex from "@/components/SharedComponents/Flex";
 import {
   UseSearchFiltersReturnType,
   KeyStage,
@@ -17,12 +16,18 @@ type ActiveFiltersProps = {
 };
 const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   const { searchFilters } = props;
-  const { keyStageFilters, subjectFilters, contentTypeFilters } = searchFilters;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    contentTypeFilters,
+    examBoardFilters,
+  } = searchFilters;
 
   const activeFilters = [
     ...keyStageFilters.filter((keyStage) => keyStage.checked),
     ...subjectFilters.filter((subject) => subject.checked),
     ...contentTypeFilters.filter((contentType) => contentType.checked),
+    ...examBoardFilters.filter((examBoard) => examBoard.checked),
   ];
 
   const maxActiveFilters = 4;
@@ -36,6 +41,9 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
       $minHeight={44}
       $display={activeFilters.length ? "flex" : "none"}
     >
+      <Span $font="heading-light-7" $mr={16}>
+        Active filters:
+      </Span>
       <Flex $flexWrap={"wrap"} $alignItems={"center"}>
         {slicedActiveFilters.map(({ slug, title, onChange, ...props }) => (
           <Button
@@ -45,6 +53,8 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
             onClick={onChange}
             variant="buttonStyledAsLink"
             icon="cross"
+            $font={"heading-7"}
+            $color={"grey70"}
             $iconPosition="trailing"
             $mr={16}
           />

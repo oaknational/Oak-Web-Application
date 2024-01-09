@@ -1,10 +1,11 @@
 import { FC } from "react";
 
-import CMSImage from "../../../CMSImage";
-import { getSizes } from "../../../CMSImage/getSizes";
-import OakImage from "../../../OakImage";
+import { getSizes } from "../../../SharedComponents/CMSImage/getSizes";
 
 import { PostListItemProps } from ".";
+
+import OwaImage from "@/components/SharedComponents/OwaImage";
+import CMSImage from "@/components/SharedComponents/CMSImage";
 
 /**
  * The image next to the blurb in a blog list item.
@@ -41,7 +42,7 @@ const PostListItemImage: FC<PostListItemProps> = (props) => {
         return null;
       }
       return (
-        <OakImage
+        <OwaImage
           fill
           $objectFit="contain"
           $objectPosition="center center"

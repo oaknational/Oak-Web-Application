@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
 
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import SchoolPicker from "@/components/SchoolPicker";
 import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/SharedComponents/Checkbox";
 
 export type SchoolDetailsProps = {
   setSchool: (value: string, name?: string) => void;

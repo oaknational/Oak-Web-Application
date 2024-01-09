@@ -1,13 +1,12 @@
 import { FC } from "react";
 
-import { Span } from "../Typography";
-import Box from "../Box";
-
 import QuestionsListNew from "./QuestionsListNew";
 
+import { Span } from "@/components/SharedComponents/Typography";
+import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
-import Flex from "@/components/Flex";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import Flex from "@/components/SharedComponents/Flex";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type QuizProps = {
   questions: NonNullable<LessonOverviewQuizData>;

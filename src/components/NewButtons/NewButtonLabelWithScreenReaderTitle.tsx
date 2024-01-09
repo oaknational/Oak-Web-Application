@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import typography from "../../styles/utils/typography";
-import { Span } from "../Typography";
-import ScreenReaderOnly from "../ScreenReaderOnly/ScreenReaderOnly";
-import { SpanProps } from "../Typography/Span";
+import typography from "@/styles/utils/typography";
+import { SpanProps } from "@/components/SharedComponents/Typography/Span";
+import { Span } from "@/components/SharedComponents/Typography";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 
 export type ButtonLabelProps = {
   children: React.ReactNode;

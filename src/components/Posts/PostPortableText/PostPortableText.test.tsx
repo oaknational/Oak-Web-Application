@@ -198,7 +198,7 @@ describe("components/PostPortableText", () => {
     const { getByText } = render(<PostPortableText portableText={[form]} />);
 
     const heading = getByText("This is a form!");
-    const submitButton = getByText("Sign up");
+    const submitButton = getByText("Sign up to the newsletter");
 
     expect(heading).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();

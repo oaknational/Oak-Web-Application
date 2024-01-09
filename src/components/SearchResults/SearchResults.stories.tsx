@@ -10,7 +10,6 @@ import Component from "./SearchResults";
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 export default {
-  title: "Lists/Search Results",
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},

@@ -8,12 +8,14 @@ import BlogHeader from "./PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
-import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
-import { Heading } from "@/components/Typography";
-import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs/Breadcrumbs";
-import Svg from "@/components/Svg/Svg";
+import { Heading } from "@/components/SharedComponents/Typography";
+import Breadcrumbs, {
+  Breadcrumb,
+} from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
+import Svg from "@/components/SharedComponents/Svg";
 
 type PostSingleLayoutProps = {
   children?: ReactNode;

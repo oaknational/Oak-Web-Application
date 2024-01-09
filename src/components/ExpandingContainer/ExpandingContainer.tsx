@@ -1,19 +1,18 @@
 import React, { FC, useState } from "react";
 
-import Card, { CardProps } from "../Card";
-import Flex from "../Flex";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
-import Button from "../Button";
-import IconButton from "../Button/IconButton";
-import Icon from "../Icon";
-import ButtonAsLink from "../Button/ButtonAsLink";
-import Box from "../Box";
-import IconButtonAsLink from "../Button/IconButtonAsLink";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
-
+import { containerTitleToPreselectMap } from "@/components/DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
+import Icon from "@/components/SharedComponents/Icon";
+import Card, { CardProps } from "@/components/SharedComponents/Card";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
+import Button from "@/components/SharedComponents/Button";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
 import useClickableCard from "@/hooks/useClickableCard";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type ExpandingContainerTitle =
   | "Slide deck"

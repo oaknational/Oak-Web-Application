@@ -3,7 +3,7 @@ import { pick, groupBy } from "lodash";
 import { LessonBase, LessonPathway } from "./lesson.types";
 
 import truthy from "@/utils/truthy";
-import { Breadcrumb } from "@/components/Breadcrumbs";
+import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { ShallowNullable } from "@/utils/util.types";
 import {
   LessonOverviewQuizData,

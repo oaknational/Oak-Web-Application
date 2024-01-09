@@ -151,6 +151,7 @@ describe("useSearch()", () => {
           type: "lesson",
           tier: null,
           phase: "primary",
+          pathways: [],
         },
         highlight: {
           lesson_description:

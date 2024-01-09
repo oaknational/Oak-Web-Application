@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import Flex from "../../Flex";
-import { P } from "../../Typography";
+import { P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 const PostBlockCallout: FC<{ children?: React.ReactNode }> = (props) => {
   return (

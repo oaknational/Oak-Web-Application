@@ -1,4 +1,6 @@
-import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
+import ButtonAsLink, {
+  ButtonAsLinkProps,
+} from "../SharedComponents/Button/ButtonAsLink";
 import {
   PreselectedDownloadType,
   PreselectedShareType,

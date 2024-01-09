@@ -2,7 +2,7 @@ import { isPast } from "date-fns";
 import { useMemo } from "react";
 
 import isUpcomingWebinar from "../../../utils/isUpcomingWebinar";
-import usePagination from "../../Pagination/usePagination";
+import usePagination from "../../SharedComponents/Pagination/usePagination";
 
 import { PostListProps } from "./PostList";
 import { PostListItemProps } from "./PostListItem";

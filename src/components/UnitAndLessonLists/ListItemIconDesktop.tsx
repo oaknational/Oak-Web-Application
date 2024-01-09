@@ -1,8 +1,9 @@
 import { FC } from "react";
 
-import { OakColorName } from "../../styles/theme/types";
-import Flex from "../Flex";
 import SubjectIcon from "../SubjectIcon";
+
+import { OakColorName } from "@/styles/theme/types";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type ListItemIconDesktopProps = {
   title: string;

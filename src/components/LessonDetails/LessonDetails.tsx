@@ -9,8 +9,8 @@ import CommonMisconceptions, {
 import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
 import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
 import LessonHelper from "@/components/LessonHelper/LessonHelper";
-import Flex from "@/components/Flex";
-import Box from "@/components/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,

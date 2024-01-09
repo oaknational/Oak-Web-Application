@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { SizeProps } from "../../styles/utils/size";
-import Box from "../Box";
-import Checkbox from "../Checkbox";
+import { SizeProps } from "@/styles/utils/size";
+import Checkbox from "@/components/SharedComponents/Checkbox";
+import Box from "@/components/SharedComponents/Box";
 
 type SearchFilterCheckboxProps = {
   name: string;
@@ -11,9 +11,22 @@ type SearchFilterCheckboxProps = {
   checked: boolean;
   width?: SizeProps["$width"];
   onChange: () => void;
+  filterType: string;
+  searchRefined: (filterType: string, filterValue: string) => void;
 };
+
 const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
-  const { slug, label, onChange, checked, name, width = "50%" } = props;
+  const {
+    slug,
+    label,
+    onChange,
+    checked,
+    name,
+    width = "50%",
+    filterType,
+    searchRefined,
+  } = props;
+
   return (
     <Box $width={width}>
       <Checkbox
@@ -22,7 +35,12 @@ const SearchFilterCheckbox: FC<SearchFilterCheckboxProps> = (props) => {
         id={`custom-checkbox-${slug}`}
         name={name}
         checked={checked}
-        onChange={onChange}
+        onChange={() => {
+          onChange();
+          if (!checked) {
+            searchRefined(filterType, label);
+          }
+        }}
       />
     </Box>
   );

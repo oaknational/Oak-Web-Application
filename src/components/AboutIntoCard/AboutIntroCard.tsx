@@ -1,11 +1,14 @@
 import { FC } from "react";
 import { PortableTextProps } from "@portabletext/react";
 
-import Card from "../Card";
-import Flex from "../Flex";
-import CardImage, { CardImageProps } from "../Card/CardComponents/CardImage";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "../PortableText";
+
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import Card from "@/components/SharedComponents/Card";
+import CardImage, {
+  CardImageProps,
+} from "@/components/SharedComponents/Card/CardComponents/CardImage";
+import Flex from "@/components/SharedComponents/Flex";
 
 type AboutIntroCardProps = {
   image: CardImageProps;

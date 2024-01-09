@@ -1,14 +1,14 @@
 import React, { FC } from "react";
 
-import { Heading, P } from "@/components/Typography";
-import Flex from "@/components/Flex/Flex";
-import Box from "@/components/Box/Box";
+import { Heading, P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
-import Illustration from "@/components/Illustration/Illustration";
-import { getSizes } from "@/components/CMSImage/getSizes";
-import Cover from "@/components/Cover/Cover";
+import Illustration from "@/components/SharedComponents/Illustration/Illustration";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import Cover from "@/components/SharedComponents/Cover/Cover";
 
 type CurriculumLandingHeroProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

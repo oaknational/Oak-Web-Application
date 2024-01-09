@@ -3,33 +3,33 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Input from "../../Input";
-import { P } from "../../Typography";
-import Button from "../../Button";
-import OakError from "../../../errors/OakError";
-import DropdownSelect from "../../DropdownSelect";
-import errorReporter from "../../../common-lib/error-reporter";
-import Form from "../Form";
-import { BoxProps } from "../../Box";
+import Input from "@/components/SharedComponents/Input";
+import OakError from "@/errors/OakError";
+import DropdownSelect from "@/components/DropdownSelect";
+import errorReporter from "@/common-lib/error-reporter";
+import Form from "@/components/Forms/Form";
+import { BoxProps } from "@/components/SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
-} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { P } from "@/components/SharedComponents/Typography";
+import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 
 const schema = z.object({
   name: z
     .string()
-    .min(1, { message: "Name can't be empty" })
+    .min(1, { message: "Enter a name" })
     .max(60, "Name must contain fewer than 60 charaters"),
   email: z
     .string()
     .min(1, {
-      message: "Email can't be empty",
+      message: "Enter an email",
     })
     .email({
-      message: "Email not valid",
+      message: "Enter a valid email",
     }),
   userRole: z.union([z.enum(USER_ROLES), z.literal("")]),
 });
@@ -105,6 +105,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         id={`${id}-newsletter-signup-name`}
         label="Name"
         placeholder="Anna Smith"
+        required={true}
+        isRequired={true}
         autoComplete="name"
         {...register("name")}
         error={errors.name?.message}
@@ -113,6 +115,8 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
         id={`${id}-newsletter-signup-email`}
         label="Email"
         autoComplete="email"
+        required={true}
+        isRequired={true}
         placeholder="anna@amail.com"
         {...register("email")}
         error={errors.email?.message}
@@ -128,7 +132,7 @@ const NewsletterForm: FC<NewsletterFormProps> = ({
       />
       <Button
         $mt={24}
-        label="Sign up"
+        label="Sign up to the newsletter"
         $fullWidth
         htmlButtonProps={{ disabled: loading }}
         background="black"

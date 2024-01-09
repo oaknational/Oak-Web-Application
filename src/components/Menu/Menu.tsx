@@ -5,17 +5,19 @@ import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "../../context/Menu/";
-import { OakColorName, PixelSpacing } from "../../styles/theme/types";
-import Flex from "../Flex";
-import IconButton from "../Button/IconButton";
 import Logo from "../Logo";
-import SocialButtons from "../SocialButtons";
-import Svg from "../Svg";
-import Box from "../Box";
-import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
+import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
 import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
 
 import MenuBackdrop from "./MenuBackdrop";
+
+import { OakColorName, PixelSpacing } from "@/styles/theme/types";
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import Svg from "@/components/SharedComponents/Svg";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import flex from "@/styles/utils/flex";
+import Box, { BoxProps, box } from "@/components/SharedComponents/Box";
+import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 export type MenuConfig = {
   width: PixelSpacing;
@@ -58,6 +60,11 @@ export const SideMenu = styled(Flex)<TransitionProps>`
 type MenuProps = HTMLProps<HTMLButtonElement> & {
   menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
+
+const NavMenuList = styled("nav")<FlexProps & BoxProps>`
+  ${box}
+  ${flex}
+`;
 
 const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
@@ -107,6 +114,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
               $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
+              aria-expanded={open}
             >
               <Svg
                 name="looping-line-1"
@@ -133,7 +141,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                   aria-expanded={open}
                 />
               </Box>
-              <Flex
+              <NavMenuList
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
@@ -167,7 +175,7 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
                     <Logo variant="with text" width={150} height={63} />
                   </Flex>
                 </Flex>
-              </Flex>
+              </NavMenuList>
             </SideMenu>
           </FocusOn>
         </Box>
