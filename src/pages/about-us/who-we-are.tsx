@@ -13,7 +13,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import AboutContactCard from "@/components/AboutContactCard";
+import AboutContactCard from "@/components/GenericPagesComponents/AboutContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";

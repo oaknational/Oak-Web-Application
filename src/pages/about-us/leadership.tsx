@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "../../node-lib/cms";
-import AboutContactCard from "../../components/AboutContactCard";
+import AboutContactCard from "../../components/GenericPagesComponents/AboutContactCard";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "../../components/BioCardList";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";

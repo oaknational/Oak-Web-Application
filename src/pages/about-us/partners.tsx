@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import CMSClient from "../../node-lib/cms";
 import { AboutPartnersPage } from "../../common-lib/cms-types";
-import AboutContactCard from "../../components/AboutContactCard";
+import AboutContactCard from "../../components/GenericPagesComponents/AboutContactCard";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
