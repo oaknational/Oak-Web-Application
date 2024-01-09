@@ -87,19 +87,18 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({
             />
           </SummaryHeading>
           <Flex>
-            {buttons &&
-              buttons.map((button) => (
-                <IconButton
-                  key={button.icon}
-                  $mh={12}
-                  icon={button.icon}
-                  aria-label={button.ariaLabel}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    button.onClick(e);
-                  }}
-                />
-              ))}
+            {buttons?.map((button) => (
+              <IconButton
+                key={button.icon}
+                $mh={12}
+                icon={button.icon}
+                aria-label={button.ariaLabel}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  button.onClick(e);
+                }}
+              />
+            ))}
             <IconButton
               $ml={12}
               aria-label={"Open collapsible section"}
