@@ -31,6 +31,8 @@ export type SearchResultsItemProps = {
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  onToggleClick?: (searchHit: SearchResultsItemProps) => void;
+  isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
@@ -43,6 +45,7 @@ export type SearchResultsItemProps = {
   | {
       type: "lesson";
       buttonLinkProps: LessonOverviewLinkProps;
+      unitTitle: string;
     }
 );
 

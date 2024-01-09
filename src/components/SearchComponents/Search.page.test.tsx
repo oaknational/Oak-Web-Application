@@ -26,7 +26,7 @@ const createSearchResult = (): SearchHit => {
       title: "lesson title",
       subject_title: "subject title",
       subject_slug: "subject-slug",
-      key_stage_title: "key stage title",
+      key_stage_title: "key stage 1",
       key_stage_slug: "key-stage-1",
       pathways: [],
     },
@@ -50,7 +50,7 @@ const resultsPropsPathWays: Partial<SearchProps> = {
               unit_slug: "algebra-unit-1",
               unit_title: "Algebra",
               key_stage_slug: "ks3",
-              key_stage_title: "Key Stage 3",
+              key_stage_title: "Key stage 3",
               subject_slug: "maths",
               subject_title: "Mathematics",
               tier_slug: "higher",
@@ -65,7 +65,7 @@ const resultsPropsPathWays: Partial<SearchProps> = {
               unit_slug: "algebra-unit-2",
               unit_title: "Algebra",
               key_stage_slug: "ks3",
-              key_stage_title: "Key Stage 3",
+              key_stage_title: "Key stage 3",
               subject_slug: "maths",
               subject_title: "Mathematics",
               tier_slug: "higher",
@@ -130,22 +130,22 @@ const props: SearchProps = {
   allKeyStages: [
     {
       slug: "ks1",
-      title: "Key-stage 1",
+      title: "Key stage 1",
       shortCode: "KS1",
     },
     {
       slug: "ks2",
-      title: "Key-stage 2",
+      title: "Key stage 2",
       shortCode: "KS2",
     },
     {
       slug: "ks3",
-      title: "Key-stage 3",
+      title: "Key stage 3",
       shortCode: "KS3",
     },
     {
       slug: "ks4",
-      title: "Key-stage 4",
+      title: "Key stage 4",
       shortCode: "KS4",
     },
   ],
@@ -156,6 +156,8 @@ const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
 const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
+const searchResultExpanded = jest.fn();
+
 jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
@@ -165,6 +167,8 @@ jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
       searchJourneyInitiated: (...args: unknown[]) =>
         searchJourneyInitiated(...args),
+      searchResultExpanded: (...args: unknown[]) =>
+        searchResultExpanded(...args),
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
     },
   }),
@@ -340,7 +344,7 @@ describe("Search.page.tsx", () => {
     expect(searchResultOpened).toHaveBeenCalledWith({
       analyticsUseCase: null,
       keyStageSlug: "ks1",
-      keyStageTitle: "Key-stage 1",
+      keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
       lessonSlug: "lesson-slug",
       searchFilterOptionSelected: [],
@@ -349,7 +353,7 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "Topic",
+      unitName: "topic title1 ",
       unitSlug: "topic-slug",
       context: "search",
     });
@@ -371,9 +375,10 @@ describe("Search.page.tsx", () => {
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
+      context: "search",
       analyticsUseCase: "Teacher",
       keyStageSlug: "ks1",
-      keyStageTitle: "Key-stage 1",
+      keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
       lessonSlug: "lesson-slug",
       searchFilterOptionSelected: [],
@@ -382,9 +387,35 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "Topic",
+      unitName: "topic title1 ",
       unitSlug: "topic-slug",
+    });
+  });
+  test("searchResultExpanded is called when a dropdown toggle is expanded", async () => {
+    const { getByText } = render(
+      <Search {...props} {...resultsPropsPathWays} />,
+    );
+    const dropdown = getByText("Select exam board");
+    const user = userEvent.setup();
+    await act(async () => {
+      await user.click(dropdown);
+    });
+
+    expect(searchResultExpanded).toHaveBeenCalledTimes(1);
+    expect(searchResultExpanded).toHaveBeenCalledWith({
       context: "search",
+      keyStageSlug: "ks1",
+      keyStageTitle: "Key stage 1",
+      lessonName: "lesson title",
+      lessonSlug: "lesson-slug",
+      searchFilterOptionSelected: [],
+      searchRank: 1,
+      searchResultCount: 1,
+      searchResultType: "lesson",
+      subjectSlug: "subject-slug",
+      subjectTitle: "subject title",
+      unitName: "topic title1 ",
+      unitSlug: "topic-slug",
     });
   });
 });
