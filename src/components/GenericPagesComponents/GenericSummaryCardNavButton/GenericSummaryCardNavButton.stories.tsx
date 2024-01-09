@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./AboutUsNavButton";
+import Component from "./GenericSummaryCardNavButton";
 
 export default {
   component: Component,
@@ -11,9 +11,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const AboutUsNavButton = Template.bind({});
+export const GenericSummaryCardNavButton = Template.bind({});
 
-AboutUsNavButton.args = {
+GenericSummaryCardNavButton.args = {
   buttons: [
     { label: "Who we are", href: "/first-one" },
     { label: "Board", href: "/second-one" },

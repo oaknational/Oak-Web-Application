@@ -4,7 +4,7 @@ import aboutNavLinks from "@/browser-lib/fixtures/aboutNav";
 import SummaryCard, {
   SummaryCardProps,
 } from "@/components/SharedComponents/Card/SummaryCard";
-import AboutUsNavButton from "@/components/GenericPagesComponents/AboutUsNavButton";
+import GenericSummaryCardNavButton from "@/components/GenericPagesComponents/GenericSummaryCardNavButton";
 
 type GenericSummaryCardProps = Pick<
   SummaryCardProps,
@@ -27,7 +27,11 @@ const GenericSummaryCard: FC<GenericSummaryCardProps> = (props) => {
         $minWidth: 166,
       }}
     >
-      <AboutUsNavButton $mt={36} buttons={aboutNavLinks} ariaLabel="about us" />
+      <GenericSummaryCardNavButton
+        $mt={36}
+        buttons={aboutNavLinks}
+        ariaLabel="about us"
+      />
     </SummaryCard>
   );
 };
