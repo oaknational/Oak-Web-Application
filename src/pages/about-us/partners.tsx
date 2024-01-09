@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
-import AboutContactCard from "@/components/GenericPagesComponents/AboutContactCard";
+import ContactCard from "@/components/GenericPagesComponents/ContactCard";
 import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
@@ -124,7 +124,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             </LI>
           ))}
         </FlexList>
-        <AboutContactCard {...pageData.contactSection} />
+        <ContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

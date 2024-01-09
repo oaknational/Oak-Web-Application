@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
 import CMSClient from "@/node-lib/cms";
-import AboutContactCard from "@/components/GenericPagesComponents/AboutContactCard";
+import ContactCard from "@/components/GenericPagesComponents/ContactCard";
 import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
 import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
@@ -51,7 +51,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
           </>
         )}
 
-        <AboutContactCard {...pageData.contactSection} />
+        <ContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );
