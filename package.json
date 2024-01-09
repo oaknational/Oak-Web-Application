@@ -158,7 +158,7 @@
     "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.8",
     "@types/js-cookie": "^3.0.6",
-    "@types/node": "^18.11.9",
+    "@types/node": "^20.10.4",
     "@types/react": "^18.2.37",
     "@types/react-transition-group": "^4.4.9",
     "@types/styled-components": "^5.1.30",
@@ -225,8 +225,8 @@
     "url": "https://github.com/oaknational/Oak-Web-Application.git"
   },
   "engines": {
-    "node": "18",
-    "npm": ">=8 <=10"
+    "node": "20",
+    "npm": ">=10"
   },
   "publishConfig": {
     "access": "restricted"
