@@ -3,7 +3,7 @@ import { PortableTextComponentProps } from "@portabletext/react";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import Flex from "@/components/SharedComponents/Flex";
 import { P } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const PostCallout = (
   props: PortableTextComponentProps<{ body: PortableTextJSON }>,

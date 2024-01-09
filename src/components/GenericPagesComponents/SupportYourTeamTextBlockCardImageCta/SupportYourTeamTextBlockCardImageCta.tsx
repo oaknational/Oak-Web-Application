@@ -12,9 +12,9 @@ import CardImage, {
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { Heading } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-const TextBlockCardImageCta: FC<
+const SupportYourTeamTextBlockCardImageCta: FC<
   TextBlock & {
     background: OakColorName;
     image: CardImageProps;
@@ -80,4 +80,4 @@ const TextBlockCardImageCta: FC<
   );
 };
 
-export default TextBlockCardImageCta;
+export default SupportYourTeamTextBlockCardImageCta;

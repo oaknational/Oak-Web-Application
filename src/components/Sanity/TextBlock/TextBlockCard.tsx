@@ -4,13 +4,13 @@ import { FC } from "react";
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import Card from "@/components/SharedComponents/Card";
-import { ULTick } from "@/components/PortableText/Blocks/Lists/ULTick";
+import { PortableTextULTick } from "@/components/SharedComponents/PortableTextULTick/PortableTextULTick";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 const textBlockCardPortableText: PortableTextComponents = {
-  ...ULTick,
+  ...PortableTextULTick,
   block: {
     normal: (props) => {
       return (

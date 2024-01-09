@@ -21,7 +21,7 @@ import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Svg from "@/components/SharedComponents/Svg";
 import { Heading, P } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type BioData = {
   id: string;

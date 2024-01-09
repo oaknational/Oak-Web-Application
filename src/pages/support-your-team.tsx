@@ -6,7 +6,7 @@ import { SupportPage } from "@/common-lib/cms-types";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { TextBlockCard } from "@/components/Sanity/TextBlock/TextBlockCard";
-import TextBlockCardImageCta from "@/components/Sanity/TextBlock/TextBlockCardImageCta";
+import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardImageCta";
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
@@ -79,7 +79,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             <TextBlockCard background={"lemon50"} {...pageData.cover} />
           </GridArea>
         </Grid>
-        <TextBlockCardImageCta
+        <SupportYourTeamTextBlockCardImageCta
           {...pageData.curriculum}
           background={"aqua"}
           image={{
@@ -87,7 +87,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             sizes: "(min-width: 750px) 720px, 100vw",
           }}
         />
-        <TextBlockCardImageCta
+        <SupportYourTeamTextBlockCardImageCta
           {...pageData.development}
           background={"pink50"}
           image={{

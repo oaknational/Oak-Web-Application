@@ -1,10 +1,6 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import noop from "../../__tests__/__helpers__/noop";
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import { useCookieConsent } from "../../browser-lib/cookie-consent/CookieConsentProvider";
-
 import {
   PTAnchorLink,
   PTAnchorTarget,
@@ -15,12 +11,17 @@ import {
 import { PTActionTrigger } from "./PTActionTrigger";
 import portableTextFixture from "./portableTextFixture.json";
 
+import noop from "@/__tests__/__helpers__/noop";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { useCookieConsent } from "@/browser-lib/cookie-consent/CookieConsentProvider";
+
+
 const consoleWarnSpy = jest.spyOn(console, "warn");
 
-jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider");
+jest.mock("@/browser-lib/cookie-consent/CookieConsentProvider");
 
 const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
