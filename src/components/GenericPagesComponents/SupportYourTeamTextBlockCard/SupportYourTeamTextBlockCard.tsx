@@ -4,13 +4,13 @@ import { FC } from "react";
 import { TextBlock } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme";
 import Card from "@/components/SharedComponents/Card";
-import { PortableTextULTick } from "@/components/SharedComponents/PortableTextULTick/PortableTextULTick";
+import { SupportYourTeamTextBlockCardULTick } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardULTick/SupportYourTeamTextBlockCardULTick";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-const textBlockCardPortableText: PortableTextComponents = {
-  ...PortableTextULTick,
+const supportYourTeamTextBlockCardPortableText: PortableTextComponents = {
+  ...SupportYourTeamTextBlockCardULTick,
   block: {
     normal: (props) => {
       return (
@@ -24,7 +24,7 @@ const textBlockCardPortableText: PortableTextComponents = {
  * ## Usage
  * Pass in any TextBlock sanity block, background and optional portableText components.
  */
-export const TextBlockCard: FC<
+export const SupportYourTeamTextBlockCard: FC<
   TextBlock & {
     background: OakColorName;
     portableTextComponents?: PortableTextComponents;
@@ -37,7 +37,10 @@ export const TextBlockCard: FC<
         {title}
       </Heading>
       <PortableTextWithDefaults
-        components={{ ...textBlockCardPortableText, ...portableTextComponents }}
+        components={{
+          ...supportYourTeamTextBlockCardPortableText,
+          ...portableTextComponents,
+        }}
         value={bodyPortableText}
       />
       <BrushBorders hideOnMobileH color={background} />

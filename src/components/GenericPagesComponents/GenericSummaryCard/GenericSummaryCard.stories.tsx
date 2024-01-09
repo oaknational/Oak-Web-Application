@@ -4,7 +4,6 @@ import Component from "./GenericSummaryCard";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
-
 export default {
   component: Component,
   argTypes: {},

@@ -1,9 +1,9 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { PortableTextULTick as Component } from "./PortableTextULTick";
+import { SupportYourTeamTextBlockCardULTick as Component } from "./SupportYourTeamTextBlockCardULTick";
 
-import { bodyPortableText } from "@/components/Sanity/TextBlock/TextBlockCard.stories";
+import { bodyPortableText } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCard/SupportYourTeamTextBlockCard.stories";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";
@@ -41,5 +41,5 @@ const Template: ComponentStory<typeof Card> = (args) => {
   );
 };
 
-export const PortableTextULTick = Template.bind({});
-PortableTextULTick.parameters = {};
+export const SupportYourTeamTextBlockCardULTick = Template.bind({});
+SupportYourTeamTextBlockCardULTick.parameters = {};

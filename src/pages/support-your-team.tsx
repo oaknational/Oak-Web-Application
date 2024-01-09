@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { SupportPage } from "@/common-lib/cms-types";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { TextBlockCard } from "@/components/Sanity/TextBlock/TextBlockCard";
+import { SupportYourTeamTextBlockCard } from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCard/SupportYourTeamTextBlockCard";
 import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardImageCta";
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -73,10 +73,16 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
         </Flex>
         <Grid $mb={56} $rg={56} $cg={[0, 40]}>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard background={"lemon50"} {...pageData.planning} />
+            <SupportYourTeamTextBlockCard
+              background={"lemon50"}
+              {...pageData.planning}
+            />
           </GridArea>
           <GridArea $colSpan={[12, 12, 6]}>
-            <TextBlockCard background={"lemon50"} {...pageData.cover} />
+            <SupportYourTeamTextBlockCard
+              background={"lemon50"}
+              {...pageData.cover}
+            />
           </GridArea>
         </Grid>
         <SupportYourTeamTextBlockCardImageCta

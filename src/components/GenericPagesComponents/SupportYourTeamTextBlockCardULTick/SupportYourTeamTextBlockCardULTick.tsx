@@ -4,7 +4,7 @@ import Circle from "@/components/SharedComponents/Circle";
 import Icon from "@/components/SharedComponents/Icon";
 import { LI, Span, UL } from "@/components/SharedComponents/Typography";
 
-export const PortableTextULTick: PortableTextComponents = {
+export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
   list: {
     bullet: ({ children }) => (
       <UL $mt={36} $ml={0} $pa={0}>

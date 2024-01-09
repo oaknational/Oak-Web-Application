@@ -6,7 +6,6 @@ import BioModal from "./BioModal";
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const bio = {
   name: "Ramender Crompton",
   bioPortableText: portableTextFromString(
