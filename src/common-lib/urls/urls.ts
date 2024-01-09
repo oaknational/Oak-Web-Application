@@ -182,9 +182,7 @@ type TeacherHubLinkProps = { page: "teacher-hub" };
 type CurriculumLandingPageLinkProps = {
   page: "curriculum-landing-page";
 };
-type EarlyReleaseUnitsPageLinkProps = {
-  page: "early-release-units-page";
-};
+
 type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
   subjectPhaseSlug: string;
@@ -287,7 +285,6 @@ type OakPages = {
   "webinar-single": OakPageConfig<WebinarSingleLinkProps>;
   "blog-single": OakPageConfig<BlogSingleLinkProps>;
   "curriculum-landing-page": OakPageConfig<CurriculumLandingPageLinkProps>;
-  "early-release-units-page": OakPageConfig<EarlyReleaseUnitsPageLinkProps>;
   "curriculum-overview": OakPageConfig<CurriculumOverviewLinkProps>;
   "curriculum-units": OakPageConfig<CurriculumUnitsLinkProps>;
   "curriculum-downloads": OakPageConfig<CurriculumDownloadsLinkProps>;
@@ -629,12 +626,7 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "curriculum-landing-page",
   }),
-  "early-release-units-page": createOakPageConfig({
-    pathPattern: "/teachers/early-release-units",
-    analyticsPageName: "Early Release Units Page",
-    configType: "internal",
-    pageType: "early-release-units-page",
-  }),
+
   "curriculum-overview": createOakPageConfig({
     pathPattern: "/teachers/curriculum/:subjectPhaseSlug/overview",
     analyticsPageName: "Curriculum Overview",
