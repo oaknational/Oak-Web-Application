@@ -1,8 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { OLOutline } from "./OLOutline";
-
+import { OLOutline } from "@/components/pages/LandingPages/OLOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

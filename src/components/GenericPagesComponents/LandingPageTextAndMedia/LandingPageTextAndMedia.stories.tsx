@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { mockImageAsset } from "../../../__tests__/__helpers__/cms";
-
 import { LandingPageTextAndMedia as Component } from "./LandingPageTextAndMedia";
 
+import { mockImageAsset } from "@/__tests__/__helpers__/cms";
 import Flex from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {

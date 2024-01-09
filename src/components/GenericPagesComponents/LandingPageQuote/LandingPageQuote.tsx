@@ -1,12 +1,11 @@
 import { FC } from "react";
 
-import { Quote as QuoteSchema } from "../../../common-lib/cms-types";
-
+import { Quote as QuoteSchema } from "@/common-lib/cms-types";
 import Typography from "@/components/SharedComponents/Typography";
 import Blockquote from "@/components/SharedComponents/Typography/Blockquote";
 import Flex from "@/components/SharedComponents/Flex";
 
-export const Quote: FC<QuoteSchema> = ({ text, attribution }) => {
+export const LandingPageQuote: FC<QuoteSchema> = ({ text, attribution }) => {
   return (
     <Flex
       $flexDirection={"column"}
