@@ -6,7 +6,7 @@ import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
-import ContactCard from "@/components/GenericPagesComponents/ContactCard";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, {
   Heading,
   Hr,
@@ -133,7 +133,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             />
           </Typography>
         </Card>
-        <ContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

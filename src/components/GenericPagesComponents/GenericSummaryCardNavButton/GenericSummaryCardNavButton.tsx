@@ -16,7 +16,7 @@ type LinkProps = {
   shallow?: boolean;
 };
 
-type AboutUsNavButtonProps = {
+type GenericSummaryCardNavButtonProps = {
   ariaLabel: string;
   buttons: LinkProps[];
   arrowSuffix?: boolean;
@@ -77,7 +77,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
  *
  * Used in the 'About Us' summary card and lessons page.
  */
-const AboutUsNavButton: FC<AboutUsNavButtonProps> = ({
+const GenericSummaryCardNavButton: FC<GenericSummaryCardNavButtonProps> = ({
   buttons,
   ariaLabel,
   arrowSuffix,
@@ -106,4 +106,4 @@ const AboutUsNavButton: FC<AboutUsNavButtonProps> = ({
   );
 };
 
-export default AboutUsNavButton;
+export default GenericSummaryCardNavButton;

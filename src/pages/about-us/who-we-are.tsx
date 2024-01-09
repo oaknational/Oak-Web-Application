@@ -13,7 +13,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import ContactCard from "@/components/GenericPagesComponents/ContactCard";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
@@ -152,7 +152,7 @@ const AboutWhoWeAre: NextPage<AboutPageProps> = ({ pageData }) => {
             </Fragment>
           ))}
         </Grid>
-        <ContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );
