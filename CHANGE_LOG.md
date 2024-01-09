@@ -1,3 +1,22 @@
+## [1.318.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.0...v1.318.1) (2024-01-08)
+
+# [1.318.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.1...v1.318.0) (2024-01-08)
+
+
+### Features
+
+* **build:** allow Netlify plugins to be disabled with envs ([3e60629](https://github.com/oaknational/Oak-Web-Application/commit/3e60629ccb7f68038fcd3762d207e2b0c727d17a))
+* **build:** disable plugins in way that actually works ([3cfa43d](https://github.com/oaknational/Oak-Web-Application/commit/3cfa43db866149fe7fc5bb9c7d5261ae8253f122))
+
+## [1.317.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.0...v1.317.1) (2024-01-08)
+
+# [1.317.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.316.0...v1.317.0) (2024-01-08)
+
+
+### Features
+
+* report hubspot fail to connect errors ([8bae327](https://github.com/oaknational/Oak-Web-Application/commit/8bae327f9ac049c89fe372a895eade78a98e4758))
+
 # [1.316.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.315.2...v1.316.0) (2024-01-08)
 
 
