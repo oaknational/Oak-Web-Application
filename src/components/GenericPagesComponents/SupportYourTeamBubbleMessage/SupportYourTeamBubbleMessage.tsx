@@ -7,7 +7,7 @@ import { Heading } from "@/components/SharedComponents/Typography";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
-type BubbleMessageProps = {
+type SupportYourTeamBubbleMessageProps = {
   outlineHeading: string;
   heading: string;
   subHeading: string;
@@ -15,7 +15,9 @@ type BubbleMessageProps = {
   background: OakColorName;
 };
 
-const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
+const SupportYourTeamBubbleMessage: FC<
+  SupportYourTeamBubbleMessageProps & FlexProps
+> = ({
   outlineHeading,
   heading,
   subHeading,
@@ -67,4 +69,4 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
   );
 };
 
-export default BubbleMessage;
+export default SupportYourTeamBubbleMessage;
