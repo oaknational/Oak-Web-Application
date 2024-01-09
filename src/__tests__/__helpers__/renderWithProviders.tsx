@@ -21,7 +21,6 @@ import { OverlayProvider } from "react-aria";
 import { MemoryRouterProviderProps } from "next-router-mock/dist/MemoryRouterProvider/MemoryRouterProvider";
 
 import "../../browser-lib/oak-globals/oakGlobals";
-import theme, { OakTheme } from "../../styles/theme";
 import ErrorBoundary from "../../components/ErrorBoundary";
 import { MenuProvider } from "../../context/Menu";
 import { ToastProvider } from "../../context/Toast";
@@ -29,6 +28,8 @@ import { CookieConsentContext } from "../../browser-lib/cookie-consent/CookieCon
 
 import MockedAnalyticsProvider from "./MockedAnalyticsProvider";
 import MockedCookieConsentProvider from "./MockedCookieConsentProvider";
+
+import theme, { OakTheme } from "@/styles/theme";
 
 export type ProviderProps = {
   children?: React.ReactNode;

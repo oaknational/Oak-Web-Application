@@ -3,19 +3,20 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import AppHeader from "../../AppHeader";
-import SiteFooter from "../../SiteFooter";
-import { OrganizationJsonLd } from "../../../browser-lib/seo/getJsonLd";
 import Seo, { SeoProps } from "../../../browser-lib/seo/Seo";
-import background, { BackgroundProps } from "../../../styles/utils/background";
-import { OakColorName } from "../../../styles/theme";
-import PreviewControls from "../../PreviewControls";
-import ClientErrorHeader from "../../ClientErrorHeader";
-import ClientErrorFooter from "../../ClientErrorFooter";
-import LandingPagesHeader from "../../LandingPagesHeader";
-import { CTA } from "../../../common-lib/cms-types";
-import { LandingPagesHeaderProps } from "../../LandingPagesHeader/LandingPagesHeader";
-import { Breadcrumb } from "../Breadcrumbs";
+
+import AppHeader from "@/components/AppHeader";
+import SiteFooter from "@/components/SiteFooter";
+import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
+import background, { BackgroundProps } from "@/styles/utils/background";
+import { OakColorName } from "@/styles/theme";
+import PreviewControls from "@/components/PreviewControls";
+import ClientErrorHeader from "@/components/ClientErrorHeader";
+import ClientErrorFooter from "@/components/ClientErrorFooter";
+import LandingPagesHeader from "@/components/LandingPagesHeader";
+import { CTA } from "@/common-lib/cms-types";
+import { LandingPagesHeaderProps } from "@/components/LandingPagesHeader/LandingPagesHeader";
+import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
   display: flex;

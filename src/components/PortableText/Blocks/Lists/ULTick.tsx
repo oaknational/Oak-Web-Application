@@ -1,7 +1,6 @@
 import { PortableTextComponents } from "@portabletext/react";
 
-import Circle from "../../../Circle";
-
+import Circle from "@/components/SharedComponents/Circle";
 import Icon from "@/components/SharedComponents/Icon";
 import { LI, Span, UL } from "@/components/SharedComponents/Typography";
 
