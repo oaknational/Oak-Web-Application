@@ -1,8 +1,8 @@
-import { FontVariant, FONT_VARIANTS } from "../../../styles/utils/typography";
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import { REM_DP } from "../../../styles/utils/getRemUnits";
-
 import Heading, { HeadingTag } from "./Heading";
+
+import { FontVariant, FONT_VARIANTS } from "@/styles/utils/typography";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { REM_DP } from "@/styles/utils/getRemUnits";
 
 describe("Heading", () => {
   test.each([["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"], ["h1"]])(

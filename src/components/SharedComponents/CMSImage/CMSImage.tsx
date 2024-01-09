@@ -2,15 +2,14 @@ import { FC, useCallback, useMemo } from "react";
 import { ImageLoader } from "next/image";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-import { Image } from "../../../common-lib/cms-types";
-import { SizeValues } from "../../../styles/utils/size";
-
 import {
   getImageDimensions,
   getSanityRefId,
   imageBuilder,
 } from "./sanityImageBuilder";
 
+import { Image } from "@/common-lib/cms-types";
+import { SizeValues } from "@/styles/utils/size";
 import OwaImage, {
   OwaImageProps,
 } from "@/components/SharedComponents/OwaImage";

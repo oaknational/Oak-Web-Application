@@ -12,8 +12,8 @@ export const buildCurriculumMetadata = (props: {
       props.examboardSlug && props.examboardSlug === "aqa"
         ? "AQA"
         : props.examboardSlug
-        ? `${capitalize(props.examboardSlug)}`
-        : "";
+          ? `${capitalize(props.examboardSlug)}`
+          : "";
 
     return `${props.keyStagesData} ${capitalize(
       props.subjectSlug,
@@ -27,8 +27,8 @@ export const buildCurriculumMetadata = (props: {
       props.examboardSlug && props.examboardSlug === "aqa"
         ? "AQA"
         : props.examboardSlug
-        ? `${capitalize(props.examboardSlug)}`
-        : "";
+          ? `${capitalize(props.examboardSlug)}`
+          : "";
     return `${props.keyStagesData} ${capitalize(
       props.subjectSlug,
     )} ${examboard} Curriculum Unit Sequence`;

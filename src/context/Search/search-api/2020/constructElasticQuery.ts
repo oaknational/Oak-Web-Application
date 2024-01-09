@@ -6,7 +6,13 @@ import truthy from "@/utils/truthy";
 type ConstructQueryParams = SearchQuery;
 
 const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
+  const {
+    term,
+    keyStages = [],
+    subjects = [],
+    contentTypes = [],
+    examBoards = [],
+  } = query;
   const keyStageFilter =
     keyStages.length > 0
       ? {
@@ -72,6 +78,21 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
       };
     }
   };
+  const examBoardsFilter = () => {
+    if (examBoards.length > 0) {
+      return {
+        terms: {
+          examboard_slug: examBoards.map((slug) => slug),
+        },
+      };
+    } else {
+      return {
+        terms: {
+          key_stage_slug: ["1", "2", "3", "4"],
+        },
+      };
+    }
+  };
 
   const highlight = {
     number_of_fragments: 0,
@@ -132,6 +153,7 @@ const constructElasticQuery = (query: ConstructQueryParams) => {
           { ...keyStageFilter },
           subjectFilter(),
           contentTypeFilters(),
+          examBoardsFilter(),
         ],
         /* if this is not set in a "should" any filtered content will appear
           not just those in the multi-matches above */

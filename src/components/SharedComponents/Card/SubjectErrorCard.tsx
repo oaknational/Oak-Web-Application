@@ -1,8 +1,9 @@
 import { FC } from "react";
 
-import ButtonAsLink, { ButtonAsLinkProps } from "../Button/ButtonAsLink";
-import { SpacingProps } from "../../../styles/utils/spacing";
-
+import ButtonAsLink, {
+  ButtonAsLinkProps,
+} from "@/components/SharedComponents/Button/ButtonAsLink";
+import { SpacingProps } from "@/styles/utils/spacing";
 import {
   Heading,
   HeadingTag,

@@ -1,3 +1,30 @@
+## [1.319.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.2...v1.319.3) (2024-01-09)
+
+
+### Bug Fixes
+
+* update curriculum sitemap ([378c12a](https://github.com/oaknational/Oak-Web-Application/commit/378c12a9e0712d83c92f15e3c106cab960ab0744))
+
+## [1.319.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.1...v1.319.2) (2024-01-09)
+
+## [1.319.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.0...v1.319.1) (2024-01-09)
+
+# [1.319.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.3...v1.319.0) (2024-01-09)
+
+
+### Bug Fixes
+
+* key stage to sentnece case ([81ce12f](https://github.com/oaknational/Oak-Web-Application/commit/81ce12fa8f4f1d6b238bd0444a7355c955c8558f))
+
+
+### Features
+
+* add tracking for expanded search hit ([8312d38](https://github.com/oaknational/Oak-Web-Application/commit/8312d3848cd3b5831d03e250f990055072bc82ec))
+
+## [1.318.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.2...v1.318.3) (2024-01-09)
+
+## [1.318.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.1...v1.318.2) (2024-01-09)
+
 ## [1.318.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.0...v1.318.1) (2024-01-08)
 
 # [1.318.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.317.1...v1.318.0) (2024-01-08)

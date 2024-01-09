@@ -1,5 +1,6 @@
-import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme";
 import ButtonAsLink from "..";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("ButtonAsLink", () => {
   it("renders a button as a link", () => {

@@ -18,7 +18,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Svg from "@/components/SharedComponents/Svg";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";

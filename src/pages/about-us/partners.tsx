@@ -7,9 +7,9 @@ import AboutContactCard from "../../components/AboutContactCard";
 import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
 import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
 import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import { SpacingProps } from "../../styles/utils/spacing";
 import getPageProps from "../../node-lib/getPageProps";
 
+import { SpacingProps } from "@/styles/utils/spacing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/SharedComponents/Layout";
 import Illustration from "@/components/SharedComponents/Illustration";
