@@ -1,5 +1,5 @@
 import Router, { useRouter } from "next/router";
-import { resolveHref } from "next/dist/shared/lib/router/utils/resolve-href";
+import { resolveHref } from "next/dist/client/resolve-href";
 import React, { FC, RefObject, useEffect } from "react";
 
 import { Span } from "@/components/SharedComponents/Typography";
