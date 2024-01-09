@@ -11,7 +11,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -34,7 +34,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
         <GenericSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",

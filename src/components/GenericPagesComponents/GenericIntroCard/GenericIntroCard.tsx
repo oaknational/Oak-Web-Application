@@ -9,12 +9,12 @@ import CardImage, {
 } from "@/components/SharedComponents/Card/CardComponents/CardImage";
 import Flex from "@/components/SharedComponents/Flex";
 
-type AboutIntroCardProps = {
+type GenericIntroCardProps = {
   image: CardImageProps;
   bodyPortableText: PortableTextProps["value"];
 };
 
-const AboutIntroCard: FC<AboutIntroCardProps> = ({
+const GenericIntroCard: FC<GenericIntroCardProps> = ({
   bodyPortableText,
   image,
 }) => {
@@ -40,4 +40,4 @@ const AboutIntroCard: FC<AboutIntroCardProps> = ({
   );
 };
 
-export default AboutIntroCard;
+export default GenericIntroCard;

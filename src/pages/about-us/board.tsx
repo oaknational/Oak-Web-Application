@@ -13,7 +13,7 @@ import Typography, {
   P,
 } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BioCardList from "@/components/GenericPagesComponents/BioCardList";
@@ -42,7 +42,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
         <GenericSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",

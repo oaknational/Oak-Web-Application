@@ -4,7 +4,7 @@ import { FC } from "react";
 import CMSClient from "@/node-lib/cms";
 import { AboutPartnersPage } from "@/common-lib/cms-types";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
@@ -49,7 +49,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
         <GenericSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
