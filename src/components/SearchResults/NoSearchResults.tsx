@@ -1,5 +1,5 @@
-import Flex from "../Flex";
-import { Heading, P, Span } from "../Typography";
+import { Heading, P, Span } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 interface NoSearchResultsProps {
   searchTerm: string;

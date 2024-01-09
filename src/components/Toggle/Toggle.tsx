@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 
-import Flex from "../Flex";
-import P from "../Typography/P";
-import getColorByLocation from "../../styles/themeHelpers/getColorByLocation";
-import { OakColorName } from "../../styles/theme/types";
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
+import { OakColorName } from "@/styles/theme/types";
+import P from "@/components/SharedComponents/Typography/P";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type ToggleStyleConfig = {
   on: {

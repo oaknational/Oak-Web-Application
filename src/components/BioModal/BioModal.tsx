@@ -8,19 +8,19 @@ import {
   PortableTextJSON,
   TeamMemberSocials,
 } from "@/common-lib/cms-types";
-import AspectRatio from "@/components/AspectRatio";
-import Box from "@/components/Box";
-import IconButton from "@/components/Button/IconButton";
-import CMSImage from "@/components/CMSImage";
-import Flex from "@/components/Flex";
-import Grid, { GridArea } from "@/components/Grid";
-import MaxWidth from "@/components/MaxWidth/MaxWidth";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import Box from "@/components/SharedComponents/Box";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+import Flex from "@/components/SharedComponents/Flex";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ModalDialog from "@/components/ModalDialog";
 import useModalDialog from "@/components/ModalDialog/useModalDialog";
-import SocialButtons from "@/components/SocialButtons";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
-import Svg from "@/components/Svg";
-import { Heading, P } from "@/components/Typography";
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import Svg from "@/components/SharedComponents/Svg";
+import { Heading, P } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/PortableText";
 
 export type BioData = {

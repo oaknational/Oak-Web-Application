@@ -3,10 +3,12 @@ import React, { FC } from "react";
 import UnitListItem, {
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
-import Box from "@/components/Box";
-import Flex from "@/components/Flex";
-import Pagination, { PaginationProps } from "@/components/Pagination";
-import { LI, UL } from "@/components/Typography";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Pagination, {
+  PaginationProps,
+} from "@/components/SharedComponents/Pagination";
+import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
 

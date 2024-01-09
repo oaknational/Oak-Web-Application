@@ -10,13 +10,13 @@ import { useRouter } from "next/router";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { SearchSourceValueType } from "@/browser-lib/avo/Avo";
+import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Input from "@/components/Input/Input";
-import Button from "@/components/Button";
+import Input from "@/components/SharedComponents/Input/Input";
+import Button from "@/components/SharedComponents/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -29,49 +29,55 @@ type SearchFormProps = {
   placeholderText: string;
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
+  searchContext: ContextValueType;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
-  const { handleSubmit, searchTerm, analyticsSearchSource, placeholderText } =
-    props;
+  const {
+    handleSubmit,
+    searchTerm,
+    analyticsSearchSource,
+    placeholderText,
+    searchContext,
+  } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
   const router = useRouter();
 
+  const useCase =
+    pageName === "Homepage" && !analyticsUseCase ? "Teacher" : analyticsUseCase;
+
   const trackSearchAttempted = useCallback(() => {
     track.searchAttempted({
       searchTerm: value,
-      analyticsUseCase: analyticsUseCase,
+      analyticsUseCase: useCase,
       pageName,
       searchFilterOptionSelected: getSortedSearchFiltersSelected(
         router.query.keyStages,
       ),
       searchSource: analyticsSearchSource,
+      context: searchContext,
     });
   }, [
     track,
     value,
-    analyticsUseCase,
+    useCase,
     pageName,
     router.query.keyStages,
     analyticsSearchSource,
+    searchContext,
   ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
-    value.length === 1 &&
-      track.searchJourneyInitiated({
-        searchSource: analyticsSearchSource,
-        analyticsUseCase: analyticsUseCase,
-      });
-  }, [analyticsSearchSource, analyticsUseCase, track, value.length]);
+    track.searchJourneyInitiated({
+      searchSource: analyticsSearchSource,
+      context: searchContext,
+    });
+  }, [analyticsSearchSource, track, searchContext]);
 
-  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>(
-    (e) => {
-      setValue(e.target.value);
-      trackSearchJourneyInitiated();
-    },
-    [trackSearchJourneyInitiated],
-  );
+  const onChange = useCallback<ChangeEventHandler<HTMLInputElement>>((e) => {
+    setValue(e.target.value);
+  }, []);
 
   const onSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
     (e) => {
@@ -93,6 +99,9 @@ const SearchForm: FC<SearchFormProps> = (props) => {
           type="search"
           onChange={onChange}
           placeholder={placeholderText}
+          onFocus={() => {
+            trackSearchJourneyInitiated();
+          }}
         />
 
         <Button

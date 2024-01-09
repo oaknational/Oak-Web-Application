@@ -1,9 +1,10 @@
 import { FC } from "react";
 
-import Flex from "../Flex";
-import SocialButtons from "../SocialButtons";
-import { OAK_SOCIALS } from "../SocialButtons/SocialButtons";
-import { P } from "../Typography";
+import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
+
+import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import { P } from "@/components/SharedComponents/Typography";
+import Flex from "@/components/SharedComponents/Flex";
 
 const ClientErrorFooter: FC = () => {
   return (

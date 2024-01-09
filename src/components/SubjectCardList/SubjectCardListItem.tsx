@@ -2,16 +2,20 @@ import { FC } from "react";
 
 import useAnalytics from "../../context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
-import Typography, { Heading, HeadingTag } from "../Typography";
-import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
 import useClickableCard from "../../hooks/useClickableCard";
-import Flex from "../Flex";
 import OakLink from "../OakLink";
-import Card, { CardProps } from "../Card";
 import SubjectIcon from "../SubjectIcon";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 import { KeyStageSubject } from "./SubjectCardList";
+
+import Typography, {
+  Heading,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
+import Card, { CardProps } from "@/components/SharedComponents/Card";
+import Flex from "@/components/SharedComponents/Flex";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SubjectCardListItemProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;

@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Span } from "../Typography";
-
 import Component from "./TextTitle";
+
+import { Span } from "@/components/SharedComponents/Typography";
 
 const meta: Meta<typeof Component> = {
   component: Component,

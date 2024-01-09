@@ -10,7 +10,7 @@ import {
   CarouselJsonLd,
 } from "next-seo";
 
-import { Breadcrumb } from "../../components/Breadcrumbs/Breadcrumbs";
+import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
 import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
 import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";

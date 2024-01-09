@@ -1,19 +1,23 @@
 import { FC, RefObject } from "react";
 import { useHover } from "react-aria";
 
-import { BlogWebinarCategory, Image } from "../../../../common-lib/cms-types";
-import Box from "../../../Box";
-import useClickableCard from "../../../../hooks/useClickableCard";
-import Flex from "../../../Flex";
-import LineClamp from "../../../LineClamp";
-import OakLink from "../../../OakLink";
-import BoxBorders from "../../../SpriteSheet/BrushSvgs/BoxBorders";
-import { P, Heading, HeadingTag } from "../../../Typography";
-import AspectRatio from "../../../AspectRatio";
-import { ResolveOakHrefProps } from "../../../../common-lib/urls";
-import formatDate from "../../../../utils/formatDate";
-
 import PostListItemImage from "./PostListItemImage";
+
+import { BlogWebinarCategory, Image } from "@/common-lib/cms-types";
+import useClickableCard from "@/hooks/useClickableCard";
+import LineClamp from "@/components/SharedComponents/LineClamp";
+import OakLink from "@/components/OakLink";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
+import { ResolveOakHrefProps } from "@/common-lib/urls";
+import formatDate from "@/utils/formatDate";
+import {
+  P,
+  Heading,
+  HeadingTag,
+} from "@/components/SharedComponents/Typography";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import Flex from "@/components/SharedComponents/Flex";
+import Box from "@/components/SharedComponents/Box";
 
 type PostListItemContentType = "blog-post" | "webinar";
 

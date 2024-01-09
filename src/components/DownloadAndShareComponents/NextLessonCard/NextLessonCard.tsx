@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import Flex from "@/components/Flex";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
-import Heading from "@/components/Typography/Heading";
-import Box from "@/components/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import Heading from "@/components/SharedComponents/Typography/Heading";
+import Box from "@/components/SharedComponents/Box";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type NextLessonCardProps = {

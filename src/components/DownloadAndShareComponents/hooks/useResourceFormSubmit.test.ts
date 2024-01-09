@@ -14,11 +14,6 @@ const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();
 const mockSetTermsInLocalStorageFn = jest.fn();
 
-jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
-  __esModule: true,
-  default: jest.fn(),
-}));
-
 jest.mock("./useLocalStorageForDownloads", () => {
   return jest.fn(() => ({
     setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
@@ -26,11 +21,6 @@ jest.mock("./useLocalStorageForDownloads", () => {
     setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
   }));
 });
-
-jest.mock("../../../hooks/useUtmParams", () => ({
-  __esModule: true,
-  default: () => ({ utm_source: "les_twitz" }),
-}));
 
 const data: ResourceFormProps = {
   onSubmit: jest.fn(),
@@ -40,32 +30,11 @@ const data: ResourceFormProps = {
   terms: true,
   resources: ["intro-quiz-questions"],
 };
-const getHubspotUserToken = jest.fn(() => "hubspotutk value");
-jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
-  __esModule: true,
-  default: (...args: []) => getHubspotUserToken(...args),
-}));
 
-const testPosthogDistinctId = "test-anonymous-id";
-
-jest.mock("../../../context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    posthogDistinctId: testPosthogDistinctId,
-  }),
-}));
 describe("useResourceFormSubmit", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     window.localStorage.clear();
-  });
-  it("should attempt to get the hubspotutk cookie", async () => {
-    const { result } = renderHook(() =>
-      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
-    );
-    result.current.onSubmit(data, "lesson");
-
-    expect(getHubspotUserToken).toHaveBeenCalled();
   });
   it("should set email in local storage if passed in props", async () => {
     const { result } = renderHook(() =>

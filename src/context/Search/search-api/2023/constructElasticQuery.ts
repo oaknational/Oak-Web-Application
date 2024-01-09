@@ -5,10 +5,17 @@ export type ConstructQueryParams = {
   keyStages?: string[];
   subjects?: string[];
   contentTypes?: ("unit" | "lesson")[];
+  examBoards?: string[];
 };
 
 export const constructElasticQuery = (query: ConstructQueryParams) => {
-  const { term, keyStages = [], subjects = [], contentTypes = [] } = query;
+  const {
+    term,
+    keyStages = [],
+    subjects = [],
+    contentTypes = [],
+    examBoards = [],
+  } = query;
 
   const keyStageFilters = () => {
     if (keyStages.length === 0) {
@@ -43,11 +50,35 @@ export const constructElasticQuery = (query: ConstructQueryParams) => {
     };
   };
 
+  const examBoardsFilter = () => {
+    if (examBoards.length === 0) {
+      return null;
+    } else {
+      return {
+        bool: {
+          minimum_should_match: 1,
+          should: [
+            {
+              terms: {
+                examBoardSlug: examBoards,
+              },
+            },
+            {
+              terms: {
+                "pathways.examBoardSlug": examBoards,
+              },
+            },
+          ],
+        },
+      };
+    }
+  };
   const highlight = {
     number_of_fragments: 0,
     pre_tags: ["<b>"],
     post_tags: ["</b>"],
     fields: {
+      pupil_lesson_outcome: {},
       // topic_title: {},
       // theme_title: {},
       // lesson_description: {},
@@ -97,6 +128,7 @@ export const constructElasticQuery = (query: ConstructQueryParams) => {
           keyStageFilters(),
           subjectFilters(),
           contentTypeFilters(),
+          examBoardsFilter(),
         ].filter(truthy),
         /* if this is not set in a "should" any filtered content will appear
             not just those in the multi-matches above */

@@ -5,9 +5,9 @@ import {
   OakTheme,
   PixelSpacing,
   PropsWithTheme,
-} from "../../styles/theme";
-import background, { BackgroundProps } from "../../styles/utils/background";
-import Flex from "../Flex";
+} from "@/styles/theme";
+import background, { BackgroundProps } from "@/styles/utils/background";
+import Flex from "@/components/SharedComponents/Flex";
 
 export type HeaderConfig = {
   height: PixelSpacing;

@@ -19,9 +19,9 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
-import Flex from "@/components/Flex";
-import { P } from "@/components/Typography";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
+import Flex from "@/components/SharedComponents/Flex";
+import { P } from "@/components/SharedComponents/Typography";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -180,7 +180,6 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     >
       <MuxPlayer
         preload="metadata"
-        streamType="on-demand"
         ref={mediaElRef}
         envKey={envKey}
         metadata={metadata}
@@ -192,6 +191,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         debug={debug}
         primaryColor={theme.colors.white}
         secondaryColor={theme.colors.black}
+        accentColor={theme.colors.black}
         onPlay={onPlay}
         onPause={onPause}
         onError={onError}

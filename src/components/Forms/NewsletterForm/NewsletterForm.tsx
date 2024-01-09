@@ -3,18 +3,18 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Input from "../../Input";
-import { P } from "../../Typography";
-import Button from "../../Button";
-import OakError from "../../../errors/OakError";
-import DropdownSelect from "../../DropdownSelect";
-import errorReporter from "../../../common-lib/error-reporter";
-import Form from "../Form";
-import { BoxProps } from "../../Box";
+import Input from "@/components/SharedComponents/Input";
+import OakError from "@/errors/OakError";
+import DropdownSelect from "@/components/DropdownSelect";
+import errorReporter from "@/common-lib/error-reporter";
+import Form from "@/components/Forms/Form";
+import { BoxProps } from "@/components/SharedComponents/Box";
 import {
   USER_ROLES,
   UserRole,
-} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import { P } from "@/components/SharedComponents/Typography";
+import Button from "@/components/SharedComponents/Button";
 
 const reportError = errorReporter("NewsletterForm.tsx");
 

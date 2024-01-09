@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import color, { ColorProps } from "../../styles/utils/color";
-import display, { DisplayProps } from "../../styles/utils/display";
-import spacing, { SpacingProps } from "../../styles/utils/spacing";
-import typography, { TypographyProps } from "../../styles/utils/typography";
+import color, { ColorProps } from "@/styles/utils/color";
+import display, { DisplayProps } from "@/styles/utils/display";
+import spacing, { SpacingProps } from "@/styles/utils/spacing";
+import typography, { TypographyProps } from "@/styles/utils/typography";
 
 export type UnstyledButtonProps = TypographyProps &
   SpacingProps &

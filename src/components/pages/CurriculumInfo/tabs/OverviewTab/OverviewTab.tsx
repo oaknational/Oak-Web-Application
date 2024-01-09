@@ -1,19 +1,23 @@
 import { FC } from "react";
 
-import Box from "@/components/Box/Box";
-import Flex from "@/components/Flex/Flex";
-import { P, Heading, UL, LI } from "@/components/Typography";
-import Card from "@/components/Card/Card";
+import Box from "@/components/SharedComponents/Box";
+import Flex from "@/components/SharedComponents/Flex";
+import Typography, {
+  P,
+  Heading,
+  UL,
+  LI,
+} from "@/components/SharedComponents/Typography";
+import Card from "@/components/SharedComponents/Card/Card";
 import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import Icon from "@/components/Icon/Icon";
-import Typography from "@/components/Typography/Typography";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import CMSImage from "@/components/CMSImage";
-import CMSVideo from "@/components/CMSVideo";
-import ButtonAsLink from "@/components/Button/ButtonAsLink";
+import CMSImage from "@/components/SharedComponents/CMSImage";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 export type OverviewTabProps = {
   data: {
