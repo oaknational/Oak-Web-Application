@@ -1,18 +1,10 @@
-import hubspotSubmitForm from "../../../browser-lib/hubspot/forms/hubspotSubmitForm";
 import type {
   DownloadResourceType,
   ResourceFormProps,
 } from "../downloadAndShare.types";
 import downloadLessonResources from "../helpers/downloadLessonResources";
-import useUtmParams from "../../../hooks/useUtmParams";
-import getHubspotUserToken from "../../../browser-lib/hubspot/forms/getHubspotUserToken";
-import { getHubspotDownloadsFormPayload } from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
-
-const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
@@ -24,15 +16,11 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
-  const utmParams = useUtmParams();
-  const { posthogDistinctId } = useAnalytics();
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
       props.onSubmit();
     }
-
-    const hutk = getHubspotUserToken();
 
     const email = data?.email;
     const schoolId = data?.school;
@@ -66,25 +54,6 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
         props.isLegacyDownload,
       );
     }
-
-    const downloadsPayload = getHubspotDownloadsFormPayload({
-      hutk,
-      data: {
-        ...data,
-        ...utmParams,
-        oakUserId: posthogDistinctId ? posthogDistinctId : undefined,
-        schoolName:
-          schoolId === "homeschool" || schoolId === "notListed"
-            ? schoolId
-            : schoolName,
-      },
-    });
-    const hubspotFormResponse = await hubspotSubmitForm({
-      hubspotFormId: hubspotDownloadsFormId,
-      payload: downloadsPayload,
-    });
-
-    return hubspotFormResponse;
   };
 
   return { onSubmit };
