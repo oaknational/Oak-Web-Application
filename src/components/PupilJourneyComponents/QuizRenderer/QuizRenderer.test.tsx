@@ -11,7 +11,6 @@ import {
 import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
-i;
 
 const questionsArrayFixture = quizQuestions || [];
 
