@@ -43,8 +43,8 @@ module.exports = {
       {
         userAgent: "*",
         // Note, there is a Cloudflare rule redirecting all /beta paths to a 404 page.
-        allow: ["/", "/teachers/curriculum", "/teachers/curriculum/"],
-        disallow: ["/teachers/", "/teachers/key-stages/"],
+        allow: ["/teachers/curriculum/"],
+        disallow: ["/teachers/"],
       },
     ],
   },
