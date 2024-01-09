@@ -1,7 +1,7 @@
 import { FC, MutableRefObject } from "react";
 
-import useClickableCard from "../../../hooks/useClickableCard";
-import { BioData } from "../../BioModal/BioModal";
+import useClickableCard from "../../../../hooks/useClickableCard";
+import { BioData } from "../../../BioModal/BioModal";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";

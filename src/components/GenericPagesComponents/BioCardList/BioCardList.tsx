@@ -1,11 +1,10 @@
 import { FC } from "react";
 
-import BioModal from "../BioModal";
-import { BioData } from "../BioModal/BioModal";
-import { useBioModal } from "../BioModal/useBioModal";
-
 import BioCardListItem from "./BioCardListItem";
 
+import BioModal from "@/components/BioModal";
+import { BioData } from "@/components/BioModal/BioModal";
+import { useBioModal } from "@/components/BioModal/useBioModal";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
