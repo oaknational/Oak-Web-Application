@@ -1,14 +1,13 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutPartnersPage } from "../../common-lib/cms-types";
-import AboutContactCard from "../../components/GenericPagesComponents/AboutContactCard";
-import AboutIntroCard from "../../components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import getPageProps from "../../node-lib/getPageProps";
-
+import CMSClient from "@/node-lib/cms";
+import { AboutPartnersPage } from "@/common-lib/cms-types";
+import AboutContactCard from "@/components/GenericPagesComponents/AboutContactCard";
+import AboutIntroCard from "@/components/ArchivedComponents/AboutIntoCard/AboutIntroCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import getPageProps from "@/node-lib/getPageProps";
 import { SpacingProps } from "@/styles/utils/spacing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/SharedComponents/Layout";

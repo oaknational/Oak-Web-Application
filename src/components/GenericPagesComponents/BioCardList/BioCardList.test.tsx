@@ -1,8 +1,9 @@
 import { OverlayProvider } from "react-aria";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import BioCardList from "./BioCardList";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 describe("BioCardList", () => {
   test("renders corrent headings", () => {
