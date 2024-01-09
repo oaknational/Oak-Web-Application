@@ -1,9 +1,9 @@
 import { CSSProperties } from "react";
 import { css } from "styled-components";
 
-import responsive, { ResponsiveValues } from "../../styles/utils/responsive";
-
 import { getRemUnits } from "./getRemUnits";
+
+import responsive, { ResponsiveValues } from "@/styles/utils/responsive";
 
 export type FontVariant =
   | "heading-1"
