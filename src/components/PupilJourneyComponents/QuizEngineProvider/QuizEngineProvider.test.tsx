@@ -399,6 +399,100 @@ describe("QuizEngineContext", () => {
       });
     });
   });
+
+  describe("handleSubmitShortAnswer", () => {
+    it("should grade a short answer as correct if the pupilAnswer is correct", () => {
+      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+        return (
+          <QuizEngineProvider questionsArray={questionsArray}>
+            {children}
+          </QuizEngineProvider>
+        );
+      };
+
+      if (!Array.isArray(questionsArrayFixture)) {
+        throw new Error("questionsArrayFixture is not an array");
+      }
+
+      const questions = [...questionsArrayFixture].filter(
+        (q) => q.questionType === "short-answer",
+      );
+
+      const { result } = renderHook(() => useQuizEngineContext(), {
+        wrapper: (props) =>
+          wrapper({
+            ...props,
+            questionsArray: questions,
+          }),
+      });
+
+      if (result.current === null) {
+        throw new Error("result.current is null");
+      }
+
+      const { handleSubmitShortAnswer, currentQuestionData } = result.current;
+
+      act(() => {
+        handleSubmitShortAnswer(
+          currentQuestionData?.answers?.["short-answer"]?.[0]?.answer[0]?.text,
+        );
+      });
+
+      const { questionState } = result.current;
+
+      expect(questionState[0]).toEqual({
+        mode: "feedback",
+        grade: 1,
+        feedback: "correct",
+        offerHint: false,
+      });
+    });
+  });
+
+  it("should grade a short answer as incorrect if the pupilAnswer is incorrect", () => {
+    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
+      return (
+        <QuizEngineProvider questionsArray={questionsArray}>
+          {children}
+        </QuizEngineProvider>
+      );
+    };
+
+    if (!Array.isArray(questionsArrayFixture)) {
+      throw new Error("questionsArrayFixture is not an array");
+    }
+
+    const questions = [...questionsArrayFixture].filter(
+      (q) => q.questionType === "short-answer",
+    );
+
+    const { result } = renderHook(() => useQuizEngineContext(), {
+      wrapper: (props) =>
+        wrapper({
+          ...props,
+          questionsArray: questions,
+        }),
+    });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
+
+    const { handleSubmitShortAnswer } = result.current;
+
+    act(() => {
+      handleSubmitShortAnswer("this is not the correct answer");
+    });
+
+    const { questionState } = result.current;
+
+    expect(questionState[0]).toEqual({
+      mode: "feedback",
+      grade: 0,
+      feedback: "incorrect",
+      offerHint: false,
+    });
+  });
 });
 
 describe("useQuizEngineContext", () => {
