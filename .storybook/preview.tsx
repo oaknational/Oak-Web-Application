@@ -72,13 +72,16 @@ export const decorators = [
 ];
 
 export const globalTypes = {
+  // This will show in UI but not change theme until hook is updated and can take a theme string
   theme: {
     name: "Theme",
     description: "Global theme for components",
     defaultValue: "default",
     toolbar: {
       icon: "circlehollow",
+      // Array of plain string values or MenuItem shape (see below)
       items: THEME_NAMES,
+      // Property that specifies if the name of the item will be displayed
       showName: true,
     },
   },
