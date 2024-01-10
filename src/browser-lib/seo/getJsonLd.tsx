@@ -11,8 +11,8 @@ import {
 } from "next-seo";
 
 import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import { SerializedBlogPostPreview } from "../../components/pages/BlogIndex.page";
-import { SerializedWebinarPreview } from "../../components/pages/WebinarsIndex.page";
+import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/BlogIndex.view";
+import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
 import { getVideoThumbnail } from "../../components/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
 import { getOakLinkHref } from "../../components/OakLink/OakLink";
