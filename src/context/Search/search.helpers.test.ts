@@ -1,8 +1,12 @@
+import { ParsedUrlQuery } from "querystring";
+
 import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
 
 import {
   getFilterForQuery,
+  getFiltersFromQuery,
   getLessonObject,
+  getSortedSearchFiltersSelected,
   getUnitObject,
   isFilterItem,
 } from "./search.helpers";
@@ -113,5 +117,35 @@ describe("search helpers", () => {
   });
   test("getFilterForQuery return array from string", () => {
     expect(getFilterForQuery("ks2", allKeyStages)).toEqual(["ks2"]);
+  });
+
+  test("gets expected filters from query", () => {
+    const query = {
+      term: "macbeth",
+      keyStages: "ks2",
+      subjects: "english-grammar",
+      contentTypes: "lesson",
+      examBoards: "wjec",
+    } as ParsedUrlQuery;
+
+    const result = getFiltersFromQuery(query);
+    expect(result).toEqual(["ks2", "lesson", "wjec", "english-grammar"]);
+  });
+  test("gets expected filters from query with empty filters", () => {
+    const query = { term: "macbeth" };
+    const result = getFiltersFromQuery(query);
+    expect(result).toEqual([]);
+  });
+  test("gets sorted filters with multiple filters", () => {
+    const query = {
+      term: "macbeth",
+      keyStages: "ks2",
+      subjects: "english-grammar",
+      contentTypes: "lesson",
+      examBoards: "wjec",
+    } as ParsedUrlQuery;
+
+    const result = getSortedSearchFiltersSelected(query);
+    expect(result).toEqual(["english-grammar", "ks2", "lesson", "wjec"]);
   });
 });

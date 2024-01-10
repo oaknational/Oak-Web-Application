@@ -56,6 +56,7 @@ export const $selectedStyle = css`
 `;
 
 const StyledNextLink = styled.a<StyleProps>`
+  overflow-wrap: break-word;
   ${box}
   ${flex}
   ${(props) => props.$isInline && inlineStyles}

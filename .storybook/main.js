@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",

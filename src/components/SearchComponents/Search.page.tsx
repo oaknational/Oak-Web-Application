@@ -59,7 +59,7 @@ const Search: FC<SearchProps> = (props) => {
 
       track.searchResultsDisplayed({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
@@ -72,8 +72,7 @@ const Search: FC<SearchProps> = (props) => {
     analyticsUseCase,
     hitCount,
     query.term,
-    router.query.keyStages,
-    router.query.page,
+    router.query,
     searchStartTime,
     setSearchStartTime,
     status,
@@ -104,7 +103,7 @@ const Search: FC<SearchProps> = (props) => {
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query,
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
@@ -138,7 +137,7 @@ const Search: FC<SearchProps> = (props) => {
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query,
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
