@@ -18,10 +18,12 @@ OriginalNextImage.propTypes = {
 OriginalNextImage.defaultProps = {
   unoptimized: true,
 };
-Object.defineProperty(NextImage, "default", {
-  configurable: true,
-  value: (props) => <OriginalNextImage {...props} unoptimized />,
-});
+
+// This causes error 'cannot redefine property: default'
+// Object.defineProperty(NextImage, "default", {
+//   configurable: true,
+//   value: (props) => <OriginalNextImage {...props} unoptimized />,
+// });
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
