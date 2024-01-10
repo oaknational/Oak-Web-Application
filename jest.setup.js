@@ -1,5 +1,5 @@
 import { jest } from "@jest/globals";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 
