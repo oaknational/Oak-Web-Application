@@ -8,13 +8,13 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OakLink from "@/components/OakLink";
-import usePostList from "@/components/Posts/PostList/usePostList";
+import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
-import PostList from "@/components/Posts/PostList";
+import PostList from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
@@ -24,14 +24,14 @@ import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.view";
 import {
   SerializedWebinarPreview,
   webinarToPostListItem,
-} from "@/components/pages/WebinarsIndex.page";
+} from "@/components/GenericPagesViews/WebinarsIndex.view";
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
-import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
+import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
 
 export type TeachersHomePageProps = HomePageProps & {

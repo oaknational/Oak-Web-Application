@@ -5,7 +5,7 @@ import Card from "./Card";
 import { PortableTextJSON, Image } from "@/common-lib/cms-types";
 import { OakColorName } from "@/styles/theme/types";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import Cover from "@/components/SharedComponents/Cover";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import CMSImage from "@/components/SharedComponents/CMSImage";
