@@ -41,10 +41,11 @@ const BubbleMessage: FC<BubbleMessageProps & FlexProps> = ({
         $zIndex={"inFront"}
       >
         <OutlineHeading
-          $mb={[12, 0]}
+          $mb={[12, 48]}
+          $mt={[0, 48]}
           tag={"div"}
-          $fontWeight={600}
           $fontSize={[60, 100]}
+          $font={"heading-1"}
         >
           <P>{outlineHeading}</P>
         </OutlineHeading>

@@ -106,7 +106,6 @@ export type TypographyProps = FontProps & {
   $wordWrap?: ResponsiveValues<"normal" | "break-word" | "initial" | "inherit">;
   $textOverflow?: ResponsiveValues<"clip" | "ellipsis">;
   $overflowWrap?: ResponsiveValues<"normal" | "break-word" | "anywhere">;
-  $fontWeight?: ResponsiveValues<FontWeight>;
 };
 
 const typography = css<TypographyProps>`
@@ -117,7 +116,6 @@ const typography = css<TypographyProps>`
   ${responsive("word-wrap", (props) => props.$wordWrap)}
   ${responsive("text-overflow", (props) => props.$textOverflow)}
   ${responsive("overflow-wrap", (props) => props.$overflowWrap)}
-  ${responsive("font-weight", (props) => props.$fontWeight)}
 `;
 
 export default typography;
