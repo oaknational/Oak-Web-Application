@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import LessonMetadata from "../LessonMetadata";
+import LessonMetadata from "../TeacherComponents/LessonMetadata";
 import TagPromotional from "../TagPromotional";
 import OakLink from "../OakLink";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";

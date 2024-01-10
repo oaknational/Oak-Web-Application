@@ -1,5 +1,5 @@
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import LessonRequirements from "@/components/LessonRequirements/LessonRequirements";
+import LessonRequirements from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
 
 describe("LessonRequirements component", () => {
   const equipment = [{ equipment: "test scissors" }];

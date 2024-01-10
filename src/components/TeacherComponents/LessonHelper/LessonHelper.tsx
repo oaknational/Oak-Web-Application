@@ -1,14 +1,13 @@
 import React, { FC } from "react";
 
-import LessonRequirementsHeading from "../LessonRequirements/LessonRequirementsHeading";
-import CopyrightNotice from "../DownloadAndShareComponents/CopyrightNotice";
-
+import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
+import CopyrightNotice from "@/components/DownloadAndShareComponents/CopyrightNotice";
 import Box from "@/components/SharedComponents/Box";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonRequirements, {
   Equipment,
   ContentGuidance,
-} from "@/components/LessonRequirements/LessonRequirements";
+} from "@/components/TeacherComponents/LessonRequirements";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
 type LessonHelperProps = {

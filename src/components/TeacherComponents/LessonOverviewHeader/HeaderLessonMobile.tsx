@@ -1,16 +1,15 @@
 import { FC } from "react";
 
-import { HeaderLessonProps } from "./HeaderLesson";
-import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
-import { HeaderShareAllButton } from "./HeaderShareAllButton";
-
+import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
+import { HeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderDownloadAllButton";
+import { HeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
-import LessonMetadata from "@/components/LessonMetadata";
+import LessonMetadata from "@/components/TeacherComponents/LessonMetadata";
 
-export const HeaderLessonMobile: FC<HeaderLessonProps> = (props) => {
+export const HeaderLessonMobile: FC<LessonOverviewHeaderProps> = (props) => {
   const {
     subjectSlug,
     yearTitle,

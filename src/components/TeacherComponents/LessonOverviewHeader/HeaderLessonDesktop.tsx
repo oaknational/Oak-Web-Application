@@ -1,17 +1,16 @@
 import { FC } from "react";
 
-import { HeaderLessonProps } from "./HeaderLesson";
-import { HeaderDownloadAllButton } from "./HeaderDownloadAllButton";
-import { HeaderShareAllButton } from "./HeaderShareAllButton";
-
+import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
+import { HeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderDownloadAllButton";
+import { HeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import LessonMetadata from "@/components/LessonMetadata";
+import LessonMetadata from "@/components/TeacherComponents/LessonMetadata";
 
-export const HeaderLessonDesktop: FC<HeaderLessonProps> = (props) => {
+export const HeaderLessonDesktop: FC<LessonOverviewHeaderProps> = (props) => {
   const {
     subjectSlug,
     yearTitle,

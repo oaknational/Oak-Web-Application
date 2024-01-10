@@ -1,6 +1,6 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import LessonHelper from "./LessonHelper";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("LessonHelper component", () => {
   const equipment = [{ equipment: "test scissors" }];

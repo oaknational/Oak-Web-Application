@@ -1,11 +1,9 @@
 import { FC } from "react";
 
-import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
-
-import { HeaderWrapper } from "./HeaderWrapper";
-import { HeaderLessonMobile } from "./HeaderLessonMobile";
-import { HeaderLessonDesktop } from "./HeaderLessonDesktop";
-
+import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
+import { HeaderWrapper } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderWrapper";
+import { HeaderLessonMobile } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderLessonMobile";
+import { HeaderLessonDesktop } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderLessonDesktop";
 import { OakColorName } from "@/styles/theme";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
@@ -15,7 +13,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
  *
  */
 
-export type HeaderLessonProps = {
+export type LessonOverviewHeaderProps = {
   // pathway props
   subjectSlug: string | null;
   yearTitle?: string | null;
@@ -45,7 +43,7 @@ export type HeaderLessonProps = {
   onClickShareAll: () => void;
 };
 
-const HeaderLesson: FC<HeaderLessonProps> = (props) => {
+const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
 
   return (
@@ -56,4 +54,4 @@ const HeaderLesson: FC<HeaderLessonProps> = (props) => {
   );
 };
 
-export default HeaderLesson;
+export default LessonOverviewHeader;

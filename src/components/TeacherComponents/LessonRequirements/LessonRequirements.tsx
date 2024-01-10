@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import LessonRequirementsHeading from "./LessonRequirementsHeading";
+import LessonRequirementsHeading from "../LessonRequirementsHeading/LessonRequirementsHeading";
 
 import { IconName } from "@/components/SharedComponents/Icon";
 import Flex from "@/components/SharedComponents/Flex";

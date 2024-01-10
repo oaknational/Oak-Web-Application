@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "@/components/LessonHelper/LessonHelper";
+import Component from "@/components/TeacherComponents/LessonHelper/LessonHelper";
 
 export default {
   component: Component,

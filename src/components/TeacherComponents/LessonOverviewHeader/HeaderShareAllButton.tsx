@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { HeaderLessonProps } from "./HeaderLesson";
-
+import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -10,7 +9,7 @@ import {
   LessonShareLinkProps,
 } from "@/common-lib/urls";
 
-export const HeaderShareAllButton: FC<HeaderLessonProps> = (props) => {
+export const HeaderShareAllButton: FC<LessonOverviewHeaderProps> = (props) => {
   const {
     subjectSlug,
     lessonTitle,

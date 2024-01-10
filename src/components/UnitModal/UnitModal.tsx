@@ -5,7 +5,7 @@ import Box from "@/components/SharedComponents/Box";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { Unit } from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
-import LessonMetadata from "@/components/LessonMetadata";
+import LessonMetadata from "@/components/TeacherComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import {

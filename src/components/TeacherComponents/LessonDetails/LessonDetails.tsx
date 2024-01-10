@@ -8,13 +8,13 @@ import CommonMisconceptions, {
 } from "@/components/CommonMisconceptions/CommonMisconceptions";
 import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
 import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
-import LessonHelper from "@/components/LessonHelper/LessonHelper";
+import LessonHelper from "@/components/TeacherComponents/LessonHelper";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
-} from "@/components/LessonRequirements/LessonRequirements";
+} from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
 
 type LessonDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;

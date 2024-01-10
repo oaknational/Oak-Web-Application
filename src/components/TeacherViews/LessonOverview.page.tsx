@@ -27,7 +27,7 @@ import type {
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
-import HeaderLesson from "@/components/HeaderLesson";
+import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
 import LessonAnchorLinks from "@/components/Lesson/LessonAnchorLinks/LessonAnchorLinks";

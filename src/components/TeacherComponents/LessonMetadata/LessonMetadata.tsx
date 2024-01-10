@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 
-import { BoxProps } from "../SharedComponents/Box";
-
+import { BoxProps } from "@/components/SharedComponents/Box";
 import Typography from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { FontProps } from "@/styles/utils/typography";

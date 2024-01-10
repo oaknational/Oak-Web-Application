@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { HeaderLessonProps } from "./HeaderLesson";
+import { LessonOverviewHeaderProps } from "./LessonOverviewHeader";
 
 import Component from ".";
 
@@ -131,9 +131,9 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const HeaderLesson: Story = {
+export const LessonOverviewHeader: Story = {
   args: {
-    ...(props as unknown as HeaderLessonProps),
+    ...(props as unknown as LessonOverviewHeaderProps),
   },
   render: (args) => {
     return <Component {...args} />;

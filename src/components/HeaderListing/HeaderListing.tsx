@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
-import { HeaderWrapper } from "../HeaderLesson/HeaderWrapper";
+import { HeaderWrapper } from "../TeacherComponents/LessonOverviewHeader/HeaderWrapper";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
-import LessonMetadata from "../LessonMetadata";
+import LessonMetadata from "../TeacherComponents/LessonMetadata";
 
 import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";

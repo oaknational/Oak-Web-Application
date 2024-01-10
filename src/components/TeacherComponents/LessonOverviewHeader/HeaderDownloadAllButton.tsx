@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { HeaderLessonProps } from "./HeaderLesson";
-
+import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonDownloadsCanonicalLinkProps,
@@ -9,9 +8,9 @@ import {
 } from "@/common-lib/urls";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
-export const HeaderDownloadAllButton: FC<HeaderLessonProps & BoxProps> = (
-  props,
-) => {
+export const HeaderDownloadAllButton: FC<
+  LessonOverviewHeaderProps & BoxProps
+> = (props) => {
   const {
     subjectSlug,
     lessonTitle,
