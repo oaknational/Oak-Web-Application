@@ -1,9 +1,9 @@
 import { FC, ReactNode, useId } from "react";
 
-import PostCategoryList from "@/components/Posts/PostCategoryList";
-import { PostCategoryPage } from "@/components/Posts/PostCategoryList/PostCategoryList";
-import usePostCategoryList from "@/components/Posts/PostCategoryList/usePostCategoryList";
-import BlogHeader from "@/components/Posts/PostHeader/PostHeader";
+import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
+import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
+import usePostCategoryList from "@/components/SharedComponents/PostCategoryList/usePostCategoryList";
+import BlogHeader from "@/components/SharedComponents/PostHeader/PostHeader";
 import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";

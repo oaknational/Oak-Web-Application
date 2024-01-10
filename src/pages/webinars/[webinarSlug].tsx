@@ -17,9 +17,9 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableText";
+import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import Flex from "@/components/SharedComponents/Flex";
-import WebinarVideo from "@/components/Posts/WebinarVideo";
+import WebinarVideo from "@/components/GenericPagesComponents/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";

@@ -5,7 +5,9 @@ import HomeHelpCard from "./HomeHelpCard";
 
 import { HomePage } from "@/common-lib/cms-types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import PostList, { PostListProps } from "@/components/Posts/PostList";
+import PostList, {
+  PostListProps,
+} from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

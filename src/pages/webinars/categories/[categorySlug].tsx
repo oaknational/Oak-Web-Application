@@ -29,4 +29,4 @@ export const getStaticPaths = async () => {
 };
 
 export { getStaticProps };
-export { default } from "../../../components/GenericPagesViews/WebinarsIndex.page";
+export { default } from "../../../components/GenericPagesViews/WebinarsIndex.view";

@@ -27,7 +27,7 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import {
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "@/components/GenericPagesViews/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.view";
 import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
 
