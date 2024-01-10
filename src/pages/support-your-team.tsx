@@ -105,25 +105,30 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
           $mt={48}
         >
-          <Heading $font={["heading-5", "heading-4"]} $mb={20} tag={"h2"}>
-            Start using Oak today
-          </Heading>
-          <Box $width={360}>
+          <Box $maxWidth={["100%", 380, 380]}>
+            <Heading
+              $textAlign={"center"}
+              $font={["heading-5", "heading-4"]}
+              $mb={20}
+              tag={"h2"}
+            >
+              Start using Oak today
+            </Heading>
             <P $textAlign={"center"} $font={"body-2"}>
               Search our lessons to find all the resources you need to support
               your team.
             </P>
+            <Flex $justifyContent={"center"}>
+              <ButtonAsLink
+                $mt={32}
+                $mb={92}
+                page={"home"}
+                label={"Search our lessons"}
+                icon={"arrow-right"}
+                $iconPosition={"trailing"}
+              />
+            </Flex>
           </Box>
-          <Flex $justifyContent={"center"}>
-            <ButtonAsLink
-              $mt={32}
-              $mb={92}
-              page={"home"}
-              label={"Search our lessons"}
-              icon={"arrow-right"}
-              $iconPosition={"trailing"}
-            />
-          </Flex>
         </Flex>
       </MaxWidth>
     </Layout>
