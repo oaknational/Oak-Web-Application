@@ -14,7 +14,7 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getContext = (): QuizEngineContextType => ({
+const getContext = (): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: questionsArrayFixture[0],
   currentQuestionIndex: 0,
   questionState: [
@@ -249,6 +249,37 @@ describe("QuizRenderer", () => {
         context?.currentQuestionData?.answers?.["multiple-choice"]?.[1],
         context?.currentQuestionData?.answers?.["multiple-choice"]?.[2],
       ]);
+    }
+  });
+
+  it("calls handleSubmitShortAnswer when submit is clicked for a short answer", () => {
+    const context = getContext();
+
+    context.currentQuestionData = quizQuestions?.find(
+      (q) => q.questionType === "short-answer",
+    );
+    context.currentQuestionIndex =
+      quizQuestions?.findIndex((q) => q.questionType === "short-answer") ?? 0;
+
+    if (context?.questionState?.[context.currentQuestionIndex]) {
+      context.handleSubmitShortAnswer = jest.fn();
+
+      const { getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      act(() => {
+        const input = getByRole("textbox");
+        fireEvent.change(input, { target: { value: "test" } });
+        fireEvent.click(getByRole("button", { name: "Submit" }));
+      });
+
+      expect(context.handleSubmitShortAnswer).toHaveBeenCalled();
+      expect(context.handleSubmitShortAnswer).toHaveBeenCalledWith("test");
     }
   });
 });
