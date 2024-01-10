@@ -61,7 +61,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     () =>
       questionsArray.filter(
         (question) =>
-          question.questionType === "multiple-choice" && question.answers,
+          question.questionType === "multiple-choice" ||
+          question.questionType === "short-answer",
       ),
     [questionsArray],
   );

@@ -7,11 +7,12 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { QuizShortAnswer } from "@/components/PupilJourneyComponents/QuizShortAnswer";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
@@ -43,7 +44,6 @@ export const QuizRenderer = () => {
   } else if (currentQuestionData) {
     const { questionStem, answers } = currentQuestionData;
 
-    const MCAnswers = answers?.["multiple-choice"];
     const isFeedbackMode =
       questionState[currentQuestionIndex]?.mode === "feedback";
 
@@ -55,8 +55,11 @@ export const QuizRenderer = () => {
       }
     };
 
-    if (MCAnswers) {
-      if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
+    if (answers?.["multiple-choice"]) {
+      if (
+        answers?.["multiple-choice"].filter((a) => a.answer_is_correct).length >
+        1
+      ) {
         answerRender = (
           <QuizMCQMultiAnswer
             key={`mcq-index-${currentQuestionIndex}`}
@@ -71,6 +74,13 @@ export const QuizRenderer = () => {
           />
         );
       }
+    } else if (answers?.["short-answer"]) {
+      answerRender = (
+        <QuizShortAnswer
+          key={`mcq-index-${currentQuestionIndex}`}
+          onInitialChange={handleInitialChange}
+        />
+      );
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -81,11 +91,14 @@ export const QuizRenderer = () => {
       switch (currentQuestionData.questionType) {
         case "multiple-choice": {
           const selectedAnswers: MCAnswer[] = [];
-          const answers = currentQuestionData?.answers?.["multiple-choice"];
+          if (!answers?.["multiple-choice"]) {
+            return;
+          }
 
           for (const entries of formData.entries()) {
-            const index = Number((entries[1] as string).at(-1)); // assumes the last character is the index and no more than 10 answers
-            answers?.[index] && selectedAnswers.push(answers[index]!); // FIXME: not sure why typescript doesn't recognize the null check
+            const i = Number((entries[1] as string).at(-1)); // assumes the last character is the index and no more than 10 answers
+            const a = answers?.["multiple-choice"]?.[i];
+            a && selectedAnswers.push(a);
           }
           handleSubmitMCAnswer(selectedAnswers);
           break;
