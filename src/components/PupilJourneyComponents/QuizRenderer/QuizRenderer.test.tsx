@@ -252,18 +252,14 @@ describe("QuizRenderer", () => {
     }
   });
 
-  it("calls handleSubmitShortAnswer when submit is clicked for a short answer", () => {
+  it("renders a shortAnswer when questionType === 'short-answer'", () => {
     const context = getContext();
 
     context.currentQuestionData = quizQuestions?.find(
       (q) => q.questionType === "short-answer",
     );
-    context.currentQuestionIndex =
-      quizQuestions?.findIndex((q) => q.questionType === "short-answer") ?? 0;
 
-    if (context?.questionState?.[context.currentQuestionIndex]) {
-      context.handleSubmitShortAnswer = jest.fn();
-
+    if (context?.currentQuestionData) {
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <QuizEngineContext.Provider value={context}>
@@ -272,14 +268,38 @@ describe("QuizRenderer", () => {
         </OakThemeProvider>,
       );
 
-      act(() => {
-        const input = getByRole("textbox");
-        fireEvent.change(input, { target: { value: "test" } });
-        fireEvent.click(getByRole("button", { name: "Submit" }));
-      });
-
-      expect(context.handleSubmitShortAnswer).toHaveBeenCalled();
-      expect(context.handleSubmitShortAnswer).toHaveBeenCalledWith("test");
+      expect(getByRole("textbox")).toBeInTheDocument();
     }
+  });
+
+  it("calls handleSubmitShortAnswer when submit is clicked for a short answer", () => {
+    const context = getContext();
+
+    context.currentQuestionData = quizQuestions?.find(
+      (q) => q.questionType === "short-answer",
+    );
+
+    if (context.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+    }
+
+    context.handleSubmitShortAnswer = jest.fn();
+
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizRenderer />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    act(() => {
+      const input = getByRole("textbox");
+      fireEvent.change(input, { target: { value: "test" } });
+      fireEvent.click(getByRole("button", { name: "Submit" }));
+    });
+
+    expect(context.handleSubmitShortAnswer).toHaveBeenCalled();
+    expect(context.handleSubmitShortAnswer).toHaveBeenCalledWith("test");
   });
 });
