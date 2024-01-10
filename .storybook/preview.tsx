@@ -21,6 +21,7 @@ export const OriginalNextImage = (props) => {
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
+    // sorts component props into alphbetical order
     sort: "alpha",
     matchers: {
       color: /(background|color)$/i,
@@ -30,6 +31,7 @@ export const parameters = {
   options: {
     storySort: {
       method: "alphabetical",
+      // Leave "Introduction" first so that user lands there first
       order: ["Introduction"],
     },
   },
