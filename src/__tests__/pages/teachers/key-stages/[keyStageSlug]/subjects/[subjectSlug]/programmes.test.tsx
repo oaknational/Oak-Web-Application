@@ -45,7 +45,7 @@ describe("programmes listing page", () => {
         description: "We have resources for tiers: Foundation, Higher",
         ogTitle: "Key stage 3 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We have resources for tiers: Foundation, Higher",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });

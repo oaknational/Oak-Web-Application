@@ -156,7 +156,7 @@ describe("pages/webinar/index.tsx", () => {
           ogDescription:
             "Join us for one of our scheduled webinars aimed at helping teachers to get the most out of Oak.",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+          ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         });
       });
     });
