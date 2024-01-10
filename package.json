@@ -92,7 +92,6 @@
     "next-sanity-image": "^6.1.1",
     "next-seo": "^6.4.0",
     "node-fetch": "^2.6.7",
-    "npm": "^10.2.5",
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1",
     "posthog-js": "^1.97.1",
