@@ -34,7 +34,6 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   }
 
   const handleOnChange = () => {
-    console.log("handleOnChange", lastChanged.current);
     if (lastChanged.current === 0 && onInitialChange) {
       onInitialChange();
     } else if (lastChanged.current !== 0 && onChange) {

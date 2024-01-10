@@ -1,5 +1,5 @@
-import { useMemo, useRef } from "react";
-import { OakFlex, OakQuizTextInput } from "@oak-academy/oak-components";
+import { useRef } from "react";
+import { OakQuizTextInput } from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
@@ -34,9 +34,19 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
     return null;
   }
 
+  const feedback =
+    questionState.mode === "feedback" &&
+    typeof questionState.feedback === "string"
+      ? questionState.feedback
+      : undefined;
+
   return (
-    <OakFlex>
-      <OakQuizTextInput />
-    </OakFlex>
+    <OakQuizTextInput
+      key={`short-answer-${questionUid}`}
+      name={`short-answer-${questionUid}`}
+      placeholder="Your answer"
+      onChange={handleOnChange}
+      feedback={feedback}
+    />
   );
 };

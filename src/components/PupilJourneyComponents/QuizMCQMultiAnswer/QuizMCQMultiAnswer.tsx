@@ -79,9 +79,10 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
           />
         ) : undefined;
 
-        const feedback = isFeedbackMode
-          ? questionState.feedback?.[index]
-          : undefined;
+        const feedback =
+          isFeedbackMode && Array.isArray(questionState.feedback)
+            ? questionState.feedback[index]
+            : undefined;
 
         return (
           <OakQuizCheckBox

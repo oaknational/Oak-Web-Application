@@ -21,14 +21,14 @@ export type QuizEngineProps = {
   questionsArray: QuestionsArray;
 };
 
-type QuestionFeedbackType = "correct" | "incorrect" | null;
-type QuestionModeType = "init" | "input" | "grading" | "feedback";
+export type QuestionFeedbackType = "correct" | "incorrect" | null;
+export type QuestionModeType = "init" | "input" | "grading" | "feedback";
 
 type QuestionState = {
   mode: QuestionModeType;
   grade: number;
   offerHint: boolean;
-  feedback?: QuestionFeedbackType[];
+  feedback?: QuestionFeedbackType | QuestionFeedbackType[];
 };
 
 export type QuizEngineContextType = {
@@ -40,6 +40,7 @@ export type QuizEngineContextType = {
   isComplete: boolean;
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
+  handleSubmitShortAnswer: (pupilAnswer?: string) => void;
   handleNextQuestion: () => void;
 } | null;
 
@@ -146,6 +147,34 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     [currentQuestionData, currentQuestionIndex],
   );
 
+  const handleSubmitShortAnswer = useCallback(
+    (pupilAnswer?: string) => {
+      const questionAnswers = currentQuestionData?.answers?.["short-answer"];
+      const correctAnswers = questionAnswers?.map(
+        (answer) => answer?.answer?.[0]?.text,
+      );
+      const feedback: QuestionFeedbackType = correctAnswers?.includes(
+        pupilAnswer,
+      )
+        ? "correct"
+        : "incorrect";
+
+      const grade = feedback === "correct" ? 1 : 0;
+
+      setQuestionState((prev) => {
+        const newState = [...prev];
+        newState[currentQuestionIndex] = {
+          mode: "feedback",
+          grade,
+          feedback,
+          offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
+        };
+        return newState;
+      });
+    },
+    [currentQuestionData, currentQuestionIndex],
+  );
+
   const handleNextQuestion = useCallback(() => {
     setCurrentQuestionIndex((prev) => Math.min(prev + 1, maxScore));
   }, [maxScore]);
@@ -161,6 +190,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         isComplete,
         updateQuestionMode,
         handleSubmitMCAnswer,
+        handleSubmitShortAnswer,
         handleNextQuestion,
       }}
     >

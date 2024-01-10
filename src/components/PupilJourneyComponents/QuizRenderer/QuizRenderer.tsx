@@ -27,6 +27,7 @@ export const QuizRenderer = () => {
     handleNextQuestion,
     updateQuestionMode,
     handleSubmitMCAnswer,
+    handleSubmitShortAnswer,
   } = quizEngineContext;
 
   let innerRender = null;
@@ -103,7 +104,13 @@ export const QuizRenderer = () => {
           handleSubmitMCAnswer(selectedAnswers);
           break;
         }
-        case "short-answer":
+        case "short-answer": {
+          const answer = formData.get(
+            `short-answer-${currentQuestionData?.questionUid}`,
+          ) as string;
+          handleSubmitShortAnswer(answer);
+          break;
+        }
         case "order":
         case "match":
         default:

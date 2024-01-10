@@ -8,6 +8,8 @@ import {
 import { QuizShortAnswer } from "./QuizShortAnswer";
 
 import {
+  QuestionFeedbackType,
+  QuestionModeType,
   QuizEngineContext,
   QuizEngineContextType,
 } from "@/components/PupilJourneyComponents/QuizEngineProvider";
@@ -35,26 +37,34 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // mock the QuizEngineContext
-const mockQuizEngineContext: QuizEngineContextType = {
-  currentQuestionData: quizQuestions?.find(
-    (q) =>
-      q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
-  ),
-  currentQuestionIndex: 0,
-  questionState: [
-    {
-      mode: "feedback",
-      grade: 0,
-      feedback: ["correct", "incorrect", "correct", "correct"],
-      offerHint: false,
-    },
-  ],
-  score: 0,
-  maxScore: 0,
-  isComplete: false,
-  updateQuestionMode: () => {},
-  handleSubmitMCAnswer: () => {},
-  handleNextQuestion: () => {},
+const getContext = (
+  params: {
+    feedback?: QuestionFeedbackType;
+    mode?: QuestionModeType;
+  } = {},
+): QuizEngineContextType => {
+  const { mode = "init", feedback } = params;
+  return {
+    currentQuestionData: quizQuestions?.find(
+      (q) =>
+        q.answers?.["short-answer"] && q.answers?.["short-answer"].length > 0,
+    ),
+    currentQuestionIndex: 0,
+    questionState: [
+      {
+        mode: mode,
+        grade: 0,
+        feedback: feedback,
+        offerHint: false,
+      },
+    ],
+    score: 0,
+    maxScore: 0,
+    isComplete: false,
+    updateQuestionMode: () => {},
+    handleSubmitMCAnswer: () => {},
+    handleNextQuestion: () => {},
+  };
 };
 
 /*
@@ -62,16 +72,36 @@ const mockQuizEngineContext: QuizEngineContextType = {
  * The component updates the state of the quizEngineProvider with the attempted answer
  *
  */
-export const Primary: Story = {
-  render: (args) => (
-    <QuizEngineContext.Provider value={mockQuizEngineContext}>
-      <OakBox
-        $background={"bg-decorative1-very-subdued"}
-        $pa={"inner-padding-m"}
-      >
-        <QuizShortAnswer {...args} />
-      </OakBox>
-    </QuizEngineContext.Provider>
-  ),
+export const Init: Story = {
+  render: (args) => {
+    const mock = getContext();
+    return (
+      <QuizEngineContext.Provider value={mock}>
+        <OakBox
+          $background={"bg-decorative1-very-subdued"}
+          $pa={"inner-padding-m"}
+        >
+          <QuizShortAnswer {...args} />
+        </OakBox>
+      </QuizEngineContext.Provider>
+    );
+  },
+  args: {},
+};
+
+export const Feedback: Story = {
+  render: (args) => {
+    const mock = getContext({ mode: "feedback", feedback: "correct" });
+    return (
+      <QuizEngineContext.Provider value={mock}>
+        <OakBox
+          $background={"bg-decorative1-very-subdued"}
+          $pa={"inner-padding-m"}
+        >
+          <QuizShortAnswer {...args} />
+        </OakBox>
+      </QuizEngineContext.Provider>
+    );
+  },
   args: {},
 };
