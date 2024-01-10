@@ -132,7 +132,9 @@ describe("QuizEngineContext", () => {
 
       expect(maxScore).toBe(
         questionsArrayFixture?.filter(
-          (q) => q.questionType === "multiple-choice",
+          (q) =>
+            q.questionType === "multiple-choice" ||
+            q.questionType === "short-answer",
         ).length,
       );
     });
