@@ -1,3 +1,31 @@
+## [1.321.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.0...v1.321.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* horizontal scroll at 400 for links ([9e5c202](https://github.com/oaknational/Oak-Web-Application/commit/9e5c2025eaf631c66c667139bbd86b087f762c0d))
+* horizontal scroll on support your team ([e4e3e82](https://github.com/oaknational/Oak-Web-Application/commit/e4e3e827afb7bb488701a72a1e27197100ed73e3))
+
+# [1.321.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.320.0...v1.321.0) (2024-01-10)
+
+
+### Features
+
+* include all filter options in avo reporting ([2f5fcb9](https://github.com/oaknational/Oak-Web-Application/commit/2f5fcb999d40bdb9698cc1d90b54dda7b3317a94))
+
+# [1.320.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.3...v1.320.0) (2024-01-10)
+
+
+### Bug Fixes
+
+* test mocks ([fcffb65](https://github.com/oaknational/Oak-Web-Application/commit/fcffb6590806aabd8955ee3b0106176c4a983591))
+* update tests ([863c6e2](https://github.com/oaknational/Oak-Web-Application/commit/863c6e28ec7c819d0b260b3bc1211140fc56e22a))
+
+
+### Features
+
+* promote search feature flag ([e8663ae](https://github.com/oaknational/Oak-Web-Application/commit/e8663ae88eef75340d55ac5a85e49849200bbc47))
+
 ## [1.319.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.2...v1.319.3) (2024-01-09)
 
 
