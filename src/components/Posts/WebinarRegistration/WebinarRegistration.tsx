@@ -2,8 +2,8 @@ import { FC, useId } from "react";
 
 import NewsletterForm, { useNewsletterForm } from "../../Forms/NewsletterForm";
 import OakLink from "../../OakLink";
-import BoxBorders from "../../SpriteSheet/BrushSvgs/BoxBorders";
 
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { HeadingTag, P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Flex from "@/components/SharedComponents/Flex";

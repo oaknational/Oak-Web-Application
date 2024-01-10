@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import { getSubjectIconAsset } from "../../image-data";
-import { OakColorName } from "../../styles/theme/types";
 import TagPromotional from "../TagPromotional";
 
+import { OakColorName } from "@/styles/theme/types";
 import Svg from "@/components/SharedComponents/Svg";
 import CMSImage, {
   CMSImageProps,

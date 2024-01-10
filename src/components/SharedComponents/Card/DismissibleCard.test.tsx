@@ -1,9 +1,9 @@
 import userEvent from "@testing-library/user-event";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
-
 import DismissibleCard from "./DismissibleCard";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 
 describe("DismissibleCard", () => {
   test("'close' button should have correct label", () => {

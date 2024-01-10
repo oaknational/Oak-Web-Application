@@ -48,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     for (const slug of curriculumPathSlugs) {
       fields.push({
         loc: path.join(sitemapBaseUrl, basePath, slug, tab),
-        lastmid: new Date().toISOString(),
+        lastmod: new Date().toISOString(),
       });
     }
   }
