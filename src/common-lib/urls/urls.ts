@@ -186,9 +186,12 @@ type SubjectListingLinkProps = {
   page: "subject-index";
   keyStageSlug: string;
 };
-type SpecialistSubjectListingLinkProps = {
+
+type SpecialistSubjectListingLinkProps = Omit<
+  LessonDownloadsLinkProps,
+  "page"
+> & {
   page: "specialist-subject-index";
-  keyStageSlug: string;
 };
 
 type WebinarSingleLinkProps = { page: "webinar-single"; webinarSlug: string };
