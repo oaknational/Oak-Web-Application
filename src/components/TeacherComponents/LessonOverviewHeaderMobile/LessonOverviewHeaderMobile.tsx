@@ -7,7 +7,7 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
-import LessonMetadata from "@/components/TeacherComponents/LessonMetadata";
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
   props,

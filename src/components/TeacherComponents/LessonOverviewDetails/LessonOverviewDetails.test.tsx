@@ -1,8 +1,8 @@
-import LessonDetails from "./LessonDetails";
+import LessonOverviewDetails from "./LessonOverviewDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("LessonDetails component", () => {
+describe("LessonOverviewDetails component", () => {
   const keyLearningPoints = [{ keyLearningPoint: "test" }];
   const commonMisconceptions = [
     { misconception: "misconception", response: "response" },
@@ -21,7 +21,7 @@ describe("LessonDetails component", () => {
   const teacherTips = [{ teacherTip: "test teacher tip" }];
   it("it should not render its own title", () => {
     const { getByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -37,7 +37,7 @@ describe("LessonDetails component", () => {
 
   it("should render KeyLearningPoints component with key learning points", () => {
     const { getByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -54,7 +54,7 @@ describe("LessonDetails component", () => {
 
   it("should render CommonMisconceptions component with common misconceptions", () => {
     const { getByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -71,7 +71,7 @@ describe("LessonDetails component", () => {
 
   it("should not render CommonMisconceptions when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={null}
         keyWords={keyWords}
@@ -88,7 +88,7 @@ describe("LessonDetails component", () => {
 
   it("should render KeyWords component with keywords", () => {
     const { getByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -105,7 +105,7 @@ describe("LessonDetails component", () => {
 
   it("should not render KeyWords when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={null}
@@ -122,7 +122,7 @@ describe("LessonDetails component", () => {
 
   it("should render TeacherTips component with keywords", () => {
     const { getByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -139,7 +139,7 @@ describe("LessonDetails component", () => {
 
   it("should not render TeacherTips when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -156,7 +156,7 @@ describe("LessonDetails component", () => {
 
   it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
     const { queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -177,7 +177,7 @@ describe("LessonDetails component", () => {
   });
   it("it should render the correct legacy license", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
@@ -199,7 +199,7 @@ describe("LessonDetails component", () => {
   });
   it("it should render the correct license", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonDetails
+      <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}

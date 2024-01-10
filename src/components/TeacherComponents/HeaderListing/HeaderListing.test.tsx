@@ -4,7 +4,7 @@ import { headerListingProps } from "./HeaderListing.stories";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const curriculumMapDownloaded = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

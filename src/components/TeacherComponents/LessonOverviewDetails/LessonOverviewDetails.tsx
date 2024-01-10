@@ -16,7 +16,7 @@ import {
   Equipment,
 } from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
 
-type LessonDetailsProps = {
+type LessonOverviewDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;
   commonMisconceptions: CommonMisconception[] | null | undefined;
   keyWords: KeyWord[] | null | undefined;
@@ -27,7 +27,7 @@ type LessonDetailsProps = {
   isLegacyLicense?: boolean;
 };
 
-const LessonDetails: FC<LessonDetailsProps> = ({
+const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   keyLearningPoints,
   commonMisconceptions,
   keyWords,
@@ -85,4 +85,4 @@ const LessonDetails: FC<LessonDetailsProps> = ({
   );
 };
 
-export default LessonDetails;
+export default LessonOverviewDetails;

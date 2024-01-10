@@ -1,11 +1,10 @@
 import { FC } from "react";
 
-import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
-import { LessonHeaderWrapper } from "../TeacherComponents/LessonHeaderWrapper";
-import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
-import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
-import LessonMetadata from "../TeacherComponents/LessonMetadata";
-
+import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
+import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
+import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import CurriculumDownloadButton from "@/components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

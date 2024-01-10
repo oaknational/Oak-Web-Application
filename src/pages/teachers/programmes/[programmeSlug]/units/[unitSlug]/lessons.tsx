@@ -21,7 +21,7 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import HeaderListing from "@/components/HeaderListing";
+import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/LessonListItem";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
