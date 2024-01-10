@@ -1,9 +1,10 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import SubjectProgrammeListItem from "./SubjectProgrammeListItem";
 
-import ProgrammeListItem from "./ProgrammeListItem";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 const tierSelected = jest.fn();
 jest.mock("../../context/Analytics/useAnalytics", () => ({
@@ -20,9 +21,9 @@ describe("ProgrammeListItem", () => {
     jest.clearAllMocks();
   });
 
-  it("renders ProgrammeListItem", () => {
+  it("renders SubjectProgrammeListItem", () => {
     renderWithTheme(
-      <ProgrammeListItem
+      <SubjectProgrammeListItem
         subjectSlug="maths"
         subjectTitle="Maths"
         keyStageSlug="ks4"
@@ -43,7 +44,7 @@ describe("ProgrammeListItem", () => {
 
   it("calls tracking.tierSelected once, with correct props", async () => {
     renderWithTheme(
-      <ProgrammeListItem
+      <SubjectProgrammeListItem
         subjectSlug="maths"
         subjectTitle="Maths"
         keyStageSlug="ks4"

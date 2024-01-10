@@ -40,11 +40,11 @@ export interface LessonItemContainerProps {
 }
 
 const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
-  return containerTitleToPreselectMap[title].downloadType;
+  return containerTitleToPreselectMap[title]?.downloadType;
 };
 
 const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
-  return containerTitleToPreselectMap[title].shareType;
+  return containerTitleToPreselectMap[title]?.shareType;
 };
 
 export const LessonItemContainer = forwardRef<

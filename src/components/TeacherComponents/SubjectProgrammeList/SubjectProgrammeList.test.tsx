@@ -1,9 +1,10 @@
 import { screen, waitFor } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
+import SubjectProgrammeList from "./SubjectProgrammeList";
 
-import ProgrammeList from "./ProgrammeList";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
+
 
 jest.mock("../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -12,9 +13,11 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-describe("ProgrammeList", () => {
+describe("SubjectProgrammeList", () => {
   it("Renders correct titles ", () => {
-    renderWithTheme(<ProgrammeList {...tieredProgrammeListingFixture()} />);
+    renderWithTheme(
+      <SubjectProgrammeList {...tieredProgrammeListingFixture()} />,
+    );
 
     waitFor(() => {
       expect(screen.getAllByRole("heading", { level: 3 })[0]?.textContent).toBe(

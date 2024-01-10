@@ -25,7 +25,7 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import LessonDetails from "@/components/TeacherComponents/LessonDetails";
+import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";

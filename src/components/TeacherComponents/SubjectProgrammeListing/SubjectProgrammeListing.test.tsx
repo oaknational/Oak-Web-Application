@@ -1,10 +1,9 @@
 import { screen } from "@testing-library/react";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import { tieredProgrammeListingFixture } from "../../node-lib/curriculum-api/fixtures/tierListing.fixture";
-
 import SubjectProgrammeListing from "./SubjectProgrammeListing";
 
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
 import { examBoardProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/examboardListing.fixture";
 
 const curriculumData = tieredProgrammeListingFixture();

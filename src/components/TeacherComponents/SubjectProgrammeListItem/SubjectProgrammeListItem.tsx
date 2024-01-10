@@ -11,7 +11,7 @@ import useClickableCard from "@/hooks/useClickableCard";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-const ProgrammeListItem: FC<
+const SubjectProgrammeListItem: FC<
   Pick<
     ProgrammeListingPageData,
     "subjectSlug" | "keyStageSlug" | "keyStageTitle"
@@ -75,4 +75,4 @@ const ProgrammeListItem: FC<
   );
 };
 
-export default ProgrammeListItem;
+export default SubjectProgrammeListItem;

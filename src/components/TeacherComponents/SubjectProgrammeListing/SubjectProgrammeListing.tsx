@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 
-import ProgrammeList from "../ProgrammeList";
-import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-
+import SubjectProgrammeList from "@/components/TeacherComponents/SubjectProgrammeList";
+import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 import Grid, {
   GridArea,
   GridAreaProps,
@@ -58,7 +57,7 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select tier of learning
             </Heading>
-            <ProgrammeList {...props} programmes={tierProgrammes} />
+            <SubjectProgrammeList {...props} programmes={tierProgrammes} />
           </ProgrammeListContainer>
         )}
         {tiers.length < 2 && (
@@ -66,7 +65,7 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
             <Heading tag="h2" $font="heading-5" $mb={30}>
               Select exam board
             </Heading>
-            <ProgrammeList {...props} programmes={examBoardProgrammes} />
+            <SubjectProgrammeList {...props} programmes={examBoardProgrammes} />
           </ProgrammeListContainer>
         )}
         {tiers.length > 1 && examBoards.length > 1 && (
@@ -83,7 +82,10 @@ const SubjectProgrammeListing: FC<ProgrammeListingPageData> = ({
                   <Heading tag="h2" $font="heading-5" $mb={30}>
                     {examBoard}
                   </Heading>
-                  <ProgrammeList {...props} programmes={programmeOfexamBoard} />
+                  <SubjectProgrammeList
+                    {...props}
+                    programmes={programmeOfexamBoard}
+                  />
                 </ProgrammeListContainer>
               );
             })}

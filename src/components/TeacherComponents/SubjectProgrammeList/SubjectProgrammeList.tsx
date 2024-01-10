@@ -1,9 +1,7 @@
 import { FC } from "react";
 
-import { ProgrammeListingPageData } from "../../node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-
-import ProgrammeListItem from "./ProgrammeListItem";
-
+import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
+import SubjectProgrammeListItem from "@/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 
 /**
@@ -12,7 +10,7 @@ import Grid, { GridArea } from "@/components/SharedComponents/Grid";
  * ## Usage
  * Used on a key stage 4 learning tier page
  */
-const ProgrammeList: FC<ProgrammeListingPageData> = ({
+const SubjectProgrammeList: FC<ProgrammeListingPageData> = ({
   programmes,
   subjectSlug,
   keyStageSlug,
@@ -28,7 +26,7 @@ const ProgrammeList: FC<ProgrammeListingPageData> = ({
             $colSpan={[12, 12, colSpan]}
             key={programme.programmeSlug}
           >
-            <ProgrammeListItem
+            <SubjectProgrammeListItem
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}
               subjectSlug={subjectSlug}
@@ -41,4 +39,4 @@ const ProgrammeList: FC<ProgrammeListingPageData> = ({
   );
 };
 
-export default ProgrammeList;
+export default SubjectProgrammeList;
