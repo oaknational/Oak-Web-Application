@@ -1,10 +1,9 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { ICON_NAMES } from "../../../image-data";
-
 import Component from "./Icon";
 
+import { ICON_NAMES } from "@/image-data";
 import { Heading } from "@/components/SharedComponents/Typography";
 
 export default {

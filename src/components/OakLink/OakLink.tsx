@@ -8,7 +8,6 @@ import {
   resolveOakHref,
   ResolveOakHrefProps,
 } from "../../common-lib/urls";
-import flex from "../../styles/utils/flex";
 import { OmitKeepDiscriminated } from "../../utils/generics";
 import { box } from "../SharedComponents/Box";
 import { HTMLAnchorProps } from "../SharedComponents/Button/common";
@@ -18,6 +17,7 @@ import NewFocusUnderline, {
   newFocusUnderlineStyles,
 } from "./NewFocusUnderline";
 
+import flex from "@/styles/utils/flex";
 import Svg from "@/components/SharedComponents/Svg";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 

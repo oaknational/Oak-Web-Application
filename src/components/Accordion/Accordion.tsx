@@ -7,7 +7,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import Svg from "@/components/SharedComponents/Svg";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Box from "@/components/SharedComponents/Box";
 
 export type AccordionContainerTitles =
