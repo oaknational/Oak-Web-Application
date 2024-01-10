@@ -1,9 +1,9 @@
 import { FC } from "react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
-import { HeaderWrapper } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderWrapper";
-import { HeaderLessonMobile } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderLessonMobile";
-import { HeaderLessonDesktop } from "@/components/TeacherComponents/LessonOverviewHeader/HeaderLessonDesktop";
+import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
+import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
+import { LessonOverviewHeaderDesktop } from "@/components/TeacherComponents/LessonOverviewHeaderDesktop";
 import { OakColorName } from "@/styles/theme";
 import { AnalyticsUseCaseValueType } from "@/browser-lib/avo/Avo";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
@@ -47,10 +47,10 @@ const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
 
   return (
-    <HeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <HeaderLessonDesktop {...props} />
-      <HeaderLessonMobile {...props} />
-    </HeaderWrapper>
+    <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
+      <LessonOverviewHeaderDesktop {...props} />
+      <LessonOverviewHeaderMobile {...props} />
+    </LessonHeaderWrapper>
   );
 };
 

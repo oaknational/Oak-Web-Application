@@ -9,7 +9,9 @@ import {
   LessonShareLinkProps,
 } from "@/common-lib/urls";
 
-export const HeaderShareAllButton: FC<LessonOverviewHeaderProps> = (props) => {
+export const LessonOverviewHeaderShareAllButton: FC<
+  LessonOverviewHeaderProps
+> = (props) => {
   const {
     subjectSlug,
     lessonTitle,

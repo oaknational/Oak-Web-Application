@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
+import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   LessonDownloadsCanonicalLinkProps,
@@ -8,8 +8,8 @@ import {
 } from "@/common-lib/urls";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 
-export const HeaderDownloadAllButton: FC<
-  LessonOverviewHeaderProps & BoxProps
+export const LessonOverviewHeaderDownloadAllButton: FC<
+  LessonOverviewHeaderDownloadAllButtonProps & BoxProps
 > = (props) => {
   const {
     subjectSlug,

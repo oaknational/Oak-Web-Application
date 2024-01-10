@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import { Breadcrumb } from "../SharedComponents/Breadcrumbs";
-import { HeaderWrapper } from "../TeacherComponents/LessonOverviewHeader/HeaderWrapper";
+import { LessonHeaderWrapper } from "../TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "../SubjectIconBrushBorders";
 import CurriculumDownloadButton from "../CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonMetadata from "../TeacherComponents/LessonMetadata";
@@ -56,7 +56,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
   } = props;
 
   return (
-    <HeaderWrapper breadcrumbs={breadcrumbs} background={background}>
+    <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <Flex $mb={[12, 0]} $flexDirection={"column"}>
         <Flex>
           <Box $height={[80, 140]} $maxWidth={[80, 140]} $mr={[16, 32]}>
@@ -110,7 +110,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           />
         )}
       </Flex>
-    </HeaderWrapper>
+    </LessonHeaderWrapper>
   );
 };
 

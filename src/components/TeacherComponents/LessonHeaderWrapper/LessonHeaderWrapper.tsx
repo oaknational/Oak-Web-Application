@@ -14,13 +14,13 @@ import { OakColorName } from "@/styles/theme";
  *
  */
 
-export interface HeaderWrapperProps {
+export interface LessonHeaderWrapperProps {
   children?: React.ReactNode;
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
 }
 
-export const HeaderWrapper: FC<HeaderWrapperProps> = (props) => {
+export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
   const { children, breadcrumbs, background } = props;
 
   return (
