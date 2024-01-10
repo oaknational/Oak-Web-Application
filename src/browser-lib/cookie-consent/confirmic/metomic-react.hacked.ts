@@ -56,10 +56,10 @@ function u(e) {
           i(e, r, t[r]);
         })
       : Object.getOwnPropertyDescriptors
-        ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
-        : l(Object(t)).forEach(function (r) {
-            Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
-          });
+      ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
+      : l(Object(t)).forEach(function (r) {
+          Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+        });
   }
   return e;
 }
@@ -153,9 +153,9 @@ function f(e, r) {
       "Map" === t || "Set" === t
         ? Array.from(t)
         : "Arguments" === t ||
-            /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
-          ? b(e, r)
-          : void 0
+          /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t)
+        ? b(e, r)
+        : void 0
     );
   }
 }

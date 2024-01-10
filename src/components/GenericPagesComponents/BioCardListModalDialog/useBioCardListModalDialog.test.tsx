@@ -8,7 +8,6 @@ import useBioCardListModalDialog from "./useBioCardListModalDialog";
 import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("useBioCardListModalDialog", () => {
   test("returns correct aria titleProps", () => {
     const { result } = renderHook(
