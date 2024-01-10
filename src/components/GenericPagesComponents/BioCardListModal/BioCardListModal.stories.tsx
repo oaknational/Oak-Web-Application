@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const BioModal = Template.bind({});
-BioModal.args = {};
+export const BioCarsListModal = Template.bind({});
+BioCarsListModal.args = {};

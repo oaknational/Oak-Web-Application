@@ -6,21 +6,23 @@ import {
   MutableRefObject,
 } from "react";
 
-import { BioData, BioModalProps } from "./BioModal";
+import { BioData, BioCardListModalProps } from "./BioCardListModal";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
 const reportError = errorReporter("useBioModal");
 
-type UseBioModalProps = {
+type UseBioCardListModalProps = {
   bios: BioData[];
 };
 export type ModalControllerRefs = Record<
   string,
   MutableRefObject<HTMLButtonElement | null>
 >;
-export const useBioModal = (props: UseBioModalProps): BioModalProps => {
+export const useBioCardListModal = (
+  props: UseBioCardListModalProps,
+): BioCardListModalProps => {
   const { bios } = props;
   const [bio, setBio] = useState<BioData>();
   const [initialBio, setInitialBio] = useState<BioData>();

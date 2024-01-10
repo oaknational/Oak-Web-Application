@@ -4,7 +4,7 @@ import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem
 import BioCardListModal, {
   BioData,
 } from "@/components/GenericPagesComponents/BioCardListModal";
-import { useBioModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioModal";
+import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
@@ -18,7 +18,7 @@ type BioCardListProps = FlexProps & {
 
 const BioCardList: FC<BioCardListProps> = (props) => {
   const { bios, withModals, firstBioHasOwnRow, ...flexProps } = props;
-  const modal = useBioModal({ bios });
+  const modal = useBioCardListModal({ bios });
 
   const onCardClick = withModals ? modal.openModal : undefined;
   const [firstBio, ...otherBios] = bios;

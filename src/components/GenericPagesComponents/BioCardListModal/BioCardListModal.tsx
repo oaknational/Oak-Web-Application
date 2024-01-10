@@ -1,6 +1,6 @@
 import { FC, MutableRefObject, useRef } from "react";
 
-import { ModalControllerRefs } from "./useBioModal";
+import { ModalControllerRefs } from "./useBioCardListModal";
 
 import BioCardListModalNavigationButtons from "@/components/GenericPagesComponents/BioCardListModalNavigationButtons/BioCardListModalNavigationButtons";
 import {
@@ -15,8 +15,8 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import ModalDialog from "@/components/ModalDialog";
-import useModalDialog from "@/components/ModalDialog/useModalDialog";
+import BioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog";
+import useBioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Svg from "@/components/SharedComponents/Svg";
@@ -32,7 +32,7 @@ export type BioData = {
   bioPortableText?: PortableTextJSON | null;
 };
 
-export type BioModalProps = {
+export type BioCardListModalProps = {
   isOpen: boolean;
   openModal: (initialBio: BioData) => void;
   closeModal: () => void;
@@ -42,12 +42,12 @@ export type BioModalProps = {
   returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
   modalControllerRefs: ModalControllerRefs;
 };
-const BioModal: FC<BioModalProps> = (props) => {
+const BioCardListModal: FC<BioCardListModalProps> = (props) => {
   const { bio, isOpen, closeModal, nextBio, prevBio, returnFocusRef } = props;
 
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const modalDialogProps = useModalDialog({
+  const modalDialogProps = useBioCardListModalDialog({
     size: "fullscreen",
     closeModal,
     isDismissable: true,
@@ -70,7 +70,7 @@ const BioModal: FC<BioModalProps> = (props) => {
   const { name, role, socials, image, bioPortableText } = bio;
 
   return (
-    <ModalDialog {...modalDialogProps}>
+    <BioCardListModalDialog {...modalDialogProps}>
       <Flex $width={"100%"} $ph={[0, 72]}>
         <Box
           $position={"absolute"}
@@ -201,8 +201,8 @@ const BioModal: FC<BioModalProps> = (props) => {
           </Flex>
         </MaxWidth>
       </Flex>
-    </ModalDialog>
+    </BioCardListModalDialog>
   );
 };
 
-export default BioModal;
+export default BioCardListModal;

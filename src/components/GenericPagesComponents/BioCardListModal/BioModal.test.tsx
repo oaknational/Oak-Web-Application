@@ -1,7 +1,7 @@
 import { OverlayProvider } from "react-aria";
 import userEvent from "@testing-library/user-event";
 
-import BioModal from "./BioModal";
+import BioCardListModal from "./BioCardListModal";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -33,12 +33,12 @@ const defaultProps = {
   modalControllerRefs: {},
 };
 
-describe("BioModal", () => {
+describe("BioCardListModal", () => {
   const user = userEvent.setup();
   test("doesn't render if isOpen false", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} isOpen={false} />
+        <BioCardListModal {...defaultProps} isOpen={false} />
       </OverlayProvider>,
     );
 
@@ -47,7 +47,7 @@ describe("BioModal", () => {
   test("doesn't render if bio is undefined", () => {
     const { container } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} bio={undefined} />
+        <BioCardListModal {...defaultProps} bio={undefined} />
       </OverlayProvider>,
     );
 
@@ -56,7 +56,7 @@ describe("BioModal", () => {
   test("dialog has correct title", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} />
+        <BioCardListModal {...defaultProps} />
       </OverlayProvider>,
     );
     const dialog = getByRole("dialog");
@@ -66,7 +66,7 @@ describe("BioModal", () => {
   test("tabbing works as expected (focus is trapped within modal)", async () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} />
+        <BioCardListModal {...defaultProps} />
       </OverlayProvider>,
     );
 
@@ -88,7 +88,7 @@ describe("BioModal", () => {
     const nextBio = jest.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} nextBio={nextBio} />
+        <BioCardListModal {...defaultProps} nextBio={nextBio} />
       </OverlayProvider>,
     );
     const nextButton = getByRole("button", { name: "next board member" });
@@ -100,7 +100,7 @@ describe("BioModal", () => {
     const prevBio = jest.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} prevBio={prevBio} />
+        <BioCardListModal {...defaultProps} prevBio={prevBio} />
       </OverlayProvider>,
     );
     const prevButton = getByRole("button", { name: "previous board member" });
@@ -112,7 +112,7 @@ describe("BioModal", () => {
     const closeModal = jest.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} closeModal={closeModal} />
+        <BioCardListModal {...defaultProps} closeModal={closeModal} />
       </OverlayProvider>,
     );
     const closeButton = getByRole("button", { name: "close modal" });
@@ -124,7 +124,7 @@ describe("BioModal", () => {
     const closeModal = jest.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} closeModal={closeModal} />
+        <BioCardListModal {...defaultProps} closeModal={closeModal} />
       </OverlayProvider>,
     );
     const closeButton = getByRole("button", { name: "close modal" });
@@ -136,7 +136,7 @@ describe("BioModal", () => {
   test("'prev' button disabled if 'prevBio' is undefined", () => {
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
-        <BioModal {...defaultProps} prevBio={undefined} />
+        <BioCardListModal {...defaultProps} prevBio={undefined} />
       </OverlayProvider>,
     );
     const prevButton = getByRole("button", { name: "previous board member" });

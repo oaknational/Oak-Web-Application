@@ -20,14 +20,14 @@ export type OverlayProps = OverlayAria["overlayProps"] &
   ModalAria["modalProps"];
 export type UnderlayProps = OverlayAria["underlayProps"];
 
-type UseModalDialogProps = AriaDialogProps &
+type BioCardListModalDialogProps = AriaDialogProps &
   AriaOverlayProps & {
     size: DialogModalSize;
     closeModal?: () => void;
     isOpen: boolean;
     returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
   };
-const useModalDialog = (props: UseModalDialogProps) => {
+const useBioCardListModalDialog = (props: BioCardListModalDialogProps) => {
   const {
     closeModal,
     isDismissable,
@@ -81,4 +81,4 @@ const useModalDialog = (props: UseModalDialogProps) => {
   };
 };
 
-export default useModalDialog;
+export default useBioCardListModalDialog;

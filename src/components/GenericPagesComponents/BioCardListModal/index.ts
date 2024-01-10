@@ -1,2 +1,2 @@
-export { default } from "./BioModal";
-export type { BioData } from "./BioModal";
+export { default } from "./BioCardListModal";
+export type { BioData } from "./BioCardListModal";

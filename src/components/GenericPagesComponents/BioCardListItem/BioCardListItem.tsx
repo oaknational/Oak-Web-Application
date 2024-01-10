@@ -1,7 +1,7 @@
 import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "@/hooks/useClickableCard";
-import { BioData } from "@/components/GenericPagesComponents/BioCardListModal/BioModal";
+import { BioData } from "@/components/GenericPagesComponents/BioCardListModal/BioCardListModal";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import { Heading, P } from "@/components/SharedComponents/Typography";

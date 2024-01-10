@@ -40,7 +40,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const ModalDialog = Template.bind({});
-ModalDialog.args = {
+export const BioCardListModalDialog = Template.bind({});
+BioCardListModalDialog.args = {
   size: "small",
 };

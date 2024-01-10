@@ -1,11 +1,15 @@
 import { FC, MutableRefObject, ReactNode, RefObject } from "react";
 import { FocusOn } from "react-focus-on";
 
-import { DialogModalSize, OverlayProps, UnderlayProps } from "./useModalDialog";
+import {
+  DialogModalSize,
+  OverlayProps,
+  UnderlayProps,
+} from "./useBioCardListModalDialog";
 
 import Flex from "@/components/SharedComponents/Flex";
 
-type ModalDialogProps = {
+type BioCardListModalDialogProps = {
   underlayProps: UnderlayProps;
   overlayProps: OverlayProps;
   titleProps: { id: string };
@@ -14,7 +18,7 @@ type ModalDialogProps = {
   size: DialogModalSize;
   returnFocusRef?: MutableRefObject<HTMLButtonElement | null>;
 };
-const ModalDialog: FC<ModalDialogProps> = (props) => {
+const BioCardListModalDialog: FC<BioCardListModalDialogProps> = (props) => {
   const {
     children,
     size,
@@ -66,4 +70,4 @@ const ModalDialog: FC<ModalDialogProps> = (props) => {
   );
 };
 
-export default ModalDialog;
+export default BioCardListModalDialog;

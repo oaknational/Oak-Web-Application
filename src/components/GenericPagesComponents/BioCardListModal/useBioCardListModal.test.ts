@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
-import { useBioModal } from "./useBioModal";
+import { useBioCardListModal } from "./useBioCardListModal";
 
 import { portableTextFromString } from "@/__tests__/__helpers__/cms";
 
@@ -24,12 +24,12 @@ const bios = ["Ramender Crompton", "Matt Hood"].map((name, i) => ({
 
 describe("useBioModal", () => {
   test("isOpen defaults to false", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
 
     expect(result.current.isOpen).toBe(false);
   });
   test("openModal() sets the bio and sets isOpen true", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const { openModal } = result.current;
     const initialBio = bios[0];
     if (!initialBio) throw new Error("initialBio must exist");
@@ -41,7 +41,7 @@ describe("useBioModal", () => {
     expect(isOpen).toBe(true);
   });
   test("nextBio() undefined if last bio", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const initialBio = bios[1];
     if (!initialBio) throw new Error("initialBio must exist");
     const { openModal } = result.current;
@@ -52,7 +52,7 @@ describe("useBioModal", () => {
     expect(nextBio).toBe(undefined);
   });
   test("nextBio() sets the bio to the next bio", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const initialBio = bios[0];
     if (!initialBio) throw new Error("initialBio must exist");
     const { openModal } = result.current;
@@ -72,7 +72,7 @@ describe("useBioModal", () => {
     expect(bio).toBe(bios[1]);
   });
   test("prevBio() undefined if first bio", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const initialBio = bios[0];
     if (!initialBio) throw new Error("initialBio must exist");
     const { openModal } = result.current;
@@ -83,7 +83,7 @@ describe("useBioModal", () => {
     expect(prevBio).toBe(undefined);
   });
   test("prevBio() sets the bio to the previous bio", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const initialBio = bios[1];
     if (!initialBio) throw new Error("initialBio must exist");
     const { openModal } = result.current;
@@ -103,7 +103,7 @@ describe("useBioModal", () => {
     expect(bio).toBe(bios[0]);
   });
   test("closeModal() sets isOpen to false", () => {
-    const { result } = renderHook(() => useBioModal({ bios }));
+    const { result } = renderHook(() => useBioCardListModal({ bios }));
     const initialBio = bios[1];
     if (!initialBio) throw new Error("initialBio must exist");
     const { openModal } = result.current;
