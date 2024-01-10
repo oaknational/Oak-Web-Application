@@ -36,7 +36,7 @@ const CurriculumTab: FC = () => {
               <Flex $flexDirection={"column"}>
                 {" "}
                 <Typography $font={"body-1"}>
-                  Explore our new curriculum plans and early-release units.
+                  Explore our new curriculum plans.
                 </Typography>
                 <UL $mt={16} $font={"body-1"}>
                   <LI>National curriculum-aligned</LI>
@@ -50,14 +50,6 @@ const CurriculumTab: FC = () => {
                   label={"View curriculum plans"}
                   variant={"brushNav"}
                   page={"curriculum-landing-page"}
-                  icon={"arrow-right"}
-                  $iconPosition={"trailing"}
-                  iconBackground="black"
-                />
-                <ButtonAsLink
-                  label={"Early-release units"}
-                  variant={"brushNav"}
-                  page={"early-release-units-page"}
                   icon={"arrow-right"}
                   $iconPosition={"trailing"}
                   iconBackground="black"
