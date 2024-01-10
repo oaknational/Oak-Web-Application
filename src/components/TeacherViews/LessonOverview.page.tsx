@@ -6,12 +6,11 @@ import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
-} from "../lesson.helpers";
+} from "@/components/Lesson/lesson.helpers";
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
-} from "../lesson.types";
-
+} from "@/components/Lesson/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
@@ -26,7 +25,7 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import LessonDetails from "@/components/LessonDetails/LessonDetails";
+import LessonDetails from "@/components/TeacherComponents/LessonDetails/LessonDetails";
 import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
 import HeaderLesson from "@/components/HeaderLesson";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";

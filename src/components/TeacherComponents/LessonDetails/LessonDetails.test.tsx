@@ -1,6 +1,7 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import LessonDetails from "./LessonDetails";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 describe("LessonDetails component", () => {
   const keyLearningPoints = [{ keyLearningPoint: "test" }];
