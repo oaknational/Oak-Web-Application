@@ -6,20 +6,20 @@ import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/SharedComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
-import AboutContactCard from "@/components/AboutContactCard";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
 import Typography, {
   Heading,
   Hr,
   P,
 } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import AboutIntroCard from "@/components/AboutIntoCard/AboutIntroCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import BioCardList from "@/components/BioCardList";
-import AboutUsSummaryCard from "@/components/pages/AboutUs/AboutUsSummaryCard";
+import BioCardList from "@/components/GenericPagesComponents/BioCardList";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import Flex from "@/components/SharedComponents/Flex";
@@ -41,8 +41,8 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -133,7 +133,7 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             />
           </Typography>
         </Card>
-        <AboutContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );
