@@ -7,7 +7,6 @@ import UpcomingWebinarWall, {
 import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const props: UpcomingWebinarWallProps = {
   headingTag: "h5",
   headingText: "Register to view",

@@ -5,7 +5,6 @@ import Component from "./PostHeader";
 import PostHogDecorator from "@/storybook-decorators/PostHogDecorator";
 import ToastDecorator from "@/storybook-decorators/ToastDecorator";
 
-
 export default {
   decorators: [ToastDecorator, PostHogDecorator],
   component: Component,

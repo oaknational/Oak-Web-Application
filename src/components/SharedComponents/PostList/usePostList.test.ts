@@ -5,7 +5,6 @@ import usePostList from "./usePostList";
 import { mockWebinar } from "@/__tests__/pages/webinars/webinar.fixtures";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 
-
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("usePostList.ts", () => {

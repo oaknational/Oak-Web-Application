@@ -2,7 +2,6 @@ import PostCategoryList from "./PostCategoryList";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const labelId = "test-label-id";
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({

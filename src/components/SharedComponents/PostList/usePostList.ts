@@ -7,7 +7,6 @@ import isUpcomingWebinar from "@/utils/isUpcomingWebinar";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 
-
 export const PAGE_SIZE = 4;
 
 type PropsAddedByHook = "upcomingItem" | "currentPageItems" | "paginationProps";

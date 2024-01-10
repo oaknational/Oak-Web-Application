@@ -4,7 +4,6 @@ import useUpcomingWebinarWall from "./useUpcomingWebinarWall";
 
 import { mockWebinar } from "@/__tests__/pages/webinars/webinar.fixtures";
 
-
 describe("useUpcomingWebinarWall.ts", () => {
   test("returns the expected data", () => {
     const { result } = renderHook(() => useUpcomingWebinarWall(mockWebinar()));

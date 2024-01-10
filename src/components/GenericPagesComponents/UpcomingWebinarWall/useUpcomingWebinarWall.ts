@@ -4,7 +4,6 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { SerializedWebinar } from "@/pages/webinars/[webinarSlug]";
 import formatDate from "@/utils/formatDate";
 
-
 const useUpcomingWebinarWall = (
   webinar: SerializedWebinar,
 ): UpcomingWebinarWallProps => {
