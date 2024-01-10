@@ -29,7 +29,7 @@ import {
   SerializedBlogPostPreview,
 } from "@/components/pages/BlogIndex.page";
 import { serializeDate } from "@/utils/serializeDate";
-import PostListItem from "@/components/Posts/PostList/PostListItem/PostListItem";
+import PostListItem from "@/components/SharedComponents/PostListItem";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

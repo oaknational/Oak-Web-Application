@@ -23,7 +23,7 @@ import WebinarVideo from "@/components/Posts/WebinarVideo";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import { getVideoThumbnail } from "@/components/VideoPlayer/getVideoThumbnail";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedWebinar = Omit<Webinar, "date"> & {

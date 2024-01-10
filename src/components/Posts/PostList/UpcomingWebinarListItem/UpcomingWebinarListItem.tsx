@@ -4,7 +4,7 @@ import { useHover } from "react-aria";
 import LineClamp from "@/components/SharedComponents/LineClamp";
 import OakLink from "@/components/OakLink";
 import formatDate from "@/utils/formatDate";
-import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
+import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import useClickableCard from "@/hooks/useClickableCard";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

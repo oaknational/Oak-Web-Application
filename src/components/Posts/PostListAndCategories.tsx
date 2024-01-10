@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { useTheme } from "styled-components";
 
 import { PostListingPageProps } from "../pages/BlogIndex.page";
+import { PostListItemProps } from "../SharedComponents/PostListItem";
 
 import PostCategoryList from "./PostCategoryList";
 import { PostCategoryPage } from "./PostCategoryList/PostCategoryList";
 import usePostCategoryList from "./PostCategoryList/usePostCategoryList";
 import PostList from "./PostList";
-import { PostListItemProps } from "./PostList/PostListItem";
 import usePostList from "./PostList/usePostList";
 
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";

@@ -1,9 +1,8 @@
 import { FC } from "react";
 
-import { getSizes } from "../../../SharedComponents/CMSImage/getSizes";
-
 import { PostListItemProps } from ".";
 
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OwaImage from "@/components/SharedComponents/OwaImage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 

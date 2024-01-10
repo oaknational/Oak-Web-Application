@@ -3,9 +3,9 @@ import { useMemo } from "react";
 
 import isUpcomingWebinar from "../../../utils/isUpcomingWebinar";
 import usePagination from "../../SharedComponents/Pagination/usePagination";
+import { PostListItemProps } from "../../SharedComponents/PostListItem";
 
 import { PostListProps } from "./PostList";
-import { PostListItemProps } from "./PostListItem";
 
 export const PAGE_SIZE = 4;
 

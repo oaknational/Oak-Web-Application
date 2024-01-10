@@ -21,7 +21,7 @@ import BlogPortableText from "@/components/Posts/PostPortableText/PostPortableTe
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { sanityClientLike } from "@/components/SharedComponents/CMSImage";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
-import PostSingleLayout from "@/components/Posts/PostSingleLayout";
+import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
 
 export type SerializedBlog = Omit<BlogPost, "date"> & {

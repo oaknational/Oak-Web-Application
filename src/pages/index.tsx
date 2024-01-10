@@ -31,7 +31,7 @@ import {
 } from "@/components/pages/WebinarsIndex.page";
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
-import { PostListItemProps } from "@/components/Posts/PostList/PostListItem";
+import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
 
 export type TeachersHomePageProps = HomePageProps & {

@@ -5,7 +5,7 @@ import {
   BlogPostPreview,
   BlogWebinarCategory,
 } from "../../common-lib/cms-types";
-import { PostListItemProps } from "../Posts/PostList/PostListItem";
+import { PostListItemProps } from "../SharedComponents/PostListItem";
 import PostListing from "../Posts/PostListing";
 import { PAGE_SIZE } from "../Posts/PostList/usePostList";
 import usePagination from "../SharedComponents/Pagination/usePagination";

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
-import { PostListItemProps } from "../../components/Posts/PostList/PostListItem";
+import { PostListItemProps } from "../SharedComponents/PostListItem";
 import {
   BlogWebinarCategory,
   WebinarPreview,

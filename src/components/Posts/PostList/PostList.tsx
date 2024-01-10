@@ -1,9 +1,11 @@
 import { FC } from "react";
 
 import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
+import PostListItem, {
+  PostListItemProps,
+} from "../../SharedComponents/PostListItem";
 
 import UpcomingWebinarListItem from "./UpcomingWebinarListItem";
-import PostListItem, { PostListItemProps } from "./PostListItem";
 
 import { Hr, LI, UL } from "@/components/SharedComponents/Typography";
 import Pagination, {

@@ -1,7 +1,8 @@
-import { mockImageAsset } from "../../../../__tests__/__helpers__/cms";
-import renderWithTheme from "../../../../__tests__/__helpers__/renderWithTheme";
-
 import PostListItem, { PostListItemProps } from ".";
+
+import { mockImageAsset } from "@/__tests__/__helpers__/cms";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 const testProps: PostListItemProps = {
   title: "Item title",
