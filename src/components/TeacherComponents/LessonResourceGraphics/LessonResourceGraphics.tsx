@@ -2,8 +2,7 @@ import { FC } from "react";
 
 import LessonResourceGraphicsItem, {
   LessonResourceGraphicsItemProps,
-} from "./LessonResourceGraphicsItem";
-
+} from "@/components/TeacherComponents/LessonResourceGraphicsItem";
 import Flex from "@/components/SharedComponents/Flex";
 
 type LessonResourceGraphicsProps = {

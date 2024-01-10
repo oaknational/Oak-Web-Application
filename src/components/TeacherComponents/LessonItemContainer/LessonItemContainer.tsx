@@ -1,10 +1,8 @@
 import { forwardRef } from "react";
 
-import { LessonPageLinkAnchorId } from "../Lesson/lesson.helpers";
-import { containerTitleToPreselectMap } from "../DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
-
-import { ContainerLink } from "./ContainerLink";
-
+import { LessonPageLinkAnchorId } from "@/components/Lesson/lesson.helpers";
+import { containerTitleToPreselectMap } from "@/components/DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
+import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import { Heading, Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Flex from "@/components/SharedComponents/Flex";
@@ -83,7 +81,7 @@ export const LessonItemContainer = forwardRef<
           </Heading>
         )}
         {downloadable && slugs && (
-          <ContainerLink
+          <LessonItemContainerLink
             page={"download"}
             resourceTitle={lowerCaseTitle}
             onClick={onDownloadButtonClick}
@@ -92,7 +90,7 @@ export const LessonItemContainer = forwardRef<
           />
         )}
         {shareable && slugs && (
-          <ContainerLink
+          <LessonItemContainerLink
             page={"share"}
             resourceTitle={lowerCaseTitle}
             onClick={onDownloadButtonClick}

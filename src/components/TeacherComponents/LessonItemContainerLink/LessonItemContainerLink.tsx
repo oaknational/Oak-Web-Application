@@ -1,13 +1,12 @@
 import ButtonAsLink, {
   ButtonAsLinkProps,
-} from "../SharedComponents/Button/ButtonAsLink";
+} from "@/components/SharedComponents/Button/ButtonAsLink";
 import {
   PreselectedDownloadType,
   PreselectedShareType,
   isPreselectedDownloadType,
   isPreselectedShareType,
-} from "../DownloadAndShareComponents/downloadAndShare.types";
-
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,
@@ -15,7 +14,7 @@ import {
   LessonShareLinkProps,
 } from "@/common-lib/urls";
 
-export function ContainerLink({
+export function LessonItemContainerLink({
   resourceTitle,
   onClick,
   lessonSlug,

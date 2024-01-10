@@ -10,7 +10,7 @@ import Layout from "@/components/SharedComponents/Layout";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import LessonElementLinks from "@/components/LessonElementLinks";
+import LessonElementLinks from "@/components/TeacherComponents/LessonElementLinks";
 import { OakColorName } from "@/styles/theme";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";

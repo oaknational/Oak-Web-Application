@@ -1,8 +1,9 @@
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import LessonResourceGraphics from "./LessonResourceGraphics";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 describe("LessonResourceGraphics", () => {
   it("Renders correct titles ", () => {

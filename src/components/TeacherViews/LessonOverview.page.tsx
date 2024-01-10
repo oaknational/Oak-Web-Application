@@ -25,8 +25,8 @@ import type {
   DownloadResourceButtonNameValueType,
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import LessonDetails from "@/components/TeacherComponents/LessonDetails/LessonDetails";
-import { LessonItemContainer } from "@/components/LessonItemContainer/LessonItemContainer";
+import LessonDetails from "@/components/TeacherComponents/LessonDetails";
+import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/HeaderLesson";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
