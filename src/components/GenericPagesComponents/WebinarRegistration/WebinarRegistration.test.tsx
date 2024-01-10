@@ -7,9 +7,8 @@ import WebinarRegistration, {
 import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("@./context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     identify: jest.fn(),
