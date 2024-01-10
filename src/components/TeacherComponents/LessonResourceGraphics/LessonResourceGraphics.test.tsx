@@ -4,7 +4,6 @@ import LessonResourceGraphics from "./LessonResourceGraphics";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("LessonResourceGraphics", () => {
   it("Renders correct titles ", () => {
     renderWithTheme(

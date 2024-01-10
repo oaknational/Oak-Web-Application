@@ -9,7 +9,7 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api/fixtures/lessonOver
 import { LessonOverviewData } from "@/node-lib/curriculum-api";
 
 const resourceContainerExpanded = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

@@ -5,7 +5,6 @@ import Component from ".";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
 
-
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
