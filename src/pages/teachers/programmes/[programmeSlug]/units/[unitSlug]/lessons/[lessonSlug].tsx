@@ -16,7 +16,7 @@ import curriculumApi, { LessonOverviewData } from "@/node-lib/curriculum-api";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import { getCaptionsFromFile } from "@/utils/handleTranscript";
 
 export type LessonOverviewPageProps = {
