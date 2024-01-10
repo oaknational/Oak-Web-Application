@@ -27,6 +27,7 @@ const getContext = (): QuizEngineContextType => ({
   updateQuestionMode: (mode) => mode,
   handleSubmitMCAnswer: () => {},
   handleNextQuestion: () => {},
+  handleSubmitShortAnswer: () => {},
   score: 0,
   maxScore: 1,
   isComplete: false,

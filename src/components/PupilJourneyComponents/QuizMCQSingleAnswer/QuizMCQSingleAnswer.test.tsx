@@ -27,6 +27,7 @@ const getContext = (): NonNullable<QuizEngineContextType> => ({
   updateQuestionMode: jest.fn(),
   handleSubmitMCAnswer: jest.fn(),
   handleNextQuestion: jest.fn(),
+  handleSubmitShortAnswer: jest.fn(),
   score: 0,
   maxScore: 1,
   isComplete: false,

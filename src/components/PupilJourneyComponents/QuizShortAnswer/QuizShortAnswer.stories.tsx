@@ -63,6 +63,7 @@ const getContext = (
     isComplete: false,
     updateQuestionMode: () => {},
     handleSubmitMCAnswer: () => {},
+    handleSubmitShortAnswer: () => {},
     handleNextQuestion: () => {},
   };
 };

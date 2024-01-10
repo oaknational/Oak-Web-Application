@@ -67,6 +67,7 @@ describe("QuizMCQMultiAnswer", () => {
     updateQuestionMode: jest.fn(),
     handleSubmitMCAnswer: jest.fn(),
     handleNextQuestion: jest.fn(),
+    handleSubmitShortAnswer: jest.fn(),
   };
 
   const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {
