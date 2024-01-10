@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",
@@ -38,7 +38,6 @@ module.exports = {
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
     "@storybook/addon-mdx-gfm",
-    "storybook-addon-next",
   ],
   framework: {
     name: "@storybook/nextjs",
