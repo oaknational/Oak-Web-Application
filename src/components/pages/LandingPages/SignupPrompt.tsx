@@ -5,7 +5,7 @@ import { SignUpForm } from "./SignUpForm";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export const SignupPrompt: FC<{
   title: string;
