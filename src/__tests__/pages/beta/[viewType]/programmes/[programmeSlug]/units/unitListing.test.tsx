@@ -74,7 +74,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         description: "We have resources for tiers: Foundation, Core, Higher",
         ogTitle: "Key stage 4 Computing tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "We have resources for tiers: Foundation, Core, Higher",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
@@ -92,7 +92,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ogTitle:
           "Free KS4 Computing Teaching Resources for Lesson Planning | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Programme units",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
@@ -116,7 +116,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         ogTitle:
           "Free KS4 Computing Teaching Resources for Lesson Planning | Page 1 of 2 | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Programme units",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });

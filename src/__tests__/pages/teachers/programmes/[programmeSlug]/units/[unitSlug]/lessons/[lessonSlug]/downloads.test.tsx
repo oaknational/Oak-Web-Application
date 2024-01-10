@@ -374,7 +374,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         ogTitle:
           "Lesson Download: Islamic Geometry | KS4 Maths | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Lesson downloads",
-        ogUrl: "NEXT_PUBLIC_SEO_APP_URL",
+        ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "noindex,nofollow",
       });
