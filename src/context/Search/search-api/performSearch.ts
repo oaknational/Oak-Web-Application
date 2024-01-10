@@ -13,10 +13,8 @@ export async function performSearch({
   onStart,
   onSuccess,
   onFail,
-  apiVersion,
 }: {
   query: SearchQuery;
-  apiVersion: "2020" | "2023";
   onStart: () => void;
   onSuccess: (hits: SearchHit[]) => void;
   onFail: () => void;
@@ -24,11 +22,10 @@ export async function performSearch({
   try {
     onStart();
 
-    const results = await fetchResults2020(query);
-
-    if (apiVersion === "2023") {
-      results.unshift(...(await fetchResults2023(query)));
-    }
+    const results = [
+      ...(await fetchResults2023(query)),
+      ...(await fetchResults2020(query)),
+    ];
 
     onSuccess(results);
   } catch (error) {

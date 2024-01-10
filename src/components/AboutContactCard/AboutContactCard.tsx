@@ -3,10 +3,10 @@ import { PortableTextComponents } from "@portabletext/react";
 
 import { useNewsletterForm } from "../Forms/NewsletterForm";
 import NewsletterFormWrap from "../Forms/NewsletterForm/NewsletterFormWrap";
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextJSON } from "../../common-lib/cms-types";
 import { PortableTextWithDefaults } from "../PortableText";
 
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card";

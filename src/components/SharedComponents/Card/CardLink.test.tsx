@@ -1,10 +1,9 @@
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import Card from "./Card";
 import CardLink from "./CardLink";
 
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 
 describe("CardLink", () => {

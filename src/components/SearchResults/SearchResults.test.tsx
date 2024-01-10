@@ -43,13 +43,18 @@ const props = {
 };
 
 const searchResultOpened = jest.fn();
+const searchResultExpanded = jest.fn();
 
 const render = renderWithProviders();
 
 describe("<SearchResults />", () => {
   test("A lesson search result links to the lesson listing page", () => {
     const { getByRole } = render(
-      <SearchResults {...props} searchResultOpened={searchResultOpened} />,
+      <SearchResults
+        {...props}
+        searchResultOpened={searchResultOpened}
+        searchResultExpanded={searchResultExpanded}
+      />,
     );
     expect(
       getByRole("link", {
@@ -65,6 +70,7 @@ describe("<SearchResults />", () => {
     const { getByRole } = render(
       <SearchResults
         searchResultOpened={searchResultOpened}
+        searchResultExpanded={searchResultExpanded}
         {...props}
         hits={props.hits.filter((hit) => hit._source.type === "unit")}
       />,
@@ -79,7 +85,11 @@ describe("<SearchResults />", () => {
 
   test("it renders the search results", () => {
     const { getAllByRole } = render(
-      <SearchResults searchResultOpened={searchResultOpened} {...props} />,
+      <SearchResults
+        searchResultOpened={searchResultOpened}
+        searchResultExpanded={searchResultExpanded}
+        {...props}
+      />,
     );
 
     const searchElement = getAllByRole("listitem");
@@ -91,6 +101,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(21);
     const { getByRole } = render(
       <SearchResults
+        searchResultExpanded={searchResultExpanded}
         searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}
@@ -105,6 +116,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(20);
     const { queryByRole } = render(
       <SearchResults
+        searchResultExpanded={searchResultExpanded}
         searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}
@@ -119,6 +131,7 @@ describe("<SearchResults />", () => {
     const hits = getNHits(1);
     const { getByRole } = render(
       <SearchResults
+        searchResultExpanded={searchResultExpanded}
         searchResultOpened={searchResultOpened}
         {...props}
         hits={hits}

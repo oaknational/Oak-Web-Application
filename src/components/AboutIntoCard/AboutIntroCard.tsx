@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { PortableTextProps } from "@portabletext/react";
 
-import BrushBorders from "../SpriteSheet/BrushSvgs/BrushBorders";
 import { PortableTextWithDefaults } from "../PortableText";
 
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import CardImage, {
   CardImageProps,

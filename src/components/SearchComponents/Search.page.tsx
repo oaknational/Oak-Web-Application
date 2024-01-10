@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
-import * as cheerio from "cheerio";
 
 import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
 
 import { SearchProps } from "./search.page.types";
+import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
 import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -19,8 +19,6 @@ import SearchForm from "@/components/SearchForm";
 import SearchResults from "@/components/SearchResults";
 import NoSearchResults from "@/components/SearchResults/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import { convertUnitSlugToTitle } from "@/components/SearchComponents/helpers";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -61,7 +59,7 @@ const Search: FC<SearchProps> = (props) => {
 
       track.searchResultsDisplayed({
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query,
         ),
         searchResultCount: hitCount,
         analyticsUseCase: analyticsUseCase,
@@ -74,13 +72,49 @@ const Search: FC<SearchProps> = (props) => {
     analyticsUseCase,
     hitCount,
     query.term,
-    router.query.keyStages,
-    router.query.page,
+    router.query,
     searchStartTime,
     setSearchStartTime,
     status,
     track,
   ]);
+
+  const searchResultExpanded = ({
+    searchHit,
+    searchRank,
+  }: {
+    searchHit: SearchResultsItemProps;
+    searchRank: number;
+  }) => {
+    if (
+      searchHit.isToggleOpen &&
+      isKeyStageTitleValueType(searchHit.keyStageTitle)
+    ) {
+      track.searchResultExpanded({
+        context: "search",
+        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageTitle: searchHit.keyStageTitle,
+        subjectTitle: searchHit.subjectTitle,
+        subjectSlug: searchHit.subjectSlug,
+        unitName:
+          searchHit.type === "lesson"
+            ? removeHTMLTags(searchHit.unitTitle)
+            : removeHTMLTags(searchHit.title),
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        searchRank: searchRank,
+        searchFilterOptionSelected: getSortedSearchFiltersSelected(
+          router.query,
+        ),
+        searchResultCount: hitCount,
+        searchResultType: searchHit.type,
+        lessonName: removeHTMLTags(searchHit.title),
+        lessonSlug:
+          searchHit.type === "lesson"
+            ? searchHit.buttonLinkProps.lessonSlug
+            : "",
+      });
+    }
+  };
 
   const searchResultOpened = ({
     searchHit,
@@ -89,26 +123,25 @@ const Search: FC<SearchProps> = (props) => {
     searchHit: SearchResultsItemProps;
     searchRank: number;
   }) => {
-    if (searchHit) {
-      const $ = cheerio.load(searchHit.title);
+    if (searchHit && isKeyStageTitleValueType(searchHit.keyStageTitle)) {
       track.searchResultOpened({
         keyStageSlug: searchHit.keyStageSlug || "",
-        keyStageTitle: searchHit.keyStageTitle as KeyStageTitleValueType,
+        keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
         unitName:
-          searchHit.type === "unit"
-            ? $.text()
-            : convertUnitSlugToTitle(searchHit.buttonLinkProps.unitSlug), // unit name without highlighting html tags,
+          searchHit.type === "lesson"
+            ? removeHTMLTags(searchHit.unitTitle)
+            : removeHTMLTags(searchHit.title),
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         analyticsUseCase: analyticsUseCase,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query.keyStages,
+          router.query,
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: searchHit.type === "lesson" ? $.text() : null,
+        lessonName: removeHTMLTags(searchHit.title),
         lessonSlug:
           searchHit.type === "lesson"
             ? searchHit.buttonLinkProps.lessonSlug
@@ -116,6 +149,15 @@ const Search: FC<SearchProps> = (props) => {
         context: "search",
       });
     }
+  };
+
+  const searchRefined = (filterType: string, filterValue: string) => {
+    track.searchRefined({
+      context: "search",
+      searchResultCount: hitCount,
+      filterType: filterType,
+      filterValue: filterValue,
+    });
   };
 
   return (
@@ -159,13 +201,22 @@ const Search: FC<SearchProps> = (props) => {
                 iconBackground="black"
                 $alignSelf={"flex-start"}
               >
-                <SearchFilters {...searchFilters} />
+                <SearchFilters
+                  {...searchFilters}
+                  searchRefined={searchRefined}
+                />
               </MobileFilters>
             </Flex>
             {shouldShowResults && (
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
+                searchResultExpanded={(searchHit, searchRank) =>
+                  searchResultExpanded({
+                    searchHit,
+                    searchRank,
+                  })
+                }
                 searchResultOpened={(searchHit, searchRank) =>
                   searchResultOpened({
                     searchHit,
@@ -177,7 +228,7 @@ const Search: FC<SearchProps> = (props) => {
           </GridArea>
           <GridArea $colSpan={[12, 3]} $pr={16}>
             <Flex $flexDirection="column" $mb={32} $display={["none", "flex"]}>
-              <SearchFilters {...searchFilters} />
+              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
             </Flex>
           </GridArea>
         </Grid>

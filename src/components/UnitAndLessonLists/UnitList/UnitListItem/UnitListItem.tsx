@@ -26,7 +26,6 @@ export type UnitListItemProps = Omit<
   isUnitOption?: boolean;
   unitOptions?: UnitData[];
   isExemplarUnit?: boolean;
-  subjectIconBackground?: OakColorName;
   yearTitle?: string | null;
   onClick: (props: UnitListItemProps) => void;
 };
@@ -48,26 +47,14 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
     isUnitOption,
     yearTitle,
     isExemplarUnit,
-    subjectIconBackground,
     onClick,
   } = props;
 
   const { isHovered, primaryTargetProps, containerProps } =
     useClickableCard<HTMLAnchorElement>(firstItemRef);
 
-  let background: OakColorName = expired ? "grey30" : "lavender50";
-  let backgroundOnHover: OakColorName = "lavender";
-
-  // This override is for the units on the early-release units page which use different shades of pink/blue
-  if (subjectIconBackground) {
-    background = subjectIconBackground;
-    backgroundOnHover =
-      subjectIconBackground === "pink"
-        ? "pink60"
-        : subjectIconBackground === "lavender"
-        ? "lavender60"
-        : subjectIconBackground;
-  }
+  const background: OakColorName = expired ? "grey30" : "lavender50";
+  const backgroundOnHover: OakColorName = "lavender";
 
   return (
     <ListItemCard

@@ -6,8 +6,18 @@ import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
-const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
-  const { keyStageFilters, subjectFilters, contentTypeFilters } = props;
+type SearchFiltersProps = {
+  searchRefined: (filterType: string, filterValue: string) => void;
+} & UseSearchFiltersReturnType;
+
+const SearchFilters: FC<SearchFiltersProps> = (props) => {
+  const {
+    keyStageFilters,
+    subjectFilters,
+    contentTypeFilters,
+    examBoardFilters,
+    searchRefined,
+  } = props;
   return (
     <>
       <P $mb={16} $font={"heading-7"}>
@@ -20,7 +30,25 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
             label={contentType.title}
             key={`search-filters-type-${contentType.slug}`}
             width={"50%"}
+            filterType={"Content type filter"}
+            searchRefined={searchRefined}
             {...contentType}
+          />
+        ))}
+      </Flex>
+      <P $mb={16} $font={"heading-7"}>
+        Exam board
+      </P>
+      <Flex $mb={36} $flexWrap={"wrap"}>
+        {examBoardFilters.map((examBoard) => (
+          <SearchFilterCheckbox
+            name={"examBoardFilters"}
+            label={examBoard.title}
+            key={`search-filters-examBoard-${examBoard.slug}`}
+            width={"50%"}
+            filterType="Exam board filter"
+            searchRefined={searchRefined}
+            {...examBoard}
           />
         ))}
       </Flex>
@@ -33,6 +61,8 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
             name={"keyStageFilters"}
             label={keyStageFilter.shortCode}
             key={`search-filters-keyStage-${keyStageFilter.slug}`}
+            filterType="Key stage filter"
+            searchRefined={searchRefined}
             {...keyStageFilter}
           />
         ))}
@@ -47,6 +77,8 @@ const SearchFilters: FC<UseSearchFiltersReturnType> = (props) => {
             name={"subjectFilters"}
             label={subjectFilter.title}
             key={`search-filters-subject-${subjectFilter.slug}`}
+            filterType="Subject filter"
+            searchRefined={searchRefined}
             {...subjectFilter}
           />
         ))}

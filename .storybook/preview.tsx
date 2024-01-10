@@ -6,7 +6,7 @@ import { RouterContext } from "next/dist/shared/lib/router-context";
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";
 import GlobalStyle from "../src/styles/GlobalStyle";
-import SpriteSheet from "../src/components/SpriteSheet";
+import SpriteSheet from "../src/components/SharedComponents/SpriteSheet";
 import InlineSpriteSheet from "../src/components/InlineSpriteSheet";
 
 const OriginalNextImage = NextImage.default;
@@ -18,10 +18,12 @@ OriginalNextImage.propTypes = {
 OriginalNextImage.defaultProps = {
   unoptimized: true,
 };
-Object.defineProperty(NextImage, "default", {
-  configurable: true,
-  value: (props) => <OriginalNextImage {...props} unoptimized />,
-});
+
+// This causes error 'cannot redefine property: default'
+// Object.defineProperty(NextImage, "default", {
+//   configurable: true,
+//   value: (props) => <OriginalNextImage {...props} unoptimized />,
+// });
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

@@ -1,11 +1,5 @@
 import { css } from "styled-components";
 
-import getColorByLocation from "../../../styles/themeHelpers/getColorByLocation";
-import { HOVER_SHADOW_TRANSITION } from "../../../styles/transitions";
-import opacity, { OpacityProps } from "../../../styles/utils/opacity";
-import margin, { MarginProps } from "../../../styles/utils/spacing";
-import { BackgroundIcon } from "../Icon/Icon";
-
 import {
   ButtonFocusUnderline,
   ButtonMinimalFocusUnderline,
@@ -31,6 +25,11 @@ import {
 } from "./common";
 import { iconFocusUnderline } from "./IconFocusUnderline";
 
+import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
+import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
+import opacity, { OpacityProps } from "@/styles/utils/opacity";
+import margin, { MarginProps } from "@/styles/utils/spacing";
+import { BackgroundIcon } from "@/components/SharedComponents/Icon/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 
 export type ButtonStylesProps = OpacityProps &

@@ -9,7 +9,7 @@ import LessonRequirements, {
   Equipment,
   ContentGuidance,
 } from "@/components/LessonRequirements/LessonRequirements";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
 type LessonHelperProps = {
   equipment: Equipment[] | null | undefined;

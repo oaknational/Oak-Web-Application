@@ -10,7 +10,8 @@ import { render, RenderOptions } from "@testing-library/react";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 
 import "../../browser-lib/oak-globals/oakGlobals";
-import defaultTheme from "../../styles/theme";
+
+import defaultTheme from "@/styles/theme";
 
 export type ProviderProps = {
   children?: React.ReactNode;

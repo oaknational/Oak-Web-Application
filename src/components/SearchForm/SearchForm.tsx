@@ -15,7 +15,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import Input from "@/components/Input/Input";
+import Input from "@/components/SharedComponents/Input/Input";
 import Button from "@/components/SharedComponents/Button";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
@@ -52,9 +52,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
       searchTerm: value,
       analyticsUseCase: useCase,
       pageName,
-      searchFilterOptionSelected: getSortedSearchFiltersSelected(
-        router.query.keyStages,
-      ),
+      searchFilterOptionSelected: getSortedSearchFiltersSelected(router.query),
       searchSource: analyticsSearchSource,
       context: searchContext,
     });
@@ -63,7 +61,7 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     value,
     useCase,
     pageName,
-    router.query.keyStages,
+    router.query,
     analyticsSearchSource,
     searchContext,
   ]);
