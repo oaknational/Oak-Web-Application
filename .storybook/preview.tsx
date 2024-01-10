@@ -18,6 +18,8 @@ OriginalNextImage.propTypes = {
 OriginalNextImage.defaultProps = {
   unoptimized: true,
 };
+
+// This causes error 'cannot redefine property: default'
 // Object.defineProperty(NextImage, "default", {
 //   configurable: true,
 //   value: (props) => <OriginalNextImage {...props} unoptimized />,
