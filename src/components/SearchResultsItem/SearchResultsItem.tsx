@@ -1,12 +1,11 @@
 import { FC } from "react";
 
-import LessonMetadata from "../LessonMetadata";
-import TagPromotional from "../TagPromotional";
-import OakLink from "../OakLink";
-import SearchDropdown from "../SearchDropdown/SearchDropdown";
-
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
+import TagPromotional from "@/components/TagPromotional";
+import OakLink from "@/components/OakLink";
+import SearchDropdown from "@/components/SearchDropdown/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";

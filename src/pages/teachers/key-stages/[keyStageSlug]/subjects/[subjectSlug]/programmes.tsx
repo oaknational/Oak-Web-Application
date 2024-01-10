@@ -5,7 +5,7 @@ import curriculumApi from "@/node-lib/curriculum-api";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout/AppLayout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import SubjectTierListing from "@/components/SubjectProgrammeListing/SubjectProgrammeListing";
+import SubjectTierListing from "@/components/TeacherComponents/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -13,7 +13,7 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
-import HeaderListing from "@/components/HeaderListing/HeaderListing";
+import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 

@@ -1,10 +1,10 @@
 import { FC, MutableRefObject } from "react";
 
 import useClickableCard from "../../../../hooks/useClickableCard";
-import LessonResourceGraphics from "../../../LessonResourceGraphics";
+import LessonResourceGraphics from "../../../TeacherComponents/LessonResourceGraphics";
 import ListItemHeader from "../../ListItemHeader";
 import ListItemCard from "../../ListItemCard";
-import { LessonResourceGraphicsItemProps } from "../../../LessonResourceGraphics/LessonResourceGraphicsItem";
+import { LessonResourceGraphicsItemProps } from "../../../TeacherComponents/LessonResourceGraphicsItem/LessonResourceGraphicsItem";
 import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "../../ListItemIndexMobile";
 import ListItemIndexDesktop from "../../ListItemIndexDesktop";
