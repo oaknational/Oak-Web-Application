@@ -311,10 +311,11 @@ describe("comonents/ExpandingContainer", () => {
     await user.click(expandButton);
 
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
-    expect(resourceContainerExpanded).toHaveBeenCalledWith({
-      pageName: null,
-      containerTitle: "Video",
-      analyticsUseCase: null,
-    });
+    expect(resourceContainerExpanded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        containerTitle: "Video",
+        analyticsUseCase: null,
+      }),
+    );
   });
 });

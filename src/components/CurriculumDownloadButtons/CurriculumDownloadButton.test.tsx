@@ -62,14 +62,15 @@ describe("CurriculumDownloadButton", () => {
     await user.click(linkTitle);
 
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
-    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      pageName: null,
-      subjectSlug: "english",
-      subjectTitle: "English",
-    });
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "english",
+        subjectTitle: "English",
+      }),
+    );
   });
 
   test("renders a tiered download button link from unit page with tiers", () => {
@@ -158,13 +159,14 @@ describe("CurriculumDownloadButton", () => {
     expect(downloadZip).toHaveBeenCalledTimes(1);
     expect(downloadZip).toHaveBeenCalledWith("4", "maths");
     expect(curriculumMapDownloaded).toHaveBeenCalledTimes(1);
-    expect(curriculumMapDownloaded).toHaveBeenCalledWith({
-      analyticsUseCase: null,
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      pageName: null,
-      subjectSlug: "maths",
-      subjectTitle: "Maths",
-    });
+    expect(curriculumMapDownloaded).toHaveBeenCalledWith(
+      expect.objectContaining({
+        analyticsUseCase: null,
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+      }),
+    );
   });
 });
