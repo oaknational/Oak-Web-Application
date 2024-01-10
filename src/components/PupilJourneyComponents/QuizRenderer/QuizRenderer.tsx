@@ -78,7 +78,7 @@ export const QuizRenderer = () => {
     } else if (answers?.["short-answer"]) {
       answerRender = (
         <QuizShortAnswer
-          key={`mcq-index-${currentQuestionIndex}`}
+          key={`sa-index-${currentQuestionIndex}`}
           onInitialChange={handleInitialChange}
         />
       );
