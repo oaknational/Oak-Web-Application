@@ -1,3 +1,10 @@
+# [1.321.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.320.0...v1.321.0) (2024-01-10)
+
+
+### Features
+
+* include all filter options in avo reporting ([2f5fcb9](https://github.com/oaknational/Oak-Web-Application/commit/2f5fcb999d40bdb9698cc1d90b54dda7b3317a94))
+
 # [1.320.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.3...v1.320.0) (2024-01-10)
 
 
