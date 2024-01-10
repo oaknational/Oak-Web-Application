@@ -1,3 +1,16 @@
+# [1.320.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.3...v1.320.0) (2024-01-10)
+
+
+### Bug Fixes
+
+* test mocks ([fcffb65](https://github.com/oaknational/Oak-Web-Application/commit/fcffb6590806aabd8955ee3b0106176c4a983591))
+* update tests ([863c6e2](https://github.com/oaknational/Oak-Web-Application/commit/863c6e28ec7c819d0b260b3bc1211140fc56e22a))
+
+
+### Features
+
+* promote search feature flag ([e8663ae](https://github.com/oaknational/Oak-Web-Application/commit/e8663ae88eef75340d55ac5a85e49849200bbc47))
+
 ## [1.319.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.2...v1.319.3) (2024-01-09)
 
 
