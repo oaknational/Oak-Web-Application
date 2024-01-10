@@ -1,3 +1,11 @@
+## [1.321.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.0...v1.321.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* horizontal scroll at 400 for links ([9e5c202](https://github.com/oaknational/Oak-Web-Application/commit/9e5c2025eaf631c66c667139bbd86b087f762c0d))
+* horizontal scroll on support your team ([e4e3e82](https://github.com/oaknational/Oak-Web-Application/commit/e4e3e827afb7bb488701a72a1e27197100ed73e3))
+
 # [1.321.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.320.0...v1.321.0) (2024-01-10)
 
 
