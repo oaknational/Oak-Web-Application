@@ -1,3 +1,10 @@
+## [1.322.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.2...v1.322.3) (2024-01-10)
+
+
+### Bug Fixes
+
+* storybook config ([9855d9b](https://github.com/oaknational/Oak-Web-Application/commit/9855d9b289a927ee9351faf4249046790efec0ef))
+
 ## [1.322.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.1...v1.322.2) (2024-01-10)
 
 ## [1.322.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.0...v1.322.1) (2024-01-10)

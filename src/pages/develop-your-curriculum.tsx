@@ -23,7 +23,7 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;
