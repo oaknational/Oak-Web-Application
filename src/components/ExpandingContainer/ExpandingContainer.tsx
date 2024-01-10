@@ -54,7 +54,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
   const getPreselectedQueryFromTitle = (title: ExpandingContainerTitle) => {
     return containerTitleToPreselectMap[title];
   };
-  const preselected = getPreselectedQueryFromTitle(title).downloadType;
+  const preselected = getPreselectedQueryFromTitle(title)?.downloadType;
 
   const { track } = useAnalytics();
   const { analyticsUseCase, pageName } = useAnalyticsPageProps();
