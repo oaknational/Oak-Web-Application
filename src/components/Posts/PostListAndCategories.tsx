@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { PostListingPageProps } from "../pages/BlogIndex.page";
+import { PostListingPageProps } from "../GenericPagesViews/BlogIndex.page";
 import { PostListItemProps } from "../SharedComponents/PostListItem";
 
 import PostCategoryList from "./PostCategoryList";

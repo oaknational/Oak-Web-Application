@@ -4,7 +4,7 @@ import { WebinarPreview } from "../../../common-lib/cms-types";
 import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
-} from "../../../components/pages/WebinarsIndex.page";
+} from "../../../components/GenericPagesViews/WebinarsIndex.page";
 import WebinarListingPage from "../../../pages/webinars";
 import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";

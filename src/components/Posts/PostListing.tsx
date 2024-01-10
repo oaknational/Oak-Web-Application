@@ -22,12 +22,12 @@ import {
   PostListingPageProps,
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   WebinarListingPageProps,
   webinarToPostListItem,
-} from "@/components/pages/WebinarsIndex.page";
+} from "@/components/GenericPagesViews/WebinarsIndex.page";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 
 type PostListingProps = {

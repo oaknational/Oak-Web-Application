@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 
 import { mockWebinar } from "../../../__tests__/pages/webinars/webinar.fixtures";
-import { webinarToPostListItem } from "../../pages/WebinarsIndex.page";
+import { webinarToPostListItem } from "../../GenericPagesViews/WebinarsIndex.page";
 
 import usePostList from "./usePostList";
 

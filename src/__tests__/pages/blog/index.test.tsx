@@ -4,7 +4,7 @@ import { BlogPostPreview } from "../../../common-lib/cms-types";
 import {
   SerializedBlogPostPreview,
   PostListingPageProps,
-} from "../../../components/pages/BlogIndex.page";
+} from "../../../components/GenericPagesViews/BlogIndex.page";
 import PostListingPage from "../../../pages/blog";
 import { mockImageAsset, mockSeoResult } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";

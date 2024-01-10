@@ -1,12 +1,12 @@
 import { uniqBy } from "lodash/fp";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 
-import { PostListingPageProps } from "../../components/pages/BlogIndex.page";
+import { PostListingPageProps } from "../../components/GenericPagesViews/BlogIndex.page";
 import CMSClient from "../../node-lib/cms";
 import { serializeDate } from "../../utils/serializeDate";
 import getPageProps from "../../node-lib/getPageProps";
 
-export { default } from "../../components/pages/BlogIndex.page";
+export { default } from "../../components/GenericPagesViews/BlogIndex.page";
 
 export const getStaticProps: GetStaticProps<
   PostListingPageProps,

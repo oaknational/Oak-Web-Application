@@ -24,11 +24,11 @@ import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.page";
 import {
   SerializedWebinarPreview,
   webinarToPostListItem,
-} from "@/components/pages/WebinarsIndex.page";
+} from "@/components/GenericPagesViews/WebinarsIndex.page";
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
