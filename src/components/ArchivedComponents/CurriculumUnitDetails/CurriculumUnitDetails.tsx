@@ -6,7 +6,7 @@ import { Heading, LI, P, OL } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/TagFunctional";
 import { Lesson } from "@/components/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
-import Accordion from "@/components/Accordion";
+import Accordion from "@/components/ArchivedComponents/Accordion";
 
 export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
