@@ -1,10 +1,8 @@
 import React, { FC, useState } from "react";
 import { capitalize } from "lodash";
 
-import FieldError from "../FormFields/FieldError";
-
-import downloadZip from "./helpers/downloadZip";
-
+import FieldError from "@/components/FormFields/FieldError";
+import downloadZip from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton/helpers/downloadZip";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Button from "@/components/SharedComponents/Button";
 import Box from "@/components/SharedComponents/Box";
@@ -13,7 +11,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
-type CurriculumDownloadProps = {
+type HeaderListingCurriculumDownloadButtonProps = {
   keyStageSlug: string;
   keyStageTitle: string;
   subjectSlug: string;
@@ -21,13 +19,9 @@ type CurriculumDownloadProps = {
   tier?: string | null;
 };
 
-const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
-  keyStageSlug,
-  keyStageTitle,
-  subjectSlug,
-  subjectTitle,
-  tier,
-}) => {
+const HeaderListingCurriculumDownloadButton: FC<
+  HeaderListingCurriculumDownloadButtonProps
+> = ({ keyStageSlug, keyStageTitle, subjectSlug, subjectTitle, tier }) => {
   const [downloadResourceError, setDownloadResourceError] =
     useState<boolean>(false);
 
@@ -113,4 +107,4 @@ const CurriculumDownloadButton: FC<CurriculumDownloadProps> = ({
   );
 };
 
-export default CurriculumDownloadButton;
+export default HeaderListingCurriculumDownloadButton;

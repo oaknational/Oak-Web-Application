@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import CurriculumDownloadButton from "./CurriculumDownloadButton";
+import HeaderListingCurriculumDownloadButton from "./HeaderListingCurriculumDownloadButton";
 import downloadZip from "./helpers/downloadZip";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -21,14 +21,14 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const render = renderWithProviders();
 
-describe("CurriculumDownloadButton", () => {
+describe("HeaderListingCurriculumDownloadButton", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("renders a download button link with href corresponding to passed in props", () => {
     const { getByRole } = render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
         subjectSlug={"english"}
@@ -48,7 +48,7 @@ describe("CurriculumDownloadButton", () => {
 
   test("calls tracking with correct parameters when a download zip link is clicked on a non tierred lesson page", async () => {
     render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"English"}
         keyStageSlug={"ks4"}
@@ -74,7 +74,7 @@ describe("CurriculumDownloadButton", () => {
 
   test("renders a tiered download button link from unit page with tiers", () => {
     const { getByRole } = render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
         subjectSlug={"maths"}
@@ -95,7 +95,7 @@ describe("CurriculumDownloadButton", () => {
 
   test("renders a button to download a zip file when on a tiered lesson page", () => {
     render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
@@ -108,7 +108,7 @@ describe("CurriculumDownloadButton", () => {
   });
   test("it downloads a zip when there are no tiers, ks4 and maths", async () => {
     render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
@@ -126,7 +126,7 @@ describe("CurriculumDownloadButton", () => {
   });
   test("it downloads a pdf when there are tiers, ks4 and maths", async () => {
     render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
@@ -142,7 +142,7 @@ describe("CurriculumDownloadButton", () => {
   });
   test("calls tracking with correct parameters when a download zip button is clicked on a tierred lesson page", async () => {
     render(
-      <CurriculumDownloadButton
+      <HeaderListingCurriculumDownloadButton
         keyStageTitle={"Key stage 4"}
         subjectTitle={"Maths"}
         keyStageSlug={"ks4"}
