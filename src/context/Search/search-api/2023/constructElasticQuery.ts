@@ -115,9 +115,6 @@ export const constructElasticQuery = (query: ConstructQueryParams) => {
               fields: ["*"],
               type: "most_fields",
               analyzer: "stop",
-              /* Search terms <=4 characters have to be an exact match
-                    terms >4 and <7 can have 1 error >=7 can have 2 errors */
-              fuzziness: "AUTO:4,7",
               // First character of search term has to be an exact match
               prefix_length: 1,
             },
