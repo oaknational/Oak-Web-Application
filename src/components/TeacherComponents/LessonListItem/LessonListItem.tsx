@@ -1,14 +1,13 @@
 import { FC, MutableRefObject } from "react";
 
-import useClickableCard from "../../../../hooks/useClickableCard";
-import LessonResourceGraphics from "../../../TeacherComponents/LessonResourceGraphics";
-import ListItemHeader from "../../ListItemHeader";
-import ListItemCard from "../../ListItemCard";
-import { LessonResourceGraphicsItemProps } from "../../../TeacherComponents/LessonResourceGraphicsItem/LessonResourceGraphicsItem";
-import { LessonListingPageData } from "../../../../node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
-import ListItemIndexMobile from "../../ListItemIndexMobile";
-import ListItemIndexDesktop from "../../ListItemIndexDesktop";
-
+import useClickableCard from "@/hooks/useClickableCard";
+import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
+import ListItemHeader from "@/components/UnitAndLessonLists/ListItemHeader";
+import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
+import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/LessonResourceGraphicsItem";
+import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
+import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
 import { P, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";

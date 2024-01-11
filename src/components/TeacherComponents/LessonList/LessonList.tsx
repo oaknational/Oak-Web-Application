@@ -1,7 +1,8 @@
 import { FC } from "react";
 
-import LessonListItem, { LessonListItemProps } from "./LessonListItem";
-
+import LessonListItem, {
+  LessonListItemProps,
+} from "@/components/TeacherComponents/LessonListItem";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {

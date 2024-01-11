@@ -1,12 +1,14 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import lessonListingFixture from "../../../node-lib/curriculum-api/fixtures/lessonListing.fixture";
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
-
 import { LessonListProps } from "./LessonList";
 
 import Component from ".";
+
+import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+
+
 
 export default {
   decorators: [AnalyticsDecorator],

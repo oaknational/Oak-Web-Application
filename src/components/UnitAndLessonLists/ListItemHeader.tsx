@@ -1,10 +1,10 @@
 import { FC, MutableRefObject } from "react";
 
 import OakLink from "../OakLink";
+import { LessonListItemProps } from "../TeacherComponents/LessonListItem";
 
 import CategoryHeading from "./CategoryHeading";
 import ExemplarCategoryHeading from "./ExemplarCategoryHeading";
-import { LessonListItemProps } from "./LessonList/LessonListItem";
 import { UnitListItemProps } from "./UnitList/UnitListItem/UnitListItem";
 
 import { Heading } from "@/components/SharedComponents/Typography";

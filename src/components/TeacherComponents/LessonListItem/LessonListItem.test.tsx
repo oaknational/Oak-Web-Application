@@ -1,9 +1,10 @@
 import userEvent from "@testing-library/user-event";
 import { act, screen } from "@testing-library/react";
 
-import renderWithProviders from "../../../../__tests__/__helpers__/renderWithProviders";
-
 import LessonListItem from "./LessonListItem";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
 
 const onClick = jest.fn();
 
