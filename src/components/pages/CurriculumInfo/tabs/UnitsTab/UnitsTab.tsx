@@ -24,6 +24,7 @@ import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   data: CurriculumUnitsTabData;
+  examboardSlug: string | null;
 };
 
 export type Unit = CurriculumUnitsTabData["units"][number];
@@ -59,9 +60,9 @@ interface YearSelection {
 
 // Function component
 
-const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
+const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
+  console.log(data, examboardSlug);
   // Initialize constants
-
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
   const { track } = useAnalytics();
@@ -676,6 +677,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                         unitData={unitData}
                         lessonsAvailable={getLessonsAvailable()}
                         unitOptionsAvailable={unitOptionsAvailable}
+                        examboardSlug={examboardSlug}
                       >
                         <UnitModal
                           unitData={unitData}

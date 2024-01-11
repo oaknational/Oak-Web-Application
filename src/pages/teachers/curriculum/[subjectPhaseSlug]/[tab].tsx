@@ -87,7 +87,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 
       break;
     case "units":
-      tabContent = <UnitsTab data={curriculumUnitsTabData} />;
+      tabContent = (
+        <UnitsTab data={curriculumUnitsTabData} examboardSlug={examboardSlug} />
+      );
       break;
     default:
       throw new Error("Not a valid tab");

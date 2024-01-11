@@ -19,6 +19,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   unitData?: Unit | null;
   unitOptionsAvailable?: boolean;
   lessonsAvailable?: boolean;
+  examboardSlug?: string | null;
 };
 
 const Sidebar: FC<ModalProps> = ({
@@ -28,6 +29,7 @@ const Sidebar: FC<ModalProps> = ({
   lessonsAvailable,
   unitData,
   unitOptionsAvailable,
+  examboardSlug,
 }) => {
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
@@ -102,7 +104,11 @@ const Sidebar: FC<ModalProps> = ({
                             variant="buttonStyledAsLink"
                             page="lesson-index"
                             unitSlug={unitData.slug}
-                            programmeSlug={`${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`}
+                            programmeSlug={`${unitData.subject_slug}-${
+                              unitData.phase_slug
+                            }-${unitData.keystage_slug}${
+                              unitData.tier_slug ? "-" + unitData.tier_slug : ""
+                            }${examboardSlug ? "-" + examboardSlug : ""}`}
                           />
                         )}
                       </Flex>
