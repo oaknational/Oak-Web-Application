@@ -6,7 +6,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockUnit,
   mockOptionalityUnit,
-} from "@/components/UnitModal/UnitModal.fixture";
+} from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
 
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {

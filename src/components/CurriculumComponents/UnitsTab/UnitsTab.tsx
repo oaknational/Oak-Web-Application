@@ -13,7 +13,7 @@ import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import UnitModal from "@/components/UnitModal/UnitModal";
+import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/TagFunctional";
 import UnitTabBanner from "@/components/UnitTabBanner";
 import { P, Heading } from "@/components/SharedComponents/Typography";

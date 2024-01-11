@@ -11,7 +11,7 @@ import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
-} from "@/components/ArchivedComponents/CurriculumUnitDetails";
+} from "@/components/CurriculumComponents/CurriculumUnitDetails";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 

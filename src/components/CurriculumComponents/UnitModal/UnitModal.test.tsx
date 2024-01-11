@@ -6,7 +6,7 @@ import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const unitInformationViewed = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
