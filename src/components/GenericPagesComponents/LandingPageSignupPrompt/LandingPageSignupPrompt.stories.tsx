@@ -5,7 +5,6 @@ import { LandingPageSignupPrompt as Component } from "./LandingPageSignupPrompt"
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
