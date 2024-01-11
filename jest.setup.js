@@ -1,7 +1,12 @@
+import { TextEncoder, TextDecoder } from "util";
+
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom/extend-expect";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 jest.mock("@react-aria/ssr/dist/main", () => ({
   ...jest.requireActual("@react-aria/ssr/dist/main"),

@@ -1,4 +1,4 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 
 import hubspotSubmitForm from "./hubspotSubmitForm";
@@ -15,7 +15,7 @@ const primaryFormEndpoint = `https://hubspot-forms.thenational.academy/submissio
 const fallbackFormEndpoint = `https://hubspot-forms.thenational.academy/submissions/v3/integration/submit/${hubspotPortalId}/${hubspotFallbackFormId}`;
 const formHandler =
   (url: string) => (status: number, data: Record<string, unknown>) =>
-    rest.post(url, (req, res, ctx) => res(ctx.status(status), ctx.json(data)));
+    http.post(url, () => HttpResponse.json(data, { status: status }));
 
 const primaryForm = formHandler(primaryFormEndpoint);
 const fallbackForm = formHandler(fallbackFormEndpoint);
@@ -290,9 +290,9 @@ describe("hubspotSubmitForm", () => {
   describe("Network error", () => {
     beforeEach(() => {
       server.use(
-        rest.post(primaryFormEndpoint, (req, res) =>
+        http.post(primaryFormEndpoint, () =>
           // DEBUG this is now resulting in an OakError, so the following tests fail.
-          res.networkError("Failed to connect"),
+          HttpResponse.json("Failed to connect"),
         ),
       );
     });

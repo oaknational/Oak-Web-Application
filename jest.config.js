@@ -34,6 +34,10 @@ const customJestConfig = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testEnvironment: "jest-environment-jsdom",
+  // Force JSDOM to use the node (or default) export condition, which is the correct behavior for using msw. See https://mswjs.io/docs/migrations/1.x-to-2.x/#cannot-find-module-mswnode-jsdom
+  testEnvironmentOptions: {
+    customExportConditions: [""],
+  },
   testPathIgnorePatterns: [
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
     "src/__tests__/__helpers__/*",

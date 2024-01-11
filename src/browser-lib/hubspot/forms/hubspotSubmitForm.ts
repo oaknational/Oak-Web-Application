@@ -1,5 +1,5 @@
 /**
- * @see https://legacydocs.hubxspot.com/docs/methods/forms/submit_form
+ * @see https://legacydocs.hubspot.com/docs/methods/forms/submit_form
  */
 
 import { z } from "zod";
