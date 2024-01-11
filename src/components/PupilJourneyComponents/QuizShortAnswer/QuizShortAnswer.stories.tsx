@@ -90,9 +90,26 @@ export const Init: Story = {
   args: {},
 };
 
-export const Feedback: Story = {
+export const FeedbackCorrect: Story = {
   render: (args) => {
     const mock = getContext({ mode: "feedback", feedback: "correct" });
+    return (
+      <QuizEngineContext.Provider value={mock}>
+        <OakBox
+          $background={"bg-decorative1-very-subdued"}
+          $pa={"inner-padding-m"}
+        >
+          <QuizShortAnswer {...args} />
+        </OakBox>
+      </QuizEngineContext.Provider>
+    );
+  },
+  args: {},
+};
+
+export const FeedbackIncorrect: Story = {
+  render: (args) => {
+    const mock = getContext({ mode: "feedback", feedback: "incorrect" });
     return (
       <QuizEngineContext.Provider value={mock}>
         <OakBox
