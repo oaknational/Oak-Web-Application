@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, Hr, P } from "@/components/SharedComponents/Typography";
-import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/TabularNav/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
-} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+} from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,
