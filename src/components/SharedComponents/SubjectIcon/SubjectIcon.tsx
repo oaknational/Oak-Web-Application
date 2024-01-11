@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import { getSubjectIconAsset } from "../../image-data";
-
+import { getSubjectIconAsset } from "@/image-data";
 import CMSImage, {
   CMSImageProps,
 } from "@/components/SharedComponents/CMSImage";

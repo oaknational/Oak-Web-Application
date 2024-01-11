@@ -1,17 +1,16 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import SubjectListingCardDouble from "./SubjectListingCardDouble";
 
-import SubjectCardDouble from "./SubjectCardDouble";
-
+import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectPageProps";
 
 const subjects: Subjects = subjectPagePropsFixture().subjects;
 
 const subjectSelected = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -20,14 +19,14 @@ jest.mock("../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-describe("SubjectCardDouble", () => {
+describe("SubjectListingCardDouble", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   test("render a Card with the Name of the Subject", () => {
     renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
@@ -38,7 +37,7 @@ describe("SubjectCardDouble", () => {
   });
   test("old units with 1 programme take you to 'teachers' view unit listing page", () => {
     const { getByRole } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
@@ -56,7 +55,7 @@ describe("SubjectCardDouble", () => {
   });
   test("old units with more than one programme take you to 'teachers' view programme listing page", () => {
     const { getByRole } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[1] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
@@ -74,7 +73,7 @@ describe("SubjectCardDouble", () => {
   });
   test("new units with 1 programme take you to 'teachers' view unit listing page", () => {
     const { getByRole } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
@@ -92,7 +91,7 @@ describe("SubjectCardDouble", () => {
   });
   test("new units with more than one programme take you to 'teachers' view programme listing page", () => {
     const { getByRole } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[1] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
@@ -110,7 +109,7 @@ describe("SubjectCardDouble", () => {
   });
   test("new units are labeled as 'new'", () => {
     const { getByText } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[2] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
@@ -122,7 +121,7 @@ describe("SubjectCardDouble", () => {
   });
   test("new label is not visible on old units", () => {
     const { queryByText } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[3] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
@@ -135,7 +134,7 @@ describe("SubjectCardDouble", () => {
 
   test("calls tracking.subjectSelected once, with correct props", async () => {
     const { getByRole } = renderWithTheme(
-      <SubjectCardDouble
+      <SubjectListingCardDouble
         subject={subjects[0] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}

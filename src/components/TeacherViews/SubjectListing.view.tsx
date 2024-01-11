@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import { SubjectListingPageProps } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
-import SubjectCardDouble from "../SubjectCardDouble/SubjectCardDouble";
-
+import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCardDouble";
 import { GridList } from "@/components/SharedComponents/Typography/UL";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import { Heading } from "@/components/SharedComponents/Typography";
@@ -25,7 +24,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
                 key={`subject-list-item-${subject.subjectSlug}-${i}`}
                 $colSpan={[12, 6, 3]}
               >
-                <SubjectCardDouble
+                <SubjectListingCardDouble
                   subject={subject}
                   subjectSlug={subject.subjectSlug}
                   keyStageSlug={keyStageSlug}

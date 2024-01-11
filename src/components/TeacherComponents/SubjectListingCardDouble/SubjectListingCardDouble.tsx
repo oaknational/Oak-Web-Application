@@ -1,15 +1,13 @@
 import { FC } from "react";
 
-import SubjectIcon from "../SubjectIcon";
-import { Subjects } from "../../pages/teachers/key-stages/[keyStageSlug]/subjects";
-
-import CountCard from "./CountCard";
-
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardDoubleCountCard";
 import { Heading, HeadingTag } from "@/components/SharedComponents/Typography";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type SubjectCardDoubleProps = Omit<CardProps, "children"> & {
+export type SubjectListingCardDoubleProps = Omit<CardProps, "children"> & {
   titleTag?: HeadingTag;
 } & {
   subject: Subjects[number];
@@ -18,7 +16,7 @@ export type SubjectCardDoubleProps = Omit<CardProps, "children"> & {
   keyStageTitle: string;
 };
 
-const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
+const SubjectListingCardDouble: FC<SubjectListingCardDoubleProps> = ({
   titleTag = "h2",
   subject,
   keyStageSlug,
@@ -67,7 +65,7 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
       <Flex role={"list"} $pb={12} $ph={12} $gap={12} $width={"100%"}>
         {subject.old && (
           <Flex role={"listitem"} $flex={1}>
-            <CountCard
+            <SubjectListingCardDoubleCountCard
               isLegacyLesson={true}
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}
@@ -77,7 +75,7 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
         )}
         {subject.new && (
           <Flex role={"listitem"} $flex={1}>
-            <CountCard
+            <SubjectListingCardDoubleCountCard
               isLegacyLesson={false}
               keyStageTitle={keyStageTitle}
               keyStageSlug={keyStageSlug}
@@ -90,4 +88,4 @@ const SubjectCardDouble: FC<SubjectCardDoubleProps> = ({
   );
 };
 
-export default SubjectCardDouble;
+export default SubjectListingCardDouble;

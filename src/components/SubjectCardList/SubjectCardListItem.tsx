@@ -4,7 +4,7 @@ import useAnalytics from "../../context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "../../browser-lib/avo/Avo";
 import useClickableCard from "../../hooks/useClickableCard";
 import OakLink from "../OakLink";
-import SubjectIcon from "../SubjectIcon";
+import SubjectIcon from "../SharedComponents/SubjectIcon";
 import useAnalyticsPageProps from "../../hooks/useAnalyticsPageProps";
 
 import { KeyStageSubject } from "./SubjectCardList";

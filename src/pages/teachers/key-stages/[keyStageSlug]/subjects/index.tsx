@@ -3,7 +3,7 @@ import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/AppLayout";
-import SubjectListingPage from "@/components/pages/SubjectListing.page";
+import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import {
   getFallbackBlockingConfig,

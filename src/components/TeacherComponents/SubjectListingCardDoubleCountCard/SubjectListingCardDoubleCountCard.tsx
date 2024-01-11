@@ -1,11 +1,9 @@
 import { FC } from "react";
 
-import OakLink from "../OakLink";
-import TagPromotional from "../TagPromotional";
-import TextTile from "../TextTile/TextTitle";
-
-import { SubjectCardDoubleProps } from "./SubjectCardDouble";
-
+import OakLink from "@/components/OakLink";
+import TagPromotional from "@/components/TagPromotional";
+import TextTile from "@/components/TextTile/TextTitle";
+import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble/SubjectListingCardDouble";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
@@ -17,12 +15,14 @@ import {
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 
-export type CountCardProps = KeyStageSubjectData &
-  Pick<SubjectCardDoubleProps, "keyStageSlug" | "keyStageTitle"> & {
+export type SubjectListingCardDoubleCountCardProps = KeyStageSubjectData &
+  Pick<SubjectListingCardDoubleProps, "keyStageSlug" | "keyStageTitle"> & {
     isLegacyLesson?: boolean;
   };
 
-const CountCard: FC<CountCardProps> = ({
+const SubjectListingCardDoubleCountCard: FC<
+  SubjectListingCardDoubleCountCardProps
+> = ({
   keyStageSlug,
   keyStageTitle,
   programmeSlug,
@@ -98,4 +98,4 @@ const CountCard: FC<CountCardProps> = ({
   );
 };
 
-export default CountCard;
+export default SubjectListingCardDoubleCountCard;

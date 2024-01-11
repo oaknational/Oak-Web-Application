@@ -13,7 +13,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const SubjectCardDouble: Story = {
+export const SubjectListingCardDouble: Story = {
   args: {
     subject: subjectPagePropsFixture().subjects[0],
     keyStageSlug: "ks4",
