@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useState } from "react";
 
-import { LessonPageLinkAnchorId } from "./lesson.helpers";
+import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/lesson.helpers";
 
 type SectionRefs = Record<LessonPageLinkAnchorId, RefObject<HTMLElement>>;
 

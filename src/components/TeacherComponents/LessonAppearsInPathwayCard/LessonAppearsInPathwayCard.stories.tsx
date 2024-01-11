@@ -1,7 +1,7 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 
-import { LessonPathwayCard as Component } from "./LessonPathwayCard";
+import { LessonAppearsInPathwayCard as Component } from "./LessonAppearsInPathwayCard";
 
 export default {
   component: Component,
@@ -10,8 +10,8 @@ export default {
 
 const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
 
-export const LessonPathwayCard = Template.bind({});
-LessonPathwayCard.args = {
+export const LessonAppearsInPathwayCard = Template.bind({});
+LessonAppearsInPathwayCard.args = {
   unitSlug: "unit-slug",
   examBoardTitle: "AQA",
   examBoardSlug: "aqa",
@@ -35,7 +35,7 @@ LessonPathwayCard.args = {
     },
   ],
 };
-LessonPathwayCard.parameters = {
+LessonAppearsInPathwayCard.parameters = {
   backgrounds: {
     default: "dark",
   },

@@ -10,7 +10,7 @@ import Pagination, {
 } from "@/components/SharedComponents/Pagination";
 import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
-import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
+import UnitListOptionalityCard from "@/components/TeacherComponents/UnitListOptionalityCard";
 
 export type Tier = {
   title: string;
@@ -39,7 +39,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
                 {item.length > 1 ? (
                   <>
-                    <OptionalityCard
+                    <UnitListOptionalityCard
                       unitOptions={item}
                       index={index + pageSize * (currentPage - 1)}
                       onClick={onClick}

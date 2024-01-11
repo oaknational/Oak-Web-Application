@@ -8,8 +8,6 @@ import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 
-
-
 const currentPageItems: UnitListProps = {
   ...unitListingFixture(),
   currentPageItems: unitListingFixture().units.slice(0, 5),

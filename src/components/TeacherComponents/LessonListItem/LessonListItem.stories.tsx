@@ -5,7 +5,6 @@ import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 
-
 const lessonListing = lessonListingFixture();
 
 const { lessons, ...lessonListingData } = lessonListing;

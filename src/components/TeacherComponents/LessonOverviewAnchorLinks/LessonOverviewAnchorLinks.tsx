@@ -2,14 +2,14 @@ import { FC } from "react";
 
 import Button from "@/components/SharedComponents/Button";
 
-type LessonAnchorLinksProps = {
+type LessonOverviewAnchorLinksProps = {
   currentSectionId: string | null;
   links: {
     label: string;
     anchorId: string;
   }[];
 };
-const LessonAnchorLinks: FC<LessonAnchorLinksProps> = ({
+const LessonOverviewAnchorLinks: FC<LessonOverviewAnchorLinksProps> = ({
   links,
   currentSectionId,
 }) => {
@@ -41,4 +41,4 @@ const LessonAnchorLinks: FC<LessonAnchorLinksProps> = ({
   );
 };
 
-export default LessonAnchorLinks;
+export default LessonOverviewAnchorLinks;

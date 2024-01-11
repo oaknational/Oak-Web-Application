@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 
-import { LessonPageLinkAnchorId } from "@/components/Lesson/lesson.helpers";
+import { LessonPageLinkAnchorId } from "@/components/TeacherComponents/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/DownloadAndShareComponents/helpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import { Heading, Hr } from "@/components/SharedComponents/Typography";

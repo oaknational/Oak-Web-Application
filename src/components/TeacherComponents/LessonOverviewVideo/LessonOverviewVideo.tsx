@@ -6,7 +6,7 @@ import { P } from "@/components/SharedComponents/Typography";
 import TranscriptViewer from "@/components/TranscriptViewer/TranscriptViewer";
 import Flex from "@/components/SharedComponents/Flex";
 
-export interface OverviewVideoProps {
+export interface LessonOverviewVideoProps {
   video: string | null;
   signLanguageVideo: string | null;
   title: string;
@@ -14,7 +14,7 @@ export interface OverviewVideoProps {
   isLegacy: boolean;
 }
 
-export const OverviewVideo: FC<OverviewVideoProps> = ({
+export const LessonOverviewVideo: FC<LessonOverviewVideoProps> = ({
   video,
   signLanguageVideo,
   title,
@@ -113,4 +113,4 @@ export const OverviewVideo: FC<OverviewVideoProps> = ({
   );
 };
 
-export default OverviewVideo;
+export default LessonOverviewVideo;

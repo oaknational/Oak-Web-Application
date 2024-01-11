@@ -8,8 +8,8 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonShareBreadCrumb,
-} from "@/components/Lesson/lesson.helpers";
-import { LessonPathway } from "@/components/Lesson/lesson.types";
+} from "@/components/TeacherComponents/lesson.helpers";
+import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
 import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";

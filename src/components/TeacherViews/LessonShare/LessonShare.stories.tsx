@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { LessonShare } from "./LessonShare.page";
+import { LessonShare } from "./LessonShare.view";
 
 import lessonShareFixtures from "@/node-lib/curriculum-api/fixtures/lessonShare.fixture";
 

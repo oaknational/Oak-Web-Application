@@ -3,7 +3,7 @@ import { FC, memo, useState } from "react";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import Box from "@/components/SharedComponents/Box";
 
-interface OverviewPresentationProps {
+interface LessonOverviewPresentationProps {
   asset: string | null;
   title: string;
   isWorksheetLandscape?: boolean | null;
@@ -11,7 +11,7 @@ interface OverviewPresentationProps {
   isAdditionalMaterial?: boolean;
 }
 
-const OverviewPresentation: FC<OverviewPresentationProps> = ({
+const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
   title,
   isWorksheetLandscape,
@@ -45,4 +45,4 @@ const OverviewPresentation: FC<OverviewPresentationProps> = ({
   );
 };
 
-export default memo(OverviewPresentation);
+export default memo(LessonOverviewPresentation);

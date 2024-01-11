@@ -8,8 +8,6 @@ import Component from ".";
 import lessonListingFixture from "@/node-lib/curriculum-api/fixtures/lessonListing.fixture";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-
-
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,

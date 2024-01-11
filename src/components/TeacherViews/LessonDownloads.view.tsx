@@ -22,8 +22,8 @@ import {
   getLessonDownloadsBreadCrumb,
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
-} from "@/components/Lesson/lesson.helpers";
-import { LessonPathway } from "@/components/Lesson/lesson.types";
+} from "@/components/TeacherComponents/lesson.helpers";
+import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
 import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";

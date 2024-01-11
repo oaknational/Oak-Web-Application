@@ -1,6 +1,6 @@
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import { LessonPathwayCard } from "@/components/Lesson/LessonPathwayCard/LessonPathwayCard";
+import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
 import { TagFunctional } from "@/components/TagFunctional";
 import { TagColor } from "@/components/TagFunctional/TagFunctional";
 import {
@@ -70,7 +70,7 @@ export function LessonAppearsIn(props: LessonAppearsInProps) {
                       key={`LessonAppearsIn-s-${subjectSlug}-u-${unitSlug}-e-${examBoard.examBoardSlug}`}
                       $colSpan={[12, 6, 4]}
                     >
-                      <LessonPathwayCard
+                      <LessonAppearsInPathwayCard
                         {...examBoard}
                         unitSlug={unitSlug}
                         headingTag={examBoardHeadingTag}

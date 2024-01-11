@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { OverviewVideo, OverviewVideoProps } from "./OverviewVideo";
+import {
+  LessonOverviewVideo,
+  LessonOverviewVideoProps,
+} from "./LessonOverviewVideo";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
@@ -19,7 +22,7 @@ const transcriptSentences = [
   "Here is an example of a secure password, and notice, you've got a number, either side, and you've got three random words in the middle there.",
 ];
 
-const props: OverviewVideoProps = {
+const props: LessonOverviewVideoProps = {
   video: "video",
   title: "title",
   transcriptSentences,
@@ -27,16 +30,16 @@ const props: OverviewVideoProps = {
   isLegacy: true,
 };
 
-const meta: Meta<typeof OverviewVideo> = {
-  component: OverviewVideo,
+const meta: Meta<typeof LessonOverviewVideo> = {
+  component: LessonOverviewVideo,
   decorators: [AnalyticsDecorator, (Story) => <Story />],
 };
 
 export default meta;
 
-type Story = StoryObj<typeof OverviewVideo>;
+type Story = StoryObj<typeof LessonOverviewVideo>;
 
 export const Standard: Story = {
-  render: ({ ...args }) => <OverviewVideo {...args} />,
+  render: ({ ...args }) => <LessonOverviewVideo {...args} />,
   args: { ...props },
 };

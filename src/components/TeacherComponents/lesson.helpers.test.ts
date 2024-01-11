@@ -3,8 +3,7 @@ import {
   getCommonPathway,
   getPageLinksForLesson,
   groupLessonPathways,
-} from "./lesson.helpers";
-
+} from "@/components/TeacherComponents/lesson.helpers";
 import {
   quizQuestions,
   quizQuestionsNoImages,

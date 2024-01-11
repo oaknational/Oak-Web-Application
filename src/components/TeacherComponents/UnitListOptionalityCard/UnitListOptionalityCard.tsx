@@ -11,13 +11,13 @@ import { UnitData } from "@/node-lib/curriculum-api";
 
 export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 
-type OptionalityCardProps = {
+type UnitListOptionalityCardProps = {
   unitOptions: UnitOption[];
   index: number;
   onClick: (props: UnitListItemProps) => void;
 };
 
-const OptionalityCard: FC<OptionalityCardProps> = ({
+const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
   unitOptions,
   index,
   onClick,
@@ -97,4 +97,4 @@ const OptionalityCard: FC<OptionalityCardProps> = ({
   );
 };
 
-export default OptionalityCard;
+export default UnitListOptionalityCard;

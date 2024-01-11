@@ -8,7 +8,7 @@ import {
   Span,
 } from "@/components/SharedComponents/Typography";
 
-type LessonPathwayCardProps = {
+type LessonAppearsInPathwayCardProps = {
   headingTag: HeadingTag;
   examBoardTagColor: TagColor;
   unitSlug: string;
@@ -22,7 +22,9 @@ type LessonPathwayCardProps = {
     tierSlug?: string | null;
   }[];
 };
-export function LessonPathwayCard(props: LessonPathwayCardProps) {
+export function LessonAppearsInPathwayCard(
+  props: LessonAppearsInPathwayCardProps,
+) {
   const {
     headingTag,
     examBoardTagColor,

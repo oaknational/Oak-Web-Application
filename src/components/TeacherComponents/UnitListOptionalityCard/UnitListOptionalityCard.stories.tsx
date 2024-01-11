@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
-import Component, { UnitOption } from "./OptionalityCard";
+import Component, { UnitOption } from "./UnitListOptionalityCard";
 
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 
