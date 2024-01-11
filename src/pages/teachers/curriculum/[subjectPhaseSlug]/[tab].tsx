@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import CurriculumHeader from "@/components/pages/CurriculumInfo/CurriculumHeader/CurriculumHeader";
+import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/pages/CurriculumInfo/tabs/OverviewTab/OverviewTab";
 import UnitsTab from "@/components/pages/CurriculumInfo/tabs/UnitsTab/UnitsTab";
 import AppLayout from "@/components/AppLayout/AppLayout";
