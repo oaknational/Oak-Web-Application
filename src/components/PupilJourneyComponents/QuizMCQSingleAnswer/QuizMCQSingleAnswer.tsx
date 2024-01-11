@@ -1,6 +1,6 @@
 import { useMemo, useRef, useEffect } from "react";
-
 import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
+
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -45,6 +45,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
     <OakRadioGroup
       name={questionUid || "mcq-single-answer"}
       $flexDirection={"column"}
+      $gap={"space-between-s"}
       onChange={handleOnChange}
       disabled={isFeedbackMode}
     >
