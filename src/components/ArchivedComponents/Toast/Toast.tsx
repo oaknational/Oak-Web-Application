@@ -2,8 +2,7 @@ import { FC, useEffect, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
 
-import { useToastContext, SHOW_DURATION } from "../../context/Toast";
-
+import { useToastContext, SHOW_DURATION } from "@/context/Toast";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import theme from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
