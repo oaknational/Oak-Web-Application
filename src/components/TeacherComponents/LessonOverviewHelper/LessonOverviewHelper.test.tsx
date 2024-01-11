@@ -1,8 +1,8 @@
-import LessonHelper from "./LessonHelper";
+import LessonOverviewHelper from "./LessonOverviewHelper";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("LessonHelper component", () => {
+describe("LessonOverviewHelper component", () => {
   const equipment = [{ equipment: "test scissors" }];
   const contentGuidance = [
     {
@@ -15,7 +15,7 @@ describe("LessonHelper component", () => {
 
   it("it should render titles equipment title for Lesson Equipment component", () => {
     const { getByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
@@ -28,7 +28,7 @@ describe("LessonHelper component", () => {
 
   it("should not render equipment if null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={null}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
@@ -41,7 +41,7 @@ describe("LessonHelper component", () => {
 
   it("it should render content guidance title for Lesson Equipment component", () => {
     const { getByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
@@ -53,7 +53,7 @@ describe("LessonHelper component", () => {
 
   it("should not render content guidance if null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={equipment}
         contentGuidance={undefined}
         supervisionLevel={supervisionLevel}
@@ -66,7 +66,7 @@ describe("LessonHelper component", () => {
 
   it("it should render Supervision level title for Lesson Equipment component", () => {
     const { getByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={supervisionLevel}
@@ -78,7 +78,7 @@ describe("LessonHelper component", () => {
   });
   it("should not render supervision if null/undefined", () => {
     const { queryByText } = renderWithTheme(
-      <LessonHelper
+      <LessonOverviewHelper
         equipment={equipment}
         contentGuidance={contentGuidance}
         supervisionLevel={null}

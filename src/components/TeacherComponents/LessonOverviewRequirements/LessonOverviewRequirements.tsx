@@ -6,7 +6,7 @@ import { IconName } from "@/components/SharedComponents/Icon";
 import Flex from "@/components/SharedComponents/Flex";
 import { P, UL, LI } from "@/components/SharedComponents/Typography";
 
-type LessonRequirementsProps = {
+type LessonOverviewRequirementsProps = {
   helperIcon: IconName;
   heading: string;
   contentGuidance?: ContentGuidance[] | null | undefined;
@@ -24,7 +24,7 @@ export type ContentGuidance = {
   contentGuidanceArea: string;
 };
 
-const LessonRequirements: FC<LessonRequirementsProps> = ({
+const LessonOverviewRequirements: FC<LessonOverviewRequirementsProps> = ({
   helperIcon,
   heading,
   contentGuidance,
@@ -70,4 +70,4 @@ const LessonRequirements: FC<LessonRequirementsProps> = ({
   );
 };
 
-export default LessonRequirements;
+export default LessonOverviewRequirements;

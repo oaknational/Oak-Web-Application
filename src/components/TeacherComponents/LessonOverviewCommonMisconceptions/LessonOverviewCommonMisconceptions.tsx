@@ -3,18 +3,18 @@ import React from "react";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type CommonMisconceptionsAndResponses = {
-  commonMisconceptions: CommonMisconception[] | null | undefined;
+export type LessonOverviewCommonMisconceptionsAndResponses = {
+  commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
 };
 
-export type CommonMisconception = {
+export type LessonOverviewCommonMisconception = {
   misconception: string | null;
   response: string | null;
 };
 
-const CommonMisconceptions = ({
+const LessonOverviewCommonMisconceptions = ({
   commonMisconceptions,
-}: CommonMisconceptionsAndResponses) => {
+}: LessonOverviewCommonMisconceptionsAndResponses) => {
   if (
     commonMisconceptions &&
     !commonMisconceptions[0]?.misconception &&
@@ -33,7 +33,7 @@ const CommonMisconceptions = ({
         Common misconceptions
       </Heading>
       {commonMisconceptions?.map(
-        (commonMisconception: CommonMisconception, i: number) => {
+        (commonMisconception: LessonOverviewCommonMisconception, i: number) => {
           return (
             <Flex $flexDirection={"column"} key={`common-misconception-${i}`}>
               <P $mb={24} $font={"body-1-bold"}>
@@ -48,4 +48,4 @@ const CommonMisconceptions = ({
   );
 };
 
-export default CommonMisconceptions;
+export default LessonOverviewCommonMisconceptions;

@@ -17,4 +17,4 @@ const Template: ComponentStory<typeof Component> = () => (
   />
 );
 
-export const LessonProgressionGraphic = Template.bind({});
+export const LessonPlanningElementLinks = Template.bind({});

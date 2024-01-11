@@ -3,22 +3,22 @@ import React, { FC } from "react";
 import KeyLearningPoints, {
   KeyLearningPoint,
 } from "@/components/KeyLearningPoints/KeyLearningPoints";
-import CommonMisconceptions, {
-  CommonMisconception,
-} from "@/components/CommonMisconceptions/CommonMisconceptions";
+import LessonOverviewCommonMisconceptions, {
+  LessonOverviewCommonMisconception,
+} from "@/components/TeacherComponents/LessonOverviewCommonMisconceptions";
 import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
 import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
-import LessonHelper from "@/components/TeacherComponents/LessonHelper";
+import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
-} from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
+} from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 
 type LessonOverviewDetailsProps = {
   keyLearningPoints: KeyLearningPoint[] | null | undefined;
-  commonMisconceptions: CommonMisconception[] | null | undefined;
+  commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
   keyWords: KeyWord[] | null | undefined;
   teacherTips: TeacherTip[] | null | undefined;
   equipmentAndResources: Equipment[] | null | undefined;
@@ -52,7 +52,9 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
         )}
         {commonMisconceptions && (
           <Box>
-            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+            <LessonOverviewCommonMisconceptions
+              commonMisconceptions={commonMisconceptions}
+            />
           </Box>
         )}
         {keyWords && (
@@ -72,7 +74,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
         supervisionLevel ||
         isLegacyLicense !== undefined ? (
           <Box>
-            <LessonHelper
+            <LessonOverviewHelper
               equipment={equipmentAndResources}
               contentGuidance={contentGuidance}
               supervisionLevel={supervisionLevel}

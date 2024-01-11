@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "@/components/TeacherComponents/LessonHelper/LessonHelper";
+import Component from "@/components/TeacherComponents/LessonOverviewHelper/LessonOverviewHelper";
 
 export default {
   component: Component,
@@ -10,9 +10,9 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const LessonHelper = Template.bind({});
+export const LessonOverviewHelper = Template.bind({});
 
-LessonHelper.args = {
+LessonOverviewHelper.args = {
   supervisionLevel: "this is the helper description",
   equipment: [{ equipment: "this is the equipment description" }],
   contentGuidance: [

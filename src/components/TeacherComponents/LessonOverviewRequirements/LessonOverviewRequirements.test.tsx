@@ -1,7 +1,7 @@
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import LessonRequirements from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
+import LessonOverviewRequirements from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 
-describe("LessonRequirements component", () => {
+describe("LessonOverviewRequirements component", () => {
   const equipment = [{ equipment: "test scissors" }];
   const contentGuidance = [
     {
@@ -14,7 +14,7 @@ describe("LessonRequirements component", () => {
 
   it("it should render title equipment title and not other titles", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonRequirements
+      <LessonOverviewRequirements
         helperIcon="equipment-required"
         equipment={equipment}
         heading={"Equipment"}
@@ -31,7 +31,7 @@ describe("LessonRequirements component", () => {
 
   it("it should render title content guidance title and not other titles", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonRequirements
+      <LessonOverviewRequirements
         helperIcon={"content-guidance"}
         heading="Content guidance"
         contentGuidance={contentGuidance}
@@ -48,7 +48,7 @@ describe("LessonRequirements component", () => {
 
   it("it should render supervision title and not other titles", () => {
     const { getByText, queryByText } = renderWithTheme(
-      <LessonRequirements
+      <LessonOverviewRequirements
         helperIcon={"supervision-level"}
         heading="Supervision"
         supervisionLevel={supervisionLevel}

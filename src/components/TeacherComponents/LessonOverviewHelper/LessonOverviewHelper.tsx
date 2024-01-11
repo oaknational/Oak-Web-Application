@@ -4,20 +4,20 @@ import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequ
 import CopyrightNotice from "@/components/DownloadAndShareComponents/CopyrightNotice";
 import Box from "@/components/SharedComponents/Box";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import LessonRequirements, {
+import LessonOverviewRequirements, {
   Equipment,
   ContentGuidance,
-} from "@/components/TeacherComponents/LessonRequirements";
+} from "@/components/TeacherComponents/LessonOverviewRequirements";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 
-type LessonHelperProps = {
+type LessonOverviewHelperProps = {
   equipment: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
 };
 
-const LessonHelper: FC<LessonHelperProps> = ({
+const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
   equipment,
   contentGuidance,
   supervisionLevel,
@@ -28,7 +28,7 @@ const LessonHelper: FC<LessonHelperProps> = ({
       <Grid $rg={32} $pa={24}>
         {equipment && equipment?.length > 0 && (
           <GridArea $colStart={1} $colSpan={[12]}>
-            <LessonRequirements
+            <LessonOverviewRequirements
               helperIcon={"equipment-required"}
               heading="Equipment"
               equipment={equipment}
@@ -37,7 +37,7 @@ const LessonHelper: FC<LessonHelperProps> = ({
         )}
         {contentGuidance && (
           <GridArea $colStart={1} $colSpan={[12]}>
-            <LessonRequirements
+            <LessonOverviewRequirements
               helperIcon={"content-guidance"}
               heading="Content guidance"
               contentGuidance={contentGuidance}
@@ -46,7 +46,7 @@ const LessonHelper: FC<LessonHelperProps> = ({
         )}
         {supervisionLevel && (
           <GridArea $colStart={1} $colSpan={[12]}>
-            <LessonRequirements
+            <LessonOverviewRequirements
               helperIcon={"supervision-level"}
               heading="Supervision"
               supervisionLevel={supervisionLevel}
@@ -72,4 +72,4 @@ const LessonHelper: FC<LessonHelperProps> = ({
   );
 };
 
-export default LessonHelper;
+export default LessonOverviewHelper;

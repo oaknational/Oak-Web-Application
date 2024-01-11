@@ -88,7 +88,9 @@ const ElementIcon = (props: { icon: IconName | [IconName, IconName] }) => {
  * LessonElementLinks is a collection graphics linking to sections depending
  * on ids passed in the 'linkTargetIds' prop.
  */
-const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
+const LessonPlanningElementLinks: FC<LessonProgressionGraphicProps> = (
+  props,
+) => {
   const { linkTargetIds } = props;
   const elementList: Array<ElementListItem> = [
     {
@@ -141,4 +143,4 @@ const LessonElementLinks: FC<LessonProgressionGraphicProps> = (props) => {
   );
 };
 
-export default LessonElementLinks;
+export default LessonPlanningElementLinks;
