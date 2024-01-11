@@ -1,3 +1,10 @@
+# [1.324.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.323.0...v1.324.0) (2024-01-11)
+
+
+### Features
+
+* remove fuzziness from elastic search query ([2231719](https://github.com/oaknational/Oak-Web-Application/commit/2231719fe318a20603891aa6f9b14017f2e64ce1))
+
 # [1.323.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.3...v1.323.0) (2024-01-11)
 
 
