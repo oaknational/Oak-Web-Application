@@ -27,7 +27,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(queryAllByTestId("units-heading")[0]).toBeInTheDocument();
     expect(queryAllByTestId("unit-card")[0]).toBeInTheDocument();
@@ -35,7 +35,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("number of unit cards matches expected units", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(curriculumUnitsTabFixture().units.length);
@@ -44,7 +44,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   test("threads with duplicate orders sort alphabetically", async () => {
     // Some duplicate thread orders, expect sorting alphabetically by slug
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const threadOptions = await findAllByTestId("thread-radio");
     const isSorted = threadOptions
@@ -130,7 +130,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     const threadOptions = await findAllByTestId("thread-radio");
     expect(threadOptions).toHaveLength(3);
     expect(threadOptions.map((option) => option.getAttribute("value"))).toEqual(
@@ -144,7 +146,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can see all the thread choices", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(await findByTestId("no-threads-radio")).toBeInTheDocument();
     const threads = await findAllByTestId("thread-radio");
@@ -159,7 +161,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("All the year group choices are visible", async () => {
     const { findByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     expect(await findByTestId("all-years-radio")).toBeInTheDocument();
     const yearOptions = await findAllByTestId("year-radio");
@@ -171,7 +173,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("Year group choices are properly sorted", async () => {
     const { findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const yearOptions = await findAllByTestId("year-radio");
     const extractedYears = yearOptions.map((option) =>
@@ -269,7 +271,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findByTestId, findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findByTestId, findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={"aqa"} />,
+    );
     const unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(1);
     const tag = await findByTestId("options-tag");
@@ -278,7 +282,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can highlight units by threads", async () => {
     const { queryByTestId, queryAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const threads = queryAllByTestId("thread-radio");
     await act(async () => {
@@ -300,7 +304,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
 
   test("user can filter by year group", async () => {
     const { queryAllByTestId, findAllByTestId } = render(
-      <UnitsTab data={curriculumUnitsTabFixture()} />,
+      <UnitsTab data={curriculumUnitsTabFixture()} examboardSlug={null} />,
     );
     const yearOptions = queryAllByTestId("year-radio");
     await act(async () => {
@@ -373,7 +377,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={"aqa"} />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     // Combined science is selected by default, so only 1 expected
     expect(unitCards).toHaveLength(1);
@@ -449,7 +455,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     expect(unitCards).toHaveLength(2);
     const domainButtons = await findAllByTestId("domain-button");
@@ -581,7 +589,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findAllByTestId } = render(<UnitsTab data={data} />);
+    const { findAllByTestId } = render(
+      <UnitsTab data={data} examboardSlug="aqa" />,
+    );
     let unitCards = await findAllByTestId("unit-card");
     // Foundation selected by default, so only 2 (including blank) expected
     expect(unitCards).toHaveLength(2);
@@ -650,7 +660,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         },
       ],
     };
-    const { findByTestId } = render(<UnitsTab data={data} />);
+    const { findByTestId } = render(
+      <UnitsTab data={data} examboardSlug={null} />,
+    );
     const tag = await findByTestId("options-tag");
     expect(tag).toHaveTextContent("2");
   });
