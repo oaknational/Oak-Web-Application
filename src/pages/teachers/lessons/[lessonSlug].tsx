@@ -17,7 +17,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppearsIn";
 import Flex from "@/components/SharedComponents/Flex";
 import { groupLessonPathways } from "@/components/Lesson/lesson.helpers";
-import { LessonOverview } from "@/components/Lesson/LessonOverview/LessonOverview.page";
+import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import OakError from "@/errors/OakError";
 

@@ -1,14 +1,13 @@
 import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 
-import CMSClient from "../../node-lib/cms";
-import AboutContactCard from "../../components/AboutContactCard";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import BioCardList from "../../components/BioCardList";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import { AboutLeadershipPage } from "../../common-lib/cms-types";
-import getPageProps from "../../node-lib/getPageProps";
-
+import CMSClient from "@/node-lib/cms";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
+import BioCardList from "@/components/GenericPagesComponents/BioCardList";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { AboutLeadershipPage } from "@/common-lib/cms-types";
+import getPageProps from "@/node-lib/getPageProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/SharedComponents/Layout";
 import { Heading } from "@/components/SharedComponents/Typography";
@@ -23,8 +22,8 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -52,7 +51,7 @@ const AboutUsLeadership: NextPage<AboutPageProps> = ({ pageData }) => {
           </>
         )}
 
-        <AboutContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

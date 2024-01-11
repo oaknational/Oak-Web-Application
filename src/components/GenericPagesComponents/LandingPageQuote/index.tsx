@@ -1,0 +1,1 @@
+export { LandingPageQuote } from "./LandingPageQuote";
