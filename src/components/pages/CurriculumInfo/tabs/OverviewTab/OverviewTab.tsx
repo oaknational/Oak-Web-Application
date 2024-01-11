@@ -9,7 +9,7 @@ import Typography, {
   LI,
 } from "@/components/SharedComponents/Typography";
 import Card from "@/components/SharedComponents/Card/Card";
-import SubjectIcon from "@/components/SubjectIcon/SubjectIcon";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";

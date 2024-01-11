@@ -5,7 +5,7 @@ import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherCompo
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
-import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";

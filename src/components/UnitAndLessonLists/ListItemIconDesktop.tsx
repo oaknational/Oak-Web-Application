@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import SubjectIcon from "../SubjectIcon";
+import SubjectIcon from "../SharedComponents/SubjectIcon";
 
 import { OakColorName } from "@/styles/theme/types";
 import Flex from "@/components/SharedComponents/Flex";
