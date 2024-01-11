@@ -99,8 +99,8 @@ export const getConsentsFromLocalStorage = () => {
             enabled === true
               ? "enabled"
               : enabled === false
-              ? "disabled"
-              : "pending",
+                ? "disabled"
+                : "pending",
           version,
         };
       } catch (error) {

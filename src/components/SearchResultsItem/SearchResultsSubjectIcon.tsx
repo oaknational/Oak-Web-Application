@@ -1,8 +1,7 @@
 import { FC } from "react";
 
-import SubjectIcon from "../SubjectIcon";
-import Circle from "../Circle";
-
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
+import Circle from "@/components/SharedComponents/Circle";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type SearchResultsSubjectIconProps = {

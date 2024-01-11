@@ -22,7 +22,7 @@ import Typography, {
 } from "@/components/SharedComponents/Typography";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import OakLink from "@/components/OakLink";
 
 type SerializedPolicyPage = Omit<PolicyPage, "lastUpdatedAt"> & {

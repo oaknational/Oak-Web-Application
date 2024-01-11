@@ -1,12 +1,11 @@
 import { FC } from "react";
 
-import LessonMetadata from "../LessonMetadata";
-import TagPromotional from "../TagPromotional";
-import OakLink from "../OakLink";
-import SearchDropdown from "../SearchDropdown/SearchDropdown";
-
 import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
 
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
+import TagPromotional from "@/components/TagPromotional";
+import OakLink from "@/components/OakLink";
+import SearchDropdown from "@/components/SearchDropdown/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
 import { Heading, P, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
@@ -30,6 +29,8 @@ export type SearchResultsItemProps = {
   nullTitle?: string;
   examBoard?: string;
   legacy?: boolean;
+  onToggleClick?: (searchHit: SearchResultsItemProps) => void;
+  isToggleOpen?: boolean;
   pathways: PathwaySchemaCamel[] | [];
   onClick?: (searchHit: SearchResultsItemProps) => void;
   firstItemRef?: React.RefObject<HTMLAnchorElement> | null;
@@ -42,6 +43,7 @@ export type SearchResultsItemProps = {
   | {
       type: "lesson";
       buttonLinkProps: LessonOverviewLinkProps;
+      unitTitle: string;
     }
 );
 

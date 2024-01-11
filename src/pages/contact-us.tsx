@@ -17,10 +17,10 @@ import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type ContactPageProps = {
   pageData: ContactPage;

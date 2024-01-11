@@ -1,8 +1,5 @@
 import { z } from "zod";
 
-import { ExpandingContainerTitle } from "../ExpandingContainer/ExpandingContainer";
-import { LessonItemTitle } from "../LessonItemContainer/LessonItemContainer";
-
 import {
   preselectedDownloadType,
   preselectedResourceType,
@@ -10,6 +7,8 @@ import {
   resourceFormValuesSchema,
 } from "./downloadAndShare.schema";
 
+import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
+import { ExpandingContainerTitle } from "@/components/ExpandingContainer/ExpandingContainer";
 import {
   LessonDownloadsData,
   LessonShareData,

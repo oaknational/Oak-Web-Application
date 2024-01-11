@@ -13,17 +13,17 @@ import Typography, {
 import Flex from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
-import BoxBorders from "@/components/SpriteSheet/BrushSvgs/BoxBorders";
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Cover from "@/components/SharedComponents/Cover";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type CurriculumPageProps = {
   pageData: CurriculumPage;

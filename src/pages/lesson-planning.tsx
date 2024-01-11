@@ -10,23 +10,23 @@ import Layout from "@/components/SharedComponents/Layout";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import LessonElementLinks from "@/components/LessonElementLinks";
+import LessonPlanningElementLinks from "@/components/TeacherComponents/LessonPlanningElementLinks";
 import { OakColorName } from "@/styles/theme";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
-import Circle from "@/components/Circle";
+import Circle from "@/components/SharedComponents/Circle";
 import Box from "@/components/SharedComponents/Box";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Cover from "@/components/SharedComponents/Cover";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Illustration from "@/components/SharedComponents/Illustration";
 import { IllustrationSlug } from "@/image-data";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import getPageProps from "@/node-lib/getPageProps";
-import { PortableTextWithDefaults } from "@/components/PortableText";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI";
 import { GridOrderedList } from "@/components/SharedComponents/Typography/OL";
@@ -210,7 +210,7 @@ const PlanALesson: NextPage<PlanALessonProps> = ({ pageData }) => {
               $width={"100%"}
               $mb={[0, 48]}
             >
-              <LessonElementLinks linkTargetIds={lessonElementIds} />
+              <LessonPlanningElementLinks linkTargetIds={lessonElementIds} />
             </Flex>
           </SectionHeader>
           <Grid $cg={[0, 40]} $rg={[56]}>

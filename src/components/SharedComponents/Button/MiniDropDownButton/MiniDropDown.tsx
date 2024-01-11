@@ -2,10 +2,12 @@ import { forwardRef, MouseEventHandler, useState } from "react";
 import styled from "styled-components";
 import { useFocusRing } from "react-aria";
 
-import { CommonButtonProps, HTMLButtonProps } from "../common";
-
 import MiniDropDownInner from "./MiniDropDownInner";
 
+import {
+  CommonButtonProps,
+  HTMLButtonProps,
+} from "@/components/SharedComponents/Button/common";
 import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/UnstyledButton";

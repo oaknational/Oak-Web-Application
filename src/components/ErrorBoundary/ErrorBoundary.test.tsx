@@ -5,10 +5,11 @@ import { ThemeProvider } from "styled-components";
 
 import "../../__tests__/__helpers__/LocalStorageMock";
 import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
-import theme from "../../styles/theme";
 import noop from "../../__tests__/__helpers__/noop";
 
 import ErrorBoundary from ".";
+
+import theme from "@/styles/theme";
 
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");

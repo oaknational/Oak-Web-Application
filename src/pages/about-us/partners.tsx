@@ -1,15 +1,14 @@
 import { NextPage, GetStaticProps } from "next";
 import { FC } from "react";
 
-import CMSClient from "../../node-lib/cms";
-import { AboutPartnersPage } from "../../common-lib/cms-types";
-import AboutContactCard from "../../components/AboutContactCard";
-import AboutIntroCard from "../../components/AboutIntoCard/AboutIntroCard";
-import { getSeoProps } from "../../browser-lib/seo/getSeoProps";
-import AboutUsSummaryCard from "../../components/pages/AboutUs/AboutUsSummaryCard";
-import { SpacingProps } from "../../styles/utils/spacing";
-import getPageProps from "../../node-lib/getPageProps";
-
+import CMSClient from "@/node-lib/cms";
+import { AboutPartnersPage } from "@/common-lib/cms-types";
+import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
+import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
+import getPageProps from "@/node-lib/getPageProps";
+import { SpacingProps } from "@/styles/utils/spacing";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/SharedComponents/Layout";
 import Illustration from "@/components/SharedComponents/Illustration";
@@ -49,8 +48,8 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
       <MaxWidth $mb={[56, 80]} $pt={[64, 80]}>
-        <AboutUsSummaryCard {...pageData} />
-        <AboutIntroCard
+        <GenericSummaryCard {...pageData} />
+        <GenericIntroCard
           image={{
             illustration: "supporting",
             sizes: "(min-width: 750px) 720px, 100vw",
@@ -125,7 +124,7 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
             </LI>
           ))}
         </FlexList>
-        <AboutContactCard {...pageData.contactSection} />
+        <GenericContactCard {...pageData.contactSection} />
       </MaxWidth>
     </Layout>
   );

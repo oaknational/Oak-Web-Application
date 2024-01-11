@@ -1,3 +1,88 @@
+# [1.324.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.323.0...v1.324.0) (2024-01-11)
+
+
+### Features
+
+* remove fuzziness from elastic search query ([2231719](https://github.com/oaknational/Oak-Web-Application/commit/2231719fe318a20603891aa6f9b14017f2e64ce1))
+
+# [1.323.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.3...v1.323.0) (2024-01-11)
+
+
+### Features
+
+* specialist url updates ([05c464b](https://github.com/oaknational/Oak-Web-Application/commit/05c464b092de52bd6a2741e154b1bb65249b63e5))
+
+## [1.322.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.2...v1.322.3) (2024-01-10)
+
+
+### Bug Fixes
+
+* storybook config ([9855d9b](https://github.com/oaknational/Oak-Web-Application/commit/9855d9b289a927ee9351faf4249046790efec0ef))
+
+## [1.322.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.1...v1.322.2) (2024-01-10)
+
+## [1.322.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.0...v1.322.1) (2024-01-10)
+
+# [1.322.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.1...v1.322.0) (2024-01-10)
+
+
+### Features
+
+* remove early release page ([b5aef9e](https://github.com/oaknational/Oak-Web-Application/commit/b5aef9e02c797eff9a1551e67dfbd34907f72f6d))
+
+## [1.321.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.0...v1.321.1) (2024-01-10)
+
+
+### Bug Fixes
+
+* horizontal scroll at 400 for links ([9e5c202](https://github.com/oaknational/Oak-Web-Application/commit/9e5c2025eaf631c66c667139bbd86b087f762c0d))
+* horizontal scroll on support your team ([e4e3e82](https://github.com/oaknational/Oak-Web-Application/commit/e4e3e827afb7bb488701a72a1e27197100ed73e3))
+
+# [1.321.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.320.0...v1.321.0) (2024-01-10)
+
+
+### Features
+
+* include all filter options in avo reporting ([2f5fcb9](https://github.com/oaknational/Oak-Web-Application/commit/2f5fcb999d40bdb9698cc1d90b54dda7b3317a94))
+
+# [1.320.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.3...v1.320.0) (2024-01-10)
+
+
+### Bug Fixes
+
+* test mocks ([fcffb65](https://github.com/oaknational/Oak-Web-Application/commit/fcffb6590806aabd8955ee3b0106176c4a983591))
+* update tests ([863c6e2](https://github.com/oaknational/Oak-Web-Application/commit/863c6e28ec7c819d0b260b3bc1211140fc56e22a))
+
+
+### Features
+
+* promote search feature flag ([e8663ae](https://github.com/oaknational/Oak-Web-Application/commit/e8663ae88eef75340d55ac5a85e49849200bbc47))
+
+## [1.319.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.2...v1.319.3) (2024-01-09)
+
+
+### Bug Fixes
+
+* update curriculum sitemap ([378c12a](https://github.com/oaknational/Oak-Web-Application/commit/378c12a9e0712d83c92f15e3c106cab960ab0744))
+
+## [1.319.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.1...v1.319.2) (2024-01-09)
+
+## [1.319.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.319.0...v1.319.1) (2024-01-09)
+
+# [1.319.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.3...v1.319.0) (2024-01-09)
+
+
+### Bug Fixes
+
+* key stage to sentnece case ([81ce12f](https://github.com/oaknational/Oak-Web-Application/commit/81ce12fa8f4f1d6b238bd0444a7355c955c8558f))
+
+
+### Features
+
+* add tracking for expanded search hit ([8312d38](https://github.com/oaknational/Oak-Web-Application/commit/8312d3848cd3b5831d03e250f990055072bc82ec))
+
+## [1.318.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.2...v1.318.3) (2024-01-09)
+
 ## [1.318.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.1...v1.318.2) (2024-01-09)
 
 ## [1.318.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.318.0...v1.318.1) (2024-01-08)
