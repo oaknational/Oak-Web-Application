@@ -1,5 +1,9 @@
 import { useRef } from "react";
-import { OakQuizTextInput } from "@oak-academy/oak-components";
+import {
+  OakFlex,
+  OakLabel,
+  OakQuizTextInput,
+} from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
@@ -41,12 +45,25 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
       : undefined;
 
   return (
-    <OakQuizTextInput
-      key={`short-answer-${questionUid}`}
-      name={`short-answer-${questionUid}`}
-      placeholder="Your answer"
-      onChange={handleOnChange}
-      feedback={feedback}
-    />
+    <OakFlex
+      $flexDirection={"column"}
+      $gap={"space-between-m"}
+      $font={"body-1"}
+    >
+      <OakLabel
+        htmlFor={`short-answer-${questionUid}`}
+        $font={["heading-light-7", "heading-light-6", "heading-light-6"]}
+        $color={"text-subdued"}
+      >
+        Type your answer here
+      </OakLabel>
+      <OakQuizTextInput
+        id={`short-answer-${questionUid}`}
+        key={`short-answer-${questionUid}`}
+        name={`short-answer-${questionUid}`}
+        onChange={handleOnChange}
+        feedback={feedback}
+      />
+    </OakFlex>
   );
 };

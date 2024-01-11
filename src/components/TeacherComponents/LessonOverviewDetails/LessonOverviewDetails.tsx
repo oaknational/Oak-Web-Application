@@ -1,26 +1,30 @@
 import React, { FC } from "react";
 
-import KeyLearningPoints, {
-  KeyLearningPoint,
-} from "@/components/KeyLearningPoints/KeyLearningPoints";
-import CommonMisconceptions, {
-  CommonMisconception,
-} from "@/components/CommonMisconceptions/CommonMisconceptions";
-import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
-import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
-import LessonHelper from "@/components/TeacherComponents/LessonHelper";
+import LessonOverviewKeyLearningPoints, {
+  LessonOverviewKeyLearningPointProps,
+} from "@/components/TeacherComponents/LessonOverviewKeyLearningPoints";
+import LessonOverviewCommonMisconceptions, {
+  LessonOverviewCommonMisconception,
+} from "@/components/TeacherComponents/LessonOverviewCommonMisconceptions";
+import LessonOverviewKeywords, {
+  LessonOverviewKeywordProps,
+} from "@/components/TeacherComponents/LessonOverviewKeywords";
+import LessonOverviewTeacherTips, {
+  LessonOverviewTeacherTipProps,
+} from "@/components/TeacherComponents/LessonOverviewTeacherTips";
+import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
-} from "@/components/TeacherComponents/LessonRequirements/LessonRequirements";
+} from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 
 type LessonOverviewDetailsProps = {
-  keyLearningPoints: KeyLearningPoint[] | null | undefined;
-  commonMisconceptions: CommonMisconception[] | null | undefined;
-  keyWords: KeyWord[] | null | undefined;
-  teacherTips: TeacherTip[] | null | undefined;
+  keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
+  commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
+  keyWords: LessonOverviewKeywordProps[] | null | undefined;
+  teacherTips: LessonOverviewTeacherTipProps[] | null | undefined;
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
@@ -47,24 +51,28 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
       <Flex $flexDirection={"column"} $flexGrow={1} $mr={16} $gap={48} $mb={24}>
         {keyLearningPoints && (
           <Box>
-            <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
+            <LessonOverviewKeyLearningPoints
+              keyLearningPoints={keyLearningPoints}
+            />
           </Box>
         )}
         {commonMisconceptions && (
           <Box>
-            <CommonMisconceptions commonMisconceptions={commonMisconceptions} />
+            <LessonOverviewCommonMisconceptions
+              commonMisconceptions={commonMisconceptions}
+            />
           </Box>
         )}
         {keyWords && (
           <Box>
-            <KeyWords keyWords={keyWords} />
+            <LessonOverviewKeywords keyWords={keyWords} />
           </Box>
         )}
       </Flex>
       <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
         {teacherTips && (
           <Box>
-            <TeacherTips teacherTips={teacherTips} />
+            <LessonOverviewTeacherTips teacherTips={teacherTips} />
           </Box>
         )}
         {(equipmentAndResources && equipmentAndResources.length > 0) ||
@@ -72,7 +80,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
         supervisionLevel ||
         isLegacyLicense !== undefined ? (
           <Box>
-            <LessonHelper
+            <LessonOverviewHelper
               equipment={equipmentAndResources}
               contentGuidance={contentGuidance}
               supervisionLevel={supervisionLevel}

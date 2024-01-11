@@ -1,3 +1,22 @@
+# [1.325.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.324.0...v1.325.0) (2024-01-11)
+
+
+### Bug Fixes
+
+* conflicts ([36d31a8](https://github.com/oaknational/Oak-Web-Application/commit/36d31a831bd1ffbff83b5daddd62a86d74105a28))
+* failing test ([e432274](https://github.com/oaknational/Oak-Web-Application/commit/e4322745029ba1f257e5b34163461d0c21c4e08b))
+* make sure use-local-components picks correct npm version ([931f9b7](https://github.com/oaknational/Oak-Web-Application/commit/931f9b7da943798647fa35434b9796f1980c194d))
+* refactor MCQ to decouple useEffect ([482810b](https://github.com/oaknational/Oak-Web-Application/commit/482810b775916be7b9f3329b88062fd2312966d3))
+* typo ([81dd02c](https://github.com/oaknational/Oak-Web-Application/commit/81dd02c1b5caa0779acbcb5e8eb6d2fc98053c7d))
+* updated single answer mcq to use refs ([36703f8](https://github.com/oaknational/Oak-Web-Application/commit/36703f8731f0137dcc63426d7cf917b7a3974b2a))
+
+
+### Features
+
+* adding a label ([38e0d9a](https://github.com/oaknational/Oak-Web-Application/commit/38e0d9a382938ceeff3e2e4aab9ead0582921f76))
+* quiz short answer ([d1f8741](https://github.com/oaknational/Oak-Web-Application/commit/d1f8741c374cd959c3ab612d46e786db0bfe9f9e))
+* wip short answer quiz questions ([b3cf78d](https://github.com/oaknational/Oak-Web-Application/commit/b3cf78d58183b91aa0c5f0209cdb1f9dbd1f8a1e))
+
 # [1.324.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.323.0...v1.324.0) (2024-01-11)
 
 
