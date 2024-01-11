@@ -1,8 +1,7 @@
 import React, { FC, MutableRefObject } from "react";
 
-import ListItemIconMobile from "../../ListItemIconMobile";
-import ListItemIconDesktop from "../../ListItemIconDesktop";
-
+import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
+import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
 import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
 import Flex from "@/components/SharedComponents/Flex";
@@ -11,7 +10,7 @@ import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
 import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
 import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
 import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
-import { UnitListLessonCount } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListLessonCount";
+import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { Span } from "@/components/SharedComponents/Typography";
 
 export type UnitListItemProps = Omit<
@@ -108,7 +107,7 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
         />
 
         <Flex $flexDirection={["column", "row"]}>
-          <UnitListLessonCount
+          <UnitListItemLessonCount
             expired={expired}
             expiredLessonCount={expiredLessonCount}
             lessonCount={lessonCount}

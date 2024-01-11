@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import UnitListItem, {
   UnitListItemProps,
-} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+} from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Pagination, {

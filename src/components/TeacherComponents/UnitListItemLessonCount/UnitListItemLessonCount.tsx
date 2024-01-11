@@ -2,17 +2,17 @@ import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import { Span } from "@/components/SharedComponents/Typography";
 
-export interface IUnitListLessonCountProps {
+export interface IUnitListItemLessonCountProps {
   lessonCount: number | null;
   expiredLessonCount: number | null;
   expired: boolean | null;
 }
 
-export const UnitListLessonCount = ({
+export const UnitListItemLessonCount = ({
   lessonCount,
   expiredLessonCount,
   expired,
-}: IUnitListLessonCountProps) => {
+}: IUnitListItemLessonCountProps) => {
   const textColor = expired ? "grey60" : "black";
 
   return (

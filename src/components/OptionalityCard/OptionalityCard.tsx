@@ -5,7 +5,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import UnitListItem, {
   UnitListItemProps,
-} from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+} from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
 

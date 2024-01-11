@@ -1,12 +1,14 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
-import unitListingFixture from "../../../node-lib/curriculum-api/fixtures/unitListing.fixture";
-import unitListingWithTiersFixture from "../../../node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
-
 import { UnitListProps } from "./UnitList";
 
 import Component from ".";
+
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
+import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
+
+
 
 const currentPageItems: UnitListProps = {
   ...unitListingFixture(),

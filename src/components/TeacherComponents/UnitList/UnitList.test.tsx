@@ -3,7 +3,7 @@ import { act } from "react-dom/test-utils";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 import optionalityProps from "@/node-lib/curriculum-api/fixtures/optionality.fixture";
-import UnitList from "@/components/UnitAndLessonLists/UnitList/UnitList";
+import UnitList from "@/components/TeacherComponents/UnitList/UnitList";
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
 
 const onClick = jest.fn();
