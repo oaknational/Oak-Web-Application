@@ -16,7 +16,7 @@ import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
 import { IconName } from "@/components/SharedComponents/Icon";
 import { useMenuContext } from "@/context/Menu";
-import { PostCategoryPage } from "@/components/Posts/PostCategoryList/PostCategoryList";
+import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { OakColorName } from "@/styles/theme";
 
 export type MobileFiltersProps = {

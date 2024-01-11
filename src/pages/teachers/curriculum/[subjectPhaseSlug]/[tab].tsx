@@ -24,7 +24,7 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum/index";
 import getPageProps from "@/node-lib/getPageProps";
 import OakError from "@/errors/OakError";

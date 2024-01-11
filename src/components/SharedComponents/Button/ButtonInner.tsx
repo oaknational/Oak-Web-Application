@@ -17,7 +17,7 @@ import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
-import SubjectIcon from "@/components/SubjectIcon";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";

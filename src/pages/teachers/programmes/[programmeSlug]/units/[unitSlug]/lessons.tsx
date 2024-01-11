@@ -9,7 +9,7 @@ import {
 import AppLayout from "@/components/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import LessonList from "@/components/UnitAndLessonLists/LessonList";
+import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import {
@@ -21,9 +21,9 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import HeaderListing from "@/components/HeaderListing";
+import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { LessonListItemProps } from "@/components/UnitAndLessonLists/LessonList/LessonListItem";
+import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

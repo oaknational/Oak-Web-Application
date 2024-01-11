@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import SubjectIcon from "@/components/SubjectIcon";
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import Circle from "@/components/SharedComponents/Circle";
 import Flex from "@/components/SharedComponents/Flex";
 

@@ -11,12 +11,6 @@ export const betaMenuSections: Array<BurgerMenuSection> = [
         external: false,
       },
       {
-        linkTo: { page: "early-release-units-page" },
-        text: "Early-release units",
-        new: true,
-        external: false,
-      },
-      {
         linkTo: {
           page: "subject-index",
           keyStageSlug: "ks1",

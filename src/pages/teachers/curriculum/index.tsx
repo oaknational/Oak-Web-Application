@@ -12,7 +12,7 @@ import Typography, {
   P,
   Hr,
 } from "@/components/SharedComponents/Typography";
-import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
@@ -27,9 +27,9 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import {
   blogToPostListItem,
   SerializedBlogPostPreview,
-} from "@/components/pages/BlogIndex.page";
+} from "@/components/GenericPagesViews/BlogIndex.view";
 import { serializeDate } from "@/utils/serializeDate";
-import PostListItem from "@/components/Posts/PostList/PostListItem/PostListItem";
+import PostListItem from "@/components/SharedComponents/PostListItem";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

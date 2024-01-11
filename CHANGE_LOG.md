@@ -1,3 +1,54 @@
+# [1.325.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.324.0...v1.325.0) (2024-01-11)
+
+
+### Bug Fixes
+
+* conflicts ([36d31a8](https://github.com/oaknational/Oak-Web-Application/commit/36d31a831bd1ffbff83b5daddd62a86d74105a28))
+* failing test ([e432274](https://github.com/oaknational/Oak-Web-Application/commit/e4322745029ba1f257e5b34163461d0c21c4e08b))
+* make sure use-local-components picks correct npm version ([931f9b7](https://github.com/oaknational/Oak-Web-Application/commit/931f9b7da943798647fa35434b9796f1980c194d))
+* refactor MCQ to decouple useEffect ([482810b](https://github.com/oaknational/Oak-Web-Application/commit/482810b775916be7b9f3329b88062fd2312966d3))
+* typo ([81dd02c](https://github.com/oaknational/Oak-Web-Application/commit/81dd02c1b5caa0779acbcb5e8eb6d2fc98053c7d))
+* updated single answer mcq to use refs ([36703f8](https://github.com/oaknational/Oak-Web-Application/commit/36703f8731f0137dcc63426d7cf917b7a3974b2a))
+
+
+### Features
+
+* adding a label ([38e0d9a](https://github.com/oaknational/Oak-Web-Application/commit/38e0d9a382938ceeff3e2e4aab9ead0582921f76))
+* quiz short answer ([d1f8741](https://github.com/oaknational/Oak-Web-Application/commit/d1f8741c374cd959c3ab612d46e786db0bfe9f9e))
+* wip short answer quiz questions ([b3cf78d](https://github.com/oaknational/Oak-Web-Application/commit/b3cf78d58183b91aa0c5f0209cdb1f9dbd1f8a1e))
+
+# [1.324.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.323.0...v1.324.0) (2024-01-11)
+
+
+### Features
+
+* remove fuzziness from elastic search query ([2231719](https://github.com/oaknational/Oak-Web-Application/commit/2231719fe318a20603891aa6f9b14017f2e64ce1))
+
+# [1.323.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.3...v1.323.0) (2024-01-11)
+
+
+### Features
+
+* specialist url updates ([05c464b](https://github.com/oaknational/Oak-Web-Application/commit/05c464b092de52bd6a2741e154b1bb65249b63e5))
+
+## [1.322.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.2...v1.322.3) (2024-01-10)
+
+
+### Bug Fixes
+
+* storybook config ([9855d9b](https://github.com/oaknational/Oak-Web-Application/commit/9855d9b289a927ee9351faf4249046790efec0ef))
+
+## [1.322.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.1...v1.322.2) (2024-01-10)
+
+## [1.322.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.322.0...v1.322.1) (2024-01-10)
+
+# [1.322.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.1...v1.322.0) (2024-01-10)
+
+
+### Features
+
+* remove early release page ([b5aef9e](https://github.com/oaknational/Oak-Web-Application/commit/b5aef9e02c797eff9a1551e67dfbd34907f72f6d))
+
 ## [1.321.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.321.0...v1.321.1) (2024-01-10)
 
 
