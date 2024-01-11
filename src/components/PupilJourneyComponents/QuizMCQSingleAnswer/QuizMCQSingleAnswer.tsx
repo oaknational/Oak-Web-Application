@@ -1,11 +1,8 @@
 import { useMemo, useRef, useEffect } from "react";
-import {
-  OakBox,
-  OakRadioButton,
-  OakRadioGroup,
-} from "@oak-academy/oak-components";
 
+import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;
@@ -46,66 +43,29 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
 
   return (
     <OakRadioGroup
-      name={questionUid || "quiz"}
+      name={questionUid || "mcq-single-answer"}
       $flexDirection={"column"}
       onChange={handleOnChange}
       disabled={isFeedbackMode}
     >
       {answers?.map((answer, i) => {
+        const label = answer.answer.find((a) => a.type === "text") as
+          | StemTextObject
+          | undefined;
+
+        const feedback = Array.isArray(questionState.feedback)
+          ? questionState.feedback[i]
+          : undefined;
+
         return (
-          <OakBox key={`${questionUid}-answer-${i}`}>
-            {answer.answer.map((answerItem) => {
-              let feedbackModeColor: "oakGreen" | "red" | undefined;
-
-              if (questionState.feedback?.[i] === "correct") {
-                feedbackModeColor = "oakGreen";
-              } else if (questionState.feedback?.[i] === "incorrect") {
-                feedbackModeColor = "red";
-              }
-
-              const backgroundColor = isFeedbackMode
-                ? feedbackModeColor
-                : undefined;
-
-              const color = backgroundColor ? "text-inverted" : undefined;
-
-              const correctChoice = (
-                <>
-                  {answer.answer_is_correct && isFeedbackMode && (
-                    <OakBox
-                      $position={"absolute"}
-                      $top={"all-spacing-3"}
-                      $right={"all-spacing-3"}
-                      $font={"body-3-bold"}
-                      $color={color}
-                    >
-                      Correct choice
-                    </OakBox>
-                  )}
-                </>
-              );
-
-              if (answerItem.type === "text") {
-                return (
-                  <OakBox key={`radio-${i}`} $position={"relative"}>
-                    <OakRadioButton
-                      key={`${questionUid}-answer-${i}`}
-                      $pa="inner-padding-s"
-                      $ba={"border-solid-s"}
-                      $borderRadius={"border-radius-s"}
-                      $color={color}
-                      $background={backgroundColor}
-                      id={`${questionUid}-answer-${i}`}
-                      tabIndex={i}
-                      value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
-                      label={answerItem.text}
-                    />
-                    {correctChoice}
-                  </OakBox>
-                );
-              }
-            })}
-          </OakBox>
+          <OakQuizRadioButton
+            id={`${questionUid}-answer-${i}`}
+            key={`${questionUid}-answer-${i}`}
+            tabIndex={i}
+            value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
+            label={label?.text}
+            feedback={feedback}
+          />
         );
       })}
     </OakRadioGroup>
