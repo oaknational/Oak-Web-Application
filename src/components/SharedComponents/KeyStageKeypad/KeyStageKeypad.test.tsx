@@ -5,13 +5,12 @@ import KeyStageKeypad from "./KeyStageKeypad";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 
-
 const keyStages = ["1", "2", "3", "4"];
 const years = ["6", "7", "8", "9", "10", "11"];
 
 const keyStageSelected = jest.fn();
 
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

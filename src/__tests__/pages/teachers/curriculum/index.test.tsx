@@ -7,7 +7,7 @@ import CurriculumHomePage, {
 } from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
-import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SerializedBlogPostPreview } from "@/components/GenericPagesViews/BlogIndex.view";
 
 const render = renderWithProviders();
@@ -41,9 +41,12 @@ const props: CurriculumHomePageProps = {
   posts: mockPosts,
 };
 
-jest.mock("src/components/SubjectPhasePicker/SubjectPhasePicker", () => {
-  return jest.fn(() => <div>Mock SubjectPhasePicker</div>);
-});
+jest.mock(
+  "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker",
+  () => {
+    return jest.fn(() => <div>Mock SubjectPhasePicker</div>);
+  },
+);
 
 const mockCMS = (willErr = false) => ({
   blogPostBySlug: jest.fn((slug) => {
