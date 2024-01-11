@@ -1,13 +1,15 @@
 import React, { FC } from "react";
 
-import KeyLearningPoints, {
-  KeyLearningPoint,
-} from "@/components/KeyLearningPoints/KeyLearningPoints";
+import LessonOverviewKeyLearningPoints, {
+  LessonOverviewKeyLearningPointProps,
+} from "@/components/TeacherComponents/LessonOverviewKeyLearningPoints";
 import LessonOverviewCommonMisconceptions, {
   LessonOverviewCommonMisconception,
 } from "@/components/TeacherComponents/LessonOverviewCommonMisconceptions";
 import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
-import TeacherTips, { TeacherTip } from "@/components/TeacherTips/TeacherTips";
+import LessonOverviewTeacherTips, {
+  LessonOverviewTeacherTipProps,
+} from "@/components/TeacherComponents/LessonOverviewTeacherTips";
 import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
@@ -17,10 +19,10 @@ import {
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 
 type LessonOverviewDetailsProps = {
-  keyLearningPoints: KeyLearningPoint[] | null | undefined;
+  keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
   commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
   keyWords: KeyWord[] | null | undefined;
-  teacherTips: TeacherTip[] | null | undefined;
+  teacherTips: LessonOverviewTeacherTipProps[] | null | undefined;
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   supervisionLevel: string | null | undefined;
@@ -47,7 +49,9 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
       <Flex $flexDirection={"column"} $flexGrow={1} $mr={16} $gap={48} $mb={24}>
         {keyLearningPoints && (
           <Box>
-            <KeyLearningPoints keyLearningPoints={keyLearningPoints} />
+            <LessonOverviewKeyLearningPoints
+              keyLearningPoints={keyLearningPoints}
+            />
           </Box>
         )}
         {commonMisconceptions && (
@@ -66,7 +70,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
       <Flex $flexDirection={"column"} $mt={[48, 0]} $gap={48} $mb={24}>
         {teacherTips && (
           <Box>
-            <TeacherTips teacherTips={teacherTips} />
+            <LessonOverviewTeacherTips teacherTips={teacherTips} />
           </Box>
         )}
         {(equipmentAndResources && equipmentAndResources.length > 0) ||

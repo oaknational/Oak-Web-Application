@@ -1,12 +1,12 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import KeyLearningPoints from "./KeyLearningPoints";
+import LessonOverviewKeyLearningPoints from "./LessonOverviewKeyLearningPoints";
 
-describe("KeyLearningPoints component", () => {
+describe("LessonOverviewKeyLearningPoints component", () => {
   it("should render", () => {
     const keyLearningPoints = [{ keyLearningPoint: "test" }];
     const { getByTestId, getByText } = renderWithTheme(
-      <KeyLearningPoints keyLearningPoints={keyLearningPoints} />,
+      <LessonOverviewKeyLearningPoints keyLearningPoints={keyLearningPoints} />,
     );
     const componentTitle = getByText("Key learning points");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe("KeyLearningPoints component", () => {
 
   it("should render with multiple core content list", () => {
     const { getAllByRole } = renderWithTheme(
-      <KeyLearningPoints
+      <LessonOverviewKeyLearningPoints
         keyLearningPoints={[
           { keyLearningPoint: "test" },
           { keyLearningPoint: "test 2" },
@@ -30,7 +30,7 @@ describe("KeyLearningPoints component", () => {
 
   it("should render with null and non-null core content", () => {
     const { getAllByRole } = renderWithTheme(
-      <KeyLearningPoints
+      <LessonOverviewKeyLearningPoints
         keyLearningPoints={[
           { keyLearningPoint: "test" },
           { keyLearningPoint: null },

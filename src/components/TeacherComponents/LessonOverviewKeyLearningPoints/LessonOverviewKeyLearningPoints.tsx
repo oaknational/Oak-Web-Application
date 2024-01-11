@@ -3,15 +3,17 @@ import React from "react";
 import { OL, LI, Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type KeyLearningPoint = {
+export type LessonOverviewKeyLearningPointProps = {
   keyLearningPoint: string | null;
 };
 
-type LessonKeyLearningPoints = {
-  keyLearningPoints: KeyLearningPoint[];
+type LessonOverviewKeyLearningPointsProps = {
+  keyLearningPoints: LessonOverviewKeyLearningPointProps[];
 };
 
-const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
+const LessonOverviewKeyLearningPoints = ({
+  keyLearningPoints,
+}: LessonOverviewKeyLearningPointsProps) => {
   const filteredKeyLearningPoints = keyLearningPoints.filter(
     (keyLearningPoint) =>
       keyLearningPoint.keyLearningPoint !== null &&
@@ -34,7 +36,10 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
       </Heading>
       <OL $mb={0} $mt={0}>
         {filteredKeyLearningPoints.map(
-          (keyLearningPoint: KeyLearningPoint, i: number) => {
+          (
+            keyLearningPoint: LessonOverviewKeyLearningPointProps,
+            i: number,
+          ) => {
             if (!keyLearningPoint) {
               return null;
             } else {
@@ -54,4 +59,4 @@ const KeyLearningPoints = ({ keyLearningPoints }: LessonKeyLearningPoints) => {
   );
 };
 
-export default KeyLearningPoints;
+export default LessonOverviewKeyLearningPoints;

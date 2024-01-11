@@ -1,12 +1,12 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
-import TeacherTips from "./TeacherTips";
+import LessonOverviewTeacherTips from "./LessonOverviewTeacherTips";
 
-describe("TeacherTips component", () => {
+describe("LessonOverviewTeacherTips component", () => {
   const teacherTips = [{ teacherTip: "test teacher tip" }];
   it("should render with correct title", () => {
     const { getByTestId, getByText } = renderWithTheme(
-      <TeacherTips teacherTips={teacherTips} />,
+      <LessonOverviewTeacherTips teacherTips={teacherTips} />,
     );
     const componentTitle = getByText("Teacher tip");
     expect(getByTestId("heading")).toBeInTheDocument();
@@ -15,7 +15,7 @@ describe("TeacherTips component", () => {
 
   it("should render with teacherTip", () => {
     const { getByText } = renderWithTheme(
-      <TeacherTips teacherTips={teacherTips} />,
+      <LessonOverviewTeacherTips teacherTips={teacherTips} />,
     );
 
     const tip = getByText("test teacher tip");
