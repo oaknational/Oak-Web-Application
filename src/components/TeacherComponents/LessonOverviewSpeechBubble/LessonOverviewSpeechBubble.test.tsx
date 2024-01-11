@@ -2,7 +2,6 @@ import LessonOverviewSpeechBubble from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("LessonOverviewSpeechBubble", () => {
   it("component will not render when there is no text ", () => {
     const { queryByTestId } = renderWithTheme(

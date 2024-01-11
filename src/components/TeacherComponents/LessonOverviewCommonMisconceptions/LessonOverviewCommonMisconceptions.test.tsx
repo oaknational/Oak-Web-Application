@@ -2,7 +2,6 @@ import LessonOverviewCommonMisconceptions from "./LessonOverviewCommonMisconcept
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("LessonOverviewCommonMisconceptions component", () => {
   it("should render with correct heading", () => {
     const commonMisconceptions = [
