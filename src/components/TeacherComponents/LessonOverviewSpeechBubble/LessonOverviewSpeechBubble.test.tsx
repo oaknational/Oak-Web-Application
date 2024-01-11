@@ -1,18 +1,22 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import LessonOverviewSpeechBubble from ".";
 
-import SpeechBubble from ".";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("SpeechBubble", () => {
+
+describe("LessonOverviewSpeechBubble", () => {
   it("component will not render when there is no text ", () => {
     const { queryByTestId } = renderWithTheme(
-      <SpeechBubble data-testid={"speech-bubble"} label="Teacher tip" />,
+      <LessonOverviewSpeechBubble
+        data-testid={"speech-bubble"}
+        label="Teacher tip"
+      />,
     );
 
     expect(queryByTestId("speech-bubble")).not.toBeInTheDocument();
   });
   it("component will not render when the char limit is surpassed ", () => {
     const { queryByTestId } = renderWithTheme(
-      <SpeechBubble
+      <LessonOverviewSpeechBubble
         data-testid={"speech-bubble"}
         label="Teacher tip"
         text={
@@ -25,7 +29,7 @@ describe("SpeechBubble", () => {
   });
   it("component will render a label", () => {
     const { getByText } = renderWithTheme(
-      <SpeechBubble
+      <LessonOverviewSpeechBubble
         data-testid={"speech-bubble"}
         label="Teacher tip"
         text={"Encourage students to ask 'why' questions, fostering curiosity"}
@@ -36,7 +40,7 @@ describe("SpeechBubble", () => {
   });
   it("component will render the text if 250 char or below", () => {
     const { getByText } = renderWithTheme(
-      <SpeechBubble
+      <LessonOverviewSpeechBubble
         data-testid={"speech-bubble"}
         label="Teacher tip"
         text={"Encourage students to ask 'why' questions, fostering curiosity"}

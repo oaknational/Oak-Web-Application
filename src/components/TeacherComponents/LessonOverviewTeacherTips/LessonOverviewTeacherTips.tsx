@@ -1,7 +1,6 @@
 import React from "react";
 
-import SpeechBubble from "../../SpeechBubble/SpeechBubble";
-
+import LessonOverviewSpeechBubble from "@/components/TeacherComponents/LessonOverviewSpeechBubble";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type LessonOverviewTeacherTipProps = {
@@ -18,7 +17,10 @@ const LessonOverviewTeacherTips = ({
   const [teacherTip] = teacherTips;
   return (
     <Flex>
-      <SpeechBubble text={teacherTip?.teacherTip} label={"Teacher tip"} />
+      <LessonOverviewSpeechBubble
+        text={teacherTip?.teacherTip}
+        label={"Teacher tip"}
+      />
     </Flex>
   );
 };

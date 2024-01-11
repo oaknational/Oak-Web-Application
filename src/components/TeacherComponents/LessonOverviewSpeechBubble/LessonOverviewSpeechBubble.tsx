@@ -5,11 +5,14 @@ import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 
-type SpeechBubbleProps = {
+type LessonOverviewSpeechBubbleProps = {
   text?: string | null | undefined;
   label: string;
 };
-const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
+const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
+  text,
+  label,
+}) => {
   const charCount = text?.length || 0;
 
   if (charCount > 250 || !text || charCount === 0) {
@@ -56,4 +59,4 @@ const SpeechBubble: FC<SpeechBubbleProps> = ({ text, label }) => {
   );
 };
 
-export default SpeechBubble;
+export default LessonOverviewSpeechBubble;

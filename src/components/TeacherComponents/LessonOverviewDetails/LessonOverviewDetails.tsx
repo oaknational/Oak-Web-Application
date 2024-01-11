@@ -6,7 +6,9 @@ import LessonOverviewKeyLearningPoints, {
 import LessonOverviewCommonMisconceptions, {
   LessonOverviewCommonMisconception,
 } from "@/components/TeacherComponents/LessonOverviewCommonMisconceptions";
-import KeyWords, { KeyWord } from "@/components/KeyWords/KeyWords";
+import LessonOverviewKeywords, {
+  LessonOverviewKeywordProps,
+} from "@/components/TeacherComponents/LessonOverviewKeywords";
 import LessonOverviewTeacherTips, {
   LessonOverviewTeacherTipProps,
 } from "@/components/TeacherComponents/LessonOverviewTeacherTips";
@@ -21,7 +23,7 @@ import {
 type LessonOverviewDetailsProps = {
   keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
   commonMisconceptions: LessonOverviewCommonMisconception[] | null | undefined;
-  keyWords: KeyWord[] | null | undefined;
+  keyWords: LessonOverviewKeywordProps[] | null | undefined;
   teacherTips: LessonOverviewTeacherTipProps[] | null | undefined;
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
@@ -63,7 +65,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
         )}
         {keyWords && (
           <Box>
-            <KeyWords keyWords={keyWords} />
+            <LessonOverviewKeywords keyWords={keyWords} />
           </Box>
         )}
       </Flex>

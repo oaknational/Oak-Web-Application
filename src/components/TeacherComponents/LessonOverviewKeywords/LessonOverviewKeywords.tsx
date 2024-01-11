@@ -9,16 +9,16 @@ import {
   Heading,
 } from "@/components/SharedComponents/Typography";
 
-export type KeyWord = {
+export type LessonOverviewKeywordProps = {
   keyword: string;
   description: string | null;
 };
 
-export type KeyWordsAndDescription = {
-  keyWords: KeyWord[];
+export type LessonOverviewKeywordsProps = {
+  keyWords: LessonOverviewKeywordProps[];
 };
 
-const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
+const LessonOverviewKeywords = ({ keyWords }: LessonOverviewKeywordsProps) => {
   return (
     <Flex
       $flexDirection={"column"}
@@ -29,7 +29,7 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
         Keywords
       </Heading>
       <UL $reset>
-        {keyWords.map((keyWord: KeyWord, i: number) => {
+        {keyWords.map((keyWord: LessonOverviewKeywordProps, i: number) => {
           const capitalisedKeyword =
             keyWord.keyword.charAt(0).toUpperCase() + keyWord.keyword.slice(1);
 
@@ -52,4 +52,4 @@ const KeyWords = ({ keyWords }: KeyWordsAndDescription) => {
   );
 };
 
-export default KeyWords;
+export default LessonOverviewKeywords;
