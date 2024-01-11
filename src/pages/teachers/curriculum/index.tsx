@@ -12,7 +12,7 @@ import Typography, {
   P,
   Hr,
 } from "@/components/SharedComponents/Typography";
-import { SubjectPhasePickerData } from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
