@@ -1,7 +1,8 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
-
 import KeyStagesNav from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import keyStagesNavData from "@/browser-lib/fixtures/keyStagesNav";
+
 const keyStages = ["Early Years", "KS1", "KS2", "KS3", "KS4"];
 const years = [
   "Reception",

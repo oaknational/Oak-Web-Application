@@ -1,8 +1,9 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import keyStagesNavData from "../../browser-lib/fixtures/keyStagesNav";
-
 import Component from "./KeyStagesNav";
+
+import keyStagesNavData from "@/browser-lib/fixtures/keyStagesNav";
+
 
 export default {
   component: Component,
