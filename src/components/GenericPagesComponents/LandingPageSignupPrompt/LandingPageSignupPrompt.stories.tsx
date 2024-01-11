@@ -1,9 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
+import { LandingPageSignupPrompt as Component } from "./LandingPageSignupPrompt";
 
-import { SignupPrompt as Component } from "./SignupPrompt";
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+
 
 export default {
   decorators: [AnalyticsDecorator],
@@ -15,8 +16,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const SignupPrompt = Template.bind({});
-SignupPrompt.args = {
+export const LandingPageSignupPrompt = Template.bind({});
+LandingPageSignupPrompt.args = {
   bodyPortableText: [
     {
       _key: "fba015024518",

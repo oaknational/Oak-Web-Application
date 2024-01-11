@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
-
 import Component, { UnitOption } from "./UnitListOptionalityCard";
 
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.fixture";
 
 const units = unitListingFixture().units;
@@ -19,7 +18,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const OptionalityCard: Story = {
+export const UnitListOptionalityCard: Story = {
   args: {
     unitOptions: unitOptions,
     index: 1,

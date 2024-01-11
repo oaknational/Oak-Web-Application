@@ -1,13 +1,12 @@
 import { FC } from "react";
 
-import { SignUpForm } from "./SignUpForm";
-
+import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { PortableTextJSON } from "@/common-lib/cms-types";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
-export const SignupPrompt: FC<{
+export const LandingPageSignupPrompt: FC<{
   title: string;
   form: { title: string };
   bodyPortableText: PortableTextJSON;
@@ -33,7 +32,7 @@ export const SignupPrompt: FC<{
           </Typography>
         </GridArea>
         <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
-          <SignUpForm formTitle={form.title} />
+          <LandingPageSignUpForm formTitle={form.title} />
         </GridArea>
       </Grid>
     </>

@@ -7,7 +7,9 @@ import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTit
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
 
-export const SignUpForm: FC<{ formTitle: string }> = ({ formTitle }) => {
+export const LandingPageSignUpForm: FC<{ formTitle: string }> = ({
+  formTitle,
+}) => {
   const { onSubmit } = useNewsletterForm();
   const id = useId();
   const descriptionId = `${id}-newsletter-form-description`;
