@@ -1,41 +1,42 @@
 import { FC } from "react";
 
-import SubjectIcon from "../SharedComponents/SubjectIcon";
-
+import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { OakColorName } from "@/styles/theme/types";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type ListItemIconMobileProps = {
+export type UnitListItemIconDesktopProps = {
+  title: string;
   subjectSlug: string;
   background: OakColorName;
 };
 
-const ListItemIconMobile: FC<ListItemIconMobileProps> = (props) => {
+const UnitListItemIconDesktop: FC<UnitListItemIconDesktopProps> = (props) => {
   const { background, subjectSlug } = props;
 
   return (
     <Flex
       $justifyContent={"center"}
-      $display={["flex", "none"]}
+      $display={["none", "flex"]}
       $alignItems={"center"}
+      $minHeight={110}
+      $minWidth={130}
       $height={"100%"}
-      $minHeight={72}
-      $minWidth={72}
       $background={background}
       $position={"relative"}
-      $ml={"auto"}
+      $dropShadow={"subjectCard"}
+      $transition={"all 0.4s ease-out"}
+      data-testid="list-item-icon"
     >
       <SubjectIcon
         subjectSlug={subjectSlug}
         height={96}
         width={96}
-        $height="auto"
-        $maxHeight={72}
-        $maxWidth={72}
+        $maxHeight={96}
+        $maxWidth={96}
         $ma={"auto"}
       />
     </Flex>
   );
 };
 
-export default ListItemIconMobile;
+export default UnitListItemIconDesktop;

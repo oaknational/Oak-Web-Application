@@ -1,15 +1,15 @@
 import React, { FC, MutableRefObject } from "react";
 
-import ListItemIconMobile from "@/components/UnitAndLessonLists/ListItemIconMobile";
-import ListItemIconDesktop from "@/components/UnitAndLessonLists/ListItemIconDesktop";
+import UnitListItemIconMobile from "@/components/TeacherComponents/UnitListItemIconMobile";
+import UnitListItemIconDesktop from "@/components/TeacherComponents/UnitListItemIconDesktop";
 import { OakColorName } from "@/styles/theme/types";
 import useClickableCard from "@/hooks/useClickableCard";
 import Flex from "@/components/SharedComponents/Flex";
-import ListItemHeader from "@/components/UnitAndLessonLists/ListItemHeader";
-import ListItemCard from "@/components/UnitAndLessonLists/ListItemCard";
+import ListItemHeader from "@/components/TeacherComponents/ListItemHeader";
+import ListItemCard from "@/components/TeacherComponents/ListItemCard";
 import { UnitListingData, UnitData } from "@/node-lib/curriculum-api";
-import ListItemIndexDesktop from "@/components/UnitAndLessonLists/ListItemIndexDesktop";
-import ListItemIndexMobile from "@/components/UnitAndLessonLists/ListItemIndexMobile";
+import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
+import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { Span } from "@/components/SharedComponents/Typography";
 
@@ -116,12 +116,12 @@ const UnitListItem: FC<UnitListItemProps> = (props) => {
       </Flex>
       {isExemplarUnit && (
         <>
-          <ListItemIconDesktop
+          <UnitListItemIconDesktop
             title={title}
             background={isHovered ? backgroundOnHover : background}
             subjectSlug={subjectSlug}
           />
-          <ListItemIconMobile
+          <UnitListItemIconMobile
             background={background}
             subjectSlug={subjectSlug}
           />

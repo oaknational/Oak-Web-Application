@@ -1,12 +1,10 @@
 import { FC, MutableRefObject } from "react";
 
-import OakLink from "../OakLink";
-import { LessonListItemProps } from "../TeacherComponents/LessonListItem";
-import { UnitListItemProps } from "../TeacherComponents/UnitListItem/UnitListItem";
-
-import CategoryHeading from "./CategoryHeading";
-import ExemplarCategoryHeading from "./ExemplarCategoryHeading";
-
+import OakLink from "@/components/OakLink";
+import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
+import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
+import ListItemHeaderCategoryHeading from "@/components/TeacherComponents/ListItemHeaderCategoryHeading";
+import ListItemHeaderExpemplarCategoryHeading from "@/components/TeacherComponents/ListItemHeaderExpemplarCategoryHeading";
 import { Heading } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import {
@@ -96,14 +94,14 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
     <Flex>
       <Flex $mb={2} $flexDirection={"column"}>
         {!hideTopHeading && !isExemplarUnit && (
-          <CategoryHeading
+          <ListItemHeaderCategoryHeading
             keyStageTitle={keyStageTitle}
             subjectTitle={subjectTitle}
             page={page}
           />
         )}
         {!hideTopHeading && isExemplarUnit && (
-          <ExemplarCategoryHeading
+          <ListItemHeaderExpemplarCategoryHeading
             keyStageTitle={keyStageTitle}
             subjectTitle={subjectTitle}
             yearTitle={yearTitle}

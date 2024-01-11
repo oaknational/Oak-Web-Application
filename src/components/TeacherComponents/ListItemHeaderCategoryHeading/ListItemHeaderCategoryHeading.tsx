@@ -2,13 +2,13 @@ import React, { FC } from "react";
 
 import { Span } from "@/components/SharedComponents/Typography";
 
-type CategoryHeadingProps = {
+type ListItemHeaderCategoryHeadingProps = {
   keyStageTitle?: string;
   subjectTitle?: string;
   page: "Unit" | "Lesson";
 };
 
-const CategoryHeading: FC<CategoryHeadingProps> = ({
+const ListItemHeaderCategoryHeading: FC<ListItemHeaderCategoryHeadingProps> = ({
   keyStageTitle,
   subjectTitle,
   page,
@@ -22,4 +22,4 @@ const CategoryHeading: FC<CategoryHeadingProps> = ({
   );
 };
 
-export default CategoryHeading;
+export default ListItemHeaderCategoryHeading;

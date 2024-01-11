@@ -3,17 +3,15 @@ import React, { FC } from "react";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 
-type ExemplarCategoryHeadingProps = {
+type ListItemHeaderExpemplarCategoryHeadingProps = {
   keyStageTitle?: string;
   subjectTitle?: string;
   yearTitle?: string | null;
 };
 
-const ExemplarCategoryHeading: FC<ExemplarCategoryHeadingProps> = ({
-  keyStageTitle,
-  subjectTitle,
-  yearTitle,
-}) => {
+const ListItemHeaderExpemplarCategoryHeading: FC<
+  ListItemHeaderExpemplarCategoryHeadingProps
+> = ({ keyStageTitle, subjectTitle, yearTitle }) => {
   return (
     <Typography $font={["body-3", "heading-light-7"]} $color={"grey60"} $mb={4}>
       {keyStageTitle} <Icon name="dot" size={6} $mb={2} $mr={4} />
@@ -23,4 +21,4 @@ const ExemplarCategoryHeading: FC<ExemplarCategoryHeadingProps> = ({
   );
 };
 
-export default ExemplarCategoryHeading;
+export default ListItemHeaderExpemplarCategoryHeading;
