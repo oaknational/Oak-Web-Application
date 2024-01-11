@@ -13,7 +13,7 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
-import { LessonShare } from "@/components/Lesson/LessonShare/LessonShare.page";
+import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
