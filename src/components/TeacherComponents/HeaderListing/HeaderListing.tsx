@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
-import SubjectIconBrushBorders from "@/components/SubjectIconBrushBorders";
+import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import CurriculumDownloadButton from "@/components/CurriculumDownloadButtons/CurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { Heading, Span } from "@/components/SharedComponents/Typography";
