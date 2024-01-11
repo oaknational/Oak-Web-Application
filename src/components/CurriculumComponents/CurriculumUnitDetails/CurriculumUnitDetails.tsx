@@ -3,7 +3,7 @@ import { FC } from "react";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import { Heading, LI, P, OL } from "@/components/SharedComponents/Typography";
-import { TagFunctional } from "@/components/TagFunctional";
+import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { Thread } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import Accordion from "@/components/ArchivedComponents/Accordion";

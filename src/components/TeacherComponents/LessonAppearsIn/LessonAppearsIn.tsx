@@ -1,8 +1,8 @@
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { LessonAppearsInPathwayCard } from "@/components/TeacherComponents/LessonAppearsInPathwayCard";
-import { TagFunctional } from "@/components/TagFunctional";
-import { TagColor } from "@/components/TagFunctional/TagFunctional";
+import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
 import {
   Heading,
   HeadingTag,

@@ -9,7 +9,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
-import { TagFunctional } from "@/components/TagFunctional";
+import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Unit } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
