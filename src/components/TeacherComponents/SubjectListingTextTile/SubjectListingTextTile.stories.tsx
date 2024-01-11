@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./TextTitle";
+import Component from "./SubjectListingTextTile";
 
 import { Span } from "@/components/SharedComponents/Typography";
 
@@ -11,7 +11,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const TextTile: Story = {
+export const SubjectListingTextTile: Story = {
   args: {
     $background: "white",
   },

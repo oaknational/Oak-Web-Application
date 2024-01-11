@@ -6,7 +6,7 @@ import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
-export type TextTileProps = {
+export type SubjectListingTextTile = {
   children: React.ReactNode;
 } & FlexProps;
 
@@ -28,7 +28,7 @@ const TextTileWrap = styled(Flex)`
   }
 `;
 
-const TextTile: FC<TextTileProps> = (
+const SubjectListingTextTile: FC<SubjectListingTextTile> = (
   { children, $background = "white" },
   flexProps,
 ) => {
@@ -48,4 +48,4 @@ const TextTile: FC<TextTileProps> = (
   );
 };
 
-export default TextTile;
+export default SubjectListingTextTile;
