@@ -9,9 +9,9 @@ import SearchForm from "@/components/SearchForm/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ResourceSelectorCard from "@/components/ResourceSelectorCard/ResourceSelectorCard";
-import { KeyStageKeypadProps } from "@/components/KeyStageKeypad/KeyStageKeypad";
+import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import KeyStageKeypad from "@/components/KeyStageKeypad";
+import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 
 type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];

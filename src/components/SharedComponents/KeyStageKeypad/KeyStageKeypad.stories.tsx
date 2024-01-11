@@ -1,10 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import keyStageKeypad from "../../browser-lib/fixtures/keyStageKeypad";
-
 import Component from "./KeyStageKeypad";
 
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import Flex from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {
