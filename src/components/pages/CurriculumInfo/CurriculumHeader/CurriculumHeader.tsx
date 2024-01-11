@@ -9,7 +9,7 @@ import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/TabularNav/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
-} from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+} from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { OakColorName } from "@/styles/theme/types";
 import {
   CurriculumSelectionSlugs,

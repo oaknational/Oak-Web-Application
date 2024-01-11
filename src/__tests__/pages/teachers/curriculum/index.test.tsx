@@ -7,7 +7,7 @@ import CurriculumHomePage, {
 } from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
-import SubjectPhasePicker from "@/components/SubjectPhasePicker/SubjectPhasePicker";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { SerializedBlogPostPreview } from "@/components/GenericPagesViews/BlogIndex.view";
 
 const render = renderWithProviders();

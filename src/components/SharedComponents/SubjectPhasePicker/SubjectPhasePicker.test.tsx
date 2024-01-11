@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
-import SubjectPhasePicker from "@/components/SubjectPhasePicker";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();

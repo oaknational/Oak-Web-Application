@@ -1,10 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import subjectPhaseOptions from "../../browser-lib/fixtures/subjectPhaseOptions";
-
 import Component from "./SubjectPhasePicker";
 
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import Flex from "@/components/SharedComponents/Flex";
 
 const meta: Meta<typeof Component> = {
