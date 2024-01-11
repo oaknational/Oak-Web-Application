@@ -15,7 +15,7 @@ import Typography, {
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import CurriculumLandingHero from "@/components/pages/LandingPages/CurriculumLandingHero";
+import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
@@ -71,7 +71,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            <CurriculumLandingHero subjectPhaseOptions={subjectPhaseOptions} />
+            <HomepageCurriculumLandingHero
+              subjectPhaseOptions={subjectPhaseOptions}
+            />
           </Flex>
         </MaxWidth>
       </Flex>

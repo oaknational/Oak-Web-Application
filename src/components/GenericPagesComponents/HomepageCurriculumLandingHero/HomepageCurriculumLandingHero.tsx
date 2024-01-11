@@ -10,11 +10,13 @@ import Illustration from "@/components/SharedComponents/Illustration/Illustratio
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 
-type CurriculumLandingHeroProps = {
+type HomepageCurriculumLandingHeroProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
 };
 
-const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
+const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
+  props,
+) => {
   const { subjectPhaseOptions } = props;
   return (
     <Flex $position={"relative"} $flexDirection={"row"} $width={"100%"}>
@@ -55,4 +57,4 @@ const CurriculumLandingHero: FC<CurriculumLandingHeroProps> = (props) => {
   );
 };
 
-export default CurriculumLandingHero;
+export default HomepageCurriculumLandingHero;
