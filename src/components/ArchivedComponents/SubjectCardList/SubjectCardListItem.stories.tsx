@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
+import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
 import { KeyStageSubject } from "./SubjectCardList";
 import Component from "./SubjectCardListItem";
