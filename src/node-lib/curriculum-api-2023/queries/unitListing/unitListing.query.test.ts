@@ -7,7 +7,7 @@ describe("unitListing()", () => {
     await expect(async () => {
       await unitListing({
         ...sdk,
-        unitListing: jest.fn(() => Promise.resolve({ programme: [] })),
+        unitListing: vi.fn(() => Promise.resolve({ programme: [] })),
       })({
         programmeSlug: "programme-slug",
       });
@@ -16,7 +16,7 @@ describe("unitListing()", () => {
   test("first programme is returned if multiple programmes in response", async () => {
     const programme = await unitListing({
       ...sdk,
-      unitListing: jest.fn(() =>
+      unitListing: vi.fn(() =>
         Promise.resolve({
           programme: [
             {
@@ -63,7 +63,7 @@ describe("unitListing()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        unitListing: jest.fn(() =>
+        unitListing: vi.fn(() =>
           Promise.resolve({
             programme: [
               {

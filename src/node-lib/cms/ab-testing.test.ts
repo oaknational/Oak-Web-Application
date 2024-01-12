@@ -9,9 +9,9 @@ import { getABTestedLandingPage } from "./ab-testing";
 
 import CMSClient from ".";
 
-jest.mock("./");
-jest.mock("lodash/fp");
-jest.mock("posthog-node");
+vi.mock("./");
+vi.mock("lodash/fp");
+vi.mock("posthog-node");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 

@@ -9,18 +9,18 @@ import withQueue from "./withQueue";
 
 const originalService: AnalyticsService<unknown> = {
   name: "test service" as ServiceType,
-  init: jest.fn(),
-  state: jest.fn(() => "pending"),
-  track: jest.fn(),
-  page: jest.fn(),
-  identify: jest.fn(),
-  optOut: jest.fn(),
-  optIn: jest.fn(),
+  init: vi.fn(),
+  state: vi.fn(() => "pending"),
+  track: vi.fn(),
+  page: vi.fn(),
+  identify: vi.fn(),
+  optOut: vi.fn(),
+  optIn: vi.fn(),
 };
 
 describe("withQueue", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("should add to queue not fire events if state: pending", () => {
     const service = withQueue(originalService);

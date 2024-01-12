@@ -1,7 +1,7 @@
 describe("getServerConfig()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
   it("should allow parsing of 'on' switches to boolean true", async () => {
     process.env.DISABLE_ISR = "on";

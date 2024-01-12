@@ -11,6 +11,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 
+vi.mock('@/node-lib/curriculum-api-2023'); 
+
 const render = renderWithProviders();
 
 const lesson = lessonOverviewFixture({

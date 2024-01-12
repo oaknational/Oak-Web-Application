@@ -11,7 +11,7 @@ import subjectPagePropsFixture from "@/node-lib/curriculum-api/fixtures/subjectP
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import curriculumApi from "@/node-lib/curriculum-api/__mocks__";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 const props = subjectPagePropsFixture();
 
 describe("pages/key-stages/[keyStageSlug]/subjects", () => {

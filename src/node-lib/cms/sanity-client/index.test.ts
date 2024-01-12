@@ -12,22 +12,22 @@ import getSanityClient from "./";
  * Note: sanity-graphql mocks are configured in
  * sanity-graphql/__mocks__
  */
-jest.mock("../../sanity-graphql");
+vi.mock("../../sanity-graphql");
 
-jest.mock("./parseResults", () => {
+vi.mock("./parseResults", () => {
   const original = jest.requireActual("./parseResults");
   return {
     __esModule: true,
-    parseResults: jest.fn(original.parseResults),
+    parseResults: vi.fn(original.parseResults),
   };
 });
 
-jest.mock("./resolveSanityReferences", () => {
+vi.mock("./resolveSanityReferences", () => {
   return {
     __esModule: true,
     // Return self without transform, bypassing any errors caused by
     // dodgy mocks
-    resolveSanityReferences: jest.fn((x) => x),
+    resolveSanityReferences: vi.fn((x) => x),
   };
 });
 
@@ -47,8 +47,8 @@ const testVideo = {
 
 describe("cms/sanity-client", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   describe("webinarsBySlug", () => {

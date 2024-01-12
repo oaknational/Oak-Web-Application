@@ -9,7 +9,7 @@ describe("pupilLessonOverview()", () => {
     await expect(async () => {
       await pupilLessonOverviewQuery({
         ...sdk,
-        pupilLessonOverview: jest.fn(() => Promise.resolve({ lesson: [] })),
+        pupilLessonOverview: vi.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
@@ -21,7 +21,7 @@ describe("pupilLessonOverview()", () => {
   test("first lesson is returned if multiple units in response", async () => {
     const lesson = await pupilLessonOverviewQuery({
       ...sdk,
-      pupilLessonOverview: jest.fn(() =>
+      pupilLessonOverview: vi.fn(() =>
         Promise.resolve({
           lesson: [
             {

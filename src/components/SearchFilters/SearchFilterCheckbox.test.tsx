@@ -6,11 +6,11 @@ const props = {
   slug: "ks1",
   title: "Key-stage 1",
   label: "KS1",
-  onChange: jest.fn(),
+  onChange: vi.fn(),
   checked: false,
   name: "Key stage",
   filterType: "Key stage filter",
-  searchRefined: jest.fn(),
+  searchRefined: vi.fn(),
 };
 
 describe("SearchFilterCheckbox", () => {

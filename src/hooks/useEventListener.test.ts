@@ -12,28 +12,28 @@ declare global {
   }
 }
 
-const addEventListenerToWindow = jest.fn();
+const addEventListenerToWindow = vi.fn();
 window.addEventListener = addEventListenerToWindow;
 
-const windowAddEventListenerSpy = jest.spyOn(window, "addEventListener");
-const windowRemoveEventListenerSpy = jest.spyOn(window, "removeEventListener");
+const windowAddEventListenerSpy = vi.spyOn(window, "addEventListener");
+const windowRemoveEventListenerSpy = vi.spyOn(window, "removeEventListener");
 
 const ref = { current: document.createElement("div") };
-const refAddEventListenerSpy = jest.spyOn(ref.current, "addEventListener");
-const refRemoveEventListenerSpy = jest.spyOn(
+const refAddEventListenerSpy = vi.spyOn(ref.current, "addEventListener");
+const refRemoveEventListenerSpy = vi.spyOn(
   ref.current,
   "removeEventListener",
 );
 
 describe("useEventListener()", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should bind the event listener to the window when element is not provided", () => {
     const eventName = "test-event";
 
-    renderHook(() => useEventListener(eventName, jest.fn()));
+    renderHook(() => useEventListener(eventName, vi.fn()));
 
     expect(windowAddEventListenerSpy).toHaveBeenCalledWith(
       eventName,
@@ -44,7 +44,7 @@ describe("useEventListener()", () => {
   it("should bind the event listener to the element when element is provided", () => {
     const eventName = "test-event";
 
-    renderHook(() => useEventListener(eventName, jest.fn(), ref));
+    renderHook(() => useEventListener(eventName, vi.fn(), ref));
 
     expect(windowAddEventListenerSpy).not.toHaveBeenCalledWith(
       eventName,
@@ -61,7 +61,7 @@ describe("useEventListener()", () => {
     const eventName = "test-event";
 
     const { unmount } = renderHook(() =>
-      useEventListener(eventName, jest.fn()),
+      useEventListener(eventName, vi.fn()),
     );
 
     expect(windowAddEventListenerSpy).toHaveBeenCalledWith(
@@ -81,7 +81,7 @@ describe("useEventListener()", () => {
     const eventName = "test-event";
 
     const { unmount } = renderHook(() =>
-      useEventListener(eventName, jest.fn(), ref),
+      useEventListener(eventName, vi.fn(), ref),
     );
 
     expect(refAddEventListenerSpy).toHaveBeenCalledWith(
@@ -99,7 +99,7 @@ describe("useEventListener()", () => {
 
   it("should call the event listener handler when the event is triggered", () => {
     const eventName = "click";
-    const handler = jest.fn();
+    const handler = vi.fn();
 
     renderHook(() => useEventListener(eventName, handler, ref));
 
@@ -109,8 +109,8 @@ describe("useEventListener()", () => {
   });
 
   it("should have the correct event type", () => {
-    const clickHandler = jest.fn();
-    const keydownHandler = jest.fn();
+    const clickHandler = vi.fn();
+    const keydownHandler = vi.fn();
 
     renderHook(() => useEventListener("click", clickHandler, ref));
     renderHook(() => useEventListener("keydown", keydownHandler, ref));

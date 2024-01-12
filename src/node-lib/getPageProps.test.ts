@@ -2,11 +2,11 @@ import OakError from "../errors/OakError";
 
 import getPageProps from "./getPageProps";
 
-jest.mock("../common-lib/error-reporter", () => ({
-  initialiseBugsnag: jest.fn(),
+vi.mock("../common-lib/error-reporter", () => ({
+  initialiseBugsnag: vi.fn(),
 }));
-jest.mock("./isr", () => ({
-  decorateWithIsr: jest.fn((results) => ({ ...results, revalidate: 1337 })),
+vi.mock("./isr", () => ({
+  decorateWithIsr: vi.fn((results) => ({ ...results, revalidate: 1337 })),
 }));
 
 describe("getPageProps()", () => {

@@ -3,24 +3,24 @@ import "@testing-library/jest-dom/extend-expect";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
 
-jest.mock("@react-aria/ssr/dist/main", () => ({
+vi.mock("@react-aria/ssr/dist/main", () => ({
   ...jest.requireActual("@react-aria/ssr/dist/main"),
   useSSRSafeId: () => "react-aria-generated-id",
 }));
 
-jest.mock("react", () => ({
+vi.mock("react", () => ({
   ...jest.requireActual("react"),
   useId: () => "react-use-id-test-result",
 }));
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
-jest.mock("@bugsnag/js", () => ({
+vi.mock("@bugsnag/js", () => ({
   __esModule: true,
   default: {
-    notify: jest.fn(),
-    start: jest.fn(),
-    startSession: jest.fn(),
+    notify: vi.fn(),
+    start: vi.fn(),
+    startSession: vi.fn(),
     getPlugin: bugsnag.getPlugin,
   },
   use(plugin) {
@@ -31,15 +31,15 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
-jest.mock("./src/node-lib/curriculum-api", () =>
+vi.mock("./src/node-lib/curriculum-api", () =>
   jest.requireActual("./src/node-lib/curriculum-api/__mocks__"),
 );
 
-jest.mock("./src/node-lib/curriculum-api-2023", () =>
+vi.mock("./src/node-lib/curriculum-api-2023", () =>
   jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
 );
 
-jest.mock(
+vi.mock(
   "./src/browser-lib/cookie-consent/confirmic/metomic-react.hacked.ts",
   () => ({
     __esModule: true,
@@ -47,24 +47,24 @@ jest.mock(
   }),
 );
 
-jest.mock("posthog-js", () => ({
+vi.mock("posthog-js", () => ({
   __esModule: true,
   default: {
-    init: jest.fn(),
-    capture: jest.fn(),
+    init: vi.fn(),
+    capture: vi.fn(),
   },
 }));
 
-jest.mock("@mux/mux-player-react/lazy", () => ({
+vi.mock("@mux/mux-player-react/lazy", () => ({
   __esModule: true,
   // noop component
   default: () => null,
 }));
 
-jest.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");
+vi.mock("./src/image-data/generated/inline-sprite.svg", () => "svg");
 
-jest.mock("./src/common-lib/error-reporter", () => ({
+vi.mock("./src/common-lib/error-reporter", () => ({
   __esModule: true,
   default: () => () => null,
-  initialiseBugsnag: jest.fn(),
+  initialiseBugsnag: vi.fn(),
 }));

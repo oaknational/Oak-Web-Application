@@ -27,7 +27,7 @@ describe("hideAndClickDownloadLink()", () => {
 
   it("click the link", () => {
     const link = createLink();
-    link.click = jest.fn();
+    link.click = vi.fn();
 
     hideAndClickDownloadLink("testUrl", link);
 

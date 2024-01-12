@@ -48,13 +48,13 @@ afterEach(() => server.resetHandlers());
 // Disable API mocking after the tests are done.
 afterAll(() => server.close());
 
-const getHubspotUserToken = jest.fn(() => "hubspotutk value");
-jest.mock("./getHubspotUserToken", () => ({
+const getHubspotUserToken = vi.fn(() => "hubspotutk value");
+vi.mock("./getHubspotUserToken", () => ({
   __esModule: true,
   default: (...args: []) => getHubspotUserToken(...args),
 }));
-const reportError = jest.fn();
-jest.mock("../../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -76,7 +76,7 @@ const payload = getHubspotNewsletterPayload({
 
 describe("hubspotSubmitForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("succeeds", () => {
     it("should fetch the correct url with the correct payload", async () => {
@@ -242,8 +242,8 @@ describe("hubspotSubmitForm", () => {
   });
   describe("Primary form fails with INVALID_EMAIL and fallback form fails too", () => {
     beforeEach(() => {
-      jest.restoreAllMocks();
-      jest.clearAllMocks();
+      vi.restoreAllMocks();
+      vi.clearAllMocks();
       // mock fetch to first respond with INVALID_EMAIL, then with a 400
       server.use(primaryForm400InvalidEmail, fallbackForm400HubspotError);
     });

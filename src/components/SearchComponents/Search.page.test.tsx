@@ -88,7 +88,7 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
-const setSearchStartTime = jest.fn();
+const setSearchStartTime = vi.fn();
 
 const props: SearchProps = {
   status: "not-asked",
@@ -96,14 +96,14 @@ const props: SearchProps = {
   setSearchStartTime: setSearchStartTime,
   results: [],
   query: validQuery,
-  setQuery: jest.fn(),
+  setQuery: vi.fn(),
   searchFilters: {
     keyStageFilters: [
       {
         slug: "ks1",
         title: "Key-stage 1",
         shortCode: "KS1",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -111,18 +111,18 @@ const props: SearchProps = {
       {
         slug: "computing",
         title: "Computing",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
     contentTypeFilters: [
-      { slug: "unit", title: "Units", onChange: jest.fn(), checked: false },
+      { slug: "unit", title: "Units", onChange: vi.fn(), checked: false },
     ],
     examBoardFilters: [
       {
         slug: "aqa",
         title: "AQA",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -149,16 +149,16 @@ const props: SearchProps = {
       shortCode: "KS4",
     },
   ],
-  setSearchTerm: jest.fn(),
+  setSearchTerm: vi.fn(),
 };
 
-const searchResultsDisplayed = jest.fn();
-const searchAttempted = jest.fn();
-const searchResultOpened = jest.fn();
-const searchJourneyInitiated = jest.fn();
-const searchResultExpanded = jest.fn();
+const searchResultsDisplayed = vi.fn();
+const searchAttempted = vi.fn();
+const searchResultOpened = vi.fn();
+const searchJourneyInitiated = vi.fn();
+const searchResultExpanded = vi.fn();
 
-jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+vi.mock("../../context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -178,7 +178,7 @@ const render = renderWithProviders();
 
 describe("Search.page.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("status: error message displayed status is fail", () => {
@@ -291,7 +291,7 @@ describe("Search.page.tsx", () => {
     const link = getByRole("link", {
       name: "subject title lesson: lesson title",
     });
-    const onLinkClick = jest.fn();
+    const onLinkClick = vi.fn();
     link.addEventListener(
       "click",
       (event) => {

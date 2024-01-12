@@ -27,10 +27,10 @@ const getContext = (): NonNullable<QuizEngineContextType> => ({
       grade: 0,
     },
   ],
-  updateQuestionMode: jest.fn(),
-  handleSubmitMCAnswer: jest.fn(),
-  handleNextQuestion: jest.fn(),
-  handleSubmitShortAnswer: jest.fn(),
+  updateQuestionMode: vi.fn(),
+  handleSubmitMCAnswer: vi.fn(),
+  handleNextQuestion: vi.fn(),
+  handleSubmitShortAnswer: vi.fn(),
   score: 0,
   maxScore: 1,
   isComplete: false,
@@ -54,7 +54,7 @@ describe("QuizShortAnswer", () => {
 
   it("calls onInitialChange when there is user input", () => {
     const context = getContext();
-    const onInitialChange = jest.fn();
+    const onInitialChange = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

@@ -9,15 +9,15 @@ import { mockSeoResult, portableTextFromString } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => ({ enabled: {} }),
 }));
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("next-sanity-image", () => ({
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next-sanity-image", () => ({
   ...jest.requireActual("next-sanity-image"),
   useNextSanityImage: () => ({
     src: "/test/img/src.png",

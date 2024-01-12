@@ -36,8 +36,8 @@ const subjectCardListItemTrackingProps: KeyStageSubject = [
   },
 ];
 
-const subjectSelected = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const subjectSelected = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -48,7 +48,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("SubjectCardListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("render a Card with the Name of the Subject", () => {

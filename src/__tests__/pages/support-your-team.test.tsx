@@ -55,20 +55,19 @@ const testSupportPageData: SupportPage = {
   }),
 };
 
-const getPageData = jest.fn(() => testSupportPageData);
+const getPageData = vi.fn(() => testSupportPageData);
+vi.mock("@/node-lib/cms", () => ({
+  default: {
+    supportPage: (...args: []) => getPageData(...args),
+  },
+}));
 
 const render = renderWithProviders();
 
 describe("pages/support-your-team.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../src/node-lib/cms/", () => ({
-      __esModule: true,
-      default: {
-        supportPage: jest.fn(getPageData),
-      },
-    }));
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", () => {

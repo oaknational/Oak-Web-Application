@@ -10,8 +10,8 @@ import noop from "../../__helpers__/noop";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
-const webinarPageViewed = jest.fn();
-jest.mock("../../../context/Analytics/useAnalytics", () => ({
+const webinarPageViewed = vi.fn();
+vi.mock("../../../context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -75,20 +75,20 @@ const testSerializedWebinar: SerializedWebinar = {
   },
 };
 
-const webinars = jest.fn(() => [testWebinar, testWebinar2]);
-const webinarBySlug = jest.fn(() => testWebinar);
+const webinars = vi.fn(() => [testWebinar, testWebinar2]);
+const webinarBySlug = vi.fn(() => testWebinar);
 
 const render = renderWithProviders();
 
 describe("pages/webinar/[webinarSlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        webinars: jest.fn(webinars),
-        webinarBySlug: jest.fn(webinarBySlug),
+        webinars: vi.fn(webinars),
+        webinarBySlug: vi.fn(webinarBySlug),
       },
     }));
   });

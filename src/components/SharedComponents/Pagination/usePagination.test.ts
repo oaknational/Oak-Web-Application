@@ -4,7 +4,7 @@ import { createRef } from "react";
 import usePagination from "./usePagination";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 // Default test values
 const pathname = "/blogs";
@@ -13,10 +13,10 @@ const pageSize = 10;
 const items = Array(30);
 
 describe("usePagination()", () => {
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+  vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("calculates correct totalPages", () => {

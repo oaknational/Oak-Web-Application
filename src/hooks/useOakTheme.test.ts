@@ -17,11 +17,11 @@ declare global {
   }
 }
 
-const setDocumentStyleProperty = jest.fn();
+const setDocumentStyleProperty = vi.fn();
 document.documentElement.style.setProperty = setDocumentStyleProperty;
 
-const consoleLogSpy = jest.spyOn(console, "log");
-const consoleErrorSpy = jest.spyOn(console, "error");
+const consoleLogSpy = vi.spyOn(console, "log");
+const consoleErrorSpy = vi.spyOn(console, "error");
 const oakGlobals = getOakGlobals();
 
 describe("useOakTheme()", () => {
@@ -29,7 +29,7 @@ describe("useOakTheme()", () => {
     consoleErrorSpy.mockImplementation(noop);
     consoleLogSpy.mockImplementation(noop);
 
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     oakGlobals.oakThemes?.setTheme(null);

@@ -7,7 +7,7 @@ import DetailsCompleted from ".";
 
 describe("DetailsCompleted", () => {
   it("renders DetailsCompleted component", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <DetailsCompleted
@@ -25,7 +25,7 @@ describe("DetailsCompleted", () => {
   });
 
   it("renders 'not provided' message if email if not passed", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />,
@@ -36,7 +36,7 @@ describe("DetailsCompleted", () => {
   });
 
   it("calls correct function on Edit button click", async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByText } = renderWithTheme(
       <DetailsCompleted
@@ -57,7 +57,7 @@ describe("DetailsCompleted", () => {
 
   describe("renders correct message dependent on input", () => {
     it("should render homeschool message when user selects homeschool option", () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
 
       const { getByText } = renderWithTheme(
         <DetailsCompleted
@@ -75,7 +75,7 @@ describe("DetailsCompleted", () => {
     });
 
     it("should render not listed message when users school is not listed", () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
 
       const { getByText } = renderWithTheme(
         <DetailsCompleted

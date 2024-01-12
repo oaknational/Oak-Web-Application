@@ -13,7 +13,7 @@ describe("Checkbox", () => {
         name="terms"
         checked
         labelText="Agree to terms"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -32,7 +32,7 @@ describe("Checkbox", () => {
         name="terms"
         checked
         labelText="Agree to terms"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -165,7 +165,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         labelText="Agree to terms"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -180,7 +180,7 @@ describe("Checkbox", () => {
         name="downloadResources"
         id="unique-123"
         checked
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         variant="withoutLabel"
       >
         <p>Test download resource</p>

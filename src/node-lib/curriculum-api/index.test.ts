@@ -16,16 +16,16 @@ import curriculumApi, { filterOutDuplicateProgrammesOrNull } from ".";
  */
 jest.unmock(".");
 
-const teachersHomePage = jest.fn(() => ({
+const teachersHomePage = vi.fn(() => ({
   mv_key_stages: teachersHomePageFixture().keyStages,
 }));
-const lessonDownloads = jest.fn(() => ({
+const lessonDownloads = vi.fn(() => ({
   mv_downloads: [lessonDownloadsFixtures()],
 }));
-const lessonShares = jest.fn(() => ({
+const lessonShares = vi.fn(() => ({
   mv_share: [lessonShareFixtures()],
 }));
-const unitListing = jest.fn(() => ({
+const unitListing = vi.fn(() => ({
   mv_programmes: [
     {
       programmeSlug: unitListingFixture().programmeSlug,
@@ -42,7 +42,7 @@ const unitListing = jest.fn(() => ({
   mv_tiers: unitListingFixture().tiers,
   mv_units: unitsFixture(),
 }));
-const lessonListing = jest.fn(() => ({
+const lessonListing = vi.fn(() => ({
   mv_units: [
     {
       programmeSlug: lessonListingFixture().programmeSlug,
@@ -57,7 +57,7 @@ const lessonListing = jest.fn(() => ({
   ],
   mv_lessons: lessonListingFixture().lessons,
 }));
-const lessonOverview = jest.fn(() => ({
+const lessonOverview = vi.fn(() => ({
   mv_lessons: [
     {
       lessonSlug: lessonOverviewFixture().lessonSlug,
@@ -91,24 +91,24 @@ const lessonOverview = jest.fn(() => ({
   starterQuiz: lessonOverviewFixture().starterQuiz,
   exitQuiz: lessonOverviewFixture().exitQuiz,
 }));
-const tierListing = jest.fn(() => ({
+const tierListing = vi.fn(() => ({
   mv_programmes: tierListingFixture().programmes,
 }));
-const subjectListing = jest.fn(() => ({
+const subjectListing = vi.fn(() => ({
   mv_programmes_available: subjectListingFixture().subjects,
   mv_programmes_unavailable: subjectListingFixture().subjectsUnavailable,
   mv_key_stages: teachersHomePageFixture().keyStages,
   keyStageList: [{ slug: "ks4", title: "Key stage 4", shortCode: "KS4" }],
 }));
 
-const searchPage = jest.fn(() => ({
+const searchPage = vi.fn(() => ({
   mv_key_stages: searchPageFixture().keyStages,
   mv_programmes_available: searchPageFixture().subjects,
 }));
 
-jest.mock("");
+vi.mock("");
 
-jest.mock("./generated/sdk", () => ({
+vi.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
     teachersHomePage: (...args: []) => teachersHomePage(...args),

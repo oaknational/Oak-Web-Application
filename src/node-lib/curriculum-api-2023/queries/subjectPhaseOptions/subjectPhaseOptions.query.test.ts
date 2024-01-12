@@ -7,7 +7,7 @@ describe("subjectPhaseOptions()", () => {
     await expect(async () => {
       await subjectPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() => Promise.resolve({ options: [] })),
+        subjectPhaseOptions: vi.fn(() => Promise.resolve({ options: [] })),
       })();
     }).rejects.toThrow(`Resource not found`);
   });
@@ -16,7 +16,7 @@ describe("subjectPhaseOptions()", () => {
     await expect(async () => {
       await subjectPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() =>
+        subjectPhaseOptions: vi.fn(() =>
           Promise.resolve({
             options: [
               {

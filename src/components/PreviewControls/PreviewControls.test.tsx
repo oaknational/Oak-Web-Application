@@ -4,12 +4,12 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import PreviewControls from "./PreviewControls";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 describe("PreviewControls", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.clearAllMocks();
+    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders a link to exit preview mode including the current URL", () => {

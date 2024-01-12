@@ -15,13 +15,13 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 const utilsMock = jest.requireMock("@/utils/resultsPerPage");
-jest.mock("@/utils/resultsPerPage", () => ({
+vi.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
-const lessonSelected = jest.fn();
+const lessonSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

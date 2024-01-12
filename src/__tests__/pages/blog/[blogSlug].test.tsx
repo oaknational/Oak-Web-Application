@@ -7,7 +7,7 @@ import BlogSinglePage, {
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import renderWithSeo from "../../__helpers__/renderWithSeo";
 
-jest.mock("next/router", () => ({
+vi.mock("next/router", () => ({
   __esModule: true,
   ...jest.requireActual("next/router"),
   useRouter: () => ({
@@ -17,7 +17,7 @@ jest.mock("next/router", () => ({
     pathname: "/blog/[blogSlug]",
   }),
 }));
-jest.mock("next-sanity-image", () => ({
+vi.mock("next-sanity-image", () => ({
   __esModule: true,
   useNextSanityImage: () => ({
     src: "www.example.com/img.png",
@@ -69,20 +69,20 @@ const testSerializedBlog = {
   date: new Date().toISOString(),
 };
 
-const blogPosts = jest.fn(() => [testBlog, testBlog2]);
-const blogPostBySlug = jest.fn(() => testBlog);
+const blogPosts = vi.fn(() => [testBlog, testBlog2]);
+const blogPostBySlug = vi.fn(() => testBlog);
 
 const render = renderWithProviders();
 
 describe("pages/blog/[blogSlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        blogPosts: jest.fn(blogPosts),
-        blogPostBySlug: jest.fn(blogPostBySlug),
+        blogPosts: vi.fn(blogPosts),
+        blogPostBySlug: vi.fn(blogPostBySlug),
       },
     }));
   });

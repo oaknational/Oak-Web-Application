@@ -9,16 +9,16 @@ const testWebinar2 = {
   slug: "a-past-webinar",
   category: { title: "Some other category", slug: "some-other-category" },
 } as Webinar;
-const webinars = jest.fn(() => [testWebinar, testWebinar2]);
+const webinars = vi.fn(() => [testWebinar, testWebinar2]);
 
 describe("pages/webinar/categories/[categorySlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        webinars: jest.fn(webinars),
+        webinars: vi.fn(webinars),
       },
     }));
   });

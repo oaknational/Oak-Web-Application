@@ -7,7 +7,7 @@ describe("lessonListing()", () => {
     await expect(async () => {
       await lessonListing({
         ...sdk,
-        lessonListing: jest.fn(() => Promise.resolve({ unit: [] })),
+        lessonListing: vi.fn(() => Promise.resolve({ unit: [] })),
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -17,7 +17,7 @@ describe("lessonListing()", () => {
   test("first unit is returned if multiple units in response", async () => {
     const unit = await lessonListing({
       ...sdk,
-      lessonListing: jest.fn(() =>
+      lessonListing: vi.fn(() =>
         Promise.resolve({
           unit: [
             {
@@ -55,7 +55,7 @@ describe("lessonListing()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonListing: jest.fn(() =>
+        lessonListing: vi.fn(() =>
           Promise.resolve({
             unit: [
               {

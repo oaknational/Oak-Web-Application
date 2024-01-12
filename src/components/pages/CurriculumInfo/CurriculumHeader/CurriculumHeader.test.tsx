@@ -9,7 +9,7 @@ const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {

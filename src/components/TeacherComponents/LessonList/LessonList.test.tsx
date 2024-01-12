@@ -15,7 +15,7 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
   ...unit,
 }));
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("components/ Lesson List", () => {
   test("it renders the list items", () => {

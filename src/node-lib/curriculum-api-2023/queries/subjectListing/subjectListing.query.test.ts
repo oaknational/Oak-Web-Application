@@ -7,7 +7,7 @@ describe("subjectListing()", () => {
     await expect(async () => {
       await subjectListing({
         ...sdk,
-        subjectListing: jest.fn(() =>
+        subjectListing: vi.fn(() =>
           Promise.resolve({
             keyStageSubjects: [],
             keyStages: [{ keyStages: [] }],
@@ -25,7 +25,7 @@ describe("subjectListing()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        subjectListing: jest.fn(() =>
+        subjectListing: vi.fn(() =>
           Promise.resolve({
             keyStages: [{ keyStages: [] }],
             keyStageSubjects: [

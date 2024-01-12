@@ -1,7 +1,7 @@
 import handler from "../../../../pages/api/preview/[[...path]]";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
-const setPreviewData = jest.fn();
+const setPreviewData = vi.fn();
 
 const createReqRes = (path?: string[], secret = "SANITY_PREVIEW_SECRET") => {
   const { req, res } = createNextApiMocks({
@@ -16,15 +16,15 @@ const createReqRes = (path?: string[], secret = "SANITY_PREVIEW_SECRET") => {
   return { req, res };
 };
 
-jest.mock("../../../../common-lib/error-reporter", () => ({
+vi.mock("../../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default: () => () => null,
 }));
 
 describe("/api/preview/[[...path]]", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("should set preview data", async () => {

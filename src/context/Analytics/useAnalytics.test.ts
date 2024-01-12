@@ -4,9 +4,9 @@ import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithP
 
 import useAnalytics from "./useAnalytics";
 
-const posthogCapture = jest.fn();
-const posthogInit = jest.fn();
-jest.mock("posthog-js", () => ({
+const posthogCapture = vi.fn();
+const posthogInit = vi.fn();
+vi.mock("posthog-js", () => ({
   __esModule: true,
   default: {
     ...jest.requireActual("posthog-js"),
@@ -17,7 +17,7 @@ jest.mock("posthog-js", () => ({
 
 describe("useAnalytics", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("track should not work if statistics consent not given", () => {
     const { result } = renderHookWithProviders()(useAnalytics);

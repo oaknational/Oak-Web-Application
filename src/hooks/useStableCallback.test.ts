@@ -23,7 +23,7 @@ describe("hooks/useStableCallback.ts", () => {
   });
 
   it("does not get called after unmounting", () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     const hook = renderHook((callback) => useStableCallback(callback), {
       initialProps: mockFn,
     });

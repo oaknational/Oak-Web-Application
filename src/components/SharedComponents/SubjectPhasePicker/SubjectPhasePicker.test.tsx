@@ -7,8 +7,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
-const curriculumVisualiserAccessed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumVisualiserAccessed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -20,7 +20,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("populates selection if supplied", () => {
     const currentSelection = {

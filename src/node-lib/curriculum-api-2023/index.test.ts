@@ -4,11 +4,11 @@ import curriculumApi from ".";
 
 jest.unmock(".");
 
-const searchPage = jest.fn(() => ({
+const searchPage = vi.fn(() => ({
   searchPage: searchPageFixture(),
 }));
 
-jest.mock("./generated/sdk", () => ({
+vi.mock("./generated/sdk", () => ({
   __esModule: true,
   getSdk: () => ({
     searchPage: (...args: []) => searchPage(...args),

@@ -4,7 +4,7 @@ import TeachersTab from "./TeachersTab";
 
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 describe("TeachersTab", () => {

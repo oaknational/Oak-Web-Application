@@ -5,8 +5,8 @@ import SubjectProgrammeListItem from "./SubjectProgrammeListItem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const tierSelected = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const tierSelected = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -17,7 +17,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders SubjectProgrammeListItem", () => {

@@ -3,15 +3,15 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import SearchFilters from "./SearchFilters";
 import { searchFilters, mockOnChange } from "./test-helpers";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const props = searchFilters;
 
-const searchRefined = jest.fn();
+const searchRefined = vi.fn();
 
 describe("SearchFilters", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("renders all the key stage, subject filters and search type filters", () => {

@@ -2,22 +2,22 @@ import { renderHook } from "@testing-library/react";
 
 import useGleap from ".";
 
-const startGleap = jest.fn();
-const hasLoaded = jest.fn(() => false);
+const startGleap = vi.fn();
+const hasLoaded = vi.fn(() => false);
 
-jest.mock("./startGleap", () => ({
+vi.mock("./startGleap", () => ({
   __esModule: true,
   default: (...args: unknown[]) => startGleap(...args),
   hasLoaded: () => hasLoaded(),
 }));
 Object.defineProperty(window, "location", {
-  value: { reload: jest.fn() },
+  value: { reload: vi.fn() },
 });
 
 describe("useGleap", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
   describe("with enabled true", () => {
     test("should call startGleap() with the correct gleap config", () => {

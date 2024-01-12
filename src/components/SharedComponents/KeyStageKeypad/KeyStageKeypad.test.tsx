@@ -8,9 +8,9 @@ import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 const keyStages = ["1", "2", "3", "4"];
 const years = ["6", "7", "8", "9", "10", "11"];
 
-const keyStageSelected = jest.fn();
+const keyStageSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -21,7 +21,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("components/Key Stage keypad", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test.each(keyStages)(

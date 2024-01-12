@@ -497,13 +497,13 @@ describe("QuizEngineContext", () => {
 
 describe("useQuizEngineContext", () => {
   it("throws an error when there is no context", () => {
-    jest.spyOn(console, "error").mockImplementation(() => jest.fn()); // suppress console.error
+    vi.spyOn(console, "error").mockImplementation(() => vi.fn()); // suppress console.error
     expect(() => renderHook(() => useQuizEngineContext())).toThrow(
       "`QuizEngineProvider` is not available",
     );
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });

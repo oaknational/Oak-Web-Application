@@ -14,7 +14,7 @@ describe("ResourceCard", () => {
         label="Worksheet"
         subtitle="PDF"
         checked
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         resourceType="worksheet-pdf"
       />,
     );

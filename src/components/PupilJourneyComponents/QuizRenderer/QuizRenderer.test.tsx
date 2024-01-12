@@ -35,7 +35,7 @@ const getContext = (): NonNullable<QuizEngineContextType> => ({
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
-    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
     spy.mockRestore();
   });
@@ -101,7 +101,7 @@ describe("QuizRenderer", () => {
     const context = getContext();
 
     if (context?.questionState?.[0]) {
-      context.updateQuestionMode = jest.fn();
+      context.updateQuestionMode = vi.fn();
       context.questionState[0].mode = "input";
 
       const { getByRole } = renderWithTheme(
@@ -152,7 +152,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "feedback";
-      context.handleNextQuestion = jest.fn();
+      context.handleNextQuestion = vi.fn();
 
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -191,7 +191,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "input";
-      context.handleSubmitMCAnswer = jest.fn();
+      context.handleSubmitMCAnswer = vi.fn();
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -226,7 +226,7 @@ describe("QuizRenderer", () => {
 
     if (context?.questionState?.[0]) {
       context.questionState[0].mode = "input";
-      context.handleSubmitMCAnswer = jest.fn();
+      context.handleSubmitMCAnswer = vi.fn();
 
       const { getByLabelText, getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -283,7 +283,7 @@ describe("QuizRenderer", () => {
       context.questionState[0].mode = "input";
     }
 
-    context.handleSubmitShortAnswer = jest.fn();
+    context.handleSubmitShortAnswer = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

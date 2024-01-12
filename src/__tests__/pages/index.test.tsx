@@ -11,7 +11,7 @@ import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 
-jest.mock("src/node-lib/cms");
+vi.mock("src/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 const mockPosts = [
@@ -47,8 +47,8 @@ const props: TeachersHomePageProps = {
   },
 };
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("posthog-js/react", () => ({
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
@@ -136,8 +136,8 @@ describe("pages/index.tsx", () => {
     } as WebinarPreview;
 
     beforeEach(() => {
-      jest.clearAllMocks();
-      jest.resetModules();
+      vi.clearAllMocks();
+      vi.resetModules();
 
       mockCMSClient.homepage.mockResolvedValue(props.pageData);
       mockCMSClient.blogPosts.mockResolvedValue([]);

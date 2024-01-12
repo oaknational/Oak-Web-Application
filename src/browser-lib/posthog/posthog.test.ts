@@ -2,40 +2,42 @@ import posthogJs from "posthog-js";
 
 import { posthogToAnalyticsServiceWithoutQueue } from "./posthog";
 
-const getLegacyAnonymousId = jest.fn();
-jest.mock("../analytics/getLegacyAnonymousId", () => ({
+const getLegacyAnonymousId = vi.fn();
+vi.mock("@/browser-lib/analytics/getLegacyAnonymousId", () => ({
   __esModule: true,
   default: (...args: []) => getLegacyAnonymousId(...args),
 }));
 
-const init = jest.fn((key, config) => config.loaded());
-const identify = jest.fn();
-const capture = jest.fn();
-const register = jest.fn();
-const optInCapturing = jest.fn();
-const optOutCapturing = jest.fn();
-const getHasConsentedTo = jest.fn(() => "pending");
+const init = vi.fn((key, config) => config.loaded());
+const identify = vi.fn();
+const capture = vi.fn();
+const register = vi.fn();
+const optInCapturing = vi.fn();
+const optOutCapturing = vi.fn();
+const getHasConsentedTo = vi.fn(() => "pending");
 
 const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 const textDistinctId = "test-distinct-id";
 
-jest.mock("../cookie-consent/getHasConsentedTo", () => ({
+vi.mock("../cookie-consent/getHasConsentedTo", () => ({
   __esModule: true,
   default: (...args: []) => getHasConsentedTo(...args),
 }));
-jest.mock("posthog-js", () => ({
-  init: (key: unknown, config: unknown) => init(key, config),
-  identify: (...args: unknown[]) => identify(...args),
-  capture: (...args: unknown[]) => capture(...args),
-  opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
-  opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
-  has_opted_out_capturing: () => true,
-  get_distinct_id: () => textDistinctId,
-  register: (...args: []) => register(...args),
+vi.mock("posthog-js", () => ({
+  default: {
+    init: (key: unknown, config: unknown) => init(key, config),
+    identify: (...args: unknown[]) => identify(...args),
+    capture: (...args: unknown[]) => capture(...args),
+    opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
+    opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
+    has_opted_out_capturing: () => true,
+    get_distinct_id: () => textDistinctId,
+    register: (...args: []) => register(...args),
+  }
 }));
 describe("posthog.ts", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("init should be called with correct config", async () => {
     const config = {

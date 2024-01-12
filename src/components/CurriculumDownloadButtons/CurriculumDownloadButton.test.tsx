@@ -6,10 +6,10 @@ import downloadZip from "./helpers/downloadZip";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("./helpers/downloadZip");
+vi.mock("./helpers/downloadZip");
 
-const curriculumMapDownloaded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumMapDownloaded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -23,7 +23,7 @@ const render = renderWithProviders();
 
 describe("CurriculumDownloadButton", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("renders a download button link with href corresponding to passed in props", () => {

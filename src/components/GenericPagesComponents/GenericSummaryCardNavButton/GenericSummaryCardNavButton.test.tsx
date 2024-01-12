@@ -4,7 +4,7 @@ import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
 
 import GenericSummaryCardNavButton from "./GenericSummaryCardNavButton";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const buttons = [
   { label: "First one", href: "/first-one" },

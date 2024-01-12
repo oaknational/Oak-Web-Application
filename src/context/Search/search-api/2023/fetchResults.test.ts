@@ -2,15 +2,15 @@ import elasticResponse2023 from "./elasticResponse.2023.fixture.json";
 import { fetchResults } from "./fetchResults";
 
 const mockResponse = {
-  json: jest.fn().mockResolvedValue(elasticResponse2023),
+  json: vi.fn().mockResolvedValue(elasticResponse2023),
 } as unknown as Response;
-const mockFetch = jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
-const mockHandleFetchError = jest.fn();
-jest.mock("@/browser-lib/getBrowserConfig", () => () => "test");
-jest.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
+const mockFetch = vi.spyOn(global, "fetch").mockResolvedValue(mockResponse);
+const mockHandleFetchError = vi.fn();
+vi.mock("@/browser-lib/getBrowserConfig", () => () => "test");
+vi.mock("@/utils/handleFetchError", () => () => mockHandleFetchError);
 describe("search-api/2023/fetchResults", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("should call fetch with correct query", async () => {
     await fetchResults({ term: "test" });

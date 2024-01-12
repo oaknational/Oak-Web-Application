@@ -14,7 +14,7 @@ describe("HomePageTabImageNav Component", () => {
     expect(container).toBeTruthy();
   });
   test("receives and handles props correctly", () => {
-    const setCurrent = jest.fn();
+    const setCurrent = vi.fn();
     const { getAllByText } = renderWithTheme(
       <HomePageTabImageNav current="teachers" setCurrent={setCurrent} />,
     );

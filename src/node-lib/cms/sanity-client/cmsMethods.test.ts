@@ -4,27 +4,27 @@ import { parseResults } from "./parseResults";
 import { resolveSanityReferences } from "./resolveSanityReferences";
 import { getBySlug, getList, getSingleton } from "./cmsMethods";
 
-jest.mock("./parseResults", () => {
+vi.mock("./parseResults", () => {
   const original = jest.requireActual("./parseResults");
   return {
     __esModule: true,
-    parseResults: jest.fn(original.parseResults),
+    parseResults: vi.fn(original.parseResults),
   };
 });
 
-jest.mock("./resolveSanityReferences", () => {
+vi.mock("./resolveSanityReferences", () => {
   return {
     __esModule: true,
     // Return self without transform, bypassing any errors caused by
     // dodgy mocks
-    resolveSanityReferences: jest.fn((x) => x),
+    resolveSanityReferences: vi.fn((x) => x),
   };
 });
 
 describe("cms/sanity-client/cmsMethods", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   describe("getSingleton", () => {
@@ -50,7 +50,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns null when no content is found", async () => {
       const nullReturningSingletonClientMethod = getSingleton(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.any(),
         (res) => res.allResults?.[0],
       );
@@ -119,7 +119,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns null when no content is found", async () => {
       const nullReturningBySlugClientMethod = getBySlug(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.any(),
         (res) => res.allResults?.[0],
       );
@@ -189,7 +189,7 @@ describe("cms/sanity-client/cmsMethods", () => {
 
     it("returns an empty array when no content is found", async () => {
       const emptyReturningListClientMethod = getList(
-        jest.fn().mockResolvedValue({}),
+        vi.fn().mockResolvedValue({}),
         z.array(z.any()),
         (res) => res.allResults,
       );

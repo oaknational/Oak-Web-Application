@@ -9,7 +9,7 @@ describe("TermsAndConditionsCheckbox", () => {
     renderWithTheme(
       <TermsAndConditionsCheckbox
         checked={false}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         id={"123"}
         name={"terms"}
       />,
@@ -23,7 +23,7 @@ describe("TermsAndConditionsCheckbox", () => {
     renderWithTheme(
       <TermsAndConditionsCheckbox
         checked={false}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         errorMessage="Please select the checkbox"
         id={"123"}
         name={"terms"}

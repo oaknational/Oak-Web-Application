@@ -31,7 +31,7 @@ describe("useBioCardListModalDialog", () => {
     });
   });
   test("escape calls closeModal()", async () => {
-    const closeModal = jest.fn();
+    const closeModal = vi.fn();
     const { result } = renderHook(
       () =>
         useBioCardListModalDialog({

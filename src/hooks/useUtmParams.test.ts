@@ -5,7 +5,7 @@ import "../__tests__/__helpers__/LocalStorageMock";
 import useUtmParams from "./useUtmParams";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 describe("useUtmParams()", () => {
   beforeEach(() => {
@@ -13,10 +13,10 @@ describe("useUtmParams()", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+  vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
   test("defaults to empty object", () => {
     useRouter.mockReturnValue({ query: {} });

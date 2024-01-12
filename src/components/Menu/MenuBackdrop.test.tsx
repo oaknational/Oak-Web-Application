@@ -5,7 +5,7 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
 import MenuBackdrop from "./MenuBackdrop";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("menu backdrop", () => {
   beforeEach(() => {

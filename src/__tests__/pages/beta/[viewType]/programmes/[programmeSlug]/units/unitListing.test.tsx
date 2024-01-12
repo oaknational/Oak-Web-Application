@@ -11,10 +11,10 @@ import unitListingFixture from "@/node-lib/curriculum-api/fixtures/unitListing.f
 import unitListingWithTiersFixture from "@/node-lib/curriculum-api/fixtures/unitListingWithTiers.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("next/router", () => require("next-router-mock"));
+vi.mock("next/router", () => require("next-router-mock"));
 
 const utilsMock = jest.requireMock("@/utils/resultsPerPage");
-jest.mock("@/utils/resultsPerPage", () => ({
+vi.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
@@ -22,7 +22,7 @@ const render = renderWithProviders();
 
 describe("pages/programmes/[programmeSlug]/units", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders title from props ", () => {

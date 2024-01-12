@@ -59,20 +59,20 @@ const goodFetchMockImplementation = (url: string) => {
   }
 };
 
-const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
     (...args: []) =>
       reportError(...args),
 }));
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+const fetch = vi.spyOn(global, "fetch") as jest.Mock;
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 fetch.mockResolvedValue(goodFetchResolvedValueNoResults);
 
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
@@ -82,7 +82,7 @@ const providers = { router: { url: "?term=test-term" } };
 
 describe("useSearch()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("query should come from url querystring", async () => {
     const { result } = renderHookWithProviders({

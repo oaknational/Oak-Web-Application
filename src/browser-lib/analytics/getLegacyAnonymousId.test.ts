@@ -1,7 +1,7 @@
 import getLegacyAnonymousId from "./getLegacyAnonymousId";
 
-const getCookies = jest.fn();
-jest.mock("js-cookie", () => ({
+const getCookies = vi.fn();
+vi.mock("js-cookie", () => ({
   __esModule: true,
   default: {
     get: () => getCookies(),
@@ -10,7 +10,7 @@ jest.mock("js-cookie", () => ({
 
 describe("getLegacyAnonymousId", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     localStorage.clear();
   });
   test("returns cookie value if exists", () => {

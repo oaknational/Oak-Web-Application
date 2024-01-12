@@ -15,7 +15,7 @@ describe("curriculum overview query", () => {
     await expect(async () => {
       await curriculumOverviewQuery({
         ...sdk,
-        curriculumOverview: jest.fn(() =>
+        curriculumOverview: vi.fn(() =>
           Promise.resolve({ curriculumOverview: [] }),
         ),
       })({

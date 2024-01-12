@@ -2,7 +2,7 @@ import "../__tests__/__helpers__/LocalStorageMock";
 
 import removeDecommissionedKeys from "./removeDecommissionedKeys";
 
-jest.mock("./localStorageKeys", () => ({
+vi.mock("./localStorageKeys", () => ({
   decommissionedKeys: [
     {
       key: "some-old-feature-key",
@@ -11,11 +11,11 @@ jest.mock("./localStorageKeys", () => ({
     { key: "another old feature key", decommissionedAt: "2023-03-15" },
   ],
 }));
-jest.spyOn(localStorage, "removeItem");
+vi.spyOn(localStorage, "removeItem");
 
 describe("removeDecommissionedKeys", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("removes the first key", () => {
     removeDecommissionedKeys();

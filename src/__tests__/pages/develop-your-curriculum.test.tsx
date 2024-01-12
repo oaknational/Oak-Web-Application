@@ -60,20 +60,19 @@ const testCurriculumPageData: CurriculumPage = {
   seo: mockSeo(),
 };
 
-const getPageData = jest.fn(() => testCurriculumPageData);
+const getPageData = vi.fn(() => testCurriculumPageData);
+vi.mock("@/node-lib/cms", () => ({
+  default: {
+    curriculumPage: (...args: []) => getPageData(...args),
+  },
+}));
 
 const render = renderWithProviders();
 
 describe("pages/develop-your-curriculum.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../src/node-lib/cms/", () => ({
-      __esModule: true,
-      default: {
-        curriculumPage: jest.fn(getPageData),
-      },
-    }));
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", () => {

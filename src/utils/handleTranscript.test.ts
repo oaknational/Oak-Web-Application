@@ -43,8 +43,8 @@ describe("formatSentences", () => {
   });
 });
 
-jest.mock("@/utils/gCloudStorage", () => ({
-  getFileFromBucket: jest.fn(() =>
+vi.mock("@/utils/gCloudStorage", () => ({
+  getFileFromBucket: vi.fn(() =>
     Promise.resolve(`WEBVTT
     1
     00:00:06.180 --> 00:00:10.680
@@ -76,7 +76,7 @@ jest.mock("@/utils/gCloudStorage", () => ({
   ),
 }));
 
-const mockParse = jest
+const mockParse = vi
   .fn()
   .mockReturnValueOnce({
     cues: [
@@ -117,8 +117,8 @@ const mockParse = jest
     time: 0,
   });
 
-jest.mock("webvtt-parser", () => ({
-  WebVTTParser: jest.fn(() => ({
+vi.mock("webvtt-parser", () => ({
+  WebVTTParser: vi.fn(() => ({
     parse: mockParse,
   })),
 }));

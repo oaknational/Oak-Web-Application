@@ -19,11 +19,11 @@ const shareProps: UseResourceFormStateProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 describe("useResourceFormState", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("download", () => {
     test("useResourceFormState should return all downloads selected array if router.preselected is undefined ", async () => {
@@ -99,7 +99,7 @@ describe("useResourceFormState", () => {
     });
     describe("share", () => {
       beforeEach(() => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
       });
       test("useResourceFormState should return all shared selected array if router.preselected is undefined ", () => {
         useRouter.mockReturnValue({

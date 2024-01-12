@@ -8,13 +8,13 @@ import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
 
 import SchoolDetails from "./SchoolDetails";
 
-const setSchool = jest.fn();
+const setSchool = vi.fn();
 const props = {
   setSchool: setSchool,
   errors: {},
 };
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 

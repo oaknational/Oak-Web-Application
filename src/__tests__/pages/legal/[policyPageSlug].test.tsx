@@ -29,18 +29,18 @@ const testSerializedPolicyPage = {
   lastUpdatedAt: testPolicyPage.lastUpdatedAt.toISOString(),
 };
 
-const policyPages = jest.fn(() => [testPolicyPage, testPolicyPage2]);
-const policyPageBySlug = jest.fn(() => testPolicyPage);
+const policyPages = vi.fn(() => [testPolicyPage, testPolicyPage2]);
+const policyPageBySlug = vi.fn(() => testPolicyPage);
 
 describe("pages/legal/[policyPageSlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
-        policyPages: jest.fn(policyPages),
-        policyPageBySlug: jest.fn(policyPageBySlug),
+        policyPages: vi.fn(policyPages),
+        policyPageBySlug: vi.fn(policyPageBySlug),
       },
     }));
   });

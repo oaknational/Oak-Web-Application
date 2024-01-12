@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import AnalyticsProvider from "./AnalyticsProvider";
 import useAnalytics from "./useAnalytics";
 
-const posthogIdentify = jest.fn();
-const posthogCapture = jest.fn();
-const posthogInit = jest.fn();
-jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
+const posthogIdentify = vi.fn();
+const posthogCapture = vi.fn();
+const posthogInit = vi.fn();
+vi.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
   __esModule: true,
   useCookieConsent: () => ({
     hasConsentedTo: () => "enabled",
@@ -18,12 +18,12 @@ jest.mock("../../browser-lib/cookie-consent/CookieConsentProvider", () => ({
  * mock withQueue as identity, because the queue messes with tests, and itself
  * is tested separately
  */
-jest.mock("../../browser-lib/analytics/withQueue", () => ({
+vi.mock("../../browser-lib/analytics/withQueue", () => ({
   __esModule: true,
   default: (x: unknown) => x,
 }));
 
-const callWithArgs = jest.fn((identify) => identify());
+const callWithArgs = vi.fn((identify) => identify());
 
 const ChildCallingIdentify = () => {
   const { identify } = useAnalytics();
@@ -53,7 +53,7 @@ const CallIdentify = () => {
 
 describe("useAnalytics", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("service.identify() should be called if service included in array", () => {
     callWithArgs.mockImplementation((identify) =>

@@ -7,7 +7,7 @@ describe("lessonDownloadsCanonical()", () => {
     await expect(async () => {
       await lessonDownloadsCanonical({
         ...sdk,
-        lessonDownloadsCanonical: jest.fn(() =>
+        lessonDownloadsCanonical: vi.fn(() =>
           Promise.resolve({ lessonDownloadsCanonical: [] }),
         ),
       })({
@@ -18,7 +18,7 @@ describe("lessonDownloadsCanonical()", () => {
   test("both pathways returned if multiple lessons in response", async () => {
     const { pathways } = await lessonDownloadsCanonical({
       ...sdk,
-      lessonDownloadsCanonical: jest.fn(() =>
+      lessonDownloadsCanonical: vi.fn(() =>
         Promise.resolve({
           lessonDownloadsCanonical: [
             {
@@ -78,7 +78,7 @@ describe("lessonDownloadsCanonical()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloadsCanonical: jest.fn(() =>
+        lessonDownloadsCanonical: vi.fn(() =>
           Promise.resolve({
             lessonDownloadsCanonical: [
               {

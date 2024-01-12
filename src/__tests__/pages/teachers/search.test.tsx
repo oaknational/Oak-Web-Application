@@ -15,7 +15,7 @@ const subjects = searchPageFixture().subjects;
 const contentTypes = searchPageFixture().contentTypes;
 const examBoards = searchPageFixture().examBoards;
 
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 

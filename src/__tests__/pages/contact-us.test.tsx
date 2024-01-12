@@ -18,7 +18,7 @@ const testContactPageData: ContactPage = {
   seo: mockSeo(),
 };
 
-jest.mock("../../node-lib/cms");
+vi.mock("../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -26,8 +26,8 @@ const render = renderWithProviders();
 
 describe("pages/contact-us.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("contains an h1 ", () => {

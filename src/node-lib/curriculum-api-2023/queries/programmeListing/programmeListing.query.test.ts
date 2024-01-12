@@ -7,7 +7,7 @@ describe("programmeListing()", () => {
     await expect(async () => {
       await programmeListing({
         ...sdk,
-        programmeListing: jest.fn(() => Promise.resolve({ programmes: [] })),
+        programmeListing: vi.fn(() => Promise.resolve({ programmes: [] })),
       })({
         keyStageSlug: "key-stage-slug",
         subjectSlug: "subject-slug",
@@ -21,7 +21,7 @@ describe("programmeListing()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        programmeListing: jest.fn(() =>
+        programmeListing: vi.fn(() =>
           Promise.resolve({
             programmes: [
               {

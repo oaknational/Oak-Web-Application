@@ -3,8 +3,8 @@ import type { ResourcesToDownloadArrayType } from "../downloadAndShare.types";
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
-jest.mock("./createDownloadResourcesLink");
-jest.mock("./createAndClickHiddenDownloadLink");
+vi.mock("./createDownloadResourcesLink");
+vi.mock("./createAndClickHiddenDownloadLink");
 
 const data = {
   url: "downloadUrl",
@@ -26,11 +26,11 @@ const resourcesToDownloadAsSelection = "exit-quiz-answers,worksheet-pdf";
 
 describe("downloadLessonResources", () => {
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
   });
 
   it("should return when no resource types are passed", async () => {
-    console.log = jest.fn();
+    console.log = vi.fn();
     await downloadLessonResources("lesson-slug", [], true);
 
     expect(console.log).toHaveBeenCalledWith("no resources to download");

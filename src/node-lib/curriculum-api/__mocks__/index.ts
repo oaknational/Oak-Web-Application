@@ -10,40 +10,40 @@ import lessonOverviewFixture from "../fixtures/lessonOverview.fixture";
 import lessonShareFixtures from "../fixtures/lessonShare.fixture";
 
 const curriculumApi: CurriculumApi = {
-  searchPage: jest.fn(async () => {
+  searchPage: vi.fn(async () => {
     return searchPageFixture();
   }),
-  teachersHomePage: jest.fn(async () => {
+  teachersHomePage: vi.fn(async () => {
     return teachersHomePageFixture();
   }),
-  lessonDownloads: jest.fn(async () => {
+  lessonDownloads: vi.fn(async () => {
     return lessonDownloadsFixtures();
   }),
-  lessonShare: jest.fn(async () => {
+  lessonShare: vi.fn(async () => {
     return lessonShareFixtures();
   }),
-  lessonDownloadsCanonical: jest.fn(async () => {
+  lessonDownloadsCanonical: vi.fn(async () => {
     return {
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],
     };
   }),
-  subjectListing: jest.fn(async () => {
+  subjectListing: vi.fn(async () => {
     return subjectListingFixture2023();
   }),
-  lessonListing: jest.fn(async () => {
+  lessonListing: vi.fn(async () => {
     return lessonListingFixture();
   }),
-  unitListing: jest.fn(async () => {
+  unitListing: vi.fn(async () => {
     return unitListingFixture();
   }),
-  tierListing: jest.fn(async () => {
+  tierListing: vi.fn(async () => {
     return tieredProgrammeListingFixture();
   }),
-  lessonOverview: jest.fn(async () => {
+  lessonOverview: vi.fn(async () => {
     return lessonOverviewFixture();
   }),
-  lessonOverviewCanonical: jest.fn(async () => {
+  lessonOverviewCanonical: vi.fn(async () => {
     return {
       ...lessonOverviewFixture(),
       pathways: [lessonOverviewFixture()],

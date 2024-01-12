@@ -7,10 +7,10 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
+const curriculumThreadHighlighted = vi.fn();
+const yearGroupSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -23,7 +23,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("user can see the content", async () => {
     const { queryAllByTestId } = render(

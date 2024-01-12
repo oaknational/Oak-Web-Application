@@ -5,10 +5,10 @@ import SubjectProgrammeList from "./SubjectProgrammeList";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { tieredProgrammeListingFixture } from "@/node-lib/curriculum-api/fixtures/tierListing.fixture";
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    track: jest.fn(),
+    track: vi.fn(),
   }),
 }));
 

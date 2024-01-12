@@ -11,7 +11,7 @@ import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -111,8 +111,8 @@ const testAboutWhoWeArePageData: AboutWhoWeArePage = {
 
 describe("pages/about/who-we-are.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", () => {

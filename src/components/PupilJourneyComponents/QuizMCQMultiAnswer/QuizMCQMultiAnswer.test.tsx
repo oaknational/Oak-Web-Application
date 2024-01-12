@@ -64,10 +64,10 @@ describe("QuizMCQMultiAnswer", () => {
     score: 0,
     maxScore: 0,
     isComplete: false,
-    updateQuestionMode: jest.fn(),
-    handleSubmitMCAnswer: jest.fn(),
-    handleNextQuestion: jest.fn(),
-    handleSubmitShortAnswer: jest.fn(),
+    updateQuestionMode: vi.fn(),
+    handleSubmitMCAnswer: vi.fn(),
+    handleNextQuestion: vi.fn(),
+    handleSubmitShortAnswer: vi.fn(),
   };
 
   const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {

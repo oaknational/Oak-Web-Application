@@ -17,12 +17,12 @@ describe("CollapsibleSection", () => {
         buttons={[
           {
             icon: "download",
-            onClick: jest.fn(),
+            onClick: vi.fn(),
             ariaLabel: "Download button",
           },
           {
             icon: "share",
-            onClick: jest.fn(),
+            onClick: vi.fn(),
             ariaLabel: "Share button",
           },
         ]}
@@ -59,7 +59,7 @@ describe("CollapsibleSection", () => {
   });
 
   it("has passed in buttons with onClick event", async () => {
-    const handleClick = jest.fn();
+    const handleClick = vi.fn();
 
     renderWithTheme(
       <CollapsibleSection

@@ -17,28 +17,28 @@ const curriculumApi: Pick<
   | "lessonDownloadsCanonical"
   | "pupilLessonOverview"
 > = {
-  subjectPhaseOptions: jest.fn(async () => {
+  subjectPhaseOptions: vi.fn(async () => {
     return subjectPhaseOptionsFixture();
   }),
-  curriculumOverview: jest.fn(async () => {
+  curriculumOverview: vi.fn(async () => {
     return curriculumOverviewMVFixture();
   }),
-  subjectListingPage: jest.fn(async () => {
+  subjectListingPage: vi.fn(async () => {
     return subjectListingFixture2023();
   }),
-  teachersHomePage: jest.fn(async () => {
+  teachersHomePage: vi.fn(async () => {
     return teachersHomePageFixture();
   }),
-  pupilLessonOverview: jest.fn(async () => {
+  pupilLessonOverview: vi.fn(async () => {
     return pupilLessonOverviewFixture();
   }),
-  lessonOverviewCanonical: jest.fn(async () => {
+  lessonOverviewCanonical: vi.fn(async () => {    
     return {
       ...lessonOverviewFixture(),
       pathways: [lessonOverviewFixture()],
     };
   }),
-  lessonDownloadsCanonical: jest.fn(async () => {
+  lessonDownloadsCanonical: vi.fn(async () => {
     return {
       ...lessonDownloadsFixtures(),
       pathways: [lessonDownloadsFixtures()],

@@ -82,20 +82,19 @@ const testInternalLessonElementsCta: CTA = {
   internal: { contentType: "aboutCorePage.whoWeAre", id: "1" },
 };
 
-const getPageData = jest.fn(() => testPlanningPageData);
+const getPageData = vi.fn(() => testPlanningPageData);
+vi.mock("@/node-lib/cms", () => ({
+  default: {
+    planningPage: (...args: []) => getPageData(...args),
+  },
+}));
 
 const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../src/node-lib/cms/", () => ({
-      __esModule: true,
-      default: {
-        planningPage: jest.fn(getPageData),
-      },
-    }));
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", () => {

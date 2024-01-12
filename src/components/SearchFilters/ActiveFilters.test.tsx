@@ -3,11 +3,11 @@ import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 import ActiveFilters from "./ActiveFilters";
 import { searchFilters } from "./test-helpers";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("ActiveFilters", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test.each(
     searchFilters.keyStageFilters

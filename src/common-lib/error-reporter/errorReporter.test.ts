@@ -10,9 +10,9 @@ import errorReporter, {
   getBugsnagOnError,
 } from "./errorReporter";
 
-const getHasConsentedTo = jest.fn();
+const getHasConsentedTo = vi.fn();
 
-jest.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
+vi.mock("../../browser-lib/cookie-consent/getHasConsentedTo", () => ({
   __esModule: true,
   default: (service: string) => getHasConsentedTo(service),
 }));
@@ -21,9 +21,9 @@ const parentMetaFields = {
   query: { paramName: "paramValue" },
 };
 const testContext = "/test/endpoint";
-const consoleLog = jest.fn();
-const consoleError = jest.fn();
-const consoleWarn = jest.fn();
+const consoleLog = vi.fn();
+const consoleError = vi.fn();
+const consoleWarn = vi.fn();
 const logger = {
   log: consoleLog,
   warn: consoleWarn,
@@ -45,21 +45,21 @@ const event = {
   context: undefined,
   severity: undefined,
   groupingHash: undefined,
-  addMetadata: jest.fn(),
+  addMetadata: vi.fn(),
 };
 
-const mockNotify = jest.fn(async (err, cb) => cb(event));
-jest.mock("./bugsnagNotify", () => ({
+const mockNotify = vi.fn(async (err, cb) => cb(event));
+vi.mock("./bugsnagNotify", () => ({
   __esModule: true,
   default: (err: unknown, cb: unknown) => mockNotify(err, cb),
 }));
 
-const mockStart = jest.fn();
+const mockStart = vi.fn();
 Bugsnag.start = mockStart;
 
 describe("common-lib/error-reporter", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("matchesUserAgent", () => {
     it("returns false if the ua string doesn't contain words in the disallow list", () => {
@@ -151,7 +151,7 @@ describe("common-lib/error-reporter", () => {
   });
   describe("[enabled]: errorReporter()()", () => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       (testError as { hasBeenReported?: boolean }).hasBeenReported = undefined;
       getHasConsentedTo.mockImplementation(() => true);
@@ -250,7 +250,7 @@ describe("common-lib/error-reporter", () => {
   });
   describe("[disabled]: errorReporter()()", () => {
     beforeEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
       getHasConsentedTo.mockImplementation(() => false);
     });
     it("does not call bugsnag.notify with the error", async () => {

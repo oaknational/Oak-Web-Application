@@ -5,7 +5,7 @@ import "../__tests__/__helpers__/LocalStorageMock";
 
 import useLocalStorage from "./useLocalStorage";
 
-const consoleWarnSpy = jest
+const consoleWarnSpy = vi
   .spyOn(console, "warn")
   .mockImplementation(() => null);
 
@@ -15,7 +15,7 @@ describe("useLocalStorage()", () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("initial state is in the returned state", () => {

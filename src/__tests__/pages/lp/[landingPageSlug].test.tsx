@@ -11,7 +11,7 @@ import { LandingPage } from "../../../common-lib/cms-types/landingPage";
 import { mockImageAsset, portableTextFromString } from "../../__helpers__/cms";
 import { getABTestedLandingPage } from "../../../node-lib/cms/ab-testing";
 
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -56,16 +56,16 @@ const testLandingPage: LandingPage = {
   seo: null,
 };
 
-jest.mock("../../../node-lib/cms/ab-testing");
+vi.mock("../../../node-lib/cms/ab-testing");
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
 describe("pages/lp/[landingPageSlug].tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
 
     mockCMSClient.landingPages.mockResolvedValue([testLandingPage]);
     mockCMSClient.landingPageBySlug.mockResolvedValue(testLandingPage);

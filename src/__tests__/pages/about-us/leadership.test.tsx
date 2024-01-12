@@ -15,7 +15,7 @@ import { AboutLeadershipPage } from "../../../common-lib/cms-types";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
@@ -42,14 +42,14 @@ const testAboutLeadershipPageData: AboutLeadershipPage = {
   ],
 };
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
 describe("pages/about/leadership.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("Renders correct title ", async () => {

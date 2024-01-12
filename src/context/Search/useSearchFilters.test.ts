@@ -3,7 +3,7 @@ import { renderHook, act } from "@testing-library/react";
 import useSearchFilters from "./useSearchFilters";
 import { UseSearchFiltersProps } from "./search.types";
 
-const setQuery = jest.fn();
+const setQuery = vi.fn();
 
 const props: UseSearchFiltersProps = {
   allKeyStages: [
@@ -39,7 +39,7 @@ const props: UseSearchFiltersProps = {
 
 describe("useSearchFilters()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("'checked' should be false if key stage filter not active", () => {
     const useSearchFiltersHook = renderHook(() => useSearchFilters(props));

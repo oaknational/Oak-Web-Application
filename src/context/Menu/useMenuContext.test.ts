@@ -5,7 +5,7 @@ import mockRouter from "next-router-mock";
 import useMenuContext from "./useMenuContext";
 import MenuProvider from "./MenuProvider";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useMenuContext()", () => {
   beforeEach(() => {

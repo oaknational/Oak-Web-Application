@@ -59,18 +59,18 @@ const testSerializedWebinarPreview2: SerializedWebinarPreview = {
   date: testWebinarPreview2.date.toISOString(),
 };
 
-const webinars = jest.fn(() => [testWebinarPreview, testWebinarPreview2]);
-const webinarsListingPage = jest.fn(() => testPageData);
+const webinars = vi.fn(() => [testWebinarPreview, testWebinarPreview2]);
+const webinarsListingPage = vi.fn(() => testPageData);
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
 describe("pages/webinar/index.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
         webinars: webinars,

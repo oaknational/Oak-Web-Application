@@ -13,11 +13,11 @@ import DynamicForm, { DynamicFormField } from "./DynamicForm";
 
 jest.setTimeout(10000);
 
-const onSubmit = jest.fn();
+const onSubmit = vi.fn();
 
 describe("DynamicForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("DynamicFormField", () => {
@@ -31,7 +31,7 @@ describe("DynamicForm", () => {
       } as FormField;
 
       const { getByPlaceholderText } = renderWithTheme(
-        <DynamicFormField field={field} register={jest.fn()} />,
+        <DynamicFormField field={field} register={vi.fn()} />,
       );
 
       const input = getByPlaceholderText("Anna Smith");

@@ -7,7 +7,7 @@ describe("lessonOverviewCanonical()", () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,
-        lessonOverviewCanonical: jest.fn(() => Promise.resolve({ lesson: [] })),
+        lessonOverviewCanonical: vi.fn(() => Promise.resolve({ lesson: [] })),
       })({
         lessonSlug: "lesson-slug",
       });
@@ -31,7 +31,7 @@ describe("lessonOverviewCanonical()", () => {
     };
     const lesson = await lessonOverviewCanonical({
       ...sdk,
-      lessonOverviewCanonical: jest.fn(() =>
+      lessonOverviewCanonical: vi.fn(() =>
         Promise.resolve({
           lesson: [
             {
@@ -89,7 +89,7 @@ describe("lessonOverviewCanonical()", () => {
     await expect(async () => {
       await lessonOverviewCanonical({
         ...sdk,
-        lessonOverviewCanonical: jest.fn(() =>
+        lessonOverviewCanonical: vi.fn(() =>
           Promise.resolve({
             lesson: [{}],
           }),

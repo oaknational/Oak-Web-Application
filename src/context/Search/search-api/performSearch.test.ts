@@ -11,7 +11,7 @@ const mockResults2020: SearchHit[] = [{ foo: "bar-2020" }];
 // @ts-expect-error
 const mockResults2023: SearchHit[] = [{ foo: "bar-2023" }];
 
-jest.mock("./2020/fetchResults", () => ({
+vi.mock("./2020/fetchResults", () => ({
   __esModule: true,
   ...jest.requireActual("./2020/fetchResults"),
 }));
@@ -19,21 +19,21 @@ const fetchResults2020Spy = jest
   .spyOn(fetchResults2020, "fetchResults")
   .mockResolvedValue([...mockResults2020]);
 
-jest.mock("./2023/fetchResults", () => ({
+vi.mock("./2023/fetchResults", () => ({
   __esModule: true,
   ...jest.requireActual("./2023/fetchResults"),
 }));
-const fetchResults2023Spy = jest.spyOn(fetchResults2023, "fetchResults");
+const fetchResults2023Spy = vi.spyOn(fetchResults2023, "fetchResults");
 
 const callbacks = {
-  onStart: jest.fn(),
-  onSuccess: jest.fn(),
-  onFail: jest.fn(),
+  onStart: vi.fn(),
+  onSuccess: vi.fn(),
+  onFail: vi.fn(),
 };
 
 describe("performSearch", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("should call onStart on start", () => {
     performSearch({

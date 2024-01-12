@@ -4,7 +4,7 @@ import UnitListItem from "./UnitListItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const props = {
   title: "Numbers and numerals",
@@ -38,7 +38,7 @@ const render = renderWithProviders();
 
 describe("Unit List Item", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("It uses singular  form of lesson", () => {

@@ -29,10 +29,10 @@ const Clickable = ({
 
 describe("useClickableCard()", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("clicking the container clicks the click target", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByTestId } = render(<Clickable onClick={onClick} />);
     const container = getByTestId("container");
     const user = userEvent.setup();
@@ -40,7 +40,7 @@ describe("useClickableCard()", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
   test("clicking the primary button should only cause the click callback to be fired once", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByRole } = render(<Clickable onClick={onClick} />);
     const primaryButton = getByRole("button", { name: "Primary button" });
     const user = userEvent.setup();
@@ -48,7 +48,7 @@ describe("useClickableCard()", () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
   test("clicking the secondary button does not click the click target", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByRole } = render(<Clickable onClick={onClick} />);
     const secondaryButton = getByRole("button", { name: "Secondary button" });
     const user = userEvent.setup();

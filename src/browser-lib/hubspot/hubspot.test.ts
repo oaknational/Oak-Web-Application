@@ -1,7 +1,7 @@
 import { hubspotWithoutQueue as hubspot } from "./hubspot";
 
-const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -9,14 +9,14 @@ jest.mock("../../common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-const qPush = jest.fn();
-const pPush = jest.fn();
+const qPush = vi.fn();
+const pPush = vi.fn();
 
 describe("hubspot.ts", () => {
   beforeEach(() => {
     window._hsq = { push: qPush };
     window._hsp = { push: pPush };
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   afterEach(() => {
     window._hsq = undefined;

@@ -36,7 +36,7 @@ describe("lessonDownloads()", () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: [],
             unit: [
@@ -58,7 +58,7 @@ describe("lessonDownloads()", () => {
     await expect(async () => {
       await lessonDownloads({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: downloads,
             unit: [],
@@ -74,7 +74,7 @@ describe("lessonDownloads()", () => {
   test("first downloads is returned if multiple lessons in response", async () => {
     const unit = await lessonDownloads({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      lessonDownloads: vi.fn(() =>
         Promise.resolve({
           downloads: downloads,
           unit: [
@@ -98,7 +98,7 @@ describe("lessonDownloads()", () => {
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloads: jest.fn(() =>
+        lessonDownloads: vi.fn(() =>
           Promise.resolve({
             downloads: [
               {

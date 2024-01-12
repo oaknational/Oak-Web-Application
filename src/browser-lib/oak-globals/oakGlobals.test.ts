@@ -19,7 +19,7 @@ describe("oakGlobals", () => {
     // @ts-ignore
     window.__oakGlobals = testValue;
     const newValue = {
-      oakThemes: { setTheme: jest.fn(), availableThemes: THEME_NAMES },
+      oakThemes: { setTheme: vi.fn(), availableThemes: THEME_NAMES },
     };
 
     setOakGlobals(newValue);

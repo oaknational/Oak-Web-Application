@@ -1,7 +1,7 @@
 import handler from "../../../../pages/api/exit-preview/[[...path]]";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
-const clearPreviewData = jest.fn();
+const clearPreviewData = vi.fn();
 
 const createReqRes = (path?: string[]) => {
   const { req, res } = createNextApiMocks({
@@ -13,15 +13,15 @@ const createReqRes = (path?: string[]) => {
   return { req, res };
 };
 
-jest.mock("../../../../common-lib/error-reporter", () => ({
+vi.mock("../../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default: () => () => null,
 }));
 
 describe("/api/exit-preview/[[...path]]", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   it("should clear preview data", async () => {

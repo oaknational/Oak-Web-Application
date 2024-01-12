@@ -7,7 +7,7 @@ describe("curriculum units query", () => {
     await expect(async () => {
       await curriculumUnitsQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumUnits: vi.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "",
         phaseSlug: "",
@@ -20,7 +20,7 @@ describe("curriculum units query", () => {
     await expect(async () => {
       await curriculumUnitsQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumUnits: vi.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "english",
         phaseSlug: "secondary",

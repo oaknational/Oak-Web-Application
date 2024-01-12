@@ -8,7 +8,7 @@ import SearchDropdown from "./SearchDropdown";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
-export const onClickSearchHit = jest.fn();
+export const onClickSearchHit = vi.fn();
 
 const searchResultsData = searchResultsItem().map((result) => {
   return {

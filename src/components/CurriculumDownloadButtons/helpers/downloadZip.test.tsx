@@ -12,15 +12,15 @@ const rejectResponse = {
   status: 400,
 };
 
-global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
 
 describe("downloadZip", () => {
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test("should invoke the fetch function when invoked", async () => {

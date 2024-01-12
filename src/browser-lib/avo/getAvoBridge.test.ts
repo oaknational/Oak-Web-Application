@@ -1,7 +1,7 @@
 import getAvoBridge from "./getAvoBridge";
 
 const posthog = {
-  track: jest.fn(),
+  track: vi.fn(),
 };
 
 const testEventName = "test-event";

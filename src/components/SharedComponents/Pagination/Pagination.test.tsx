@@ -6,13 +6,13 @@ import Pagination from "./Pagination";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 
 describe("Pagination", () => {
-  jest.mock("next/dist/client/router", () => require("next-router-mock"));
+  vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("it renders", () => {
@@ -168,7 +168,7 @@ describe("Pagination", () => {
     const nextPageUrlObject = "next-page";
     const prevPageUrlObject = "prev-page";
 
-    const focusMock = jest.fn();
+    const focusMock = vi.fn();
     const firstItemRef = {
       current: { focus: focusMock },
     } as unknown as RefObject<HTMLAnchorElement>;

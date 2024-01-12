@@ -5,8 +5,8 @@ import "../../__tests__/__helpers__/LocalStorageMock";
 import CookieConsentGate from "./CookieConsentGate";
 import CookieConsentProvider from "./CookieConsentProvider";
 
-const useCookies = jest.fn(() => [[], jest.fn()]);
-jest.mock("react-cookie", () => ({
+const useCookies = vi.fn(() => [[], vi.fn()]);
+vi.mock("react-cookie", () => ({
   __esModule: true,
   useCookies: () => useCookies(),
 }));

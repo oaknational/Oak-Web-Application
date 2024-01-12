@@ -11,7 +11,7 @@ import Menu from "./Menu";
 
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("Menu", () => {
   beforeEach(() => {
@@ -43,8 +43,8 @@ describe("Menu", () => {
   test("if menu context open is true it is visible and expanded", () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText, getByTestId } = renderWithTheme(
@@ -61,8 +61,8 @@ describe("Menu", () => {
   test("clicking the close button invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -80,8 +80,8 @@ describe("Menu", () => {
   test("it has aria-expanded true when open", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -99,8 +99,8 @@ describe("Menu", () => {
   test("it has aria-expanded false when closed", async () => {
     const menuValue = {
       open: false,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -123,8 +123,8 @@ describe("Menu", () => {
   test.skip("pressing the escape key invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     renderWithTheme(
@@ -147,8 +147,8 @@ describe("Menu", () => {
 
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { rerender, getByLabelText } = renderWithTheme(
@@ -159,7 +159,7 @@ describe("Menu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn}
         />
         <Menu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,
@@ -175,7 +175,7 @@ describe("Menu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn}
         />
         <Menu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,

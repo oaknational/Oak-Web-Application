@@ -18,7 +18,7 @@ describe("createDownloadResourcesLink()", () => {
   let downloadResourcesLink;
 
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as jest.Mock;
   });
 
   it("should return correct data if fetch is successful", async () => {

@@ -55,18 +55,18 @@ const testSerializedBlogPreview2: SerializedBlogPostPreview = {
   date: testBlogPreview2.date.toISOString(),
 };
 
-const blogPosts = jest.fn(() => [testBlogPreview, testBlogPreview2]);
-const blogListingPage = jest.fn(() => testPageData);
+const blogPosts = vi.fn(() => [testBlogPreview, testBlogPreview2]);
+const blogListingPage = vi.fn(() => testPageData);
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
 describe("pages/blog/index.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
-    jest.mock("../../../node-lib/cms", () => ({
+    vi.clearAllMocks();
+    vi.resetModules();
+    vi.mock("../../../node-lib/cms", () => ({
       __esModule: true,
       default: {
         blogPosts: blogPosts,

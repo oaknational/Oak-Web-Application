@@ -3,7 +3,7 @@ import mockRouter from "next-router-mock";
 
 import useIsCurrent from "./useIsCurrent";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("useIsCurrent", () => {
   test.each([

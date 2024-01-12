@@ -6,8 +6,8 @@ import { GetServerSidePropsContext, PreviewData } from "next";
 import { getServerSideProps } from "@/pages/teachers/curriculum/sitemap.xml";
 import { generatedFields } from "@/node-lib/curriculum-api-2023/fixtures/curriculumSiteMap.fixture";
 
-jest.mock("next-sitemap", () => ({
-  getServerSideSitemap: jest.fn(),
+vi.mock("next-sitemap", () => ({
+  getServerSideSitemap: vi.fn(),
 }));
 
 type MockedGetServerSideSitemap = jest.Mock<typeof getServerSideSitemap>;

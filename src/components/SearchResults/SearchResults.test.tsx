@@ -42,8 +42,8 @@ const props = {
   allKeyStages: searchPageFixture().keyStages,
 };
 
-const searchResultOpened = jest.fn();
-const searchResultExpanded = jest.fn();
+const searchResultOpened = vi.fn();
+const searchResultExpanded = vi.fn();
 
 const render = renderWithProviders();
 

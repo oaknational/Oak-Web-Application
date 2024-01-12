@@ -3,14 +3,14 @@ import { getHubspotFormById } from "../../hubspot-forms";
 
 import { resolveHubspotFromReferences } from "./resolveHubspotFromReferences";
 
-jest.mock("../../hubspot-forms");
+vi.mock("../../hubspot-forms");
 
 const mockedGetHubspotFormById = getHubspotFormById as jest.MockedFn<
   typeof getHubspotFormById
 >;
 
-const reportError = jest.fn();
-jest.mock("../../../common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("../../../common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -20,8 +20,8 @@ jest.mock("../../../common-lib/error-reporter", () => ({
 
 describe("addHubspotForms", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
 
     mockedGetHubspotFormById
       .mockResolvedValueOnce({

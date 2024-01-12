@@ -11,7 +11,7 @@ import { mockSeoResult } from "../../__helpers__/cms";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-jest.mock("../../../node-lib/cms");
+vi.mock("../../../node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 

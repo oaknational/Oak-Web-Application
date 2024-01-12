@@ -45,12 +45,12 @@ const schools = [
   },
 ];
 
-const setSchoolPickerInputValue = jest.fn();
-const setSelectedSchool = jest.fn();
+const setSchoolPickerInputValue = vi.fn();
+const setSelectedSchool = vi.fn();
 
 describe("search autocomplete", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("renders a SearchCombobox input", () => {
     renderWithTheme(

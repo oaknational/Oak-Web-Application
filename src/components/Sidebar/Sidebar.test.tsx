@@ -11,7 +11,7 @@ import {
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()} />,
+      <Sidebar displayModal={true} onClose={vi.fn()} />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("Sidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <Sidebar displayModal={true} onClose={jest.fn()}>
+      <Sidebar displayModal={true} onClose={vi.fn()}>
         <div data-testid="sidebar-children" />
       </Sidebar>,
     );
@@ -28,7 +28,7 @@ describe("Sidebar component", () => {
   });
 
   test("onClose state function called when close button selected", async () => {
-    const mockClose = jest.fn();
+    const mockClose = vi.fn();
     const { getByTestId } = renderWithTheme(
       <Sidebar displayModal={true} onClose={mockClose} />,
     );
@@ -46,7 +46,7 @@ describe("Sidebar component", () => {
   describe("Unit lessons button", () => {
     test("should render the unit lessons button when passed unit data with no optionality", () => {
       const { getByTestId } = renderWithTheme(
-        <Sidebar displayModal={true} onClose={jest.fn()} unitData={mockUnit} />,
+        <Sidebar displayModal={true} onClose={vi.fn()} unitData={mockUnit} />,
       );
 
       expect(getByTestId("unit-lessons-button")).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("Sidebar component", () => {
       const { queryByTestId } = renderWithTheme(
         <Sidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
         />,

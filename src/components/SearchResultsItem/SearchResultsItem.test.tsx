@@ -10,7 +10,7 @@ import SearchResultsItem from "./SearchResultsItem";
 import { searchResultsHitSchema } from "@/context/Search/search.schema";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 
-const searchResultClicked = jest.fn();
+const searchResultClicked = vi.fn();
 
 const allKeyStages = searchPageFixture().keyStages;
 const hitLesson = searchResultsHitSchema.parse(

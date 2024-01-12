@@ -3,7 +3,7 @@ import sanityGraphqlApi from "../../sanity-graphql";
 
 import { resolveSanityReferences } from "./resolveSanityReferences";
 
-jest.mock("../../sanity-graphql");
+vi.mock("../../sanity-graphql");
 
 const mockSanityGraphqlApi = sanityGraphqlApi as jest.MockedObject<
   typeof sanityGraphqlApi
@@ -24,8 +24,8 @@ const mockObjWithReferences = {
 
 describe("resolveSanityReferences", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
 
     mockSanityGraphqlApi.portableTextReferences.mockResolvedValue({
       allDocument: [

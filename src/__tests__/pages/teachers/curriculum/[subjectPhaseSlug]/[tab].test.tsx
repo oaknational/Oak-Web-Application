@@ -19,26 +19,26 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 
 const render = renderWithProviders();
 
-jest.mock("next/router");
-jest.mock("@/node-lib/curriculum-api-2023", () => ({
-  curriculumOverview: jest.fn(),
-  curriculumUnits: jest.fn(),
+vi.mock("next/router");
+vi.mock("@/node-lib/curriculum-api-2023", () => ({
+  curriculumOverview: vi.fn(),
+  curriculumUnits: vi.fn(),
 }));
 const mockedCurriculumOverview =
   curriculumApi.curriculumOverview as MockedFunction<
     typeof curriculumApi.curriculumOverview
   >;
 
-jest.mock("@/node-lib/cms");
+vi.mock("@/node-lib/cms");
 
-jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
+vi.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
   __esModule: true,
   default: () => () => null,
 }));
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-jest.mock("next-sanity-image", () => ({
+vi.mock("next-sanity-image", () => ({
   ...jest.requireActual("next-sanity-image"),
   useNextSanityImage: () => ({
     src: "/test/img/src.png",
@@ -54,13 +54,13 @@ const mockedFetchSubjectPhasePickerData =
     typeof fetchSubjectPhasePickerData
   >;
 
-jest.mock("@/pages/teachers/curriculum/index", () => ({
-  fetchSubjectPhasePickerData: jest.fn(),
+vi.mock("@/pages/teachers/curriculum/index", () => ({
+  fetchSubjectPhasePickerData: vi.fn(),
 }));
 
 describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   describe("parses the subject / phase / examboard slug correctly", () => {
     it("should extract from a valid slug", () => {
