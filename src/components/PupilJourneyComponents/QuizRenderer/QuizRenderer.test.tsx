@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oak-academy/oak-components";
-import { fireEvent } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 
 import {
   QuizEngineContextType,
@@ -13,7 +13,7 @@ import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizEleme
 
 const questionsArrayFixture = quizQuestions || [];
 
-const getContext = (): QuizEngineContextType => ({
+const getContext = (): NonNullable<QuizEngineContextType> => ({
   currentQuestionData: questionsArrayFixture[0],
   currentQuestionIndex: 0,
   questionState: [
@@ -26,6 +26,7 @@ const getContext = (): QuizEngineContextType => ({
   updateQuestionMode: (mode) => mode,
   handleSubmitMCAnswer: () => {},
   handleNextQuestion: () => {},
+  handleSubmitShortAnswer: () => {},
   score: 0,
   maxScore: 1,
   isComplete: false,
@@ -33,7 +34,9 @@ const getContext = (): QuizEngineContextType => ({
 
 describe("QuizRenderer", () => {
   it("throws an error when there is no context", () => {
+    const spy = jest.spyOn(console, "error").mockImplementation(() => {});
     expect(() => renderWithTheme(<QuizRenderer />)).toThrow();
+    spy.mockRestore();
   });
 
   it("renders heading, mode and answer when there is currentQuestionData", () => {
@@ -180,5 +183,122 @@ describe("QuizRenderer", () => {
 
       expect(getByText(/End of quiz/i)).toBeInTheDocument();
     }
+  });
+
+  it("captures the MCQ selected answers when submit is clicked", () => {
+    const context = getContext();
+
+    if (context?.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+      context.handleSubmitMCAnswer = jest.fn();
+
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByRole("button", { name: "Submit" }));
+      });
+
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalled();
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalledWith([
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[1],
+      ]);
+    }
+  });
+
+  it("captures the MCQ selected answers when submit is clicked (multiple answers)", () => {
+    const context = getContext();
+
+    if (context?.currentQuestionData?.answers?.["multiple-choice"]?.[1]) {
+      context.currentQuestionData.answers[
+        "multiple-choice"
+      ][1].answer_is_correct = true;
+    }
+
+    if (context?.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+      context.handleSubmitMCAnswer = jest.fn();
+
+      const { getByLabelText, getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByLabelText(/a group of letters/)).toBeInTheDocument();
+
+      act(() => {
+        fireEvent.click(getByLabelText(/a group of letters/));
+        fireEvent.click(getByLabelText(/a group of words/));
+        fireEvent.click(getByRole("button", { name: "Submit" }));
+      });
+
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalled();
+      expect(context.handleSubmitMCAnswer).toHaveBeenCalledWith([
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[1],
+        context?.currentQuestionData?.answers?.["multiple-choice"]?.[2],
+      ]);
+    }
+  });
+
+  it("renders a shortAnswer when questionType === 'short-answer'", () => {
+    const context = getContext();
+
+    context.currentQuestionData = quizQuestions?.find(
+      (q) => q.questionType === "short-answer",
+    );
+
+    if (context?.currentQuestionData) {
+      const { getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <QuizEngineContext.Provider value={context}>
+            <QuizRenderer />
+          </QuizEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      expect(getByRole("textbox")).toBeInTheDocument();
+    }
+  });
+
+  it("calls handleSubmitShortAnswer when submit is clicked for a short answer", () => {
+    const context = getContext();
+
+    context.currentQuestionData = quizQuestions?.find(
+      (q) => q.questionType === "short-answer",
+    );
+
+    if (context.questionState?.[0]) {
+      context.questionState[0].mode = "input";
+    }
+
+    context.handleSubmitShortAnswer = jest.fn();
+
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizRenderer />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    act(() => {
+      const input = getByRole("textbox");
+      fireEvent.change(input, { target: { value: "test" } });
+      fireEvent.click(getByRole("button", { name: "Submit" }));
+    });
+
+    expect(context.handleSubmitShortAnswer).toHaveBeenCalled();
+    expect(context.handleSubmitShortAnswer).toHaveBeenCalledWith("test");
   });
 });
