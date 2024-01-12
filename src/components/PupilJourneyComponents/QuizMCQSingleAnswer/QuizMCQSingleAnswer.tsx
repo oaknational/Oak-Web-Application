@@ -1,39 +1,46 @@
-import { useEffect, useState } from "react";
+import { useMemo, useRef, useEffect } from "react";
 import {
   OakBox,
   OakRadioButton,
   OakRadioGroup,
 } from "@oak-academy/oak-components";
 
-import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 
 export type QuizMCQSingleAnswerProps = {
-  questionUid: string;
-  answers: MCAnswer[];
+  onInitialChange?: () => void;
+  onChange?: () => void;
 };
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
-  const { questionUid, answers } = props;
-
+  const { onInitialChange, onChange } = props;
   const quizEngineContext = useQuizEngineContext();
+  const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
+  const answers = useMemo(
+    () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
+    [currentQuestionData],
+  );
+  const questionState = quizEngineContext.questionState[currentQuestionIndex];
+  const questionUid = currentQuestionData?.questionUid;
 
-  const currentQuestionIndex = quizEngineContext?.currentQuestionIndex || 0;
-  const questionState = quizEngineContext?.questionState[currentQuestionIndex];
-
-  const [selectedAnswer, setSelectedAnswer] = useState<
-    MCAnswer | null | undefined
-  >(null);
+  const lastChanged = useRef<number>(0);
 
   useEffect(() => {
-    if (questionState?.mode === "grading") {
-      quizEngineContext?.handleSubmitMCAnswer(selectedAnswer);
-    }
-  }, [questionState, currentQuestionIndex, quizEngineContext, selectedAnswer]);
+    lastChanged.current = 0;
+  }, [currentQuestionIndex]);
 
   if (!questionState) {
     return null;
   }
+
+  const handleOnChange = () => {
+    if (lastChanged.current === 0 && onInitialChange) {
+      onInitialChange();
+    } else if (lastChanged.current !== 0 && onChange) {
+      onChange();
+    }
+    lastChanged.current = Date.now();
+  };
 
   const isFeedbackMode = questionState.mode === "feedback";
 
@@ -41,18 +48,12 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
     <OakRadioGroup
       name={questionUid || "quiz"}
       $flexDirection={"column"}
-      onChange={(e) => {
-        const targetIndex = e.target.tabIndex;
-        if (questionState?.mode === "init") {
-          quizEngineContext?.updateQuestionMode("input");
-        }
-        setSelectedAnswer(answers[targetIndex]);
-      }}
+      onChange={handleOnChange}
       disabled={isFeedbackMode}
     >
       {answers?.map((answer, i) => {
         return (
-          <OakBox key={`radio-${i}`}>
+          <OakBox key={`${questionUid}-answer-${i}`}>
             {answer.answer.map((answerItem) => {
               let feedbackModeColor: "oakGreen" | "red" | undefined;
 
@@ -88,15 +89,15 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
                 return (
                   <OakBox key={`radio-${i}`} $position={"relative"}>
                     <OakRadioButton
-                      key={`radio-${i}`}
+                      key={`${questionUid}-answer-${i}`}
                       $pa="inner-padding-s"
                       $ba={"border-solid-s"}
                       $borderRadius={"border-radius-s"}
                       $color={color}
                       $background={backgroundColor}
-                      id={`radio-${i}`}
+                      id={`${questionUid}-answer-${i}`}
                       tabIndex={i}
-                      value={`${questionUid}: ${answerItem.text}`} // we make this unique to the question to prevent selection on later questions
+                      value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
                       label={answerItem.text}
                     />
                     {correctChoice}
