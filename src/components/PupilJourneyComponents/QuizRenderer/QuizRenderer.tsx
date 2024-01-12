@@ -1,17 +1,21 @@
+import { FormEvent } from "react";
 import {
   OakFlex,
+  OakForm,
   OakHeading,
   OakPrimaryButton,
   OakSpan,
 } from "@oak-academy/oak-components";
 
+import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
 import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
+import { QuizShortAnswer } from "@/components/PupilJourneyComponents/QuizShortAnswer";
 
 export const QuizRenderer = () => {
-  const quizContext = useQuizEngineContext();
+  const quizEngineContext = useQuizEngineContext();
 
   const {
     currentQuestionData,
@@ -22,7 +26,9 @@ export const QuizRenderer = () => {
     maxScore,
     handleNextQuestion,
     updateQuestionMode,
-  } = quizContext;
+    handleSubmitMCAnswer,
+    handleSubmitShortAnswer,
+  } = quizEngineContext;
 
   let innerRender = null;
 
@@ -37,52 +43,109 @@ export const QuizRenderer = () => {
       </OakFlex>
     );
   } else if (currentQuestionData) {
-    const { questionStem, answers, questionUid } = currentQuestionData;
+    const { questionStem, answers } = currentQuestionData;
 
-    const MCAnswers = answers?.["multiple-choice"];
     const isFeedbackMode =
       questionState[currentQuestionIndex]?.mode === "feedback";
 
     let answerRender = null;
 
-    if (MCAnswers) {
-      if (MCAnswers.filter((a) => a.answer_is_correct).length > 1) {
-        answerRender = <QuizMCQMultiAnswer />;
+    const handleInitialChange = () => {
+      if (questionState[currentQuestionIndex]?.mode === "init") {
+        updateQuestionMode("input");
+      }
+    };
+
+    if (answers?.["multiple-choice"]) {
+      if (
+        answers?.["multiple-choice"].filter((a) => a.answer_is_correct).length >
+        1
+      ) {
+        answerRender = (
+          <QuizMCQMultiAnswer
+            key={`mcq-index-${currentQuestionIndex}`}
+            onInitialChange={handleInitialChange}
+          />
+        );
       } else {
         answerRender = (
-          <QuizMCQSingleAnswer questionUid={questionUid} answers={MCAnswers} /> // TODO: remove props and make the component use the context
+          <QuizMCQSingleAnswer
+            key={`mcq-index-${currentQuestionIndex}`}
+            onInitialChange={handleInitialChange}
+          />
         );
       }
+    } else if (answers?.["short-answer"]) {
+      answerRender = (
+        <QuizShortAnswer
+          key={`sa-index-${currentQuestionIndex}`}
+          onInitialChange={handleInitialChange}
+        />
+      );
     }
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      updateQuestionMode("grading");
+      const formData = new FormData(e.currentTarget);
+
+      switch (currentQuestionData.questionType) {
+        case "multiple-choice": {
+          const selectedAnswers: MCAnswer[] = [];
+          if (!answers?.["multiple-choice"]) {
+            return;
+          }
+
+          for (const entries of formData.entries()) {
+            const i = Number((entries[1] as string).at(-1)); // assumes the last character is the index and no more than 10 answers
+            const a = answers?.["multiple-choice"]?.[i];
+            a && selectedAnswers.push(a);
+          }
+          handleSubmitMCAnswer(selectedAnswers);
+          break;
+        }
+        case "short-answer": {
+          const answer = formData.get(
+            `short-answer-${currentQuestionData?.questionUid}`,
+          ) as string;
+          handleSubmitShortAnswer(answer);
+          break;
+        }
+        case "order":
+        case "match":
+        default:
+          break;
+      }
+    };
+
     innerRender = (
-      <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
-        <QuizQuestionStem
-          questionStem={questionStem}
-          index={currentQuestionIndex}
-          showIndex={true}
-        />
-        {answerRender}
-        {!isFeedbackMode && (
-          <OakFlex $pt="inner-padding-l">
-            <OakPrimaryButton
-              disabled={questionState[currentQuestionIndex]?.mode === "init"}
-              onClick={() => {
-                updateQuestionMode("grading");
-              }}
-            >
-              Submit
-            </OakPrimaryButton>
-          </OakFlex>
-        )}
-        {isFeedbackMode && (
-          <OakFlex $pt="inner-padding-l">
-            <OakPrimaryButton onClick={handleNextQuestion}>
-              Next Question
-            </OakPrimaryButton>
-          </OakFlex>
-        )}
-      </OakFlex>
+      <OakForm onSubmit={handleSubmit}>
+        <OakFlex $flexDirection={"column"} $gap={"all-spacing-5"}>
+          <QuizQuestionStem
+            questionStem={questionStem}
+            index={currentQuestionIndex}
+            showIndex={true}
+          />
+          {answerRender}
+          {!isFeedbackMode && (
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton
+                disabled={questionState[currentQuestionIndex]?.mode === "init"}
+                type="submit"
+              >
+                Submit
+              </OakPrimaryButton>
+            </OakFlex>
+          )}
+          {isFeedbackMode && (
+            <OakFlex $pt="inner-padding-l">
+              <OakPrimaryButton onClick={handleNextQuestion}>
+                Next Question
+              </OakPrimaryButton>
+            </OakFlex>
+          )}
+        </OakFlex>
+      </OakForm>
     );
 
     questionFeedback = (
@@ -116,7 +179,6 @@ export const QuizRenderer = () => {
       $gap={"all-spacing-5"}
     >
       <OakHeading tag="h1">Quiz Renderer</OakHeading>
-
       {questionFeedback}
       {innerRender}
     </OakFlex>
