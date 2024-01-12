@@ -290,10 +290,9 @@ describe("hubspotSubmitForm", () => {
   describe("Network error", () => {
     beforeEach(() => {
       server.use(
-        http.post(primaryFormEndpoint, () =>
-          // DEBUG this is now resulting in an OakError, so the following tests fail.
-          HttpResponse.json("Failed to connect"),
-        ),
+        http.post(primaryFormEndpoint, () => {
+          throw new Error("Failed to connect");
+        }),
       );
     });
     test("user is displayed correct message", async () => {
