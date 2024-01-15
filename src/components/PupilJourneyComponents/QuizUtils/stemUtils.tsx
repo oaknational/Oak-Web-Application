@@ -6,10 +6,11 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const isImage = (obj: StemObject): obj is StemImageObject =>
+export const isImage = (obj: StemObject): obj is StemImageObject =>
   obj.type === "image";
 
-const isText = (obj: StemObject): obj is StemTextObject => obj.type === "text";
+export const isText = (obj: StemObject): obj is StemTextObject =>
+  obj.type === "text";
 
 export const getStemImageData = (stem: StemObject[]) => {
   const data = stem.find((a) => isImage(a));

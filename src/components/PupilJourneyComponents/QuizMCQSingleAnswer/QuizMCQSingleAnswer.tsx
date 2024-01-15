@@ -2,9 +2,11 @@ import { useMemo } from "react";
 import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
-import { getStemImage } from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
+import {
+  getStemImage,
+  isText,
+} from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
 
 // testing
 //text only
@@ -46,7 +48,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
       disabled={isFeedbackMode}
     >
       {answers?.map((answer, i) => {
-        const label = answer.answer.find(isText)
+        const label = answer.answer.find(isText);
 
         const image = getStemImage({
           stem: answer.answer,
