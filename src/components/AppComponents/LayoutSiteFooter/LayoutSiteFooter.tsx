@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Logo from "@/components/Logo";
 import OakLink from "@/components/OakLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import LayoutSiteFooterSignpost from "@/components/SharedComponents/LayoutSiteFooterSignpost";
+import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";

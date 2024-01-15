@@ -6,7 +6,6 @@ import Component from "./LayoutSiteFooter";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
 
-
 export default {
   decorators: [CookieConsentDecorator, AnalyticsDecorator],
   component: Component,

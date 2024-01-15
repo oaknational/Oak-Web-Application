@@ -5,16 +5,16 @@ import styled from "styled-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
-import LayoutSiteFooter from "@/components/SharedComponents/LayoutSiteFooter";
+import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
 import background, { BackgroundProps } from "@/styles/utils/background";
 import { OakColorName } from "@/styles/theme";
 import PreviewControls from "@/components/PreviewControls";
-import LayoutClientErrorHeader from "@/components/SharedComponents/LayoutClientErrorHeader";
-import LayoutClientErrorFooter from "@/components/SharedComponents/LayoutClientErrorFooter";
+import LayoutClientErrorHeader from "@/components/AppComponents/LayoutClientErrorHeader";
+import LayoutClientErrorFooter from "@/components/AppComponents/LayoutClientErrorFooter";
 import LandingPagesHeader, {
   LayoutLandingPagesHeaderProps,
-} from "@/components/SharedComponents/LayoutLandingPagesHeader";
+} from "@/components/AppComponents/LayoutLandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 

@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
 
 import Logo from "@/components/Logo";
-import { HeaderProps } from "@/components/SharedComponents/Layout/Layout";
+import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
 import OakLink from "@/components/OakLink";
 import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/components/../context/Menu";

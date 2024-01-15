@@ -5,8 +5,8 @@ import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
   HeaderVariant,
   FooterVariant,
-} from "@/components/SharedComponents/Layout/Layout";
-import Layout from "@/components/SharedComponents/Layout";
+} from "@/components/AppComponents/Layout/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import { P, Heading } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
