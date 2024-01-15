@@ -1,7 +1,6 @@
 import { PortableTextComponentProps } from "@portabletext/react";
 
-import { SignUpForm } from "../../pages/LandingPages/SignUpForm";
-
+import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import Flex from "@/components/SharedComponents/Flex";
 
 type FormBlock = {
@@ -17,7 +16,7 @@ const PostForm = (props: PortableTextComponentProps<FormBlock>) => {
 
   return (
     <Flex $mv={56}>
-      <SignUpForm formTitle={params.title} />
+      <LandingPageSignUpForm formTitle={params.title} />
     </Flex>
   );
 };

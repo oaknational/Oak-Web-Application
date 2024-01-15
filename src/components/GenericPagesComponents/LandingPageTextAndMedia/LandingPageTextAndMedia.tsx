@@ -1,7 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
 import { FC } from "react";
 
-import { OLOutline } from "@/components/pages/LandingPages/OLOutline";
+import { LandingPageOlOutline } from "@/components/GenericPagesComponents/LandingPageOlOutline";
 import { TextAndMedia } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -16,9 +16,9 @@ import { PortableTextWithDefaults } from "@/components/SharedComponents/Portable
 const landingPortableTextComponent: PortableTextComponents = {
   list: {
     number: ({ children }) => (
-      <OLOutline $color={"lemon50"} $mh={0}>
+      <LandingPageOlOutline $color={"lemon50"} $mh={0}>
         {children}
-      </OLOutline>
+      </LandingPageOlOutline>
     ),
   },
 

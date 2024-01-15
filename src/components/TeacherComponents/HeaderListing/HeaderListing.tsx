@@ -3,7 +3,7 @@ import { FC } from "react";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
-import CurriculumDownloadButton from "@/components/CurriculumDownloadButtons/CurriculumDownloadButton";
+import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import { Heading, Span } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
@@ -86,7 +86,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             </Heading>
             <Flex $display={["none", "flex"]}>
               {hasCurriculumDownload && (
-                <CurriculumDownloadButton
+                <HeaderListingCurriculumDownloadButton
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={keyStageTitle}
                   subjectSlug={subjectSlug}
@@ -100,7 +100,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
       </Flex>
       <Flex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && (
-          <CurriculumDownloadButton
+          <HeaderListingCurriculumDownloadButton
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             subjectSlug={subjectSlug}
