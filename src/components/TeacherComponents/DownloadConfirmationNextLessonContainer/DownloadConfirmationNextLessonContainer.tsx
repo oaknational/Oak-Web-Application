@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 import Flex from "@/components/SharedComponents/Flex";
 import Heading from "@/components/SharedComponents/Typography/Heading";
-import NextLessonCard from "@/components/DownloadAndShareComponents/NextLessonCard";
+import DownloadConfirmationNextLessonCard from "@/components/TeacherComponents/DownloadConfirmationNextLessonCard";
 import { Span } from "@/components/SharedComponents/Typography";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
@@ -33,7 +33,7 @@ const DownloadConfirmationNextLessonContainer: FC<
         <Flex $flexDirection={["column", "row"]} $gap={16}>
           {nextLessons.map((lesson: NextLesson) => {
             return (
-              <NextLessonCard
+              <DownloadConfirmationNextLessonCard
                 programmeSlug={programmeSlug}
                 unitSlug={unitSlug}
                 unitTitle={unitTitle}

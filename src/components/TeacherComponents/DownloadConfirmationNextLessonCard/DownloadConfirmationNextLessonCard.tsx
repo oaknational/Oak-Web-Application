@@ -6,7 +6,7 @@ import Heading from "@/components/SharedComponents/Typography/Heading";
 import Box from "@/components/SharedComponents/Box";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
-type NextLessonCardProps = {
+type DownloadConfirmationNextLessonCardProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
@@ -15,7 +15,9 @@ type NextLessonCardProps = {
   onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
-const NextLessonCard: FC<NextLessonCardProps> = ({
+const DownloadConfirmationNextLessonCard: FC<
+  DownloadConfirmationNextLessonCardProps
+> = ({
   programmeSlug,
   unitSlug,
   unitTitle,
@@ -104,4 +106,4 @@ const NextLessonCard: FC<NextLessonCardProps> = ({
   );
 };
 
-export default NextLessonCard;
+export default DownloadConfirmationNextLessonCard;

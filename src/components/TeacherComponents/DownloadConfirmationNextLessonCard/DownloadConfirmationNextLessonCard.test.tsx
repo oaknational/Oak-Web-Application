@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 
-import NextLessonCard from "./NextLessonCard";
+import DownloadConfirmationNextLessonCard from "./DownloadConfirmationNextLessonCard";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -8,13 +8,13 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 const onwardContentSelected =
   jest.fn() as unknown as TrackFns["onwardContentSelected"];
 
-describe("NextLessonCard", () => {
+describe("DownloadConfirmationNextLessonCard", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it("should render component", () => {
     const { getByText } = renderWithTheme(
-      <NextLessonCard
+      <DownloadConfirmationNextLessonCard
         unitTitle="Test unit"
         onwardContentSelected={onwardContentSelected}
         lessonTitle="test-lesson"
@@ -30,7 +30,7 @@ describe("NextLessonCard", () => {
   });
   it("should render see lesson link with correct href", () => {
     const { getByRole } = renderWithTheme(
-      <NextLessonCard
+      <DownloadConfirmationNextLessonCard
         onwardContentSelected={onwardContentSelected}
         unitTitle="Test unit"
         lessonTitle="test-lesson"
@@ -51,7 +51,7 @@ describe("NextLessonCard", () => {
 
   it("should render download lesson link with correct href", () => {
     const { getByRole } = renderWithTheme(
-      <NextLessonCard
+      <DownloadConfirmationNextLessonCard
         onwardContentSelected={onwardContentSelected}
         unitTitle="Test unit"
         lessonTitle="test-lesson"
@@ -74,7 +74,7 @@ describe("NextLessonCard", () => {
   it("should call onwardContSelected fn on See lesson button", async () => {
     const user = userEvent.setup();
     const { getByRole } = renderWithTheme(
-      <NextLessonCard
+      <DownloadConfirmationNextLessonCard
         onwardContentSelected={onwardContentSelected}
         unitTitle="Test unit"
         lessonTitle="test-lesson"
@@ -101,7 +101,7 @@ describe("NextLessonCard", () => {
   it("should call onwardContSelected fn on Download resources button", async () => {
     const user = userEvent.setup();
     const { getByRole } = renderWithTheme(
-      <NextLessonCard
+      <DownloadConfirmationNextLessonCard
         onwardContentSelected={onwardContentSelected}
         unitTitle="Test unit"
         lessonTitle="test-lesson"
