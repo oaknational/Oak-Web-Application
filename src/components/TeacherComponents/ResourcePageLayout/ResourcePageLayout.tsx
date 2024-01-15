@@ -16,7 +16,7 @@ import ResourcePageDetailsCompleted from "@/components/TeacherComponents/Resourc
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
-import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
+import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
@@ -192,7 +192,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                               props.triggerForm();
                             };
                             return (
-                              <TermsAndConditionsCheckbox
+                              <ResourcePageTermsAndConditionsCheckbox
                                 name={name}
                                 checked={value}
                                 onChange={onChangeHandler}

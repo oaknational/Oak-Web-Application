@@ -6,16 +6,13 @@ import Box from "@/components/SharedComponents/Box";
 import FieldError from "@/components/FormFields/FieldError";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
-export type TermsAndConditionsCheckboxProps = CheckboxProps & {
+export type ResourcePageTermsAndConditionsCheckboxProps = CheckboxProps & {
   errorMessage?: string;
 };
 
-const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
-  checked,
-  onChange,
-  errorMessage,
-  ...props
-}) => (
+const ResourcePageTermsAndConditionsCheckbox: FC<
+  ResourcePageTermsAndConditionsCheckboxProps
+> = ({ checked, onChange, errorMessage, ...props }) => (
   <>
     {errorMessage && (
       <Box $mb={16}>
@@ -48,4 +45,4 @@ const TermsAndConditionsCheckbox: FC<TermsAndConditionsCheckboxProps> = ({
   </>
 );
 
-export default TermsAndConditionsCheckbox;
+export default ResourcePageTermsAndConditionsCheckbox;

@@ -1,13 +1,14 @@
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
+import ResourcePageTermsAndConditionsCheckbox from "./ResourcePageTermsAndConditionsCheckbox";
 
-import TermsAndConditionsCheckbox from "./TermsAndConditionsCheckbox";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("TermsAndConditionsCheckbox", () => {
-  it("renders TermsAndConditionsCheckbox", () => {
+
+describe("ResourcePageTermsAndConditionsCheckbox", () => {
+  it("renders ResourcePageTermsAndConditionsCheckbox", () => {
     renderWithTheme(
-      <TermsAndConditionsCheckbox
+      <ResourcePageTermsAndConditionsCheckbox
         checked={false}
         onChange={jest.fn()}
         id={"123"}
@@ -21,7 +22,7 @@ describe("TermsAndConditionsCheckbox", () => {
 
   it("renders TermsAndConditionsCheckbox with error message if passed", () => {
     renderWithTheme(
-      <TermsAndConditionsCheckbox
+      <ResourcePageTermsAndConditionsCheckbox
         checked={false}
         onChange={jest.fn()}
         errorMessage="Please select the checkbox"
