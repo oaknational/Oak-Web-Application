@@ -8,7 +8,7 @@ import ResourcePageLayout, {
 
 import Component from ".";
 
-import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
+import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 

@@ -14,7 +14,7 @@ import {
   DownloadResourceType,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
-import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
+import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
