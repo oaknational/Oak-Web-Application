@@ -1,7 +1,6 @@
 import SearchResultsItem, {
   SearchResultsItemProps,
-} from "../SearchResultsItem/SearchResultsItem";
-
+} from "@/components/TeacherComponents/SearchResultsItem";
 import { LI, UL } from "@/components/SharedComponents/Typography";
 import Pagination from "@/components/SharedComponents/Pagination";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
