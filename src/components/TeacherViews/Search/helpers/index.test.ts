@@ -1,4 +1,4 @@
-import { convertUnitSlugToTitle , removeHTMLTags } from ".";
+import { convertUnitSlugToTitle, removeHTMLTags } from ".";
 
 describe("convertSlugToTitle", () => {
   it("should convert a slug to title", () => {
