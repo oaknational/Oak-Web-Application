@@ -13,10 +13,8 @@ describe("Component - Curriculum Header", () => {
       category: "test-category",
       downloads: [
         {
-          exists: true as const,
-          type: "curriculum-pdf" as const,
           label: "Test Label",
-          ext: "pdf" as const,
+          url: "https://test-url.com",
         },
       ],
     };
