@@ -1,16 +1,15 @@
 import { FC } from "react";
 
-import FixedHeader from "../Header";
-import Logo from "../Logo";
-import { CTA } from "../../common-lib/cms-types";
-import { getLinkHref } from "../../utils/portableText/resolveInternalHref";
-import OakLink from "../OakLink";
-
+import FixedHeader from "@/components/Header";
+import Logo from "@/components/Logo";
+import { CTA } from "@/common-lib/cms-types";
+import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
+import OakLink from "@/components/OakLink";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type LandingPagesHeaderProps = {
+export type LayoutLandingPagesHeaderProps = {
   headerCta?: CTA | null;
 };
 /**
@@ -18,7 +17,7 @@ export type LandingPagesHeaderProps = {
  * Optional headerCta prop
  *
  */
-const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
+const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
   return (
     <FixedHeader $background={"white"}>
       <Flex
@@ -56,4 +55,4 @@ const LandingPagesHeader: FC<LandingPagesHeaderProps> = (props) => {
   );
 };
 
-export default LandingPagesHeader;
+export default LayoutLandingPagesHeader;

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./LandingPagesHeader";
+import Component from "./LayoutLandingPagesHeader";
 
 export default {
   component: Component,
@@ -12,8 +12,8 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const LandingPagesHeader = Template.bind({});
-LandingPagesHeader.args = {
+export const LayoutLandingPagesHeader = Template.bind({});
+LayoutLandingPagesHeader.args = {
   headerCta: {
     linkType: "anchor",
     anchor: "formBlock",

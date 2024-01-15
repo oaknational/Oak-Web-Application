@@ -12,9 +12,10 @@ import { OakColorName } from "@/styles/theme";
 import PreviewControls from "@/components/PreviewControls";
 import LayoutClientErrorHeader from "@/components/SharedComponents/LayoutClientErrorHeader";
 import LayoutClientErrorFooter from "@/components/SharedComponents/LayoutClientErrorFooter";
-import LandingPagesHeader from "@/components/LandingPagesHeader";
+import LandingPagesHeader, {
+  LayoutLandingPagesHeaderProps,
+} from "@/components/SharedComponents/LayoutLandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
-import { LandingPagesHeaderProps } from "@/components/LandingPagesHeader/LandingPagesHeader";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 
 const Container = styled.div<BackgroundProps>`
@@ -38,7 +39,7 @@ export type HeaderProps = {
 export type HeaderVariant = "app" | "landing-pages" | "client-error";
 const headers: Record<
   HeaderVariant,
-  FC | FC<LandingPagesHeaderProps> | FC<HeaderProps>
+  FC | FC<LayoutLandingPagesHeaderProps> | FC<HeaderProps>
 > = {
   app: AppHeader,
   "landing-pages": LandingPagesHeader,
