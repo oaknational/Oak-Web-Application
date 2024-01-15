@@ -11,7 +11,7 @@ import {
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
-import AppLayout from "@/components/AppLayout/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";

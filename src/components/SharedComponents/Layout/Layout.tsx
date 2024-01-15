@@ -3,8 +3,7 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
-import Seo, { SeoProps } from "../../../browser-lib/seo/Seo";
-
+import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
