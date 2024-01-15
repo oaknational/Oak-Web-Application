@@ -6,9 +6,9 @@ import type {
   DownloadResourceType,
   ResourceFormProps,
 } from "../../DownloadAndShareComponents/downloadAndShare.types";
-import ResourceCard from "../../DownloadAndShareComponents/ResourceCard";
-import { sortDownloadResources } from "../../DownloadAndShareComponents/helpers/sortResources";
 
+import ResourceCard from "@/components/TeacherComponents/ResourceCard";
+import { sortDownloadResources } from "@/components/DownloadAndShareComponents/helpers/sortResources";
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/SharedComponents/Box";
 import Grid from "@/components/SharedComponents/Grid";

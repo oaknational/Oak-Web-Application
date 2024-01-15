@@ -2,8 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
 
-import type { DownloadResourceType } from "../downloadAndShare.types";
-
+import type { DownloadResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import P from "@/components/SharedComponents/Typography/P";
 import Flex from "@/components/SharedComponents/Flex";
