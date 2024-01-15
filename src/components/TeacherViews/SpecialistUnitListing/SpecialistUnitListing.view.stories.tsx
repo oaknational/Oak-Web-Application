@@ -4,7 +4,6 @@ import Component from "./SpecialistUnitListing.view";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-//👇 This default export determines wh pere your story goes in the story list
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
   component: Component,

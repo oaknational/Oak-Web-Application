@@ -49,7 +49,6 @@ export type IndividualSpecialistUnit = {
   themeTitle: string | null;
   developmentalStageSlug: string;
   developmentalStageTitle: string;
-  // keyStageTitle: KeyStageTitleValueType;
 };
 
 export type Theme = {
@@ -115,7 +114,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           <GridArea $order={[0, 2]} $colSpan={[12, 4, 3]} $pl={[32]}>
             <Box
               $display={["none", "block"]}
-              $position={[null, "sticky"]}
+              $position={["sticky"]}
               $top={[null, HEADER_HEIGHT]}
               $mt={[0, 32]}
               $pt={[48]}
