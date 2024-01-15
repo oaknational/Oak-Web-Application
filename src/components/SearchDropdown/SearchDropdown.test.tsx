@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "../TeacherComponents/SearchResultsItem/SearchResultsItem";
 
 import SearchDropdown from "./SearchDropdown";
 

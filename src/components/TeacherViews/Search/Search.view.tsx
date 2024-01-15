@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
-
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
-import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem/SearchResultsItem";
 import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -16,8 +15,8 @@ import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/SearchFilters";
 import ActiveFilters from "@/components/SearchFilters/ActiveFilters";
 import SearchForm from "@/components/SearchForm";
-import SearchResults from "@/components/SearchResults";
-import NoSearchResults from "@/components/SearchResults/NoSearchResults";
+import SearchResults from "@/components/TeacherComponents/SearchResults";
+import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 
 const Search: FC<SearchProps> = (props) => {

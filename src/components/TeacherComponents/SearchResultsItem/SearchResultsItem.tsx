@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import SearchResultsSubjectIcon from "./SearchResultsSubjectIcon";
-
+import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import OakLink from "@/components/OakLink";

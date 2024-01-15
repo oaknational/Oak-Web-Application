@@ -2,7 +2,6 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
 
