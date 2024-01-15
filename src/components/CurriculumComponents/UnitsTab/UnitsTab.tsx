@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
 
 import Box from "@/components/SharedComponents/Box";
@@ -61,10 +61,17 @@ interface YearSelection {
   };
 }
 
+export function getLessonsAvailable(lessons: Lesson[] | null): boolean {
+  return (
+    (lessons &&
+      lessons.some((lesson: Lesson) => lesson._state === "published")) ||
+    false
+  );
+}
 // Function component
 
 const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
-  console.log(data, examboardSlug);
+  // console.log(data, examboardSlug);
   // Initialize constants
   const threadOptions: Thread[] = [];
   const yearOptions: string[] = [];
@@ -74,13 +81,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const [unitData, setUnitData] = useState<Unit | null>(null);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
     useState<boolean>(false);
-
+  const [lessonsAvailable, setLessonsAvailable] = useState<boolean | null>(
+    null,
+  );
   const modalButtonRef = useRef<HTMLButtonElement>(null);
   const unitSlugs = new Set<string>();
   const duplicateUnitSlugs = new Set<string>();
 
-  // Initialize data structure for displaying units by year
+  useEffect(() => {
+    if (displayModal === true && unitData) {
+      setLessonsAvailable(getLessonsAvailable(unitData.lessons));
+    } else setLessonsAvailable(null);
+  }, [unitData, displayModal]);
 
+  // Initialize data structure for displaying units by year
   const yearData: {
     [key: string]: {
       units: Unit[];
@@ -330,6 +344,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
 
   const handleCloseModal = () => {
     setDisplayModal(false);
+    setLessonsAvailable(null);
   };
 
   // Analytics handlers
@@ -360,15 +375,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
       });
     }
   }
-
-  function getLessonsAvailable(): boolean {
-    return (
-      unitData?.lessons?.some(
-        (lesson: Lesson) => lesson._state === "published",
-      ) || false
-    );
-  }
-
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
@@ -650,6 +656,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                                   color={isHighlighted ? "black" : "white"}
                                 />
                               </Box>
+
                               <Flex
                                 $flexDirection={"row"}
                                 $justifyContent={"flex-end"}
@@ -674,24 +681,28 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                             </Card>
                           );
                         })}
-                      <Sidebar
-                        displayModal={displayModal}
-                        onClose={handleCloseModal}
-                        unitData={unitData}
-                        lessonsAvailable={getLessonsAvailable()}
-                        unitOptionsAvailable={unitOptionsAvailable}
-                        examboardSlug={examboardSlug}
-                      >
-                        <UnitModal
-                          unitData={unitData}
+                      {lessonsAvailable !== null && (
+                        <Sidebar
                           displayModal={displayModal}
-                          setUnitOptionsAvailable={setUnitOptionsAvailable}
+                          onClose={handleCloseModal}
+                          unitData={unitData}
+                          lessonsAvailable={lessonsAvailable}
                           unitOptionsAvailable={unitOptionsAvailable}
-                          isHighlighted={
-                            unitData ? isHighlightedUnit(unitData) : false
-                          }
-                        />
-                      </Sidebar>
+                          examboardSlug={examboardSlug}
+                          data-testid="sidebar-modal"
+                        >
+                          <UnitModal
+                            setLessonsAvailable={setLessonsAvailable}
+                            unitData={unitData}
+                            displayModal={displayModal}
+                            setUnitOptionsAvailable={setUnitOptionsAvailable}
+                            unitOptionsAvailable={unitOptionsAvailable}
+                            isHighlighted={
+                              unitData ? isHighlightedUnit(unitData) : false
+                            }
+                          />
+                        </Sidebar>
+                      )}
                     </Flex>
                   </Box>
                 );
