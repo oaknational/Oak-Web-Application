@@ -46,9 +46,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
       disabled={isFeedbackMode}
     >
       {answers?.map((answer, i) => {
-        const label = answer.answer.find((a) => a.type === "text") as
-          | StemTextObject
-          | undefined;
+        const label = answer.answer.find(isText)
 
         const image = getStemImage({
           stem: answer.answer,
