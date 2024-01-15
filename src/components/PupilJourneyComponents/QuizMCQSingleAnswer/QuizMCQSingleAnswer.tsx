@@ -6,7 +6,10 @@ import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
 import { getStemImage } from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
 
-// testing images
+// testing
+//text only
+//http://localhost:3000/pupils/programmes/combined-science-secondary-ks4-foundation-aqa/units/measuring-waves/lessons/transverse-waves
+//with images
 //http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
 
 export type QuizMCQSingleAnswerProps = {
