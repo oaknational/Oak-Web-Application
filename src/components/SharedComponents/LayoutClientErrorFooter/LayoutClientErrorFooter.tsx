@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
-
-import SocialButtons from "@/components/SharedComponents/SocialButtons";
+import SocialButtons, {
+  OAK_SOCIALS,
+} from "@/components/SharedComponents/SocialButtons";
 import { P } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 
-const ClientErrorFooter: FC = () => {
+const LayoutClientErrorFooter: FC = () => {
   return (
     <Flex $ph={16} $mb={12} $mt={64} $width={"100%"}>
       <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
@@ -19,4 +19,4 @@ const ClientErrorFooter: FC = () => {
   );
 };
 
-export default ClientErrorFooter;
+export default LayoutClientErrorFooter;

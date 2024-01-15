@@ -10,8 +10,8 @@ import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
 import background, { BackgroundProps } from "@/styles/utils/background";
 import { OakColorName } from "@/styles/theme";
 import PreviewControls from "@/components/PreviewControls";
-import ClientErrorHeader from "@/components/ClientErrorHeader";
-import ClientErrorFooter from "@/components/ClientErrorFooter";
+import LayoutClientErrorHeader from "@/components/SharedComponents/LayoutClientErrorHeader";
+import LayoutClientErrorFooter from "@/components/SharedComponents/LayoutClientErrorFooter";
 import LandingPagesHeader from "@/components/LandingPagesHeader";
 import { CTA } from "@/common-lib/cms-types";
 import { LandingPagesHeaderProps } from "@/components/LandingPagesHeader/LandingPagesHeader";
@@ -42,13 +42,13 @@ const headers: Record<
 > = {
   app: AppHeader,
   "landing-pages": LandingPagesHeader,
-  "client-error": ClientErrorHeader,
+  "client-error": LayoutClientErrorHeader,
 };
 
 export type FooterVariant = "default" | "client-error";
 const footers: Record<FooterVariant, FC> = {
   default: SiteFooter,
-  "client-error": ClientErrorFooter,
+  "client-error": LayoutClientErrorFooter,
 };
 
 export type LayoutProps = {

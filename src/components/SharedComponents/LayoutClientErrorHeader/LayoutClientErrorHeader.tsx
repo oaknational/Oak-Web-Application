@@ -1,15 +1,15 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import FixedHeader from "../Header";
-import Logo from "../Logo";
-import OakLink from "../OakLink";
+import FixedHeader from "@/components/Header";
+import Logo from "@/components/Logo";
+import OakLink from "@/components/OakLink";
 
 /**
  * We need a simple client-side error header which doesn't use context so that
  * the error boundary can be as high up the tree as possible.
  */
-const ClientErrorHeader: FC = () => {
+const LayoutClientErrorHeader: FC = () => {
   const theme = useTheme();
 
   return (
@@ -21,4 +21,4 @@ const ClientErrorHeader: FC = () => {
   );
 };
 
-export default ClientErrorHeader;
+export default LayoutClientErrorHeader;
