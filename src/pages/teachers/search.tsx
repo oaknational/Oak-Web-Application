@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 
 import AppLayout from "@/components/AppLayout";
 import useSearch from "@/context/Search/useSearch";
-import Search from "@/components/SearchComponents/Search.page";
+import Search from "@/components/TeacherViews/SearchComponents/Search.view";
 import curriculumApi2023, {
   SearchPageData,
 } from "@/node-lib/curriculum-api-2023";
