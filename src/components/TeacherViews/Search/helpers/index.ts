@@ -13,7 +13,7 @@ export const convertUnitSlugToTitle = (unitSlug: string) => {
 };
 
 export const removeHTMLTags = (str: string) => {
-  return str.replace(/<\/?[\w-]+>/gi, "");
+  return str.replace(/<\/?['"\s\w\-=]+>/gi, "");
 };
 
 export const isKeyStageTitleValueType = (

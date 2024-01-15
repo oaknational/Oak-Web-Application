@@ -31,4 +31,9 @@ describe("removeHTMLTags", () => {
     const string = "<h1>hello</h1>";
     expect(removeHTMLTags(string)).toBe("hello");
   });
+
+  it("should strip HTML tags with properties from a string", () => {
+    const string = "<script someproperty=true>hello</script>";
+    expect(removeHTMLTags(string)).toBe("hello");
+  });
 });
