@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, memo, useState } from "react";
 
-const lessonSections = [
+export const lessonSections = [
   "overview",
   "intro",
   "starter-quiz",
@@ -43,10 +43,11 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
 
   const completeSection = (section: LessonSection) => {
     // concatenate and dedupe the array
-    const newCompletedSections = [...completedSections, section].filter(
-      (item, index, array) => array.indexOf(item) === index,
+    setCompletedSections((prev) =>
+      [...prev, section].filter(
+        (item, index, array) => array.indexOf(item) === index,
+      ),
     );
-    setCompletedSections(newCompletedSections);
   };
 
   const updateCurrentSection = (section: LessonSection) => {
