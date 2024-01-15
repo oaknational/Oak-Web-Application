@@ -14,8 +14,8 @@ import {
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
-import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
-import { SchoolDetailsProps } from "@/components/DownloadAndShareComponents/SchoolDetails/SchoolDetails";
+import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
+import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
@@ -32,7 +32,7 @@ import Icon from "@/components/SharedComponents/Icon";
 /** Generic layout component for Downloads and Share page */
 
 export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
-  SchoolDetailsProps & {
+  ResourcePageSchoolDetailsProps & {
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
@@ -133,7 +133,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                       />
                     ) : (
                       <Box $maxWidth={[null, 420, 420]}>
-                        <SchoolDetails
+                        <ResourcePageSchoolDetails
                           errors={props.errors}
                           setSchool={props.setSchool}
                           initialValue={props.schoolId ?? undefined}

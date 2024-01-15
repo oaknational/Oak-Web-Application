@@ -2,11 +2,12 @@ import { act, renderHook, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
-import useSchoolPicker from "../../SchoolPicker/useSchoolPicker";
+import ResourcePageSchoolDetails from "./ResourcePageSchoolDetails";
 
-import SchoolDetails from "./SchoolDetails";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
+import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
+
 
 const setSchool = jest.fn();
 const props = {
@@ -18,21 +19,21 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 
-describe("SchoolDetails", () => {
+describe("ResourcePageSchoolDetails", () => {
   it("Renders a school picker", async () => {
-    render(<SchoolDetails {...props} />);
+    render(<ResourcePageSchoolDetails {...props} />);
 
     expect(screen.getByTestId("search-combobox-input")).toBeInTheDocument();
   });
 
   it("Renders a checkbox", async () => {
-    render(<SchoolDetails {...props} />);
+    render(<ResourcePageSchoolDetails {...props} />);
 
     expect(screen.getAllByRole("checkbox")).toHaveLength(1);
   });
 
   it("clears school picker inputValue if checkbox is clicked", async () => {
-    const { getByRole } = render(<SchoolDetails {...props} />);
+    const { getByRole } = render(<ResourcePageSchoolDetails {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy");
@@ -52,7 +53,9 @@ describe("SchoolDetails", () => {
   });
 
   it("clears selected checkbox if school is selected from school picker", async () => {
-    const { getByRole, rerender } = render(<SchoolDetails {...props} />);
+    const { getByRole, rerender } = render(
+      <ResourcePageSchoolDetails {...props} />,
+    );
 
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
 
@@ -73,13 +76,13 @@ describe("SchoolDetails", () => {
       setSelectedSchool("anything");
     });
 
-    rerender(<SchoolDetails {...props} />);
+    rerender(<ResourcePageSchoolDetails {...props} />);
 
     expect(checkbox).not.toBeChecked();
   });
 
   it("calls onSchoolPickerInputChange ", async () => {
-    const { rerender } = render(<SchoolDetails {...props} />);
+    const { rerender } = render(<ResourcePageSchoolDetails {...props} />);
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Do");
@@ -89,11 +92,11 @@ describe("SchoolDetails", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolDetails {...props} />);
+    rerender(<ResourcePageSchoolDetails {...props} />);
     expect(input.value).toBe("Dorothy Bricks");
   });
   it("calls onSchoolChange when a school is selected ", async () => {
-    const { rerender } = render(<SchoolDetails {...props} />);
+    const { rerender } = render(<ResourcePageSchoolDetails {...props} />);
     const useSchoolPickerHook = renderHook(() => useSchoolPicker());
     const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
@@ -102,7 +105,7 @@ describe("SchoolDetails", () => {
 
     // HACK: wait for next tick
     await waitForNextTick();
-    rerender(<SchoolDetails {...props} />);
+    rerender(<ResourcePageSchoolDetails {...props} />);
     expect(setSchool).toBeCalled();
   });
 });

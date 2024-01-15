@@ -6,7 +6,7 @@ import SchoolPicker from "@/components/SchoolPicker";
 import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 
-export type SchoolDetailsProps = {
+export type ResourcePageSchoolDetailsProps = {
   setSchool: (value: string, name?: string) => void;
   initialValue?: string;
   initialSchoolName?: string;
@@ -17,7 +17,7 @@ export type SchoolDetailsProps = {
   >;
 };
 
-const SchoolDetails: FC<SchoolDetailsProps> = ({
+const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
   setSchool,
   initialValue,
   initialSchoolName,
@@ -98,4 +98,4 @@ const SchoolDetails: FC<SchoolDetailsProps> = ({
   );
 };
 
-export default SchoolDetails;
+export default ResourcePageSchoolDetails;
