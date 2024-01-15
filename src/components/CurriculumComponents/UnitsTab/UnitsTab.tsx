@@ -681,28 +681,26 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                             </Card>
                           );
                         })}
-                      {lessonsAvailable !== null && (
-                        <Sidebar
-                          displayModal={displayModal}
-                          onClose={handleCloseModal}
+
+                      <Sidebar
+                        displayModal={displayModal}
+                        onClose={handleCloseModal}
+                        unitData={unitData}
+                        lessonsAvailable={lessonsAvailable}
+                        unitOptionsAvailable={unitOptionsAvailable}
+                        examboardSlug={examboardSlug}
+                      >
+                        <UnitModal
+                          setLessonsAvailable={setLessonsAvailable}
                           unitData={unitData}
-                          lessonsAvailable={lessonsAvailable}
+                          displayModal={displayModal}
+                          setUnitOptionsAvailable={setUnitOptionsAvailable}
                           unitOptionsAvailable={unitOptionsAvailable}
-                          examboardSlug={examboardSlug}
-                          data-testid="sidebar-modal"
-                        >
-                          <UnitModal
-                            setLessonsAvailable={setLessonsAvailable}
-                            unitData={unitData}
-                            displayModal={displayModal}
-                            setUnitOptionsAvailable={setUnitOptionsAvailable}
-                            unitOptionsAvailable={unitOptionsAvailable}
-                            isHighlighted={
-                              unitData ? isHighlightedUnit(unitData) : false
-                            }
-                          />
-                        </Sidebar>
-                      )}
+                          isHighlighted={
+                            unitData ? isHighlightedUnit(unitData) : false
+                          }
+                        />
+                      </Sidebar>
                     </Flex>
                   </Box>
                 );

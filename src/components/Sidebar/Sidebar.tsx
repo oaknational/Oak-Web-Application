@@ -17,7 +17,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   onClose: () => void;
   unitData?: Unit | null;
   unitOptionsAvailable?: boolean;
-  lessonsAvailable?: boolean;
+  lessonsAvailable?: boolean | null;
   examboardSlug?: string | null;
 };
 
@@ -45,7 +45,7 @@ const Sidebar: FC<ModalProps> = ({
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
-        <Box $position={"absolute"}>
+        <Box $position={"absolute"} data-testid="sidebar-modal-wrapper">
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
           <FocusOn
             enabled={displayModal}

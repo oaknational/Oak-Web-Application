@@ -6,7 +6,19 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mockUnit,
   mockOptionalityUnit,
+  mockUnitKS4,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
+
+const unitInformationViewed = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitInformationViewed: (...args: unknown[]) =>
+        unitInformationViewed(...args),
+    },
+  }),
+}));
 
 describe("Sidebar component", () => {
   test("should render the sidebar", () => {
@@ -35,8 +47,6 @@ describe("Sidebar component", () => {
 
     const user = userEvent.setup();
     const closeButton = getByTestId("close-button");
-
-    console.log(closeButton);
 
     await user.click(closeButton);
 
@@ -101,6 +111,48 @@ describe("Sidebar component", () => {
 
       expect(queryByTestId("coming-soon-flag")).not.toBeInTheDocument();
       expect(queryByTestId("unit-lessons-button")).toBeInTheDocument();
+    });
+
+    test("user is directed to correct link for available unit for ks3", async () => {
+      const { findByRole } = renderWithTheme(
+        <Sidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitData={mockUnit}
+          lessonsAvailable={true}
+          unitOptionsAvailable={false}
+          examboardSlug={"aqa"}
+        />,
+      );
+
+      const linkToUnit = await findByRole("link");
+      const forwardLink = linkToUnit.getAttribute("href");
+      expect(linkToUnit).toBeInTheDocument();
+      expect(linkToUnit).toBeEnabled();
+      expect(forwardLink).toEqual(
+        "/teachers/programmes/maths-primary-ks1/units/composition-of-numbers-6-to-10/lessons",
+      );
+    });
+
+    test("user is directed to correct link for available unit for ks4 with exam board", async () => {
+      const { findByRole } = renderWithTheme(
+        <Sidebar
+          displayModal={true}
+          onClose={jest.fn()}
+          unitData={mockUnitKS4}
+          lessonsAvailable={true}
+          unitOptionsAvailable={false}
+          examboardSlug={"aqa"}
+        />,
+      );
+
+      const linkToUnit = await findByRole("link");
+      const forwardLink = linkToUnit.getAttribute("href");
+      expect(linkToUnit).toBeInTheDocument();
+      expect(linkToUnit).toBeEnabled();
+      expect(forwardLink).toEqual(
+        "/teachers/programmes/maths-secondary-ks4-aqa/units/composition-of-numbers-6-to-10/lessons",
+      );
     });
   });
 });
