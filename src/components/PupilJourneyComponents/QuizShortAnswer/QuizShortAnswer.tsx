@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import {
   OakFlex,
   OakLabel,
@@ -6,6 +5,7 @@ import {
 } from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
 
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz
@@ -23,16 +23,7 @@ export const QuizShortAnswer = (props: QuizShortAnswerProps) => {
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
 
-  const lastChanged = useRef<number>(0);
-
-  const handleOnChange = () => {
-    if (lastChanged.current === 0 && onInitialChange) {
-      onInitialChange();
-    } else if (lastChanged.current !== 0 && onChange) {
-      onChange();
-    }
-    lastChanged.current = Date.now();
-  };
+  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
 
   if (!questionState || !currentQuestionData) {
     return null;

@@ -7,9 +7,8 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
-import { pickAnswerComponent } from "./pickAnswerComponent";
-
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { pickAnswerComponent } from "@/components/PupilJourneyComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
 

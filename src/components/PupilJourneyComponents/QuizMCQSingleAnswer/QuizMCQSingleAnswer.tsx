@@ -1,8 +1,9 @@
-import { useMemo, useRef, useEffect } from "react";
+import { useMemo } from "react";
 import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;
@@ -11,6 +12,9 @@ export type QuizMCQSingleAnswerProps = {
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const { onInitialChange, onChange } = props;
+
+  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
+
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const answers = useMemo(
@@ -20,24 +24,9 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const questionState = quizEngineContext.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
 
-  const lastChanged = useRef<number>(0);
-
-  useEffect(() => {
-    lastChanged.current = 0;
-  }, [currentQuestionIndex]);
-
   if (!questionState) {
     return null;
   }
-
-  const handleOnChange = () => {
-    if (lastChanged.current === 0 && onInitialChange) {
-      onInitialChange();
-    } else if (lastChanged.current !== 0 && onChange) {
-      onChange();
-    }
-    lastChanged.current = Date.now();
-  };
 
   const isFeedbackMode = questionState.mode === "feedback";
 
