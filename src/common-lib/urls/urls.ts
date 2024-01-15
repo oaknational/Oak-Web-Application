@@ -199,7 +199,6 @@ type CurriculumDownloadsLinkProps = {
 };
 type CurriculumPreviousDownloadsLinkProps = {
   page: "curriculum-previous-downloads";
-  category: string;
 };
 
 export type OakLinkProps =
@@ -659,7 +658,7 @@ export const OAK_PAGES: {
     pageType: "curriculum-downloads",
   }),
   "curriculum-previous-downloads": createOakPageConfig({
-    pathPattern: "/teachers/curriculum/previous-downloads#:category",
+    pathPattern: "/teachers/curriculum/previous-downloads",
     analyticsPageName: "Curriculum Previous Downloads",
     configType: "internal",
     pageType: "curriculum-previous-downloads",

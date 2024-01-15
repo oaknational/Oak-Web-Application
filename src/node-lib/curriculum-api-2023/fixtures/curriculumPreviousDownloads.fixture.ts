@@ -1,8 +1,8 @@
 type curriculumPreviousDownloadsFixtureProps = {
   documents: {
-    categories: string[];
+    category: string;
     subject: string;
-    path: string;
+    slug: string;
   }[];
 };
 
@@ -12,249 +12,399 @@ const curriculumPreviousDownloadsFixture = (
   return {
     documents: [
       {
-        categories: ["EYFS", "KS1", "KS2"],
-        subject: "English",
-        path: "primary/oak-2021-primary-eyfs-ks1-ks2-english.pdf",
+        category: "EYFS",
+        subject: "Expressive Arts and Design",
+        slug: "early-years-foundation-stage-expressive-arts-and-design",
       },
       {
-        categories: ["EYFS", "KS1", "KS2"],
+        category: "EYFS",
+        subject: "Literacy",
+        slug: "early-years-foundation-stage-literacy",
+      },
+      {
+        category: "EYFS",
         subject: "Maths",
-        path: "primary/oak-2021-primary-eyfs-ks1-ks2-maths.pdf",
+        slug: "early-years-foundation-stage-maths",
       },
       {
-        categories: ["EYFS", "KS1", "KS2"],
-        subject: "Music",
-        path: "primary/oak-2021-primary-eyfs-ks1-ks2-music.pdf",
+        category: "EYFS",
+        subject: "PSED",
+        slug: "early-years-foundation-stage-psed",
       },
       {
-        categories: ["EYFS", "KS1", "KS2"],
-        subject: "RHE (PSHE)",
-        path: "primary/oak-2021-primary-eyfs-ks1-ks2-rhe-pshe.pdf",
+        category: "EYFS",
+        subject: "Understanding the World",
+        slug: "early-years-foundation-stage-understanding-the-world",
       },
       {
-        categories: ["EYFS"],
-        subject: "Understanding the world",
-        path: "primary/oak-2021-primary-eyfs-understanding-the-world.pdf",
+        category: "KS1",
+        subject: "Art & Design",
+        slug: "key-stage-1-art",
       },
       {
-        categories: ["KS1", "KS2"],
-        subject: "Geography",
-        path: "primary/oak-2021-primary-ks1-ks2-geography.pdf",
+        category: "KS1",
+        subject: "Design & Technology",
+        slug: "key-stage-1-design-technology",
       },
       {
-        categories: ["KS1", "KS2"],
-        subject: "History",
-        path: "primary/oak-2021-primary-ks1-ks2-history.pdf",
+        category: "KS1",
+        subject: "Drama",
+        slug: "key-stage-1-drama",
       },
       {
-        categories: ["KS1", "KS2"],
-        subject: "RE",
-        path: "primary/oak-2021-primary-ks1-ks2-re.pdf",
-      },
-      {
-        categories: ["KS1", "KS2"],
-        subject: "Science",
-        path: "primary/oak-2021-primary-ks1-ks2-science.pdf",
-      },
-      {
-        categories: ["KS2"],
-        subject: "Computing",
-        path: "primary/oak-2021-primary-ks2-computing.pdf",
-      },
-      {
-        categories: ["KS3"],
+        category: "KS1",
         subject: "English",
-        path: "secondary/oak-2021-secondary-ks3-english.pdf",
+        slug: "key-stage-1-english",
       },
       {
-        categories: ["KS3"],
-        subject: "Geography",
-        path: "secondary/oak-2021-secondary-ks3-geography.pdf",
-      },
-      {
-        categories: ["KS3"],
+        category: "KS1",
         subject: "History",
-        path: "secondary/oak-2021-secondary-ks3-history.pdf",
+        slug: "key-stage-1-history",
       },
       {
-        categories: ["KS3", "KS4"],
+        category: "KS1",
+        subject: "Maths",
+        slug: "key-stage-1-maths",
+      },
+      {
+        category: "KS1",
+        subject: "Music",
+        slug: "key-stage-1-music",
+      },
+      {
+        category: "KS1",
+        subject: "Physical Education",
+        slug: "key-stage-1-physical-education",
+      },
+      {
+        category: "KS1",
+        subject: "Religious Education",
+        slug: "key-stage-1-religious-education",
+      },
+      {
+        category: "KS1",
+        subject: "RSHE (PSHE)",
+        slug: "key-stage-1-rshe-pshe",
+      },
+      {
+        category: "KS1",
+        subject: "Science",
+        slug: "key-stage-1-science",
+      },
+      {
+        category: "KS2",
+        subject: "Art & Design",
+        slug: "key-stage-2-art",
+      },
+      {
+        category: "KS2",
+        subject: "Computing",
+        slug: "key-stage-2-computing",
+      },
+      {
+        category: "KS2",
+        subject: "Design & Technology",
+        slug: "key-stage-2-design-technology",
+      },
+      {
+        category: "KS2",
+        subject: "Drama",
+        slug: "key-stage-2-drama",
+      },
+      {
+        category: "KS2",
+        subject: "English",
+        slug: "key-stage-2-english",
+      },
+      {
+        category: "KS2",
+        subject: "English Grammar",
+        slug: "key-stage-2-english-grammar",
+      },
+      {
+        category: "KS2",
+        subject: "English Reading for Pleasure",
+        slug: "key-stage-2-english-reading-for-pleasure",
+      },
+      {
+        category: "KS2",
+        subject: "English Spelling",
+        slug: "key-stage-2-english-spelling",
+      },
+      {
+        category: "KS2",
+        subject: "French",
+        slug: "key-stage-2-french",
+      },
+      {
+        category: "KS2",
+        subject: "Geography",
+        slug: "key-stage-2-geography",
+      },
+      {
+        category: "KS2",
+        subject: "History",
+        slug: "key-stage-2-history",
+      },
+      {
+        category: "KS2",
+        subject: "Maths",
+        slug: "key-stage-2-maths",
+      },
+      {
+        category: "KS2",
+        subject: "Music",
+        slug: "key-stage-2-music",
+      },
+      {
+        category: "KS2",
+        subject: "Physical Education",
+        slug: "key-stage-2-physical-education",
+      },
+      {
+        category: "KS2",
+        subject: "Religious Education",
+        slug: "key-stage-2-religious-education",
+      },
+      {
+        category: "KS2",
+        subject: "RSHE (PSHE)",
+        slug: "key-stage-2-rshe-pshe",
+      },
+      {
+        category: "KS2",
+        subject: "Science",
+        slug: "key-stage-2-science",
+      },
+      {
+        category: "KS2",
+        subject: "Spanish",
+        slug: "key-stage-2-spanish",
+      },
+      {
+        category: "KS3",
+        subject: "Art & Design",
+        slug: "key-stage-3-art",
+      },
+      {
+        category: "KS3",
         subject: "Citizenship",
-        path: "secondary/oak-2021-secondary-ks3-ks4-citizenship.pdf",
+        slug: "key-stage-3-citizenship",
       },
       {
-        categories: ["KS3", "KS4"],
+        category: "KS3",
         subject: "Computing",
-        path: "secondary/oak-2021-secondary-ks3-ks4-computing.pdf",
+        slug: "key-stage-3-computing",
       },
       {
-        categories: ["KS3", "KS4"],
-        subject: "French",
-        path: "secondary/oak-2021-secondary-ks3-ks4-french.pdf",
+        category: "KS3",
+        subject: "Design & Technology",
+        slug: "key-stage-3-design-technology",
       },
       {
-        categories: ["KS3", "KS4"],
-        subject: "German",
-        path: "secondary/oak-2021-secondary-ks3-ks4-german.pdf",
+        category: "KS3",
+        subject: "Drama",
+        slug: "key-stage-3-drama",
       },
       {
-        categories: ["KS3", "KS4"],
-        subject: "RE",
-        path: "secondary/oak-2021-secondary-ks3-ks4-re.pdf",
-      },
-      {
-        categories: ["KS3", "KS4"],
-        subject: "Science",
-        path: "secondary/oak-2021-secondary-ks3-ks4-science.pdf",
-      },
-      {
-        categories: ["KS3", "KS4"],
-        subject: "Spanish",
-        path: "secondary/oak-2021-secondary-ks3-ks4-spanish.pdf",
-      },
-      {
-        categories: ["KS3"],
-        subject: "Maths",
-        path: "secondary/oak-2021-secondary-ks3-maths.pdf",
-      },
-      {
-        categories: ["KS3"],
-        subject: "Music",
-        path: "secondary/oak-2021-secondary-ks3-music.pdf",
-      },
-      {
-        categories: ["KS3", "KS4"],
-        subject: "Latin",
-        path: "secondary/oak-2021-secondary-ks3-ks4-latin.pdf",
-      },
-      {
-        categories: ["KS4"],
+        category: "KS3",
         subject: "English",
-        path: "secondary/oak-2021-secondary-ks4-english.pdf",
+        slug: "key-stage-3-english",
       },
       {
-        categories: ["KS4"],
-        subject: "Geography",
-        path: "secondary/oak-2021-secondary-ks4-geography.pdf",
-      },
-      {
-        categories: ["KS4"],
-        subject: "History",
-        path: "secondary/oak-2021-secondary-ks4-history.pdf",
-      },
-      {
-        categories: ["KS4"],
-        subject: "Maths",
-        path: "secondary/oak-2021-secondary-ks4-maths.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Communication and Language",
-        path: "specialist/oak-2021-specialist-communication-and-language.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Creative Arts",
-        path: "specialist/oak-2021-specialist-creative-arts.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Early Development",
-        path: "specialist/oak-2021-specialist-early-development.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Independent Living",
-        path: "specialist/oak-2021-specialist-independent-living.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Numeracy",
-        path: "specialist/oak-2021-specialist-numeracy.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Occupational Therapy",
-        path: "specialist/oak-2021-specialist-occupational-therapy.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Physical Development",
-        path: "specialist/oak-2021-specialist-physical-development.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Physical Therapy",
-        path: "specialist/oak-2021-specialist-physical-therapy.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Sensory Integration",
-        path: "specialist/oak-2021-specialist-sensory-stories.pdf",
-      },
-      {
-        categories: ["Specialist"],
-        subject: "Speech and Language Therapy",
-        path: "specialist/oak-2021-specialist-speech-and-language-therapy.pdf",
-      },
-      {
-        categories: ["KS3", "KS4"],
-        subject: "RSHE",
-        path: "secondary/oak-2021-secondary-ks3-ks4-rshe.pdf",
-      },
-      {
-        categories: ["KS1", "KS2"],
-        subject: "Design and Technology",
-        path: "primary/oak-2021-primary-ks1-ks2-design-and-technology.pdf",
-      },
-      {
-        categories: ["KS3"],
-        subject: "Design and Technology",
-        path: "secondary/oak-2021-secondary-ks3-design-and-technology.pdf",
-      },
-      {
-        categories: ["KS1", "KS2"],
-        subject: "Drama",
-        path: "primary/oak-2021-primary-ks1-ks2-drama.pdf",
-      },
-      {
-        categories: ["KS2"],
+        category: "KS3",
         subject: "French",
-        path: "primary/oak-2021-primary-ks2-french.pdf",
+        slug: "key-stage-3-french",
       },
       {
-        categories: ["KS1", "KS2"],
-        subject: "PE",
-        path: "primary/oak-2021-primary-ks1-ks2-pe.pdf",
+        category: "KS3",
+        subject: "Geography",
+        slug: "key-stage-3-geography",
       },
       {
-        categories: ["KS3"],
-        subject: "PE",
-        path: "secondary/oak-2021-secondary-ks3-pe.pdf",
+        category: "KS3",
+        subject: "German",
+        slug: "key-stage-3-german",
       },
       {
-        categories: ["KS2"],
+        category: "KS3",
+        subject: "History",
+        slug: "key-stage-3-history",
+      },
+      {
+        category: "KS3",
+        subject: "Latin",
+        slug: "key-stage-3-latin",
+      },
+      {
+        category: "KS3",
+        subject: "Maths",
+        slug: "key-stage-3-maths",
+      },
+      {
+        category: "KS3",
+        subject: "Music",
+        slug: "key-stage-3-music",
+      },
+      {
+        category: "KS3",
+        subject: "Physical Education",
+        slug: "key-stage-3-physical-education",
+      },
+      {
+        category: "KS3",
+        subject: "Religious Education",
+        slug: "key-stage-3-religious-education",
+      },
+      {
+        category: "KS3",
+        subject: "RSHE (PSHE)",
+        slug: "key-stage-3-rshe-pshe",
+      },
+      {
+        category: "KS3",
+        subject: "Science",
+        slug: "key-stage-3-science",
+      },
+      {
+        category: "KS3",
         subject: "Spanish",
-        path: "primary/oak-2021-primary-ks2-spanish.pdf",
+        slug: "key-stage-3-spanish",
       },
       {
-        categories: ["KS1", "KS2"],
+        category: "KS4",
         subject: "Art & Design",
-        path: "primary/oak-2021-primary-ks1-ks2-art.pdf",
+        slug: "key-stage-4-art",
       },
       {
-        categories: ["KS3"],
-        subject: "Drama",
-        path: "secondary/oak-2021-secondary-ks3-drama.pdf",
+        category: "KS4",
+        subject: "Biology",
+        slug: "key-stage-4-biology",
       },
       {
-        categories: ["KS3", "KS4"],
-        subject: "Art & Design",
-        path: "secondary/oak-2021-secondary-ks3-ks4-art.pdf",
+        category: "KS4",
+        subject: "Chemistry",
+        slug: "key-stage-4-chemistry",
       },
       {
-        categories: ["KS2"],
-        subject: "Water Safety",
-        path: "primary/oak-2021-primary-ks2-water-safety.pdf",
+        category: "KS4",
+        subject: "Citizenship",
+        slug: "key-stage-4-citizenship",
+      },
+      {
+        category: "KS4",
+        subject: "Combined Science",
+        slug: "key-stage-4-combined-science",
+      },
+      {
+        category: "KS4",
+        subject: "Computing",
+        slug: "key-stage-4-computing",
+      },
+      {
+        category: "KS4",
+        subject: "Computing (Non-GCSE)",
+        slug: "key-stage-4-computing-non-gcse",
+      },
+      {
+        category: "KS4",
+        subject: "English",
+        slug: "key-stage-4-english",
+      },
+      {
+        category: "KS4",
+        subject: "French",
+        slug: "key-stage-4-french",
+      },
+      {
+        category: "KS4",
+        subject: "Geography",
+        slug: "key-stage-4-geography",
+      },
+      {
+        category: "KS4",
+        subject: "German",
+        slug: "key-stage-4-german",
+      },
+      {
+        category: "KS4",
+        subject: "History",
+        slug: "key-stage-4-history",
+      },
+      {
+        category: "KS4",
+        subject: "Latin",
+        slug: "key-stage-4-latin",
+      },
+      {
+        category: "KS4",
+        subject: "Maths",
+        slug: "key-stage-4-maths",
+      },
+      {
+        category: "KS4",
+        subject: "Physics",
+        slug: "key-stage-4-physics",
+      },
+      {
+        category: "KS4",
+        subject: "Religious Education",
+        slug: "key-stage-4-religious-education",
+      },
+      {
+        category: "KS4",
+        subject: "RSHE (PSHE)",
+        slug: "key-stage-4-rshe-pshe",
+      },
+      {
+        category: "KS4",
+        subject: "Spanish",
+        slug: "key-stage-4-spanish",
+      },
+      {
+        category: "Specialist",
+        subject: "Communication and Language",
+        slug: "specialist-communication-and-language",
+      },
+      {
+        category: "Specialist",
+        subject: "Creative Arts",
+        slug: "specialist-creative-arts",
+      },
+      {
+        category: "Specialist",
+        subject: "Independent Living",
+        slug: "specialist-independent-living",
+      },
+      {
+        category: "Specialist",
+        subject: "Numeracy",
+        slug: "specialist-numeracy",
+      },
+      {
+        category: "Specialist",
+        subject: "Physical Development",
+        slug: "specialist-physical-development",
+      },
+      {
+        category: "Therapies",
+        subject: "Physical Therapy",
+        slug: "specialist-physical-therapy",
+      },
+      {
+        category: "Specialist",
+        subject: "Speech and Language Therapy",
+        slug: "specialist-speech-and-language-therapy",
+      },
+      {
+        category: "Specialist",
+        subject: "Occupational Therapy",
+        slug: "specialist-occupational-therapy",
+      },
+      {
+        category: "Specialist",
+        subject: "Sensory Integration",
+        slug: "specialist-sensory-integration",
       },
     ],
     ...partial,

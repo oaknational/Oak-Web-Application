@@ -2,39 +2,34 @@ import { NextPage } from "next";
 import React, { useEffect, useMemo, useState } from "react";
 
 import AppLayout from "@/components/AppLayout/AppLayout";
-import Box from "@/components/Box/Box";
+import Box from "@/components/SharedComponents/Box/Box";
 import curriculumPreviousDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import Flex from "@/components/Flex/Flex";
-import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
+import Flex from "@/components/SharedComponents/Flex/Flex";
+import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/TabularNav/TabularNav";
-import Heading from "@/components/Typography/Heading";
-import Icon from "@/components/Icon/Icon";
-import Hr from "@/components/Typography/Hr";
-import BrushBorders from "@/components/SpriteSheet/BrushSvgs/BrushBorders";
-import P from "@/components/Typography/P";
-import { ButtonAsLinkProps } from "@/components/Button/ButtonAsLink";
-import { CurriculumDownloads } from "@/components/pages/Curriculum/CurriculumDownloads/CurriculumDownloads";
+import Heading from "@/components/SharedComponents/Typography/Heading";
+import Icon from "@/components/SharedComponents/Icon/Icon";
+import Hr from "@/components/SharedComponents/Typography/Hr";
+import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
+import P from "@/components/SharedComponents/Typography/P";
+import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
+import {
+  CurriculumDownload,
+  CurriculumDownloads,
+} from "@/components/pages/Curriculum/CurriculumDownloads/CurriculumDownloads";
 
 const CurriculumPreviousDownloadsPage: NextPage = () => {
   const data = curriculumPreviousDownloadsFixture();
   const [activeTab, setActiveTab] = useState<string>("EYFS");
   type Document = (typeof data)["documents"][0];
-  type Download = {
-    exists: true;
-    type: "curriculum-pdf";
-    label: string;
-    ext: "pdf";
-  };
 
   const categoryDocuments = useMemo(() => {
     const documents: { [key: string]: Document[] } = {};
     data.documents.forEach((document) => {
-      document.categories.forEach((category) => {
-        const documentsArray = documents[category] || [];
-        documentsArray.push(document);
-        documents[category] = documentsArray;
-      });
+      const documentsArray = documents[document.category] || [];
+      documentsArray.push(document);
+      documents[document.category] = documentsArray;
     });
     return documents;
   }, [data.documents]);
@@ -46,16 +41,24 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
     }
   }, [categoryDocuments]);
 
-  const downloads: Download[] = [];
+  const updateTab = (category: string) => {
+    setActiveTab(category);
+    const newUrl = `#${category}`;
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      "",
+      newUrl,
+    );
+  };
+
+  const downloads: CurriculumDownload[] = [];
   const links: ButtonAsLinkProps[] = [];
   for (const category of Object.keys(categoryDocuments)) {
     if (category == activeTab) {
       categoryDocuments[category]?.forEach((document) => {
         downloads.push({
-          type: "curriculum-pdf",
-          exists: true,
           label: document.subject,
-          ext: "pdf",
+          url: `https://api.thenational.academy/api/download-asset?type=curriculum-map&id=${document.slug}&extension=pdf`,
         });
       });
     }
@@ -65,7 +68,10 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       isCurrent: activeTab == category,
       currentStyles: ["underline"],
       scroll: false,
-      category: category,
+      onClick: (event) => {
+        event.preventDefault();
+        updateTab(category);
+      },
     });
   }
 
@@ -98,7 +104,6 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               {
                 oakLinkProps: {
                   page: "curriculum-previous-downloads",
-                  category: "",
                 },
                 label: "Previous Downloads",
                 disabled: true,

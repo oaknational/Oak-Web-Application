@@ -1,42 +1,60 @@
 import { ChangeEvent, useState } from "react";
 import { Controller } from "react-hook-form";
+import { debounce } from "lodash";
+import styled from "styled-components";
 
-import Box from "@/components/Box";
+import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
-import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
 import {
   ErrorKeysType,
   ResourceFormProps,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
-import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import LoadingButton from "@/components/Button/LoadingButton";
+import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
-import Checkbox from "@/components/Checkbox";
+import Checkbox from "@/components/SharedComponents/Checkbox";
 import CopyrightNotice from "@/components/DownloadAndShareComponents/CopyrightNotice";
 import DetailsCompleted from "@/components/DownloadAndShareComponents/DetailsCompleted";
 import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
-import Flex from "@/components/Flex";
+import Flex from "@/components/SharedComponents/Flex";
 import FieldError from "@/components/FormFields/FieldError";
-import Grid, { GridArea } from "@/components/Grid";
-import Icon from "@/components/Icon";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Icon from "@/components/SharedComponents/Icon";
 import OakLink from "@/components/OakLink";
-import { Heading, P, UL, LI } from "@/components/Typography";
-import Input from "@/components/Input";
+import { Heading, P, UL, LI } from "@/components/SharedComponents/Typography";
+import Input from "@/components/SharedComponents/Input";
+import ResourceCard from "@/components/DownloadAndShareComponents/ResourceCard";
+import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import createAndClickHiddenDownloadLink from "@/components/DownloadAndShareComponents/helpers/createAndClickHiddenDownloadLink";
+
+export type CurriculumDownload = {
+  label: string;
+  url: string;
+};
 
 type CurriculumDownloadsProps = {
   category: string;
-  downloads: {
-    exists: true;
-    type: "curriculum-pdf";
-    label: string;
-    ext: "pdf";
-  }[];
+  downloads: CurriculumDownload[];
 };
+
+const CardContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    margin-right: 24px;
+    margin-bottom: 24px;
+    > label p {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: calc(100% - 36px);
+    }
+  }
+`;
 
 export function CurriculumDownloads(props: CurriculumDownloadsProps) {
   const { category, downloads } = props;
@@ -59,18 +77,21 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
     localStorageDetails,
     handleToggleSelectAll,
     selectAllChecked,
+  } = useResourceFormState({
+    curriculumResources: downloads,
+    type: "curriculum",
+  });
+
+  const {
+    setSchoolInLocalStorage,
     setEmailInLocalStorage,
-  } = useResourceFormState({ downloadResources: downloads, type: "download" });
+    setTermsInLocalStorage,
+  } = useLocalStorageForDownloads();
 
   const [isAttemptingDownload, setIsAttemptingDownload] =
     useState<boolean>(false);
 
   const [apiError, setApiError] = useState<string | null>(null);
-
-  const { onSubmit } = useResourceFormSubmit({
-    isLegacyDownload: true,
-    type: "download",
-  });
 
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
@@ -78,13 +99,43 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
   const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
     setApiError(null);
     try {
-      await debouncedSubmit({
-        data,
-        lessonSlug: "",
-        setIsAttemptingDownload,
-        setEditDetailsClicked,
-        onSubmit,
-      });
+      const debouncedFunction = debounce(
+        async () => {
+          setIsAttemptingDownload(true);
+          const email = data?.email;
+          const schoolId = data?.school;
+          const schoolName = data?.schoolName;
+          const terms = data?.terms;
+          const downloads = data?.resources;
+          if (email) {
+            setEmailInLocalStorage(email);
+          }
+          if (schoolId) {
+            if (schoolId === "homeschool" || schoolId === "notListed") {
+              setSchoolInLocalStorage({
+                schoolId,
+                schoolName: schoolId,
+              });
+            } else {
+              if (schoolName && schoolId) {
+                setSchoolInLocalStorage({ schoolId, schoolName });
+              }
+            }
+          }
+          if (terms) {
+            setTermsInLocalStorage(terms);
+          }
+          const downloadResourcesLink = downloads[0];
+          if (downloadResourcesLink) {
+            createAndClickHiddenDownloadLink(downloadResourcesLink);
+          }
+          setIsAttemptingDownload(false);
+          setEditDetailsClicked(false);
+        },
+        4000,
+        { leading: true },
+      );
+      await debouncedFunction();
       setIsDownloadSuccessful(true);
 
       if (editDetailsClicked && !data.email) {
@@ -102,7 +153,7 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
       });
 
       track.curriculumResourcesDownloaded({
-        category: "KS3", // TODO: replace with "keyStage" once we have the correct value
+        category: category,
         subject: "Subject", // TODO: replace with "subject" once we have the correct value
         resourceType: selectedResourcesForTracking,
         analyticsUseCase,
@@ -168,12 +219,54 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                     labelFontWeight={600}
                   />
                 </Box>
-                <DownloadCardGroup
-                  control={form.control}
-                  downloads={downloads}
-                  hasError={form.errors?.resources ? true : false}
-                  triggerForm={form.trigger}
-                />
+
+                <CardContainer>
+                  {downloads.map((download) => (
+                    <Controller
+                      control={form.control}
+                      defaultValue={[]}
+                      key={download.label}
+                      name="resources"
+                      render={({
+                        field: { value: fieldValue, onChange, name, onBlur },
+                      }) => {
+                        const onChangeHandler = (
+                          e: ChangeEvent<HTMLInputElement>,
+                        ) => {
+                          if (e.target.checked) {
+                            onChange([...fieldValue, download.url]);
+                          } else {
+                            onChange(
+                              fieldValue.filter(
+                                (val: CurriculumDownload | string) =>
+                                  val !== download.url,
+                              ),
+                            );
+                          }
+                          // Trigger the form to reevaluate errors
+                          form.trigger();
+                        };
+                        return (
+                          <ResourceCard
+                            id={download.label}
+                            name={name}
+                            label={download.label}
+                            subtitle={"PDF"}
+                            resourceType="curriculum-pdf"
+                            onChange={onChangeHandler}
+                            checked={
+                              selectAllChecked ||
+                              fieldValue.includes(download.url)
+                            }
+                            onBlur={onBlur}
+                            hasError={form.errors?.resources ? true : false}
+                            data-testid={`download-card-${download.label}`}
+                          />
+                        );
+                      }}
+                    />
+                  ))}
+                </CardContainer>
               </GridArea>
               <GridArea $colSpan={[12, 12, 5]}>
                 <Heading
@@ -291,8 +384,12 @@ export function CurriculumDownloads(props: CurriculumDownloadsProps) {
                         To complete correct the following:
                       </P>
                       <UL $mr={24}>
-                        {getFormErrorMessages().map((err) => {
-                          return <LI $color={"red"}>{err}</LI>;
+                        {getFormErrorMessages().map((err, i) => {
+                          return (
+                            <LI $color={"red"} key={i}>
+                              {err}
+                            </LI>
+                          );
                         })}
                       </UL>
                     </Flex>
