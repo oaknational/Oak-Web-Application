@@ -17,7 +17,7 @@ import { DetailsCompletedProps } from "@/components/DownloadAndShareComponents/D
 import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
 import { SchoolDetailsProps } from "@/components/DownloadAndShareComponents/SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
-import CopyrightNotice from "@/components/DownloadAndShareComponents/CopyrightNotice";
+import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/DownloadAndShareComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
