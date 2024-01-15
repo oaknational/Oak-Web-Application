@@ -1,7 +1,7 @@
 import { NextPage, NextPageContext } from "next";
 import { useRouter } from "next/router";
 
-import ErrorView from "../components/ErrorView";
+import ErrorView from "../components/AppComponents/ErrorView";
 
 interface Props {
   statusCode?: number;

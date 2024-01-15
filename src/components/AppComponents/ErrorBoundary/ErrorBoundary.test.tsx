@@ -3,12 +3,11 @@ import { render } from "@testing-library/react";
 import { FC, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 
-import "../../__tests__/__helpers__/LocalStorageMock";
-import CookieConsentProvider from "../../browser-lib/cookie-consent/CookieConsentProvider";
-import noop from "../../__tests__/__helpers__/noop";
-
 import ErrorBoundary from ".";
 
+import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import noop from "@/__tests__/__helpers__/noop";
+import "@/__tests__/__helpers__/LocalStorageMock";
 import theme from "@/styles/theme";
 
 const consoleLogSpy = jest.spyOn(console, "log");

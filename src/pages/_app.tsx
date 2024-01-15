@@ -13,7 +13,7 @@ import "../browser-lib/gleap/gleap.css";
 import "../browser-lib/oak-globals/oakGlobals";
 import GlobalStyle from "../styles/GlobalStyle";
 import SpriteSheet from "../components/SharedComponents/SpriteSheet";
-import ErrorBoundary from "../components/ErrorBoundary";
+import ErrorBoundary from "../components/AppComponents/ErrorBoundary";
 import DefaultSeo from "../browser-lib/seo/DefaultSeo";
 import useOakTheme from "../hooks/useOakTheme";
 import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentProvider";

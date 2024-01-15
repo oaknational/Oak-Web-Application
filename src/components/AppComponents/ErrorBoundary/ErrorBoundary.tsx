@@ -1,8 +1,8 @@
 import React, { Component, ErrorInfo, FC, ReactNode } from "react";
 import Bugsnag from "@bugsnag/js";
 
-import { bugsnagInitialised } from "../../browser-lib/bugsnag/useBugsnag";
-import ErrorView from "../ErrorView";
+import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
+import ErrorView from "@/components/AppComponents/ErrorView";
 
 const ClientErrorView: FC = () => {
   return (
