@@ -18,7 +18,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const OptionalityCard: Story = {
+export const UnitListOptionalityCard: Story = {
   args: {
     unitOptions: unitOptions,
     index: 1,

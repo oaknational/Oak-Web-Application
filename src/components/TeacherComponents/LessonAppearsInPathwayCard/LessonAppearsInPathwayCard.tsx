@@ -1,7 +1,7 @@
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
-import { TagFunctional } from "@/components/TagFunctional";
-import { TagColor } from "@/components/TagFunctional/TagFunctional";
+import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import { TagColor } from "@/components/SharedComponents/TagFunctional/TagFunctional";
 import {
   Heading,
   HeadingTag,
