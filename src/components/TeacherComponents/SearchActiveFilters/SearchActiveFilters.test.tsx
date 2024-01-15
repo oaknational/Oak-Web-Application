@@ -1,11 +1,11 @@
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import SearchActiveFilters from "./SearchActiveFilters";
 
-import ActiveFilters from "./ActiveFilters";
-import { searchFilters } from "./test-helpers";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { searchFilters } from "@/components/TeacherComponents/SearchFilters/test-helpers";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-describe("ActiveFilters", () => {
+describe("SearchActiveFilters", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -15,7 +15,7 @@ describe("ActiveFilters", () => {
       .map((ks) => ks.title),
   )("should render the checked filters: %s", (ks) => {
     const { getByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = getByRole("button", { name: `Remove ${ks} filter` });
     expect(button).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("ActiveFilters", () => {
       .map((ks) => ks.title),
   )("should not render the unchecked filters: %s", (ks) => {
     const { queryByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = queryByRole("button", { name: `Remove ${ks} filter` });
     expect(button).not.toBeInTheDocument();
@@ -37,7 +37,7 @@ describe("ActiveFilters", () => {
       .map((subject) => subject.title),
   )("should render the checked filters: %s", (subject) => {
     const { getByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = getByRole("button", { name: `Remove ${subject} filter` });
     expect(button).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe("ActiveFilters", () => {
       .map((subject) => subject.title),
   )("should not render the unchecked filters: %s", (subject) => {
     const { queryByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = queryByRole("button", { name: `Remove ${subject} filter` });
     expect(button).not.toBeInTheDocument();
@@ -61,7 +61,7 @@ describe("ActiveFilters", () => {
       .map((ContentType) => ContentType.title),
   )("should render the checked type filters: %s", (ContentType) => {
     const { getByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = getByRole("button", {
       name: `Remove ${ContentType} filter`,
@@ -75,7 +75,7 @@ describe("ActiveFilters", () => {
       .map((ContentType) => ContentType.title),
   )("should not render the unchecked type filters: %s", (ContentType) => {
     const { queryByRole } = renderWithTheme(
-      <ActiveFilters searchFilters={searchFilters} />,
+      <SearchActiveFilters searchFilters={searchFilters} />,
     );
     const button = queryByRole("button", {
       name: `Remove ${ContentType} filter`,

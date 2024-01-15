@@ -12,8 +12,8 @@ import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
-import SearchFilters from "@/components/SearchFilters";
-import ActiveFilters from "@/components/SearchFilters/ActiveFilters";
+import SearchFilters from "@/components/TeacherComponents/SearchFilters";
+import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
 import SearchForm from "@/components/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
@@ -178,7 +178,7 @@ const Search: FC<SearchProps> = (props) => {
                 analyticsSearchSource={"search page search box"}
               />
             </Flex>
-            <ActiveFilters searchFilters={searchFilters} />
+            <SearchActiveFilters searchFilters={searchFilters} />
           </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
             <div role="status">

@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import Component from "./SearchDropdown";
 
-import searchResultsItem from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
+import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
 const searchResultsData = searchResultsItem()[0];
 
