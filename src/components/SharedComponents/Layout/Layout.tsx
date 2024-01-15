@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
-import SiteFooter from "@/components/SiteFooter";
+import LayoutSiteFooter from "@/components/SharedComponents/LayoutSiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
 import background, { BackgroundProps } from "@/styles/utils/background";
 import { OakColorName } from "@/styles/theme";
@@ -47,7 +47,7 @@ const headers: Record<
 
 export type FooterVariant = "default" | "client-error";
 const footers: Record<FooterVariant, FC> = {
-  default: SiteFooter,
+  default: LayoutSiteFooter,
   "client-error": LayoutClientErrorFooter,
 };
 

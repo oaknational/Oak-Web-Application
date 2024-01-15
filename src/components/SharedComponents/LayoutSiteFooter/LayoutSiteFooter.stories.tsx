@@ -1,10 +1,11 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import CookieConsentDecorator from "../../storybook-decorators/CookieConsentDecorator";
+import Component from "./LayoutSiteFooter";
 
-import Component from "./SiteFooter";
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import CookieConsentDecorator from "@/storybook-decorators/CookieConsentDecorator";
+
 
 export default {
   decorators: [CookieConsentDecorator, AnalyticsDecorator],
@@ -18,4 +19,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </div>
 );
 
-export const SiteFooter = Template.bind({});
+export const LayoutSiteFooter = Template.bind({});

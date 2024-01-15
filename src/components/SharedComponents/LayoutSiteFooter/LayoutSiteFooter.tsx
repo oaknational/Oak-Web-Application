@@ -1,11 +1,10 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 
-import Logo from "../Logo";
-import OakLink from "../OakLink";
-import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
-import FooterSignpost from "../FooterSignpost/FooterSignpost";
-
+import Logo from "@/components/Logo";
+import OakLink from "@/components/OakLink";
+import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
+import FooterSignpost from "@/components/FooterSignpost/FooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
@@ -25,7 +24,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
 import useClickableCard from "@/hooks/useClickableCard";
 
-type FooterLinkProps = {
+type LayoutFooterLinkProps = {
   text: string;
   icon?: IconName;
 } & (
@@ -44,7 +43,7 @@ type FooterLinkProps = {
 type FooterLinkIconWrapperProps = {
   children: ReactNode;
   containerProps: ReturnType<typeof useClickableCard>["containerProps"];
-} & FooterLinkProps;
+} & LayoutFooterLinkProps;
 
 const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
   const { containerProps, icon, children } = props;
@@ -56,7 +55,7 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
   );
 };
 
-const FooterLink: FC<FooterLinkProps> = (props) => {
+const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { track } = useAnalytics();
   const { showConsentManager } = useCookieConsent();
   const { containerProps, primaryTargetProps } =
@@ -141,7 +140,7 @@ const FooterLink: FC<FooterLinkProps> = (props) => {
 
 export type FooterSection = {
   title: string;
-  links: FooterLinkProps[];
+  links: LayoutFooterLinkProps[];
 };
 const FooterSectionLinks: FC<FooterSection> = ({ title, links }) => {
   return (
@@ -167,7 +166,7 @@ export type FooterSections = Record<
   FooterSection
 >;
 
-const SiteFooter: FC = () => {
+const LayoutSiteFooter: FC = () => {
   const sections = footerSections;
   const { pathname } = useRouter();
   const displaySignpost = pathname.startsWith("/beta");
@@ -279,4 +278,4 @@ const SiteFooter: FC = () => {
   );
 };
 
-export default SiteFooter;
+export default LayoutSiteFooter;
