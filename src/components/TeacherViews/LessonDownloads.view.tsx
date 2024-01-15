@@ -24,7 +24,7 @@ import {
   getCommonPathway,
 } from "@/components/TeacherComponents/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
-import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
+import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";

@@ -10,7 +10,7 @@ import {
   getLessonShareBreadCrumb,
 } from "@/components/TeacherComponents/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
-import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
+import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
 import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
 import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";

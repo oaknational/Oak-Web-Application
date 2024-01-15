@@ -7,16 +7,18 @@ import {
   UseFormTrigger,
 } from "react-hook-form";
 
-import { ErrorKeysType, ResourceFormProps } from "../downloadAndShare.types";
-import NoResourcesToDownload from "../NoResourcesToDownload";
-import DetailsCompleted from "../DetailsCompleted";
-import { DetailsCompletedProps } from "../DetailsCompleted/DetailsCompleted";
-import SchoolDetails from "../SchoolDetails";
-import { SchoolDetailsProps } from "../SchoolDetails/SchoolDetails";
-import TermsAndConditionsCheckbox from "../TermsAndConditionsCheckbox";
-import CopyrightNotice from "../CopyrightNotice";
-import NoResourcesToShare from "../NoResourcesToShare";
-
+import {
+  ErrorKeysType,
+  ResourceFormProps,
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import NoResourcesToDownload from "@/components/DownloadAndShareComponents/NoResourcesToDownload";
+import DetailsCompleted from "@/components/DownloadAndShareComponents/DetailsCompleted";
+import { DetailsCompletedProps } from "@/components/DownloadAndShareComponents/DetailsCompleted/DetailsCompleted";
+import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
+import { SchoolDetailsProps } from "@/components/DownloadAndShareComponents/SchoolDetails/SchoolDetails";
+import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
+import CopyrightNotice from "@/components/DownloadAndShareComponents/CopyrightNotice";
+import NoResourcesToShare from "@/components/DownloadAndShareComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";

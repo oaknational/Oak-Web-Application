@@ -2,12 +2,11 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../downloadAndShare.types";
-
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 type PropsWithoutForm = Omit<

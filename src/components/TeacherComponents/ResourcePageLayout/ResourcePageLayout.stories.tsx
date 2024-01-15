@@ -2,15 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import DownloadCardGroup from "../DownloadCardGroup/DownloadCardGroup";
-import { ResourceFormProps } from "../downloadAndShare.types";
-
 import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
 import Component from ".";
 
+import DownloadCardGroup from "@/components/DownloadAndShareComponents/DownloadCardGroup/DownloadCardGroup";
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 
 const meta: Meta<typeof Component> = {
