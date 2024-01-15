@@ -1,16 +1,17 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
+import ResourcePageDetailsCompleted from ".";
 
-import DetailsCompleted from ".";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("DetailsCompleted", () => {
-  it("renders DetailsCompleted component", async () => {
+
+describe("ResourcePageDetailsCompleted", () => {
+  it("renders ResourcePageDetailsCompleted component", async () => {
     const spy = jest.fn();
 
     const { getByText } = renderWithTheme(
-      <DetailsCompleted
+      <ResourcePageDetailsCompleted
         email={"test@test.com"}
         school={"sample school"}
         onEditClick={() => spy()}
@@ -28,7 +29,10 @@ describe("DetailsCompleted", () => {
     const spy = jest.fn();
 
     const { getByText } = renderWithTheme(
-      <DetailsCompleted school={"sample school"} onEditClick={() => spy()} />,
+      <ResourcePageDetailsCompleted
+        school={"sample school"}
+        onEditClick={() => spy()}
+      />,
     );
 
     const notProvided = getByText("Not provided");
@@ -39,7 +43,7 @@ describe("DetailsCompleted", () => {
     const spy = jest.fn();
 
     const { getByText } = renderWithTheme(
-      <DetailsCompleted
+      <ResourcePageDetailsCompleted
         email={"test@test.com"}
         school={"sample school"}
         onEditClick={() => spy()}
@@ -60,7 +64,7 @@ describe("DetailsCompleted", () => {
       const spy = jest.fn();
 
       const { getByText } = renderWithTheme(
-        <DetailsCompleted
+        <ResourcePageDetailsCompleted
           email={"test@test.com"}
           school={"homeschool"}
           onEditClick={() => spy()}
@@ -78,7 +82,7 @@ describe("DetailsCompleted", () => {
       const spy = jest.fn();
 
       const { getByText } = renderWithTheme(
-        <DetailsCompleted
+        <ResourcePageDetailsCompleted
           email={"test@test.com"}
           school={"notListed"}
           onEditClick={() => spy()}

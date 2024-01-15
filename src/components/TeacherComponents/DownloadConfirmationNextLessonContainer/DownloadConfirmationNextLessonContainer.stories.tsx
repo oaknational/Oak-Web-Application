@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import Component from "./NextLessonContainer";
+import Component from "./DownloadConfirmationNextLessonContainer";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -31,7 +31,7 @@ export default meta;
 
 type Story = StoryObj<typeof Component>;
 
-export const ConfirmationContainer: Story = {
+export const DownloadConfirmationNextLessonContainer: Story = {
   args: {
     programmeSlug: "programme-slug",
     unitSlug: "unit-slug",

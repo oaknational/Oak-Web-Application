@@ -26,4 +26,4 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const DetailsCompleted = Template.bind({});
+export const ResourcePageDetailsCompleted = Template.bind({});

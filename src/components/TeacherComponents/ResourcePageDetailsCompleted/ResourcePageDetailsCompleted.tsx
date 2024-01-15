@@ -6,7 +6,7 @@ import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 
-export type DetailsCompletedProps = {
+export type ResourcePageDetailsCompletedProps = {
   email?: string;
   school?: string;
   onEditClick: () => void;
@@ -22,7 +22,7 @@ const getSchoolName = (school: string | undefined) => {
   }
 };
 
-const DetailsCompleted: FC<DetailsCompletedProps> = ({
+const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
   email,
   school,
   onEditClick,
@@ -67,4 +67,4 @@ const DetailsCompleted: FC<DetailsCompletedProps> = ({
   );
 };
 
-export default DetailsCompleted;
+export default ResourcePageDetailsCompleted;

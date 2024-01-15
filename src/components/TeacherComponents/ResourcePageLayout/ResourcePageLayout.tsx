@@ -12,8 +12,8 @@ import {
   ResourceFormProps,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
-import DetailsCompleted from "@/components/DownloadAndShareComponents/DetailsCompleted";
-import { DetailsCompletedProps } from "@/components/DownloadAndShareComponents/DetailsCompleted/DetailsCompleted";
+import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
+import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
 import { SchoolDetailsProps } from "@/components/DownloadAndShareComponents/SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
@@ -31,7 +31,7 @@ import Icon from "@/components/SharedComponents/Icon";
 
 /** Generic layout component for Downloads and Share page */
 
-export type ResourcePageLayoutProps = DetailsCompletedProps &
+export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
   SchoolDetailsProps & {
     header: string;
     handleToggleSelectAll: () => void;
@@ -126,7 +126,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 ) : (
                   <Flex $flexDirection="column" $gap={24}>
                     {props.showSavedDetails ? (
-                      <DetailsCompleted
+                      <ResourcePageDetailsCompleted
                         email={props.email}
                         school={props.school}
                         onEditClick={props.onEditClick}

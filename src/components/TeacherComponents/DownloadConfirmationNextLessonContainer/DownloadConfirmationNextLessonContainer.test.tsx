@@ -1,4 +1,4 @@
-import NextLessonContainer from "./NextLessonContainer";
+import DownloadConfirmationNextLessonContainer from "./DownloadConfirmationNextLessonContainer";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
@@ -21,10 +21,10 @@ const nextLessons = [
   },
 ];
 
-describe("NextLessonContainer", () => {
+describe("DownloadConfirmationNextLessonContainer", () => {
   it("should render component", () => {
     const { getByRole } = renderWithTheme(
-      <NextLessonContainer
+      <DownloadConfirmationNextLessonContainer
         programmeSlug="test-programme"
         unitSlug="test-unit"
         nextLessons={nextLessons}
@@ -41,7 +41,7 @@ describe("NextLessonContainer", () => {
   });
   it("when passed an array of 3 future lessons renders all 3", async () => {
     const { getAllByTestId } = renderWithTheme(
-      <NextLessonContainer
+      <DownloadConfirmationNextLessonContainer
         programmeSlug="test-programme"
         unitSlug="test-unit"
         nextLessons={nextLessons}

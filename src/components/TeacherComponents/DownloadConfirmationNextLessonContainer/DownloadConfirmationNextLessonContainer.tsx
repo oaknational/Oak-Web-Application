@@ -7,7 +7,7 @@ import { Span } from "@/components/SharedComponents/Typography";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
-type NextLessonContainerProps = {
+type DownloadConfirmationNextLessonContainerProps = {
   programmeSlug: string;
   unitSlug: string;
   nextLessons: NextLesson[];
@@ -15,7 +15,9 @@ type NextLessonContainerProps = {
   onwardContentSelected: TrackFns["onwardContentSelected"];
 };
 
-const NextLessonContainer: FC<NextLessonContainerProps> = ({
+const DownloadConfirmationNextLessonContainer: FC<
+  DownloadConfirmationNextLessonContainerProps
+> = ({
   programmeSlug,
   unitSlug,
   nextLessons,
@@ -48,4 +50,4 @@ const NextLessonContainer: FC<NextLessonContainerProps> = ({
   );
 };
 
-export default NextLessonContainer;
+export default DownloadConfirmationNextLessonContainer;
