@@ -11,10 +11,10 @@ import {
   SearchCheckBoxProps,
 } from "@/context/Search/search.types";
 
-type ActiveFiltersProps = {
+type SearchActiveFiltersProps = {
   searchFilters: UseSearchFiltersReturnType;
 };
-const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
+const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
   const { searchFilters } = props;
   const {
     keyStageFilters,
@@ -67,4 +67,4 @@ const ActiveFilters: FC<ActiveFiltersProps> = (props) => {
   );
 };
 
-export default ActiveFilters;
+export default SearchActiveFilters;

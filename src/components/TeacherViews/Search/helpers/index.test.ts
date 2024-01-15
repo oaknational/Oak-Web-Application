@@ -1,4 +1,4 @@
-import { convertUnitSlugToTitle } from ".";
+import { convertUnitSlugToTitle, removeHTMLTags } from ".";
 
 describe("convertSlugToTitle", () => {
   it("should convert a slug to title", () => {
@@ -23,5 +23,17 @@ describe("convertSlugToTitle", () => {
     const slug = "year-7-surds-and-fractions-d02032";
     const title = convertUnitSlugToTitle(slug);
     expect(title).toBe("Year 7 Surds And Fractions");
+  });
+});
+
+describe("removeHTMLTags", () => {
+  it("should strip HTML tags from a string", () => {
+    const string = "<h1>hello</h1>";
+    expect(removeHTMLTags(string)).toBe("hello");
+  });
+
+  it("should strip HTML tags with properties from a string", () => {
+    const string = "<script someproperty=true>hello</script>";
+    expect(removeHTMLTags(string)).toBe("hello");
   });
 });
