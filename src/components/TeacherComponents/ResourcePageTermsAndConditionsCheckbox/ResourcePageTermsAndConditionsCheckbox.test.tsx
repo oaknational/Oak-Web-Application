@@ -4,7 +4,6 @@ import ResourcePageTermsAndConditionsCheckbox from "./ResourcePageTermsAndCondit
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("ResourcePageTermsAndConditionsCheckbox", () => {
   it("renders ResourcePageTermsAndConditionsCheckbox", () => {
     renderWithTheme(

@@ -5,7 +5,6 @@ import ResourcePageDetailsCompleted from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("ResourcePageDetailsCompleted", () => {
   it("renders ResourcePageDetailsCompleted component", async () => {
     const spy = jest.fn();

@@ -4,7 +4,6 @@ import CopyrightNotice from "./CopyrightNotice";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("CopyrightNotice", () => {
   it("renders pre-ALB copyright notice", () => {
     renderWithTheme(

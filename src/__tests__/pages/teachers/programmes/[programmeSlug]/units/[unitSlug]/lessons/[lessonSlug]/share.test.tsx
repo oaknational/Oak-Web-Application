@@ -26,7 +26,7 @@ const props: LessonSharePageProps = {
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 jest.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
   () => {
     return jest.fn();
   },

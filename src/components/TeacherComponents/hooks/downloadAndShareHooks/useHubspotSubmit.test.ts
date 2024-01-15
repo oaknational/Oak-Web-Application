@@ -6,24 +6,24 @@ import { ResourceFormProps } from "@/components/TeacherComponents/types/download
 import OakError from "@/errors/OakError";
 
 const hubspotSubmitMock = jest.fn();
-jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
   __esModule: true,
   default: () => hubspotSubmitMock(),
 }));
 
-jest.mock("../../../hooks/useUtmParams", () => ({
+jest.mock("@/hooks/useUtmParams", () => ({
   __esModule: true,
   default: () => ({ utm_source: "les_twitz" }),
 }));
 
 const getHubspotUserToken = jest.fn(() => "hubspotutk value");
-jest.mock("../../../browser-lib/hubspot/forms/getHubspotUserToken", () => ({
+jest.mock("@/browser-lib/hubspot/forms/getHubspotUserToken", () => ({
   __esModule: true,
   default: (...args: []) => getHubspotUserToken(...args),
 }));
 
 const reportError = jest.fn();
-jest.mock("../../../common-lib/error-reporter/", () => ({
+jest.mock("@/common-lib/error-reporter/", () => ({
   __esModule: true,
   default:
     () =>
@@ -33,7 +33,7 @@ jest.mock("../../../common-lib/error-reporter/", () => ({
 
 const testPosthogDistinctId = "test-anonymous-id";
 
-jest.mock("../../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     posthogDistinctId: testPosthogDistinctId,

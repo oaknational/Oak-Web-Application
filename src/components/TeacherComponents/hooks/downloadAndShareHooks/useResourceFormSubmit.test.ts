@@ -5,10 +5,13 @@ import useResourceFormSubmit from "./useResourceFormSubmit";
 import downloadLessonResources from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
-jest.mock("../helpers/downloadLessonResources", () => ({
-  __esModule: true,
-  default: jest.fn(),
-}));
+jest.mock(
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
+  () => ({
+    __esModule: true,
+    default: jest.fn(),
+  }),
+);
 
 const mockSetEmailInLocalStorageFn = jest.fn();
 const mockSetSchoolInLocalStorageFn = jest.fn();

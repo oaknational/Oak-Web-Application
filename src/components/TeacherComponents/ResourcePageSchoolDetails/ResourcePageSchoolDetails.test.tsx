@@ -8,7 +8,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import useSchoolPicker from "@/components/SchoolPicker/useSchoolPicker";
 
-
 const setSchool = jest.fn();
 const props = {
   setSchool: setSchool,

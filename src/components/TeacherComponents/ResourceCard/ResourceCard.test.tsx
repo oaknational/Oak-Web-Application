@@ -5,7 +5,6 @@ import ResourceCard from "./ResourceCard";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("ResourceCard", () => {
   it("renders a checkbox with an icon, title and resource file type", () => {
     renderWithTheme(
