@@ -4,13 +4,12 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
 
-import elasticResponseFixture from "../../context/Search/elasticResponse.2020.fixture.json";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
-import truthy from "../../utils/truthy";
-
 import SearchResults from "./SearchResults";
 
+import elasticResponseFixture from "@/context/Search/elasticResponse.2020.fixture.json";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
+import truthy from "@/utils/truthy";
 import { searchResultsHitsSchema } from "@/context/Search/search.schema";
 
 const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
