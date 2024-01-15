@@ -47,6 +47,12 @@ type SpecialistListItemProps = IndividualSpecialistUnit &
     yearTitle?: string | null;
   };
 
+export const isSpecialistUnit = (
+  x: ListItemHeadingProps | SpecialistListItemProps,
+): x is SpecialistListItemProps => {
+  return "developmentalStageTitle" in x;
+};
+
 export const ListTitle: FC<{
   children?: React.ReactNode;
   expired?: boolean;
@@ -72,7 +78,6 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
     slug,
     subjectTitle,
     hideTopHeading,
-    keyStageTitle,
     primaryTargetProps,
     page,
     expired,
@@ -108,16 +113,16 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
   return (
     <Flex>
       <Flex $mb={2} $flexDirection={"column"}>
-        {!hideTopHeading && !isExemplarUnit && (
+        {!hideTopHeading && !isExemplarUnit && !isSpecialistUnit(props) && (
           <CategoryHeading
-            keyStageTitle={keyStageTitle}
+            keyStageTitle={props.keyStageTitle}
             subjectTitle={subjectTitle}
             page={page}
           />
         )}
-        {!hideTopHeading && isExemplarUnit && (
+        {!hideTopHeading && isExemplarUnit && !isSpecialistUnit(props) && (
           <ExemplarCategoryHeading
-            keyStageTitle={keyStageTitle}
+            keyStageTitle={props.keyStageTitle}
             subjectTitle={subjectTitle}
             yearTitle={yearTitle}
           />

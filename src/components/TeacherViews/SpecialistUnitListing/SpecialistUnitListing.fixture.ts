@@ -47,7 +47,6 @@ const specialistUnitListingFixture = (
           unitStudyOrder: 1,
           developmentalStageSlug: "building-understanding",
           developmentalStageTitle: "Building Understanding",
-          keyStageTitle: "Key stage 1",
         },
       ],
     ],

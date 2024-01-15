@@ -102,15 +102,24 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const trackUnitSelected = ({
     ...props
   }: UnitListItemProps | IndividualSpecialistUnit) => {
-    track.unitSelected({
-      keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: props.title,
-      unitSlug: props.slug,
-      analyticsUseCase,
-    });
+    // Temporary until tracking for specialist units
+    const isSpecialistUnit = (
+      x: UnitListItemProps | IndividualSpecialistUnit,
+    ): x is IndividualSpecialistUnit => {
+      return "developmentalStageTitle" in x;
+    };
+
+    if (!isSpecialistUnit(props)) {
+      return track.unitSelected({
+        keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
+        keyStageSlug,
+        subjectTitle,
+        subjectSlug,
+        unitName: props.title,
+        unitSlug: props.slug,
+        analyticsUseCase,
+      });
+    }
   };
 
   return (

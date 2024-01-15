@@ -36,7 +36,6 @@ export const SpecialistUnitListingPage: Story = {
             unitStudyOrder: 1,
             developmentalStageSlug: "building-understanding",
             developmentalStageTitle: "Building Understanding",
-            keyStageTitle: "Key stage 1",
           },
         ],
         [
@@ -55,7 +54,6 @@ export const SpecialistUnitListingPage: Story = {
             unitStudyOrder: 1,
             developmentalStageSlug: "building-understanding",
             developmentalStageTitle: "Building Understanding",
-            keyStageTitle: "Key stage 1",
           },
         ],
       ],

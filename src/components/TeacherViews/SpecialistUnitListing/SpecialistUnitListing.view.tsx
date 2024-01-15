@@ -11,7 +11,6 @@ import { Heading, P } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -50,7 +49,7 @@ export type IndividualSpecialistUnit = {
   themeTitle: string | null;
   developmentalStageSlug: string;
   developmentalStageTitle: string;
-  keyStageTitle: KeyStageTitleValueType;
+  // keyStageTitle: KeyStageTitleValueType;
 };
 
 export type Theme = {
@@ -81,9 +80,6 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   });
 
   /**
-   * ! - URLS?
-   * ! - keyStageTitle / keyStageSlug
-   * ! - AVO how to address keyStage
    */
 
   const { currentPageItems } = paginationProps;
@@ -99,6 +95,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           {
             oakLinkProps: {
               page: "specialist-programme-index",
+              subjectSlug,
             },
             label: "Specialist programmes",
           },
