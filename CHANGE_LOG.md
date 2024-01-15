@@ -1,3 +1,12 @@
+## [1.325.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.0...v1.325.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* clean up robots.txt rules ([413c11c](https://github.com/oaknational/Oak-Web-Application/commit/413c11c44e3e5c4d6e2c429d67bd4c8590ca6d19))
+* update robots.txt ([85edd6f](https://github.com/oaknational/Oak-Web-Application/commit/85edd6f95cfc09f47d79943df43a7cedd735a4bf))
+* update robots.txt ([9a591a5](https://github.com/oaknational/Oak-Web-Application/commit/9a591a526b5609e74c22d9b813aa7f94d6c9e337))
+
 # [1.325.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.324.0...v1.325.0) (2024-01-11)
 
 
