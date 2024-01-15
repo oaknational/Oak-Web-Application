@@ -4,13 +4,11 @@ import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
 
-import { useMenuContext } from "../../context/Menu/";
-import Logo from "../Logo";
-import { OAK_SOCIALS } from "../SharedComponents/SocialButtons/SocialButtons";
-import SideBarSignpost from "../SideBarSignpost/SideBarSignpost";
-
-import MenuBackdrop from "./MenuBackdrop";
-
+import { useMenuContext } from "@/context/Menu/";
+import Logo from "@/components/Logo";
+import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
+import SideBarSignpost from "@/components/SideBarSignpost/SideBarSignpost";
+import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import { OakColorName, PixelSpacing } from "@/styles/theme/types";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Svg from "@/components/SharedComponents/Svg";
@@ -57,7 +55,7 @@ export const SideMenu = styled(Flex)<TransitionProps>`
   }};
 `;
 
-type MenuProps = HTMLProps<HTMLButtonElement> & {
+type AppHeaderMenuProps = HTMLProps<HTMLButtonElement> & {
   menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
 
@@ -66,7 +64,7 @@ const NavMenuList = styled("nav")<FlexProps & BoxProps>`
   ${flex}
 `;
 
-const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
+const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
   const theme = useTheme();
   const { menu: menuConfig } = theme;
@@ -184,4 +182,4 @@ const Menu: FC<MenuProps> = ({ children, menuButtonRef }) => {
   );
 };
 
-export default Menu;
+export default AppHeaderMenu;

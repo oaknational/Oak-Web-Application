@@ -3,17 +3,16 @@ import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { createRef } from "react";
 
-import { MenuProvider } from "../../context/Menu";
-import { menuContext } from "../../context/Menu/MenuProvider";
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
+import AppHeaderMenu from "./AppHeaderMenu";
 
-import Menu from "./Menu";
-
+import { MenuProvider } from "@/context/Menu";
+import { menuContext } from "@/context/Menu/MenuProvider";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
-describe("Menu", () => {
+describe("AppHeaderMenu", () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl("/lesson-planning");
   });
@@ -21,7 +20,7 @@ describe("Menu", () => {
   test("it renders with a close button", () => {
     const { getByLabelText } = renderWithTheme(
       <MenuProvider>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </MenuProvider>,
     );
 
@@ -31,7 +30,7 @@ describe("Menu", () => {
   test("it is hidden and not expanded by default", () => {
     const { getByLabelText, getByTestId } = renderWithTheme(
       <MenuProvider>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </MenuProvider>,
     );
 
@@ -49,7 +48,7 @@ describe("Menu", () => {
 
     const { getByLabelText, getByTestId } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </menuContext.Provider>,
     );
 
@@ -67,7 +66,7 @@ describe("Menu", () => {
 
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </menuContext.Provider>,
     );
     const user = userEvent.setup();
@@ -86,7 +85,7 @@ describe("Menu", () => {
 
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </menuContext.Provider>,
     );
     const user = userEvent.setup();
@@ -105,7 +104,7 @@ describe("Menu", () => {
 
     const { getByLabelText } = renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </menuContext.Provider>,
     );
     const user = userEvent.setup();
@@ -129,7 +128,7 @@ describe("Menu", () => {
 
     renderWithTheme(
       <menuContext.Provider value={menuValue}>
-        <Menu menuButtonRef={null} />
+        <AppHeaderMenu menuButtonRef={null} />
       </menuContext.Provider>,
     );
     const user = userEvent.setup();
@@ -161,7 +160,7 @@ describe("Menu", () => {
           ref={menuButtonRef}
           onClick={jest.fn}
         />
-        <Menu menuButtonRef={menuButtonRef} />
+        <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,
     );
 
@@ -177,7 +176,7 @@ describe("Menu", () => {
           ref={menuButtonRef}
           onClick={jest.fn}
         />
-        <Menu menuButtonRef={menuButtonRef} />
+        <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,
     );
 

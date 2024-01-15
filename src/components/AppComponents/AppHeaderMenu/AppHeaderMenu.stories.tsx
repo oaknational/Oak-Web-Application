@@ -1,9 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import { MenuProvider } from "../../context/Menu";
+import Component from "./AppHeaderMenu";
 
-import Component from "./Menu";
+import { MenuProvider } from "@/context/Menu";
+
 
 export default {
   component: Component,

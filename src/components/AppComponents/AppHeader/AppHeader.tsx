@@ -3,7 +3,7 @@ import { FC, useRef } from "react";
 import Logo from "@/components/Logo";
 import { HeaderProps } from "@/components/SharedComponents/Layout/Layout";
 import OakLink from "@/components/OakLink";
-import { Menu } from "@/components/Menu";
+import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/components/../context/Menu";
 import BurgerMenuSections from "@/components/BurgerMenuSections/BurgerMenuSections";
 import { ActiveLinkUnderline } from "@/components/OakLink/OakLink";
@@ -83,9 +83,9 @@ const AppHeader: FC<HeaderProps> = () => {
           />
         </Flex>
 
-        <Menu menuButtonRef={menuButtonRef}>
+        <AppHeaderMenu menuButtonRef={menuButtonRef}>
           <BurgerMenuSections menuSections={betaMenuSections} />
-        </Menu>
+        </AppHeaderMenu>
       </Flex>
       <HeaderUnderline />
     </StyledHeader>

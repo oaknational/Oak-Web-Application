@@ -3,8 +3,8 @@ import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
 
 import Box from "@/components/SharedComponents/Box";
-import { SideMenu } from "@/components/Menu/Menu";
-import MenuBackdrop from "@/components/Menu/MenuBackdrop";
+import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
+import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import Flex from "@/components/SharedComponents/Flex";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { Hr } from "@/components/SharedComponents/Typography";

@@ -4,7 +4,7 @@ import { usePreventScroll } from "react-aria";
 
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { TransitionProps } from "@/components/Menu/Menu";
+import { TransitionProps } from "@/components/AppComponents/AppHeaderMenu";
 import { ZIndex } from "@/styles/utils/zIndex";
 
 type BackdropProps = {
