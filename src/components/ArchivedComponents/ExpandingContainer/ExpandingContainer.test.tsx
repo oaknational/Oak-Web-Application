@@ -81,7 +81,7 @@ it.skip("renders top right icons", async () => {
 });
 
 const resourceContainerExpanded = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
