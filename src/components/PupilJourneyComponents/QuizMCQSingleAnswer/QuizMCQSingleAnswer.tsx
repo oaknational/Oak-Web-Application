@@ -4,6 +4,10 @@ import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { StemTextObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
+import { getStemImage } from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
+
+// testing images
+//http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;
@@ -43,6 +47,11 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
           | StemTextObject
           | undefined;
 
+        const image = getStemImage({
+          stem: answer.answer,
+          minWidth: "all-spacing-19",
+        });
+
         const feedback = Array.isArray(questionState.feedback)
           ? questionState.feedback[i]
           : undefined;
@@ -55,6 +64,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
             value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
             label={label?.text}
             feedback={feedback}
+            image={image}
           />
         );
       })}
