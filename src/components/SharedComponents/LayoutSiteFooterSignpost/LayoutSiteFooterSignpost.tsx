@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 
-import OakLink from "../OakLink";
-
+import OakLink from "@/components/OakLink";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
-const FooterSignpost: FC = () => {
+const LayoutSiteFooterSignpost: FC = () => {
   return (
     <Box>
       <Heading tag={"h2"} $font={"heading-7"} $mb={24}>
@@ -24,4 +23,4 @@ const FooterSignpost: FC = () => {
   );
 };
 
-export default FooterSignpost;
+export default LayoutSiteFooterSignpost;

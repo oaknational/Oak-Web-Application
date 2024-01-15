@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Logo from "@/components/Logo";
 import OakLink from "@/components/OakLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import FooterSignpost from "@/components/FooterSignpost/FooterSignpost";
+import LayoutSiteFooterSignpost from "@/components/SharedComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
@@ -198,7 +198,7 @@ const LayoutSiteFooter: FC = () => {
               $mb={[16, 64]}
               $maxWidth={[360, 720, 740]}
             >
-              <FooterSignpost />
+              <LayoutSiteFooterSignpost />
             </Flex>
           )}
           <Grid>
