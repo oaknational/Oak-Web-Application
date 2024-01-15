@@ -1,4 +1,4 @@
-import { ResourceType } from "../downloadAndShare.types";
+import { ResourceType } from "../../DownloadAndShareComponents/downloadAndShare.types";
 
 import { ShareLinkConfig } from "./linkConfig";
 

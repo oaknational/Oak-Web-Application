@@ -1,17 +1,17 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ShareLinks from "./ShareLinks";
+import LessonShareLinks from "./LessonShareLinks";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-describe("ShareLinks", () => {
+describe("LessonShareLinks", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it("should render", () => {
     renderWithTheme(
-      <ShareLinks
+      <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
@@ -24,7 +24,7 @@ describe("ShareLinks", () => {
   });
   it("should update copy link button", async () => {
     renderWithTheme(
-      <ShareLinks
+      <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
@@ -43,7 +43,7 @@ describe("ShareLinks", () => {
   it("should call onSubmit with copy-link", async () => {
     const onSubmit = jest.fn();
     renderWithTheme(
-      <ShareLinks
+      <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}
@@ -62,7 +62,7 @@ describe("ShareLinks", () => {
   it("should call onSubmit with correct avoMedium", async () => {
     const onSubmit = jest.fn();
     const { getByRole } = renderWithTheme(
-      <ShareLinks
+      <LessonShareLinks
         disabled={false}
         lessonSlug="test-slug"
         selectedActivities={["exit-quiz-questions"]}

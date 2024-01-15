@@ -12,9 +12,9 @@ import {
 import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
-import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
-import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
-import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
+import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
+import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
+import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
 import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
 import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
 import {
@@ -188,7 +188,7 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
           cta={
-            <ShareLinks
+            <LessonShareLinks
               disabled={
                 hasFormErrors ||
                 (!form.formState.isValid && !localStorageDetails)

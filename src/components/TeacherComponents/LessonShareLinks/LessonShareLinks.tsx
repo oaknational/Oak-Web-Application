@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from "react";
 
-import { ResourceType } from "../downloadAndShare.types";
 
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
+import { ResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/SharedComponents/Typography";
@@ -19,7 +19,7 @@ const copyToClipboard = (textToCopy: string, callback: () => void) => {
   }
 };
 
-const ShareLinks: FC<{
+const LessonShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
@@ -96,4 +96,4 @@ const ShareLinks: FC<{
   );
 };
 
-export default ShareLinks;
+export default LessonShareLinks;
