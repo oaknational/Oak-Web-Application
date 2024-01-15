@@ -14,7 +14,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
-import SearchForm from "@/components/SearchForm";
+import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";

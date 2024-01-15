@@ -1,4 +1,3 @@
-
 import SearchFilters from "./SearchFilters";
 import { searchFilters, mockOnChange } from "./test-helpers";
 

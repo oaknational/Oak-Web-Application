@@ -157,7 +157,7 @@ const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
 
-jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {

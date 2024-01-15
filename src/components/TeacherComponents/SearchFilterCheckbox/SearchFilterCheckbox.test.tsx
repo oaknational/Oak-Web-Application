@@ -2,7 +2,6 @@ import SearchFilterCheckbox from "./SearchFilterCheckbox";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const props = {
   slug: "ks1",
   title: "Key-stage 1",

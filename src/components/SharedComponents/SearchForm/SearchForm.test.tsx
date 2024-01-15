@@ -15,7 +15,7 @@ const providers = { theme: {} };
 const render = renderWithProviders(providers);
 const searchJourneyInitiated = jest.fn();
 const searchAttempted = jest.fn();
-jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
