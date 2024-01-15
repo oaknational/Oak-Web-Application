@@ -30,6 +30,18 @@ const Sidebar: FC<ModalProps> = ({
   unitOptionsAvailable,
   examboardSlug,
 }) => {
+  const createUnitLink = () => {
+    if (unitData?.keystage_slug === "ks4") {
+      return `${unitData.subject_slug}-${unitData.phase_slug}-${
+        unitData.keystage_slug
+      }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+        examboardSlug ? "-" + examboardSlug : ""
+      }`;
+    }
+    return unitData
+      ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+      : "";
+  };
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
@@ -103,11 +115,7 @@ const Sidebar: FC<ModalProps> = ({
                             variant="buttonStyledAsLink"
                             page="lesson-index"
                             unitSlug={unitData.slug}
-                            programmeSlug={`${unitData.subject_slug}-${
-                              unitData.phase_slug
-                            }-${unitData.keystage_slug}${
-                              unitData.tier_slug ? "-" + unitData.tier_slug : ""
-                            }${examboardSlug ? "-" + examboardSlug : ""}`}
+                            programmeSlug={createUnitLink()}
                           />
                         )}
                       </Flex>
