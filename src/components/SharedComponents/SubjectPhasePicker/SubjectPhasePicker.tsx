@@ -20,7 +20,7 @@ import UnstyledButton from "@/components/UnstyledButton/UnstyledButton";
 import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import TagPromotional from "@/components/TagPromotional";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
