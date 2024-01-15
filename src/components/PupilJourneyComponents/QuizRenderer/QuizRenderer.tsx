@@ -7,12 +7,11 @@ import {
   OakSpan,
 } from "@oak-academy/oak-components";
 
+import { pickAnswerComponent } from "./pickAnswerComponent";
+
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
-import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
-import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
-import { QuizShortAnswer } from "@/components/PupilJourneyComponents/QuizShortAnswer";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
@@ -48,41 +47,19 @@ export const QuizRenderer = () => {
     const isFeedbackMode =
       questionState[currentQuestionIndex]?.mode === "feedback";
 
-    let answerRender = null;
-
     const handleInitialChange = () => {
       if (questionState[currentQuestionIndex]?.mode === "init") {
         updateQuestionMode("input");
       }
     };
 
-    if (answers?.["multiple-choice"]) {
-      if (
-        answers?.["multiple-choice"].filter((a) => a.answer_is_correct).length >
-        1
-      ) {
-        answerRender = (
-          <QuizMCQMultiAnswer
-            key={`mcq-index-${currentQuestionIndex}`}
-            onInitialChange={handleInitialChange}
-          />
-        );
-      } else {
-        answerRender = (
-          <QuizMCQSingleAnswer
-            key={`mcq-index-${currentQuestionIndex}`}
-            onInitialChange={handleInitialChange}
-          />
-        );
-      }
-    } else if (answers?.["short-answer"]) {
-      answerRender = (
-        <QuizShortAnswer
-          key={`sa-index-${currentQuestionIndex}`}
-          onInitialChange={handleInitialChange}
-        />
-      );
-    }
+    const AnswerComponent = answers ? pickAnswerComponent(answers) : null;
+    const answerRender = AnswerComponent ? (
+      <AnswerComponent
+        key={`question-index-${currentQuestionIndex}`}
+        onInitialChange={handleInitialChange}
+      />
+    ) : null;
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
