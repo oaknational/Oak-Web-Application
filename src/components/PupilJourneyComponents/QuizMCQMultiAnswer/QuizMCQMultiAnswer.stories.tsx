@@ -39,7 +39,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // mock the QuizEngineContext
-const mockQuizEngineContext: QuizEngineContextType = {
+const mockQuizEngineContext: NonNullable<QuizEngineContextType> = {
   currentQuestionData: quizQuestions?.[0],
   currentQuestionIndex: 0,
   questionState: [
@@ -55,6 +55,7 @@ const mockQuizEngineContext: QuizEngineContextType = {
   isComplete: false,
   updateQuestionMode: () => {},
   handleSubmitMCAnswer: () => {},
+  handleSubmitShortAnswer: () => {},
   handleNextQuestion: () => {},
 };
 

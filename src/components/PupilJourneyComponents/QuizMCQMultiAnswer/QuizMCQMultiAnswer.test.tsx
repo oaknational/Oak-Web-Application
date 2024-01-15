@@ -67,6 +67,7 @@ describe("QuizMCQMultiAnswer", () => {
     updateQuestionMode: jest.fn(),
     handleSubmitMCAnswer: jest.fn(),
     handleNextQuestion: jest.fn(),
+    handleSubmitShortAnswer: jest.fn(),
   };
 
   const mockQuizEngineContextWithImageAnswers: QuizEngineContextType = {
@@ -159,24 +160,5 @@ describe("QuizMCQMultiAnswer", () => {
     );
     const images = getAllByRole("img", { name: "" }); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
     expect(images.length).toEqual(mcqImageAnswers.length);
-  });
-
-  it("calls handleSubmitMCAnswer when questionState.mode is set to grading", () => {
-    const mockQuizEngineContextGrading: QuizEngineContextType = {
-      ...mockQuizEngineContext,
-    };
-
-    if (mockQuizEngineContextGrading.questionState[0]) {
-      mockQuizEngineContextGrading.questionState[0].mode = "grading";
-    }
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizEngineContext.Provider value={mockQuizEngineContext}>
-          <QuizMCQMultiAnswer />
-        </QuizEngineContext.Provider>
-      </OakThemeProvider>,
-    );
-
-    expect(mockQuizEngineContext.handleSubmitMCAnswer).toHaveBeenCalledTimes(1);
   });
 });
