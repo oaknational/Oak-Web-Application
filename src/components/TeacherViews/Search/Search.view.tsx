@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import { FC, useEffect } from "react";
 
-import { SearchResultsItemProps } from "../SearchResultsItem/SearchResultsItem";
-
-import { SearchProps } from "./search.page.types";
+import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem/SearchResultsItem";
 import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -13,11 +12,11 @@ import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/MobileFilters";
-import SearchFilters from "@/components/SearchFilters";
-import ActiveFilters from "@/components/SearchFilters/ActiveFilters";
-import SearchForm from "@/components/SearchForm";
-import SearchResults from "@/components/SearchResults";
-import NoSearchResults from "@/components/SearchResults/NoSearchResults";
+import SearchFilters from "@/components/TeacherComponents/SearchFilters";
+import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
+import SearchForm from "@/components/SharedComponents/SearchForm";
+import SearchResults from "@/components/TeacherComponents/SearchResults";
+import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 
 const Search: FC<SearchProps> = (props) => {
@@ -179,7 +178,7 @@ const Search: FC<SearchProps> = (props) => {
                 analyticsSearchSource={"search page search box"}
               />
             </Flex>
-            <ActiveFilters searchFilters={searchFilters} />
+            <SearchActiveFilters searchFilters={searchFilters} />
           </GridArea>
           <GridArea $colSpan={[12, 9]} $pr={16}>
             <div role="status">

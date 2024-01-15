@@ -2,11 +2,10 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
+import Search from "./Search.view";
+import { SearchProps } from "./search.view.types";
 
-import Search from "./Search.page";
-import { SearchProps } from "./search.page.types";
-
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 
 const createSearchResult = (): SearchHit => {
@@ -158,7 +157,7 @@ const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
 
-jest.mock("../../context/Analytics/useAnalytics.ts", () => ({
+jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {

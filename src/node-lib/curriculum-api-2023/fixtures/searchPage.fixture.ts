@@ -1,6 +1,6 @@
 import { SearchPageData } from "../";
 
-import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem/SearchResultsItem";
 
 const searchPageFixture = (
   partial?: Partial<SearchPageData>,

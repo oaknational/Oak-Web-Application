@@ -1,12 +1,11 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
 
-import elasticResponseFixture from "../../context/Search/elasticResponse.2020.fixture.json";
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import searchPageFixture from "../../node-lib/curriculum-api/fixtures/searchPage.fixture";
-
 import SearchResultsItem from "./SearchResultsItem";
 
+import elasticResponseFixture from "@/context/Search/elasticResponse.2020.fixture.json";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import searchPageFixture from "@/node-lib/curriculum-api/fixtures/searchPage.fixture";
 import { searchResultsHitSchema } from "@/context/Search/search.schema";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 
