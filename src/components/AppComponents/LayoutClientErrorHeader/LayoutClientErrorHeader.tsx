@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import FixedHeader from "@/components/Header";
-import Logo from "@/components/Logo";
+import Logo from "@/components/AppComponents/Logo";
 import OakLink from "@/components/OakLink";
 
 /**

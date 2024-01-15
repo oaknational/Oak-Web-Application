@@ -5,7 +5,6 @@ import MenuBackdrop from "./MenuBackdrop";
 import { MenuProvider } from "@/context/Menu";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("menu backdrop", () => {

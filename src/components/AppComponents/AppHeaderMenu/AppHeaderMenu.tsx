@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
 
 import { useMenuContext } from "@/context/Menu/";
-import Logo from "@/components/Logo";
+import Logo from "@/components/AppComponents/Logo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import SideBarSignpost from "@/components/SideBarSignpost/SideBarSignpost";
+import AppHeaderMenuSidebarSignpost from "@/components/AppComponents/AppHeaderMenuSidebarSignpost";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import { OakColorName, PixelSpacing } from "@/styles/theme/types";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
@@ -148,7 +148,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               >
                 {/* Mobile logo */}
                 {displaySignpost && (
-                  <SideBarSignpost display={["none", "flex"]} />
+                  <AppHeaderMenuSidebarSignpost display={["none", "flex"]} />
                 )}
                 <Flex
                   $justifyContent={"left"}
@@ -158,7 +158,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                   <Logo variant="with text" height={48} width={104} />
                 </Flex>
                 {displaySignpost && (
-                  <SideBarSignpost display={["flex", "none"]} />
+                  <AppHeaderMenuSidebarSignpost display={["flex", "none"]} />
                 )}
                 {children}
                 {/* Desktop logo */}

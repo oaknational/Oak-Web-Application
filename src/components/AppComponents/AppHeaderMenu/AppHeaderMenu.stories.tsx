@@ -5,7 +5,6 @@ import Component from "./AppHeaderMenu";
 
 import { MenuProvider } from "@/context/Menu";
 
-
 export default {
   component: Component,
   argTypes: {

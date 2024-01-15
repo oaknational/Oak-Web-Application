@@ -1,13 +1,12 @@
 import { ThemedStyledProps, DefaultTheme } from "styled-components";
 import { z } from "zod";
 
-import { BadgeConfig } from "../../components/Badge";
-import { CheckboxConfig } from "../../components/SharedComponents/Checkbox";
-import { SelectListBoxConfig } from "../../components/DropdownSelect/ListBox";
-import { MenuConfig } from "../../components/Menu/Menu";
-import { ToggleStyleConfig } from "../../components/Toggle/Toggle";
-import { VideoStyleConfig } from "../../components/VideoPlayer/VideoPlayer";
-
+import { BadgeConfig } from "@/components/Badge";
+import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
+import { SelectListBoxConfig } from "@/components/DropdownSelect/ListBox";
+import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
+import { ToggleStyleConfig } from "@/components/Toggle/Toggle";
+import { VideoStyleConfig } from "@/components/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/Header/StyledHeader";
 
 /**

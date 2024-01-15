@@ -3,11 +3,13 @@ import React, { FC } from "react";
 import { P } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 
-type SideBarSignpostProps = {
+type AppHeaderMenuSidebarSignpostProps = {
   display: string | string[];
 };
 
-const SideBarSignpost: FC<SideBarSignpostProps> = ({ display }) => {
+const AppHeaderMenuSidebarSignpost: FC<AppHeaderMenuSidebarSignpostProps> = ({
+  display,
+}) => {
   return (
     <Box $mb={[48, 64]} $display={display} $width={[320, 480]}>
       <P $font={["body-2", "body-1"]}>
@@ -18,4 +20,4 @@ const SideBarSignpost: FC<SideBarSignpostProps> = ({ display }) => {
   );
 };
 
-export default SideBarSignpost;
+export default AppHeaderMenuSidebarSignpost;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import FixedHeader from "@/components/Header";
-import Logo from "@/components/Logo";
+import Logo from "@/components/AppComponents/Logo";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import OakLink from "@/components/OakLink";

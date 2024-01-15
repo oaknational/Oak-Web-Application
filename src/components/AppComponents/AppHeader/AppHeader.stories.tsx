@@ -5,7 +5,6 @@ import Component from "./AppHeader";
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 import { MenuProvider } from "@/context/Menu";
 
-
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
   component: Component,
