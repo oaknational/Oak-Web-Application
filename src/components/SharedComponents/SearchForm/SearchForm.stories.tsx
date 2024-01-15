@@ -5,7 +5,6 @@ import Component from "./SearchForm";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
