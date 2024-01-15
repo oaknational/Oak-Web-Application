@@ -13,13 +13,16 @@ import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal, {
+  Lesson,
+} from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import { P, Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+
 // Types and interfaces
 
 type UnitsTabProps = {
