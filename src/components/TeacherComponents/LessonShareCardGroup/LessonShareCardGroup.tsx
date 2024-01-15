@@ -1,15 +1,14 @@
 import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
-import ResourceCard from "../ResourceCard";
-import { sortShareResources } from "../helpers/sortResources";
-import { ResourceFormProps } from "../downloadAndShare.types";
-
+import ResourceCard from "@/components/DownloadAndShareComponents/ResourceCard";
+import { sortShareResources } from "@/components/DownloadAndShareComponents/helpers/sortResources";
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
-export type ShareCardGroupProps = {
+export type LessonShareCardGroupProps = {
   shareableResources: LessonShareData["shareableResources"];
   control: Control<ResourceFormProps>;
   triggerForm: () => void;
@@ -17,7 +16,7 @@ export type ShareCardGroupProps = {
   shareLink: string;
 };
 
-const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
+const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
   const sortedResources = sortShareResources(props.shareableResources);
 
   return (
@@ -91,4 +90,4 @@ const ShareCardGroup: FC<ShareCardGroupProps> = (props) => {
   );
 };
 
-export default ShareCardGroup;
+export default LessonShareCardGroup;

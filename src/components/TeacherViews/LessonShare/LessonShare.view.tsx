@@ -11,7 +11,7 @@ import {
 } from "@/components/TeacherComponents/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
-import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
+import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
 import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
 import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
@@ -174,7 +174,7 @@ export function LessonShare(props: LessonShareProps) {
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
           cardGroup={
-            <ShareCardGroup
+            <LessonShareCardGroup
               control={form.control}
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}

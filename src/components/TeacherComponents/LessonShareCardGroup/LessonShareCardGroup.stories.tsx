@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Control, useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../downloadAndShare.types";
+import { ResourceFormProps } from "../../DownloadAndShareComponents/downloadAndShare.types";
 
-import Component, { ShareCardGroupProps } from "./ShareCardGroup";
+import Component, { LessonShareCardGroupProps } from "./LessonShareCardGroup";
 
 import * as resources from "@/node-lib/curriculum-api/fixtures/shareableResources.fixture";
 
@@ -26,7 +26,7 @@ export default meta;
 
 type Story = StoryObj<typeof Component>;
 
-const Wrapper = (args: ShareCardGroupProps) => {
+const Wrapper = (args: LessonShareCardGroupProps) => {
   const { control } = useForm({
     mode: "onBlur",
   });
