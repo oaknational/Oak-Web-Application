@@ -4,17 +4,22 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import UnitListItem, {
+  SpecialistListItemProps,
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import { UnitData } from "@/node-lib/curriculum-api";
+import {
+  IndividualSpecialistUnit,
+  SpecialistUnit,
+} from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 
 type OptionalityCardProps = {
-  unitOptions: UnitOption[];
+  unitOptions: UnitOption[] | SpecialistUnit;
   index: number;
-  onClick: (props: UnitListItemProps) => void;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
 
 const OptionalityCard: FC<OptionalityCardProps> = ({
@@ -24,7 +29,12 @@ const OptionalityCard: FC<OptionalityCardProps> = ({
 }) => {
   const stringIndex = (index + 1).toString();
   const unitTitle = unitOptions[0]?.nullTitle;
-  const unitYear = unitOptions[0]?.yearTitle;
+
+  let unitYear;
+
+  if (unitOptions[0] && "yearTitle" in unitOptions[0]) {
+    unitYear = unitOptions[0].yearTitle;
+  }
 
   return (
     <Box
@@ -71,25 +81,27 @@ const OptionalityCard: FC<OptionalityCardProps> = ({
             </Heading>
           </Flex>
           <Flex $cg={12} $width={"100%"} $flexWrap={"wrap"}>
-            {unitOptions.map((unitOption: UnitOption) => {
-              return (
-                <Flex
-                  $width={["100%", "calc(50% - 6px)"]}
-                  key={unitOption.slug}
-                >
-                  <UnitListItem
-                    {...unitOption}
-                    hideTopHeading
-                    title={unitOption.title}
-                    subjectSlug={unitOption.subjectSlug}
-                    index={index}
-                    expired={false}
-                    isUnitOption={true}
-                    onClick={onClick}
-                  />
-                </Flex>
-              );
-            })}
+            {unitOptions.map(
+              (unitOption: UnitOption | IndividualSpecialistUnit) => {
+                return (
+                  <Flex
+                    $width={["100%", "calc(50% - 6px)"]}
+                    key={unitOption.slug}
+                  >
+                    <UnitListItem
+                      {...unitOption}
+                      hideTopHeading
+                      title={unitOption.title}
+                      subjectSlug={unitOption.subjectSlug}
+                      index={index}
+                      expired={false}
+                      isUnitOption={true}
+                      onClick={onClick}
+                    />
+                  </Flex>
+                );
+              },
+            )}
           </Flex>
         </Flex>
       </Flex>

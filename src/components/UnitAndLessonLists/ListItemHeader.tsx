@@ -13,6 +13,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -28,6 +29,16 @@ interface CommonProps {
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    expired: boolean | null;
+    index?: number;
+    isExemplarUnit?: boolean;
+    yearTitle?: string | null;
+  };
+
+type SpecialistListItemProps = IndividualSpecialistUnit &
+  CommonProps & {
     title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
     slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
     expired: boolean | null;
@@ -53,7 +64,9 @@ export const ListTitle: FC<{
   );
 };
 
-const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
+const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
+  props,
+) => {
   const {
     title,
     slug,

@@ -35,6 +35,7 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -98,7 +99,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     ...{ noFollow: true, noIndex: true },
   };
 
-  const trackUnitSelected = ({ ...props }: UnitListItemProps) => {
+  const trackUnitSelected = ({
+    ...props
+  }: UnitListItemProps | IndividualSpecialistUnit) => {
     track.unitSelected({
       keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
       keyStageSlug,

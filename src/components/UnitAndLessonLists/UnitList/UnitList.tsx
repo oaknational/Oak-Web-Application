@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import UnitListItem, {
+  SpecialistListItemProps,
   UnitListItemProps,
 } from "@/components/UnitAndLessonLists/UnitList/UnitListItem/UnitListItem";
 import Box from "@/components/SharedComponents/Box";
@@ -11,6 +12,10 @@ import Pagination, {
 import { LI, UL } from "@/components/SharedComponents/Typography";
 import { UnitListingData } from "@/node-lib/curriculum-api";
 import OptionalityCard from "@/components/OptionalityCard/OptionalityCard";
+import {
+  SpecialistUnit,
+  SpecialistUnitListingData,
+} from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 export type Tier = {
   title: string;
@@ -21,15 +26,18 @@ export type Tier = {
 type PageSize = { pageSize: number };
 type CurrenPageItemsProps = Omit<UnitListItemProps, "index" | "onClick">[];
 
-export type UnitListProps = UnitListingData & {
-  currentPageItems: CurrenPageItemsProps[];
+export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
+  currentPageItems: CurrenPageItemsProps[] | SpecialistUnit[];
   paginationProps: PaginationProps & PageSize;
-  onClick: (props: UnitListItemProps) => void;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
+  isSpecialist?: boolean;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems, onClick } = props;
+  const { units, paginationProps, currentPageItems, onClick, isSpecialist } =
+    props;
   const { currentPage, pageSize, firstItemRef } = paginationProps;
+
   return (
     <Flex $flexDirection="column">
       {currentPageItems.length ? (
@@ -37,7 +45,7 @@ const UnitList: FC<UnitListProps> = (props) => {
           <UL aria-label="A list of units" $reset>
             {currentPageItems.map((item, index) => (
               <LI key={`UnitList-UnitListItem-${item[0]?.slug}`}>
-                {item.length > 1 ? (
+                {item.length > 1 && !isSpecialist ? (
                   <>
                     <OptionalityCard
                       unitOptions={item}
