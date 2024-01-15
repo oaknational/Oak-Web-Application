@@ -1,13 +1,12 @@
 import { FC, useRef } from "react";
 
-import Logo from "../Logo";
-import { HeaderProps } from "../SharedComponents/Layout/Layout";
-import OakLink from "../OakLink";
-import { Menu } from "../Menu";
-import { useMenuContext } from "../../context/Menu";
-import BurgerMenuSections from "../BurgerMenuSections/BurgerMenuSections";
-import { ActiveLinkUnderline } from "../OakLink/OakLink";
-
+import Logo from "@/components/Logo";
+import { HeaderProps } from "@/components/SharedComponents/Layout/Layout";
+import OakLink from "@/components/OakLink";
+import { Menu } from "@/components/Menu";
+import { useMenuContext } from "@/components/../context/Menu";
+import BurgerMenuSections from "@/components/BurgerMenuSections/BurgerMenuSections";
+import { ActiveLinkUnderline } from "@/components/OakLink/OakLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";

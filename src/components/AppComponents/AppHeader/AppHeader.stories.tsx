@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../storybook-decorators/AnalyticsDecorator";
-import { MenuProvider } from "../../context/Menu";
-
 import Component from "./AppHeader";
+
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+import { MenuProvider } from "@/context/Menu";
+
 
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
