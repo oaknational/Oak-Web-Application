@@ -6,7 +6,7 @@ import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 type PropsWithoutForm = Omit<

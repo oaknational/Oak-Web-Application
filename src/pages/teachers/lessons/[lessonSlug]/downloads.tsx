@@ -16,7 +16,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloadsCanonical/lessonDownloadsCanonical.schema";
 import curriculumApi from "@/node-lib/curriculum-api";
-import { getCommonPathway } from "@/components/TeacherComponents/lesson.helpers";
+import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import OakError from "@/errors/OakError";
 
 export type LessonDownloadsCanonicalPageProps = {

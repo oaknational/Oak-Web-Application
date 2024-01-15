@@ -10,7 +10,7 @@ import {
 import {
   ErrorKeysType,
   ResourceFormProps,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
@@ -19,7 +19,7 @@ import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/R
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
-import getDownloadFormErrorMessage from "@/components/TeacherComponents/downloadAndShareHelpers/getDownloadFormErrorMessage";
+import getDownloadFormErrorMessage from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/SharedComponents/Box";

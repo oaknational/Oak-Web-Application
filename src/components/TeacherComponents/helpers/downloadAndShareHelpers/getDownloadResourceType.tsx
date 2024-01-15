@@ -5,8 +5,7 @@ import {
   PreselectedDownloadType,
   PreselectedShareType,
   ShareResourceType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export const getPreselectedDownloadResourceTypes = (
   title: PreselectedDownloadType,

@@ -2,7 +2,7 @@ import type {
   SchoolOptionValueType,
   ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
-import type { ResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import type { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export const getSchoolOption = (school: string) => {
   if (school === "notListed") {

@@ -1,10 +1,9 @@
 import { FC, useEffect, useState } from "react";
 
-
 import { shareLinkConfig } from "./linkConfig";
 import { getHrefForSocialSharing } from "./getHrefForSocialSharing";
 
-import { ResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import { ResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading } from "@/components/SharedComponents/Typography";

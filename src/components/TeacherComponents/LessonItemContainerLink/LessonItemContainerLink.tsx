@@ -6,7 +6,7 @@ import {
   PreselectedShareType,
   isPreselectedDownloadType,
   isPreselectedShareType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   LessonDownloadsCanonicalLinkProps,
   LessonDownloadsLinkProps,

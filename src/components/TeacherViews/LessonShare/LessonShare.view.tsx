@@ -8,19 +8,19 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonShareBreadCrumb,
-} from "@/components/TeacherComponents/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
 import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
 import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
-import { useResourceFormState } from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormState";
-import useResourceFormSubmit from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormSubmit";
+import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   ResourceType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   PupilActivityResourceTypesValueType,
@@ -29,8 +29,8 @@ import {
 import {
   getSchoolName,
   getSchoolOption,
-} from "@/components/TeacherComponents/downloadAndShareHelpers/getFormattedDetailsForTracking";
-import { useHubspotSubmit } from "@/components/TeacherComponents/downloadAndShareHooks/useHubspotSubmit";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 type LessonShareProps =
   | {

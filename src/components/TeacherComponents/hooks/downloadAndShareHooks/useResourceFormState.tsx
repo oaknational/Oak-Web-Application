@@ -8,22 +8,22 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 import {
   getSchoolOption,
   getSchoolUrn,
-} from "@/components/TeacherComponents/downloadAndShareHelpers/getFormattedDetailsForTracking";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import {
   ResourceFormProps,
   ResourceType,
   isPreselectedDownloadType,
   isPreselectedShareType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   getPreselectedDownloadResourceTypes,
   getPreselectedShareResourceTypes,
-} from "@/components/TeacherComponents/downloadAndShareHelpers/getDownloadResourceType";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourceType";
 import {
   preselectedDownloadType,
   preselectedShareType,
   resourceFormValuesSchema,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.schema";
+} from "@/components/TeacherComponents/downloadAndShare.schema";
 import {
   LessonDownloadsData,
   LessonShareData,

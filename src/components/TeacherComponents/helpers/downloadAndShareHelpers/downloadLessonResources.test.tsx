@@ -1,8 +1,7 @@
-
 import downloadLessonResources from "./downloadLessonResources";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 
-import type { ResourcesToDownloadArrayType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 jest.mock("./createDownloadResourcesLink");
 jest.mock("./createAndClickHiddenDownloadLink");

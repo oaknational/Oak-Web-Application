@@ -2,8 +2,8 @@ import { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
-import { sortShareResources } from "@/components/TeacherComponents/downloadAndShareHelpers/sortResources";
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import { sortShareResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { LessonShareData, LessonShareSchema } from "@/node-lib/curriculum-api";
 import Flex from "@/components/SharedComponents/Flex";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";

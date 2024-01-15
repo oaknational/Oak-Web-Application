@@ -6,11 +6,11 @@ import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
-} from "@/components/TeacherComponents/lesson.helpers";
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
-} from "@/components/TeacherComponents/lesson.types";
+} from "@/components/TeacherComponents/types/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
@@ -29,7 +29,7 @@ import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails"
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { useCurrentSection } from "@/components/TeacherComponents/useCurrentSection";
+import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 

@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { containerTitleToPreselectMap } from "@/components/TeacherComponents/downloadAndShareHelpers/containerTitleToPreselectMap";
+import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import Icon from "@/components/SharedComponents/Icon";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import IconButton from "@/components/SharedComponents/Button/IconButton";

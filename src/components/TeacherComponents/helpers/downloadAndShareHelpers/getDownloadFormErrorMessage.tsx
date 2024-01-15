@@ -1,4 +1,4 @@
-import type { ErrorKeysType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import type { ErrorKeysType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type ErrorMessagesAndOrderType = {
   order: number;

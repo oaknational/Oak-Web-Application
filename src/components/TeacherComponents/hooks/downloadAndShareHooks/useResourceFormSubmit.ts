@@ -3,9 +3,8 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 import type {
   DownloadResourceType,
   ResourceFormProps,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-import downloadLessonResources from "@/components/TeacherComponents/downloadAndShareHelpers/downloadLessonResources";
-
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
+import downloadLessonResources from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 type UseResourceFormProps = {
   onSubmit?: () => void;

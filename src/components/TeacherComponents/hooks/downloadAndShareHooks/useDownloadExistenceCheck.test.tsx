@@ -5,8 +5,7 @@ import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
 import type {
   DownloadResourceType,
   ResourcesToDownloadArrayType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 const resources: Partial<Record<DownloadResourceType, boolean>> = {
   "exit-quiz-answers": true,

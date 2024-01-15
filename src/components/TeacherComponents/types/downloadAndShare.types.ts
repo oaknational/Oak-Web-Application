@@ -5,7 +5,7 @@ import {
   preselectedResourceType,
   preselectedShareType,
   resourceFormValuesSchema,
-} from "./downloadAndShare.schema";
+} from "../downloadAndShare.schema";
 
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import { ExpandingContainerTitle } from "@/components/ExpandingContainer/ExpandingContainer";

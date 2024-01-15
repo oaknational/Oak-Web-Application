@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { DownloadResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 

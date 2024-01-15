@@ -1,7 +1,7 @@
 import {
   ResourceType,
   Resources,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import {
   LessonDownloadsData,
   LessonShareData,

@@ -9,7 +9,7 @@ import ResourcePageLayout, {
 import Component from ".";
 
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
-import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import * as downloads from "@/node-lib/curriculum-api/fixtures/downloads.fixture";
 
 const meta: Meta<typeof Component> = {
