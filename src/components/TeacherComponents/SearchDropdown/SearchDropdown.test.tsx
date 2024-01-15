@@ -1,10 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
-import { SearchResultsItemProps } from "../TeacherComponents/SearchResultsItem/SearchResultsItem";
-
 import SearchDropdown from "./SearchDropdown";
 
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { searchResultsItem } from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 
