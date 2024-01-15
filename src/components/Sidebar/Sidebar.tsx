@@ -95,7 +95,7 @@ const Sidebar: FC<ModalProps> = ({
                         $alignItems={"flex-start"}
                         $gap={8}
                       >
-                        {!lessonsAvailable && (
+                        {lessonsAvailable === false && (
                           <TagFunctional
                             data-testid="coming-soon-flag"
                             text={"Coming soon"}

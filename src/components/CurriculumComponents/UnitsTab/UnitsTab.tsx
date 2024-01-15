@@ -89,9 +89,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
   const duplicateUnitSlugs = new Set<string>();
 
   useEffect(() => {
-    if (displayModal === true && unitData) {
+    if (unitData) {
       setLessonsAvailable(getLessonsAvailable(unitData.lessons));
-    } else setLessonsAvailable(null);
+    }
+    if (displayModal === false) {
+      setLessonsAvailable(null);
+    }
   }, [unitData, displayModal]);
 
   // Initialize data structure for displaying units by year
