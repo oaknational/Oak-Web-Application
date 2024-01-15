@@ -8,11 +8,11 @@ import {
 } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
-import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
-import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
-import { QuizShortAnswer } from "@/components/PupilJourneyComponents/QuizShortAnswer";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
+import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
+import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();

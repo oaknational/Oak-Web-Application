@@ -8,7 +8,7 @@ import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 import {
   QuizEngineContext,
   QuizEngineContextType,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+} from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   mcqTextAnswers,

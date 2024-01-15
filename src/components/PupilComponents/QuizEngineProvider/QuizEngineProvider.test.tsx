@@ -5,7 +5,7 @@ import {
   QuizEngineProps,
   QuizEngineProvider,
   useQuizEngineContext,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+} from "@/components/PupilComponents/QuizEngineProvider";
 import { quizQuestions as questionsArrayFixture } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 describe("QuizEngineContext", () => {

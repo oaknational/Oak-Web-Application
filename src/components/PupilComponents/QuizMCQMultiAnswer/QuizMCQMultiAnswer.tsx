@@ -20,7 +20,7 @@ import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;

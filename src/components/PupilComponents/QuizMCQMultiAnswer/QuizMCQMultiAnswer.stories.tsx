@@ -11,7 +11,7 @@ import {
   QuizEngineContext,
   QuizEngineContextType,
   QuizEngineProvider,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+} from "@/components/PupilComponents/QuizEngineProvider";
 import {
   quizQuestions,
   mcqImageAnswers,

@@ -7,8 +7,8 @@ import { act, fireEvent } from "@testing-library/react";
 import {
   QuizEngineContextType,
   QuizEngineContext,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer";
+} from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 

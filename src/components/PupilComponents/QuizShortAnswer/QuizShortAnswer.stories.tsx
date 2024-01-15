@@ -12,7 +12,7 @@ import {
   QuestionModeType,
   QuizEngineContext,
   QuizEngineContextType,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+} from "@/components/PupilComponents/QuizEngineProvider";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
 const meta = {

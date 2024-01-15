@@ -8,7 +8,7 @@ import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 import {
   QuizEngineContextType,
   QuizEngineContext,
-} from "@/components/PupilJourneyComponents/QuizEngineProvider";
+} from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 

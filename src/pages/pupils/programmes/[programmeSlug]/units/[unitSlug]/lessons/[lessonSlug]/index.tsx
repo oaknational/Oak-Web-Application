@@ -10,8 +10,8 @@ import {
   OakThemeProvider,
 } from "@oak-academy/oak-components";
 
-import { QuizEngineProvider } from "@/components/PupilJourneyComponents/QuizEngineProvider/QuizEngineProvider";
-import { QuizRenderer } from "@/components/PupilJourneyComponents/QuizRenderer/QuizRenderer";
+import { QuizEngineProvider } from "@/components/PupilComponents/QuizEngineProvider/QuizEngineProvider";
+import { QuizRenderer } from "@/components/PupilComponents/QuizRenderer/QuizRenderer";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { PupilLessonOverviewData } from "@/node-lib/curriculum-api";

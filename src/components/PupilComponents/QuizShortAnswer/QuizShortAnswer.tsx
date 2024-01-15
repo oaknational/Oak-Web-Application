@@ -5,7 +5,7 @@ import {
   OakQuizTextInput,
 } from "@oak-academy/oak-components";
 
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz

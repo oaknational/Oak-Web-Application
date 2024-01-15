@@ -5,7 +5,7 @@ import {
   OakRadioGroup,
 } from "@oak-academy/oak-components";
 
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;
