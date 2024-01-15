@@ -11,14 +11,14 @@ import {
   ErrorKeysType,
   ResourceFormProps,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
-import NoResourcesToDownload from "@/components/DownloadAndShareComponents/NoResourcesToDownload";
+import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import DetailsCompleted from "@/components/DownloadAndShareComponents/DetailsCompleted";
 import { DetailsCompletedProps } from "@/components/DownloadAndShareComponents/DetailsCompleted/DetailsCompleted";
 import SchoolDetails from "@/components/DownloadAndShareComponents/SchoolDetails";
 import { SchoolDetailsProps } from "@/components/DownloadAndShareComponents/SchoolDetails/SchoolDetails";
 import TermsAndConditionsCheckbox from "@/components/DownloadAndShareComponents/TermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
-import NoResourcesToShare from "@/components/DownloadAndShareComponents/NoResourcesToShare";
+import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";

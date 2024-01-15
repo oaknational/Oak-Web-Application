@@ -1,6 +1,7 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import NoResourcesToShare from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 describe("NoResourcesToDownload", () => {
   it("renders NoResourcesToShare component", () => {
