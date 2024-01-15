@@ -6,16 +6,16 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { type LessonDownloadsData } from "@/node-lib/curriculum-api";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import getFormattedDetailsForTracking from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
-import useDownloadExistenceCheck from "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck";
-import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
+import getFormattedDetailsForTracking from "@/components/TeacherComponents/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import useDownloadExistenceCheck from "@/components/TeacherComponents/downloadAndShareHooks/useDownloadExistenceCheck";
+import useResourceFormSubmit from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   DownloadResourceType,
 } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
-import debouncedSubmit from "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit";
+import debouncedSubmit from "@/components/TeacherComponents/downloadAndShareHelpers/downloadDebounceSubmit";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getLessonOverviewBreadCrumb,
@@ -26,10 +26,10 @@ import {
 import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
-import DownloadConfirmation from "@/components/DownloadAndShareComponents/DownloadConfirmation";
+import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
-import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
+import { useResourceFormState } from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormState";
+import { useHubspotSubmit } from "@/components/TeacherComponents/downloadAndShareHooks/useHubspotSubmit";
 
 type LessonDownloadsProps =
   | {

@@ -3,7 +3,7 @@ import downloadDebounceSubmit, {
 } from "./downloadDebounceSubmit";
 
 const reportError = jest.fn();
-jest.mock("../../../common-lib/error-reporter/", () => ({
+jest.mock("@/common-lib/error-reporter/", () => ({
   __esModule: true,
   default:
     () =>

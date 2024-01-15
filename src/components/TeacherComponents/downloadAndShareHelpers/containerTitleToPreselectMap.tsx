@@ -1,4 +1,4 @@
-import { CombinedDownloadsShareType } from "../downloadAndShare.types";
+import { CombinedDownloadsShareType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 
 export const containerTitleToPreselectMap: CombinedDownloadsShareType = {
   "Slide deck": { downloadType: "slide deck", shareType: null },

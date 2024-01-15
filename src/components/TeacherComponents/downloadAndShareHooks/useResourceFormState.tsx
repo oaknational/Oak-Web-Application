@@ -3,28 +3,27 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 
+import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+
 import {
   getSchoolOption,
   getSchoolUrn,
-} from "../helpers/getFormattedDetailsForTracking";
+} from "@/components/TeacherComponents/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import {
   ResourceFormProps,
   ResourceType,
   isPreselectedDownloadType,
   isPreselectedShareType,
-} from "../downloadAndShare.types";
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import {
   getPreselectedDownloadResourceTypes,
   getPreselectedShareResourceTypes,
-} from "../helpers/getDownloadResourceType";
+} from "@/components/TeacherComponents/downloadAndShareHelpers/getDownloadResourceType";
 import {
   preselectedDownloadType,
   preselectedShareType,
   resourceFormValuesSchema,
-} from "../downloadAndShare.schema";
-
-import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
-
+} from "@/components/DownloadAndShareComponents/downloadAndShare.schema";
 import {
   LessonDownloadsData,
   LessonShareData,

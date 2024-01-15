@@ -1,8 +1,8 @@
 import { act, renderHook } from "@testing-library/react";
 
-import "../../../__tests__/__helpers__/LocalStorageMock";
-
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+
+import "@/__tests__/__helpers__/LocalStorageMock";
 
 describe("useLocalStorageForDownloads", () => {
   beforeEach(() => {

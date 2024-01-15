@@ -1,10 +1,11 @@
+import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
+
 import type {
   DownloadResourceType,
   ResourceFormProps,
-} from "../downloadAndShare.types";
-import downloadLessonResources from "../helpers/downloadLessonResources";
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+import downloadLessonResources from "@/components/TeacherComponents/downloadAndShareHelpers/downloadLessonResources";
 
-import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 type UseResourceFormProps = {
   onSubmit?: () => void;

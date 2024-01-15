@@ -1,9 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
-import { ResourceFormProps } from "../downloadAndShare.types";
-
 import { useHubspotSubmit } from "./useHubspotSubmit";
 
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import OakError from "@/errors/OakError";
 
 const hubspotSubmitMock = jest.fn();

@@ -1,6 +1,7 @@
-import { ResourceType } from "../../DownloadAndShareComponents/downloadAndShare.types";
-
 import { ShareLinkConfig } from "./linkConfig";
+
+import { ResourceType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+
 
 function getActivityQueryString(selectedActivities: Array<ResourceType>) {
   const classroomActivityMap: Partial<Record<ResourceType, string>> = {

@@ -19,7 +19,7 @@ import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/R
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
-import getDownloadFormErrorMessage from "@/components/DownloadAndShareComponents/helpers/getDownloadFormErrorMessage";
+import getDownloadFormErrorMessage from "@/components/TeacherComponents/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
 import FieldError from "@/components/FormFields/FieldError";
 import Box from "@/components/SharedComponents/Box";

@@ -1,11 +1,12 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
+import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
+
 import type {
   DownloadResourceType,
   ResourcesToDownloadArrayType,
-} from "../downloadAndShare.types";
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 
-import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
 
 const resources: Partial<Record<DownloadResourceType, boolean>> = {
   "exit-quiz-answers": true,

@@ -1,7 +1,8 @@
-import type { ResourcesToDownloadArrayType } from "../downloadAndShare.types";
 
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
+
+import type { ResourcesToDownloadArrayType } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 
 const downloadLessonResources = async (
   lessonSlug: string,

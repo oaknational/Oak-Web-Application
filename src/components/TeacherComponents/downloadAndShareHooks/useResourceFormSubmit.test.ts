@@ -1,9 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import downloadLessonResources from "../helpers/downloadLessonResources";
-import { ResourceFormProps } from "../downloadAndShare.types";
-
 import useResourceFormSubmit from "./useResourceFormSubmit";
+
+import downloadLessonResources from "@/components/TeacherComponents/downloadAndShareHelpers/downloadLessonResources";
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+
 
 jest.mock("../helpers/downloadLessonResources", () => ({
   __esModule: true,

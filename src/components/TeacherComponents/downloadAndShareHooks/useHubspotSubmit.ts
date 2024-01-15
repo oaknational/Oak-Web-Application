@@ -1,5 +1,4 @@
-import { ResourceFormProps } from "../downloadAndShare.types";
-
+import { ResourceFormProps } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import { getHubspotDownloadsFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import useUtmParams from "@/hooks/useUtmParams";

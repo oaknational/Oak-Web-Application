@@ -15,8 +15,8 @@ import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCard
 import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
 import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
 import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
-import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
-import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
+import { useResourceFormState } from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormState";
+import useResourceFormSubmit from "@/components/TeacherComponents/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   ResourceType,
@@ -29,8 +29,8 @@ import {
 import {
   getSchoolName,
   getSchoolOption,
-} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
-import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
+} from "@/components/TeacherComponents/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { useHubspotSubmit } from "@/components/TeacherComponents/downloadAndShareHooks/useHubspotSubmit";
 
 type LessonShareProps =
   | {

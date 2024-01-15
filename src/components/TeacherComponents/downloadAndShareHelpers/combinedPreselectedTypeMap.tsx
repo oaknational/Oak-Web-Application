@@ -1,4 +1,4 @@
-import { CombinedPreselectedTypeMap } from "../downloadAndShare.types";
+import { CombinedPreselectedTypeMap } from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 
 export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
   "slide deck": { downloadType: ["presentation"] },

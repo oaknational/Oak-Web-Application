@@ -2,8 +2,8 @@ import {
   LS_KEY_EMAIL,
   LS_KEY_SCHOOL,
   LS_KEY_TERMS,
-} from "../../../config/localStorageKeys";
-import useLocalStorage from "../../../hooks/useLocalStorage";
+} from "@/config/localStorageKeys";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const useLocalStorageForDownloads = () => {
   const [emailFromLocalStorage, setEmailInLocalStorage] = useLocalStorage(

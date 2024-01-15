@@ -1,4 +1,4 @@
-import createAndClickHiddenDownloadLink from "../../../DownloadAndShareComponents/helpers/createAndClickHiddenDownloadLink";
+import createAndClickHiddenDownloadLink from "../../downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 const downloadZip = async (keyStageNum: string, subject: string) => {
   const res = await fetch(

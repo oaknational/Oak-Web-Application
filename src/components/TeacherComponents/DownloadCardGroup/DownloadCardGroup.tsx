@@ -5,10 +5,9 @@ import styled from "styled-components";
 import type {
   DownloadResourceType,
   ResourceFormProps,
-} from "../../DownloadAndShareComponents/downloadAndShare.types";
-
+} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
-import { sortDownloadResources } from "@/components/DownloadAndShareComponents/helpers/sortResources";
+import { sortDownloadResources } from "@/components/TeacherComponents/downloadAndShareHelpers/sortResources";
 import { LessonDownloadsData } from "@/node-lib/curriculum-api";
 import Box from "@/components/SharedComponents/Box";
 import Grid from "@/components/SharedComponents/Grid";
