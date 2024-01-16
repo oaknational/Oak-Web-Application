@@ -83,7 +83,7 @@ async function main() {
     NEXT_PUBLIC_GLEAP_API_KEY:
       process.env.NEXT_PUBLIC_GLEAP_API_KEY || oakConfig.gleap.apiKey,
     NEXT_PUBLIC_GLEAP_API_URL:
-      process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl,
+      process.env.NEXT_PUBLIC_GLEAP_API_URL || oakConfig.gleap.apiUrl13,
     NEXT_PUBLIC_GLEAP_FRAME_URL:
       process.env.NEXT_PUBLIC_GLEAP_FRAME_URL || oakConfig.gleap.frameUrl,
 
