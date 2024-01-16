@@ -18,9 +18,10 @@ import PostList from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
-import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
-import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
-import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
+import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
+import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
+import PupilTab from "@/components/GenericPagesComponents/PupilTab";
+import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -32,7 +33,6 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
-import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;

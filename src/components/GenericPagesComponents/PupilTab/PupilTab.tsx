@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import ImageContainer from "../ImageContainer/ImageContainer";
-
+import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";

@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import ImageContainer from "../ImageContainer/ImageContainer";
-
+import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
