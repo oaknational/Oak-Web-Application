@@ -3,7 +3,7 @@ import { match, compile, MatchFunction } from "path-to-regexp";
 import {
   PreselectedDownloadType,
   PreselectedShareType,
-} from "../../components/DownloadAndShareComponents/downloadAndShare.types";
+} from "../../components/TeacherComponents/types/downloadAndShare.types";
 import { PageNameValueType } from "../../browser-lib/avo/Avo";
 import isBrowser from "../../utils/isBrowser";
 import errorReporter from "../error-reporter";

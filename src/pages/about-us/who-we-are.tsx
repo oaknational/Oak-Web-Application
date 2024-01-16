@@ -4,7 +4,7 @@ import { NextPage, GetStaticProps, GetStaticPropsResult } from "next";
 import CMSClient from "@/node-lib/cms";
 import { AboutWhoWeArePage, TextBlock } from "@/common-lib/cms-types";
 import { decorateWithIsr } from "@/node-lib/isr";
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 import Card from "@/components/SharedComponents/Card";

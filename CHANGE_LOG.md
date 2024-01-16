@@ -1,3 +1,28 @@
+# [1.326.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.1...v1.326.0) (2024-01-15)
+
+
+### Bug Fixes
+
+* export isText ([406aa37](https://github.com/oaknational/Oak-Web-Application/commit/406aa37020f3868f1ee9a5a71035e908f3957711))
+* using latests oak-components ([9e4c805](https://github.com/oaknational/Oak-Web-Application/commit/9e4c805eb9aef569e47ca23cba81f014be58e5c6))
+
+
+### Features
+
+* image rendering for MCQ single answer ([7139a87](https://github.com/oaknational/Oak-Web-Application/commit/7139a87057adf44303356695fec1c42375e9fdbb))
+* refactor answer type discriminators ([ba4d9a3](https://github.com/oaknational/Oak-Web-Application/commit/ba4d9a30bc2226f986787be63794342c9748f74a))
+* refactoring ([090f948](https://github.com/oaknational/Oak-Web-Application/commit/090f94870a8666129a9ebd6662c9bb0f6011591d))
+* update to use new QuizRadioBox ([048c399](https://github.com/oaknational/Oak-Web-Application/commit/048c39980855fbae6c5e4a4cf738b1c5dec76d57))
+
+## [1.325.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.0...v1.325.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* clean up robots.txt rules ([413c11c](https://github.com/oaknational/Oak-Web-Application/commit/413c11c44e3e5c4d6e2c429d67bd4c8590ca6d19))
+* update robots.txt ([85edd6f](https://github.com/oaknational/Oak-Web-Application/commit/85edd6f95cfc09f47d79943df43a7cedd735a4bf))
+* update robots.txt ([9a591a5](https://github.com/oaknational/Oak-Web-Application/commit/9a591a526b5609e74c22d9b813aa7f94d6c9e337))
+
 # [1.325.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.324.0...v1.325.0) (2024-01-11)
 
 

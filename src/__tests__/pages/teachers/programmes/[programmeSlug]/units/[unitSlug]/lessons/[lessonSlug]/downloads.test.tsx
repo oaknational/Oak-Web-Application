@@ -10,7 +10,7 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api/fixtures/lessonDownloads.fixture";
 import LessonDownloadsPage, {
   LessonDownloadsPageProps,
@@ -19,9 +19,6 @@ import LessonDownloadsPage, {
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
 import OakError from "@/errors/OakError";
-
-vi.mock('@/node-lib/curriculum-api-2023'); 
-vi.mock('@/node-lib/curriculum-api'); 
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -36,7 +33,7 @@ const getDownloadResourcesExistenceData = {
 
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
 vi.mock(
-  "@/components/DownloadAndShareComponents/helpers/getDownloadResourcesExistence",
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: () => getDownloadResourcesExistenceData,
@@ -44,7 +41,7 @@ vi.mock(
 );
 
 vi.mock(
-  "@/components/DownloadAndShareComponents/helpers/downloadDebounceSubmit",
+  "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
     default: () => {
@@ -54,12 +51,10 @@ vi.mock(
 );
 
 vi.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
-  () => ({
-    default: () => {
-      return vi.fn();
-    },
-  })
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
+  () => {
+    return jest.fn();
+  },
 );
 
 beforeEach(() => {
@@ -367,8 +362,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("SEO", () => {
-    it.only("renders the correct SEO details", async () => {
-      const { seo } = renderWithSeo()(<LessonDownloadsPage {...props} />);      
+    it("renders the correct SEO details", async () => {
+      const { seo } = renderWithSeo()(<LessonDownloadsPage {...props} />);
 
       expect(seo).toEqual({
         ...mockSeoResult,

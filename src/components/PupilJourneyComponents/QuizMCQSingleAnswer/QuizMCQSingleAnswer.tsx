@@ -1,11 +1,18 @@
-import { useMemo, useRef, useEffect } from "react";
-import {
-  OakBox,
-  OakRadioButton,
-  OakRadioGroup,
-} from "@oak-academy/oak-components";
+import { useMemo } from "react";
+import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
+import {
+  getStemImage,
+  isText,
+} from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
+
+// testing
+//text only
+//http://localhost:3000/pupils/programmes/combined-science-secondary-ks4-foundation-aqa/units/measuring-waves/lessons/transverse-waves
+//with images
+//http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;
@@ -14,6 +21,9 @@ export type QuizMCQSingleAnswerProps = {
 
 export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const { onInitialChange, onChange } = props;
+
+  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
+
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const answers = useMemo(
@@ -23,89 +33,42 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
   const questionState = quizEngineContext.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
 
-  const lastChanged = useRef<number>(0);
-
-  useEffect(() => {
-    lastChanged.current = 0;
-  }, [currentQuestionIndex]);
-
   if (!questionState) {
     return null;
   }
-
-  const handleOnChange = () => {
-    if (lastChanged.current === 0 && onInitialChange) {
-      onInitialChange();
-    } else if (lastChanged.current !== 0 && onChange) {
-      onChange();
-    }
-    lastChanged.current = Date.now();
-  };
 
   const isFeedbackMode = questionState.mode === "feedback";
 
   return (
     <OakRadioGroup
-      name={questionUid || "quiz"}
+      name={questionUid || "mcq-single-answer"}
       $flexDirection={"column"}
+      $gap={"space-between-s"}
       onChange={handleOnChange}
       disabled={isFeedbackMode}
     >
       {answers?.map((answer, i) => {
+        const label = answer.answer.find(isText);
+
+        const image = getStemImage({
+          stem: answer.answer,
+          minWidth: "all-spacing-19",
+        });
+
+        const feedback = Array.isArray(questionState.feedback)
+          ? questionState.feedback[i]
+          : undefined;
+
         return (
-          <OakBox key={`${questionUid}-answer-${i}`}>
-            {answer.answer.map((answerItem) => {
-              let feedbackModeColor: "oakGreen" | "red" | undefined;
-
-              if (questionState.feedback?.[i] === "correct") {
-                feedbackModeColor = "oakGreen";
-              } else if (questionState.feedback?.[i] === "incorrect") {
-                feedbackModeColor = "red";
-              }
-
-              const backgroundColor = isFeedbackMode
-                ? feedbackModeColor
-                : undefined;
-
-              const color = backgroundColor ? "text-inverted" : undefined;
-
-              const correctChoice = (
-                <>
-                  {answer.answer_is_correct && isFeedbackMode && (
-                    <OakBox
-                      $position={"absolute"}
-                      $top={"all-spacing-3"}
-                      $right={"all-spacing-3"}
-                      $font={"body-3-bold"}
-                      $color={color}
-                    >
-                      Correct choice
-                    </OakBox>
-                  )}
-                </>
-              );
-
-              if (answerItem.type === "text") {
-                return (
-                  <OakBox key={`radio-${i}`} $position={"relative"}>
-                    <OakRadioButton
-                      key={`${questionUid}-answer-${i}`}
-                      $pa="inner-padding-s"
-                      $ba={"border-solid-s"}
-                      $borderRadius={"border-radius-s"}
-                      $color={color}
-                      $background={backgroundColor}
-                      id={`${questionUid}-answer-${i}`}
-                      tabIndex={i}
-                      value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
-                      label={answerItem.text}
-                    />
-                    {correctChoice}
-                  </OakBox>
-                );
-              }
-            })}
-          </OakBox>
+          <OakQuizRadioButton
+            id={`${questionUid}-answer-${i}`}
+            key={`${questionUid}-answer-${i}`}
+            tabIndex={i}
+            value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
+            label={label?.text}
+            feedback={feedback}
+            image={image}
+          />
         );
       })}
     </OakRadioGroup>

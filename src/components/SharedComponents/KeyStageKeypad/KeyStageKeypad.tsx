@@ -5,7 +5,7 @@ import OakLink from "@/components/OakLink";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import useIsCurrent from "@/components//MenuLinks/useIsCurrent";
+import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import { Heading, UL, LI, P } from "@/components/SharedComponents/Typography";

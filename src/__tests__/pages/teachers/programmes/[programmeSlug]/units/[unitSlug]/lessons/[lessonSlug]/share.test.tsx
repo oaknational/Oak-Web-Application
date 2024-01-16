@@ -3,13 +3,14 @@ import { GetStaticPropsContext, PreviewData } from "next";
 import { useForm } from "react-hook-form";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
+import React from "react";
 
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import "@/__tests__/__helpers__/LocalStorageMock";
-import useLocalStorageForDownloads from "@/components/DownloadAndShareComponents/hooks/useLocalStorageForDownloads";
+import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import LessonSharePage, {
   LessonSharePageProps,
   URLParams,
@@ -18,9 +19,6 @@ import LessonSharePage, {
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share";
 import lessonShareFixtures from "@/node-lib/curriculum-api/fixtures/lessonShare.fixture";
 
-vi.mock('@/node-lib/curriculum-api-2023'); 
-vi.mock('@/node-lib/curriculum-api'); 
-
 const props: LessonSharePageProps = {
   curriculumData: lessonShareFixtures(),
 };
@@ -28,9 +26,9 @@ const props: LessonSharePageProps = {
 vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 vi.mock(
-  "@/components/DownloadAndShareComponents/hooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
   () => {
-    return vi.fn();
+    return jest.fn();
   },
 );
 
@@ -318,7 +316,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
   });
 
   describe("SEO", () => {
-    it.only("renders the correct SEO details", async () => {
+    it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonSharePage {...props} />);
 
       expect(seo).toEqual({
