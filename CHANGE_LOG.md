@@ -1,3 +1,19 @@
+# [1.326.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.1...v1.326.0) (2024-01-15)
+
+
+### Bug Fixes
+
+* export isText ([406aa37](https://github.com/oaknational/Oak-Web-Application/commit/406aa37020f3868f1ee9a5a71035e908f3957711))
+* using latests oak-components ([9e4c805](https://github.com/oaknational/Oak-Web-Application/commit/9e4c805eb9aef569e47ca23cba81f014be58e5c6))
+
+
+### Features
+
+* image rendering for MCQ single answer ([7139a87](https://github.com/oaknational/Oak-Web-Application/commit/7139a87057adf44303356695fec1c42375e9fdbb))
+* refactor answer type discriminators ([ba4d9a3](https://github.com/oaknational/Oak-Web-Application/commit/ba4d9a30bc2226f986787be63794342c9748f74a))
+* refactoring ([090f948](https://github.com/oaknational/Oak-Web-Application/commit/090f94870a8666129a9ebd6662c9bb0f6011591d))
+* update to use new QuizRadioBox ([048c399](https://github.com/oaknational/Oak-Web-Application/commit/048c39980855fbae6c5e4a4cf738b1c5dec76d57))
+
 ## [1.325.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.325.0...v1.325.1) (2024-01-12)
 
 
