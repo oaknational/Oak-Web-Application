@@ -41,7 +41,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     x: Omit<UnitListItemProps, "onClick" | "index">[] | SpecialistUnit,
   ): x is UnitOption[] => {
     if (x[0]) {
-      return "keyStageTitle" in x;
+      return "keyStageTitle" in x[0];
     } else {
       return false;
     }
