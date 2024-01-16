@@ -23,7 +23,7 @@ import UnitList from "@/components/TeacherComponents/UnitList";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
-import MobileFilters from "@/components/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";

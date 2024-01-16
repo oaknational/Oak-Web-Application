@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 
-import renderWithProviders from "../../__tests__/__helpers__/renderWithProviders";
-import waitForNextTick from "../../__tests__/__helpers__/waitForNextTick";
+import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
+import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
 
 import MobileFilters, { MobileFiltersProps } from "./MobileFilters";
 

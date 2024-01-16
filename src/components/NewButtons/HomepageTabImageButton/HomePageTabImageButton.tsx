@@ -1,13 +1,12 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled, { css, useTheme } from "styled-components";
 
-import ButtonLabel from "../NewButtonLabelWithScreenReaderTitle";
+import ButtonLabel from "@/components/NewButtons/NewButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
-} from "../NewFocusUndeline";
-import BrushUnderline from "../NewBrushUndeline";
-
+} from "@/components/NewButtons/NewFocusUndeline";
+import BrushUnderline from "@/components/NewButtons/NewBrushUndeline";
 import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OpacityProps } from "@/styles/utils/opacity";
