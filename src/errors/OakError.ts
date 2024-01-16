@@ -1,3 +1,5 @@
+import { mapValues } from "lodash";
+
 /**
  * Inspired in part by Firebase error handling
  * @see https://github.com/firebase/firebase-admin-node/blob/7ce2345d716697d743e0234e7d45446ca11bc1da/src/utils/error.ts
@@ -172,6 +174,43 @@ export interface ErrorInfo {
 }
 
 /**
+ * Recursively parse the error metadata and remove any sensitive values that can reasonably be removed.
+ * @param errorInfo
+ *
+ * @returns The error info with sensitive values removed.
+ */
+export function removeSensitiveValues(errorInfo: ErrorInfo): ErrorInfo {
+  function recursiveStringReplace(
+    obj: Record<string, unknown> | undefined,
+  ): Record<string, unknown> {
+    return mapValues(obj, (value) => {
+      if (typeof value === "string") {
+        const piiPatterns = [
+          // email
+          /[^@\s]+@[^@\s]+/g,
+        ];
+        if (piiPatterns.some((pattern) => pattern.test(value))) {
+          return "[REDACTED]";
+        }
+        return value;
+      }
+      if (typeof value === "object" && value !== null) {
+        /** @todo don't follow circular references */
+
+        // Recursively remove PII from any nested objects
+        return recursiveStringReplace(value as Record<string, unknown>);
+      }
+      return value;
+    });
+  }
+  const safeMeta = recursiveStringReplace(errorInfo.meta);
+  return {
+    ...errorInfo,
+    meta: safeMeta,
+  };
+}
+
+/**
  * Oak Error code structure. This extends Error.
  *
  * @param errorInfo - The error information (code and message).
@@ -182,8 +221,11 @@ class OakError extends Error {
   private _hasBeenReported = false;
 
   constructor(errorInfo: ErrorInfo) {
-    super(getErrorMessage(errorInfo));
-    this.errorInfo = errorInfo;
+    // Remove any sensitive values in the meta data.
+    const safeErrorInfo: ErrorInfo = removeSensitiveValues(errorInfo);
+
+    super(getErrorMessage(safeErrorInfo));
+    this.errorInfo = safeErrorInfo;
     if (
       errorInfo.originalError instanceof OakError &&
       errorInfo.originalError.hasBeenReported
