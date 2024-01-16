@@ -6,7 +6,7 @@ import {
   newIconFocusUnderline,
   NewIconFocusUnderline,
 } from "@/components/NewButtons/NewFocusUndeline";
-import BrushUnderline from "@/components/NewButtons/NewBrushUndeline";
+import HomePageTabBrushUnderline from "@/components/GenericPagesComponents/HomePageTabBrushUnderline";
 import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OpacityProps } from "@/styles/utils/opacity";
@@ -154,7 +154,7 @@ const HomePageTabImageButton = forwardRef<
               />
             )}
           </Flex>
-          {isCurrent && <BrushUnderline name="horizontal-rule" />}
+          {isCurrent && <HomePageTabBrushUnderline name="horizontal-rule" />}
           <NewIconFocusUnderline
             $color={underlineColor}
             data-testid={`${defaultTitle} underline`}
