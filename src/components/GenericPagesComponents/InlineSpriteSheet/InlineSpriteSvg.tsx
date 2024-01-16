@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { InlineSpriteSvgName } from "../../image-data";
+import { InlineSpriteSvgName } from "@/image-data";
 
 export type SvgProps = {
   name: InlineSpriteSvgName;
