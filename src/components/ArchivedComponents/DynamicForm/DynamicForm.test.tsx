@@ -2,14 +2,12 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
-import {
-  FormDefinition,
-  FormField,
-} from "../../../common-lib/forms/FormDefinition";
-import OakError from "../../../errors/OakError";
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
-
 import DynamicForm, { DynamicFormField } from "./DynamicForm";
+
+import { FormDefinition, FormField } from "@/common-lib/forms/FormDefinition";
+import OakError from "@/errors/OakError";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 jest.setTimeout(10000);
 
