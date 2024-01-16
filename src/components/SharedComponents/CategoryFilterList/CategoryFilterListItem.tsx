@@ -1,10 +1,9 @@
-import OakLink from "../../OakLink";
-import { ResolveOakHrefProps } from "../../../common-lib/urls";
-import useAnalytics from "../../../context/Analytics/useAnalytics";
-import type { LearningThemeSelectedTrackingProps } from "../../TeacherComponents/UnitsLearningThemeFilters";
-import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
-import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
-
+import OakLink from "@/components/OakLink";
+import { ResolveOakHrefProps } from "@/common-lib/urls";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
+import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PixelSpacing } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { LI } from "@/components/SharedComponents/Typography";

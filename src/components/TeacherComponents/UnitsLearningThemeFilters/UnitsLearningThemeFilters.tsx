@@ -1,14 +1,7 @@
 import { UnitListingLinkProps } from "@/common-lib/urls";
-import CategoryFilterList from "@/components/Filters/CategoryFilterList";
-import useCategoryFilterList from "@/components/Filters/CategoryFilterList/useCategoryFilterList";
+import CategoryFilterList, { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
+import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import Flex from "@/components/SharedComponents/Flex";
-
-export type LearningThemeSelectedTrackingProps = {
-  keyStageSlug: string;
-  keyStageTitle: string;
-  subjectTitle: string;
-  subjectSlug: string;
-};
 
 export type LearningTheme = {
   themeSlug?: string | null;

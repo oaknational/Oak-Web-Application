@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
-
 import Component from ".";
+
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+
 
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],

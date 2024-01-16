@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import OakLink from "@/components/OakLink";
-import CategoryFilterList from "@/components/Filters/CategoryFilterList";
-import useCategoryFilterList from "@/components/Filters/CategoryFilterList/useCategoryFilterList";
+import CategoryFilterList from "@/components/SharedComponents/CategoryFilterList";
+import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import {
   BlogListingLinkProps,
   WebinarListingLinkProps,

@@ -1,12 +1,17 @@
-import { BoxProps } from "../../SharedComponents/Box";
-import type { LearningThemeSelectedTrackingProps } from "../../TeacherComponents/UnitsLearningThemeFilters";
-
 import CategoryFilterListItem, {
   Category,
   CategoryLinkProps,
 } from "./CategoryFilterListItem";
 
+import { BoxProps } from "@/components/SharedComponents/Box";
 import { UL } from "@/components/SharedComponents/Typography";
+
+export type LearningThemeSelectedTrackingProps = {
+  keyStageSlug: string;
+  keyStageTitle: string;
+  subjectTitle: string;
+  subjectSlug: string;
+};
 
 export interface CategoryFilterListProps<T extends CategoryLinkProps>
   extends BoxProps {
