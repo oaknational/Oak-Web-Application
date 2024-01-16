@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import TagPromotional from "../TagPromotional";
+import TagPromotional from "../SharedComponents/TagPromotional";
 
 import { BurgerMenuLink, linkIsHref } from "./types";
 
