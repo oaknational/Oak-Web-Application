@@ -1,5 +1,3 @@
-import { mapValues } from "lodash";
-
 /**
  * Inspired in part by Firebase error handling
  * @see https://github.com/firebase/firebase-admin-node/blob/7ce2345d716697d743e0234e7d45446ca11bc1da/src/utils/error.ts
@@ -183,7 +181,7 @@ export function removeSensitiveValues(errorInfo: ErrorInfo): ErrorInfo {
   function recursiveStringReplace(
     obj: Record<string, unknown> | undefined,
   ): Record<string, unknown> {
-    return mapValues(obj, (value) => {
+    function replacer(value: unknown): typeof value {
       if (typeof value === "string") {
         const piiPatterns = [
           // email
@@ -194,14 +192,21 @@ export function removeSensitiveValues(errorInfo: ErrorInfo): ErrorInfo {
         }
         return value;
       }
-      if (typeof value === "object" && value !== null) {
-        /** @todo don't follow circular references */
-
-        // Recursively remove PII from any nested objects
+      if (
+        typeof value === "object" &&
+        value !== null &&
+        !Array.isArray(value)
+      ) {
+        // Recursively remove sensitive data from any nested objects
         return recursiveStringReplace(value as Record<string, unknown>);
       }
       return value;
-    });
+    }
+    const newObj = {} as Record<string, unknown>;
+    for (const key in obj) {
+      newObj[key] = replacer(obj[key]);
+    }
+    return newObj;
   }
   const safeMeta = recursiveStringReplace(errorInfo.meta);
   return {
