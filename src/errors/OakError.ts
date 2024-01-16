@@ -208,6 +208,10 @@ export function removeSensitiveValues(errorInfo: ErrorInfo): ErrorInfo {
     }
     return newObj;
   }
+  // If there is no metadata to sanitise, return the original error info.
+  if (!errorInfo.meta) {
+    return errorInfo;
+  }
   const safeMeta = recursiveStringReplace(errorInfo.meta);
   return {
     ...errorInfo,
