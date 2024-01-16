@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";

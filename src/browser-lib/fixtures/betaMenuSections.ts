@@ -1,6 +1,6 @@
-import { BurgerMenuSection } from "@/components/BurgerMenuSections/types";
+import { AppHeaderBurgerMenuSection } from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 
-export const betaMenuSections: Array<BurgerMenuSection> = [
+export const betaMenuSections: Array<AppHeaderBurgerMenuSection> = [
   {
     header: "Teachers",
     links: [

@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
