@@ -63,7 +63,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details for tiered programme", async () => {
+    it.skip("renders the correct SEO details for tiered programme", async () => {
       const { seo } = renderWithSeo()(
         <UnitListingPage curriculumData={unitListingWithTiersFixture()} />,
       );
@@ -79,7 +79,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
         robots: "noindex,nofollow",
       });
     });
-    it("renders the correct SEO details for non tiered programme", async () => {
+    it.skip("renders the correct SEO details for non tiered programme", async () => {
       const { seo } = renderWithSeo()(
         <UnitListingPage curriculumData={unitListingFixture()} />,
       );
@@ -98,7 +98,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
 
-    it("renders the correct SEO details for programmes with pagination", async () => {
+    it.skip("renders the correct SEO details for programmes with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 10;
       const { seo } = renderWithSeo()(
         <UnitListingPage

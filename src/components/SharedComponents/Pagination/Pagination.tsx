@@ -35,8 +35,8 @@ const Pagination: FC<PaginationProps & { pageName: string }> = ({
     return null;
   }
 
-  const [, prevHref = ""] = resolveHref(Router, prevPageUrlObject, true);
-  const [, nextHref = ""] = resolveHref(Router, nextPageUrlObject, true);
+  const [, prevHref = router.asPath] = resolveHref(Router, prevPageUrlObject, true);
+  const [, nextHref = router.asPath] = resolveHref(Router, nextPageUrlObject, true);
 
   const previousPageLabel =
     currentPage === 1

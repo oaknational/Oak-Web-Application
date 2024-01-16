@@ -99,7 +99,7 @@ describe("pages/blog/[blogSlug].tsx", () => {
     });
 
     describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
+      it.skip("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
           <BlogSinglePage blog={testSerializedBlog} categories={[]} />,
         );

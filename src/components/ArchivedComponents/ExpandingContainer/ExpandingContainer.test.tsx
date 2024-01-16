@@ -80,7 +80,7 @@ it.skip("renders top right icons", async () => {
   expect(log2).toHaveBeenCalled();
 });
 
-const resourceContainerExpanded = jest.fn();
+const resourceContainerExpanded = vi.fn();
 vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -93,7 +93,7 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("comonents/ExpandingContainer", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("component renders with the title", () => {
@@ -172,7 +172,7 @@ describe("comonents/ExpandingContainer", () => {
 
   it("calls tackingCallback on Download Button click if provided in props", async () => {
     const user = userEvent.setup();
-    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonClick = vi.fn();
 
     renderWithTheme(
       <ExpandingContainer

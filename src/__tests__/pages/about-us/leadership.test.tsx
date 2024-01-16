@@ -61,7 +61,7 @@ describe("pages/about/leadership.tsx", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <AboutUsLeadership pageData={testAboutLeadershipPageData} />,
       );

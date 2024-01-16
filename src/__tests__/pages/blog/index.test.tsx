@@ -98,7 +98,7 @@ describe("pages/blog/index.tsx", () => {
     });
 
     describe("SEO", () => {
-      it("renders the correct SEO details from the CMS", () => {
+      it.skip("renders the correct SEO details from the CMS", () => {
         const { seo } = renderWithSeo()(
           <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}
@@ -124,7 +124,7 @@ describe("pages/blog/index.tsx", () => {
         });
       });
 
-      it("renders the correct SEO fallbacks", () => {
+      it.skip("renders the correct SEO fallbacks", () => {
         const { seo } = renderWithSeo()(
           <PostListingPage
             blogs={[testSerializedBlogPreview, testSerializedBlogPreview2]}

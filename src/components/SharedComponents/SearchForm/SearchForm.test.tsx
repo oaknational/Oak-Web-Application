@@ -9,12 +9,13 @@ import SearchForm from "./SearchForm";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const handleSubmit = jest.fn();
+const handleSubmit = vi.fn();
 
 const providers = { theme: {} };
 const render = renderWithProviders(providers);
-const searchJourneyInitiated = jest.fn();
-const searchAttempted = jest.fn();
+const searchJourneyInitiated = vi.fn();
+const searchAttempted = vi.fn();
+
 vi.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
@@ -26,11 +27,9 @@ vi.mock("@/context/Analytics/useAnalytics.ts", () => ({
   }),
 }));
 
-vi.mock("next/dist/client/router", () => require("next-router-mock"));
-
 describe("<SearchForm />", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders", () => {

@@ -17,7 +17,7 @@ const getDownloadResourcesExistenceData = Object.entries(resources).map((v) => [
   { exists: v[1] },
 ]);
 
-const getDownloadResourcesExistenceMock = jest.fn(() => ({
+const getDownloadResourcesExistenceMock = vi.fn(() => ({
   resources: getDownloadResourcesExistenceData,
 }));
 
@@ -31,7 +31,7 @@ vi.mock(
 
 describe("useDownloadExistenceCheck", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("it calls onComplete with correct argument when all resources are available", async () => {
@@ -40,7 +40,7 @@ describe("useDownloadExistenceCheck", () => {
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
     const isLegacyDownload = true;
 
     renderHook(() =>
@@ -72,7 +72,7 @@ describe("useDownloadExistenceCheck", () => {
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
 
     getDownloadResourcesExistenceMock.mockImplementationOnce(() => ({
       resources: [

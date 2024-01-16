@@ -5,7 +5,7 @@ import { useHubspotSubmit } from "./useHubspotSubmit";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import OakError from "@/errors/OakError";
 
-const hubspotSubmitMock = jest.fn();
+const hubspotSubmitMock = vi.fn();
 vi.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
   __esModule: true,
   default: () => hubspotSubmitMock(),
@@ -16,13 +16,13 @@ vi.mock("@/hooks/useUtmParams", () => ({
   default: () => ({ utm_source: "les_twitz" }),
 }));
 
-const getHubspotUserToken = jest.fn(() => "hubspotutk value");
+const getHubspotUserToken = vi.fn(() => "hubspotutk value");
 vi.mock("@/browser-lib/hubspot/forms/getHubspotUserToken", () => ({
   __esModule: true,
   default: (...args: []) => getHubspotUserToken(...args),
 }));
 
-const reportError = jest.fn();
+const reportError = vi.fn();
 vi.mock("@/common-lib/error-reporter/", () => ({
   __esModule: true,
   default:
@@ -41,7 +41,7 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const data: ResourceFormProps = {
-  onSubmit: jest.fn(),
+  onSubmit: vi.fn(),
   email: "test@test.com",
   school: "222-Sample school",
   schoolName: "Sample school",
@@ -51,7 +51,7 @@ const data: ResourceFormProps = {
 
 describe("useHubspotSumit", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("should attempt to get the hubspotutk cookie", async () => {
     const { result } = renderHook(() => useHubspotSubmit());

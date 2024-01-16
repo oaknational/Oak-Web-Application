@@ -106,7 +106,7 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   describe.skip("SEO", () => {
-    it("renders the correct SEO details", () => {
+    it.skip("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
         <PlanALesson pageData={testPlanningPageData} />,
       );

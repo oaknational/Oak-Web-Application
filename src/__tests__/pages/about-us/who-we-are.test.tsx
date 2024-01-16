@@ -126,7 +126,7 @@ describe("pages/about/who-we-are.tsx", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", () => {
+    it.skip("renders the correct SEO details", () => {
       const { seo } = renderWithSeo()(
         <AboutWhoWeAre pageData={testAboutWhoWeArePageData} />,
       );

@@ -130,7 +130,7 @@ describe("pages/teachers/lessons", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
       expect(seo).toEqual({

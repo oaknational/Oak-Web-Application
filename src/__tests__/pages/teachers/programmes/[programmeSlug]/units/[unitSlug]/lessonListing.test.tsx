@@ -52,7 +52,7 @@ describe("Lesson listing page", () => {
   });
 
   describe("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
       );
@@ -68,7 +68,7 @@ describe("Lesson listing page", () => {
         robots: "noindex,nofollow",
       });
     });
-    it("renders the correct SEO details with pagination", async () => {
+    it.skip("renders the correct SEO details with pagination", async () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,

@@ -97,7 +97,7 @@ describe("pages/develop-your-curriculum.tsx", () => {
   });
 
   describe.skip("SEO", () => {
-    it("renders the correct SEO details", async () => {
+    it.skip("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <Curriculum pageData={testCurriculumPageData} />,
       );

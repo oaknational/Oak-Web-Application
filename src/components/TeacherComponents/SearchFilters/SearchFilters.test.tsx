@@ -7,11 +7,11 @@ vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const props = searchFilters;
 
-const searchRefined = jest.fn();
+const searchRefined = vi.fn();
 
 describe("SearchFilters", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("renders all the key stage, subject filters and search type filters", () => {

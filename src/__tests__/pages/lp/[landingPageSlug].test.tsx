@@ -80,7 +80,7 @@ describe("pages/lp/[landingPageSlug].tsx", () => {
     });
 
     describe.skip("SEO", () => {
-      it("renders the correct SEO details", async () => {
+      it.skip("renders the correct SEO details", async () => {
         const { seo } = renderWithSeo()(
           <LandingPageTemplate pageData={testLandingPage} />,
         );

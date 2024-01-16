@@ -1,17 +1,17 @@
 import { waitFor } from "@testing-library/react";
 import { RefObject } from "react";
+import mockRouter from 'next-router-mock';
 
 import Pagination from "./Pagination";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = vi.spyOn(require("next/router"), "useRouter");
+const CURRENT_PATH = "/some-path/with-pagination";
 
 describe("Pagination", () => {
-  vi.mock("next/dist/client/router", () => require("next-router-mock"));
-
   beforeEach(() => {
+    mockRouter.setCurrentUrl(CURRENT_PATH);
+
     vi.clearAllMocks();
   });
 
@@ -114,7 +114,7 @@ describe("Pagination", () => {
     getByText("page 25 / 25");
 
     expect(nextLink).toHaveAttribute("aria-disabled", "true");
-    expect(nextLink).toHaveAttribute("href", "");
+    expect(nextLink).toHaveAttribute("href", CURRENT_PATH);
   });
   test("previous button is disabled on page 1", () => {
     const totalPages = 25;
@@ -135,7 +135,7 @@ describe("Pagination", () => {
     getByText("page 1 / 25");
 
     expect(previousLink).toHaveAttribute("aria-disabled", "true");
-    expect(previousLink).toHaveAttribute("href", "");
+    expect(previousLink).toHaveAttribute("href", CURRENT_PATH);
   });
   test("nothing is displayed if there is only one page", () => {
     const totalPages = 1;
@@ -155,14 +155,8 @@ describe("Pagination", () => {
     expect(queryByRole("navigation")).toBeNull();
   });
   test("focus is set on ref when query has page and there is a ref passed to component", async () => {
-    const useRouterMock = useRouter as jest.Mock;
-    useRouterMock.mockReturnValueOnce({
-      pathname: "/",
-      query: { page: 2 },
-      router: {
-        query: { page: 2 },
-      },
-    });
+    mockRouter.setCurrentUrl("/?page=2");
+
     const totalPages = 40;
     const currentPage = 4;
     const nextPageUrlObject = "next-page";

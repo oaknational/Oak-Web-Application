@@ -5,8 +5,8 @@ import { useInitialChange } from "./useInitialChange";
 describe("useInitialChange", () => {
   it("should call onInitialChange when the value changes for the first time", () => {
     // Arrange
-    const onInitialChange = jest.fn();
-    const onChange = jest.fn();
+    const onInitialChange = vi.fn();
+    const onChange = vi.fn();
     const { result } = renderHook(useInitialChange, {
       initialProps: {
         onInitialChange,
@@ -21,8 +21,8 @@ describe("useInitialChange", () => {
 
   it("should call onChange when the value changes for the second time", () => {
     // Arrange
-    const onInitialChange = jest.fn();
-    const onChange = jest.fn();
+    const onInitialChange = vi.fn();
+    const onChange = vi.fn();
     const { result } = renderHook(useInitialChange, {
       initialProps: {
         onInitialChange,

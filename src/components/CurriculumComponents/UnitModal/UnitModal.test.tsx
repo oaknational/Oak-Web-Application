@@ -5,7 +5,7 @@ import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const unitInformationViewed = jest.fn();
+const unitInformationViewed = vi.fn();
 vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
@@ -18,9 +18,9 @@ vi.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("Unit modal", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  const stateFn = jest.fn();
+  const stateFn = vi.fn();
 
   test("renders with correct heading", () => {
     const { getByText } = renderWithTheme(

@@ -11,7 +11,7 @@ import {
 describe("UnitsTabSidebar component", () => {
   test("should render the sidebar", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()} />,
+      <UnitsTabSidebar displayModal={true} onClose={vi.fn()} />,
     );
 
     expect(getByTestId("sidebar-modal")).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("UnitsTabSidebar component", () => {
 
   test("should render the sidebar with children", () => {
     const { getByTestId } = renderWithTheme(
-      <UnitsTabSidebar displayModal={true} onClose={jest.fn()}>
+      <UnitsTabSidebar displayModal={true} onClose={vi.fn()}>
         <div data-testid="sidebar-children" />
       </UnitsTabSidebar>,
     );
@@ -28,7 +28,7 @@ describe("UnitsTabSidebar component", () => {
   });
 
   test("onClose state function called when close button selected", async () => {
-    const mockClose = jest.fn();
+    const mockClose = vi.fn();
     const { getByTestId } = renderWithTheme(
       <UnitsTabSidebar displayModal={true} onClose={mockClose} />,
     );
@@ -48,7 +48,7 @@ describe("UnitsTabSidebar component", () => {
       const { getByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitData={mockUnit}
         />,
       );
@@ -60,7 +60,7 @@ describe("UnitsTabSidebar component", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitsTabSidebar
           displayModal={true}
-          onClose={jest.fn()}
+          onClose={vi.fn()}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
         />,
