@@ -1,5 +1,5 @@
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
-import HomePageTabImageButton from "@/components/NewButtons/HomepageTabImageButton/HomePageTabImageButton";
+import HomePageTabImageButton from "@/components/GenericPagesComponents/HomepageTabImageButton";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { HomePageTab } from "@/pages";
 

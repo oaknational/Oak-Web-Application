@@ -35,7 +35,7 @@
     "**/*.tsx",
     "e2e_tests/browser/fixtures.ts",
     "src/__tests__/__helpers__/reporters/slowTestReporter.js"
-, "src/components/NewButtons", "src/components/NewButtons/HomepageTabImageButton"  ],
+, "src/components/NewButtons", "src/components/GenericPagesComponents/HomepageTabImageButton"  ],
   "exclude": [
     "node_modules", 
     "netlify/edge-functions", 
