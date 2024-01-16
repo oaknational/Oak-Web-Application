@@ -25,7 +25,7 @@ import Box from "@/components/SharedComponents/Box";
 import LearningThemeFilters from "@/components/Filters/LearningThemeFilters";
 import MobileFilters from "@/components/MobileFilters";
 import { Heading } from "@/components/SharedComponents/Typography";
-import TabularNav from "@/components/TabularNav";
+import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";

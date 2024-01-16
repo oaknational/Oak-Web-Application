@@ -1,7 +1,6 @@
 import ButtonAsLink, {
   ButtonAsLinkProps,
-} from "../SharedComponents/Button/ButtonAsLink";
-
+} from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex";
 
 /**
