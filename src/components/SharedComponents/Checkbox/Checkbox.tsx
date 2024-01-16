@@ -10,7 +10,7 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import FocusUnderline from "@/components/OakLink/FocusUnderline";
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import { ZIndex } from "@/styles/utils/zIndex";
 import Span from "@/components/SharedComponents/Typography/Span";
 

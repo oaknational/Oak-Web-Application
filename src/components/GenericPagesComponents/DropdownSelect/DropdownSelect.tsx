@@ -1,6 +1,6 @@
 import { FC, forwardRef } from "react";
 
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import {
   Select,
   Item,

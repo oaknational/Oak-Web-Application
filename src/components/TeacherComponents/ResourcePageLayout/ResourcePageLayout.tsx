@@ -21,7 +21,7 @@ import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import getDownloadFormErrorMessage from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
 import { Heading, LI, P, UL } from "@/components/SharedComponents/Typography";
-import FieldError from "@/components/FormFields/FieldError";
+import FieldError from "@/components/SharedComponents/FieldError";
 import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex";
