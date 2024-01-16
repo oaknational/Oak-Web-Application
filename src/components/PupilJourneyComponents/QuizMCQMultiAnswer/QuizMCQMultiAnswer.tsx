@@ -9,7 +9,7 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import {
   OakFlex,
   OakImage,
@@ -21,6 +21,7 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
+import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;
@@ -29,12 +30,12 @@ export type QuizMCQMultiAnswerProps = {
 
 export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   const { onInitialChange, onChange } = props;
+  const { handleOnChange } = useInitialChange({ onChange, onInitialChange });
+
   const quizEngineContext = useQuizEngineContext();
   const { currentQuestionIndex, currentQuestionData } = quizEngineContext;
   const questionState = quizEngineContext?.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
-
-  const lastChanged = useRef<number>(0);
 
   const answers = useMemo(
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
@@ -44,15 +45,6 @@ export const QuizMCQMultiAnswer = (props: QuizMCQMultiAnswerProps) => {
   if (!questionState || !currentQuestionData) {
     return null;
   }
-
-  const handleOnChange = () => {
-    if (lastChanged.current === 0 && onInitialChange) {
-      onInitialChange();
-    } else if (lastChanged.current !== 0 && onChange) {
-      onChange();
-    }
-    lastChanged.current = Date.now();
-  };
 
   const isFeedbackMode = questionState.mode === "feedback";
 
