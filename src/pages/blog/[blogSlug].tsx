@@ -8,7 +8,7 @@ import {
 import { useNextSanityImage } from "next-sanity-image";
 import { uniqBy } from "lodash/fp";
 
-import Layout from "@/components/SharedComponents/Layout";
+import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { BlogPost } from "@/common-lib/cms-types";
 import {

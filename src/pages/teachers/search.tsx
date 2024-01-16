@@ -1,7 +1,7 @@
 import React from "react";
 import { GetStaticProps, NextPage } from "next";
 
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/TeacherViews/Search/Search.view";
 import curriculumApi2023, {
