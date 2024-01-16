@@ -13,12 +13,12 @@ import Layout from "@/components/AppComponents/Layout";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex";
-import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 

@@ -8,8 +8,8 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import PostList, {
   PostListProps,
 } from "@/components/SharedComponents/PostList";
-import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
-import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import OakLink from "@/components/OakLink";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";

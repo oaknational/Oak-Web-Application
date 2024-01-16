@@ -1,9 +1,9 @@
 import { FC, useId } from "react";
 
-import OakLink from "../../OakLink";
-
-import NewsletterForm, { NewsletterFormProps } from "./NewsletterForm";
-
+import OakLink from "@/components/OakLink";
+import NewsletterForm, {
+  NewsletterFormProps,
+} from "@/components/GenericPagesComponents/NewsletterForm";
 import { P } from "@/components/SharedComponents/Typography";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import Card, { CardProps } from "@/components/SharedComponents/Card";

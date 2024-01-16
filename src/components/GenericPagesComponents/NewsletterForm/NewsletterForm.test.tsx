@@ -1,11 +1,12 @@
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
-import renderWithProviders from "../../../__tests__/__helpers__/renderWithProviders";
-import OakError from "../../../errors/OakError";
-import waitForNextTick from "../../../__tests__/__helpers__/waitForNextTick";
-
 import NewsletterForm from "./NewsletterForm";
+
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import OakError from "@/errors/OakError";
+import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
+
 
 jest.setTimeout(10000);
 

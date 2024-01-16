@@ -1,17 +1,18 @@
 import { renderHook } from "@testing-library/react";
 
+import useNewsletterForm from "./useNewsletterForm";
+
 import {
   getHubspotNewsletterPayload,
   NewsletterHubspotFormData,
-} from "../../../browser-lib/hubspot/forms/getHubspotFormPayloads";
+} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
-import useNewsletterForm from "./useNewsletterForm";
 
 const identify = jest.fn();
 
 const testPosthogDistinctId = "test-anonymous-id";
 
-jest.mock("../../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     identify: (...args: []) => identify(...args),
@@ -19,11 +20,11 @@ jest.mock("../../../context/Analytics/useAnalytics", () => ({
   }),
 }));
 const hubspotSubmitForm = jest.fn();
-jest.mock("../../../browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
+jest.mock("@/browser-lib/hubspot/forms/hubspotSubmitForm", () => ({
   __esModule: true,
   default: (...args: []) => hubspotSubmitForm(...args),
 }));
-jest.mock("../../../hooks/useUtmParams", () => ({
+jest.mock("@/hooks/useUtmParams", () => ({
   __esModule: true,
   default: () => ({ utm_source: "les_twitz" }),
 }));

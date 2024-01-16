@@ -2,7 +2,7 @@ import { FC, useId } from "react";
 
 import NewsletterForm, {
   useNewsletterForm,
-} from "@/components/Forms/NewsletterForm";
+} from "@/components/GenericPagesComponents/NewsletterForm";
 import OakLink from "@/components/OakLink";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import { HeadingTag, P } from "@/components/SharedComponents/Typography";
