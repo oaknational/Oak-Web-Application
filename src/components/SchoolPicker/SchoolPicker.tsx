@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Item } from "react-stately";
 
 import SearchComboBox from "../SearchComboBox/SearchComboBox";
-import { formatSchoolName } from "../formatSchoolName";
 
+import { formatSchoolName } from "./formatSchoolName";
 import { HOMESCHOOL_URN, UseSchoolPickerReturnProps } from "./useSchoolPicker";
 
 type SchoolPickerProps = Omit<
