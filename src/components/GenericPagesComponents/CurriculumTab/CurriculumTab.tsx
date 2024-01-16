@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 import Box from "@/components/SharedComponents/Box";
-import Badge from "@/components/Badge/";
+import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
@@ -92,7 +92,7 @@ const CurriculumTab: FC = () => {
                 aria-hidden={true}
               >
                 {" "}
-                <Badge icon="bell" />
+                <CurriculumTabBadge icon="bell" />
               </Box>
             </Flex>
           </GridArea>

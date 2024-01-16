@@ -77,11 +77,11 @@ const Root = styled(Flex)`
   height: ${badgeSize};
 `;
 
-export type BadgeProps = {
+export type CurriculumTabBadgeProps = {
   icon?: IconName;
   text?: string;
 };
-const Badge: FC<BadgeProps> = (props) => {
+const CurriculumTabBadge: FC<CurriculumTabBadgeProps> = (props) => {
   const { icon, text, ...rootProps } = props;
   const theme = useTheme();
 
@@ -95,4 +95,4 @@ const Badge: FC<BadgeProps> = (props) => {
   );
 };
 
-export default Badge;
+export default CurriculumTabBadge;

@@ -1,7 +1,7 @@
 import { ThemedStyledProps, DefaultTheme } from "styled-components";
 import { z } from "zod";
 
-import { BadgeConfig } from "@/components/Badge";
+import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/DropdownSelect/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";

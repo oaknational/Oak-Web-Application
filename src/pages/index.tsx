@@ -17,7 +17,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/SharedComponents/PostList";
 import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
 import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
-import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
+import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
 import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
 import PupilTab from "@/components/GenericPagesComponents/PupilTab";
