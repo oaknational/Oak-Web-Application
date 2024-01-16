@@ -7,7 +7,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 
-
 jest.setTimeout(10000);
 
 const onSubmit = jest.fn();

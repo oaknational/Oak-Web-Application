@@ -8,7 +8,6 @@ import { FormDefinition, FormField } from "@/common-lib/forms/FormDefinition";
 import OakError from "@/errors/OakError";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 jest.setTimeout(10000);
 
 const onSubmit = jest.fn();

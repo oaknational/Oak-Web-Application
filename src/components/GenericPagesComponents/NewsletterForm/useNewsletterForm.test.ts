@@ -7,7 +7,6 @@ import {
   NewsletterHubspotFormData,
 } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 
-
 const identify = jest.fn();
 
 const testPosthogDistinctId = "test-anonymous-id";

@@ -1,5 +1,7 @@
 import { UnitListingLinkProps } from "@/common-lib/urls";
-import CategoryFilterList, { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
+import CategoryFilterList, {
+  LearningThemeSelectedTrackingProps,
+} from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import Flex from "@/components/SharedComponents/Flex";
 

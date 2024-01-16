@@ -4,7 +4,6 @@ import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
-
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
   component: Component,

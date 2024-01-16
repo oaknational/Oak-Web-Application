@@ -5,7 +5,6 @@ import DropdownSelect from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const roles = [
   { value: "teacher", label: "Teacher" },
   { value: "parent", label: "Parent" },

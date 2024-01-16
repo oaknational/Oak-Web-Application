@@ -2,7 +2,6 @@ import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
