@@ -4,7 +4,7 @@ import { FC, useEffect } from "react";
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 
-import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import { Heading } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";

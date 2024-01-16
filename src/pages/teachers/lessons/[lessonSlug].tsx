@@ -16,7 +16,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import Flex from "@/components/SharedComponents/Flex";
-import { groupLessonPathways } from "@/components/TeacherComponents/lesson.helpers";
+import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import OakError from "@/errors/OakError";

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
