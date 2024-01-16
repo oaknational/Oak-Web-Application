@@ -1,9 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./BurgerMenuSections";
-
-import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
+import Component from "./AppHeaderBurgerMenuLink";
 
 export default {
   component: Component,
@@ -13,7 +11,12 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const NewMenuLinks = Template.bind({});
-NewMenuLinks.args = {
-  menuSections: betaMenuSections,
+export const AppHeaderBurgerMenuLink = Template.bind({});
+AppHeaderBurgerMenuLink.args = {
+  link: {
+    linkTo: { page: "home" },
+    text: "Home",
+    new: true,
+    external: false,
+  },
 };

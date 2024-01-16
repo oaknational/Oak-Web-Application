@@ -20,10 +20,11 @@ import CookieConsentProvider from "../browser-lib/cookie-consent/CookieConsentPr
 import AnalyticsProvider, {
   AnalyticsProviderProps,
 } from "../context/Analytics/AnalyticsProvider";
-import AppHooks from "../components/App/AppHooks";
 import { MenuProvider } from "../context/Menu";
 import { ToastProvider } from "../context/Toast";
 import InlineSpriteSheet from "../components/InlineSpriteSheet";
+
+import AppHooks from "@/components/AppComponents/App/AppHooks";
 
 type OakWebApplicationProps = AppProps & {
   analyticsOptions: AnalyticsProviderProps;

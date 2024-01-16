@@ -5,7 +5,6 @@ import Toggle from "./Toggle";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 describe("Toggle", () => {
   it("renders a Toggle", () => {
     renderWithTheme(

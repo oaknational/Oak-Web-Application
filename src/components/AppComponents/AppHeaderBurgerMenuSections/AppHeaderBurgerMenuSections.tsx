@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import BurgerMenuLinkButton from "./BurgerMenuLink";
-import { BurgerMenuSection } from "./types";
-
+import AppHeaderBurgerMenuLink, {
+  BurgerMenuLink,
+} from "@/components/AppComponents/AppHeaderBurgerMenuLink";
 import { FlexList } from "@/components/SharedComponents/Typography/UL";
 import { Heading, LI } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
@@ -11,11 +11,18 @@ import Flex from "@/components/SharedComponents/Flex";
  * New menu sections to be used in the hamburger menu for the beta site
  */
 
-export type BurgerMenuSectionsProps = {
-  menuSections: Array<BurgerMenuSection>;
+export type AppHeaderBurgerMenuSection = {
+  header: string;
+  links: Array<BurgerMenuLink>;
 };
 
-const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
+export type AppHeaderBurgerMenuSectionsProps = {
+  menuSections: Array<AppHeaderBurgerMenuSection>;
+};
+
+const AppHeaderBurgerMenuSections: FC<AppHeaderBurgerMenuSectionsProps> = (
+  props,
+) => {
   const { menuSections } = props;
   return (
     <Flex $flexDirection="column" $gap={32}>
@@ -38,7 +45,7 @@ const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
           >
             {section.links.map((link, i) => (
               <LI listStyle="none" key={`${link.text}-${i}`}>
-                <BurgerMenuLinkButton link={link} />
+                <AppHeaderBurgerMenuLink link={link} />
               </LI>
             ))}
           </FlexList>
@@ -48,4 +55,4 @@ const BurgerMenuSections: FC<BurgerMenuSectionsProps> = (props) => {
   );
 };
 
-export default BurgerMenuSections;
+export default AppHeaderBurgerMenuSections;

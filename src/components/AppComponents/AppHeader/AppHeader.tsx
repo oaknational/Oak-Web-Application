@@ -4,8 +4,8 @@ import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
 import OakLink from "@/components/OakLink";
 import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
-import { useMenuContext } from "@/components/../context/Menu";
-import BurgerMenuSections from "@/components/BurgerMenuSections/BurgerMenuSections";
+import { useMenuContext } from "@/context/Menu";
+import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 import { ActiveLinkUnderline } from "@/components/OakLink/OakLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Flex from "@/components/SharedComponents/Flex";
@@ -84,7 +84,7 @@ const AppHeader: FC<HeaderProps> = () => {
         </Flex>
 
         <AppHeaderMenu menuButtonRef={menuButtonRef}>
-          <BurgerMenuSections menuSections={betaMenuSections} />
+          <AppHeaderBurgerMenuSections menuSections={betaMenuSections} />
         </AppHeaderMenu>
       </Flex>
       <HeaderUnderline />

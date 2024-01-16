@@ -1,16 +1,28 @@
 import { FC } from "react";
 
-import TagPromotional from "../SharedComponents/TagPromotional";
-
-import { BurgerMenuLink, linkIsHref } from "./types";
-
+import { ResolveOakHrefProps } from "@/common-lib/urls";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 
-export type BurgerMenuLinkProps = {
+type HrefLink = { href: string };
+
+export type BurgerMenuLink = {
+  text: string;
+  new: boolean;
+  external: boolean;
+  linkTo: ResolveOakHrefProps | HrefLink;
+};
+
+export type AppHeaderBurgerMenuLinkProps = {
   link: BurgerMenuLink;
 };
-const BurgerMenuLinkButton: FC<BurgerMenuLinkProps> = (props) => {
+
+export const linkIsHref = (input: unknown): input is HrefLink => {
+  return typeof (input as HrefLink).href === "string";
+};
+
+const AppHeaderBurgerMenuLink: FC<AppHeaderBurgerMenuLinkProps> = (props) => {
   const { link } = props;
 
   const linkTo = linkIsHref(link.linkTo)
@@ -36,4 +48,4 @@ const BurgerMenuLinkButton: FC<BurgerMenuLinkProps> = (props) => {
   );
 };
 
-export default BurgerMenuLinkButton;
+export default AppHeaderBurgerMenuLink;
