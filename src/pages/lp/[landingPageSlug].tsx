@@ -5,7 +5,7 @@ import CMSClient from "@/node-lib/cms";
 import { LandingPage } from "@/common-lib/cms-types/landingPage";
 import { LandingPageTextAndMedia } from "@/components/GenericPagesComponents/LandingPageTextAndMedia";
 import { LandingPageQuote } from "@/components/GenericPagesComponents/LandingPageQuote";
-import { SignupPrompt } from "@/components/pages/LandingPages/SignupPrompt";
+import { LandingPageSignupPrompt } from "@/components/GenericPagesComponents/LandingPageSignupPrompt";
 import { LandingPageTextBlock } from "@/components/GenericPagesComponents/LandingPageTextBlock";
 import LandingPageHero from "@/components/GenericPagesComponents/LandingPageHero";
 import getPageProps from "@/node-lib/getPageProps";
@@ -47,7 +47,7 @@ const Landing: NextPage<LandingPageProps> = ({ pageData }) => {
               }
               if (content.type == "LandingPageFormBlock") {
                 return (
-                  <SignupPrompt
+                  <LandingPageSignupPrompt
                     key={`${index}:${content.title}`}
                     {...content}
                   />

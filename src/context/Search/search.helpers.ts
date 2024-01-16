@@ -12,7 +12,7 @@ import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import truthy from "@/utils/truthy";
 import addLegacySlugSuffix from "@/utils/slugModifiers/addLegacySlugSuffix";
-import { SearchResultsItemProps } from "@/components/SearchResultsItem/SearchResultsItem";
+import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,

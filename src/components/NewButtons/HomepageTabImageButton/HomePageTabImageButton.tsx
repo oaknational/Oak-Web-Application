@@ -20,7 +20,7 @@ import UnstyledButton, {
 import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import TagPromotional from "@/components/TagPromotional";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import {
   ButtonHoverStyle,
   CommonButtonProps,
