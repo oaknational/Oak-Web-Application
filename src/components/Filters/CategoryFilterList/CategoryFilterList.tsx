@@ -1,5 +1,5 @@
 import { BoxProps } from "../../SharedComponents/Box";
-import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
+import type { LearningThemeSelectedTrackingProps } from "../../TeacherComponents/UnitsLearningThemeFilters";
 
 import CategoryFilterListItem, {
   Category,

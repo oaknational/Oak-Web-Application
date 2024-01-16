@@ -1,18 +1,19 @@
-import renderWithTheme from "../../../__tests__/__helpers__/renderWithTheme";
+import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
-import LearningThemeFilters from "./LearningThemeFilters";
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("../../../context/Analytics/useAnalytics", () => ({
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: jest.fn(),
   }),
 }));
 
-describe("PostCategoryList", () => {
+describe("UnitsLearningThemeFilters", () => {
   test("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
-      <LearningThemeFilters
+      <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {

@@ -1,7 +1,6 @@
-import { UnitListingLinkProps } from "../../../common-lib/urls";
-import CategoryFilterList from "../CategoryFilterList";
-import useCategoryFilterList from "../CategoryFilterList/useCategoryFilterList";
-
+import { UnitListingLinkProps } from "@/common-lib/urls";
+import CategoryFilterList from "@/components/Filters/CategoryFilterList";
+import useCategoryFilterList from "@/components/Filters/CategoryFilterList/useCategoryFilterList";
 import Flex from "@/components/SharedComponents/Flex";
 
 export type LearningThemeSelectedTrackingProps = {
@@ -16,20 +15,20 @@ export type LearningTheme = {
   themeTitle?: string | null;
 };
 
-export type LearningThemeFiltersProps = {
+export type UnitsLearningThemeFiltersProps = {
   labelledBy: string;
   selectedThemeSlug: string;
   learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps;
   trackingProps: LearningThemeSelectedTrackingProps;
 };
-const LearningThemeFilters = ({
+const UnitsLearningThemeFilters = ({
   labelledBy,
   learningThemes = [],
   selectedThemeSlug,
   linkProps,
   trackingProps,
-}: LearningThemeFiltersProps) => {
+}: UnitsLearningThemeFiltersProps) => {
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
     getKey: (linkProps: UnitListingLinkProps) => {
@@ -96,4 +95,4 @@ const LearningThemeFilters = ({
   );
 };
 
-export default LearningThemeFilters;
+export default UnitsLearningThemeFilters;

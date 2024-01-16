@@ -1,7 +1,7 @@
 import OakLink from "../../OakLink";
 import { ResolveOakHrefProps } from "../../../common-lib/urls";
 import useAnalytics from "../../../context/Analytics/useAnalytics";
-import type { LearningThemeSelectedTrackingProps } from "../LearningThemeFilters";
+import type { LearningThemeSelectedTrackingProps } from "../../TeacherComponents/UnitsLearningThemeFilters";
 import type { KeyStageTitleValueType } from "../../../browser-lib/avo/Avo";
 import useAnalyticsPageProps from "../../../hooks/useAnalyticsPageProps";
 

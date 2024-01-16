@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
-
 import Component from ".";
+
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
+
 
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
@@ -12,7 +13,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const LearningThemeFilters: Story = {
+export const UnitsLearningThemeFilters: Story = {
   args: {
     selectedThemeSlug: "some-theme",
     learningThemes: [],
