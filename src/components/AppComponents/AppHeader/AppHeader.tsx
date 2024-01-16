@@ -10,7 +10,8 @@ import { ActiveLinkUnderline } from "@/components/OakLink/OakLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import { StyledHeader, HeaderUnderline } from "@/components/Header";
+import { StyledHeader } from "@/components/AppComponents/StyledHeader";
+import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
 import { betaMenuSections } from "@/browser-lib/fixtures/betaMenuSections";
 import Icon from "@/components/SharedComponents/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -87,7 +88,7 @@ const AppHeader: FC<HeaderProps> = () => {
           <AppHeaderBurgerMenuSections menuSections={betaMenuSections} />
         </AppHeaderMenu>
       </Flex>
-      <HeaderUnderline />
+      <AppHeaderUnderline />
     </StyledHeader>
   );
 };

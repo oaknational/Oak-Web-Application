@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import FixedHeader from "@/components/Header";
+import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
@@ -19,7 +19,7 @@ export type LayoutLandingPagesHeaderProps = {
  */
 const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
   return (
-    <FixedHeader $background={"white"}>
+    <LayoutFixedHeader $background={"white"}>
       <Flex
         $alignItems={"center"}
         $width={"100%"}
@@ -51,7 +51,7 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
           </OakLink>
         )}
       </Flex>
-    </FixedHeader>
+    </LayoutFixedHeader>
   );
 };
 

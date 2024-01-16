@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import FixedHeader from "@/components/Header";
+import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
 import OakLink from "@/components/OakLink";
 
@@ -13,11 +13,11 @@ const LayoutClientErrorHeader: FC = () => {
   const theme = useTheme();
 
   return (
-    <FixedHeader $background={theme.header.background}>
+    <LayoutFixedHeader $background={theme.header.background}>
       <OakLink page="home">
         <Logo variant="with text" height={48} width={104} />
       </OakLink>
-    </FixedHeader>
+    </LayoutFixedHeader>
   );
 };
 

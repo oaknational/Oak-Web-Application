@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from ".";
+import Component from "./LayoutFixedHeader";
 
 export default {
   component: Component,
@@ -16,4 +16,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   <Component {...args} />
 );
 
-export const FixedHeader = Template.bind({});
+export const LayoutFixedHeader = Template.bind({});

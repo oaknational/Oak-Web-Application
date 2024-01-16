@@ -1,7 +1,11 @@
 import { FC } from "react";
 import styled from "styled-components";
 
-import { StyledHeader, HeaderProps, baseHeaderStyles } from "./StyledHeader";
+import {
+  StyledHeader,
+  HeaderProps,
+  baseHeaderStyles,
+} from "@/components/AppComponents/StyledHeader";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -11,7 +15,7 @@ const HeadingSpacer = styled.div`
   ${baseHeaderStyles}
 `;
 
-const FixedHeader: FC<HeaderProps> = ({ children, $background }) => (
+const LayoutFixedHeader: FC<HeaderProps> = ({ children, $background }) => (
   <HeaderWrapper>
     <StyledHeader
       as="header"
@@ -27,4 +31,4 @@ const FixedHeader: FC<HeaderProps> = ({ children, $background }) => (
   </HeaderWrapper>
 );
 
-export default FixedHeader;
+export default LayoutFixedHeader;

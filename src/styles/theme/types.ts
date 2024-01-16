@@ -7,7 +7,7 @@ import { SelectListBoxConfig } from "@/components/DropdownSelect/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { ToggleStyleConfig } from "@/components/ArchivedComponents/Toggle/Toggle";
 import { VideoStyleConfig } from "@/components/VideoPlayer/VideoPlayer";
-import { HeaderConfig } from "@/components/Header/StyledHeader";
+import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the

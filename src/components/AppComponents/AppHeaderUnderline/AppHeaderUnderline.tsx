@@ -3,7 +3,7 @@ import { FC } from "react";
 import Box from "@/components/SharedComponents/Box";
 import Svg from "@/components/SharedComponents/Svg";
 
-export const HeaderUnderline: FC = () => {
+export const AppHeaderUnderline: FC = () => {
   return (
     <Box
       $position="absolute"
