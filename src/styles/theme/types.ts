@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
-import { SelectListBoxConfig } from "@/components/DropdownSelect/ListBox";
+import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { ToggleStyleConfig } from "@/components/ArchivedComponents/Toggle/Toggle";
 import { VideoStyleConfig } from "@/components/VideoPlayer/VideoPlayer";

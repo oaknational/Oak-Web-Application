@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import Input from "@/components/SharedComponents/Input";
 import OakError from "@/errors/OakError";
-import DropdownSelect from "@/components/DropdownSelect";
+import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import errorReporter from "@/common-lib/error-reporter";
 import Form from "@/components/GenericPagesComponents/Form";
 import { BoxProps } from "@/components/SharedComponents/Box";

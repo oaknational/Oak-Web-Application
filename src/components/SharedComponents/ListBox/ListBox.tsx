@@ -5,8 +5,7 @@ import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
 
-import { InputFocusUnderline } from "../SharedComponents/Input/Input";
-
+import { InputFocusUnderline } from "@/components/SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
 import { LI, Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";

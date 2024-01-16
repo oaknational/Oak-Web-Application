@@ -3,7 +3,7 @@ import { useForm, UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import Input from "@/components/SharedComponents/Input";
-import DropdownSelect from "@/components/DropdownSelect";
+import DropdownSelect from "@/components/GenericPagesComponents/DropdownSelect";
 import { FormDefinition, FormField } from "@/common-lib/forms/FormDefinition";
 import evaluateCondition from "@/common-lib/forms/evaluateCondition";
 import formToZod from "@/common-lib/forms/formToZod";

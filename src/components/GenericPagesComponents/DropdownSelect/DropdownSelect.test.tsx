@@ -1,9 +1,10 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
 import DropdownSelect from ".";
+
+import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
 
 const roles = [
   { value: "teacher", label: "Teacher" },

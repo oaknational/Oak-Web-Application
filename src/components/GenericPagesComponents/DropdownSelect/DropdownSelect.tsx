@@ -1,10 +1,12 @@
 import { FC, forwardRef } from "react";
 
-import FieldError from "../FormFields/FieldError";
-
-import { Select, Item, SelectItem } from "./Select";
-import { Label } from "./ListBox";
-
+import FieldError from "@/components/FormFields/FieldError";
+import {
+  Select,
+  Item,
+  SelectItem,
+} from "@/components/GenericPagesComponents/Select";
+import { Label } from "@/components/SharedComponents/ListBox/ListBox";
 import { IconName } from "@/components/SharedComponents/Icon";
 import { FlexProps } from "@/components/SharedComponents/Flex";
 

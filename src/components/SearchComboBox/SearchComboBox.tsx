@@ -6,13 +6,13 @@ import {
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
 
-import { Popover } from "../DropdownSelect/Popover";
-import { ListBox } from "../DropdownSelect/ListBox";
+import { Popover } from "../SharedComponents/Popover";
+import { ListBox } from "../SharedComponents/ListBox";
 import {
   RotatedInputLabel,
   StyledInput,
 } from "../SharedComponents/Input/Input";
-import { DropdownFocusUnderline } from "../DropdownSelect/Select";
+import { DropdownFocusUnderline } from "../GenericPagesComponents/Select/Select";
 import { School } from "../SchoolPicker/SchoolPicker";
 
 import { OakColorName } from "@/styles/theme/types";
