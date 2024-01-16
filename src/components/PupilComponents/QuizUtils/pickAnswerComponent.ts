@@ -5,9 +5,9 @@ import {
 } from "./answerTypeDiscriminators";
 
 import { AnswersSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { QuizMCQMultiAnswer } from "@/components/PupilJourneyComponents/QuizMCQMultiAnswer";
-import { QuizMCQSingleAnswer } from "@/components/PupilJourneyComponents/QuizMCQSingleAnswer";
-import { QuizShortAnswer } from "@/components/PupilJourneyComponents/QuizShortAnswer";
+import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer";
+import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer";
+import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
 
 export const pickAnswerComponent = (answers: AnswersSchema) => {
   switch (true) {

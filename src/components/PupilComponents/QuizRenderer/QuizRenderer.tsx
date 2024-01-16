@@ -8,17 +8,9 @@ import {
 } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
-<<<<<<< HEAD:src/components/PupilComponents/QuizRenderer/QuizRenderer.tsx
+import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
-import { QuizMCQSingleAnswer } from "@/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer";
-import { QuizMCQMultiAnswer } from "@/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer";
-import { QuizShortAnswer } from "@/components/PupilComponents/QuizShortAnswer";
-=======
-import { pickAnswerComponent } from "@/components/PupilJourneyComponents/QuizUtils/pickAnswerComponent";
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { QuizQuestionStem } from "@/components/PupilJourneyComponents/QuizQuestionStem";
->>>>>>> main:src/components/PupilJourneyComponents/QuizRenderer/QuizRenderer.tsx
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();

@@ -20,12 +20,8 @@ import {
   StemImageObject,
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
-<<<<<<< HEAD:src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-=======
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
->>>>>>> main:src/components/PupilJourneyComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx
+import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 
 export type QuizMCQMultiAnswerProps = {
   onInitialChange?: () => void;

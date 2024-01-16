@@ -1,22 +1,18 @@
 import { useMemo } from "react";
 import { OakRadioGroup, OakQuizRadioButton } from "@oak-academy/oak-components";
 
-<<<<<<< HEAD:src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-=======
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
+import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 import {
   getStemImage,
   isText,
-} from "@/components/PupilJourneyComponents/QuizUtils/stemUtils";
+} from "@/components/PupilComponents/QuizUtils/stemUtils";
 
 // testing
 //text only
 //http://localhost:3000/pupils/programmes/combined-science-secondary-ks4-foundation-aqa/units/measuring-waves/lessons/transverse-waves
 //with images
 //http://localhost:3000/pupils/programmes/science-primary-ks2/units/earth-sun-and-moon/lessons/why-we-have-day-and-night#starter-quiz
->>>>>>> main:src/components/PupilJourneyComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx
 
 export type QuizMCQSingleAnswerProps = {
   onInitialChange?: () => void;

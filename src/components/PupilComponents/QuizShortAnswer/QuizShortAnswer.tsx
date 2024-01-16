@@ -4,12 +4,8 @@ import {
   OakQuizTextInput,
 } from "@oak-academy/oak-components";
 
-<<<<<<< HEAD:src/components/PupilComponents/QuizShortAnswer/QuizShortAnswer.tsx
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-=======
-import { useQuizEngineContext } from "@/components/PupilJourneyComponents/QuizEngineProvider";
-import { useInitialChange } from "@/components/PupilJourneyComponents/QuizUtils/useInitialChange";
->>>>>>> main:src/components/PupilJourneyComponents/QuizShortAnswer/QuizShortAnswer.tsx
+import { useInitialChange } from "@/components/PupilComponents/QuizUtils/useInitialChange";
 
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz
