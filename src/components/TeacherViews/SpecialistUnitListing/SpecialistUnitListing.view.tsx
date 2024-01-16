@@ -8,7 +8,7 @@ import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import { Heading, P } from "@/components/SharedComponents/Typography";
-import TabularNav from "@/components/TabularNav";
+import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 
