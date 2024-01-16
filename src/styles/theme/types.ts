@@ -5,7 +5,7 @@ import { BadgeConfig } from "@/components/Badge";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/DropdownSelect/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
-import { ToggleStyleConfig } from "@/components/Toggle/Toggle";
+import { ToggleStyleConfig } from "@/components/ArchivedComponents/Toggle/Toggle";
 import { VideoStyleConfig } from "@/components/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/Header/StyledHeader";
 
