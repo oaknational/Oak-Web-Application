@@ -1,1 +1,1 @@
-export * from "./PupilLessonOverview";
+export * from "./PupilLessonOverview.view";

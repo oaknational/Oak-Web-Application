@@ -1,5 +1,5 @@
 import { OakFlex } from "@oak-academy/oak-components";
 
-export const PupilLessonOverview = () => {
+export const PupilViewsLessonOverview = () => {
   return <OakFlex>Overview</OakFlex>;
 };

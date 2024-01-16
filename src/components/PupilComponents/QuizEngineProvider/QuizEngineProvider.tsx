@@ -13,8 +13,10 @@ import {
   LessonOverviewQuizData,
   MCAnswer,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import { useStateCallback } from "@/hooks/useStateCallback";
 
-type QuestionsArray = NonNullable<LessonOverviewQuizData>;
+export type QuestionsArray = NonNullable<LessonOverviewQuizData>;
 
 export type QuizEngineProps = {
   children: ReactNode;
@@ -57,6 +59,7 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
+  const { updateQuizResult } = useLessonEngineContext();
 
   const filteredQuestions = useMemo(
     () =>
@@ -70,7 +73,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestionData = filteredQuestions[currentQuestionIndex];
-  const [questionState, setQuestionState] = useState<QuestionState[]>(
+  const [questionState, setQuestionState] = useStateCallback<QuestionState[]>(
     filteredQuestions.map(() => ({
       mode: "init",
       offerHint: false,
@@ -88,6 +91,16 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     setIsComplete(currentQuestionIndex >= maxScore);
   }, [currentQuestionIndex, maxScore]);
 
+  const handleScoreUpdate = useCallback(
+    (_questionState: QuestionState[]) => {
+      updateQuizResult({
+        grade: _questionState.reduce((pv, v) => pv + v.grade, 0),
+        maxScore,
+      });
+    },
+    [maxScore, updateQuizResult],
+  );
+
   const updateQuestionMode = useCallback(
     (mode: QuestionModeType) => {
       setQuestionState((prev) => {
@@ -103,7 +116,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         return newState;
       });
     },
-    [currentQuestionIndex],
+    [currentQuestionIndex, setQuestionState],
   );
 
   const handleSubmitMCAnswer = useCallback(
@@ -142,9 +155,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
         };
         return newState;
-      });
+      }, handleScoreUpdate);
     },
-    [currentQuestionData, currentQuestionIndex],
+    [
+      currentQuestionData,
+      currentQuestionIndex,
+      setQuestionState,
+      handleScoreUpdate,
+    ],
   );
 
   const handleSubmitShortAnswer = useCallback(
@@ -170,9 +188,14 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
           offerHint: prev[currentQuestionIndex]?.offerHint ?? false,
         };
         return newState;
-      });
+      }, handleScoreUpdate);
     },
-    [currentQuestionData, currentQuestionIndex],
+    [
+      currentQuestionData,
+      currentQuestionIndex,
+      setQuestionState,
+      handleScoreUpdate,
+    ],
   );
 
   const handleNextQuestion = useCallback(() => {

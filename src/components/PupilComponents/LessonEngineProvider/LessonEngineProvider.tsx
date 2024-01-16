@@ -11,6 +11,12 @@ export const lessonSections = [
 
 export type LessonSection = (typeof lessonSections)[number];
 
+export const isLessonSection = (
+  currentSection: string,
+): currentSection is LessonSection => {
+  return lessonSections.includes(currentSection as LessonSection);
+};
+
 export type LessonEngineContextType = {
   currentSection: LessonSection;
   completedSections: LessonSection[];
@@ -18,6 +24,7 @@ export type LessonEngineContextType = {
   completeSection: (section: LessonSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
+  updateQuizResult: (vals: { grade: number; maxScore: number }) => void;
 } | null;
 
 export const LessonEngineContext = createContext<LessonEngineContextType>(null);
@@ -65,6 +72,10 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
     setCurrentSection(nextSection);
   };
 
+  const updateQuizResult = (vals: { grade: number; maxScore: number }) => {
+    console.log("updateQuizResult", currentSection, vals);
+  };
+
   return (
     <LessonEngineContext.Provider
       value={{
@@ -74,6 +85,7 @@ export const LessonEngineProvider = memo((props: { children: ReactNode }) => {
         completeSection,
         updateCurrentSection,
         proceedToNextSection,
+        updateQuizResult,
       }}
     >
       {props.children}
