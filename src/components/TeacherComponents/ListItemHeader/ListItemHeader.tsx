@@ -11,6 +11,7 @@ import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
 } from "@/common-lib/urls";
+import { IndividualSpecialistUnit } from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
 
 type PrimaryTargetProps = {
   ref: MutableRefObject<HTMLAnchorElement | null>;
@@ -23,6 +24,22 @@ interface CommonProps {
   page: "Unit" | "Lesson";
   onClick?: () => void;
 }
+
+type SpecialistListItemProps = IndividualSpecialistUnit &
+  CommonProps & {
+    title: LessonListItemProps["lessonTitle"] | UnitListItemProps["title"];
+    slug: LessonListItemProps["lessonSlug"] | UnitListItemProps["slug"];
+    expired: boolean | null;
+    index?: number;
+    isExemplarUnit?: boolean;
+    yearTitle?: string | null;
+  };
+
+export const isSpecialistUnit = (
+  x: ListItemHeadingProps | SpecialistListItemProps,
+): x is SpecialistListItemProps => {
+  return "developmentalStageTitle" in x;
+};
 
 type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
@@ -51,13 +68,14 @@ export const ListTitle: FC<{
   );
 };
 
-const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
+const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
+  props,
+) => {
   const {
     title,
     slug,
     subjectTitle,
     hideTopHeading,
-    keyStageTitle,
     primaryTargetProps,
     page,
     expired,
@@ -93,16 +111,16 @@ const ListItemHeader: FC<ListItemHeadingProps> = (props) => {
   return (
     <Flex>
       <Flex $mb={2} $flexDirection={"column"}>
-        {!hideTopHeading && !isExemplarUnit && (
+        {!hideTopHeading && !isExemplarUnit && !isSpecialistUnit(props) && (
           <ListItemHeaderCategoryHeading
-            keyStageTitle={keyStageTitle}
+            keyStageTitle={props.keyStageTitle}
             subjectTitle={subjectTitle}
             page={page}
           />
         )}
-        {!hideTopHeading && isExemplarUnit && (
+        {!hideTopHeading && isExemplarUnit && !isSpecialistUnit(props) && (
           <ListItemHeaderExpemplarCategoryHeading
-            keyStageTitle={keyStageTitle}
+            keyStageTitle={props.keyStageTitle}
             subjectTitle={subjectTitle}
             yearTitle={yearTitle}
           />

@@ -4,6 +4,7 @@ import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import { Heading, P } from "@/components/SharedComponents/Typography";
 import UnitListItem, {
+  SpecialistListItemProps,
   UnitListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
@@ -14,7 +15,7 @@ export type UnitOption = Omit<UnitData, "unitStudyOrder">;
 type UnitListOptionalityCardProps = {
   unitOptions: UnitOption[];
   index: number;
-  onClick: (props: UnitListItemProps) => void;
+  onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
 };
 
 const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({

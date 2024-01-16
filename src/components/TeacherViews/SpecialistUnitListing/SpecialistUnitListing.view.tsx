@@ -3,7 +3,7 @@ import { useTheme } from "styled-components";
 
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import UnitList from "@/components/UnitAndLessonLists/UnitList";
+import UnitList from "@/components/TeacherComponents/UnitList";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Box from "@/components/SharedComponents/Box";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
@@ -47,8 +47,8 @@ export type IndividualSpecialistUnit = {
   expiredLessonCount: number;
   themeSlug: string | null;
   themeTitle: string | null;
-  developmentalStageSlug: string;
-  developmentalStageTitle: string;
+  developmentalStageSlug?: string;
+  developmentalStageTitle?: string;
 };
 
 export type Theme = {
@@ -165,7 +165,6 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               currentPageItems={currentPageItems}
               paginationProps={paginationProps}
               onClick={() => {}}
-              isSpecialist={true}
             />
           </GridArea>
         </Grid>
