@@ -23,7 +23,7 @@ const ButtonLabelWithScreenReaderTitle: FC<ButtonLabelProps> = (props) => {
   );
 };
 
-export const StyledButtonLabelWithScreenReaderTitle = styled(
+export const HopePageTabButtonLabelWithScreenReaderTitle = styled(
   ButtonLabelWithScreenReaderTitle,
 )`
   display: inline-block;
@@ -32,7 +32,7 @@ export const StyledButtonLabelWithScreenReaderTitle = styled(
   ${typography}
 `;
 
-StyledButtonLabelWithScreenReaderTitle.defaultProps = {
+HopePageTabButtonLabelWithScreenReaderTitle.defaultProps = {
   $font: "heading-7",
 };
-export default StyledButtonLabelWithScreenReaderTitle;
+export default HopePageTabButtonLabelWithScreenReaderTitle;

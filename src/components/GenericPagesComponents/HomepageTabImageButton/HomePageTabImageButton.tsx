@@ -1,11 +1,11 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled, { css, useTheme } from "styled-components";
 
-import ButtonLabel from "@/components/NewButtons/NewButtonLabelWithScreenReaderTitle";
+import HopePageTabButtonLabelWithScreenReaderTitle from "@/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle";
 import {
   newIconFocusUnderline,
-  NewIconFocusUnderline,
-} from "@/components/NewButtons/NewFocusUndeline";
+  HomePageTabFocusUnderline,
+} from "@/components/GenericPagesComponents/HomePageTabFocusUnderline";
 import HomePageTabBrushUnderline from "@/components/GenericPagesComponents/HomePageTabBrushUnderline";
 import { IllustrationSlug } from "@/image-data";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
@@ -58,7 +58,7 @@ const buttonStyles = css<HomePageNavTabImageButtonStylesProps>`
     css`
       color: ${getColorByName("grey60")};
 
-      :hover ${ButtonLabel} {
+      :hover ${HopePageTabButtonLabelWithScreenReaderTitle} {
         text-decoration: underline;
         color: ${getColorByName("black")};
       }
@@ -138,14 +138,14 @@ const HomePageTabImageButton = forwardRef<
         </Flex>
         <Box $display={"flex"} $position={"relative"} $minWidth={0}>
           <Flex $alignItems={"center"} $minHeight={44}>
-            <ButtonLabel
+            <HopePageTabButtonLabelWithScreenReaderTitle
               $font={["body-3-bold", "heading-7"]}
               labelSuffixA11y={label}
               $whiteSpace={"normal"}
               $textAlign={"center"}
             >
               {label}
-            </ButtonLabel>
+            </HopePageTabButtonLabelWithScreenReaderTitle>
             {!isLegacyLesson && (
               <TagPromotional
                 size={"small"}
@@ -155,7 +155,7 @@ const HomePageTabImageButton = forwardRef<
             )}
           </Flex>
           {isCurrent && <HomePageTabBrushUnderline name="horizontal-rule" />}
-          <NewIconFocusUnderline
+          <HomePageTabFocusUnderline
             $color={underlineColor}
             data-testid={`${defaultTitle} underline`}
           />

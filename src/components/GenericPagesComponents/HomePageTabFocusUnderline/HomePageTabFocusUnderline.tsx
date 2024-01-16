@@ -4,7 +4,7 @@ import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import Svg from "@/components/SharedComponents/Svg";
 
-export const NewIconFocusUnderline = styled(Svg).attrs({
+export const HomePageTabFocusUnderline = styled(Svg).attrs({
   name: "underline-1",
 })<{
   $color: OakColorName;
@@ -14,11 +14,11 @@ export const NewIconFocusUnderline = styled(Svg).attrs({
 `;
 
 export const newIconFocusUnderline = css`
-  ${NewIconFocusUnderline} {
+  ${HomePageTabFocusUnderline} {
     display: none;
   }
 
-  :focus ${NewIconFocusUnderline} {
+  :focus ${HomePageTabFocusUnderline} {
     display: block;
     top: 100%;
     left: 0;
