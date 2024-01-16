@@ -8,19 +8,19 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonShareBreadCrumb,
-} from "@/components/TeacherComponents/lesson.helpers";
-import { LessonPathway } from "@/components/TeacherComponents/lesson.types";
-import ResourcePageLayout from "@/components/DownloadAndShareComponents/ResourcePageLayout";
-import ShareCardGroup from "@/components/DownloadAndShareComponents/ShareCardGroup/ShareCardGroup";
-import ShareLinks from "@/components/DownloadAndShareComponents/ShareLink/ShareLinks";
-import { getHrefForSocialSharing } from "@/components/DownloadAndShareComponents/ShareLink/getHrefForSocialSharing";
-import { shareLinkConfig } from "@/components/DownloadAndShareComponents/ShareLink/linkConfig";
-import { useResourceFormState } from "@/components/DownloadAndShareComponents/hooks/useResourceFormState";
-import useResourceFormSubmit from "@/components/DownloadAndShareComponents/hooks/useResourceFormSubmit";
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
+import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
+import LessonShareCardGroup from "@/components/TeacherComponents/LessonShareCardGroup";
+import LessonShareLinks from "@/components/TeacherComponents/LessonShareLinks";
+import { getHrefForSocialSharing } from "@/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing";
+import { shareLinkConfig } from "@/components/TeacherComponents/LessonShareLinks/linkConfig";
+import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
+import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
   ResourceType,
-} from "@/components/DownloadAndShareComponents/downloadAndShare.types";
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   PupilActivityResourceTypesValueType,
@@ -29,8 +29,8 @@ import {
 import {
   getSchoolName,
   getSchoolOption,
-} from "@/components/DownloadAndShareComponents/helpers/getFormattedDetailsForTracking";
-import { useHubspotSubmit } from "@/components/DownloadAndShareComponents/hooks/useHubspotSubmit";
+} from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 
 type LessonShareProps =
   | {
@@ -174,7 +174,7 @@ export function LessonShare(props: LessonShareProps) {
           resourcesHeader="Select online activities"
           triggerForm={form.trigger}
           cardGroup={
-            <ShareCardGroup
+            <LessonShareCardGroup
               control={form.control}
               hasError={form.errors?.resources !== undefined}
               triggerForm={form.trigger}
@@ -188,7 +188,7 @@ export function LessonShare(props: LessonShareProps) {
             />
           }
           cta={
-            <ShareLinks
+            <LessonShareLinks
               disabled={
                 hasFormErrors ||
                 (!form.formState.isValid && !localStorageDetails)

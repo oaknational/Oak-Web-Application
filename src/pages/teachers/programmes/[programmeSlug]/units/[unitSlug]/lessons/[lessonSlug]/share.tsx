@@ -5,7 +5,7 @@ import {
   GetStaticPropsResult,
 } from "next";
 
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import curriculumApi, { LessonShareData } from "@/node-lib/curriculum-api";
 import {

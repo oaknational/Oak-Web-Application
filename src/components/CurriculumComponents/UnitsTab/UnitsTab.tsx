@@ -12,7 +12,7 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
@@ -663,7 +663,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             </Card>
                           );
                         })}
-                      <Sidebar
+                      <UnitsTabSidebar
                         displayModal={displayModal}
                         onClose={handleCloseModal}
                         unitData={unitData}
@@ -678,7 +678,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ data }) => {
                             unitData ? isHighlightedUnit(unitData) : false
                           }
                         />
-                      </Sidebar>
+                      </UnitsTabSidebar>
                     </Flex>
                   </Box>
                 );
