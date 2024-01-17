@@ -1,3 +1,10 @@
+## [1.327.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.1...v1.327.2) (2024-01-17)
+
+
+### Bug Fixes
+
+* add refactor to releaseRules ([74fa2d5](https://github.com/oaknational/Oak-Web-Application/commit/74fa2d5dc5561bdca0933684848f4d3953f480dd))
+
 ## [1.327.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.327.0...v1.327.1) (2024-01-17)
 
 # [1.327.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.326.1...v1.327.0) (2024-01-17)
