@@ -13,23 +13,7 @@ export const mockUnit: Unit = {
   phase: "Primary",
   phase_slug: "primary",
   planned_number_of_lessons: 15,
-  lessons: [
-    {
-      slug: "lesson-1",
-      title: "Lesson 1",
-      _state: "new",
-    },
-    {
-      slug: "lesson-2",
-      title: "Lesson 2",
-      _state: "published",
-    },
-    {
-      slug: "lesson-3",
-      title: "Lesson 3",
-      _state: "published",
-    },
-  ],
+  lessons: [],
   slug: "composition-of-numbers-6-to-10",
   subject: "Maths",
   subject_parent: null,
