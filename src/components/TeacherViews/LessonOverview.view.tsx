@@ -6,18 +6,18 @@ import {
   getBreadcrumbsForLessonPathway,
   getLessonOverviewBreadCrumb,
   createAttributionObject,
-} from "@/components/Lesson/lesson.helpers";
+} from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewCanonical,
   LessonOverviewInPathway,
-} from "@/components/Lesson/lesson.types";
+} from "@/components/TeacherComponents/types/lesson.types";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
-import OverviewPresentation from "@/components/Lesson/LessonOverview/OverviewPresentation";
-import OverviewVideo from "@/components/Lesson/LessonOverview/OverviewVideo";
-import QuizContainerNew from "@/components/QuizContainerNew";
+import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
+import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
+import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
 import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
@@ -29,8 +29,8 @@ import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails"
 import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
-import { useCurrentSection } from "@/components/Lesson/useCurrentSection";
-import LessonAnchorLinks from "@/components/Lesson/LessonAnchorLinks/LessonAnchorLinks";
+import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
+import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 export type LessonOverviewProps = {
@@ -190,7 +190,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 $gap={[8]}
                 $pr={[16]}
               >
-                <LessonAnchorLinks
+                <LessonOverviewAnchorLinks
                   links={pageLinks}
                   currentSectionId={currentSectionId}
                 />
@@ -211,7 +211,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     slugs={slugs}
                     anchorId="slide-deck"
                   >
-                    <OverviewPresentation
+                    <LessonOverviewPresentation
                       asset={presentationUrl}
                       title={lessonTitle}
                       isWorksheet={false}
@@ -248,7 +248,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks.length - 1
                     }
                   >
-                    <OverviewVideo
+                    <LessonOverviewVideo
                       video={videoMuxPlaybackId}
                       signLanguageVideo={videoWithSignLanguageMuxPlaybackId}
                       title={lessonTitle}
@@ -277,7 +277,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       pageLinks.length - 1
                     }
                   >
-                    <OverviewPresentation
+                    <LessonOverviewPresentation
                       asset={worksheetUrl}
                       title={lessonTitle}
                       isWorksheetLandscape={!!isWorksheetLandscape}

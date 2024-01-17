@@ -4,7 +4,7 @@ import Typography, { Hr } from "@/components/SharedComponents/Typography";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex";
 import Box from "@/components/SharedComponents/Box";
-import Tag from "@/components/TagPromotional";
+import Tag from "@/components/SharedComponents/TagPromotional";
 
 const HomePageBanner: ReactNode = (
   <Box>

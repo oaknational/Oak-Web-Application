@@ -1,9 +1,9 @@
 import { FC } from "react";
 
-import OakLink from "@/components/OakLink";
-import TagPromotional from "@/components/TagPromotional";
-import TextTile from "@/components/TextTile/TextTitle";
-import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble/SubjectListingCardDouble";
+import OwaLink from "@/components/SharedComponents/OwaLink";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
+import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
+import { SubjectListingCardDoubleProps } from "@/components/TeacherComponents/SubjectListingCardDouble";
 import { Span } from "@/components/SharedComponents/Typography";
 import Flex from "@/components/SharedComponents/Flex";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
@@ -56,7 +56,7 @@ const SubjectListingCardDoubleCountCard: FC<
         };
 
   return (
-    <TextTile
+    <SubjectListingTextTile
       $background={"white"}
       $flexDirection={"column"}
       $position={"relative"}
@@ -71,7 +71,7 @@ const SubjectListingCardDoubleCountCard: FC<
           size={"small"}
         />
       )}
-      <OakLink
+      <OwaLink
         {...oakLinkProps}
         aria-label={ariaLabel}
         $hideDefaultFocus
@@ -93,8 +93,8 @@ const SubjectListingCardDoubleCountCard: FC<
             lessonCount > 1 ? "lessons" : "lesson"
           }`}</Span>
         </Flex>
-      </OakLink>
-    </TextTile>
+      </OwaLink>
+    </SubjectListingTextTile>
   );
 };
 

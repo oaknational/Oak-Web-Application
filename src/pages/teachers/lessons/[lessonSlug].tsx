@@ -11,12 +11,12 @@ import {
   getFallbackBlockingConfig,
 } from "@/node-lib/isr";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverviewCanonical/lessonOverviewCanonical.schema";
-import AppLayout from "@/components/AppLayout/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { LessonAppearsIn } from "@/components/Lesson/LessonAppearsIn/LessonAppearsIn";
+import { LessonAppearsIn } from "@/components/TeacherComponents/LessonAppearsIn";
 import Flex from "@/components/SharedComponents/Flex";
-import { groupLessonPathways } from "@/components/Lesson/lesson.helpers";
+import { groupLessonPathways } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import OakError from "@/errors/OakError";

@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 
 import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import OakLink from "@/components/OakLink";
+import OwaLink from "@/components/SharedComponents/OwaLink";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api";
@@ -15,12 +15,13 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import PostList from "@/components/SharedComponents/PostList";
-import { useNewsletterForm } from "@/components/Forms/NewsletterForm";
-import NewsletterFormWrap from "@/components/Forms/NewsletterForm/NewsletterFormWrap";
-import HomePageTabImageNav from "@/components/HomePageTabImageNav/HomePageTabImageNav";
-import TeachersTab from "@/components/HomePageTabs/TeachersTab/TeachersTab";
-import CurriculumTab from "@/components/HomePageTabs/CurriculumTab/CurriculumTab";
-import PupilTab from "@/components/HomePageTabs/PupilTab/PupilTab";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
+import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
+import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
+import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
+import PupilTab from "@/components/GenericPagesComponents/PupilTab";
+import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
   SerializedBlogPostPreview,
   blogToPostListItem,
@@ -32,7 +33,6 @@ import {
 import { HomePage } from "@/common-lib/cms-types";
 import { serializeDate } from "@/utils/serializeDate";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
-import AiTab from "@/components/HomePageTabs/AiTab/AiTab";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -147,10 +147,10 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
             </Heading>
             <Flex $flexDirection={"row"}>
               <Typography $mr={16} $font="heading-7">
-                <OakLink page={"webinar-index"}>All webinars</OakLink>
+                <OwaLink page={"webinar-index"}>All webinars</OwaLink>
               </Typography>
               <Typography $font="heading-7">
-                <OakLink page={"blog-index"}>All blogs</OakLink>
+                <OwaLink page={"blog-index"}>All blogs</OwaLink>
               </Typography>
             </Flex>
           </Flex>

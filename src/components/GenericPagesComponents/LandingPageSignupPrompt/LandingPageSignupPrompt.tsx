@@ -1,0 +1,40 @@
+import { FC } from "react";
+
+import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
+import { PortableTextJSON } from "@/common-lib/cms-types";
+import Grid, { GridArea } from "@/components/SharedComponents/Grid";
+import Typography, { Heading } from "@/components/SharedComponents/Typography";
+import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
+
+export const LandingPageSignupPrompt: FC<{
+  title: string;
+  form: { title: string };
+  bodyPortableText: PortableTextJSON;
+}> = ({ title, bodyPortableText, form }) => {
+  return (
+    <>
+      <Grid $mb={[120, 92]} $cg={[8]}>
+        <GridArea
+          $colSpan={[12, 5]}
+          $colStart={[1, 2]}
+          $width={"100%"}
+          $alignItems={"flex-start"}
+          $justifyContent={"center"}
+          $flexDirection={"column"}
+          $ph={[16, 0]}
+          $mb={[56, 0]}
+        >
+          <Heading $font={["heading-4", "heading-5"]} tag={"h4"} $mb={[32]}>
+            {title}
+          </Heading>
+          <Typography $font={["body-2", "body-1"]}>
+            <PortableTextWithDefaults value={bodyPortableText} />
+          </Typography>
+        </GridArea>
+        <GridArea $colSpan={[12, 4]} $colStart={[1, 7]}>
+          <LandingPageSignUpForm formTitle={form.title} />
+        </GridArea>
+      </Grid>
+    </>
+  );
+};
