@@ -4,6 +4,7 @@ import { OakSpan } from "@oak-academy/oak-components";
 
 import {
   LessonEngineProvider,
+  LessonSection,
   lessonSections,
   useLessonEngineContext,
 } from "./LessonEngineProvider";
@@ -93,6 +94,33 @@ describe("LessonEngineProvider", () => {
         lessonSections.slice(0, i + 1),
       );
     });
+  });
+
+  it("returns to overview on completeSection when not all sections are complete", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: (props) =>
+        providerWrapper({
+          ...props,
+        }),
+    });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
+
+    ["intro", "starter-quiz", "video"].forEach((s) => {
+      act(() => {
+        result.current.completeSection(s as LessonSection);
+      });
+
+      expect(result.current.currentSection).toEqual("overview");
+    });
+
+    act(() => {
+      result.current.completeSection("exit-quiz");
+    });
+
+    expect(result.current.currentSection).toEqual("review");
   });
 
   it("doesn't duplicate completed sections", () => {
