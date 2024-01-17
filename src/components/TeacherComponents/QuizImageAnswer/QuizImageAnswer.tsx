@@ -6,8 +6,7 @@ import {
   removeMarkdown,
 } from "../LessonOverviewQuizContainer/quizUtils";
 
-import QuizOakImage from "./QuizOakImage";
-
+import QuizOakImage from "@/components/TeacherComponents/QuizOakImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";

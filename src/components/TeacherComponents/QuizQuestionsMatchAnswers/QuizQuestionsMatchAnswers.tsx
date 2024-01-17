@@ -7,7 +7,7 @@ import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const MatchAnswers = ({
+export const QuizQuestionsMatchAnswers = ({
   answers,
   questionNumber,
 }: {

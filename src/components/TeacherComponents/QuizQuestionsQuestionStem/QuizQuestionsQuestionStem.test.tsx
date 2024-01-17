@@ -1,4 +1,4 @@
-import { QuestionStem } from "./QuestionStem";
+import { QuizQuestionsQuestionStem } from "./QuizQuestionsQuestionStem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
@@ -12,12 +12,15 @@ const starterQuiz = lessonOverview.starterQuiz;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
 const mcqStemImage = starterQuiz ? starterQuiz[1] : null;
 
-describe("QuestionListItem", () => {
+describe("QuizQuestionsQuestionStem", () => {
   it("renders the primary question text", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <QuizQuestionsQuestionStem
+        questionStem={mcqText.questionStem}
+        index={0}
+      />,
     );
     const primaryQuestionText = getByText("What is a main clause?");
 
@@ -28,7 +31,10 @@ describe("QuestionListItem", () => {
     if (!mcqText) throw new Error("mcqText is null");
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={mcqText.questionStem} index={0} />,
+      <QuizQuestionsQuestionStem
+        questionStem={mcqText.questionStem}
+        index={0}
+      />,
     );
     const numberText = getByText("Q1.");
 
@@ -39,7 +45,10 @@ describe("QuestionListItem", () => {
     if (!mcqStemImage) throw new Error("mcqText is null");
 
     const { getByRole } = renderWithTheme(
-      <QuestionStem questionStem={mcqStemImage.questionStem} index={0} />,
+      <QuizQuestionsQuestionStem
+        questionStem={mcqStemImage.questionStem}
+        index={0}
+      />,
     );
     const image = getByRole("img");
 
@@ -54,7 +63,7 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
+      <QuizQuestionsQuestionStem questionStem={questionStem} index={0} />,
     );
     const numberText = getByText("Q1.");
 
@@ -70,7 +79,7 @@ describe("QuestionListItem", () => {
     ];
 
     const { getByText } = renderWithTheme(
-      <QuestionStem questionStem={questionStem} index={0} />,
+      <QuizQuestionsQuestionStem questionStem={questionStem} index={0} />,
     );
     const secondaryText = getByText("This is some text");
 

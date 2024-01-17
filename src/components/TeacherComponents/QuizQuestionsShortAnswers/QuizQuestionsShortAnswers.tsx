@@ -1,14 +1,17 @@
 import { VisuallyHidden } from "react-aria";
 
-import { removeMarkdown } from "../../LessonOverviewQuizContainer/quizUtils";
-
+import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const ShortAnswers = ({ answers }: { answers: ShortAnswer[] }) => {
+export const QuizQuestionsShortAnswers = ({
+  answers,
+}: {
+  answers: ShortAnswer[];
+}) => {
   const answerString = answers.reduce((acc, cur) => {
     if (acc === "") {
       return (cur.answer && cur.answer[0] && cur.answer[0].text) || acc;

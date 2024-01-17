@@ -1,14 +1,13 @@
 import { VisuallyHidden } from "react-aria";
 
-import { removeMarkdown } from "../../LessonOverviewQuizContainer/quizUtils";
-
+import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const OrderAnswers = ({
+export const QuizQuestionsOrderAnswers = ({
   answers,
   questionNumber,
 }: {

@@ -1,10 +1,8 @@
 import {
   shortAnswerTitleFormatter,
   removeMarkdown,
-} from "../LessonOverviewQuizContainer/quizUtils";
-
-import QuizImage from "./QuizImage";
-
+} from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
+import QuizImage from "@/components/TeacherComponents/QuizImage";
 import Flex from "@/components/SharedComponents/Flex";
 import Typography from "@/components/SharedComponents/Typography";
 import {
@@ -12,7 +10,7 @@ import {
   StemTextObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const QuestionStem = ({
+export const QuizQuestionsQuestionStem = ({
   questionStem,
   index,
   showIndex = true,

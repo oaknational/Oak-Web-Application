@@ -1,7 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react";
 
-import { calcDims } from "../LessonOverviewQuizContainer/quizUtils";
-
+import { calcDims } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import OwaImage from "@/components/SharedComponents/OwaImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 

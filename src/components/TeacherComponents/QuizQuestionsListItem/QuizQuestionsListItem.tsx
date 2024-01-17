@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import { QuestionStem } from "@/components/TeacherComponents/QuestionListItemNew/QuestionStem";
-import { MCAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/MCAnswers";
-import { MatchAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/MatchAnswers";
-import { OrderAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/OrderAnswers";
-import { ShortAnswers } from "@/components/TeacherComponents/QuestionListItemNew/Answers/ShortAnswers";
+import { QuizQuestionsQuestionStem } from "@/components/TeacherComponents/QuizQuestionsQuestionStem/QuizQuestionsQuestionStem";
+import { QuizQuestionsMCAnswers } from "@/components/TeacherComponents/QuizQuestionsMCAnswers";
+import { QuizQuestionsMatchAnswers } from "@/components/TeacherComponents/QuizQuestionsMatchAnswers";
+import { QuizQuestionsOrderAnswers } from "@/components/TeacherComponents/QuizQuestionsOrderAnswers";
+import { QuizQuestionsShortAnswers } from "@/components/TeacherComponents/QuizQuestionsShortAnswers";
 import Flex from "@/components/SharedComponents/Flex";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
@@ -21,7 +21,7 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
   return (
     <MathJaxWrap>
       <Flex $flexDirection={"column"} $width={"100%"} role="listitem" $gap={8}>
-        <QuestionStem
+        <QuizQuestionsQuestionStem
           questionStem={questionStem}
           index={index}
           showIndex={question.questionType !== "explanatory-text"}
@@ -31,22 +31,28 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
           <>
             {answers["multiple-choice"] &&
               answers["multiple-choice"].length > 0 && (
-                <MCAnswers
+                <QuizQuestionsMCAnswers
                   answers={answers["multiple-choice"]}
                   questionNumber={index}
                 />
               )}
 
             {answers["match"] && answers["match"].length > 0 && (
-              <MatchAnswers answers={answers["match"]} questionNumber={index} />
+              <QuizQuestionsMatchAnswers
+                answers={answers["match"]}
+                questionNumber={index}
+              />
             )}
 
             {answers["order"] && answers["order"].length > 0 && (
-              <OrderAnswers answers={answers["order"]} questionNumber={index} />
+              <QuizQuestionsOrderAnswers
+                answers={answers["order"]}
+                questionNumber={index}
+              />
             )}
 
             {answers["short-answer"] && answers["short-answer"].length > 0 && (
-              <ShortAnswers answers={answers["short-answer"]} />
+              <QuizQuestionsShortAnswers answers={answers["short-answer"]} />
             )}
           </>
         )}

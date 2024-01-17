@@ -1,16 +1,15 @@
 import { VisuallyHidden } from "react-aria";
 
-import QuizImage from "../QuizImage";
-import { removeMarkdown } from "../../LessonOverviewQuizContainer/quizUtils";
-import QuizImageAnswer from "../QuizImageAnswer";
-
+import QuizImage from "@/components/TeacherComponents/QuizImage";
+import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
+import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-export const MCAnswers = (props: {
+export const QuizQuestionsMCAnswers = (props: {
   answers: MCAnswer[];
   questionNumber: number;
 }) => {

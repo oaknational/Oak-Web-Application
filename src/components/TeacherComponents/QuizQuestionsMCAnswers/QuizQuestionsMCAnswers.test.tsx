@@ -1,4 +1,4 @@
-import { MCAnswers } from "./MCAnswers";
+import { QuizQuestionsMCAnswers } from "./QuizQuestionsMCAnswers";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
@@ -7,10 +7,10 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
-describe("MCAnswers", () => {
+describe("QuizQuestionsMCAnswers", () => {
   it("renders the correct number of answers", () => {
     const { getAllByRole } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
+      <QuizQuestionsMCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
     const answers = getAllByRole("listitem");
 
@@ -19,7 +19,7 @@ describe("MCAnswers", () => {
 
   it("renders the answer text", () => {
     const { getByText } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
+      <QuizQuestionsMCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
 
     for (const answer of mcqTextAnswers) {
@@ -37,7 +37,7 @@ describe("MCAnswers", () => {
 
   it("highlights the correct answer", () => {
     const { getByText } = renderWithTheme(
-      <MCAnswers answers={mcqTextAnswers} questionNumber={0} />,
+      <QuizQuestionsMCAnswers answers={mcqTextAnswers} questionNumber={0} />,
     );
 
     const correctAnswer: MCAnswer | undefined = mcqTextAnswers.find(
@@ -57,7 +57,7 @@ describe("MCAnswers", () => {
 
   it("renders the image answers", () => {
     const { getAllByRole } = renderWithTheme(
-      <MCAnswers answers={mcqImageAnswers} questionNumber={0} />,
+      <QuizQuestionsMCAnswers answers={mcqImageAnswers} questionNumber={0} />,
     );
 
     expect(getAllByRole("img").length).toBe(3);

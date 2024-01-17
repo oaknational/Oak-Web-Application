@@ -1,19 +1,19 @@
-import { OrderAnswers } from "./OrderAnswers";
+import { QuizQuestionsOrderAnswers } from "./QuizQuestionsOrderAnswers";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { orderAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
-describe("Order Answers", () => {
+describe("QuizQuestionsOrderAnswers", () => {
   it("renders all the answers", () => {
     const { getAllByRole } = renderWithTheme(
-      <OrderAnswers answers={orderAnswers} questionNumber={1} />,
+      <QuizQuestionsOrderAnswers answers={orderAnswers} questionNumber={1} />,
     );
     expect(getAllByRole("listitem")).toHaveLength(4);
   });
 
   it("renders all the answers in order", () => {
     const { getAllByRole } = renderWithTheme(
-      <OrderAnswers answers={orderAnswers} questionNumber={1} />,
+      <QuizQuestionsOrderAnswers answers={orderAnswers} questionNumber={1} />,
     );
     const elems = getAllByRole("listitem");
 

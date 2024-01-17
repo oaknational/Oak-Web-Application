@@ -1,19 +1,19 @@
-import { MatchAnswers } from "./MatchAnswers";
+import { QuizQuestionsMatchAnswers } from "./QuizQuestionsMatchAnswers";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { matchAnswers } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
 
-describe("Match Answers", () => {
+describe("QuizQuestionsMatchAnswers", () => {
   it("renders all the answers and options", () => {
     const { getAllByRole } = renderWithTheme(
-      <MatchAnswers answers={matchAnswers} questionNumber={1} />,
+      <QuizQuestionsMatchAnswers answers={matchAnswers} questionNumber={1} />,
     );
     expect(getAllByRole("listitem")).toHaveLength(3);
   });
 
   it("renders the correct matches", () => {
     const { getAllByRole } = renderWithTheme(
-      <MatchAnswers answers={matchAnswers} questionNumber={1} />,
+      <QuizQuestionsMatchAnswers answers={matchAnswers} questionNumber={1} />,
     );
 
     const items = getAllByRole("listitem");
