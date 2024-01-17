@@ -7,7 +7,7 @@ const videoPlayed = jest.fn();
 const videoPaused = jest.fn();
 const videoFinished = jest.fn();
 
-jest.mock("../../context/Analytics/useAnalytics", () => ({
+jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

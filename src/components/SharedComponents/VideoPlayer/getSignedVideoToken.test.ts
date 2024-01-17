@@ -2,7 +2,6 @@ import getSignedVideoToken from "./getSignedVideoToken";
 
 import OakError from "@/errors/OakError";
 
-
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
 const reportError = jest.fn();

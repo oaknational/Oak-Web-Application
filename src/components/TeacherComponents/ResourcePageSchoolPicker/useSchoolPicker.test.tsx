@@ -4,7 +4,6 @@ import useSchoolPicker, { fetcher } from "./useSchoolPicker";
 
 import OakError from "@/errors/OakError";
 
-
 const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
   data: null,
   error: null,
@@ -32,7 +31,7 @@ jest.mock("swr", () => ({
 
 const reportError = jest.fn();
 
-jest.mock("../../common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>

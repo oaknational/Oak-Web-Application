@@ -6,7 +6,6 @@ import SchoolPicker from ".";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const schools = [
   {
     urn: "101105",

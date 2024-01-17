@@ -6,7 +6,6 @@ import getSignedVideoToken from "./getSignedVideoToken";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
-
 const reportError = errorReporter("useSignedPlaybackId");
 export const apiEndpoint = "/api/video/signed-url";
 

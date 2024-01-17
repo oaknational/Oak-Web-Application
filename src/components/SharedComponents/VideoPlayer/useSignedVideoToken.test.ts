@@ -13,7 +13,7 @@ jest.mock("swr", () => ({
 }));
 
 const reportError = jest.fn();
-jest.mock("../../common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -26,7 +26,7 @@ jest.mock("./getSignedVideoToken", () => ({
   default: jest.fn().mockReturnValue(Promise.resolve([])),
 }));
 
-jest.mock("../../common-lib/error-reporter", () => ({
+jest.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
