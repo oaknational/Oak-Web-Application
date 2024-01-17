@@ -1,7 +1,6 @@
 import { FC } from "react";
 
-import BoxBorders from "../SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-
+import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Typography from "@/components/SharedComponents/Typography";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Card from "@/components/SharedComponents/Card";
@@ -9,13 +8,15 @@ import Flex from "@/components/SharedComponents/Flex";
 import { PositionProps } from "@/styles/utils/position";
 import { DisplayProps } from "@/styles/utils/display";
 
-type ResourceSelectorCardProps = {
+type TeachersTabResourceSelectorCardProps = {
   icon: IconName;
   title: string;
   angle: number;
 } & Omit<PositionProps, "$gap"> &
   DisplayProps;
-const ResourceSelectorCard: FC<ResourceSelectorCardProps> = (props) => {
+const TeachersTabResourceSelectorCard: FC<
+  TeachersTabResourceSelectorCardProps
+> = (props) => {
   const { icon, title, angle, ...positionAndDisplayProps } = props;
   return (
     <Card
@@ -49,4 +50,4 @@ const ResourceSelectorCard: FC<ResourceSelectorCardProps> = (props) => {
   );
 };
 
-export default ResourceSelectorCard;
+export default TeachersTabResourceSelectorCard;

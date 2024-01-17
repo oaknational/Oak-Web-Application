@@ -7,7 +7,7 @@ import Typography, { Heading } from "@/components/SharedComponents/Typography";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import ResourceSelectorCard from "@/components/ResourceSelectorCard/ResourceSelectorCard";
+import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import Grid, { GridArea } from "@/components/SharedComponents/Grid";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
@@ -58,7 +58,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
           </GridArea>
           <GridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"hero-pupils"}>
-              <ResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"worksheet"}
                 title="Worksheets"
                 angle={-4}
@@ -66,7 +66,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $left={166}
                 $display={["none", "none", "flex"]}
               />
-              <ResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"slide-deck"}
                 title="Slide decks"
                 angle={2}
@@ -74,7 +74,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $left={-72}
                 $display={["none", "none", "flex"]}
               />
-              <ResourceSelectorCard
+              <TeachersTabResourceSelectorCard
                 icon={"quiz-white"}
                 title="Quizzes"
                 angle={4}

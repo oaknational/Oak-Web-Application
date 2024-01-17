@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
-import Component from "./ResourceSelectorCard";
+import Component from "./TeachersTabResourceSelectorCard";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
@@ -21,4 +21,4 @@ const Template: ComponentStory<typeof Component> = (args) => (
   />
 );
 
-export const TeachersTab = Template.bind({});
+export const TeachersTabResourceSelectorCard = Template.bind({});
