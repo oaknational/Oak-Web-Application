@@ -216,7 +216,6 @@ const UnitModal: FC<UnitModalProps> = ({
                                 iconBackground={undefined}
                                 background={undefined}
                                 onClick={() => {
-                                  console.log(unitData);
                                   handleOptionalityModal();
                                   setUnitOptionsAvailable(false);
                                   setUnitVariantID(optionalUnit.unitvariant_id);

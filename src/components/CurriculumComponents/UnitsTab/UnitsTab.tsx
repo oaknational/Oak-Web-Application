@@ -61,6 +61,21 @@ interface YearSelection {
   };
 }
 
+export function createProgrammeSlug(
+  unitData?: Unit | null,
+  examboardSlug?: string | null,
+) {
+  if (unitData?.keystage_slug === "ks4") {
+    return `${unitData.subject_slug}-${unitData.phase_slug}-${
+      unitData.keystage_slug
+    }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+      examboardSlug ? "-" + examboardSlug : ""
+    }`;
+  }
+  return unitData
+    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+    : "";
+}
 // Function component
 
 const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
@@ -360,18 +375,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
     }
   }
 
-  const createProgrammeSlug = () => {
-    if (unitData?.keystage_slug === "ks4") {
-      return `${unitData.subject_slug}-${unitData.phase_slug}-${
-        unitData.keystage_slug
-      }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
-        examboardSlug ? "-" + examboardSlug : ""
-      }`;
-    }
-    return unitData
-      ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-      : "";
-  };
+  // const createProgrammeSlug = () => {
+  //   if (unitData?.keystage_slug === "ks4") {
+  //     return `${unitData.subject_slug}-${unitData.phase_slug}-${
+  //       unitData.keystage_slug
+  //     }${unitData.tier_slug ? "-" + unitData.tier_slug : ""}${
+  //       examboardSlug ? "-" + examboardSlug : ""
+  //     }`;
+  //   }
+  //   return unitData
+  //     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+  //     : "";
+  // };
 
   return (
     <Box>
@@ -684,7 +699,10 @@ const UnitsTab: FC<UnitsTabProps> = ({ data, examboardSlug }) => {
                         displayModal={displayModal}
                         onClose={handleCloseModal}
                         lessons={currentUnitLessons}
-                        programmeSlug={createProgrammeSlug()}
+                        programmeSlug={createProgrammeSlug(
+                          unitData,
+                          examboardSlug,
+                        )}
                         unitOptionsAvailable={unitOptionsAvailable}
                         unitSlug={unitData?.slug}
                         unitVariantID={unitVariantID}
