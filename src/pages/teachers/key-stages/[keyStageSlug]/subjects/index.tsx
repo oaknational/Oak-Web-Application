@@ -2,7 +2,7 @@ import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
 
 import { getSeoProps } from "@//browser-lib/seo/getSeoProps";
-import AppLayout from "@/components/AppLayout";
+import AppLayout from "@/components/SharedComponents/AppLayout";
 import SubjectListingPage from "@/components/TeacherViews/SubjectListing.view";
 import curriculumApi from "@/node-lib/curriculum-api";
 import {
