@@ -7,17 +7,42 @@ import {
   useQuizEngineContext,
 } from "@/components/PupilComponents/QuizEngineProvider";
 import { quizQuestions as questionsArrayFixture } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import {
+  LessonEngineContext,
+  LessonEngineContextType,
+} from "@/components/PupilComponents/LessonEngineProvider";
+
+const getLessonEngineContext = (): NonNullable<LessonEngineContextType> => ({
+  currentSection: "starter-quiz",
+  completedSections: [],
+  sectionResults: {},
+  getIsComplete: jest.fn(),
+  completeSection: jest.fn(),
+  updateCurrentSection: jest.fn(),
+  proceedToNextSection: jest.fn(),
+  updateQuizResult: jest.fn(),
+});
 
 describe("QuizEngineContext", () => {
+  const wrapper = (
+    { children, questionsArray }: QuizEngineProps,
+    lessonEngineContext?: LessonEngineContextType,
+  ) => {
+    return (
+      <LessonEngineContext.Provider
+        value={
+          lessonEngineContext ? lessonEngineContext : getLessonEngineContext()
+        }
+      >
+        <QuizEngineProvider questionsArray={questionsArray}>
+          {children}
+        </QuizEngineProvider>
+      </LessonEngineContext.Provider>
+    );
+  };
+
   describe("currentQuestionIndex", () => {
     it("should default to 0", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -35,13 +60,6 @@ describe("QuizEngineContext", () => {
 
   describe("currentQuestionData", () => {
     it("should default to the first question", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -59,13 +77,6 @@ describe("QuizEngineContext", () => {
 
   describe("questionState", () => {
     it("should default to the correct shape", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -88,13 +99,6 @@ describe("QuizEngineContext", () => {
 
   describe("score", () => {
     it("should default to 0", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -111,14 +115,7 @@ describe("QuizEngineContext", () => {
   });
 
   describe("maxScore", () => {
-    it("should default to the number of mcq questions", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
+    it("should default to the number of supported questions", () => {
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -141,13 +138,6 @@ describe("QuizEngineContext", () => {
   });
 
   it("should update currentQuestionIndex on handleNextQuestion", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
     const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -166,13 +156,6 @@ describe("QuizEngineContext", () => {
   });
 
   it("should update currentQuestionData on handleNextQuestion", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
     const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
         wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -190,17 +173,15 @@ describe("QuizEngineContext", () => {
     expect(result.current.currentQuestionData).toBe(questionsArrayFixture?.[1]);
   });
 
-  it("should update isComplete when currentQuestionIndex is > maxScore", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
+  it("should update the section as complete when currentQuestionIndex is > maxScore", () => {
+    const lessonEngineContext = getLessonEngineContext();
+
     const { result } = renderHook(() => useQuizEngineContext(), {
       wrapper: (props) =>
-        wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
+        wrapper(
+          { ...props, questionsArray: questionsArrayFixture ?? [] },
+          lessonEngineContext,
+        ),
     });
 
     if (result.current === null) {
@@ -215,18 +196,41 @@ describe("QuizEngineContext", () => {
       });
       expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
     }
-    expect(result.current.isComplete).toBe(true);
+    expect(lessonEngineContext.completeSection).toHaveBeenCalledWith(
+      "starter-quiz",
+    );
+  });
+
+  it("should update the current section to overview when the quiz is completed", () => {
+    const lessonEngineContext = getLessonEngineContext();
+
+    const { result } = renderHook(() => useQuizEngineContext(), {
+      wrapper: (props) =>
+        wrapper(
+          { ...props, questionsArray: questionsArrayFixture ?? [] },
+          lessonEngineContext,
+        ),
+    });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
+
+    const { handleNextQuestion, maxScore } = result.current;
+
+    for (let i = 0; i < maxScore; i++) {
+      act(() => {
+        handleNextQuestion();
+      });
+      expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
+    }
+    expect(lessonEngineContext.updateCurrentSection).toHaveBeenCalledWith(
+      "overview",
+    );
   });
 
   describe("handleSubmitMCAnswer", () => {
     it("should grade a single answer mcq as correct if the pupilAnswer is correct", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -255,13 +259,6 @@ describe("QuizEngineContext", () => {
     });
 
     it("should grade a single answer mcq as incorrect if the pupilAnswer is incorrect", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) =>
           wrapper({ ...props, questionsArray: questionsArrayFixture ?? [] }),
@@ -304,14 +301,6 @@ describe("QuizEngineContext", () => {
       } else {
         throw new Error("multiQs[0] is not properly defined");
       }
-
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
 
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
@@ -361,14 +350,6 @@ describe("QuizEngineContext", () => {
         throw new Error("multiQs[1] is not properly defined");
       }
 
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
-
       const { result } = renderHook(() => useQuizEngineContext(), {
         wrapper: (props) => wrapper({ ...props, questionsArray: multiQs }),
       });
@@ -402,14 +383,6 @@ describe("QuizEngineContext", () => {
 
   describe("handleSubmitShortAnswer", () => {
     it("should grade a short answer as correct if the pupilAnswer is correct", () => {
-      const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-        return (
-          <QuizEngineProvider questionsArray={questionsArray}>
-            {children}
-          </QuizEngineProvider>
-        );
-      };
-
       if (!Array.isArray(questionsArrayFixture)) {
         throw new Error("questionsArrayFixture is not an array");
       }
@@ -450,14 +423,6 @@ describe("QuizEngineContext", () => {
   });
 
   it("should grade a short answer as incorrect if the pupilAnswer is incorrect", () => {
-    const wrapper = ({ children, questionsArray }: QuizEngineProps) => {
-      return (
-        <QuizEngineProvider questionsArray={questionsArray}>
-          {children}
-        </QuizEngineProvider>
-      );
-    };
-
     if (!Array.isArray(questionsArrayFixture)) {
       throw new Error("questionsArrayFixture is not an array");
     }

@@ -1,7 +1,5 @@
 import React, {
   ReactNode,
-  useEffect,
-  useState,
   createContext,
   useMemo,
   memo,
@@ -39,7 +37,6 @@ export type QuizEngineContextType = {
   questionState: QuestionState[];
   score: number;
   maxScore: number;
-  isComplete: boolean;
   updateQuestionMode: (mode: QuestionModeType) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
@@ -59,7 +56,12 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateQuizResult } = useLessonEngineContext();
+  const {
+    updateQuizResult,
+    completeSection,
+    currentSection,
+    updateCurrentSection,
+  } = useLessonEngineContext();
 
   const filteredQuestions = useMemo(
     () =>
@@ -71,7 +73,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
     [questionsArray],
   );
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useStateCallback(0);
   const currentQuestionData = filteredQuestions[currentQuestionIndex];
   const [questionState, setQuestionState] = useStateCallback<QuestionState[]>(
     filteredQuestions.map(() => ({
@@ -83,13 +85,8 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const maxScore = filteredQuestions.length;
-  const [isComplete, setIsComplete] = useState(false);
 
   const score = questionState.reduce((acc, curr) => acc + curr.grade, 0);
-
-  useEffect(() => {
-    setIsComplete(currentQuestionIndex >= maxScore);
-  }, [currentQuestionIndex, maxScore]);
 
   const handleScoreUpdate = useCallback(
     (_questionState: QuestionState[]) => {
@@ -199,8 +196,22 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   );
 
   const handleNextQuestion = useCallback(() => {
-    setCurrentQuestionIndex((prev) => Math.min(prev + 1, maxScore));
-  }, [maxScore]);
+    setCurrentQuestionIndex(
+      (prev) => Math.min(prev + 1, maxScore),
+      (index) => {
+        if (index === maxScore) {
+          completeSection(currentSection);
+          updateCurrentSection("overview");
+        }
+      },
+    );
+  }, [
+    maxScore,
+    setCurrentQuestionIndex,
+    completeSection,
+    currentSection,
+    updateCurrentSection,
+  ]);
 
   return (
     <QuizEngineContext.Provider
@@ -210,7 +221,6 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         questionState,
         score,
         maxScore,
-        isComplete,
         updateQuestionMode,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,

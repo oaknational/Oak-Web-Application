@@ -151,4 +151,27 @@ describe("LessonEngineProvider", () => {
       expect(result.current.getIsComplete("overview")).toEqual(true);
     });
   });
+
+  it("tracks section results", () => {
+    const { result } = renderHook(() => useLessonEngineContext(), {
+      wrapper: (props) =>
+        providerWrapper({
+          ...props,
+        }),
+    });
+
+    if (result.current === null) {
+      throw new Error("result.current is null");
+    }
+
+    expect(result.current.sectionResults).toEqual({});
+
+    act(() => {
+      result.current.updateQuizResult({ grade: 0, maxScore: 0 });
+    });
+
+    expect(result.current.sectionResults).toEqual({
+      overview: { grade: 0, maxScore: 0 },
+    });
+  });
 });

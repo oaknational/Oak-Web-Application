@@ -4,24 +4,24 @@ import {
   OakForm,
   OakHeading,
   OakPrimaryButton,
+  OakSecondaryButton,
   OakSpan,
 } from "@oak-academy/oak-components";
 
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { pickAnswerComponent } from "@/components/PupilComponents/QuizUtils/pickAnswerComponent";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
+import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { QuizQuestionStem } from "@/components/PupilComponents/QuizQuestionStem";
 
 export const QuizRenderer = () => {
   const quizEngineContext = useQuizEngineContext();
+  const { currentSection, updateCurrentSection } = useLessonEngineContext();
 
   const {
     currentQuestionData,
     currentQuestionIndex,
     questionState,
-    isComplete,
-    score,
-    maxScore,
     handleNextQuestion,
     updateQuestionMode,
     handleSubmitMCAnswer,
@@ -32,15 +32,7 @@ export const QuizRenderer = () => {
 
   let questionFeedback = null;
 
-  if (isComplete) {
-    innerRender = (
-      <OakFlex>
-        <OakSpan>
-          End of quiz, score: {score}/{maxScore}
-        </OakSpan>
-      </OakFlex>
-    );
-  } else if (currentQuestionData) {
+  if (currentQuestionData) {
     const { questionStem, answers } = currentQuestionData;
 
     const isFeedbackMode =
@@ -154,9 +146,19 @@ export const QuizRenderer = () => {
       $alignItems={"center"}
       $gap={"all-spacing-5"}
     >
-      <OakHeading tag="h1">Quiz Renderer</OakHeading>
+      <OakHeading tag="h1">
+        {currentSection === "starter-quiz" ? "Starter Quiz" : "Exit Quiz"}
+      </OakHeading>
       {questionFeedback}
       {innerRender}
+
+      <OakSecondaryButton
+        onClick={() => {
+          updateCurrentSection("overview");
+        }}
+      >
+        Back
+      </OakSecondaryButton>
     </OakFlex>
   );
 };
